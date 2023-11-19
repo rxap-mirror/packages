@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.48](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.47...@rxap/schematic-angular@16.1.0-dev.48) (2023-11-19)
+
+### Features
+
+- support complex and importable types ([1636580](https://gitlab.com/rxap/packages/commit/1636580713961324683ea0246e109e35e7efc6c1))
+
 # [16.1.0-dev.47](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.46...@rxap/schematic-angular@16.1.0-dev.47) (2023-11-19)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.20...@rxap/ts-morph@0.1.0-dev.21) (2023-11-19)
+
+### Features
+
+- support complex and importable types ([1636580](https://gitlab.com/rxap/packages/commit/1636580713961324683ea0246e109e35e7efc6c1))
+
 # [0.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.19...@rxap/ts-morph@0.1.0-dev.20) (2023-11-18)
 
 ### Bug Fixes

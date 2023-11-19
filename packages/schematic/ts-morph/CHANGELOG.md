@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.37](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.36...@rxap/schematics-ts-morph@16.0.0-dev.37) (2023-11-19)
+
+### Features
+
+- support complex and importable types ([1636580](https://gitlab.com/rxap/packages/commit/1636580713961324683ea0246e109e35e7efc6c1))
+
 # [16.0.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.35...@rxap/schematics-ts-morph@16.0.0-dev.36) (2023-11-19)
 
 ### Bug Fixes
