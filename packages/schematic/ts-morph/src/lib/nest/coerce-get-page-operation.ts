@@ -289,20 +289,21 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       controllerName,
     ) => {
 
-      CoerceImports(sourceFile, options.columnList
-        .map(c => GetPageOperationColumnTypeToTypeImport(c))
-        .filter(type => RequiresTypeImport(type))
-        .map(type => TypeImportToImportStructure(type)));
-
       const {
         className: rowClassName,
         filePath: rowFilePath,
+        sourceFile: rowSourceFile,
       } = CoerceRowDtoClass({
         project,
         name: responseDtoName!,
         propertyList: columnList.map(GetPageOperationColumnToDtoClassProperty),
         rowIdType: rowIdProperty === null ? null : undefined,
       });
+
+      CoerceImports(rowSourceFile, options.columnList
+        .map(c => GetPageOperationColumnTypeToTypeImport(c))
+        .filter(type => RequiresTypeImport(type))
+        .map(type => TypeImportToImportStructure(type)));
 
       const {
         className: pageClassName,

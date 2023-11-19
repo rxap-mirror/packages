@@ -30,6 +30,8 @@ import { DtoClassProperty } from './create-dto-class';
 export interface CoerceDtoClassOutput {
   className: string;
   filePath: string;
+  sourceFile: SourceFile;
+  classDeclaration: ClassDeclaration;
 }
 
 export function CoercePropertyDeclaration(
@@ -283,6 +285,8 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
   return {
     className,
     filePath: '.' + join(sourceFile.getDirectoryPath(), sourceFile.getBaseNameWithoutExtension()),
+    sourceFile,
+    classDeclaration,
   };
 
 }
