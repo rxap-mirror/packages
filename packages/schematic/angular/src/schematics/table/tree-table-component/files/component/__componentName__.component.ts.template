@@ -40,8 +40,8 @@ import { DataSourceErrorComponent } from '@rxap/data-source';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 <% for (const column of columnList) { %>
-<% if (column.type === 'component') { %>
-import { <%= classify(column.name) %>Component } from './<%= dasherize(column.name) %>-component/<%= dasherize(column.name) %>.component';
+<% if (column.role === 'component') { %>
+import { <%= classify(column.name) %>CellComponent } from './<%= dasherize(column.name) %>-cell/<%= dasherize(column.name) %>-cell.component';
 <% } %>
 <% for (const pipe of column.pipeList) { %>
 import { <%= pipe.namedImport %> } from '<%= pipe.moduleSpecifier %>';
@@ -57,8 +57,8 @@ import { <%= pipe.namedImport %> } from '<%= pipe.moduleSpecifier %>';
   standalone: true,
   imports: [
     <% for (const column of columnList) { %>
-    <% if (column.type === 'component') { %>
-    <%= classify(column.name) %>Component,
+    <% if (column.role === 'component') { %>
+    <%= classify(column.name) %>CellComponent,
     <% } %>
     <% for (const pipe of column.pipeList) { %>
     <%= pipe.namedImport %>,
