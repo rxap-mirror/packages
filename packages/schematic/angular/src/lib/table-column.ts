@@ -117,12 +117,17 @@ export function NormalizeTableColumn(
     template = column.template ?? template;
     pipeList = column.pipeList ?? pipeList;
   }
+  const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
   propertyPath ??= name
     .replace(/\?\./g, '.')
     .split('.')
     .map((part) => camelize(part))
     .join('?.');
   name = dasherize(name.replace(/\??\./g, '_'));
+  if (namePrefix) {
+    name = namePrefix + name;
+    propertyPath = namePrefix + propertyPath;
+  }
   title ??= dasherize(name)
     .replace(/_/g, '-')
     .split('-')
