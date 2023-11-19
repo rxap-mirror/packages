@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.49](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.48...@rxap/schematic-angular@16.1.0-dev.49) (2023-11-19)
+
+### Bug Fixes
+
+- preserve table column name prefix ([6ad3d2b](https://gitlab.com/rxap/packages/commit/6ad3d2b528a9d5ae022ad3fef7a0aa60220cf6d4))
+
 # [16.1.0-dev.48](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.47...@rxap/schematic-angular@16.1.0-dev.48) (2023-11-19)
 
 ### Features
