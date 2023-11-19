@@ -1,9 +1,9 @@
+import { TypeImport } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import { NormalizedTableColumn } from './table-column';
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
-  TypeImport,
 } from './type-import';
 
 export interface TableProperty {

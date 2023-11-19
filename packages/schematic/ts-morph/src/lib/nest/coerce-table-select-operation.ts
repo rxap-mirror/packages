@@ -22,12 +22,12 @@ export function CoerceTableSelectOperationRule(options: CoerceTableSelectOperati
 
   columnList.unshift({
     name: '__display',
-    type: 'string',
+    type: { name: 'string' },
     source: rowDisplayProperty,
   });
   columnList.unshift({
     name: '__value',
-    type: 'string',
+    type: { name: 'string' },
     source: rowValueProperty,
   });
 

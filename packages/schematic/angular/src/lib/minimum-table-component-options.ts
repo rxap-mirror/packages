@@ -20,6 +20,10 @@ import {
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import {
+  RequiresTypeImport,
+  TypeImportToImportStructure,
+} from '@rxap/ts-morph';
+import {
   classify,
   dasherize,
   IsRecord,
@@ -47,10 +51,6 @@ import {
 import { NormalizedTableAction } from './table-action';
 import { NormalizedTableColumn } from './table-column';
 import { NormalizedTableProperty } from './table-property';
-import {
-  NormalizedTypeImportToImportStructure,
-  RequiresTypeImport,
-} from './type-import';
 
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 
@@ -133,7 +133,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
 }
 
 function tablePropertyListToImportStructure(propertyList: ReadonlyArray<NormalizedTableProperty>): ReadonlyArray<OptionalKind<ImportDeclarationStructure>> {
-  return propertyList.filter(p => RequiresTypeImport(p.type)).map(p => NormalizedTypeImportToImportStructure(p.type));
+  return propertyList.filter(p => RequiresTypeImport(p.type)).map(p => TypeImportToImportStructure(p.type));
 }
 
 function tablePropertyListToPropertiesStructure(propertyList: ReadonlyArray<NormalizedTableProperty>): OptionalKind<PropertySignatureStructure>[] {

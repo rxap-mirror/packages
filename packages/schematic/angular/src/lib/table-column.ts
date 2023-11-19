@@ -3,11 +3,11 @@ import {
   capitalize,
   dasherize,
 } from '@rxap/schematics-utilities';
+import { TypeImport } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
-  TypeImport,
 } from './type-import';
 
 export type TableColumnPipe = TypeImport;

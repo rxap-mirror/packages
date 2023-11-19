@@ -1,17 +1,5 @@
+import { TypeImport } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
-import {
-  ImportDeclarationStructure,
-  OptionalKind,
-} from 'ts-morph';
-
-export interface TypeImport {
-  name: string;
-  moduleSpecifier?: string;
-  namedImport?: string;
-  namespaceImport?: string;
-  isTypeOnly?: boolean;
-  defaultImport?: string;
-}
 
 export type NormalizedTypeImport = Readonly<Normalized<TypeImport>>;
 
@@ -45,30 +33,4 @@ export function NormalizeTypeImport(typeImport: Readonly<TypeImport> | string): 
     isTypeOnly,
     defaultImport,
   });
-}
-
-export function RequiresTypeImport(typeImport: NormalizedTypeImport): boolean {
-  return !!typeImport.moduleSpecifier;
-}
-
-export function NormalizedTypeImportToImportStructure(typeImport: NormalizedTypeImport): OptionalKind<ImportDeclarationStructure> {
-  if (!typeImport.moduleSpecifier) {
-    throw new Error('The moduleSpecifier is required');
-  }
-  const structure: OptionalKind<ImportDeclarationStructure> = {
-    moduleSpecifier: typeImport.moduleSpecifier,
-  };
-  if (!typeImport.namedImport && !typeImport.namespaceImport && !typeImport.defaultImport) {
-    structure.namedImports = [ typeImport.name ];
-  }
-  if (typeImport.namedImport) {
-    structure.namedImports = [ typeImport.namedImport ];
-  }
-  if (typeImport.namespaceImport) {
-    structure.namespaceImport = typeImport.namespaceImport;
-  }
-  if (typeImport.defaultImport) {
-    structure.defaultImport = typeImport.defaultImport;
-  }
-  return structure;
 }

@@ -2,6 +2,11 @@ import {
   camelize,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
+import {
+  RequiresTypeImport,
+  TypeImport,
+  TypeImportToImportStructure,
+} from '@rxap/ts-morph';
 import { joinWithDash } from '@rxap/utilities';
 import {
   ClassDeclaration,
@@ -23,7 +28,7 @@ import { DtoClassProperty } from './create-dto-class';
 
 export interface GetPageOperationColumn {
   name: string;
-  type?: string;
+  type?: TypeImport;
   /**
    * the property name of the source object. if not defined the name will be used
    */
@@ -75,11 +80,26 @@ export interface CoerceGetPageOperationOptions
   ) => void;
 }
 
+function GetPageOperationColumnTypeToTypeImport(column: GetPageOperationColumn): TypeImport {
+  if (!column.type) {
+    return { name: 'unknown' };
+  }
+  switch (column.type?.name) {
+    case 'IconConfig':
+      return {
+        name: 'IconDto',
+        moduleSpecifier: '@rxap/nest-dto',
+      };
+  }
+  return column.type ?? { name: 'unknown' };
+}
+
 export function GetPageOperationColumnToDtoClassProperty(column: GetPageOperationColumn): DtoClassProperty {
+  const type = GetPageOperationColumnTypeToTypeImport(column);
   return {
     name: column.name,
-    type: column.type?.replace(/\[]$/, '').replace(/^Array<(.+)>/, '$1') ?? 'unknown',
-    isArray: column.type?.endsWith('[]') || column.type?.startsWith('Array<'),
+    type: type.name.replace(/\[]$/, '').replace(/^Array<(.+)>/, '$1') ?? 'unknown',
+    isArray: type.name.endsWith('[]') || type.name.startsWith('Array<'),
     isOptional: false,
     isType: false,
   };
@@ -268,6 +288,11 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       classDeclaration,
       controllerName,
     ) => {
+
+      CoerceImports(sourceFile, options.columnList
+        .map(c => GetPageOperationColumnTypeToTypeImport(c))
+        .filter(type => RequiresTypeImport(type))
+        .map(type => TypeImportToImportStructure(type)));
 
       const {
         className: rowClassName,

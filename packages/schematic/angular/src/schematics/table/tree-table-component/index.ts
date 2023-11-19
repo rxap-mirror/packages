@@ -13,6 +13,7 @@ import {
   CoerceTreeTableChildrenProxyRemoteMethodClass,
   CoerceTreeTableRootProxyRemoteMethodClass,
 } from '@rxap/schematics-ts-morph';
+import { TypeImportToImportStructure } from '@rxap/ts-morph';
 import {
   classify,
   Normalized,
@@ -38,7 +39,6 @@ import {
   NormalizedTreeTableOptions,
   NormalizeTreeTableOptions,
 } from '../../../lib/tree-table-options';
-import { NormalizedTypeImportToImportStructure } from '../../../lib/type-import';
 import { TreeTableComponentOptions } from './schema';
 
 export interface NormalizedTreeTableComponentOptions
@@ -421,7 +421,7 @@ function treeTableMethodRule(normalizedOptions: NormalizedTreeTableComponentOpti
                 moduleSpecifier: '@rxap/data-source/table/tree',
                 namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD' ],
               },
-              NormalizedTypeImportToImportStructure(tableRootMethod),
+              TypeImportToImportStructure(tableRootMethod),
             ],
           );
           AddComponentProvider(
@@ -435,7 +435,7 @@ function treeTableMethodRule(normalizedOptions: NormalizedTreeTableComponentOpti
                 moduleSpecifier: '@rxap/data-source/table/tree',
                 namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD' ],
               },
-              NormalizedTypeImportToImportStructure(tableChildMethod),
+              TypeImportToImportStructure(tableChildMethod),
             ],
           );
         },

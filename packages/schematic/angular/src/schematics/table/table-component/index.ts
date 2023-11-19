@@ -23,6 +23,7 @@ import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
+import { TypeImportToImportStructure } from '@rxap/ts-morph';
 import {
   camelize,
   classify,
@@ -51,7 +52,6 @@ import {
   NormalizedTableOptions,
   NormalizeTableOptions,
 } from '../../../lib/table-options';
-import { NormalizedTypeImportToImportStructure } from '../../../lib/type-import';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
@@ -88,7 +88,7 @@ export function TableColumnToGetPageOperationColumn(
 ): GetPageOperationColumn {
   return {
     name: column.name,
-    type: column.type?.name ?? undefined,
+    type: column.type ?? undefined,
     source: column.propertyPath ?? undefined,
   };
 }
@@ -162,7 +162,7 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
               useClass: tableMethod.name,
             },
             [
-              NormalizedTypeImportToImportStructure(tableMethod),
+              TypeImportToImportStructure(tableMethod),
               {
                 namedImports: [ 'RXAP_TABLE_METHOD' ],
                 moduleSpecifier: '@rxap/material-table-system',
@@ -356,7 +356,7 @@ function openApiBackendRule(normalizedOptions: NormalizedTableComponentOptions):
                 moduleSpecifier: '@rxap/material-table-system',
                 namedImports: [ 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY' ],
               },
-              NormalizedTypeImportToImportStructure(openApi.adapter),
+              TypeImportToImportStructure(openApi.adapter),
             ],
           );
         }
