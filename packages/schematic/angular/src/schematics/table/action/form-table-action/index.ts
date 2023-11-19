@@ -78,8 +78,7 @@ export function NormalizeFormTableActionOptions(
       nestModule,
       controllerName: [ type, 'action' ].join('-'),
     }),
-    formComponent: CoerceSuffix(
-      dasherize(options.formComponent ?? [ type, tableName.replace(/-table$/, '') ].join('-')), '-form'),
+    formComponent: CoerceSuffix(dasherize(options.formComponent ?? type), '-form'),
     loadFrom: Object.keys(loadFrom ?? {}).length ? loadFrom : null,
     formInitial: Object.keys(formInitial ?? {}).length ? formInitial : null,
     customComponent: options.customComponent ?? false,
