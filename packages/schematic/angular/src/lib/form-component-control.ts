@@ -1,5 +1,5 @@
-import { Normalized } from '@rxap/utilities';
 import { camelize } from '@rxap/schematics-utilities';
+import { Normalized } from '@rxap/utilities';
 
 export interface FormComponentControl {
   name: string;
@@ -40,7 +40,7 @@ export function NormalizeFormComponentControl(
     state = control.state ?? state;
     validatorList = control.validatorList ?? validatorList;
   }
-  return Object.seal({
+  return Object.freeze({
     name: camelize(name),
     type,
     isRequired,
@@ -51,6 +51,6 @@ export function NormalizeFormComponentControl(
 
 export function NormalizeFormComponentControlList(
   controlList?: Array<string | FormComponentControl>,
-): Array<NormalizedFormComponentControl> {
-  return Object.seal(controlList?.map(NormalizeFormComponentControl) ?? []);
+): ReadonlyArray<NormalizedFormComponentControl> {
+  return Object.freeze(controlList?.map(NormalizeFormComponentControl) ?? []);
 }

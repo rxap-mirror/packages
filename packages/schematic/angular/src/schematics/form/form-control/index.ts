@@ -30,7 +30,7 @@ export function NormalizeFormControlOptions(
     directory += '/' + formName + '-form';
   }
   const controllerName = options.controllerName ?? formName;
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedFormDefinitionControl,
     formName,

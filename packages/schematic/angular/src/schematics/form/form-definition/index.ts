@@ -17,9 +17,9 @@ import {
 import { FormDefinitionOptions } from './schema';
 
 export interface NormalizedFormDefinitionOptions
-  extends Readonly<Normalized<FormDefinitionOptions> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<FormDefinitionOptions, 'controlList'>> & NormalizedAngularOptions> {
   name: string;
-  controlList: Array<NormalizedFormDefinitionControl>;
+  controlList: ReadonlyArray<NormalizedFormDefinitionControl>;
 }
 
 export function NormalizeFormDefinitionOptions(
@@ -27,7 +27,7 @@ export function NormalizeFormDefinitionOptions(
 ): Readonly<NormalizedFormDefinitionOptions> {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAngularOptions,
     controlList: NormalizeFormDefinitionControlList(options.controlList),
     standalone: options.standalone ?? true,

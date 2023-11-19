@@ -31,7 +31,10 @@ import {
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
-import { NormalizeTreeTableOptions } from '../../../../lib/tree-table-options';
+import {
+  NormalizedTreeTableOptions,
+  NormalizeTreeTableOptions,
+} from '../../../../lib/tree-table-options';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
@@ -39,14 +42,17 @@ import {
 } from '../../accordion-item-component';
 import { AccordionItemTreeTableComponentOptions } from './schema';
 
-export type NormalizedAccordionItemTreeTableComponentOptions = Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>;
+export interface NormalizedAccordionItemTreeTableComponentOptions
+  extends Omit<Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table'> {
+  table: NormalizedTreeTableOptions;
+}
 
 export function NormalizeAccordionItemTreeTableComponentOptions(
   options: Readonly<AccordionItemTreeTableComponentOptions>,
 ): Readonly<NormalizedAccordionItemTreeTableComponentOptions> {
   const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
   const { itemName } = normalizedAccordionItemComponentOptions;
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAccordionItemComponentOptions,
     table: NormalizeTreeTableOptions(options.table, itemName),
   });

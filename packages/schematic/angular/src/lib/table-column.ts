@@ -158,7 +158,7 @@ export function NormalizeTableColumn(
       cssClass += ' nowrap';
     }
   }
-  return Object.seal({
+  return Object.freeze({
     role,
     name,
     type,
@@ -179,6 +179,6 @@ export function NormalizeTableColumn(
 
 export function NormalizeTableColumnList(
   columnList?: ReadonlyArray<string | Readonly<TableColumn>>,
-): Array<NormalizedTableColumn> {
-  return Object.seal(columnList?.map(NormalizeTableColumn) ?? []);
+): ReadonlyArray<NormalizedTableColumn> {
+  return Object.freeze(columnList?.map(NormalizeTableColumn) ?? []);
 }

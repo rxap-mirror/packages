@@ -31,7 +31,7 @@ export function NormalizeTableHeaderButtonOptions<Options extends Record<string,
     throw new Error('FATAL: should never happen');
   }
   const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
-  return Object.seal({
+  return Object.freeze({
     ...normalizedTableHeaderButton,
     ...normalizedAngularOptions,
     tableName,

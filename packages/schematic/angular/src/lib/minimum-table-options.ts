@@ -34,11 +34,12 @@ export interface MinimumTableOptions {
   componentName?: string;
 }
 
-export interface NormalizedMinimumTableOptions extends Readonly<Normalized<MinimumTableOptions>> {
+export interface NormalizedMinimumTableOptions
+  extends Readonly<Omit<Normalized<MinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList'>> {
   componentName: string;
-  columnList: NormalizedTableColumn[];
-  actionList: NormalizedTableAction[];
-  propertyList: NormalizedTableProperty[];
+  columnList: ReadonlyArray<NormalizedTableColumn>;
+  actionList: ReadonlyArray<NormalizedTableAction>;
+  propertyList: ReadonlyArray<NormalizedTableProperty>;
 }
 
 export function NormalizeMinimumTableOptions(
@@ -52,7 +53,7 @@ export function NormalizeMinimumTableOptions(
   const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
   const modifiers = options.modifiers ?? [];
   const title = options.title ?? ToTitle(name);
-  return Object.seal({
+  return Object.freeze({
     componentName,
     actionList,
     columnList,

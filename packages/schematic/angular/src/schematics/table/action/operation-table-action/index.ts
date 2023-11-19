@@ -34,7 +34,7 @@ export function NormalizeOperationTableActionOptions(
   const normalizedOptions = NormalizeTableActionOptions(options);
   const nestModule = options.nestModule ?? normalizedOptions.tableName;
   const context = options.context ? dasherize(options.context) : null;
-  return Object.seal({
+  return Object.freeze({
     ...normalizedOptions,
     nestModule,
     controllerName: BuildNestControllerName({

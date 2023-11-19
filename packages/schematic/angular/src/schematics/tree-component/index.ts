@@ -1,16 +1,16 @@
-import { TreeComponentOptions } from './schema';
+import { chain } from '@angular-devkit/schematics';
+import { CoerceTreeOperationRule } from '@rxap/schematics-ts-morph';
 import {
   CoerceSuffix,
   dasherize,
 } from '@rxap/schematics-utilities';
-import { chain } from '@angular-devkit/schematics';
-import { CoerceTreeOperationRule } from '@rxap/schematics-ts-morph';
+import { Normalized } from '@rxap/utilities';
 import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
 } from '../../lib/angular-options';
-import { Normalized } from '@rxap/utilities';
+import { TreeComponentOptions } from './schema';
 
 export interface NormalizedTreeComponentOptions
   extends Readonly<Normalized<TreeComponentOptions> & NormalizedAngularOptions> {
@@ -26,7 +26,7 @@ export function NormalizeTreeComponentOptions(
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const { name } = normalizedAngularOptions;
   const componentName = CoerceSuffix(dasherize(name), '-tree');
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAngularOptions,
     modifiers: options.modifiers ?? [],
     controllerName: options.controllerName ?? componentName,

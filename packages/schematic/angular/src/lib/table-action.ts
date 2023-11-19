@@ -86,7 +86,7 @@ export function NormalizeTableAction(
     color = tableAction.color ?? color;
     cssClass = tableAction.cssClass ?? cssClass;
   }
-  return Object.seal({
+  return Object.freeze({
     ...NormalizeTableRowAction({
       type,
       checkFunction,
@@ -110,6 +110,6 @@ export function NormalizeTableAction(
 
 export function NormalizeTableActionList(
   tableActionList?: Array<Readonly<TableAction> | string>,
-): Array<NormalizedTableAction> {
-  return Object.seal(tableActionList?.map(NormalizeTableAction) ?? []);
+): ReadonlyArray<NormalizedTableAction> {
+  return Object.freeze(tableActionList?.map(NormalizeTableAction) ?? []);
 }

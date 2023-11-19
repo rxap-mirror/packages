@@ -52,15 +52,17 @@ import {
   NormalizedTableOptions,
   NormalizeTableOptions,
 } from '../../../lib/table-options';
+import { NormalizedTableProperty } from '../../../lib/table-property';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
 export interface NormalizedTableComponentOptions
-  extends Readonly<Normalized<TableComponentOptions> & NormalizedTableOptions & NormalizedAngularOptions> {
+  extends Omit<Readonly<Normalized<TableComponentOptions> & NormalizedTableOptions & NormalizedAngularOptions>, 'columnList' | 'actionList' | 'propertyList'> {
   name: string;
   controllerName: string;
-  columnList: NormalizedTableColumn[];
-  actionList: NormalizedTableAction[];
+  columnList: ReadonlyArray<NormalizedTableColumn>;
+  actionList: ReadonlyArray<NormalizedTableAction>;
+  propertyList: ReadonlyArray<NormalizedTableProperty>;
 }
 
 export function NormalizeTableComponentOptions(
@@ -79,7 +81,7 @@ export function NormalizeTableComponentOptions(
       throw new Error('openApi options must be provided. If backend is open-api');
     }
   }
-  return Object.seal({
+  return Object.freeze({
     ...normalizedMinimumTableComponentOptions,
     ...normalizedTableOptions,
   });
@@ -184,7 +186,7 @@ interface UsePickFromTableInterfaceAsFormTypeRuleOptions
   extends TsMorphAngularProjectTransformOptions {
   name: string;
   formName: string;
-  columnList: NormalizedTableColumn[];
+  columnList: ReadonlyArray<NormalizedTableColumn>;
 }
 
 function UsePickFromTableInterfaceAsFormTypeRule(

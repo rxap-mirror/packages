@@ -25,7 +25,7 @@ export function NormalizeNavigationTableHeaderButtonOptions(
   options: Readonly<NavigationTableHeaderButtonOptions>,
 ): NormalizedNavigationTableHeaderButtonOptions {
   const normalizedTableHeaderButtonOptions = NormalizeTableHeaderButtonOptions(options);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedTableHeaderButtonOptions,
     route: options.route,
     relativeTo: options.relativeTo ?? false,

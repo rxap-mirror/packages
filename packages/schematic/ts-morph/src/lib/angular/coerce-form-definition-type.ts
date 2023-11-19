@@ -16,7 +16,7 @@ import {
 } from './form-definition-utilities';
 
 export interface CoerceFormDefinitionTypeOptions extends TsMorphAngularProjectTransformOptions {
-  controlList?: Array<Required<FormDefinitionControl>>;
+  controlList?: ReadonlyArray<Required<FormDefinitionControl>>;
   name: string;
   coerceFormType?: (
     sourceFile: SourceFile,

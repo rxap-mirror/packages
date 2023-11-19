@@ -18,7 +18,10 @@ import {
 import { join } from 'path';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
-import { NormalizeDialogActionList } from '../../../../lib/dialog-action';
+import {
+  NormalizedDialogAction,
+  NormalizeDialogActionList,
+} from '../../../../lib/dialog-action';
 import { ToTitle } from '../../../../lib/to-title';
 import {
   NormalizedOperationTableActionOptions,
@@ -27,8 +30,9 @@ import {
 import { DialogTableActionOptions } from './schema';
 
 export interface NormalizedDialogTableActionOptions
-  extends Readonly<Normalized<DialogTableActionOptions> & NormalizedOperationTableActionOptions> {
+  extends Readonly<Normalized<Omit<DialogTableActionOptions, 'actionList'>> & NormalizedOperationTableActionOptions> {
   title: string;
+  actionList: ReadonlyArray<NormalizedDialogAction>;
 }
 
 export function NormalizeDialogTableActionOptions(
@@ -42,7 +46,7 @@ export function NormalizeDialogTableActionOptions(
     });
     actionList.push({ role: 'submit' });
   }
-  return Object.seal({
+  return Object.freeze({
     ...NormalizeOperationTableActionOptions(options),
     withoutBody: options.withoutBody ?? false,
     actionList: NormalizeDialogActionList(actionList),

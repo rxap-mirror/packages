@@ -25,18 +25,20 @@ export function NormalizeTableProperty(property: string | TableProperty): Normal
   }
   type ??= 'unknown';
   name = name.replace(/\.\?/g, '.').split('.').join('.?');
-  return Object.seal({
+  return Object.freeze({
     name,
     type,
   });
 }
 
-export function NormalizeTablePropertyList(propertyList?: Array<string | TableProperty>): NormalizedTableProperty[] {
-  return Object.seal(propertyList?.map(NormalizeTableProperty) ?? []);
+export function NormalizeTablePropertyList(propertyList?: Array<string | TableProperty>): ReadonlyArray<NormalizedTableProperty> {
+  return Object.freeze(propertyList?.map(NormalizeTableProperty) ?? []);
 }
 
 export function MergeWithColumnList(
-  propertyList: NormalizedTableProperty[], columnList: NormalizedTableColumn[]): NormalizedTableProperty[] {
+  propertyList: ReadonlyArray<NormalizedTableProperty>,
+  columnList: ReadonlyArray<NormalizedTableColumn>,
+): ReadonlyArray<NormalizedTableProperty> {
   const merged: NormalizedTableProperty[] = [ ...propertyList ];
   for (const column of columnList) {
     if (!merged.find((property) => property.name === column.propertyPath)) {
@@ -46,5 +48,5 @@ export function MergeWithColumnList(
       });
     }
   }
-  return Object.seal(merged);
+  return Object.freeze(merged);
 }

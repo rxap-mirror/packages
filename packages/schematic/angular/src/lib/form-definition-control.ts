@@ -48,7 +48,7 @@ export function NormalizeFormControlType(control: Nullable<Pick<FormDefinitionCo
       state = '[]';
     }
   }
-  return Object.seal({
+  return Object.freeze({
     type: type ?? 'unknown',
     isArray,
     state,
@@ -69,7 +69,7 @@ export function NormalizeFormDefinitionControl(
     state,
     isArray,
   } = NormalizeFormControlType(nControl);
-  return Object.seal({
+  return Object.freeze({
     name,
     type,
     isArray,
@@ -81,6 +81,6 @@ export function NormalizeFormDefinitionControl(
 
 export function NormalizeFormDefinitionControlList(
   controlList?: Array<string | FormDefinitionControl>,
-): Array<NormalizedFormDefinitionControl> {
-  return Object.seal(controlList?.map(NormalizeFormDefinitionControl) ?? []);
+): ReadonlyArray<NormalizedFormDefinitionControl> {
+  return Object.freeze(controlList?.map(NormalizeFormDefinitionControl) ?? []);
 }

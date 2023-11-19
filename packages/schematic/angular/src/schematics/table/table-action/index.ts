@@ -26,7 +26,7 @@ export function NormalizeTableActionOptions(
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   const normalizedTableRowAction = NormalizeTableRowAction(options);
   const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
-  return Object.seal({
+  return Object.freeze({
     ...normalizedTableRowAction,
     ...normalizedAngularOptions,
     tableName,

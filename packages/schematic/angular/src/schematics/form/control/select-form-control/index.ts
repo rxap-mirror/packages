@@ -42,7 +42,7 @@ export function NormalizeSelectFormControlOptions(
   let { isArray } = normalizedOptions;
   const multiple = options.multiple ?? false;
   isArray = multiple ? true : isArray;
-  return Object.seal({
+  return Object.freeze({
     ...normalizedOptions,
     isArray,
     multiple,

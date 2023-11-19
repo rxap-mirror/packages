@@ -1,9 +1,9 @@
+import { Normalized } from '@rxap/utilities';
 import {
   DataGridItem,
   NormalizeDataGridItemList,
   NormalizedDataGridItem,
 } from './data-grid-item';
-import { Normalized } from '@rxap/utilities';
 
 export enum DataGridMode {
   Form = 'form',
@@ -24,16 +24,16 @@ export interface DataGridOptions {
 
 export interface NormalizedDataGridOptions extends Omit<Readonly<Normalized<DataGridOptions>>, 'itemList'> {
   mode: DataGridMode;
-  itemList: NormalizedDataGridItem[];
+  itemList: ReadonlyArray<NormalizedDataGridItem>;
 }
 
-export function NormalizeDataGridOptions(options: Readonly<DataGridOptions>): NormalizedDataGridOptions {
+export function NormalizeDataGridOptions(options: Readonly<DataGridOptions>): Readonly<NormalizedDataGridOptions> {
   const {
     itemList,
     mode,
     collection,
   } = options;
-  return Object.seal({
+  return Object.freeze({
     itemList: NormalizeDataGridItemList(itemList),
     mode: IsDataGridMode(mode) ? mode : DataGridMode.Plain,
     collection: collection ?? false,

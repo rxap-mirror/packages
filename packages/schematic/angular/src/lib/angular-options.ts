@@ -36,7 +36,7 @@ export function NormalizeAngularOptions(options: AngularOptions): NormalizedAngu
     ...options,
     project,
   });
-  return Object.seal({
+  return Object.freeze({
     ...normalizedOptions,
     componentName: options.componentName ? dasherize(options.componentName) : null,
     name: options.name ? dasherize(options.name) : null,

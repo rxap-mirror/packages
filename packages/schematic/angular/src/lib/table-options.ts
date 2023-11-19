@@ -22,11 +22,12 @@ export interface TableOptions extends MinimumTableOptions {
   openApi?: TableOpenApiOptions;
 }
 
-export interface NormalizedTableOptions extends Readonly<Normalized<TableOptions>>, NormalizedMinimumTableOptions {
+export interface NormalizedTableOptions
+  extends Omit<Readonly<Normalized<TableOptions> & NormalizedMinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList'> {
   componentName: string;
-  columnList: NormalizedTableColumn[];
-  actionList: NormalizedTableAction[];
-  propertyList: NormalizedTableProperty[];
+  columnList: ReadonlyArray<NormalizedTableColumn>;
+  actionList: ReadonlyArray<NormalizedTableAction>;
+  propertyList: ReadonlyArray<NormalizedTableProperty>;
 }
 
 export function NormalizeTableOptions(options: Readonly<TableOptions>, name: string): NormalizedTableOptions {
@@ -35,7 +36,7 @@ export function NormalizeTableOptions(options: Readonly<TableOptions>, name: str
   const selectColumn = (options.selectColumn ?? false) || actionList.some(action => action.inHeader);
   const tableMethod = NormalizeExistingMethod(options.tableMethod);
   const openApi = NormalizeTableOpenApiOptions(options.openApi);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedOptions,
     selectColumn,
     tableMethod,

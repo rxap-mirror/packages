@@ -45,7 +45,7 @@ import { TableSelectFormControlOptions } from './schema';
 
 export interface NormalizedTableSelectFormControlOptions
   extends Omit<Readonly<Normalized<TableSelectFormControlOptions> & NormalizedFormControlOptions>, 'columnList'> {
-  columnList: NormalizedTableColumn[];
+  columnList: ReadonlyArray<NormalizedTableColumn>;
 }
 
 export function NormalizeTableSelectFormControlOptions(
@@ -56,7 +56,7 @@ export function NormalizeTableSelectFormControlOptions(
   const multiple = options.multiple ?? false;
   isArray = multiple ? true : isArray;
   const columnList = NormalizeTableColumnList(options.columnList);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedOptions,
     isArray,
     multiple,
@@ -81,7 +81,7 @@ export function TableColumnToTableSelectColumn(options: NormalizedTableColumn): 
 }
 
 export function TableColumnListToTableSelectColumnMap(
-  columnList: Array<NormalizedTableColumn>,
+  columnList: ReadonlyArray<NormalizedTableColumn>,
 ): WriterFunction {
   return Writers.object(
     columnList.reduce(

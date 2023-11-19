@@ -50,10 +50,10 @@ import { NormalizedTableProperty } from './table-property';
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 
 export interface NormalizedMinimumTableComponentOptions
-  extends Readonly<Normalized<MinimumTableComponentOptions> & NormalizedMinimumTableOptions & NormalizedAngularOptions> {
-  columnList: NormalizedTableColumn[];
-  actionList: NormalizedTableAction[];
-  propertyList: NormalizedTableProperty[];
+  extends Omit<Readonly<Normalized<MinimumTableComponentOptions> & NormalizedMinimumTableOptions & NormalizedAngularOptions>, 'columnList' | 'actionList' | 'propertyList'> {
+  columnList: ReadonlyArray<NormalizedTableColumn>;
+  actionList: ReadonlyArray<NormalizedTableAction>;
+  propertyList: ReadonlyArray<NormalizedTableProperty>;
   componentName: string;
   controllerName: string;
 }
@@ -67,7 +67,7 @@ export function NormalizeMinimumTableComponentOptions(
   const normalizedTableOptions = NormalizeMinimumTableOptions(options, name);
   const { componentName } = normalizedTableOptions;
   const nestModule = options.nestModule ?? null;
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedTableOptions,
     nestModule,
@@ -127,7 +127,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
   ]);
 }
 
-function processPropertyList(columnList: NormalizedTableProperty[]): OptionalKind<PropertySignatureStructure>[] {
+function processPropertyList(columnList: ReadonlyArray<NormalizedTableProperty>): OptionalKind<PropertySignatureStructure>[] {
   const result: any = {};
 
   columnList.forEach((column) => {

@@ -31,7 +31,7 @@ export function NormalizeInputFormControlOptions(
   const normalizedOptions = NormalizeFormControlOptions(options);
   const { type } = normalizedOptions;
   const inputType = GuessInputType(type);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedOptions,
     inputType,
   });

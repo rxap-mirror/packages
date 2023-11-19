@@ -55,8 +55,9 @@ import { BackendTypes } from '../../../lib/backend-types';
 import { AccordionComponentOptions } from './schema';
 
 export interface NormalizedAccordionComponentOptions
-  extends Readonly<Normalized<AccordionComponentOptions> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<AccordionComponentOptions, 'itemList'>> & NormalizedAngularOptions> {
   name: string;
+  itemList: ReadonlyArray<NormalizedAccordionItem>;
 }
 
 function NormalizeOptions(
@@ -67,7 +68,7 @@ function NormalizeOptions(
   let { name } = normalizedAngularOptions;
   const itemList = NormalizeAccordionItemList(options.itemList);
   name = CoerceSuffix(dasherize(name), '-accordion');
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAngularOptions,
     directory: name,
     itemList,

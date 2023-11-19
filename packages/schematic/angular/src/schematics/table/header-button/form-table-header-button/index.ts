@@ -43,7 +43,7 @@ export interface NormalizedFormTableHeaderButtonOptions
   formComponent: string;
   // TODO : create custom interface and normalization function for the formOptions property (also used in form-table-action)
   formOptions: {
-    controlList: NormalizedFormComponentControl[];
+    controlList: ReadonlyArray<NormalizedFormComponentControl>;
     role: string | null;
     window: boolean;
   };
@@ -56,7 +56,7 @@ export function NormalizeFormTableHeaderButtonOptions(
   const nestModule = options.nestModule;
   const formOptions = options.formOptions ?? {};
   const { tableName } = normalizedTableHeaderButtonOptions;
-  return Object.seal({
+  return Object.freeze({
     ...normalizedTableHeaderButtonOptions,
     context: options.context,
     nestModule,

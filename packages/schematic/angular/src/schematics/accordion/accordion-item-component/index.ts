@@ -67,7 +67,7 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
   const componentName = CoerceSuffix(itemName, '-panel');
   let accordionName = options.accordionName ?? feature;
   accordionName = CoerceSuffix(dasherize(accordionName), '-accordion');
-  return Object.seal({
+  return Object.freeze({
     ...options,
     ...normalizedAngularOptions,
     itemName: itemName,
@@ -90,7 +90,7 @@ export function NormalizeAccordionItemComponentOptions(
   if (!IsAccordionItemType(type)) {
     throw new SchematicsException(`The type "${ type }" is not a valid accordion item type`);
   }
-  return Object.seal({
+  return Object.freeze({
     ...NormalizeAccordionItemStandaloneComponentOptions(options),
     type,
   });

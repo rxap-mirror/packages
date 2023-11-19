@@ -17,12 +17,12 @@ export interface TreeTableOptions extends MinimumTableOptions {
   tableChildMethod?: ExistingMethod;
 }
 
-export interface NormalizedTreeTableOptions extends Readonly<Normalized<TreeTableOptions>>,
-                                                    NormalizedMinimumTableOptions {
+export interface NormalizedTreeTableOptions
+  extends Omit<Readonly<Normalized<TreeTableOptions> & NormalizedMinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList'> {
   componentName: string;
-  columnList: NormalizedTableColumn[];
-  actionList: NormalizedTableAction[];
-  propertyList: NormalizedTableProperty[];
+  columnList: ReadonlyArray<NormalizedTableColumn>;
+  actionList: ReadonlyArray<NormalizedTableAction>;
+  propertyList: ReadonlyArray<NormalizedTableProperty>;
 }
 
 export function NormalizeTreeTableOptions(
@@ -32,7 +32,7 @@ export function NormalizeTreeTableOptions(
   const normalizedOptions = NormalizeMinimumTableOptions(options, name);
   const tableRootMethod = NormalizeExistingMethod(options.tableRootMethod);
   const tableChildMethod = NormalizeExistingMethod(options.tableRootMethod) ?? tableRootMethod;
-  return Object.seal({
+  return Object.freeze({
     ...normalizedOptions,
     tableRootMethod,
     tableChildMethod,

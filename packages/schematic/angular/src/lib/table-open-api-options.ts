@@ -18,7 +18,7 @@ export function NormalizeTableOpenApiOptions(options?: Readonly<TableOpenApiOpti
   if (!options?.operationId) {
     return null;
   }
-  return Object.seal({
+  return Object.freeze({
     operationId: options.operationId,
     adapter: NormalizeAdapterOptions(options.adapter),
   });

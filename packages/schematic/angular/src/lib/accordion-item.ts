@@ -1,13 +1,13 @@
-import {
-  AccordionItemTypes,
-  IsAccordionItemType,
-} from './accordion-itme-types';
+import { SchematicsException } from '@angular-devkit/schematics';
 import {
   dasherize,
   NonNullableSelected,
   Normalized,
 } from '@rxap/utilities';
-import { SchematicsException } from '@angular-devkit/schematics';
+import {
+  AccordionItemTypes,
+  IsAccordionItemType,
+} from './accordion-itme-types';
 
 export interface AccordionItem {
   name: string;
@@ -38,7 +38,7 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
       `The item type '${ type }' for item '${ name }' is not supported`,
     );
   }
-  return Object.seal({
+  return Object.freeze({
     ...additional,
     name: dasherize(name),
     type,
@@ -46,6 +46,8 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
   });
 }
 
-export function NormalizeAccordionItemList(itemList?: Array<string | AccordionItem>): NormalizedAccordionItem[] {
-  return Object.seal((itemList ?? []).map(NormalizeAccordionItem));
+export function NormalizeAccordionItemList(itemList?: Array<string | AccordionItem>): ReadonlyArray<NormalizedAccordionItem> {
+  return Object.freeze((
+    itemList ?? []
+  ).map(NormalizeAccordionItem));
 }

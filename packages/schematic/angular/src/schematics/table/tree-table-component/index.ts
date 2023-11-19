@@ -34,6 +34,9 @@ import {
   NormalizeMinimumTableComponentOptions,
   tableInterfaceRule,
 } from '../../../lib/minimum-table-component-options';
+import { NormalizedTableAction } from '../../../lib/table-action';
+import { NormalizedTableColumn } from '../../../lib/table-column';
+import { NormalizedTableProperty } from '../../../lib/table-property';
 import {
   NormalizedTreeTableOptions,
   NormalizeTreeTableOptions,
@@ -41,9 +44,12 @@ import {
 import { TreeTableComponentOptions } from './schema';
 
 export interface NormalizedTreeTableComponentOptions
-  extends Readonly<Normalized<TreeTableComponentOptions> & NormalizedTreeTableOptions & NormalizedAngularOptions> {
+  extends Omit<Readonly<Normalized<TreeTableComponentOptions> & NormalizedTreeTableOptions & NormalizedAngularOptions>, 'columnList' | 'actionList' | 'propertyList'> {
   name: string;
   controllerName: string;
+  columnList: ReadonlyArray<NormalizedTableColumn>;
+  actionList: ReadonlyArray<NormalizedTableAction>;
+  propertyList: ReadonlyArray<NormalizedTableProperty>;
 }
 
 export function NormalizedTreeTableComponentOptions(
@@ -53,7 +59,7 @@ export function NormalizedTreeTableComponentOptions(
   AssertAngularOptionsNameProperty(normalizedMinimumTableComponentOptions);
   const { name } = normalizedMinimumTableComponentOptions;
   const normalizedTreeTableOptions = NormalizeTreeTableOptions(options, name);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedMinimumTableComponentOptions,
     ...normalizedTreeTableOptions,
   });

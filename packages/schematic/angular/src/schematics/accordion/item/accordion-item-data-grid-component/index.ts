@@ -1,14 +1,9 @@
-import { AccordionItemDataGridComponentOptions } from './schema';
+import { strings } from '@angular-devkit/core';
 import {
   chain,
   noop,
   SchematicsException,
 } from '@angular-devkit/schematics';
-import {
-  GetItemOptions,
-  NormalizeAccordionItemStandaloneComponentOptions,
-  NormalizedAccordionItemStandaloneComponentOptions,
-} from '../../accordion-item-component';
 import {
   CoerceClassConstructor,
   CoerceComponentRule,
@@ -21,27 +16,32 @@ import {
   CoerceSubmitDataGridOperation,
 } from '@rxap/schematics-ts-morph';
 import {
-  NormalizedAngularOptions,
-  PrintAngularOptions,
-} from '../../../../lib/angular-options';
-import { BackendTypes } from '../../../../lib/backend-types';
-import { Normalized } from '@rxap/utilities';
-import {
-  DataGridMode,
-  NormalizeDataGridOptions,
-  NormalizedDataGridOptions,
-} from '../../../../lib/data-grid-options';
-import { join } from 'path';
-import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
+import { Normalized } from '@rxap/utilities';
+import { join } from 'path';
 import {
   ClassDeclaration,
   Project,
   SourceFile,
 } from 'ts-morph';
-import { strings } from '@angular-devkit/core';
+import {
+  NormalizedAngularOptions,
+  PrintAngularOptions,
+} from '../../../../lib/angular-options';
+import { BackendTypes } from '../../../../lib/backend-types';
+import {
+  DataGridMode,
+  NormalizeDataGridOptions,
+  NormalizedDataGridOptions,
+} from '../../../../lib/data-grid-options';
+import {
+  GetItemOptions,
+  NormalizeAccordionItemStandaloneComponentOptions,
+  NormalizedAccordionItemStandaloneComponentOptions,
+} from '../../accordion-item-component';
+import { AccordionItemDataGridComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemDataGridComponentOptions
   extends Omit<Readonly<Normalized<AccordionItemDataGridComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'dataGrid'> {
@@ -52,7 +52,7 @@ export function NormalizeAccordionItemDataGridComponentOptions(
   options: Readonly<AccordionItemDataGridComponentOptions>,
 ): Readonly<NormalizedAccordionItemDataGridComponentOptions> {
   const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAccordionItemComponentOptions,
     dataGrid: NormalizeDataGridOptions(options.dataGrid),
   });

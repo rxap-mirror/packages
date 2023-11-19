@@ -46,7 +46,7 @@ interface NormalizedFormComponentOptions
   extends Omit<Readonly<Normalized<FormComponentOptions> & NormalizedAngularOptions>, 'controlList'> {
   componentName: string;
   controllerName: string;
-  controlList: Array<NormalizedFormComponentControl>;
+  controlList: ReadonlyArray<NormalizedFormComponentControl>;
 }
 
 
@@ -61,7 +61,7 @@ export function NormalizeFormComponentOptions(
   } = normalizedAngularOptions;
   const componentName = CoerceSuffix(name, '-form');
   const controllerName = options.controllerName ?? componentName;
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAngularOptions,
     window: options.window ?? false,
     directory: join(options.directory ?? '', componentName),

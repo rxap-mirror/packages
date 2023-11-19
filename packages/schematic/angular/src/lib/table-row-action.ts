@@ -24,7 +24,7 @@ export interface NormalizedTableRowAction extends Readonly<Normalized<TableRowAc
 export function NormalizeTableRowAction(
   tableAction: Readonly<TableRowAction>,
 ): NormalizedTableRowAction {
-  return Object.seal({
+  return Object.freeze({
     type: dasherize(tableAction.type),
     tooltip: tableAction.tooltip ?? ToTitle(tableAction.type),
     errorMessage: tableAction.errorMessage ?? null,

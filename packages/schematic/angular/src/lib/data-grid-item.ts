@@ -24,7 +24,7 @@ export function NormalizeDataGridItem(item: Readonly<DataGridItem> | string): No
     type = item.type ?? 'unknown';
     header = item.header ?? null;
   }
-  return Object.seal({
+  return Object.freeze({
     name,
     type,
     header,
@@ -33,6 +33,6 @@ export function NormalizeDataGridItem(item: Readonly<DataGridItem> | string): No
 
 export function NormalizeDataGridItemList(
   itemList?: Array<Readonly<DataGridItem> | string>,
-): Array<NormalizedDataGridItem> {
-  return Object.seal(itemList?.map(NormalizeDataGridItem) ?? []);
+): ReadonlyArray<NormalizedDataGridItem> {
+  return Object.freeze(itemList?.map(NormalizeDataGridItem) ?? []);
 }

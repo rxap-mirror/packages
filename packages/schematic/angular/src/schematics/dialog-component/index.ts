@@ -1,26 +1,26 @@
-import { DialogComponentOptions } from './schema';
 import { chain } from '@angular-devkit/schematics';
+import { CoerceDialogComponentRule } from '@rxap/schematics-ts-morph';
 import {
   CoerceSuffix,
   dasherize,
 } from '@rxap/schematics-utilities';
+import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
-import { CoerceDialogComponentRule } from '@rxap/schematics-ts-morph';
 import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../lib/angular-options';
-import { Normalized } from '@rxap/utilities';
-import { ToTitle } from '../../lib/to-title';
 import {
   NormalizedDialogAction,
   NormalizeDialogActionList,
 } from '../../lib/dialog-action';
+import { ToTitle } from '../../lib/to-title';
+import { DialogComponentOptions } from './schema';
 
 interface NormalizedDialogComponentOptions
   extends Omit<Readonly<Normalized<DialogComponentOptions> & NormalizedAngularOptions>, 'actionList'> {
-  actionList: NormalizedDialogAction[];
+  actionList: ReadonlyArray<NormalizedDialogAction>;
 }
 
 function NormalizeOptions(
@@ -30,7 +30,7 @@ function NormalizeOptions(
   const { directory } = normalizedAngularOptions;
   const dialogName = CoerceSuffix(dasherize(options.dialogName), '-dialog');
   const title = options.title ?? ToTitle(dialogName);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAngularOptions,
     directory: join(directory ?? '', dialogName),
     dialogName,

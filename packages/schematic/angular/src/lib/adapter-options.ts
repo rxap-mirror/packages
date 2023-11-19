@@ -14,7 +14,7 @@ export function NormalizeAdapterOptions(options?: Readonly<AdapterOptions>): Nor
   if (!options?.className || !options?.importPath) {
     return null;
   }
-  return Object.seal({
+  return Object.freeze({
     className: options.className,
     importPath: options.importPath,
   });

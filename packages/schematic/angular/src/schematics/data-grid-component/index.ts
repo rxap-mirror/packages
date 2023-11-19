@@ -62,7 +62,7 @@ export interface NormalizedDataGridComponentOptions
   dataSourceFileName: string;
   componentName: string;
   name: string;
-  itemList: Array<NormalizedDataGridItem>;
+  itemList: ReadonlyArray<NormalizedDataGridItem>;
 }
 
 export function NormalizeDataGridComponentOptions(
@@ -76,7 +76,7 @@ export function NormalizeDataGridComponentOptions(
     directory,
   } = normalizedAngularOptions;
   const componentName = CoerceSuffix(dasherize(name), '-data-grid');
-  return Object.seal({
+  return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedDataGridOptions,
     directory: join(directory ?? '', componentName),

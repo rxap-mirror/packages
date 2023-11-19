@@ -52,7 +52,8 @@ export interface NormalizedFormTableActionOptions
   extends Omit<Readonly<Normalized<FormTableActionOptions> & NormalizedOperationTableActionOptions>, 'formOptions'> {
   formComponent: string;
   formOptions: {
-    controlList: NormalizedFormComponentControl[];
+    // TODO : create custom interface and normalization function for the formOptions property (also used in form-table-header-button)
+    controlList: ReadonlyArray<NormalizedFormComponentControl>;
     role: string | null;
     window: boolean;
   };

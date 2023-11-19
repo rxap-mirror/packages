@@ -23,7 +23,7 @@ export function NormalizeOpenApiTableActionOptions(
   options: Readonly<OpenApiTableActionOptions>,
 ): NormalizedOpenApiTableActionOptions {
   const normalizedOptions = NormalizeTableActionOptions(options);
-  return Object.seal({
+  return Object.freeze({
     ...normalizedOptions,
     operationId: options.operationId,
     body: options.body ?? false,

@@ -1,8 +1,8 @@
+import { capitalize } from '@rxap/schematics-utilities';
 import {
   NonNullableSelected,
   Normalized,
 } from '@rxap/utilities';
-import { capitalize } from '@rxap/schematics-utilities';
 
 export interface DialogAction {
   role: string;
@@ -28,7 +28,7 @@ export function NormalizeDialogAction(
     color = action.color ?? color;
   }
   label ??= capitalize(role);
-  return Object.seal({
+  return Object.freeze({
     role,
     label,
     color,
@@ -37,6 +37,6 @@ export function NormalizeDialogAction(
 
 export function NormalizeDialogActionList(
   actionList?: Array<string | DialogAction>,
-): Array<NormalizedDialogAction> {
-  return Object.seal(actionList?.map(NormalizeDialogAction) ?? []);
+): ReadonlyArray<NormalizedDialogAction> {
+  return Object.freeze(actionList?.map(NormalizeDialogAction) ?? []);
 }
