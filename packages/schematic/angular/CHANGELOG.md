@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.47](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.46...@rxap/schematic-angular@16.1.0-dev.47) (2023-11-19)
+
+### Bug Fixes
+
+- use Object.freeze instead of Object.seal ([630008f](https://gitlab.com/rxap/packages/commit/630008fe0eed3ec9f4670cfe6ba8e25cc8b3e42f))
+
+### Features
+
+- support complex and importable types ([b8b6e16](https://gitlab.com/rxap/packages/commit/b8b6e16fcdf6544681f84aa5d9ddf302c1ac34db))
+
 # [16.1.0-dev.46](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.45...@rxap/schematic-angular@16.1.0-dev.46) (2023-11-18)
 
 ### Bug Fixes

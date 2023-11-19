@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.35...@rxap/schematics-ts-morph@16.0.0-dev.36) (2023-11-19)
+
+### Bug Fixes
+
+- use Object.freeze instead of Object.seal ([630008f](https://gitlab.com/rxap/packages/commit/630008fe0eed3ec9f4670cfe6ba8e25cc8b3e42f))
+
 # [16.0.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.34...@rxap/schematics-ts-morph@16.0.0-dev.35) (2023-11-18)
 
 ### Bug Fixes
