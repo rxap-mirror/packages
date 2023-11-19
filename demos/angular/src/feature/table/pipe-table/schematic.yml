@@ -3,8 +3,8 @@ name: table-component
 options:
   name: pipe
   tableMethod:
-    className: DummyTableMethod
-    importPath: "../dummy-table.method"
+    name: DummyTableMethod
+    moduleSpecifier: "../dummy-table.method"
   propertyList:
     - name: link
       type: string
@@ -13,6 +13,6 @@ options:
     - name: name
       pipeList:
         - name: toUppercase
-          className: ToUppercasePipe
-          importFrom: './to-uppercase.pipe'
+          namedImport: ToUppercasePipe
+          moduleSpecifier: './to-uppercase.pipe'
         - json

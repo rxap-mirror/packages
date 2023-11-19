@@ -44,7 +44,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { <%= classify(column.name) %>Component } from './<%= dasherize(column.name) %>-component/<%= dasherize(column.name) %>.component';
 <% } %>
 <% for (const pipe of column.pipeList) { %>
-import { <%= pipe.className %> } from '<%= pipe.importFrom %>';
+import { <%= pipe.namedImport %> } from '<%= pipe.moduleSpecifier %>';
 <% } %>
 <% } %>
 
@@ -61,7 +61,7 @@ import { <%= pipe.className %> } from '<%= pipe.importFrom %>';
   <%= classify(column.name) %>Component,
   <% } %>
   <% for (const pipe of column.pipeList) { %>
-  <%= pipe.className %>,
+  <%= pipe.namedImport %>,
   <% } %>
   <% } %>
     CommonModule,

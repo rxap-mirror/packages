@@ -76,7 +76,7 @@ export function TableColumnToTableSelectColumn(options: NormalizedTableColumn): 
   if (hasFilter) {
     properties['filter'] = 'true';
   }
-  properties['type'] = (w) => w.quote(type);
+  properties['type'] = (w) => w.quote(type.name);
   return Writers.object(properties);
 }
 

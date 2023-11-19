@@ -34,22 +34,17 @@ import {
   NormalizeMinimumTableComponentOptions,
   tableInterfaceRule,
 } from '../../../lib/minimum-table-component-options';
-import { NormalizedTableAction } from '../../../lib/table-action';
-import { NormalizedTableColumn } from '../../../lib/table-column';
-import { NormalizedTableProperty } from '../../../lib/table-property';
 import {
   NormalizedTreeTableOptions,
   NormalizeTreeTableOptions,
 } from '../../../lib/tree-table-options';
+import { NormalizedTypeImportToImportStructure } from '../../../lib/type-import';
 import { TreeTableComponentOptions } from './schema';
 
 export interface NormalizedTreeTableComponentOptions
-  extends Omit<Readonly<Normalized<TreeTableComponentOptions> & NormalizedTreeTableOptions & NormalizedAngularOptions>, 'columnList' | 'actionList' | 'propertyList'> {
+  extends Readonly<Normalized<Omit<TreeTableComponentOptions, keyof NormalizedTreeTableOptions>> & NormalizedTreeTableOptions & NormalizedAngularOptions> {
   name: string;
   controllerName: string;
-  columnList: ReadonlyArray<NormalizedTableColumn>;
-  actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: ReadonlyArray<NormalizedTableProperty>;
 }
 
 export function NormalizedTreeTableComponentOptions(
@@ -419,34 +414,28 @@ function treeTableMethodRule(normalizedOptions: NormalizedTreeTableComponentOpti
             sourceFile,
             {
               provide: 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD',
-              useClass: tableRootMethod.className,
+              useClass: tableRootMethod.name,
             },
             [
               {
                 moduleSpecifier: '@rxap/data-source/table/tree',
                 namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD' ],
               },
-              {
-                moduleSpecifier: tableRootMethod.importPath,
-                namedImports: [ tableRootMethod.className ],
-              },
+              NormalizedTypeImportToImportStructure(tableRootMethod),
             ],
           );
           AddComponentProvider(
             sourceFile,
             {
               provide: 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD',
-              useClass: tableChildMethod.className,
+              useClass: tableChildMethod.name,
             },
             [
               {
                 moduleSpecifier: '@rxap/data-source/table/tree',
                 namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD' ],
               },
-              {
-                moduleSpecifier: tableChildMethod.importPath,
-                namedImports: [ tableChildMethod.className ],
-              },
+              NormalizedTypeImportToImportStructure(tableChildMethod),
             ],
           );
         },

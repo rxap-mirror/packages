@@ -1,0 +1,10 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: icon
+  tableMethod:
+    name: DummyTableMethod
+    moduleSpecifier: "../dummy-table.method"
+  columnList:
+    - name: icon
+      role: icon

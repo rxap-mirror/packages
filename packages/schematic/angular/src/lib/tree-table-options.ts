@@ -1,6 +1,7 @@
 import { Normalized } from '@rxap/utilities';
 import {
   ExistingMethod,
+  NormalizedExistingMethod,
   NormalizeExistingMethod,
 } from './existing-method';
 import {
@@ -18,11 +19,13 @@ export interface TreeTableOptions extends MinimumTableOptions {
 }
 
 export interface NormalizedTreeTableOptions
-  extends Omit<Readonly<Normalized<TreeTableOptions> & NormalizedMinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList'> {
+  extends Omit<Readonly<Normalized<TreeTableOptions> & NormalizedMinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList' | 'tableRootMethod' | 'tableChildMethod'> {
   componentName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
   propertyList: ReadonlyArray<NormalizedTableProperty>;
+  tableRootMethod: NormalizedExistingMethod | null;
+  tableChildMethod: NormalizedExistingMethod | null;
 }
 
 export function NormalizeTreeTableOptions(

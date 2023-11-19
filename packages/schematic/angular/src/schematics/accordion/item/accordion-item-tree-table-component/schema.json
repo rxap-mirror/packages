@@ -58,28 +58,36 @@
         "tableRootMethod": {
           "type": "object",
           "properties": {
-            "className": {
+            "name": {
               "type": "string",
               "description": "The name of the table method class"
             },
-            "importPath": {
+            "moduleSpecifier": {
               "type": "string",
               "description": "The import path for the table method class"
             }
-          }
+          },
+          "required": [
+            "name",
+            "moduleSpecifier"
+          ]
         },
         "tableChildMethod": {
           "type": "object",
           "properties": {
-            "className": {
+            "name": {
               "type": "string",
               "description": "The name of the table method class"
             },
-            "importPath": {
+            "moduleSpecifier": {
               "type": "string",
               "description": "The import path for the table method class"
             }
-          }
+          },
+          "required": [
+            "name",
+            "moduleSpecifier"
+          ]
         },
         "modifiers": {
           "alias": "modifier",
@@ -160,17 +168,17 @@
                             "name": {
                               "type": "string"
                             },
-                            "className": {
+                            "namedImport": {
                               "type": "string"
                             },
-                            "importFrom": {
+                            "moduleSpecifier": {
                               "type": "string"
                             }
                           },
                           "required": [
                             "name",
-                            "className",
-                            "importFrom"
+                            "namedImport",
+                            "moduleSpecifier"
                           ]
                         }
                       ]

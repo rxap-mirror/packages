@@ -1,7 +1,7 @@
-import { Method } from '@rxap/pattern';
-import { TableEvent } from '@rxap/data-source/table';
 import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
+import { TableEvent } from '@rxap/data-source/table';
+import { Method } from '@rxap/pattern';
 
 @Injectable()
 export class DummyTableMethod implements Method<any[], TableEvent> {
@@ -62,6 +62,9 @@ export class DummyTableMethod implements Method<any[], TableEvent> {
       nickname: faker.internet.userName(),
       favoriteColor: faker.color.human(),
       occupation: faker.person.jobTitle(),
+      icon: {
+        svgIcon: 'account',
+      },
     }));
   }
 

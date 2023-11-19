@@ -4,16 +4,17 @@ import {
   dasherize,
 } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
+import {
+  NormalizedTypeImport,
+  NormalizeTypeImport,
+  TypeImport,
+} from './type-import';
 
-export interface TableColumnPipe {
-  name: string;
-  className: string;
-  importFrom: string;
-}
+export type TableColumnPipe = TypeImport;
 
 export interface TableColumn {
   name: string;
-  type?: string;
+  type?: string | TypeImport;
   modifiers?: string[];
   hasFilter?: boolean;
   title?: string;
@@ -29,51 +30,53 @@ export interface TableColumn {
   pipeList?: Array<TableColumnPipe | string>;
 }
 
-export interface NormalizedTableColumn extends Readonly<Normalized<TableColumn>> {
-  type: string;
+export type NormalizedTableColumnPipe = NormalizedTypeImport;
+
+export interface NormalizedTableColumn extends Omit<Readonly<Normalized<TableColumn>>, 'pipeList'> {
+  type: NormalizedTypeImport;
   propertyPath: string;
-  pipeList: TableColumnPipe[];
+  pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
 }
 
-export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): TableColumnPipe {
+export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): NormalizedTableColumnPipe {
   if (typeof pipe === 'string') {
     switch (pipe) {
       case 'async':
-        return {
+        return NormalizeTypeImport({
           name: 'async',
-          className: 'AsyncPipe',
-          importFrom: '@angular/common',
-        };
+          namedImport: 'AsyncPipe',
+          moduleSpecifier: '@angular/common',
+        });
       case 'date':
-        return {
+        return NormalizeTypeImport({
           name: 'date',
-          className: 'DatePipe',
-          importFrom: '@angular/common',
-        };
+          namedImport: 'DatePipe',
+          moduleSpecifier: '@angular/common',
+        });
       case 'json':
-        return {
+        return NormalizeTypeImport({
           name: 'json',
-          className: 'JsonPipe',
-          importFrom: '@angular/common',
-        };
+          namedImport: 'JsonPipe',
+          moduleSpecifier: '@angular/common',
+        });
       case 'keyvalue':
-        return {
+        return NormalizeTypeImport({
           name: 'keyvalue',
-          className: 'KeyValuePipe',
-          importFrom: '@angular/common',
-        };
+          namedImport: 'KeyValuePipe',
+          moduleSpecifier: '@angular/common',
+        });
       default:
         throw new Error(`Unknown pipe ${ pipe }`);
     }
   }
-  return pipe;
+  return NormalizeTypeImport(pipe);
 }
 
 export function NormalizeTableColumn(
   column: Readonly<TableColumn> | string,
 ): NormalizedTableColumn {
   let name: string;
-  let type = 'unknown';
+  let type: string | TypeImport = 'unknown';
   let modifiers: string[] = [];
   let hasFilter = false;
   let title: string | null = null;
@@ -86,7 +89,7 @@ export function NormalizeTableColumn(
   let cssClass: string | null = null;
   let role: string | null = null;
   let template: string | null = null;
-  let pipeList: TableColumnPipe[] = [];
+  let pipeList: Array<string | TableColumnPipe> = [];
   if (typeof column === 'string') {
     // name:type:modifier1,modifier2
     // username:string:filter,active
@@ -112,9 +115,7 @@ export function NormalizeTableColumn(
     cssClass = column.cssClass ?? cssClass;
     role = column.role ?? role;
     template = column.template ?? template;
-    pipeList = (
-      column.pipeList ?? pipeList
-    ).map(NormalizeTableColumnPipe);
+    pipeList = column.pipeList ?? pipeList;
   }
   propertyPath ??= name
     .replace(/\?\./g, '.')
@@ -143,7 +144,10 @@ export function NormalizeTableColumn(
         break;
       case 'icon':
         // TODO : use the IconConfig type
-        type = 'any';
+        type = {
+          name: 'IconConfig',
+          moduleSpecifier: '@rxap/utilities',
+        };
         break;
       case 'boolean':
         type = 'boolean';
@@ -161,7 +165,7 @@ export function NormalizeTableColumn(
   return Object.freeze({
     role,
     name,
-    type,
+    type: NormalizeTypeImport(type),
     modifiers,
     hasFilter,
     title,
@@ -172,7 +176,7 @@ export function NormalizeTableColumn(
     show,
     nowrap,
     cssClass,
-    pipeList,
+    pipeList: pipeList.map(NormalizeTableColumnPipe),
     template,
   });
 }

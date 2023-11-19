@@ -1,7 +1,4 @@
-import {
-  CommonModule,
-  JsonPipe,
-} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -48,22 +45,14 @@ import { GetFromObjectPipe } from '@rxap/pipes';
 import { Observable } from 'rxjs';
 import { DummyTableMethod } from '../dummy-table.method';
 
-
-import { ToUppercasePipe } from './to-uppercase.pipe';
-
 @Component({
-  selector: 'rxap-pipe-table',
-  templateUrl: './pipe-table.component.html',
-  styleUrls: [ './pipe-table.component.scss' ],
+  selector: 'rxap-icon-table',
+  templateUrl: './icon-table.component.html',
+  styleUrls: [ './icon-table.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [ RowAnimation ],
   standalone: true,
   imports: [
-
-
-    ToUppercasePipe,
-
-    JsonPipe,
 
 
     CommonModule,
@@ -110,7 +99,7 @@ import { ToUppercasePipe } from './to-uppercase.pipe';
     },
   ],
 })
-export class PipeTableComponent {
+export class IconTableComponent {
 
   @Input()
   public parameters?: Observable<Record<string, unknown>>;

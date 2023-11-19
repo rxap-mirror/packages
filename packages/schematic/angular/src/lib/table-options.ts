@@ -1,6 +1,7 @@
 import { Normalized } from '@rxap/utilities';
 import {
   ExistingMethod,
+  NormalizedExistingMethod,
   NormalizeExistingMethod,
 } from './existing-method';
 import {
@@ -11,6 +12,7 @@ import {
 import { NormalizedTableAction } from './table-action';
 import { NormalizedTableColumn } from './table-column';
 import {
+  NormalizedTableOpenApiOptions,
   NormalizeTableOpenApiOptions,
   TableOpenApiOptions,
 } from './table-open-api-options';
@@ -23,11 +25,13 @@ export interface TableOptions extends MinimumTableOptions {
 }
 
 export interface NormalizedTableOptions
-  extends Omit<Readonly<Normalized<TableOptions> & NormalizedMinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList'> {
+  extends Omit<Readonly<Normalized<TableOptions> & NormalizedMinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList' | 'tableMethod' | 'openApi'> {
   componentName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
   propertyList: ReadonlyArray<NormalizedTableProperty>;
+  tableMethod: NormalizedExistingMethod | null;
+  openApi: NormalizedTableOpenApiOptions | null;
 }
 
 export function NormalizeTableOptions(options: Readonly<TableOptions>, name: string): NormalizedTableOptions {

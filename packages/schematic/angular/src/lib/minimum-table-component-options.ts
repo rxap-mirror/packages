@@ -27,6 +27,7 @@ import {
 } from '@rxap/utilities';
 import { join } from 'path';
 import {
+  ImportDeclarationStructure,
   OptionalKind,
   PropertySignatureStructure,
   Writers,
@@ -46,6 +47,10 @@ import {
 import { NormalizedTableAction } from './table-action';
 import { NormalizedTableColumn } from './table-column';
 import { NormalizedTableProperty } from './table-property';
+import {
+  NormalizedTypeImportToImportStructure,
+  RequiresTypeImport,
+} from './type-import';
 
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 
@@ -127,20 +132,24 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
   ]);
 }
 
-function processPropertyList(columnList: ReadonlyArray<NormalizedTableProperty>): OptionalKind<PropertySignatureStructure>[] {
+function tablePropertyListToImportStructure(propertyList: ReadonlyArray<NormalizedTableProperty>): ReadonlyArray<OptionalKind<ImportDeclarationStructure>> {
+  return propertyList.filter(p => RequiresTypeImport(p.type)).map(p => NormalizedTypeImportToImportStructure(p.type));
+}
+
+function tablePropertyListToPropertiesStructure(propertyList: ReadonlyArray<NormalizedTableProperty>): OptionalKind<PropertySignatureStructure>[] {
   const result: any = {};
 
-  columnList.forEach((column) => {
+  propertyList.forEach((column) => {
     const parts = column.name.split('.');
     if (parts.length === 1) {
-      result[column.name] = column.type;
+      result[column.name] = column.type.name;
     } else {
       let current = result;
       for (let i = 0; i < parts.length; i++) {
         const isLast = i === parts.length - 1;
         const part = parts[i];
         if (isLast) {
-          current[part] = column.type ?? 'unknown';
+          current[part] = column.type.name ?? 'unknown';
         } else {
           current[part] = current[part] ?? {};
           current = current[part];
@@ -181,8 +190,9 @@ function tableInterfaceFromPropertyListRule(normalizedOptions: NormalizedMinimum
       CoerceInterface(sourceFile, `I${ classify(componentName) }`).set({
         isExported: true,
         extends: [ 'Record<string, unknown>', 'TableRowMetadata' ],
-        properties: processPropertyList(propertyList),
+        properties: tablePropertyListToPropertiesStructure(propertyList),
       });
+      CoerceImports(sourceFile, tablePropertyListToImportStructure(propertyList));
       CoerceImports(sourceFile, {
         moduleSpecifier: '@rxap/material-table-system',
         namedImports: [ 'TableRowMetadata' ],
@@ -539,16 +549,16 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
     shared,
     directory,
   } = normalizedOptions;
-  if (columnList.some(c => c.type === 'component')) {
+  if (columnList.some(c => c.role === 'component')) {
 
     return chain([
       () => console.log(
         `Coerce the table cell components count: ${
-          columnList.filter((column) => column.type === 'component').length
+          columnList.filter((column) => column.role === 'component').length
         }`,
       ),
       ...columnList
-        .filter((column) => column.type === 'component')
+        .filter((column) => column.role === 'component')
         .map((column) =>
           CoerceComponentRule({
             project,

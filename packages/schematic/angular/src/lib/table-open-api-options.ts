@@ -2,6 +2,7 @@ import { Normalized } from '@rxap/utilities';
 import {
   AdapterOptions,
   NormalizeAdapterOptions,
+  NormalizedAdapterOptions,
 } from './adapter-options';
 
 export interface TableOpenApiOptions {
@@ -10,7 +11,9 @@ export interface TableOpenApiOptions {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface NormalizedTableOpenApiOptions extends Readonly<Normalized<TableOpenApiOptions>> {}
+export interface NormalizedTableOpenApiOptions extends Omit<Readonly<Normalized<TableOpenApiOptions>>, 'adapter'> {
+  adapter: NormalizedAdapterOptions | null;
+}
 
 export function NormalizeTableOpenApiOptions(options?: Readonly<TableOpenApiOptions>): NormalizedTableOpenApiOptions | null {
   // check if the operationId is set. The schematic options parse will build an object with all property set to undefined

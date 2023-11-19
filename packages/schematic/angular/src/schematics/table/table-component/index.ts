@@ -46,23 +46,19 @@ import {
   NormalizeMinimumTableComponentOptions,
   tableInterfaceRule,
 } from '../../../lib/minimum-table-component-options';
-import { NormalizedTableAction } from '../../../lib/table-action';
 import { NormalizedTableColumn } from '../../../lib/table-column';
 import {
   NormalizedTableOptions,
   NormalizeTableOptions,
 } from '../../../lib/table-options';
-import { NormalizedTableProperty } from '../../../lib/table-property';
+import { NormalizedTypeImportToImportStructure } from '../../../lib/type-import';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
 export interface NormalizedTableComponentOptions
-  extends Omit<Readonly<Normalized<TableComponentOptions> & NormalizedTableOptions & NormalizedAngularOptions>, 'columnList' | 'actionList' | 'propertyList'> {
-  name: string;
-  controllerName: string;
-  columnList: ReadonlyArray<NormalizedTableColumn>;
-  actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: ReadonlyArray<NormalizedTableProperty>;
+  extends Readonly<Normalized<Omit<TableComponentOptions, keyof NormalizedTableOptions>> & NormalizedTableOptions & NormalizedAngularOptions> {
+  readonly name: string;
+  readonly controllerName: string;
 }
 
 export function NormalizeTableComponentOptions(
@@ -92,7 +88,7 @@ export function TableColumnToGetPageOperationColumn(
 ): GetPageOperationColumn {
   return {
     name: column.name,
-    type: column.type ?? undefined,
+    type: column.type?.name ?? undefined,
     source: column.propertyPath ?? undefined,
   };
 }
@@ -102,7 +98,7 @@ export function TableColumnToFormControl(
 ): FormDefinitionControl {
   return {
     name: column.name,
-    type: column.type ?? undefined,
+    type: column.type?.name ?? undefined,
   };
 }
 
@@ -163,13 +159,10 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
             componentSourceFile,
             {
               provide: 'RXAP_TABLE_METHOD',
-              useClass: tableMethod.className,
+              useClass: tableMethod.name,
             },
             [
-              {
-                namedImports: [ tableMethod.className ],
-                moduleSpecifier: tableMethod.importPath,
-              },
+              NormalizedTypeImportToImportStructure(tableMethod),
               {
                 namedImports: [ 'RXAP_TABLE_METHOD' ],
                 moduleSpecifier: '@rxap/material-table-system',
@@ -356,17 +349,14 @@ function openApiBackendRule(normalizedOptions: NormalizedTableComponentOptions):
             sourceFile,
             {
               provide: 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY',
-              useValue: openApi.adapter.className,
+              useValue: openApi.adapter.name,
             },
             [
               {
                 moduleSpecifier: '@rxap/material-table-system',
                 namedImports: [ 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY' ],
               },
-              {
-                moduleSpecifier: openApi.adapter.importPath,
-                namedImports: [ openApi.adapter.className ],
-              },
+              NormalizedTypeImportToImportStructure(openApi.adapter),
             ],
           );
         }

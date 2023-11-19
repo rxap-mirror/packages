@@ -1,11 +1,29 @@
-export interface ExistingMethod {
+import {
+  NormalizedTypeImport,
+  NormalizeTypeImport,
+  TypeImport,
+} from './type-import';
+
+export interface ExistingMethod extends TypeImport {
+  /**
+   * @deprecated use name instead
+   */
   className: string;
+  /**
+   * @deprecated use moduleSpecifier instead
+   */
   importPath: string;
 }
 
-export function NormalizeExistingMethod(existingMethod?: ExistingMethod): ExistingMethod | null {
-  if (!existingMethod || !existingMethod.className || !existingMethod.importPath) {
+export type NormalizedExistingMethod = NormalizedTypeImport;
+
+export function NormalizeExistingMethod(existingMethod?: ExistingMethod): NormalizedExistingMethod | null {
+  if (existingMethod) {
+    existingMethod.name ??= existingMethod.className;
+    existingMethod.moduleSpecifier ??= existingMethod.importPath;
+  }
+  if (!existingMethod || !existingMethod.name) {
     return null;
   }
-  return existingMethod;
+  return NormalizeTypeImport(existingMethod);
 }

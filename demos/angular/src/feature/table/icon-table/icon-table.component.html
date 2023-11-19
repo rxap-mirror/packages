@@ -9,15 +9,15 @@
       ></mat-progress-bar>
       <mat-card-header class="min-h-full h-12">
 
-        <mat-card-title i18n>Pipe</mat-card-title>
+        <mat-card-title i18n>Icon</mat-card-title>
 
 
         <rxap-table-column-menu #rxapTableColumns="rxapTableColumns" matCard>
 
 
           <rxap-table-column-option
-            name="name">
-            <ng-container i18n>Name</ng-container>
+            name="icon">
+            <ng-container i18n>Icon</ng-container>
           </rxap-table-column-option>
 
 
@@ -43,7 +43,7 @@
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
             [paginator]="paginator"
             [parameters]="parameters"
-            id="pipe"
+            id="icon"
             mat-table
             matSort
             rxapTableDataSource
@@ -52,16 +52,12 @@
             <!-- region columns -->
 
 
-            <ng-container matColumnDef="name">
+            <ng-container matColumnDef="icon">
               <th *matHeaderCellDef mat-header-cell mat-sort-header>
-                <ng-container i18n>Name</ng-container>
+                <ng-container i18n>Icon</ng-container>
               </th>
 
-              <td *matCellDef="let element" mat-cell>
-
-                {{ element?.name | toUppercase | json }}
-
-              </td>
+              <td *matCellDef="let element" [rxap-icon-cell]="element?.icon" mat-cell></td>
             </ng-container>
 
 

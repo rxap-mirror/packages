@@ -1,18 +1,23 @@
 import { Normalized } from '@rxap/utilities';
 import { NormalizedTableColumn } from './table-column';
+import {
+  NormalizedTypeImport,
+  NormalizeTypeImport,
+  TypeImport,
+} from './type-import';
 
 export interface TableProperty {
   name: string;
-  type?: string;
+  type?: string | TypeImport;
 }
 
 export interface NormalizedTableProperty extends Readonly<Normalized<TableProperty>> {
-  type: string;
+  type: NormalizedTypeImport;
 }
 
 export function NormalizeTableProperty(property: string | TableProperty): NormalizedTableProperty {
   let name: string;
-  let type = 'unknown';
+  let type: string | TypeImport = 'unknown';
   if (typeof property === 'string') {
     // name:type
     // username:string
@@ -27,7 +32,7 @@ export function NormalizeTableProperty(property: string | TableProperty): Normal
   name = name.replace(/\.\?/g, '.').split('.').join('.?');
   return Object.freeze({
     name,
-    type,
+    type: NormalizeTypeImport(type),
   });
 }
 
