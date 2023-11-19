@@ -58,7 +58,7 @@ import { <%= pipe.namedImport %> } from '<%= pipe.moduleSpecifier %>';
   imports: [
   <% for (const column of columnList) { %>
   <% if (column.role === 'component') { %>
-  <%= classify(column.name) %>Component,
+  <%= classify(column.name) %>CellComponent,
   <% } %>
   <% for (const pipe of column.pipeList) { %>
   <%= pipe.namedImport %>,
