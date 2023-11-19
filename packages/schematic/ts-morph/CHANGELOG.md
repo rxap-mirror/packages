@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.39](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.38...@rxap/schematics-ts-morph@16.0.0-dev.39) (2023-11-19)
+
+### Bug Fixes
+
+- include property list in operation dto generation ([db77bdd](https://gitlab.com/rxap/packages/commit/db77bddfceb5858a6468830d62133aff49bfea65))
+
 # [16.0.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.37...@rxap/schematics-ts-morph@16.0.0-dev.38) (2023-11-19)
 
 ### Bug Fixes
