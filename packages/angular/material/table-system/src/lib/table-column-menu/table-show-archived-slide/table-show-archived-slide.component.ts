@@ -6,14 +6,14 @@ import {
   Input,
   Optional,
 } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import {
   MatSlideToggleChange,
   MatSlideToggleModule,
 } from '@angular/material/slide-toggle';
+import { StopPropagationDirective } from '@rxap/directives';
 import { TableFilterService } from '../../table-filter/table-filter.service';
 import { TableColumnMenuComponent } from '../table-column-menu.component';
-import { StopPropagationDirective } from '@rxap/directives';
-import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'rxap-table-show-archived-slide',
@@ -42,13 +42,22 @@ export class TableShowArchivedSlideComponent implements AfterViewInit {
     this.tableFilter?.set('__archived', $event.checked);
     if ($event.checked) {
       this.tableColumnMenu.activate('removedAt');
+      this.tableColumnMenu.activate('__--removed-at');
+      this.tableColumnMenu.activate('removed-at');
+      this.tableColumnMenu.activate('__removed-at');
     } else {
       this.tableColumnMenu.deactivate('removedAt');
+      this.tableColumnMenu.deactivate('__--removed-at');
+      this.tableColumnMenu.deactivate('removed-at');
+      this.tableColumnMenu.deactivate('__removed-at');
     }
   }
 
   public ngAfterViewInit() {
     this.tableColumnMenu.deactivate('removedAt');
+    this.tableColumnMenu.deactivate('__--removed-at');
+    this.tableColumnMenu.deactivate('removed-at');
+    this.tableColumnMenu.deactivate('__removed-at');
   }
 
 }
