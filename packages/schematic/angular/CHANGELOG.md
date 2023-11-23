@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.56](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.55...@rxap/schematic-angular@16.1.0-dev.56) (2023-11-23)
+
+### Bug Fixes
+
+- add modifier option show-archived-slide ([5a57820](https://gitlab.com/rxap/packages/commit/5a578203014a878908a34c0e23400d9633007c98))
+
 # [16.1.0-dev.55](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.54...@rxap/schematic-angular@16.1.0-dev.55) (2023-11-19)
 
 ### Bug Fixes
