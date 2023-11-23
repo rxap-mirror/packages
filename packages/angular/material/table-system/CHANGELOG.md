@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.30...@rxap/material-table-system@16.0.0-dev.31) (2023-11-23)
+
+### Bug Fixes
+
+- support custom column name ([2784729](https://gitlab.com/rxap/packages/commit/278472996ad96fba8d8b6672908692664ce9cfad))
+
 # [16.0.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.29...@rxap/material-table-system@16.0.0-dev.30) (2023-11-17)
 
 ### Bug Fixes
