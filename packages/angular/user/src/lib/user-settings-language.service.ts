@@ -8,6 +8,8 @@ import { LanguageControllerSetRemoteMethod } from './openapi/remote-methods/lang
 import { UserSettingsLanguageDataSource } from './user-settings-language.data-source';
 import { UserSettingsOfflineService } from './user-settings-offline.service';
 
+export type SetLanguageHook = (language: string, unauthenticated: boolean) => void;
+
 @Injectable({ providedIn: 'root' })
 export class UserSettingsLanguageService extends BaseUserSettingsService {
 
@@ -16,6 +18,8 @@ export class UserSettingsLanguageService extends BaseUserSettingsService {
   protected readonly setUserSettingsLanguageMethod = inject(LanguageControllerSetRemoteMethod);
 
   protected readonly offline = inject(UserSettingsOfflineService);
+
+  protected readonly setLanguageHook = new Set<SetLanguageHook>();
 
   async getLanguage(): Promise<string> {
     if (!await this.waitUntilAuthenticated()) {
@@ -28,11 +32,25 @@ export class UserSettingsLanguageService extends BaseUserSettingsService {
     if (!await this.waitUntilAuthenticated()) {
       const settings = this.offline.get();
       settings.language = language;
+      this.setLanguageHook.forEach((hook) => hook(language, true));
       this.offline.set(settings);
     } else {
+      this.setLanguageHook.forEach((hook) => hook(language, false));
       await this.setUserSettingsLanguageMethod.call({ parameters: { language } });
     }
     this.userSettingsLanguageDataSource.refresh();
+  }
+
+  registerSetLanguageHook(hook: SetLanguageHook): void {
+    this.setLanguageHook.add(hook);
+  }
+
+  unregisterSetLanguageHook(hook: SetLanguageHook): void {
+    this.setLanguageHook.delete(hook);
+  }
+
+  clearSetLanguageHook(): void {
+    this.setLanguageHook.clear();
   }
 
 }
