@@ -150,6 +150,7 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
     hasNavigationBackHeader: modifiers.includes('navigation-back-header'),
     hasWithoutTitle: modifiers.includes('without-title'),
     hasColumnWithFilter: columnList.some((c) => c.hasFilter),
+    hasShowArchivedSlide: modifiers.includes('show-archived-slide'),
     exportDefault: !!feature && !directory,
   };
 

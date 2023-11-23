@@ -47,12 +47,14 @@
           <ng-container i18n>Actions</ng-container>
         </rxap-table-column-option>
         <% } %>
+        <% if (hasShowArchivedSlide) { %>
         <mat-divider></mat-divider>
         <span mat-menu-item>
           <rxap-table-show-archived-slide
             [paginator]="paginator"
           ></rxap-table-show-archived-slide>
         </span>
+        <% } %>
       </rxap-table-column-menu>
        </mat-card-header>
 
