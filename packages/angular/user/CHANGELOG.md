@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.9...@rxap/ngx-user@16.1.0-dev.10) (2023-11-23)
+
+### Bug Fixes
+
+- support custom set language hooks ([0d6c491](https://gitlab.com/rxap/packages/commit/0d6c491a96d16db7b528ba01e4be95c0460c5a25))
+
 # [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.8...@rxap/ngx-user@16.1.0-dev.9) (2023-10-30)
 
 **Note:** Version bump only for package @rxap/ngx-user
