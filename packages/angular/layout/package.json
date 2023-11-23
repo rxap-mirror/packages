@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.42",
+  "version": "16.0.0-dev.43",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -20,14 +20,14 @@
     "@rxap/config": "^16.0.0-dev.22",
     "@rxap/data-source": "^16.0.0-dev.33",
     "@rxap/directives": "^16.0.0-dev.20",
-    "@rxap/environment": "^16.0.0-dev.19",
+    "@rxap/environment": "^16.0.0-dev.20",
     "@rxap/icon": "^16.0.0-dev.18",
     "@rxap/material-directives": "^16.0.0-dev.22",
-    "@rxap/ngx-changelog": "^16.1.0-dev.6",
-    "@rxap/ngx-localize": "^16.1.0-dev.3",
+    "@rxap/ngx-changelog": "^16.1.0-dev.7",
+    "@rxap/ngx-localize": "^16.1.0-dev.4",
     "@rxap/ngx-status-check": "^16.1.0-dev.16",
     "@rxap/ngx-theme": "^16.1.0-dev.4",
-    "@rxap/ngx-user": "^16.1.0-dev.9",
+    "@rxap/ngx-user": "^16.1.0-dev.10",
     "@rxap/services": "^16.0.0-dev.23",
     "@rxap/utilities": "^16.0.0-dev.23",
     "rxjs": "^7.8.1",
@@ -78,7 +78,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.20"
       },
       {
         "package": "@rxap/icon",
@@ -90,11 +90,11 @@
       },
       {
         "package": "@rxap/ngx-changelog",
-        "version": "16.1.0-dev.6"
+        "version": "16.1.0-dev.7"
       },
       {
         "package": "@rxap/ngx-localize",
-        "version": "16.1.0-dev.3"
+        "version": "16.1.0-dev.4"
       },
       {
         "package": "@rxap/ngx-status-check",
@@ -106,7 +106,7 @@
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "16.1.0-dev.9"
+        "version": "16.1.0-dev.10"
       },
       {
         "package": "@rxap/rxjs",

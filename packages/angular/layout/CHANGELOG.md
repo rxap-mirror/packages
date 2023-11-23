@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.42...@rxap/layout@16.0.0-dev.43) (2023-11-23)
+
+### Bug Fixes
+
+- always show the selected language ([78d02b7](https://gitlab.com/rxap/packages/commit/78d02b7c9918104e9cdf750b7d29a04e60a68187))
+
 # [16.0.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.41...@rxap/layout@16.0.0-dev.42) (2023-10-30)
 
 ### Bug Fixes

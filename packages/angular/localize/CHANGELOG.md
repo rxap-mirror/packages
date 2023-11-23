@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@16.1.0-dev.3...@rxap/ngx-localize@16.1.0-dev.4) (2023-11-23)
+
+### Bug Fixes
+
+- always show the selected language ([78d02b7](https://gitlab.com/rxap/packages/commit/78d02b7c9918104e9cdf750b7d29a04e60a68187))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@16.1.0-dev.2...@rxap/ngx-localize@16.1.0-dev.3) (2023-10-30)
 
 **Note:** Version bump only for package @rxap/ngx-localize
