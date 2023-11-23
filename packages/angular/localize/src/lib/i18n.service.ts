@@ -1,6 +1,7 @@
 import {
   Inject,
   Injectable,
+  isDevMode,
   LOCALE_ID,
 } from '@angular/core';
 import { UserSettingsLanguageService } from '@rxap/ngx-user';
@@ -20,7 +21,9 @@ export class I18nService {
 
   public async setLanguage(language: string) {
     await this.userSettingsLanguageService.setLanguage(language);
-    this.redirect(language);
+    if (!isDevMode()) {
+      this.redirect(language);
+    }
   }
 
   public redirect(next: string, current: string = this.currentLanguage) {
