@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.18...@rxap/plugin-localazy@16.1.0-dev.19) (2023-11-24)
+
+### Bug Fixes
+
+- add required common options for tag publish ([24f984b](https://gitlab.com/rxap/packages/commit/24f984b213cbf075efe462144eaac7ab2621e1f0))
+
 # [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.17...@rxap/plugin-localazy@16.1.0-dev.18) (2023-10-20)
 
 ### Bug Fixes
