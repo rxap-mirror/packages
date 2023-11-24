@@ -112,7 +112,28 @@ export default async function runExecutor(options: UploadExecutorSchema, context
 
   if (options.tag) {
     try {
-      await YarnRun([ 'localazy', 'tag', 'publish', options.tag ]);
+      const args = [ 'localazy', 'tag' ];
+      if (options.readKey) {
+        args.push('--read-key ' + options.readKey);
+      }
+
+      if (options.writeKey) {
+        args.push('--write-key ' + options.writeKey);
+      }
+
+      if (options.configJson) {
+        args.push('--config "' + options.configJson + '"');
+      }
+
+      if (options.workingDirectory) {
+        args.push('--working-dir "' + options.workingDirectory + '"');
+      }
+
+      if (options.keysJson) {
+        args.push('--keys "' + options.keysJson + '"');
+      }
+      args.push('publish', options.tag);
+      await YarnRun(args);
     } catch (e: any) {
       console.error(`Could not run 'localazy tag publish ${ options.tag }'`, e.message);
       return {
