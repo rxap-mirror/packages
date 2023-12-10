@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.24...@rxap/components@16.0.0-dev.25) (2023-12-10)
+
+### Bug Fixes
+
+- remove angular flex layout dependency ([3e8969a](https://gitlab.com/rxap/packages/commit/3e8969a6061b8b8bfe8bdb9dd181bccf3801a592))
+
 # [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.23...@rxap/components@16.0.0-dev.24) (2023-11-17)
 
 ### Bug Fixes
