@@ -2,9 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { FlexModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'rxap-navigate-back-button',
@@ -14,7 +13,7 @@ import { FlexModule } from '@angular/flex-layout';
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: { class: 'rxap-navigate-back-button' },
   standalone: true,
-  imports: [ FlexModule, MatButtonModule, MatIconModule ],
+  imports: [ MatButtonModule, MatIconModule ],
 })
 export class NavigateBackButtonComponent {
 

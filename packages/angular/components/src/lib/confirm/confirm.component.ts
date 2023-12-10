@@ -4,9 +4,8 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { FlexModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'rxap-confirm',
@@ -14,7 +13,7 @@ import { FlexModule } from '@angular/flex-layout';
   styleUrls: [ './confirm.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ FlexModule, MatButtonModule, MatIconModule ],
+  imports: [ MatButtonModule, MatIconModule ],
 })
 export class ConfirmComponent {
 
