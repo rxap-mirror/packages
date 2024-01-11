@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.48",
+  "version": "16.0.0-dev.49",
   "name": "@rxap/plugin-docker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@rxap/node-utilities": "^1.1.0-dev.15",
     "@rxap/plugin-utilities": "^16.1.0-dev.22",
     "@rxap/utilities": "^16.0.0-dev.23",
-    "@rxap/workspace-utilities": "^0.1.0-dev.25",
+    "@rxap/workspace-utilities": "^0.1.0-dev.26",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },
@@ -56,7 +56,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.25"
+        "version": "0.1.0-dev.26"
       }
     ]
   },

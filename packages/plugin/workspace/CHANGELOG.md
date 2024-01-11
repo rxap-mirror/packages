@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.44...@rxap/plugin-workspace@16.1.0-dev.45) (2024-01-11)
+
+### Bug Fixes
+
+- ensure the service path prefix has '/' as suffix ([48012ac](https://gitlab.com/rxap/packages/commit/48012ac8dc191bdbc1000f16990ff866aa43826a))
+
 # [16.1.0-dev.44](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.43...@rxap/plugin-workspace@16.1.0-dev.44) (2023-10-30)
 
 ### Bug Fixes
