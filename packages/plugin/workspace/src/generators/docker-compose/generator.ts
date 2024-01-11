@@ -6,7 +6,10 @@ import {
   CoerceFile,
   GetProjectSourceRoot,
 } from '@rxap/generator-utilities';
-import { IsRecord } from '@rxap/utilities';
+import {
+  CoerceSuffix,
+  IsRecord,
+} from '@rxap/utilities';
 import {
   GetRootDockerOptions,
   IsApplicationProject,
@@ -62,7 +65,7 @@ function getServiceApiPrefix(name: string, host: Tree) {
   if (!globalApiPrefix) {
     console.warn(`The service ${ name } has no app.config.ts or the app.config.ts has no GLOBAL_API_PREFIX validation schema!`);
   }
-  return globalApiPrefix ?? '/api/' + name;
+  return CoerceSuffix(globalApiPrefix ?? '/api/' + name, '/', /\/$/);
 }
 
 function buildImageName(docker: Record<string, string>, rootDocker: RootDockerOptions): string {

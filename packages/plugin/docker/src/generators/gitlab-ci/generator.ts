@@ -7,7 +7,10 @@ import {
   GetTargetOptions,
   GuessOutputPath,
 } from '@rxap/plugin-utilities';
-import { clone } from '@rxap/utilities';
+import {
+  clone,
+  CoerceSuffix,
+} from '@rxap/utilities';
 import {
   CoerceFilesStructure,
   GetNestApiPrefix,
@@ -134,12 +137,12 @@ function generateDockerGitlabCiFileContent(
       if (!project.sourceRoot) {
         throw new Error(`The project '${ projectName }' has no source root`);
       }
-      dockerYaml[`docker:${ projectName }`].variables.PATH_PREFIX = GetNestApiPrefix(
+      dockerYaml[`docker:${ projectName }`].variables.PATH_PREFIX = CoerceSuffix(GetNestApiPrefix(
         tree,
         {},
         project.sourceRoot,
         projectName,
-      );
+      ), '/', /\/$/);
     }
 
     if (Array.isArray(dockerTargetOptions.buildArgList)) {
