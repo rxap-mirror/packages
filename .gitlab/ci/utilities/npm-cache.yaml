@@ -1,7 +1,7 @@
 setup:
   stage: .pre
   tags:
-    - e2-standard-2
+    - e2-standard-4
   image: node:${NODE_VERSION}-alpine
   script: ./tools/scripts/install-dependencies.sh
   cache:
@@ -11,7 +11,6 @@ setup:
     paths:
       - '**/node_modules/**'
       - .yarn/cache
-    policy: push
   rules:
     - if: '$CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/'
       when: never

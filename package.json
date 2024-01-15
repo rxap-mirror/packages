@@ -192,7 +192,7 @@
   },
   "engines": {
     "yarn": ">=3.6.0 <4",
-    "node": ">=18.17.0 <19"
+    "node": ">=20.9.0 <21"
   },
   "homepage": "https://gitlab.com/rxap/packages",
   "keywords": [

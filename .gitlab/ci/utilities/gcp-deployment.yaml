@@ -1,0 +1,43 @@
+.gcp-deployment:
+  image: eu.gcr.io/google.com/cloudsdktool/google-cloud-cli:latest
+  tags:
+    - ephemeral-manager
+  variables:
+    INSTANCE_NAME: ${CI_PROJECT_NAME}-${CI_COMMIT_REF_SLUG}
+    ZONE: europe-west1-b
+    INSTANCE_LABEL: "gitlab-project=${CI_PROJECT_PATH_SLUG},pipeline-id=${CI_PIPELINE_ID},job-id=${CI_JOB_ID},commit-ref=${CI_COMMIT_REF_SLUG},commit-sha=${CI_COMMIT_SHA},environment=${CI_ENVIRONMENT_SLUG:-none}"
+    INSTANCE_USER: "ci"
+    GCP_MACHINE_TYPE: "e2-standard-4"
+  interruptible: true
+  environment:
+    name: $ENVIRONMENT_NAME
+    url: https://$CI_ENVIRONMENT_SLUG.$ROOT_DOMAIN
+  stage: deploy
+  before_script:
+    - export INSTANCE_NAME=${INSTANCE_NAME:0:60}
+    - bash ./tools/scripts/deployment/ci/before-script.bash
+  script:
+    - gcloud compute ssh "$INSTANCE_USER@$INSTANCE_NAME" --zone=$ZONE --command="startup-deployment" --quiet
+    - gcloud compute ssh "$INSTANCE_USER@$INSTANCE_NAME" --zone=$ZONE --command="print-info" --quiet
+
+.stop_gcp-deployment:
+  image: eu.gcr.io/google.com/cloudsdktool/google-cloud-cli:latest
+  tags:
+    - ephemeral-manager
+  variables:
+    INSTANCE_NAME: ${CI_PROJECT_NAME}-${CI_COMMIT_REF_SLUG}
+    ZONE: europe-west1-b
+    GIT_STRATEGY: none
+  interruptible: true
+  environment:
+    name: $ENVIRONMENT_NAME
+    action: stop
+  stage: deploy
+  before_script:
+    - export INSTANCE_NAME=${INSTANCE_NAME:0:60}
+  rules:
+    - when: manual
+      allow_failure: true
+  script:
+    - gcloud compute instances stop "$INSTANCE_NAME" --zone="$ZONE" --quiet || echo "Instance $INSTANCE_NAME already stopped"
+    - gcloud compute instances delete "$INSTANCE_NAME" --zone="$ZONE" --quiet || echo "Instance $INSTANCE_NAME already deleted"

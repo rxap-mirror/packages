@@ -1,5 +1,5 @@
 .build:
-  extends: .run-many
+  extends: .run-many-dte
   stage: build
   tags:
     - e2-standard-2
@@ -12,3 +12,13 @@
     name: "${CI_COMMIT_REF_SLUG}_run-many_${TARGET}"
     paths:
       - dist
+
+agent:
+  extends: .dte-agent
+  stage: build
+  tags:
+    - e2-standard-8
+  environment:
+    action: prepare
+    name: $ENVIRONMENT_NAME
+  parallel: 3

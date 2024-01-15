@@ -1,11 +1,18 @@
 include:
   - local: .gitlab/ci/jobs/run.yaml
   - local: .gitlab/ci/jobs/docker.yaml
+  - local: .gitlab/ci/jobs/startup.yaml
   - local: .gitlab/ci/jobs/sentry.yaml
+  - local: .gitlab/ci/jobs/deploy.yaml
+  - local: .gitlab/ci/jobs/e2e.yaml
+  - local: .gitlab/ci/jobs/component-test.yaml
+  - local: .gitlab/ci/jobs/localazy.yaml
 
 stages:
+  - localazy
   - run
   - docker
+  - startup
   - sentry
 
 variables:

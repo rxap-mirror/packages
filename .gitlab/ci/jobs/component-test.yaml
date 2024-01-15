@@ -1,0 +1,6 @@
+trigger:component-test:
+  trigger:
+    include:
+      - local: .gitlab/ci/pipelines/component-test.yaml
+  stage: run
+  allow_failure: true

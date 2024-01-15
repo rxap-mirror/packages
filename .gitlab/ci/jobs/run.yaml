@@ -1,3 +1,7 @@
+.run_rules: &run_rules
+  rules:
+    - when: on_success
+
 run:
   extends: .run-many-dte
   stage: run
@@ -12,9 +16,11 @@ run:
     name: "${CI_COMMIT_REF_SLUG}_run-many_${TARGET}"
     paths:
       - dist
+  <<: *run_rules
 
 agent:
   extends: .dte-agent
+  allow_failure: true
   stage: run
   tags:
     - e2-standard-8
@@ -22,3 +28,4 @@ agent:
     action: prepare
     name: $ENVIRONMENT_NAME
   parallel: 3
+  <<: *run_rules

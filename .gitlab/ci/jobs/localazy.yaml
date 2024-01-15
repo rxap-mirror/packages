@@ -3,16 +3,25 @@
   tags:
     - e2-standard-4
   stage: localazy
-  rules:
-    - if: $LOCALAZY_WRITE_KEY == null
-      when: never
-    - when: on_success
   environment:
     action: prepare
-  needs:
-    - job: run
-      artifacts: false
-angular:localazy-upload:
+  variables:
+    TARGET: "${PROJECT_NAME}:localazy-upload"
+  rules:
+    - if: '$LOCALAZY_WRITE_KEY'
+      when: on_success
+
+localazy-upload:
   extends: .localazy
   environment:
-    name: $ENVIRONMENT_NAME/angular
+    name: $ENVIRONMENT_NAME/$PROJECT_NAME
+  parallel:
+    matrix:
+      - PROJECT_NAME: dashboard-editor
+      - PROJECT_NAME: i18n-editor
+      - PROJECT_NAME: mobile-dashboard
+      - PROJECT_NAME: portal
+      - PROJECT_NAME: remote-connection
+      - PROJECT_NAME: service-server
+      - PROJECT_NAME: settings
+      - PROJECT_NAME: ui-editor

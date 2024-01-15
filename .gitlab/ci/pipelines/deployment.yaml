@@ -1,0 +1,17 @@
+include:
+  - local: .gitlab/ci/utilities/gcp-deployment.yaml
+
+variables:
+  ENVIRONMENT_NAME: $CI_COMMIT_REF_NAME
+
+stages:
+  - deploy
+
+deployment:
+  extends: .gcp-deployment
+  environment:
+    on_stop: stop_deployment
+    auto_stop_in: 8 hours
+
+stop_deployment:
+  extends: .stop_gcp-deployment

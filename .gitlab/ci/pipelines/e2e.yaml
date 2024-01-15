@@ -1,0 +1,64 @@
+include:
+  - local: .gitlab/ci/utilities/nx.yaml
+  - local: .gitlab/ci/utilities/gcp-deployment.yaml
+
+variables:
+  NODE_VERSION: "20.9.0"
+  HUSKY: "0"
+
+stages:
+  - e2e
+
+e2e_deployment:
+  extends: .gcp-deployment
+  stage: .pre
+  interruptible: false
+  variables:
+    INSTANCE_NAME: ${CI_PROJECT_NAME}-e2e-${CI_PIPELINE_ID}-${CI_COMMIT_REF_SLUG}
+    ADDITIONAL_INSTANCE_LABEL: "e2e=true"
+  environment:
+    name: e2e/$CI_COMMIT_REF_NAME
+    on_stop: stop_e2e_deployment
+
+stop_e2e_deployment:
+  extends: .stop_gcp-deployment
+  stage: .post
+  variables:
+    INSTANCE_NAME: ${CI_PROJECT_NAME}-e2e-${CI_PIPELINE_ID}-${CI_COMMIT_REF_SLUG}
+  environment:
+    name: e2e/$CI_COMMIT_REF_NAME
+  rules:
+    - when: always
+
+e2e:
+  image:
+    name: cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+    entrypoint: [ "" ]
+  extends: .run
+  stage: e2e
+  needs: null
+  cache: null
+  tags:
+    - e2-standard-4
+  variables:
+    TARGET: "${PROJECT}:e2e"
+    ADDITIONAL_TARGET_OPTIONS: "--configuration ci --browser ${BROWSER} --record --key ${RECORD_KEY} --base-url https://${DOMAIN_PREFIX}${CI_ENVIRONMENT_SLUG}.${ROOT_DOMAIN}/en/"
+    #ADDITIONAL_TARGET_OPTIONS: "--configuration ci --browser ${BROWSER} --base-url https://${DOMAIN_PREFIX}${CI_ENVIRONMENT_SLUG}.${ROOT_DOMAIN}/en/"
+    CYPRESS_KEYCLOAK_BASE_URL: "https://${CI_ENVIRONMENT_SLUG}.${ROOT_DOMAIN}"
+  environment:
+    name: e2e/$CI_COMMIT_REF_NAME
+    action: verify
+  artifacts:
+    when: always
+    paths:
+      - dist/cypress
+    expire_in: 9 day
+  parallel:
+    matrix:
+      - PROJECT: settings
+        RECORD_KEY: a15cc895-87bd-44bb-a4bd-0377fc5bcefb
+        DOMAIN_PREFIX: settings-dot-
+        BROWSER:
+          - chrome
+          #- firefox
+          #- edge

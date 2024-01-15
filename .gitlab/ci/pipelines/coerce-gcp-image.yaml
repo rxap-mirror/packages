@@ -1,0 +1,19 @@
+include:
+  - local: .gitlab/ci/utilities/gcp-deployment.yaml
+
+variables:
+  ENVIRONMENT_NAME: gcp-image/$CI_COMMIT_REF_NAME
+
+stages:
+  - deploy
+
+coerce-gcp-image:
+  extends: .gcp-deployment
+  environment:
+    action: prepare
+    url: null
+  variables:
+    GCP_TERMINATION_ACTION: STOP
+    SETUP_MODE: coerce-gcp-image
+  script:
+    - bash ./tools/scripts/deployment/ci/coerce-instance-image.bash
