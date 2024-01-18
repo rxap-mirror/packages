@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.31...@rxap/material-table-system@16.0.0-dev.32) (2024-01-18)
+
+### Bug Fixes
+
+- clear row selection model on archive toggle ([008b363](https://gitlab.com/rxap/packages/commit/008b363fe918cc5ef41e2fb645611857b96857c8))
+
 # [16.0.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.30...@rxap/material-table-system@16.0.0-dev.31) (2023-11-23)
 
 ### Bug Fixes
