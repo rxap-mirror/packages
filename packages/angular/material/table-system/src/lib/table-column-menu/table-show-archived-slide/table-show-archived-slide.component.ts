@@ -12,6 +12,7 @@ import {
   MatSlideToggleModule,
 } from '@angular/material/slide-toggle';
 import { StopPropagationDirective } from '@rxap/directives';
+import { SelectRowService } from '../../select-row/select-row.service';
 import { TableFilterService } from '../../table-filter/table-filter.service';
 import { TableColumnMenuComponent } from '../table-column-menu.component';
 
@@ -34,12 +35,15 @@ export class TableShowArchivedSlideComponent implements AfterViewInit {
     private readonly tableFilter: TableFilterService | null,
     @Inject(TableColumnMenuComponent)
     private readonly tableColumnMenu: TableColumnMenuComponent,
+    @Inject(SelectRowService)
+    private readonly selectRows: SelectRowService | null,
   ) {
   }
 
   public onChange($event: MatSlideToggleChange) {
     this.paginator?.firstPage();
     this.tableFilter?.set('__archived', $event.checked);
+    this.selectRows?.clear();
     if ($event.checked) {
       this.tableColumnMenu.activate('removedAt');
       this.tableColumnMenu.activate('__--removed-at');

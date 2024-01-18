@@ -10,7 +10,7 @@ import { SelectionModel } from './selection-model';
 import { RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS } from './tokens';
 
 @Injectable()
-export class SelectRowService<Data> {
+export class SelectRowService<Data = unknown> {
   public selectedRows$: Observable<Data[]>;
 
   public readonly selectionModel = new SelectionModel<Data>(true);
@@ -34,4 +34,9 @@ export class SelectRowService<Data> {
       map(() => this.selectionModel.selected),
     );
   }
+
+  clear() {
+    this.selectionModel.clear();
+  }
+
 }
