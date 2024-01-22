@@ -42,3 +42,14 @@ Recommended Extensions:
 - [Nx Console](https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console)
 - [npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script)
 - [Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
+
+# Startup
+
+1. run `yarn server` to start the backend
+2. run `nx run angular:serve` to start the frontend
+3. if authentik is not setup follow the instructions in the authentik setup section
+
+## Authentik Setup
+
+To access the admin dashboard navigate to http://localhost:9000/ and use the username `akadmin`. The password is stored
+in the environment variable `AUTHENTIK_BOOTSTRAP_PASSWORD`.

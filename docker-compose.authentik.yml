@@ -35,7 +35,6 @@ services:
       - "traefik.http.routers.authentik.entrypoints=https"
       - "traefik.http.routers.authentik.rule=Host(`auth.${ROOT_DOMAIN}`)"
       - "traefik.http.services.authentik.loadbalancer.server.port=9000"
-      - "traefik.http.routers.authentik.middlewares=cors-options"
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2023.8.2}
     command: server
     environment:
