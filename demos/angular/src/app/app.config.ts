@@ -12,7 +12,10 @@ import {
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
-import { BearerTokenInterceptor } from '@rxap/authentication';
+import {
+  BearerTokenInterceptor,
+  withDisabledAuthentication,
+} from '@rxap/authentication';
 import { ProvideEnvironment } from '@rxap/environment';
 import { ProvideChangelog } from '@rxap/ngx-changelog';
 import {
@@ -58,7 +61,7 @@ export const appConfig: ApplicationConfig = {
       dummyClientSecret: 'geheim',
       redirectUri: window.location.origin + '/index.html',
       // silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
-    })),
+    }), withDisabledAuthentication()),
     provideServiceWorker(
       'ngsw-worker.js',
       { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' },

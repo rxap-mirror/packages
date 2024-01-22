@@ -3,11 +3,20 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
-import { RxapAuthenticationService } from '@rxap/authentication';
+import {
+  RXAP_AUTHENTICATION_DEACTIVATED,
+  RxapAuthenticationService,
+} from '@rxap/authentication';
 import { AuthenticationService } from './authentication.service';
 
 export async function AuthenticationGuard(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
 
+  const isAuthDisabled = inject(RXAP_AUTHENTICATION_DEACTIVATED, { optional: true }) ?? false;
+
+  if (isAuthDisabled) {
+    console.warn('Authentication is disabled!');
+    return true;
+  }
 
   const authService = inject(RxapAuthenticationService);
 

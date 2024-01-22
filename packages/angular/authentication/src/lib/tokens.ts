@@ -1,4 +1,7 @@
-import { InjectionToken } from '@angular/core';
+import {
+  InjectionToken,
+  Provider,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export const RXAP_AUTHENTICATION_DEACTIVATED = new InjectionToken<boolean>('rxap/authentication/deactivated');
@@ -20,3 +23,10 @@ export const RXAP_INITIAL_AUTHENTICATION_STATE = new InjectionToken<boolean>('rx
   providedIn: 'root',
   factory: () => false,
 });
+
+export function withDisabledAuthentication(disabled = true): Provider {
+  return {
+    provide: RXAP_AUTHENTICATION_DEACTIVATED,
+    useValue: disabled,
+  };
+}
