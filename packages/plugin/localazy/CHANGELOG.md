@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.20...@rxap/plugin-localazy@16.1.0-dev.21) (2024-01-25)
+
+### Bug Fixes
+
+- ensure the tag is normalized ([d71414e](https://gitlab.com/rxap/packages/commit/d71414e70d302365f9c7d513f84b8e531c01d2d4))
+
 # [16.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.19...@rxap/plugin-localazy@16.1.0-dev.20) (2024-01-25)
 
 ### Bug Fixes
