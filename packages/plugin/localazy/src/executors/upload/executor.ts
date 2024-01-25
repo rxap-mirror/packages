@@ -102,12 +102,16 @@ export default async function runExecutor(options: UploadExecutorSchema, context
   }
 
   if (options.autoTag) {
+    console.log('Get auto tag');
     const tag = GetAutoTag();
     if (tag) {
+      console.log('Set auto tag', tag);
       options.tag = tag;
     } else {
-      console.warn('Could not get auto tag');
+      console.log('Could not get auto tag');
     }
+  } else {
+    console.log('Skip auto tag');
   }
 
   if (options.tag) {
@@ -133,6 +137,7 @@ export default async function runExecutor(options: UploadExecutorSchema, context
         args.push('--keys "' + options.keysJson + '"');
       }
       args.push('publish', options.tag);
+      console.log('Publish tag', options.tag);
       await YarnRun(args);
     } catch (e: any) {
       console.error(`Could not run 'localazy tag publish ${ options.tag }'`, e.message);
@@ -141,6 +146,8 @@ export default async function runExecutor(options: UploadExecutorSchema, context
         error: e.message,
       };
     }
+  } else {
+    console.log('Skip tag publish');
   }
 
   return {

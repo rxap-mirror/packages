@@ -15,12 +15,16 @@ export default async function runExecutor(options: DownloadExecutorSchema) {
   const args: string[] = [ 'localazy', 'download' ];
 
   if (options.autoTag) {
+    console.log('Get auto tag');
     const tag = GetAutoTag();
     if (tag) {
+      console.log('Set auto tag', tag);
       options.tag = tag;
     } else {
-      console.warn('Could not get auto tag');
+      console.log('Could not get auto tag');
     }
+  } else {
+    console.log('Skip auto tag');
   }
 
   if (options.readKey) {
