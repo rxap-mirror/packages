@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/packages.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/cfg/buildprofiles.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/redirection-rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Changelog.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Features.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/How-to.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/ug.tree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/writerside.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rxap.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="docs: add writerside project">
+      <change afterPath="$PROJECT_DIR$/packages/plugin/localazy/src/lib/normalize-tag.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/plugin/localazy/src/executors/download/executor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/plugin/localazy/src/executors/download/executor.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/plugin/localazy/src/executors/upload/executor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/plugin/localazy/src/executors/upload/executor.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/plugin/localazy/src/lib/get-auto-tag.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/plugin/localazy/src/lib/get-auto-tag.ts" afterDir="false" />
@@ -25,6 +15,18 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -110,6 +112,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "development",
+    "last.edited.regexp": "/",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -138,11 +141,33 @@
       <workItem from="1706088412471" duration="1200000" />
       <workItem from="1706173733692" duration="596000" />
       <workItem from="1706174717590" duration="3232000" />
-      <workItem from="1706186566123" duration="658000" />
+      <workItem from="1706186566123" duration="2033000" />
     </task>
+    <task id="LOCAL-00001" summary="fix: improve logging output">
+      <option name="closed" value="true" />
+      <created>1706187304563</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706187304563</updated>
+    </task>
+    <task id="LOCAL-00002" summary="docs: add writerside project">
+      <option name="closed" value="true" />
+      <created>1706187323965</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706187323965</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: improve logging output" />
+    <MESSAGE value="docs: add writerside project" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs: add writerside project" />
   </component>
 </project>

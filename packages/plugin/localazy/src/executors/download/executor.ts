@@ -1,5 +1,6 @@
 import { YarnRun } from '@rxap/plugin-utilities';
 import { GetAutoTag } from '../../lib/get-auto-tag';
+import { NormalizeTag } from '../../lib/normalize-tag';
 import { DownloadExecutorSchema } from './schema';
 
 export default async function runExecutor(options: DownloadExecutorSchema) {
@@ -48,6 +49,7 @@ export default async function runExecutor(options: DownloadExecutorSchema) {
   }
 
   if (options.tag) {
+    options.tag = NormalizeTag(options.tag);
     args.push(`--tag ${ options.tag }`);
   }
 

@@ -7,6 +7,7 @@ import {
 } from '@rxap/plugin-utilities';
 import * as process from 'process';
 import { GetAutoTag } from '../../lib/get-auto-tag';
+import { NormalizeTag } from '../../lib/normalize-tag';
 import { DownloadExecutorSchema } from '../download/schema';
 import { UploadExecutorSchema } from './schema';
 
@@ -115,6 +116,7 @@ export default async function runExecutor(options: UploadExecutorSchema, context
   }
 
   if (options.tag) {
+    options.tag = NormalizeTag(options.tag);
     try {
       const args = [ 'localazy', 'tag' ];
       if (options.readKey) {
