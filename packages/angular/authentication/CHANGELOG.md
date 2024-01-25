@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.20...@rxap/authentication@16.0.0-dev.21) (2024-01-25)
+
+### Bug Fixes
+
+- support disabled oauth ([8b05fa9](https://gitlab.com/rxap/packages/commit/8b05fa9742aa3d99cff4920ee3057b4fc6fdb30e))
+
 # [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.19...@rxap/authentication@16.0.0-dev.20) (2023-10-30)
 
 **Note:** Version bump only for package @rxap/authentication
