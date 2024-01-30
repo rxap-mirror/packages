@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.25...@rxap/components@16.0.0-dev.26) (2024-01-30)
+
+### Bug Fixes
+
+- ensure a unique component id is generated ([9912526](https://gitlab.com/rxap/packages/commit/9912526f923b19bd3d7fcd8895b7ea5c4202a577))
+
 # [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.24...@rxap/components@16.0.0-dev.25) (2023-12-10)
 
 ### Bug Fixes
