@@ -15,7 +15,10 @@ import {
   PageEvent,
   PaginatorLike,
 } from '@rxap/data-source/pagination';
-import { Method } from '@rxap/pattern';
+import {
+  Method,
+  MethodWithParameters,
+} from '@rxap/pattern';
 import {
   clone,
   equals,
@@ -86,7 +89,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
   constructor(
     @Optional()
     @Inject(RXAP_TABLE_METHOD)
-    protected readonly method: Method<Data[], TableEvent<Parameters>>,
+    protected readonly method: MethodWithParameters<Data[], TableEvent<Parameters>>,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
       paginator: PaginatorLike | null = null,

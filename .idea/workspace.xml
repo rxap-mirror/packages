@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="fix: ensure a unique component id is generated">
+    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="fix: enforce that the method accepts a parameter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/angular/data-source/accordion/src/lib/accordion.data-source.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/data-source/accordion/src/lib/accordion.data-source.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/pattern/src/lib/method.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/pattern/src/lib/method.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/angular/data-source/table/src/lib/dynamic-table.data-source.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/data-source/table/src/lib/dynamic-table.data-source.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +144,7 @@
       <workItem from="1706173733692" duration="596000" />
       <workItem from="1706174717590" duration="3232000" />
       <workItem from="1706186566123" duration="2033000" />
-      <workItem from="1706609362869" duration="4069000" />
+      <workItem from="1706609362869" duration="5540000" />
     </task>
     <task id="LOCAL-00001" summary="fix: improve logging output">
       <option name="closed" value="true" />
@@ -187,7 +186,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706619181534</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: add MethodWithParameters interface">
+      <option name="closed" value="true" />
+      <created>1706620493672</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706620493672</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix: enforce that the method accepts a parameter">
+      <option name="closed" value="true" />
+      <created>1706620524424</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706620524424</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +225,8 @@
     <MESSAGE value="fix: use the CI_COMMIT_REF_SLUG env to determine the default tag" />
     <MESSAGE value="feat: support loading write and read keys from file" />
     <MESSAGE value="fix: ensure a unique component id is generated" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: ensure a unique component id is generated" />
+    <MESSAGE value="feat: add MethodWithParameters interface" />
+    <MESSAGE value="fix: enforce that the method accepts a parameter" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: enforce that the method accepts a parameter" />
   </component>
 </project>
