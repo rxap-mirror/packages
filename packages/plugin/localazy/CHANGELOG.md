@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.22...@rxap/plugin-localazy@16.1.0-dev.23) (2024-01-30)
+
+### Features
+
+- support loading write and read keys from file ([2d492cf](https://gitlab.com/rxap/packages/commit/2d492cf3294cc710bf34d4d58e3b3ec608e6272e))
+
 # [16.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.21...@rxap/plugin-localazy@16.1.0-dev.22) (2024-01-29)
 
 ### Bug Fixes
