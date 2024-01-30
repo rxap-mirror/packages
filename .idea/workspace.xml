@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="fix: use the CI_COMMIT_REF_SLUG env to determine the default tag">
-      <change afterPath="$PROJECT_DIR$/packages/plugin/localazy/src/lib/load-keys-from-file.ts" afterDir="false" />
+    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="feat: support loading write and read keys from file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/plugin/localazy/src/executors/upload/executor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/plugin/localazy/src/executors/upload/executor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/angular/components/src/lib/empty-router-outlet/empty-router-outlet.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/components/src/lib/empty-router-outlet/empty-router-outlet.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,22 +104,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
-    &quot;last.edited.regexp&quot;: &quot;/&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/mmuenker/Projects/rxap/packages/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;writerside.last.selected.productpackages&quot;: &quot;ug&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "development",
+    "last.edited.regexp": "/",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/mmuenker/Projects/rxap/packages/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true",
+    "writerside.last.selected.productpackages": "ug"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Jest.All Tests">
     <configuration default="true" type="StardustRunConfiguration" factoryName="save-as-zip">
       <option name="instanceId" value="hi" />
@@ -140,7 +144,7 @@
       <workItem from="1706173733692" duration="596000" />
       <workItem from="1706174717590" duration="3232000" />
       <workItem from="1706186566123" duration="2033000" />
-      <workItem from="1706609362869" duration="1666000" />
+      <workItem from="1706609362869" duration="2772000" />
     </task>
     <task id="LOCAL-00001" summary="fix: improve logging output">
       <option name="closed" value="true" />
@@ -166,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706538714909</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: support loading write and read keys from file">
+      <option name="closed" value="true" />
+      <created>1706617495138</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706617495138</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +188,7 @@
     <MESSAGE value="fix: improve logging output" />
     <MESSAGE value="docs: add writerside project" />
     <MESSAGE value="fix: use the CI_COMMIT_REF_SLUG env to determine the default tag" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: use the CI_COMMIT_REF_SLUG env to determine the default tag" />
+    <MESSAGE value="feat: support loading write and read keys from file" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: support loading write and read keys from file" />
   </component>
 </project>
