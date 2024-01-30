@@ -7,6 +7,7 @@ import {
 } from '@rxap/plugin-utilities';
 import * as process from 'process';
 import { GetAutoTag } from '../../lib/get-auto-tag';
+import { LoadKeysFromFile } from '../../lib/load-keys-from-file';
 import { NormalizeTag } from '../../lib/normalize-tag';
 import { DownloadExecutorSchema } from '../download/schema';
 import { UploadExecutorSchema } from './schema';
@@ -29,6 +30,34 @@ export default async function runExecutor(options: UploadExecutorSchema, context
   options.configJson ??= downloadTargetOptions.configJson;
   options.workingDirectory ??= downloadTargetOptions.workingDirectory;
   options.keysJson ??= downloadTargetOptions.keysJson;
+
+  if (!options.readKey || !options.writeKey) {
+    const fromFile = LoadKeysFromFile(context.projectName);
+    options.readKey ??= fromFile.read;
+    options.writeKey ??= fromFile.write;
+  }
+
+  if (!options.writeKey) {
+    console.log('The write key is not set');
+    if (!process.env.CI) {
+      console.log('Detecting a non CI environment. Exit with success');
+      return {
+        success: true
+      };
+    }
+    return {
+      success: false,
+      error: 'Could not find write key',
+    };
+  }
+
+  if (!options.readKey) {
+    console.log('The read key is not set');
+    return {
+      success: false,
+      error: 'Could not find read key',
+    };
+  }
 
   const args: string[] = [ 'localazy', 'upload' ];
 
