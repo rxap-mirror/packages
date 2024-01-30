@@ -4,23 +4,23 @@ import {
   InjectionToken,
   OnInit,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BaseDataSource } from '@rxap/data-source';
+import { MethodWithParameters } from '@rxap/pattern';
+import {
+  isDefined,
+  ToggleSubject,
+} from '@rxap/rxjs';
+import { isPromiseLike } from '@rxap/utilities';
 import {
   Observable,
   ReplaySubject,
   Subject,
 } from 'rxjs';
 import {
-  isDefined,
-  ToggleSubject,
-} from '@rxap/rxjs';
-import { ActivatedRoute } from '@angular/router';
-import {
   map,
   tap,
 } from 'rxjs/operators';
-import { isPromiseLike } from '@rxap/utilities';
-import { Method } from '@rxap/pattern';
 
 export const ACCORDION_DATA_SOURCE_METHOD = new InjectionToken('accordion-data-source-method');
 
@@ -32,7 +32,7 @@ export abstract class AccordionDataSource<Data = unknown> extends BaseDataSource
 
   protected constructor(
     @Inject(ACCORDION_DATA_SOURCE_METHOD)
-    protected readonly method: Method<Data, { parameters: { uuid: string } }>,
+    protected readonly method: MethodWithParameters<Data, { parameters: { uuid: string } }>,
     protected readonly route: ActivatedRoute,
   ) {
     super();
