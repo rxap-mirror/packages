@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.33...@rxap/data-source@16.0.0-dev.34) (2024-01-30)
+
+### Bug Fixes
+
+- enforce that the method accepts a parameter ([a0c7a68](https://gitlab.com/rxap/packages/commit/a0c7a6800985956331f89006f96ed9898476bc60))
+
 # [16.0.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.32...@rxap/data-source@16.0.0-dev.33) (2023-10-29)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.1.0-dev.3...@rxap/pattern@1.1.0-dev.4) (2024-01-30)
+
+### Features
+
+- add MethodWithParameters interface ([c775830](https://gitlab.com/rxap/packages/commit/c77583028b6728da9c8d9524e5a7cb27456d985e))
+
 # [1.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.1.0-dev.2...@rxap/pattern@1.1.0-dev.3) (2023-10-18)
 
 **Note:** Version bump only for package @rxap/pattern
