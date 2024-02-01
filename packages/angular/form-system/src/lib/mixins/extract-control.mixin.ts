@@ -7,11 +7,11 @@ import { RxapFormControl } from '@rxap/forms';
 
 export class ExtractControlMixin {
 
-  protected ngControl!: NgControl | null;
+  ngControl!: NgControl | null;
 
-  protected readonly matFormField!: MatFormField | null;
+  matFormField?: MatFormField | null;
 
-  protected control?: RxapFormControl;
+  control?: RxapFormControl;
 
   protected extractControl(ngControl: AbstractControlDirective | null = this.ngControl ??
   this.matFormField?._control?.ngControl ??
