@@ -5,6 +5,11 @@
 <instance-profile id="ug" name="User Guide"
                   start-page="Features.md">
 
+    <toc-element topic="Development.md">
+        <toc-element topic="Cypress.md">
+            <toc-element topic="Component-Testing.md"/>
+        </toc-element>
+    </toc-element>
     <toc-element topic="Features.md">
         <toc-element topic="Changelog.md">
             <toc-element topic="How-to.md"/>

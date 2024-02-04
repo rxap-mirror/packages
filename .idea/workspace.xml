@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="fix: enforce that the method accepts a parameter">
+    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="fix: remove restrictive member scopes">
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Component-Testing.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Cypress.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/Development.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/ug.tree" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/ug.tree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/angular/form-system/src/lib/directives/input-select-options.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/form-system/src/lib/directives/input-select-options.directive.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/angular/form-system/src/lib/mixins/extract-control.mixin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/form-system/src/lib/mixins/extract-control.mixin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/angular/form-system/src/lib/mixins/extract-options-data-source.mixin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/form-system/src/lib/mixins/extract-options-data-source.mixin.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +37,33 @@
   <component name="InstanceColorv3">
     <option name="map">
       <map>
+        <entry key="$PROJECT_DIR$/Writerside/ug.tree">
+          <value>
+            <ColorState>
+              <option name="customOrder" value="3" />
+              <option name="first">
+                <RgbState>
+                  <option name="blue" value="147" />
+                  <option name="darkBlue" value="147" />
+                  <option name="darkGreen" value="69" />
+                  <option name="darkRed" value="143" />
+                  <option name="green" value="69" />
+                  <option name="red" value="143" />
+                </RgbState>
+              </option>
+              <option name="second">
+                <RgbState>
+                  <option name="blue" value="227" />
+                  <option name="darkBlue" value="227" />
+                  <option name="darkGreen" value="114" />
+                  <option name="darkRed" value="181" />
+                  <option name="green" value="114" />
+                  <option name="red" value="181" />
+                </RgbState>
+              </option>
+            </ColorState>
+          </value>
+        </entry>
         <entry key="hi.tree">
           <value>
             <ColorState>
@@ -125,7 +158,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Jest.All Tests">
+  <component name="RunManager" selected="Wallaby.js.Test">
     <configuration default="true" type="StardustRunConfiguration" factoryName="save-as-zip">
       <option name="instanceId" value="hi" />
       <option name="instanceName" value="Help Instance" />
@@ -153,7 +186,11 @@
       <workItem from="1706790535414" duration="23000" />
       <workItem from="1706790566053" duration="88000" />
       <workItem from="1706790662391" duration="488000" />
-      <workItem from="1706791158804" duration="730000" />
+      <workItem from="1706791158804" duration="1302000" />
+      <workItem from="1706792755071" duration="3213000" />
+      <workItem from="1706955076105" duration="179000" />
+      <workItem from="1706955262757" duration="1444000" />
+      <workItem from="1707041728659" duration="374000" />
     </task>
     <task id="LOCAL-00001" summary="fix: improve logging output">
       <option name="closed" value="true" />
@@ -219,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706623327706</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix: remove restrictive member scopes">
+      <option name="closed" value="true" />
+      <created>1706792197837</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706792197837</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +289,7 @@
     <MESSAGE value="fix: ensure a unique component id is generated" />
     <MESSAGE value="feat: add MethodWithParameters interface" />
     <MESSAGE value="fix: enforce that the method accepts a parameter" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: enforce that the method accepts a parameter" />
+    <MESSAGE value="fix: remove restrictive member scopes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: remove restrictive member scopes" />
   </component>
 </project>
