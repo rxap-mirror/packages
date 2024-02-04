@@ -1,0 +1,10 @@
+qodana:
+  stage: test
+  image:
+    name: jetbrains/qodana-js
+    entrypoint: [""]
+  script:
+    - qodana
+  artifacts:
+    paths:
+      - qodana
