@@ -63,9 +63,9 @@ export class ExtractOptionsDataSourceMixin {
 
   protected readonly dataSourceLoader!: DataSourceLoader;
 
-  public metadata?: BaseDataSourceMetadata;
+  protected metadata?: BaseDataSourceMetadata;
 
-  public viewer?: BaseDataSourceViewer;
+  protected viewer?: BaseDataSourceViewer;
 
   protected dataSource?: BaseDataSource<ControlOptions | Record<string, any>>;
 
