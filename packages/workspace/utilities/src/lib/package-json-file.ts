@@ -1,5 +1,9 @@
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { SortProperties } from '@rxap/utilities';
+import {
+  existsSync,
+  readFileSync,
+} from 'fs';
 import { join } from 'path';
 import gt from 'semver/functions/gt';
 import { IsRxapRepository } from './is-rxap-repository';
@@ -9,7 +13,14 @@ import {
   UpdateJsonFileOptions,
 } from './json-file';
 import { PackageJson } from './package-json';
-import { TreeLike } from './tree';
+import {
+  IsGeneratorTreeLike,
+  IsJsonObject,
+  IsSchematicTreeLike,
+  JsonValue,
+  TreeAdapter,
+  TreeLike,
+} from './tree';
 
 export function GetPackageJson<Tree extends TreeLike>(tree: Tree, basePath = ''): PackageJson {
   return GetJsonFile(tree, join(basePath, 'package.json'));
@@ -207,4 +218,41 @@ export function CleanupPackageJsonFile<T extends PackageJson = PackageJson>(cont
 
   return content as T;
 
+}
+
+export function GetRootPackageJson(tree?: TreeLike): PackageJson {
+  let rootPackageJson: JsonValue;
+  let root: string;
+
+  if (tree) {
+    if (IsSchematicTreeLike(tree)) {
+      root = tree.root.path;
+    } else if (IsGeneratorTreeLike(tree)) {
+      // Don't use the tree.root as this points to the root in the "real" file system, but to access the files
+      // at the root of the FsTree the root path "/" must be used
+      root = '/';
+    } else {
+      throw new Error('The tree is not a valid schematic or generator tree');
+    }
+  } else {
+    root = process.cwd();
+  }
+  const rootPackageJsonFile = join(root, 'package.json');
+  if (tree) {
+    const wrappedTree = new TreeAdapter(tree);
+    if (!tree.exists(rootPackageJsonFile)) {
+      throw new Error(`Could not find the root package.json file in filePath '${ rootPackageJsonFile }'`);
+    }
+    rootPackageJson = wrappedTree.readJson(rootPackageJsonFile);
+  } else {
+    if (!existsSync(rootPackageJsonFile)) {
+      throw new Error(`Could not find the root package.json file in '${ root }'`);
+    }
+    rootPackageJson = JSON.parse(readFileSync(rootPackageJsonFile, 'utf-8'));
+  }
+
+  if (!IsJsonObject(rootPackageJson)) {
+    throw new Error('The root package.json file is not a valid JSON object');
+  }
+  return rootPackageJson as PackageJson;
 }

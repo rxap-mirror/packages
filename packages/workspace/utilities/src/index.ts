@@ -67,6 +67,7 @@ export * from './lib/coerce-file';
 export * from './lib/coerce-files-structure';
 export * from './lib/coerce-lerna-json';
 export * from './lib/delete-recursive';
+export * from './lib/get-nx-version';
 export * from './lib/get-project';
 export * from './lib/get-root-docker-options';
 export * from './lib/get-workspace-scope';
