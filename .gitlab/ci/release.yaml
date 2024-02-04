@@ -6,10 +6,9 @@ include:
   - local: .gitlab/ci/jobs/deploy.yaml
   - local: .gitlab/ci/jobs/e2e.yaml
   - local: .gitlab/ci/jobs/component-test.yaml
-  - local: .gitlab/ci/jobs/localazy.yaml
+  - local: .gitlab/ci/jobs/pages.yaml
 
 stages:
-  - localazy
   - run
   - docker
   - startup

@@ -5,10 +5,12 @@ include:
   - local: .gitlab/ci/jobs/deploy.yaml
   - local: .gitlab/ci/jobs/e2e.yaml
   - local: .gitlab/ci/jobs/component-test.yaml
-  - local: .gitlab/ci/jobs/localazy.yaml
+  - template: Jobs/SAST.gitlab-ci.yml
+  - local: .gitlab/ci/jobs/pages.yaml
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
 
 stages:
-  - localazy
+  - test
   - run
   - docker
   - startup

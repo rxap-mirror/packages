@@ -1,13 +1,20 @@
 pages:
-  image: registry.gitlab.com/rxap/gitlab-ci/apindex:$RXAP_CI_CONFIG_REF
-  stage: deploy
+  image: registry.gitlab.com/rxap/gitlab-ci/apindex:latest
+  stage: .post
   needs:
-    - build
-    - build-storybook
-  script:
-    - mkdir -p "public/${CI_COMMIT_REF_SLUG}"
-    - cp -r dist/* "public/${CI_COMMIT_REF_SLUG}/"
-    - apindex public
+    - coverage-report
+  script: |
+    if [ ! -d public ]; then
+      echo "No public directory found, create a new one"
+    fi
+    output="public/${CI_COMMIT_REF_SLUG}"
+    mkdir -p "$output"
+    echo "Folder structure of the public directory:"
+    ls -l public
+    echo "Copy coverage report to $output"
+    cp -r coverage/* "$output/"
+    echo "create index.html"
+    apindex public
   environment:
     name: "pages/$CI_COMMIT_REF_NAME"
     deployment_tier: other

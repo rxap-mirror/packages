@@ -1,0 +1,18 @@
+coverage-report:
+  stage: .post
+  image: node:${NODE_VERSION}
+  coverage: '/^Statements\s*:\s*([\d\.]+)%/'
+  when: always
+  script:
+    - bash tools/scripts/merge-coverage-reports.bash
+    - npx nyc report --reporter text-summary | perl -pe 's/\e\[?.*?[\@-~]//g'
+  allow_failure:
+    exit_codes: 42
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - coverage
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml

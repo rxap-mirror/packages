@@ -34,7 +34,16 @@ include:
 
   - local: .gitlab/ci/utilities/nx.yaml
   - local: .gitlab/ci/utilities/npm-cache.yaml
+    rules:
+      - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH =~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/ && $CI_PIPELINE_SOURCE =~ /push|web|api/'
+        when: never
+      - when: always
   - local: .gitlab/ci/utilities/gcp-deployment.yaml
+  - local: .gitlab/ci/jobs/coverage-report.yaml
+    rules:
+      - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH =~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/ && $CI_PIPELINE_SOURCE =~ /push|web|api/'
+        when: never
+      - when: always
 
   # the review pipeline to check if tests and builds are successful and deploy a review environment
   - local: .gitlab/ci/review.yaml

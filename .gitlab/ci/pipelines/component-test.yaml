@@ -1,72 +1,10 @@
 include:
   - local: .gitlab/ci/utilities/nx.yaml
+  - local: .gitlab/ci/jobs/component-test.yaml
 
 variables:
   NODE_VERSION: "20.9.0"
   HUSKY: "0"
 
 stages:
-  - test
-
-component-test:
-  image:
-    name: cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
-    entrypoint: [ "" ]
-  extends: .run
-  stage: test
-  tags:
-    - e2-standard-2
-  variables:
-    TARGET: "${PROJECT}:component-test"
-    ADDITIONAL_TARGET_OPTIONS: "--browser ${BROWSER}"
-  environment:
-    action: prepare
-    name: $ENVIRONMENT_NAME
-  allow_failure: true
-  parallel:
-    matrix:
-      - PROJECT: dashboard-editor
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
-      - PROJECT: i18n-editor
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
-      - PROJECT: module-dashboard
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
-      - PROJECT: portal
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
-      - PROJECT: remote-connection
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
-      - PROJECT: service-server
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
-      - PROJECT: settings
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
-      - PROJECT: ui-editor
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
-      - PROJECT: shared
-        BROWSER:
-          - chrome
-          #- firefox
-          #- edge
+  - run
