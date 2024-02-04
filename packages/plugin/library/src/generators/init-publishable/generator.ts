@@ -23,6 +23,7 @@ import {
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
+  GetWorkspaceScope,
 } from '@rxap/workspace-utilities';
 import {
   join,
@@ -64,9 +65,15 @@ function updateProjectPackageJson(
   rootPackageJson: ProjectPackageJson,
 ) {
   const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
+  const scope = GetWorkspaceScope(tree);
   packageJson.scripts ??= {};
   if (Object.keys(packageJson.scripts).length === 0) {
     delete packageJson.scripts;
+  }
+  if (!packageJson.name.startsWith('@')) {
+    const newName = `${ scope }/${ projectName }`;
+    updatePathsAliasInBaseTsConfig(tree, project, packageJson.name, newName);
+    packageJson.name = newName;
   }
   packageJson.publishConfig ??= {};
   packageJson.publishConfig.access = 'public';
@@ -95,6 +102,21 @@ function updateProjectPackageJson(
   }
   packageJson.author = rootPackageJson.author;
   writeJson(tree, join(project.root, 'package.json'), packageJson);
+}
+
+function updatePathsAliasInBaseTsConfig(
+  tree: Tree,
+  project: ProjectConfiguration,
+  currentPackageJsonName: string,
+  newPackageJsonName: string
+) {
+  const tsConfig = readJson(tree, join('/', 'tsconfig.base.json'));
+  if (tsConfig.compilerOptions.paths[currentPackageJsonName]) {
+    const aliasList = tsConfig.compilerOptions.paths[currentPackageJsonName];
+    delete tsConfig.compilerOptions.paths[currentPackageJsonName];
+    tsConfig.compilerOptions.paths[newPackageJsonName] = aliasList;
+  }
+  writeJson(tree, join('/', 'tsconfig.base.json'), tsConfig);
 }
 
 function updateProjectTargets(project: ProjectConfiguration) {
