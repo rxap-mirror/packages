@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="fix: remove restrictive member scopes">
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Component-Testing.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Cypress.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/Development.md" afterDir="false" />
+    <list default="true" id="be08f281-7eb7-4233-9d9a-b30d59bc746b" name="Changes" comment="chore: update ides settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Writerside/ug.tree" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/ug.tree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/angular/form-system/src/lib/directives/input-select-options.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/form-system/src/lib/directives/input-select-options.directive.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/angular/form-system/src/lib/mixins/extract-control.mixin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/form-system/src/lib/mixins/extract-control.mixin.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/angular/form-system/src/lib/mixins/extract-options-data-source.mixin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/angular/form-system/src/lib/mixins/extract-options-data-source.mixin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx.json" beforeDir="false" afterPath="$PROJECT_DIR$/nx.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,33 +131,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
-    &quot;last.edited.regexp&quot;: &quot;/&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/mmuenker/Projects/rxap/packages/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;writerside.last.selected.productpackages&quot;: &quot;ug&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Nx.workspace-utilities:index-export.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "development",
+    "last.edited.regexp": "/",
+    "last_opened_file_path": "/home/mmuenker/Projects/rxap/packages/.gitlab",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "com.github.blarc.gitlab.template.lint.plugin.settings.remote.RemotesConfigurable",
+    "ts.external.directory.path": "/home/mmuenker/Projects/rxap/packages/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true",
+    "writerside.last.selected.productpackages": "ug"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JSON&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
     ]
   }
-}</component>
-  <component name="RunManager" selected="Wallaby.js.Test">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.gitlab" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Nx.workspace-utilities:index-export">
     <configuration default="true" type="StardustRunConfiguration" factoryName="save-as-zip">
       <option name="instanceId" value="hi" />
       <option name="instanceName" value="Help Instance" />
       <method v="2" />
     </configuration>
+    <configuration name="workspace-utilities:index-export" type="NxRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="nx-projects" value="workspace-utilities" />
+      <option name="nx-targets" value="index-export" />
+      <option name="nx-target-configuration" value="" />
+      <envs />
+      <option name="arguments" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Nx.workspace-utilities:index-export" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -190,7 +206,8 @@
       <workItem from="1706792755071" duration="3213000" />
       <workItem from="1706955076105" duration="179000" />
       <workItem from="1706955262757" duration="1444000" />
-      <workItem from="1707041728659" duration="374000" />
+      <workItem from="1707041728659" duration="1032000" />
+      <workItem from="1707042768484" duration="4633000" />
     </task>
     <task id="LOCAL-00001" summary="fix: improve logging output">
       <option name="closed" value="true" />
@@ -264,7 +281,71 @@
       <option name="project" value="LOCAL" />
       <updated>1706792197837</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix: set default member scope to protected">
+      <option name="closed" value="true" />
+      <created>1707042125203</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1707042125203</updated>
+    </task>
+    <task id="LOCAL-00011" summary="docs: add cypress component test setup guide">
+      <option name="closed" value="true" />
+      <created>1707042151981</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1707042151981</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: add GetNxVersion function">
+      <option name="closed" value="true" />
+      <created>1707054364310</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1707054364310</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix: ensure the packageJson name is correct">
+      <option name="closed" value="true" />
+      <created>1707054394269</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1707054394269</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix: ensure the packageJson version is correct">
+      <option name="closed" value="true" />
+      <created>1707054403636</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1707054403636</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: add component-test generator">
+      <option name="closed" value="true" />
+      <created>1707054423359</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1707054423359</updated>
+    </task>
+    <task id="LOCAL-00016" summary="ci: update configurations">
+      <option name="closed" value="true" />
+      <created>1707054438811</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1707054438811</updated>
+    </task>
+    <task id="LOCAL-00017" summary="chore: update ides settings">
+      <option name="closed" value="true" />
+      <created>1707054451474</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1707054451474</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +371,14 @@
     <MESSAGE value="feat: add MethodWithParameters interface" />
     <MESSAGE value="fix: enforce that the method accepts a parameter" />
     <MESSAGE value="fix: remove restrictive member scopes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: remove restrictive member scopes" />
+    <MESSAGE value="fix: set default member scope to protected" />
+    <MESSAGE value="docs: add cypress component test setup guide" />
+    <MESSAGE value="feat: add GetNxVersion function" />
+    <MESSAGE value="fix: ensure the packageJson name is correct" />
+    <MESSAGE value="fix: ensure the packageJson version is correct" />
+    <MESSAGE value="feat: add component-test generator" />
+    <MESSAGE value="ci: update configurations" />
+    <MESSAGE value="chore: update ides settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update ides settings" />
   </component>
 </project>
