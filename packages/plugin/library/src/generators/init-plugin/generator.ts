@@ -6,13 +6,21 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { SkipNonLibraryProject } from '@rxap/generator-utilities';
+import {
+  IsBuildable,
+  IsPublishable,
+  SkipNonLibraryProject,
+} from '@rxap/generator-utilities';
 import { HasGenerators } from '@rxap/plugin-utilities';
 import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  GetNxVersion,
+  GetProjectPackageJson,
+  GetWorkspaceScope,
   IsPluginProject,
+  UpdateProjectPackageJson,
 } from '@rxap/workspace-utilities';
 import { InitPluginGeneratorSchema } from './schema';
 
@@ -65,6 +73,18 @@ function setGeneralTargetDefaults(tree: Tree) {
   updateNxJson(tree, nxJson);
 }
 
+async function updatePackageJson(tree: Tree, project: ProjectConfiguration) {
+  await UpdateProjectPackageJson(tree, packageJson => {
+
+    if (packageJson.version === '0.0.1') {
+      const nxVersion = GetNxVersion(tree);
+      const major    = nxVersion.split('.')[0];
+      packageJson.version = `${ major }.0.0`;
+    }
+
+  }, { projectName: project.name });
+}
+
 export async function initPluginGenerator(
   tree: Tree,
   options: InitPluginGeneratorSchema,
@@ -86,6 +106,8 @@ export async function initPluginGenerator(
       updateProjectTargets(tree, project);
 
       updateProjectConfiguration(tree, project.name, project);
+
+      await updatePackageJson(tree, project);
 
     }
 
