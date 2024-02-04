@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "component-test": {
+      "factory": "./src/generators/component-test/generator",
+      "schema": "./src/generators/component-test/schema.json",
+      "description": "component-test generator"
+    }
+  }
+}

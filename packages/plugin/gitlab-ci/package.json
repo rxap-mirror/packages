@@ -1,0 +1,33 @@
+{
+  "version": "16.0.0",
+  "name": "@rxap/plugin-gitlab-ci",
+  "license": "GPL-3.0-or-later",
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/gitlab-ci",
+  "keywords": [
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-gitlab-ci",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/gitlab-ci"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/gitlab-ci"
+  },
+  "type": "commonjs"
+}

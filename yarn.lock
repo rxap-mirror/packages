@@ -9697,6 +9697,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-gpt@workspace:packages/plugin/gpt":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-gpt@workspace:packages/plugin/gpt"

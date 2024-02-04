@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "ComponentTest",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "browserList": {
+      "type": "array",
+      "alias": "browser",
+      "description": "A list of browsers to test against",
+      "default": ["chrome", "firefox", "edge"],
+      "items": {
+        "type": "string",
+        "enum": ["chrome", "firefox", "edge"]
+      }
+    },
+    "excludeList": {
+      "type": "array",
+      "alias": "exclude",
+      "description": "A list of projects to exclude from the ci configuration",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "cypressImage": {
+      "type": "string",
+      "alias": "image",
+      "description": "The cypress image to use for the tests",
+      "default": "cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1"
+    }
+  },
+  "required": ["browserList"]
+}
