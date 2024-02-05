@@ -9700,6 +9700,8 @@ __metadata:
 "@rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci"
+  dependencies:
+    yaml: 2.3.1
   languageName: unknown
   linkType: soft
 
