@@ -5,5 +5,12 @@
       "schema": "./src/generators/component-test/schema.json",
       "description": "component-test generator"
     }
+  },
+  "schematics": {
+    "component-test": {
+      "factory": "./src/generators/component-test/index",
+      "schema": "./src/generators/component-test/schema.json",
+      "description": "component-test generator"
+    }
   }
 }

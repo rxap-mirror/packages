@@ -1,7 +1,14 @@
 {
-  "version": "16.0.0",
+  "version": "16.1.0-dev.0",
   "name": "@rxap/plugin-gitlab-ci",
   "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "tslib": "2.6.2",
+    "yaml": "2.3.1"
+  },
+  "peerDependencies": {
+    "@nx/devkit": "^16.5.0"
+  },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
@@ -9,9 +16,6 @@
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "dependencies": {
-    "yaml": "2.3.1"
   },
   "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/gitlab-ci",
@@ -32,5 +36,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/gitlab-ci"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }

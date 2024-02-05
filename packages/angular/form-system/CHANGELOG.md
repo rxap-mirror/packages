@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.0.0-dev.21...@rxap/form-system@16.0.0-dev.22) (2024-02-05)
+
+### Bug Fixes
+
+- remove restrictive member scopes ([24dbc45](https://gitlab.com/rxap/packages/commit/24dbc45d4e5508befe87ef2884c3642c34400677))
+- set default member scope to protected ([99c5591](https://gitlab.com/rxap/packages/commit/99c55916fd55f8300dbcf123d5d546f5bc1c2fc1))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.0.0-dev.20...@rxap/form-system@16.0.0-dev.21) (2023-10-18)
 
 **Note:** Version bump only for package @rxap/form-system
