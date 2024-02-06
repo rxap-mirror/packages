@@ -44,7 +44,7 @@ export function getMixables(client: Constructor<any>, mixin: Mixin<any>): Proper
   }
 
   if (prototype === null) {
-    throw new Error();
+    throw new Error(`The mixin is typeof '${typeof mixin}' but must be a class (function) or an object!`);
   }
 
   const mixinKeys = GetAllPropertyNames(prototype);
