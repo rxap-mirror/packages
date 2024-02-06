@@ -1,4 +1,4 @@
-bootstrap: yarn install
+bootstrap: corepack enable && corepack prepare yarn@3 --activate && yarn install
 include:
   - name: Eslint
   - name: CheckDependencyLicenses
