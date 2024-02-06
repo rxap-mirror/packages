@@ -1,0 +1,4 @@
+bootstrap: yarn install
+include:
+  - name: Eslint
+  - name: CheckDependencyLicenses
