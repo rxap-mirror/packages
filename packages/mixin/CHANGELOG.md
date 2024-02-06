@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/mixin@16.0.0-dev.17...@rxap/mixin@16.0.0-dev.18) (2024-02-06)
+
+### Bug Fixes
+
+- improve error message context ([038e4c5](https://gitlab.com/rxap/packages/commit/038e4c588f71694b9f632bba71aa5cdbc467c51a))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/mixin@16.0.0-dev.16...@rxap/mixin@16.0.0-dev.17) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/mixin
