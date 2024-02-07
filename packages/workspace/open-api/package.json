@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2-dev.10",
+  "version": "16.0.0",
   "name": "@rxap/workspace-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
