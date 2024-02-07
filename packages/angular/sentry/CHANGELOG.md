@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-sentry@16.0.1-dev.12...@rxap/ngx-sentry@16.0.1) (2024-02-07)
+
+**Note:** Version bump only for package @rxap/ngx-sentry
+
 ## [16.0.1-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/ngx-sentry@16.0.1-dev.11...@rxap/ngx-sentry@16.0.1-dev.12) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/ngx-sentry

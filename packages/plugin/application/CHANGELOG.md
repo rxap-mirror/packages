@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.36...@rxap/plugin-application@16.1.0) (2024-02-07)
+
+### Bug Fixes
+
+- ensure dte agents are stopped ([53d22cb](https://gitlab.com/rxap/packages/commit/53d22cb9a22596c140d4054ffdc6900077a6abce))
+
 # [16.1.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.35...@rxap/plugin-application@16.1.0-dev.36) (2023-10-30)
 
 ### Bug Fixes

@@ -1,5 +1,5 @@
 {
-  "version": "10.0.1-dev.13",
+  "version": "10.0.1",
   "name": "@rxap/nest-minio",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@nestjs/common": "^10.0.5",
     "@nestjs/config": "^3.0.0",
     "@nestjs/terminus": "^10.0.1",
-    "minio": "^7.0.32",
+    "minio": "^7.1.1",
     "tslib": "2.6.2"
   },
   "author": {

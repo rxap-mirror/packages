@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.29...@rxap/open-api@16.0.0) (2024-02-07)
+
+**Note:** Version bump only for package @rxap/open-api
+
 # [16.0.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.28...@rxap/open-api@16.0.0-dev.29) (2023-11-09)
 
 ### Bug Fixes
