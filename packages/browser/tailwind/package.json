@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1-dev.0",
   "name": "@rxap/browser-tailwind",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,7 +7,7 @@
   },
   "peerDependencies": {
     "@tailwindcss/typography": "^0.5.10",
-    "tailwindcss": "^3.0.2",
+    "tailwindcss": "^3.3.2",
     "tslib": "2.6.2"
   },
   "author": {
