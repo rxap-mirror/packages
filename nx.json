@@ -1,8 +1,36 @@
 {
   "tasksRunnerOptions": {
     "default": {
+      "runner": "nx-cloud",
       "options": {
-        "captureStderr": true
+        "parallel": 32,
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "compodoc",
+          "typedoc",
+          "component-test",
+          "swagger-build",
+          "swagger-generate",
+          "generate-package-json",
+          "index-export",
+          "check-version",
+          "check-ng-package",
+          "generate-open-api",
+          "ci-info",
+          "readme",
+          "build-tailwind",
+          "localazy-upload",
+          "extract-i18n",
+          "expose-as-schematic",
+          "localazy-download",
+          "build-storybook",
+          "copy-open-api-sdk",
+          "copy-client-sdk"
+        ],
+        "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
     }
   },
@@ -53,11 +81,7 @@
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore"
-      ],
-      "options": {
-        "quiet": true
-      },
-      "cache": true
+      ]
     },
     "fix-dependencies": {
       "inputs": [
@@ -100,8 +124,7 @@
       "inputs": [
         "{workspaceRoot}/package.json",
         "{projectRoot}/package.json"
-      ],
-      "cache": true
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -126,8 +149,7 @@
           "json"
         ],
         "codeCoverage": true
-      },
-      "cache": true
+      }
     },
     "serve": {
       "dependsOn": [
@@ -143,8 +165,7 @@
       "executor": "@rxap/plugin-open-api:copy-client-sdk",
       "outputs": [
         "{projectRoot}/src/lib/openapi"
-      ],
-      "cache": true
+      ]
     },
     "swagger-build": {
       "executor": "@nx/webpack:webpack",
@@ -161,8 +182,7 @@
       "inputs": [
         "build",
         "^build"
-      ],
-      "cache": true
+      ]
     },
     "build": {
       "dependsOn": [
@@ -174,7 +194,7 @@
         "generate-package-json",
         "check-ng-package",
         "localazy-download",
-        "localazy-upload",
+        "build-info",
         "expose-as-schematic",
         "copy-open-api-sdk",
         "^copy-open-api-sdk",
@@ -183,17 +203,10 @@
       "inputs": [
         "build",
         "^build"
-      ],
-      "cache": true
+      ]
     },
     "localazy-download": {
       "executor": "@rxap/plugin-localazy:download",
-      "dependsOn": [
-        "localazy-upload"
-      ],
-      "options": {
-        "autoTag": true
-      },
       "inputs": [
         {
           "runtime": "date"
@@ -213,8 +226,7 @@
       ],
       "outputs": [
         "{projectRoot}/src/i18n"
-      ],
-      "cache": true
+      ]
     },
     "expose-as-schematic": {
       "executor": "@rxap/plugin-library:run-generator",
@@ -228,8 +240,7 @@
       "inputs": [
         "{projectRoot}/generators.json",
         "{projectRoot}/src/generators/**/schema.json"
-      ],
-      "cache": true
+      ]
     },
     "extract-i18n": {
       "outputs": [
@@ -242,8 +253,7 @@
       "input": [
         "production",
         "^production"
-      ],
-      "cache": true
+      ]
     },
     "build-tailwind": {
       "executor": "@rxap/plugin-angular:tailwind",
@@ -267,8 +277,7 @@
       ],
       "outputs": [
         "{projectRoot}/theme.css"
-      ],
-      "cache": true
+      ]
     },
     "readme": {
       "executor": "@rxap/plugin-library:readme",
@@ -284,8 +293,7 @@
       ],
       "outputs": [
         "{projectRoot}/README.md"
-      ],
-      "cache": true
+      ]
     },
     "docker": {
       "executor": "@rxap/plugin-docker:build",
@@ -300,42 +308,33 @@
       "options": {
         "imageName": "rxap/packages",
         "imageRegistry": "registry.gitlab.com"
-      },
-      "cache": true
+      }
     },
     "swagger-generate": {
       "executor": "@nx/js:node",
       "outputs": [
-        "{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"
+        "dist/swagger/{projectRoot}/openapi.json"
       ],
       "options": {
         "watch": false
       },
       "inputs": [
-        "production",
-        "^production",
         "{workspaceRoot}/dist/swagger/{projectRoot}/main.js",
         "{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map"
-      ],
-      "cache": true
+      ]
     },
     "check-version": {
       "executor": "@rxap/plugin-library:check-version",
       "inputs": [
         "{projectRoot}/package.json",
         "{workspaceRoot}/package.json"
-      ],
-      "cache": true
+      ]
     },
     "component-test": {
       "executor": "@nx/cypress:cypress",
       "inputs": [
         "default",
         "^production"
-      ],
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/coverage",
-        "{workspaceRoot}/{projectRoot}/.nyc_output"
       ],
       "configurations": {
         "open": {
@@ -346,8 +345,7 @@
         "testingType": "component",
         "skipServe": true,
         "devServerTarget": "angular:build:development"
-      },
-      "cache": true
+      }
     },
     "docker-save": {
       "dependsOn": [
@@ -360,8 +358,7 @@
       "inputs": [
         "{projectRoot}/ng-package.json",
         "{projectRoot}/package.json"
-      ],
-      "cache": true
+      ]
     },
     "config": {
       "executor": "@rxap/plugin-application:config"
@@ -374,8 +371,7 @@
       "inputs": [
         "production",
         "^production"
-      ],
-      "cache": true
+      ]
     },
     "generate-open-api": {
       "dependsOn": [
@@ -395,8 +391,7 @@
       ],
       "outputs": [
         "{workspaceRoot}/packages/open-api/{projectRoot}/src"
-      ],
-      "cache": true
+      ]
     },
     "index-export": {
       "executor": "@rxap/plugin-library:run-generator",
@@ -408,23 +403,15 @@
       },
       "inputs": [
         "production"
-      ],
-      "cache": true
+      ]
     },
     "localazy-upload": {
       "dependsOn": [
         "extract-i18n"
       ],
       "inputs": [
-        "{projectRoot}/src/i18n/messages.xlf",
-        {
-          "env": "CI_COMMIT_REF_SLUG"
-        }
-      ],
-      "options": {
-        "autoTag": true
-      },
-      "cache": true
+        "{projectRoot}/src/i18n/messages.xlf"
+      ]
     },
     "build-storybook": {
       "inputs": [
@@ -432,49 +419,9 @@
         "^production",
         "{projectRoot}/.storybook/**/*",
         "{projectRoot}/tsconfig.storybook.json"
-      ],
-      "cache": true
-    },
-    "deploy": {
-      "dependsOn": [
-        "build",
-        "i18n-index-html"
-      ],
-      "inputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
-      "cache": true
-    },
-    "i18n-index-html": {
-      "dependsOn": [
-        "build"
-      ],
-      "executor": "@rxap/plugin-application:i18n",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}/index.html"
-      ],
-      "inputs": [
-        "{workspaceRoot}/{projectRoot}/project.json"
-      ],
-      "cache": true
-    },
-    "e2e": {
-      "cache": true
-    },
-    "compodoc": {
-      "cache": true
-    },
-    "typedoc": {
-      "cache": true
-    },
-    "ci-info": {
-      "cache": true
-    },
-    "copy-client-sdk": {
-      "cache": true
+      ]
     }
   },
-  "defaultProject": "angular",
   "affected": {
     "defaultBase": "development"
   },
@@ -543,7 +490,5 @@
   "workspaceLayout": {
     "appsDir": "applications",
     "libsDir": "packages"
-  },
-  "nxCloudAccessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU=",
-  "parallel": 30
+  }
 }
