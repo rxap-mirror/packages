@@ -1,5 +1,5 @@
-<div class="grow flex flex-col gap-2">
-  <button type="button" (click)="toggleTreeNavigation()" class="!justify-start" mat-button>
+<div class="grow flex flex-col gap-2 justify-start items-start">
+  <button (click)="toggleTreeNavigation()" class="!justify-start" mat-button type="button">
     <span class="flex flex-row justify-start items-center gap-6">
       <ng-template [ngIf]="showTreeNavigation()">
         <mat-icon>arrow_back</mat-icon>
@@ -11,7 +11,7 @@
       </ng-template>
     </span>
   </button>
-  <div class="flex flex-row grow">
+  <div class="flex flex-row grow w-full">
     <div #treeContainer [ngClass]="{ 'hidden': !showTreeNavigation() }"
          [ngStyle]="{ maxWidth: dividerOffset, minWidth: dividerOffset, flexBasis: dividerOffset }"
          class="w-fit grow-0 overflow-y-auto">
@@ -38,13 +38,13 @@
             </ng-template>
             <ng-template [ngIf]="!multiple">
               <button
-                type="button"
                 (click)="node.select()"
                 [color]="node.selected ? 'primary' : undefined"
                 [disabled]="!node.hasDetails"
                 [ngStyle]="node.style"
                 class="grow-0"
                 mat-button
+                type="button"
               >
                 {{ node.display }}
               </button>
@@ -54,7 +54,7 @@
 
         <!-- Node with children -->
         <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-          <button type="button" [attr.aria-label]="'toggle ' + node.filename" mat-icon-button matTreeNodeToggle>
+          <button [attr.aria-label]="'toggle ' + node.filename" mat-icon-button matTreeNodeToggle type="button">
             <mat-icon class="mat-icon-rtl-mirror">
               {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
             </mat-icon>
@@ -68,12 +68,12 @@
             </ng-template>
             <ng-template [ngIfElse]="withoutDetails" [ngIf]="node.hasDetails">
               <button
-                type="button"
                 (click)="node.select()"
                 [color]="node.selected ? 'primary' : undefined"
                 [ngStyle]="node.style"
                 class="grow-0"
                 mat-button
+                type="button"
               >
                 {{ node.display }}
               </button>

@@ -1,11 +1,4 @@
-import {
-  Injectable,
-  INJECTOR,
-  Injector,
-  Optional,
-  Provider,
-  SkipSelf,
-} from '@angular/core';
+import { Injectable, INJECTOR, Injector, Optional, Provider, SkipSelf } from '@angular/core';
 import {
   FormType,
   RXAP_FORM_DEFINITION,
@@ -17,14 +10,9 @@ import {
   UseFormControl,
 } from '@rxap/forms';
 
-export interface FilterScope {
-  uuid: string;
-  name: string;
-}
-
-export interface ISearchForm {
+export interface ISearchForm<Scope = unknown> {
   search: string;
-  scope: Record<string, FilterScope[]>;
+  scope: Record<string, Scope[]>;
 }
 
 @RxapForm({
@@ -32,15 +20,15 @@ export interface ISearchForm {
   autoSubmit: 500,
 })
 @Injectable()
-export class SearchForm implements FormType<ISearchForm> {
+export class SearchForm<Scope = unknown> implements FormType<ISearchForm<Scope>> {
 
-  rxapFormGroup!: RxapFormGroup<ISearchForm>;
+  rxapFormGroup!: RxapFormGroup<ISearchForm<Scope>>;
 
   @UseFormControl()
   search!: RxapFormControl<string>;
 
   @UseFormControl()
-  scope!: RxapFormControl<ISearchForm['scope']>;
+  scope!: RxapFormControl<ISearchForm<Scope>['scope']>;
 
 }
 

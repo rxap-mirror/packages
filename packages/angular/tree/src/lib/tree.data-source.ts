@@ -1,16 +1,6 @@
-import {
-  SelectionChange,
-  SelectionModel,
-} from '@angular/cdk/collections';
+import { SelectionChange, SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  isDevMode,
-  OnInit,
-  Optional,
-} from '@angular/core';
+import { Inject, Injectable, InjectionToken, isDevMode, OnInit, Optional } from '@angular/core';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
@@ -32,30 +22,15 @@ import { Method } from '@rxap/pattern';
 import { ToggleSubject } from '@rxap/rxjs';
 import {
   coerceArray,
+  getIdentifierPropertyValue,
   joinPath,
   Required,
   WithChildren,
   WithIdentifier,
 } from '@rxap/utilities';
-import {
-  BehaviorSubject,
-  combineLatest,
-  from,
-  merge,
-  Observable,
-  Subject,
-  Subscription,
-} from 'rxjs';
-import {
-  map,
-  startWith,
-  switchMap,
-  tap,
-} from 'rxjs/operators';
-import {
-  ISearchForm,
-  SearchForm,
-} from './search.form';
+import { BehaviorSubject, combineLatest, from, merge, Observable, Subject, Subscription } from 'rxjs';
+import { map, startWith, switchMap, tap } from 'rxjs/operators';
+import { ISearchForm, SearchForm } from './search.form';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
   return !!obj && obj['added'] !== undefined && obj['removed'] !== undefined;
@@ -65,9 +40,13 @@ export interface TreeDataSourceMetadata extends BaseDataSourceMetadata {
   selectMultiple?: boolean;
   expandMultiple?: boolean;
   scopeTypes?: string[];
+  /**
+   * If true the tree will be refreshed with caching disbabled after the first load
+   */
+  autoRefreshWithoutCache?: boolean;
 }
 
-export const RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD = new InjectionToken(
+export const RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD     = new InjectionToken(
   'rxap/tree/data-source/root-remote-method',
 );
 export const RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD = new InjectionToken(
@@ -106,8 +85,8 @@ export function flatTree<Data extends WithIdentifier & WithChildren = any>(
   };
 
   return tree
-    .map((child) => _flatTree(child))
-    .reduce((acc, items) => [ ...acc, ...items ], []);
+  .map((child) => _flatTree(child))
+  .reduce((acc, items) => [ ...acc, ...items ], []);
 }
 
 export interface TreeApplyFilterParameter<Form extends ISearchForm = ISearchForm, Data extends WithIdentifier & WithChildren = any> {
@@ -123,7 +102,7 @@ export class DefaultTreeApplyFilterMethod<Data extends WithIdentifier & WithChil
   protected lastFilter: ISearchForm | null = null;
 
   call(
-    { tree, filter, scopeTypes }: TreeApplyFilterParameter,
+    {tree, filter, scopeTypes}: TreeApplyFilterParameter,
   ): Array<Node<Data>> | Promise<Array<Node<Data>>> {
 
     const nodes = flatTree(tree, true);
@@ -135,14 +114,14 @@ export class DefaultTreeApplyFilterMethod<Data extends WithIdentifier & WithChil
     const hasScopeFilter = (
       filter.scope &&
       Object.keys(filter.scope) &&
-      Object.values(filter.scope).some(list => list.length > 0)
+      Object.values(filter.scope).some((list) => list.length > 0)
     );
 
     // if not scope and the search filter is an empty string, collapse all non-root nodes
     if (!filter.search && filter.search !== this.lastFilter?.search) {
       nodes
-        .filter(node => node.parent)
-        .forEach(node => node.collapse({ quite: true }));
+      .filter(node => node.parent)
+      .forEach(node => node.collapse({quite: true}));
     }
 
     if (filter.search || hasScopeFilter) {
@@ -152,8 +131,8 @@ export class DefaultTreeApplyFilterMethod<Data extends WithIdentifier & WithChil
       for (const [ type, list ] of Object.entries(filter.scope ?? {})) {
         for (const node of nodes) {
           if (node.type === type) {
-            if (list.some(item => item.uuid === node.id)) {
-              node.show({ forEachChildren: true });
+            if (list.some(item => getIdentifierPropertyValue(item) === node.id)) {
+              node.show({forEachChildren: true});
             }
           }
         }
@@ -169,7 +148,7 @@ export class DefaultTreeApplyFilterMethod<Data extends WithIdentifier & WithChil
           const display = node.display?.toLowerCase();
           if (display) {
             if (display.includes(filter.search.toLowerCase())) {
-              node.show({ parents: true });
+              node.show({parents: true});
             } else {
               node.hide();
             }
@@ -191,7 +170,7 @@ export class DefaultTreeApplyFilterMethod<Data extends WithIdentifier & WithChil
         for (const node of nodes.filter(n => n.hasChildren)) {
           if (node.children.some(child => child.isVisible)) {
             // set quite to true to prevent the tree from reloading -> this would result in a infinite loop
-            node.expand({ quite: true });
+            node.expand({quite: true});
           }
         }
       }
@@ -212,7 +191,7 @@ export class DefaultTreeApplyFilterMethod<Data extends WithIdentifier & WithChil
         if (this.lastFilter.scope && filter.scope) {
           if (Object.keys(this.lastFilter.scope).every(key => Object.keys(filter.scope).includes(key))) {
             if (Object.entries(this.lastFilter.scope)
-              .every(([ key, scope ]) => scope.some(item => filter.scope[key].includes(item)))) {
+            .every(([ key, scope ]) => scope.some(item => filter.scope[key].includes(item)))) {
               return true;
             }
           }
@@ -234,21 +213,19 @@ export class TreeDataSource<
   RootParameters = any,
   NodeParameters = any,
 > extends BaseDataSource<Array<Node<Data>>, TreeDataSourceMetadata> implements OnInit {
-  public tree$ = new BehaviorSubject<Array<Node<Data>>>([]);
+  public tree$                                                   = new BehaviorSubject<Array<Node<Data>>>([]);
   @Required public treeControl!: FlatTreeControl<Node<Data>>;
   public selected!: SelectionModel<Node<Data>>;
   public expanded!: SelectionModel<string>;
-
+  // TODO : änlich problem wie bei der redundaten expand SelectionModel.
+  public override loading$                                       = new ToggleSubject(true);
+  public searchForm: SearchForm | null                           = null;
+  protected override _data$                                      = new BehaviorSubject<Array<Node<Data>>>([]);
   private _expandedLocalStorageSubscription: Subscription | null = null;
   private _selectedLocalStorageSubscription: Subscription | null = null;
-
-  // TODO : änlich problem wie bei der redundaten expand SelectionModel.
-  public override loading$ = new ToggleSubject(true);
-  public searchForm: SearchForm | null = null;
   // im localStorage wird nur die id gespeichert.
-  private _preSelected: string[] = [];
-  protected override _data$ = new BehaviorSubject<Array<Node<Data>>>([]);
-  private _refreshMatchFilter = new Subject<void>();
+  private _preSelected: string[]                                 = [];
+  private _refreshMatchFilter                                    = new Subject<void>();
   private readonly applyFilterMethod: Method<Array<Node<Data>>, TreeApplyFilterParameter>;
 
   constructor(
@@ -256,41 +233,19 @@ export class TreeDataSource<
     public readonly rootRemoteMethod: Method<Data | Data[], RootParameters>,
     @Optional()
     @Inject(RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD)
-    public readonly childrenRemoteMethod: Method<Data[], Node<Data>> | null = null,
+    public readonly childrenRemoteMethod: Method<Data[], Node<Data>> | null         = null,
     @Optional()
     @Inject(RXAP_TREE_DATA_SOURCE_APPLY_FILTER_METHOD)
       applyFilterMethod: Method<Array<Node<Data>>, TreeApplyFilterParameter> | null = null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: TreeDataSourceMetadata | null = null,
+      metadata: TreeDataSourceMetadata | null                                       = null,
   ) {
     super(metadata);
     this.applyFilterMethod = applyFilterMethod ?? new DefaultTreeApplyFilterMethod();
     // TODO add new SelectModel class that saves the select model to the localStorage
     this.initSelected();
     this.initExpanded();
-  }
-
-  ngOnInit() {
-    if (this.searchForm) {
-      combineLatest([
-        this.tree$,
-        this.searchForm.rxapFormGroup.value$ as Observable<any>,
-      ]).pipe(
-          switchMap(async ([ tree, filter ]) => await this.applyFilterMethod.call({
-            tree,
-            filter,
-            scopeTypes: this.metadata?.scopeTypes,
-          })),
-          map(nodes => coerceArray(nodes)),
-        )
-        .subscribe(data => this._data$.next(data));
-    } else {
-      this.tree$.pipe(
-        map(tree => flatTree(tree).filter(node => node.isVisible)),
-        tap(nodes => nodes.forEach(node => node.show())),
-      ).subscribe(data => this._data$.next(data));
-    }
   }
 
   private _nodeParameters: NodeParameters | null = null;
@@ -302,6 +257,28 @@ export class TreeDataSource<
   public set nodeParameters(nodeParameters: NodeParameters | null) {
     this._nodeParameters = nodeParameters;
     this.tree$.value.forEach(node => node.parameters = nodeParameters);
+  }
+
+  ngOnInit() {
+    if (this.searchForm) {
+      combineLatest([
+        this.tree$,
+        this.searchForm.rxapFormGroup.value$ as Observable<any>,
+      ]).pipe(
+        switchMap(async ([ tree, filter ]) => await this.applyFilterMethod.call({
+          tree,
+          filter,
+          scopeTypes: this.metadata?.scopeTypes,
+        })),
+        map(nodes => coerceArray(nodes)),
+      )
+      .subscribe(data => this._data$.next(data));
+    } else {
+      this.tree$.pipe(
+        map(tree => flatTree(tree).filter(node => node.isVisible)),
+        tap(nodes => nodes.forEach(node => node.show())),
+      ).subscribe(data => this._data$.next(data));
+    }
   }
 
   public toDisplay: NodeToDisplayFunction<Data> = () =>
@@ -319,9 +296,9 @@ export class TreeDataSource<
 
   public matchFilter: (node: Node<Data>) => boolean = () => true;
 
-  public async getTreeRoot(): Promise<Array<Node<Data>>> {
+  public async getTreeRoot(options: { cache?: boolean } = {}): Promise<Array<Node<Data>>> {
     this.loading$.enable();
-    const root: Data | Data[] = await this.getRoot();
+    const root: Data | Data[] = await this.getRoot(options);
 
     let rootNodes: Array<Node<Data>>;
 
@@ -382,10 +359,10 @@ export class TreeDataSource<
   public async _toNode(
     parent: Node<Data> | null,
     item: Data,
-    depth = 0,
-    onExpand: ExpandNodeFunction<Data> = this.expandNode.bind(this),
+    depth                                = 0,
+    onExpand: ExpandNodeFunction<Data>   = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<Data> = this.collapseNode.bind(this),
-    onSelect: ExpandNodeFunction<Data> = this.selectNode.bind(this),
+    onSelect: ExpandNodeFunction<Data>   = this.selectNode.bind(this),
     onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this),
   ): Promise<Node<Data>> {
     const node = await this.toNode(
@@ -400,16 +377,16 @@ export class TreeDataSource<
 
     if (this.expanded.isSelected(node.id)) {
       node
-        .expand()
-        .then(() => {
-          // TODO : remove redundant this.expanded SelectionModel. Only store expanded nodes in
-          // this.treeControl.expansionModel das problem ist das ich beim speicher in localStorage nur die id speicher.
-          // Des wegen kann ich beim laden aus dem localStorage this.treeControl.expansionModel nicht einfach mit den
-          // expanend nodes fullen. Da dort das node object benötigt wird möglich lösungen: - das node object läde die
-          // entity mithilfe der id automatisch nach
-          this.treeControl.expansionModel.select(node);
-          // console.debug(`Restore expand for node '${node.id}' SUCCESSFULLY`);
-        });
+      .expand()
+      .then(() => {
+        // TODO : remove redundant this.expanded SelectionModel. Only store expanded nodes in
+        // this.treeControl.expansionModel das problem ist das ich beim speicher in localStorage nur die id speicher.
+        // Des wegen kann ich beim laden aus dem localStorage this.treeControl.expansionModel nicht einfach mit den
+        // expanend nodes fullen. Da dort das node object benötigt wird möglich lösungen: - das node object läde die
+        // entity mithilfe der id automatisch nach
+        this.treeControl.expansionModel.select(node);
+        // console.debug(`Restore expand for node '${node.id}' SUCCESSFULLY`);
+      });
       // .catch(() =>
       //   console.debug(`Restore expand for node '${node.id}' FAILED`)
       // );
@@ -417,7 +394,7 @@ export class TreeDataSource<
 
     if (this._preSelected.includes(node.id)) {
       await node
-        .select();
+      .select();
       // .then(() =>
       //   console.debug(`Restore select for node '${node.id}' SUCCESSFULLY`)
       // )
@@ -471,13 +448,13 @@ export class TreeDataSource<
     return this.childrenRemoteMethod.call(node);
   }
 
-  public async getRoot(): Promise<Data | Data[]> {
-    const rootParameters = await this.getRootParameters();
+  public async getRoot(options: { cache?: boolean } = {}): Promise<Data | Data[]> {
+    const rootParameters = await this.getRootParameters(options);
     return this.rootRemoteMethod.call(rootParameters);
   }
 
-  public async getRootParameters(): Promise<RootParameters> {
-    return undefined as any;
+  public async getRootParameters(options: { cache?: boolean } = {}): Promise<RootParameters> {
+    return options as any;
   }
 
   // TODO : find better solution to allow the overwrite of the toNode method
@@ -497,18 +474,18 @@ export class TreeDataSource<
 
     return (
       this.tree$.value
-        .map((node) => getNodeById(node, id))
-        .filter(Boolean)[0] || null
+      .map((node) => getNodeById(node, id))
+      .filter(Boolean)[0] || null
     );
   }
 
   public async toNode(
     parent: Node<Data> | null,
     item: Data,
-    depth = 0,
-    onExpand: ExpandNodeFunction<Data> = this.expandNode.bind(this),
+    depth                                = 0,
+    onExpand: ExpandNodeFunction<Data>   = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<Data> = this.collapseNode.bind(this),
-    onSelect: ExpandNodeFunction<Data> = this.selectNode.bind(this),
+    onSelect: ExpandNodeFunction<Data>   = this.selectNode.bind(this),
     onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this),
   ): Promise<Node<Data>> {
     return Node.ToNode(
@@ -572,7 +549,7 @@ export class TreeDataSource<
   }
 
   public override async refresh(): Promise<any> {
-    const rootNodes = await this.getTreeRoot();
+    const rootNodes = await this.getTreeRoot({cache: false});
 
     // refresh all expanded nodes;
 
@@ -592,15 +569,15 @@ export class TreeDataSource<
 
     await Promise.all(
       rootNodes
-        .filter((node) => node.hasChildren)
-        .map((node) => loadExpandedNodes(node.children)),
+      .filter((node) => node.hasChildren)
+      .map((node) => loadExpandedNodes(node.children)),
     );
 
-    const selected: Array<Node<Data>> = this.selected.selected
-      .map((node) => this.getNodeById(node.id))
-      .filter(Boolean) as any;
-    this.selected.clear();
-    this.selected.select(...selected);
+    // const selected: Array<Node<Data>> = this.selected.selected
+    // .map((node) => this.getNodeById(node.id))
+    // .filter(Boolean) as any;
+    // this.selected.clear();
+    // this.selected.select(...selected);
   }
 
   public override reset(): any {
@@ -623,8 +600,8 @@ export class TreeDataSource<
    */
   public updateNodes() {
     this._data$.value.forEach(node => {
-      node.style = this.getStyle(node.item);
-      node.icon = coerceArray(this.getIcon(node.item));
+      node.style   = this.getStyle(node.item);
+      node.icon    = coerceArray(this.getIcon(node.item));
       node.display = this.toDisplay(node.item);
     });
     this._data$.next(this._data$.value);
@@ -639,13 +616,13 @@ export class TreeDataSource<
         if (isSelectionChange<Node<Data>>(change)) {
           const promiseList: Array<Promise<any>> = [];
           if (change.added) {
-            promiseList.push(...change.added.map((node) => node.expand({ onlySelf: true, quite: true })));
+            promiseList.push(...change.added.map((node) => node.expand({onlySelf: true, quite: true})));
           }
           if (change.removed) {
             promiseList.push(...change.removed
-              .slice()
-              .reverse()
-              .map((node) => node.collapse({ onlySelf: true, quite: true })));
+            .slice()
+            .reverse()
+            .map((node) => node.collapse({onlySelf: true, quite: true})));
           }
           await Promise.all(promiseList);
           this.tree$.next(this.tree$.value);
@@ -659,6 +636,13 @@ export class TreeDataSource<
       loadRoot = this.getTreeRoot();
     }
 
+    if (this.metadata.autoRefreshWithoutCache) {
+      loadRoot = loadRoot.then(data => {
+        this.refresh();
+        return data;
+      });
+    }
+
     return from(loadRoot).pipe(
       tap((rootNodes) => {
         if (rootNodes) {
@@ -667,15 +651,15 @@ export class TreeDataSource<
             if (!this.selected.hasValue()) {
               promises.push(
                 ...rootNodes
-                  .filter((node) => node.hasDetails)
-                  .map((node) => node.select()),
+                .filter((node) => node.hasDetails)
+                .map((node) => node.select()),
               );
             }
             if (!this.expanded.hasValue()) {
               promises.push(
                 ...rootNodes
-                  .filter((node) => node.hasChildren)
-                  .map((node) => node.expand()),
+                .filter((node) => node.hasChildren)
+                .map((node) => node.expand()),
               );
             }
           } else if (rootNodes.length) {
@@ -724,20 +708,20 @@ export class TreeDataSource<
     );
     if (this.metadata['cacheSelected']) {
       this._selectedLocalStorageSubscription = this.selected.changed
-        .pipe(
-          tap(() =>
-            localStorage.setItem(
-              key,
-              JSON.stringify(this.selected.selected.map((s) => s.id)),
-            ),
+      .pipe(
+        tap(() =>
+          localStorage.setItem(
+            key,
+            JSON.stringify(this.selected.selected.map((s) => s.id)),
           ),
-        )
-        .subscribe();
+        ),
+      )
+      .subscribe();
     }
   }
 
   private initExpanded(): void {
-    const key = joinPath('rxap/tree', this.id, 'expanded');
+    const key    = joinPath('rxap/tree', this.id, 'expanded');
     let expanded = [];
     if (this.metadata['cacheExpanded']) {
       if (localStorage.getItem(key)) {
@@ -755,15 +739,15 @@ export class TreeDataSource<
     );
     if (this.metadata['cacheExpanded']) {
       this._expandedLocalStorageSubscription = this.expanded.changed
-        .pipe(
-          tap(() =>
-            localStorage.setItem(
-              key,
-              JSON.stringify(this.expanded.selected),
-            ),
+      .pipe(
+        tap(() =>
+          localStorage.setItem(
+            key,
+            JSON.stringify(this.expanded.selected),
           ),
-        )
-        .subscribe();
+        ),
+      )
+      .subscribe();
     }
   }
 
