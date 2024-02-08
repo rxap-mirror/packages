@@ -5,12 +5,10 @@ import {
 import { ConfigService } from '@nestjs/config';
 import {
   DocumentBuilder,
-  SwaggerModule,
-} from '@nestjs/swagger';
-import {
   SwaggerCustomOptions,
   SwaggerDocumentOptions,
-} from '@nestjs/swagger/dist/interfaces/index';
+  SwaggerModule,
+} from '@nestjs/swagger';
 
 export interface SetupSwaggerOptions {
   documentOptions?: SwaggerDocumentOptions;
