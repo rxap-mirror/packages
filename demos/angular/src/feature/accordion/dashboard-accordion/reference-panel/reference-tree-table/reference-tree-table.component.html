@@ -1,0 +1,126 @@
+<div class="flex flex-col gap-y-4 m-4">
+  
+
+  <div class="table-card-container flex flex-col">
+    <mat-card>
+      <mat-progress-bar
+        rxapCardProgressBar
+        [loading$]="tableDataSourceDirective.loading$"
+      ></mat-progress-bar>
+      <mat-card-header class="min-h-full h-12 justify-end">
+      
+      
+      <rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns" inline>
+        
+        <rxap-table-column-option
+          name="referenced">
+          <ng-container i18n>Referenced</ng-container>
+        </rxap-table-column-option>
+        
+        <rxap-table-column-option
+          name="name">
+          <ng-container i18n>Name</ng-container>
+        </rxap-table-column-option>
+        
+        <rxap-table-column-option
+          name="type">
+          <ng-container i18n>Type</ng-container>
+        </rxap-table-column-option>
+        
+        
+        <mat-divider></mat-divider>
+        <span mat-menu-item>
+          <rxap-table-show-archived-slide></rxap-table-show-archived-slide>
+        </span>
+      </rxap-table-column-menu>
+       </mat-card-header>
+
+      <mat-card-content>
+        <rxap-data-source-error
+          [loading]="tableDataSourceDirective.loading$"
+          [error]="tableDataSourceDirective.dataSource?.error$"
+          *ngIf="tableDataSourceDirective.hasError$ | async"
+          [refresh]="tableDataSourceDirective.retry">
+        </rxap-data-source-error>
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
+        <table
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          matSort
+          mat-table
+          #tableDataSourceDirective="rxapTableDataSource"
+          rxapTableDataSource
+          [parameters]="parameters"
+          id="reference"
+        >
+          <!-- region columns -->
+
+          
+          
+          
+          <ng-container matColumnDef="referenced">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Referenced</ng-container>
+            </th>
+
+            <td mat-cell  *matCellDef="let element">
+            
+            {{ element?.referenced }}
+            
+            </td>
+          </ng-container>
+          
+          
+          
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Name</ng-container>
+            </th>
+
+            <td mat-cell  *matCellDef="let element">
+            
+            {{ element?.name }}
+            
+            </td>
+          </ng-container>
+          
+          
+          
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Type</ng-container>
+            </th>
+
+            <td mat-cell  *matCellDef="let element">
+            
+            {{ element?.type }}
+            
+            </td>
+          </ng-container>
+          
+          
+
+          <!-- endregion -->
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="rxapTableColumns.displayColumns"
+          ></tr>
+
+          <tr
+            [@rowsAnimation]=""
+            mat-row
+            [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+                        class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+            *matRowDef="
+              let element;
+              columns: rxapTableColumns.displayColumns;
+              let odd = odd;
+              let even = even
+            "
+          ></tr>
+        </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

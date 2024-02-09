@@ -1,0 +1,25 @@
+- package: "@rxap/schematic-angular"
+  name: accordion-component
+  options:
+    name: dashboard
+    backend: nestjs
+    multiple: true
+    itemList:
+      - name: general-information
+        type: data-grid
+        dataGrid:
+          mode: form
+      - name: layout
+        type: panel
+      - name: reference
+        type: tree-table
+        table:
+          columnList:
+            - name: referenced
+              hasFilter: true
+              type: boolean
+            - name: name
+              hasFilter: true
+              type: string
+            - name: type
+              type: string

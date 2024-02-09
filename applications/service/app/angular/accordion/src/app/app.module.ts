@@ -9,6 +9,7 @@ import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { environment } from '../environments/environment';
 import { HealthModule } from './health/health.module';
 import { SentryModule, SentryOptionsFactory, SENTRY_INTERCEPTOR_OPTIONS, SentryInterceptor } from '@rxap/nest-sentry';
+import { DashboardAccordionModule } from '../dashboard-accordion/dashboard-accordion.module';
 
 @Module({
   imports: [ThrottlerModule.forRootAsync(
@@ -29,6 +30,7 @@ import { SentryModule, SentryOptionsFactory, SENTRY_INTERCEPTOR_OPTIONS, SentryI
     },{
       logLevels: GetLogLevels()
     }),
+    DashboardAccordionModule,
   ],
   controllers: [AppController],
   providers: [{
