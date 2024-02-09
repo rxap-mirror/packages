@@ -45,8 +45,9 @@ export interface NormalizedMinimumTableOptions
 export function NormalizeMinimumTableOptions(
   options: Readonly<MinimumTableOptions>,
   name: string,
+  suffix = '-table',
 ): NormalizedMinimumTableOptions {
-  const componentName = options.componentName ?? CoerceSuffix(name, '-table');
+  const componentName = options.componentName ?? CoerceSuffix(name, suffix);
   const actionList = NormalizeTableActionList(options.actionList);
   const columnList = NormalizeTableColumnList(options.columnList);
   const propertyList = NormalizeTablePropertyList(options.propertyList);

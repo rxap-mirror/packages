@@ -65,11 +65,12 @@ export interface NormalizedMinimumTableComponentOptions
 
 export function NormalizeMinimumTableComponentOptions(
   options: Readonly<MinimumTableComponentOptions>,
+  suffix = '-table',
 ): NormalizedMinimumTableComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const { name } = normalizedAngularOptions;
-  const normalizedTableOptions = NormalizeMinimumTableOptions(options, name);
+  const normalizedTableOptions = NormalizeMinimumTableOptions(options, name, suffix);
   const { componentName } = normalizedTableOptions;
   const nestModule = options.nestModule ?? null;
   return Object.freeze({

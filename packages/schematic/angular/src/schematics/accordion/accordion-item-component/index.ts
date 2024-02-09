@@ -502,7 +502,7 @@ export default function (options: AccordionItemComponentOptions) {
   printAccordionItemComponentOptions(normalizedOptions);
   return () => {
     return chain([
-      componentRule(normalizedOptions),
+      // componentRule(normalizedOptions),
       itemRule(normalizedOptions),
     ]);
   };

@@ -50,7 +50,7 @@ export interface NormalizedTreeTableComponentOptions
 export function NormalizedTreeTableComponentOptions(
   options: Readonly<TreeTableComponentOptions>,
 ): Readonly<NormalizedTreeTableComponentOptions> {
-  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options);
+  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options, '-tree-table');
   AssertAngularOptionsNameProperty(normalizedMinimumTableComponentOptions);
   const { name } = normalizedMinimumTableComponentOptions;
   const normalizedTreeTableOptions = NormalizeTreeTableOptions(options, name);

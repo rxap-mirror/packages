@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { throwIfEmpty } from '@rxap/rxjs';
 <% if (hasSharedModifier) { %>
-import { <%= classify(name) %>TableComponent } from '<%= scope %>/shared/feature/<%= feature %>/<%= name %>-table/<%= name %>-table.component';
+import { <%= classify(name) %>TreeTableComponent } from '<%= scope %>/shared/feature/<%= feature %>/<%= name %>-tree-table/<%= name %>-tree-table.component';
 <% } else { %>
-import { <%= classify(name) %>TableComponent } from './<%= name %>-table/<%= name %>-table.component';
+import { <%= classify(name) %>TreeTableComponent } from './<%= name %>-tree-table/<%= name %>-tree-table.component';
 <% } %>
 
 @Component({
@@ -16,7 +16,7 @@ import { <%= classify(name) %>TableComponent } from './<%= name %>-table/<%= nam
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    <%= classify(name) %>TableComponent,
+    <%= classify(name) %>TreeTableComponent,
   ],
 })
 export class <%= classify(componentName) %>Component {

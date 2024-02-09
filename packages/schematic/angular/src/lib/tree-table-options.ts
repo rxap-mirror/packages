@@ -32,7 +32,7 @@ export function NormalizeTreeTableOptions(
   options: Readonly<TreeTableOptions>,
   name: string,
 ): NormalizedTreeTableOptions {
-  const normalizedOptions = NormalizeMinimumTableOptions(options, name);
+  const normalizedOptions = NormalizeMinimumTableOptions(options, name, '-tree-table');
   const tableRootMethod = NormalizeExistingMethod(options.tableRootMethod);
   const tableChildMethod = NormalizeExistingMethod(options.tableRootMethod) ?? tableRootMethod;
   return Object.freeze({
