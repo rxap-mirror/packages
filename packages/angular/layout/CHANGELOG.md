@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0...@rxap/layout@16.0.1-dev.0) (2024-02-09)
+
+### Bug Fixes
+
+- remove FlexLayout dependency ([1fea895](https://gitlab.com/rxap/packages/commit/1fea895ea326d64e3ca230386175d1cd71d25ace))
+
 # [16.0.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.43...@rxap/layout@16.0.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/layout

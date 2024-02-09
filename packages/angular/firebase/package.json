@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0",
+  "version": "16.0.1-dev.0",
   "name": "@rxap/firebase",
   "description": "A collection of utility angular services to interact with firebase.",
   "license": "GPL-3.0-or-later",

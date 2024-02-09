@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0",
+  "version": "16.0.1-dev.0",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -17,17 +17,17 @@
     "@rxap/authorization": "^16.0.0",
     "@rxap/browser-utilities": "^1.0.1",
     "@rxap/config": "^16.0.0",
-    "@rxap/data-source": "^16.0.0",
+    "@rxap/data-source": "^16.0.1-dev.1",
     "@rxap/directives": "^16.0.0",
     "@rxap/environment": "^16.0.0",
     "@rxap/icon": "^16.0.0",
-    "@rxap/material-directives": "^16.0.0",
+    "@rxap/material-directives": "^16.0.1-dev.0",
     "@rxap/ngx-changelog": "^16.1.0",
     "@rxap/ngx-localize": "^16.1.0",
     "@rxap/ngx-status-check": "^16.1.0",
     "@rxap/ngx-theme": "^16.1.0",
     "@rxap/ngx-user": "^16.1.0",
-    "@rxap/services": "^16.0.0",
+    "@rxap/services": "^16.0.1-dev.0",
     "@rxap/utilities": "^16.0.0",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
@@ -69,7 +69,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0"
+        "version": "16.0.1-dev.1"
       },
       {
         "package": "@rxap/directives",
@@ -85,7 +85,7 @@
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.0.0"
+        "version": "16.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-changelog",
@@ -113,7 +113,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.0"
+        "version": "16.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
