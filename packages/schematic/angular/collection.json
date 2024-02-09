@@ -55,6 +55,11 @@
       "factory": "./src/schematics/accordion/item/accordion-item-table-component/index",
       "description": "The accordion-item-table-component schematic"
     },
+    "accordion-item-switch-component": {
+      "schema": "./src/schematics/accordion/item/accordion-item-switch-component/schema.json",
+      "factory": "./src/schematics/accordion/item/accordion-item-switch-component/index",
+      "description": "The accordion-item-switch-component schematic"
+    },
     "data-grid-component": {
       "schema": "./src/schematics/data-grid-component/schema.json",
       "factory": "./src/schematics/data-grid-component/index",

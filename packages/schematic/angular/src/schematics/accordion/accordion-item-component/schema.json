@@ -44,8 +44,10 @@
       "enum": [
         "panel",
         "table",
+        "data-grid",
+        "data-grid-collection",
         "tree-table",
-        "data-grid"
+        "switch"
       ],
       "description": "The type of the accordion item",
       "x-prompt": "Select the type of the accordion item",

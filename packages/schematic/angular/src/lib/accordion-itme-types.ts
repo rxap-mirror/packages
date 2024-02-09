@@ -3,6 +3,7 @@ export enum AccordionItemTypes {
   Table = 'table',
   DataGrid = 'data-grid',
   TreeTable = 'tree-table',
+  Switch = 'switch',
 }
 
 export function IsAccordionItemType(type: string): type is AccordionItemTypes {

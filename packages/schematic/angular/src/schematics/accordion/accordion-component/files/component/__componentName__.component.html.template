@@ -10,6 +10,54 @@
   <mat-accordion [rxapPersistentAccordion]="accordionDataSource.lastUuid" <% if (multiple) { %>multi<% } %>>
     <% for (let index = 0; index < itemList.length; index++) { %>
     <% item = itemList[index] %>
+    <% if (item.type === 'switch') { %>
+    <ng-container [ngSwitch]="accordion.<%= item.switch.property.path %>">
+      <% for (const caseItem of item.switch.case) { %>
+      <% if (item.switch.property.type === 'string') { %>
+      <ng-template [ngSwitchCase]="'<%= caseItem.test %>'">
+      <% } else { %>
+      <ng-template [ngSwitchCase]="<%= caseItem.test %>">
+      <% } %>
+        <% for (const innerItem of caseItem.itemList) { %>
+          <mat-expansion-panel>
+
+            <mat-expansion-panel-header>
+              <mat-panel-title i18n><%= classify(item.name) %> <%= classify(innerItem.name) %></mat-panel-title>
+              <% if (innerItem.description) { %>
+              <mat-panel-description i18n><%= innerItem.description %></mat-panel-description>
+              <% } %>
+            </mat-expansion-panel-header>
+
+            <ng-template matExpansionPanelContent>
+              <<%= prefix %>-<%= item.name %>-<%= innerItem.name %>-panel></<%= prefix %>-<%= item.name %>-<%= innerItem.name %>-panel>
+            </ng-template>
+
+          </mat-expansion-panel>
+        <% } %>
+      </ng-template>
+      <% } %>
+      <% if (item.switch.defaultCase) { %>
+      <% for (const innerItem of item.switch.defaultCase.itemList) { %>
+       <ng-template ngSwitchDefault>
+        <mat-expansion-panel>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title i18n><%= classify(item.name) %> <%= classify(innerItem.name) %></mat-panel-title>
+            <% if (innerItem.description) { %>
+            <mat-panel-description i18n><%= innerItem.description %></mat-panel-description>
+            <% } %>
+          </mat-expansion-panel-header>
+
+          <ng-template matExpansionPanelContent>
+            <<%= prefix %>-<%= item.name %>-<%= innerItem.name %>-panel></<%= prefix %>-<%= item.name %>-<%= innerItem.name %>-panel>
+          </ng-template>
+
+        </mat-expansion-panel>
+      </ng-template>
+      <% } %>
+      <% } %>
+    </ng-container>
+    <% } else { %>
     <mat-expansion-panel>
 
       <mat-expansion-panel-header>
@@ -24,6 +72,7 @@
       </ng-template>
 
     </mat-expansion-panel>
+    <% } %>
     <% } %>
     <!-- NEXT_INDEX[<%= itemList.length %>] -->
   </mat-accordion>

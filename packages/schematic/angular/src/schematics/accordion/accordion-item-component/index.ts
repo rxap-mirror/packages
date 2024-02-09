@@ -100,40 +100,6 @@ function printAccordionItemComponentOptions(options: NormalizedAccordionItemComp
   PrintAngularOptions('accordion-item-component', options);
 }
 
-function componentRule(normalizedOptions: NormalizedAccordionItemComponentOptions) {
-  const {
-    componentName,
-    project,
-    feature,
-    directory,
-    shared,
-    overwrite,
-    itemName,
-  } = normalizedOptions;
-
-  const templateOptions = {
-    ...strings,
-    ...normalizedOptions,
-    name: itemName,
-    ...GetItemOptions(normalizedOptions),
-  };
-
-  return chain([
-    () => console.log(`Coerce accordion item component ...`),
-    CoerceComponentRule({
-      name: componentName,
-      project,
-      feature,
-      directory,
-      shared,
-      overwrite,
-      template: {
-        options: templateOptions,
-      },
-    }),
-  ]);
-}
-
 interface ItemOptions {
   hasSharedModifier: boolean;
   hasCollectionModifier: boolean;
@@ -486,6 +452,9 @@ function itemRule(normalizedOptions: NormalizedAccordionItemComponentOptions): R
       break;
     case AccordionItemTypes.TreeTable:
       rules.push(ExecuteSchematic('accordion-item-tree-table-component', normalizedOptions));
+      break;
+    case AccordionItemTypes.Switch:
+      rules.push(ExecuteSchematic('accordion-item-switch-component', normalizedOptions));
       break;
     default:
       throw new SchematicsException(`Invalid accordion item type '${ type }'!`);
