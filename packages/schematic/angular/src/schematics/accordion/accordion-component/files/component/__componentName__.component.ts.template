@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { <%= classify(name) %>DataSource } from './<%= name %>.data-source';
+import { <%= classify(componentName) %>DataSource } from './<%= componentName %>.data-source';
 import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
 import { CommonModule } from '@angular/common';
 <% for (const item of itemList) { %>
@@ -36,17 +36,17 @@ import { AccordionHeaderComponent } from './accordion-header/accordion-header.co
     AccordionHeaderComponent,
   ],
   providers: [
-    <%= classify(name) %>DataSource,
+    <%= classify(componentName) %>DataSource,
     {
       provide: ACCORDION_DATA_SOURCE,
-      useExisting: <%= classify(name) %>DataSource
+      useExisting: <%= classify(componentName) %>DataSource
     },
   ],
 })
 export class <%= classify(componentName) %>Component {
 
   constructor(
-    public readonly accordionDataSource: <%= classify(name) %>DataSource,
+    public readonly accordionDataSource: <%= classify(componentName) %>DataSource,
   ) {}
 
 }

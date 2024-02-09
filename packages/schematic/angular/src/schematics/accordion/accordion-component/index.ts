@@ -1,6 +1,7 @@
 import {
   chain,
   noop,
+  SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
 import {
@@ -125,7 +126,12 @@ function componentRule(normalizedOptions: NormalizedAccordionComponentOptions, h
     overwrite,
     itemList,
     name,
+    componentName,
   } = normalizedOptions;
+
+  if (!componentName) {
+    throw new SchematicsException('The component name is required! Ensure the normalizedOptions contain the componentName property!');
+  }
 
   const templateOptions = {
     ...normalizedOptions,
@@ -139,7 +145,7 @@ function componentRule(normalizedOptions: NormalizedAccordionComponentOptions, h
     () => console.log('Coerce accordion component ...'),
     CoerceComponentRule({
       project,
-      name,
+      name: componentName,
       feature,
       directory,
       overwrite: overwrite || hasMissingPanelComponents,
@@ -293,13 +299,17 @@ function headerComponentRule(normalizedOptions: NormalizedAccordionComponentOpti
 function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOptions, getOperationId: string) {
 
   const {
-    name,
     project,
     feature,
     directory,
     shared,
     scope,
+    componentName,
   } = normalizedOptions;
+
+  if (!componentName) {
+    throw new SchematicsException('The component name is required! Ensure the normalizedOptions contain the componentName property!');
+  }
 
   return chain([
     () => console.log('Create accordion data source ...'),
@@ -308,7 +318,7 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
       feature,
       shared,
       directory,
-      name,
+      name: componentName,
       tsMorphTransform: (
         project: Project,
         sourceFile: SourceFile,
