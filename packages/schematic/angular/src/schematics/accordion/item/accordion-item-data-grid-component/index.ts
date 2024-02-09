@@ -12,7 +12,6 @@ import {
   CoerceGetDataGridOperation,
   CoerceImports,
   CoerceParameterDeclaration,
-  CoerceStatements,
   CoerceSubmitDataGridOperation,
 } from '@rxap/schematics-ts-morph';
 import {
@@ -204,9 +203,11 @@ function nestjsBackendRule(
             },
           ],
         });
-        CoerceStatements(constructorDeclaration, [
+        constructorDeclaration.removeStatements([0 ,0]);
+        constructorDeclaration.insertStatements(0, [
           `super(method, route, accordionDataSource);`,
         ]);
+        sourceFile.getImportDeclaration('@rxap/data-grid')?.remove();
       },
     }),
     () => console.log(`Modify the get data grid operation ...`),
