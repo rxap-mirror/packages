@@ -16,7 +16,7 @@
         <% for (const item of itemList) { %>
           <ng-container rxapDataGridRowDef="<%= item.name %>">
             <% if (item.header) { %>
-            <th *rxapDataGridHeaderCellDef i18n><%= header %></th>
+            <th *rxapDataGridHeaderCellDef i18n><%= item.header %></th>
             <% } %>
             <ng-template rxapDataGridEditCellDef>
               <% if (item.type === 'string') { %>

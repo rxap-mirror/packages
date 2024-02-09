@@ -152,9 +152,9 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
     'submit',
     controllerName,
   );
-  const dataGridDtoClassName = CoerceSuffix(
+  const dataGridResponseClassName = CoerceSuffix(
     classify([ nestModule, componentName ].filter(Boolean).join('-')),
-    'DataGridDtoResponse',
+    'ControllerGetResponse',
   );
 
   return chain([
@@ -204,6 +204,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
         classDeclaration: ClassDeclaration,
         formTypeName: string,
       ) => {
+        sourceFile.getInterface(formTypeName)?.remove();
         const typeAliasDeclaration =
           sourceFile.getTypeAlias(formTypeName) ??
           sourceFile.addTypeAlias({
@@ -211,11 +212,11 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
             type: 'unknown',
           });
         typeAliasDeclaration.setIsExported(true);
-        typeAliasDeclaration.setType(dataGridDtoClassName);
+        typeAliasDeclaration.setType(dataGridResponseClassName);
         CoerceImports(sourceFile, {
-          namedImports: [ dataGridDtoClassName ],
+          namedImports: [ dataGridResponseClassName ],
           moduleSpecifier: OpenApiResponseClassImportPath(
-            dataGridDtoClassName,
+            dataGridResponseClassName,
             buildNestProjectName(normalizedOptions),
             scope,
           ),
