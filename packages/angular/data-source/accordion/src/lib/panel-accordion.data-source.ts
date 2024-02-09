@@ -12,7 +12,10 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import '@rxap/rxjs';
 import { ACCORDION_DATA_SOURCE } from './tokens';
-import { Method } from '@rxap/pattern';
+import {
+  Method,
+  MethodWithParameters,
+} from '@rxap/pattern';
 
 @Injectable()
 export abstract class PanelAccordionDataSource<Data> extends AccordionDataSource<Data> implements OnDestroy {
@@ -21,7 +24,7 @@ export abstract class PanelAccordionDataSource<Data> extends AccordionDataSource
 
   constructor(
     @Inject(ACCORDION_DATA_SOURCE_METHOD)
-      method: Method<Data, { parameters: { uuid: string } }>,
+      method: MethodWithParameters<Data, { parameters: { uuid: string } }>,
     route: ActivatedRoute,
     @Inject(ACCORDION_DATA_SOURCE)
     protected readonly accordionDataSource: AccordionDataSource<unknown>,
