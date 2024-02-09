@@ -19,7 +19,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { MatTableModule } from '@angular/material/table';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { RxapFormsModule } from '@rxap/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -69,7 +68,6 @@ import { <%= pipe.namedImport %> } from '<%= pipe.moduleSpecifier %>';
     MatProgressBarModule,
     CardProgressBarDirective,
     MatTableModule,
-    FlexLayoutModule,
     TableDataSourceDirective,
     TableFilterModule,
     RxapFormsModule,

@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { <%= classify(name) %>PanelDataSource } from './<%= name %>-panel.data-source';
 import { DataSourceDirective } from '@rxap/data-source/directive';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { DataSourceErrorComponent } from '@rxap/data-source';
 import { CommonModule } from '@angular/common';
 
@@ -14,7 +13,6 @@ import { CommonModule } from '@angular/common';
   imports: [
     DataSourceDirective,
     MatProgressBarModule,
-    FlexLayoutModule,
     CommonModule,
     DataSourceErrorComponent,
   ],
