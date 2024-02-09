@@ -1,13 +1,6 @@
 .nx-base:
   image: node:${NODE_VERSION}-alpine
-  cache:
-    key:
-      files:
-        - yarn.lock
-    paths:
-      - '**/node_modules/**'
-      - .yarn/cache
-    policy: pull
+  extends: .yarn
   before_script:
     - ./tools/scripts/install-dependencies.sh
 

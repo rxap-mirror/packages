@@ -1,5 +1,6 @@
 qodana:
   stage: test
+  extends: .yarn
   image:
     name: jetbrains/qodana-js
     entrypoint: [""]

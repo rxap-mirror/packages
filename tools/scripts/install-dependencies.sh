@@ -1,7 +1,7 @@
 #!/bin/sh
 
 corepack enable
-corepack prepare yarn@3 --activate
+corepack prepare yarn@3.6.0 --activate
 
 echo "RUN: yarn --version"
 yarn --version
