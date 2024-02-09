@@ -10,14 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { FlexModule } from '@angular/flex-layout/flex';
 import {
   AsyncPipe,
   NgClass,
   NgIf,
   NgTemplateOutlet,
 } from '@angular/common';
-import { ExtendedModule } from '@angular/flex-layout/extended';
 
 @Component({
   selector: 'rxap-sidenav',
@@ -30,9 +28,7 @@ import { ExtendedModule } from '@angular/flex-layout/extended';
   },
   standalone: true,
   imports: [
-    ExtendedModule,
     NgClass,
-    FlexModule,
     NgIf,
     NgTemplateOutlet,
     MatDividerModule,

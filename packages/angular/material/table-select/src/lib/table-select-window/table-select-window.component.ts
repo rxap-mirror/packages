@@ -12,7 +12,6 @@ import {
   Component,
   Inject,
 } from '@angular/core';
-import { FlexModule } from '@angular/flex-layout/flex';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -83,7 +82,6 @@ import { OpenTableSelectWindowMethodParameters } from '../open-table-select-wind
     BooleanCellComponent,
     MatPaginatorModule,
     WindowFooterDirective,
-    FlexModule,
     AsyncPipe,
     KeyValuePipe,
     GetFromObjectPipe,

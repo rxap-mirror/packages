@@ -68,7 +68,6 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
       template,
       flat,
       tsMorphTransform: (_, [ componentSourceFile ], [ componentClass ]) => {
-        AddComponentImport(componentSourceFile, 'FlexLayoutModule', '@angular/flex-layout');
         AddComponentImport(componentSourceFile, 'MatDialogModule', '@angular/material/dialog');
         AddComponentImport(componentSourceFile, 'MatButtonModule', '@angular/material/button');
         AddComponentImport(componentSourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');

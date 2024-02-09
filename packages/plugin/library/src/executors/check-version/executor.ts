@@ -38,6 +38,10 @@ export default async function runExecutor(
 
   if (!satisfies(normalizedVersion, versionRange)) {
     console.error(`The project version '${ projectJson.version }' normalized '${ normalizedVersion }' is not compatible with the '${ options.packageName }' version '${ targetVersion }' with the range '${ versionRange }'`);
+    if (process.env.WORKSPACE_UPGRADE) {
+      console.warn('Detecting workspace upgrade mode');
+      return { success: true };
+    }
     return {
       success: false,
     };

@@ -1,4 +1,8 @@
 import {
+  NgSwitch,
+  NgSwitchCase,
+} from '@angular/common';
+import {
   AfterViewInit,
   Component,
   ElementRef,
@@ -8,14 +12,17 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { UpdateAvailableEvent } from '@angular/service-worker';
+import { VersionEvent } from '@angular/service-worker';
 
-export const UPDATE_AVAILABLE_EVENT = new InjectionToken<UpdateAvailableEvent>('UPDATE_AVAILABLE_EVENT');
+export const UPDATE_AVAILABLE_EVENT = new InjectionToken<VersionEvent>('UPDATE_AVAILABLE_EVENT');
 
 @Component({
   selector: 'rxap-service-worker-update-dialog',
   standalone: true,
-  imports: [],
+  imports: [
+    NgSwitch,
+    NgSwitchCase,
+  ],
   templateUrl: './service-worker-update-dialog.component.html',
   styleUrls: [ './service-worker-update-dialog.component.scss' ],
 })

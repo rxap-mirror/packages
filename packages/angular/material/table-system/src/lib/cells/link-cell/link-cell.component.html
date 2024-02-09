@@ -1,12 +1,12 @@
 <a *ngIf="value" [href]="href" [matTooltip]="value" class="link" target="_blank">
-  <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-    <span *ngIf="short" class="content" fxFlex="nogrow" i18n>Open</span>
+  <span class="flex flex-row items-center gap-2">
+    <span *ngIf="short" class="content grow-0" i18n>Open</span>
     <ng-container [ngSwitch]="protocol">
-      <mat-icon *ngSwitchCase="'tel'" fxFlex="nogrow">call</mat-icon>
-      <mat-icon *ngSwitchCase="'mailto'" fxFlex="nogrow">email</mat-icon>
-      <mat-icon *ngSwitchDefault fxFlex="nogrow">launch</mat-icon>
+      <mat-icon *ngSwitchCase="'tel'" class="grow-0">call</mat-icon>
+      <mat-icon *ngSwitchCase="'mailto'" class="grow-0">email</mat-icon>
+      <mat-icon *ngSwitchDefault class="grow-0">launch</mat-icon>
     </ng-container>
-    <span *ngIf="!short" class="content" fxFlex="nogrow">{{value}}</span>
+    <span *ngIf="!short" class="content grow-0">{{value}}</span>
   </span>
 </a>
 <ng-content></ng-content>

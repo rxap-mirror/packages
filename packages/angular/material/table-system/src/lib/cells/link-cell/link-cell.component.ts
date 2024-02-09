@@ -4,7 +4,6 @@ import {
   Input,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { FlexModule } from '@angular/flex-layout/flex';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   NgIf,
@@ -20,7 +19,7 @@ import {
   styleUrls: [ './link-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ NgIf, MatTooltipModule, FlexModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault ],
+  imports: [ NgIf, MatTooltipModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault ],
 })
 export class LinkCellComponent {
 

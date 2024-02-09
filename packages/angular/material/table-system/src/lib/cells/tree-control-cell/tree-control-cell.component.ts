@@ -9,7 +9,6 @@ import { IconConfig } from '@rxap/utilities';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { FlexModule } from '@angular/flex-layout/flex';
 import { RowDataWithNode } from '@rxap/data-source/table/tree';
 import { NgIf } from '@angular/common';
 
@@ -20,7 +19,6 @@ import { NgIf } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    FlexModule,
     MatButtonModule,
     MatIconModule,
     IconDirective,

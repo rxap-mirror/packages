@@ -33,8 +33,6 @@ import {
   NgIf,
   NgStyle,
 } from '@angular/common';
-import { ExtendedModule } from '@angular/flex-layout/extended';
-import { FlexModule } from '@angular/flex-layout/flex';
 
 export interface Point {
   x: number;
@@ -53,8 +51,6 @@ export interface Point {
   standalone: true,
   imports: [
     CdkDrag,
-    FlexModule,
-    ExtendedModule,
     NgStyle,
     CdkDragHandle,
     WindowToolBarComponent,

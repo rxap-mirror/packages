@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
@@ -31,7 +30,6 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     MaterialFormSystemModule,
     FormControlsComponent,
     RxapFormsModule,

@@ -1,15 +1,39 @@
 <dialog #dialog
         class="max-w-6xl rounded overflow-auto drop-shadow-2xl dark:bg-black dark:text-white flex flex-col gap-3 p-6">
   <h2 class="text-2xl font-bold" i18n>A new application version is available</h2>
-  <table class="table-auto">
-    <tr>
-      <th>Current version hash</th>
-      <td>{{updateAvailableEvent.current.hash}}</td>
-    </tr>
-    <tr>
-      <th>New version hash</th>
-      <td>{{updateAvailableEvent.available.hash}}</td>
-    </tr>
-  </table>
+  <ng-container [ngSwitch]="$any(updateAvailableEvent).type">
+    <table *ngSwitchCase="'VERSION_DETECTED'" class="table-auto">
+      <tr>
+        <th>Version hash</th>
+        <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
+      </tr>
+    </table>
+    <table *ngSwitchCase="'VERSION_INSTALLATION_FAILED'" class="table-auto">
+      <tr>
+        <th>Version hash</th>
+        <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
+      </tr>
+      <tr>
+        <th>Version installation error</th>
+        <td>{{$any(updateAvailableEvent)['error']}}</td>
+      </tr>
+    </table>
+    <table *ngSwitchCase="'VERSION_READY'" class="table-auto">
+      <tr>
+        <th>Current version hash</th>
+        <td>{{$any(updateAvailableEvent)['currentVersion'].hash}}</td>
+      </tr>
+      <tr>
+        <th>Last version error</th>
+        <td>{{$any(updateAvailableEvent)['latestVersion'].hash}}</td>
+      </tr>
+    </table>
+    <table *ngSwitchCase="'NoNewVersionDetectedEvent'" class="table-auto">
+      <tr>
+        <th>Version hash</th>
+        <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
+      </tr>
+    </table>
+  </ng-container>
   <button (click)="close()" class="px-4 py-2 rounded bg-primary-500" i18n>Update</button>
 </dialog>

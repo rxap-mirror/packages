@@ -5,7 +5,6 @@ import {
 import { ThirdPanelDataSource } from './third-panel.data-source';
 import { DataSourceDirective } from '@rxap/data-source/directive';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { DataSourceErrorComponent } from '@rxap/data-source';
 import { CommonModule } from '@angular/common';
 import { ThirdPanelMethod } from './third-panel.method';
@@ -18,7 +17,6 @@ import { ThirdPanelMethod } from './third-panel.method';
   imports: [
     DataSourceDirective,
     MatProgressBarModule,
-    FlexLayoutModule,
     CommonModule,
     DataSourceErrorComponent,
   ],

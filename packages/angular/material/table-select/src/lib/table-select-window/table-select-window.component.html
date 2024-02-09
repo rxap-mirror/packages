@@ -165,11 +165,11 @@
 ></mat-paginator>
 
 <ng-template rxapWindowFooter>
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-    <button (click)="close()" fxFlex="nogrow" mat-stroked-button type="button">
+  <div class="flex flex-row items-center gap-4">
+    <button (click)="close()" class="grow-0" mat-stroked-button type="button">
       <ng-container i18n>Cancel</ng-container>
     </button>
-    <button (click)="select()" *ngIf="data.multiple" [disabled]="hasNotSelected$ | async" fxFlex="nogrow" mat-raised-button
+    <button (click)="select()" *ngIf="data.multiple" [disabled]="hasNotSelected$ | async" class="grow-0" mat-raised-button
             type="button">
       <ng-container i18n>Select</ng-container>
     </button>

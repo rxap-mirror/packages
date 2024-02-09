@@ -11,13 +11,8 @@ export class LogUpdateService {
 
   public start() {
     console.debug('start log update');
-    this.updates.available.subscribe(event => {
-      console.log('current version is', event.current);
-      console.log('available version is', event.available);
-    });
-    this.updates.activated.subscribe(event => {
-      console.log('old version was', event.previous);
-      console.log('new version is', event.current);
+    this.updates.versionUpdates.subscribe(event => {
+      console.log('version update event', event);
     });
   }
 

@@ -1,5 +1,5 @@
-<div *ngIf="windowService.hasActiveWindows" class="rxap-container" fxLayout="column">
-  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end end">
+<div *ngIf="windowService.hasActiveWindows" class="rxap-container flex flex-col">
+  <div class="flex flex-row justify-end items-end">
     <button (click)="expand = !expand"
             [matBadgeHidden]="!windowService.hasActiveWindows"
             [matBadge]="windowService.activeWindowCount.toFixed(0)"
@@ -12,7 +12,7 @@
       <mat-icon *ngIf="expand">keyboard_arrow_down</mat-icon>
     </button>
   </div>
-  <mat-toolbar [fxShow]="expand" class="tasks">
+  <mat-toolbar [ngClass]="{ hide: !expand }" class="tasks">
     <rxap-window-task-bar></rxap-window-task-bar>
   </mat-toolbar>
 </div>

@@ -43,7 +43,10 @@ export class PersistentTabGroupDirective implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    this.tabGroup.selectedIndex = this.selectedIndex;
+    const index = this.selectedIndex;
+    if (index !== null) {
+      this.tabGroup.selectedIndex = index;
+    }
     this.subscription = this.tabGroup.selectedIndexChange.pipe(
       tap(index => this.localStorage.set(this.key, index.toFixed(0))),
     ).subscribe();

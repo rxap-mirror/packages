@@ -1,4 +1,7 @@
-import { NgFor } from '@angular/common';
+import {
+  NgClass,
+  NgFor,
+} from '@angular/common';
 import type { QueryList } from '@angular/core';
 import {
   AfterContentInit,
@@ -8,7 +11,6 @@ import {
   HostBinding,
   Input,
 } from '@angular/core';
-import { ExtendedModule } from '@angular/flex-layout/extended';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
@@ -30,8 +32,8 @@ import { TableColumnOptionComponent } from './table-column-option/table-column-o
     MatIconModule,
     NgFor,
     StopPropagationDirective,
-    ExtendedModule,
     MatCheckboxModule,
+    NgClass,
   ],
 })
 export class TableColumnMenuComponent implements AfterContentInit {

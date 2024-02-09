@@ -7,6 +7,7 @@ import {
 import {
   MAT_FORM_FIELD,
   MatFormField,
+  MatFormFieldControl,
 } from '@angular/material/form-field';
 
 @Directive({
@@ -27,7 +28,7 @@ export class InputClearButtonDirective {
   ) {
   }
 
-  public get control() {
+  public get control(): MatFormFieldControl<any> {
     return this.formField._control;
   }
 

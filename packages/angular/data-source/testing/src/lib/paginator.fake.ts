@@ -7,9 +7,9 @@ export class PaginatorFake {
   public page = new Subject<Omit<PageEvent, 'length'>>();
 
   constructor(
-    public pageSize: number = 0,
-    public length: number = 0,
-    public pageIndex: number = 0,
+    public pageSize = 0,
+    public length = 0,
+    public pageIndex = 0,
   ) {
     this.page.pipe(
       tap(page => {

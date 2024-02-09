@@ -13,7 +13,6 @@ import {
   signal,
   SimpleChanges,
 } from '@angular/core';
-import { FlexModule } from '@angular/flex-layout/flex';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
@@ -33,7 +32,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    FlexModule,
     MatButtonModule,
     NgIf,
     MatProgressSpinnerModule,

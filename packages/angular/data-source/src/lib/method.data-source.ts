@@ -44,7 +44,7 @@ export class MethodDataSource<Data, Parameters = any>
     @Inject(RXAP_DATA_SOURCE_METHOD)
     protected readonly method: Method<Data, Parameters>,
     @Inject(RXAP_DATA_SOURCE_METHOD_WITHOUT_PARAMETERS)
-    protected readonly withoutParameters: boolean = false,
+    protected readonly withoutParameters = false,
   ) {
     super(method.metadata);
   }

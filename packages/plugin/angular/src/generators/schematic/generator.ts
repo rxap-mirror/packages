@@ -12,7 +12,10 @@ import {
   updateProjectConfiguration,
   writeJson,
 } from '@nx/devkit';
-import { PackageJson } from '@rxap/workspace-utilities';
+import {
+  GetWorkspaceScope,
+  PackageJson,
+} from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { SchematicGeneratorSchema } from './schema';
 
@@ -26,7 +29,7 @@ type NormalizedSchema = SchematicGeneratorSchema & ReturnType<typeof names> & {
 };
 
 function normalizeOptions(host: Tree, options: SchematicGeneratorSchema): NormalizedSchema {
-  const { npmScope } = getWorkspaceLayout(host);
+  const npmScope = GetWorkspaceScope(host);
 
   const {
     root: projectRoot,

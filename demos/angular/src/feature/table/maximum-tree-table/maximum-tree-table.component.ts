@@ -4,7 +4,6 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -62,7 +61,6 @@ import { TableHeaderButtonMethod } from './methods/table-header-button.method';
     MatProgressBarModule,
     CardProgressBarDirective,
     MatTableModule,
-    FlexLayoutModule,
     TableDataSourceDirective,
     TableFilterModule,
     RxapFormsModule,

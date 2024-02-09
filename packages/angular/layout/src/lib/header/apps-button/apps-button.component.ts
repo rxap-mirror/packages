@@ -10,7 +10,6 @@ import {
 import { RXAP_LAYOUT_APPS_GRID } from '../../tokens';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { FlexModule } from '@angular/flex-layout/flex';
 import {
   NgFor,
   NgIf,
@@ -38,7 +37,6 @@ import {
   standalone: true,
   imports: [
     NgIf,
-    FlexModule,
     NgFor,
     MatButtonModule,
     MatIconModule,

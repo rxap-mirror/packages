@@ -31,7 +31,10 @@ export abstract class ErrorCaptureService<Error = any> {
       const last = this.errorList[this.errorList.length - 1];
       const value = last();
       if (value.some(e => this.compare(e, error))) {
-        last.mutate(value => value.push(error));
+        last.update(value => {
+          value.push(error);
+          return value.slice();
+        });
         return;
       }
     }

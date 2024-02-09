@@ -16,7 +16,6 @@ import {
 import { tap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { NgFor } from '@angular/common';
-import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-window-container-sidenav',
@@ -24,7 +23,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
   styleUrls: [ './window-container-sidenav.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ FlexModule, NgFor, PortalModule ],
+  imports: [ NgFor, PortalModule ],
 })
 export class WindowContainerSidenavComponent implements OnInit, OnDestroy {
 

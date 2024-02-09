@@ -30,7 +30,7 @@ export class RxapFirebaseMessagingService {
     public readonly messaging: AngularFireMessaging,
     @Optional()
     @Inject(RXAP_REQUEST_CLOUD_MESSAGING_TOKEN)
-    public readonly requestPermissionImminently: boolean = false,
+    public readonly requestPermissionImminently = false,
   ) {
     this.messaging.messages
         .pipe(

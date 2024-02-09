@@ -34,9 +34,7 @@ import {
   NgClass,
   NgIf,
 } from '@angular/common';
-import { ExtendedModule } from '@angular/flex-layout/extended';
 import { MatButtonModule } from '@angular/material/button';
-import { FlexModule } from '@angular/flex-layout/flex';
 declare const $localize: any;
 
 @Component({
@@ -46,9 +44,7 @@ declare const $localize: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    FlexModule,
     MatButtonModule,
-    ExtendedModule,
     NgClass,
     MatProgressSpinnerModule,
     NgIf,

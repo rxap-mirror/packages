@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { WindowTaskComponent } from './window-task/window-task.component';
 import { NgFor } from '@angular/common';
-import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-window-task-bar',
@@ -19,7 +18,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
   styleUrls: [ './window-task-bar.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ FlexModule, NgFor, WindowTaskComponent ],
+  imports: [ NgFor, WindowTaskComponent ],
 })
 export class WindowTaskBarComponent implements OnInit, OnDestroy {
 

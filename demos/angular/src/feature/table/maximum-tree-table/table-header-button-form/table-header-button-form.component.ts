@@ -12,7 +12,6 @@ import {
   FormControlsComponent,
   MaterialFormSystemModule,
 } from '@rxap/material-form-system';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RxapFormsModule } from '@rxap/forms';
 import { CommonModule } from '@angular/common';
@@ -27,7 +26,6 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     MaterialFormSystemModule,
     FormControlsComponent,
     RxapFormsModule,

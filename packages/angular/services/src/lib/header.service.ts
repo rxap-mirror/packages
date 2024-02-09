@@ -18,12 +18,13 @@ export class HeaderService {
   public readonly components = computed(() => this.componentsWithMetadata().map(item => item.component));
 
   public addComponent(component: Constructor, order = 0): void {
-    this.componentsWithMetadata.mutate(components => {
+    this.componentsWithMetadata.update(components => {
       components.push({
         component,
         order,
       });
       components.sort((a, b) => a.order - b.order);
+      return components.slice();
     });
   }
 

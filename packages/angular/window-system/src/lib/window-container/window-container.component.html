@@ -11,19 +11,17 @@
      }"
      cdkDrag
      cdkDragBoundary=".cdk-overlay-container"
-     class="window-container mat-elevation-z4 mat-drawer-container"
-     fxLayout="column">
+     class="window-container mat-elevation-z4 mat-drawer-container flex flex-col">
 
-  <div cdkDragHandle class="tool-bar" fxFlex="nogrow">
+  <div cdkDragHandle class="tool-bar grow-0">
     <rxap-window-tool-bar></rxap-window-tool-bar>
   </div>
 
-  <div class="content" fxFlex="grow">
+  <div class="content grow">
     <ng-content></ng-content>
   </div>
 
-  <mat-toolbar *ngIf="windowRef.footerPortal$ | async as footerPortal" class="footer mat-elevation-z1"
-               fxFlex="nogrow">
+  <mat-toolbar *ngIf="windowRef.footerPortal$ | async as footerPortal" class="footer mat-elevation-z1 grow-0">
     <ng-template [cdkPortalOutlet]="footerPortal"></ng-template>
   </mat-toolbar>
 

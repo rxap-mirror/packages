@@ -536,21 +536,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/flex-layout@npm:15.0.0-beta.42":
-  version: 15.0.0-beta.42
-  resolution: "@angular/flex-layout@npm:15.0.0-beta.42"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/cdk": ">=15.0.0"
-    "@angular/common": ">=15.0.2"
-    "@angular/core": ">=15.0.2"
-    "@angular/platform-browser": ">=15.0.2"
-    rxjs: ^6.5.3 || ^7.4.0
-  checksum: e8aa73a442f44f8f48028bc1d5e04ddae147ff5f627678ed76faf1ba8a6303ceeea51ec7aa45fc37e38ff26d62af67b08d3ff2de04972688fed7c585b86b57f0
-  languageName: node
-  linkType: hard
-
 "@angular/forms@npm:16.1.4":
   version: 16.1.4
   resolution: "@angular/forms@npm:16.1.4"
@@ -8755,7 +8740,6 @@ __metadata:
     "@angular/cdk": ^16.1.4
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
     "@rxap/data-structure-tree": ^1.1.0
@@ -9013,7 +8997,6 @@ __metadata:
     "@angular/cdk": ^16.1.4
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
@@ -9077,7 +9060,6 @@ __metadata:
     "@angular/cdk": ^16.1.4
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
@@ -9101,7 +9083,6 @@ __metadata:
     "@angular/cdk": ^16.1.4
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
@@ -9433,7 +9414,6 @@ __metadata:
     "@angular/cdk": ^16.1.4
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
     "@rxap/data-source": ^16.0.0
@@ -10168,7 +10148,6 @@ __metadata:
     "@angular/cdk": ^16.1.4
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/material": ^16.1.4
     "@rxap/directives": ^16.0.0
     "@rxap/material-directives": ^16.0.0
@@ -29965,7 +29944,6 @@ __metadata:
     "@angular/compiler-cli": 16.1.4
     "@angular/core": 16.1.4
     "@angular/fire": 7.5.0
-    "@angular/flex-layout": 15.0.0-beta.42
     "@angular/forms": 16.1.4
     "@angular/language-service": 16.1.4
     "@angular/localize": 16.1.4

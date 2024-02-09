@@ -19,7 +19,6 @@ import {
   KeyValuePipe,
   NgFor,
 } from '@angular/common';
-import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-version',
@@ -27,7 +26,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
   styleUrls: [ './version.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ FlexModule, NgFor, KeyValuePipe ],
+  imports: [ NgFor, KeyValuePipe ],
 })
 export class VersionComponent implements OnInit, OnDestroy {
 

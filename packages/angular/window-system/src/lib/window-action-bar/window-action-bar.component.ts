@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { RXAP_WINDOW_CONTEXT } from '../tokens';
 import { ButtonDefinition } from '@rxap/rxjs';
-import { FlexModule } from '@angular/flex-layout/flex';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgIf } from '@angular/common';
 
@@ -14,7 +13,7 @@ import { NgIf } from '@angular/common';
   templateUrl: './window-action-bar.component.html',
   styleUrls: [ './window-action-bar.component.scss' ],
   standalone: true,
-  imports: [ NgIf, MatToolbarModule, FlexModule ],
+  imports: [ NgIf, MatToolbarModule ],
 })
 export class WindowActionBarComponent {
 

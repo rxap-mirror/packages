@@ -1,29 +1,26 @@
 <div [ngClass]="{ 'collapsed': sidenav.collapsed$ | async }" class="rxap-container">
-  <div class="inner"
-       fxLayout="column"
-       fxLayoutAlign="space-between stretch">
+  <div class="inner flex flex-col justify-between items-stretch">
     <ng-template [ngIf]="sidenavHeaderDirective?.template">
-      <div [fxHide]="sidenav.collapsed$ | async" class="header" fxFlex="nogrow">
+      <div [ngClass]="{ hide: sidenav.collapsed$ | async }" class="header grow-0">
         <ng-container *ngTemplateOutlet="sidenavHeaderDirective?.template ?? null"></ng-container>
       </div>
-      <mat-divider [fxHide]="sidenav.collapsed$ | async" fxFlex="nogrow"></mat-divider>
+      <mat-divider [ngClass]="{ hide: sidenav.collapsed$ | async }" class="grow-0"></mat-divider>
     </ng-template>
-    <div class="nav-container" fxFlex="grow">
-      <ul fxLayout="column" root rxap-navigation></ul>
+    <div class="nav-container grow">
+      <ul class="flex flex-col" root rxap-navigation></ul>
     </div>
-    <mat-divider fxFlex="nogrow"></mat-divider>
+    <mat-divider class="grow-0"></mat-divider>
     <button (click)="sidenav.toggleNavigationCollapse()" [ngClass]="{ 'collapsed': sidenav.collapsed$ | async }"
-            class="sidebar-toggle"
-            fxFlex="nogrow"
+            class="sidebar-toggle grow-0"
             mat-button>
-      <span class="sidebar-toggle-inner" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-        <mat-icon class="arrow" fxFlex="nogrow">double_arrow</mat-icon>
-        <span [fxHide]="sidenav.collapsed$ | async" class="label" fxFlex="grow" i18n>Collapse sidebar</span>
+      <span class="sidebar-toggle-inner flex flex-row items-center gap-4">
+        <mat-icon class="arrow grow-0">double_arrow</mat-icon>
+        <span [ngClass]="{ hide: sidenav.collapsed$ | async }" class="label grow-0" i18n>Collapse sidebar</span>
       </span>
     </button>
     <ng-template [ngIf]="sidenavFooterDirective?.template ?? null">
-      <mat-divider [fxHide]="sidenav.collapsed$ | async" fxFlex="nogrow"></mat-divider>
-      <div [fxHide]="sidenav.collapsed$ | async" class="footer" fxFlex="nogrow">
+      <mat-divider [ngClass]="{ hide: sidenav.collapsed$ | async }" class="grow-0"></mat-divider>
+      <div [ngClass]="{ hide: sidenav.collapsed$ | async }" class="footer grow-0">
         <ng-container *ngTemplateOutlet="sidenavFooterDirective?.template ?? null"></ng-container>
       </div>
     </ng-template>

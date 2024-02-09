@@ -5,7 +5,6 @@ import {
 import { FirstPanelDataSource } from './first-panel.data-source';
 import { DataSourceDirective } from '@rxap/data-source/directive';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { DataSourceErrorComponent } from '@rxap/data-source';
 import { CommonModule } from '@angular/common';
 import { FirstPanelMethod } from './first-panel.method';
@@ -18,7 +17,6 @@ import { FirstPanelMethod } from './first-panel.method';
   imports: [
     DataSourceDirective,
     MatProgressBarModule,
-    FlexLayoutModule,
     CommonModule,
     DataSourceErrorComponent,
   ],

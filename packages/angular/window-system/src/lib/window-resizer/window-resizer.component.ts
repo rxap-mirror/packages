@@ -24,9 +24,10 @@ import {
 } from 'rxjs/operators';
 import { RXAP_WINDOW_CONTEXT } from '../tokens';
 import { WindowRef } from '../window-ref';
-import { Required } from '@rxap/utilities';
-import { AsyncPipe } from '@angular/common';
-import { ExtendedModule } from '@angular/flex-layout/extended';
+import {
+  AsyncPipe,
+  NgClass,
+} from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -35,7 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: [ './window-resizer.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ MatIconModule, ExtendedModule, AsyncPipe ],
+  imports: [ MatIconModule, AsyncPipe, NgClass ],
 })
 export class WindowResizerComponent implements OnInit, OnDestroy {
 

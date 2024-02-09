@@ -1,7 +1,9 @@
 import {
   AsyncPipe,
+  NgClass,
   NgIf,
   NgOptimizedImage,
+  NgStyle,
 } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -13,7 +15,6 @@ import {
   Signal,
   ViewChild,
 } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -55,7 +56,6 @@ import { LayoutComponentService } from './layout.component.service';
     HeaderComponent,
     MatSidenavModule,
     AsyncPipe,
-    FlexLayoutModule,
     MatIconModule,
     MatButtonModule,
     RouterLink,
@@ -66,6 +66,8 @@ import { LayoutComponentService } from './layout.component.service';
     NavigationComponent,
     RouterOutlet,
     StatusIndicatorComponent,
+    NgStyle,
+    NgClass,
   ],
 })
 export class LayoutComponent implements OnInit, OnDestroy {

@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import {
   SwUpdate,
-  UpdateAvailableEvent,
+  VersionEvent,
 } from '@angular/service-worker';
 import { Observable } from 'rxjs';
 import {
@@ -33,7 +33,7 @@ export class DialogUpdateService {
 
   public start(): void {
     console.debug('start dialog update service');
-    this.updates.available
+    this.updates.versionUpdates
         .pipe(
           concatMap((event) => this.openUpdateDialog(event)),
           tap(() => console.log('start app update')),
@@ -47,7 +47,7 @@ export class DialogUpdateService {
         .subscribe();
   }
 
-  private openUpdateDialog(event: UpdateAvailableEvent): Observable<void> {
+  private openUpdateDialog(event: VersionEvent): Observable<void> {
     console.debug('open update dialog');
     const body = document.getElementsByTagName('body')[0];
     const div = document.createElement('div');

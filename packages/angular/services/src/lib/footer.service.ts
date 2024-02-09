@@ -25,7 +25,10 @@ export class FooterService {
   public removePortal(portal: Portal<unknown>) {
     const index = this.portals().indexOf(portal);
     if (index !== -1) {
-      this.portals.mutate(portals => portals.splice(index, 1));
+      this.portals.update(portals => {
+        portals.splice(index, 1);
+        return portals.slice();
+      });
     }
   }
 

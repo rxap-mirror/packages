@@ -1,8 +1,8 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
-  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="32px" style="width: 100%">
+<div class="flex flex-row justify-between items-center gap-8">
+  <div class="grow-0 flex-row justify-end items-center gap-8" style="width: 100%">
     <button (click)="reset()"
             [disabled]="submitting$ | async"
-            fxFlex="nogrow"
+            class="grow-0"
             mat-stroked-button
             type="button">
       <ng-container i18n>Reset</ng-container>
@@ -10,7 +10,8 @@
     <button (click)="cancel()"
             [disabled]="submitting$ | async"
             color="warn"
-            fxFlex="nogrow" mat-stroked-button
+            class="grow-0"
+            mat-stroked-button
             type="button">
       <ng-container i18n>Cancel</ng-container>
     </button>
@@ -18,14 +19,14 @@
             [disabled]="submitting$ | async"
             [ngClass]="{ invalid: invalid }"
             color="primary"
-            fxFlex="nogrow"
+            class="grow-0"
             mat-raised-button
             type="button">
-      <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-        <span fxFlex="nogrow">
+      <span class="flex flex-row items-center gap-1">
+        <span class="grow-0">
           <ng-container i18n>Submit</ng-container>
         </span>
-        <mat-spinner [diameter]="15" [fxShow]="submitting$ | async" color="accent" fxFlex="nogrow"
+        <mat-spinner [diameter]="15" [ngClass]="{ hide: (submitting$ | async) === false }" color="accent" class="grow-0"
                      mode="indeterminate"></mat-spinner>
       </span>
     </button>
@@ -33,19 +34,19 @@
             [disabled]="submitting$ | async"
             [ngClass]="{ invalid: invalid }"
             color="primary"
-            fxFlex="nogrow"
+            class="grow-0"
             mat-raised-button
             type="button">
-      <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-        <span fxFlex="nogrow">
+      <span class="flex flex-row items-center gap-1">
+        <span class="grow-0">
           <ng-container i18n>Submit and Close</ng-container>
         </span>
-        <mat-spinner [diameter]="15" [fxShow]="submitting$ | async" color="accent" fxFlex="nogrow"
+        <mat-spinner [diameter]="15" [ngClass]="{ hide: (submitting$ | async) === false }" color="accent" class="grow-0"
                      mode="indeterminate"></mat-spinner>
       </span>
     </button>
-    <button (click)="logCurrentFormState()" *ngIf="isDevMode" fxFlex="nogrow" mat-button type="button">Current Form
-      State
+    <button (click)="logCurrentFormState()" *ngIf="isDevMode" mat-button type="button" class="grow-0">
+      Current Form State
     </button>
   </div>
 </div>

@@ -10,7 +10,6 @@ import { map } from 'rxjs/operators';
 import { SelectRowService } from '../select-row/select-row.service';
 import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-table-select-controls',
@@ -19,7 +18,6 @@ import { FlexModule } from '@angular/flex-layout/flex';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    FlexModule,
     MatButtonModule,
     AsyncPipe,
   ],
