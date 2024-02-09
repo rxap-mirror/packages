@@ -9,6 +9,10 @@
         type: data-grid
         dataGrid:
           mode: form
+          itemList:
+            - name: name
+              header: MyName
+              type: number
       - name: layout
         type: panel
       - name: reference

@@ -7,6 +7,7 @@ import { DataGridModule } from '@rxap/data-grid';
 import { RxapFormsModule } from '@rxap/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'rxap-general-information-data-grid',
@@ -19,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
     RxapFormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatInputModule,
   ],
   providers: [
     

@@ -1,12 +1,14 @@
 import { FormType, RxapFormGroup, RxapFormControl, UseFormControl, RxapValidators, RxapForm } from '@rxap/forms';
 import { Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
-import { DashboardAccordionGeneralInformationDataGridDtoResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-data-grid-dto.response';
+import { DashboardAccordionGeneralInformationDataGridControllerGetResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-data-grid-controller-get.response';
 
 @RxapForm('general-information')
 @Injectable()
 export class GeneralInformationForm implements FormType<IGeneralInformationForm> {
   public readonly rxapFormGroup!: RxapFormGroup<IGeneralInformationForm>;
+  @UseFormControl()
+  public readonly name!: RxapFormControl<number>;
 }
 
-export type IGeneralInformationForm = DashboardAccordionGeneralInformationDataGridDtoResponse;
+export type IGeneralInformationForm = DashboardAccordionGeneralInformationDataGridControllerGetResponse;
