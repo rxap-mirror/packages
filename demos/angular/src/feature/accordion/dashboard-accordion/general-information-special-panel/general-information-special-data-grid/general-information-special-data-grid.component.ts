@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormProviders, FormComponentProviders } from './form.providers';
 
-import { GeneralInformationDataGridDataSource } from './general-information-data-grid.data-source';
+import { GeneralInformationSpecialDataGridDataSource } from './general-information-special-data-grid.data-source';
 
 import { DataGridModule } from '@rxap/data-grid';
 import { RxapFormsModule } from '@rxap/forms';
@@ -10,9 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'rxap-general-information-data-grid',
-  templateUrl: './general-information-data-grid.component.html',
-  styleUrls: [ './general-information-data-grid.component.scss' ],
+  selector: 'rxap-general-information-special-data-grid',
+  templateUrl: './general-information-special-data-grid.component.html',
+  styleUrls: [ './general-information-special-data-grid.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -24,17 +24,17 @@ import { MatInputModule } from '@angular/material/input';
   ],
   providers: [
     
-    GeneralInformationDataGridDataSource,
+    GeneralInformationSpecialDataGridDataSource,
     
     FormProviders,
     FormComponentProviders,
   ],
 })
-export class GeneralInformationDataGridComponent {
+export class GeneralInformationSpecialDataGridComponent {
 
   
   constructor(
-    public readonly dataGridDataSource: GeneralInformationDataGridDataSource,
+    public readonly dataGridDataSource: GeneralInformationSpecialDataGridDataSource,
   ) {}
   
 

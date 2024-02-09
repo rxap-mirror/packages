@@ -6,13 +6,31 @@
     multiple: true
     itemList:
       - name: general-information
-        type: data-grid
-        dataGrid:
-          mode: form
-          itemList:
-            - name: name
-              header: MyName
-              type: number
+        type: switch
+        switch:
+          property:
+            path: dashboardType
+            type: number
+          defaultCase:
+            itemList:
+              - type: data-grid
+                name: normal
+                dataGrid:
+                  itemList:
+                    - name: name
+                      header: MyName
+                      type: number
+          case:
+            - test: 1
+              itemList:
+                - type: data-grid
+                  name: special
+                  dataGrid:
+                    mode: form
+                    itemList:
+                      - name: name
+                        header: MyName
+                        type: number
       - name: layout
         type: panel
       - name: reference
