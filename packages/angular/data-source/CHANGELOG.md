@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0...@rxap/data-source@16.0.1-dev.0) (2024-02-09)
+
+### Bug Fixes
+
+- use the MethodWithParameters type ([4d285d1](https://gitlab.com/rxap/packages/commit/4d285d17927742e48d69b7ab6b725aebb1a0eb52))
+
 # [16.0.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.35...@rxap/data-source@16.0.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/data-source

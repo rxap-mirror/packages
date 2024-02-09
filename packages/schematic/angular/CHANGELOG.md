@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0...@rxap/schematic-angular@16.1.1-dev.0) (2024-02-09)
+
+### Bug Fixes
+
+- fix tree table name generation ([f2c1ee2](https://gitlab.com/rxap/packages/commit/f2c1ee234f594e127efad6a2ef294bc946cfe7b0))
+- remove FlexLayout dependency ([b6601be](https://gitlab.com/rxap/packages/commit/b6601be8c14d31668e047a08af45e10fc0df1b91))
+- set the componentName if not defined ([6f708bf](https://gitlab.com/rxap/packages/commit/6f708bf3da1af7bdeff34dd2b66f9b69f79a2640))
+- support new option type for type ([0034a57](https://gitlab.com/rxap/packages/commit/0034a5761963ae79a8ab66b47bb1b4c0d64c084b))
+- update the accordion data grid correctly ([2e5b8eb](https://gitlab.com/rxap/packages/commit/2e5b8ebb91a2fc720767257ce505654224d9ac72))
+- use correct property path ([f2c1e6e](https://gitlab.com/rxap/packages/commit/f2c1e6e4a29fc801f3e802961679348a8d454291))
+- use the componentName property ([04ccbda](https://gitlab.com/rxap/packages/commit/04ccbda0d219a050cfdca06a420d0dfc7827ea4d))
+
 # [16.1.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.56...@rxap/schematic-angular@16.1.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/schematic-angular

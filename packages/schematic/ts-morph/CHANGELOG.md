@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0...@rxap/schematics-ts-morph@16.0.1-dev.0) (2024-02-09)
+
+### Bug Fixes
+
+- use coerce component utility function ([51d41d7](https://gitlab.com/rxap/packages/commit/51d41d7d6f509a05a831758f72e9434e3e5a5471))
+
 # [16.0.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.41...@rxap/schematics-ts-morph@16.0.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph
