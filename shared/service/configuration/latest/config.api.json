@@ -14,5 +14,8 @@
   "service-user": {
     "baseUrl": "/api/user",
     "statusCheck": true
+  },
+  "service-app-angular-accordion": {
+    "baseUrl": "/api/app/angular/accordion"
   }
 }

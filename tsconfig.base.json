@@ -282,6 +282,9 @@
       "@rxap/plugin-docker": [
         "packages/plugin/docker/src/index.ts"
       ],
+      "@rxap/plugin-gitlab-ci": [
+        "packages/plugin/gitlab-ci/src/index.ts"
+      ],
       "@rxap/plugin-gpt": [
         "packages/plugin/gpt/src/index.ts"
       ],
@@ -423,8 +426,8 @@
       "workspace/commands": [
         "tools/workspace/src/cypress/commands.ts"
       ],
-      "@rxap/plugin-gitlab-ci": [
-        "packages/plugin/gitlab-ci/src/index.ts"
+      "open-api-service-app-angular-accordion/*": [
+        "packages/open-api/service/app/angular/accordion/src/lib/*"
       ]
     }
   },

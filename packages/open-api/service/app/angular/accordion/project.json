@@ -1,0 +1,25 @@
+{
+  "name": "open-api-service-app-angular-accordion",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/open-api/service/app/angular/accordion/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/open-api/service/app/angular/accordion/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "open-api"
+  ],
+  "implicitDependencies": [
+    "service-app-angular-accordion"
+  ]
+}
