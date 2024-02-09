@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.1-dev.0...@rxap/schematic-angular@16.2.0-dev.0) (2024-02-09)
+
+### Features
+
+- add accordion switch generator ([e9aa8ad](https://gitlab.com/rxap/packages/commit/e9aa8ad593c67414cda8055378ecd7c43d7db0e8))
+
 ## [16.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0...@rxap/schematic-angular@16.1.1-dev.0) (2024-02-09)
 
 ### Bug Fixes
