@@ -65,12 +65,14 @@ function NormalizeOptions(
 ): Readonly<NormalizedAccordionComponentOptions> {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
-  let { name } = normalizedAngularOptions;
+  const { name } = normalizedAngularOptions;
+  let {  componentName } = normalizedAngularOptions;
   const itemList = NormalizeAccordionItemList(options.itemList);
-  name = CoerceSuffix(dasherize(name), '-accordion');
+  componentName ??= CoerceSuffix(dasherize(name), '-accordion');
   return Object.freeze({
     ...normalizedAngularOptions,
-    directory: name,
+    componentName,
+    directory: componentName,
     itemList,
     name,
     multiple: options.multiple ?? false,
