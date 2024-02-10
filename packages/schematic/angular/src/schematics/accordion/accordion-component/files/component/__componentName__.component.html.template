@@ -2,11 +2,14 @@
   <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
 </ng-template>
 <div *rxapDataSource="let accordion from accordionDataSource; errorTemplate: errorTemplate" class="flex flex-col gap-y-6">
-  <<%= prefix %>-accordion-header [data]="accordion"></<%= prefix %>-accordion-header>
+  <% if (header) { %><<%= prefix %>-accordion-header [data]="accordion"></<%= prefix %>-accordion-header>
   <ng-template #divider>
     <mat-divider></mat-divider>
   </ng-template>
   <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
+  <% } else { %>
+  <mat-progress-bar *ngIf="accordionDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
+  <% } %>
   <mat-accordion
     <% if (persistent && persistent.key) { %>rxapPersistentAccordion="<%= persistent.key %>"<% } %>
     <% if (persistent && persistent.property) { %>[rxapPersistentAccordion]="accordion.<%= persistent.property.name %>"<% } %>

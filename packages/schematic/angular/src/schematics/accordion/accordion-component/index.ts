@@ -44,6 +44,11 @@ import {
   Writers,
 } from 'ts-morph';
 import {
+  IsNormalizedPropertyAccordionHeader,
+  NormalizeAccordionHeader,
+  NormalizedAccordionHeader,
+} from '../../../lib/accordion-header';
+import {
   NormalizeAccordionItemList,
   NormalizedAccordionItem,
 } from '../../../lib/accordion-item';
@@ -67,6 +72,7 @@ export interface NormalizedAccordionComponentOptions
   itemList: ReadonlyArray<NormalizedAccordionItem>;
   persistent: NormalizedPersistent | null;
   withPermission: boolean;
+  header: NormalizedAccordionHeader | null;
 }
 
 function hasItemWithPermission(itemList: ReadonlyArray<NormalizedAccordionItem>): boolean {
@@ -100,6 +106,7 @@ function NormalizeOptions(
     multiple: options.multiple ?? false,
     persistent: options.persistent ? NormalizePersistent(options.persistent) : null,
     withPermission: hasItemWithPermission(itemList),
+    header: NormalizeAccordionHeader(options.header),
   });
 }
 
@@ -191,6 +198,7 @@ function headerComponentOpenApiRule(normalizedOptions: NormalizedAccordionCompon
     directory,
     overwrite,
     scope,
+    header,
   } = normalizedOptions;
 
   const operationId = buildOperationId(
@@ -198,6 +206,10 @@ function headerComponentOpenApiRule(normalizedOptions: NormalizedAccordionCompon
     'getById',
     name,
   );
+
+  if (!header || Object.keys(header).length === 0) {
+    return noop();
+  }
 
   return chain([
     CoerceComponentRule({
@@ -227,7 +239,12 @@ function headerComponentLocalRule(normalizedOptions: NormalizedAccordionComponen
     feature,
     directory,
     overwrite,
+    header,
   } = normalizedOptions;
+
+  if (!header || Object.keys(header).length === 0) {
+    return noop();
+  }
 
   return chain([
     CoerceComponentRule({
@@ -272,7 +289,12 @@ function headerComponentRule(normalizedOptions: NormalizedAccordionComponentOpti
     directory,
     overwrite,
     name,
+    header,
   } = normalizedOptions;
+
+  if (!header || Object.keys(header).length === 0) {
+    return noop();
+  }
 
   const templateOptions = {
     ...normalizedOptions,
@@ -532,7 +554,7 @@ function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions)
       type: 'string',
     }
   ];
-  const {persistent, itemList} = normalizedOptions;
+  const {persistent, itemList, header} = normalizedOptions;
   if (persistent && IsNormalizedPropertyPersistent(persistent)) {
     if (!propertyList.some((property) => property.name === persistent.property.name)) {
       propertyList.push(persistent.property);
@@ -546,6 +568,11 @@ function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions)
           type: (item as any).switch.property.type,
         });
       }
+    }
+  }
+  if (header && IsNormalizedPropertyAccordionHeader(header)) {
+    if (!propertyList.some((property) => property.name === header.property.name)) {
+      propertyList.push(header.property);
     }
   }
   return propertyList;

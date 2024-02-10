@@ -1,5 +1,10 @@
 <rxap-navigate-back-button>
   <ng-container>
-    <h1>{{ data.name }}</h1>
+    <% if (header.title) { %>
+    <h1><%= header.title %></h1>
+    <% } %>
+    <% if (header.property) { %>
+    <h1>{{data.<%= header.property.name %>}}</h1>
+    <% } %>
   </ng-container>
 </rxap-navigate-back-button>

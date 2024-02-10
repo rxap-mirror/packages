@@ -67,6 +67,37 @@
         }
       ]
     },
+    "header": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            }
+          },
+          "required": ["title"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "property": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            }
+          },
+          "required": ["property"]
+        }
+      ]
+    },
     "itemList": {
       "alias": "item",
       "type": "array",
