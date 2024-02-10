@@ -9,6 +9,8 @@
 # rxap
 /docker-compose.frontends.yml
 /docker-compose.services.yml
+.nyc_output
+coverage
 .nx
 # compiled output
 dist
