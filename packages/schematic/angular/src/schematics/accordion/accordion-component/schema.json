@@ -53,13 +53,14 @@
             "property": {
               "type": "object",
               "properties": {
-                "path": {
+                "name": {
                   "type": "string"
                 },
                 "type": {
                   "type": "string"
                 }
-              }
+              },
+              "required": ["name"]
             }
           },
           "required": ["property"]

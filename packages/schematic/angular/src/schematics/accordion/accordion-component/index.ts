@@ -18,6 +18,7 @@ import {
   CoerceParameterDeclaration,
   CoercePropertyDeclaration,
   CoerceStatements,
+  DtoClassProperty,
   HasComponent,
   HasComponentOptions,
   OperationIdToClassImportPath,
@@ -54,6 +55,7 @@ import {
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
 import {
+  IsNormalizedPropertyPersistent,
   NormalizedPersistent,
   NormalizePersistent,
 } from '../../../lib/persistent';
@@ -384,16 +386,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
       name,
       structure: {
         isExported: true,
-        properties: [
-          {
-            name: 'uuid',
-            type: 'string',
-          },
-          {
-            name: 'name',
-            type: 'string',
-          },
-        ],
+        properties: getPropertyList(normalizedOptions),
       },
     }, TsMorphAngularProjectTransformRule),
     CoerceMethodClass({
@@ -405,10 +398,6 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
       tsMorphTransform: (project, sourceFile, classDeclaration) => {
         CoerceImports(sourceFile, [
           {
-            namedImports: [ 'faker' ],
-            moduleSpecifier: '@faker-js/faker',
-          },
-          {
             namedImports: [ classify(name) ],
             moduleSpecifier: `./${ dasherize(name) }`,
           },
@@ -417,7 +406,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
           returnType: classify(name),
           statements: [
             `console.log('parameters: ', parameters);`,
-            'return { uuid: faker.string.uuid(), name: faker.commerce.productName() };',
+            'return { } as any;',
           ],
         };
       },
@@ -521,6 +510,22 @@ function itemListRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 
 }
 
+function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions): DtoClassProperty[] {
+  const propertyList: DtoClassProperty[] = [
+    {
+      name: 'name',
+      type: 'string',
+    }
+  ];
+  const persistent = normalizedOptions.persistent;
+  if (persistent && IsNormalizedPropertyPersistent(persistent)) {
+    if (!propertyList.some((property) => property.name === persistent.property.name)) {
+      propertyList.push(persistent.property);
+    }
+  }
+  return propertyList;
+}
+
 function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 
   const {
@@ -541,18 +546,13 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
   );
 
   return chain([
-    () => console.log('Create GetById Operation ...'),
+    () => console.log('Create Get Operation ...'),
     CoerceGetByIdOperation({
       controllerName,
       project,
       feature,
       shared: false,
-      propertyList: [
-        {
-          name: 'name',
-          type: 'string',
-        },
-      ],
+      propertyList: getPropertyList(normalizedOptions),
     }),
     openApiDataSourceRule(normalizedOptions, getOperationId),
   ]);

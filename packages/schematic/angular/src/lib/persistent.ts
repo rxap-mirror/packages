@@ -13,7 +13,7 @@ export interface KeyPersistent extends BasePersistent {
 
 export interface PropertyPersistent extends BasePersistent {
   property: {
-    path: string;
+    name: string;
     type?: string;
   };
 }
@@ -38,7 +38,7 @@ export interface NormalizedKeyPersistent extends NormalizedBasePersistent {
 
 export interface NormalizedPropertyPersistent extends NormalizedBasePersistent {
   property: {
-    path: string;
+    name: string;
     type: string;
   };
 }
@@ -66,7 +66,7 @@ export function NormalizePersistent(persistent: Persistent): NormalizedPersisten
     return {
       ...normalizedPersistent,
       property: {
-        path: persistent.property.path,
+        name: persistent.property.name,
         type: persistent.property.type ?? 'string'
       }
     };
