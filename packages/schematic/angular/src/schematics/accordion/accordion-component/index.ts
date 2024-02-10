@@ -66,6 +66,20 @@ export interface NormalizedAccordionComponentOptions
   name: string;
   itemList: ReadonlyArray<NormalizedAccordionItem>;
   persistent: NormalizedPersistent | null;
+  withPermission: boolean;
+}
+
+function hasItemWithPermission(itemList: ReadonlyArray<NormalizedAccordionItem>): boolean {
+  return itemList.some((item) => {
+    if (item.permission) {
+      return true;
+    }
+    if (item.type === 'switch') {
+      return hasItemWithPermission((item as any).switch.case?.flatMap((item: { itemList: NormalizedAccordionItem[] }) => item.itemList) ?? []) ||
+             hasItemWithPermission((item as any).switch.defaultCase?.itemList ?? []);
+    }
+    return false;
+  });
 }
 
 function NormalizeOptions(
@@ -85,6 +99,7 @@ function NormalizeOptions(
     name,
     multiple: options.multiple ?? false,
     persistent: options.persistent ? NormalizePersistent(options.persistent) : null,
+    withPermission: hasItemWithPermission(itemList),
   });
 }
 

@@ -16,6 +16,7 @@ export interface AccordionItem {
   modifiers: string[];
   title: string;
   description?: string;
+  permission?: string;
 }
 
 export type NormalizedAccordionItem = Readonly<NonNullableSelected<Normalized<AccordionItem>, 'type'>>;
@@ -26,6 +27,7 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
   let modifiers: string[] = [];
   let title: string;
   let description: string | null = null;
+  let permission: string | null = null;
   let additional: Record<string, any> = {};
   if (typeof item === 'string') {
     const fragments = item.split(':');
@@ -38,6 +40,7 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
     modifiers = item.modifiers ?? modifiers;
     title = item.title;
     description = item.description ?? description;
+    permission = item.permission ?? permission;
     additional = item;
   }
   title ??= dasherize(name).split('-').map(fragment => capitalize(fragment)).join(' ');
@@ -53,6 +56,7 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
     name: dasherize(name),
     type,
     modifiers,
+    permission,
   });
 }
 

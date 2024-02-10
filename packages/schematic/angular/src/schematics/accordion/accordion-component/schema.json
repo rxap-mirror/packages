@@ -103,6 +103,9 @@
               },
               "description": {
                 "type": "string"
+              },
+              "permission": {
+                "type": "string"
               }
             },
             "additionalProperties": true,
