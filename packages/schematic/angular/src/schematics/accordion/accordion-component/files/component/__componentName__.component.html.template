@@ -7,7 +7,12 @@
     <mat-divider></mat-divider>
   </ng-template>
   <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
-  <mat-accordion [rxapPersistentAccordion]="accordionDataSource.lastUuid" <% if (multiple) { %>multi<% } %>>
+  <mat-accordion
+    <% if (persistent && persistent.key) { %>rxapPersistentAccordion="<%= persistent.key %>"<% } %>
+    <% if (persistent && persistent.property && persistent.property.path.includes('.')) { %>[rxapPersistentAccordion]="accordion | getFromObject:'<%= persistent.property.path %>'"<% } %>
+    <% if (persistent && persistent.property && !persistent.property.path.includes('.')) { %>[rxapPersistentAccordion]="accordion.<%= persistent.property.path %>"<% } %>
+    <% if (multiple) { %>multi<% } %>
+    >
     <% for (let index = 0; index < itemList.length; index++) { %>
     <% item = itemList[index] %>
     <% if (item.type === 'switch') { %>

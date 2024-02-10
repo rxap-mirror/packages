@@ -36,6 +36,36 @@
       ],
       "default": "none"
     },
+    "persistent": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string"
+            }
+          },
+          "required": ["key"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "property": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": ["property"]
+        }
+      ]
+    },
     "itemList": {
       "alias": "item",
       "type": "array",

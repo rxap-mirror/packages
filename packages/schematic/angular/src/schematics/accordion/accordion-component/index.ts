@@ -53,12 +53,17 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
+import {
+  NormalizedPersistent,
+  NormalizePersistent,
+} from '../../../lib/persistent';
 import { AccordionComponentOptions } from './schema';
 
 export interface NormalizedAccordionComponentOptions
-  extends Readonly<Normalized<Omit<AccordionComponentOptions, 'itemList'>> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<AccordionComponentOptions, 'itemList' | 'persistent'>> & NormalizedAngularOptions> {
   name: string;
   itemList: ReadonlyArray<NormalizedAccordionItem>;
+  persistent: NormalizedPersistent | null;
 }
 
 function NormalizeOptions(
@@ -77,6 +82,7 @@ function NormalizeOptions(
     itemList,
     name,
     multiple: options.multiple ?? false,
+    persistent: options.persistent ? NormalizePersistent(options.persistent) : null,
   });
 }
 

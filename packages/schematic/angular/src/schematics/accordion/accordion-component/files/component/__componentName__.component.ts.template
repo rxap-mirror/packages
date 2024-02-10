@@ -10,7 +10,7 @@ import { NavigateBackButtonComponent } from '@rxap/components';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { PersistentAccordionDirective } from '@rxap/material-directives/expansion';
+<% if (persistent) { %>import { PersistentAccordionDirective } from '@rxap/material-directives/expansion';<% } %>
 import { DataSourceErrorComponent } from '@rxap/data-source';
 import { AccordionHeaderComponent } from './accordion-header/accordion-header.component';
 
@@ -31,7 +31,7 @@ import { AccordionHeaderComponent } from './accordion-header/accordion-header.co
     MatProgressBarModule,
     MatDividerModule,
     MatExpansionModule,
-    PersistentAccordionDirective,
+    <% if (persistent) { %>PersistentAccordionDirective,<% } %>
     CommonModule,
     AccordionHeaderComponent,
   ],
