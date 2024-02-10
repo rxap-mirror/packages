@@ -3,20 +3,12 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/material/directives/src",
   "prefix": "rxap",
-  "tags": [
-    "angular",
-    "ngx",
-    "packages",
-    "material",
-    "scope:utilities"
-  ],
+  "tags": ["angular", "ngx", "packages", "material", "scope:utilities"],
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/material/directives/ng-package.json",
         "tailwindConfig": "packages/angular/material/directives/tailwind.config.js"
@@ -79,6 +71,20 @@
       }
     },
     "update-dependencies": {},
-    "update-package-group": {}
+    "update-package-group": {},
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/angular/material/directives/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "angular:build"
+      },
+      "configurations": {
+        "open": {
+          "watch": true
+        }
+      }
+    }
   }
 }
