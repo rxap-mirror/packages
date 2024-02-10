@@ -1,5 +1,5 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceImports } from '@rxap/ts-morph';
 import { CoerceDtoClass } from './coerce-dto-class';
 import {
   CoerceOperation,
@@ -10,19 +10,20 @@ import { DtoClassProperty } from './create-dto-class';
 export interface CoerceGetByIdControllerOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   propertyList?: DtoClassProperty[],
   isArray?: boolean,
+  idProperty?: DtoClassProperty,
+  operationName?: string,
 }
 
 export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) {
-  let {
+  const {
     controllerName,
     isArray,
-    nestModule,
-    paramList,
-    propertyList,
+    paramList= [],
+    propertyList = [],
+    idProperty = { name: 'uuid', type: 'string' },
+    operationName = 'getById',
   } = options;
-
-  propertyList ??= [];
-  paramList ??= [];
+  let { nestModule } = options;
 
   /**
    * If the module is not specified. This controller has an own module. Else the
@@ -45,22 +46,18 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
    */
   const isFirstBornSibling = !nestModule || nestModule === controllerName;
 
-  if (isFirstBornSibling && !propertyList.some(param => param.name === 'uuid')) {
-    propertyList.unshift({
-      name: 'uuid',
-      type: 'string',
-    });
+  if (isFirstBornSibling && !propertyList.some(param => param.name === idProperty.name)) {
+    propertyList.unshift(idProperty);
   }
 
   if (isFirstBornSibling) {
     nestModule = controllerName;
   }
 
-  if (!paramList.some(param => param.name === 'uuid')) {
+  if (!paramList.some(param => param.name === idProperty.name)) {
     paramList.push({
-      name: 'uuid',
-      type: 'string',
-      alias: isFirstBornSibling ? undefined : CoerceSuffix(nestModule!, '-uuid'),
+      ...idProperty,
+      alias: isFirstBornSibling ? undefined : CoerceSuffix(nestModule!, '-' + idProperty.name),
       fromParent: !isFirstBornSibling,
     });
   }
@@ -68,9 +65,9 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
   return CoerceOperation({
     ...options,
     nestModule,
-    controllerName: controllerName!,
+    controllerName,
     paramList,
-    operationName: 'getById',
+    operationName,
     tsMorphTransform: (
       project,
       sourceFile,
