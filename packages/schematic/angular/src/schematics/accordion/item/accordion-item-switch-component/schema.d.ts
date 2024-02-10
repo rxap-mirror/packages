@@ -5,7 +5,7 @@ export interface AccordionItemSwitchComponentOptions
   extends Omit<AccordionItemComponentOptions, 'type'> {
   switch: {
     property: {
-      path: string;
+      name: string;
       type?: string;
     };
     case: Array<{

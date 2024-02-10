@@ -50,7 +50,7 @@
         "property": {
           "type": "object",
           "properties": {
-            "path": {
+            "name": {
               "type": "string"
             },
             "type": {
@@ -88,7 +88,7 @@
             }
           },
           "required": [
-            "path"
+            "name"
           ]
         },
         "defaultCase": {

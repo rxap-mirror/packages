@@ -15,7 +15,7 @@
     <% for (let index = 0; index < itemList.length; index++) { %>
     <% item = itemList[index] %>
     <% if (item.type === 'switch') { %>
-    <ng-container [ngSwitch]="accordion.<%= item.switch.property.path %>">
+    <ng-container [ngSwitch]="accordion.<%= item.switch.property.name %>">
       <% for (const caseItem of item.switch.case) { %>
       <% if (item.switch.property.type === 'string') { %>
       <ng-template [ngSwitchCase]="'<%= caseItem.test %>'">

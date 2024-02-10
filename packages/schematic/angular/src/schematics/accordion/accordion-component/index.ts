@@ -517,10 +517,20 @@ function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions)
       type: 'string',
     }
   ];
-  const persistent = normalizedOptions.persistent;
+  const {persistent, itemList} = normalizedOptions;
   if (persistent && IsNormalizedPropertyPersistent(persistent)) {
     if (!propertyList.some((property) => property.name === persistent.property.name)) {
       propertyList.push(persistent.property);
+    }
+  }
+  if (itemList.some(item => item.type === 'switch')) {
+    for (const item of itemList) {
+      if (item.type === 'switch') {
+        propertyList.push({
+          name: (item as any).switch.property.name,
+          type: (item as any).switch.property.type,
+        });
+      }
     }
   }
   return propertyList;

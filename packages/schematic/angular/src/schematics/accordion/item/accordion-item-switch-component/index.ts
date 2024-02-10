@@ -27,7 +27,7 @@ export interface NormalizedAccordionItemSwitchComponentOptions
   extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch'> {
   switch: Readonly<{
     property: Readonly<{
-      path: string;
+      name: string;
       type: string;
     }>;
     case: ReadonlyArray<{
@@ -51,7 +51,7 @@ export function NormalizeAccordionItemSwitchComponentOptions(
     ...normalizedAccordionItemComponentOptions,
     switch: Object.freeze({
       property: Object.freeze({
-        path: property.path,
+        name: property.name,
         type: property.type ?? 'string',
       }),
       case: Object.freeze(caseList.map((item) => ({
