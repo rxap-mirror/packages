@@ -61,6 +61,12 @@
       },
       "description": "The modifiers to apply to the accordion item type"
     },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
     "overwrite": {
       "anyOf": [
         {

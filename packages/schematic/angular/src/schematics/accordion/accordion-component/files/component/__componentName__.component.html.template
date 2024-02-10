@@ -22,7 +22,7 @@
           <mat-expansion-panel>
 
             <mat-expansion-panel-header>
-              <mat-panel-title i18n><%= classify(item.name) %> <%= classify(innerItem.name) %></mat-panel-title>
+              <mat-panel-title i18n><%= innerItem.title %></mat-panel-title>
               <% if (innerItem.description) { %>
               <mat-panel-description i18n><%= innerItem.description %></mat-panel-description>
               <% } %>
@@ -42,7 +42,7 @@
         <mat-expansion-panel>
 
           <mat-expansion-panel-header>
-            <mat-panel-title i18n><%= classify(item.name) %> <%= classify(innerItem.name) %></mat-panel-title>
+            <mat-panel-title i18n><%= innerItem.title %></mat-panel-title>
             <% if (innerItem.description) { %>
             <mat-panel-description i18n><%= innerItem.description %></mat-panel-description>
             <% } %>
@@ -61,7 +61,7 @@
     <mat-expansion-panel>
 
       <mat-expansion-panel-header>
-        <mat-panel-title i18n><%= classify(item.name) %></mat-panel-title>
+        <mat-panel-title i18n><%= item.title %></mat-panel-title>
         <% if (item.description) { %>
         <mat-panel-description i18n><%= item.description %></mat-panel-description>
         <% } %>

@@ -125,6 +125,12 @@
                         "items": {
                           "type": "string"
                         }
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
                       }
                     },
                     "additionalProperties": true,
@@ -187,6 +193,12 @@
                           "items": {
                             "type": "string"
                           }
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
                         }
                       },
                       "additionalProperties": true,

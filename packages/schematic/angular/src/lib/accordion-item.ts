@@ -1,5 +1,6 @@
 import { SchematicsException } from '@angular-devkit/schematics';
 import {
+  capitalize,
   dasherize,
   NonNullableSelected,
   Normalized,
@@ -13,6 +14,8 @@ export interface AccordionItem {
   name: string;
   type: AccordionItemTypes;
   modifiers: string[];
+  title: string;
+  description?: string;
 }
 
 export type NormalizedAccordionItem = Readonly<NonNullableSelected<Normalized<AccordionItem>, 'type'>>;
@@ -21,6 +24,8 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
   let name: string;
   let type = 'panel';
   let modifiers: string[] = [];
+  let title: string;
+  let description: string | null = null;
   let additional: Record<string, any> = {};
   if (typeof item === 'string') {
     const fragments = item.split(':');
@@ -31,8 +36,11 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
     name = item.name;
     type = item.type ?? type;
     modifiers = item.modifiers ?? modifiers;
+    title = item.title;
+    description = item.description ?? description;
     additional = item;
   }
+  title ??= dasherize(name).split('-').map(fragment => capitalize(fragment)).join(' ');
   if (!IsAccordionItemType(type)) {
     throw new SchematicsException(
       `The item type '${ type }' for item '${ name }' is not supported`,
@@ -40,6 +48,8 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
   }
   return Object.freeze({
     ...additional,
+    title,
+    description,
     name: dasherize(name),
     type,
     modifiers,
