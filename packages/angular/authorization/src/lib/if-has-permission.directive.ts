@@ -22,10 +22,11 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
   standalone: true,
 })
 export class IfHasPermissionDirective implements OnInit, OnDestroy {
-  @Input({ required: true })
+
+  @Input({ required: true, alias: 'rxapIfHasPermission' })
   public identifier!: string;
 
-  @Input()
+  @Input({ alias: 'rxapIfHasPermissionElse' })
   public else?: TemplateRef<any>;
 
   private _subscription?: Subscription;
