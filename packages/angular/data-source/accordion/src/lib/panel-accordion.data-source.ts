@@ -1,35 +1,25 @@
 import {
-  ACCORDION_DATA_SOURCE_METHOD,
-  AccordionDataSource,
-} from './accordion.data-source';
-import {
-  Inject,
+  inject,
   Injectable,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import '@rxap/rxjs';
+import { AccordionDataSource } from './accordion.data-source';
 import { ACCORDION_DATA_SOURCE } from './tokens';
-import {
-  Method,
-  MethodWithParameters,
-} from '@rxap/pattern';
 
 @Injectable()
-export abstract class PanelAccordionDataSource<Data> extends AccordionDataSource<Data> implements OnDestroy {
+export abstract class PanelAccordionDataSource<
+  Data = unknown,
+  Parameters = unknown
+> extends AccordionDataSource<Data, Parameters> implements OnDestroy, OnInit {
 
-  private _subscription?: Subscription;
+  protected readonly accordionDataSource = inject<AccordionDataSource<Data, Parameters>>(ACCORDION_DATA_SOURCE);
 
-  constructor(
-    @Inject(ACCORDION_DATA_SOURCE_METHOD)
-      method: MethodWithParameters<Data, { parameters: { uuid: string } }>,
-    route: ActivatedRoute,
-    @Inject(ACCORDION_DATA_SOURCE)
-    protected readonly accordionDataSource: AccordionDataSource<unknown>,
-  ) {
-    super(method, route);
+  override getParameters(): Observable<Parameters> | Promise<Parameters> | Parameters {
+    return this.accordionDataSource.getParameters();
   }
 
   override ngOnInit() {
