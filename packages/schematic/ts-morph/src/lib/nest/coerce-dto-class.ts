@@ -114,7 +114,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
       propertyName,
     ).set({
       type: WriteType(property),
-      hasQuestionToken: property.isOptional,
+      hasQuestionToken: !!property.isOptional,
       hasExclamationToken: !property.isOptional,
     });
 

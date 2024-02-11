@@ -4,7 +4,7 @@ import {
 } from 'ts-morph';
 
 export interface WriteTypeOptions {
-  isArray?: boolean;
+  isArray?: boolean | null;
   type: string | WriterFunction;
 }
 

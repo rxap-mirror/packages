@@ -20,13 +20,13 @@ export interface DtoClassProperty {
    * if type = '<self>' the type will be the name of the class
    */
   type: string | WriterFunction,
-  isArray?: boolean,
-  isType?: boolean,
-  isOptional?: boolean,
+  isArray?: boolean | null,
+  isType?: boolean | null,
+  isOptional?: boolean | null,
   /**
    * Use to import the type
    */
-  moduleSpecifier?: string,
+  moduleSpecifier?: string | null,
 }
 
 export function CreateDtoClass(
@@ -207,7 +207,7 @@ export function CreateDtoClass(
         }
         w.write('>');
       },
-      hasQuestionToken: property.isOptional,
+      hasQuestionToken: !!property.isOptional,
       hasExclamationToken: !property.isOptional,
       decorators,
     });

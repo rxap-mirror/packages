@@ -1,3 +1,9 @@
+import {
+  DataProperty,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
+} from './data-property';
+
 export enum PersistentStorageProvider {
   LocalStorage = 'localStorage',
   SessionStorage = 'sessionStorage'
@@ -12,10 +18,7 @@ export interface KeyPersistent extends BasePersistent {
 }
 
 export interface PropertyPersistent extends BasePersistent {
-  property: {
-    name: string;
-    type?: string;
-  };
+  property: DataProperty;
 }
 
 export function IsKeyPersistent(persistent: Persistent): persistent is KeyPersistent {
@@ -37,10 +40,7 @@ export interface NormalizedKeyPersistent extends NormalizedBasePersistent {
 }
 
 export interface NormalizedPropertyPersistent extends NormalizedBasePersistent {
-  property: {
-    name: string;
-    type: string;
-  };
+  property: NormalizedDataProperty;
 }
 
 export type NormalizedPersistent = NormalizedKeyPersistent | NormalizedPropertyPersistent;
@@ -65,10 +65,7 @@ export function NormalizePersistent(persistent: Persistent): NormalizedPersisten
   } else if (IsPropertyPersistent(persistent)) {
     return {
       ...normalizedPersistent,
-      property: {
-        name: persistent.property.name,
-        type: persistent.property.type ?? 'string'
-      }
+      property: NormalizeDataProperty(persistent.property, 'string')
     };
   }
   throw new Error('Invalid persistent object');

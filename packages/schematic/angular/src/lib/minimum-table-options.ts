@@ -2,6 +2,7 @@ import {
   CoerceSuffix,
   Normalized,
 } from '@rxap/utilities';
+import { MergeWithColumnList } from './merge-with-column-list';
 import {
   NormalizedTableAction,
   NormalizeTableActionList,
@@ -17,18 +18,17 @@ import {
   TableHeaderButton,
 } from './table-header-button';
 import {
-  MergeWithColumnList,
-  NormalizedTableProperty,
-  NormalizeTablePropertyList,
-  TableProperty,
-} from './table-property';
+  NormalizedDataProperty,
+  NormalizeDataPropertyList,
+  DataProperty,
+} from './data-property';
 import { ToTitle } from './to-title';
 
 export interface MinimumTableOptions {
   headerButton?: string | TableHeaderButton;
   columnList: Array<string | TableColumn>;
   actionList: Array<string | TableAction>;
-  propertyList: Array<string | TableProperty>;
+  propertyList: Array<string | DataProperty>;
   modifiers?: string[];
   title?: string;
   componentName?: string;
@@ -39,7 +39,7 @@ export interface NormalizedMinimumTableOptions
   componentName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: ReadonlyArray<NormalizedTableProperty>;
+  propertyList: ReadonlyArray<NormalizedDataProperty>;
 }
 
 export function NormalizeMinimumTableOptions(
@@ -50,7 +50,7 @@ export function NormalizeMinimumTableOptions(
   const componentName = options.componentName ?? CoerceSuffix(name, suffix);
   const actionList = NormalizeTableActionList(options.actionList);
   const columnList = NormalizeTableColumnList(options.columnList);
-  const propertyList = NormalizeTablePropertyList(options.propertyList);
+  const propertyList = NormalizeDataPropertyList(options.propertyList);
   const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
   const modifiers = options.modifiers ?? [];
   const title = options.title ?? ToTitle(name);

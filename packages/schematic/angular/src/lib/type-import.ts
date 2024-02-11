@@ -1,7 +1,16 @@
 import { TypeImport } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 
-export type NormalizedTypeImport = Readonly<Normalized<TypeImport>>;
+// export type NormalizedTypeImport = Readonly<Normalized<TypeImport>>;
+
+export interface NormalizedTypeImport {
+  name: string;
+  moduleSpecifier: string | null;
+  namedImport: string | null;
+  namespaceImport: string | null;
+  isTypeOnly: boolean | null;
+  defaultImport: string | null;
+}
 
 export function NormalizeTypeImport(typeImport: Readonly<TypeImport> | string): NormalizedTypeImport {
   let name: string;

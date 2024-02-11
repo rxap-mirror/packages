@@ -1,12 +1,15 @@
+import {
+  DataProperty,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
+} from './data-property';
+
 export interface StaticAccordionHeader {
   title: string;
 }
 
 export interface PropertyAccordionHeader {
-  property: {
-    name: string;
-    type?: string;
-  };
+  property: DataProperty;
 }
 
 export type AccordionHeader = StaticAccordionHeader | PropertyAccordionHeader;
@@ -16,10 +19,7 @@ export interface NormalizedStaticAccordionHeader {
 }
 
 export interface NormalizedPropertyAccordionHeader {
-  property: {
-    name: string;
-    type: string;
-  };
+  property: NormalizedDataProperty;
 }
 
 export type NormalizedAccordionHeader = NormalizedStaticAccordionHeader | NormalizedPropertyAccordionHeader;
@@ -43,13 +43,12 @@ export function IsNormalizedPropertyAccordionHeader(header: NormalizedAccordionH
 export function NormalizeAccordionHeader(header?: AccordionHeader): NormalizedAccordionHeader | null {
   if (header) {
     if (IsStaticAccordionHeader(header)) {
-      return header;
+      return {
+        title: header.title,
+      };
     } else if (IsPropertyAccordionHeader(header)) {
       return {
-        property: {
-          name: header.property.name,
-          type: header.property.type ?? 'string'
-        }
+        property: NormalizeDataProperty(header.property, 'string'),
       };
     }
   }

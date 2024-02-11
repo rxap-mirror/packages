@@ -52,7 +52,7 @@ import {
   NormalizedTableOptions,
   NormalizeTableOptions,
 } from '../../../lib/table-options';
-import { NormalizedTableProperty } from '../../../lib/table-property';
+import { NormalizedDataProperty } from '../../../lib/data-property';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
@@ -86,7 +86,7 @@ export function NormalizeTableComponentOptions(
 
 export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
   columnList: ReadonlyArray<NormalizedTableColumn>,
-  propertyList: ReadonlyArray<NormalizedTableProperty>,
+  propertyList: ReadonlyArray<NormalizedDataProperty>,
 ): GetPageOperationProperty[] {
   const list: GetPageOperationProperty[] = [];
   for (const column of columnList) {

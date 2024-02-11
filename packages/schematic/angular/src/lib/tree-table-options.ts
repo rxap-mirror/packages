@@ -11,7 +11,7 @@ import {
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
 import { NormalizedTableColumn } from './table-column';
-import { NormalizedTableProperty } from './table-property';
+import { NormalizedDataProperty } from './data-property';
 
 export interface TreeTableOptions extends MinimumTableOptions {
   tableRootMethod?: ExistingMethod;
@@ -23,7 +23,7 @@ export interface NormalizedTreeTableOptions
   componentName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: ReadonlyArray<NormalizedTableProperty>;
+  propertyList: ReadonlyArray<NormalizedDataProperty>;
   tableRootMethod: NormalizedExistingMethod | null;
   tableChildMethod: NormalizedExistingMethod | null;
 }

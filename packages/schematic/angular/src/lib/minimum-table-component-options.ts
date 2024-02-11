@@ -50,7 +50,7 @@ import {
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
 import { NormalizedTableColumn } from './table-column';
-import { NormalizedTableProperty } from './table-property';
+import { NormalizedDataProperty } from './data-property';
 
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 
@@ -58,7 +58,7 @@ export interface NormalizedMinimumTableComponentOptions
   extends Omit<Readonly<Normalized<MinimumTableComponentOptions> & NormalizedMinimumTableOptions & NormalizedAngularOptions>, 'columnList' | 'actionList' | 'propertyList'> {
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: ReadonlyArray<NormalizedTableProperty>;
+  propertyList: ReadonlyArray<NormalizedDataProperty>;
   componentName: string;
   controllerName: string;
 }
@@ -133,11 +133,11 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
   ]);
 }
 
-function tablePropertyListToImportStructure(propertyList: ReadonlyArray<NormalizedTableProperty>): ReadonlyArray<OptionalKind<ImportDeclarationStructure>> {
+function tablePropertyListToImportStructure(propertyList: ReadonlyArray<NormalizedDataProperty>): ReadonlyArray<OptionalKind<ImportDeclarationStructure>> {
   return propertyList.filter(p => RequiresTypeImport(p.type)).map(p => TypeImportToImportStructure(p.type));
 }
 
-function tablePropertyListToPropertiesStructure(propertyList: ReadonlyArray<NormalizedTableProperty>): OptionalKind<PropertySignatureStructure>[] {
+function tablePropertyListToPropertiesStructure(propertyList: ReadonlyArray<NormalizedDataProperty>): OptionalKind<PropertySignatureStructure>[] {
   const result: any = {};
 
   propertyList.forEach((column) => {

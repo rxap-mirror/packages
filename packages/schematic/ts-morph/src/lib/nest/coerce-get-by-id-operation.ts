@@ -56,7 +56,8 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
 
   if (!paramList.some(param => param.name === idProperty.name)) {
     paramList.push({
-      ...idProperty,
+      name: idProperty.name,
+      type: idProperty.type,
       alias: isFirstBornSibling ? undefined : CoerceSuffix(nestModule!, '-' + idProperty.name),
       fromParent: !isFirstBornSibling,
     });
