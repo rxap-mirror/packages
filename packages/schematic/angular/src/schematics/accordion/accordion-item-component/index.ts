@@ -29,6 +29,7 @@ import {
   dasherize,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
+import { CoerceClassProperty } from '@rxap/ts-morph';
 import {
   classify,
   Normalized,
@@ -37,6 +38,7 @@ import { join } from 'path';
 import {
   ClassDeclaration,
   Project,
+  Scope,
   SourceFile,
 } from 'ts-morph';
 import {
@@ -166,50 +168,15 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
           moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
         });
         CoerceImports(sourceFile, {
-          namedImports: [
-            'PanelAccordionDataSource',
-            'AccordionDataSource',
-            'ACCORDION_DATA_SOURCE',
-          ],
-          moduleSpecifier: '@rxap/data-source/accordion',
-        });
-        CoerceImports(sourceFile, {
-          moduleSpecifier: '@angular/router',
-          namedImports: [ 'ActivatedRoute' ],
-        });
-        CoerceImports(sourceFile, {
           moduleSpecifier: '@angular/core',
           namedImports: [ 'Inject' ],
         });
-        const [ constructorDeclaration ] =
-          CoerceClassConstructor(classDeclaration);
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'method',
-        ).set({
-          type: OperationIdToClassName(operationId),
+        CoerceClassProperty(classDeclaration, 'method', {
+          scope: Scope.Protected,
+          hasOverrideKeyword: true,
+          initializer: `inject(${ OperationIdToClassName(operationId) })`,
+          isReadonly: true,
         });
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'route',
-        ).set({
-          type: 'ActivatedRoute',
-        });
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'accordionDataSource',
-        ).set({
-          type: 'AccordionDataSource',
-          decorators: [
-            {
-              name: 'Inject',
-              arguments: [ 'ACCORDION_DATA_SOURCE' ],
-            },
-          ],
-        });
-        CoerceStatements(constructorDeclaration, [
-          `super(method, route, accordionDataSource);`,
-        ]);
       },
     }),
   ]);
@@ -238,16 +205,7 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
       name,
       structure: {
         isExported: true,
-        properties: [
-          {
-            name: 'uuid',
-            type: 'string',
-          },
-          {
-            name: 'name',
-            type: 'string',
-          },
-        ],
+        properties: [],
       },
     }, TsMorphAngularProjectTransformRule),
     CoerceMethodClass({
@@ -271,7 +229,7 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
           returnType: classify(name),
           statements: [
             `console.log('parameters: ', parameters);`,
-            'return { uuid: faker.string.uuid(), name: faker.commerce.productName() };',
+            'return {} as any;',
           ],
         };
       },
@@ -297,50 +255,23 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
           moduleSpecifier: `./${ dasherize(name) }.method`,
         });
         CoerceImports(sourceFile, {
-          namedImports: [
-            'PanelAccordionDataSource',
-            'AccordionDataSource',
-            'ACCORDION_DATA_SOURCE',
-          ],
-          moduleSpecifier: '@rxap/data-source/accordion',
-        });
-        CoerceImports(sourceFile, {
-          moduleSpecifier: '@angular/router',
-          namedImports: [ 'ActivatedRoute' ],
-        });
-        CoerceImports(sourceFile, {
           moduleSpecifier: '@angular/core',
           namedImports: [ 'Inject' ],
         });
-        const [ constructorDeclaration ] =
-          CoerceClassConstructor(classDeclaration);
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'method',
-        ).set({
-          type: classify(name) + 'Method',
+        CoerceImports(sourceFile, {
+          moduleSpecifier: '@angular/core',
+          namedImports: [ 'inject' ],
         });
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'route',
-        ).set({
-          type: 'ActivatedRoute',
+        CoerceImports(sourceFile, {
+          moduleSpecifier: '@rxap/data-source/accordion',
+          namedImports: [ 'PanelAccordionDataSource' ],
         });
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'accordionDataSource',
-        ).set({
-          type: 'AccordionDataSource',
-          decorators: [
-            {
-              name: 'Inject',
-              arguments: [ 'ACCORDION_DATA_SOURCE' ],
-            },
-          ],
+        CoerceClassProperty(classDeclaration, 'method', {
+          scope: Scope.Protected,
+          hasOverrideKeyword: true,
+          initializer: `inject(${ classify(name) + 'Method' })`,
+          isReadonly: true,
         });
-        CoerceStatements(constructorDeclaration, [
-          `super(method, route, accordionDataSource);`,
-        ]);
       },
     }),
     CoerceComponentRule({

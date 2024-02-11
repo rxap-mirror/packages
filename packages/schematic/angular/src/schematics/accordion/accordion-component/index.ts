@@ -33,6 +33,12 @@ import {
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import {
+  CoerceClassMethod,
+  CoerceClassProperty,
+  OperationIdToParameterClassImportPath,
+  OperationIdToParameterClassName,
+} from '@rxap/ts-morph';
+import {
   classify,
   Normalized,
 } from '@rxap/utilities';
@@ -49,6 +55,10 @@ import {
   NormalizedAccordionHeader,
 } from '../../../lib/accordion-header';
 import {
+  NormalizeAccordionIdentifier,
+  NormalizedAccordionIdentifier,
+} from '../../../lib/accordion-identifier';
+import {
   NormalizeAccordionItemList,
   NormalizedAccordionItem,
 } from '../../../lib/accordion-item';
@@ -59,6 +69,7 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
+import { ToDtoClassProperty } from '../../../lib/data-property';
 import {
   IsNormalizedPropertyPersistent,
   NormalizedPersistent,
@@ -67,12 +78,13 @@ import {
 import { AccordionComponentOptions } from './schema';
 
 export interface NormalizedAccordionComponentOptions
-  extends Readonly<Normalized<Omit<AccordionComponentOptions, 'itemList' | 'persistent'>> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<AccordionComponentOptions, 'itemList' | 'persistent' | 'identifier'>> & NormalizedAngularOptions> {
   name: string;
   itemList: ReadonlyArray<NormalizedAccordionItem>;
   persistent: NormalizedPersistent | null;
   withPermission: boolean;
   header: NormalizedAccordionHeader | null;
+  identifier: NormalizedAccordionIdentifier | null;
 }
 
 function hasItemWithPermission(itemList: ReadonlyArray<NormalizedAccordionItem>): boolean {
@@ -107,6 +119,7 @@ function NormalizeOptions(
     persistent: options.persistent ? NormalizePersistent(options.persistent) : null,
     withPermission: hasItemWithPermission(itemList),
     header: NormalizeAccordionHeader(options.header),
+    identifier: NormalizeAccordionIdentifier(options.identifier),
   });
 }
 
@@ -350,6 +363,7 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
     shared,
     scope,
     componentName,
+    identifier,
   } = normalizedOptions;
 
   if (!componentName) {
@@ -369,9 +383,6 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
       ) => {
-        classDeclaration.setExtends(
-          `AccordionDataSource<${ OperationIdToResponseClassName(getOperationId) }>`,
-        );
         CoerceImports(sourceFile, {
           namedImports: [ OperationIdToResponseClassName(getOperationId) ],
           moduleSpecifier:
@@ -386,17 +397,57 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
           moduleSpecifier: '@rxap/data-source/accordion',
         });
         CoerceImports(sourceFile, {
-          moduleSpecifier: '@angular/router',
-          namedImports: [ 'ActivatedRoute' ],
+          moduleSpecifier: '@angular/core',
+          namedImports: [ 'inject' ],
         });
-        const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-        CoerceParameterDeclaration(constructorDeclaration, 'method').set({
-          type: OperationIdToClassName(getOperationId),
+        CoerceClassProperty(classDeclaration, 'method', {
+          scope: Scope.Protected,
+          hasOverrideKeyword: true,
+          initializer: `inject(${ OperationIdToClassName(getOperationId) })`,
+          isReadonly: true,
         });
-        CoerceParameterDeclaration(constructorDeclaration, 'route').set({
-          type: 'ActivatedRoute',
-        });
-        CoerceStatements(constructorDeclaration, [ `super(method, route);` ]);
+        let parametersType = 'undefined';
+        if (identifier?.source === 'route') {
+          CoerceClassProperty(classDeclaration, 'route', {
+            scope: Scope.Protected,
+            initializer: 'inject(ActivatedRoute)',
+            isReadonly: true,
+          });
+          CoerceImports(sourceFile, {
+            moduleSpecifier: '@angular/router',
+            namedImports: [ 'ActivatedRoute' ],
+          });
+          parametersType = `OpenApiRemoteMethodParameter<${OperationIdToParameterClassName(getOperationId)}, void>`;
+          CoerceImports(sourceFile, {
+            namedImports: [ OperationIdToParameterClassName(getOperationId) ],
+            moduleSpecifier:
+              OperationIdToParameterClassImportPath(getOperationId, scope),
+          });
+          CoerceImports(sourceFile, {
+            namedImports: [ 'OpenApiRemoteMethodParameter' ],
+            moduleSpecifier: '@rxap/open-api/remote-method',
+          });
+          CoerceImports(sourceFile, {
+            namedImports: [ 'map' ],
+            moduleSpecifier: 'rxjs/operators',
+          });
+          CoerceClassMethod(classDeclaration, 'getParameters', {
+            statements: [ `return this.route.paramMap.pipe(map(paramMap => {
+            const ${identifier.property.name} = paramMap.get('${identifier.property.name}');
+            if (!${identifier.property.name}) {
+              throw new Error('The route does not contain the parameter ${identifier.property.name}');
+            }
+            return { parameters: { ${identifier.property.name} } };
+            }));` ],
+          });
+        } else {
+          CoerceClassMethod(classDeclaration, 'getParameters', {
+            statements: [ 'return undefined;' ],
+          });
+        }
+        classDeclaration.setExtends(
+          `AccordionDataSource<${ OperationIdToResponseClassName(getOperationId) }, ${parametersType}>`,
+        );
       },
     }),
   ]);
@@ -548,16 +599,16 @@ function itemListRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 }
 
 function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions): DtoClassProperty[] {
-  const propertyList: DtoClassProperty[] = [
-    {
-      name: 'name',
-      type: 'string',
-    }
-  ];
-  const {persistent, itemList, header} = normalizedOptions;
+  const propertyList: DtoClassProperty[] = [];
+  const {
+    persistent,
+    itemList,
+    header,
+    identifier,
+  } = normalizedOptions;
   if (persistent && IsNormalizedPropertyPersistent(persistent)) {
     if (!propertyList.some((property) => property.name === persistent.property.name)) {
-      propertyList.push(persistent.property);
+      propertyList.push(ToDtoClassProperty(persistent.property));
     }
   }
   if (itemList.some(item => item.type === 'switch')) {
@@ -572,7 +623,12 @@ function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions)
   }
   if (header && IsNormalizedPropertyAccordionHeader(header)) {
     if (!propertyList.some((property) => property.name === header.property.name)) {
-      propertyList.push(header.property);
+      propertyList.push(ToDtoClassProperty(header.property));
+    }
+  }
+  if (identifier) {
+    if (!propertyList.some((property) => property.name === identifier.property.name)) {
+      propertyList.push(ToDtoClassProperty(identifier.property));
     }
   }
   return propertyList;

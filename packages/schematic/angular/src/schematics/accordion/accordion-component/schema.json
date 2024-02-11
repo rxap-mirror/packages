@@ -67,6 +67,31 @@
         }
       ]
     },
+    "identifier": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": ["name"]
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "route"
+          ],
+          "default": "route"
+        }
+      },
+      "required": ["property"]
+    },
     "header": {
       "oneOf": [
         {

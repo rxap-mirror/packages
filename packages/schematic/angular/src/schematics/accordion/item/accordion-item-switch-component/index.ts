@@ -7,7 +7,6 @@ import {
   dasherize,
   Normalized,
 } from '@rxap/utilities';
-import { join } from 'path';
 import {
   AccordionItem,
   NormalizeAccordionItemList,
@@ -18,6 +17,10 @@ import {
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import {
+  NormalizeDataProperty,
+  NormalizedDataProperty,
+} from '../../../../lib/data-property';
+import {
   NormalizeAccordionItemStandaloneComponentOptions,
   NormalizedAccordionItemStandaloneComponentOptions,
 } from '../../accordion-item-component';
@@ -26,10 +29,7 @@ import { AccordionItemSwitchComponentOptions } from './schema';
 export interface NormalizedAccordionItemSwitchComponentOptions
   extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch'> {
   switch: Readonly<{
-    property: Readonly<{
-      name: string;
-      type: string;
-    }>;
+    property: NormalizedDataProperty;
     case: ReadonlyArray<{
       test: string;
       itemList: ReadonlyArray<NormalizedAccordionItem>
@@ -50,23 +50,18 @@ export function NormalizeAccordionItemSwitchComponentOptions(
   return Object.freeze({
     ...normalizedAccordionItemComponentOptions,
     switch: Object.freeze({
-      property: Object.freeze({
-        name: property.name,
-        type: property.type ?? 'string',
-      }),
+      property: NormalizeDataProperty(property, 'string'),
       case: Object.freeze(caseList.map((item) => ({
         test: item.test,
         itemList: NormalizeAccordionItemList(item.itemList.map((item) => ({
           ...item,
           name: [itemName, dasherize(item.name)].join('-'),
-          type: item.type ?? 'panel',
         }) as AccordionItem)),
       }))),
       defaultCase: defaultCase ? {
         itemList: NormalizeAccordionItemList(defaultCase.itemList.map((item) => ({
           ...item,
           name: [itemName, dasherize(item.name)].join('-'),
-          type: item.type ?? 'panel',
         }) as AccordionItem)),
       } : null,
     }),
@@ -131,7 +126,6 @@ function defaultCaseRule(normalizedOptions: NormalizedAccordionItemSwitchCompone
 export default function (options: AccordionItemSwitchComponentOptions) {
   const normalizedOptions = NormalizeAccordionItemSwitchComponentOptions(options);
   printOptions(normalizedOptions);
-  const { switch: { case: caseList } } = normalizedOptions;
   return () => {
     return chain([
       caseListRule(normalizedOptions),
