@@ -1,6 +1,6 @@
 <div *ngIf="(hasError$ | async)" class="flex flex-col items-center justify-center gap-y-8">
   <span i18n>Something has gone wrong!</span>
-  <button type="button" (click)="retry()" i18n mat-stroked-button>Retry</button>
+  <button (click)="retry()" i18n mat-stroked-button type="button">Retry</button>
 </div>
 <div *ngIf="(dataLoading$ | async)" class="flex flex-col items-center justify-center gap-y-8">
   <mat-spinner></mat-spinner>
@@ -58,10 +58,11 @@ never shown. -->
     </ng-template>
     <ng-template #content>
       <td [attr.colspan]="row.flip ? 2 : 1" [ngClass]="{
-      'h-20': row.editCell?.template && (isEditMode || isFormMode),
+      'h-20': row.editCell?.template && (isEditMode || isFormMode) && false,
       }" class="pl-8 pr-4 w-full">
         <ng-template [ngIfThen]="editMode" [ngIf]="row.editCell?.template && (isEditMode || isFormMode)"></ng-template>
-        <ng-template [ngIfThen]="viewMode" [ngIf]="!row.editCell?.template || !isEditMode || !isFormMode"></ng-template>
+        <ng-template [ngIfThen]="viewMode"
+                     [ngIf]="!row.editCell?.template || (!isEditMode && !isFormMode)"></ng-template>
       </td>
       <ng-template #viewMode>
         <ng-container
@@ -102,7 +103,7 @@ never shown. -->
           </ng-template>
 
           <ng-template let-error rxapFormSubmitFailed>
-            <mat-error>{{ error.message }}</mat-error>
+            <mat-error>{{ error.error?.message ?? error.message }}</mat-error>
           </ng-template>
 
           <ng-template rxapFormSubmitSuccessful>

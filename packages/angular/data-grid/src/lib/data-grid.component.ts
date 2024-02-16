@@ -1,10 +1,4 @@
-import {
-  AsyncPipe,
-  NgClass,
-  NgFor,
-  NgIf,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { AsyncPipe, NgClass, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -25,42 +19,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {
-  ActivationEnd,
-  Router,
-} from '@angular/router';
-import {
-  FormDirective,
-  RxapFormsModule,
-} from '@rxap/forms';
-import {
-  DataSource,
-  DataSourceViewer,
-} from '@rxap/pattern';
-import {
-  EscapeQuotationMarkPipe,
-  GetFromObjectPipe,
-  ReplacePipe,
-} from '@rxap/pipes';
+import { ActivationEnd, Router } from '@angular/router';
+import { FormDirective, RxapFormsModule } from '@rxap/forms';
+import { DataSource, DataSourceViewer } from '@rxap/pattern';
+import { EscapeQuotationMarkPipe, GetFromObjectPipe, ReplacePipe } from '@rxap/pipes';
 import { ToggleSubject } from '@rxap/rxjs';
 import { clone } from '@rxap/utilities';
-import {
-  BehaviorSubject,
-  combineLatest,
-  debounceTime,
-  EMPTY,
-  merge,
-  Observable,
-  of,
-  Subscription,
-} from 'rxjs';
-import {
-  filter,
-  map,
-  shareReplay,
-  take,
-  tap,
-} from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, debounceTime, EMPTY, merge, Observable, of, Subscription } from 'rxjs';
+import { filter, map, shareReplay, take, tap } from 'rxjs/operators';
 import { DataGridRowDefDirective } from './data-grid-row-def.directive';
 import { DataGridValuePipe } from './data-grid-value.pipe';
 import { IsEmptyPipe } from './is-empty.pipe';
@@ -73,7 +39,7 @@ export enum DataGridMode {
   /**
    * The edit cell template is used to display the property value, but the form and all controls are marked as disabled
    */
-  FORM = 'form',
+  FORM  = 'form',
 }
 
 function IsDataGridMode(value: string): value is DataGridMode {
@@ -81,6 +47,7 @@ function IsDataGridMode(value: string): value is DataGridMode {
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'rxap-data-grid',
   templateUrl: './data-grid.component.html',
   styleUrls: [ './data-grid.component.scss' ],
@@ -132,18 +99,22 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   @ContentChildren(DataGridRowDefDirective)
   public rows!: QueryList<DataGridRowDefDirective<T>>;
   @Output()
-  public editModeChange = new EventEmitter<{ mode: boolean, data?: T, done: () => void }>();
+  public editModeChange                                           = new EventEmitter<{
+    mode: boolean,
+    data?: T,
+    done: () => void
+  }>();
   public rows$: Observable<QueryList<DataGridRowDefDirective<T>>> = EMPTY;
-  public hasError$: Observable<boolean> = of(false);
-  public dataLoading$: Observable<boolean> = of(false);
-  public loading$ = new ToggleSubject();
+  public hasError$: Observable<boolean>                           = of(false);
+  public dataLoading$: Observable<boolean>                        = of(false);
+  public loading$                                                 = new ToggleSubject();
   public readonly isEditMode$: Observable<boolean>;
   public readonly mode$: Observable<DataGridMode>;
   public readonly isFormMode$: Observable<boolean>;
   public readonly isPlainMode$: Observable<boolean>;
-  private _editMode$ = new BehaviorSubject<boolean>(false);
-  private _mode$ = new BehaviorSubject<DataGridMode>(DataGridMode.PLAIN);
-  private _routerEventSubscription: Subscription | null = null;
+  private _editMode$                                              = new BehaviorSubject<boolean>(false);
+  private _mode$                                                  = new BehaviorSubject<DataGridMode>(DataGridMode.PLAIN);
+  private _routerEventSubscription: Subscription | null           = null;
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
@@ -151,9 +122,9 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     @Optional()
     private readonly formDirective?: FormDirective,
   ) {
-    this.isEditMode$ = this._editMode$.asObservable();
-    this.mode$ = this._mode$.asObservable();
-    this.isFormMode$ = this.mode$.pipe(map(mode => mode === DataGridMode.FORM));
+    this.isEditMode$  = this._editMode$.asObservable();
+    this.mode$        = this._mode$.asObservable();
+    this.isFormMode$  = this.mode$.pipe(map(mode => mode === DataGridMode.FORM));
     this.isPlainMode$ = this.mode$.pipe(map(mode => mode === DataGridMode.PLAIN));
   }
 
@@ -243,7 +214,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       shareReplay(1),
     );
     if (this.dataSource) {
-      this.hasError$ = this.dataSource.hasError$ ?? this.hasError$;
+      this.hasError$    = this.dataSource.hasError$ ?? this.hasError$;
       this.dataLoading$ = this.dataSource.loading$ ?? this.dataLoading$;
     }
     if (this.formDirective && this.isFormMode) {
@@ -252,7 +223,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
         this._mode$,
       ]).pipe(
         map(([ editMode, mode ]) => !editMode && mode === 'form'),
-      ), { onlySelf: false });
+      ), {onlySelf: false});
     }
   }
 
@@ -261,7 +232,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     this._routerEventSubscription?.unsubscribe();
   }
 
-  public enableEditMode() {
+  public enableEditMode(skipPatchValue = false) {
     if (!this.formDirective) {
       if (isDevMode()) {
         console.warn('Can not enable edit mode without a form directive');
@@ -269,7 +240,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       return;
     }
     this.editMode = true;
-    if (this.data) {
+    if (!skipPatchValue && this.data) {
       this.formDirective.form.patchValue(this.data, {
         coerce: true,
         strict: true,
@@ -315,6 +286,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       take(1),
       tap(() => {
         this.loading$.disable();
+        this.enableEditMode(true);
       }),
     ).subscribe();
     this.formDirective.submitSuccessful$.pipe(
