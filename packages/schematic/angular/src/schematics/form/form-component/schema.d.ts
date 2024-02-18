@@ -3,6 +3,6 @@ import { AngularOptions } from '../../../lib/angular-options';
 
 export interface FormComponentOptions extends AngularOptions {
   window?: boolean;
-  controlList?: Array<string | FormComponentControl>;
+  controlList?: Array<FormComponentControl>;
   role?: string;
 }

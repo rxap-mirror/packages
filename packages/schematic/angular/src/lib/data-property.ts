@@ -9,6 +9,7 @@ import {
 export interface DataProperty {
   name: string;
   type?: string | TypeImport;
+  isArray?: boolean;
 }
 
 export interface NormalizedDataProperty extends Readonly<Normalized<DataProperty>> {
@@ -18,6 +19,7 @@ export interface NormalizedDataProperty extends Readonly<Normalized<DataProperty
 export function NormalizeDataProperty(property: string | DataProperty, defaultType = 'unknown'): NormalizedDataProperty {
   let name: string;
   let type: string | TypeImport = 'unknown';
+  let isArray = false;
   if (typeof property === 'string') {
     // name:type
     // username:string
@@ -27,12 +29,22 @@ export function NormalizeDataProperty(property: string | DataProperty, defaultTy
   } else {
     name = property.name;
     type = property.type ?? type;
+    isArray = property.isArray ?? isArray;
+  }
+  if (name.endsWith('[]')) {
+    isArray = true;
+    name = name.slice(0, -2);
+  }
+  if (name.startsWith('Array<') && name.endsWith('>')) {
+    isArray = true;
+    name = name.slice(6, -1);
   }
   type ??= defaultType;
   name = name.replace(/\.\?/g, '.').split('.').join('.?');
   return Object.freeze({
     name,
     type: NormalizeTypeImport(type),
+    isArray,
   });
 }
 

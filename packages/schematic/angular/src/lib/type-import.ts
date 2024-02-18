@@ -12,18 +12,20 @@ export interface NormalizedTypeImport {
   defaultImport: string | null;
 }
 
-export function NormalizeTypeImport(typeImport: Readonly<TypeImport> | string): NormalizedTypeImport {
+export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string): NormalizedTypeImport {
   let name: string;
   let moduleSpecifier: string | null = null;
   let namedImport: string | null = null;
   let namespaceImport: string | null = null;
   let isTypeOnly = false;
   let defaultImport: string | null = null;
-  if (typeof typeImport === 'string') {
+  if (!typeImport) {
+    name = 'unknown';
+  } else if (typeof typeImport === 'string') {
     // name:moduleSpecifier:namedImport
     // IconConfig:@rxap/utilities
     const fragments = typeImport.split(':');
-    name = fragments[0];
+    name = fragments[0] || 'unknown';
     moduleSpecifier = fragments[1] || null; // use || instead of ?? because the moduleSpecifier can be an empty string
     namedImport = fragments[2] || null; // use || instead of ?? because the namedImport can be an empty string
   } else {

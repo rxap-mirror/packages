@@ -1,86 +1,209 @@
+import { TypeImport } from '@rxap/ts-morph';
 import {
+  CoerceArrayItems,
+  ControlOption,
   Normalized,
-  Nullable,
 } from '@rxap/utilities';
-import { NormalizeFormComponentControl } from './form-component-control';
+import { BackendTypes } from './backend-types';
+import {
+  NormalizedTypeImport,
+  NormalizeTypeImport,
+} from './type-import';
 
-export interface FormDefinitionControl {
-  name: string;
+export enum FormControlTemplateType {
+  DEFAULT = 'default',
+  INPUT = 'input',
+  SELECT = 'select',
+}
+
+export interface BaseFormControlTemplate {
+  name: FormControlTemplateType;
+}
+
+export type MinimalNormalizedFormDefinitionControl = Pick<NormalizedFormDefinitionControl, 'validatorList' | 'type'>
+
+// region InputFormControlTemplate
+
+export interface InputFormControlTemplate extends BaseFormControlTemplate {
   type?: string;
-  isArray?: boolean;
-  state?: string;
-  isRequired?: boolean;
-  validatorList?: string[];
+  placeholder?: string;
+  label?: string;
 }
 
-export interface NormalizedFormDefinitionControl extends Readonly<Normalized<FormDefinitionControl>> {
-  type: string;
+export interface NormalizedInputFormControlTemplate extends Readonly<Normalized<InputFormControlTemplate>>,
+                                                            BaseFormControlTemplate {
+  name: FormControlTemplateType.INPUT;
 }
 
-export function NormalizeFormControlType(control: Nullable<Pick<FormDefinitionControl, 'type' | 'state'>>): Pick<NormalizedFormDefinitionControl, 'type' | 'state' | 'isArray'> {
-  let isArray = false;
-  let type = control.type;
-  let state = control.state ?? null;
-  if (type && typeof type === 'string') {
-    isArray = type.endsWith('[]') || type.startsWith('Array<');
-    type = type.replace(/\[]$/, '').replace(/^Array<(.+)>/, '$1');
-    if (![ 'string', 'boolean', 'number', 'unknown' ].includes(type)) {
-      switch (type) {
-        case 'date':
-          type = 'string';
-          break;
-        case 'uuid':
-          type = 'string';
-          break;
-        case 'object':
-        case 'Object':
-        case '':
-          type = 'unknown';
-          break;
-      }
-    }
+export function IsNormalizedInputFormControlTemplate(template: BaseFormControlTemplate): template is NormalizedInputFormControlTemplate {
+  return template.name === FormControlTemplateType.INPUT;
+}
+
+export function NormalizeInputFormControlTemplate(
+  template: InputFormControlTemplate,
+  normalizedControl: MinimalNormalizedFormDefinitionControl,
+): NormalizedInputFormControlTemplate {
+  const type: string = template.type ?? 'text';
+  switch (type) {
+    case 'checkbox':
+      normalizedControl.type.name = 'boolean';
+      break;
+    case 'text':
+    case 'password':
+    case 'color':
+      normalizedControl.type.name = 'string';
+      break;
+    case 'email':
+      normalizedControl.type.name = 'string';
+      CoerceArrayItems(normalizedControl.validatorList, [ 'IsEmail' ]);
+      break;
+    case 'tel':
+      normalizedControl.type.name = 'string';
+      CoerceArrayItems(normalizedControl.validatorList, [ 'IsTel' ]);
+      break;
+    case 'url':
+      normalizedControl.type.name = 'string';
+      CoerceArrayItems(normalizedControl.validatorList, [ 'IsUrl' ]);
+      break;
+    case 'number':
+      normalizedControl.type.name = 'number';
+      break;
+    case 'date':
+    case 'time':
+    case 'datetime-local':
+      normalizedControl.type.name = 'Date';
+      CoerceArrayItems(normalizedControl.validatorList, [ 'IsDate' ]);
+      break;
+    case 'file':
+    case 'hidden':
+    case 'image':
+    case 'month':
+    case 'radio':
+    case 'reset':
+    case 'button':
+    case 'search':
+    case 'submit':
+    case 'week':
+    case 'range':
+      throw new Error(`The input type "${type}" is not yet supported`);
   }
-  if (isArray) {
-    if (typeof state === 'string' && !state?.match(/^\[.+]$/)) {
-      console.warn(
-        `The state of the control is not an array! Overwrite with '[]'`,
-      );
-      state = '[]';
-    }
-  }
+  // TODO : auto add validators
   return Object.freeze({
-    type: type ?? 'unknown',
-    isArray,
-    state,
+    name: FormControlTemplateType.INPUT,
+    type,
+    placeholder: template.placeholder ?? null,
+    label: template.label ?? null,
   });
 }
 
+// endregion
+
+// region SelectFormControlTemplate
+
+export interface SelectFormControlTemplate extends BaseFormControlTemplate {
+  label?: string;
+  options?: ControlOption[];
+  backend?: BackendTypes;
+}
+
+export interface NormalizedSelectFormControlTemplate
+  extends Readonly<Normalized<Omit<SelectFormControlTemplate, 'options'>>>, BaseFormControlTemplate {
+  name: FormControlTemplateType.SELECT;
+  options: ReadonlyArray<ControlOption> | null;
+  backend: BackendTypes;
+}
+
+export function IsNormalizedSelectFormControlTemplate(template: BaseFormControlTemplate): template is NormalizedSelectFormControlTemplate {
+  return template.name === FormControlTemplateType.SELECT;
+}
+
+export function NormalizeSelectFormControlTemplate(template: SelectFormControlTemplate): NormalizedSelectFormControlTemplate {
+  return Object.freeze({
+    name: FormControlTemplateType.SELECT,
+    label: template.label ?? null,
+    options: template.options ? Object.freeze(template.options) : null,
+    backend: template.backend ?? BackendTypes.LOCAL,
+  });
+}
+
+// endregion
+
+export interface FormDefinitionControl {
+  name: string;
+  type?: string | TypeImport;
+  isArray?: boolean;
+  state?: string;
+  isRequired?: boolean;
+  isReadonly?: boolean;
+  isDisabled?: boolean;
+  validatorList?: string[];
+  template?: BaseFormControlTemplate;
+}
+
+export interface NormalizedFormDefinitionControl extends Readonly<Normalized<FormDefinitionControl>> {
+  type: NormalizedTypeImport;
+  template: BaseFormControlTemplate;
+}
+
+export function NormalizeFormControlTemplate(
+  minimalNormalizedControl: MinimalNormalizedFormDefinitionControl,
+  template?: BaseFormControlTemplate,
+): BaseFormControlTemplate {
+  if (!template) {
+    return Object.freeze({
+      name: FormControlTemplateType.DEFAULT,
+    });
+  }
+  switch (template.name) {
+    case FormControlTemplateType.INPUT:
+      return NormalizeInputFormControlTemplate(template, minimalNormalizedControl);
+    case FormControlTemplateType.SELECT:
+      return NormalizeSelectFormControlTemplate(template);
+    case FormControlTemplateType.DEFAULT:
+    default:
+      return Object.freeze({
+        name: FormControlTemplateType.DEFAULT,
+      });
+  }
+}
+
 export function NormalizeFormDefinitionControl(
-  control: string | FormDefinitionControl,
+  control: FormDefinitionControl,
 ): NormalizedFormDefinitionControl {
-  const nControl = NormalizeFormComponentControl(control);
-  const {
-    name,
-    isRequired,
-    validatorList,
-  } = nControl;
-  const {
-    type,
-    state,
-    isArray,
-  } = NormalizeFormControlType(nControl);
+  const name: string = control.name;
+  const type: NormalizedTypeImport = NormalizeTypeImport(control.type);
+  const state: string | null = control.state ?? null;
+  const isRequired: boolean = control.isRequired ?? false;
+  const validatorList: string[] = control.validatorList ?? [];
+  const isReadonly: boolean = control.isReadonly ?? false;
+  const isDisabled: boolean = control.isDisabled ?? false;
+  let isArray = false;
+  if (type.name.endsWith('[]')) {
+    isArray = true;
+    type.name = type.name.slice(0, -2);
+  }
+  if (type.name.startsWith('Array<') && type.name.endsWith('>')) {
+    isArray = true;
+    type.name = type.name.slice(6, -1);
+  }
   return Object.freeze({
     name,
     type,
     isArray,
     isRequired,
     state,
+    isReadonly,
+    isDisabled,
     validatorList,
+    template: NormalizeFormControlTemplate({
+      validatorList,
+      type,
+    }, control.template),
   });
 }
 
 export function NormalizeFormDefinitionControlList(
-  controlList?: Array<string | FormDefinitionControl>,
+  controlList?: Array<FormDefinitionControl>,
 ): ReadonlyArray<NormalizedFormDefinitionControl> {
   return Object.freeze(controlList?.map(NormalizeFormDefinitionControl) ?? []);
 }

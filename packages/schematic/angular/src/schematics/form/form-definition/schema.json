@@ -73,11 +73,37 @@
                 "description": "Whether the control value is required",
                 "default": false
               },
+              "isReadonly": {
+                "type": "boolean",
+                "description": "Whether the control value is readonly",
+                "default": false
+              },
+              "isDisabled": {
+                "type": "boolean",
+                "description": "Whether the control value is disabled",
+                "default": false
+              },
               "validatorList": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
+              },
+              "template": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the template",
+                    "enum": [
+                      "default",
+                      "input",
+                      "select"
+                    ]
+                  }
+                },
+                "additionalProperties": true,
+                "required": ["name"]
               }
             },
             "required": [
