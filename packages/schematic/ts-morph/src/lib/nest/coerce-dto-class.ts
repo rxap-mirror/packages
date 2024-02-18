@@ -113,7 +113,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
       classDeclaration,
       propertyName,
     ).set({
-      type: WriteType(property),
+      type: WriteType(property, sourceFile),
       hasQuestionToken: !!property.isOptional,
       hasExclamationToken: !property.isOptional,
     });
@@ -148,11 +148,10 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
         arguments: [
           w => {
             w.write('() => ');
-            if (typeof property.type === 'string') {
-              w.write(property.type);
-            } else {
-              property.type(w);
-            }
+            WriteType({
+              type: property.type,
+              isArray: false
+            }, sourceFile)(w);
           },
         ],
       });
@@ -162,13 +161,10 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
       });
       CoerceDecorator(propertyDeclaration, 'IsInstance', {
         arguments: [
-          w => {
-            if (typeof property.type === 'string') {
-              w.write(property.type);
-            } else {
-              property.type(w);
-            }
-          },
+          WriteType({
+            type: property.type,
+            isArray: false
+          }, sourceFile),
           w => {
             if (property.isArray) {
               Writers.object({ each: 'true' })(w);

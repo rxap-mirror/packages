@@ -1,16 +1,22 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { TypeImport } from '@rxap/ts-morph';
 import {
   ClassDeclaration,
   ClassDeclarationStructure,
   DecoratorStructure,
   ImportDeclarationStructure,
   OptionalKind,
+  PropertySignatureStructure,
   SourceFile,
   WriterFunction,
   Writers,
 } from 'ts-morph';
 import { CoerceClass } from '../coerce-class';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import {
+  WriteStringType,
+  WriteType,
+} from '../ts-morph/write-type';
 
 export interface DtoClassProperty {
   name: string,
@@ -19,14 +25,35 @@ export interface DtoClassProperty {
    *
    * if type = '<self>' the type will be the name of the class
    */
-  type: string | WriterFunction,
+  type: string | WriterFunction | TypeImport | '<self>',
   isArray?: boolean | null,
+  /**
+   * indicates that the @Type decorator should be used as the type of the property is another dto class
+   */
   isType?: boolean | null,
   isOptional?: boolean | null,
   /**
    * Use to import the type
+   * @deprecated use the type property with a TypeImport object
    */
   moduleSpecifier?: string | null,
+}
+
+export function DtoClassPropertyToPropertySignatureStructure(
+  { name, type, isArray, isOptional, moduleSpecifier }: DtoClassProperty,
+  sourceFile?: SourceFile,
+): OptionalKind<PropertySignatureStructure> {
+  const structure: OptionalKind<PropertySignatureStructure> = {
+    name,
+    type: WriteType({ type, isArray }, sourceFile),
+  };
+  if (sourceFile && moduleSpecifier && typeof type === 'string') {
+    CoerceImports(sourceFile, { namedImports: [ type ], moduleSpecifier });
+  }
+  if (isOptional) {
+    structure.hasQuestionToken = true;
+  }
+  return structure;
 }
 
 export function CreateDtoClass(
@@ -78,15 +105,10 @@ export function CreateDtoClass(
         arguments: [
           w => {
             w.write('() => ');
-            if (typeof property.type === 'string') {
-              if (property.type === 'date') {
-                w.write('Date');
-              } else {
-                w.write(property.type);
-              }
-            } else {
-              property.type(w);
-            }
+            WriteType({
+              type: property.type,
+              isArray: false
+            }, sourceFile)(w);
           },
         ],
       });
@@ -100,17 +122,10 @@ export function CreateDtoClass(
       decorators.push({
         name: 'IsInstance',
         arguments: [
-          w => {
-            if (typeof property.type === 'string') {
-              if (property.type === 'date') {
-                w.write('Date');
-              } else {
-                w.write(property.type);
-              }
-            } else {
-              property.type(w);
-            }
-          },
+          WriteType({
+            type: property.type,
+            isArray: false
+          }, sourceFile),
           w => {
             if (property.isArray) {
               Writers.object({ each: 'true' })(w);
@@ -194,19 +209,7 @@ export function CreateDtoClass(
     }
     classStructure.properties.push({
       name: property.name,
-      type: !property.isArray ? property.type : w => {
-        w.write('Array<');
-        if (typeof property.type === 'string') {
-          if (property.type === 'date') {
-            w.write('Date');
-          } else {
-            w.write(property.type);
-          }
-        } else {
-          property.type(w);
-        }
-        w.write('>');
-      },
+      type: WriteType(property, sourceFile),
       hasQuestionToken: !!property.isOptional,
       hasExclamationToken: !property.isOptional,
       decorators,

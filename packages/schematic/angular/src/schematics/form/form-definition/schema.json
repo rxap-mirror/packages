@@ -45,79 +45,69 @@
     },
     "controlList": {
       "alias": "control",
-      "anyOf": [
-        {
-          "type": "array",
-          "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the control"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the control"
+          },
+          "isArray": {
+            "type": "boolean",
+            "description": "Whether the control value is an array",
+            "default": false
+          },
+          "state": {
+            "type": "string",
+            "description": "The initial state of the control"
+          },
+          "isRequired": {
+            "type": "boolean",
+            "description": "Whether the control value is required",
+            "default": false
+          },
+          "isReadonly": {
+            "type": "boolean",
+            "description": "Whether the control value is readonly",
+            "default": false
+          },
+          "isDisabled": {
+            "type": "boolean",
+            "description": "Whether the control value is disabled",
+            "default": false
+          },
+          "validatorList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "template": {
             "type": "object",
             "properties": {
               "name": {
                 "type": "string",
-                "description": "The name of the control"
-              },
-              "type": {
-                "type": "string",
-                "description": "The type of the control"
-              },
-              "isArray": {
-                "type": "boolean",
-                "description": "Whether the control value is an array",
-                "default": false
-              },
-              "state": {
-                "type": "string",
-                "description": "The initial state of the control"
-              },
-              "isRequired": {
-                "type": "boolean",
-                "description": "Whether the control value is required",
-                "default": false
-              },
-              "isReadonly": {
-                "type": "boolean",
-                "description": "Whether the control value is readonly",
-                "default": false
-              },
-              "isDisabled": {
-                "type": "boolean",
-                "description": "Whether the control value is disabled",
-                "default": false
-              },
-              "validatorList": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "template": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the template",
-                    "enum": [
-                      "default",
-                      "input",
-                      "select"
-                    ]
-                  }
-                },
-                "additionalProperties": true,
-                "required": ["name"]
+                "description": "The name of the template",
+                "enum": [
+                  "default",
+                  "input",
+                  "select"
+                ]
               }
             },
-            "required": [
-              "name"
-            ]
+            "additionalProperties": true,
+            "required": ["name"]
           }
         },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ]
+        "required": [
+          "name"
+        ]
+      }
     }
   },
   "required": [

@@ -2,6 +2,7 @@ import {
   camelize,
   capitalize,
 } from '@rxap/schematics-utilities';
+import { TypeImport } from '@rxap/ts-morph';
 import {
   ClassDeclaration,
   DecoratorStructure,
@@ -21,10 +22,11 @@ import { CoerceClassMethod } from '../coerce-class-method';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceStatements } from '../ts-morph/coerce-statements';
+import { WriteType } from '../ts-morph/write-type';
 
 export interface OperationParameter {
   name: string;
-  type?: string | WriterFunction;
+  type?: string | WriterFunction | TypeImport;
   pipeList?: Array<string | WriterFunction>;
   defaultValue?: string | WriterFunction;
   hasQuestionToken?: boolean;
@@ -70,7 +72,7 @@ export interface OperationOptions {
 
 function buildMethodQueryParameters(
   queryList: OperationParameter[],
-  importStructures: Array<OptionalKind<ImportDeclarationStructure>>,
+  sourceFile: SourceFile,
 ): Array<OptionalKind<ParameterDeclarationStructure>> {
   if (queryList.length) {
     return queryList.map(query => {
@@ -78,7 +80,7 @@ function buildMethodQueryParameters(
         undefined) {
         return query;
       }
-      importStructures.push({
+      CoerceImports(sourceFile,{
         namedImports: [ 'DefaultValuePipe' ],
         moduleSpecifier: '@nestjs/common',
       });
@@ -101,7 +103,7 @@ function buildMethodQueryParameters(
     }).map(query => ({
       name: query.alias ??
         query.name,
-      type: query.type,
+      type: query.type ? WriteType({ type: query.type, isArray: false }, sourceFile) : undefined,
       hasQuestionToken: query.hasQuestionToken ?? (
         !query.required && query.defaultValue === undefined
       ),
@@ -120,16 +122,18 @@ function buildMethodQueryParameters(
   return [];
 }
 
-function buildMethodParamParameters(paramList: OperationParameter[]): Array<OptionalKind<ParameterDeclarationStructure>> {
+function buildMethodParamParameters(paramList: OperationParameter[], sourceFile: SourceFile): Array<OptionalKind<ParameterDeclarationStructure>> {
   if (paramList.length) {
-    return paramList.map(param => ({
-      name: param.alias ??
-        param.name,
-      type: param.type,
+    return paramList.map(({ alias, name, type }) => ({
+      name: alias ?? name,
+      type: type ? WriteType({
+        type: type,
+        isArray: false
+      }, sourceFile) : undefined,
       decorators: [
         {
           name: 'Param',
-          arguments: [ w => w.quote(param.name) ],
+          arguments: [ w => w.quote(name) ],
         },
       ],
     }));
@@ -257,8 +261,8 @@ export function AddOperationToController(
       scope: Scope.Public,
       isAsync,
       parameters: [
-        ...buildMethodQueryParameters(queryList, importStructures),
-        ...buildMethodParamParameters(paramList),
+        ...buildMethodQueryParameters(queryList, sourceFile),
+        ...buildMethodParamParameters(paramList, sourceFile),
         ...buildMethodBodyParameters(body),
       ].sort((a, b) => {
         if (a.hasQuestionToken && b.hasQuestionToken) {

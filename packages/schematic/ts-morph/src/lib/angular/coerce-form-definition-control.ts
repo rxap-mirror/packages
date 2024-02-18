@@ -55,7 +55,7 @@ export function CoerceInterfaceFormTypeControl(
   }
   const interfaceDeclaration = CoerceInterface(sourceFile, formTypeName);
   interfaceDeclaration.setIsExported(true);
-  CoercePropertyDeclaration(interfaceDeclaration, camelize(control.name)).set({ type: WriteType(control) });
+  CoercePropertyDeclaration(interfaceDeclaration, camelize(control.name)).set({ type: WriteType(control, sourceFile) });
 }
 
 export function isAngularValidator(validator: string) {
@@ -80,7 +80,7 @@ export function CoerceFormControl(
   const propertyDeclaration = CoercePropertyDeclaration(classDeclaration, camelize(control.name)).set({
     type: w => {
       w.write('RxapFormControl<');
-      WriteType(control)(w);
+      WriteType(control, sourceFile)(w);
       w.write('>');
     },
     hasExclamationToken: true,

@@ -1,5 +1,4 @@
 import { TypeImport } from '@rxap/ts-morph';
-import { Normalized } from '@rxap/utilities';
 
 // export type NormalizedTypeImport = Readonly<Normalized<TypeImport>>;
 

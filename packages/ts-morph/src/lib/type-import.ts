@@ -12,6 +12,10 @@ export interface TypeImport {
   defaultImport?: string | null;
 }
 
+export function IsTypeImport(value: any): value is TypeImport {
+  return typeof value === 'object' && typeof value.name === 'string';
+}
+
 export function RequiresTypeImport(typeImport: TypeImport): boolean {
   return !!typeImport.moduleSpecifier;
 }

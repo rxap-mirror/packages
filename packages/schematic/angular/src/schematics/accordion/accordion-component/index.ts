@@ -19,6 +19,7 @@ import {
   CoercePropertyDeclaration,
   CoerceStatements,
   DtoClassProperty,
+  DtoClassPropertyToPropertySignatureStructure,
   HasComponent,
   HasComponentOptions,
   OperationIdToClassImportPath,
@@ -474,7 +475,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
       name,
       structure: {
         isExported: true,
-        properties: getPropertyList(normalizedOptions),
+        properties: getPropertyList(normalizedOptions).map(p => DtoClassPropertyToPropertySignatureStructure(p)),
       },
     }, TsMorphAngularProjectTransformRule),
     CoerceMethodClass({

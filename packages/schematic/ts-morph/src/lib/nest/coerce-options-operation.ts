@@ -38,7 +38,7 @@ export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperat
           },
           {
             name: 'value',
-            type: WriteType(control),
+            type: WriteType(control, sourceFile),
           },
         ],
       });
