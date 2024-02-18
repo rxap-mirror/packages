@@ -201,7 +201,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       debounceTime(100),
       tap(data => this.data = data),
       tap(data => {
-        if (this.formDirective) {
+        if (this.formDirective && this.isFormMode) {
           this.formDirective.form.patchValue(data, {
             coerce: true,
             strict: true,
@@ -233,6 +233,12 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public enableEditMode(skipPatchValue = false) {
+    if (!this.isFormMode) {
+      if (isDevMode()) {
+        console.warn('Can not enable edit mode if the mode is not form');
+      }
+      return;
+    }
     if (!this.formDirective) {
       if (isDevMode()) {
         console.warn('Can not enable edit mode without a form directive');
@@ -249,6 +255,12 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public disableEditMode() {
+    if (!this.isFormMode) {
+      if (isDevMode()) {
+        console.warn('Can not disable edit mode if the mode is not form');
+      }
+      return;
+    }
     if (!this.formDirective) {
       if (isDevMode()) {
         console.warn('Can not enable edit mode without a form directive');
@@ -259,6 +271,12 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public submit() {
+    if (!this.isFormMode) {
+      if (isDevMode()) {
+        console.warn('Can not submit if the mode is not form');
+      }
+      return;
+    }
     if (!this.formDirective) {
       if (isDevMode()) {
         console.warn('Can not support without a form directive');
@@ -300,7 +318,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public reset() {
-    if (this.formDirective && this.data) {
+    if (this.formDirective && this.data && this.isFormMode) {
       this.formDirective.form.patchValue(this.data, {
         coerce: true,
         strict: true,
