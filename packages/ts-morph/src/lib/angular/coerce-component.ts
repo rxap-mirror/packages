@@ -1,7 +1,5 @@
 import {
-  CoerceDecorator,
-} from '../coerce-decorator';
-import {
+  classify,
   CoerceSuffix,
   dasherize,
 } from '@rxap/utilities';
@@ -13,10 +11,13 @@ import {
   Writers,
 } from 'ts-morph';
 import { CoerceClass } from '../coerce-class';
+import { CoerceDecorator } from '../coerce-decorator';
+import { CoerceImports } from '../coerce-imports';
 import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
 
 export interface CoerceComponentOptions {
   selector?: string;
+  prefix?: string;
   template?: string;
   styles?: string;
   /**
@@ -27,6 +28,7 @@ export interface CoerceComponentOptions {
    * true - use the component name to generate a styleUrl
    */
   styleUrls?: string | string[] | true;
+  changeDetection?: 'OnPush' | 'Default';
 }
 
 export function CoerceComponent(
@@ -35,7 +37,11 @@ export function CoerceComponent(
   options: CoerceComponentOptions = {},
   classStructure: Omit<OptionalKind<ClassDeclarationStructure>, 'name'> = {}
 ) {
-  const className = CoerceSuffix(dasherize(name), '-component');
+  const className = classify(CoerceSuffix(dasherize(name), '-component'));
+  const {
+    prefix,
+    changeDetection,
+  } = options;
   let {
     selector,
     template,
@@ -44,7 +50,7 @@ export function CoerceComponent(
     styleUrls,
   } = options;
 
-  selector ??= dasherize(name);
+  selector ??= prefix ? `${ prefix }-${ dasherize(name) }` : dasherize(name);
   if (templateUrl === true) {
     template = undefined;
     templateUrl = `./${ dasherize(name) }.component.html`;
@@ -81,8 +87,14 @@ export function CoerceComponent(
         styleUrls: styleUrls !== undefined ? w => w.quote(styleUrls as string) : undefined,
         providers: '[]',
         imports: '[]',
+        changeDetection: changeDetection ? `ChangeDetectionStrategy.${ changeDetection }` : `ChangeDetectionStrategy.OnPush`,
       }),
     ]
+  });
+
+  CoerceImports(sourceFile, {
+    namedImports: [ 'Component', 'ChangeDetectionStrategy' ],
+    moduleSpecifier: '@angular/core',
   });
 
   const componentDecoratorObject = componentDecoratorDeclaration.getArguments()[0];

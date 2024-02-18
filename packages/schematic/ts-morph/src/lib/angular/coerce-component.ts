@@ -12,15 +12,14 @@ import {
 import {
   classify,
   CoerceFile,
-  dasherize,
   GetProjectPrefix,
 } from '@rxap/schematics-utilities';
+import { CoerceComponent } from '@rxap/ts-morph';
 import { join } from 'path';
 import {
   ClassDeclaration,
   Project,
   SourceFile,
-  Writers,
 } from 'ts-morph';
 import {
   TsMorphAngularProjectTransformOptions,
@@ -76,30 +75,10 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
       rules.push(TsMorphAngularProjectTransformRule(
         options,
         (project, [ componentSourceFile ]) => {
-          componentSourceFile.addClass({
-            isExported: true,
-            name: `${ classify(name) }Component`,
-            decorators: [
-              {
-                name: 'Component',
-                arguments: [
-                  Writers.object({
-                    selector: w => w.quote(`${ prefix }-${ dasherize(name) }`),
-                    templateUrl: w => w.quote(`./${ name }.component.html`),
-                    styleUrls: w => w.write('[').quote(`./${ name }.component.scss`).write(']'),
-                    changeDetection: 'ChangeDetectionStrategy.OnPush',
-                    standalone: 'true',
-                  }),
-                ],
-              },
-            ],
+          CoerceComponent(componentSourceFile, name, {
+            prefix,
+            changeDetection: 'OnPush',
           });
-          componentSourceFile.addImportDeclarations([
-            {
-              moduleSpecifier: '@angular/core',
-              namedImports: [ 'Component', 'ChangeDetectionStrategy' ],
-            },
-          ]);
         },
         [
           join(componentPath, `${ name }.component.ts?`),
