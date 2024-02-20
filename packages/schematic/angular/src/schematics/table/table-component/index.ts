@@ -40,7 +40,7 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
-import { CoerceTableComponentRule } from '../../../lib/coerce-table-component';
+import { CoerceMinimumTableComponentRule } from '../../../lib/coerce-minimum-table-component';
 import {
   actionListRule,
   cellComponentRule,
@@ -159,7 +159,7 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
 
   return chain([
     () => console.log(`Coerce the table component '${ componentName }'`),
-    CoerceTableComponentRule({
+    CoerceMinimumTableComponentRule({
       table: normalizedOptions,
       project,
       feature,

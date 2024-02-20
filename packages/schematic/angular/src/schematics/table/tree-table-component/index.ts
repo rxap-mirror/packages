@@ -28,6 +28,7 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
+import { CoerceTreeTableComponentRule } from '../../../lib/coerce-tree-table-component';
 import {
   actionListRule,
   cellComponentRule,
@@ -99,7 +100,8 @@ function componentRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
 
   return chain([
     () => console.log(`Coerce the table component ${ componentName }`),
-    CoerceComponentRule({
+    CoerceTreeTableComponentRule({
+      table: normalizedOptions,
       project,
       feature,
       shared,

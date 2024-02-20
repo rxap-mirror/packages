@@ -1,5 +1,4 @@
 import {
-  AddComponentInput,
   CoerceComponentOptions,
   CoerceComponentRule,
 } from '@rxap/schematics-ts-morph';
@@ -9,23 +8,20 @@ import {
   CoerceImports,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
-import {
-  NormalizedTableOptions,
-  TableModifiers,
-} from './table-options';
+import { NormalizedMinimumTableOptions } from './minimum-table-options';
+import { TableModifiers } from './table-options';
 
-export interface CoerceTableComponentOptions extends CoerceComponentOptions {
-  table: NormalizedTableOptions;
+export interface CoerceMinimumTableComponentOptions extends CoerceComponentOptions {
+  table: NormalizedMinimumTableOptions;
 }
 
-export function CoerceTableComponentRule(options: Readonly<CoerceTableComponentOptions>) {
+export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumTableComponentOptions>) {
 
   const {
     tsMorphTransform = noop,
     table: {
       columnList,
       actionList,
-      selectColumn,
       headerButton,
       modifiers,
     }
