@@ -76,6 +76,7 @@ export * from './lib/is-defined';
 export * from './lib/is-null';
 export * from './lib/is-promise';
 export * from './lib/join';
+export * from './lib/noop';
 export * from './lib/range';
 export * from './lib/refreshable';
 export * from './lib/set-object-value';
