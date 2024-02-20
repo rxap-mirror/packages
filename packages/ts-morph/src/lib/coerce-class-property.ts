@@ -5,6 +5,9 @@ import {
   PropertyDeclarationStructure,
 } from 'ts-morph';
 
+/**
+ * @deprecated instead use the CoercePropertyDeclaration function from @rxap/ts-morph
+ */
 export function CoerceClassProperty(
   classDeclaration: ClassDeclaration,
   propertyName: string,

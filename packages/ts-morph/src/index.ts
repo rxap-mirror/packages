@@ -32,11 +32,14 @@ export * from './lib/nest/remove-nest-provider-to-array';
 
 // region angular
 export * from './lib/angular/coerce-app-config-provider';
+export * from './lib/angular/coerce-component-input';
 export * from './lib/angular/coerce-component';
+export * from './lib/angular/get-component-class';
 // endregion
 
 // region 
 export * from './lib/add-provider-to-array';
+export * from './lib/coerce-accessor-declaration';
 export * from './lib/coerce-array-element';
 export * from './lib/coerce-class-constructor';
 export * from './lib/coerce-class-method';
@@ -46,6 +49,7 @@ export * from './lib/coerce-decorator';
 export * from './lib/coerce-dependency-injection';
 export * from './lib/coerce-imports';
 export * from './lib/coerce-mapping-class-method';
+export * from './lib/coerce-property-declaration';
 export * from './lib/coerce-source-file';
 export * from './lib/coerce-statements';
 export * from './lib/coerce-variable-declaration';
@@ -55,6 +59,7 @@ export * from './lib/find-function';
 export * from './lib/get-class-decorator-arguments';
 export * from './lib/get-class';
 export * from './lib/get-coerce-array-literal-form-object-literal';
+export * from './lib/has-constructor-parameter';
 export * from './lib/provider-object';
 export * from './lib/to-mapping-object';
 export * from './lib/type-import';
