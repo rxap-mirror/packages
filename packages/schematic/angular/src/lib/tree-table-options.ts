@@ -15,6 +15,8 @@ import { NormalizedDataProperty } from '@rxap/ts-morph';
 
 export enum TreeTableModifiers {
   OVERWRITE = 'overwrite',
+  NAVIGATION_BACK_HEADER = 'navigation-back-header',
+  WITHOUT_TITLE = 'without-title',
 }
 
 export function IsTreeTableModifiers(value: string): value is TreeTableModifiers {

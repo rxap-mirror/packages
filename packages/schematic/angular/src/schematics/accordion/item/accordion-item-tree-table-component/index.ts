@@ -34,6 +34,7 @@ import { BackendTypes } from '../../../../lib/backend-types';
 import {
   NormalizedTreeTableOptions,
   NormalizeTreeTableOptions,
+  TreeTableModifiers,
 } from '../../../../lib/tree-table-options';
 import {
   GetItemOptions,
@@ -125,7 +126,7 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
         title: table?.title,
         headerButton: table?.headerButton,
         nestModule: hasSharedModifier ? undefined : nestModule,
-        modifiers: [ 'without-title', ...table?.modifiers ?? [] ],
+        modifiers: [ TreeTableModifiers.WITHOUT_TITLE, ...table?.modifiers ?? [] ],
         tableChildMethod: table.tableChildMethod,
         tableRootMethod: table.tableRootMethod,
         overwrite,

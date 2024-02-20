@@ -17,6 +17,7 @@ import { BackendTypes } from '../../../../lib/backend-types';
 import {
   NormalizedTableOptions,
   NormalizeTableOptions,
+  TableModifiers,
 } from '../../../../lib/table-options';
 import {
   GetItemOptions,
@@ -104,7 +105,7 @@ function tableComponentSchematicRule(normalizedOptions: NormalizedAccordionItemT
         feature,
         directory: hasSharedModifier ? undefined : directory,
         nestModule: hasSharedModifier ? undefined : nestModule,
-        modifiers: [ 'without-title', ...table?.modifiers ?? [] ],
+        modifiers: [ TableModifiers.WITHOUT_TITLE, ...table?.modifiers ?? [] ],
         overwrite,
         backend,
         columnList: table?.columnList ?? [],

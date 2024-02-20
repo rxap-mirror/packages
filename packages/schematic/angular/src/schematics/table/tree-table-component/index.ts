@@ -39,6 +39,7 @@ import {
   IsTreeTableModifiers,
   NormalizedTreeTableOptions,
   NormalizeTreeTableOptions,
+  TreeTableModifiers,
 } from '../../../lib/tree-table-options';
 import { TreeTableComponentOptions } from './schema';
 
@@ -90,8 +91,8 @@ function componentRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
 
   const templateOptions = {
     ...normalizedOptions,
-    hasNavigationBackHeader: modifiers.includes('navigation-back-header'),
-    hasWithoutTitle: modifiers.includes('without-title'),
+    hasNavigationBackHeader: modifiers.includes(TreeTableModifiers.NAVIGATION_BACK_HEADER),
+    hasWithoutTitle: modifiers.includes(TreeTableModifiers.WITHOUT_TITLE),
     hasColumnWithFilter: columnList.some((c) => c.hasFilter),
     exportDefault: !!feature && !directory,
   };
