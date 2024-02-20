@@ -1,6 +1,9 @@
 import {
   CoerceArrayElement,
   GetComponentClass,
+  IsTypeImport,
+  TypeImport,
+  TypeImportToImportStructure,
 } from '@rxap/ts-morph';
 import { CoerceImports } from '../coerce-imports';
 import {
@@ -14,26 +17,22 @@ import { GetComponentDecoratorObject } from './get-component-decorator-object';
  * Coerces the component import by adding it to the imports array of the component decorator object.
  * If a module specifier is provided, the import is also coerced at the file level.
  *
- * @param {SourceFile | ClassDeclaration} sourceFileOrClassDeclaration - The source file or class declaration that contains the component import.
- * @param {string} importName - The name of the import to coerce.
- * @param {string} [moduleSpecifier] - The module specifier for the import (optional).
- * @returns {Array} - The updated imports array after coercing the import.
+ * @param sourceFileOrClassDeclaration - The source file or class declaration that contains the component import.
+ * @param componentImport - The name or TypeImport of the import to coerce.
+ * @returns - The updated imports array after coercing the import.
  */
 export function CoerceComponentImport(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration,
-  importName: string,
-  moduleSpecifier?: string
+  componentImport: string | TypeImport,
 ) {
 
   const classDeclaration = sourceFileOrClassDeclaration instanceof ClassDeclaration ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
   const sourceFile = sourceFileOrClassDeclaration instanceof SourceFile ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
 
+  const importName = typeof componentImport === 'string' ? componentImport : componentImport.name;
 
-  if (moduleSpecifier) {
-    CoerceImports(sourceFile, {
-      moduleSpecifier,
-      namedImports: [ importName ],
-    });
+  if (IsTypeImport(componentImport)) {
+    CoerceImports(sourceFile, TypeImportToImportStructure(componentImport));
   }
 
   const componentDecoratorObject = GetComponentDecoratorObject(classDeclaration);
