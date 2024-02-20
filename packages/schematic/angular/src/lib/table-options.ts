@@ -1,3 +1,4 @@
+import { NormalizedDataProperty } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   ExistingMethod,
@@ -16,7 +17,6 @@ import {
   NormalizeTableOpenApiOptions,
   TableOpenApiOptions,
 } from './table-open-api-options';
-import { NormalizedDataProperty } from '@rxap/ts-morph';
 
 export enum TableModifiers {
   OVERWRITE = 'overwrite',
@@ -27,7 +27,7 @@ export enum TableModifiers {
 }
 
 export function IsTableModifiers(value: string): value is TableModifiers {
-  return value in TableModifiers;
+  return Object.values(TableModifiers).includes(value as TableModifiers);
 }
 
 export interface TableOptions extends MinimumTableOptions {

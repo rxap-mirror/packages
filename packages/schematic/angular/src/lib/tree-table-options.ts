@@ -1,3 +1,4 @@
+import { NormalizedDataProperty } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   ExistingMethod,
@@ -11,7 +12,6 @@ import {
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
 import { NormalizedTableColumn } from './table-column';
-import { NormalizedDataProperty } from '@rxap/ts-morph';
 
 export enum TreeTableModifiers {
   OVERWRITE = 'overwrite',
@@ -20,7 +20,7 @@ export enum TreeTableModifiers {
 }
 
 export function IsTreeTableModifiers(value: string): value is TreeTableModifiers {
-  return value in TreeTableModifiers;
+  return Object.values(TreeTableModifiers).includes(value as TreeTableModifiers);
 }
 
 export interface TreeTableOptions extends MinimumTableOptions {

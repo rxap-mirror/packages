@@ -1,4 +1,9 @@
 import {
+  DataProperty,
+  NormalizeDataPropertyList,
+  NormalizedDataProperty,
+} from '@rxap/ts-morph';
+import {
   CoerceSuffix,
   Normalized,
 } from '@rxap/utilities';
@@ -17,11 +22,6 @@ import {
   NormalizeTableHeaderButton,
   TableHeaderButton,
 } from './table-header-button';
-import {
-  NormalizedDataProperty,
-  NormalizeDataPropertyList,
-  DataProperty,
-} from '@rxap/ts-morph';
 import { ToTitle } from './to-title';
 
 export enum MinimumTableModifiers {
@@ -29,7 +29,7 @@ export enum MinimumTableModifiers {
 }
 
 export function IsMinimumTableModifiers(value: string): value is MinimumTableModifiers {
-  return value in MinimumTableModifiers;
+  return Object.values(MinimumTableModifiers).includes(value as MinimumTableModifiers);
 }
 
 export interface MinimumTableOptions {
@@ -65,7 +65,7 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   const modifiers = options.modifiers ?? [];
   const title = options.title ?? ToTitle(name);
   if (!modifiers.every(isModifier)) {
-    throw new Error(`Invalid table modifier for table: ${ componentName } - [ ${ modifiers.join(', ') } ]`);
+    throw new Error(`Invalid table modifier for table: ${ componentName } - [ ${ modifiers.join(', ') } ] with function: ${ isModifier.name }`);
   }
   return Object.freeze({
     componentName,
