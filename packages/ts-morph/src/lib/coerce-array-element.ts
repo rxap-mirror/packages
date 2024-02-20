@@ -24,8 +24,8 @@ export function FindArrayElementByObjectProperty(property: string, value: string
 
 export function CoerceArrayElement(
   array: ArrayLiteralExpression,
-  findExisting: (e: Expression) => boolean,
   element: string | WriterFunction,
+  findExisting: (e: Expression) => boolean,
   insertAt?: (array: ArrayLiteralExpression) => number,
 ): Expression {
 

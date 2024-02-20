@@ -21,11 +21,7 @@ export function AddRoute(sourceFile: SourceFile, route: AngularRoute, path?: str
     }
     if (initializer) {
       CoerceArrayElement(
-        initializer,
-        FindArrayElementByObjectProperty('path', route.path),
-        BuildRouteObject(route),
-        () => 0,
-      );
+        initializer, BuildRouteObject(route), FindArrayElementByObjectProperty('path', route.path), () => 0);
     } else {
       console.warn('Initializer not found');
     }
