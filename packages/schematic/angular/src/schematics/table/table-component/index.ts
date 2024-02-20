@@ -51,6 +51,7 @@ import { NormalizedTableColumn } from '../../../lib/table-column';
 import {
   NormalizedTableOptions,
   NormalizeTableOptions,
+  TableModifiers,
 } from '../../../lib/table-options';
 import { NormalizedDataProperty } from '@rxap/ts-morph';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
@@ -147,10 +148,10 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
 
   const templateOptions = {
     ...normalizedOptions,
-    hasNavigationBackHeader: modifiers.includes('navigation-back-header'),
-    hasWithoutTitle: modifiers.includes('without-title'),
+    hasNavigationBackHeader: modifiers.includes(TableModifiers.NAVIGATION_BACK_HEADER),
+    hasWithoutTitle: modifiers.includes(TableModifiers.WITHOUT_TITLE),
     hasColumnWithFilter: columnList.some((c) => c.hasFilter),
-    hasShowArchivedSlide: modifiers.includes('show-archived-slide'),
+    hasShowArchivedSlide: modifiers.includes(TableModifiers.SHOW_ARCHIVED_SLIDE),
     exportDefault: !!feature && !directory,
   };
 

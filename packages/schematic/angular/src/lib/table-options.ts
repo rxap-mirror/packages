@@ -18,6 +18,18 @@ import {
 } from './table-open-api-options';
 import { NormalizedDataProperty } from '@rxap/ts-morph';
 
+export enum TableModifiers {
+  OVERWRITE = 'overwrite',
+  NAVIGATION_BACK_HEADER = 'navigation-back-header',
+  WITHOUT_TITLE = 'without-title',
+  SHOW_ARCHIVED_SLIDE = 'show-archived-slide',
+
+}
+
+export function IsTableModifiers(value: string): value is TableModifiers {
+  return value in TableModifiers;
+}
+
 export interface TableOptions extends MinimumTableOptions {
   selectColumn?: boolean;
   tableMethod?: ExistingMethod;
@@ -25,7 +37,7 @@ export interface TableOptions extends MinimumTableOptions {
 }
 
 export interface NormalizedTableOptions
-  extends Omit<Readonly<Normalized<TableOptions> & NormalizedMinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList' | 'tableMethod' | 'openApi'> {
+  extends Omit<Readonly<Normalized<TableOptions> & NormalizedMinimumTableOptions<TableModifiers>>, 'columnList' | 'actionList' | 'propertyList' | 'tableMethod' | 'openApi'> {
   componentName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
@@ -35,7 +47,7 @@ export interface NormalizedTableOptions
 }
 
 export function NormalizeTableOptions(options: Readonly<TableOptions>, name: string): NormalizedTableOptions {
-  const normalizedOptions = NormalizeMinimumTableOptions(options, name);
+  const normalizedOptions = NormalizeMinimumTableOptions(options, name, IsTableModifiers);
   const { actionList } = normalizedOptions;
   const selectColumn = (options.selectColumn ?? false) || actionList.some(action => action.inHeader);
   const tableMethod = NormalizeExistingMethod(options.tableMethod);
