@@ -24,8 +24,6 @@ import { TypeImport } from '../type-import';
 import { WriteType } from '../write-type';
 
 export interface ComponentInputDefinition {
-  name: string;
-  type: string | TypeImport | WriterFunction;
   alias?: string;
   isRequired?: boolean;
   initializer?: string | WriterFunction;
@@ -41,31 +39,45 @@ export type PropertyComponentInputDefinition = Omit<ComponentInputDefinition, 'a
 
 export function CoerceComponentInput(
   classDeclaration: ClassDeclaration,
-  options: PropertyComponentInputDefinition
+  name: string,
+  type: string | TypeImport | WriterFunction,
+  options?: PropertyComponentInputDefinition
 ): PropertyDeclaration;
 export function CoerceComponentInput(
   sourceFile: SourceFile,
-  options: PropertyComponentInputDefinition
+  name: string,
+  type: string | TypeImport | WriterFunction,
+  options?: PropertyComponentInputDefinition
 ): PropertyDeclaration;
 export function CoerceComponentInput(
   classDeclaration: ClassDeclaration,
-  options: SetComponentInputDefinition
+  name: string,
+  type: string | TypeImport | WriterFunction,
+  options?: SetComponentInputDefinition
 ): SetAccessorDeclaration;
 export function CoerceComponentInput(
   sourceFile: SourceFile,
-  options: SetComponentInputDefinition
+  name: string,
+  type: string | TypeImport | WriterFunction,
+  options?: SetComponentInputDefinition
 ): SetAccessorDeclaration;
 export function CoerceComponentInput(
   classDeclaration: ClassDeclaration,
-  options: ComponentInputDefinition
+  name: string,
+  type: string | TypeImport | WriterFunction,
+  options?: ComponentInputDefinition
 ): PropertyNamedNode & DecoratableNode;
 export function CoerceComponentInput(
   sourceFile: SourceFile,
-  options: ComponentInputDefinition
+  name: string,
+  type: string | TypeImport | WriterFunction,
+  options?: ComponentInputDefinition
 ): PropertyNamedNode & DecoratableNode;
 export function CoerceComponentInput(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration,
-  { name, type, initializer, alias, isRequired, asSetAccessor }: ComponentInputDefinition,
+  name: string,
+  type: string | TypeImport | WriterFunction,
+  { initializer, alias, isRequired, asSetAccessor }: ComponentInputDefinition = {},
 ): PropertyNamedNode & DecoratableNode {
 
   const classDeclaration = sourceFileOrClassDeclaration instanceof ClassDeclaration ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
