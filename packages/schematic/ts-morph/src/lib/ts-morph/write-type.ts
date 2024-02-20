@@ -10,9 +10,15 @@ import {
   WriterFunction,
 } from 'ts-morph';
 
+export type WriteType = string | TypeImport | WriterFunction;
+
 export interface WriteTypeOptions {
   isArray?: boolean | null;
-  type: string | TypeImport | WriterFunction;
+  type: WriteType;
+}
+
+export function IsWriteTypeOptions(value: any): value is WriteTypeOptions {
+  return value && typeof value === 'object' && value.type;
 }
 
 /**
@@ -36,8 +42,17 @@ export function WriteStringType(type: string, w: CodeBlockWriter) {
   }
 }
 
-export function WriteType(property: WriteTypeOptions, sourceFile?: SourceFile) {
-  const { type, isArray } = property;
+export function WriteType(type: WriteType, sourceFile?: SourceFile): void;
+export function WriteType(property: WriteTypeOptions, sourceFile?: SourceFile): void;
+export function WriteType(propertyOrType: WriteTypeOptions | WriteType, sourceFile?: SourceFile) {
+  let isArray = false;
+  let type: WriteType;
+  if (IsWriteTypeOptions(propertyOrType)) {
+    isArray = propertyOrType.isArray ?? isArray;
+    type = propertyOrType.type;
+  } else {
+    type = propertyOrType;
+  }
   if (IsTypeImport(type)) {
     if (sourceFile) {
       CoerceImports(sourceFile, TypeImportToImportStructure(type));
