@@ -42,9 +42,9 @@ export function WriteStringType(type: string, w: CodeBlockWriter) {
   }
 }
 
-export function WriteType(type: WriteType, sourceFile?: SourceFile): void;
-export function WriteType(property: WriteTypeOptions, sourceFile?: SourceFile): void;
-export function WriteType(propertyOrType: WriteTypeOptions | WriteType, sourceFile?: SourceFile) {
+export function WriteType(type: WriteType, sourceFile?: SourceFile): WriterFunction;
+export function WriteType(property: WriteTypeOptions, sourceFile?: SourceFile): WriterFunction;
+export function WriteType(propertyOrType: WriteTypeOptions | WriteType, sourceFile?: SourceFile): WriterFunction {
   let isArray = false;
   let type: WriteType;
   if (IsWriteTypeOptions(propertyOrType)) {
