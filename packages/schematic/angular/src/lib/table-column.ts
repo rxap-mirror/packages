@@ -3,12 +3,16 @@ import {
   capitalize,
   dasherize,
 } from '@rxap/schematics-utilities';
-import { TypeImport } from '@rxap/ts-morph';
-import { Normalized } from '@rxap/utilities';
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
+  TypeImport,
 } from '@rxap/ts-morph';
+import {
+  classify,
+  CoerceArrayItems,
+  Normalized,
+} from '@rxap/utilities';
 
 export type TableColumnPipe = TypeImport;
 
@@ -28,6 +32,20 @@ export function IsTableColumnModifier(value: string): value is TableColumnModifi
   return Object.values(TableColumnModifier).includes(value as TableColumnModifier);
 }
 
+export enum TableColumnKind {
+  DEFAULT = 'default',
+  DATE = 'date',
+  LINK = 'link',
+  ICON = 'icon',
+  BOOLEAN = 'boolean',
+  COMPONENT = 'component',
+  COPY_TO_CLIPBOARD = 'copy-to-clipboard',
+}
+
+export function IsTableColumnKind(value: string): value is TableColumnKind {
+  return Object.values(TableColumnKind).includes(value as TableColumnKind);
+}
+
 export interface TableColumn {
   name: string;
   type?: string | TypeImport;
@@ -42,18 +60,21 @@ export interface TableColumn {
   show?: boolean;
   nowrap?: boolean;
   cssClass?: string;
-  role?: string;
+  role?: TableColumnKind;
   template?: string;
   pipeList?: Array<TableColumnPipe | string>;
+  importList?: TypeImport[];
 }
 
 export type NormalizedTableColumnPipe = NormalizedTypeImport;
 
-export interface NormalizedTableColumn extends Omit<Readonly<Normalized<TableColumn>>, 'pipeList'> {
+export interface NormalizedTableColumn extends Omit<Readonly<Normalized<TableColumn>>, 'pipeList' | 'importList'> {
   type: NormalizedTypeImport;
   propertyPath: string;
   pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
   modifiers: TableColumnModifier[];
+  importList: ReadonlyArray<NormalizedTypeImport>;
+  role: TableColumnKind;
 }
 
 export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): NormalizedTableColumnPipe {
@@ -90,8 +111,63 @@ export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): Normal
   return NormalizeTypeImport(pipe);
 }
 
+function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[] {
+  const importList = column.importList ?? [];
+  switch (column.role) {
+    case TableColumnKind.COMPONENT:
+      CoerceArrayItems(importList, [
+        {
+          name: `${ classify(column.name) }CellComponent`,
+          moduleSpecifier: `./${ dasherize(column.name) }-cell/${ dasherize(column.name) }-cell.component`,
+        },
+      ], (a, b) => a.name === b.name);
+      break;
+    case TableColumnKind.ICON:
+      CoerceArrayItems(importList, [
+        {
+          name: 'IconCellComponent',
+          moduleSpecifier: '@rxap/material-table-system',
+        },
+      ], (a, b) => a.name === b.name);
+      break;
+    case TableColumnKind.LINK:
+      CoerceArrayItems(importList, [
+        {
+          name: 'LinkCellComponent',
+          moduleSpecifier: '@rxap/material-table-system',
+        },
+      ], (a, b) => a.name === b.name);
+      break;
+    case TableColumnKind.DATE:
+      CoerceArrayItems(importList, [
+        {
+          name: 'DateCellComponent',
+          moduleSpecifier: '@rxap/material-table-system',
+        },
+      ], (a, b) => a.name === b.name);
+      break;
+    case TableColumnKind.BOOLEAN:
+      CoerceArrayItems(importList, [
+        {
+          name: 'BooleanCellComponent',
+          moduleSpecifier: '@rxap/material-table-system',
+        },
+      ], (a, b) => a.name === b.name);
+      break;
+    case TableColumnKind.COPY_TO_CLIPBOARD:
+      CoerceArrayItems(importList, [
+        {
+          name: 'CopyToClipboardCellComponent',
+          moduleSpecifier: '@rxap/material-table-system',
+        },
+      ], (a, b) => a.name === b.name);
+      break;
+  }
+  return importList;
+}
+
 export function NormalizeTableColumn(
-  column: Readonly<TableColumn> | string,
+  column: Readonly<TableColumn>,
 ): NormalizedTableColumn {
   let name: string;
   let type: string | TypeImport = 'unknown';
@@ -106,37 +182,27 @@ export function NormalizeTableColumn(
   let nowrap = false;
   let withoutTitle = false;
   let cssClass: string | null = null;
-  let role: string | null = null;
+  let role: string = TableColumnKind.DEFAULT;
   let template: string | null = null;
   let pipeList: Array<string | TableColumnPipe> = [];
-  if (typeof column === 'string') {
-    // name:type:modifier1,modifier2
-    // username:string:filter,active
-    const fragments = column.split(':');
-    name = fragments[0];
-    type = fragments[1] || type; // convert an empty string to undefined
-    if (fragments[2]) {
-      modifiers = fragments[2].split(/,(?![^(]*\))/g);
-    }
-    propertyPath = fragments[3] || propertyPath;
-  } else {
-    name = column.name;
-    type = column.type ?? type;
-    modifiers = column.modifiers ?? [];
-    hasFilter = column.hasFilter ?? false;
-    title = column.title ?? title;
-    propertyPath = column.propertyPath ?? propertyPath;
-    hidden = column.hidden ?? false;
-    active = column.active ?? false;
-    inactive = column.inactive ?? false;
-    show = column.show ?? false;
-    nowrap = column.nowrap ?? false;
-    withoutTitle = column.withoutTitle ?? false;
-    cssClass = column.cssClass ?? cssClass;
-    role = column.role ?? role;
-    template = column.template ?? template;
-    pipeList = column.pipeList ?? pipeList;
-  }
+  let importList: TypeImport[] = [];
+  name = column.name;
+  type = column.type ?? type;
+  modifiers = column.modifiers ?? [];
+  hasFilter = column.hasFilter ?? false;
+  title = column.title ?? title;
+  propertyPath = column.propertyPath ?? propertyPath;
+  hidden = column.hidden ?? false;
+  active = column.active ?? false;
+  inactive = column.inactive ?? false;
+  show = column.show ?? false;
+  nowrap = column.nowrap ?? false;
+  withoutTitle = column.withoutTitle ?? false;
+  cssClass = column.cssClass ?? cssClass;
+  role = column.role ?? role;
+  template = column.template ?? template;
+  pipeList = column.pipeList ?? pipeList;
+  importList = coerceTableColumnImportList(column);
   const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
   propertyPath ??= name
     .replace(/\?\./g, '.')
@@ -191,6 +257,9 @@ export function NormalizeTableColumn(
   if (!modifiers.every(IsTableColumnModifier)) {
     throw new Error(`Unknown modifier in column ${ name } - [ ${ modifiers.join(', ') } ]`);
   }
+  if (!IsTableColumnKind(role)) {
+    throw new Error(`Unknown role in column ${ name } - ${ role }`);
+  }
   return Object.freeze({
     role,
     name,
@@ -208,11 +277,12 @@ export function NormalizeTableColumn(
     cssClass,
     pipeList: pipeList.map(NormalizeTableColumnPipe),
     template,
+    importList: importList.map(NormalizeTypeImport),
   });
 }
 
 export function NormalizeTableColumnList(
-  columnList?: ReadonlyArray<string | Readonly<TableColumn>>,
+  columnList?: ReadonlyArray<Readonly<TableColumn>>,
 ): ReadonlyArray<NormalizedTableColumn> {
   return Object.freeze(columnList?.map(NormalizeTableColumn) ?? []);
 }
