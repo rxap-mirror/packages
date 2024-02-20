@@ -6,6 +6,7 @@ import {
 } from 'ts-morph';
 import {
   IsTypeImport,
+  RequiresTypeImport,
   TypeImport,
   TypeImportToImportStructure,
 } from './type-import';
@@ -55,7 +56,11 @@ export function WriteType(propertyOrType: WriteTypeOptions | WriteType, sourceFi
   }
   if (IsTypeImport(type)) {
     if (sourceFile) {
-      CoerceImports(sourceFile, TypeImportToImportStructure(type));
+      if (RequiresTypeImport(type)) {
+        CoerceImports(sourceFile, TypeImportToImportStructure(type));
+      } else {
+        console.debug('WriteType :: type import not required');
+      }
     } else {
       console.warn('WriteType :: No source file provided to coerce imports');
     }
