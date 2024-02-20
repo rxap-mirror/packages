@@ -32,9 +32,11 @@ export * from './lib/nest/remove-nest-provider-to-array';
 
 // region angular
 export * from './lib/angular/coerce-app-config-provider';
+export * from './lib/angular/coerce-component-import';
 export * from './lib/angular/coerce-component-input';
 export * from './lib/angular/coerce-component';
 export * from './lib/angular/get-component-class';
+export * from './lib/angular/get-component-decorator-object';
 // endregion
 
 // region 
