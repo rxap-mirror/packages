@@ -58,4 +58,5 @@ export * from './lib/get-coerce-array-literal-form-object-literal';
 export * from './lib/provider-object';
 export * from './lib/to-mapping-object';
 export * from './lib/type-import';
+export * from './lib/write-type';
 // endregion

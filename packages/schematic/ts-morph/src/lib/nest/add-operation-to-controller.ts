@@ -22,7 +22,7 @@ import { CoerceClassMethod } from '../coerce-class-method';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceStatements } from '../ts-morph/coerce-statements';
-import { WriteType } from '../ts-morph/write-type';
+import { WriteType } from '@rxap/ts-morph';
 
 export interface OperationParameter {
   name: string;

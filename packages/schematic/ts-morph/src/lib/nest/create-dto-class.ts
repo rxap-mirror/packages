@@ -16,7 +16,7 @@ import { CoerceImports } from '../ts-morph/coerce-imports';
 import {
   WriteStringType,
   WriteType,
-} from '../ts-morph/write-type';
+} from '@rxap/ts-morph';
 
 export interface DtoClassProperty {
   name: string,
@@ -37,23 +37,6 @@ export interface DtoClassProperty {
    * @deprecated use the type property with a TypeImport object
    */
   moduleSpecifier?: string | null,
-}
-
-export function DtoClassPropertyToPropertySignatureStructure(
-  { name, type, isArray, isOptional, moduleSpecifier }: DtoClassProperty,
-  sourceFile?: SourceFile,
-): OptionalKind<PropertySignatureStructure> {
-  const structure: OptionalKind<PropertySignatureStructure> = {
-    name,
-    type: WriteType({ type, isArray }, sourceFile),
-  };
-  if (sourceFile && moduleSpecifier && typeof type === 'string') {
-    CoerceImports(sourceFile, { namedImports: [ type ], moduleSpecifier });
-  }
-  if (isOptional) {
-    structure.hasQuestionToken = true;
-  }
-  return structure;
 }
 
 export function CreateDtoClass(

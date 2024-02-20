@@ -1,6 +1,11 @@
 import {
+  NormalizeDataPropertyToPropertySignatureStructure,
+  NormalizedDataProperty,
+} from '@rxap/ts-morph';
+import {
   classify,
   dasherize,
+  noop,
 } from '@rxap/utilities';
 import {
   InterfaceDeclaration,
@@ -34,6 +39,7 @@ export interface CoerceInterfaceRuleOptions extends TsMorphNestProjectTransformO
                                                     TsMorphAngularProjectTransformOptions {
   name: string;
   structure?: Omit<OptionalKind<InterfaceDeclarationStructure>, 'name'>;
+  propertyList?: NormalizedDataProperty[];
   tsMorphTransform?: (project: Project, sourceFile: SourceFile, interfaceDeclaration: InterfaceDeclaration) => void;
 }
 
@@ -41,19 +47,17 @@ export function CoerceInterfaceRule(
   options: CoerceInterfaceRuleOptions,
   tsMorphTransForm: TsMorphTransformFunctionRule<TsMorphNestProjectTransformOptions | TsMorphAngularProjectTransformOptions>,
 ) {
-  let {
-    tsMorphTransform,
+  const {
+    tsMorphTransform = noop,
     project,
     feature,
     shared,
     directory,
-    name,
-    structure,
+    structure = { isExported: true },
+    propertyList,
   } = options;
+  let { name } = options;
   name = classify(name);
-  structure ??= {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  tsMorphTransform ??= () => {};
 
   return tsMorphTransForm({
     project,
@@ -61,7 +65,10 @@ export function CoerceInterfaceRule(
     shared,
     directory,
   }, (project, [ sourceFile ]) => {
+    if (propertyList) {
+      structure.properties = propertyList.map(p => NormalizeDataPropertyToPropertySignatureStructure(p, sourceFile));
+    }
     const interfaceDeclaration = CoerceInterface(sourceFile, name, structure);
-    tsMorphTransform!(project, sourceFile, interfaceDeclaration);
+    tsMorphTransform(project, sourceFile, interfaceDeclaration);
   }, [ dasherize(name) + '.ts?' ]);
 }

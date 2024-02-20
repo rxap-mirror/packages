@@ -1,9 +1,15 @@
 import { TypeImport } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
+  OptionalKind,
+  PropertySignatureStructure,
+  SourceFile,
+} from 'ts-morph';
+import {
   NormalizedTypeImport,
   NormalizeTypeImport,
 } from './type-import';
+import { WriteType } from './write-type';
 
 export interface DataProperty {
   name: string;
@@ -51,3 +57,12 @@ export function NormalizeDataPropertyList(propertyList?: Array<string | DataProp
   return Object.freeze(propertyList?.map(property => NormalizeDataProperty(property, defaultType)) ?? []);
 }
 
+export function NormalizeDataPropertyToPropertySignatureStructure(
+  property: DataProperty,
+  sourceFile: SourceFile,
+): OptionalKind<PropertySignatureStructure> {
+  return {
+    type: WriteType(property, sourceFile),
+    name: property.name,
+  };
+}

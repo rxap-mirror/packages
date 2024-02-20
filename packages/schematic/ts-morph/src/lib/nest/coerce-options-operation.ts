@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import { joinWithDash } from '@rxap/utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { WriteType } from '../ts-morph/write-type';
+import { WriteType } from '@rxap/ts-morph';
 import { FormDefinitionControl } from '../types/form-definition-control';
 import { CoerceDtoClass } from './coerce-dto-class';
 import {

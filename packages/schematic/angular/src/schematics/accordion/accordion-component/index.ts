@@ -18,8 +18,6 @@ import {
   CoerceParameterDeclaration,
   CoercePropertyDeclaration,
   CoerceStatements,
-  DtoClassProperty,
-  DtoClassPropertyToPropertySignatureStructure,
   HasComponent,
   HasComponentOptions,
   OperationIdToClassImportPath,
@@ -36,6 +34,8 @@ import {
 import {
   CoerceClassMethod,
   CoerceClassProperty,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
 } from '@rxap/ts-morph';
@@ -70,12 +70,6 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
-import {
-  DataProperty,
-  NormalizeDataProperty,
-  NormalizedDataProperty,
-  ToDtoClassProperty,
-} from '@rxap/ts-morph';
 import {
   IsNormalizedPropertyPersistent,
   NormalizedPersistent,
@@ -478,10 +472,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
       shared,
       directory,
       name,
-      structure: {
-        isExported: true,
-        properties: getPropertyList(normalizedOptions).map(p => DtoClassPropertyToPropertySignatureStructure(p)),
-      },
+      propertyList: getPropertyList(normalizedOptions),
     }, TsMorphAngularProjectTransformRule),
     CoerceMethodClass({
       project,

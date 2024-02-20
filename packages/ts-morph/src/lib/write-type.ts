@@ -1,14 +1,14 @@
-import {
-  CoerceImports,
-  IsTypeImport,
-  TypeImport,
-  TypeImportToImportStructure,
-} from '@rxap/ts-morph';
+import { CoerceImports } from './coerce-imports';
 import {
   CodeBlockWriter,
   SourceFile,
   WriterFunction,
 } from 'ts-morph';
+import {
+  IsTypeImport,
+  TypeImport,
+  TypeImportToImportStructure,
+} from './type-import';
 
 export type WriteType = string | TypeImport | WriterFunction;
 

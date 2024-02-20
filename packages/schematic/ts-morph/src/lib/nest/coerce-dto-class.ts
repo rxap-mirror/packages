@@ -24,7 +24,7 @@ import { CoerceClass } from '../coerce-class';
 import { CoerceSourceFile } from '../coerce-source-file';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { WriteType } from '../ts-morph/write-type';
+import { WriteType } from '@rxap/ts-morph';
 import { DtoClassProperty } from './create-dto-class';
 
 export interface CoerceDtoClassOutput {
