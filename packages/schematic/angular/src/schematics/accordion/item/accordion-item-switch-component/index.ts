@@ -19,7 +19,7 @@ import {
 import {
   NormalizeDataProperty,
   NormalizedDataProperty,
-} from '../../../../lib/data-property';
+} from '@rxap/ts-morph';
 import {
   NormalizeAccordionItemStandaloneComponentOptions,
   NormalizedAccordionItemStandaloneComponentOptions,

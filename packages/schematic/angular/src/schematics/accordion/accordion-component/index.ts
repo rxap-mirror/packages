@@ -70,7 +70,12 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
-import { ToDtoClassProperty } from '../../../lib/data-property';
+import {
+  DataProperty,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
+  ToDtoClassProperty,
+} from '@rxap/ts-morph';
 import {
   IsNormalizedPropertyPersistent,
   NormalizedPersistent,
@@ -599,8 +604,8 @@ function itemListRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 
 }
 
-function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions): DtoClassProperty[] {
-  const propertyList: DtoClassProperty[] = [];
+function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions): NormalizedDataProperty[] {
+  const propertyList: NormalizedDataProperty[] = [];
   const {
     persistent,
     itemList,
@@ -609,27 +614,27 @@ function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions)
   } = normalizedOptions;
   if (persistent && IsNormalizedPropertyPersistent(persistent)) {
     if (!propertyList.some((property) => property.name === persistent.property.name)) {
-      propertyList.push(ToDtoClassProperty(persistent.property));
+      propertyList.push(persistent.property);
     }
   }
   if (itemList.some(item => item.type === 'switch')) {
     for (const item of itemList) {
       if (item.type === 'switch') {
-        propertyList.push({
+        propertyList.push(NormalizeDataProperty({
           name: (item as any).switch.property.name,
           type: (item as any).switch.property.type,
-        });
+        }));
       }
     }
   }
   if (header && IsNormalizedPropertyAccordionHeader(header)) {
     if (!propertyList.some((property) => property.name === header.property.name)) {
-      propertyList.push(ToDtoClassProperty(header.property));
+      propertyList.push(header.property);
     }
   }
   if (identifier) {
     if (!propertyList.some((property) => property.name === identifier.property.name)) {
-      propertyList.push(ToDtoClassProperty(identifier.property));
+      propertyList.push(identifier.property);
     }
   }
   return propertyList;

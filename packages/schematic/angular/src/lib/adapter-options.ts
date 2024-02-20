@@ -2,7 +2,7 @@ import { TypeImport } from '@rxap/ts-morph';
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
-} from './type-import';
+} from '@rxap/ts-morph';
 
 export interface AdapterOptions extends TypeImport {
   /**

@@ -50,7 +50,7 @@ import {
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
 import { NormalizedTableColumn } from './table-column';
-import { NormalizedDataProperty } from './data-property';
+import { NormalizedDataProperty } from '@rxap/ts-morph';
 
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 

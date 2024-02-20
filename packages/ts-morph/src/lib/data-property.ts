@@ -1,4 +1,3 @@
-import { DtoClassProperty } from '@rxap/schematics-ts-morph';
 import { TypeImport } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
@@ -16,7 +15,7 @@ export interface NormalizedDataProperty extends Readonly<Normalized<DataProperty
   type: NormalizedTypeImport;
 }
 
-export function NormalizeDataProperty(property: string | DataProperty, defaultType = 'unknown'): NormalizedDataProperty {
+export function NormalizeDataProperty(property: string | Readonly<DataProperty>, defaultType = 'unknown'): NormalizedDataProperty {
   let name: string;
   let type: string | TypeImport = 'unknown';
   let isArray = false;
@@ -52,11 +51,3 @@ export function NormalizeDataPropertyList(propertyList?: Array<string | DataProp
   return Object.freeze(propertyList?.map(property => NormalizeDataProperty(property, defaultType)) ?? []);
 }
 
-export function ToDtoClassProperty(property: NormalizedDataProperty): DtoClassProperty {
-  return {
-    name: property.name,
-    type: property.type.name,
-    isType: property.type.isTypeOnly,
-    moduleSpecifier: property.type.moduleSpecifier,
-  };
-}

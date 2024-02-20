@@ -16,7 +16,7 @@ import {
   NormalizeTableOpenApiOptions,
   TableOpenApiOptions,
 } from './table-open-api-options';
-import { NormalizedDataProperty } from './data-property';
+import { NormalizedDataProperty } from '@rxap/ts-morph';
 
 export interface TableOptions extends MinimumTableOptions {
   selectColumn?: boolean;

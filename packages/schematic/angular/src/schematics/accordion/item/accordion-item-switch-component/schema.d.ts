@@ -1,5 +1,5 @@
 import { AccordionItem } from '../../../../lib/accordion-item';
-import { DataProperty } from '../../../../lib/data-property';
+import { DataProperty } from '@rxap/ts-morph';
 import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
 
 export interface AccordionItemSwitchComponentOptions

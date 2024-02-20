@@ -52,7 +52,7 @@ import {
   NormalizedTableOptions,
   NormalizeTableOptions,
 } from '../../../lib/table-options';
-import { NormalizedDataProperty } from '../../../lib/data-property';
+import { NormalizedDataProperty } from '@rxap/ts-morph';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 

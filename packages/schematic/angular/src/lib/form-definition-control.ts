@@ -8,7 +8,7 @@ import { BackendTypes } from './backend-types';
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
-} from './type-import';
+} from '@rxap/ts-morph';
 
 export enum FormControlTemplateType {
   DEFAULT = 'default',

@@ -1,4 +1,4 @@
-import { NormalizedDataProperty } from './data-property';
+import { NormalizedDataProperty } from '@rxap/ts-morph';
 import { NormalizedTableColumn } from './table-column';
 
 export function MergeWithColumnList(

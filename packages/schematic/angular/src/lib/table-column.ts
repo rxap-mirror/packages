@@ -8,15 +8,31 @@ import { Normalized } from '@rxap/utilities';
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
-} from './type-import';
+} from '@rxap/ts-morph';
 
 export type TableColumnPipe = TypeImport;
+
+export enum TableColumnModifier {
+  FILTER = 'filter',
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
+  SHOW = 'show',
+  HIDDEN = 'hidden',
+  NOWRAP = 'nowrap',
+  WITHOUT_TITLE = 'withoutTitle',
+  NO_TITLE = 'noTitle',
+}
+
+export function IsTableColumnModifier(value: string): value is TableColumnModifier {
+  return Object.values(TableColumnModifier).includes(value as TableColumnModifier);
+}
 
 export interface TableColumn {
   name: string;
   type?: string | TypeImport;
   modifiers?: string[];
   hasFilter?: boolean;
+  withoutTitle?: boolean;
   title?: string;
   propertyPath?: string;
   hidden?: boolean;
@@ -36,6 +52,7 @@ export interface NormalizedTableColumn extends Omit<Readonly<Normalized<TableCol
   type: NormalizedTypeImport;
   propertyPath: string;
   pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
+  modifiers: TableColumnModifier[];
 }
 
 export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): NormalizedTableColumnPipe {
@@ -86,6 +103,7 @@ export function NormalizeTableColumn(
   let inactive = false;
   let show = false;
   let nowrap = false;
+  let withoutTitle = false;
   let cssClass: string | null = null;
   let role: string | null = null;
   let template: string | null = null;
@@ -112,6 +130,7 @@ export function NormalizeTableColumn(
     inactive = column.inactive ?? false;
     show = column.show ?? false;
     nowrap = column.nowrap ?? false;
+    withoutTitle = column.withoutTitle ?? false;
     cssClass = column.cssClass ?? cssClass;
     role = column.role ?? role;
     template = column.template ?? template;
@@ -133,12 +152,13 @@ export function NormalizeTableColumn(
     .split('-')
     .map((part) => capitalize(part))
     .join(' ');
-  hasFilter = modifiers.includes('filter') || hasFilter;
-  active = modifiers.includes('active') || active;
-  inactive = modifiers.includes('inactive') || inactive;
-  show = modifiers.includes('show') || show;
-  hidden = modifiers.includes('hidden') || hidden;
-  nowrap = modifiers.includes('nowrap') || nowrap;
+  hasFilter = modifiers.includes(TableColumnModifier.FILTER) || hasFilter;
+  active = modifiers.includes(TableColumnModifier.ACTIVE) || active;
+  inactive = modifiers.includes(TableColumnModifier.INACTIVE) || inactive;
+  show = modifiers.includes(TableColumnModifier.SHOW) || show;
+  hidden = modifiers.includes(TableColumnModifier.HIDDEN) || hidden;
+  nowrap = modifiers.includes(TableColumnModifier.NOWRAP) || nowrap;
+  withoutTitle = modifiers.includes(TableColumnModifier.WITHOUT_TITLE) || modifiers.includes(TableColumnModifier.NO_TITLE) || withoutTitle;
   if (!type || type === 'unknown') {
     switch (role) {
       case 'date':
@@ -167,6 +187,9 @@ export function NormalizeTableColumn(
       cssClass += ' nowrap';
     }
   }
+  if (!modifiers.every(IsTableColumnModifier)) {
+    throw new Error(`Unknown modifier in column ${ name } - [ ${ modifiers.join(', ') } ]`);
+  }
   return Object.freeze({
     role,
     name,
@@ -180,6 +203,7 @@ export function NormalizeTableColumn(
     inactive,
     show,
     nowrap,
+    withoutTitle,
     cssClass,
     pipeList: pipeList.map(NormalizeTableColumnPipe),
     template,

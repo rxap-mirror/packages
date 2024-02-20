@@ -2,7 +2,7 @@ import {
   DataProperty,
   NormalizeDataProperty,
   NormalizedDataProperty,
-} from './data-property';
+} from '@rxap/ts-morph';
 
 export interface AccordionIdentifier {
   property: DataProperty;

@@ -21,7 +21,7 @@ import {
   NormalizedDataProperty,
   NormalizeDataPropertyList,
   DataProperty,
-} from './data-property';
+} from '@rxap/ts-morph';
 import { ToTitle } from './to-title';
 
 export interface MinimumTableOptions {
