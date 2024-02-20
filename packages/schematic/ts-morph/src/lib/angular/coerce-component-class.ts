@@ -20,8 +20,6 @@ export interface CoerceComponentClassRuleOptions extends TsMorphAngularProjectTr
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     componentDecoratorObject: ObjectLiteralExpression,
-    providersArray: ArrayLiteralExpression,
-    importsArray: ArrayLiteralExpression,
   ) => void;
 }
 
@@ -36,9 +34,9 @@ export function CoerceComponentClassRule(options: Readonly<CoerceComponentClassR
 
     const sourceFile = CoerceSourceFile(project, `/${ componentName }.component.ts`);
 
-    const { classDeclaration, componentDecoratorObject, providersArray, importsArray } = CoerceComponent(sourceFile, componentName, { selector, styleUrls: true, templateUrl: true });
+    const { classDeclaration, componentDecoratorObject } = CoerceComponent(sourceFile, componentName, { selector, styleUrls: true, templateUrl: true });
 
-    tsMorphTransform?.(project, sourceFile, classDeclaration, componentDecoratorObject, providersArray, importsArray);
+    tsMorphTransform?.(project, sourceFile, classDeclaration, componentDecoratorObject);
 
   });
 
