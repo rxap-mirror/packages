@@ -48,6 +48,7 @@ export * from './lib/coerce-class-method';
 export * from './lib/coerce-class-property';
 export * from './lib/coerce-class';
 export * from './lib/coerce-decorator';
+export * from './lib/coerce-default-class-export';
 export * from './lib/coerce-dependency-injection';
 export * from './lib/coerce-imports';
 export * from './lib/coerce-mapping-class-method';
