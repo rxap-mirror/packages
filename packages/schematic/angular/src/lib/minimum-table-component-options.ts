@@ -49,7 +49,10 @@ import {
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
-import { NormalizedTableColumn } from './table-column';
+import {
+  NormalizedTableColumn,
+  TableColumnModifier,
+} from './table-column';
 import { NormalizedDataProperty } from '@rxap/ts-morph';
 
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
@@ -567,7 +570,7 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
             shared,
             name: CoerceSuffix(column.name, '-cell'),
             directory,
-            overwrite: overwrite || column.modifiers.includes('overwrite'),
+            overwrite: overwrite || column.modifiers.includes(TableColumnModifier.OVERWRITE),
           }),
         ),
     ]);

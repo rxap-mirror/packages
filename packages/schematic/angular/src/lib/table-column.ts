@@ -21,6 +21,7 @@ export enum TableColumnModifier {
   NOWRAP = 'nowrap',
   WITHOUT_TITLE = 'withoutTitle',
   NO_TITLE = 'noTitle',
+  OVERWRITE = 'overwrite',
 }
 
 export function IsTableColumnModifier(value: string): value is TableColumnModifier {
