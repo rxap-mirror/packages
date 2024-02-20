@@ -23,7 +23,7 @@ import {
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceInterface } from '../ts-morph/coerce-interface';
-import { WriteType } from '../ts-morph/write-type';
+import { WriteType } from '@rxap/ts-morph';
 import { FormDefinitionControl } from '../types/form-definition-control';
 
 export interface CoerceFormDefinitionControlOptions extends Required<FormDefinitionControl>,

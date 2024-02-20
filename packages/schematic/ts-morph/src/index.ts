@@ -75,6 +75,7 @@ export * from './lib/angular/add-ng-module-provider';
 export * from './lib/angular/build-angular-base-path';
 export * from './lib/angular/coerce-accordion-component';
 export * from './lib/angular/coerce-component-class';
+export * from './lib/angular/coerce-component-input';
 export * from './lib/angular/coerce-component';
 export * from './lib/angular/coerce-data-source-class';
 export * from './lib/angular/coerce-dialog-component';
