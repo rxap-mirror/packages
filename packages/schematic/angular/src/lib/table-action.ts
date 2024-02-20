@@ -11,7 +11,9 @@ export interface TableAction extends TableRowAction {
   permission?: string | null;
 }
 
-export type NormalizedTableAction = Readonly<Normalized<TableAction>>;
+export interface NormalizedTableAction extends Readonly<Normalized<TableAction>> {
+  permission: string | null;
+}
 
 export function NormalizeTableAction(
   tableAction: Readonly<TableAction> | string,
