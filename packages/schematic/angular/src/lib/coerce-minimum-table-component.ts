@@ -5,6 +5,7 @@ import {
 import {
   CoerceComponentImport,
   CoerceComponentInput,
+  CoerceDefaultClassExport,
   CoerceImports,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
@@ -110,6 +111,8 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
         CoerceComponentImport(classDeclaration, { name: 'NavigateBackButtonComponent', moduleSpecifier: '@rxap/components' });
       }
       // endregion
+
+      CoerceDefaultClassExport(classDeclaration, true);
 
       tsMorphTransform(project, [sourceFile], [classDeclaration], options);
     }
