@@ -1,3 +1,4 @@
+import { TypeImport } from '@rxap/ts-morph';
 import {
   ImportDeclarationStructure,
   JSDocStructure,
@@ -7,11 +8,12 @@ import {
   WriterFunction,
 } from 'ts-morph';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { WriteType } from '@rxap/ts-morph';
 import { GetComponentClass } from './get-component-class';
 
 export interface ComponentInputDefinition {
   name: string;
-  type: string | WriterFunction;
+  type: string | TypeImport | WriterFunction;
   selector?: string;
   required?: boolean;
   initializer?: string | WriterFunction;
@@ -40,7 +42,7 @@ export function AddComponentInput(
           parameters: [
             {
               name: componentInputDefinition.name,
-              type: componentInputDefinition.type,
+              type: WriteType(componentInputDefinition.type, sourceFile),
             },
           ],
           docs: componentInputDefinition.docs,
@@ -58,7 +60,7 @@ export function AddComponentInput(
           componentClass.addProperty({
             name: '_' + componentInputDefinition.name,
             scope: Scope.Private,
-            type: componentInputDefinition.type,
+            type: WriteType(componentInputDefinition.type, sourceFile),
             initializer: componentInputDefinition.initializer,
             hasQuestionToken: !componentInputDefinition.initializer && !componentInputDefinition.required,
             hasExclamationToken: !componentInputDefinition.initializer && componentInputDefinition.required,
@@ -74,7 +76,7 @@ export function AddComponentInput(
         componentClass.addProperty({
           name: componentInputDefinition.name,
           scope: Scope.Public,
-          type: componentInputDefinition.type,
+          type: WriteType(componentInputDefinition.type, sourceFile),
           initializer: componentInputDefinition.initializer,
           hasQuestionToken: !componentInputDefinition.initializer && !componentInputDefinition.required,
           hasExclamationToken: !componentInputDefinition.initializer && componentInputDefinition.required,
