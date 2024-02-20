@@ -34,6 +34,9 @@ export interface CoerceDtoClassOutput {
   classDeclaration: ClassDeclaration;
 }
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function CoercePropertyDeclaration(
   typeElementMemberedNode: TypeElementMemberedNode,
   name: string,

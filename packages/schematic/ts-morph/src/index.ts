@@ -75,7 +75,6 @@ export * from './lib/angular/add-ng-module-provider';
 export * from './lib/angular/build-angular-base-path';
 export * from './lib/angular/coerce-accordion-component';
 export * from './lib/angular/coerce-component-class';
-export * from './lib/angular/coerce-component-input';
 export * from './lib/angular/coerce-component';
 export * from './lib/angular/coerce-data-source-class';
 export * from './lib/angular/coerce-dialog-component';
@@ -124,7 +123,7 @@ export * from './lib/angular/has-table-component';
 export * from './lib/angular/index';
 // endregion
 
-// region 
+// region
 export * from './lib/add-class-method';
 export * from './lib/add-dir';
 export * from './lib/add-fake-provider';
