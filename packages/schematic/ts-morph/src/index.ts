@@ -123,7 +123,7 @@ export * from './lib/angular/has-table-component';
 export * from './lib/angular/index';
 // endregion
 
-// region
+// region 
 export * from './lib/add-class-method';
 export * from './lib/add-dir';
 export * from './lib/add-fake-provider';

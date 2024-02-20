@@ -66,14 +66,15 @@ export interface NormalizedMinimumTableComponentOptions
   controllerName: string;
 }
 
-export function NormalizeMinimumTableComponentOptions(
+export function NormalizeMinimumTableComponentOptions<MODIFIER extends string = string>(
   options: Readonly<MinimumTableComponentOptions>,
+  isModifier: (value: string) => value is MODIFIER,
   suffix = '-table',
 ): NormalizedMinimumTableComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const { name } = normalizedAngularOptions;
-  const normalizedTableOptions = NormalizeMinimumTableOptions(options, name, suffix);
+  const normalizedTableOptions = NormalizeMinimumTableOptions(options, name, isModifier, suffix);
   const { componentName } = normalizedTableOptions;
   const nestModule = options.nestModule ?? null;
   return Object.freeze({

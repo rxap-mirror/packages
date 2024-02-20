@@ -55,6 +55,7 @@ import {
   TableModifiers,
 } from '../../../lib/table-options';
 import { NormalizedDataProperty } from '@rxap/ts-morph';
+import { IsTreeTableModifiers } from '../../../lib/tree-table-options';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
@@ -67,7 +68,7 @@ export interface NormalizedTableComponentOptions
 export function NormalizeTableComponentOptions(
   options: Readonly<TableComponentOptions>,
 ): NormalizedTableComponentOptions {
-  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options);
+  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options, IsTreeTableModifiers);
   AssertAngularOptionsNameProperty(normalizedMinimumTableComponentOptions);
   const {
     name,

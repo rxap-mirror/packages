@@ -36,6 +36,7 @@ import {
   tableInterfaceRule,
 } from '../../../lib/minimum-table-component-options';
 import {
+  IsTreeTableModifiers,
   NormalizedTreeTableOptions,
   NormalizeTreeTableOptions,
 } from '../../../lib/tree-table-options';
@@ -50,7 +51,7 @@ export interface NormalizedTreeTableComponentOptions
 export function NormalizedTreeTableComponentOptions(
   options: Readonly<TreeTableComponentOptions>,
 ): Readonly<NormalizedTreeTableComponentOptions> {
-  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options, '-tree-table');
+  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options, IsTreeTableModifiers, '-tree-table');
   AssertAngularOptionsNameProperty(normalizedMinimumTableComponentOptions);
   const { name } = normalizedMinimumTableComponentOptions;
   const normalizedTreeTableOptions = NormalizeTreeTableOptions(options, name);
