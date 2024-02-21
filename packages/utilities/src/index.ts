@@ -1,4 +1,5 @@
 // region strings
+export * from './lib/strings/coerce-prefix';
 export * from './lib/strings/coerce-suffix';
 // endregion
 
