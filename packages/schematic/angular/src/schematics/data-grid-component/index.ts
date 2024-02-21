@@ -6,6 +6,7 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentImport,
+  AddComponentProvider,
   BuildNestControllerName,
   buildNestProjectName,
   buildOperationId,
@@ -19,6 +20,7 @@ import {
   CoerceGetDataGridOperation,
   CoerceImports,
   CoerceParameterDeclaration,
+  CoercePropertyDeclaration,
   CoerceStatements,
   CoerceSubmitDataGridOperation,
   OpenApiResponseClassImportPath,
@@ -32,10 +34,15 @@ import {
   CoerceSuffix,
   dasherize,
 } from '@rxap/schematics-utilities';
+import {
+  CoerceComponentImport,
+  CoerceComponentInput,
+} from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
+  Scope,
   SourceFile,
   Writers,
 } from 'ts-morph';
@@ -107,6 +114,8 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
     mode,
     componentName,
     overwrite,
+    collection,
+    name,
   } = normalizedOptions;
 
   const templateOptions = {
@@ -125,6 +134,47 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       template: {
         url: `./files/${ mode }`,
         options: templateOptions,
+      },
+      tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
+
+        CoerceComponentImport(classDeclaration, { name: 'DataGridModule', moduleSpecifier: '@rxap/data-grid' });
+        CoerceComponentImport(classDeclaration, { name: 'MatCardModule', moduleSpecifier: '@angular/material/card' });
+
+        if (!collection) {
+          const dataSourceClassName = `${classify(name)}DataGridDataSource`;
+          AddComponentProvider(sourceFile, dataSourceClassName);
+          CoerceImports(sourceFile, {
+            namedImports: [ dataSourceClassName ],
+            moduleSpecifier: `./${ name }-data-grid.data-source`,
+          });
+          CoercePropertyDeclaration(classDeclaration, 'dataGridDataSource', {
+            isReadonly: true,
+            scope: Scope.Public,
+            initializer: `inject(${dataSourceClassName})`,
+          });
+          CoerceImports(sourceFile, {
+            namedImports: [ 'inject' ],
+            moduleSpecifier: '@angular/core',
+          });
+        } else {
+          CoerceComponentInput(classDeclaration, 'data', 'any', { isRequired: true });
+        }
+
+        switch (mode) {
+          case DataGridMode.Form:
+            CoerceComponentImport(classDeclaration, { name: 'RxapFormsModule', moduleSpecifier: '@rxap/forms' });
+            CoerceComponentImport(classDeclaration, { name: 'ReactiveFormsModule', moduleSpecifier: '@angular/forms' });
+            AddComponentProvider(sourceFile, 'FormProviders');
+            AddComponentProvider(sourceFile, 'FormComponentProviders');
+            CoerceImports(sourceFile, {
+              namedImports: [ 'FormProviders', 'FormComponentProviders' ],
+              moduleSpecifier: './form-providers',
+            });
+            break;
+          case DataGridMode.Plain:
+            break;
+        }
+
       },
     }),
   ]);
