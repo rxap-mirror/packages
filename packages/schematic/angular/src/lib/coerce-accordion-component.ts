@@ -14,6 +14,7 @@ import {
   dasherize,
   noop,
 } from '@rxap/utilities';
+import { Scope } from 'ts-morph';
 import { NormalizedAccordionComponentOptions } from '../schematics/accordion/accordion-component';
 
 export interface CoerceAccordionComponentOptions extends CoerceComponentOptions {
@@ -78,7 +79,9 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
       // endregion
 
       CoercePropertyDeclaration(classDeclaration, 'accordionDataSource', {
-        initializer: `inject(${accordionDataSourceName})`
+        initializer: `inject(${accordionDataSourceName})`,
+        isReadonly: true,
+        scope: Scope.Public,
       });
       CoerceImports(sourceFile, {
         namedImports: ['inject'],

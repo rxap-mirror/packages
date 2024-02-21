@@ -17,6 +17,7 @@ import {
   CoerceInterfaceRule,
   CoerceMethodClass,
   CoerceParameterDeclaration,
+  CoercePropertyDeclaration,
   CoerceStatements,
   OperationIdToClassImportPath,
   OperationIdToClassName,
@@ -29,7 +30,10 @@ import {
   dasherize,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
-import { CoerceClassProperty } from '@rxap/ts-morph';
+import {
+  CoerceClassProperty,
+  CoerceComponentImport,
+} from '@rxap/ts-morph';
 import {
   classify,
   Normalized,
@@ -341,6 +345,30 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
       template: {
         options: templateOptions,
       },
+      tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
+        CoerceComponentImport(classDeclaration, { name: 'DataSourceDirective', moduleSpecifier: '@rxap/data-source/directive' });
+        CoerceComponentImport(classDeclaration, { name: 'MatProgressBarModule', moduleSpecifier: '@angular/material/progress-bar' });
+        CoerceComponentImport(classDeclaration, { name: 'DataSourceErrorComponent', moduleSpecifier: '@rxap/data-source' });
+        CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
+        CoerceComponentImport(classDeclaration, { name: 'JsonPipe', moduleSpecifier: '@angular/common' });
+
+        const pipeDataSourceName = `${ classify(itemName) }PanelDataSource`;
+
+        AddComponentProvider(sourceFile, pipeDataSourceName);
+        CoerceImports(sourceFile, {
+          moduleSpecifier: `./${ dasherize(itemName) }-panel.data-source`,
+          namedImports: [ pipeDataSourceName ],
+        });
+        CoerceImports(sourceFile, {
+          namedImports: ['inject'],
+          moduleSpecifier: '@angular/core'
+        });
+        CoercePropertyDeclaration(classDeclaration, 'panelDataSource', {
+          isReadonly: true,
+          initializer: `inject(${pipeDataSourceName})`,
+          scope: Scope.Public,
+        });
+      }
     }),
     panelItemBackendRule(normalizedOptions),
   ]);
