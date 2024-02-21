@@ -34,6 +34,7 @@ import {
 import {
   CoerceClassMethod,
   CoerceClassProperty,
+  CoerceComponentImport,
   NormalizeDataProperty,
   NormalizedDataProperty,
   OperationIdToParameterClassImportPath,
@@ -70,6 +71,7 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
+import { CoerceAccordionComponentRule } from '../../../lib/coerce-accordion-component';
 import {
   IsNormalizedPropertyPersistent,
   NormalizedPersistent,
@@ -186,7 +188,8 @@ function componentRule(normalizedOptions: NormalizedAccordionComponentOptions, h
 
   return chain([
     () => console.log('Coerce accordion component ...'),
-    CoerceComponentRule({
+    CoerceAccordionComponentRule({
+      accordion: normalizedOptions,
       project,
       name: componentName,
       feature,
@@ -344,6 +347,10 @@ function headerComponentRule(normalizedOptions: NormalizedAccordionComponentOpti
           ],
           type: 'unknown',
           hasExclamationToken: true,
+        });
+        CoerceComponentImport(classDeclaration, {
+          name: 'NavigateBackButtonComponent',
+          moduleSpecifier: '@rxap/components'
         });
       },
     }),

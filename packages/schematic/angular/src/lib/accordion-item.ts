@@ -1,6 +1,12 @@
 import { SchematicsException } from '@angular-devkit/schematics';
 import {
+  NormalizedTypeImport,
+  NormalizeTypeImport,
+  TypeImport,
+} from '@rxap/ts-morph';
+import {
   capitalize,
+  classify,
   dasherize,
   NonNullableSelected,
   Normalized,
@@ -17,32 +23,37 @@ export interface AccordionItem {
   title: string;
   description?: string;
   permission?: string;
+  importList?: TypeImport[];
 }
 
-export type NormalizedAccordionItem = Readonly<NonNullableSelected<Normalized<AccordionItem>, 'type'>>;
+export interface NormalizedAccordionItem extends Readonly<NonNullableSelected<Normalized<AccordionItem>, 'type'>> {
+  importList: NormalizedTypeImport[];
+}
 
-export function NormalizeAccordionItem(item: string | AccordionItem): NormalizedAccordionItem {
-  let name: string;
+function coerceAccordionItemImportList(item: AccordionItem): TypeImport[] {
+  const importList: TypeImport[] = item.importList ?? [];
+  importList.push({
+    name: `${classify(item.name)}PanelComponent`,
+    moduleSpecifier: `./${dasherize(item.name)}-panel/${dasherize(item.name)}-panel.component`
+  });
+  return importList;
+}
+
+export function NormalizeAccordionItem(item: AccordionItem): NormalizedAccordionItem {
   let type = 'panel';
   let modifiers: string[] = [];
   let title: string;
   let description: string | null = null;
   let permission: string | null = null;
   let additional: Record<string, any> = {};
-  if (typeof item === 'string') {
-    const fragments = item.split(':');
-    name = fragments[0];
-    type = fragments[1] ?? type;
-    modifiers = fragments[2] ? fragments[2].split(/,(?![^(]*\))/g) : modifiers;
-  } else {
-    name = item.name;
-    type = item.type ?? type;
-    modifiers = item.modifiers ?? modifiers;
-    title = item.title;
-    description = item.description ?? description;
-    permission = item.permission ?? permission;
-    additional = item;
-  }
+  const name = item.name;
+  type = item.type ?? type;
+  modifiers = item.modifiers ?? modifiers;
+  title = item.title;
+  description = item.description ?? description;
+  permission = item.permission ?? permission;
+  additional = item;
+  const importList = coerceAccordionItemImportList(item);
   title ??= dasherize(name).split('-').map(fragment => capitalize(fragment)).join(' ');
   if (!IsAccordionItemType(type)) {
     throw new SchematicsException(
@@ -57,10 +68,11 @@ export function NormalizeAccordionItem(item: string | AccordionItem): Normalized
     type,
     modifiers,
     permission,
+    importList: importList.map(NormalizeTypeImport),
   });
 }
 
-export function NormalizeAccordionItemList(itemList?: Array<string | AccordionItem>): ReadonlyArray<NormalizedAccordionItem> {
+export function NormalizeAccordionItemList(itemList?: Array<AccordionItem>): ReadonlyArray<NormalizedAccordionItem> {
   return Object.freeze((
     itemList ?? []
   ).map(NormalizeAccordionItem));

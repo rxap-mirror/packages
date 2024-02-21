@@ -5,7 +5,7 @@ import { AngularOptions } from '../../../lib/angular-options';
 import { Persistent } from '../../../lib/persistent';
 
 export interface AccordionComponentOptions extends AngularOptions {
-  itemList?: Array<string | AccordionItem>;
+  itemList?: Array<AccordionItem>;
   multiple?: boolean;
   persistent?: Persistent;
   header?: AccordionHeader;

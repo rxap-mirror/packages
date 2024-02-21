@@ -127,48 +127,41 @@
       "alias": "item",
       "type": "array",
       "items": {
-        "oneOf": [
-          {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string"
           },
-          {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "panel",
-                  "table",
-                  "data-grid",
-                  "data-grid-collection",
-                  "tree-table",
-                  "switch"
-                ]
-              },
-              "modifiers": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "title": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "permission": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": true,
-            "required": [
-              "name"
+          "type": {
+            "type": "string",
+            "enum": [
+              "panel",
+              "table",
+              "data-grid",
+              "data-grid-collection",
+              "tree-table",
+              "switch"
             ]
+          },
+          "modifiers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "permission": {
+            "type": "string"
           }
+        },
+        "additionalProperties": true,
+        "required": [
+          "name"
         ],
         "description": "The name of the accordion expansion panel"
       },
