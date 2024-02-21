@@ -53,6 +53,18 @@
       "type": "string",
       "description": "Name of the nest controller"
     },
+    "matFormFieldDefaultOptions": {
+      "appearance": {
+        "type": "string",
+        "description": "The appearance of the mat form field",
+        "enum": [
+          "legacy",
+          "standard",
+          "fill",
+          "outline"
+        ]
+      }
+    },
     "controlList": {
       "alias": "control",
       "type": "array",

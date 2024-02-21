@@ -36,19 +36,25 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
+import { CoerceFormComponentRule } from '../../../lib/coerce-form-component';
 import {
   NormalizedFormComponentControl,
   NormalizeFormComponentControlList,
 } from '../../../lib/form-component-control';
+import {
+  NormalizedMatFormFieldDefaultOptions,
+  NormalizeMatFormFieldDefaultOptions,
+} from '../../../lib/mat-form-field-default-options';
 import { FormComponentOptions } from './schema';
 
-interface NormalizedFormComponentOptions
-  extends Omit<Readonly<Normalized<FormComponentOptions> & NormalizedAngularOptions>, 'controlList'> {
+export interface NormalizedFormComponentOptions
+  extends Omit<Readonly<Normalized<FormComponentOptions> & NormalizedAngularOptions>, 'controlList' | 'name' | 'matFormFieldDefaultOptions'> {
   componentName: string;
   controllerName: string;
   controlList: ReadonlyArray<NormalizedFormComponentControl>;
+  name: string;
+  matFormFieldDefaultOptions: NormalizedMatFormFieldDefaultOptions | null;
 }
-
 
 
 export function NormalizeFormComponentOptions(
@@ -70,6 +76,7 @@ export function NormalizeFormComponentOptions(
     controllerName,
     controlList: NormalizeFormComponentControlList(options.controlList),
     context: options.context ? dasherize(options.context) : null,
+    matFormFieldDefaultOptions: NormalizeMatFormFieldDefaultOptions(options.matFormFieldDefaultOptions),
   });
 }
 
@@ -95,7 +102,8 @@ function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule 
 
   return chain([
     () => console.log(`Coerce form component '${ componentName }'`),
-    CoerceComponentRule({
+    CoerceFormComponentRule({
+      form: normalizedOptions,
       project,
       feature,
       name: componentName,
