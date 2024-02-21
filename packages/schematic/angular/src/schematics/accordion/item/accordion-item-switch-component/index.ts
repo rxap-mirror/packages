@@ -3,23 +3,17 @@ import {
   noop,
 } from '@angular-devkit/schematics';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
+import { Normalized } from '@rxap/utilities';
 import {
-  dasherize,
-  Normalized,
-} from '@rxap/utilities';
-import {
-  AccordionItem,
-  NormalizeAccordionItemList,
-  NormalizedAccordionItem,
+  NormalizedBaseAccordionItem,
+  NormalizedSwitchAccordionItem,
+  NormalizeSwitchAccordionItem,
 } from '../../../../lib/accordion-item';
+import { AccordionItemTypes } from '../../../../lib/accordion-itme-types';
 import {
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
-import {
-  NormalizeDataProperty,
-  NormalizedDataProperty,
-} from '@rxap/ts-morph';
 import {
   NormalizeAccordionItemStandaloneComponentOptions,
   NormalizedAccordionItemStandaloneComponentOptions,
@@ -27,43 +21,18 @@ import {
 import { AccordionItemSwitchComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemSwitchComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch'> {
-  switch: Readonly<{
-    property: NormalizedDataProperty;
-    case: ReadonlyArray<{
-      test: string;
-      itemList: ReadonlyArray<NormalizedAccordionItem>
-    }>;
-    defaultCase: Readonly<{
-      itemList: ReadonlyArray<NormalizedAccordionItem>
-    }> | null;
-  }>;
+  extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch' | 'importList'>, Omit<NormalizedSwitchAccordionItem, 'type'> {
 }
 
 export function NormalizeAccordionItemSwitchComponentOptions(
   options: Readonly<AccordionItemSwitchComponentOptions>,
 ): Readonly<NormalizedAccordionItemSwitchComponentOptions> {
   const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
-  const { itemName } = normalizedAccordionItemComponentOptions;
-  const { switch: switchOptions } = options;
-  const { property, case: caseList, defaultCase } = switchOptions;
   return Object.freeze({
     ...normalizedAccordionItemComponentOptions,
-    switch: Object.freeze({
-      property: NormalizeDataProperty(property, 'string'),
-      case: Object.freeze(caseList.map((item) => ({
-        test: item.test,
-        itemList: NormalizeAccordionItemList(item.itemList.map((item) => ({
-          ...item,
-          name: [itemName, dasherize(item.name)].join('-'),
-        }) as AccordionItem)),
-      }))),
-      defaultCase: defaultCase ? {
-        itemList: NormalizeAccordionItemList(defaultCase.itemList.map((item) => ({
-          ...item,
-          name: [itemName, dasherize(item.name)].join('-'),
-        }) as AccordionItem)),
-      } : null,
+    ...NormalizeSwitchAccordionItem({
+      ...options,
+      type: AccordionItemTypes.Switch,
     }),
   });
 }
@@ -74,7 +43,7 @@ function printOptions(options: NormalizedAccordionItemSwitchComponentOptions) {
 
 function caseRule(
   normalizedOptions: NormalizedAccordionItemSwitchComponentOptions,
-  item: NormalizedAccordionItem
+  item: NormalizedBaseAccordionItem
 ) {
 
   const {

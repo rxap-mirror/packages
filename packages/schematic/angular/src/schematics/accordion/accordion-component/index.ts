@@ -63,7 +63,7 @@ import {
 } from '../../../lib/accordion-identifier';
 import {
   NormalizeAccordionItemList,
-  NormalizedAccordionItem,
+  NormalizedBaseAccordionItem,
 } from '../../../lib/accordion-item';
 import {
   AssertAngularOptionsNameProperty,
@@ -83,20 +83,20 @@ import { AccordionComponentOptions } from './schema';
 export interface NormalizedAccordionComponentOptions
   extends Readonly<Normalized<Omit<AccordionComponentOptions, 'itemList' | 'persistent' | 'identifier'>> & NormalizedAngularOptions> {
   name: string;
-  itemList: ReadonlyArray<NormalizedAccordionItem>;
+  itemList: ReadonlyArray<NormalizedBaseAccordionItem>;
   persistent: NormalizedPersistent | null;
   withPermission: boolean;
   header: NormalizedAccordionHeader | null;
   identifier: NormalizedAccordionIdentifier | null;
 }
 
-function hasItemWithPermission(itemList: ReadonlyArray<NormalizedAccordionItem>): boolean {
+function hasItemWithPermission(itemList: ReadonlyArray<NormalizedBaseAccordionItem>): boolean {
   return itemList.some((item) => {
     if (item.permission) {
       return true;
     }
     if (item.type === 'switch') {
-      return hasItemWithPermission((item as any).switch.case?.flatMap((item: { itemList: NormalizedAccordionItem[] }) => item.itemList) ?? []) ||
+      return hasItemWithPermission((item as any).switch.case?.flatMap((item: { itemList: NormalizedBaseAccordionItem[] }) => item.itemList) ?? []) ||
              hasItemWithPermission((item as any).switch.defaultCase?.itemList ?? []);
     }
     return false;
@@ -553,7 +553,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
 
 }
 
-function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOptions, item: NormalizedAccordionItem) {
+function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOptions, item: NormalizedBaseAccordionItem) {
 
   const {
     project,

@@ -1,7 +1,4 @@
+import { DataGridAccordionItem } from '../../../../lib/accordion-item';
 import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
-import { DataGridOptions } from '../../../../lib/data-grid-options';
 
-export interface AccordionItemDataGridComponentOptions
-  extends Omit<AccordionItemComponentOptions, 'type'> {
-  dataGrid: DataGridOptions;
-}
+export type AccordionItemDataGridComponentOptions = Omit<DataGridAccordionItem & AccordionItemComponentOptions, 'type'>

@@ -34,15 +34,16 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
+  NormalizeDataGridAccordionItem,
+  NormalizedDataGridAccordionItem,
+} from '../../../../lib/accordion-item';
+import { AccordionItemTypes } from '../../../../lib/accordion-itme-types';
+import {
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
-import {
-  DataGridMode,
-  NormalizeDataGridOptions,
-  NormalizedDataGridOptions,
-} from '../../../../lib/data-grid-options';
+import { DataGridMode } from '../../../../lib/data-grid-options';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
@@ -51,8 +52,7 @@ import {
 import { AccordionItemDataGridComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemDataGridComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemDataGridComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'dataGrid'> {
-  dataGrid: NormalizedDataGridOptions;
+  extends Omit<Readonly<Normalized<AccordionItemDataGridComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'dataGrid' | 'importList'>, Omit<NormalizedDataGridAccordionItem, 'type'> {
 }
 
 export function NormalizeAccordionItemDataGridComponentOptions(
@@ -61,7 +61,10 @@ export function NormalizeAccordionItemDataGridComponentOptions(
   const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
   return Object.freeze({
     ...normalizedAccordionItemComponentOptions,
-    dataGrid: NormalizeDataGridOptions(options.dataGrid),
+    ...NormalizeDataGridAccordionItem({
+      ...options,
+      type: AccordionItemTypes.DataGrid,
+    }),
   });
 }
 

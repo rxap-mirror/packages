@@ -7,7 +7,6 @@ import {
   BuildNestControllerName,
   buildOperationId,
   CoerceClassConstructor,
-  CoerceComponentRule,
   CoerceGetChildrenOperation,
   CoerceGetRootOperation,
   CoerceImports,
@@ -27,16 +26,17 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
+  NormalizedTreeTableAccordionItem,
+  NormalizeTreeTableAccordionItem,
+} from '../../../../lib/accordion-item';
+import { AccordionItemTypes } from '../../../../lib/accordion-itme-types';
+import {
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
-import {
-  NormalizedTreeTableOptions,
-  NormalizeTreeTableOptions,
-  TreeTableModifiers,
-} from '../../../../lib/tree-table-options';
+import { TreeTableModifiers } from '../../../../lib/tree-table-options';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
@@ -45,18 +45,19 @@ import {
 import { AccordionItemTreeTableComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemTreeTableComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table'> {
-  table: NormalizedTreeTableOptions;
+  extends Omit<Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList'>, Omit<NormalizedTreeTableAccordionItem, 'type'> {
 }
 
 export function NormalizeAccordionItemTreeTableComponentOptions(
   options: Readonly<AccordionItemTreeTableComponentOptions>,
 ): Readonly<NormalizedAccordionItemTreeTableComponentOptions> {
   const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
-  const { itemName } = normalizedAccordionItemComponentOptions;
   return Object.freeze({
     ...normalizedAccordionItemComponentOptions,
-    table: NormalizeTreeTableOptions(options.table, itemName),
+    ...NormalizeTreeTableAccordionItem({
+      ...options,
+      type: AccordionItemTypes.TreeTable,
+    }),
   });
 }
 

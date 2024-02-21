@@ -46,6 +46,10 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
+  NormalizeBaseAccordionItem,
+  NormalizedBaseAccordionItem,
+} from '../../../lib/accordion-item';
+import {
   AccordionItemTypes,
   IsAccordionItemType,
 } from '../../../lib/accordion-itme-types';
@@ -60,7 +64,7 @@ import { AccordionItemComponentOptions } from './schema';
 export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'type'>;
 
 export interface NormalizedAccordionItemStandaloneComponentOptions
-  extends Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions> {
+  extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name'>, NormalizedBaseAccordionItem {
   componentName: string;
 }
 
@@ -74,8 +78,11 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
   let accordionName = options.accordionName ?? feature;
   accordionName = CoerceSuffix(dasherize(accordionName), '-accordion');
   return Object.freeze({
-    ...options,
     ...normalizedAngularOptions,
+    ...NormalizeBaseAccordionItem({
+      ...options,
+      type: AccordionItemTypes.Panel,
+    }),
     itemName: itemName,
     nestModule: accordionName,
     modifiers: options.modifiers ?? [],

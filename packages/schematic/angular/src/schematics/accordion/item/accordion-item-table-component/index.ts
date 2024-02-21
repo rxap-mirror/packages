@@ -3,23 +3,21 @@ import {
   chain,
   noop,
 } from '@angular-devkit/schematics';
-import {
-  CoerceComponentRule,
-  CoerceGetPageOperation,
-} from '@rxap/schematics-ts-morph';
+import { CoerceGetPageOperation } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
+import {
+  NormalizedTableAccordionItem,
+  NormalizeTableAccordionItem,
+} from '../../../../lib/accordion-item';
+import { AccordionItemTypes } from '../../../../lib/accordion-itme-types';
 import {
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
-import {
-  NormalizedTableOptions,
-  NormalizeTableOptions,
-  TableModifiers,
-} from '../../../../lib/table-options';
+import { TableModifiers } from '../../../../lib/table-options';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
@@ -28,18 +26,19 @@ import {
 import { AccordionItemTableComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemTableComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table'> {
-  table: NormalizedTableOptions;
+  extends Omit<Readonly<Normalized<AccordionItemTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList'>, Omit<NormalizedTableAccordionItem, 'type'> {
 }
 
 export function NormalizeAccordionItemTableComponentOptions(
   options: Readonly<AccordionItemTableComponentOptions>,
 ): Readonly<NormalizedAccordionItemTableComponentOptions> {
   const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
-  const { itemName } = normalizedAccordionItemComponentOptions;
   return Object.freeze({
     ...normalizedAccordionItemComponentOptions,
-    table: NormalizeTableOptions(options.table, itemName),
+    ...NormalizeTableAccordionItem({
+      ...options,
+      type: AccordionItemTypes.Table,
+    }),
   });
 }
 
