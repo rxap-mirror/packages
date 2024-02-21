@@ -5,6 +5,7 @@ import {
   SchematicsException,
 } from '@angular-devkit/schematics';
 import {
+  AddComponentProvider,
   CoerceClassConstructor,
   CoerceComponentRule,
   CoerceDataSourceClass,
@@ -12,17 +13,24 @@ import {
   CoerceGetDataGridOperation,
   CoerceImports,
   CoerceParameterDeclaration,
+  CoercePropertyDeclaration,
   CoerceSubmitDataGridOperation,
 } from '@rxap/schematics-ts-morph';
 import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
-import { Normalized } from '@rxap/utilities';
+import { CoerceComponentImport } from '@rxap/ts-morph';
+import {
+  classify,
+  dasherize,
+  Normalized,
+} from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
   Project,
+  Scope,
   SourceFile,
 } from 'ts-morph';
 import {
@@ -118,6 +126,32 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
       template: {
         url: `./files/${ hasCollectionModifier ? 'data-grid-collection' : 'data-grid' }`,
         options: templateOptions,
+      },
+      tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
+        CoerceComponentImport(classDeclaration, { name: `${classify(itemName)}DataGridComponent`, moduleSpecifier: `./${dasherize(itemName)}-data-grid/${dasherize(itemName)}-data-grid.component` });
+        if (hasCollectionModifier) {
+          CoerceComponentImport(classDeclaration, { name: 'DataSourceDirective', moduleSpecifier: '@rxap/data-source/directive' });
+          CoerceComponentImport(classDeclaration, { name: 'DataSourceErrorComponent', moduleSpecifier: '@rxap/data-source' });
+          CoerceComponentImport(classDeclaration, { name: 'MatProgressBarModule', moduleSpecifier: '@angular/material/progress-bar' });
+          CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
+          CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
+          CoerceComponentImport(classDeclaration, { name: 'NgFor', moduleSpecifier: '@angular/common' });
+          const dataGridDataSourceName = `${classify(itemName)}DataGridDataSource`;
+          AddComponentProvider(sourceFile, dataGridDataSourceName);
+          CoerceImports(sourceFile, {
+            namedImports: [ dataGridDataSourceName ],
+            moduleSpecifier: `./${dasherize(itemName)}-data-grid/${dasherize(itemName)}-data-grid.data-source`,
+          });
+          CoercePropertyDeclaration(classDeclaration, 'dataGridDataSource', {
+            isReadonly: true,
+            scope: Scope.Public,
+            initializer: `inject(${dataGridDataSourceName})`,
+          });
+          CoerceImports(sourceFile, {
+            namedImports: [ 'inject' ],
+            moduleSpecifier: '@angular/core',
+          });
+        }
       },
     }),
   ]);

@@ -31,6 +31,7 @@ import {
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
+import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import {
   NormalizedTreeTableOptions,
   NormalizeTreeTableOptions,
@@ -82,7 +83,9 @@ function componentRule(normalizedOptions: NormalizedAccordionItemTreeTableCompon
   };
   return chain([
     () => console.log(`Coerce accordion item component ...`),
-    CoerceComponentRule({
+    CoerceAccordionItemTableComponentRule({
+      accordionItem: normalizedOptions,
+      tableComponentSuffix: 'tree-table',
       name: componentName,
       project,
       feature,
