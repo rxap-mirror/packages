@@ -168,7 +168,7 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
             AddComponentProvider(sourceFile, 'FormComponentProviders');
             CoerceImports(sourceFile, {
               namedImports: [ 'FormProviders', 'FormComponentProviders' ],
-              moduleSpecifier: './form-providers',
+              moduleSpecifier: './form.providers',
             });
             break;
           case DataGridMode.Plain:

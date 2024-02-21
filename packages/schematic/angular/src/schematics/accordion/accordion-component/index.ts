@@ -35,6 +35,7 @@ import {
   CoerceClassMethod,
   CoerceClassProperty,
   CoerceComponentImport,
+  CoerceComponentInput,
   NormalizeDataProperty,
   NormalizedDataProperty,
   OperationIdToParameterClassImportPath,
@@ -337,17 +338,7 @@ function headerComponentRule(normalizedOptions: NormalizedAccordionComponentOpti
         options: templateOptions,
       },
       tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
-        CoercePropertyDeclaration(classDeclaration, 'data', {
-          scope: Scope.Public,
-          decorators: [
-            {
-              name: 'Input',
-              arguments: [ Writers.object({ required: 'true' }) ],
-            },
-          ],
-          type: 'unknown',
-          hasExclamationToken: true,
-        });
+        CoerceComponentInput(classDeclaration, 'data', 'unknown', { isRequired: true });
         CoerceComponentImport(classDeclaration, {
           name: 'NavigateBackButtonComponent',
           moduleSpecifier: '@rxap/components'
