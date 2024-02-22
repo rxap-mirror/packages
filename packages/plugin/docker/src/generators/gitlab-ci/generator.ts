@@ -95,7 +95,12 @@ const dotStartup = {
       when: 'never',
     },
     {
+      if: '$CI_COMMIT_TAG =~ /^v\\d+\\.\\d+\\.\\d+$/',
+      when: 'always',
+    },
+    {
       when: 'manual',
+      allow_failure: true,
     }
   ],
   tags: [],
