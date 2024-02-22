@@ -187,6 +187,55 @@
           <% } %>
 
           <!-- endregion -->
+          <% if (hasColumnWithFilter) { %>
+          <!-- region filter columns -->
+          <% if (actionList.length) { %>
+          <ng-container matColumnDef="filter_actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+          </ng-container>
+          <% } %>
+
+          <% for (const column of columnList) { %>
+          <ng-container matColumnDef="filter_<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef>
+              <% if (column.hasFilter) { %>
+              <% if (column.type === 'boolean') { %>
+              <mat-checkbox
+                indeterminate
+                parentControlContainer
+                formControlName="<%= camelize(column.name) %>"
+              >
+                <ng-container i18n><%= column.title %></ng-container>
+              </mat-checkbox>
+              <% } else { %>
+              <mat-form-field class="w-full pt-3">
+                <mat-label i18n><%= column.title %></mat-label>
+                <input
+                  matInput
+                  i18n-placeholder
+                  placeholder="Enter Filter"
+                  parentControlContainer
+                  formControlName="<%= camelize(column.name) %>"
+                />
+                <button matSuffix rxapInputClearButton mat-icon-button>
+                  <mat-icon>clear</mat-icon>
+                </button>
+              </mat-form-field>
+              <% } %>
+              <% } %>
+            </th>
+          </ng-container>
+          <% } %>
+
+          <!-- endregion -->
+          <tr
+            class="rxap-filter-header"
+            mat-header-row
+            *matHeaderRowDef="
+              rxapTableColumns.displayColumns | toFilterColumnNames
+            "
+          ></tr>
+          <% } %>
 
           <tr
             mat-header-row
