@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.2...@rxap/schematic-angular@16.2.0-dev.3) (2024-02-22)
+
+### Bug Fixes
+
+- only add default export to feature root components ([50f916e](https://gitlab.com/rxap/packages/commit/50f916e2168d8b18826629b6669c8976b7152b12))
+- support filter row in tree table components ([5652aad](https://gitlab.com/rxap/packages/commit/5652aada0e57c582a35200c4f97daa7283b87e35))
+- support filter row in tree table components ([1eb26ca](https://gitlab.com/rxap/packages/commit/1eb26ca0fa9334276bf4addb67a684046de7b9ad))
+
 # [16.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.1...@rxap/schematic-angular@16.2.0-dev.2) (2024-02-22)
 
 ### Bug Fixes
