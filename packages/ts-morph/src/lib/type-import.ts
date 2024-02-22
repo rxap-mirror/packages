@@ -75,7 +75,7 @@ export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string):
     isTypeOnly = typeImport.isTypeOnly ?? isTypeOnly;
     defaultImport = typeImport.defaultImport ?? defaultImport;
   }
-  return Object.freeze({
+  return ({
     name,
     moduleSpecifier,
     namedImport,

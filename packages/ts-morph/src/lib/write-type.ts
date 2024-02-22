@@ -58,8 +58,6 @@ export function WriteType(propertyOrType: WriteTypeOptions | WriteType, sourceFi
     if (sourceFile) {
       if (RequiresTypeImport(type)) {
         CoerceImports(sourceFile, TypeImportToImportStructure(type));
-      } else {
-        console.debug('WriteType :: type import not required');
       }
     } else {
       console.warn('WriteType :: No source file provided to coerce imports');
