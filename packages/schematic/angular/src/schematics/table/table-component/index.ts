@@ -58,6 +58,7 @@ import {
   NormalizeTableOptions,
   TableModifiers,
 } from '../../../lib/table-options';
+import { TableFilterColumnRule } from '../../../lib/table/table-filter-column-rule';
 import { UsePickFromTableInterfaceAsFormTypeRule } from '../../../lib/use-pick-from-table-interface-as-form-type';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
@@ -198,102 +199,7 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
   ]);
 }
 
-function filterColumnRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
-  const {
-    columnList,
-    project,
-    feature,
-    shared,
-    directory,
-    backend,
-    overwrite,
-    componentName,
-    name,
-  } = normalizedOptions;
-  if (columnList.some((c) => c.hasFilter)) {
-    return chain([
-      () => console.log(`Coerce the filter form definition`),
-      ExecuteSchematic('form-definition', {
-        name: CoerceSuffix(componentName, '-filter'),
-        project,
-        feature,
-        shared,
-        directory,
-        backend,
-        overwrite,
-        controlList: columnList
-          .filter((column) => column.hasFilter)
-          .map(TableColumnToFormControl),
-      }),
-      CoerceComponentRule({
-        project,
-        feature,
-        shared,
-        name: componentName,
-        directory,
-        overwrite,
-        tsMorphTransform: (
-          project: Project,
-          [ sourceFile ]: [ SourceFile ],
-        ) => {
-          AddComponentProvider(
-            sourceFile,
-            'FormProviders',
-            [
-              {
-                moduleSpecifier: './form.providers',
-                namedImports: [ 'FormProviders' ],
-              },
-            ],
-          );
-          AddComponentProvider(
-            sourceFile,
-            'TableFilterService',
-            [
-              {
-                moduleSpecifier: '@rxap/material-table-system',
-                namedImports: [ 'TableFilterService' ],
-              },
-            ],
-          );
-          AddComponentProvider(
-            sourceFile,
-            {
-              provide: 'RXAP_TABLE_FILTER_FORM_DEFINITION',
-              useFactory: 'FormFactory',
-              deps: [ 'INJECTOR' ],
-            },
-            [
-              {
-                moduleSpecifier: '@angular/core',
-                namedImports: [ 'INJECTOR' ],
-              },
-              {
-                moduleSpecifier: './form.providers',
-                namedImports: [ 'FormFactory' ],
-              },
-              {
-                moduleSpecifier: '@rxap/material-table-system',
-                namedImports: [ 'RXAP_TABLE_FILTER_FORM_DEFINITION' ],
-              },
-            ],
-          );
-        },
-      }),
-      UsePickFromTableInterfaceAsFormTypeRule({
-        name,
-        columnList,
-        feature,
-        project,
-        shared,
-        directory,
-        formName: CoerceSuffix(componentName, '-filter'),
-      }),
-    ]);
-  }
-
-  return noop();
-}
+// region backend
 
 function openApiBackendRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
 
@@ -544,6 +450,8 @@ function backendRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
   return noop();
 }
 
+// endregion
+
 function selectColumnRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
 
   const {
@@ -614,7 +522,7 @@ export default function (options: TableComponentOptions) {
       tableInterfaceRule(normalizedOptions),
       componentRule(normalizedOptions),
       headerButtonRule(normalizedOptions),
-      filterColumnRule(normalizedOptions),
+      TableFilterColumnRule(normalizedOptions),
       backendRule(normalizedOptions),
       cellComponentRule(normalizedOptions),
       actionListRule(normalizedOptions),

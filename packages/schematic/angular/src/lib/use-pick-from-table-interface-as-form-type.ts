@@ -8,6 +8,7 @@ import { CoerceSuffix } from '@rxap/schematics-utilities';
 import {
   camelize,
   classify,
+  dasherize,
 } from '@rxap/utilities';
 import { CoerceTypeAlias } from '../schematics/table/action/form-table-action';
 import { NormalizedTableColumn } from './table-column';
@@ -17,6 +18,7 @@ export interface UsePickFromTableInterfaceAsFormTypeRuleOptions
   name: string;
   formName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
+  suffix?: string;
 }
 
 export function UsePickFromTableInterfaceAsFormTypeRule(
@@ -26,11 +28,12 @@ export function UsePickFromTableInterfaceAsFormTypeRule(
     name,
     columnList,
     formName,
+    suffix = 'table',
   } = options;
 
   const className = CoerceSuffix(classify(formName), 'Form');
   const interfaceName = `I${ className }`;
-  const tableInterfaceName = `I${ classify(name) }Table`;
+  const tableInterfaceName = `I${ classify(name) }${classify(suffix)}`;
 
   return TsMorphAngularProjectTransformRule(options, (project, [ sourceFile ]) => {
 
@@ -50,7 +53,7 @@ export function UsePickFromTableInterfaceAsFormTypeRule(
 
     CoerceImports(sourceFile, {
       namedImports: [ tableInterfaceName ],
-      moduleSpecifier: `./${ name }-table`,
+      moduleSpecifier: `./${ name }-${dasherize(suffix)}`,
     });
   }, [ '/' + CoerceSuffix(formName, '.form.ts') ]);
 }

@@ -36,6 +36,7 @@ import {
   NormalizeMinimumTableComponentOptions,
   tableInterfaceRule,
 } from '../../../lib/minimum-table-component-options';
+import { TableFilterColumnRule } from '../../../lib/table/table-filter-column-rule';
 import {
   IsTreeTableModifiers,
   NormalizedTreeTableOptions,
@@ -134,6 +135,8 @@ function componentRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
   ]);
 
 }
+
+// region backend
 
 function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
 
@@ -388,6 +391,8 @@ function backendRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
 
 }
 
+// endregion
+
 function treeTableMethodRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
 
   const {
@@ -459,6 +464,7 @@ export default function (options: TreeTableComponentOptions) {
     return chain([
       tableInterfaceRule(normalizedOptions),
       componentRule(normalizedOptions),
+      TableFilterColumnRule(normalizedOptions, 'tree-table'),
       actionListRule(normalizedOptions),
       cellComponentRule(normalizedOptions),
       headerButtonRule(normalizedOptions),
