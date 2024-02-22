@@ -279,6 +279,19 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
           moduleSpecifier: 'class-validator',
         });
         break;
+        case 'unknown':
+          CoerceDecorator(
+            propertyDeclaration,
+            'ApiProperty',
+            {
+              arguments: [Writers.object({ type: w => w.quote('unknown')})],
+            },
+          );
+          importStructureList.push({
+            namedImports: [ 'ApiProperty' ],
+            moduleSpecifier: '@nestjs/swagger',
+          });
+          break;
     }
 
   }

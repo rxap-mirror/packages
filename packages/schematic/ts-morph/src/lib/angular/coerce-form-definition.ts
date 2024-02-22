@@ -48,14 +48,6 @@ export function CoerceFormControls(
   for (const control of controlList ?? []) {
     CoerceFormControl(sourceFile, classDeclaration, control);
   }
-  CoerceImports(sourceFile, {
-    namedImports: [ 'RxapFormControl', 'UseFormControl', 'RxapValidators' ],
-    moduleSpecifier: '@rxap/forms',
-  });
-  CoerceImports(sourceFile, {
-    namedImports: [ 'Validators' ],
-    moduleSpecifier: '@angular/forms',
-  });
 }
 
 export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptions>): Rule {

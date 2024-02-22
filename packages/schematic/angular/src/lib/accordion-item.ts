@@ -217,6 +217,10 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
   for (const innerItem of itemList) {
     importList.push(...innerItem.importList);
   }
+  importList.push({
+    name: 'NgSwitch',
+    moduleSpecifier: '@angular/common',
+  });
   return Object.freeze({
     ...base,
     importList: importList.map(NormalizeTypeImport),

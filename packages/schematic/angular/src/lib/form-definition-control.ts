@@ -63,15 +63,15 @@ export function NormalizeInputFormControlTemplate(
       break;
     case 'email':
       normalizedControl.type.name = 'string';
-      CoerceArrayItems(normalizedControl.validatorList, [ 'IsEmail' ]);
+      CoerceArrayItems(normalizedControl.validatorList, [ 'IsEmail()' ]);
       break;
     case 'tel':
       normalizedControl.type.name = 'string';
-      CoerceArrayItems(normalizedControl.validatorList, [ 'IsTel' ]);
+      CoerceArrayItems(normalizedControl.validatorList, [ 'IsTel()' ]);
       break;
     case 'url':
       normalizedControl.type.name = 'string';
-      CoerceArrayItems(normalizedControl.validatorList, [ 'IsUrl' ]);
+      CoerceArrayItems(normalizedControl.validatorList, [ 'IsUrl()' ]);
       break;
     case 'number':
       normalizedControl.type.name = 'number';
@@ -80,7 +80,7 @@ export function NormalizeInputFormControlTemplate(
     case 'time':
     case 'datetime-local':
       normalizedControl.type.name = 'Date';
-      CoerceArrayItems(normalizedControl.validatorList, [ 'IsDate' ]);
+      CoerceArrayItems(normalizedControl.validatorList, [ 'IsDate()' ]);
       break;
     case 'file':
     case 'hidden':

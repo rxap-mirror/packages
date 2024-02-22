@@ -13,7 +13,8 @@ export function CoerceDefaultClassExport(sourceFileOrClassDeclaration: SourceFil
   }
 
   if (standalone) {
-    if (!sourceFile.getExportDeclarations().some(ed => ed.getNamedExports().some(ne => ne.getName() === classDeclaration.getName()))) {
+    console.log('standalone', sourceFile.getExportAssignments().map(ed => ed.getExpression().getText()));
+    if (!sourceFile.getExportAssignments().some(ed => ed.getExpression().getText() === classDeclaration.getName())) {
       sourceFile.addExportAssignment({
         isExportEquals: false,
         expression: classDeclaration.getName()!,

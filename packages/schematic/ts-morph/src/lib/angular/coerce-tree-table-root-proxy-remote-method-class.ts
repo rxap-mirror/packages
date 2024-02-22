@@ -32,7 +32,7 @@ export function CoerceTreeTableRootProxyRemoteMethodClass(options: CoerceTreeTab
     ...options,
     name: 'tree-table-root',
     sourceType: 'Node<unknown>',
-    targetType: `OpenApiRemoteMethodParameter<${ OperationIdToParameterClassName(getRootOperationId) }>`,
+    targetType: `OpenApiRemoteMethodParameter<void>`,
     proxyMethod: OperationIdToClassName(getRootOperationId),
     tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {
       CoerceImports(sourceFile, {
@@ -46,10 +46,6 @@ export function CoerceTreeTableRootProxyRemoteMethodClass(options: CoerceTreeTab
       CoerceImports(sourceFile, {
         namedImports: [ 'OpenApiRemoteMethodParameter' ],
         moduleSpecifier: '@rxap/open-api/remote-method',
-      });
-      CoerceImports(sourceFile, {
-        namedImports: [ OperationIdToParameterClassName(getRootOperationId) ],
-        moduleSpecifier: OperationIdToParameterClassImportPath(getRootOperationId, scope),
       });
       return tsMorphTransform!(project, sourceFile, classDeclaration);
     },

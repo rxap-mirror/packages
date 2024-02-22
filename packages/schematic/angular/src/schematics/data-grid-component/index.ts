@@ -370,12 +370,18 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
           namedImports: [ 'DataGridDataSource' ],
           moduleSpecifier: '@rxap/data-grid',
         });
-        const [ constructorDeclaration ] =
-          CoerceClassConstructor(classDeclaration);
-        CoerceParameterDeclaration(constructorDeclaration, 'method').set({
-          type: OperationIdToClassName(getOperationId),
+
+        CoercePropertyDeclaration(classDeclaration, 'method', {
+          scope: Scope.Protected,
+          isReadonly: true,
+          hasOverrideKeyword: true,
+          initializer: `inject(${OperationIdToClassName(getOperationId)})`,
         });
-        CoerceStatements(constructorDeclaration, [ `super(method);` ]);
+        CoerceImports(sourceFile, {
+          namedImports: [ 'inject' ],
+          moduleSpecifier: '@angular/core',
+        });
+
       },
     }),
     nestjsModeRule(normalizedOptions),

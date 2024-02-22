@@ -38,7 +38,7 @@
             </mat-expansion-panel-header>
 
             <ng-template matExpansionPanelContent>
-              <<%= prefix %>-<%= item.name %>-<%= innerItem.name %>-panel></<%= prefix %>-<%= item.name %>-<%= innerItem.name %>-panel>
+              <<%= prefix %>-<%= innerItem.name %>-panel></<%= prefix %>-<%= innerItem.name %>-panel>
             </ng-template>
 
           </mat-expansion-panel>
@@ -60,7 +60,7 @@
           </mat-expansion-panel-header>
 
           <ng-template matExpansionPanelContent>
-            <<%= prefix %>-<%= item.name %>-<%= innerItem.name %>-panel></<%= prefix %>-<%= item.name %>-<%= innerItem.name %>-panel>
+            <<%= prefix %>-<%= innerItem.name %>-panel></<%= prefix %>-<%= innerItem.name %>-panel>
           </ng-template>
 
         </mat-expansion-panel>

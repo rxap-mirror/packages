@@ -204,12 +204,12 @@ function componentRule(normalizedOptions: NormalizedAccordionComponentOptions, h
 
 }
 
-// region accordion item panel component
+// region accordion header component
 
 function headerComponentOpenApiRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 
   const {
-    name,
+    componentName,
     project,
     feature,
     directory,
@@ -218,10 +218,14 @@ function headerComponentOpenApiRule(normalizedOptions: NormalizedAccordionCompon
     header,
   } = normalizedOptions;
 
+  if (!componentName) {
+    throw new SchematicsException('The component name is required! Ensure the normalizedOptions contain the componentName property!');
+  }
+
   const operationId = buildOperationId(
     normalizedOptions,
     'getById',
-    name,
+    componentName,
   );
 
   if (!header || Object.keys(header).length === 0) {

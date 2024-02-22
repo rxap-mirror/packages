@@ -77,6 +77,10 @@ export function CoerceFormControl(
   classDeclaration: ClassDeclaration,
   control: Required<FormDefinitionControl>,
 ) {
+  CoerceImports(sourceFile, {
+    namedImports: [ 'RxapFormControl', 'UseFormControl' ],
+    moduleSpecifier: '@rxap/forms',
+  });
   const propertyDeclaration = CoercePropertyDeclaration(classDeclaration, camelize(control.name)).set({
     type: w => {
       w.write('RxapFormControl<');
