@@ -457,12 +457,7 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       project,
       feature,
       directory,
-      controlList: itemList
-        .map(item => ({
-          name: item.name,
-          type: item.type,
-        }))
-        .map((item) => NormalizeFormDefinitionControl(item)),
+      controlList: itemList,
     }),
     () => console.log('Coerce form providers ...'),
     CoerceFormProvidersFile({
@@ -505,20 +500,8 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       overwrite,
       tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
         for (const item of itemList) {
-          switch (item.type) {
-
-            case 'boolean':
-              AddComponentImport(sourceFile, 'MatSlideToggleModule', '@angular/material/slide-toggle');
-              break;
-
-            case 'number':
-              AddComponentImport(sourceFile, 'MatInputModule', '@angular/material/input');
-              break;
-
-            case 'string':
-              AddComponentImport(sourceFile, 'MatInputModule', '@angular/material/input');
-              break;
-
+          for (const angularImport of item.importList) {
+            CoerceComponentImport(sourceFile, angularImport);
           }
         }
       },

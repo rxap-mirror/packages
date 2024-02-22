@@ -15,7 +15,7 @@ function IsDataGridMode(value: any): value is DataGridMode {
 }
 
 export interface DataGridOptions {
-  itemList?: Array<string | DataGridItem>;
+  itemList?: Array<DataGridItem>;
   mode?: DataGridMode;
   collection?: boolean;
   title?: string;

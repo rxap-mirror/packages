@@ -46,6 +46,7 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
+  NormalizeAccordionItem,
   NormalizeBaseAccordionItem,
   NormalizedBaseAccordionItem,
 } from '../../../lib/accordion-item';
@@ -79,9 +80,9 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
   accordionName = CoerceSuffix(dasherize(accordionName), '-accordion');
   return Object.freeze({
     ...normalizedAngularOptions,
-    ...NormalizeBaseAccordionItem({
-      ...options,
+    ...NormalizeAccordionItem({
       type: AccordionItemTypes.Panel,
+      ...options,
     }),
     itemName: itemName,
     nestModule: accordionName,
@@ -179,8 +180,12 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
           moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
         });
         CoerceImports(sourceFile, {
+          moduleSpecifier: '@rxap/data-source/accordion',
+          namedImports: [ 'PanelAccordionDataSource' ],
+        });
+        CoerceImports(sourceFile, {
           moduleSpecifier: '@angular/core',
-          namedImports: [ 'Inject' ],
+          namedImports: [ 'inject' ],
         });
         CoerceClassProperty(classDeclaration, 'method', {
           scope: Scope.Protected,

@@ -124,7 +124,37 @@
                     "type": "string"
                   },
                   "type": {
-                    "type": "string"
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "isTypeOnly": {
+                            "type": "boolean"
+                          },
+                          "moduleSpecifier": {
+                            "type": "string"
+                          },
+                          "namedImport": {
+                            "type": "string"
+                          },
+                          "namespaceImport": {
+                            "type": "string"
+                          },
+                          "defaultImport": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ]
+                      }
+                    ]
                   },
                   "role": {
                     "type": "string"
@@ -169,6 +199,12 @@
                   },
                   "hasFilter": {
                     "type": "boolean"
+                  },
+                  "nowrap": {
+                    "type": "boolean"
+                  },
+                  "cssClass": {
+                    "type": "string"
                   },
                   "title": {
                     "type": "string"

@@ -10,6 +10,8 @@ import {
 import {
   capitalize,
   classify,
+  CoercePrefix,
+  CoerceSuffix,
   dasherize,
   NonNullableSelected,
   Normalized,
@@ -189,25 +191,24 @@ function flattenItemListFromSwitch(normalizeSwitch: NormalizedSwitchAccordionIte
   return flattenedList;
 }
 
-export function NormalizeSwitchAccordionItem(item: SwitchAccordionItem): NormalizedSwitchAccordionItem {
+export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>): NormalizedSwitchAccordionItem {
   const base = NormalizeBaseAccordionItem(item);
   const { name } = base;
   const { switch: switchOptions } = item;
   const { property, case: caseList, defaultCase } = switchOptions;
-  console.log('switchOptions', JSON.stringify(switchOptions, null, 2));
   const normalizeSwitch = Object.freeze({
       property: NormalizeDataProperty(property, 'string'),
       case: Object.freeze(caseList.map((item) => ({
         test: item.test,
         itemList: NormalizeAccordionItemList(item.itemList.map((item) => ({
           ...item,
-          name: [name, dasherize(item.name)].join('-'),
+          name: CoercePrefix(dasherize(item.name), dasherize(name) + '-'),
         }) as BaseAccordionItem)),
       }))),
       defaultCase: defaultCase ? {
         itemList: NormalizeAccordionItemList(defaultCase.itemList.map((item) => ({
           ...item,
-          name: [name, dasherize(item.name)].join('-'),
+          name: CoercePrefix(dasherize(item.name), dasherize(name) + '-'),
         }) as BaseAccordionItem)),
       } : null,
     });

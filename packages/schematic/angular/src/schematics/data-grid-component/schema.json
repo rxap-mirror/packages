@@ -74,45 +74,98 @@
     },
     "itemList": {
       "alias": "item",
-      "anyOf": [
-        {
-          "type": "array",
-          "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the control"
+          },
+          "type": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "isTypeOnly": {
+                    "type": "boolean"
+                  },
+                  "moduleSpecifier": {
+                    "type": "string"
+                  },
+                  "namedImport": {
+                    "type": "string"
+                  },
+                  "namespaceImport": {
+                    "type": "string"
+                  },
+                  "defaultImport": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            ]
+          },
+          "isArray": {
+            "type": "boolean",
+            "description": "Whether the control value is an array",
+            "default": false
+          },
+          "state": {
+            "type": "string",
+            "description": "The initial state of the control"
+          },
+          "isRequired": {
+            "type": "boolean",
+            "description": "Whether the control value is required",
+            "default": false
+          },
+          "isReadonly": {
+            "type": "boolean",
+            "description": "Whether the control value is readonly",
+            "default": false
+          },
+          "isDisabled": {
+            "type": "boolean",
+            "description": "Whether the control value is disabled",
+            "default": false
+          },
+          "validatorList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "template": {
             "type": "object",
             "properties": {
               "name": {
                 "type": "string",
-                "description": "The name of the control"
-              },
-              "header": {
-                "type": "string",
-                "description": "The name of the control"
-              },
-              "type": {
-                "type": "string",
-                "description": "The type of the control",
+                "description": "The name of the template",
                 "enum": [
-                  "string",
-                  "number",
-                  "boolean"
+                  "default",
+                  "input",
+                  "select"
                 ]
               }
             },
-            "required": [
-              "name"
-            ]
+            "additionalProperties": true,
+            "required": ["name"]
           }
         },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        {
-          "type": "array"
-        }
-      ]
+        "required": [
+          "name"
+        ]
+      }
     }
   },
   "required": [

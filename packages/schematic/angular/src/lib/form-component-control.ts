@@ -15,6 +15,7 @@ export interface FormComponentControl extends FormDefinitionControl {
 export interface NormalizedFormComponentControl extends Readonly<Normalized<FormComponentControl>>, NormalizedFormDefinitionControl {
   type: NormalizedTypeImport;
   template: BaseFormControlTemplate;
+  importList: NormalizedTypeImport[];
 }
 
 

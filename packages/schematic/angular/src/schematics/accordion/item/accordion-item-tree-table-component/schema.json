@@ -130,86 +130,109 @@
           "alias": "column",
           "type": "array",
           "items": {
-            "oneOf": [
-              {
+            "type": "object",
+            "properties": {
+              "name": {
                 "type": "string"
               },
-              {
-                "type": "object",
-                "properties": {
-                  "name": {
+              "type": {
+                "oneOf": [
+                  {
                     "type": "string"
                   },
-                  "type": {
-                    "type": "string"
-                  },
-                  "role": {
-                    "type": "string"
-                  },
-                  "modifiers": {
-                    "type": "array",
-                    "items": {
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "isTypeOnly": {
+                        "type": "boolean"
+                      },
+                      "moduleSpecifier": {
+                        "type": "string"
+                      },
+                      "namedImport": {
+                        "type": "string"
+                      },
+                      "namespaceImport": {
+                        "type": "string"
+                      },
+                      "defaultImport": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ]
+                  }
+                ]
+              },
+              "role": {
+                "type": "string"
+              },
+              "modifiers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "template": {
+                "type": "string"
+              },
+              "pipeList": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
                       "type": "string"
-                    }
-                  },
-                  "template": {
-                    "type": "string"
-                  },
-                  "pipeList": {
-                    "type": "array",
-                    "items": {
-                      "oneOf": [
-                        {
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
                           "type": "string"
                         },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "name": {
-                              "type": "string"
-                            },
-                            "namedImport": {
-                              "type": "string"
-                            },
-                            "moduleSpecifier": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "name",
-                            "namedImport",
-                            "moduleSpecifier"
-                          ]
+                        "namedImport": {
+                          "type": "string"
+                        },
+                        "moduleSpecifier": {
+                          "type": "string"
                         }
+                      },
+                      "required": [
+                        "name",
+                        "namedImport",
+                        "moduleSpecifier"
                       ]
                     }
-                  },
-                  "hasFilter": {
-                    "type": "boolean"
-                  },
-                  "title": {
-                    "type": "string"
-                  },
-                  "propertyPath": {
-                    "type": "string"
-                  },
-                  "hidden": {
-                    "type": "boolean"
-                  },
-                  "active": {
-                    "type": "boolean"
-                  },
-                  "inactive": {
-                    "type": "boolean"
-                  },
-                  "show": {
-                    "type": "boolean"
-                  }
-                },
-                "required": [
-                  "name"
-                ]
+                  ]
+                }
+              },
+              "hasFilter": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              },
+              "propertyPath": {
+                "type": "string"
+              },
+              "hidden": {
+                "type": "boolean"
+              },
+              "active": {
+                "type": "boolean"
+              },
+              "inactive": {
+                "type": "boolean"
+              },
+              "show": {
+                "type": "boolean"
               }
+            },
+            "required": [
+              "name"
             ],
             "description": "table column name"
           },

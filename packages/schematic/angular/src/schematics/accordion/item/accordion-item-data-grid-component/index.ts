@@ -13,14 +13,16 @@ import {
   CoerceGetDataGridOperation,
   CoerceImports,
   CoerceParameterDeclaration,
-  CoercePropertyDeclaration,
   CoerceSubmitDataGridOperation,
 } from '@rxap/schematics-ts-morph';
 import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
-import { CoerceComponentImport } from '@rxap/ts-morph';
+import {
+  CoerceComponentImport,
+  CoercePropertyDeclaration,
+} from '@rxap/ts-morph';
 import {
   classify,
   dasherize,
@@ -207,43 +209,10 @@ function nestjsBackendRule(
         CoerceImports(sourceFile, {
           namedImports: [
             'PanelAccordionDataSource',
-            'AccordionDataSource',
-            'ACCORDION_DATA_SOURCE',
           ],
           moduleSpecifier: '@rxap/data-source/accordion',
         });
-        CoerceImports(sourceFile, {
-          moduleSpecifier: '@angular/router',
-          namedImports: [ 'ActivatedRoute' ],
-        });
-        CoerceImports(sourceFile, {
-          moduleSpecifier: '@angular/core',
-          namedImports: [ 'Inject' ],
-        });
-        const [ constructorDeclaration ] =
-          CoerceClassConstructor(classDeclaration);
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'route',
-        ).set({
-          type: 'ActivatedRoute',
-        });
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'accordionDataSource',
-        ).set({
-          type: 'AccordionDataSource',
-          decorators: [
-            {
-              name: 'Inject',
-              arguments: [ 'ACCORDION_DATA_SOURCE' ],
-            },
-          ],
-        });
-        constructorDeclaration.removeStatements([0 ,0]);
-        constructorDeclaration.insertStatements(0, [
-          `super(method, route, accordionDataSource);`,
-        ]);
+
         sourceFile.getImportDeclaration('@rxap/data-grid')?.remove();
       },
     }),

@@ -1,38 +1,41 @@
 import {
+  NormalizedTypeImport,
+  TypeImport,
+} from '@rxap/ts-morph';
+import {
   NonNullableSelected,
   Normalized,
 } from '@rxap/utilities';
+import {
+  BaseFormControlTemplate,
+  FormDefinitionControl,
+  NormalizedFormDefinitionControl,
+  NormalizeFormDefinitionControl,
+} from './form-definition-control';
 
-export interface DataGridItem {
+export interface DataGridItem extends FormDefinitionControl {
   name: string;
-  type?: string;
+  type?: string | TypeImport;
   header?: string;
 }
 
-export type NormalizedDataGridItem = Readonly<NonNullableSelected<Normalized<DataGridItem>, 'type'>>;
+export interface NormalizedDataGridItem extends Readonly<NonNullableSelected<Normalized<DataGridItem>, 'type'>>, Omit<NormalizedFormDefinitionControl, 'type'> {
+  type: NormalizedTypeImport;
+  template: BaseFormControlTemplate;
+  importList: NormalizedTypeImport[];
+}
 
-export function NormalizeDataGridItem(item: Readonly<DataGridItem> | string): NormalizedDataGridItem {
-  let name: string;
-  let type: string;
+export function NormalizeDataGridItem(item: Readonly<DataGridItem>): NormalizedDataGridItem {
   let header: string | null = null;
-  if (typeof item === 'string') {
-    const fragments = item.split(':');
-    name = fragments[0];
-    type = fragments[1] || 'unknown';
-  } else {
-    name = item.name;
-    type = item.type ?? 'unknown';
-    header = item.header ?? null;
-  }
+  header = item.header ?? null;
   return Object.freeze({
-    name,
-    type,
+    ...NormalizeFormDefinitionControl(item),
     header,
   });
 }
 
 export function NormalizeDataGridItemList(
-  itemList?: Array<Readonly<DataGridItem> | string>,
+  itemList?: Array<Readonly<DataGridItem>>,
 ): ReadonlyArray<NormalizedDataGridItem> {
   return Object.freeze(itemList?.map(NormalizeDataGridItem) ?? []);
 }

@@ -20,7 +20,11 @@ export interface BaseFormControlTemplate {
   name: FormControlTemplateType;
 }
 
-export type MinimalNormalizedFormDefinitionControl = Pick<NormalizedFormDefinitionControl, 'validatorList' | 'type'>
+export interface MinimalNormalizedFormDefinitionControl {
+  type: TypeImport;
+  validatorList: string[];
+  importList: TypeImport[];
+}
 
 // region InputFormControlTemplate
 
@@ -43,6 +47,10 @@ export function NormalizeInputFormControlTemplate(
   template: InputFormControlTemplate,
   normalizedControl: MinimalNormalizedFormDefinitionControl,
 ): NormalizedInputFormControlTemplate {
+  normalizedControl.importList.push({
+    name: 'MatInputModule',
+    moduleSpecifier: '@angular/material/input',
+  });
   const type: string = template.type ?? 'text';
   switch (type) {
     case 'checkbox':
@@ -117,7 +125,14 @@ export function IsNormalizedSelectFormControlTemplate(template: BaseFormControlT
   return template.name === FormControlTemplateType.SELECT;
 }
 
-export function NormalizeSelectFormControlTemplate(template: SelectFormControlTemplate): NormalizedSelectFormControlTemplate {
+export function NormalizeSelectFormControlTemplate(
+  template: SelectFormControlTemplate,
+  normalizedControl: MinimalNormalizedFormDefinitionControl,
+): NormalizedSelectFormControlTemplate {
+  normalizedControl.importList.push({
+    name: 'MatSelectModule',
+    moduleSpecifier: '@angular/material/select',
+  });
   return Object.freeze({
     name: FormControlTemplateType.SELECT,
     label: template.label ?? null,
@@ -137,12 +152,14 @@ export interface FormDefinitionControl {
   isReadonly?: boolean;
   isDisabled?: boolean;
   validatorList?: string[];
+  importList?: TypeImport[];
   template?: BaseFormControlTemplate;
 }
 
 export interface NormalizedFormDefinitionControl extends Readonly<Normalized<FormDefinitionControl>> {
   type: NormalizedTypeImport;
   template: BaseFormControlTemplate;
+  importList: NormalizedTypeImport[];
 }
 
 export function NormalizeFormControlTemplate(
@@ -158,7 +175,7 @@ export function NormalizeFormControlTemplate(
     case FormControlTemplateType.INPUT:
       return NormalizeInputFormControlTemplate(template, minimalNormalizedControl);
     case FormControlTemplateType.SELECT:
-      return NormalizeSelectFormControlTemplate(template);
+      return NormalizeSelectFormControlTemplate(template, minimalNormalizedControl);
     case FormControlTemplateType.DEFAULT:
     default:
       return Object.freeze({
@@ -175,6 +192,7 @@ export function NormalizeFormDefinitionControl(
   const state: string | null = control.state ?? null;
   const isRequired: boolean = control.isRequired ?? false;
   const validatorList: string[] = control.validatorList ?? [];
+  const importList = (control.importList ?? []);
   const isReadonly: boolean = control.isReadonly ?? false;
   const isDisabled: boolean = control.isDisabled ?? false;
   let isArray = false;
@@ -186,6 +204,11 @@ export function NormalizeFormDefinitionControl(
     isArray = true;
     type.name = type.name.slice(6, -1);
   }
+  const template = NormalizeFormControlTemplate({
+    validatorList,
+    importList,
+    type,
+  }, control.template);
   return Object.freeze({
     name,
     type,
@@ -195,10 +218,8 @@ export function NormalizeFormDefinitionControl(
     isReadonly,
     isDisabled,
     validatorList,
-    template: NormalizeFormControlTemplate({
-      validatorList,
-      type,
-    }, control.template),
+    importList: importList.map(NormalizeTypeImport),
+    template,
   });
 }
 

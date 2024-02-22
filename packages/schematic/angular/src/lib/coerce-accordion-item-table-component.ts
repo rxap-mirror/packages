@@ -40,7 +40,7 @@ export function CoerceAccordionItemTableComponentRule(options: CoerceAccordionIt
       CoercePropertyDeclaration(classDeclaration, 'parameters$', {
         scope: Scope.Public,
         isReadonly: true,
-        initializer: `inject(ActivatedRoute).pipe(map(({ uuid }) => uuid), throwIfEmpty('Could not extract the uuid from route'), map((uuid) => ({ uuid })))`
+        initializer: `inject(ActivatedRoute).params.pipe(map(({ uuid }) => uuid), throwIfEmpty('Could not extract the uuid from route'), map((uuid) => ({ uuid })))`
       });
       CoerceImports(sourceFile, [
         {
