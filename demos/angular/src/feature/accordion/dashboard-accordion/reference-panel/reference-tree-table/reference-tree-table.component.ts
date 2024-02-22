@@ -13,6 +13,12 @@ import { AsyncPipe, NgClass } from '@angular/common';
 import { RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD, RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD } from '@rxap/data-source/table/tree';
 import { TreeTableRootProxyMethod } from './tree-table-root-proxy.method';
 import { TreeTableChildrenProxyMethod } from './tree-table-children-proxy.method';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { InputClearButtonDirective } from '@rxap/material-form-system';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ParentControlContainerDirective } from '@rxap/forms';
 
 @Component({
     standalone: true,
@@ -20,7 +26,7 @@ import { TreeTableChildrenProxyMethod } from './tree-table-children-proxy.method
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './reference-tree-table.component.html',
     styleUrls: ['./reference-tree-table.component.scss'],
-  imports: [TableColumnMenuModule, MatPaginatorModule, MatSortModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgClass, TableFilterModule, TreeControlCellComponent],
+  imports: [TableColumnMenuModule, MatPaginatorModule, MatSortModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgClass, TableFilterModule, TreeControlCellComponent, MatInputModule, MatButtonModule, MatIconModule, InputClearButtonDirective, ReactiveFormsModule, ParentControlContainerDirective],
   providers: [{
       provide: RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD,
       useClass: TreeTableRootProxyMethod
