@@ -114,7 +114,9 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       }
       // endregion
 
-      CoerceDefaultClassExport(classDeclaration, true);
+      if (!!options.feature && !options.directory) {
+        CoerceDefaultClassExport(classDeclaration, true);
+      }
 
       tsMorphTransform(project, [sourceFile], [classDeclaration], options);
     }

@@ -92,7 +92,9 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
         moduleSpecifier: `./${dasherize(componentName!)}.data-source`
       });
 
-      CoerceDefaultClassExport(classDeclaration, true);
+      if (!!options.feature && !options.directory) {
+        CoerceDefaultClassExport(classDeclaration, true);
+      }
 
       tsMorphTransform(project, [ sourceFile ], [ classDeclaration ], options);
     },
