@@ -19,9 +19,6 @@ import {
 
 export type AccordionDataSourceMethod<Data = unknown, Parameters = unknown> = Method<Data, Parameters>;
 
-export const ACCORDION_DATA_SOURCE_METHOD = new InjectionToken<AccordionDataSourceMethod>(
-  'accordion-data-source-method');
-
 @Injectable()
 export abstract class AccordionDataSource<
   Data = unknown,
@@ -35,7 +32,7 @@ export abstract class AccordionDataSource<
 
   protected readonly _refresh$ = new Subject<void>();
 
-  protected readonly method = inject<AccordionDataSourceMethod<Data, Parameters>>(ACCORDION_DATA_SOURCE_METHOD);
+  protected abstract readonly method: AccordionDataSourceMethod<Data, Parameters>;
 
   protected _subscription: Subscription | null = null;
 
