@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.1-dev.2...@rxap/data-source@16.0.1-dev.3) (2024-02-22)
+
+### Bug Fixes
+
+- remove the injection token accordion method ([11ce98f](https://gitlab.com/rxap/packages/commit/11ce98fa748f3a780490d473dbe41b0b40cc7c35))
+
 ## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.1-dev.1...@rxap/data-source@16.0.1-dev.2) (2024-02-22)
 
 ### Bug Fixes
