@@ -76,7 +76,7 @@ const dotStartup = {
   ],
   services: [
     {
-      name: '${REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}',
+      name: '${SERVICE_REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}',
       alias: 'service',
     },
   ],
@@ -142,7 +142,7 @@ function generateDockerGitlabCiFileContent(
     dockerYaml.docker.variables.IMAGE_NAME = rootDocker.imageName;
   }
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  for (const [ projectName, project ] of Array.from(getProjects(tree).entries()).sort(([ a ], [ b ]) => a.localeCompare(b))) {
 
     if (skipProject(tree, options, project, projectName)) {
       continue;
@@ -185,7 +185,7 @@ function generateDockerGitlabCiFileContent(
     if (Array.isArray(dockerTargetOptions.buildArgList)) {
       const buildArgList = processBuildArgs(
         dockerTargetOptions.buildArgList, projectName, project.sourceRoot, { PROJECT_NAME: projectName });
-      for (const buildArg of buildArgList) {
+      for (const buildArg of buildArgList.sort()) {
         if (buildArg.includes('=')) {
           const [ env, value ] = buildArg.split('=');
           matrix[env] = value;
@@ -241,7 +241,7 @@ function generateStartupGitlabCiFileContent(
     startup.variables.IMAGE_NAME = rootDocker.imageName;
   }
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  for (const [ projectName, project ] of Array.from(getProjects(tree).entries()).sort(([ a ], [ b ]) => a.localeCompare(b))) {
 
     if (skipProject(tree, options, project, projectName)) {
       continue;
