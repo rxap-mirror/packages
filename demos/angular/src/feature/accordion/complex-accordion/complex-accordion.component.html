@@ -8,7 +8,7 @@
     <mat-divider></mat-divider>
   </ng-template>
   <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
-  <mat-accordion [rxapPersistentAccordion]="accordionDataSource.lastUuid" multi>
+  <mat-accordion multi>
 
 
     <mat-expansion-panel>

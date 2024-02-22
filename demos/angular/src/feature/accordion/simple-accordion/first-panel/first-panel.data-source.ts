@@ -1,8 +1,10 @@
 import { RxapDataSource } from '@rxap/data-source';
 import {
+  inject,
   Inject,
   Injectable,
 } from '@angular/core';
+import { SecondPanelMethod } from '../../multiple-accordion/second-panel/second-panel.method';
 import { FirstPanel } from './first-panel';
 import { FirstPanelMethod } from './first-panel.method';
 import {
@@ -15,11 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 @Injectable()
 @RxapDataSource('first-panel')
 export class FirstPanelDataSource extends PanelAccordionDataSource<FirstPanel> {
-  constructor(
-    method: FirstPanelMethod,
-    route: ActivatedRoute,
-    @Inject(ACCORDION_DATA_SOURCE) accordionDataSource: AccordionDataSource,
-  ) {
-    super(method, route, accordionDataSource);
-  }
+
+  protected override readonly method = inject(FirstPanelMethod);
+
 }
