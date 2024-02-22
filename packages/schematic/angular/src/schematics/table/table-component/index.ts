@@ -23,7 +23,10 @@ import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
-import { TypeImportToImportStructure } from '@rxap/ts-morph';
+import {
+  NormalizedDataProperty,
+  TypeImportToImportStructure,
+} from '@rxap/ts-morph';
 import {
   camelize,
   classify,
@@ -50,12 +53,11 @@ import {
 } from '../../../lib/minimum-table-component-options';
 import { NormalizedTableColumn } from '../../../lib/table-column';
 import {
+  IsTableModifiers,
   NormalizedTableOptions,
   NormalizeTableOptions,
   TableModifiers,
 } from '../../../lib/table-options';
-import { NormalizedDataProperty } from '@rxap/ts-morph';
-import { IsTreeTableModifiers } from '../../../lib/tree-table-options';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
@@ -68,7 +70,7 @@ export interface NormalizedTableComponentOptions
 export function NormalizeTableComponentOptions(
   options: Readonly<TableComponentOptions>,
 ): NormalizedTableComponentOptions {
-  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options, IsTreeTableModifiers);
+  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options, IsTableModifiers);
   AssertAngularOptionsNameProperty(normalizedMinimumTableComponentOptions);
   const {
     name,
