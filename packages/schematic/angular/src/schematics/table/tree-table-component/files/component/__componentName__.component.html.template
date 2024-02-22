@@ -42,10 +42,6 @@
           <ng-container i18n>Actions</ng-container>
         </rxap-table-column-option>
         <% } %>
-        <mat-divider></mat-divider>
-        <span mat-menu-item>
-          <rxap-table-show-archived-slide></rxap-table-show-archived-slide>
-        </span>
       </rxap-table-column-menu>
        </mat-card-header>
 
@@ -65,6 +61,7 @@
           rxapTableDataSource
           [parameters]="parameters"
           id="<%= name %>"
+          <% if (hasColumnWithFilter) { %>rxap-filter-header-row<% } %>
         >
           <!-- region columns -->
 
