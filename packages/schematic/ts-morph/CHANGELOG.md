@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.0...@rxap/schematics-ts-morph@16.1.0-dev.1) (2024-02-22)
+
+### Bug Fixes
+
+- generate tree table column dto types ([93e3675](https://gitlab.com/rxap/packages/commit/93e36759b298806217b9b602d36dd975d46a62a8))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.1-dev.1...@rxap/schematics-ts-morph@16.1.0-dev.0) (2024-02-22)
 
 ### Bug Fixes

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.4...@rxap/schematic-angular@16.2.0-dev.5) (2024-02-22)
+
+### Bug Fixes
+
+- generalize filterColumnRule function ([8e3fb50](https://gitlab.com/rxap/packages/commit/8e3fb506255dceaf5a3900669b9fdef3bdd1fd34))
+- generalize UsePickFromTableInterfaceAsFormTypeRule function ([5a80485](https://gitlab.com/rxap/packages/commit/5a80485a59348505d770c97d130b948ab0d24ddd))
+- generate tree table column dto types ([93e3675](https://gitlab.com/rxap/packages/commit/93e36759b298806217b9b602d36dd975d46a62a8))
+
 # [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.3...@rxap/schematic-angular@16.2.0-dev.4) (2024-02-22)
 
 ### Bug Fixes
