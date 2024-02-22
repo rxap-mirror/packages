@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.5...@rxap/schematic-angular@16.2.0-dev.6) (2024-02-22)
+
+### Bug Fixes
+
+- coerce table animations ([2ba23ee](https://gitlab.com/rxap/packages/commit/2ba23ee9a886b78e7f77df1fdf470840d2fb94eb))
+
 # [16.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.4...@rxap/schematic-angular@16.2.0-dev.5) (2024-02-22)
 
 ### Bug Fixes
