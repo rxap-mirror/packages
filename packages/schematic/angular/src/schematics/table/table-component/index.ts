@@ -58,6 +58,7 @@ import {
   NormalizeTableOptions,
   TableModifiers,
 } from '../../../lib/table-options';
+import { UsePickFromTableInterfaceAsFormTypeRule } from '../../../lib/use-pick-from-table-interface-as-form-type';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
@@ -195,49 +196,6 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
       },
     }),
   ]);
-}
-
-interface UsePickFromTableInterfaceAsFormTypeRuleOptions
-  extends TsMorphAngularProjectTransformOptions {
-  name: string;
-  formName: string;
-  columnList: ReadonlyArray<NormalizedTableColumn>;
-}
-
-function UsePickFromTableInterfaceAsFormTypeRule(
-  options: UsePickFromTableInterfaceAsFormTypeRuleOptions,
-): Rule {
-  const {
-    name,
-    columnList,
-    formName,
-  } = options;
-
-  const className = CoerceSuffix(classify(formName), 'Form');
-  const interfaceName = `I${ className }`;
-  const tableInterfaceName = `I${ classify(name) }Table`;
-
-  return TsMorphAngularProjectTransformRule(options, (project, [ sourceFile ]) => {
-
-    const interfaceDeclaration = sourceFile.getInterface(interfaceName);
-    if (interfaceDeclaration) {
-      interfaceDeclaration.remove();
-    }
-
-    const type = `Pick<${ tableInterfaceName }, ${ columnList.filter(c => c.hasFilter)
-                                                             .map(c => `'${ camelize(c.name) }'`)
-                                                             .join(' | ') }>`;
-
-    CoerceTypeAlias(sourceFile, interfaceName, {
-      type,
-      isExported: true,
-    }).set({ type });
-
-    CoerceImports(sourceFile, {
-      namedImports: [ tableInterfaceName ],
-      moduleSpecifier: `./${ name }-table`,
-    });
-  }, [ '/' + CoerceSuffix(formName, '.form.ts') ]);
 }
 
 function filterColumnRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
