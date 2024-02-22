@@ -193,7 +193,13 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
         moduleSpecifier: 'class-validator',
       });
     }
-    switch (property.type) {
+    let autoType = 'none';
+    if (typeof property.type === 'string') {
+      autoType = property.type;
+    } else if (typeof property.type === 'object') {
+      autoType = property.type.name;
+    }
+    switch (autoType) {
       case 'date':
         CoerceDecorator(
           propertyDeclaration,
