@@ -163,6 +163,54 @@ function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[
       ], (a, b) => a.name === b.name);
       break;
   }
+  if (column.hasFilter) {
+    switch (column.role) {
+      case TableColumnKind.BOOLEAN:
+        CoerceArrayItems(importList, [
+          {
+            name: 'MatCheckboxModule',
+            moduleSpecifier: '@angular/material/checkbox',
+          },
+          {
+            name: 'ReactiveFormsModule',
+            moduleSpecifier: '@angular/forms',
+          },
+          {
+            name: 'ParentControlContainerDirective',
+            moduleSpecifier: '@rxap/forms',
+          },
+        ], (a, b) => a.name === b.name);
+        break;
+      default:
+        CoerceArrayItems(importList, [
+          {
+            name: 'MatInputModule',
+            moduleSpecifier: '@angular/material/input',
+          },
+          {
+            name: 'MatButtonModule',
+            moduleSpecifier: '@angular/material/button',
+          },
+          {
+            name: 'MatIconModule',
+            moduleSpecifier: '@angular/material/icon',
+          },
+          {
+            name: 'InputClearButtonDirective',
+            moduleSpecifier: '@rxap/material-form-system',
+          },
+          {
+            name: 'ReactiveFormsModule',
+            moduleSpecifier: '@angular/forms',
+          },
+          {
+            name: 'ParentControlContainerDirective',
+            moduleSpecifier: '@rxap/forms',
+          },
+        ], (a, b) => a.name === b.name);
+        break;
+    }
+  }
   return importList;
 }
 
