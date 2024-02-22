@@ -28,7 +28,7 @@ import { DtoClassProperty } from './create-dto-class';
 
 export interface GetPageOperationProperty {
   name: string;
-  type?: TypeImport;
+  type: TypeImport;
   /**
    * the property name of the source object. if not defined the name will be used
    */

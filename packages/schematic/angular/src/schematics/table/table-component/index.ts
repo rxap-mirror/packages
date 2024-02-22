@@ -99,16 +99,16 @@ export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
   for (const column of columnList) {
     list.push({
       name: column.name,
-      type: column.type ?? undefined,
-      source: column.propertyPath ?? undefined,
+      type: column.type,
+      source: column.propertyPath,
     });
   }
   for (const property of propertyList) {
     if (!list.find((p) => p.source === property.name)) {
       list.push({
         name: property.name,
-        type: property.type ?? undefined,
-        source: property.name ?? undefined,
+        type: property.type,
+        source: property.name,
       });
     }
   }

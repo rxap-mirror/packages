@@ -91,7 +91,7 @@ export function NormalizeMinimumTableComponentOptions<MODIFIER extends string = 
 
 // region table interface
 
-function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
+function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTableComponentOptions, options: TableInterfaceRuleOptions = {}): Rule {
   const {
     backend,
     project,
@@ -101,6 +101,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
     componentName,
     nestModule,
   } = normalizedOptions;
+  const { operationName = 'get-page', typePath = `['rows'][number]` } = options;
   if (![ BackendTypes.NESTJS ].includes(backend)) {
     throw new SchematicsException(`Invalid backend type: ${ backend } - expected nestjs`);
   }
@@ -110,7 +111,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
   });
   const operationId = buildOperationId(
     normalizedOptions,
-    'get-page',
+    operationName,
     controllerName,
   );
   return chain([
@@ -123,7 +124,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
       CoerceTypeAlias(sourceFile, `I${ classify(componentName) }`).set({
         isExported: true,
         // TODO : support the option to specify how to get the row type from the operation response type
-        type: `TableRowMetadata & ${ OperationIdToResponseClassName(operationId) }['rows'][number]`,
+        type: `TableRowMetadata & ${ OperationIdToResponseClassName(operationId) }${typePath}`,
       });
       CoerceImports(sourceFile, {
         moduleSpecifier: '@rxap/material-table-system',
@@ -174,7 +175,7 @@ function tablePropertyListToPropertiesStructure(propertyList: ReadonlyArray<Norm
 }
 
 
-function tableInterfaceFromPropertyListRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
+function tableInterfaceFromPropertyListRule(normalizedOptions: NormalizedMinimumTableComponentOptions, options: TableInterfaceRuleOptions = {}): Rule {
   const {
     propertyList,
     name,
@@ -207,15 +208,26 @@ function tableInterfaceFromPropertyListRule(normalizedOptions: NormalizedMinimum
 
 }
 
-export function tableInterfaceRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
+export interface TableInterfaceRuleOptions {
+  /**
+   * the name of the operation to get a table page. defaults to 'get-page' and is only used when the backend is nestjs
+   */
+  operationName?: string;
+  /**
+   * the path to the row type in the operation response type. defaults to `['rows'][number]` and is only used when the backend is nestjs
+   */
+  typePath?: string;
+}
+
+export function tableInterfaceRule(normalizedOptions: NormalizedMinimumTableComponentOptions, options: TableInterfaceRuleOptions = {}): Rule {
   const { backend } = normalizedOptions;
   switch (backend) {
     case BackendTypes.NESTJS:
-      return tableInterfaceFromOpenApiRule(normalizedOptions);
+      return tableInterfaceFromOpenApiRule(normalizedOptions, options);
     // TODO : add support for the open-api backend type - this will require some why to define how to get the row type from the operation response type
     default:
     case BackendTypes.NONE:
-      return tableInterfaceFromPropertyListRule(normalizedOptions);
+      return tableInterfaceFromPropertyListRule(normalizedOptions, options);
   }
 }
 

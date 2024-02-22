@@ -1,4 +1,7 @@
-import { joinWithDash } from '@rxap/utilities';
+import {
+  joinWithDash,
+  noop,
+} from '@rxap/utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceDtoClass } from './coerce-dto-class';
 import {
@@ -8,22 +11,18 @@ import {
 import { DtoClassProperty } from './create-dto-class';
 
 export interface CoerceFormSubmitOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
-  propertyList?: DtoClassProperty[] | null,
+  propertyList?: DtoClassProperty[],
   bodyDtoName?: string;
 }
 
 export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOptions) {
-  let {
-    tsMorphTransform,
+  const {
+    tsMorphTransform = noop,
     controllerName,
-    propertyList,
-    bodyDtoName,
+    propertyList= [],
     context,
+    bodyDtoName= joinWithDash([ context, controllerName ]),
   } = options;
-  tsMorphTransform ??= () => ({});
-
-  propertyList ??= [];
-  bodyDtoName ??= joinWithDash([ context, controllerName ]);
 
   return CoerceOperation({
     ...options,

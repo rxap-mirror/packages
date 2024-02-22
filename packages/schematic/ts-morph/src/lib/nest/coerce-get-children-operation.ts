@@ -2,24 +2,41 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
+import {
+  CoerceArrayItems,
+  noop,
+} from '@rxap/utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceDtoClass } from './coerce-dto-class';
+import { CoerceGetRootOperationOptions } from './coerce-get-root-operation';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
 
-export type CoerceGetChildrenOperationOptions = Omit<CoerceOperationOptions, 'operationName'>
+export type CoerceGetChildrenOperationOptions = CoerceGetRootOperationOptions
 
 export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOperationOptions>) {
-  let {
-    tsMorphTransform,
-    controllerName,
-    paramList,
+  const {
+    tsMorphTransform = noop,
+    paramList = [],
+    propertyList = [],
   } = options;
-  tsMorphTransform ??= () => ({});
+  let { controllerName } = options;
+  CoerceArrayItems(propertyList, [
+    {
+      name: 'hasChildren',
+      type: 'boolean',
+    },
+    {
+      name: 'children',
+      type: '<self>',
+      isArray: true,
+      isOptional: true,
+      isType: true,
+    },
+  ], (a, b) => a.name === b.name);
   controllerName = CoerceSuffix(controllerName, '-tree-table');
-  paramList ??= [];
   paramList.push({
     name: 'parentUuid',
     type: 'string',
@@ -43,23 +60,7 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
       } = CoerceDtoClass({
         project,
         name: CoerceSuffix(controllerName, '-item'),
-        propertyList: [
-          {
-            name: 'uuid',
-            type: 'string',
-          },
-          {
-            name: 'hasChildren',
-            type: 'boolean',
-          },
-          {
-            name: 'children',
-            type: classify(CoerceSuffix(controllerName, '-item-dto')),
-            isArray: true,
-            isOptional: true,
-            isType: true,
-          },
-        ],
+        propertyList,
       });
 
       CoerceImports(sourceFile, [

@@ -2,21 +2,41 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
+import {
+  CoerceArrayItems,
+  noop,
+} from '@rxap/utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceDtoClass } from './coerce-dto-class';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
+import { DtoClassProperty } from './create-dto-class';
 
-export type CoerceGetRootOperationOptions = Omit<CoerceOperationOptions, 'operationName'>
+export interface CoerceGetRootOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
+  propertyList?: DtoClassProperty[],
+}
 
 export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationOptions>) {
-  let {
-    tsMorphTransform,
-    controllerName,
+  const {
+    tsMorphTransform = noop,
+    propertyList = [],
   } = options;
-  tsMorphTransform ??= () => ({});
+  let { controllerName } = options;
+  CoerceArrayItems(propertyList, [
+    {
+      name: 'hasChildren',
+      type: 'boolean',
+    },
+    {
+      name: 'children',
+      type: '<self>',
+      isArray: true,
+      isOptional: true,
+      isType: true,
+    },
+  ], (a, b) => a.name === b.name);
   controllerName = CoerceSuffix(controllerName, '-tree-table');
   return CoerceOperation({
     ...options,
@@ -35,23 +55,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
       } = CoerceDtoClass({
         project,
         name: CoerceSuffix(controllerName, '-item'),
-        propertyList: [
-          {
-            name: 'uuid',
-            type: 'string',
-          },
-          {
-            name: 'hasChildren',
-            type: 'boolean',
-          },
-          {
-            name: 'children',
-            type: classify(CoerceSuffix(controllerName, '-item-dto')),
-            isArray: true,
-            isOptional: true,
-            isType: true,
-          },
-        ],
+        propertyList,
       });
 
       CoerceImports(sourceFile, [

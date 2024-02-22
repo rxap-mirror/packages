@@ -4,6 +4,7 @@ import {
   CoerceSuffix,
   dasherize,
 } from '@rxap/schematics-utilities';
+import { noop } from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -63,7 +64,7 @@ export function CoercePropertyDeclaration(
 export interface CoerceDtoClassOptions {
   project: Project;
   name: string;
-  propertyList?: DtoClassProperty[] | null;
+  propertyList?: DtoClassProperty[];
   /**
    * @deprecated use the tsMorphTransform to adapt the class
    */
@@ -78,20 +79,15 @@ export interface CoerceDtoClassOptions {
 export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOutput {
   const {
     project,
+    propertyList = [],
+    tsMorphTransform = noop,
+    classStructure = {},
+    importStructureList = [],
   } = options;
   let {
-    propertyList,
-    tsMorphTransform,
-    classStructure,
-    importStructureList,
     name,
   } = options;
 
-  propertyList ??= [];
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  tsMorphTransform ??= () => {};
-  classStructure ??= {};
-  importStructureList ??= [];
   name = dasherize(name);
 
   const className = CoerceSuffix(classify(name), 'Dto');
@@ -103,6 +99,10 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
   classDeclaration.set(classStructure);
 
   for (const property of propertyList) {
+
+    if (property.type === '<self>') {
+      property.type = className;
+    }
 
     let propertyName = camelize(property.name);
     const prefixMatch = property.name.match(/^(_+)/);
