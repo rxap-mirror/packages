@@ -15,6 +15,13 @@
     "overwrite": {
       "type": "boolean",
       "description": "Overwrite existing files"
+    },
+    "tags": {
+      "alias": "tag",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": []

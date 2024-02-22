@@ -3,4 +3,5 @@ export interface GitlabCiGeneratorSchema {
   overwrite?: boolean;
   gcp?: boolean;
   gitlab?: boolean;
+  tags?: string[];
 }

@@ -54,16 +54,26 @@ const dotDocker = {
     },
   ],
   needs: [ 'run' ],
+  tags: [],
 };
 
 const docker = {
   extends: '.docker',
-  variables: {},
+  variables: {} as Record<string, string>,
+  parallel: {
+    matrix: []
+  }
 };
 
 const dotStartup = {
   image: 'curlimages/curl:8.3.0',
   stage: 'startup',
+  needs: [
+    {
+      job: 'docker',
+      artifacts: false,
+    }
+  ],
   services: [
     {
       name: '${REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}',
@@ -76,13 +86,27 @@ const dotStartup = {
   },
   variables: {
     SERVICE_HOSTNAME: 'service',
-  },
+    ROOT_DOMAIN: '$ROOT_DOMAIN'
+  } as Record<string, string>,
   script: 'curl --fail --location "http://${SERVICE_HOSTNAME}:${SERVICE_PORT}${SERVICE_PATH}"',
+  rules: [
+    {
+      if: '$DISABLE_STARTUP_TESTS',
+      when: 'never',
+    },
+    {
+      when: 'manual',
+    }
+  ],
+  tags: [],
 };
 
 const startup = {
   extends: '.startup',
-  variables: {},
+  variables: {} as Record<string, string>,
+  parallel: {
+    matrix: []
+  }
 };
 
 function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: ProjectConfiguration, projectName: string) {
@@ -104,9 +128,19 @@ function generateDockerGitlabCiFileContent(
   options: GitlabCiGeneratorSchema,
   rootDocker: RootDockerOptions,
 ): string {
-  const dockerYaml: any = {
+
+  if (options.tags?.length) {
+    dotDocker.tags = options.tags;
+  }
+
+  const dockerYaml = {
     '.docker': dotDocker,
+    docker: docker,
   };
+
+  if (rootDocker.imageName) {
+    dockerYaml.docker.variables.IMAGE_NAME = rootDocker.imageName;
+  }
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
@@ -116,7 +150,6 @@ function generateDockerGitlabCiFileContent(
 
     const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
 
-    const imageName = dockerTargetOptions.imageName ?? rootDocker.imageName;
     const imageSuffix = dockerTargetOptions.imageSuffix;
     const dockerfile = dockerTargetOptions.dockerfile;
     const context = dockerTargetOptions.context ??
@@ -127,17 +160,21 @@ function generateDockerGitlabCiFileContent(
                     project.sourceRoot ??
                     project.root;
 
-    dockerYaml[`docker:${ projectName }`] = clone(docker);
-    dockerYaml[`docker:${ projectName }`].variables = {
-      IMAGE_NAME: imageName,
-      PROJECT_NAME: projectName,
-    };
+    const matrix: Record<string, string> = {};
+
+    dockerYaml.docker.parallel.matrix.push(matrix);
+
+    matrix.PROJECT_NAME = projectName;
+
+    if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
+      matrix.IMAGE_NAME = dockerTargetOptions.imageName as string;
+    }
 
     if (IsNestJsProject(project)) {
       if (!project.sourceRoot) {
         throw new Error(`The project '${ projectName }' has no source root`);
       }
-      dockerYaml[`docker:${ projectName }`].variables.PATH_PREFIX = CoerceSuffix(GetNestApiPrefix(
+      matrix.PATH_PREFIX = CoerceSuffix(GetNestApiPrefix(
         tree,
         {},
         project.sourceRoot,
@@ -151,7 +188,7 @@ function generateDockerGitlabCiFileContent(
       for (const buildArg of buildArgList) {
         if (buildArg.includes('=')) {
           const [ env, value ] = buildArg.split('=');
-          dockerYaml[`docker:${ projectName }`].variables[env] = value;
+          matrix[env] = value;
         } else {
           console.warn(`Build arg value for '${ buildArg }' is not defined`);
         }
@@ -159,15 +196,15 @@ function generateDockerGitlabCiFileContent(
     }
 
     if (context) {
-      dockerYaml[`docker:${ projectName }`].variables.DOCKER_CONTEXT = context;
+      matrix.DOCKER_CONTEXT = context as string;
     }
 
     if (imageSuffix) {
-      dockerYaml[`docker:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
+      matrix.IMAGE_SUFFIX = imageSuffix as string;
     }
 
     if (dockerfile) {
-      dockerYaml[`docker:${ projectName }`].variables.DOCKERFILE = dockerfile;
+      matrix.DOCKERFILE = dockerfile as string;
     }
 
   }
@@ -182,17 +219,26 @@ function generateStartupGitlabCiFileContent(
   options: GitlabCiGeneratorSchema,
   rootDocker: RootDockerOptions,
 ) {
-  const startupYaml: any = {
+
+  if (options.tags?.length) {
+    dotStartup.tags = options.tags;
+  }
+
+  const startupYaml = {
     '.startup': dotStartup,
+    startup: startup,
   };
 
-  startupYaml['.startup'].variables ??= {};
   if (options.gitlab !== false) {
-    startupYaml['.startup'].variables.REGISTRY_IMAGE = '${CI_REGISTRY_IMAGE}';
+    startupYaml['.startup'].variables.SERVICE_REGISTRY_IMAGE = '${CI_REGISTRY_IMAGE}';
   }
 
   if (options.gcp) {
-    startupYaml['.startup'].variables.REGISTRY_IMAGE = '${GCP_REGISTRY}/${GCP_PROJECT}/${IMAGE_NAME}';
+    startupYaml['.startup'].variables.SERVICE_REGISTRY_IMAGE = '${GCP_REGISTRY}/${GCP_PROJECT}/${IMAGE_NAME}';
+  }
+
+  if (rootDocker.imageName) {
+    startup.variables.IMAGE_NAME = rootDocker.imageName;
   }
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
@@ -207,25 +253,27 @@ function generateStartupGitlabCiFileContent(
 
     const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
 
-    const imageName = dockerTargetOptions.imageName ?? rootDocker.imageName;
-    const imageSuffix = dockerTargetOptions.imageSuffix;
+    const imageSuffix = dockerTargetOptions.imageSuffix as string | undefined;
 
-    startupYaml[`startup:${ projectName }`] = clone(startup);
-    startupYaml[`startup:${ projectName }`].variables = {
-      IMAGE_NAME: imageName,
-    };
+    const matrix: Record<string, string> = {};
+
+    startupYaml.startup.parallel.matrix.push(matrix);
+
+    if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
+      matrix.IMAGE_NAME = dockerTargetOptions.imageName as string;
+    }
 
     if (IsServiceProject(project)) {
-      startupYaml[`startup:${ projectName }`].variables.SERVICE_PORT = '3000';
-      startupYaml[`startup:${ projectName }`].variables.SERVICE_PATH = '/info';
+      matrix.SERVICE_PORT = '3000';
+      matrix.SERVICE_PATH = '/info';
     }
 
     if (IsUserInterfaceProject(project)) {
-      startupYaml[`startup:${ projectName }`].variables.SERVICE_PORT = '80';
+      matrix.SERVICE_PORT = '80';
     }
 
     if (imageSuffix) {
-      startupYaml[`startup:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
+      matrix.IMAGE_SUFFIX = imageSuffix;
     }
 
   }
