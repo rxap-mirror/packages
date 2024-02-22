@@ -26,6 +26,15 @@ import { DashboardAccordionReferenceTreeTableControllerGetRootResponse } from '.
                 "hasChildren": {
                   "type": "boolean"
                 },
+                "referenced": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
                 "children": {
                   "type": "array",
                   "items": {
@@ -35,7 +44,10 @@ import { DashboardAccordionReferenceTreeTableControllerGetRootResponse } from '.
               },
               "required": [
                 "uuid",
-                "hasChildren"
+                "hasChildren",
+                "referenced",
+                "name",
+                "type"
               ]
             }
           }

@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective, TableFilterModule, TreeControlCellComponent } from '@rxap/material-table-system';
+import { Component, ChangeDetectionStrategy, Input, INJECTOR } from '@angular/core';
+import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective, TableFilterModule, TreeControlCellComponent, TableFilterService, RXAP_TABLE_FILTER_FORM_DEFINITION } from '@rxap/material-table-system';
 import { Observable } from 'rxjs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ParentControlContainerDirective } from '@rxap/forms';
+import { FormProviders, FormFactory } from './form.providers';
 
 @Component({
     standalone: true,
@@ -34,6 +35,13 @@ import { ParentControlContainerDirective } from '@rxap/forms';
     {
       provide: RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD,
       useClass: TreeTableChildrenProxyMethod
+    },
+    FormProviders,
+    TableFilterService,
+    {
+      provide: RXAP_TABLE_FILTER_FORM_DEFINITION,
+      useFactory: FormFactory,
+      deps: [ INJECTOR ]
     },
   ],
 })
