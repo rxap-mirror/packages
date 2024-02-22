@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.0...@rxap/schematic-angular@16.2.0-dev.1) (2024-02-22)
+
+### Bug Fixes
+
+- add import property ([fb9efc2](https://gitlab.com/rxap/packages/commit/fb9efc2cff2ed6ac0f0d9c62b0e2f21b6130b73a))
+- add is modifier functions ([456c085](https://gitlab.com/rxap/packages/commit/456c085e4f455301e66fae0f61c657f4c43ed450))
+- add missing column modifier ([1eaa6ca](https://gitlab.com/rxap/packages/commit/1eaa6ca313470d1627e29f86354fbfef26d441b3))
+- add switch property to dto ([8200ace](https://gitlab.com/rxap/packages/commit/8200aceab8d2934508352fe25ede1ae56a5a1314))
+- merge the property and table property interface ([1ad96cb](https://gitlab.com/rxap/packages/commit/1ad96cba8d085a5458a3c061910755b4c782ca4e))
+- small issues ([93f69c5](https://gitlab.com/rxap/packages/commit/93f69c5e2f445994db265360c6dd4a1e8228bfdb))
+- support import list for accordion items ([d701e7d](https://gitlab.com/rxap/packages/commit/d701e7d6d7ce73f78bbb06d9586b09105efbe9ba))
+- type import and data property to ts morph library ([91f9abc](https://gitlab.com/rxap/packages/commit/91f9abc3f43f82419b9b8d9b056af5d2e88e3a2c))
+- unify form control types ([8a4c1a0](https://gitlab.com/rxap/packages/commit/8a4c1a0ac22206235a08b9b08d29a1b0a1f63efe))
+- unify type import concept ([9cb2f7b](https://gitlab.com/rxap/packages/commit/9cb2f7b07e28eb36849b1f3afdba15989ba17c72))
+- update options modifiers ([bdff01c](https://gitlab.com/rxap/packages/commit/bdff01cc9581d9bdf00714f9514191ad7e9cf158))
+- update schema.json ([d580308](https://gitlab.com/rxap/packages/commit/d580308df24e4c1d87ee6349cd599abfa1fe76a4))
+- use add default export ([12ca2aa](https://gitlab.com/rxap/packages/commit/12ca2aa851835c508b1c1c215b29bf677499961c))
+- use ast based table component generated ([32c358a](https://gitlab.com/rxap/packages/commit/32c358a06cdcdf45d531159aa1acafd1cea2758a))
+- use ast based table component generated ([40a6b40](https://gitlab.com/rxap/packages/commit/40a6b4081b28281337cea9a16f619b5bf67af42a))
+- use ast based table component generated ([cb2e7a2](https://gitlab.com/rxap/packages/commit/cb2e7a26e0e27820b5a06121436626c14e76a35d))
+- use ast based table component generated ([361dfac](https://gitlab.com/rxap/packages/commit/361dfaccca9ac82c0c55ff35ac9fca0cc10bf112))
+- use ast based table component generated ([f9a553b](https://gitlab.com/rxap/packages/commit/f9a553b1064958fc2a2157b074e49e93272647f8))
+- use ast based table component generated ([5c52404](https://gitlab.com/rxap/packages/commit/5c52404fbc9d18729adb099d0ed5020e0987afb7))
+- use ast based table component generated ([37df770](https://gitlab.com/rxap/packages/commit/37df7708891c0fa1b9d134a86d5ef108bc7d818b))
+- use ast based table component generated ([cc3aeaf](https://gitlab.com/rxap/packages/commit/cc3aeaf8c97770fd83c70e780cf1152d80e9787f))
+- use correct enum check function ([a900306](https://gitlab.com/rxap/packages/commit/a90030671be6d3138a62f447f6a381259a35710f))
+- use modifier enum ([4541b84](https://gitlab.com/rxap/packages/commit/4541b84da98aa2755a1e6963e7a4d7cf632d630d))
+
+### Features
+
+- generate persistent property dto ([7396600](https://gitlab.com/rxap/packages/commit/73966002a0e7eb4d59d99ea9d31533078e0f8825))
+- introduce detected title and description property for accordion items ([8470559](https://gitlab.com/rxap/packages/commit/84705594835ff71da71831ae08b310207d4faf9c))
+- move WriteType to ts-morph package ([af6357a](https://gitlab.com/rxap/packages/commit/af6357a2f642199dc7807e21e5e369395872d595))
+- support custom accordion header ([9a2cdbc](https://gitlab.com/rxap/packages/commit/9a2cdbcd4a70abee319b9dc6a902cd8b9bb0f91a))
+- support custom accordion identifier ([f29b8ad](https://gitlab.com/rxap/packages/commit/f29b8ade8d813e36d528137859f2d1d8767c599f))
+- support custom persistent keys or property paths ([cef476d](https://gitlab.com/rxap/packages/commit/cef476df6685c533b15d039ca45ed3b9f342f204))
+- support panel permission toggle ([ba2c39c](https://gitlab.com/rxap/packages/commit/ba2c39cb5a29aa7a04fad2e19ad8668de802e993))
+
 # [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.1-dev.0...@rxap/schematic-angular@16.2.0-dev.0) (2024-02-09)
 
 ### Features

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.1-dev.1...@rxap/schematics-ts-morph@16.1.0-dev.0) (2024-02-22)
+
+### Bug Fixes
+
+- add is modifier functions ([456c085](https://gitlab.com/rxap/packages/commit/456c085e4f455301e66fae0f61c657f4c43ed450))
+- initial component class creation ([070552a](https://gitlab.com/rxap/packages/commit/070552a35cd3a8a01e0c27f2d5316c9083ad72b3))
+- mark CoercePropertyDeclaration as deprected ([8e2c4da](https://gitlab.com/rxap/packages/commit/8e2c4da8b5a2b60fcc9a9ef576673231bb7fc8e0))
+- merge the property and table property interface ([1ad96cb](https://gitlab.com/rxap/packages/commit/1ad96cba8d085a5458a3c061910755b4c782ca4e))
+- small issues ([93f69c5](https://gitlab.com/rxap/packages/commit/93f69c5e2f445994db265360c6dd4a1e8228bfdb))
+- support complex types ([d8b6f11](https://gitlab.com/rxap/packages/commit/d8b6f1190ecd343debead50587e0ed058eedc1b8))
+- support TypeImport ([fa95a22](https://gitlab.com/rxap/packages/commit/fa95a22fff13303b0c2c8ce96c5188980cb74cfb))
+- unify coerce component functions ([3bc1701](https://gitlab.com/rxap/packages/commit/3bc170116d7e794b94ef323251c59579a7887355))
+- unify type import concept ([9cb2f7b](https://gitlab.com/rxap/packages/commit/9cb2f7b07e28eb36849b1f3afdba15989ba17c72))
+- use correct function return type ([95d6c72](https://gitlab.com/rxap/packages/commit/95d6c728daacb76245e32c7c7530ce75e383267c))
+
+### Features
+
+- move WriteType to ts-morph package ([af6357a](https://gitlab.com/rxap/packages/commit/af6357a2f642199dc7807e21e5e369395872d595))
+- support custom id property ([540d429](https://gitlab.com/rxap/packages/commit/540d429fa861e757e892c3f071c32a7d79e3ad90))
+- support simple type ([6c012be](https://gitlab.com/rxap/packages/commit/6c012be37ca9f7ed1ffe5947327dcf42703c2bf9))
+
 ## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.1-dev.0...@rxap/schematics-ts-morph@16.0.1-dev.1) (2024-02-09)
 
 ### Bug Fixes

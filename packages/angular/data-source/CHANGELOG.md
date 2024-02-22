@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.1-dev.1...@rxap/data-source@16.0.1-dev.2) (2024-02-22)
+
+### Bug Fixes
+
+- simplify and generalize the accordion data source ([a28f9ec](https://gitlab.com/rxap/packages/commit/a28f9ecaf7a59ae5437b3f765b75c5ab34fe3977))
+
 ## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.1-dev.0...@rxap/data-source@16.0.1-dev.1) (2024-02-09)
 
 ### Bug Fixes

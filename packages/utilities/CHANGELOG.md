@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0...@rxap/utilities@16.1.0-dev.0) (2024-02-22)
+
+### Features
+
+- add CoercePrefix function ([49193a9](https://gitlab.com/rxap/packages/commit/49193a9ec69d3ded2f2e1d191be535b276f88eed))
+- add noop function ([0dbb0ff](https://gitlab.com/rxap/packages/commit/0dbb0ff3cd1f3d7a9f6aa6f887d34a7df01c5f11))
+
 # [16.0.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.23...@rxap/utilities@16.0.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/utilities

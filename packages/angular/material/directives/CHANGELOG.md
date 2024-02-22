@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.0.1-dev.0...@rxap/material-directives@16.1.0-dev.0) (2024-02-22)
+
+### Features
+
+- support dynamic id generation ([a17560b](https://gitlab.com/rxap/packages/commit/a17560bf3e714c664ff3ca32eb79d93588f3f1c8))
+
 ## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.0.0...@rxap/material-directives@16.0.1-dev.0) (2024-02-09)
 
 ### Bug Fixes

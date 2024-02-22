@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0...@rxap/data-grid@16.0.1-dev.0) (2024-02-22)
+
+### Bug Fixes
+
+- ensure form restores after failed submit ([431a8ce](https://gitlab.com/rxap/packages/commit/431a8cef026daf7477bcabff32902f5606e4f346))
+- only use form directive if in form mode ([ad61d2e](https://gitlab.com/rxap/packages/commit/ad61d2efee5a021981d2b883b999f91c13638054))
+
 # [16.0.0](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.22...@rxap/data-grid@16.0.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/data-grid

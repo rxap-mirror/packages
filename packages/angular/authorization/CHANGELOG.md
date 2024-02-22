@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0...@rxap/authorization@16.0.1-dev.0) (2024-02-22)
+
+### Bug Fixes
+
+- use alias for rxapIfHasPermission identifier ([a518675](https://gitlab.com/rxap/packages/commit/a518675c09e21a342cc0b16cec89d1ed03c44954))
+
 # [16.0.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0-dev.24...@rxap/authorization@16.0.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/authorization

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.1-dev.0...@rxap/plugin-angular@16.1.1-dev.1) (2024-02-22)
+
+### Bug Fixes
+
+- change property order ([8266705](https://gitlab.com/rxap/packages/commit/8266705b791f8d3ca65c8b804b449cf47b2751b7))
+
 ## [16.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0...@rxap/plugin-angular@16.1.1-dev.0) (2024-02-09)
 
 ### Bug Fixes

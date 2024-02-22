@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.0...@rxap/ts-morph@1.1.0-dev.1) (2024-02-22)
+
+### Bug Fixes
+
+- change property order ([8266705](https://gitlab.com/rxap/packages/commit/8266705b791f8d3ca65c8b804b449cf47b2751b7))
+- check if type import is required ([8dcd733](https://gitlab.com/rxap/packages/commit/8dcd733deab33097ef89f1ff8625864b5ead0235))
+- initial component class creation ([070552a](https://gitlab.com/rxap/packages/commit/070552a35cd3a8a01e0c27f2d5316c9083ad72b3))
+- simplify function use ([8ad2237](https://gitlab.com/rxap/packages/commit/8ad2237aff141651d7cfe09e09ae6ec88780d186))
+- simplify function use ([3d1c202](https://gitlab.com/rxap/packages/commit/3d1c20272faf7bc7ae473a438a7d2393590f0a02))
+- small issues ([93f69c5](https://gitlab.com/rxap/packages/commit/93f69c5e2f445994db265360c6dd4a1e8228bfdb))
+- support type guessing ([90a8624](https://gitlab.com/rxap/packages/commit/90a8624fb704a98d2cfbf9cc13f77a598b52d50c))
+- type import and data property to ts morph library ([91f9abc](https://gitlab.com/rxap/packages/commit/91f9abc3f43f82419b9b8d9b056af5d2e88e3a2c))
+- unify coerce component functions ([3bc1701](https://gitlab.com/rxap/packages/commit/3bc170116d7e794b94ef323251c59579a7887355))
+- unify type import concept ([9cb2f7b](https://gitlab.com/rxap/packages/commit/9cb2f7b07e28eb36849b1f3afdba15989ba17c72))
+
+### Features
+
+- add CoerceDefaultClassExport function ([a3c89f7](https://gitlab.com/rxap/packages/commit/a3c89f7a7079bcde09980e632fe8edb25fef1ce7))
+- add default find existing element function ([ee18576](https://gitlab.com/rxap/packages/commit/ee18576b1cfd2af4d67ae4b4022d794760115165))
+- add new utility functions ([fbb52c6](https://gitlab.com/rxap/packages/commit/fbb52c60844a0113677094ae5fa6620be2df73b8))
+- add new utility functions ([026e266](https://gitlab.com/rxap/packages/commit/026e266821485602e84030a9e68cd0352c6c0a1e))
+- move WriteType to ts-morph package ([af6357a](https://gitlab.com/rxap/packages/commit/af6357a2f642199dc7807e21e5e369395872d595))
+
 # [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.0.1...@rxap/ts-morph@1.1.0-dev.0) (2024-02-09)
 
 ### Features
