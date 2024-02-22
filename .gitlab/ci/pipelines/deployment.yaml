@@ -1,17 +1,10 @@
 include:
-  - local: .gitlab/ci/utilities/gcp-deployment.yaml
+  - local: .gitlab/ci/jobs/deploy.yaml
 
 variables:
-  ENVIRONMENT_NAME: $CI_COMMIT_REF_NAME
+  NODE_VERSION: "20.9.0"
+  HUSKY: "0"
+  ENVIRONMENT_NAME: deployment/$CI_COMMIT_REF_NAME
 
 stages:
   - deploy
-
-deployment:
-  extends: .gcp-deployment
-  environment:
-    on_stop: stop_deployment
-    auto_stop_in: 8 hours
-
-stop_deployment:
-  extends: .stop_gcp-deployment

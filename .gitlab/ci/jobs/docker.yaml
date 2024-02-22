@@ -4,8 +4,7 @@
     entrypoint:
       - ""
   stage: docker
-  tags:
-    - e2-standard-2
+  tags: []
   script: ./tools/scripts/build-and-push-docker-image.sh
   environment:
     action: prepare
@@ -18,146 +17,42 @@
     - when: on_success
   needs:
     - run
-
 docker:
   extends: .docker
   variables:
-    IMAGE_NAME: m2v-frontends
+    IMAGE_NAME: rxap/packages
   parallel:
     matrix:
-      - PROJECT_NAME: dashboard-editor
-        SUB_DOMAIN: editor.
-        DOCKER_CONTEXT: dist/apps/dashboard-editor
-        IMAGE_SUFFIX: /dashboard-editor
+      - PROJECT_NAME: angular
+        DOCKER_CONTEXT: dist/demos/angular
+        IMAGE_SUFFIX: /user-interface/angular
         DOCKERFILE: shared/angular/Dockerfile
-      - PROJECT_NAME: i18n-editor
-        SUB_DOMAIN: i18n-editor.
-        DOCKER_CONTEXT: dist/apps/i18n-editor
-        IMAGE_SUFFIX: /i18n-editor
-        DOCKERFILE: shared/angular/Dockerfile
-      - PROJECT_NAME: mobile-dashboard
-        SUB_DOMAIN: mobile.
-        DOCKER_CONTEXT: dist/apps/mobile-dashboard
-        IMAGE_SUFFIX: /mobile-dashboard
-        DOCKERFILE: shared/angular/Dockerfile
-      - PROJECT_NAME: portal
-        DOCKER_CONTEXT: dist/apps/portal
-        IMAGE_SUFFIX: /portal
-        DOCKERFILE: shared/angular/Dockerfile
-      - PROJECT_NAME: remote-connection
-        SUB_DOMAIN: remote.
-        DOCKER_CONTEXT: dist/apps/remote-connection
-        IMAGE_SUFFIX: /remote-connection
-        DOCKERFILE: shared/angular/Dockerfile
-      - PROJECT_NAME: service-server
-        SUB_DOMAIN: service-server.
-        DOCKER_CONTEXT: dist/apps/service-server
-        IMAGE_SUFFIX: /service-server
-        DOCKERFILE: shared/angular/Dockerfile
-      - PROJECT_NAME: settings
-        SUB_DOMAIN: settings.
-        DOCKER_CONTEXT: dist/apps/settings
-        IMAGE_SUFFIX: /settings
-        DOCKERFILE: shared/angular/Dockerfile
-      - PROJECT_NAME: ui-editor
-        SUB_DOMAIN: ui-editor.
-        DOCKER_CONTEXT: dist/apps/ui-editor
-        IMAGE_SUFFIX: /ui-editor
-        DOCKERFILE: shared/angular/Dockerfile
+      - PROJECT_NAME: service-app-angular-table
+        PATH_PREFIX: api/app/angular/table
+        DOCKER_CONTEXT: dist/demos/service/app/angular/table
+        IMAGE_SUFFIX: /service/app-angular-table
+        DOCKERFILE: shared/nestjs/Dockerfile
       - PROJECT_NAME: service-changelog
-        DOCKER_CONTEXT: dist/apps/service/changelog
+        PATH_PREFIX: api/changelog
+        NAME_PREFIX: rxap-
+        DOCKER_CONTEXT: dist/applications/service/changelog
         IMAGE_SUFFIX: /service/changelog
+        DOCKERFILE: shared/nestjs/Dockerfile
       - PROJECT_NAME: service-configuration
-        DOCKER_CONTEXT: dist/apps/service/configuration
+        PATH_PREFIX: api/configuration
+        NAME_PREFIX: rxap-
+        DOCKER_CONTEXT: dist/applications/service/configuration
         IMAGE_SUFFIX: /service/configuration
-      - PROJECT_NAME: service-enum
-        PATH_PREFIX: api/enum
-        DOCKER_CONTEXT: dist/apps/service/enum
-        IMAGE_SUFFIX: /service/enum
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-file-download
-        PATH_PREFIX: api/download
-        DOCKER_CONTEXT: dist/apps/service/file-download
-        IMAGE_SUFFIX: /service/file-download
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-i18n
-        PATH_PREFIX: api/i18n
-        DOCKER_CONTEXT: dist/apps/service/i18n
-        IMAGE_SUFFIX: /service/i18n
         DOCKERFILE: shared/nestjs/Dockerfile
       - PROJECT_NAME: service-status
-        DOCKER_CONTEXT: dist/apps/service/status
+        PATH_PREFIX: api/status
+        NAME_PREFIX: rxap-
+        DOCKER_CONTEXT: dist/applications/service/status
         IMAGE_SUFFIX: /service/status
-      - PROJECT_NAME: service-template
-        PATH_PREFIX: api/templates
-        DOCKER_CONTEXT: dist/apps/service/template
-        IMAGE_SUFFIX: /service/template
         DOCKERFILE: shared/nestjs/Dockerfile
       - PROJECT_NAME: service-user
-        DOCKER_CONTEXT: dist/apps/service/user
+        PATH_PREFIX: api/user
+        NAME_PREFIX: rxap-
+        DOCKER_CONTEXT: dist/applications/service/user
         IMAGE_SUFFIX: /service/user
-      - PROJECT_NAME: service-user-settings
-        PATH_PREFIX: api/settings
-        DOCKER_CONTEXT: dist/apps/service/user-settings
-        IMAGE_SUFFIX: /service/user-settings
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-feature-dashboard
-        PATH_PREFIX: api/feature/dashboard
-        DOCKER_CONTEXT: dist/apps/service/feature/dashboard
-        IMAGE_SUFFIX: /service/feature/dashboard
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-feature-machine
-        PATH_PREFIX: api/feature/machine
-        DOCKER_CONTEXT: dist/apps/service/feature/machine
-        IMAGE_SUFFIX: /service/feature/machine
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-feature-remote-connection
-        PATH_PREFIX: api/feature/remote-connection
-        DOCKER_CONTEXT: dist/apps/service/feature/remote-connection
-        IMAGE_SUFFIX: /service/feature/remote-connection
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-feature-report
-        PATH_PREFIX: api/feature/report
-        DOCKER_CONTEXT: dist/apps/service/feature/report
-        IMAGE_SUFFIX: /service/feature/report
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-app-mobile-dashboard-machine
-        PATH_PREFIX: api/app/mobile-dashboard/machine
-        DOCKER_CONTEXT: dist/apps/service/app/mobile-dashboard/machine
-        IMAGE_SUFFIX: /service/app/mobile-dashboard/machine
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-app-mobile-dashboard-overview
-        PATH_PREFIX: api/app/mobile-dashboard/overview
-        DOCKER_CONTEXT: dist/apps/service/app/mobile-dashboard/overview
-        IMAGE_SUFFIX: /service/app/mobile-dashboard/overview
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-app-portal-overview
-        PATH_PREFIX: api/app/portal/overview
-        DOCKER_CONTEXT: dist/apps/service/app/portal/overview
-        IMAGE_SUFFIX: /service/app/portal/overview
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-app-service-server-service-network
-        PATH_PREFIX: api/app/service-server/service-network
-        DOCKER_CONTEXT: dist/apps/service/app/service-server/service-network
-        IMAGE_SUFFIX: /service/app/service-server/service-network
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-app-settings-dashboard-template
-        PATH_PREFIX: api/app/settings/dashboard-template
-        DOCKER_CONTEXT: dist/apps/service/app/settings/dashboard-template
-        IMAGE_SUFFIX: /service/app/settings/dashboard-template
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-app-settings-machine
-        PATH_PREFIX: api/app/settings/machine
-        DOCKER_CONTEXT: dist/apps/service/app/settings/machine
-        IMAGE_SUFFIX: /service/app/settings/machine
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-app-settings-machine-definition
-        PATH_PREFIX: api/app/settings/machine-definition
-        DOCKER_CONTEXT: dist/apps/service/app/settings/machine-definition
-        IMAGE_SUFFIX: /service/app/settings/machine-definition
-        DOCKERFILE: shared/nestjs/Dockerfile
-      - PROJECT_NAME: service-app-settings-report
-        PATH_PREFIX: api/app/settings/report
-        DOCKER_CONTEXT: dist/apps/service/app/settings/report
-        IMAGE_SUFFIX: /service/app/settings/report
         DOCKERFILE: shared/nestjs/Dockerfile

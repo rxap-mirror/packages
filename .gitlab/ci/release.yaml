@@ -6,13 +6,13 @@ include:
   - local: .gitlab/ci/jobs/deploy.yaml
   - local: .gitlab/ci/jobs/e2e.yaml
   - local: .gitlab/ci/jobs/component-test.yaml
-  - local: .gitlab/ci/jobs/pages.yaml
+  - local: .gitlab/ci/jobs/writerside.yaml
 
 stages:
   - run
   - docker
   - startup
-  - sentry
+  - deploy
 
 variables:
   ENVIRONMENT_NAME: release/$CI_COMMIT_TAG
@@ -20,6 +20,3 @@ variables:
 run:
   variables:
     ADDITIONAL_TARGET_OPTIONS: "--channel $CI_ENVIRONMENT_SLUG"
-
-sentry:
-  extends: .sentry

@@ -1,138 +1,22 @@
-.component-test:
+component-test:
+  image:
+    name: cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+    entrypoint: [ "" ]
   extends: .run
   stage: run
+  tags:
+    - e2-standard-2
   variables:
-    TARGET: ${PROJECT}:component-test
-    ADDITIONAL_TARGET_OPTIONS: --browser ${BROWSER}
+    TARGET: "${PROJECT}:component-test"
+    ADDITIONAL_TARGET_OPTIONS: "--browser ${BROWSER}"
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
   artifacts:
     expire_in: 2 hrs
     exclude:
-      - node_modules/**
+      - 'node_modules/**'
     paths:
-      - "**/coverage/coverage-final.json"
-component-test:
-  extends: .component-test
+      - '**/coverage/coverage-final.json'
   parallel:
-    matrix:
-      - PROJECT: angular
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-authentication
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-authorization
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-changelog
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-components
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-data-grid
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-data-source
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-dialog
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-environment
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-error
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-forms
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-layout
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-oauth
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-service-worker
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-status-check
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-table-system
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-timeago
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-tree
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-upload
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-window-system
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-material-form-system
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-material-table-select
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-      - PROJECT: angular-material-table-system
-        BROWSER:
-          - chrome
-          - firefox
-          - edge
-  image:
-    name: cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
-    entrypoint:
-      - ""
+    matrix: []

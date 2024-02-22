@@ -33,11 +33,11 @@
     name: $ENVIRONMENT_NAME
     action: stop
   stage: deploy
+  allow_failure: true
   before_script:
     - export INSTANCE_NAME=${INSTANCE_NAME:0:60}
   rules:
     - when: manual
-      allow_failure: true
   script:
     - gcloud compute instances stop "$INSTANCE_NAME" --zone="$ZONE" --quiet || echo "Instance $INSTANCE_NAME already stopped"
     - gcloud compute instances delete "$INSTANCE_NAME" --zone="$ZONE" --quiet || echo "Instance $INSTANCE_NAME already deleted"

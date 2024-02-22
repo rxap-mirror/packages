@@ -1,7 +1,5 @@
-# CI_MERGE_REQUEST_EVENT_TYPE = detached | merged_result | merge_train
-# CI_PIPELINE_SOURCE = merge_request_event
-
 variables:
+  HUSKY: "0"
   GIT_STRATEGY: "fetch"
   GIT_DEPTH: "3"
   E2E_TRIGGER:

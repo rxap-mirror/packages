@@ -5,16 +5,16 @@ include:
   - local: .gitlab/ci/jobs/deploy.yaml
   - local: .gitlab/ci/jobs/e2e.yaml
   - local: .gitlab/ci/jobs/component-test.yaml
-  - local: .gitlab/ci/jobs/pages.yaml
+  - local: .gitlab/ci/jobs/writerside.yaml
   - template: Jobs/Secret-Detection.gitlab-ci.yml
   - template: Jobs/SAST.gitlab-ci.yml
-  - local: .gitlab/ci/jobs/qodana.yaml
 
 stages:
   - test
   - run
   - docker
   - startup
+  - deploy
 
 variables:
   ENVIRONMENT_NAME: branch/$CI_COMMIT_REF_NAME

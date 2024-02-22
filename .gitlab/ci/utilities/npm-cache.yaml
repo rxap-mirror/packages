@@ -1,13 +1,3 @@
-.yarn:
-  cache:
-    key:
-      files:
-        - yarn.lock
-    paths:
-      - '**/node_modules/**'
-      - .yarn/cache
-    policy: pull
-
 setup:
   stage: .pre
   tags:

@@ -2,18 +2,34 @@ pages:
   image: registry.gitlab.com/rxap/gitlab-ci/apindex:latest
   stage: .post
   needs:
-    - coverage-report
+    - job: coverage-report
+      optional: true
+    - job: writerside
+      optional: true
   script: |
     if [ ! -d public ]; then
       echo "No public directory found, create a new one"
     fi
+
     output="public/${CI_COMMIT_REF_SLUG}"
     mkdir -p "$output"
+
     echo "Folder structure of the public directory:"
     ls -l public
-    echo "Copy coverage report to $output"
-    cp -r coverage/* "$output/"
-    echo "create index.html"
+
+    if [ -d coverage ]; then
+      echo "Copy coverage report to $output"
+      mkdir -p "$output/coverage"
+      cp -r coverage "$output/coverage/"
+    fi
+
+    if [ -d dist/writerside ]; then
+      echo "Copy Writerside help to $output"
+      mkdir -p "$output/docs"
+      cp -r dist/writerside/* "$output/docs/"
+    fi
+
+    echo "generate index.html"
     apindex public
   environment:
     name: "pages/$CI_COMMIT_REF_NAME"
@@ -23,10 +39,18 @@ pages:
   cache:
     # storage all page contents into one global cache
     # only one page can exist per project
-    key: pages_$CI_PROJECT_ID
+    key: v3_pages_$CI_PROJECT_ID
     paths:
       - public
   artifacts:
     expire_in: 1 week
     paths:
       - public
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+      when: on_success
+    - if: '$CI_COMMIT_BRANCH =~ /^([0-9]+\.[0-9]+\.x|[0-9]+\.x)$/'
+      when: on_success
+    - when: manual

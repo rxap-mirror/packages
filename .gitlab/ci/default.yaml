@@ -6,16 +6,18 @@ include:
   - local: .gitlab/ci/jobs/e2e.yaml
   - local: .gitlab/ci/jobs/component-test.yaml
   - template: Jobs/SAST.gitlab-ci.yml
-  - local: .gitlab/ci/jobs/pages.yaml
+  - local: .gitlab/ci/jobs/writerside.yaml
   - template: Jobs/Secret-Detection.gitlab-ci.yml
-  - local: .gitlab/ci/jobs/qodana.yaml
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+default:
+  interruptible: true
 
 stages:
   - test
   - run
   - docker
   - startup
+  - deploy
 
 variables:
   ENVIRONMENT_NAME: $CI_COMMIT_REF_NAME
