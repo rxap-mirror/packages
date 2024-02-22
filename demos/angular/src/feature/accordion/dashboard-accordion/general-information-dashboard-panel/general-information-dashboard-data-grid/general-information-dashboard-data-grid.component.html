@@ -1,0 +1,61 @@
+<mat-card>
+  
+  <mat-card-content>
+    <div class="p-4">
+      <form #form="rxapForm" rxapForm>
+        
+        <rxap-data-grid [dataSource]="dataGridDataSource" mode="form">
+        
+        
+          <ng-container rxapDataGridRowDef="name">
+            
+            <ng-template rxapDataGridEditCellDef>
+              
+              <!-- TODO: name -->
+              
+            </ng-template>
+          </ng-container>
+        
+          <ng-container rxapDataGridRowDef="location">
+            
+            <ng-template rxapDataGridEditCellDef>
+              
+              <!-- TODO: location -->
+              
+            </ng-template>
+          </ng-container>
+        
+          <ng-container rxapDataGridRowDef="link">
+            
+            <ng-template rxapDataGridEditCellDef>
+              
+              <!-- TODO: link -->
+              
+            </ng-template>
+          </ng-container>
+        
+          <ng-container rxapDataGridRowDef="company">
+            
+            <ng-template rxapDataGridEditCellDef>
+              
+              <!-- TODO: company -->
+              
+            </ng-template>
+          </ng-container>
+        
+          <ng-container rxapDataGridRowDef="dashboardType">
+            
+            <th *rxapDataGridHeaderCellDef i18n>Typ</th>
+            
+            <ng-template rxapDataGridEditCellDef>
+              
+              <!-- TODO: dashboardType -->
+              
+            </ng-template>
+          </ng-container>
+        
+        </rxap-data-grid>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

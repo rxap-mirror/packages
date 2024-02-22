@@ -4,37 +4,76 @@
     name: dashboard
     backend: nestjs
     multiple: true
+    header:
+      property:
+        name: name
+    persistent:
+      property:
+        name: uuid
+    identifier:
+      property:
+        name: uuid
     itemList:
       - name: general-information
         type: switch
         switch:
           property:
-            path: dashboardType
+            name: dashboardType
             type: number
           defaultCase:
             itemList:
               - type: data-grid
-                name: normal
+                name: dashboard
+                title: Allgemeine Informationen
                 dataGrid:
+                  mode: form
                   itemList:
                     - name: name
-                      header: MyName
+                    - name: location
+                    - name: link
+                      template:
+                        name: input
+                        type: url
+                    - name: company
+                      type: string
+                      readonly: true
+                    - name: dashboardType
+                      header: Typ
                       type: number
+                      readonly: true
           case:
-            - test: 1
+            - test: 2
               itemList:
                 - type: data-grid
-                  name: special
+                  name: cloud-dashboard
+                  title: Allgemeine Informationen
                   dataGrid:
                     mode: form
                     itemList:
                       - name: name
-                        header: MyName
+                      - name: company
+                        type: string
+                        readonly: true
+                      - name: dashboardType
+                        header: Typ
                         type: number
+                        readonly: true
       - name: layout
-        type: panel
+        type: switch
+        permission: dashboard.layout.get
+        switch:
+          property:
+            name: dashboardType
+            type: number
+          case:
+            - test: 2
+              itemList:
+                - name: cloud-dashboard
+                  type: panel
+                  title: Layouts
       - name: reference
         type: tree-table
+        title: Zuordnung
         table:
           columnList:
             - name: referenced

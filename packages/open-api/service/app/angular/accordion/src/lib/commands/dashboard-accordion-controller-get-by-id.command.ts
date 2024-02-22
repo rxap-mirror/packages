@@ -8,7 +8,7 @@ import { OpenApiOperationCommandParameters } from '@rxap/nest-open-api';
 @OperationCommand({
     serverId: 'service-app-angular-accordion',
     operationId: 'DashboardAccordionController_getById',
-    operation: '{"operationId":"DashboardAccordionController_getById","parameters":[{"name":"uuid","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"uuid":{"type":"string"},"name":{"type":"string"}},"required":["uuid","name"]}}}}},"method":"get","path":"/dashboard-accordion/{uuid}"}'
+    operation: '{"operationId":"DashboardAccordionController_getById","parameters":[{"name":"uuid","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"uuid":{"type":"string"},"dashboardType":{"type":"number"},"name":{"type":"string"}},"required":["uuid","dashboardType","name"]}}}}},"method":"get","path":"/dashboard-accordion/{uuid}"}'
   })
 export class DashboardAccordionControllerGetByIdCommand extends OpenApiOperationCommand<DashboardAccordionControllerGetByIdResponse, DashboardAccordionControllerGetByIdParameter, void> {
   public override execute(parameters: OpenApiOperationCommandParameters<DashboardAccordionControllerGetByIdParameter, void>): Promise<DashboardAccordionControllerGetByIdResponse> {

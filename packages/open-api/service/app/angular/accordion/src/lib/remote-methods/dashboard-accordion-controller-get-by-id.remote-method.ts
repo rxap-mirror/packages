@@ -31,12 +31,16 @@ import { DashboardAccordionControllerGetByIdResponse } from '../responses/dashbo
               "uuid": {
                 "type": "string"
               },
+              "dashboardType": {
+                "type": "number"
+              },
               "name": {
                 "type": "string"
               }
             },
             "required": [
               "uuid",
+              "dashboardType",
               "name"
             ]
           }

@@ -7,66 +7,93 @@
     <mat-divider></mat-divider>
   </ng-template>
   <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
-  <mat-accordion [rxapPersistentAccordion]="accordionDataSource.lastUuid" multi>
+  
+  <mat-accordion
+    
+    [rxapPersistentAccordion]="accordion.uuid"
+    multi
+    >
+    
     
     
     
     <ng-container [ngSwitch]="accordion.dashboardType">
       
       
-      <ng-template [ngSwitchCase]="1">
+      <ng-template [ngSwitchCase]="2">
       
         
+          
           <mat-expansion-panel>
 
             <mat-expansion-panel-header>
-              <mat-panel-title i18n>GeneralInformation Special</mat-panel-title>
+              <mat-panel-title i18n>Allgemeine Informationen</mat-panel-title>
               
             </mat-expansion-panel-header>
 
             <ng-template matExpansionPanelContent>
-              <rxap-general-information-special-panel></rxap-general-information-special-panel>
+              <rxap-general-information-cloud-dashboard-panel></rxap-general-information-cloud-dashboard-panel>
             </ng-template>
 
           </mat-expansion-panel>
+          
         
       </ng-template>
       
       
+      <ng-template ngSwitchDefault>
       
-       <ng-template ngSwitchDefault>
+        
         <mat-expansion-panel>
 
           <mat-expansion-panel-header>
-            <mat-panel-title i18n>GeneralInformation Normal</mat-panel-title>
+            <mat-panel-title i18n>Allgemeine Informationen</mat-panel-title>
             
           </mat-expansion-panel-header>
 
           <ng-template matExpansionPanelContent>
-            <rxap-general-information-normal-panel></rxap-general-information-normal-panel>
+            <rxap-general-information-dashboard-panel></rxap-general-information-dashboard-panel>
           </ng-template>
 
         </mat-expansion-panel>
-      </ng-template>
+        
       
+      </ng-template>
       
     </ng-container>
     
     
     
     
-    <mat-expansion-panel>
-
-      <mat-expansion-panel-header>
-        <mat-panel-title i18n>Layout</mat-panel-title>
+    
+    <ng-template rxapIfHasPermission="dashboard.layout.get">
+    <ng-container [ngSwitch]="accordion.dashboardType">
+      
+      
+      <ng-template [ngSwitchCase]="2">
+      
         
-      </mat-expansion-panel-header>
+          
+          <mat-expansion-panel>
 
-      <ng-template matExpansionPanelContent>
-        <rxap-layout-panel></rxap-layout-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title i18n>Layouts</mat-panel-title>
+              
+            </mat-expansion-panel-header>
+
+            <ng-template matExpansionPanelContent>
+              <rxap-layout-cloud-dashboard-panel></rxap-layout-cloud-dashboard-panel>
+            </ng-template>
+
+          </mat-expansion-panel>
+          
+        
       </ng-template>
-
-    </mat-expansion-panel>
+      
+      
+    </ng-container>
+    </ng-template>
+    
     
     
     
@@ -74,7 +101,7 @@
     <mat-expansion-panel>
 
       <mat-expansion-panel-header>
-        <mat-panel-title i18n>Reference</mat-panel-title>
+        <mat-panel-title i18n>Zuordnung</mat-panel-title>
         
       </mat-expansion-panel-header>
 
@@ -83,6 +110,7 @@
       </ng-template>
 
     </mat-expansion-panel>
+    
     
     
     <!-- NEXT_INDEX[3] -->

@@ -1,20 +1,18 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { NavigateBackButtonComponent } from '@rxap/components';
-import { DashboardControllerGetByIdResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-controller-get-by-id.response';
+import { DashboardAccordionControllerGetByIdResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-controller-get-by-id.response';
 
 @Component({
-  selector: 'rxap-accordion-header',
-  templateUrl: './accordion-header.component.html',
-  styleUrls: [ './accordion-header.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NavigateBackButtonComponent,
-  ],
+    standalone: true,
+    selector: 'rxap-accordion-header',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './accordion-header.component.html',
+    styleUrls: ['./accordion-header.component.scss'],
+  imports: [NavigateBackButtonComponent],
 })
 export class AccordionHeaderComponent {
   @Input({
-    required: true
-  })
-  public data!: DashboardControllerGetByIdResponse;
+      required: true
+    })
+  public data!: DashboardAccordionControllerGetByIdResponse;
 }
