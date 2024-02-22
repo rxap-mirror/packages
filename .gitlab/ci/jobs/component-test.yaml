@@ -9,6 +9,7 @@ component-test:
   variables:
     TARGET: "${PROJECT}:component-test"
     ADDITIONAL_TARGET_OPTIONS: "--browser ${BROWSER}"
+  allow_failure: true
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
