@@ -6,8 +6,8 @@ import {
   NonNullableSelected,
   Normalized,
 } from '@rxap/utilities';
+import { NormalizedBaseFormControlOptions } from './form-control';
 import {
-  BaseFormControlTemplate,
   FormDefinitionControl,
   NormalizedFormDefinitionControl,
   NormalizeFormDefinitionControl,
@@ -21,7 +21,7 @@ export interface DataGridItem extends FormDefinitionControl {
 
 export interface NormalizedDataGridItem extends Readonly<NonNullableSelected<Normalized<DataGridItem>, 'type'>>, Omit<NormalizedFormDefinitionControl, 'type'> {
   type: NormalizedTypeImport;
-  template: BaseFormControlTemplate;
+  options: NormalizedBaseFormControlOptions;
   importList: NormalizedTypeImport[];
 }
 

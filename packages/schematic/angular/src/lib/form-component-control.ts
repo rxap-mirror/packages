@@ -1,6 +1,6 @@
 import { Normalized } from '@rxap/utilities';
+import { NormalizedBaseFormControlOptions } from './form-control';
 import {
-  BaseFormControlTemplate,
   FormDefinitionControl,
   NormalizedFormDefinitionControl,
   NormalizeFormDefinitionControl,
@@ -14,7 +14,7 @@ export interface FormComponentControl extends FormDefinitionControl {
 
 export interface NormalizedFormComponentControl extends Readonly<Normalized<FormComponentControl>>, NormalizedFormDefinitionControl {
   type: NormalizedTypeImport;
-  template: BaseFormControlTemplate;
+  options: NormalizedBaseFormControlOptions;
   importList: NormalizedTypeImport[];
 }
 

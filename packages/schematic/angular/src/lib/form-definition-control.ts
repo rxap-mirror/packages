@@ -1,147 +1,18 @@
-import { TypeImport } from '@rxap/ts-morph';
-import {
-  CoerceArrayItems,
-  ControlOption,
-  Normalized,
-} from '@rxap/utilities';
-import { BackendTypes } from './backend-types';
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
+  TypeImport,
 } from '@rxap/ts-morph';
-
-export enum FormControlTemplateType {
-  DEFAULT = 'default',
-  INPUT = 'input',
-  SELECT = 'select',
-}
-
-export interface BaseFormControlTemplate {
-  name: FormControlTemplateType;
-}
-
-export interface MinimalNormalizedFormDefinitionControl {
-  type: TypeImport;
-  validatorList: string[];
-  importList: TypeImport[];
-}
-
-// region InputFormControlTemplate
-
-export interface InputFormControlTemplate extends BaseFormControlTemplate {
-  type?: string;
-  placeholder?: string;
-  label?: string;
-}
-
-export interface NormalizedInputFormControlTemplate extends Readonly<Normalized<InputFormControlTemplate>>,
-                                                            BaseFormControlTemplate {
-  name: FormControlTemplateType.INPUT;
-}
-
-export function IsNormalizedInputFormControlTemplate(template: BaseFormControlTemplate): template is NormalizedInputFormControlTemplate {
-  return template.name === FormControlTemplateType.INPUT;
-}
-
-export function NormalizeInputFormControlTemplate(
-  template: InputFormControlTemplate,
-  normalizedControl: MinimalNormalizedFormDefinitionControl,
-): NormalizedInputFormControlTemplate {
-  normalizedControl.importList.push({
-    name: 'MatInputModule',
-    moduleSpecifier: '@angular/material/input',
-  });
-  const type: string = template.type ?? 'text';
-  switch (type) {
-    case 'checkbox':
-      normalizedControl.type.name = 'boolean';
-      break;
-    case 'text':
-    case 'password':
-    case 'color':
-      normalizedControl.type.name = 'string';
-      break;
-    case 'email':
-      normalizedControl.type.name = 'string';
-      CoerceArrayItems(normalizedControl.validatorList, [ 'IsEmail()' ]);
-      break;
-    case 'tel':
-      normalizedControl.type.name = 'string';
-      CoerceArrayItems(normalizedControl.validatorList, [ 'IsTel()' ]);
-      break;
-    case 'url':
-      normalizedControl.type.name = 'string';
-      CoerceArrayItems(normalizedControl.validatorList, [ 'IsUrl()' ]);
-      break;
-    case 'number':
-      normalizedControl.type.name = 'number';
-      break;
-    case 'date':
-    case 'time':
-    case 'datetime-local':
-      normalizedControl.type.name = 'Date';
-      CoerceArrayItems(normalizedControl.validatorList, [ 'IsDate()' ]);
-      break;
-    case 'file':
-    case 'hidden':
-    case 'image':
-    case 'month':
-    case 'radio':
-    case 'reset':
-    case 'button':
-    case 'search':
-    case 'submit':
-    case 'week':
-    case 'range':
-      throw new Error(`The input type "${type}" is not yet supported`);
-  }
-  // TODO : auto add validators
-  return Object.freeze({
-    name: FormControlTemplateType.INPUT,
-    type,
-    placeholder: template.placeholder ?? null,
-    label: template.label ?? null,
-  });
-}
-
-// endregion
-
-// region SelectFormControlTemplate
-
-export interface SelectFormControlTemplate extends BaseFormControlTemplate {
-  label?: string;
-  options?: ControlOption[];
-  backend?: BackendTypes;
-}
-
-export interface NormalizedSelectFormControlTemplate
-  extends Readonly<Normalized<Omit<SelectFormControlTemplate, 'options'>>>, BaseFormControlTemplate {
-  name: FormControlTemplateType.SELECT;
-  options: ReadonlyArray<ControlOption> | null;
-  backend: BackendTypes;
-}
-
-export function IsNormalizedSelectFormControlTemplate(template: BaseFormControlTemplate): template is NormalizedSelectFormControlTemplate {
-  return template.name === FormControlTemplateType.SELECT;
-}
-
-export function NormalizeSelectFormControlTemplate(
-  template: SelectFormControlTemplate,
-  normalizedControl: MinimalNormalizedFormDefinitionControl,
-): NormalizedSelectFormControlTemplate {
-  normalizedControl.importList.push({
-    name: 'MatSelectModule',
-    moduleSpecifier: '@angular/material/select',
-  });
-  return Object.freeze({
-    name: FormControlTemplateType.SELECT,
-    label: template.label ?? null,
-    options: template.options ? Object.freeze(template.options) : null,
-    backend: template.backend ?? BackendTypes.LOCAL,
-  });
-}
-
-// endregion
+import { Normalized } from '@rxap/utilities';
+import {
+  BaseFormControlOptions,
+  FormControlKinds,
+  MinimalNormalizedFormControl,
+  NormalizeBaseFormControlOptions,
+  NormalizedBaseFormControlOptions,
+  NormalizeInputFormControlOptions,
+  NormalizeSelectFormControlOptions,
+} from './form-control';
 
 export interface FormDefinitionControl {
   name: string;
@@ -153,34 +24,30 @@ export interface FormDefinitionControl {
   isDisabled?: boolean;
   validatorList?: string[];
   importList?: TypeImport[];
-  template?: BaseFormControlTemplate;
+  options?: BaseFormControlOptions;
 }
 
 export interface NormalizedFormDefinitionControl extends Readonly<Normalized<FormDefinitionControl>> {
   type: NormalizedTypeImport;
-  template: BaseFormControlTemplate;
+  options: NormalizedBaseFormControlOptions;
   importList: NormalizedTypeImport[];
 }
 
 export function NormalizeFormControlTemplate(
-  minimalNormalizedControl: MinimalNormalizedFormDefinitionControl,
-  template?: BaseFormControlTemplate,
-): BaseFormControlTemplate {
-  if (!template) {
-    return Object.freeze({
-      name: FormControlTemplateType.DEFAULT,
-    });
-  }
-  switch (template.name) {
-    case FormControlTemplateType.INPUT:
-      return NormalizeInputFormControlTemplate(template, minimalNormalizedControl);
-    case FormControlTemplateType.SELECT:
-      return NormalizeSelectFormControlTemplate(template, minimalNormalizedControl);
-    case FormControlTemplateType.DEFAULT:
+  minimalNormalizedControl: MinimalNormalizedFormControl,
+  options?: BaseFormControlOptions,
+): NormalizedBaseFormControlOptions {
+  switch (options?.kind) {
+    case FormControlKinds.INPUT:
+      return NormalizeInputFormControlOptions(options, minimalNormalizedControl);
+    case FormControlKinds.SELECT:
+      return NormalizeSelectFormControlOptions(options, minimalNormalizedControl);
+    case FormControlKinds.DEFAULT:
     default:
-      return Object.freeze({
-        name: FormControlTemplateType.DEFAULT,
-      });
+      return NormalizeBaseFormControlOptions({
+        ...options,
+        kind: FormControlKinds.DEFAULT,
+      }, minimalNormalizedControl);
   }
 }
 
@@ -204,11 +71,11 @@ export function NormalizeFormDefinitionControl(
     isArray = true;
     type.name = type.name.slice(6, -1);
   }
-  const template = NormalizeFormControlTemplate({
+  const options = NormalizeFormControlTemplate({
     validatorList,
     importList,
     type,
-  }, control.template);
+  }, control.options);
   return Object.freeze({
     name,
     type,
@@ -219,7 +86,7 @@ export function NormalizeFormDefinitionControl(
     isDisabled,
     validatorList,
     importList: importList.map(NormalizeTypeImport),
-    template,
+    options,
   });
 }
 

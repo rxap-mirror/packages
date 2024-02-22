@@ -2,7 +2,7 @@ import { chain } from '@angular-devkit/schematics';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
-import { IsNormalizedInputFormControlTemplate } from '../../../../lib/form-definition-control';
+import { IsNormalizedInputFormControlOptions } from '../../../../lib/form-control';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,
@@ -30,11 +30,11 @@ export function NormalizeInputFormControlOptions(
   options: InputFormControlOptions,
 ): NormalizedInputFormControlOptions {
   const normalizedOptions = NormalizeFormControlOptions(options);
-  const { type, template } = normalizedOptions;
-  if (!IsNormalizedInputFormControlTemplate(template)) {
+  const { type, options: templateOptions } = normalizedOptions;
+  if (!IsNormalizedInputFormControlOptions(templateOptions)) {
     throw new Error('The control is not a input form control');
   }
-  const inputType = template.type ?? GuessInputType(type.name);
+  const inputType = templateOptions.type ?? GuessInputType(type.name);
   return Object.freeze({
     ...normalizedOptions,
     inputType,
