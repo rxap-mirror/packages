@@ -1,4 +1,7 @@
-import { CoerceComponentOptions } from '@rxap/schematics-ts-morph';
+import {
+  AddComponentProvider,
+  CoerceComponentOptions,
+} from '@rxap/schematics-ts-morph';
 import { CoerceComponentImport } from '@rxap/ts-morph';
 import { CoerceMinimumTableComponentRule } from './coerce-minimum-table-component';
 import { NormalizedTreeTableOptions } from './tree-table-options';
@@ -13,6 +16,19 @@ export function CoerceTreeTableComponentRule(options: Readonly<CoerceTreeTableCo
     ...options,
     tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
       CoerceComponentImport(classDeclaration, { name: 'TreeControlCellComponent', moduleSpecifier: '@rxap/material-table-system' });
+      AddComponentProvider(sourceFile, {
+        provide: 'TABLE_DATA_SOURCE',
+        useClass: 'TreeTableDataSource',
+      }, [
+        {
+          namedImports: [ 'TreeTableDataSource' ],
+          moduleSpecifier: '@rxap/data-source/table/tree',
+        },
+        {
+          namedImports: ['TABLE_DATA_SOURCE'],
+          moduleSpecifier: '@rxap/material-table-system',
+        }
+      ]);
     },
   });
 

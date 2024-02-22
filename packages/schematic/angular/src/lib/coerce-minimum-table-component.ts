@@ -1,4 +1,5 @@
 import {
+  AddComponentAnimations,
   CoerceComponentOptions,
   CoerceComponentRule,
 } from '@rxap/schematics-ts-morph';
@@ -31,6 +32,8 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
   return CoerceComponentRule({
     ...options,
     tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
+
+      AddComponentAnimations(sourceFile, 'RowAnimation', '@rxap/material-table-system');
 
       CoerceImports(sourceFile, [
         {
