@@ -92,7 +92,7 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
         moduleSpecifier: `./${dasherize(componentName!)}.data-source`
       });
 
-      if (!!options.feature && !options.directory) {
+      if (!!options.feature && (!options.directory || !options.directory.includes('/'))) {
         CoerceDefaultClassExport(classDeclaration, true);
       }
 
