@@ -40,10 +40,10 @@
         "type": "string"
       }
     },
-    "template": {
+    "options": {
       "type": "object",
       "properties": {
-        "name": {
+        "kind": {
           "type": "string",
           "description": "The name of the template",
           "enum": [
@@ -54,7 +54,7 @@
         }
       },
       "additionalProperties": true,
-      "required": ["name"]
+      "required": ["kind"]
     }
   },
   "required": [

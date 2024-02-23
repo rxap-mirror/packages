@@ -7,6 +7,16 @@
     },
     {
       "$ref": "../../accordion-item.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "accordionName": {
+          "type": "string",
+          "description": "The name of the accordion module where the item should be added."
+        }
+      },
+      "required": ["accordionName"]
     }
   ],
   "definitions": {

@@ -205,7 +205,7 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
           name: CoercePrefix(dasherize(item.name), dasherize(name) + '-'),
         }) as BaseAccordionItem)),
       }))),
-      defaultCase: defaultCase ? {
+      defaultCase: defaultCase && Object.keys(defaultCase).length ? {
         itemList: NormalizeAccordionItemList(defaultCase.itemList.map((item) => ({
           ...item,
           name: CoercePrefix(dasherize(item.name), dasherize(name) + '-'),

@@ -408,7 +408,7 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
           initializer: `inject(${ OperationIdToClassName(getOperationId) })`,
           isReadonly: true,
         });
-        let parametersType = 'undefined';
+        let parametersType = 'void';
         if (identifier?.source === 'route') {
           CoerceClassProperty(classDeclaration, 'route', {
             scope: Scope.Protected,

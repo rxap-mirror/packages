@@ -3,10 +3,6 @@
   "$id": "accordion-item",
   "type": "object",
   "properties": {
-    "accordionName": {
-      "type": "string",
-      "description": "The name of the accordion module where the item should be added."
-    },
     "type": {
       "type": "string",
       "enum": [
@@ -18,7 +14,6 @@
         "switch"
       ],
       "description": "The type of the accordion item",
-      "x-prompt": "Select the type of the accordion item",
       "default": "panel"
     },
     "modifiers": {
@@ -36,8 +31,5 @@
       "type": "string"
     }
   },
-  "additionalProperties": true,
-  "required": [
-    "accordionName"
-  ]
+  "additionalProperties": true
 }
