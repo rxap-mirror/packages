@@ -1,14 +1,13 @@
+import $RefParser from '@apidevtools/json-schema-ref-parser';
+import { Tree } from '@nx/devkit';
 import {
-  addProjectConfiguration,
-  formatFiles,
-  generateFiles,
-  Tree,
-} from '@nx/devkit';
+  EachProperty,
+  RemoveFromObject,
+} from '@rxap/utilities';
 import {
   GetProjectSourceRoot,
   SearchFile,
 } from '@rxap/workspace-utilities';
-import $RefParser from '@apidevtools/json-schema-ref-parser';
 import {
   dirname,
   join,
@@ -48,8 +47,26 @@ export async function bundleJsonSchemaGenerator(
           }
         }
       });
+      removeProperty(bundledSchema, 'definitions');
+      removeProperty(bundledSchema, '$id');
+      removeProperty(bundledSchema, '$schema');
       tree.write(file.path.replace('template.schema.json', 'schema.json'), JSON.stringify(bundledSchema, null, 2));
     }
+  }
+}
+
+function removeProperty(obj: any, propertyName: string) {
+  const propertyPaths: string[] = [];
+  for (const { key, propertyPath } of EachProperty(obj)) {
+    if (key === propertyName) {
+      propertyPaths.push(propertyPath);
+    }
+  }
+  for (const propertyPath of propertyPaths) {
+    if (propertyPath === propertyName) {
+      continue;
+    }
+    RemoveFromObject(obj, propertyPath);
   }
 }
 
