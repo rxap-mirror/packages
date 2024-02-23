@@ -26,15 +26,7 @@
           "type": "string"
         },
         "backend": {
-          "type": "string",
-          "description": "The backend that should be used to handel data",
-          "enum": [
-            "none",
-            "nestjs",
-            "open-api",
-            "local"
-          ],
-          "default": "none"
+          "$ref": "./backend.schema.json"
         },
         "directory": {
           "type": "string",

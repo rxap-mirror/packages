@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "backend",
+  "type": "string",
+  "description": "The backend that should be used to handel data",
+  "enum": [
+    "none",
+    "nestjs",
+    "open-api",
+    "local"
+  ],
+  "default": "none"
+}

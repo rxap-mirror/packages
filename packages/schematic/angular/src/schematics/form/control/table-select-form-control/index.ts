@@ -167,7 +167,6 @@ export default function (options: TableSelectFormControlOptions) {
   return () => {
     return chain([
       () => console.group('\x1b[32m[@rxap/schematics-angular:table-select-form-control]\x1b[0m'),
-      ExecuteSchematic('form-control', normalizedOptions),
       CoerceTableSelectOperationRule({
         project,
         feature,

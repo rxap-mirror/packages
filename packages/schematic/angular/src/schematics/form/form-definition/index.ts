@@ -3,6 +3,7 @@ import {
   CoerceFormDefinition,
   CoerceFormProvidersFile,
 } from '@rxap/schematics-ts-morph';
+import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 import {
   AssertAngularOptionsNameProperty,
@@ -52,6 +53,15 @@ export default function (options: FormDefinitionOptions) {
     feature,
     controlList,
     standalone,
+    context,
+    nestModule,
+    controllerName,
+    backend,
+    shared,
+    scope,
+    prefix,
+    overwrite,
+    replace,
   } = normalizedOptions;
   printFormDefinitionOptions(normalizedOptions);
   return () => {
@@ -65,6 +75,21 @@ export default function (options: FormDefinitionOptions) {
         controlList,
         name,
       }),
+      chain(controlList.map(control => ExecuteSchematic('form-control', {
+        project,
+        feature,
+        directory,
+        context,
+        nestModule,
+        controllerName,
+        backend,
+        shared,
+        scope,
+        prefix,
+        overwrite,
+        replace,
+        ...control,
+      }))),
       standalone ?
       chain([
         () => console.log('Coerce form providers file ...'),

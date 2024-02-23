@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "select-form-control",
+  "allOf": [
+    {
+      "$ref": "./form-control.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "formField": {
+          "$ref": "./form-field.schema.json"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "display": {
+                "type": "string"
+              },
+              "value": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "backend": {
+          "$ref": "./backend.schema.json"
+        },
+        "multiple": {
+          "alias": "multi",
+          "type": "boolean",
+          "description": "Whether the select form control is multiple mode"
+        }
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@
       "$ref": "../../../angular.schema.json"
     },
     {
-      "$ref": "../../../form-control.schema.json"
+      "$ref": "../../../select-form-control.schema.json"
     },
     {
       "type": "object",
@@ -21,11 +21,6 @@
           "alias": "static",
           "type": "boolean",
           "description": "Whether the options data source is static"
-        },
-        "multiple": {
-          "alias": "multi",
-          "type": "boolean",
-          "description": "Whether the select form control is multiple mode"
         }
       },
       "required": [

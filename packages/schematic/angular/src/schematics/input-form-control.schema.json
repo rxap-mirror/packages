@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "input-form-control",
+  "allOf": [
+    {
+      "$ref": "./form-control.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "inputType": {
+          "type": "string",
+          "enum": [
+            "text",
+            "password",
+            "email",
+            "number",
+            "tel",
+            "url",
+            "search",
+            "checkbox",
+            "color",
+            "date",
+            "time",
+            "datetime-local",
+            "file",
+            "hidden",
+            "image",
+            "month",
+            "radio",
+            "reset",
+            "button",
+            "search",
+            "submit",
+            "week",
+            "range"
+          ]
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "formField": {
+          "$ref": "./form-field.schema.json"
+        }
+      }
+    }
+  ]
+}

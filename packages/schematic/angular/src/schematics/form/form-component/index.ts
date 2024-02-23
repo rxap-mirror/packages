@@ -15,6 +15,7 @@ import {
   buildOperationId,
   CoerceComponentRule,
   CoerceFormComponentProviderRule,
+  CoerceFormDefinition,
   CoerceFormSubmitOperation,
   DtoClassProperty,
   OperationIdToClassImportPath,

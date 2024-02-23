@@ -1,12 +1,20 @@
-import { chain } from '@angular-devkit/schematics';
+import {
+  chain,
+  noop,
+  Rule,
+} from '@angular-devkit/schematics';
 import { CoerceFormDefinitionControl } from '@rxap/schematics-ts-morph';
-import { dasherize } from '@rxap/schematics-utilities';
+import {
+  dasherize,
+  ExecuteSchematic,
+} from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
+import { FormControlKinds } from '../../../lib/form-control';
 import {
   NormalizedFormDefinitionControl,
   NormalizeFormDefinitionControl,
@@ -23,7 +31,6 @@ export function NormalizeFormControlOptions(
 ): NormalizedFormControlOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   const normalizedFormDefinitionControl = NormalizeFormDefinitionControl(options);
-  const { nestModule } = normalizedAngularOptions;
   const formName = dasherize(options.formName);
   let directory = options.directory ?? '';
   if (!directory.endsWith('/' + formName + '-form')) {
@@ -42,6 +49,20 @@ export function NormalizeFormControlOptions(
 
 function printOptions(options: NormalizedFormControlOptions) {
   PrintAngularOptions('form-control', options);
+}
+
+function formControlKind(normalizedOptions: NormalizedFormControlOptions): Rule {
+  switch (normalizedOptions.kind) {
+
+    case FormControlKinds.INPUT:
+      return ExecuteSchematic('input-form-control', normalizedOptions);
+
+    case FormControlKinds.SELECT:
+      return ExecuteSchematic('select-form-control', normalizedOptions);
+
+  }
+
+  return noop();
 }
 
 export default function (options: FormControlOptions) {
@@ -76,6 +97,7 @@ export default function (options: FormControlOptions) {
         isRequired,
         validatorList,
       }),
+      formControlKind(normalizedOptions),
       () => console.groupEnd(),
     ]);
   };

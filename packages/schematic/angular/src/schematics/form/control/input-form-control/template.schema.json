@@ -6,7 +6,7 @@
       "$ref": "../../../angular.schema.json"
     },
     {
-      "$ref": "../../../form-control.schema.json"
+      "$ref": "../../../input-form-control.schema.json"
     },
     {
       "type": "object",

@@ -40,26 +40,21 @@
         "type": "string"
       }
     },
-    "options": {
-      "type": "object",
-      "properties": {
-        "kind": {
-          "type": "string",
-          "description": "The name of the template",
-          "enum": [
-            "default",
-            "input",
-            "select"
-          ]
-        }
-      },
-      "additionalProperties": true,
-      "required": ["kind"]
+    "kind": {
+      "type": "string",
+      "description": "The name of the template",
+      "enum": [
+        "default",
+        "input",
+        "select"
+      ],
+      "default": "default"
     }
   },
   "required": [
     "name"
   ],
+  "additionalProperties": true,
   "definitions": {
     "type": {
       "$ref": "./type.schema.json"
