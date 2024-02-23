@@ -22,6 +22,7 @@ import {
 } from 'path';
 import { parse } from 'yaml';
 import { ComposeSchematicSchema } from './schema';
+import 'colors';
 
 interface SchematicCommand {
   package: string;
@@ -100,16 +101,16 @@ function executeSchematicCommandFile(
       options.directory = directoryParts.join('/');
     }
     ruleList.push(chain([
-      () => console.log(`Execute schematic '${ command.package }:${ command.name }'`),
-      () => console.log('Options:', JSON.stringify(options)),
+      () => console.log(`Execute schematic '${ command.package }:${ command.name }'`.green),
+      () => console.log(`Input Options: ${ JSON.stringify(options) }`.grey),
       () => {
         try {
           return externalSchematic(command.package, command.name, options);
         } catch (e) {
-          console.error(`Error while executing schematic '${ command.package }:${ command.name }'`);
-          console.log('Retry with this schematic with the command:');
+          console.error(`Error while executing schematic '${ command.package }:${ command.name }'`.red);
+          console.log('Retry with this schematic with the command:'.grey);
           console.log(`nx g @rxap/schematic-composer:compose --project ${ options.project } --feature ${ options.feature } --filter ${ dirname(
-            schematicCommandFilePath).split('/').pop() }`);
+            schematicCommandFilePath).split('/').pop() }`.grey);
           throw e;
         }
       },
@@ -156,7 +157,7 @@ function getSchematicCommandRuleList(
 
   for (const schematicCommandFilePath of schematicCommandList) {
     ruleList.push(chain([
-      () => console.log(`Execute schematic command file '${ schematicCommandFilePath }'`),
+      () => console.log(`Execute schematic command file '${ schematicCommandFilePath }'`.blue),
       executeSchematicCommandFile(host, schematicCommandFilePath, globalOptions, projectSourceRoot),
     ]));
   }
