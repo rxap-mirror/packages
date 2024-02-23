@@ -3,24 +3,10 @@
   "$id": "input-form-control-schematic",
   "allOf": [
     {
-      "$ref": "../../../angular.schema.json"
+      "$ref": "../../form-control/template.schema.json"
     },
     {
       "$ref": "../../../input-form-control.schema.json"
-    },
-    {
-      "type": "object",
-      "properties": {
-        "formName": {
-          "alias": "form",
-          "type": "string",
-          "description": "The name of the form where the form control should be added",
-          "x-prompt": "Enter the name of the form where the form control should be added"
-        }
-      },
-      "required": [
-        "formName"
-      ]
     }
   ],
   "definitions": {

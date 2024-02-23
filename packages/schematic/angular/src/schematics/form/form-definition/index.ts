@@ -76,6 +76,7 @@ export default function (options: FormDefinitionOptions) {
         name,
       }),
       chain(controlList.map(control => ExecuteSchematic('form-control', {
+        formName: name,
         project,
         feature,
         directory,

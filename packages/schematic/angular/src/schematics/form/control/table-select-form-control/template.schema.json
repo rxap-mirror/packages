@@ -3,20 +3,11 @@
   "$id": "table-select-form-control-schematic",
   "allOf": [
     {
-      "$ref": "../../../angular.schema.json"
-    },
-    {
-      "$ref": "../../../form-control.schema.json"
+      "$ref": "../../form-control/template.schema.json"
     },
     {
       "type": "object",
       "properties": {
-        "formName": {
-          "alias": "form",
-          "type": "string",
-          "description": "The name of the form where the form control should be added",
-          "x-prompt": "Enter the name of the form where the form control should be added"
-        },
         "columnList": {
           "alias": "column",
           "type": "array",
@@ -26,10 +17,7 @@
           },
           "description": "List of table column names"
         }
-      },
-      "required": [
-        "formName"
-      ]
+      }
     }
   ],
   "definitions": {

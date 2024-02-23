@@ -20,6 +20,7 @@ import {
   NormalizeFormDefinitionControl,
 } from '../../../lib/form-definition-control';
 import { FormControlOptions } from './schema';
+import 'colors';
 
 export interface NormalizedFormControlOptions
   extends Readonly<Normalized<FormControlOptions> & NormalizedAngularOptions & NormalizedFormDefinitionControl> {
@@ -32,16 +33,11 @@ export function NormalizeFormControlOptions(
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   const normalizedFormDefinitionControl = NormalizeFormDefinitionControl(options);
   const formName = dasherize(options.formName);
-  let directory = options.directory ?? '';
-  if (!directory.endsWith('/' + formName + '-form')) {
-    directory += '/' + formName + '-form';
-  }
   const controllerName = options.controllerName ?? formName;
   return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedFormDefinitionControl,
     formName,
-    directory,
     controllerName,
     context: options.context ? dasherize(options.context) : null,
   });
@@ -49,6 +45,7 @@ export function NormalizeFormControlOptions(
 
 function printOptions(options: NormalizedFormControlOptions) {
   PrintAngularOptions('form-control', options);
+  console.log(`=== form: ${options.formName}`.blue);
 }
 
 function formControlKind(normalizedOptions: NormalizedFormControlOptions): Rule {
