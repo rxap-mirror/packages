@@ -55,12 +55,10 @@ function componentRule(normalizedOptions: NormalizedAccordionItemTableComponentO
     directory,
     shared,
     overwrite,
-    itemName,
   } = normalizedOptions;
   const templateOptions = {
     ...strings,
     ...normalizedOptions,
-    name: itemName,
     ...GetItemOptions(normalizedOptions),
   };
   return chain([
@@ -85,7 +83,7 @@ function tableComponentSchematicRule(normalizedOptions: NormalizedAccordionItemT
   const {
     directory,
     nestModule,
-    itemName,
+    name,
     project,
     feature,
     overwrite,
@@ -101,7 +99,7 @@ function tableComponentSchematicRule(normalizedOptions: NormalizedAccordionItemT
       'table-component',
       {
         shared: hasSharedModifier,
-        name: itemName,
+        name,
         project,
         feature,
         directory: hasSharedModifier ? undefined : directory,
@@ -125,7 +123,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
 
   const {
     nestModule,
-    itemName,
+    name,
     project,
     feature,
   } = normalizedOptions;
@@ -135,7 +133,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
   return chain([
     () => console.log(`Modify the get page operation ...`),
     CoerceGetPageOperation({
-      controllerName: itemName,
+      controllerName: name,
       nestModule: hasSharedModifier ? undefined : nestModule,
       project,
       feature,

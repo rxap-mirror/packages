@@ -53,7 +53,6 @@ function caseRule(
     accordionName,
     overwrite,
     directory,
-    itemName,
   } = normalizedOptions;
 
   if (!directory) {
@@ -64,7 +63,7 @@ function caseRule(
     () => console.log(`Create accordion switch item component '${ item.name }' ...`),
     ExecuteSchematic('accordion-item-component', {
       ...item,
-      itemName: item.name,
+      name: item.name,
       type: item.type,
       modifiers: item.modifiers,
       project,

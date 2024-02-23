@@ -82,7 +82,7 @@ function printOptions(options: NormalizedAccordionItemDataGridComponentOptions) 
 
 function componentRule(normalizedOptions: NormalizedAccordionItemDataGridComponentOptions) {
   const {
-    itemName,
+    name,
     nestModule,
     directory,
     project,
@@ -102,7 +102,6 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
   const templateOptions = {
     ...strings,
     ...normalizedOptions,
-    name: itemName,
     ...GetItemOptions(normalizedOptions),
   };
   return chain([
@@ -111,9 +110,9 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
       project,
       feature,
       shared: hasSharedModifier,
-      name: itemName,
+      name: name,
       nestModule: hasSharedModifier ? undefined : nestModule,
-      nestController: itemName,
+      nestController: name,
       directory: hasSharedModifier ? undefined : directory,
       itemList: dataGrid?.itemList ?? [],
       collection: hasCollectionModifier || (dataGrid?.collection ?? false),
@@ -133,7 +132,7 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
         options: templateOptions,
       },
       tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
-        CoerceComponentImport(classDeclaration, { name: `${classify(itemName)}DataGridComponent`, moduleSpecifier: `./${dasherize(itemName)}-data-grid/${dasherize(itemName)}-data-grid.component` });
+        CoerceComponentImport(classDeclaration, { name: `${classify(name)}DataGridComponent`, moduleSpecifier: `./${dasherize(name)}-data-grid/${dasherize(name)}-data-grid.component` });
         if (hasCollectionModifier) {
           CoerceComponentImport(classDeclaration, { name: 'DataSourceDirective', moduleSpecifier: '@rxap/data-source/directive' });
           CoerceComponentImport(classDeclaration, { name: 'DataSourceErrorComponent', moduleSpecifier: '@rxap/data-source' });
@@ -141,11 +140,11 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
           CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
           CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
           CoerceComponentImport(classDeclaration, { name: 'NgFor', moduleSpecifier: '@angular/common' });
-          const dataGridDataSourceName = `${classify(itemName)}DataGridDataSource`;
+          const dataGridDataSourceName = `${classify(name)}DataGridDataSource`;
           AddComponentProvider(sourceFile, dataGridDataSourceName);
           CoerceImports(sourceFile, {
             namedImports: [ dataGridDataSourceName ],
-            moduleSpecifier: `./${dasherize(itemName)}-data-grid/${dasherize(itemName)}-data-grid.data-source`,
+            moduleSpecifier: `./${dasherize(name)}-data-grid/${dasherize(name)}-data-grid.data-source`,
           });
           CoercePropertyDeclaration(classDeclaration, 'dataGridDataSource', {
             isReadonly: true,
@@ -167,7 +166,7 @@ function nestjsBackendRule(
 ) {
 
   const {
-    itemName,
+    name,
     nestModule,
     directory,
     project,
@@ -188,9 +187,9 @@ function nestjsBackendRule(
       shared: hasSharedModifier,
       directory: join(
         directory ?? '',
-        CoerceSuffix(itemName, '-data-grid'),
+        CoerceSuffix(name, '-data-grid'),
       ),
-      name: CoerceSuffix(itemName, '-data-grid'),
+      name: CoerceSuffix(name, '-data-grid'),
       tsMorphTransform: (
         project: Project,
         sourceFile: SourceFile,
@@ -218,7 +217,7 @@ function nestjsBackendRule(
     }),
     () => console.log(`Modify the get data grid operation ...`),
     CoerceGetDataGridOperation({
-      controllerName: itemName,
+      controllerName: name,
       project,
       feature,
       shared,
@@ -239,7 +238,7 @@ function nestjsBackendRule(
     rules.push(
       () => console.log(`Modify the submit data grid operation ...`),
       CoerceSubmitDataGridOperation({
-        controllerName: itemName,
+        controllerName: name,
         nestModule: hasSharedModifier ? undefined : nestModule,
         project,
         feature,
@@ -279,7 +278,7 @@ function backendRule(normalizedOptions: NormalizedAccordionItemDataGridComponent
 function dataGridFormModeRule(normalizedOptions: NormalizedAccordionItemDataGridComponentOptions) {
 
   const {
-    itemName,
+    name,
     directory,
     project,
     feature,
@@ -292,7 +291,7 @@ function dataGridFormModeRule(normalizedOptions: NormalizedAccordionItemDataGrid
       feature,
       directory: join(
         directory ?? '',
-        CoerceSuffix(itemName, '-data-grid'),
+        CoerceSuffix(name, '-data-grid'),
       ),
       providerObject: {
         provide: 'RXAP_FORM_CONTEXT',

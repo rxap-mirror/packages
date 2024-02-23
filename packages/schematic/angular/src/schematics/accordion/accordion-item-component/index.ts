@@ -74,8 +74,8 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
 ): NormalizedAccordionItemStandaloneComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   const { feature } = normalizedAngularOptions;
-  const itemName = dasherize(options.itemName);
-  const componentName = CoerceSuffix(itemName, '-panel');
+  const name = dasherize(options.name);
+  const componentName = CoerceSuffix(name, '-panel');
   let accordionName = options.accordionName ?? feature;
   accordionName = CoerceSuffix(dasherize(accordionName), '-accordion');
   return Object.freeze({
@@ -84,7 +84,7 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
       type: AccordionItemTypes.Panel,
       ...options,
     }),
-    itemName: itemName,
+    name,
     nestModule: accordionName,
     modifiers: options.modifiers ?? [],
     accordionName: accordionName,
@@ -125,7 +125,7 @@ interface ItemOptions {
 function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionItemComponentOptions) {
 
   const {
-    itemName,
+    name,
     nestModule,
     directory,
     project,
@@ -135,7 +135,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
   } = normalizedOptions;
 
   const controllerName = BuildNestControllerName({
-    controllerName: itemName,
+    controllerName: name,
     nestModule,
   });
   const operationId = buildOperationId(
@@ -147,7 +147,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
   return chain([
     () => console.log(`Coerce getById operation ...`),
     CoerceGetByIdOperation({
-      controllerName: itemName,
+      controllerName: name,
       project,
       feature,
       shared,
@@ -159,7 +159,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
       feature,
       shared,
       directory,
-      name: CoerceSuffix(itemName, '-panel'),
+      name: CoerceSuffix(name, '-panel'),
       tsMorphTransform: (
         project: Project,
         sourceFile: SourceFile,
@@ -202,12 +202,12 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
 function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItemComponentOptions) {
 
   const {
-    itemName,
+    name,
     directory,
     project,
     feature,
     shared,
-    componentName: name,
+    componentName,
     overwrite,
   } = normalizedOptions;
 
@@ -218,7 +218,7 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
       feature,
       shared,
       directory,
-      name,
+      name: componentName,
       structure: {
         isExported: true,
         properties: [],
@@ -229,7 +229,7 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
       feature,
       shared,
       directory,
-      name,
+      name: componentName,
       tsMorphTransform: (project, sourceFile) => {
         CoerceImports(sourceFile, [
           {
@@ -237,12 +237,12 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
             moduleSpecifier: '@faker-js/faker',
           },
           {
-            namedImports: [ classify(name) ],
-            moduleSpecifier: `./${ dasherize(name) }`,
+            namedImports: [ classify(componentName) ],
+            moduleSpecifier: `./${ dasherize(componentName) }`,
           },
         ]);
         return {
-          returnType: classify(name),
+          returnType: classify(componentName),
           statements: [
             `console.log('parameters: ', parameters);`,
             'return {} as any;',
@@ -255,20 +255,20 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
       feature,
       shared,
       directory,
-      name: CoerceSuffix(itemName, '-panel'),
+      name: CoerceSuffix(name, '-panel'),
       tsMorphTransform: (
         project: Project,
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
       ) => {
-        classDeclaration.setExtends(`PanelAccordionDataSource<${ classify(name) }>`);
+        classDeclaration.setExtends(`PanelAccordionDataSource<${ classify(componentName) }>`);
         CoerceImports(sourceFile, {
-          namedImports: [ classify(name) ],
-          moduleSpecifier: `./${ dasherize(name) }`,
+          namedImports: [ classify(componentName) ],
+          moduleSpecifier: `./${ dasherize(componentName) }`,
         });
         CoerceImports(sourceFile, {
-          namedImports: [ classify(name) + 'Method' ],
-          moduleSpecifier: `./${ dasherize(name) }.method`,
+          namedImports: [ classify(componentName) + 'Method' ],
+          moduleSpecifier: `./${ dasherize(componentName) }.method`,
         });
         CoerceImports(sourceFile, {
           moduleSpecifier: '@angular/core',
@@ -285,22 +285,22 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
         CoerceClassProperty(classDeclaration, 'method', {
           scope: Scope.Protected,
           hasOverrideKeyword: true,
-          initializer: `inject(${ classify(name) + 'Method' })`,
+          initializer: `inject(${ classify(componentName) + 'Method' })`,
           isReadonly: true,
         });
       },
     }),
     CoerceComponentRule({
       project,
-      name,
+      name: componentName,
       feature,
       directory,
       overwrite,
       tsMorphTransform: (project, [ sourceFile ]) => {
-        AddComponentProvider(sourceFile, classify(name) + 'Method', [
+        AddComponentProvider(sourceFile, classify(componentName) + 'Method', [
           {
-            moduleSpecifier: `./${ dasherize(name) }.method`,
-            namedImports: [ classify(name) + 'Method' ],
+            moduleSpecifier: `./${ dasherize(componentName) }.method`,
+            namedImports: [ classify(componentName) + 'Method' ],
           },
         ]);
       },
@@ -331,7 +331,7 @@ function panelItemBackendRule(normalizedOptions: NormalizedAccordionItemComponen
 function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOptions): Rule {
 
   const {
-    itemName,
+    name,
     directory,
     project,
     feature,
@@ -343,7 +343,6 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
   const templateOptions = {
     ...strings,
     ...normalizedOptions,
-    name: itemName,
   };
 
   return chain([
@@ -364,11 +363,11 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
         CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
         CoerceComponentImport(classDeclaration, { name: 'JsonPipe', moduleSpecifier: '@angular/common' });
 
-        const pipeDataSourceName = `${ classify(itemName) }PanelDataSource`;
+        const pipeDataSourceName = `${ classify(name) }PanelDataSource`;
 
         AddComponentProvider(sourceFile, pipeDataSourceName);
         CoerceImports(sourceFile, {
-          moduleSpecifier: `./${ dasherize(itemName) }-panel.data-source`,
+          moduleSpecifier: `./${ dasherize(name) }-panel.data-source`,
           namedImports: [ pipeDataSourceName ],
         });
         CoerceImports(sourceFile, {

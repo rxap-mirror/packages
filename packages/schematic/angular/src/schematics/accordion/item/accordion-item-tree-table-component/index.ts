@@ -74,12 +74,12 @@ function componentRule(normalizedOptions: NormalizedAccordionItemTreeTableCompon
     directory,
     shared,
     overwrite,
-    itemName,
+    name,
   } = normalizedOptions;
   const templateOptions = {
     ...strings,
     ...normalizedOptions,
-    name: itemName,
+    name,
     ...GetItemOptions(normalizedOptions),
   };
   return chain([
@@ -105,7 +105,7 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
   const {
     directory,
     nestModule,
-    itemName,
+    name,
     project,
     feature,
     table,
@@ -121,7 +121,7 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
       'tree-table-component',
       {
         shared: hasSharedModifier,
-        name: itemName,
+        name,
         project,
         feature,
         directory: hasSharedModifier ? undefined : directory,
@@ -144,7 +144,7 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
 function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableComponentOptions) {
 
   const {
-    itemName,
+    name,
     nestModule,
     directory,
     project,
@@ -157,14 +157,14 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
   } = GetItemOptions(normalizedOptions);
 
   const controllerName = BuildNestControllerName({
-    controllerName: CoerceSuffix(itemName, '-tree-table'),
+    controllerName: CoerceSuffix(name, '-tree-table'),
     nestModule: hasSharedModifier ? undefined : nestModule,
   });
 
   return chain([
     () => console.log(`Modify the get root operation ...`),
     CoerceGetRootOperation({
-      controllerName: itemName,
+      controllerName: name,
       nestModule: hasSharedModifier ? undefined : nestModule,
       project,
       feature,
@@ -180,7 +180,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
     }),
     () => console.log(`Modify the get children operation ...`),
     CoerceGetChildrenOperation({
-      controllerName: itemName,
+      controllerName: name,
       nestModule: hasSharedModifier ? undefined : nestModule,
       project,
       feature,

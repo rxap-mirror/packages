@@ -571,7 +571,7 @@ function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOption
     () => console.log(`Create accordion item component '${ item.name }' ...`),
     ExecuteSchematic('accordion-item-component', {
       ...item,
-      itemName: item.name,
+      name: item.name,
       type: item.type,
       modifiers: item.modifiers,
       project,
