@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "minimum-table",
+  "type": "object",
+  "properties": {
+    "propertyList": {
+      "alias": "property",
+      "type": "array",
+      "items": {
+        "$ref": "./property.schema.json"
+      }
+    },
+    "columnList": {
+      "alias": "column",
+      "type": "array",
+      "items": {
+        "$ref": "./table-column.schema.json"
+      },
+      "description": "List of table column names"
+    },
+    "actionList": {
+      "alias": "action",
+      "type": "array",
+      "items": {
+        "$ref": "./table-action.schema.json"
+      }
+    },
+    "headerButton": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "role": {
+              "type": "string",
+              "enum": [
+                "form",
+                "navigation",
+                "method"
+              ]
+            },
+            "permission": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            },
+            "svgIcon": {
+              "type": "string"
+            },
+            "options": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      ],
+      "description": "The header button configuration"
+    },
+    "modifiers": {
+      "alias": "modifier",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The table modifiers"
+    }
+  }
+}

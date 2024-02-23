@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-item-component-schematic",
+  "allOf": [
+    {
+      "$ref": "../../angular.schema.json"
+    },
+    {
+      "$ref": "../../accordion-item.schema.json"
+    }
+  ]
+}

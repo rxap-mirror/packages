@@ -3,7 +3,7 @@
   "$id": "angular",
   "allOf": [
     {
-      "$ref": "https://unpkg.com/@rxap/schematic-angular@16.1.0-dev.23/src/schematics/general.schema.json"
+      "$ref": "./general.schema.json"
     },
     {
       "type": "object",

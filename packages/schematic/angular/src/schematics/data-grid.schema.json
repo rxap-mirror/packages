@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "data-grid-component",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "description": "The mode of the form",
+      "enum": [
+        "form",
+        "plain"
+      ]
+    },
+    "collection": {
+      "type": "boolean",
+      "description": "Whether the data grid is used as collection."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the data grid card component"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "The subtitle of the data grid card component"
+    },
+    "itemList": {
+      "alias": "item",
+      "type": "array",
+      "items": {
+        "$ref": "./data-grid-item.schema.json"
+      }
+    }
+  }
+}

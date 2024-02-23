@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "open-api-table-action-schematic",
+  "allOf": [
+    {
+      "$ref": "../../table-action/template.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "description": "The open api operationId for the table action"
+        },
+        "scope": {
+          "type": "string",
+          "description": "The scope of package for the openapi classes"
+        },
+        "body": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "description": "Pass the full row as body for the operation request"
+            },
+            {
+              "type": "object",
+              "description": "Mapping of table columns to body properties - [request property]: [table column]",
+              "additionalProperties": true
+            }
+          ]
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "description": "Pass the full row as parameters for the operation request"
+            },
+            {
+              "type": "object",
+              "description": "Mapping of table columns to parameters properties - [request property]: [table column]",
+              "additionalProperties": true
+            }
+          ]
+        }
+      },
+      "required": [
+        "operationId"
+      ]
+    }
+  ]
+}

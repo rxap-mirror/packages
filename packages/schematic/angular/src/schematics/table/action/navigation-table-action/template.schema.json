@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "navigation-table-action-schematic",
+  "allOf": [
+    {
+      "$ref": "../../table-action/template.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "route": {
+          "type": "string",
+          "description": "The route for the table action"
+        },
+        "relativeTo": {
+          "type": "boolean",
+          "description": "Use the current ActivatedRoute to resolve the route or not",
+          "default": false
+        }
+      }
+    }
+  ]
+}

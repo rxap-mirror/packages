@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "select-form-control-schematic",
+  "allOf": [
+    {
+      "$ref": "../../../angular.schema.json"
+    },
+    {
+      "$ref": "../../../form-control.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "formName": {
+          "alias": "form",
+          "type": "string",
+          "description": "The name of the form where the form control should be added",
+          "x-prompt": "Enter the name of the form where the form control should be added"
+        },
+        "staticDataSource": {
+          "alias": "static",
+          "type": "boolean",
+          "description": "Whether the options data source is static"
+        },
+        "multiple": {
+          "alias": "multi",
+          "type": "boolean",
+          "description": "Whether the select form control is multiple mode"
+        }
+      },
+      "required": [
+        "formName"
+      ]
+    }
+  ]
+}

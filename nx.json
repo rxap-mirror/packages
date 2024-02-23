@@ -198,7 +198,8 @@
         "expose-as-schematic",
         "copy-open-api-sdk",
         "^copy-open-api-sdk",
-        "^generate-open-api"
+        "^generate-open-api",
+        "bundle-json-schema"
       ],
       "inputs": [
         "build",

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "navigation-table-header-button-schematic",
+  "allOf": [
+    {
+      "$ref": "../../table-header-button/template.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "route": {
+          "type": "string",
+          "description": "The route path for the table action"
+        },
+        "relativeTo": {
+          "type": "boolean",
+          "description": "Indicates if the route path should be relative to the current activated route",
+          "default": false
+        }
+      }
+    }
+  ]
+}

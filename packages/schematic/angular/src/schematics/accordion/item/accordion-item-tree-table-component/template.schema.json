@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-item-table-component-schematic",
+  "allOf": [
+    {
+      "$ref": "../../../angular.schema.json"
+    },
+    {
+      "$ref": "../../../accordion-item.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "modifiers": {
+          "alias": "modifier",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "navigation-back-header",
+              "without-title"
+            ]
+          },
+          "description": "The table modifiers"
+        },
+        "table": {
+          "$ref": "../../../tree-table.schema.json"
+        }
+      }
+    }
+  ]
+}

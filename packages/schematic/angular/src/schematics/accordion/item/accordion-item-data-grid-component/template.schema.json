@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-item-data-grid-component-schematic",
+  "allOf": [
+    {
+      "$ref": "../../../angular.schema.json"
+    },
+    {
+      "$ref": "../../../accordion-item.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "dataGrid": {
+          "$ref": "../../../data-grid.schema.json"
+        }
+      }
+    }
+  ]
+}

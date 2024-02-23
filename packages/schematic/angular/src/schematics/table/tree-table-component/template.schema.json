@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "tree-table-component-schematic",
+  "allOf": [
+    {
+      "$ref": "../../angular.schema.json"
+    },
+    {
+      "$ref": "../../tree-table.schema.json"
+    }
+  ]
+}

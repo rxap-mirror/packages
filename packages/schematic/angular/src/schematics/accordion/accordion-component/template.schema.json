@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-component-schematic",
+  "allOf": [
+    {
+      "$ref": "../../angular.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "multiple": {
+          "type": "boolean",
+          "description": "Whether the accordion should allow multiple panels to be expanded at the same time",
+          "default": false,
+          "alias": "multi"
+        },
+        "persistent": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                }
+              },
+              "required": ["key"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "property": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name"]
+                }
+              },
+              "required": ["property"]
+            }
+          ]
+        },
+        "identifier": {
+          "type": "object",
+          "properties": {
+            "property": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "source": {
+              "type": "string",
+              "enum": [
+                "route"
+              ],
+              "default": "route"
+            }
+          },
+          "required": ["property"]
+        },
+        "header": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": ["title"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "property": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name"]
+                }
+              },
+              "required": ["property"]
+            }
+          ]
+        },
+        "itemList": {
+          "alias": "item",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "panel",
+                  "table",
+                  "data-grid",
+                  "data-grid-collection",
+                  "tree-table",
+                  "switch"
+                ]
+              },
+              "modifiers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "permission": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true,
+            "required": [
+              "name"
+            ],
+            "description": "The name of the accordion expansion panel"
+          },
+          "description": "The list of accordion expansion panels"
+        }
+      }
+    }
+  ]
+}

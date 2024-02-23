@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "tree-component-schematic",
+  "allOf": [
+    {
+      "$ref": "../angular.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "modifiers": {
+          "alias": "modifier",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "navigation-back-header",
+              "without-title"
+            ]
+          },
+          "description": "The tree modifiers"
+        },
+        "fullTree": {
+          "type": "boolean",
+          "description": "Whether the tree should be a full tree",
+          "default": true
+        }
+      }
+    }
+  ]
+}

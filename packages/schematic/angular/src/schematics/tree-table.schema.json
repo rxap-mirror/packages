@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "tree-table",
+  "allOf": [
+    {
+      "$ref": "./minimum-table.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "modifiers": {
+          "alias": "modifier",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "navigation-back-header",
+              "without-title"
+            ]
+          },
+          "description": "The table modifiers"
+        },
+        "tableRootMethod": {
+          "$ref": "./type.schema.json"
+        },
+        "tableChildMethod": {
+          "$ref": "./type.schema.json"
+        }
+      }
+    }
+  ]
+}

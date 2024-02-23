@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "dialog-table-action-schematic",
+  "allOf": [
+    {
+      "$ref": "../../table-action/template.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "withoutBody": {
+          "type": "boolean",
+          "description": "Whether the table action operation should be without body",
+          "default": false
+        },
+        "actionList": {
+          "alias": "action",
+          "type": "array",
+          "description": "The list of actions to be added to the dialog",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "color": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "submit",
+                      "close"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "title": {
+          "type": "string",
+          "description": "The title for the dialog"
+        }
+      }
+    }
+  ]
+}

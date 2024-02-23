@@ -4,6 +4,12 @@
   "sourceRoot": "packages/schematic/angular/src",
   "projectType": "library",
   "targets": {
+    "bundle-json-schema": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-library:bundle-json-schema"
+      }
+    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": [

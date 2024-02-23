@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "header-button",
+  "type": "object",
+  "properties": {
+    "permission": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "svgIcon": {
+      "type": "string"
+    },
+    "refresh": {
+      "type": "boolean",
+      "description": "Whether the table action should refresh the table after execution",
+      "default": false
+    },
+    "confirm": {
+      "type": "boolean",
+      "description": "Whether the table action should confirm before execution",
+      "default": false
+    },
+    "tooltip": {
+      "type": "string",
+      "description": "The tooltip for the table action"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "The error message for the table action"
+    },
+    "successMessage": {
+      "type": "string",
+      "description": "The success message for the table action"
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "dialog-component-schematic",
+  "allOf": [
+    {
+      "$ref": "../angular.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "dialogName": {
+          "alias": "name",
+          "type": "string",
+          "description": "The name of the dialog",
+          "x-prompt": "Which name should the dialog module have?"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the dialog"
+        },
+        "actionList": {
+          "alias": "action",
+          "type": "array",
+          "description": "The list of actions to be added to the dialog",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "color": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "submit",
+                      "close"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "dialogName"
+      ]
+    }
+  ]
+}

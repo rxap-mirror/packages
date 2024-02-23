@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "table-header-button-schematic",
+  "allOf": [
+    {
+      "$ref": "../../angular.schema.json"
+    },
+    {
+      "$ref": "../../header-button.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "tableName": {
+          "alias": "table",
+          "type": "string",
+          "description": "The name of the table action"
+        }
+      }
+    }
+  ]
+}
