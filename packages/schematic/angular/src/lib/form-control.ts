@@ -9,7 +9,10 @@ import {
   ControlOption,
   Normalized,
 } from '@rxap/utilities';
+import { join } from 'path';
 import { BackendTypes } from './backend-types';
+import Handlebars from 'handlebars';
+import { existsSync, readFileSync } from 'fs';
 
 // region BaseFormControlOptions
 
@@ -36,6 +39,19 @@ export interface BaseFormControl {
 export interface NormalizedBaseFormControl extends Readonly<Normalized<BaseFormControl>> {
   type: NormalizedTypeImport;
   importList: NormalizedTypeImport[];
+  handlebars: Handlebars.TemplateDelegate<{ control: NormalizedBaseFormControl }>,
+}
+
+function loadHandlebarsTemplate(templateFilePath: string): Handlebars.TemplateDelegate {
+  let fullPath = templateFilePath;
+  if (!fullPath.startsWith('/')) {
+    fullPath = join(__dirname, '..', 'schematics', 'form', 'templates', templateFilePath);
+  }
+  if (!existsSync(fullPath)) {
+    throw new Error(`The template file "${ fullPath }" does not exists`);
+  }
+  const content = readFileSync(fullPath, 'utf-8');
+  return Handlebars.compile(content);
 }
 
 export function NormalizeBaseFormControl(
@@ -58,6 +74,8 @@ export function NormalizeBaseFormControl(
     isArray = true;
     type.name = type.name.slice(6, -1);
   }
+  const kind = control.kind ?? FormControlKinds.DEFAULT;
+  const template = control.template ?? kind + '-form-control.hbs';
   return Object.freeze({
     name,
     type,
@@ -68,8 +86,9 @@ export function NormalizeBaseFormControl(
     isDisabled,
     validatorList,
     importList: importList.map(NormalizeTypeImport),
-    kind: control.kind ?? FormControlKinds.DEFAULT,
-    template: control.template ?? null,
+    kind,
+    template,
+    handlebars: loadHandlebarsTemplate(template),
   });
 }
 

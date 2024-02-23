@@ -42,6 +42,7 @@ import {
   NormalizedFormComponentControl,
   NormalizeFormComponentControlList,
 } from '../../../lib/form-component-control';
+import { GenerateFormTemplate } from '../../../lib/form/generate-form-template';
 import {
   NormalizedMatFormFieldDefaultOptions,
   NormalizeMatFormFieldDefaultOptions,
@@ -113,6 +114,7 @@ function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule 
       template: {
         options: {
           ...normalizedOptions,
+          content: GenerateFormTemplate(normalizedOptions),
           OperationIdToClassName,
           OperationIdToClassImportPath,
         },

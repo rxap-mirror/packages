@@ -19,19 +19,7 @@
             <th *rxapDataGridHeaderCellDef i18n><%= item.header %></th>
             <% } %>
             <ng-template rxapDataGridEditCellDef>
-              <% if (item.type === 'string') { %>
-              <mat-form-field class="w-full">
-                <input matInput formControlName="<%= item.name %>">
-              </mat-form-field>
-              <% } else if (item.type === 'number') { %>
-              <mat-form-field class="w-full">
-                <input matInput formControlName="<%= item.name %>" type="number">
-              </mat-form-field>
-              <% } else if (item.type === 'boolean') { %>
-              <mat-slide-toggle formControlName="<%= item.name %>"></mat-slide-toggle>
-              <% } else { %>
-              <!-- TODO: <%= item.name %> -->
-              <% } %>
+              <%= item.handlebars({ control: item }) %>
             </ng-template>
           </ng-container>
         <% } %>

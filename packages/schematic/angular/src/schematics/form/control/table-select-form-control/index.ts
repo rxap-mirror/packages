@@ -44,7 +44,7 @@ import {
 import { TableSelectFormControlOptions } from './schema';
 
 export interface NormalizedTableSelectFormControlOptions
-  extends Omit<Readonly<Normalized<TableSelectFormControlOptions> & NormalizedFormControlOptions>, 'columnList'> {
+  extends Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList'>> & NormalizedFormControlOptions> {
   columnList: ReadonlyArray<NormalizedTableColumn>;
 }
 

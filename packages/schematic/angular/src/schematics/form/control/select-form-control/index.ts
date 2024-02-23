@@ -42,7 +42,7 @@ import {
 } from '../../form-control';
 import { SelectFormControlOptions } from './schema';
 
-export type NormalizedSelectFormControlOptions = Omit<Readonly<Normalized<SelectFormControlOptions>>, 'options'>
+export type NormalizedSelectFormControlOptions = Readonly<Normalized<Omit<SelectFormControlOptions, 'options'>>>
   & NormalizedFormControlOptions & NormalizedSelectFormControl;
 
 export function NormalizeSelectFormControlOptions(

@@ -60,6 +60,7 @@ import {
   NormalizedDataGridOptions,
 } from '../../lib/data-grid-options';
 import { NormalizeFormDefinitionControl } from '../../lib/form-definition-control';
+import { GenerateFormTemplate } from '../../lib/form/generate-form-template';
 import { DataGridComponentOptions } from './schema';
 
 export interface NormalizedDataGridComponentOptions
@@ -121,6 +122,9 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
   const templateOptions = {
     ...strings,
     ...normalizedOptions,
+    content: GenerateFormTemplate({
+      controlList: normalizedOptions.itemList,
+    })
   };
 
   return chain([

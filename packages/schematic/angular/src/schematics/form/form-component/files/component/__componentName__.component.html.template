@@ -1,4 +1,5 @@
 <form rxapForm>
+  <%= content %>
   <% if (window) { %>
   <ng-template rxapFormWindowFooter let-windowRef>
     <rxap-form-controls

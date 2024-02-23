@@ -1,0 +1,12 @@
+<mat-form-field>
+{{#if control.formField}}
+{{#if control.formField.label}}
+  <mat-label>{{control.formField.label}}</mat-label>
+{{/if}}
+{{/if}}
+  <input
+    matInput
+    formControlName="{{control.name}}"
+    {{#if control.placeholder}}placeholder="{{control.placeholder}}"{{/if}}
+    type="{{control.inputType}}" />
+</mat-form-field>
