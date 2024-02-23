@@ -31,7 +31,7 @@
  * // { value: 4, key: '1', propertyPath: 'b.d.1', isObject: false, isArray: false, isPrimitive: true, parent: [3, 4] }
  *
  */
-export function* EachProperty(obj: any, path: string[] = [], parent: any = null): Iterable<any> {
+export function* EachProperty(obj: any, path: string[] = [], parent: any = null): Iterable<{ value: unknown, key: string, propertyPath: string, isObject: boolean, isArray: boolean, isPrimitive: boolean, parent: Record<string, unknown> | Array<unknown> }> {
   for (const key in obj) {
     // eslint-disable-next-line no-prototype-builtins
     if (obj.hasOwnProperty(key)) {
