@@ -9,7 +9,7 @@
       "type": "object",
       "properties": {
         "tableMethod": {
-          "$ref": "./type.schema.json"
+          "$ref": "#/definitions/type"
         },
         "openApi": {
           "type": "object",
@@ -19,7 +19,7 @@
               "description": "The operationId for the open api operation"
             },
             "adapter": {
-              "$ref": "./type.schema.json"
+              "$ref": "#/definitions/type"
             }
           },
           "required": [
@@ -45,5 +45,10 @@
         }
       }
     }
-  ]
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
 }

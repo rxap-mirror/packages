@@ -13,5 +13,10 @@
   },
   "required": [
     "controlList"
-  ]
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
 }

@@ -14,5 +14,10 @@
         }
       }
     }
-  ]
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
 }

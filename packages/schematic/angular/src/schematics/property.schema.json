@@ -12,12 +12,17 @@
           "type": "string"
         },
         "type": {
-          "$ref": "./type.schema.json"
+          "$ref": "#/definitions/type"
         }
       },
       "required": [
         "name"
       ]
     }
-  ]
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
 }

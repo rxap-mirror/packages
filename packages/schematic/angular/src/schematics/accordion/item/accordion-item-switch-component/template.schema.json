@@ -15,48 +15,7 @@
           "type": "object",
           "properties": {
             "property": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "type": {
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string"
-                        },
-                        "isTypeOnly": {
-                          "type": "boolean"
-                        },
-                        "moduleSpecifier": {
-                          "type": "string"
-                        },
-                        "namedImport": {
-                          "type": "string"
-                        },
-                        "namespaceImport": {
-                          "type": "string"
-                        },
-                        "defaultImport": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "name"
-                      ]
-                    }
-                  ]
-                }
-              },
-              "required": [
-                "name"
-              ]
+              "$ref": "#/definitions/property"
             },
             "defaultCase": {
               "type": "object",
@@ -65,46 +24,7 @@
                   "alias": "item",
                   "type": "array",
                   "items": {
-                    "oneOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "panel",
-                              "table",
-                              "data-grid",
-                              "data-grid-collection",
-                              "tree-table",
-                              "switch"
-                            ]
-                          },
-                          "modifiers": {
-                            "type": "array",
-                            "default": [],
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "title": {
-                            "type": "string"
-                          },
-                          "description": {
-                            "type": "string"
-                          }
-                        },
-                        "additionalProperties": true,
-                        "required": ["name"]
-                      }
-                    ],
-                    "description": "The name of the accordion expansion panel"
+                    "$ref": "#/definitions/accordionItem"
                   },
                   "description": "The list of accordion expansion panels"
                 }
@@ -133,46 +53,7 @@
                     "alias": "item",
                     "type": "array",
                     "items": {
-                      "oneOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "name": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string",
-                              "enum": [
-                                "panel",
-                                "table",
-                                "data-grid",
-                                "data-grid-collection",
-                                "tree-table",
-                                "switch"
-                              ]
-                            },
-                            "modifiers": {
-                              "type": "array",
-                              "default": [],
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            "title": {
-                              "type": "string"
-                            },
-                            "description": {
-                              "type": "string"
-                            }
-                          },
-                          "additionalProperties": true,
-                          "required": ["name"]
-                        }
-                      ],
-                      "description": "The name of the accordion expansion panel"
+                      "$ref": "#/definitions/accordionItem"
                     },
                     "description": "The list of accordion expansion panels"
                   }
@@ -185,5 +66,16 @@
         }
       }
     }
-  ]
+  ],
+  "definitions": {
+    "accordionItem": {
+      "$ref": "../../../accordion-item.schema.json"
+    },
+    "type": {
+      "$ref": "../../../type.schema.json"
+    },
+    "property": {
+      "$ref": "../../../property.schema.json"
+    }
+  }
 }

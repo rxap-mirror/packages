@@ -7,37 +7,7 @@
       "type": "string"
     },
     "type": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "isTypeOnly": {
-              "type": "boolean"
-            },
-            "moduleSpecifier": {
-              "type": "string"
-            },
-            "namedImport": {
-              "type": "string"
-            },
-            "namespaceImport": {
-              "type": "string"
-            },
-            "defaultImport": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "name"
-          ]
-        }
-      ]
+      "$ref": "#/definitions/type"
     },
     "role": {
       "type": "string"
@@ -54,30 +24,7 @@
     "pipeList": {
       "type": "array",
       "items": {
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "namedImport": {
-                "type": "string"
-              },
-              "moduleSpecifier": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "name",
-              "namedImport",
-              "moduleSpecifier"
-            ]
-          }
-        ]
+        "$ref": "#/definitions/type"
       }
     },
     "hasFilter": {
@@ -110,5 +57,10 @@
   },
   "required": [
     "name"
-  ]
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
 }

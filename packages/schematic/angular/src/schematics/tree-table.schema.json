@@ -21,12 +21,20 @@
           "description": "The table modifiers"
         },
         "tableRootMethod": {
-          "$ref": "./type.schema.json"
+          "$ref": "#/definitions/type"
         },
         "tableChildMethod": {
-          "$ref": "./type.schema.json"
+          "$ref": "#/definitions/type"
         }
       }
     }
-  ]
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
+    }
+  }
 }

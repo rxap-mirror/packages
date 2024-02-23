@@ -53,5 +53,13 @@
         "dialogName"
       ]
     }
-  ]
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "../type.schema.json"
+    },
+    "property": {
+      "$ref": "../property.schema.json"
+    }
+  }
 }

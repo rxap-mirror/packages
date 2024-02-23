@@ -7,7 +7,7 @@
       "alias": "property",
       "type": "array",
       "items": {
-        "$ref": "./property.schema.json"
+        "$ref": "#/definitions/property"
       }
     },
     "columnList": {
@@ -26,39 +26,7 @@
       }
     },
     "headerButton": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "role": {
-              "type": "string",
-              "enum": [
-                "form",
-                "navigation",
-                "method"
-              ]
-            },
-            "permission": {
-              "type": "string"
-            },
-            "icon": {
-              "type": "string"
-            },
-            "svgIcon": {
-              "type": "string"
-            },
-            "options": {
-              "type": "object",
-              "additionalProperties": true
-            }
-          },
-          "additionalProperties": true
-        }
-      ],
-      "description": "The header button configuration"
+      "$ref": "./header-button.schema.json"
     },
     "modifiers": {
       "alias": "modifier",
@@ -67,6 +35,14 @@
         "type": "string"
       },
       "description": "The table modifiers"
+    }
+  },
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
     }
   }
 }
