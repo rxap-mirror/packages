@@ -11,6 +11,7 @@
       property:
         name: uuid
     identifier:
+      source: route
       property:
         name: uuid
     itemList:
@@ -31,8 +32,8 @@
                     - name: name
                     - name: location
                     - name: link
-                      template:
-                        name: input
+                      options:
+                        kind: input
                         type: url
                     - name: company
                       type: string
