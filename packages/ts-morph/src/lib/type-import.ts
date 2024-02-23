@@ -84,3 +84,7 @@ export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string):
     defaultImport,
   });
 }
+
+export function NormalizeTypeImportList(typeImportList: TypeImport[] = []): NormalizedTypeImport[] {
+  return typeImportList.map(NormalizeTypeImport);
+}
