@@ -1,3 +1,4 @@
+
 <mat-form-field>
 {{#if control.formField}}
 {{#if control.formField.label}}
@@ -7,6 +8,6 @@
   <input
     matInput
     formControlName="{{control.name}}"
-    {{#if control.placeholder}}placeholder="{{control.placeholder}}"{{/if}}
+    {{#if control.placeholder}}placeholder="{{control.placeholder}}"{{/if~}}
     type="{{control.inputType}}" />
 </mat-form-field>

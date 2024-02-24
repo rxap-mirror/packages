@@ -122,9 +122,6 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
   const templateOptions = {
     ...strings,
     ...normalizedOptions,
-    content: GenerateFormTemplate({
-      controlList: normalizedOptions.itemList,
-    })
   };
 
   return chain([

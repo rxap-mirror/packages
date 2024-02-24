@@ -114,7 +114,6 @@ function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule 
       template: {
         options: {
           ...normalizedOptions,
-          content: GenerateFormTemplate(normalizedOptions),
           OperationIdToClassName,
           OperationIdToClassImportPath,
         },

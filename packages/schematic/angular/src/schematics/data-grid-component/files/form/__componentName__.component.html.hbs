@@ -1,0 +1,32 @@
+<mat-card>
+  {{#if title}}
+  <mat-card-header>
+    <mat-card-title>{{title}}</mat-card-title>
+    {{#if subtitle}}<mat-card-subtitle>{{subtitle}}</mat-card-subtitle>{{/if}}
+  </mat-card-header>
+  {{/if}}
+  <mat-card-content>
+    <div class="p-4">
+      <form #form="rxapForm" rxapForm>
+        <rxap-data-grid
+        {{#if collection}}
+        [data]="data"
+        {{else}}
+        [dataSource]="dataGridDataSource"
+        {{/if}}
+        mode="form">
+        {{#each itemList}}
+          <ng-container rxapDataGridRowDef="<%= item.name %>">
+            {{#if this.header}}
+            <th *rxapDataGridHeaderCellDef i18n>{{this.header}}</th>
+            {{/if}}
+            <ng-template rxapDataGridEditCellDef>
+              {{ indent (compile this.handlebars control=this) 14}}
+            </ng-template>
+          </ng-container>
+        {{/each}}
+        </rxap-data-grid>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>
