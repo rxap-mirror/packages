@@ -1,5 +1,5 @@
 export enum AccordionItemTypes {
-  Panel = 'panel',
+  Default = 'default',
   Table = 'table',
   DataGrid = 'data-grid',
   TreeTable = 'tree-table',

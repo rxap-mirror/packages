@@ -1,0 +1,26 @@
+<ng-template #errorTemplate let-error let-refresh="refresh">
+  <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
+</ng-template>
+<div *rxapDataSource="let data from accordionDataSource; errorTemplate: errorTemplate" class="flex flex-col gap-y-6">
+  {{#if header}}
+  {{ indent (compile header.handlebars header=header) 2 }}
+  <{{prefix}}-accordion-header [data]="accordion"></{{prefix}}-accordion-header>
+  <ng-template #divider>
+    <mat-divider></mat-divider>
+  </ng-template>
+  <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
+  {{else}}
+  <mat-progress-bar *ngIf="accordionDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
+  {{/if}}
+  <mat-accordion {{#if multiple}}multi{{/if}}
+    {{~#if persistent}}
+    {{~#if persistent.key}} rxapPersistentAccordion="{{persistent.key}}"{{/if~}}
+    {{~#if persistent.property}} [rxapPersistentAccordion]="data.{{persistent.property.name}}"{{/if~}}
+    {{/if}}>
+    {{#each itemList}}
+    {{#if this.permission}}<ng-template rxapIfHasPermission="{{this.permission}}">{{/if~}}
+    {{ indent (compile this.handlebars item=this prefix=../prefix) 4 }}
+    {{#if this.permission}}</ng-template>{{/if~}}
+    {{/each}}
+  </mat-accordion>
+</div>

@@ -16,6 +16,8 @@ import {
   NonNullableSelected,
   Normalized,
 } from '@rxap/utilities';
+import Handlebars from 'handlebars';
+import { join } from 'path';
 import {
   AccordionItemTypes,
   IsAccordionItemType,
@@ -25,6 +27,7 @@ import {
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
 } from './data-grid-options';
+import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
   NormalizedTableOptions,
   NormalizeTableOptions,
@@ -46,20 +49,23 @@ export interface BaseAccordionItem {
   description?: string;
   permission?: string;
   importList?: TypeImport[];
+  template?: string;
 }
 
 export interface NormalizedBaseAccordionItem extends Readonly<NonNullableSelected<Normalized<BaseAccordionItem>, 'type'>> {
   importList: NormalizedTypeImport[];
+  handlebars: Handlebars.TemplateDelegate<{ item: NormalizedBaseAccordionItem }>,
 }
 
 export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedBaseAccordionItem {
-  let type = AccordionItemTypes.Panel;
+  let type = AccordionItemTypes.Default;
   let modifiers: string[] = [];
   let title: string;
   let description: string | null = null;
   let permission: string | null = null;
   const name = item.name;
   type = item.type ?? type;
+  const template = item.template ?? type + '-accordion-item.hbs';
   modifiers = item.modifiers ?? modifiers;
   title = item.title;
   description = item.description ?? description;
@@ -83,6 +89,8 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
     modifiers,
     permission,
     importList: importList.map(NormalizeTypeImport),
+    template,
+    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'accordion', 'templates')),
   });
 }
 
@@ -99,9 +107,8 @@ export function IsDataGridAccordionItem(item: BaseAccordionItem): item is DataGr
   return item.type === AccordionItemTypes.DataGrid;
 }
 
-export interface NormalizedDataGridAccordionItem extends Readonly<Normalized<Omit<DataGridAccordionItem, 'dataGrid'>>> {
+export interface NormalizedDataGridAccordionItem extends Readonly<Normalized<Omit<DataGridAccordionItem, 'dataGrid'>> & NormalizedBaseAccordionItem> {
   dataGrid: NormalizedDataGridOptions;
-  importList: NormalizedTypeImport[];
 }
 
 export function IsNormalizedDataGridAccordionItem(item: NormalizedBaseAccordionItem): item is NormalizedDataGridAccordionItem {
@@ -138,7 +145,7 @@ export function IsSwitchAccordionItem(item: BaseAccordionItem): item is SwitchAc
   return item.type === AccordionItemTypes.Switch;
 }
 
-export interface NormalizedSwitchAccordionItem extends Readonly<Normalized<Omit<SwitchAccordionItem, 'switch'>>> {
+export interface NormalizedSwitchAccordionItem extends Readonly<Normalized<Omit<SwitchAccordionItem, 'switch'>> & NormalizedBaseAccordionItem> {
   switch: Readonly<{
     property: NormalizedDataProperty;
     case: ReadonlyArray<{
@@ -149,7 +156,6 @@ export interface NormalizedSwitchAccordionItem extends Readonly<Normalized<Omit<
       itemList: ReadonlyArray<NormalizedBaseAccordionItem>
     }> | null;
   }>;
-  importList: NormalizedTypeImport[];
 }
 
 export function IsNormalizedSwitchAccordionItem(item: NormalizedBaseAccordionItem): item is NormalizedSwitchAccordionItem {
@@ -196,10 +202,11 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
   const { name } = base;
   const { switch: switchOptions } = item;
   const { property, case: caseList, defaultCase } = switchOptions;
+  const normalizedProperty = NormalizeDataProperty(property, 'string');
   const normalizeSwitch = Object.freeze({
-      property: NormalizeDataProperty(property, 'string'),
+      property: normalizedProperty,
       case: Object.freeze(caseList.map((item) => ({
-        test: item.test,
+        test: normalizedProperty.name === 'string' ? `'${item.test}'` : item.test,
         itemList: NormalizeAccordionItemList(item.itemList.map((item) => ({
           ...item,
           name: CoercePrefix(dasherize(item.name), dasherize(name) + '-'),
@@ -242,9 +249,8 @@ export function IsTableAccordionItem(item: BaseAccordionItem): item is TableAcco
   return item.type === AccordionItemTypes.Table;
 }
 
-export interface NormalizedTableAccordionItem extends Readonly<Normalized<Omit<TableAccordionItem, 'table'>>> {
+export interface NormalizedTableAccordionItem extends Readonly<Normalized<Omit<TableAccordionItem, 'table'>> & NormalizedBaseAccordionItem> {
   table: NormalizedTableOptions;
-  importList: NormalizedTypeImport[];
 }
 
 export function IsNormalizedTableAccordionItem(item: NormalizedBaseAccordionItem): item is NormalizedTableAccordionItem {
@@ -274,9 +280,8 @@ export function IsTreeTableAccordionItem(item: BaseAccordionItem): item is TreeT
   return item.type === AccordionItemTypes.TreeTable;
 }
 
-export interface NormalizedTreeTableAccordionItem extends Readonly<Normalized<Omit<TreeTableAccordionItem, 'table'>>> {
+export interface NormalizedTreeTableAccordionItem extends Readonly<Normalized<Omit<TreeTableAccordionItem, 'table'>> & NormalizedBaseAccordionItem> {
   table: NormalizedTreeTableOptions;
-  importList: NormalizedTypeImport[];
 }
 
 export function IsNormalizedTreeTableAccordionItem(item: NormalizedBaseAccordionItem): item is NormalizedTreeTableAccordionItem {

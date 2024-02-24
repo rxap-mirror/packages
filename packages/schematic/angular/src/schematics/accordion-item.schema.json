@@ -6,7 +6,7 @@
     "type": {
       "type": "string",
       "enum": [
-        "panel",
+        "default",
         "table",
         "data-grid",
         "data-grid-collection",

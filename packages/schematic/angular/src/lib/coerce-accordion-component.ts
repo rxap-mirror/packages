@@ -31,6 +31,7 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
       withPermission,
       header,
     },
+    handlebars: { partials = {} } = {},
     tsMorphTransform = noop,
   } = options;
 

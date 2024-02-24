@@ -9,16 +9,13 @@ import {
   AddComponentProvider,
   BuildNestControllerName,
   buildOperationId,
-  CoerceClassConstructor,
   CoerceComponentRule,
   CoerceDataSourceClass,
   CoerceGetByIdOperation,
   CoerceImports,
   CoerceInterfaceRule,
   CoerceMethodClass,
-  CoerceParameterDeclaration,
   CoercePropertyDeclaration,
-  CoerceStatements,
   OperationIdToClassImportPath,
   OperationIdToClassName,
   OperationIdToResponseClassImportPath,
@@ -47,7 +44,6 @@ import {
 } from 'ts-morph';
 import {
   NormalizeAccordionItem,
-  NormalizeBaseAccordionItem,
   NormalizedBaseAccordionItem,
 } from '../../../lib/accordion-item';
 import {
@@ -81,7 +77,7 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
   return Object.freeze({
     ...normalizedAngularOptions,
     ...NormalizeAccordionItem({
-      type: AccordionItemTypes.Panel,
+      type: AccordionItemTypes.Default,
       ...options,
     }),
     name,
@@ -100,7 +96,7 @@ export type NormalizedAccordionItemComponentOptions = Readonly<NormalizedAccordi
 export function NormalizeAccordionItemComponentOptions(
   options: Readonly<AccordionItemComponentOptions>,
 ): NormalizedAccordionItemComponentOptions {
-  const type = options.type ?? 'panel';
+  const type = options.type ?? AccordionItemTypes.Default;
   if (!IsAccordionItemType(type)) {
     throw new SchematicsException(`The type "${ type }" is not a valid accordion item type`);
   }
@@ -411,7 +407,7 @@ function itemRule(normalizedOptions: NormalizedAccordionItemComponentOptions): R
   ];
 
   switch (type) {
-    case AccordionItemTypes.Panel:
+    case AccordionItemTypes.Default:
       rules.push(panelItemRule(normalizedOptions));
       break;
     case AccordionItemTypes.Table:

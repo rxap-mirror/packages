@@ -6,9 +6,12 @@ import {
   NormalizeTypeImport,
   TypeImport,
 } from '@rxap/ts-morph';
+import { join } from 'path';
+import { LoadHandlebarsTemplate } from './load-handlebars-template';
 
 export interface BaseAccordionHeader {
   importList?: TypeImport[];
+  template?: string;
 }
 
 export interface StaticAccordionHeader extends BaseAccordionHeader {
@@ -23,6 +26,8 @@ export type AccordionHeader = StaticAccordionHeader | PropertyAccordionHeader;
 
 export interface NormalizedBaseAccordionHeader {
   importList: NormalizedTypeImport[];
+  template: string;
+  handlebars?: Handlebars.TemplateDelegate<{ header: NormalizedBaseAccordionHeader }>
 }
 
 export interface NormalizedStaticAccordionHeader extends NormalizedBaseAccordionHeader {
@@ -54,14 +59,17 @@ export function IsNormalizedPropertyAccordionHeader(header: NormalizedAccordionH
 function coerceBaseAccordionHeaderImportList(header: BaseAccordionHeader): TypeImport[] {
   const importList: TypeImport[] = header.importList ?? [];
   importList.push({
-    name: 'AccordionHeaderComponent',
-    moduleSpecifier: './accordion-header/accordion-header.component'
+    name: 'NavigateBackButtonComponent',
+    moduleSpecifier: '@rxap/components'
   });
   return importList;
 }
 
 export function NormalizeBaseAccordionHeader(header: BaseAccordionHeader): NormalizedBaseAccordionHeader {
+  const template = header.template ?? 'accordion-header.hbs';
   return Object.freeze({
+    template,
+    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'accordion', 'templates')),
     importList: coerceBaseAccordionHeaderImportList(header).map(NormalizeTypeImport)
   });
 }

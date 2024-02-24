@@ -1,0 +1,15 @@
+
+<mat-expansion-panel>
+
+  <mat-expansion-panel-header>
+    <mat-panel-title i18n>{{item.title}}</mat-panel-title>
+    {{#if item.description}}
+    <mat-panel-description i18n>{{item.description}}</mat-panel-description>
+    {{/if}}
+  </mat-expansion-panel-header>
+
+  <ng-template matExpansionPanelContent>
+    <{{prefix}}-{{item.name}}-panel></{{prefix}}-{{item.name}}-panel>
+  </ng-template>
+
+</mat-expansion-panel>
