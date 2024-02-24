@@ -1,0 +1,241 @@
+<div class="flex flex-col gap-y-4 m-4">
+  {{#if hasNavigationBackHeader}}
+  <rxap-navigate-back-button>
+    <h1 i18n>{{title}}</h1>
+  </rxap-navigate-back-button>
+  <mat-divider></mat-divider>
+  {{/if}}
+
+  <div class="table-card-container flex flex-col">
+    <mat-card>
+      <mat-progress-bar
+        rxapCardProgressBar
+        [loading$]="tableDataSourceDirective.loading$"
+      ></mat-progress-bar>
+      <mat-card-header class="min-h-full h-12{{#unless headerButton}}{{#if hasWithoutTitle}} justify-end {{/if}}{{/unless}}">
+      {{#unless hasWithoutTitle}}
+      <mat-card-title i18n>{{title}}</mat-card-title>
+      {{/unless}}
+      {{#if headerButton}}
+      <button
+        mat-card-avatar
+        mat-mini-fab
+        color="primary"
+        matTooltip
+        [disabled]="tableDataSourceDirective.hasError$ | async"
+        [rxapTableHeaderButton]="tableDataSourceDirective"
+        {{#if headerButton.permission}}rxapHasEnablePermission="{{headerButton.permission}}"{{/if~}}
+      >
+        {{#if headerButton.icon}}
+        <mat-icon>{{headerButton.icon}}</mat-icon>
+        {{else if headerButton.svgIcon}}
+        <mat-icon svgIcon="{{headerButton.svgIcon}}"></mat-icon>
+        {{else}}
+        <mat-icon>add</mat-icon>
+        {{/if}}
+      </button>
+      <mat-card-subtitle i18n>{{headerButton.label}}</mat-card-subtitle>
+      {{/if}}
+      <rxap-table-column-menu
+        matCard
+        #rxapTableColumns="rxapTableColumns"
+        {{#unless headerButton}}{{#if hasWithoutTitle}}inline{{/if}}{{/unless~}}
+      >
+        {{#if selectColumn}}
+        <rxap-table-column-option hidden name="select">
+          <ng-container i18n>Select</ng-container>
+        </rxap-table-column-option>
+        {{/if}}
+        {{#each columnList}}
+        <rxap-table-column-option name="{{this.name}}"
+          {{~#if this.active}} active{{/if~}}
+          {{~#if this.hidden}} hidden{{/if~}}
+          {{~#if this.inactive}} inactive{{/if~}}
+          {{~#if this.show}} show{{/if~}}>
+          <ng-container i18n>{{this.title}}</ng-container>
+        </rxap-table-column-option>
+        {{/each}}
+        {{#if actionList.length}}
+        <rxap-table-column-option hidden name="actions">
+          <ng-container i18n>Actions</ng-container>
+        </rxap-table-column-option>
+        {{/if}}
+        {{#if hasShowArchivedSlide}}
+        <mat-divider></mat-divider>
+        <span mat-menu-item>
+          <rxap-table-show-archived-slide [paginator]="paginator"></rxap-table-show-archived-slide>
+        </span>
+        {{/if}}
+      </rxap-table-column-menu>
+       </mat-card-header>
+
+      <mat-card-content>
+        <rxap-data-source-error
+          [loading]="tableDataSourceDirective.loading$"
+          [error]="tableDataSourceDirective.dataSource?.error$"
+          *ngIf="tableDataSourceDirective.hasError$ | async"
+          [refresh]="tableDataSourceDirective.retry">
+        </rxap-data-source-error>
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
+        <table
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [paginator]="paginator"
+          matSort
+          mat-table
+          #tableDataSourceDirective="rxapTableDataSource"
+          rxapTableDataSource
+          [parameters]="parameters"
+          id="{{name}}"
+          {{#if hasColumnWithFilter}}rxap-filter-header-row{{/if~}}
+        >
+          <!-- region columns -->
+          {{#if selectColumn}}
+          <!-- region select column -->
+          <ng-container matColumnDef="select" sticky>
+            <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
+            <td
+              mat-cell
+              rxap-checkbox-cell
+              [element]="element"
+              *matCellDef="let element"
+            ></td>
+          </ng-container>
+          <!-- endregion -->
+          {{/if}}
+          {{#if actionList.length}}
+          <!-- region actions column -->
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>
+            {{#if selectColumn}}
+              <!-- region header actions -->
+              <div class="flex flex-row" *rxapSelectedRows="let selected">
+              {{#each actionList}}
+              {{#if this.inHeader}}
+                <button
+                  rxapTableRowHeaderAction="{{this.type}}"
+                  mat-icon-button
+                  {{#if this.color}}color="{{this.color}}"{{/if~}}
+                  {{#if this.cssClass}}class="{{this.cssClass}}"{{/if~}}
+                  *ngIf="selected | rxapRowActionCheck:'{{this.type}}'"
+                  {{#if this.permission}}rxapHasEnablePermission="{{this.permission}}"{{/if~}}
+                  matTooltip
+                >
+                  {{#if this.icon}}
+                  <mat-icon>{{this.icon}}</mat-icon>
+                  {{else if this.svgIcon}}
+                  <mat-icon svgIcon="{{this.svgIcon}}"></mat-icon>
+                  {{else}}
+                  <mat-icon>{{this.type}}</mat-icon>
+                  {{/if}}
+                  <mat-progress-bar
+                    *rxapTableRowActionExecuting
+                    mode="indeterminate"
+                  ></mat-progress-bar>
+                </button>
+              {{/if}}
+              {{/each}}
+              </div>
+              <!-- endregion -->
+            {{/if}}
+            </th>
+
+            <td mat-cell *matCellDef="let element">
+              <div class="flex flex-row">
+                {{#each actionList}}
+                <button
+                  rxapTableRowAction="{{this.type}}"
+                  [element]="element"
+                  {{#if this.color}}color="{{this.color}}"{{/if~}}
+                  {{#if this.cssClass}}class="{{this.cssClass}}"{{/if~}}
+                  mat-icon-button
+                  *ngIf="element | rxapRowActionCheck:'{{this.type}}'"
+                  {{#if this.permission}}rxapHasEnablePermission="{{this.permission}}"{{/if~}}
+                  matTooltip
+                >
+                  {{#if this.icon}}
+                  <mat-icon>{{this.icon}}</mat-icon>
+                  {{else if this.svgIcon}}
+                  <mat-icon svgIcon="{{this.svgIcon}}"></mat-icon>
+                  {{else}}
+                  <mat-icon>{{this.type}}</mat-icon>
+                  {{/if}}
+                  <mat-progress-bar
+                    *rxapTableRowActionExecuting
+                    mode="indeterminate"
+                  ></mat-progress-bar>
+                </button>
+                {{/each}}
+              </div>
+            </td>
+          </ng-container>
+          <!-- endregion -->
+
+          {{/if}}
+          {{#each columnList}}
+          {{ indent (compile this.handlebars column=this) 10 }}
+          {{/each}}
+
+          <!-- endregion -->
+          {{#if hasColumnWithFilter}}
+          <!-- region filter columns -->
+          {{#if selectColumn}}
+          <ng-container matColumnDef="filter_select" sticky>
+            <th mat-header-cell *matHeaderCellDef></th>
+          </ng-container>
+          {{/if}}
+          {{#if actionList.length}}
+          <ng-container matColumnDef="filter_actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+          </ng-container>
+          {{/if}}
+          {{#each columnList}}
+          <ng-container matColumnDef="filter_{{this.name}}">
+            <th mat-header-cell *matHeaderCellDef>
+              {{#if this.hasFilter}}
+              {{ indent (compile this.filterControl.handlebars column=this control=this.filterControl parentControlContainer=true) 14 }}
+              {{/if}}
+            </th>
+          </ng-container>
+          {{/each}}
+
+          <!-- endregion -->
+          <tr
+            class="rxap-filter-header"
+            mat-header-row
+            *matHeaderRowDef="rxapTableColumns.displayColumns | toFilterColumnNames"
+          ></tr>
+          {{/if}}
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="rxapTableColumns.displayColumns"
+          ></tr>
+
+          <tr
+            [@rowsAnimation]=""
+            mat-row
+            [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+            class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+            *matRowDef="
+              let element;
+              columns: rxapTableColumns.displayColumns;
+              let odd = odd;
+              let even = even
+            "
+          ></tr>
+        </table>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer>
+        <mat-paginator
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          rxapPersistent
+          [pageSizeOptions]="[5,10,25,50,100]"
+          [pageSize]="10"
+          #paginator="matPaginator"
+        ></mat-paginator>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

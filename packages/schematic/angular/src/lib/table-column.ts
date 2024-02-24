@@ -15,6 +15,11 @@ import {
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
 import { join } from 'path';
+import {
+  BaseFormControl,
+  FormControlKinds,
+} from './form-control';
+import { NormalizeFormDefinitionControl } from './form-definition-control';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 
 export type TableColumnPipe = TypeImport;
@@ -67,6 +72,7 @@ export interface TableColumn {
   template?: string;
   pipeList?: Array<TableColumnPipe | string>;
   importList?: TypeImport[];
+  filterControl?: BaseFormControl;
 }
 
 export type NormalizedTableColumnPipe = NormalizedTypeImport;
@@ -252,7 +258,7 @@ export function NormalizeTableColumn(
   withoutTitle = column.withoutTitle ?? false;
   cssClass = column.cssClass ?? cssClass;
   role = column.role ?? role;
-  template = column.template ?? role + '-column.hbs';
+  template = column.template ?? role + '-table-column.hbs';
   pipeList = column.pipeList ?? pipeList;
   importList = coerceTableColumnImportList(column);
   const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
@@ -312,6 +318,16 @@ export function NormalizeTableColumn(
   if (!IsTableColumnKind(role)) {
     throw new Error(`Unknown role in column ${ name } - ${ role }`);
   }
+  let filterControl: BaseFormControl | null = column.filterControl ?? null;
+  if (Object.keys(filterControl ?? {}).length === 0) {
+    filterControl = null;
+  }
+  if (hasFilter && !filterControl) {
+    filterControl = { name: column.name, kind: FormControlKinds.DEFAULT };
+  }
+  if (filterControl && !hasFilter) {
+    hasFilter = true;
+  }
   return Object.freeze({
     role,
     name,
@@ -331,6 +347,7 @@ export function NormalizeTableColumn(
     template,
     importList: importList.map(NormalizeTypeImport),
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'table', 'templates')),
+    filterControl: filterControl ? NormalizeFormDefinitionControl(filterControl) : null,
   });
 }
 

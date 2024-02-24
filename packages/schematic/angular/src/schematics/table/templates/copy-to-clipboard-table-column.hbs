@@ -1,0 +1,10 @@
+<ng-container matColumnDef="{{column.name}}">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>
+    <ng-container i18n>{{column.title}}</ng-container>
+  </th>
+  <td *matCellDef="let element"
+    mat-cell
+    {{#if column.cssClass}}class="{{column.cssClass}}"{{/if~}}
+    [rxap-copy-to-clipboard-cell]="element?.{{column.propertyPath}}">
+  </td>
+</ng-container>

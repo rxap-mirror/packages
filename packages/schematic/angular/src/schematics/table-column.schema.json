@@ -53,6 +53,9 @@
     },
     "show": {
       "type": "boolean"
+    },
+    "filterControl": {
+      "$ref": "./form-control.schema.json"
     }
   },
   "required": [
