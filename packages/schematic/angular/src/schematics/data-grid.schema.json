@@ -29,6 +29,11 @@
       "items": {
         "$ref": "./data-grid-item.schema.json"
       }
+    },
+    "inCard": {
+      "type": "boolean",
+      "description": "Whether the data grid is used in a card.",
+      "default": true
     }
   },
   "definitions": {

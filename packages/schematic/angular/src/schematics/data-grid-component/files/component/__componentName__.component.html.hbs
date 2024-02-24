@@ -1,3 +1,4 @@
+{{#if inCard}}
 <mat-card>
   {{#if title}}
   <mat-card-header>
@@ -6,27 +7,28 @@
   </mat-card-header>
   {{/if}}
   <mat-card-content>
+{{/if}}
     <div class="p-4">
-      <form #form="rxapForm" rxapForm>
-        <rxap-data-grid
-        {{#if collection}}
-        [data]="data"
-        {{else}}
-        [dataSource]="dataGridDataSource"
-        {{/if}}
-        mode="form">
+      {{#if isForm}}<form #form="rxapForm" rxapForm>{{/if~}}
+        <rxap-data-grid {{#if collection}}[data]="data"{{else}}[dataSource]="dataGridDataSource"{{/if}} mode="{{mode}}">
         {{#each itemList}}
-          <ng-container rxapDataGridRowDef="<%= item.name %>">
+          <ng-container rxapDataGridRowDef="{{this.name}}">
             {{#if this.header}}
-            <th *rxapDataGridHeaderCellDef i18n>{{this.header}}</th>
+            <th *rxapDataGridHeaderCellDef class="whitespace-nowrap" i18n>{{this.header}}</th>
             {{/if}}
+            {{#if ../isForm}}
+            {{#unless this.isReadonly}}
             <ng-template rxapDataGridEditCellDef>
               {{ indent (compile this.handlebars control=this) 14}}
             </ng-template>
+            {{/unless}}
+            {{/if}}
           </ng-container>
         {{/each}}
         </rxap-data-grid>
-      </form>
+      {{#if isForm}}</form>{{/if}}
     </div>
+{{#if inCard}}
   </mat-card-content>
 </mat-card>
+{{/if}}

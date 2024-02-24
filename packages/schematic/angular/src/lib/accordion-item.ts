@@ -116,10 +116,12 @@ export function IsNormalizedDataGridAccordionItem(item: NormalizedBaseAccordionI
 }
 
 export function NormalizeDataGridAccordionItem(item: DataGridAccordionItem): NormalizedDataGridAccordionItem {
+  const dataGrid = item.dataGrid;
+  dataGrid.inCard ??= false;
   return Object.freeze({
     ...NormalizeBaseAccordionItem(item),
     type: AccordionItemTypes.DataGrid,
-    dataGrid: NormalizeDataGridOptions(item.dataGrid),
+    dataGrid: NormalizeDataGridOptions(dataGrid),
   });
 }
 

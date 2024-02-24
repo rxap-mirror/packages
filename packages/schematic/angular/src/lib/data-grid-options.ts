@@ -20,24 +20,29 @@ export interface DataGridOptions {
   collection?: boolean;
   title?: string;
   subtitle?: string;
+  inCard?: boolean;
 }
 
 export interface NormalizedDataGridOptions extends Omit<Readonly<Normalized<DataGridOptions>>, 'itemList'> {
   mode: DataGridMode;
   itemList: ReadonlyArray<NormalizedDataGridItem>;
+  isForm: boolean;
 }
 
 export function NormalizeDataGridOptions(options: Readonly<DataGridOptions>): Readonly<NormalizedDataGridOptions> {
   const {
     itemList,
-    mode,
     collection,
   } = options;
+  let { mode } = options;
+  mode = IsDataGridMode(mode) ? mode : DataGridMode.Plain;
   return Object.freeze({
     itemList: NormalizeDataGridItemList(itemList),
-    mode: IsDataGridMode(mode) ? mode : DataGridMode.Plain,
+    mode,
     collection: collection ?? false,
     title: options.title ?? null,
     subtitle: options.subtitle ?? null,
+    inCard: options.inCard ?? true,
+    isForm: mode === DataGridMode.Form,
   });
 }

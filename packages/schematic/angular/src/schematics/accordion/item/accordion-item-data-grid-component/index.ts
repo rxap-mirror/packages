@@ -107,6 +107,7 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
   return chain([
     () => console.log(`Coerce data grid component ...`),
     ExecuteSchematic('data-grid-component', {
+      ...dataGrid,
       project,
       feature,
       shared: hasSharedModifier,
@@ -114,7 +115,6 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
       nestModule: hasSharedModifier ? undefined : nestModule,
       nestController: name,
       directory: hasSharedModifier ? undefined : directory,
-      itemList: dataGrid?.itemList ?? [],
       collection: hasCollectionModifier || (dataGrid?.collection ?? false),
       mode: hasEditModifier ? 'form' : (dataGrid?.mode ?? 'plain'),
       backend: backend,

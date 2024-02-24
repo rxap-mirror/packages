@@ -117,6 +117,7 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
     overwrite,
     collection,
     name,
+    inCard,
   } = normalizedOptions;
 
   const templateOptions = {
@@ -133,13 +134,17 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       directory,
       overwrite,
       template: {
-        url: `./files/${ mode }`,
         options: templateOptions,
       },
       tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
 
         CoerceComponentImport(classDeclaration, { name: 'DataGridModule', moduleSpecifier: '@rxap/data-grid' });
-        CoerceComponentImport(classDeclaration, { name: 'MatCardModule', moduleSpecifier: '@angular/material/card' });
+        if (inCard) {
+          CoerceComponentImport(classDeclaration, {
+            name: 'MatCardModule',
+            moduleSpecifier: '@angular/material/card'
+          });
+        }
 
         if (!collection) {
           const dataSourceClassName = `${classify(name)}DataGridDataSource`;
