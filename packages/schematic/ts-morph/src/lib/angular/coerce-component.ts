@@ -1,13 +1,20 @@
 import { strings } from '@angular-devkit/core';
 import {
   apply,
+  applyPathTemplate,
   applyTemplates,
   chain,
+  composeFileOperators,
+  FileEntry,
+  FileOperator,
+  forEach,
   MergeStrategy,
   mergeWith,
   move,
+  PathTemplateData,
   Rule,
   url,
+  when,
 } from '@angular-devkit/schematics';
 import {
   classify,
@@ -27,6 +34,7 @@ import {
 } from '../ts-morph-transform';
 import { BuildAngularBasePath } from './build-angular-base-path';
 import { HasComponent } from './has-component';
+import Handlebars from 'handlebars';
 
 export interface TemplateOptions {
   url?: string,
@@ -44,6 +52,62 @@ export interface CoerceComponentOptions extends TsMorphAngularProjectTransformOp
     [ componentClass ]: [ ClassDeclaration ],
     options: CoerceComponentOptions,
   ) => void;
+}
+
+function applyContentHandlebars<T>(options: T): FileOperator {
+  return (entry: FileEntry) => {
+    const { path, content } = entry;
+
+    Handlebars.registerHelper('compile', (context: Handlebars.HelperDelegate, input) => {
+      return new Handlebars.SafeString(context(input.hash));
+    });
+
+    Handlebars.registerHelper('indent', (text, spaces) => {
+      console.log('text', text);
+      console.log('spaces', spaces);
+      const indent = new Array(spaces + 1).join(' ');
+      if (text instanceof Handlebars.SafeString) {
+        text = text.toString();
+      }
+      return new Handlebars.SafeString(text.split('\n').map((line: string, index: number) => {
+        return index === 0 ? line : indent + line;
+      }).join('\n'));
+    });
+
+    try {
+      const template = Handlebars.compile(content.toString());
+
+      return {
+        path,
+        content: Buffer.from(template(options)),
+      };
+    } catch (e) {
+      if ((e as NodeJS.ErrnoException).code === 'ERR_ENCODING_INVALID_ENCODED_DATA') {
+        return entry;
+      }
+
+      throw e;
+    }
+  };
+}
+
+function applyHandlebars<T extends object>(options: T): Rule {
+  return forEach(
+    when(
+      (path) => path.endsWith('.hbs'),
+      composeFileOperators([
+        applyContentHandlebars(options),
+        // See above for this weird cast.
+        applyPathTemplate(options as any as PathTemplateData),
+        (entry) => {
+          return {
+            content: entry.content,
+            path: entry.path.replace(/\.hbs$/, ''),
+          } as FileEntry;
+        },
+      ]),
+    ),
+  );
 }
 
 export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): Rule {
@@ -110,6 +174,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
         () => console.log(`Template options: ${ JSON.stringify(templateOptions) }`),
         mergeWith(apply(url(template.url), [
           applyTemplates(templateOptions),
+          applyHandlebars(templateOptions),
           move(flat ? basePath : join(basePath, name)),
         ]), MergeStrategy.Overwrite),
       );
