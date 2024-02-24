@@ -9,10 +9,10 @@ import {
   ControlOption,
   Normalized,
 } from '@rxap/utilities';
+import Handlebars from 'handlebars';
 import { join } from 'path';
 import { BackendTypes } from './backend-types';
-import Handlebars from 'handlebars';
-import { existsSync, readFileSync } from 'fs';
+import { LoadHandlebarsTemplate } from './load-handlebars-template';
 
 // region BaseFormControlOptions
 
@@ -40,18 +40,6 @@ export interface NormalizedBaseFormControl extends Readonly<Normalized<BaseFormC
   type: NormalizedTypeImport;
   importList: NormalizedTypeImport[];
   handlebars: Handlebars.TemplateDelegate<{ control: NormalizedBaseFormControl }>,
-}
-
-function loadHandlebarsTemplate(templateFilePath: string): Handlebars.TemplateDelegate {
-  let fullPath = templateFilePath;
-  if (!fullPath.startsWith('/')) {
-    fullPath = join(__dirname, '..', 'schematics', 'form', 'templates', templateFilePath);
-  }
-  if (!existsSync(fullPath)) {
-    throw new Error(`The template file "${ fullPath }" does not exists`);
-  }
-  const content = readFileSync(fullPath, 'utf-8');
-  return Handlebars.compile(content);
 }
 
 export function NormalizeBaseFormControl(
@@ -88,7 +76,7 @@ export function NormalizeBaseFormControl(
     importList: importList.map(NormalizeTypeImport),
     kind,
     template,
-    handlebars: loadHandlebarsTemplate(template),
+    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'form', 'templates')),
   });
 }
 

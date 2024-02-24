@@ -1,0 +1,21 @@
+import {
+  existsSync,
+  readFileSync,
+} from 'fs';
+import Handlebars from 'handlebars';
+import { join } from 'path';
+
+export function LoadHandlebarsTemplate(
+  template: string,
+  basePath: string
+): Handlebars.TemplateDelegate {
+  let fullPath = template;
+  if (!fullPath.startsWith('/')) {
+    fullPath = join(basePath, template);
+  }
+  if (!existsSync(fullPath)) {
+    throw new Error(`The template file "${ fullPath }" does not exists`);
+  }
+  const content = readFileSync(fullPath, 'utf-8');
+  return Handlebars.compile(content);
+}

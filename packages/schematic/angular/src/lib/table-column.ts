@@ -13,6 +13,9 @@ import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
+import Handlebars from 'handlebars';
+import { join } from 'path';
+import { LoadHandlebarsTemplate } from './load-handlebars-template';
 
 export type TableColumnPipe = TypeImport;
 
@@ -75,6 +78,7 @@ export interface NormalizedTableColumn extends Omit<Readonly<Normalized<TableCol
   modifiers: TableColumnModifier[];
   importList: ReadonlyArray<NormalizedTypeImport>;
   role: TableColumnKind;
+  handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
 }
 
 export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): NormalizedTableColumnPipe {
@@ -248,7 +252,7 @@ export function NormalizeTableColumn(
   withoutTitle = column.withoutTitle ?? false;
   cssClass = column.cssClass ?? cssClass;
   role = column.role ?? role;
-  template = column.template ?? template;
+  template = column.template ?? role + '-column.hbs';
   pipeList = column.pipeList ?? pipeList;
   importList = coerceTableColumnImportList(column);
   const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
@@ -326,6 +330,7 @@ export function NormalizeTableColumn(
     pipeList: pipeList.map(NormalizeTableColumnPipe),
     template,
     importList: importList.map(NormalizeTypeImport),
+    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'table', 'templates')),
   });
 }
 
