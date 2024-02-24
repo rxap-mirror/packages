@@ -52,6 +52,10 @@ export interface CoerceComponentOptions extends TsMorphAngularProjectTransformOp
     [ componentClass ]: [ ClassDeclaration ],
     options: CoerceComponentOptions,
   ) => void;
+  handlebars?: {
+    helpers?: Record<string, Handlebars.HelperDelegate>,
+    partials?: Record<string, Handlebars.TemplateDelegate>,
+  };
 }
 
 function applyContentHandlebars<T>(options: T): FileOperator {
@@ -63,8 +67,6 @@ function applyContentHandlebars<T>(options: T): FileOperator {
     });
 
     Handlebars.registerHelper('indent', (text, spaces) => {
-      console.log('text', text);
-      console.log('spaces', spaces);
       const indent = new Array(spaces + 1).join(' ');
       if (text instanceof Handlebars.SafeString) {
         text = text.toString();
@@ -120,6 +122,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
     name,
     flat,
     overwrite,
+    handlebars
   } = options;
   overwrite ??= false;
   directory ??= '';
@@ -159,6 +162,14 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
                   Array.isArray(overwrite) && overwrite?.includes('template')
                 ) || !hasComponent
     )) {
+      if (handlebars) {
+        if (handlebars.helpers) {
+          Handlebars.registerHelper(handlebars.helpers);
+        }
+        if (handlebars.partials) {
+          Handlebars.registerPartial(handlebars.partials);
+        }
+      }
       template.url ??= './files/component';
       const templateOptions = {
         ...strings,
