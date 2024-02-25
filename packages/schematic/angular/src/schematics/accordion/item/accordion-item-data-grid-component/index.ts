@@ -39,7 +39,7 @@ import {
   NormalizeDataGridAccordionItem,
   NormalizedDataGridAccordionItem,
 } from '../../../../lib/accordion-item';
-import { AccordionItemTypes } from '../../../../lib/accordion-itme-types';
+import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
 import {
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -54,7 +54,7 @@ import {
 import { AccordionItemDataGridComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemDataGridComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemDataGridComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'dataGrid' | 'importList'>, Omit<NormalizedDataGridAccordionItem, 'type'> {
+  extends Omit<Readonly<Normalized<AccordionItemDataGridComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'dataGrid' | 'importList'>, Omit<NormalizedDataGridAccordionItem, 'kind'> {
 }
 
 export function NormalizeAccordionItemDataGridComponentOptions(
@@ -65,7 +65,7 @@ export function NormalizeAccordionItemDataGridComponentOptions(
     ...normalizedAccordionItemComponentOptions,
     ...NormalizeDataGridAccordionItem({
       ...options,
-      type: AccordionItemTypes.DataGrid,
+      kind: AccordionItemKinds.DataGrid,
     }),
   });
 }

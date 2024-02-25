@@ -9,7 +9,7 @@ import {
   NormalizedSwitchAccordionItem,
   NormalizeSwitchAccordionItem,
 } from '../../../../lib/accordion-item';
-import { AccordionItemTypes } from '../../../../lib/accordion-itme-types';
+import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
 import {
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -21,7 +21,7 @@ import {
 import { AccordionItemSwitchComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemSwitchComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch' | 'importList'>, Omit<NormalizedSwitchAccordionItem, 'type'> {
+  extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch' | 'importList'>, Omit<NormalizedSwitchAccordionItem, 'kind'> {
 }
 
 export function NormalizeAccordionItemSwitchComponentOptions(
@@ -32,7 +32,7 @@ export function NormalizeAccordionItemSwitchComponentOptions(
     ...normalizedAccordionItemComponentOptions,
     ...NormalizeSwitchAccordionItem({
       ...options,
-      type: AccordionItemTypes.Switch,
+      kind: AccordionItemKinds.Switch,
     }),
   });
 }
@@ -64,7 +64,7 @@ function caseRule(
     ExecuteSchematic('accordion-item-component', {
       ...item,
       name: item.name,
-      type: item.type,
+      kind: item.kind,
       modifiers: item.modifiers,
       project,
       feature,

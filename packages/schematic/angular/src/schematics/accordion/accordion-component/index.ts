@@ -16,7 +16,6 @@ import {
   CoerceInterfaceRule,
   CoerceMethodClass,
   CoerceParameterDeclaration,
-  CoercePropertyDeclaration,
   CoerceStatements,
   HasComponent,
   HasComponentOptions,
@@ -34,8 +33,6 @@ import {
 import {
   CoerceClassMethod,
   CoerceClassProperty,
-  CoerceComponentImport,
-  CoerceComponentInput,
   NormalizeDataProperty,
   NormalizedDataProperty,
   OperationIdToParameterClassImportPath,
@@ -50,7 +47,6 @@ import {
   Project,
   Scope,
   SourceFile,
-  Writers,
 } from 'ts-morph';
 import {
   IsNormalizedPropertyAccordionHeader,
@@ -65,6 +61,7 @@ import {
   NormalizeAccordionItemList,
   NormalizedBaseAccordionItem,
 } from '../../../lib/accordion-item';
+import { AccordionItemKinds } from '../../../lib/accordion-itme-kinds';
 import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
@@ -95,7 +92,7 @@ function hasItemWithPermission(itemList: ReadonlyArray<NormalizedBaseAccordionIt
     if (item.permission) {
       return true;
     }
-    if (item.type === 'switch') {
+    if (item.kind === AccordionItemKinds.Switch) {
       return hasItemWithPermission((item as any).switch.case?.flatMap((item: { itemList: NormalizedBaseAccordionItem[] }) => item.itemList) ?? []) ||
              hasItemWithPermission((item as any).switch.defaultCase?.itemList ?? []);
     }
@@ -420,7 +417,7 @@ function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOption
     ExecuteSchematic('accordion-item-component', {
       ...item,
       name: item.name,
-      type: item.type,
+      kind: item.kind,
       modifiers: item.modifiers,
       project,
       feature,
@@ -458,9 +455,9 @@ function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions)
       propertyList.push(persistent.property);
     }
   }
-  if (itemList.some(item => item.type === 'switch')) {
+  if (itemList.some(item => item.kind === AccordionItemKinds.Switch)) {
     for (const item of itemList) {
-      if (item.type === 'switch') {
+      if (item.kind === AccordionItemKinds.Switch) {
         propertyList.push(NormalizeDataProperty({
           name: (item as any).switch.property.name,
           type: (item as any).switch.property.type,

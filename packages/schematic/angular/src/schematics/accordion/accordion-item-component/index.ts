@@ -47,9 +47,9 @@ import {
   NormalizedBaseAccordionItem,
 } from '../../../lib/accordion-item';
 import {
-  AccordionItemTypes,
-  IsAccordionItemType,
-} from '../../../lib/accordion-itme-types';
+  AccordionItemKinds,
+  IsAccordionItemKind,
+} from '../../../lib/accordion-itme-kinds';
 import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
@@ -58,7 +58,7 @@ import {
 import { BackendTypes } from '../../../lib/backend-types';
 import { AccordionItemComponentOptions } from './schema';
 
-export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'type'>;
+export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'kind'>;
 
 export interface NormalizedAccordionItemStandaloneComponentOptions
   extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name'>, NormalizedBaseAccordionItem {
@@ -77,7 +77,7 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
   return Object.freeze({
     ...normalizedAngularOptions,
     ...NormalizeAccordionItem({
-      type: AccordionItemTypes.Default,
+      kind: AccordionItemKinds.Default,
       ...options,
     }),
     name,
@@ -90,19 +90,19 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
 }
 
 export type NormalizedAccordionItemComponentOptions = Readonly<NormalizedAccordionItemStandaloneComponentOptions & {
-  type: string
+  kind: string
 }>;
 
 export function NormalizeAccordionItemComponentOptions(
   options: Readonly<AccordionItemComponentOptions>,
 ): NormalizedAccordionItemComponentOptions {
-  const type = options.type ?? AccordionItemTypes.Default;
-  if (!IsAccordionItemType(type)) {
-    throw new SchematicsException(`The type "${ type }" is not a valid accordion item type`);
+  const kind = options.kind ?? AccordionItemKinds.Default;
+  if (!IsAccordionItemKind(kind)) {
+    throw new SchematicsException(`The type "${ kind }" is not a valid accordion item type`);
   }
   return Object.freeze({
     ...NormalizeAccordionItemStandaloneComponentOptions(options),
-    type,
+    kind,
   });
 }
 
@@ -399,31 +399,31 @@ export function GetItemOptions(normalizedOptions: Pick<NormalizedAccordionItemCo
 function itemRule(normalizedOptions: NormalizedAccordionItemComponentOptions): Rule {
 
   const {
-    type,
+    kind,
   } = normalizedOptions;
 
   const rules: Rule[] = [
-    () => console.log(`Modify accordion item component for type '${ type }' ...`),
+    () => console.log(`Modify accordion item component for type '${ kind }' ...`),
   ];
 
-  switch (type) {
-    case AccordionItemTypes.Default:
+  switch (kind) {
+    case AccordionItemKinds.Default:
       rules.push(panelItemRule(normalizedOptions));
       break;
-    case AccordionItemTypes.Table:
+    case AccordionItemKinds.Table:
       rules.push(ExecuteSchematic('accordion-item-table-component', normalizedOptions));
       break;
-    case AccordionItemTypes.DataGrid:
+    case AccordionItemKinds.DataGrid:
       rules.push(ExecuteSchematic('accordion-item-data-grid-component', normalizedOptions));
       break;
-    case AccordionItemTypes.TreeTable:
+    case AccordionItemKinds.TreeTable:
       rules.push(ExecuteSchematic('accordion-item-tree-table-component', normalizedOptions));
       break;
-    case AccordionItemTypes.Switch:
+    case AccordionItemKinds.Switch:
       rules.push(ExecuteSchematic('accordion-item-switch-component', normalizedOptions));
       break;
     default:
-      throw new SchematicsException(`Invalid accordion item type '${ type }'!`);
+      throw new SchematicsException(`Invalid accordion item type '${ kind }'!`);
 
   }
 

@@ -10,7 +10,7 @@ import {
   NormalizedTableAccordionItem,
   NormalizeTableAccordionItem,
 } from '../../../../lib/accordion-item';
-import { AccordionItemTypes } from '../../../../lib/accordion-itme-types';
+import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
 import {
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -26,7 +26,7 @@ import {
 import { AccordionItemTableComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemTableComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList'>, Omit<NormalizedTableAccordionItem, 'type'> {
+  extends Omit<Readonly<Normalized<AccordionItemTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList'>, Omit<NormalizedTableAccordionItem, 'kind'> {
 }
 
 export function NormalizeAccordionItemTableComponentOptions(
@@ -37,7 +37,7 @@ export function NormalizeAccordionItemTableComponentOptions(
     ...normalizedAccordionItemComponentOptions,
     ...NormalizeTableAccordionItem({
       ...options,
-      type: AccordionItemTypes.Table,
+      kind: AccordionItemKinds.Table,
     }),
   });
 }

@@ -29,7 +29,7 @@ import {
   NormalizedTreeTableAccordionItem,
   NormalizeTreeTableAccordionItem,
 } from '../../../../lib/accordion-item';
-import { AccordionItemTypes } from '../../../../lib/accordion-itme-types';
+import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
 import {
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -45,7 +45,7 @@ import {
 import { AccordionItemTreeTableComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemTreeTableComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList'>, Omit<NormalizedTreeTableAccordionItem, 'type'> {
+  extends Omit<Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList'>, Omit<NormalizedTreeTableAccordionItem, 'kind'> {
 }
 
 export function NormalizeAccordionItemTreeTableComponentOptions(
@@ -56,7 +56,7 @@ export function NormalizeAccordionItemTreeTableComponentOptions(
     ...normalizedAccordionItemComponentOptions,
     ...NormalizeTreeTableAccordionItem({
       ...options,
-      type: AccordionItemTypes.TreeTable,
+      kind: AccordionItemKinds.TreeTable,
     }),
   });
 }
