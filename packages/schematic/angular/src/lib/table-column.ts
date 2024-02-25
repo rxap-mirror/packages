@@ -68,7 +68,7 @@ export interface TableColumn {
   show?: boolean;
   nowrap?: boolean;
   cssClass?: string;
-  role?: TableColumnKind;
+  kind?: TableColumnKind;
   template?: string;
   pipeList?: Array<TableColumnPipe | string>;
   importList?: TypeImport[];
@@ -83,7 +83,7 @@ export interface NormalizedTableColumn extends Omit<Readonly<Normalized<TableCol
   pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
   modifiers: TableColumnModifier[];
   importList: ReadonlyArray<NormalizedTypeImport>;
-  role: TableColumnKind;
+  kind: TableColumnKind;
   handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
 }
 
@@ -123,7 +123,7 @@ export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): Normal
 
 function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[] {
   const importList = column.importList ?? [];
-  switch (column.role) {
+  switch (column.kind) {
     case TableColumnKind.COMPONENT:
       CoerceArrayItems(importList, [
         {
@@ -174,7 +174,7 @@ function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[
       break;
   }
   if (column.hasFilter) {
-    switch (column.role) {
+    switch (column.kind) {
       case TableColumnKind.BOOLEAN:
         CoerceArrayItems(importList, [
           {
@@ -240,7 +240,7 @@ export function NormalizeTableColumn(
   let nowrap = false;
   let withoutTitle = false;
   let cssClass: string | null = null;
-  let role: string = TableColumnKind.DEFAULT;
+  let kind: string = TableColumnKind.DEFAULT;
   let template: string | null = null;
   let pipeList: Array<string | TableColumnPipe> = [];
   let importList: TypeImport[] = [];
@@ -257,8 +257,8 @@ export function NormalizeTableColumn(
   nowrap = column.nowrap ?? false;
   withoutTitle = column.withoutTitle ?? false;
   cssClass = column.cssClass ?? cssClass;
-  role = column.role ?? role;
-  template = column.template ?? role + '-table-column.hbs';
+  kind = column.kind ?? kind;
+  template = column.template ?? kind + '-table-column.hbs';
   pipeList = column.pipeList ?? pipeList;
   importList = coerceTableColumnImportList(column);
   const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
@@ -284,22 +284,23 @@ export function NormalizeTableColumn(
   hidden = modifiers.includes(TableColumnModifier.HIDDEN) || hidden;
   nowrap = modifiers.includes(TableColumnModifier.NOWRAP) || nowrap;
   withoutTitle = modifiers.includes(TableColumnModifier.WITHOUT_TITLE) || modifiers.includes(TableColumnModifier.NO_TITLE) || withoutTitle;
-  if (!type || type === 'unknown') {
-    switch (role) {
-      case 'date':
+  const autoType = type ? typeof type === 'string' ? type : type.name : null;
+  if (!autoType || autoType === 'unknown') {
+    switch (kind) {
+      case TableColumnKind.DATE:
         type = 'number | Date';
         break;
-      case 'link':
+      case TableColumnKind.LINK:
         type = 'string';
         break;
-      case 'icon':
+      case TableColumnKind.ICON:
         // TODO : use the IconConfig type
         type = {
           name: 'IconConfig',
           moduleSpecifier: '@rxap/utilities',
         };
         break;
-      case 'boolean':
+      case TableColumnKind.BOOLEAN:
         type = 'boolean';
         break;
     }
@@ -315,8 +316,8 @@ export function NormalizeTableColumn(
   if (!modifiers.every(IsTableColumnModifier)) {
     throw new Error(`Unknown modifier in column ${ name } - [ ${ modifiers.join(', ') } ]`);
   }
-  if (!IsTableColumnKind(role)) {
-    throw new Error(`Unknown role in column ${ name } - ${ role }`);
+  if (!IsTableColumnKind(kind)) {
+    throw new Error(`Unknown kind in column ${ name } - ${ kind }`);
   }
   let filterControl: BaseFormControl | null = column.filterControl ?? null;
   if (Object.keys(filterControl ?? {}).length === 0) {
@@ -329,7 +330,7 @@ export function NormalizeTableColumn(
     hasFilter = true;
   }
   return Object.freeze({
-    role,
+    kind,
     name,
     type: NormalizeTypeImport(type),
     modifiers,

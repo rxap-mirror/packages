@@ -20,6 +20,7 @@ import {
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import {
+  NormalizedDataProperty,
   RequiresTypeImport,
   TypeImportToImportStructure,
 } from '@rxap/ts-morph';
@@ -51,9 +52,9 @@ import {
 import { NormalizedTableAction } from './table-action';
 import {
   NormalizedTableColumn,
+  TableColumnKind,
   TableColumnModifier,
 } from './table-column';
-import { NormalizedDataProperty } from '@rxap/ts-morph';
 
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 
@@ -566,16 +567,16 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
     shared,
     directory,
   } = normalizedOptions;
-  if (columnList.some(c => c.role === 'component')) {
+  if (columnList.some(column => column.kind === TableColumnKind.COMPONENT)) {
 
     return chain([
       () => console.log(
         `Coerce the table cell components count: ${
-          columnList.filter((column) => column.role === 'component').length
+          columnList.filter((column) => column.kind === TableColumnKind.COMPONENT).length
         }`,
       ),
       ...columnList
-        .filter((column) => column.role === 'component')
+        .filter((column) => column.kind ===TableColumnKind.COMPONENT)
         .map((column) =>
           CoerceComponentRule({
             project,
