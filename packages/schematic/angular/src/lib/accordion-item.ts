@@ -133,7 +133,7 @@ export interface SwitchAccordionItem extends BaseAccordionItem {
   type: AccordionItemKinds.Switch;
   switch: {
     property: DataProperty;
-    case: Array<{
+    case?: Array<{
       test: string;
       itemList: Array<Omit<BaseAccordionItem, 'type'> & Partial<BaseAccordionItem>>
     }>;
@@ -203,7 +203,7 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
   const base = NormalizeBaseAccordionItem(item);
   const { name } = base;
   const { switch: switchOptions } = item;
-  const { property, case: caseList, defaultCase } = switchOptions;
+  const { property, case: caseList = [], defaultCase } = switchOptions;
   const normalizedProperty = NormalizeDataProperty(property, 'string');
   const normalizeSwitch = Object.freeze({
       property: normalizedProperty,
@@ -221,6 +221,11 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
         }) as BaseAccordionItem)),
       } : null,
     });
+  if (normalizeSwitch.case.length === 0 && !normalizeSwitch.defaultCase) {
+    throw new SchematicsException(
+      `The switch '${ name }' has no cases or default case. At least one case or default case is required.`,
+    );
+  }
   const importList: TypeImport[] = item.importList ?? [];
   const itemList = flattenItemListFromSwitch(normalizeSwitch);
   for (const innerItem of itemList) {

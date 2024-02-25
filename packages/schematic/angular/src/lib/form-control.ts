@@ -2,6 +2,7 @@ import { camelize } from '@rxap/schematics-utilities';
 import {
   DataProperty,
   NormalizeDataProperty,
+  NormalizeDataPropertyList,
   NormalizedDataProperty,
   NormalizedTypeImport,
   NormalizeTypeImport,
@@ -473,17 +474,19 @@ export interface TableSelectFormControl extends BaseFormControl {
   backend?: BackendTypes;
   formField?: FormField;
   title?: string;
+  propertyList?: DataProperty[];
   columnList?: TableSelectColumn[];
   toDisplay?: TableSelectToFunction;
   toValue?: TableSelectToFunction;
 }
 
 export interface NormalizedTableSelectFormControl
-  extends Readonly<Normalized<Omit<TableSelectFormControl, 'type' | 'importList' | 'columnList'>>>,
+  extends Readonly<Normalized<Omit<TableSelectFormControl, 'type' | 'importList' | 'columnList' | 'propertyList'>>>,
           NormalizedBaseFormControl {
   kind: FormControlKinds.TABLE_SELECT;
   backend: BackendTypes;
   columnList: NormalizedTableSelectColumn[];
+  propertyList: ReadonlyArray<NormalizedDataProperty>;
   toDisplay: NormalizedTableSelectToFunction;
   toValue: NormalizedTableSelectToFunction;
 }
@@ -503,6 +506,10 @@ export function NormalizeTableSelectFormControl(
   if (!control.columnList?.length) {
     throw new Error('The column list must not be empty');
   }
+  const propertyList = control.propertyList ?? [];
+  const toDisplay = NormalizeTableSelectToFunction(control.toDisplay, control.columnList);
+  const toValue = NormalizeTableSelectToFunction(control.toValue, control.columnList);
+  CoerceArrayItems(propertyList, [toDisplay.property, toValue.property], (a, b) => a.name === b.name);
   const formField = NormalizeFormField(
     control.formField ?? {},
     importList,
@@ -525,8 +532,9 @@ export function NormalizeTableSelectFormControl(
     backend: control.backend ?? BackendTypes.NONE,
     title: control.title ?? null,
     columnList: control.columnList.map(NormalizeTableSelectColumn),
-    toDisplay: NormalizeTableSelectToFunction(control.toDisplay, control.columnList),
-    toValue: NormalizeTableSelectToFunction(control.toValue, control.columnList),
+    toDisplay,
+    toValue,
+    propertyList: NormalizeDataPropertyList(propertyList),
   });
 }
 

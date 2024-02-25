@@ -104,7 +104,7 @@ export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
     });
   }
   for (const property of propertyList) {
-    if (!list.find((p) => p.source === property.name)) {
+    if (!list.find((p) => p.source === property.name) && !list.find(p => p.name === property.name)) {
       list.push({
         name: property.name,
         type: property.type,

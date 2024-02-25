@@ -18,7 +18,7 @@
   },
   "definitions": {
     "button": {
-      "$ref": "./form-field-button.schema.json"
+      "$ref": "./button.schema.json"
     }
   }
 }

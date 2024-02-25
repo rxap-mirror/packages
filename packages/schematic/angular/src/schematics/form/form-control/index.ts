@@ -57,6 +57,12 @@ function formControlKind(normalizedOptions: NormalizedFormControlOptions): Rule 
     case FormControlKinds.SELECT:
       return ExecuteSchematic('select-form-control', normalizedOptions);
 
+    case FormControlKinds.TABLE_SELECT:
+      return ExecuteSchematic('table-select-form-control', normalizedOptions);
+
+    default:
+      return () => console.log(`No schematic for form control kind: ${normalizedOptions.kind}`.yellow);
+
   }
 
   return noop();

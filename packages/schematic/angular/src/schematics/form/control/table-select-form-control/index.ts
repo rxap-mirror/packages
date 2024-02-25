@@ -44,7 +44,7 @@ import {
 } from '../../form-control';
 import { TableSelectFormControlOptions } from './schema';
 
-export type NormalizedTableSelectFormControlOptions = Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList'>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl>
+export type NormalizedTableSelectFormControlOptions = Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList' | 'propertyList'>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl>
 
 export function NormalizeTableSelectFormControlOptions(
   options: TableSelectFormControlOptions,
@@ -110,6 +110,7 @@ export default function (options: TableSelectFormControlOptions) {
     scope,
     toDisplay,
     toValue,
+    propertyList,
   } = normalizedOptions;
   printOptions(normalizedOptions);
 
@@ -165,7 +166,7 @@ export default function (options: TableSelectFormControlOptions) {
         feature,
         nestModule,
         controllerName,
-        propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList),
+        propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
         operationName: optionsOperationName,
         path: optionsOperationPath,
         skipCoerceTableSuffix: true,

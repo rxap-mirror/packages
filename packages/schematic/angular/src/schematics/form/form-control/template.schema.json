@@ -29,6 +29,9 @@
     },
     "property": {
       "$ref": "../../property.schema.json"
+    },
+    "button": {
+      "$ref": "../../button.schema.json"
     }
   }
 }

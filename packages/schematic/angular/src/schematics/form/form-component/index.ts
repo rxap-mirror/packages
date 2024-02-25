@@ -131,6 +131,9 @@ function formDefinitionRule(normalizedOptions: NormalizedFormComponentOptions): 
     directory,
     controlList,
     overwrite,
+    backend,
+    nestModule,
+    controllerName,
   } = normalizedOptions;
   return chain([
     () => console.log(`Coerce form definition files`),
@@ -141,6 +144,9 @@ function formDefinitionRule(normalizedOptions: NormalizedFormComponentOptions): 
       feature,
       controlList,
       overwrite,
+      backend,
+      nestModule,
+      controllerName,
     }),
   ]);
 }

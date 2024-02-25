@@ -49,6 +49,7 @@
         "select",
         "checkbox",
         "autocomplete-table-select",
+        "table-select",
         "textarea",
         "slide-toggle"
       ],

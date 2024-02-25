@@ -33,6 +33,7 @@ import {
   classify,
   CoerceSuffix,
   dasherize,
+  ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import {
   CoerceComponentImport,
@@ -66,6 +67,9 @@ import { DataGridComponentOptions } from './schema';
 
 export interface NormalizedDataGridComponentOptions
   extends Omit<Readonly<Normalized<DataGridComponentOptions> & NormalizedAngularOptions & NormalizedDataGridOptions>, 'itemList'> {
+  /**
+   * @deprecated
+   */
   nestController: string;
   dataSourceClassName: string;
   dataSourceFileName: string;
@@ -466,16 +470,23 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
     dataSourceFileName,
     componentName,
     overwrite,
+    backend,
+    nestModule,
+    controllerName,
   } = normalizedOptions;
 
   return chain([
     () => console.log('Coerce form definition ...'),
-    CoerceFormDefinition({
+    ExecuteSchematic('form-definition', {
       name,
       project,
-      feature,
       directory,
+      feature,
       controlList: itemList,
+      overwrite,
+      backend,
+      nestModule,
+      controllerName,
     }),
     () => console.log('Coerce form providers ...'),
     CoerceFormProvidersFile({
