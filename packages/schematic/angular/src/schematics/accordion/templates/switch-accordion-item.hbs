@@ -1,20 +1,20 @@
 
-<ng-container [ngSwitch]="accordion.{{item.switch.property.name}}">
+<ng-container [ngSwitch]="data.{{item.switch.property.name}}">
   {{#each item.switch.case}}
   <ng-template [ngSwitchCase]="{{this.test}}">
   {{#each this.itemList}}
-  {{#if this.permission}}<ng-template rxapIfHasPermission="<%= item.permission %>">{{/if}}
+  {{#if this.permission}}<ng-template rxapIfHasPermission="{{item.permission}}">{{/if~}}
   {{ indent (compile this.handlebars item=this prefix=../../prefix) 2 }}
-  {{#if this.permission}}</ng-template>{{/if}}
+  {{#if this.permission}}</ng-template>{{/if~}}
   {{/each}}
   </ng-template>
   {{/each}}
   {{#if item.switch.defaultCase}}
   <ng-template ngSwitchDefault>
   {{#each item.switch.defaultCase.itemList}}
-  {{#if this.permission}}<ng-template rxapIfHasPermission="<%= item.permission %>">{{/if}}
+  {{#if this.permission}}<ng-template rxapIfHasPermission="{{item.permission}}">{{/if~}}
   {{ indent (compile this.handlebars item=this prefix=../prefix) 2 }}
-  {{#if this.permission}}</ng-template>{{/if}}
+  {{#if this.permission}}</ng-template>{{/if~}}
   {{/each}}
   </ng-template>
   {{/if}}

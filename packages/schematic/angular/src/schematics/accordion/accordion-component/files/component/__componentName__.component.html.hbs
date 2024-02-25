@@ -4,7 +4,6 @@
 <div *rxapDataSource="let data from accordionDataSource; errorTemplate: errorTemplate" class="flex flex-col gap-y-6">
   {{#if header}}
   {{ indent (compile header.handlebars header=header) 2 }}
-  <{{prefix}}-accordion-header [data]="accordion"></{{prefix}}-accordion-header>
   <ng-template #divider>
     <mat-divider></mat-divider>
   </ng-template>
