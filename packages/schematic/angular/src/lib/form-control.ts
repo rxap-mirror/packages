@@ -22,6 +22,7 @@ export enum FormControlKinds {
   INPUT = 'input',
   SELECT = 'select',
   CHECKBOX = 'checkbox',
+  SLIDE_TOGGLE = 'slide-toggle',
 }
 
 export interface BaseFormControl {
@@ -318,6 +319,32 @@ export function IsNormalizedCheckboxFormControl(template: NormalizedBaseFormCont
 export function NormalizeCheckboxFormControl(
   control: CheckboxFormControl,
 ): NormalizedCheckboxFormControl {
+  return Object.freeze({
+    ...NormalizeBaseFormControl(control),
+    kind: FormControlKinds.CHECKBOX,
+    labelPosition: control.labelPosition ?? 'after',
+  });
+}
+
+// endregion
+
+// region SlideToggleFormControl
+
+export interface SlideToggleFormControl extends BaseFormControl {
+  labelPosition?: 'before' | 'after'
+}
+
+export interface NormalizedSlideToggleFormControl extends Readonly<Normalized<Omit<SlideToggleFormControl, 'type' | 'importList'>>>, NormalizedBaseFormControl {
+  kind: FormControlKinds.CHECKBOX;
+}
+
+export function IsNormalizedSlideToggleFormControl(template: NormalizedBaseFormControl): template is NormalizedSlideToggleFormControl {
+  return template.kind === FormControlKinds.CHECKBOX;
+}
+
+export function NormalizeSlideToggleFormControl(
+  control: SlideToggleFormControl,
+): NormalizedSlideToggleFormControl {
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
     kind: FormControlKinds.CHECKBOX,
