@@ -29,7 +29,7 @@ export function CoerceComponentImport(
   const classDeclaration = sourceFileOrClassDeclaration instanceof ClassDeclaration ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
   const sourceFile = sourceFileOrClassDeclaration instanceof SourceFile ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
 
-  const importName = typeof componentImport === 'string' ? componentImport : componentImport.name;
+  const importName = typeof componentImport === 'string' ? componentImport : componentImport.namedImport ?? componentImport.name;
 
   if (IsTypeImport(componentImport)) {
     CoerceImports(sourceFile, TypeImportToImportStructure(componentImport));
