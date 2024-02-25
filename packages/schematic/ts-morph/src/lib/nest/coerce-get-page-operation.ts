@@ -30,6 +30,7 @@ import {
 import { CoercePageDtoClass } from './coerce-page-dto-class';
 import { CoerceRowDtoClass } from './coerce-row-dto-class';
 import { DtoClassProperty } from './create-dto-class';
+import { TABLE_QUERY_LIST } from './table-query-list';
 
 export interface GetPageOperationProperty {
   name: string;
@@ -396,35 +397,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       });
 
       return {
-        queryList: [
-          {
-            name: 'pageIndex',
-            type: 'number',
-            defaultValue: '0',
-          },
-          {
-            name: 'pageSize',
-            type: 'number',
-            defaultValue: '5',
-          },
-          {
-            name: 'sortDirection',
-            type: 'string',
-            defaultValue: w => w.quote('desc'),
-          },
-          {
-            name: 'sortBy',
-            type: 'string',
-            defaultValue: w => w.quote('__updatedAt'),
-          },
-          {
-            name: 'filter',
-            type: 'FilterQuery[]',
-            pipeList: [ 'new FilterQueryPipe()' ],
-            // the FilterQueryPipe will set the default value to an empty array
-            hasQuestionToken: false,
-          },
-        ],
+        queryList: TABLE_QUERY_LIST,
         returnType: pageClassName,
         statements: [
           'const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);',

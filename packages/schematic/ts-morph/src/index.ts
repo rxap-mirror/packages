@@ -59,6 +59,7 @@ export * from './lib/nest/operation-id-utilities';
 export * from './lib/nest/project-utilities';
 export * from './lib/nest/remove-nest-module-provider';
 export * from './lib/nest/remove-nest-provider-to-array';
+export * from './lib/nest/table-query-list';
 // endregion
 
 // region angular

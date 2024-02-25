@@ -51,7 +51,7 @@ export function CoerceTableDataSourceRule(options: Readonly<CoerceTableDataSourc
 
       constructorDeclaration.set({
         statements: [
-          'super(new GetPageAdapterRemoteMethod(getByFilter));',
+          'super(new GetPageAdapterRemoteMethod(getByFilter as any));',
         ],
       });
 

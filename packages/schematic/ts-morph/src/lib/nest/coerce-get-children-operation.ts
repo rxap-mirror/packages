@@ -13,6 +13,7 @@ import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
+import { TABLE_QUERY_LIST } from './table-query-list';
 
 export type CoerceGetChildrenOperationOptions = CoerceGetRootOperationOptions
 
@@ -65,11 +66,7 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
 
       CoerceImports(sourceFile, [
         {
-          namedImports: [ 'plainToInstance' ],
-          moduleSpecifier: 'class-transformer',
-        },
-        {
-          namedImports: [ 'classTransformOptions' ],
+          namedImports: [ 'FilterQuery', 'FilterQueryPipe' ],
           moduleSpecifier: '@rxap/nest-utilities',
         },
         {
@@ -79,6 +76,7 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
       ]);
 
       return {
+        queryList: TABLE_QUERY_LIST,
         returnType: className + '[]',
         ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName),
       };

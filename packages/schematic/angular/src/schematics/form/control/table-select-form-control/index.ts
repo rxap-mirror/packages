@@ -115,8 +115,8 @@ export default function (options: TableSelectFormControlOptions) {
   } = normalizedOptions;
   printOptions(normalizedOptions);
 
-  const optionsOperationName = [ 'get', name, 'option', 'page' ].join('-');
-  const optionsOperationPath = [ 'options', name, 'page' ].join('/');
+  const optionsOperationName = [ 'get', name, 'control', 'table-select', 'page' ].join('-');
+  const optionsOperationPath = [ 'control', name, 'table-select', 'page' ].join('/');
   const optionsOperationId = buildOperationId(
     normalizedOptions,
     optionsOperationName,

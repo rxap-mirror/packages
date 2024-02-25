@@ -1,4 +1,5 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoerceArrayItems } from '@rxap/utilities';
 import { basename } from 'path';
 import {
   ClassDeclarationStructure,
@@ -32,25 +33,53 @@ export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
   importStructureList ??= [];
   importStructureList.push(
     {
-      namedImports: [ 'PageDto' ],
-      moduleSpecifier: '@rxap/nest-dto',
-    },
-    {
       namedImports: [ rowClassName ],
       moduleSpecifier: `./${ basename(rowFilePath) }`,
     },
+    {
+      namedImports: [ 'FilterQueryDto' ],
+      moduleSpecifier: '@rxap/nest-dto',
+    }
   );
   classStructure ??= {};
-  classStructure.extends = `PageDto<${ rowClassName }>`;
-  propertyList ??= [
+  propertyList ??= [];
+  CoerceArrayItems(propertyList, [
     {
       name: 'rows',
       type: rowClassName,
       isArray: true,
       isType: true,
     },
-  ];
-  propertyList.push();
+    {
+      name: 'pageSize',
+      type: 'number',
+    },
+    {
+      name: 'pageIndex',
+      type: 'number',
+    },
+    {
+      name: 'total',
+      type: 'number',
+    },
+    {
+      name: 'sortDirection',
+      type: 'string',
+      isOptional: true,
+    },
+    {
+      name: 'sortBy',
+      type: 'string',
+      isOptional: true,
+    },
+    {
+      name: 'filter',
+      type: 'FilterQueryDto',
+      isArray: true,
+      isType: true,
+      isOptional: true,
+    }
+  ]);
   return CoerceDtoClass({
     project,
     name: CoerceSuffix(name, '-page'),

@@ -13,6 +13,7 @@ import {
   CoerceOperationOptions,
 } from './coerce-operation';
 import { DtoClassProperty } from './create-dto-class';
+import { TABLE_QUERY_LIST } from './table-query-list';
 
 export interface CoerceGetRootOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   propertyList?: DtoClassProperty[],
@@ -60,11 +61,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
 
       CoerceImports(sourceFile, [
         {
-          namedImports: [ 'plainToInstance' ],
-          moduleSpecifier: 'class-transformer',
-        },
-        {
-          namedImports: [ 'classTransformOptions' ],
+          namedImports: [ 'FilterQuery', 'FilterQueryPipe' ],
           moduleSpecifier: '@rxap/nest-utilities',
         },
         {
@@ -74,6 +71,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
       ]);
 
       return {
+        queryList: TABLE_QUERY_LIST,
         returnType: className + '[]',
         ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName),
       };
