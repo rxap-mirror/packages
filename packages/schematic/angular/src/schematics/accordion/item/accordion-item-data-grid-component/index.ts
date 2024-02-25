@@ -92,6 +92,7 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
     shared,
     backend,
     dataGrid,
+    controllerName,
   } = normalizedOptions;
   const {
     hasSharedModifier,
@@ -113,7 +114,7 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
       shared: hasSharedModifier,
       name: name,
       nestModule: hasSharedModifier ? undefined : nestModule,
-      nestController: name,
+      controllerName,
       directory: hasSharedModifier ? undefined : directory,
       collection: hasCollectionModifier || (dataGrid?.collection ?? false),
       mode: hasEditModifier ? 'form' : (dataGrid?.mode ?? 'plain'),

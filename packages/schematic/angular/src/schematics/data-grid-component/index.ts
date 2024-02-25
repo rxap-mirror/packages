@@ -67,10 +67,6 @@ import { DataGridComponentOptions } from './schema';
 
 export interface NormalizedDataGridComponentOptions
   extends Omit<Readonly<Normalized<DataGridComponentOptions> & NormalizedAngularOptions & NormalizedDataGridOptions>, 'itemList'> {
-  /**
-   * @deprecated
-   */
-  nestController: string;
   dataSourceClassName: string;
   dataSourceFileName: string;
   componentName: string;
@@ -94,7 +90,6 @@ export function NormalizeDataGridComponentOptions(
     ...normalizedDataGridOptions,
     directory: join(directory ?? '', componentName),
     componentName,
-    nestController: componentName,
     dataSourceClassName: CoerceSuffix(classify(name), 'DataGridDataSource'),
     dataSourceFileName: CoerceSuffix(name, '-data-grid.data-source'),
   });

@@ -125,20 +125,20 @@ export default function (options: TableSelectFormControlOptions) {
     }),
   );
 
-  const resolveValueOperationName = [ 'resolve', name, 'option', 'value' ].join(
-    '-',
-  );
-  const resolveValueOperationPath = [ 'options', name, 'resolve', ':value' ].join(
-    '/',
-  );
-  const resolveValueOperationId = buildOperationId(
-    normalizedOptions,
-    resolveValueOperationName,
-    BuildNestControllerName({
-      controllerName,
-      nestModule,
-    }),
-  );
+  // const resolveValueOperationName = [ 'resolve', name, 'option', 'value' ].join(
+  //   '-',
+  // );
+  // const resolveValueOperationPath = [ 'options', name, 'resolve', ':value' ].join(
+  //   '/',
+  // );
+  // const resolveValueOperationId = buildOperationId(
+  //   normalizedOptions,
+  //   resolveValueOperationName,
+  //   BuildNestControllerName({
+  //     controllerName,
+  //     nestModule,
+  //   }),
+  // );
 
   const tableDataSourceName = classify(
     [ name, 'select-table', 'data-source' ].join('-'),
@@ -148,13 +148,13 @@ export default function (options: TableSelectFormControlOptions) {
   ) }-select-table.data-source`;
   const tableDataSourceDirectory = join(directory ?? '', 'data-sources');
 
-  const resolveValueMethodName = classify(
-    [ dasherize(name), 'table-select', 'value', 'resolver', 'method' ].join('-'),
-  );
-  const resolveValueMethodImportPath = `./methods/${ dasherize(
-    name,
-  ) }-table-select-value-resolver.method`;
-  const resolveValueMethodDirectory = join(directory ?? '', 'methods');
+  // const resolveValueMethodName = classify(
+  //   [ dasherize(name), 'table-select', 'value', 'resolver', 'method' ].join('-'),
+  // );
+  // const resolveValueMethodImportPath = `./methods/${ dasherize(
+  //   name,
+  // ) }-table-select-value-resolver.method`;
+  // const resolveValueMethodDirectory = join(directory ?? '', 'methods');
 
   const tableResponseDtoName = joinWithDash([ context, name, 'table-select' ]);
 
@@ -173,16 +173,16 @@ export default function (options: TableSelectFormControlOptions) {
         responseDtoName: tableResponseDtoName,
         context,
       }),
-      CoerceTableSelectValueResolveOperationRule({
-        project,
-        feature,
-        nestModule,
-        controllerName,
-        operationName: resolveValueOperationName,
-        path: resolveValueOperationPath,
-        responseDtoName: tableResponseDtoName,
-        context,
-      }),
+      // CoerceTableSelectValueResolveOperationRule({
+      //   project,
+      //   feature,
+      //   nestModule,
+      //   controllerName,
+      //   operationName: resolveValueOperationName,
+      //   path: resolveValueOperationPath,
+      //   responseDtoName: tableResponseDtoName,
+      //   context,
+      // }),
       CoerceFormProviderRule({
         project,
         feature,
@@ -195,18 +195,18 @@ export default function (options: TableSelectFormControlOptions) {
           },
         ],
       }),
-      CoerceFormProviderRule({
-        project,
-        feature,
-        directory,
-        providerObject: resolveValueMethodName,
-        importStructures: [
-          {
-            namedImports: [ resolveValueMethodName ],
-            moduleSpecifier: resolveValueMethodImportPath,
-          },
-        ],
-      }),
+      // CoerceFormProviderRule({
+      //   project,
+      //   feature,
+      //   directory,
+      //   providerObject: resolveValueMethodName,
+      //   importStructures: [
+      //     {
+      //       namedImports: [ resolveValueMethodName ],
+      //       moduleSpecifier: resolveValueMethodImportPath,
+      //     },
+      //   ],
+      // }),
       CoerceTableDataSourceRule({
         scope,
         project,
@@ -216,15 +216,15 @@ export default function (options: TableSelectFormControlOptions) {
         name: [ name, 'select-table' ].join('-'),
         operationId: optionsOperationId,
       }),
-      CoerceTableSelectResolveValueMethodRule({
-        scope,
-        project,
-        feature,
-        directory: resolveValueMethodDirectory,
-        shared,
-        name: [ name, 'table-select', 'value', 'resolver' ].join('-'),
-        operationId: resolveValueOperationId,
-      }),
+      // CoerceTableSelectResolveValueMethodRule({
+      //   scope,
+      //   project,
+      //   feature,
+      //   directory: resolveValueMethodDirectory,
+      //   shared,
+      //   name: [ name, 'table-select', 'value', 'resolver' ].join('-'),
+      //   operationId: resolveValueOperationId,
+      // }),
       CoerceFormDefinitionControl({
         project,
         feature,
@@ -260,13 +260,13 @@ export default function (options: TableSelectFormControlOptions) {
             namedImports: [ tableDataSourceName ],
             moduleSpecifier: tableDataSourceImportPath,
           });
-          CoerceDecorator(propertyDeclaration, 'UseTableSelectMethod').set({
-            arguments: [ resolveValueMethodName ],
-          });
-          CoerceImports(sourceFile, {
-            namedImports: [ resolveValueMethodName ],
-            moduleSpecifier: resolveValueMethodImportPath,
-          });
+          // CoerceDecorator(propertyDeclaration, 'UseTableSelectMethod').set({
+          //   arguments: [ resolveValueMethodName ],
+          // });
+          // CoerceImports(sourceFile, {
+          //   namedImports: [ resolveValueMethodName ],
+          //   moduleSpecifier: resolveValueMethodImportPath,
+          // });
           CoerceDecorator(propertyDeclaration, 'UseTableSelectColumns').set({
             arguments: [ TableColumnListToTableSelectColumnMap(columnList) ],
           });
@@ -274,7 +274,7 @@ export default function (options: TableSelectFormControlOptions) {
             namedImports: [
               'UseTableSelectDataSource',
               'UseTableSelectColumns',
-              'UseTableSelectMethod',
+              // 'UseTableSelectMethod',
               'UseTableSelectToDisplay',
               'UseTableSelectToValue'
             ],

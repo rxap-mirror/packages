@@ -240,7 +240,7 @@ export function CoerceGetPageDataMethod(
       },
     ],
     statements: [
-      `const response = await ((() => { throw new NotImplementedException() })() as any).execute({
+      `const response = await ((() => { throw new NotImplementedException(); })() as any).execute({
       parameters: {
         page: pageIndex,
         size: pageSize,
