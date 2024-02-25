@@ -9,7 +9,7 @@
     "type": {
       "$ref": "#/definitions/type"
     },
-    "role": {
+    "kind": {
       "type": "string"
     },
     "modifiers": {

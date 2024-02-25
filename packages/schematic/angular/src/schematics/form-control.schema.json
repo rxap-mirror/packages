@@ -46,7 +46,11 @@
       "enum": [
         "default",
         "input",
-        "select"
+        "select",
+        "checkbox",
+        "autocomplete-table-select",
+        "textarea",
+        "slide-toggle"
       ],
       "default": "default"
     }

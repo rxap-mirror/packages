@@ -3,7 +3,7 @@
   "$id": "accordion-item",
   "type": "object",
   "properties": {
-    "type": {
+    "kind": {
       "type": "string",
       "enum": [
         "default",
