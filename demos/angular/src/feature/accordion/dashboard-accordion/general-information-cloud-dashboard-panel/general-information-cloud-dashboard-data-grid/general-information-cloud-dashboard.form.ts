@@ -7,7 +7,7 @@ import { DashboardAccordionGeneralInformationCloudDashboardDataGridControllerGet
 export class GeneralInformationCloudDashboardForm implements FormType<IGeneralInformationCloudDashboardForm> {
   public readonly rxapFormGroup!: RxapFormGroup<IGeneralInformationCloudDashboardForm>;
   @UseFormControl()
-  public readonly name!: RxapFormControl<unknown>;
+  public readonly name!: RxapFormControl<string>;
   @UseFormControl()
   public readonly company!: RxapFormControl<string>;
   @UseFormControl()

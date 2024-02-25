@@ -1,118 +1,82 @@
 <ng-template #errorTemplate let-error let-refresh="refresh">
   <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
 </ng-template>
-<div *rxapDataSource="let accordion from accordionDataSource; errorTemplate: errorTemplate" class="flex flex-col gap-y-6">
-  <rxap-accordion-header [data]="accordion"></rxap-accordion-header>
+<div *rxapDataSource="let data from accordionDataSource; errorTemplate: errorTemplate" class="flex flex-col gap-y-6">
+  <rxap-navigate-back-button>
+    <ng-container>
+    <h1>{{ data.name }}</h1></ng-container>
+  </rxap-navigate-back-button>
+  
   <ng-template #divider>
     <mat-divider></mat-divider>
   </ng-template>
   <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
-  
-  <mat-accordion
+  <mat-accordion multi [rxapPersistentAccordion]="data.uuid">
     
-    [rxapPersistentAccordion]="accordion.uuid"
-    multi
-    >
-    
-    
-    
-    
-    <ng-container [ngSwitch]="accordion.dashboardType">
-      
-      
+    <ng-container [ngSwitch]="data.dashboardType">
       <ng-template [ngSwitchCase]="2">
       
-        
-          
-          <mat-expansion-panel>
-
-            <mat-expansion-panel-header>
-              <mat-panel-title i18n>Allgemeine Informationen</mat-panel-title>
-              
-            </mat-expansion-panel-header>
-
-            <ng-template matExpansionPanelContent>
-              <rxap-general-information-cloud-dashboard-panel></rxap-general-information-cloud-dashboard-panel>
-            </ng-template>
-
-          </mat-expansion-panel>
-          
-        
-      </ng-template>
+      <mat-expansion-panel>
       
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n>Allgemeine Informationen</mat-panel-title>
+        </mat-expansion-panel-header>
       
+        <ng-template matExpansionPanelContent>
+          <rxap-general-information-cloud-dashboard-panel></rxap-general-information-cloud-dashboard-panel>
+        </ng-template>
+      
+      </mat-expansion-panel>
+      
+        </ng-template>
       <ng-template ngSwitchDefault>
       
-        
-        <mat-expansion-panel>
-
-          <mat-expansion-panel-header>
-            <mat-panel-title i18n>Allgemeine Informationen</mat-panel-title>
-            
-          </mat-expansion-panel-header>
-
-          <ng-template matExpansionPanelContent>
-            <rxap-general-information-dashboard-panel></rxap-general-information-dashboard-panel>
-          </ng-template>
-
-        </mat-expansion-panel>
-        
+      <mat-expansion-panel>
       
-      </ng-template>
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n>Allgemeine Informationen</mat-panel-title>
+        </mat-expansion-panel-header>
       
+        <ng-template matExpansionPanelContent>
+          <rxap-general-information-dashboard-panel></rxap-general-information-dashboard-panel>
+        </ng-template>
+      
+      </mat-expansion-panel>
+      
+        </ng-template>
     </ng-container>
     
-    
-    
-    
-    
-    <ng-template rxapIfHasPermission="dashboard.layout.get">
-    <ng-container [ngSwitch]="accordion.dashboardType">
-      
-      
+        <ng-template rxapIfHasPermission="dashboard.layout.get">
+    <ng-container [ngSwitch]="data.dashboardType">
       <ng-template [ngSwitchCase]="2">
       
-        
-          
-          <mat-expansion-panel>
-
-            <mat-expansion-panel-header>
-              <mat-panel-title i18n>Layouts</mat-panel-title>
-              
-            </mat-expansion-panel-header>
-
-            <ng-template matExpansionPanelContent>
-              <rxap-layout-cloud-dashboard-panel></rxap-layout-cloud-dashboard-panel>
-            </ng-template>
-
-          </mat-expansion-panel>
-          
-        
-      </ng-template>
+      <mat-expansion-panel>
       
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n>Layouts</mat-panel-title>
+        </mat-expansion-panel-header>
       
+        <ng-template matExpansionPanelContent>
+          <rxap-layout-cloud-dashboard-panel></rxap-layout-cloud-dashboard-panel>
+        </ng-template>
+      
+      </mat-expansion-panel>
+      
+        </ng-template>
     </ng-container>
-    </ng-template>
     
-    
-    
-    
-    
+    </ng-template>    
     <mat-expansion-panel>
-
+    
       <mat-expansion-panel-header>
         <mat-panel-title i18n>Zuordnung</mat-panel-title>
-        
       </mat-expansion-panel-header>
-
+    
       <ng-template matExpansionPanelContent>
         <rxap-reference-panel></rxap-reference-panel>
       </ng-template>
-
+    
     </mat-expansion-panel>
     
-    
-    
-    <!-- NEXT_INDEX[3] -->
-  </mat-accordion>
+      </mat-accordion>
 </div>

@@ -7,7 +7,7 @@ import { OpenApiOperationCommandWithoutParameters } from '@rxap/nest-open-api';
 @OperationCommand({
     serverId: 'service-app-angular-accordion',
     operationId: 'DashboardAccordionGeneralInformationCloudDashboardDataGridController_get',
-    operation: '{"operationId":"DashboardAccordionGeneralInformationCloudDashboardDataGridController_get","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"unknown"},"company":{"type":"string"},"dashboardType":{"type":"number"}},"required":["name","company","dashboardType"]}}}}},"method":"get","path":"/dashboard-accordion/{uuid}/general-information-cloud-dashboard-data-grid"}'
+    operation: '{"operationId":"DashboardAccordionGeneralInformationCloudDashboardDataGridController_get","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"company":{"type":"string"},"dashboardType":{"type":"number"}},"required":["name","company","dashboardType"]}}}}},"method":"get","path":"/dashboard-accordion/{uuid}/general-information-cloud-dashboard-data-grid"}'
   })
 export class DashboardAccordionGeneralInformationCloudDashboardDataGridControllerGetCommand extends OpenApiOperationCommand<DashboardAccordionGeneralInformationCloudDashboardDataGridControllerGetResponse, void, void> {
   public override execute(parameters: OpenApiOperationCommandWithoutParameters = {}): Promise<DashboardAccordionGeneralInformationCloudDashboardDataGridControllerGetResponse> {

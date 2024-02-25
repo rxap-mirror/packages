@@ -4,7 +4,6 @@ import { DataSourceDirective } from '@rxap/data-source/directive';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
-import { AccordionHeaderComponent } from './accordion-header/accordion-header.component';
 import { IfHasPermissionDirective } from '@rxap/authorization';
 import { PersistentAccordionDirective } from '@rxap/material-directives/expansion';
 import { GeneralInformationCloudDashboardPanelComponent } from './general-information-cloud-dashboard-panel/general-information-cloud-dashboard-panel.component';
@@ -14,6 +13,7 @@ import { LayoutCloudDashboardPanelComponent } from './layout-cloud-dashboard-pan
 import { ReferencePanelComponent } from './reference-panel/reference-panel.component';
 import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
 import { DashboardAccordionDataSource } from './dashboard-accordion.data-source';
+import { NavigateBackButtonComponent } from '@rxap/components';
 
 @Component({
     standalone: true,
@@ -21,7 +21,7 @@ import { DashboardAccordionDataSource } from './dashboard-accordion.data-source'
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './dashboard-accordion.component.html',
     styleUrls: ['./dashboard-accordion.component.scss'],
-  imports: [DataSourceErrorComponent, DataSourceDirective, MatProgressBarModule, MatExpansionModule, MatDividerModule, AccordionHeaderComponent, IfHasPermissionDirective, PersistentAccordionDirective, GeneralInformationCloudDashboardPanelComponent, GeneralInformationDashboardPanelComponent, NgSwitch, LayoutCloudDashboardPanelComponent, ReferencePanelComponent],
+  imports: [DataSourceErrorComponent, DataSourceDirective, MatProgressBarModule, MatExpansionModule, MatDividerModule, IfHasPermissionDirective, PersistentAccordionDirective, GeneralInformationCloudDashboardPanelComponent, GeneralInformationDashboardPanelComponent, NgSwitch, LayoutCloudDashboardPanelComponent, ReferencePanelComponent, NavigateBackButtonComponent],
   providers: [DashboardAccordionDataSource, {
       provide: ACCORDION_DATA_SOURCE,
       useExisting: DashboardAccordionDataSource

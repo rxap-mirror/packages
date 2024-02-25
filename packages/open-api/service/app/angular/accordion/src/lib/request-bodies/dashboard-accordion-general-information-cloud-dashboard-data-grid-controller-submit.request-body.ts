@@ -1,5 +1,5 @@
 export interface DashboardAccordionGeneralInformationCloudDashboardDataGridControllerSubmitRequestBody {
-  name: unknown;
+  name: string;
   company: string;
   dashboardType: number;
 }

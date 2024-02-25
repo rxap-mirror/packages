@@ -7,7 +7,7 @@ import { DashboardAccordionGeneralInformationDashboardDataGridControllerGetRespo
 export class GeneralInformationDashboardForm implements FormType<IGeneralInformationDashboardForm> {
   public readonly rxapFormGroup!: RxapFormGroup<IGeneralInformationDashboardForm>;
   @UseFormControl()
-  public readonly name!: RxapFormControl<unknown>;
+  public readonly name!: RxapFormControl<string>;
   @UseFormControl()
   public readonly location!: RxapFormControl<unknown>;
   @UseFormControl({

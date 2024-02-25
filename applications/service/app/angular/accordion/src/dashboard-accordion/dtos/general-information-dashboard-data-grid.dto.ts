@@ -1,13 +1,11 @@
 import { Expose } from 'class-transformer';
-import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNumber } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class GeneralInformationDashboardDataGridDto {
   @Expose()
-  @ApiProperty({
-        type: 'unknown'
-      })
-  name!: unknown;
+  @IsString()
+  name!: string;
   @Expose()
   @ApiProperty({
         type: 'unknown'

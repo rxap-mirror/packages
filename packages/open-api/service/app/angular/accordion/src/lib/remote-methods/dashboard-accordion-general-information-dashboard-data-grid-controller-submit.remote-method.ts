@@ -18,11 +18,11 @@ import { DashboardAccordionGeneralInformationDashboardDataGridControllerSubmitRe
         "schema": {
           "type": "object",
           "properties": {
-            "name": {
-              "type": "unknown"
-            },
             "location": {
               "type": "unknown"
+            },
+            "name": {
+              "type": "string"
             },
             "link": {
               "type": "string"
@@ -35,8 +35,8 @@ import { DashboardAccordionGeneralInformationDashboardDataGridControllerSubmitRe
             }
           },
           "required": [
-            "name",
             "location",
+            "name",
             "link",
             "company",
             "dashboardType"

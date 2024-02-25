@@ -1,14 +1,7 @@
 import { Expose, Type } from 'class-transformer';
-import { IsUUID, IsBoolean, IsArray, IsInstance, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsString, IsArray, IsInstance, IsOptional } from 'class-validator';
 
 export class DashboardAccordionReferenceTreeTableItemDto {
-  @Expose()
-  @IsUUID()
-  uuid!: string;
-  @Expose()
-  @IsBoolean()
-  hasChildren!: boolean;
-
   @Expose()
   @IsBoolean()
   referenced!: boolean;
@@ -18,6 +11,9 @@ export class DashboardAccordionReferenceTreeTableItemDto {
   @Expose()
   @IsString()
   type!: string;
+  @Expose()
+  @IsBoolean()
+  hasChildren!: boolean;
   @Expose()
   @IsArray()
   @Type(() => DashboardAccordionReferenceTreeTableItemDto)

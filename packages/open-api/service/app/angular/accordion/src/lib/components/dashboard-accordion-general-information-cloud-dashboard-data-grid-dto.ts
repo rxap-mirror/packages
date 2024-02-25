@@ -1,5 +1,5 @@
 export interface DashboardAccordionGeneralInformationCloudDashboardDataGridDto {
-  name: unknown;
+  name: string;
   company: string;
   dashboardType: number;
 }

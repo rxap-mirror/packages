@@ -1,5 +1,4 @@
 <div class="flex flex-col gap-y-4 m-4">
-  
 
   <div class="table-card-container flex flex-col">
     <mat-card>
@@ -7,27 +6,22 @@
         rxapCardProgressBar
         [loading$]="tableDataSourceDirective.loading$"
       ></mat-progress-bar>
-      <mat-card-header class="min-h-full h-12 justify-end">
-      
-      
-      <rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns" inline>
-        
-        <rxap-table-column-option
-          name="referenced">
+      <mat-card-header class="min-h-full h-12 justify-end ">
+      <rxap-table-column-menu
+        matCard
+        #rxapTableColumns="rxapTableColumns"
+        inline>
+        <rxap-table-column-option name="tree" hidden></rxap-table-column-option>
+        <rxap-table-column-option name="__spinner__" hidden></rxap-table-column-option>
+        <rxap-table-column-option name="referenced">
           <ng-container i18n>Referenced</ng-container>
         </rxap-table-column-option>
-        
-        <rxap-table-column-option
-          name="name">
+        <rxap-table-column-option name="name">
           <ng-container i18n>Name</ng-container>
         </rxap-table-column-option>
-        
-        <rxap-table-column-option
-          name="type">
+        <rxap-table-column-option name="type">
           <ng-container i18n>Type</ng-container>
         </rxap-table-column-option>
-        
-        
       </rxap-table-column-menu>
        </mat-card-header>
 
@@ -47,121 +41,95 @@
           rxapTableDataSource
           [parameters]="parameters"
           id="reference"
-          rxap-filter-header-row
-        >
+          rxap-filter-header-row>
           <!-- region columns -->
-
-          
-          
-          
+          <ng-container matColumnDef="tree" sticky>
+            <th *matHeaderCellDef mat-header-cell></th>
+            <td
+              *matCellDef="let element"
+              [rxap-tree-control-cell]="element"
+              mat-cell
+            ></td>
+          </ng-container>
+          <ng-container matColumnDef="__spinner__">
+            <th *matHeaderCellDef mat-header-cell></th>
+            <td *matCellDef="let element" mat-cell>
+              <mat-spinner
+                *ngIf="element.__metadata__?.loading$ | async"
+                diameter="15"
+              ></mat-spinner>
+            </td>
+          </ng-container>
           <ng-container matColumnDef="referenced">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n>Referenced</ng-container>
             </th>
-
-            <td mat-cell  *matCellDef="let element">
-            
+            <td *matCellDef="let element" mat-cell>
             {{ element?.referenced }}
-            
             </td>
           </ng-container>
-          
-          
           
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n>Name</ng-container>
             </th>
-
-            <td mat-cell  *matCellDef="let element">
-            
+            <td *matCellDef="let element" mat-cell>
             {{ element?.name }}
-            
             </td>
           </ng-container>
-          
-          
           
           <ng-container matColumnDef="type">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n>Type</ng-container>
             </th>
-
-            <td mat-cell  *matCellDef="let element">
-            
+            <td *matCellDef="let element" mat-cell>
             {{ element?.type }}
-            
             </td>
           </ng-container>
           
-          
 
           <!-- endregion -->
-          
           <!-- region filter columns -->
-          
-
-          
           <ng-container matColumnDef="filter_referenced">
             <th mat-header-cell *matHeaderCellDef>
               
-              
-              <mat-form-field class="w-full pt-3">
-                <mat-label i18n>Referenced</mat-label>
-                <input
-                  matInput
-                  i18n-placeholder
-                  placeholder="Enter Filter"
-                  parentControlContainer
-                  formControlName="referenced"
-                />
-                <button matSuffix rxapInputClearButton mat-icon-button>
-                  <mat-icon>clear</mat-icon>
-                </button>
-              </mat-form-field>
-              
+              <mat-checkbox
+                indeterminate
+                formControlName="referenced"
+                labelPosition="after"
+                parentControlContainer>
+                <ng-container i18n></ng-container>
+              </mat-checkbox>
               
             </th>
           </ng-container>
-          
           <ng-container matColumnDef="filter_name">
             <th mat-header-cell *matHeaderCellDef>
               
-              
-              <mat-form-field class="w-full pt-3">
-                <mat-label i18n>Name</mat-label>
-                <input
-                  matInput
-                  i18n-placeholder
-                  placeholder="Enter Filter"
-                  parentControlContainer
-                  formControlName="name"
-                />
-                <button matSuffix rxapInputClearButton mat-icon-button>
+              <mat-form-field>
+                <button matPrefix mat-icon-button>
                   <mat-icon>clear</mat-icon>
                 </button>
+                <input
+                  matInput
+                  formControlName="name"
+                  type="text"
+                  parentControlContainer/>
               </mat-form-field>
               
-              
             </th>
           </ng-container>
-          
           <ng-container matColumnDef="filter_type">
             <th mat-header-cell *matHeaderCellDef>
-              
             </th>
           </ng-container>
-          
 
           <!-- endregion -->
           <tr
             class="rxap-filter-header"
             mat-header-row
-            *matHeaderRowDef="
-              rxapTableColumns.displayColumns | toFilterColumnNames
-            "
+            *matHeaderRowDef="rxapTableColumns.displayColumns | toFilterColumnNames"
           ></tr>
-          
 
           <tr
             mat-header-row
@@ -172,7 +140,7 @@
             [@rowsAnimation]=""
             mat-row
             [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
-                        class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+            class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
             *matRowDef="
               let element;
               columns: rxapTableColumns.displayColumns;

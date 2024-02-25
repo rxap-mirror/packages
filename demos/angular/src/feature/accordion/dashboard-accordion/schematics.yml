@@ -16,51 +16,54 @@
         name: uuid
     itemList:
       - name: general-information
-        type: switch
+        kind: switch
         switch:
           property:
             name: dashboardType
             type: number
           defaultCase:
             itemList:
-              - type: data-grid
+              - kind: data-grid
                 name: dashboard
                 title: Allgemeine Informationen
                 dataGrid:
                   mode: form
                   itemList:
                     - name: name
+                      kind: input
                     - name: location
+                      #kind: autocomplete-table-select
+                      #kind: table-select
                     - name: link
-                      options:
-                        kind: input
-                        type: url
+                      kind: input
+                      inputType: url
                     - name: company
                       type: string
-                      readonly: true
+                      isReadonly: true
                     - name: dashboardType
                       header: Typ
                       type: number
-                      readonly: true
+                      isReadonly: true
           case:
             - test: 2
               itemList:
-                - type: data-grid
+                - kind: data-grid
                   name: cloud-dashboard
                   title: Allgemeine Informationen
                   dataGrid:
                     mode: form
                     itemList:
                       - name: name
+                        kind: input
                       - name: company
                         type: string
-                        readonly: true
+                        isReadonly: true
                       - name: dashboardType
                         header: Typ
                         type: number
-                        readonly: true
+                        isReadonly: true
       - name: layout
-        type: switch
+        kind: switch
         permission: dashboard.layout.get
         switch:
           property:
@@ -70,20 +73,23 @@
             - test: 2
               itemList:
                 - name: cloud-dashboard
-                  type: panel
                   title: Layouts
       - name: reference
-        type: tree-table
+        kind: tree-table
         title: Zuordnung
         table:
           propertyList:
             - name: uuid
           columnList:
             - name: referenced
-              hasFilter: true
               type: boolean
+              filterControl:
+                name: referenced
+                kind: checkbox
             - name: name
-              hasFilter: true
+              filterControl:
+                name: name
+                kind: input
               type: string
             - name: type
               type: string

@@ -1,61 +1,49 @@
-<mat-card>
-  
-  <mat-card-content>
     <div class="p-4">
-      <form #form="rxapForm" rxapForm>
-        
-        <rxap-data-grid [dataSource]="dataGridDataSource" mode="form">
-        
-        
+      <form #form="rxapForm" rxapForm><rxap-data-grid [dataSource]="dataGridDataSource" mode="form">
           <ng-container rxapDataGridRowDef="name">
-            
             <ng-template rxapDataGridEditCellDef>
               
-              <!-- TODO: name -->
+              <mat-form-field>
+                <button matPrefix mat-icon-button>
+                  <mat-icon>clear</mat-icon>
+                </button>
+                <input
+                  matInput
+                  formControlName="name"
+                  type="text"
+                  />
+              </mat-form-field>
               
             </ng-template>
           </ng-container>
-        
           <ng-container rxapDataGridRowDef="location">
-            
             <ng-template rxapDataGridEditCellDef>
               
-              <!-- TODO: location -->
+              <!-- form control: location -->
               
             </ng-template>
           </ng-container>
-        
           <ng-container rxapDataGridRowDef="link">
-            
             <ng-template rxapDataGridEditCellDef>
               
-              <!-- TODO: link -->
+              <mat-form-field>
+                <button matPrefix mat-icon-button>
+                  <mat-icon>clear</mat-icon>
+                </button>
+                <input
+                  matInput
+                  formControlName="link"
+                  type="url"
+                  />
+              </mat-form-field>
               
             </ng-template>
           </ng-container>
-        
           <ng-container rxapDataGridRowDef="company">
-            
-            <ng-template rxapDataGridEditCellDef>
-              
-              <!-- TODO: company -->
-              
-            </ng-template>
           </ng-container>
-        
           <ng-container rxapDataGridRowDef="dashboardType">
-            
-            <th *rxapDataGridHeaderCellDef i18n>Typ</th>
-            
-            <ng-template rxapDataGridEditCellDef>
-              
-              <!-- TODO: dashboardType -->
-              
-            </ng-template>
+            <th *rxapDataGridHeaderCellDef class="whitespace-nowrap" i18n>Typ</th>
           </ng-container>
-        
         </rxap-data-grid>
       </form>
     </div>
-  </mat-card-content>
-</mat-card>

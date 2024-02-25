@@ -30,12 +30,6 @@ import { DashboardAccordionReferenceTreeTableControllerGetChildrenResponse } fro
             "items": {
               "type": "object",
               "properties": {
-                "uuid": {
-                  "type": "string"
-                },
-                "hasChildren": {
-                  "type": "boolean"
-                },
                 "referenced": {
                   "type": "boolean"
                 },
@@ -45,6 +39,9 @@ import { DashboardAccordionReferenceTreeTableControllerGetChildrenResponse } fro
                 "type": {
                   "type": "string"
                 },
+                "hasChildren": {
+                  "type": "boolean"
+                },
                 "children": {
                   "type": "array",
                   "items": {
@@ -53,11 +50,10 @@ import { DashboardAccordionReferenceTreeTableControllerGetChildrenResponse } fro
                 }
               },
               "required": [
-                "uuid",
-                "hasChildren",
                 "referenced",
                 "name",
-                "type"
+                "type",
+                "hasChildren"
               ]
             }
           }

@@ -19,7 +19,7 @@ import { DashboardAccordionGeneralInformationCloudDashboardDataGridControllerSub
           "type": "object",
           "properties": {
             "name": {
-              "type": "unknown"
+              "type": "string"
             },
             "company": {
               "type": "string"

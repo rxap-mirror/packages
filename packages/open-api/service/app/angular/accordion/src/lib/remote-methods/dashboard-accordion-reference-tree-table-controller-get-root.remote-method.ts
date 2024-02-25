@@ -20,12 +20,6 @@ import { DashboardAccordionReferenceTreeTableControllerGetRootResponse } from '.
             "items": {
               "type": "object",
               "properties": {
-                "uuid": {
-                  "type": "string"
-                },
-                "hasChildren": {
-                  "type": "boolean"
-                },
                 "referenced": {
                   "type": "boolean"
                 },
@@ -35,6 +29,9 @@ import { DashboardAccordionReferenceTreeTableControllerGetRootResponse } from '.
                 "type": {
                   "type": "string"
                 },
+                "hasChildren": {
+                  "type": "boolean"
+                },
                 "children": {
                   "type": "array",
                   "items": {
@@ -43,11 +40,10 @@ import { DashboardAccordionReferenceTreeTableControllerGetRootResponse } from '.
                 }
               },
               "required": [
-                "uuid",
-                "hasChildren",
                 "referenced",
                 "name",
-                "type"
+                "type",
+                "hasChildren"
               ]
             }
           }

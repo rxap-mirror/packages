@@ -1,6 +1,6 @@
 export interface GeneralInformationDashboardDataGridDto {
-  name: unknown;
   location: unknown;
+  name: string;
   link: string;
   company: string;
   dashboardType: number;
