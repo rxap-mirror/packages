@@ -66,5 +66,6 @@ export * from './lib/has-constructor-parameter';
 export * from './lib/provider-object';
 export * from './lib/to-mapping-object';
 export * from './lib/type-import';
+export * from './lib/upstream-options';
 export * from './lib/write-type';
 // endregion

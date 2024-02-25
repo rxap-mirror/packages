@@ -54,6 +54,9 @@
               "$ref": "#/definitions/property"
             }
           }
+        },
+        "upstream": {
+          "$ref": "#/definitions/upstream"
         }
       }
     }
@@ -67,6 +70,9 @@
     },
     "button": {
       "$ref": "../../../button.schema.json"
+    },
+    "upstream": {
+      "$ref": "../../../upstream.schema.json"
     }
   }
 }

@@ -5,9 +5,12 @@ import {
   NormalizeDataPropertyList,
   NormalizedDataProperty,
   NormalizedTypeImport,
+  NormalizedUpstreamOptions,
   NormalizeTypeImport,
   NormalizeTypeImportList,
+  NormalizeUpstreamOptions,
   TypeImport,
+  UpstreamOptions,
 } from '@rxap/ts-morph';
 import {
   capitalize,
@@ -23,7 +26,6 @@ import { BackendTypes } from './backend-types';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
   NormalizedTableColumn,
-  NormalizeTableColumn,
   TableColumn,
   TableColumnKind,
 } from './table-column';
@@ -478,6 +480,7 @@ export interface TableSelectFormControl extends BaseFormControl {
   columnList?: TableSelectColumn[];
   toDisplay?: TableSelectToFunction;
   toValue?: TableSelectToFunction;
+  upstream?: UpstreamOptions;
 }
 
 export interface NormalizedTableSelectFormControl
@@ -489,6 +492,7 @@ export interface NormalizedTableSelectFormControl
   propertyList: ReadonlyArray<NormalizedDataProperty>;
   toDisplay: NormalizedTableSelectToFunction;
   toValue: NormalizedTableSelectToFunction;
+  upstream: NormalizedUpstreamOptions | null;
 }
 
 export function IsNormalizedTableSelectFormControl(template: NormalizedBaseFormControl): template is NormalizedTableSelectFormControl {
@@ -535,6 +539,7 @@ export function NormalizeTableSelectFormControl(
     toDisplay,
     toValue,
     propertyList: NormalizeDataPropertyList(propertyList),
+    upstream: NormalizeUpstreamOptions(control.upstream),
   });
 }
 

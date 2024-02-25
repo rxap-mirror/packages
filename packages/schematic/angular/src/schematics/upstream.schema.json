@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "upstream",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties":{
+        "kind": {
+          "type": "string",
+          "enum": ["open-api"]
+        },
+        "operationId": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "mapper": {
+          "type": "object",
+          "properties": {
+            "pageIndex": {
+              "type": "string"
+            },
+            "pageSize": {
+              "type": "string"
+            },
+            "sortBy": {
+              "type": "string"
+            },
+            "sortDirection": {
+              "type": "string"
+            },
+            "list": {
+              "type": "string"
+            },
+            "total": {
+              "type": "string"
+            },
+            "filter": {
+              "type": "object",
+              "properties": {
+                "eq": {
+                  "type": "string"
+                },
+                "join": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": ["kind", "operationId"]
+    }
+  ]
+}

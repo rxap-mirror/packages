@@ -111,6 +111,7 @@ export default function (options: TableSelectFormControlOptions) {
     toDisplay,
     toValue,
     propertyList,
+    upstream,
   } = normalizedOptions;
   printOptions(normalizedOptions);
 
@@ -172,6 +173,7 @@ export default function (options: TableSelectFormControlOptions) {
         skipCoerceTableSuffix: true,
         responseDtoName: tableResponseDtoName,
         context,
+        upstream
       }),
       // CoerceTableSelectValueResolveOperationRule({
       //   project,

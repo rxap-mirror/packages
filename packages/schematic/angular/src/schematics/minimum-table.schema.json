@@ -10,6 +10,9 @@
         "$ref": "#/definitions/property"
       }
     },
+    "upstream": {
+      "$ref": "#/definitions/upstream"
+    },
     "columnList": {
       "alias": "column",
       "type": "array",
@@ -43,6 +46,9 @@
     },
     "property": {
       "$ref": "./property.schema.json"
+    },
+    "upstream": {
+      "$ref": "./upstream.schema.json"
     }
   }
 }

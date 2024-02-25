@@ -3,6 +3,10 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import {
+  IsNormalizedOpenApiUpstreamOptions,
+  NormalizedUpstreamOptions,
+  OperationIdToCommandClassImportPath,
+  OperationIdToCommandClassName,
   RequiresTypeImport,
   TypeImport,
   TypeImportToImportStructure,
@@ -18,6 +22,7 @@ import { CoerceClassMethod } from '../coerce-class-method';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
 import { OperationOptions } from './add-operation-to-controller';
+import { CoercePropertyDeclaration } from './coerce-dto-class';
 import {
   CoerceOperation,
   CoerceOperationOptions,
@@ -78,6 +83,7 @@ export interface CoerceGetPageOperationOptions
     classDeclaration: ClassDeclaration,
     options: CoerceGetPageOperationOptions,
   ) => void;
+  upstream?: NormalizedUpstreamOptions | null;
 }
 
 function GetPageOperationColumnTypeToTypeImport(property: GetPageOperationProperty): TypeImport {
@@ -211,8 +217,64 @@ export function CoerceToPageDtoMethod(
 export function CoerceGetPageDataMethod(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
-  options: CoerceGetPageOperationOptions,
+  { upstream }: CoerceGetPageOperationOptions,
 ) {
+  const statements: string[] = [];
+  if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
+    const memberName = `${ camelize(upstream.operationId) }Command`;
+    CoercePropertyDeclaration(classDeclaration, memberName, {
+      type: OperationIdToCommandClassName(upstream.operationId),
+      scope: Scope.Private,
+      hasExclamationToken: true,
+      decorators: [
+        {
+          name: 'Inject',
+          arguments: [ OperationIdToCommandClassName(upstream.operationId) ],
+        },
+      ],
+    });
+    CoerceImports(sourceFile, [
+      {
+        namedImports: [ OperationIdToCommandClassName(upstream.operationId) ],
+        moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope),
+      }, {
+        namedImports: [ 'Inject' ],
+        moduleSpecifier: '@nestjs/common',
+      },
+    ]);
+    statements.push(
+      `const response = await this.${ memberName }.execute({
+      parameters: {
+        ${ upstream.mapper?.pageIndex ?? 'pageIndex' }: pageIndex,
+        ${ upstream.mapper?.pageSize ?? 'pageSize' }: pageSize,
+        ${ upstream.mapper?.sortBy ?? 'sortBy' }: sortBy,
+        ${ upstream.mapper?.sortDirection ?? 'sortDirection' }: sortDirection,
+        filter: ${ upstream.mapper?.filter ? `filter.map((item) => \`\${ item.column }:\${ item.filter }\`).join(';')` :
+                   'filter' },
+      },
+    });`,
+      'return {',
+      `  list: response.${ upstream.mapper?.list ?? 'list' } ?? [],`,
+      `  total: response.${ upstream.mapper?.total ?? 'total' } ?? 0,`,
+      '};',
+    );
+  } else {
+    statements.push(
+      `const response = await ((() => { throw new NotImplementedException(); })() as any).execute({
+      parameters: {
+        page: pageIndex,
+        size: pageSize,
+        sort: sortBy,
+        order: sortDirection,
+        filter: filter.map((item) => \`\${ item.column }:\${ item.filter }\`).join(';'),
+      },
+    });`,
+      'return {',
+      '  list: response.entities ?? [],',
+      '  total: response.maxCount ?? 0,',
+      '};',
+    );
+  }
   CoerceClassMethod(classDeclaration, 'getPageData', {
     scope: Scope.Public,
     returnType: 'Promise<{ list: RawRowData[], total: number }>',
@@ -239,21 +301,7 @@ export function CoerceGetPageDataMethod(
         type: 'FilterQuery[]',
       },
     ],
-    statements: [
-      `const response = await ((() => { throw new NotImplementedException(); })() as any).execute({
-      parameters: {
-        page: pageIndex,
-        size: pageSize,
-        sort: sortBy,
-        order: sortDirection,
-        filter: filter.map((item) => \`\${ item.column }:\${ item.filter }\`).join(';'),
-      },
-    });`,
-      'return {',
-      '  list: response.entities ?? [],',
-      '  total: response.maxCount ?? 0,',
-      '};',
-    ],
+    statements: statements,
   });
 }
 

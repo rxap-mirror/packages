@@ -38,6 +38,9 @@
     },
     "button": {
       "$ref": "../../../button.schema.json"
+    },
+    "upstream": {
+      "$ref": "../../../upstream.schema.json"
     }
   }
 }

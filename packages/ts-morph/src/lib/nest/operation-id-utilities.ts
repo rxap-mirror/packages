@@ -4,12 +4,12 @@ import {
 } from '@rxap/utilities';
 
 
-export function OperationIdToClassName(operationId: string) {
+export function OperationIdToRemoteMethodClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'RemoteMethod';
 }
 
-export function ServiceOperationIdToClassName(operationId: string) {
+export function OperationIdToCommandClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'Command';
 }
@@ -25,7 +25,7 @@ export function OperationIdToParameterClassName(operationId: string) {
   return classify(id) + 'Parameter';
 }
 
-export function OperationIdToClassImportPath(operationId: string, scope?: string | null) {
+export function OperationIdToClassRemoteMethodImportPath(operationId: string, scope?: string | null) {
   const [ id, serverId = 'legacy' ] = operationId.split('@');
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/remote-methods/${ dasherize(id) }.remote-method`;
@@ -39,7 +39,7 @@ export function OperationIdToRequestBodyClassName(operationId: string) {
   return classify(id) + 'RequestBody';
 }
 
-export function ServiceOperationIdToClassImportPath(operationId: string, scope?: string | null) {
+export function OperationIdToCommandClassImportPath(operationId: string, scope?: string | null) {
   const [ id, serverId = 'legacy' ] = operationId.split('@');
   if (scope) {
     return `${ scope }/service-open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
