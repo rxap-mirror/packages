@@ -7,6 +7,7 @@ import {
   NormalizeInputFormControl,
   NormalizeSelectFormControl,
   NormalizeSlideToggleFormControl,
+  NormalizeTableSelectFormControl,
 } from './form-control';
 
 export type FormDefinitionControl = BaseFormControl
@@ -26,6 +27,8 @@ export function NormalizeFormDefinitionControl(
       return NormalizeCheckboxFormControl(control);
     case FormControlKinds.SLIDE_TOGGLE:
       return NormalizeSlideToggleFormControl(control);
+    case FormControlKinds.TABLE_SELECT:
+      return NormalizeTableSelectFormControl(control);
     case FormControlKinds.DEFAULT:
     default:
       return NormalizeBaseFormControl(control);

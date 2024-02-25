@@ -1,12 +1,17 @@
 import {
+  DataProperty,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
   NormalizedTypeImport,
   NormalizeTypeImport,
   NormalizeTypeImportList,
   TypeImport,
 } from '@rxap/ts-morph';
 import {
+  capitalize,
   CoerceArrayItems,
   ControlOption,
+  dasherize,
   DeleteEmptyProperties,
   Normalized,
 } from '@rxap/utilities';
@@ -14,6 +19,12 @@ import Handlebars from 'handlebars';
 import { join } from 'path';
 import { BackendTypes } from './backend-types';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
+import {
+  NormalizedTableColumn,
+  NormalizeTableColumn,
+  TableColumn,
+  TableColumnKind,
+} from './table-column';
 
 // region BaseFormControlOptions
 
@@ -23,6 +34,7 @@ export enum FormControlKinds {
   SELECT = 'select',
   CHECKBOX = 'checkbox',
   SLIDE_TOGGLE = 'slide-toggle',
+  TABLE_SELECT = 'table-select',
 }
 
 export interface BaseFormControl {
@@ -100,6 +112,7 @@ export interface FormField {
   label?: string;
   prefixButton?: FormFieldButton;
   suffixButton?: FormFieldButton;
+  directiveList?: TypeImport[];
   hasClearButton?: boolean;
 }
 
@@ -139,14 +152,18 @@ export function NormalizeFormFieldButton(
 
 export function NormalizeFormField(
   formField: FormField,
+  importList: TypeImport[] = [],
   defaultFormField: Partial<FormField> = {},
 ): NormalizedFormField {
   defaultFormField = DeleteEmptyProperties(defaultFormField);
+  const directiveList = defaultFormField.directiveList ?? [];
+  CoerceArrayItems(directiveList, defaultFormField.directiveList ?? [], (a, b) => a.name === b.name);
   const normalizedFormField = {
     label: defaultFormField.label ?? formField.label ?? null,
     prefixButton: NormalizeFormFieldButton(formField.prefixButton ?? defaultFormField.prefixButton),
     suffixButton: NormalizeFormFieldButton(formField.suffixButton ?? defaultFormField.suffixButton),
     hasClearButton: formField.hasClearButton ?? defaultFormField.hasClearButton ?? true,
+    directiveList: NormalizeTypeImportList(directiveList),
   };
   if (normalizedFormField.hasClearButton) {
     normalizedFormField.suffixButton ??= NormalizeFormFieldButton({
@@ -160,6 +177,26 @@ export function NormalizeFormField(
       ],
     });
   }
+  CoerceArrayItems(
+    importList,
+    normalizedFormField.prefixButton?.importList ?? [],
+    (a, b) => a.name === b.name && a.namedImport === b.namedImport,
+  );
+  CoerceArrayItems(
+    importList,
+    normalizedFormField.suffixButton?.importList ?? [],
+    (a, b) => a.name === b.name && a.namedImport === b.namedImport,
+  );
+  CoerceArrayItems(
+    importList,
+    normalizedFormField.prefixButton?.importList ?? [],
+    (a, b) => a.name === b.name && a.namedImport === b.namedImport,
+  );
+  CoerceArrayItems(
+    importList,
+    normalizedFormField.suffixButton?.importList ?? [],
+    (a, b) => a.name === b.name && a.namedImport === b.namedImport,
+  );
   return Object.freeze(normalizedFormField);
 }
 
@@ -236,11 +273,7 @@ export function NormalizeInputFormControl(
     case 'range':
       throw new Error(`The input type "${ inputType }" is not yet supported`);
   }
-  const formField = NormalizeFormField(control.formField ?? {}, { label: control.label });
-  importList.push(...formField?.prefixButton?.directiveList ?? []);
-  importList.push(...formField?.suffixButton?.directiveList ?? []);
-  importList.push(...formField?.prefixButton?.importList ?? []);
-  importList.push(...formField?.suffixButton?.importList ?? []);
+  const formField = NormalizeFormField(control.formField ?? {}, importList, { label: control.label });
   // TODO : auto add validators
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
@@ -284,11 +317,7 @@ export function NormalizeSelectFormControl(
     name: 'MatSelectModule',
     moduleSpecifier: '@angular/material/select',
   });
-  const formField = NormalizeFormField(control.formField ?? {}, { label: control.label });
-  importList.push(...formField?.prefixButton?.directiveList ?? []);
-  importList.push(...formField?.suffixButton?.directiveList ?? []);
-  importList.push(...formField?.prefixButton?.importList ?? []);
-  importList.push(...formField?.suffixButton?.importList ?? []);
+  const formField = NormalizeFormField(control.formField ?? {}, importList, { label: control.label });
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
     importList: NormalizeTypeImportList(importList),
@@ -349,6 +378,120 @@ export function NormalizeSlideToggleFormControl(
     ...NormalizeBaseFormControl(control),
     kind: FormControlKinds.CHECKBOX,
     labelPosition: control.labelPosition ?? 'after',
+  });
+}
+
+// endregion
+
+// region TableSelectFormControl
+
+// region TableSelectColumn
+
+export interface TableSelectColumn {
+  name: string;
+  label?: string;
+  hasFilter?: boolean;
+  kind?: TableColumnKind;
+}
+
+export type NormalizedTableSelectColumn = Readonly<Normalized<TableSelectColumn>>;
+
+export function NormalizeTableSelectColumn(
+  column: TableSelectColumn,
+): NormalizedTableSelectColumn {
+  return Object.freeze({
+    name: column.name,
+    label: column.label ?? dasherize(column.name).split('-').map(part => capitalize(part)).join(' '),
+    hasFilter: column.hasFilter ?? false,
+    kind: column.kind ?? TableColumnKind.DEFAULT,
+  });
+}
+
+// endregion
+
+// region ToFunction
+export interface TableSelectToFunction {
+  property: DataProperty;
+}
+
+export interface NormalizedTableSelectToFunction extends Readonly<Normalized<TableSelectToFunction>> {
+  property: NormalizedDataProperty;
+}
+
+export function NormalizeTableSelectToFunction(
+  toFunction: TableSelectToFunction | null | undefined,
+  columnList: TableSelectColumn[],
+): NormalizedTableSelectToFunction {
+  if (!toFunction || Object.keys(toFunction).length === 0) {
+    return Object.freeze({
+      property: NormalizeDataProperty(columnList[0].name),
+    });
+  }
+  return Object.freeze({
+    property: NormalizeDataProperty(toFunction.property),
+  });
+}
+
+// endregion
+
+export interface TableSelectFormControl extends BaseFormControl {
+  backend?: BackendTypes;
+  formField?: FormField;
+  title?: string;
+  columnList?: TableColumn[];
+  toDisplay?: TableSelectToFunction;
+  toValue?: TableSelectToFunction;
+}
+
+export interface NormalizedTableSelectFormControl
+  extends Readonly<Normalized<Omit<TableSelectFormControl, 'type' | 'importList' | 'columnList'>>>,
+          NormalizedBaseFormControl {
+  kind: FormControlKinds.TABLE_SELECT;
+  backend: BackendTypes;
+  columnList: NormalizedTableSelectColumn[];
+  toDisplay: NormalizedTableSelectToFunction;
+  toValue: NormalizedTableSelectToFunction;
+}
+
+export function IsNormalizedTableSelectFormControl(template: NormalizedBaseFormControl): template is NormalizedTableSelectFormControl {
+  return template.kind === FormControlKinds.TABLE_SELECT;
+}
+
+export function NormalizeTableSelectFormControl(
+  control: TableSelectFormControl,
+): NormalizedTableSelectFormControl {
+  const importList = control.importList ?? [];
+  importList.push({
+    name: 'TableSelectControlModule',
+    moduleSpecifier: '@digitaix/eurogard-table-select',
+  });
+  if (!control.columnList?.length) {
+    throw new Error('The column list must not be empty');
+  }
+  const formField = NormalizeFormField(
+    control.formField ?? {},
+    importList,
+    {
+      label: control.label,
+      directiveList: [
+        {
+          name: 'eurogardTableSelectControl',
+          namedImport: 'TableSelectControlModule',
+          moduleSpecifier: '@digitaix/eurogard-table-select',
+        },
+      ]
+    },
+  );
+  return Object.freeze({
+    ...NormalizeBaseFormControl(control),
+    importList: NormalizeTypeImportList(importList),
+    kind: FormControlKinds.TABLE_SELECT,
+    formField,
+    backend: control.backend ?? BackendTypes.NONE,
+    title: control.title ?? null,
+    columnList: control.columnList.map(NormalizeTableSelectColumn),
+    toDisplay: NormalizeTableSelectToFunction(control.toDisplay, control.columnList),
+    toValue: NormalizeTableSelectToFunction(control.toValue, control.columnList),
   });
 }
 
