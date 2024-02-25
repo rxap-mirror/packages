@@ -7,6 +7,7 @@ import {
 import {
   CoerceArrayItems,
   ControlOption,
+  DeleteEmptyProperties,
   Normalized,
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
@@ -34,6 +35,7 @@ export interface BaseFormControl {
   importList?: TypeImport[];
   kind: FormControlKinds;
   template?: string;
+  label?: string;
 }
 
 export interface NormalizedBaseFormControl extends Readonly<Normalized<BaseFormControl>> {
@@ -77,6 +79,7 @@ export function NormalizeBaseFormControl(
     kind,
     template,
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'form', 'templates')),
+    label: control.label ?? null,
   });
 }
 
@@ -92,12 +95,14 @@ export type NormalizedFormField = Readonly<Normalized<FormField>>;
 
 export function NormalizeFormField(
   formField: FormField,
+  defaultFormField: Partial<FormField> = {},
 ): NormalizedFormField | null {
-  if (!formField || Object.keys(formField).length === 0) {
+  defaultFormField = DeleteEmptyProperties(defaultFormField);
+  if ((!formField || Object.keys(formField).length === 0) && Object.keys(defaultFormField).length === 0) {
     return null;
   }
   return Object.freeze({
-    label: formField.label ?? null,
+    label: defaultFormField.label ?? formField.label ?? null,
   });
 }
 
@@ -183,7 +188,7 @@ export function NormalizeInputFormControl(
     kind: FormControlKinds.INPUT,
     inputType,
     placeholder: control.placeholder ?? null,
-    formField: NormalizeFormField(control.formField ?? {}),
+    formField: NormalizeFormField(control.formField ?? {}, { label: control.label }),
   });
 }
 
@@ -221,7 +226,7 @@ export function NormalizeSelectFormControl(
     ...NormalizeBaseFormControl(control),
     importList: NormalizeTypeImportList(importList),
     kind: FormControlKinds.SELECT,
-    formField: NormalizeFormField(control.formField ?? {}),
+    formField: NormalizeFormField(control.formField ?? {}, { label: control.label }),
     options: control.options && control.options.length ? Object.freeze(control.options) : null,
     backend: control.backend ?? BackendTypes.NONE,
     multiple: control.multiple ?? false,
