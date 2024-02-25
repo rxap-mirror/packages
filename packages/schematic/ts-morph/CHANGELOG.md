@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.1...@rxap/schematics-ts-morph@16.1.0-dev.2) (2024-02-25)
+
+### Features
+
+- support custom handlebars partials and helpers ([c1aa756](https://gitlab.com/rxap/packages/commit/c1aa756389f84acbaaa7b5b9718d7e168aef8c7f))
+- support handlebars for component generator ([5f1ef58](https://gitlab.com/rxap/packages/commit/5f1ef58f094282a7f67fcbaca65cbc847361c00a))
+- support table parameters in tree tables ([bf8a676](https://gitlab.com/rxap/packages/commit/bf8a676790b9e9bf60ef290e1201a998fbdaffd0))
+- support upstream configurations ([3c972cf](https://gitlab.com/rxap/packages/commit/3c972cfc1aea45d9cabca07f24f4627f4aff03aa))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.0...@rxap/schematics-ts-morph@16.1.0-dev.1) (2024-02-22)
 
 ### Bug Fixes

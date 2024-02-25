@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.6...@rxap/schematic-angular@16.2.0-dev.7) (2024-02-25)
+
+### Bug Fixes
+
+- ensure default export is added ([adc054e](https://gitlab.com/rxap/packages/commit/adc054e45a58e6373c45a1d244f7044f32816c8a))
+- rename itemName to name ([4387d22](https://gitlab.com/rxap/packages/commit/4387d2203e5ff41dde6a859869f6242bb43a3a1f))
+- use handlebars ([b7a9f19](https://gitlab.com/rxap/packages/commit/b7a9f196039d50a464c20b9d5baf8ced86cdec2a))
+- use handlebars ([1f8b14e](https://gitlab.com/rxap/packages/commit/1f8b14e8770e9562dde4ddf95b3fe91b12b43bea))
+- use narrow control schematics ([1dc8690](https://gitlab.com/rxap/packages/commit/1dc8690d8417aa32ee9f83987737ac65db69fd09))
+
+### Features
+
+- support dynamic mat form field ([71b2544](https://gitlab.com/rxap/packages/commit/71b25441bc3ea59e6e7ffb26a45b93a1ee74fbf0))
+- support handlebars for accordions ([411211b](https://gitlab.com/rxap/packages/commit/411211b624208a26aae0361efe908846ad5a74dd))
+- support handlebars for data grids ([0c94a88](https://gitlab.com/rxap/packages/commit/0c94a881d2f0061577f64fcdcdbfc4d41c351835))
+- support handlebars for table column ([bf4b105](https://gitlab.com/rxap/packages/commit/bf4b1053430d1dd1342b229df2d002696a2d16ee))
+- support handlebars for tables ([4b9e208](https://gitlab.com/rxap/packages/commit/4b9e20832d950c2be579ed9bf08e7eb1685e0891))
+- support input hbs templates ([312ebeb](https://gitlab.com/rxap/packages/commit/312ebeb82062b3b5d7b166e0650b113f67218899))
+- support label for each form control ([4af10c0](https://gitlab.com/rxap/packages/commit/4af10c05c72b7c7e5ff2ca202d5b87e3e5636227))
+- support slide toggle ([4bec803](https://gitlab.com/rxap/packages/commit/4bec80343c9654746c9ede1707aabc0bc994e04c))
+- support table parameters in tree tables ([bf8a676](https://gitlab.com/rxap/packages/commit/bf8a676790b9e9bf60ef290e1201a998fbdaffd0))
+- support table select ([f495bdd](https://gitlab.com/rxap/packages/commit/f495bdd635768e4db3ccb7c31992d140dd15ec64))
+- support toDisplay and toValue input options ([1d331c1](https://gitlab.com/rxap/packages/commit/1d331c1163f40d9061f422e18069d8a52e677c0c))
+- support upstream configurations ([3c972cf](https://gitlab.com/rxap/packages/commit/3c972cfc1aea45d9cabca07f24f4627f4aff03aa))
+
 # [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.5...@rxap/schematic-angular@16.2.0-dev.6) (2024-02-22)
 
 ### Bug Fixes

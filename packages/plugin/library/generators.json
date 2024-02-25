@@ -76,6 +76,11 @@
       "factory": "./src/generators/expose-as-schematic/index",
       "schema": "./src/generators/expose-as-schematic/schema.json",
       "description": "expose-as-schematic generator"
+    },
+    "bundle-json-schema": {
+      "factory": "./src/generators/bundle-json-schema/index",
+      "schema": "./src/generators/bundle-json-schema/schema.json",
+      "description": "bundle-json-schema generator"
     }
   }
 }

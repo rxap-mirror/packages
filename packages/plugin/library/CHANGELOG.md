@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.1-dev.0...@rxap/plugin-library@16.1.0-dev.0) (2024-02-25)
+
+### Bug Fixes
+
+- add nested definition cleanup ([f9c5637](https://gitlab.com/rxap/packages/commit/f9c5637fdba8ba458443c923c584564761e077ca))
+- cleanup bundled schema ([4af344f](https://gitlab.com/rxap/packages/commit/4af344fa89837f228f04f96166f5b21932b50018))
+
+### Features
+
+- add bundle-json-schema generator ([8c4b9d9](https://gitlab.com/rxap/packages/commit/8c4b9d93730290c9b40ecf20490e87de34e6b1d2))
+
 ## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0...@rxap/plugin-library@16.0.1-dev.0) (2024-02-09)
 
 ### Bug Fixes

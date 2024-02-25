@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.1...@rxap/ts-morph@1.1.0-dev.2) (2024-02-25)
+
+### Bug Fixes
+
+- use namedImport before name ([eb33f27](https://gitlab.com/rxap/packages/commit/eb33f276c69aaddbb73e8e93a781d08986f56136))
+
+### Features
+
+- add NormalizeTypeImportList function ([8887b8e](https://gitlab.com/rxap/packages/commit/8887b8e92a32f88d2f1703253a12d68a0ed36294))
+- support upstream configurations ([3c972cf](https://gitlab.com/rxap/packages/commit/3c972cfc1aea45d9cabca07f24f4627f4aff03aa))
+
 # [1.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.0...@rxap/ts-morph@1.1.0-dev.1) (2024-02-22)
 
 ### Bug Fixes
