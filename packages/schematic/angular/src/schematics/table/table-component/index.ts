@@ -92,8 +92,8 @@ export function NormalizeTableComponentOptions(
 }
 
 export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
-  columnList: ReadonlyArray<NormalizedTableColumn>,
-  propertyList: ReadonlyArray<NormalizedDataProperty>,
+  columnList: ReadonlyArray<Pick<NormalizedTableColumn, 'name' | 'type' | 'propertyPath'>>,
+  propertyList: ReadonlyArray<NormalizedDataProperty> = [],
 ): GetPageOperationProperty[] {
   const list: GetPageOperationProperty[] = [];
   for (const column of columnList) {

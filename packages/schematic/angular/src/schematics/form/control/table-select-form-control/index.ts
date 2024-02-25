@@ -18,7 +18,6 @@ import {
   capitalize,
   classify,
   dasherize,
-  ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import {
   joinWithDash,
@@ -33,9 +32,11 @@ import {
 } from 'ts-morph';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
 import {
-  NormalizedTableColumn,
-  NormalizeTableColumnList,
-} from '../../../../lib/table-column';
+  NormalizedTableSelectColumn,
+  NormalizedTableSelectFormControl,
+  NormalizeTableSelectFormControl,
+} from '../../../../lib/form-control';
+import { NormalizedTableColumn } from '../../../../lib/table-column';
 import { TableColumnListAndPropertyListToGetPageOperationPropertyList } from '../../../table/table-component';
 import {
   NormalizedFormControlOptions,
@@ -43,45 +44,35 @@ import {
 } from '../../form-control';
 import { TableSelectFormControlOptions } from './schema';
 
-export interface NormalizedTableSelectFormControlOptions
-  extends Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList'>> & NormalizedFormControlOptions> {
-  columnList: ReadonlyArray<NormalizedTableColumn>;
-}
+export type NormalizedTableSelectFormControlOptions = Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList'>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl>
 
 export function NormalizeTableSelectFormControlOptions(
   options: TableSelectFormControlOptions,
 ): NormalizedTableSelectFormControlOptions {
-  const normalizedOptions = NormalizeFormControlOptions(options);
-  let { isArray } = normalizedOptions;
-  const multiple = options.multiple ?? false;
-  isArray = multiple ? true : isArray;
-  const columnList = NormalizeTableColumnList(options.columnList);
   return Object.freeze({
-    ...normalizedOptions,
-    isArray,
-    multiple,
-    columnList,
+    ...NormalizeFormControlOptions(options),
+    ...NormalizeTableSelectFormControl(options),
   });
 }
 
-export function TableColumnToTableSelectColumn(options: NormalizedTableColumn): WriterFunction {
+export function TableColumnToTableSelectColumn(column: NormalizedTableSelectColumn): WriterFunction {
   const {
-    type,
+    kind,
     name,
     title,
     hasFilter,
-  } = options;
+  } = column;
   const properties: Record<string, string | WriterFunction> = {};
   properties['label'] = `$localize\`${ title ?? capitalize(name) }\``;
   if (hasFilter) {
     properties['filter'] = 'true';
   }
-  properties['type'] = (w) => w.quote(type.name);
+  properties['type'] = (w) => w.quote(kind);
   return Writers.object(properties);
 }
 
 export function TableColumnListToTableSelectColumnMap(
-  columnList: ReadonlyArray<NormalizedTableColumn>,
+  columnList: Array<NormalizedTableSelectColumn>,
 ): WriterFunction {
   return Writers.object(
     columnList.reduce(
@@ -117,6 +108,8 @@ export default function (options: TableSelectFormControlOptions) {
     shared,
     context,
     scope,
+    toDisplay,
+    toValue,
   } = normalizedOptions;
   printOptions(normalizedOptions);
 
@@ -172,7 +165,7 @@ export default function (options: TableSelectFormControlOptions) {
         feature,
         nestModule,
         controllerName,
-        propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, []),
+        propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList),
         operationName: optionsOperationName,
         path: optionsOperationPath,
         skipCoerceTableSuffix: true,
@@ -256,6 +249,12 @@ export default function (options: TableSelectFormControlOptions) {
           CoerceDecorator(propertyDeclaration, 'UseTableSelectDataSource').set({
             arguments: [ tableDataSourceName ],
           });
+          CoerceDecorator(propertyDeclaration, 'UseTableSelectToDisplay').set({
+            arguments: [ `item => item.${ toDisplay.property.name }` ],
+          });
+          CoerceDecorator(propertyDeclaration, 'UseTableSelectToValue').set({
+            arguments: [ `item => item.${ toValue.property.name }` ],
+          });
           CoerceImports(sourceFile, {
             namedImports: [ tableDataSourceName ],
             moduleSpecifier: tableDataSourceImportPath,
@@ -275,8 +274,10 @@ export default function (options: TableSelectFormControlOptions) {
               'UseTableSelectDataSource',
               'UseTableSelectColumns',
               'UseTableSelectMethod',
+              'UseTableSelectToDisplay',
+              'UseTableSelectToValue'
             ],
-            moduleSpecifier: '@rxap/ngx-material-table-select',
+            moduleSpecifier: '@digitaix/eurogard-table-select',
           });
 
           return {

@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Schematics" pattern="file[packages]:packages/schematic//*" />
+</component>

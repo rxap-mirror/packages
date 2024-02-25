@@ -1,3 +1,4 @@
+import { camelize } from '@rxap/schematics-utilities';
 import {
   DataProperty,
   NormalizeDataProperty,
@@ -387,23 +388,57 @@ export function NormalizeSlideToggleFormControl(
 
 // region TableSelectColumn
 
-export interface TableSelectColumn {
-  name: string;
-  label?: string;
-  hasFilter?: boolean;
-  kind?: TableColumnKind;
-}
+export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath' | 'type'>
 
-export type NormalizedTableSelectColumn = Readonly<Normalized<TableSelectColumn>>;
+export type NormalizedTableSelectColumn  = Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath' | 'type'>
 
 export function NormalizeTableSelectColumn(
   column: TableSelectColumn,
 ): NormalizedTableSelectColumn {
+  let propertyPath = column.propertyPath ?? null;
+  let name = column.name;
+  const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
+  propertyPath ??= name
+    .replace(/\?\./g, '.')
+    .split('.')
+    .map((part) => camelize(part))
+    .join('?.');
+  name = dasherize(name.replace(/\??\./g, '_'));
+  if (namePrefix) {
+    name = namePrefix + name;
+    propertyPath = namePrefix + propertyPath;
+  }
+  const kind = column.kind ?? TableColumnKind.DEFAULT;
+  let type = column.type ?? 'unknown';
+  const autoType = type ? typeof type === 'string' ? type : type.name : null;
+  if (!autoType || autoType === 'unknown') {
+    switch (kind) {
+      case TableColumnKind.DATE:
+        type = 'number | Date';
+        break;
+      case TableColumnKind.LINK:
+        type = 'string';
+        break;
+      case TableColumnKind.ICON:
+        // TODO : use the IconConfig type
+        type = {
+          name: 'IconConfig',
+          moduleSpecifier: '@rxap/utilities',
+        };
+        break;
+      case TableColumnKind.BOOLEAN:
+        type = 'boolean';
+        break;
+    }
+  }
+  type ??= 'unknown';
   return Object.freeze({
-    name: column.name,
-    label: column.label ?? dasherize(column.name).split('-').map(part => capitalize(part)).join(' '),
+    name,
+    type: NormalizeTypeImport(type),
+    title: column.title ?? dasherize(name).split('-').map(part => capitalize(part)).join(' '),
     hasFilter: column.hasFilter ?? false,
-    kind: column.kind ?? TableColumnKind.DEFAULT,
+    kind,
+    propertyPath,
   });
 }
 
@@ -438,7 +473,7 @@ export interface TableSelectFormControl extends BaseFormControl {
   backend?: BackendTypes;
   formField?: FormField;
   title?: string;
-  columnList?: TableColumn[];
+  columnList?: TableSelectColumn[];
   toDisplay?: TableSelectToFunction;
   toValue?: TableSelectToFunction;
 }
