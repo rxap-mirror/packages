@@ -1,3 +1,4 @@
+import { LocationSelectTableDataSource } from './data-sources/location-select-table.data-source';
 import { Provider, INJECTOR, Injector, Optional } from '@angular/core';
 import { GeneralInformationDashboardForm, IGeneralInformationDashboardForm } from './general-information-dashboard.form';
 import { RxapFormBuilder, RXAP_FORM_DEFINITION_BUILDER, RXAP_FORM_DEFINITION, RXAP_FORM_INITIAL_STATE, RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD, RXAP_FORM_SUBMIT_METHOD, RXAP_FORM_CONTEXT } from '@rxap/forms';
@@ -7,7 +8,7 @@ import { SubmitContextFormAdapterFactory, FormContextFromActivatedRouteFactory }
 import { DashboardAccordionGeneralInformationDashboardDataGridControllerSubmitRemoteMethod } from 'open-api-service-app-angular-accordion/remote-methods/dashboard-accordion-general-information-dashboard-data-grid-controller-submit.remote-method';
 import { ActivatedRoute } from '@angular/router';
 
-export const FormProviders: Provider[] = [GeneralInformationDashboardForm, {
+export const FormProviders: Provider[] = [LocationSelectTableDataSource, GeneralInformationDashboardForm, {
     provide: RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
     useFactory: DataSourceRefreshToMethodAdapterFactory,
     deps: [ GeneralInformationDashboardDataGridDataSource ]

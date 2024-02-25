@@ -1,5 +1,4 @@
-export interface DashboardAccordionReferenceTreeTableControllerGetChildrenParameter {
-  parentUuid: string;
+export interface DashboardAccordionReferenceTreeTableControllerGetRootParameter {
   filter?: Array<string>;
   sortBy?: string;
   sortDirection?: string;

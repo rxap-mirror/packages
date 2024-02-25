@@ -19,6 +19,49 @@ import { DashboardAccordionReferenceTreeTableControllerGetChildrenResponse } fro
       "schema": {
         "type": "string"
       }
+    },
+    {
+      "name": "filter",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "sortBy",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "sortDirection",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "pageSize",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "number"
+      }
+    },
+    {
+      "name": "pageIndex",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "number"
+      }
     }
   ],
   "responses": {

@@ -4,7 +4,7 @@
             <ng-template rxapDataGridEditCellDef>
               
               <mat-form-field>
-                <button matPrefix mat-icon-button>
+                <button tabindex="-1" type="button" matPrefix mat-icon-button>
                   <mat-icon>clear</mat-icon>
                 </button>
                 <input
@@ -19,7 +19,24 @@
           <ng-container rxapDataGridRowDef="location">
             <ng-template rxapDataGridEditCellDef>
               
-              <!-- form control: location -->
+              <mat-form-field>
+                <button tabindex="-1" type="button" matPrefix mat-icon-button>
+                  <mat-icon>clear</mat-icon>
+                </button>
+                <eurogard-table-select-input
+                  eurogardOpenTableSelectWindow
+                  formControlName="location"
+                  >
+                </eurogard-table-select-input>
+                <button
+                  eurogardOpenTableSelectWindow
+                  mat-icon-button
+                  matPrefix
+                  tabindex="-1"
+                  >
+                  <mat-icon svgIcon="table-eye"></mat-icon>
+                </button>
+              </mat-form-field>
               
             </ng-template>
           </ng-container>
@@ -27,7 +44,7 @@
             <ng-template rxapDataGridEditCellDef>
               
               <mat-form-field>
-                <button matPrefix mat-icon-button>
+                <button tabindex="-1" type="button" matPrefix mat-icon-button>
                   <mat-icon>clear</mat-icon>
                 </button>
                 <input

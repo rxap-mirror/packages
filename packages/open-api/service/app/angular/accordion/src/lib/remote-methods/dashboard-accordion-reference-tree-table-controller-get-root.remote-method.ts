@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { OpenApiRemoteMethod, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import { OpenApiRemoteMethod, OpenApiRemoteMethodParameter, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import { DashboardAccordionReferenceTreeTableControllerGetRootParameter } from '../parameters/dashboard-accordion-reference-tree-table-controller-get-root.parameter';
 import { DashboardAccordionReferenceTreeTableControllerGetRootResponse } from '../responses/dashboard-accordion-reference-tree-table-controller-get-root.response';
 
 @Injectable({
@@ -10,7 +11,51 @@ import { DashboardAccordionReferenceTreeTableControllerGetRootResponse } from '.
     operationId: 'DashboardAccordionReferenceTreeTableController_getRoot',
     operation: `{
   "operationId": "DashboardAccordionReferenceTreeTableController_getRoot",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "filter",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "sortBy",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "sortDirection",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "pageSize",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "number"
+      }
+    },
+    {
+      "name": "pageIndex",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "number"
+      }
+    }
+  ],
   "responses": {
     "200": {
       "content": {
@@ -55,8 +100,8 @@ import { DashboardAccordionReferenceTreeTableControllerGetRootResponse } from '.
   "path": "/dashboard-accordion/{uuid}/reference-tree-table"
 }`
   })
-export class DashboardAccordionReferenceTreeTableControllerGetRootRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionReferenceTreeTableControllerGetRootResponse, void, void> {
-  public override call(): Promise<DashboardAccordionReferenceTreeTableControllerGetRootResponse> {
-    return super.call();
+export class DashboardAccordionReferenceTreeTableControllerGetRootRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionReferenceTreeTableControllerGetRootResponse, DashboardAccordionReferenceTreeTableControllerGetRootParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<DashboardAccordionReferenceTreeTableControllerGetRootParameter, void>): Promise<DashboardAccordionReferenceTreeTableControllerGetRootResponse> {
+    return super.call(parameters);
   }
 }

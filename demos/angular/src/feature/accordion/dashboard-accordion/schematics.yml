@@ -33,7 +33,26 @@
                       kind: input
                     - name: location
                       #kind: autocomplete-table-select
-                      #kind: table-select
+                      kind: table-select
+                      toValue:
+                        property:
+                          name: uuid
+                      columnList:
+                        - name: name
+                          hasFilter: true
+                      upstream:
+                        kind: open-api
+                        operationId: locationList
+                        mapper:
+                          pageIndex: page
+                          pageSize: size
+                          sortBy: sort
+                          sortDirection: order
+                          list: entities
+                          total: maxCount
+                          filter:
+                            eq: ':'
+                            join: ';'
                     - name: link
                       kind: input
                       inputType: url

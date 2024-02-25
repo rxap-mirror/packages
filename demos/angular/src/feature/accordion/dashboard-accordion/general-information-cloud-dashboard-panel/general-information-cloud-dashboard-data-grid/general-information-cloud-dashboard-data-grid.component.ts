@@ -1,21 +1,12 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-} from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { DataGridModule } from '@rxap/data-grid';
-import { RxapFormsModule } from '@rxap/forms';
-import {
-  FormComponentProviders,
-  FormProviders,
-} from './form.providers';
 import { GeneralInformationCloudDashboardDataGridDataSource } from './general-information-cloud-dashboard-data-grid.data-source';
-import { InputClearButtonDirective } from '@rxap/material-form-system';
+import { RxapFormsModule } from '@rxap/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormProviders, FormComponentProviders } from './form.providers';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     standalone: true,
@@ -23,7 +14,7 @@ import { InputClearButtonDirective } from '@rxap/material-form-system';
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './general-information-cloud-dashboard-data-grid.component.html',
     styleUrls: ['./general-information-cloud-dashboard-data-grid.component.scss'],
-  imports: [DataGridModule, MatCardModule, RxapFormsModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule, InputClearButtonDirective],
+  imports: [DataGridModule, RxapFormsModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule],
   providers: [GeneralInformationCloudDashboardDataGridDataSource, FormProviders, FormComponentProviders],
 })
 export class GeneralInformationCloudDashboardDataGridComponent {
