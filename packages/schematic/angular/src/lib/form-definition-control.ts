@@ -2,6 +2,7 @@ import {
   BaseFormControl,
   FormControlKinds,
   NormalizeBaseFormControl,
+  NormalizeCheckboxFormControl,
   NormalizedBaseFormControl,
   NormalizeInputFormControl,
   NormalizeSelectFormControl,
@@ -20,6 +21,8 @@ export function NormalizeFormDefinitionControl(
       return NormalizeInputFormControl(control);
     case FormControlKinds.SELECT:
       return NormalizeSelectFormControl(control);
+    case FormControlKinds.CHECKBOX:
+      return NormalizeCheckboxFormControl(control);
     case FormControlKinds.DEFAULT:
     default:
       return NormalizeBaseFormControl(control);

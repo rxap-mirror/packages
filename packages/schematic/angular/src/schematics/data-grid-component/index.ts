@@ -61,6 +61,7 @@ import {
 } from '../../lib/data-grid-options';
 import { NormalizeFormDefinitionControl } from '../../lib/form-definition-control';
 import { GenerateFormTemplate } from '../../lib/form/generate-form-template';
+import { LoadMatFormFieldHandlebarsTemplate } from '../../lib/load-handlebars-template';
 import { DataGridComponentOptions } from './schema';
 
 export interface NormalizedDataGridComponentOptions
@@ -135,6 +136,11 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       overwrite,
       template: {
         options: templateOptions,
+      },
+      handlebars: {
+        partials: {
+          matFormField: LoadMatFormFieldHandlebarsTemplate(),
+        }
       },
       tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
 

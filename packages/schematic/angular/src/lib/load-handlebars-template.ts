@@ -19,3 +19,9 @@ export function LoadHandlebarsTemplate(
   const content = readFileSync(fullPath, 'utf-8');
   return Handlebars.compile(content);
 }
+
+export function LoadMatFormFieldHandlebarsTemplate(
+  template = 'mat-form-field.hbs'
+): Handlebars.TemplateDelegate {
+  return LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'form', 'templates'));
+}

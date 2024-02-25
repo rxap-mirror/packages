@@ -1,18 +1,9 @@
-
-<mat-form-field>
-{{#if control.formField}}
-{{#if control.formField.label}}
-  <mat-label>{{control.formField.label}}</mat-label>
-{{/if}}
-{{/if}}
-  <input
-    matInput
-    formControlName="{{control.name}}"
-    {{#if parentControlContainer}}parentControlContainer{{/if~}}
-    {{#if control.placeholder}}i18n-placeholder placeholder="{{control.placeholder}}"{{/if~}}
-    type="{{control.inputType}}"
-  />
-  <button matSuffix rxapInputClearButton mat-icon-button>
-    <mat-icon>clear</mat-icon>
-  </button>
-</mat-form-field>
+{{#> matFormField control=control}}
+<input
+  matInput
+  formControlName="{{control.name}}"
+  type="{{control.inputType}}"
+  {{#if parentControlContainer}}parentControlContainer{{/if~}}
+  {{#if control.placeholder}}i18n-placeholder placeholder="{{control.placeholder}}"{{/if~}}
+/>
+{{/matFormField}}

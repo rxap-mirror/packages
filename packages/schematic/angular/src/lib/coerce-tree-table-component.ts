@@ -16,6 +16,8 @@ export function CoerceTreeTableComponentRule(options: Readonly<CoerceTreeTableCo
     ...options,
     tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
       CoerceComponentImport(classDeclaration, { name: 'TreeControlCellComponent', moduleSpecifier: '@rxap/material-table-system' });
+      CoerceComponentImport(classDeclaration, { name: 'MatProgressSpinnerModule', moduleSpecifier: '@angular/material/progress-spinner' });
+      CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
       AddComponentProvider(sourceFile, {
         provide: 'TABLE_DATA_SOURCE',
         useClass: 'TreeTableDataSource',

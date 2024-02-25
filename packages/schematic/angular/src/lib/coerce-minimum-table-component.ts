@@ -10,6 +10,7 @@ import {
   CoerceImports,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
+import { LoadMatFormFieldHandlebarsTemplate } from './load-handlebars-template';
 import { NormalizedMinimumTableOptions } from './minimum-table-options';
 import { TableModifiers } from './table-options';
 
@@ -26,11 +27,15 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       actionList,
       headerButton,
       modifiers,
-    }
+    },
+    handlebars: { partials = {} } = {},
   } = options;
+
+  partials['matFormField'] ??= LoadMatFormFieldHandlebarsTemplate();
 
   return CoerceComponentRule({
     ...options,
+    handlebars: { ...options.handlebars ?? {}, partials,  },
     tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
 
       AddComponentAnimations(sourceFile, 'RowAnimation', '@rxap/material-table-system');

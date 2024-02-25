@@ -5,6 +5,20 @@
   "properties": {
     "label": {
       "type": "string"
+    },
+    "prefixButton": {
+      "$ref": "#/definitions/button"
+    },
+    "suffixButton": {
+      "$ref": "#/definitions/button"
+    },
+    "hasClearButton": {
+      "type": "boolean"
+    }
+  },
+  "definitions": {
+    "button": {
+      "$ref": "./form-field-button.schema.json"
     }
   }
 }

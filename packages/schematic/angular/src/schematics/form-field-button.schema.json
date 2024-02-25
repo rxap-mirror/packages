@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "form-field-button",
+  "type": "object",
+  "properties": {
+    "svgIcon": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "directiveList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/type"
+      }
+    },
+    "importList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/type"
+      }
+    }
+  },
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
+}

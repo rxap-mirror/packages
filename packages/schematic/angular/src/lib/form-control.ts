@@ -21,6 +21,7 @@ export enum FormControlKinds {
   DEFAULT = 'default',
   INPUT = 'input',
   SELECT = 'select',
+  CHECKBOX = 'checkbox',
 }
 
 export interface BaseFormControl {
@@ -87,23 +88,78 @@ export function NormalizeBaseFormControl(
 
 // region FormFiled
 
+export interface FormFieldButton {
+  svgIcon?: string;
+  icon?: string;
+  directiveList?: TypeImport[];
+  importList?: TypeImport[];
+}
+
 export interface FormField {
   label?: string;
+  prefixButton?: FormFieldButton;
+  suffixButton?: FormFieldButton;
+  hasClearButton?: boolean;
 }
 
 export type NormalizedFormField = Readonly<Normalized<FormField>>;
 
+export interface NormalizedFormFieldButton extends Readonly<Normalized<FormFieldButton>> {
+  directiveList: NormalizedTypeImport[];
+  importList: NormalizedTypeImport[];
+}
+
+export function NormalizeFormFieldButton(
+  button?: FormFieldButton | null,
+): NormalizedFormFieldButton | null {
+  if ((
+    !button || Object.keys(button).length === 0
+  )) {
+    return null;
+  }
+  const importList = button.importList ?? [];
+  CoerceArrayItems(importList, [
+    {
+      name: 'MatIconModule',
+      moduleSpecifier: '@angular/material/icon',
+    },
+    {
+      name: 'MatButtonModule',
+      moduleSpecifier: '@angular/material/button',
+    }
+  ], (a, b) => a.name === b.name);
+  return Object.freeze({
+    svgIcon: button.svgIcon ?? null,
+    icon: button.icon ?? null,
+    directiveList: NormalizeTypeImportList(button.directiveList),
+    importList: NormalizeTypeImportList(importList),
+  });
+}
+
 export function NormalizeFormField(
   formField: FormField,
   defaultFormField: Partial<FormField> = {},
-): NormalizedFormField | null {
+): NormalizedFormField {
   defaultFormField = DeleteEmptyProperties(defaultFormField);
-  if ((!formField || Object.keys(formField).length === 0) && Object.keys(defaultFormField).length === 0) {
-    return null;
-  }
-  return Object.freeze({
+  const normalizedFormField = {
     label: defaultFormField.label ?? formField.label ?? null,
-  });
+    prefixButton: NormalizeFormFieldButton(formField.prefixButton ?? defaultFormField.prefixButton),
+    suffixButton: NormalizeFormFieldButton(formField.suffixButton ?? defaultFormField.suffixButton),
+    hasClearButton: formField.hasClearButton ?? defaultFormField.hasClearButton ?? true,
+  };
+  if (normalizedFormField.hasClearButton) {
+    normalizedFormField.suffixButton ??= NormalizeFormFieldButton({
+      icon: 'clear',
+      directiveList: [
+        {
+          name: 'rxapInputClearButton',
+          namedImport: 'InputClearButtonDirective',
+          moduleSpecifier: '@rxap/material-form-system',
+        },
+      ],
+    });
+  }
+  return Object.freeze(normalizedFormField);
 }
 
 // endregion
@@ -179,6 +235,11 @@ export function NormalizeInputFormControl(
     case 'range':
       throw new Error(`The input type "${ inputType }" is not yet supported`);
   }
+  const formField = NormalizeFormField(control.formField ?? {}, { label: control.label });
+  importList.push(...formField?.prefixButton?.directiveList ?? []);
+  importList.push(...formField?.suffixButton?.directiveList ?? []);
+  importList.push(...formField?.prefixButton?.importList ?? []);
+  importList.push(...formField?.suffixButton?.importList ?? []);
   // TODO : auto add validators
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
@@ -188,7 +249,7 @@ export function NormalizeInputFormControl(
     kind: FormControlKinds.INPUT,
     inputType,
     placeholder: control.placeholder ?? null,
-    formField: NormalizeFormField(control.formField ?? {}, { label: control.label }),
+    formField,
   });
 }
 
@@ -222,14 +283,45 @@ export function NormalizeSelectFormControl(
     name: 'MatSelectModule',
     moduleSpecifier: '@angular/material/select',
   });
+  const formField = NormalizeFormField(control.formField ?? {}, { label: control.label });
+  importList.push(...formField?.prefixButton?.directiveList ?? []);
+  importList.push(...formField?.suffixButton?.directiveList ?? []);
+  importList.push(...formField?.prefixButton?.importList ?? []);
+  importList.push(...formField?.suffixButton?.importList ?? []);
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
     importList: NormalizeTypeImportList(importList),
     kind: FormControlKinds.SELECT,
-    formField: NormalizeFormField(control.formField ?? {}, { label: control.label }),
+    formField,
     options: control.options && control.options.length ? Object.freeze(control.options) : null,
     backend: control.backend ?? BackendTypes.NONE,
     multiple: control.multiple ?? false,
+  });
+}
+
+// endregion
+
+// region CheckboxFormControl
+
+export interface CheckboxFormControl extends BaseFormControl {
+  labelPosition?: 'before' | 'after'
+}
+
+export interface NormalizedCheckboxFormControl extends Readonly<Normalized<Omit<CheckboxFormControl, 'type' | 'importList'>>>, NormalizedBaseFormControl {
+  kind: FormControlKinds.CHECKBOX;
+}
+
+export function IsNormalizedCheckboxFormControl(template: NormalizedBaseFormControl): template is NormalizedCheckboxFormControl {
+  return template.kind === FormControlKinds.CHECKBOX;
+}
+
+export function NormalizeCheckboxFormControl(
+  control: CheckboxFormControl,
+): NormalizedCheckboxFormControl {
+  return Object.freeze({
+    ...NormalizeBaseFormControl(control),
+    kind: FormControlKinds.CHECKBOX,
+    labelPosition: control.labelPosition ?? 'after',
   });
 }
 

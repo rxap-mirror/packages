@@ -16,6 +16,7 @@ import {
   Writers,
 } from 'ts-morph';
 import { NormalizedFormComponentOptions } from '../schematics/form/form-component';
+import { LoadMatFormFieldHandlebarsTemplate } from './load-handlebars-template';
 
 export interface CoerceFormComponentOptions extends CoerceComponentOptions {
   form: NormalizedFormComponentOptions;
@@ -30,11 +31,14 @@ export function CoerceFormComponentRule(options: CoerceFormComponentOptions) {
       name,
       matFormFieldDefaultOptions,
     },
+    handlebars: { partials = {} } = {},
   } = options;
 
+  partials['matFormField'] ??= LoadMatFormFieldHandlebarsTemplate();
 
   return CoerceComponentRule({
     ...options,
+    handlebars: { ...options.handlebars ?? {}, partials,  },
     tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
 
       // region angular imports

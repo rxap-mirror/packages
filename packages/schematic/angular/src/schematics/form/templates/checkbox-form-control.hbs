@@ -1,7 +1,9 @@
+
 <mat-checkbox
   indeterminate
-  {{#if parentControlContainer}}parentControlContainer{{/if~}}
   formControlName="{{control.name}}"
+  labelPosition="{{control.labelPosition}}"
+  {{#if parentControlContainer}}parentControlContainer{{/if~}}
 >
   <ng-container i18n>{{control.label}}</ng-container>
 </mat-checkbox>
