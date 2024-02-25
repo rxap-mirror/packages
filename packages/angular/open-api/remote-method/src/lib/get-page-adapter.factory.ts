@@ -8,18 +8,19 @@ export interface GetPageRemoteMethodParameters {
   pageIndex: number;
   pageSize: number;
   sortBy?: string;
-  sortDirection?: 'desc' | 'asc' | undefined | '';
-  filter: string;
+  sortDirection?: 'desc' | 'asc' | undefined | '' | string;
+  filter: string[];
 }
 
-export interface GetPageResponse<Data extends Record<string, any>> extends GetPageRemoteMethodParameters {
+export interface GetPageResponse<Data extends Record<string, any>> {
   total: number;
   rows: Data[];
+  [key: string]: any;
 }
 
 export interface GetPageAdapterDefaultOptions {
   sortBy?: string;
-  sortDirection?: 'asc' | 'desc';
+  sortDirection?: 'asc' | 'desc' | string;
 }
 
 export class GetPageAdapterRemoteMethod<Data extends Record<string, any>>
