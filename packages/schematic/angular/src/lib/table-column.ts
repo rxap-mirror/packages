@@ -6,6 +6,7 @@ import {
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
+  NormalizeTypeImportList,
   TypeImport,
 } from '@rxap/ts-morph';
 import {
@@ -21,8 +22,12 @@ import {
 } from './form-control';
 import { NormalizeFormDefinitionControl } from './form-definition-control';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
+import {
+  NormalizePipeOptionList,
+  PipeOption,
+} from './pipe-option';
 
-export type TableColumnPipe = TypeImport;
+export type TableColumnPipe = PipeOption;
 
 export enum TableColumnModifier {
   FILTER = 'filter',
@@ -85,40 +90,6 @@ export interface NormalizedTableColumn extends Omit<Readonly<Normalized<TableCol
   importList: ReadonlyArray<NormalizedTypeImport>;
   kind: TableColumnKind;
   handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
-}
-
-export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): NormalizedTableColumnPipe {
-  if (typeof pipe === 'string') {
-    switch (pipe) {
-      case 'async':
-        return NormalizeTypeImport({
-          name: 'async',
-          namedImport: 'AsyncPipe',
-          moduleSpecifier: '@angular/common',
-        });
-      case 'date':
-        return NormalizeTypeImport({
-          name: 'date',
-          namedImport: 'DatePipe',
-          moduleSpecifier: '@angular/common',
-        });
-      case 'json':
-        return NormalizeTypeImport({
-          name: 'json',
-          namedImport: 'JsonPipe',
-          moduleSpecifier: '@angular/common',
-        });
-      case 'keyvalue':
-        return NormalizeTypeImport({
-          name: 'keyvalue',
-          namedImport: 'KeyValuePipe',
-          moduleSpecifier: '@angular/common',
-        });
-      default:
-        throw new Error(`Unknown pipe ${ pipe }`);
-    }
-  }
-  return NormalizeTypeImport(pipe);
 }
 
 function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[] {
@@ -349,9 +320,9 @@ export function NormalizeTableColumn(
     nowrap,
     withoutTitle,
     cssClass,
-    pipeList: pipeList.map(NormalizeTableColumnPipe),
+    pipeList: NormalizePipeOptionList(pipeList),
     template,
-    importList: importList.map(NormalizeTypeImport),
+    importList: NormalizeTypeImportList(importList),
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'table', 'templates')),
     filterControl: filterControl ? NormalizeFormDefinitionControl(filterControl) : null,
   });

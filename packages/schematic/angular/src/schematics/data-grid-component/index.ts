@@ -50,12 +50,16 @@ import {
 } from '../../lib/angular-options';
 import { BackendTypes } from '../../lib/backend-types';
 import { NormalizedDataGridItem } from '../../lib/data-grid-item';
+import { DataGridMode } from '../../lib/data-grid-mode';
 import {
-  DataGridMode,
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
 } from '../../lib/data-grid-options';
-import { LoadMatFormFieldHandlebarsTemplate } from '../../lib/load-handlebars-template';
+import { NormalizedFormDefinitionControl } from '../../lib/form-definition-control';
+import {
+  LoadMatFormFieldHandlebarsTemplate,
+  LoadPipeHandlebarsTemplate,
+} from '../../lib/load-handlebars-template';
 import { DataGridComponentOptions } from './schema';
 
 export interface NormalizedDataGridComponentOptions
@@ -128,6 +132,7 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       handlebars: {
         partials: {
           matFormField: LoadMatFormFieldHandlebarsTemplate(),
+          pipe: LoadPipeHandlebarsTemplate(),
         }
       },
       tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
@@ -277,7 +282,9 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
       project,
       feature,
       shared,
-      propertyList: itemList.map(item => item),
+      propertyList: itemList
+        .map(item => item.formControl)
+        .filter((formControl): formControl is NormalizedFormDefinitionControl => !!formControl),
       skipCoerce: true,
       collection,
     }),
@@ -331,7 +338,9 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
       nestModule,
       collection,
       controllerName,
-      propertyList: itemList.map(item => item),
+      propertyList: itemList
+        .map(item => item.formControl)
+        .filter((formControl): formControl is NormalizedFormDefinitionControl => !!formControl),
     }),
     () => console.log('Coerce data grid data source class'),
     CoerceDataSourceClass({

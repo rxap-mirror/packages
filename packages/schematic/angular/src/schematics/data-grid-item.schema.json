@@ -1,23 +1,33 @@
 {
   "$schema": "http://json-schema.org/schema",
   "$id": "data-grid-item",
-  "allOf": [
-    {
-      "$ref": "./form-control.schema.json"
+  "type": "object",
+  "properties":{
+    "name": {
+      "type": "string",
+      "description": "The name of the data grid item"
     },
-    {
-      "type": "object",
-      "properties":{
-        "header": {
-          "type": "string",
-          "description": "The name of the control"
-        }
+    "header": {
+      "type": "string",
+      "description": "The name of the control"
+    },
+    "pipeList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/pipe"
       }
+    },
+    "formControl": {
+      "$ref": "./form-control.schema.json"
     }
-  ],
+  },
+  "required": ["header"],
   "definitions": {
     "type": {
       "$ref": "./type.schema.json"
+    },
+    "pipe": {
+      "$ref": "./pipe.schema.json"
     }
   }
 }

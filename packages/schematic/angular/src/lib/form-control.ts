@@ -1,3 +1,4 @@
+import { SchematicsException } from '@angular-devkit/schematics';
 import { camelize } from '@rxap/schematics-utilities';
 import {
   DataProperty,
@@ -66,6 +67,9 @@ export function NormalizeBaseFormControl(
   control: BaseFormControl,
 ): NormalizedBaseFormControl {
   const name: string = control.name;
+  if (!name) {
+    throw new SchematicsException('The control name is required');
+  }
   const type: NormalizedTypeImport = NormalizeTypeImport(control.type);
   const state: string | null = control.state ?? null;
   const isRequired: boolean = control.isRequired ?? false;
@@ -93,7 +97,7 @@ export function NormalizeBaseFormControl(
     isReadonly,
     isDisabled,
     validatorList,
-    importList: importList.map(NormalizeTypeImport),
+    importList: NormalizeTypeImportList(importList),
     kind,
     template,
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'form', 'templates')),

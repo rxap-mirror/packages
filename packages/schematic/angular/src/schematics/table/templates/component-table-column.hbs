@@ -7,6 +7,6 @@
     {{#if column.cssClass}}class="{{column.cssClass}}"{{/if~}}
     {{prefix}}-{{column.name}}-cell
     [element]="element"
-    [value]="element?.{{column.propertyPath}}">
+    [value]="element?.{{column.propertyPath}}{{> pipe pipeList=column.pipeList}}">
   </td>
 </ng-container>

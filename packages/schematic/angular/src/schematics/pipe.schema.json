@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "property",
+  "oneOf": [
+    {
+      "type": "string"
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "#/definitions/type"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "argumentList": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/value"
+              }
+            }
+          },
+          "required": [
+            "name"
+          ]
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    },
+    "value": {
+      "$ref": "./value.schema.json"
+    }
+  }
+}

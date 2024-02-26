@@ -3,6 +3,6 @@
     <ng-container i18n>{{column.title}}</ng-container>
   </th>
   <td *matCellDef="let element" mat-cell{{#if column.cssClass}} class="{{column.cssClass}}"{{/if}}>
-  \{{ element?.{{column.propertyPath}}{{#each column.pipeList}} | {{this.name}}{{/each}} }}
+  \{{ element?.{{column.propertyPath}}{{> pipe pipeList=column.pipeList}} }}
   </td>
 </ng-container>

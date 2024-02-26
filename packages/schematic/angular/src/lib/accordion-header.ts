@@ -4,6 +4,7 @@ import {
   NormalizedDataProperty,
   NormalizedTypeImport,
   NormalizeTypeImport,
+  NormalizeTypeImportList,
   TypeImport,
 } from '@rxap/ts-morph';
 import { join } from 'path';
@@ -70,7 +71,7 @@ export function NormalizeBaseAccordionHeader(header: BaseAccordionHeader): Norma
   return Object.freeze({
     template,
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'accordion', 'templates')),
-    importList: coerceBaseAccordionHeaderImportList(header).map(NormalizeTypeImport)
+    importList: NormalizeTypeImportList(coerceBaseAccordionHeaderImportList(header))
   });
 }
 

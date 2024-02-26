@@ -24,7 +24,7 @@
     "pipeList": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/type"
+        "$ref": "#/definitions/pipe"
       }
     },
     "hasFilter": {
@@ -64,6 +64,9 @@
   "definitions": {
     "type": {
       "$ref": "./type.schema.json"
+    },
+    "pipe": {
+      "$ref": "./pipe.schema.json"
     }
   }
 }

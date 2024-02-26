@@ -25,3 +25,9 @@ export function LoadMatFormFieldHandlebarsTemplate(
 ): Handlebars.TemplateDelegate {
   return LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'form', 'templates'));
 }
+
+export function LoadPipeHandlebarsTemplate(
+  template = 'pipe.hbs'
+): Handlebars.TemplateDelegate {
+  return LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'templates'));
+}

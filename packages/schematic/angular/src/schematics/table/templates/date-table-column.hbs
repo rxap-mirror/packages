@@ -6,6 +6,6 @@
     mat-cell
     {{#if column.cssClass}}class="{{column.cssClass}}"{{/if~}}
     format="{{column.format}}"
-    [rxap-date-cell]="element?.{{column.propertyPath}}">
+    [rxap-date-cell]="element?.{{column.propertyPath}}{{> pipe pipeList=column.pipeList}}">
   </td>
 </ng-container>

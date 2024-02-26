@@ -5,6 +5,7 @@ import {
   NormalizedDataProperty,
   NormalizedTypeImport,
   NormalizeTypeImport,
+  NormalizeTypeImportList,
   TypeImport,
 } from '@rxap/ts-morph';
 import {
@@ -88,7 +89,7 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
     kind,
     modifiers,
     permission,
-    importList: importList.map(NormalizeTypeImport),
+    importList: NormalizeTypeImportList(importList),
     template,
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'accordion', 'templates')),
   });
@@ -249,7 +250,7 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
   }
   return Object.freeze({
     ...base,
-    importList: importList.map(NormalizeTypeImport),
+    importList: NormalizeTypeImportList(importList),
     type: AccordionItemKinds.Switch,
     switch: normalizeSwitch,
   });

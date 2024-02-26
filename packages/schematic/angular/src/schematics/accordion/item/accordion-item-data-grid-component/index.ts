@@ -45,7 +45,7 @@ import {
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
-import { DataGridMode } from '../../../../lib/data-grid-options';
+import { DataGridMode } from '../../../../lib/data-grid-mode';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,

@@ -13,15 +13,18 @@
         <rxap-data-grid {{#if collection}}[data]="data"{{else}}[dataSource]="dataGridDataSource"{{/if}} mode="{{mode}}">
         {{#each itemList}}
           <ng-container rxapDataGridRowDef="{{this.name}}">
-            {{#if this.header}}
+            {{#if this.hasHeaderCellDef}}
             <th *rxapDataGridHeaderCellDef class="whitespace-nowrap" i18n>{{this.header}}</th>
             {{/if}}
-            {{#if ../isForm}}
-            {{#unless this.isReadonly}}
+            {{#if this.hasEditCellDef}}
             <ng-template rxapDataGridEditCellDef>
-              {{ indent (compile this.handlebars control=this) 14}}
+              {{ indent (compile this.formControl.handlebars control=this.formControl) 14}}
             </ng-template>
-            {{/unless}}
+            {{/if}}
+            {{#if this.hasCellDef}}
+            <ng-template let-value rxapDataGridCellDef>
+              \{{ value{{> pipe pipeList=this.pipeList}} }}
+            </ng-template>
             {{/if}}
           </ng-container>
         {{/each}}

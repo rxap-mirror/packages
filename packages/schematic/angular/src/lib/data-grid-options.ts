@@ -4,11 +4,7 @@ import {
   NormalizeDataGridItemList,
   NormalizedDataGridItem,
 } from './data-grid-item';
-
-export enum DataGridMode {
-  Form = 'form',
-  Plain = 'plain',
-}
+import { DataGridMode } from './data-grid-mode';
 
 function IsDataGridMode(value: any): value is DataGridMode {
   return Object.values(DataGridMode).includes(value);

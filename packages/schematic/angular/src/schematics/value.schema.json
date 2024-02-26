@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "property",
+  "oneOf": [
+    {
+      "type": "string"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/type"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": ["value"]
+    }
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
+}
