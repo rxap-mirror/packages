@@ -44,6 +44,8 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
       CoerceComponentImport(classDeclaration, { name: 'DataSourceDirective', moduleSpecifier: '@rxap/data-source/directive' });
       CoerceComponentImport(classDeclaration, { name: 'MatProgressBarModule', moduleSpecifier: '@angular/material/progress-bar' });
       CoerceComponentImport(classDeclaration, { name: 'MatExpansionModule', moduleSpecifier: '@angular/material/expansion' });
+      CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
+      CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
 
       if (header) {
         CoerceComponentImport(classDeclaration, { name: 'MatDividerModule', moduleSpecifier: '@angular/material/divider' });

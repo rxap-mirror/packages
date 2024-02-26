@@ -193,12 +193,12 @@ export function NormalizeFormField(
   );
   CoerceArrayItems(
     importList,
-    normalizedFormField.prefixButton?.importList ?? [],
+    normalizedFormField.prefixButton?.directiveList ?? [],
     (a, b) => a.name === b.name && a.namedImport === b.namedImport,
   );
   CoerceArrayItems(
     importList,
-    normalizedFormField.suffixButton?.importList ?? [],
+    normalizedFormField.suffixButton?.directiveList ?? [],
     (a, b) => a.name === b.name && a.namedImport === b.namedImport,
   );
   return Object.freeze(normalizedFormField);

@@ -1,28 +1,28 @@
 
-<mat-form-field>
+<mat-form-field{{#each control.formField.directiveList}} {{this.name}}{{/each}}>
   {{#if control.formField.label}}
   <mat-label>{{control.formField.label}}</mat-label>
   {{/if}}
 {{#if control.formField.prefixButton}}
   {{#if control.formField.prefixButton.icon}}
-  <button tabindex="-1" type="button" matSuffix mat-icon-button{{#each control.formFiled.prefixButton.directiveList}} {{this.name}}{{/each}}>
+  <button tabindex="-1" type="button" matPrefix mat-icon-button{{#each control.formField.prefixButton.directiveList}} {{this.name}}{{/each}}>
     <mat-icon>{{control.formField.prefixButton.icon}}</mat-icon>
   </button>
   {{/if}}
   {{#if control.formField.prefixButton.svgIcon}}
-  <button tabindex="-1" type="button" matSuffix mat-icon-button{{#each control.formFiled.prefixButton.directiveList}} {{this.name}}{{/each}}>
+  <button tabindex="-1" type="button" matPrefix mat-icon-button{{#each control.formField.prefixButton.directiveList}} {{this.name}}{{/each}}>
     <mat-icon>{{control.formField.prefixButton.svgIcon}}</mat-icon>
   </button>
   {{/if}}
 {{/if}}
 {{#if control.formField.suffixButton}}
   {{#if control.formField.suffixButton.icon}}
-  <button tabindex="-1" type="button" matPrefix mat-icon-button{{#each control.formFiled.suffixButton.directiveList}} {{this.name}}{{/each}}>
+  <button tabindex="-1" type="button" matSuffix mat-icon-button{{#each control.formField.suffixButton.directiveList}} {{this.name}}{{/each}}>
     <mat-icon>{{control.formField.suffixButton.icon}}</mat-icon>
   </button>
   {{/if}}
   {{#if control.formField.suffixButton.svgIcon}}
-  <button tabindex="-1" type="button" matPrefix mat-icon-button{{#each control.formFiled.suffixButton.directiveList}} {{this.name}}{{/each}}>
+  <button tabindex="-1" type="button" matSuffix mat-icon-button{{#each control.formField.suffixButton.directiveList}} {{this.name}}{{/each}}>
     <mat-icon>{{control.formField.suffixButton.svgIcon}}</mat-icon>
   </button>
   {{/if}}

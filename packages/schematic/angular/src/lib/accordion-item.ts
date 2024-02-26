@@ -235,6 +235,18 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
     name: 'NgSwitch',
     moduleSpecifier: '@angular/common',
   });
+  if (normalizeSwitch.defaultCase) {
+    importList.push({
+      name: 'NgSwitchDefault',
+      moduleSpecifier: '@angular/common',
+    });
+  }
+  if (normalizeSwitch.case.length > 1) {
+    importList.push({
+      name: 'NgSwitchCase',
+      moduleSpecifier: '@angular/common',
+    });
+  }
   return Object.freeze({
     ...base,
     importList: importList.map(NormalizeTypeImport),
