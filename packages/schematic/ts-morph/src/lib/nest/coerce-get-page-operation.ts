@@ -312,7 +312,6 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
     rowIdProperty,
     tsMorphTransform = noop,
     propertyList,
-    context,
     coerceToRowDtoMethod = CoerceToRowDtoMethod,
     coerceToPageDtoMethod = CoerceToPageDtoMethod,
     coerceGetPageDataMethod = CoerceGetPageDataMethod,
@@ -336,8 +335,6 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       } else {
         responseDtoName = CoercePrefix(responseDtoName, controllerName + '-');
       }
-
-      console.log(`[TEST]`, { responseDtoName, context, controllerName, operationName });
 
       const {
         className: rowClassName,
