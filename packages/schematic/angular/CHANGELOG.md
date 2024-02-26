@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.10...@rxap/schematic-angular@16.2.0-dev.11) (2024-02-26)
+
+### Bug Fixes
+
+- mat form field directive ([a22eb4f](https://gitlab.com/rxap/packages/commit/a22eb4f398402511b2941190845fa2f54c2bdc2e))
+
 # [16.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.9...@rxap/schematic-angular@16.2.0-dev.10) (2024-02-26)
 
 ### Bug Fixes
