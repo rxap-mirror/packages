@@ -32,10 +32,6 @@ export class GeneralInformationDashboardForm implements FormType<IGeneralInforma
       validators: [RxapValidators.IsUrl()]
     })
   public readonly link!: RxapFormControl<string>;
-  @UseFormControl()
-  public readonly company!: RxapFormControl<string>;
-  @UseFormControl()
-  public readonly dashboardType!: RxapFormControl<number>;
 }
 
-export type IGeneralInformationDashboardForm = DashboardAccordionGeneralInformationDashboardControllerGetResponse;
+export type IGeneralInformationDashboardForm = Omit<DashboardAccordionGeneralInformationDashboardControllerGetResponse, 'company' | 'dashboardType'>;

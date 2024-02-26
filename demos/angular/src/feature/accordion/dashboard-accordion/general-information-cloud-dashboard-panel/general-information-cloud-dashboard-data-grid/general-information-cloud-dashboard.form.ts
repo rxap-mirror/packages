@@ -8,10 +8,6 @@ export class GeneralInformationCloudDashboardForm implements FormType<IGeneralIn
   public readonly rxapFormGroup!: RxapFormGroup<IGeneralInformationCloudDashboardForm>;
   @UseFormControl()
   public readonly name!: RxapFormControl<string>;
-  @UseFormControl()
-  public readonly company!: RxapFormControl<string>;
-  @UseFormControl()
-  public readonly dashboardType!: RxapFormControl<number>;
 }
 
-export type IGeneralInformationCloudDashboardForm = DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse;
+export type IGeneralInformationCloudDashboardForm = Omit<DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse, 'company' | 'dashboardType'>;
