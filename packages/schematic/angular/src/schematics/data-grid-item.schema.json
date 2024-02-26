@@ -27,6 +27,12 @@
       "type": "string",
       "enum": ["default", "link"],
       "default": "default"
+    },
+    "type": {
+      "$ref": "#/definitions/type"
+    },
+    "isArray": {
+      "type": "boolean"
     }
   },
   "required": ["name"],

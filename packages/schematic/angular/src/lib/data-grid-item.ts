@@ -1,4 +1,8 @@
+import { SchematicsException } from '@angular-devkit/schematics';
 import {
+  DataProperty,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
   NormalizedTypeImport,
   NormalizeTypeImport,
   NormalizeTypeImportList,
@@ -36,8 +40,7 @@ export type NormalizedDataGridItem = NormalizedBaseDataGridItem | NormalizedLink
 
 // region BaseDataGridItem
 
-export interface BaseDataGridItem {
-  name: string;
+export interface BaseDataGridItem extends DataProperty {
   header?: string;
   pipeList?: Array<string | TypeImport>;
   formControl?: Omit<FormDefinitionControl, 'name'> & { name?: string };
@@ -47,7 +50,7 @@ export interface BaseDataGridItem {
   template?: string;
 }
 
-export interface NormalizedBaseDataGridItem extends Omit<Readonly<Normalized<BaseDataGridItem>>, 'importList' | 'pipeList'> {
+export interface NormalizedBaseDataGridItem extends Readonly<Normalized<Omit<BaseDataGridItem, 'importList' | 'pipeList'>> & NormalizedDataProperty> {
   hasCellDef: boolean;
   hasHeaderCellDef: boolean;
   hasEditCellDef: boolean;
@@ -60,6 +63,9 @@ export interface NormalizedBaseDataGridItem extends Omit<Readonly<Normalized<Bas
 }
 
 export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): NormalizedBaseDataGridItem {
+  if (!item.name) {
+    throw new SchematicsException('The data grid item is required');
+  }
   const formControl = item.formControl && Object.keys(item.formControl).length ? NormalizeFormDefinitionControl({
     name: item.name,
     ...item.formControl,
@@ -87,11 +93,11 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   const kind = item.kind ?? DataGridKinds.DEFAULT;
   const template = item.template ?? kind + '-data-grid-item.hbs';
   return Object.freeze({
+    ...NormalizeDataProperty(item),
     template,
     kind,
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'data-grid-component', 'templates')),
     formControl,
-    name: item.name,
     header: item.header ?? null,
     pipeList,
     hasCellDef,

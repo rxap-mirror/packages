@@ -42,10 +42,7 @@ export enum FormControlKinds {
   TABLE_SELECT = 'table-select',
 }
 
-export interface BaseFormControl {
-  name: string;
-  type?: string | TypeImport;
-  isArray?: boolean;
+export interface BaseFormControl extends DataProperty {
   state?: string;
   isRequired?: boolean;
   isReadonly?: boolean;
@@ -57,7 +54,7 @@ export interface BaseFormControl {
   label?: string;
 }
 
-export interface NormalizedBaseFormControl extends Readonly<Normalized<BaseFormControl>> {
+export interface NormalizedBaseFormControl extends Readonly<Normalized<BaseFormControl> & NormalizedDataProperty> {
   type: NormalizedTypeImport;
   importList: NormalizedTypeImport[];
   handlebars: Handlebars.TemplateDelegate<{ control: NormalizedBaseFormControl }>,
@@ -66,32 +63,19 @@ export interface NormalizedBaseFormControl extends Readonly<Normalized<BaseFormC
 export function NormalizeBaseFormControl(
   control: BaseFormControl,
 ): NormalizedBaseFormControl {
-  const name: string = control.name;
-  if (!name) {
+  if (!control.name) {
     throw new SchematicsException('The control name is required');
   }
-  const type: NormalizedTypeImport = NormalizeTypeImport(control.type);
   const state: string | null = control.state ?? null;
   const isRequired: boolean = control.isRequired ?? false;
   const validatorList: string[] = control.validatorList ?? [];
   const importList = (control.importList ?? []);
   const isReadonly: boolean = control.isReadonly ?? false;
   const isDisabled: boolean = control.isDisabled ?? false;
-  let isArray = false;
-  if (type.name.endsWith('[]')) {
-    isArray = true;
-    type.name = type.name.slice(0, -2);
-  }
-  if (type.name.startsWith('Array<') && type.name.endsWith('>')) {
-    isArray = true;
-    type.name = type.name.slice(6, -1);
-  }
   const kind = control.kind ?? FormControlKinds.DEFAULT;
   const template = control.template ?? kind + '-form-control.hbs';
   return Object.freeze({
-    name,
-    type,
-    isArray,
+    ...NormalizeDataProperty(control),
     isRequired,
     state,
     isReadonly,

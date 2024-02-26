@@ -13,6 +13,9 @@
         },
         "type": {
           "$ref": "#/definitions/type"
+        },
+        "isArray": {
+          "type": "boolean"
         }
       },
       "required": [

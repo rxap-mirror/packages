@@ -33,8 +33,13 @@ import {
 import {
   CoerceComponentImport,
   CoerceComponentInput,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
 } from '@rxap/ts-morph';
-import { Normalized } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  Normalized,
+} from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -307,6 +312,25 @@ function nestjsModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
 
 }
 
+function getPropertyList({ itemList }: NormalizedDataGridComponentOptions) {
+  const propertyList: NormalizedDataProperty[] = [];
+  CoerceArrayItems(
+    propertyList,
+    itemList
+    .filter(item => item.formControl)
+    .map(item => item.formControl)
+  );
+  CoerceArrayItems(propertyList, itemList
+    .filter(item => !item.formControl)
+    .map((item) => NormalizeDataProperty({
+      name: item.name,
+      type: item.type,
+      isArray: item.isArray,
+    }))
+  );
+  return propertyList;
+}
+
 function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions): Rule {
 
   const {
@@ -328,7 +352,6 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
     controllerName,
   );
 
-
   return chain([
     () => console.log('Coerce get operation for the data grid data source ...'),
     CoerceGetDataGridOperation({
@@ -338,9 +361,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
       nestModule,
       collection,
       controllerName,
-      propertyList: itemList
-        .map(item => item.formControl)
-        .filter((formControl): formControl is NormalizedFormDefinitionControl => !!formControl),
+      propertyList: getPropertyList(normalizedOptions),
     }),
     () => console.log('Coerce data grid data source class'),
     CoerceDataSourceClass({
