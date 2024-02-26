@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.2...@rxap/ts-morph@1.1.0-dev.3) (2024-02-26)
+
+### Bug Fixes
+
+- support non service commands ([7346933](https://gitlab.com/rxap/packages/commit/73469338e563e4c2d589f8059959380acc6d61fb))
+
 # [1.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.1...@rxap/ts-morph@1.1.0-dev.2) (2024-02-25)
 
 ### Bug Fixes

@@ -10171,7 +10171,7 @@ __metadata:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/schematics-utilities": ^16.0.1-dev.0
-    "@rxap/ts-morph": ^1.1.0-dev.2
+    "@rxap/ts-morph": ^1.1.0-dev.3
     "@rxap/utilities": ^16.1.0-dev.1
     "@rxap/workspace-ts-morph": ^16.0.2-dev.0
     colors: ^1.4.0

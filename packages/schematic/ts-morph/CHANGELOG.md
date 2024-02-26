@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.3...@rxap/schematics-ts-morph@16.1.0-dev.4) (2024-02-26)
+
+### Bug Fixes
+
+- support non service commands ([7346933](https://gitlab.com/rxap/packages/commit/73469338e563e4c2d589f8059959380acc6d61fb))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.2...@rxap/schematics-ts-morph@16.1.0-dev.3) (2024-02-26)
 
 ### Bug Fixes
