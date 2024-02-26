@@ -51,7 +51,7 @@ export interface NormalizedTypeImport {
   defaultImport: string | null;
 }
 
-export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string): NormalizedTypeImport {
+export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string, defaultType = 'unknown'): NormalizedTypeImport {
   let name: string;
   let moduleSpecifier: string | null = null;
   let namedImport: string | null = null;
@@ -59,7 +59,7 @@ export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string):
   let isTypeOnly = false;
   let defaultImport: string | null = null;
   if (!typeImport) {
-    name = 'unknown';
+    name = defaultType;
   } else if (typeof typeImport === 'string') {
     // name:moduleSpecifier:namedImport
     // IconConfig:@rxap/utilities
@@ -85,6 +85,6 @@ export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string):
   });
 }
 
-export function NormalizeTypeImportList(typeImportList: TypeImport[] = []): NormalizedTypeImport[] {
-  return typeImportList.map(NormalizeTypeImport);
+export function NormalizeTypeImportList(typeImportList: Array<TypeImport | string> = [], defaultType = 'unknown'): NormalizedTypeImport[] {
+  return typeImportList.map(type => NormalizeTypeImport(type, defaultType));
 }
