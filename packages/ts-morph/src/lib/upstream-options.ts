@@ -72,6 +72,7 @@ export function NormalizeCommandMapper(mapper?: CommandMapper | null): Normalize
 
 export interface OpenApiUpstreamOptions extends BaseUpstreamOptions {
   operationId: string;
+  isService?: boolean;
   scope?: string;
   mapper?: CommandMapper;
 }
@@ -87,6 +88,7 @@ export function NormalizeOpenApiUpstreamOptions(options: OpenApiUpstreamOptions)
     operationId: options.operationId,
     mapper: NormalizeCommandMapper(options.mapper),
     scope: options.scope ?? null,
+    isService: options.isService ?? false,
   });
 }
 

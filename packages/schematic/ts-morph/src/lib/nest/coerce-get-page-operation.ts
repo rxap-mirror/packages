@@ -236,7 +236,7 @@ export function CoerceGetPageDataMethod(
     CoerceImports(sourceFile, [
       {
         namedImports: [ commandClassName ],
-        moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope),
+        moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope, upstream.isService),
       }, {
         namedImports: [ 'Inject' ],
         moduleSpecifier: '@nestjs/common',
@@ -371,7 +371,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
         CoerceNestModuleProvider(moduleSourceFile, {
           providerObject: OperationIdToCommandClassName(upstream.operationId),
-          moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope),
+          moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope, upstream.isService),
         });
       }
 

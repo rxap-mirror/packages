@@ -39,12 +39,12 @@ export function OperationIdToRequestBodyClassName(operationId: string) {
   return classify(id) + 'RequestBody';
 }
 
-export function OperationIdToCommandClassImportPath(operationId: string, scope?: string | null) {
+export function OperationIdToCommandClassImportPath(operationId: string, scope?: string | null, isService = false) {
   const [ id, serverId = 'legacy' ] = operationId.split('@');
   if (scope) {
-    return `${ scope }/service-open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
+    return `${ scope }/${isService ? 'service-' : ''}open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
   } else {
-    return `service-open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
+    return `${isService ? 'service-' : ''}open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
   }
 }
 
