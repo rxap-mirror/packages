@@ -1,13 +1,23 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { DataGridModule } from '@rxap/data-grid';
-import { TableSelectControlModule } from '@rxap/ngx-material-table-select';
-import { GeneralInformationDashboardDataGridDataSource } from './general-information-dashboard-data-grid.data-source';
-import { RxapFormsModule } from '@rxap/forms';
+import { AsyncPipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormProviders, FormComponentProviders } from './form.providers';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { DataGridModule } from '@rxap/data-grid';
+import { RxapFormsModule } from '@rxap/forms';
+import { InputClearButtonDirective } from '@rxap/material-form-system';
+import { TableSelectControlModule } from '@rxap/ngx-material-table-select';
+import { GetFromObjectPipe } from '@rxap/pipes';
+import {
+  FormComponentProviders,
+  FormProviders,
+} from './form.providers';
+import { GeneralInformationDashboardDataGridDataSource } from './general-information-dashboard-data-grid.data-source';
 
 @Component({
     standalone: true,
@@ -15,7 +25,10 @@ import { MatButtonModule } from '@angular/material/button';
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './general-information-dashboard-data-grid.component.html',
     styleUrls: ['./general-information-dashboard-data-grid.component.scss'],
-  imports: [DataGridModule, RxapFormsModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule, TableSelectControlModule],
+  imports: [
+    DataGridModule, RxapFormsModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule,
+    TableSelectControlModule, InputClearButtonDirective, AsyncPipe, GetFromObjectPipe,
+  ],
   providers: [GeneralInformationDashboardDataGridDataSource, FormProviders, FormComponentProviders],
 })
 export class GeneralInformationDashboardDataGridComponent {

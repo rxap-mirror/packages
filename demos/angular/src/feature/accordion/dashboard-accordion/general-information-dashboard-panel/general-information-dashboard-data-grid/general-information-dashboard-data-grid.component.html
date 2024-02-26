@@ -2,9 +2,9 @@
       <form #form="rxapForm" rxapForm><rxap-data-grid [dataSource]="dataGridDataSource" mode="form">
           <ng-container rxapDataGridRowDef="name">
             <ng-template rxapDataGridEditCellDef>
-              
+
               <mat-form-field>
-                <button tabindex="-1" type="button" matPrefix mat-icon-button>
+                <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
                   <mat-icon>clear</mat-icon>
                 </button>
                 <input
@@ -13,14 +13,18 @@
                   type="text"
                   />
               </mat-form-field>
-              
+
             </ng-template>
+            <ng-template let-value rxapDataGridCellDef>
+              {{ value }}
+            </ng-template>
+
           </ng-container>
           <ng-container rxapDataGridRowDef="location">
             <ng-template rxapDataGridEditCellDef>
-              
-              <mat-form-field>
-                <button tabindex="-1" type="button" matPrefix mat-icon-button>
+
+              <mat-form-field eurogardTableSelectControl>
+                <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
                   <mat-icon>clear</mat-icon>
                 </button>
                 <eurogard-table-select-input
@@ -37,14 +41,18 @@
                   <mat-icon svgIcon="table-eye"></mat-icon>
                 </button>
               </mat-form-field>
-              
+
             </ng-template>
+            <ng-template let-value rxapDataGridCellDef>
+              {{ value | async | getFromObject:'name' }}
+            </ng-template>
+
           </ng-container>
           <ng-container rxapDataGridRowDef="link">
             <ng-template rxapDataGridEditCellDef>
-              
+
               <mat-form-field>
-                <button tabindex="-1" type="button" matPrefix mat-icon-button>
+                <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
                   <mat-icon>clear</mat-icon>
                 </button>
                 <input
@@ -53,13 +61,30 @@
                   type="url"
                   />
               </mat-form-field>
-              
+
             </ng-template>
+            <ng-template let-value rxapDataGridCellDef>
+              <a [href]="value" class="link" mat-flat-button target="_blank">
+                <span class="flex flex-row gap-4 items-center">
+                  <span class="overflow-hidden whitespace-nowrap text-overflow-ellipsis max-w-xs">{{ value }}</span>
+                  <mat-icon inline>open_in_new</mat-icon>
+                </span>
+              </a>
+            </ng-template>
+
           </ng-container>
           <ng-container rxapDataGridRowDef="company">
+            <ng-template let-value rxapDataGridCellDef>
+              {{ value | async | getFromObject:'name' }}
+            </ng-template>
+
           </ng-container>
           <ng-container rxapDataGridRowDef="dashboardType">
             <th *rxapDataGridHeaderCellDef class="whitespace-nowrap" i18n>Typ</th>
+            <ng-template let-value rxapDataGridCellDef>
+              {{ value | async }}
+            </ng-template>
+
           </ng-container>
         </rxap-data-grid>
       </form>

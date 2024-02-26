@@ -30,39 +30,62 @@
                   mode: form
                   itemList:
                     - name: name
-                      kind: input
+                      hasCellDef: true
+                      formControl:
+                        kind: input
                     - name: location
-                      #kind: autocomplete-table-select
-                      kind: table-select
-                      toValue:
-                        property:
-                          name: uuid
-                      columnList:
-                        - name: name
-                          hasFilter: true
-                      upstream:
-                        kind: open-api
-                        operationId: company-gui-controller-getByFilter@legacy
-                        mapper:
-                          pageIndex: page
-                          pageSize: size
-                          sortBy: sort
-                          sortDirection: order
-                          list: entities
-                          total: maxCount
-                          filter:
-                            eq: ':'
-                            join: ';'
+                      pipeList:
+                        - name: company
+                          namedImport: CompanyPipe
+                          moduleSpecifier: "@digitaix/eurogard-pipes"
+                        - async
+                        - getFromObject:name
+                      formControl:
+                        #kind: autocomplete-table-select
+                        kind: table-select
+                        toValue:
+                          property:
+                            name: uuid
+                        columnList:
+                          - name: name
+                            hasFilter: true
+                        upstream:
+                          kind: open-api
+                          operationId: company-gui-controller-getByFilter@legacy
+                          mapper:
+                            pageIndex: page
+                            pageSize: size
+                            sortBy: sort
+                            sortDirection: order
+                            list: entities
+                            total: maxCount
+                            filter:
+                              eq: ':'
+                              join: ';'
                     - name: link
-                      kind: input
-                      inputType: url
+                      kind: link
+                      target: _blank
+                      formControl:
+                        kind: input
+                        inputType: url
                     - name: company
                       type: string
                       isReadonly: true
+                      pipeList:
+                        - name: company
+                          namedImport: CompanyPipe
+                          moduleSpecifier: "@digitaix/eurogard-pipes"
+                        - async
+                        - "getFromObject:'name'"
                     - name: dashboardType
                       header: Typ
                       type: number
                       isReadonly: true
+                      pipeList:
+                        - name: toDashboardTypesEnumValue
+                          namedImport: ToDashboardTypesEnumValuePipe
+                          moduleSpecifier: enum
+                        - async
           case:
             - test: 2
               itemList:
@@ -73,14 +96,27 @@
                     mode: form
                     itemList:
                       - name: name
-                        kind: input
+                        hasCellDef: true
+                        formControl:
+                          kind: input
                       - name: company
                         type: string
                         isReadonly: true
+                        pipeList:
+                          - name: company
+                            namedImport: CompanyPipe
+                            moduleSpecifier: "@digitaix/eurogard-pipes"
+                          - async
+                          - "getFromObject:'name'"
                       - name: dashboardType
                         header: Typ
                         type: number
                         isReadonly: true
+                        pipeList:
+                          - name: toDashboardTypesEnumValue
+                            namedImport: ToDashboardTypesEnumValuePipe
+                            moduleSpecifier: enum
+                          - async
       - name: layout
         kind: switch
         permission: dashboard.layout.get
