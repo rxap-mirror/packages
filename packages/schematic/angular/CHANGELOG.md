@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.7...@rxap/schematic-angular@16.2.0-dev.8) (2024-02-26)
+
+**Note:** Version bump only for package @rxap/schematic-angular
+
 # [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.6...@rxap/schematic-angular@16.2.0-dev.7) (2024-02-25)
 
 ### Bug Fixes
