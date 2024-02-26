@@ -18,6 +18,12 @@
     },
     "button": {
       "$ref": "../button.schema.json"
+    },
+    "pipe": {
+      "$ref": "../pipe.schema.json"
+    },
+    "value": {
+      "$ref": "../value.schema.json"
     }
   }
 }

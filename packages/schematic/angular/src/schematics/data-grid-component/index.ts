@@ -464,7 +464,7 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       project,
       directory,
       feature,
-      controlList: itemList,
+      controlList: itemList.map(item => item.formControl).filter((formControl): formControl is NormalizedFormDefinitionControl => !!formControl),
       overwrite,
       backend,
       nestModule,

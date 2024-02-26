@@ -187,7 +187,8 @@
     },
     "bundle-json-schema": {
       "inputs": [
-        "{projectRoot}/src/**/template.schema.json"
+        "{projectRoot}/src/**/template.schema.json",
+        "{projectRoot}/src/**/*.schema.json"
       ],
       "outputs": [
         "{workspaceRoot}/{projectRoot}/src/**/schema.json"

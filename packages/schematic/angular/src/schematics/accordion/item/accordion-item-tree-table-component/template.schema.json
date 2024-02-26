@@ -41,6 +41,12 @@
     },
     "upstream": {
       "$ref": "../../../upstream.schema.json"
+    },
+    "pipe": {
+      "$ref": "../../../pipe.schema.json"
+    },
+    "value": {
+      "$ref": "../../../value.schema.json"
     }
   }
 }

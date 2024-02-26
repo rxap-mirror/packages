@@ -22,9 +22,7 @@
             </ng-template>
             {{/if}}
             {{#if this.hasCellDef}}
-            <ng-template let-value rxapDataGridCellDef>
-              \{{ value{{> pipe pipeList=this.pipeList}} }}
-            </ng-template>
+            {{ indent (compile this.handlebars item=this) 12}}
             {{/if}}
           </ng-container>
         {{/each}}

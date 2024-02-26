@@ -19,9 +19,17 @@
     },
     "formControl": {
       "$ref": "./form-control.schema.json"
+    },
+    "template": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["default", "link"],
+      "default": "default"
     }
   },
-  "required": ["header"],
+  "required": ["name"],
   "definitions": {
     "type": {
       "$ref": "./type.schema.json"
