@@ -12,13 +12,13 @@ yarn config get cacheFolder
 case "$CI_COMMIT_REF_NAME" in
 renovate/*)
   echo "Detected Renovate branch."
-  echo "RUN: yarn"
-  yarn
+  echo "RUN: yarn --immutable false --immutable-cache false"
+  yarn --immutable false --immutable-cache false
   ;;
 snyk-*)
   echo "Detected Snyk branch."
-  echo "RUN: yarn"
-  yarn
+  echo "RUN: yarn --immutable false --immutable-cache false"
+  yarn --immutable false --immutable-cache false
   ;;
 *)
   if [ "$CI_JOB_STAGE" = ".pre" ]; then
