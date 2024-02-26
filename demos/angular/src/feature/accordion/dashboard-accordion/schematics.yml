@@ -42,7 +42,7 @@
                           hasFilter: true
                       upstream:
                         kind: open-api
-                        operationId: locationList
+                        operationId: company-gui-controller-getByFilter@legacy
                         mapper:
                           pageIndex: page
                           pageSize: size

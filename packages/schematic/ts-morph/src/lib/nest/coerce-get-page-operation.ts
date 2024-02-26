@@ -222,21 +222,22 @@ export function CoerceGetPageDataMethod(
 ) {
   const statements: string[] = [];
   if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
-    const memberName = `${ camelize(upstream.operationId) }Command`;
+    const commandClassName = OperationIdToCommandClassName(upstream.operationId);
+    const memberName = camelize(commandClassName);
     CoercePropertyDeclaration(classDeclaration, memberName, {
-      type: OperationIdToCommandClassName(upstream.operationId),
+      type: commandClassName,
       scope: Scope.Private,
       hasExclamationToken: true,
       decorators: [
         {
           name: 'Inject',
-          arguments: [ OperationIdToCommandClassName(upstream.operationId) ],
+          arguments: [ commandClassName ],
         },
       ],
     });
     CoerceImports(sourceFile, [
       {
-        namedImports: [ OperationIdToCommandClassName(upstream.operationId) ],
+        namedImports: [ commandClassName ],
         moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope),
       }, {
         namedImports: [ 'Inject' ],
