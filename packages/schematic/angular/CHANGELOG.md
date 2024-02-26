@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.9...@rxap/schematic-angular@16.2.0-dev.10) (2024-02-26)
+
+### Bug Fixes
+
+- align the controller name processing ([e3c9c31](https://gitlab.com/rxap/packages/commit/e3c9c31afdd6813832177ec4c566d92e8a45201b))
+
 # [16.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.8...@rxap/schematic-angular@16.2.0-dev.9) (2024-02-26)
 
 **Note:** Version bump only for package @rxap/schematic-angular

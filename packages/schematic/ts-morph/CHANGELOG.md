@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.2...@rxap/schematics-ts-morph@16.1.0-dev.3) (2024-02-26)
+
+### Bug Fixes
+
+- add the open api upstream command to the module providers ([4b71f61](https://gitlab.com/rxap/packages/commit/4b71f61ef5801aae286afe757881a855f56b4bdc))
+- align the controller name processing ([e3c9c31](https://gitlab.com/rxap/packages/commit/e3c9c31afdd6813832177ec4c566d92e8a45201b))
+- use the command class name as member name ([7a13825](https://gitlab.com/rxap/packages/commit/7a13825c4b8db05b16ea8dc075e373071dd65f27))
+
 # [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.1...@rxap/schematics-ts-morph@16.1.0-dev.2) (2024-02-25)
 
 ### Features
