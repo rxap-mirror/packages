@@ -224,11 +224,36 @@ function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[
   return importList;
 }
 
+function guessTyoe(kind: TableColumnKind, type?: string | TypeImport): string | TypeImport {
+  const autoType = type ? typeof type === 'string' ? type : type.name : null;
+  if (!autoType || autoType === 'unknown') {
+    switch (kind) {
+      case TableColumnKind.DATE:
+        type = 'number | Date';
+        break;
+      case TableColumnKind.LINK:
+        type = 'string';
+        break;
+      case TableColumnKind.ICON:
+        // TODO : use the IconConfig type
+        type = {
+          name: 'IconConfig',
+          moduleSpecifier: '@rxap/utilities',
+        };
+        break;
+      case TableColumnKind.BOOLEAN:
+        type = 'boolean';
+        break;
+    }
+  }
+  type ??= 'unknown';
+  return type;
+}
+
 export function NormalizeTableColumn(
   column: Readonly<TableColumn>,
 ): NormalizedTableColumn {
   let name: string;
-  let type: string | TypeImport = 'unknown';
   let modifiers: string[] = [];
   let hasFilter = false;
   let title: string | null = null;
@@ -245,7 +270,6 @@ export function NormalizeTableColumn(
   let pipeList: Array<string | TableColumnPipe> = [];
   let importList: TypeImport[] = [];
   name = column.name;
-  type = column.type ?? type;
   modifiers = column.modifiers ?? [];
   hasFilter = column.hasFilter ?? false;
   title = column.title ?? title;
@@ -284,28 +308,6 @@ export function NormalizeTableColumn(
   hidden = modifiers.includes(TableColumnModifier.HIDDEN) || hidden;
   nowrap = modifiers.includes(TableColumnModifier.NOWRAP) || nowrap;
   withoutTitle = modifiers.includes(TableColumnModifier.WITHOUT_TITLE) || modifiers.includes(TableColumnModifier.NO_TITLE) || withoutTitle;
-  const autoType = type ? typeof type === 'string' ? type : type.name : null;
-  if (!autoType || autoType === 'unknown') {
-    switch (kind) {
-      case TableColumnKind.DATE:
-        type = 'number | Date';
-        break;
-      case TableColumnKind.LINK:
-        type = 'string';
-        break;
-      case TableColumnKind.ICON:
-        // TODO : use the IconConfig type
-        type = {
-          name: 'IconConfig',
-          moduleSpecifier: '@rxap/utilities',
-        };
-        break;
-      case TableColumnKind.BOOLEAN:
-        type = 'boolean';
-        break;
-    }
-  }
-  type ??= 'unknown';
   if (nowrap) {
     if (!cssClass) {
       cssClass = 'nowrap';
@@ -319,6 +321,9 @@ export function NormalizeTableColumn(
   if (!IsTableColumnKind(kind)) {
     throw new Error(`Unknown kind in column ${ name } - ${ kind }`);
   }
+
+  const type = guessTyoe(kind, column.type);
+
   let filterControl: BaseFormControl | null = column.filterControl ?? null;
   if (Object.keys(filterControl ?? {}).length === 0) {
     filterControl = null;

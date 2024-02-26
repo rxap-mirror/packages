@@ -28,7 +28,8 @@
           "localazy-download",
           "build-storybook",
           "copy-open-api-sdk",
-          "copy-client-sdk"
+          "copy-client-sdk",
+          "bundle-json-schema"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -182,6 +183,14 @@
       "inputs": [
         "build",
         "^build"
+      ]
+    },
+    "bundle-json-schema": {
+      "inputs": [
+        "{projectRoot}/src/**/template.schema.json"
+      ],
+      "outputs": [
+        "{workspaceRoot}/{projectRoot}/src/**/schema.json"
       ]
     },
     "build": {
