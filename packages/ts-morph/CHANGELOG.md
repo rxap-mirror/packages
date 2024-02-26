@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.3...@rxap/ts-morph@1.1.0-dev.4) (2024-02-26)
+
+### Features
+
+- support default type import ([0c50e7a](https://gitlab.com/rxap/packages/commit/0c50e7a837d4b985f3fbb5062d058e54cd223e22))
+
 # [1.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.2...@rxap/ts-morph@1.1.0-dev.3) (2024-02-26)
 
 ### Bug Fixes

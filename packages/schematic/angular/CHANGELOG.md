@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.11...@rxap/schematic-angular@16.2.0-dev.12) (2024-02-26)
+
+### Bug Fixes
+
+- support non form control properties ([c4243b7](https://gitlab.com/rxap/packages/commit/c4243b747c9f880b07c53d1777275ac45135f3df))
+
+### Features
+
+- introduce complex pipe templates ([bbad21d](https://gitlab.com/rxap/packages/commit/bbad21dd3f53754c0a5137a4208b238d37c114a9))
+- support custom data grid item kinds ([d4f1e75](https://gitlab.com/rxap/packages/commit/d4f1e7563bac29f4fd8b6bbe4e03dd98bb44c4ac))
+
 # [16.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.10...@rxap/schematic-angular@16.2.0-dev.11) (2024-02-26)
 
 ### Bug Fixes

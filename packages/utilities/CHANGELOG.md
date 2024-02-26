@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.1.0-dev.1...@rxap/utilities@16.1.0-dev.2) (2024-02-26)
+
+### Bug Fixes
+
+- add missing type hints ([77dbc1e](https://gitlab.com/rxap/packages/commit/77dbc1e2dd9f6850cccaf0cca77a38d6acddb698))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.1.0-dev.0...@rxap/utilities@16.1.0-dev.1) (2024-02-25)
 
 ### Bug Fixes
