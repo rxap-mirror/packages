@@ -96,6 +96,9 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   const importList = item.importList ?? [];
   const pipeList = NormalizePipeOptionList(item.pipeList);
   CoerceArrayItems(importList, pipeList.map(PipeOptionToTypeImport), (a, b) => a.name === b.name && a.namedImport === b.namedImport);
+  if (formControl) {
+    CoerceArrayItems(importList, formControl.importList, (a, b) => a.name === b.name && a.namedImport === b.namedImport);
+  }
   const kind = item.kind ?? DataGridKinds.DEFAULT;
   const template = item.template ?? kind + '-data-grid-item.hbs';
   return Object.freeze({
