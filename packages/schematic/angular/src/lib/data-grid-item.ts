@@ -46,6 +46,8 @@ export interface BaseDataGridItem extends DataProperty {
   formControl?: Omit<FormDefinitionControl, 'name'> & { name?: string };
   importList?: TypeImport[];
   hasCellDef?: boolean;
+  hasHeaderCellDef?: boolean;
+  hasEditCellDef?: boolean;
   kind?: DataGridKinds;
   template?: string;
 }
@@ -72,19 +74,23 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   }) : null;
 
   let hasCellDef = item.hasCellDef ?? false;
-  let hasHeaderCellDef = false;
-  let hasEditCellDef = false;
+  let hasHeaderCellDef = item.hasHeaderCellDef ?? false;
+  let hasEditCellDef = item.hasEditCellDef ?? false;
 
-  if (item.header) {
+  // if the hasHeaderCellDef is explicitly set to false then don't try to set it to true
+  if (item.header && item.hasHeaderCellDef !== false) {
     hasHeaderCellDef = true;
   }
-  if (item.pipeList?.length) {
+  // if the hasCellDef is explicitly set to false then don't try to set it to true
+  if (item.pipeList?.length && item.hasCellDef !== false) {
     hasCellDef = true;
   }
-  if (formControl) {
+  // if the hasEditCellDef is explicitly set to false then don't try to set it to true
+  if (formControl && item.hasEditCellDef !== false) {
     hasEditCellDef = true;
   }
-  if (!hasCellDef && !hasEditCellDef) {
+  // if the hasCellDef is explicitly set to false then don't try to set it to true
+  if (!hasCellDef && !hasEditCellDef && item.hasCellDef !== false) {
     hasCellDef = true;
   }
   const importList = item.importList ?? [];

@@ -273,7 +273,15 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
             type: 'unknown',
           });
         typeAliasDeclaration.setIsExported(true);
-        typeAliasDeclaration.setType(dataGridResponseClassName);
+        const excludedProperties = itemList
+          .filter(item => !item.formControl)
+          .map(item => item.name)
+          .filter(name => !itemList.filter(i => i.formControl).some(i => i.formControl?.name === name));
+        if (excludedProperties.length) {
+          typeAliasDeclaration.setType(`Omit<${dataGridResponseClassName}, '${excludedProperties.join('\' | \'')}'>`);
+        } else {
+          typeAliasDeclaration.setType(dataGridResponseClassName);
+        }
         CoerceImports(sourceFile, {
           namedImports: [ dataGridResponseClassName ],
           moduleSpecifier: OperationIdToResponseClassImportPath(getOperationId, scope),
