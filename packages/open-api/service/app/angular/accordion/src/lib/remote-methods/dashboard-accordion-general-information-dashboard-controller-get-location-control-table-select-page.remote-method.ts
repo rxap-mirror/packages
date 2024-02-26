@@ -66,7 +66,7 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetLocationContr
               "rows": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/LocationTableSelectRowDto"
+                  "$ref": "#/components/schemas/DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto"
                 }
               },
               "pageSize": {
@@ -103,7 +103,7 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetLocationContr
     }
   },
   "method": "get",
-  "path": "/dashboard-accordion/general-information-dashboard/control/location/table-select/page"
+  "path": "/dashboard-accordion/{uuid}/general-information-dashboard/control/location/table-select/page"
 }`
   })
 export class DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageResponse, DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageParameter, void> {

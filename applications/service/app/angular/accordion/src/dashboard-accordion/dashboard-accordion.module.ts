@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { DashboardAccordionController } from './dashboard-accordion.controller';
-import { DashboardAccordionGeneralInformationCloudDashboardDataGridController } from './dashboard-accordion-general-information-cloud-dashboard-data-grid.controller';
+import { DashboardAccordionGeneralInformationCloudDashboardController } from './dashboard-accordion-general-information-cloud-dashboard.controller';
 import { DashboardAccordionGeneralInformationDashboardController } from './dashboard-accordion-general-information-dashboard.controller';
-import { DashboardAccordionGeneralInformationDashboardDataGridController } from './dashboard-accordion-general-information-dashboard-data-grid.controller';
 import { DashboardAccordionLayoutCloudDashboardController } from './dashboard-accordion-layout-cloud-dashboard.controller';
-import { DashboardAccordionReferenceTreeTableController } from './dashboard-accordion-reference-tree-table.controller';
+import { DashboardAccordionReferenceController } from './dashboard-accordion-reference.controller';
 
 @Module({
-  controllers: [DashboardAccordionController, DashboardAccordionGeneralInformationCloudDashboardDataGridController, DashboardAccordionGeneralInformationDashboardController, DashboardAccordionGeneralInformationDashboardDataGridController, DashboardAccordionLayoutCloudDashboardController, DashboardAccordionReferenceTreeTableController],
+  controllers: [DashboardAccordionController, DashboardAccordionGeneralInformationCloudDashboardController, DashboardAccordionGeneralInformationDashboardController, DashboardAccordionLayoutCloudDashboardController, DashboardAccordionReferenceController],
+  providers: [],
 })
 export class DashboardAccordionModule {
 }

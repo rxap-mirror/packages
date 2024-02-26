@@ -7,7 +7,7 @@ import {
   UseTableSelectToValue,
 } from '@rxap/ngx-material-table-select';
 import { LocationSelectTableDataSource } from './data-sources/location-select-table.data-source';
-import { DashboardAccordionGeneralInformationDashboardDataGridControllerGetResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-data-grid-controller-get.response';
+import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-controller-get.response';
 
 @RxapForm('general-information-dashboard')
 @Injectable()
@@ -27,7 +27,7 @@ export class GeneralInformationDashboardForm implements FormType<IGeneralInforma
         }
       })
   @UseFormControl()
-  public readonly location!: RxapFormControl<unknown>;
+  public readonly location!: RxapFormControl<string>;
   @UseFormControl({
       validators: [RxapValidators.IsUrl()]
     })
@@ -38,4 +38,4 @@ export class GeneralInformationDashboardForm implements FormType<IGeneralInforma
   public readonly dashboardType!: RxapFormControl<number>;
 }
 
-export type IGeneralInformationDashboardForm = DashboardAccordionGeneralInformationDashboardDataGridControllerGetResponse;
+export type IGeneralInformationDashboardForm = DashboardAccordionGeneralInformationDashboardControllerGetResponse;

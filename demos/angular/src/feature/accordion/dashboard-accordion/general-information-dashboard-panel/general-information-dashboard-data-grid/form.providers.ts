@@ -5,7 +5,7 @@ import { RxapFormBuilder, RXAP_FORM_DEFINITION_BUILDER, RXAP_FORM_DEFINITION, RX
 import { DataSourceRefreshToMethodAdapterFactory } from '@rxap/data-source';
 import { GeneralInformationDashboardDataGridDataSource } from './general-information-dashboard-data-grid.data-source';
 import { SubmitContextFormAdapterFactory, FormContextFromActivatedRouteFactory } from '@rxap/form-system';
-import { DashboardAccordionGeneralInformationDashboardDataGridControllerSubmitRemoteMethod } from 'open-api-service-app-angular-accordion/remote-methods/dashboard-accordion-general-information-dashboard-data-grid-controller-submit.remote-method';
+import { DashboardAccordionGeneralInformationDashboardControllerSubmitRemoteMethod } from 'open-api-service-app-angular-accordion/remote-methods/dashboard-accordion-general-information-dashboard-controller-submit.remote-method';
 import { ActivatedRoute } from '@angular/router';
 
 export const FormProviders: Provider[] = [LocationSelectTableDataSource, GeneralInformationDashboardForm, {
@@ -15,7 +15,7 @@ export const FormProviders: Provider[] = [LocationSelectTableDataSource, General
   }, {
     provide: RXAP_FORM_SUBMIT_METHOD,
     useFactory: SubmitContextFormAdapterFactory,
-    deps: [ DashboardAccordionGeneralInformationDashboardDataGridControllerSubmitRemoteMethod,[ new Optional(), RXAP_FORM_CONTEXT ] ]
+    deps: [ DashboardAccordionGeneralInformationDashboardControllerSubmitRemoteMethod,[ new Optional(), RXAP_FORM_CONTEXT ] ]
   }];
 export const FormComponentProviders: Provider[] = [{
     provide: RXAP_FORM_DEFINITION,
