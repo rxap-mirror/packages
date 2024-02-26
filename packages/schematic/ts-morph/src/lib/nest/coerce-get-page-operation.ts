@@ -2,6 +2,7 @@ import { camelize } from '@rxap/schematics-utilities';
 import {
   CoerceClassMethod,
   CoerceImports,
+  CoerceNestModuleImport,
   CoerceNestModuleProvider,
   IsNormalizedOpenApiUpstreamOptions,
   NormalizedUpstreamOptions,
@@ -372,6 +373,14 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
         CoerceNestModuleProvider(moduleSourceFile, {
           providerObject: OperationIdToCommandClassName(upstream.operationId),
           moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope, upstream.isService),
+        });
+        CoerceNestModuleImport(moduleSourceFile, {
+          moduleName: 'HttpModule',
+          moduleSpecifier: '@nestjs/axios',
+        });
+        CoerceNestModuleProvider(moduleSourceFile, {
+          providerObject: 'Logger',
+          moduleSpecifier: '@nestjs/common',
         });
       }
 
