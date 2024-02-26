@@ -30,7 +30,7 @@ export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
     ...options,
     path,
     operationName,
-    tsMorphTransform: (project, sourceFile, classDeclaration, controllerName) => {
+    tsMorphTransform: (project, sourceFile, classDeclaration, controllerName, moduleSourceFile) => {
 
       const {
         className,
@@ -76,7 +76,7 @@ export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
 
       return {
         returnType: className + '[]',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile),
       };
     },
   });

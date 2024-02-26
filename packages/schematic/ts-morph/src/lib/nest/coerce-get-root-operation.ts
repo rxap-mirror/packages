@@ -48,6 +48,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
       sourceFile,
       classDeclaration,
       controllerName,
+      moduleSourceFile,
     ) => {
 
       const {
@@ -73,7 +74,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
       return {
         queryList: TABLE_QUERY_LIST,
         returnType: className + '[]',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile),
       };
     },
   });

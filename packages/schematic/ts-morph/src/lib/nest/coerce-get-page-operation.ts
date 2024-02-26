@@ -3,6 +3,8 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import {
+  CoerceNestModuleImport,
+  CoerceNestModuleProvider,
   IsNormalizedOpenApiUpstreamOptions,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
@@ -21,6 +23,7 @@ import {
 import { CoerceClassMethod } from '../coerce-class-method';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
+import { AddNestModuleImport } from './add-nest-module-import';
 import { OperationOptions } from './add-operation-to-controller';
 import { CoercePropertyDeclaration } from './coerce-dto-class';
 import {
@@ -320,6 +323,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
     coerceToRowDtoMethod,
     coerceToPageDtoMethod,
     coerceGetPageDataMethod,
+    upstream,
   } = options;
   tsMorphTransform ??= () => ({});
   controllerName = skipCoerceTableSuffix ? controllerName : CoerceSuffix(controllerName, '-table');
@@ -337,6 +341,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       sourceFile,
       classDeclaration,
       controllerName,
+      moduleSourceFile,
     ) => {
 
       const {
@@ -368,6 +373,13 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       coerceGetPageDataMethod!(sourceFile, classDeclaration, options);
       coerceToRowDtoMethod!(sourceFile, classDeclaration, rowClassName, options);
       coerceToPageDtoMethod!(sourceFile, classDeclaration, pageClassName, rowClassName, options);
+
+      if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
+        CoerceNestModuleProvider(moduleSourceFile, {
+          providerObject: OperationIdToCommandClassName(upstream.operationId),
+          moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope),
+        });
+      }
 
       CoerceImports(sourceFile, [
         {

@@ -34,6 +34,7 @@ export function CoerceGetDataGridOperation(options: Readonly<CoerceGetDataGridOp
       sourceFile,
       classDeclaration,
       controllerName,
+      moduleSourceFile,
     ) => {
 
       const {
@@ -52,7 +53,7 @@ export function CoerceGetDataGridOperation(options: Readonly<CoerceGetDataGridOp
 
       return {
         returnType: dtoClassName + (collection ? '[]' : ''),
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile),
       };
 
     },

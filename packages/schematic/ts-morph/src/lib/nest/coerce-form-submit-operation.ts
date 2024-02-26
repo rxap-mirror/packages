@@ -32,6 +32,7 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
       sourceFile,
       classDeclaration,
       controllerName,
+      moduleSourceFile,
     ) => {
 
       const {
@@ -51,7 +52,7 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
       return {
         body: dtoClassName,
         method: 'post',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile),
       };
 
     },

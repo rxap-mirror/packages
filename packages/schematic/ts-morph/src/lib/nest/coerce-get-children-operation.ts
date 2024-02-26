@@ -53,6 +53,7 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
       sourceFile,
       classDeclaration,
       controllerName,
+      moduleSourceFile,
     ) => {
 
       const {
@@ -78,7 +79,7 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
       return {
         queryList: TABLE_QUERY_LIST,
         returnType: className + '[]',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile),
       };
     },
   });

@@ -3,6 +3,7 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import { classify } from '@rxap/schematics-utilities';
+import { dasherize } from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -33,6 +34,7 @@ export interface CoerceOperationOptions extends TsMorphNestProjectTransformOptio
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     controllerName: string,
+    moduleSourceFile: SourceFile,
   ) => Partial<OperationOptions>,
   operationName: string,
   path?: string,
@@ -133,12 +135,11 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
       feature,
       shared,
       directory,
-    }, project => {
+    }, (project, [controllerSourceFile, moduleSourceFile]) => {
 
-      const sourceFile = project.getSourceFileOrThrow(`${ nestController }.controller.ts`);
-      const classDeclaration = sourceFile.getClassOrThrow(`${ classify(nestController) }Controller`);
+      const classDeclaration = controllerSourceFile.getClassOrThrow(`${ classify(nestController) }Controller`);
 
-      const operationOptions = tsMorphTransform!(project, sourceFile, classDeclaration, nestController);
+      const operationOptions = tsMorphTransform!(project, controllerSourceFile, classDeclaration, nestController, moduleSourceFile);
 
       if (controllerPath) {
         classDeclaration.getDecoratorOrThrow('Controller').set({
@@ -158,7 +159,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
       CoerceOperationParamList(paramList!, classDeclaration);
 
       AddOperationToController(
-        sourceFile,
+        controllerSourceFile,
         classDeclaration,
         operationName,
         {
@@ -170,7 +171,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
         },
       );
 
-    }),
+    }, [`${ nestController }.controller.ts`, `${ dasherize(nestModule!) }.module.ts`]),
   ]);
 
 
