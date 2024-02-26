@@ -1,5 +1,4 @@
 import { CreateProject } from '@rxap/ts-morph';
-import { deepMerge } from '@rxap/utilities';
 import {
   BuildAngularBasePath,
   BuildAngularBasePathOptions,
@@ -8,10 +7,8 @@ import {
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
-  IndentationText,
   Project,
   ProjectOptions,
-  QuoteKind,
   SourceFile,
 } from 'ts-morph';
 import { AddDir } from './add-dir';
@@ -23,6 +20,12 @@ export type TsMorphTransformCallback = ((project: Project, sourceFile: undefined
 
 export interface TsMorphTransformOptions {
   replace?: boolean;
+  /**
+   * true - if the filePath is set only this files will be included in the ts-morph project
+   * false - all files that are accessible from the sourceRoot will be included in the ts-morph project
+   * default: true
+   */
+  filter?: boolean;
 }
 
 export function TsMorphTransform(
@@ -57,24 +60,39 @@ export function TsMorphTransform(
   projectOptions: Partial<ProjectOptions> = {},
   filePathFilter?: undefined | string | string[],
 ): void {
-  const filePath = filePathFilter ?
-    Array.isArray(filePathFilter) ?
-      filePathFilter.map(f => f.replace(/\?$/, '')) :
-      [ filePathFilter.replace(/\?$/, '') ] :
-    undefined;
+  const {
+    replace = false,
+    filter = true,
+  } = options;
+
+  let filePath: string[] | undefined = undefined;
+
+  if (filePathFilter) {
+    if (Array.isArray(filePathFilter)) {
+      filePath = filePathFilter;
+    } else {
+      filePath = [ filePathFilter ];
+    }
+  }
 
   const project = CreateProject(projectOptions);
 
-  if (!options.replace) {
-    AddDir(tree, sourceRoot, project, filePath ?
+  if (!replace) {
+    AddDir(
+      tree,
+      sourceRoot,
+      project,
       (fileName: string, dirPath: string) => {
+        if (!filePath || !filter) {
+          return true;
+        }
         const fullPath = join(dirPath, fileName);
         if (dirPath.endsWith(fileName)) {
           throw new Error(`The dirPath '${ dirPath }' ends with the fileName '${ fileName }'`);
         }
-        return filePath.some(f => fullPath.endsWith(f));
-      } :
-      undefined);
+        return filePath.map(f => f.replace(/\?$/, '')).some(f => fullPath.endsWith(f));
+      }
+    );
   }
 
   let sourceFile: SourceFile | SourceFile[] | undefined = undefined;
@@ -82,23 +100,25 @@ export function TsMorphTransform(
   if (filePath) {
     if (Array.isArray(filePath)) {
       sourceFile = filePath.map((f, index) => {
-        let sf = project.getSourceFile(f);
+        const fileName = f.replace(/\?$/, '');
+        const isOptional = f.endsWith('?');
+        let sf = project.getSourceFile(fileName);
         if (!sf) {
           if (Array.isArray(filePathFilter)) {
-            if (options.replace || filePathFilter[index]?.endsWith('?')) {
-              sf = project.createSourceFile(f, '');
+            if (replace || isOptional) {
+              sf = project.createSourceFile(fileName, '');
             } else {
               console.log(project.getSourceFiles().map(f => f.getFilePath()));
-              throw new Error(`The file ${ f } does not exists with the source root ${ sourceRoot }`);
+              throw new Error(`The file ${ fileName } does not exists with the source root ${ sourceRoot }`);
             }
           } else {
             if (index !== 0) {
               throw new Error('FATAL: The filePathFilter is not an array and the index is not 0');
             }
-            if (options.replace || filePathFilter?.endsWith('?')) {
-              sf = project.createSourceFile(f, '');
+            if (replace || isOptional) {
+              sf = project.createSourceFile(fileName, '');
             } else {
-              throw new Error(`The file ${ f } does not exists with the source root ${ sourceRoot }`);
+              throw new Error(`The file ${ fileName } does not exists with the source root ${ sourceRoot }`);
             }
           }
         }
@@ -156,7 +176,7 @@ export function TsMorphNestProjectTransform(
     tree,
     basePath,
     cb as any,
-    { replace: options.replace },
+    options,
     options.projectOptions,
     filePath as any,
   );
@@ -195,7 +215,7 @@ export function TsMorphAngularProjectTransform(
     tree,
     basePath,
     cb as any,
-    { replace: options.replace },
+    options,
     options.projectOptions,
     filePath as any,
   );
