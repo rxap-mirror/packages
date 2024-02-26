@@ -13,15 +13,12 @@ export interface CoerceRowDtoClassOptions extends CoerceDtoClassOptions {
 }
 
 export function CoerceRowDtoClass(options: CoerceRowDtoClassOptions) {
-  let {
+  const {
     rowIdType,
     project,
     name,
-    propertyList,
-    classStructure,
-    importStructureList,
+    propertyList = [],
   } = options;
-  propertyList ??= [];
   propertyList.unshift(
     {
       name: '__rowId',
@@ -32,7 +29,5 @@ export function CoerceRowDtoClass(options: CoerceRowDtoClassOptions) {
     project,
     name: CoerceSuffix(name, '-row'),
     propertyList,
-    classStructure,
-    importStructureList,
   });
 }

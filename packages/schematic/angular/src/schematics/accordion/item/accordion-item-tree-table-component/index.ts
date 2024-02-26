@@ -111,6 +111,7 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
     table,
     overwrite,
     backend,
+    controllerName,
   } = normalizedOptions;
 
   const { hasSharedModifier } = GetItemOptions(normalizedOptions);
@@ -124,6 +125,7 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
         name,
         project,
         feature,
+        controllerName,
         directory: hasSharedModifier ? undefined : directory,
         columnList: table?.columnList ?? [],
         actionList: table?.actionList ?? [],
@@ -157,14 +159,14 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
   } = GetItemOptions(normalizedOptions);
 
   const controllerName = BuildNestControllerName({
-    controllerName: CoerceSuffix(name, '-tree-table'),
+    controllerName: name,
     nestModule: hasSharedModifier ? undefined : nestModule,
   });
 
   return chain([
     () => console.log(`Modify the get root operation ...`),
     CoerceGetRootOperation({
-      controllerName: name,
+      controllerName,
       nestModule: hasSharedModifier ? undefined : nestModule,
       project,
       feature,
@@ -180,7 +182,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
     }),
     () => console.log(`Modify the get children operation ...`),
     CoerceGetChildrenOperation({
-      controllerName: name,
+      controllerName,
       nestModule: hasSharedModifier ? undefined : nestModule,
       project,
       feature,

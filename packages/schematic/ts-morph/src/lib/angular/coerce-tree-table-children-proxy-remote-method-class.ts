@@ -1,3 +1,4 @@
+import { noop } from '@rxap/utilities';
 import {
   ClassDeclaration,
   Project,
@@ -22,12 +23,11 @@ export interface CoerceTreeTableChildrenProxyRemoteMethodClassOptions
 }
 
 export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTreeTableChildrenProxyRemoteMethodClassOptions) {
-  let {
-    tsMorphTransform,
+  const {
+    tsMorphTransform = noop,
     getChildrenOperationId,
     scope,
   } = options;
-  tsMorphTransform ??= () => ({});
   return CoerceProxyRemoteMethodClass({
     ...options,
     name: 'tree-table-children',
@@ -51,7 +51,7 @@ export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTre
         namedImports: [ OperationIdToParameterClassName(getChildrenOperationId) ],
         moduleSpecifier: OperationIdToParameterClassImportPath(getChildrenOperationId, scope),
       });
-      return tsMorphTransform!(project, sourceFile, classDeclaration);
+      return tsMorphTransform(project, sourceFile, classDeclaration);
     },
   });
 }

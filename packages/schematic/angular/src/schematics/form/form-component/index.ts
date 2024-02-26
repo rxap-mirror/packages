@@ -12,6 +12,7 @@ import {
 } from '@angular-devkit/schematics';
 import {
   BuildAngularBasePath,
+  BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
   CoerceFormComponentProviderRule,
@@ -66,9 +67,13 @@ export function NormalizeFormComponentOptions(
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const {
     name,
+    nestModule,
   } = normalizedAngularOptions;
   const componentName = CoerceSuffix(name, '-form');
-  const controllerName = options.controllerName ?? componentName;
+  const controllerName = options.controllerName ?? BuildNestControllerName({
+    controllerName: componentName,
+    nestModule,
+  });
   return Object.freeze({
     ...normalizedAngularOptions,
     window: options.window ?? false,

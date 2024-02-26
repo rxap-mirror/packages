@@ -169,7 +169,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
   return chain([
     () => console.log(`Coerce the get root operation ${ getRootOperationId }`),
     CoerceGetRootOperation({
-      controllerName: componentName,
+      controllerName,
       nestModule,
       project,
       feature,
@@ -178,7 +178,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
     }),
     () => console.log(`Coerce the get children operation ${ getChildrenOperationId }`),
     CoerceGetChildrenOperation({
-      controllerName: componentName,
+      controllerName,
       nestModule,
       project,
       feature,

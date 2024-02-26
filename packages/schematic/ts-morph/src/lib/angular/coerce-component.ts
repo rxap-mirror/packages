@@ -35,6 +35,7 @@ import {
 import { BuildAngularBasePath } from './build-angular-base-path';
 import { HasComponent } from './has-component';
 import Handlebars from 'handlebars';
+import 'colors';
 
 export interface TemplateOptions {
   url?: string,
@@ -182,7 +183,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
       templateOptions['prefix'] ??= GetProjectPrefix(tree, options.project);
       rules.push(
         () => console.log(`Template '${ template!.url }' will be used to modify the component.`),
-        () => console.log(`Template options: ${ JSON.stringify(templateOptions) }`),
+        () => console.log(`Template options: ${ JSON.stringify(templateOptions) }`.grey),
         mergeWith(apply(url(template.url), [
           applyTemplates(templateOptions),
           applyHandlebars(templateOptions),

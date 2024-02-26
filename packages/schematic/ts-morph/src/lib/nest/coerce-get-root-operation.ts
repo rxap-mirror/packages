@@ -17,14 +17,15 @@ import { TABLE_QUERY_LIST } from './table-query-list';
 
 export interface CoerceGetRootOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   propertyList?: DtoClassProperty[],
+  operationName?: string;
 }
 
 export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationOptions>) {
   const {
     tsMorphTransform = noop,
     propertyList = [],
+    operationName = 'get-root',
   } = options;
-  let { controllerName } = options;
   CoerceArrayItems(propertyList, [
     {
       name: 'hasChildren',
@@ -38,11 +39,9 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
       isType: true,
     },
   ], (a, b) => a.name === b.name);
-  controllerName = CoerceSuffix(controllerName, '-tree-table');
   return CoerceOperation({
     ...options,
-    controllerName,
-    operationName: 'get-root',
+    operationName,
     tsMorphTransform: (
       project,
       sourceFile,

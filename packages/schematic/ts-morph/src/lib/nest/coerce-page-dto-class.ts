@@ -1,5 +1,9 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { CoerceArrayItems } from '@rxap/utilities';
+import { CoerceImports } from '@rxap/ts-morph';
+import {
+  CoerceArrayItems,
+  noop,
+} from '@rxap/utilities';
 import { basename } from 'path';
 import {
   ClassDeclarationStructure,
@@ -7,42 +11,26 @@ import {
   OptionalKind,
   Project,
 } from 'ts-morph';
-import { CoerceDtoClass } from './coerce-dto-class';
+import {
+  CoerceDtoClass,
+  CoerceDtoClassOptions,
+} from './coerce-dto-class';
 import { DtoClassProperty } from './create-dto-class';
 
-export interface CoercePageDtoClassOptions {
-  project: Project,
-  name: string,
-  propertyList?: DtoClassProperty[],
-  classStructure?: Omit<OptionalKind<ClassDeclarationStructure>, 'name'>,
-  importStructureList?: Array<OptionalKind<ImportDeclarationStructure>>,
+export interface CoercePageDtoClassOptions extends CoerceDtoClassOptions {
   rowClassName: string,
   rowFilePath: string,
 }
 
 export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
-  let {
+  const {
     project,
     name,
-    propertyList,
-    classStructure,
-    importStructureList,
+    propertyList= [],
     rowClassName,
     rowFilePath,
+    tsMorphTransform = noop,
   } = options;
-  importStructureList ??= [];
-  importStructureList.push(
-    {
-      namedImports: [ rowClassName ],
-      moduleSpecifier: `./${ basename(rowFilePath) }`,
-    },
-    {
-      namedImports: [ 'FilterQueryDto' ],
-      moduleSpecifier: '@rxap/nest-dto',
-    }
-  );
-  classStructure ??= {};
-  propertyList ??= [];
   CoerceArrayItems(propertyList, [
     {
       name: 'rows',
@@ -81,10 +69,22 @@ export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
     }
   ]);
   return CoerceDtoClass({
+    ...options,
     project,
     name: CoerceSuffix(name, '-page'),
     propertyList,
-    classStructure,
-    importStructureList,
+    tsMorphTransform: (p, sourceFile, classDeclaration) => {
+      CoerceImports(sourceFile, [
+        {
+          namedImports: [ rowClassName ],
+          moduleSpecifier: `./${ basename(rowFilePath) }`,
+        },
+        {
+          namedImports: [ 'FilterQueryDto' ],
+          moduleSpecifier: '@rxap/nest-dto',
+        }
+      ]);
+      tsMorphTransform(p, sourceFile, classDeclaration);
+    }
   });
 }

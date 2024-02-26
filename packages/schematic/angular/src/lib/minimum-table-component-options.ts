@@ -74,7 +74,7 @@ export function NormalizeMinimumTableComponentOptions<MODIFIER extends string = 
 ): NormalizedMinimumTableComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
-  const { name } = normalizedAngularOptions;
+  const { name, controllerName } = normalizedAngularOptions;
   const normalizedTableOptions = NormalizeMinimumTableOptions(options, name, isModifier, suffix);
   const { componentName } = normalizedTableOptions;
   const nestModule = options.nestModule ?? null;
@@ -82,7 +82,7 @@ export function NormalizeMinimumTableComponentOptions<MODIFIER extends string = 
     ...normalizedAngularOptions,
     ...normalizedTableOptions,
     nestModule,
-    controllerName: BuildNestControllerName({
+    controllerName: controllerName ?? BuildNestControllerName({
       controllerName: componentName,
       nestModule,
     }),
@@ -99,17 +99,13 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
     feature,
     directory,
     shared,
+    controllerName,
     componentName,
-    nestModule,
   } = normalizedOptions;
   const { operationName = 'get-page', typePath = `['rows'][number]` } = options;
   if (![ BackendTypes.NESTJS ].includes(backend)) {
     throw new SchematicsException(`Invalid backend type: ${ backend } - expected nestjs`);
   }
-  const controllerName = BuildNestControllerName({
-    controllerName: componentName,
-    nestModule,
-  });
   const operationId = buildOperationId(
     normalizedOptions,
     operationName,

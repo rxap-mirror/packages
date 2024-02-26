@@ -69,19 +69,24 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
   options: Readonly<AccordionItemStandaloneComponentOptions>,
 ): NormalizedAccordionItemStandaloneComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const { feature } = normalizedAngularOptions;
+  const { feature, controllerName } = normalizedAngularOptions;
   const name = dasherize(options.name);
   const componentName = CoerceSuffix(name, '-panel');
   let accordionName = options.accordionName ?? feature;
   accordionName = CoerceSuffix(dasherize(accordionName), '-accordion');
+  const nestModule = options.nestModule ?? accordionName;
   return Object.freeze({
     ...normalizedAngularOptions,
     ...NormalizeAccordionItem({
       kind: AccordionItemKinds.Default,
       ...options,
     }),
+    controllerName: controllerName ?? BuildNestControllerName({
+      controllerName: name,
+      nestModule,
+    }),
     name,
-    nestModule: accordionName,
+    nestModule,
     modifiers: options.modifiers ?? [],
     accordionName: accordionName,
     directory: join(accordionName, componentName),

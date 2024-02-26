@@ -1,4 +1,5 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { noop } from '@rxap/utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceDtoClass } from './coerce-dto-class';
 import {
@@ -13,17 +14,12 @@ export interface CoerceGetDataGridOperationOptions extends Omit<CoerceOperationO
 }
 
 export function CoerceGetDataGridOperation(options: Readonly<CoerceGetDataGridOperationOptions>) {
-  let {
-    tsMorphTransform,
-    collection,
-    propertyList,
+  const {
+    tsMorphTransform = noop,
+    collection= false,
+    propertyList = [],
     controllerName,
   } = options;
-  collection ??= false;
-  tsMorphTransform ??= () => ({});
-  propertyList ??= [];
-  controllerName =
-    CoerceSuffix(controllerName, '-data-grid');
 
   return CoerceOperation({
     ...options,

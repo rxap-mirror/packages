@@ -1,9 +1,7 @@
+import { camelize } from '@rxap/schematics-utilities';
 import {
-  camelize,
-  CoerceSuffix,
-} from '@rxap/schematics-utilities';
-import {
-  CoerceNestModuleImport,
+  CoerceClassMethod,
+  CoerceImports,
   CoerceNestModuleProvider,
   IsNormalizedOpenApiUpstreamOptions,
   NormalizedUpstreamOptions,
@@ -13,17 +11,18 @@ import {
   TypeImport,
   TypeImportToImportStructure,
 } from '@rxap/ts-morph';
-import { joinWithDash } from '@rxap/utilities';
+import {
+  CoercePrefix,
+  joinWithDash,
+  noop,
+} from '@rxap/utilities';
 import {
   ClassDeclaration,
   Project,
   Scope,
   SourceFile,
 } from 'ts-morph';
-import { CoerceClassMethod } from '../coerce-class-method';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
-import { AddNestModuleImport } from './add-nest-module-import';
 import { OperationOptions } from './add-operation-to-controller';
 import { CoercePropertyDeclaration } from './coerce-dto-class';
 import {
@@ -61,10 +60,6 @@ export interface CoerceGetPageOperationOptions
    */
   rowIdProperty?: string | null;
   operationName?: string;
-  /**
-   * true - the suffix '-table' will not be enforced for the controller name
-   */
-  skipCoerceTableSuffix?: boolean;
   /**
    * The base name of the page and row DTO class name. Defaults to the controller name
    */
@@ -311,30 +306,21 @@ export function CoerceGetPageDataMethod(
 }
 
 export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationOptions>) {
-  let {
-    skipCoerceTableSuffix,
-    operationName,
+  const {
+    operationName = 'get-page',
     rowIdProperty,
-    tsMorphTransform,
+    tsMorphTransform = noop,
     propertyList,
-    controllerName,
-    responseDtoName,
     context,
-    coerceToRowDtoMethod,
-    coerceToPageDtoMethod,
-    coerceGetPageDataMethod,
+    coerceToRowDtoMethod = CoerceToRowDtoMethod,
+    coerceToPageDtoMethod = CoerceToPageDtoMethod,
+    coerceGetPageDataMethod = CoerceGetPageDataMethod,
     upstream,
   } = options;
-  tsMorphTransform ??= () => ({});
-  controllerName = skipCoerceTableSuffix ? controllerName : CoerceSuffix(controllerName, '-table');
-  operationName ??= 'get-page';
-  responseDtoName ??= joinWithDash([ context, controllerName ]);
-  coerceToRowDtoMethod ??= CoerceToRowDtoMethod;
-  coerceToPageDtoMethod ??= CoerceToPageDtoMethod;
-  coerceGetPageDataMethod ??= CoerceGetPageDataMethod;
+  let { responseDtoName } = options;
+
   return CoerceOperation({
     ...options,
-    controllerName,
     operationName,
     tsMorphTransform: (
       project,
@@ -344,13 +330,21 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       moduleSourceFile,
     ) => {
 
+      if (!responseDtoName) {
+        responseDtoName = controllerName;
+      } else {
+        responseDtoName = CoercePrefix(responseDtoName, controllerName + '-');
+      }
+
+      console.log(`[TEST]`, { responseDtoName, context, controllerName, operationName });
+
       const {
         className: rowClassName,
         filePath: rowFilePath,
         sourceFile: rowSourceFile,
       } = CoerceRowDtoClass({
         project,
-        name: responseDtoName!,
+        name: responseDtoName,
         propertyList: propertyList.map(GetPageOperationColumnToDtoClassProperty),
         rowIdType: rowIdProperty === null ? null : undefined,
       });
@@ -365,14 +359,14 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
         filePath: pageFilePath,
       } = CoercePageDtoClass({
         project,
-        name: responseDtoName!,
+        name: responseDtoName,
         rowClassName,
         rowFilePath,
       });
 
-      coerceGetPageDataMethod!(sourceFile, classDeclaration, options);
-      coerceToRowDtoMethod!(sourceFile, classDeclaration, rowClassName, options);
-      coerceToPageDtoMethod!(sourceFile, classDeclaration, pageClassName, rowClassName, options);
+      coerceGetPageDataMethod(sourceFile, classDeclaration, options);
+      coerceToRowDtoMethod(sourceFile, classDeclaration, rowClassName, options);
+      coerceToPageDtoMethod(sourceFile, classDeclaration, pageClassName, rowClassName, options);
 
       if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
         CoerceNestModuleProvider(moduleSourceFile, {
@@ -420,7 +414,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
           '  classTransformOptions',
           ');',
         ],
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, pageClassName, rowClassName),
+        ...tsMorphTransform(project, sourceFile, classDeclaration, controllerName, pageClassName, rowClassName),
       };
     },
   });

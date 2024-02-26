@@ -5,23 +5,18 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import {
-  AddComponentImport,
   AddComponentProvider,
   BuildNestControllerName,
   buildNestProjectName,
   buildOperationId,
-  CoerceClassConstructor,
   CoerceComponentRule,
   CoerceDataSourceClass,
-  CoerceFormDefinition,
   CoerceFormDefinitionTypeRule,
   CoerceFormProviderRule,
   CoerceFormProvidersFile,
   CoerceGetDataGridOperation,
   CoerceImports,
-  CoerceParameterDeclaration,
   CoercePropertyDeclaration,
-  CoerceStatements,
   CoerceSubmitDataGridOperation,
   OpenApiResponseClassImportPath,
   OperationIdToClassImportPath,
@@ -60,8 +55,6 @@ import {
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
 } from '../../lib/data-grid-options';
-import { NormalizeFormDefinitionControl } from '../../lib/form-definition-control';
-import { GenerateFormTemplate } from '../../lib/form/generate-form-template';
 import { LoadMatFormFieldHandlebarsTemplate } from '../../lib/load-handlebars-template';
 import { DataGridComponentOptions } from './schema';
 
@@ -95,13 +88,9 @@ export function NormalizeDataGridComponentOptions(
   });
 }
 
-function getControllerName(normalizedOptions: Pick<NormalizedDataGridComponentOptions, 'nestModule' | 'componentName'>) {
-  const {
-    componentName,
-    nestModule,
-  } = normalizedOptions;
+function getControllerName({ name, nestModule }: Pick<NormalizedDataGridComponentOptions, 'nestModule' | 'name'>) {
   return BuildNestControllerName({
-    controllerName: componentName,
+    controllerName: name,
     nestModule,
   });
 }
@@ -199,7 +188,6 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
     feature,
     nestModule,
     name,
-    componentName,
     directory,
     shared,
     itemList,
@@ -213,10 +201,12 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
     'submit',
     controllerName,
   );
-  const dataGridResponseClassName = CoerceSuffix(
-    classify([ nestModule, componentName ].filter(Boolean).join('-')),
-    'ControllerGetResponse',
+  const getOperationId = buildOperationId(
+    normalizedOptions,
+    'get',
+    controllerName,
   );
+  const dataGridResponseClassName = OperationIdToResponseClassName(getOperationId);
 
   return chain([
     () => console.log('Coerce form provider rule for the data grid data source submit method ...'),
@@ -276,26 +266,18 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
         typeAliasDeclaration.setType(dataGridResponseClassName);
         CoerceImports(sourceFile, {
           namedImports: [ dataGridResponseClassName ],
-          moduleSpecifier: OpenApiResponseClassImportPath(
-            dataGridResponseClassName,
-            buildNestProjectName(normalizedOptions),
-            scope,
-          ),
+          moduleSpecifier: OperationIdToResponseClassImportPath(getOperationId, scope),
         });
       },
     }),
     () => console.log('Coerce submit operation for the data grid data source ...'),
     CoerceSubmitDataGridOperation({
-      controllerName: name,
+      controllerName,
       nestModule,
       project,
       feature,
       shared,
-      propertyList: itemList
-        .map(item => ({
-          name: item.name,
-          type: item.type,
-        })),
+      propertyList: itemList.map(item => item),
       skipCoerce: true,
       collection,
     }),
@@ -348,12 +330,8 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
       shared,
       nestModule,
       collection,
-      controllerName: name,
-      propertyList: itemList
-        .map((item) => ({
-          name: item.name,
-          type: item.type,
-        })),
+      controllerName,
+      propertyList: itemList.map(item => item),
     }),
     () => console.log('Coerce data grid data source class'),
     CoerceDataSourceClass({

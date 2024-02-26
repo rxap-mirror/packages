@@ -170,7 +170,6 @@ export default function (options: TableSelectFormControlOptions) {
         propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
         operationName: optionsOperationName,
         path: optionsOperationPath,
-        skipCoerceTableSuffix: true,
         responseDtoName: tableResponseDtoName,
         context,
         upstream

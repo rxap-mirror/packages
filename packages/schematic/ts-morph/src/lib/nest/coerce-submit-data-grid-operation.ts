@@ -9,18 +9,13 @@ export interface CoerceSubmitDataGridOperationOptions extends Omit<CoerceFormSub
 }
 
 export function CoerceSubmitDataGridOperation(options: Readonly<CoerceSubmitDataGridOperationOptions>) {
-  let {
-    paramList,
-    collection,
-    controllerName,
+  const {
+    collection = false,
   } = options;
-  collection ??= false;
-  paramList ??= [];
-  controllerName = CoerceSuffix(controllerName, '-data-grid');
+
+  console.log(`collection: ${ collection }`);
 
   return CoerceFormSubmitOperation({
     ...options,
-    controllerName,
-    paramList,
   });
 }

@@ -117,7 +117,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
   directory = join(directory ?? '', nestModule!);
 
   return chain([
-    () => console.log(`Coerce Operation '${ operationName }' with path '${ path }' in the controller '${ nestController }' in the module '${ nestModule }'`),
+    () => console.log(`Coerce Operation '${ operationName }' with path '${ path ?? '<empty>' }' in the controller '${ nestController }' in the module '${ nestModule }'`),
     CoerceNestController({
       project,
       feature,
@@ -135,6 +135,9 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
       feature,
       shared,
       directory,
+      // must be set to false are some specializations of this function need to access more files then only the
+      // controller and module source file
+      filter: false,
     }, (project, [controllerSourceFile, moduleSourceFile]) => {
 
       const classDeclaration = controllerSourceFile.getClassOrThrow(`${ classify(nestController) }Controller`);
@@ -171,7 +174,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
         },
       );
 
-    }, [`${ nestController }.controller.ts`, `${ dasherize(nestModule!) }.module.ts`]),
+    }, [`${ nestController }.controller.ts?`, `${ dasherize(nestModule!) }.module.ts?`]),
   ]);
 
 

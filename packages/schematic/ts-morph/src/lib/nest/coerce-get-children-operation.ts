@@ -22,8 +22,8 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
     tsMorphTransform = noop,
     paramList = [],
     propertyList = [],
+    operationName = 'get-children',
   } = options;
-  let { controllerName } = options;
   CoerceArrayItems(propertyList, [
     {
       name: 'hasChildren',
@@ -37,16 +37,13 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
       isType: true,
     },
   ], (a, b) => a.name === b.name);
-  controllerName = CoerceSuffix(controllerName, '-tree-table');
   paramList.push({
     name: 'parentUuid',
     type: 'string',
   });
   return CoerceOperation({
     ...options,
-    // TODO : remove after migration to controllerName
-    controllerName,
-    operationName: 'get-children',
+    operationName,
     paramList,
     tsMorphTransform: (
       project,

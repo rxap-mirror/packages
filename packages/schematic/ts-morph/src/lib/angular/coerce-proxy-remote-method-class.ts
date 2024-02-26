@@ -3,20 +3,23 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import {
+  CoerceClass,
+  CoerceClassMethod,
+  CoerceImports,
+  CoerceSourceFile,
+} from '@rxap/ts-morph';
+import { noop } from '@rxap/utilities';
+import {
   ClassDeclaration,
   MethodDeclarationStructure,
   Project,
   SourceFile,
   WriterFunction,
 } from 'ts-morph';
-import { CoerceClass } from '../coerce-class';
-import { CoerceClassMethod } from '../coerce-class-method';
-import { CoerceSourceFile } from '../coerce-source-file';
 import {
-  TsMorphAngularProjectTransformOptions,
   TsMorphAngularProjectTransformRule,
 } from '../ts-morph-transform';
-import { CoerceImports } from '../ts-morph/coerce-imports';
+import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
 
 export interface CoerceProxyRemoteMethodClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
@@ -25,22 +28,21 @@ export interface CoerceProxyRemoteMethodClassOptions extends TsMorphAngularProje
     project: Project,
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
-  ) => Partial<MethodDeclarationStructure>;
+  ) => Partial<MethodDeclarationStructure> | void;
   sourceType: string | WriterFunction;
   targetType: string | WriterFunction;
   proxyMethod: string | WriterFunction;
 }
 
 export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodClassOptions) {
-  let {
+  const {
     override,
     name,
-    tsMorphTransform,
+    tsMorphTransform = noop,
     sourceType,
     targetType,
     proxyMethod,
   } = options;
-  tsMorphTransform ??= () => ({});
   const className = classify(CoerceSuffix(name, 'ProxyMethod'));
   const fileName = CoerceSuffix(name, '-proxy.method.ts');
   return TsMorphAngularProjectTransformRule(options, (project) => {
@@ -103,7 +105,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
       moduleSpecifier: '@rxap/remote-method',
       namedImports: [ 'RxapRemoteMethod', 'ProxyRemoteMethod' ],
     });
-    const methodStructure = tsMorphTransform!(project, sourceFile, classDeclaration);
+    const methodStructure: MethodDeclarationStructure = tsMorphTransform(project, sourceFile, classDeclaration) ?? {} as MethodDeclarationStructure;
     methodStructure.parameters ??= [
       {
         name: 'source',

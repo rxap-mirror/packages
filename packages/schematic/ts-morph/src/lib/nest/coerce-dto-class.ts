@@ -11,6 +11,7 @@ import {
   ClassDeclarationStructure,
   ClassLikeDeclarationBase,
   ImportDeclarationStructure,
+  ObjectLiteralExpression,
   OptionalKind,
   Project,
   PropertyDeclaration,
@@ -21,12 +22,15 @@ import {
   TypeElementMemberedNode,
   Writers,
 } from 'ts-morph';
-import { CoerceClass } from '../coerce-class';
-import { CoerceSourceFile } from '../coerce-source-file';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { WriteType } from '@rxap/ts-morph';
+import {
+  CoerceClass,
+  CoerceImports,
+  CoerceSourceFile,
+  WriteType,
+} from '@rxap/ts-morph';
 import { DtoClassProperty } from './create-dto-class';
+import 'colors';
 
 export interface CoerceDtoClassOutput {
   className: string;
@@ -65,14 +69,6 @@ export interface CoerceDtoClassOptions {
   project: Project;
   name: string;
   propertyList?: DtoClassProperty[];
-  /**
-   * @deprecated use the tsMorphTransform to adapt the class
-   */
-  classStructure?: Omit<OptionalKind<ClassDeclarationStructure>, 'name'>;
-  /**
-   * @deprecated use the tsMorphTransform to add imports
-   */
-  importStructureList?: Array<OptionalKind<ImportDeclarationStructure>>;
   tsMorphTransform?: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
 }
 
@@ -81,8 +77,6 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
     project,
     propertyList = [],
     tsMorphTransform = noop,
-    classStructure = {},
-    importStructureList = [],
   } = options;
   let {
     name,
@@ -96,7 +90,6 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
   const sourceFile = CoerceSourceFile(project, join('dtos', fileName + '.ts'));
   const classDeclaration = CoerceClass(sourceFile, className);
   classDeclaration.setIsExported(true);
-  classDeclaration.set(classStructure);
 
   for (const property of propertyList) {
 
@@ -128,7 +121,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
         arguments: [],
       },
     );
-    importStructureList.push({
+    CoerceImports(sourceFile,{
       namedImports: [ 'Expose' ],
       moduleSpecifier: 'class-transformer',
     });
@@ -141,7 +134,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
           arguments: [],
         },
       );
-      importStructureList.push({
+      CoerceImports(sourceFile,{
         namedImports: [ 'IsArray' ],
         moduleSpecifier: 'class-validator',
       });
@@ -158,7 +151,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
           },
         ],
       });
-      importStructureList.push({
+       CoerceImports(sourceFile,{
         namedImports: [ 'Type' ],
         moduleSpecifier: 'class-transformer',
       });
@@ -175,7 +168,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
           },
         ],
       });
-      importStructureList.push({
+       CoerceImports(sourceFile,{
         namedImports: [ 'IsInstance' ],
         moduleSpecifier: 'class-validator',
       });
@@ -188,7 +181,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
           arguments: [],
         },
       );
-      importStructureList.push({
+       CoerceImports(sourceFile,{
         namedImports: [ 'IsOptional' ],
         moduleSpecifier: 'class-validator',
       });
@@ -208,7 +201,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
             arguments: [],
           },
         );
-        importStructureList.push({
+         CoerceImports(sourceFile,{
           namedImports: [ 'IsDate' ],
           moduleSpecifier: 'class-validator',
         });
@@ -221,14 +214,14 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
             arguments: [],
           },
         );
-        importStructureList.push({
+         CoerceImports(sourceFile,{
           namedImports: [ 'IsNumber' ],
           moduleSpecifier: 'class-validator',
         });
         break;
       case 'string':
         if (property.name === 'uuid') {
-          importStructureList.push({
+           CoerceImports(sourceFile,{
             namedImports: [ 'IsUUID' ],
             moduleSpecifier: 'class-validator',
           });
@@ -240,7 +233,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
             },
           );
         } else {
-          importStructureList.push({
+           CoerceImports(sourceFile,{
             namedImports: [ 'IsString' ],
             moduleSpecifier: 'class-validator',
           });
@@ -261,7 +254,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
             arguments: [],
           },
         );
-        importStructureList.push({
+         CoerceImports(sourceFile,{
           namedImports: [ 'IsUUID' ],
           moduleSpecifier: 'class-validator',
         });
@@ -274,7 +267,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
             arguments: [],
           },
         );
-        importStructureList.push({
+         CoerceImports(sourceFile,{
           namedImports: [ 'IsBoolean' ],
           moduleSpecifier: 'class-validator',
         });
@@ -287,16 +280,26 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
               arguments: [Writers.object({ type: w => w.quote('unknown')})],
             },
           );
-          importStructureList.push({
+           CoerceImports(sourceFile,{
             namedImports: [ 'ApiProperty' ],
             moduleSpecifier: '@nestjs/swagger',
           });
           break;
     }
 
-  }
+    if (autoType !== 'unknown') {
+      const apiProperty = propertyDeclaration.getDecorators().find(d => d.getName() === 'ApiProperty');
+      if (apiProperty) {
+        const args = apiProperty.getArguments()[0];
+        if (args instanceof ObjectLiteralExpression) {
+          if (args.getProperty('type')?.getText().includes('unknown')) {
+            apiProperty.remove();
+          }
+        }
+      }
+    }
 
-  CoerceImports(sourceFile, importStructureList);
+  }
 
   tsMorphTransform(project, sourceFile, classDeclaration);
 

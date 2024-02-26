@@ -528,6 +528,7 @@ export function NormalizeTableSelectFormControl(
       ]
     },
   );
+  control.type ??= toValue.property.type;
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
     importList: NormalizeTypeImportList(importList),
