@@ -105,7 +105,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
       moduleSpecifier: '@rxap/remote-method',
       namedImports: [ 'RxapRemoteMethod', 'ProxyRemoteMethod' ],
     });
-    const methodStructure: MethodDeclarationStructure = tsMorphTransform(project, sourceFile, classDeclaration) ?? {} as MethodDeclarationStructure;
+    const methodStructure: Partial<MethodDeclarationStructure> = tsMorphTransform(project, sourceFile, classDeclaration) ?? {} as Partial<MethodDeclarationStructure>;
     methodStructure.parameters ??= [
       {
         name: 'source',
