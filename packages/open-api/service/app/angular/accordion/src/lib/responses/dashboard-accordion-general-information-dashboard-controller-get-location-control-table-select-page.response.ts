@@ -7,6 +7,5 @@ export interface DashboardAccordionGeneralInformationDashboardControllerGetLocat
   sortBy?: string;
   filter?: Array<FilterQueryDtoResponse>;
 }
-
 import type { LocationTableSelectRowDtoResponse } from './location-table-select-row-dto.response';
 import type { FilterQueryDtoResponse } from './filter-query-dto.response';

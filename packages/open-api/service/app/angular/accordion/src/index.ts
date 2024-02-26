@@ -7,8 +7,8 @@ export * from './lib/responses/dashboard-accordion-layout-cloud-dashboard-contro
 export * from './lib/responses/dashboard-accordion-reference-tree-table-controller-get-children.response';
 export * from './lib/responses/dashboard-accordion-reference-tree-table-controller-get-root.response';
 export * from './lib/responses/dashboard-accordion-reference-tree-table-item-dto.response';
-export * from './lib/responses/location-table-select-row-dto.response';
 export * from './lib/responses/filter-query-dto.response';
+export * from './lib/responses/location-table-select-row-dto.response';
 // endregion
 
 // region request-bodies
@@ -64,11 +64,11 @@ export * from './lib/components/dashboard-accordion-general-information-cloud-da
 export * from './lib/components/dashboard-accordion-general-information-dashboard-data-grid-dto';
 export * from './lib/components/dashboard-accordion-layout-cloud-dashboard-dto';
 export * from './lib/components/dashboard-accordion-reference-tree-table-item-dto';
+export * from './lib/components/filter-query-dto';
 export * from './lib/components/general-information-cloud-dashboard-data-grid-dto';
 export * from './lib/components/general-information-dashboard-data-grid-dto';
 export * from './lib/components/location-table-select-page-dto';
 export * from './lib/components/location-table-select-row-dto';
-export * from './lib/components/filter-query-dto';
 // endregion
 
 // region commands
