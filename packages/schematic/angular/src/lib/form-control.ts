@@ -387,9 +387,9 @@ export function NormalizeSlideToggleFormControl(
 
 // region TableSelectColumn
 
-export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath' | 'type'>
+export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath' | 'type' | 'isArray'>
 
-export type NormalizedTableSelectColumn  = Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath' | 'type'>
+export type NormalizedTableSelectColumn  = Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath' | 'type' | 'isArray'>
 
 export function NormalizeTableSelectColumn(
   column: TableSelectColumn,
@@ -404,6 +404,7 @@ export function NormalizeTableSelectColumn(
     hasFilter: column.hasFilter ?? false,
     kind,
     propertyPath,
+    isArray: column.isArray ?? false,
   });
 }
 

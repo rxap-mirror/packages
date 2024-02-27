@@ -2,7 +2,14 @@ import {
   camelize,
   capitalize,
 } from '@rxap/schematics-utilities';
-import { TypeImport } from '@rxap/ts-morph';
+import {
+  CoerceClassMethod,
+  CoerceDecorator,
+  CoerceImports,
+  CoerceStatements,
+  TypeImport,
+} from '@rxap/ts-morph';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   ClassDeclaration,
   DecoratorStructure,
@@ -18,10 +25,6 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { CoerceClassMethod } from '../coerce-class-method';
-import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceStatements } from '../ts-morph/coerce-statements';
 import { WriteType } from '@rxap/ts-morph';
 
 export interface OperationParameter {
@@ -202,33 +205,31 @@ export function AddOperationToController(
     param.type ??= 'string';
   });
 
-  const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
-    {
-      namedImports: [ method, 'NotImplementedException' ],
-      moduleSpecifier: '@nestjs/common',
-    },
-  ];
+  CoerceImports(sourceFile,{
+    namedImports: [ method, 'NotImplementedException' ],
+    moduleSpecifier: '@nestjs/common',
+  });
 
   if (queryList.length) {
-    importStructures.push({
+    CoerceImports(sourceFile,{
       namedImports: [ 'Query' ],
       moduleSpecifier: '@nestjs/common',
     });
-    importStructures.push({
+    CoerceImports(sourceFile,{
       namedImports: [ 'ApiQuery' ],
       moduleSpecifier: '@nestjs/swagger',
     });
   }
 
   if (paramList.length) {
-    importStructures.push({
+    CoerceImports(sourceFile,{
       namedImports: [ 'Param' ],
       moduleSpecifier: '@nestjs/common',
     });
   }
 
   if (body) {
-    importStructures.push({
+    CoerceImports(sourceFile,{
       namedImports: [ 'Body' ],
       moduleSpecifier: '@nestjs/common',
     });
@@ -260,16 +261,6 @@ export function AddOperationToController(
     {
       scope: Scope.Public,
       isAsync,
-      parameters: [
-        ...buildMethodQueryParameters(queryList, sourceFile),
-        ...buildMethodParamParameters(paramList, sourceFile),
-        ...buildMethodBodyParameters(body),
-      ].sort((a, b) => {
-        if (a.hasQuestionToken && b.hasQuestionToken) {
-          return 0;
-        }
-        return a.hasQuestionToken ? 1 : -1;
-      }),
       returnType: !isAsync ? returnType : returnType ? (w: any) => {
         w.write('Promise<');
         if (typeof returnType === 'string') {
@@ -284,6 +275,24 @@ export function AddOperationToController(
     },
   );
 
+  const existingParameters: OptionalKind<ParameterDeclarationStructure>[] = methodDeclaration.getParameters().map(p => p.getStructure());
+
+  CoerceArrayItems(existingParameters, [
+    ...buildMethodQueryParameters(queryList, sourceFile),
+    ...buildMethodParamParameters(paramList, sourceFile),
+    ...buildMethodBodyParameters(body),
+  ], (a, b) => a.name === b.name);
+
+  methodDeclaration.getParameters().forEach(p => p.remove());
+  for (const parameter of existingParameters.sort((a, b) => {
+    if (a.hasQuestionToken && b.hasQuestionToken) {
+      return 0;
+    }
+    return a.hasQuestionToken ? 1 : -1;
+  })) {
+    methodDeclaration.addParameter(parameter);
+  }
+
   decorators.forEach(decorator => {
     CoerceDecorator(methodDeclaration, decorator.name, decorator);
   });
@@ -295,8 +304,6 @@ export function AddOperationToController(
     statements ??
     [ 'throw new NotImplementedException();' ],
   );
-
-  CoerceImports(sourceFile, importStructures);
 
   tsMorphTransform(sourceFile, classDeclaration, methodDeclaration, options);
 

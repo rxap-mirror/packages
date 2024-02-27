@@ -92,7 +92,7 @@ export function NormalizeTableComponentOptions(
 }
 
 export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
-  columnList: ReadonlyArray<Pick<NormalizedTableColumn, 'name' | 'type' | 'propertyPath'>>,
+  columnList: ReadonlyArray<Pick<NormalizedTableColumn, 'name' | 'type' | 'propertyPath' | 'isArray'>>,
   propertyList: ReadonlyArray<NormalizedDataProperty> = [],
 ): GetPageOperationProperty[] {
   const list: GetPageOperationProperty[] = [];
@@ -101,6 +101,7 @@ export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
       name: column.name,
       type: column.type,
       source: column.propertyPath,
+      isArray: column.isArray,
     });
   }
   for (const property of propertyList) {
@@ -109,6 +110,7 @@ export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
         name: property.name,
         type: property.type,
         source: property.name,
+        isArray: property.isArray,
       });
     }
   }
