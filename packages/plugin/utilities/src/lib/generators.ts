@@ -14,16 +14,16 @@ export interface PackageJsonWithGenerators extends PackageJson {
 }
 
 export function HasGeneratorProperty(packageJson: PackageJson): packageJson is PackageJsonWithGenerators {
-  return !!packageJson['generators'];
+  return !!packageJson['generators'] || !!packageJson['schematics'];
 }
 
 export function GetGeneratorFilePath(projectRoot: string, packageJson: PackageJsonWithGenerators): string {
 
-  if (!packageJson['generators']) {
+  if (!packageJson['generators'] && !packageJson['schematics']) {
     throw new Error(`The package.json of the project ${ projectRoot } does not contains a generators property!`);
   }
 
-  return join(projectRoot, packageJson['generators']);
+  return join(projectRoot, packageJson['generators'] ?? packageJson['schematics']);
 
 }
 
