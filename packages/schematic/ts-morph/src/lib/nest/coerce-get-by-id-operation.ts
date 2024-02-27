@@ -1,10 +1,6 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { CoerceImports } from '@rxap/ts-morph';
-import { CoerceDtoClass } from './coerce-dto-class';
-import {
-  CoerceOperation,
-  CoerceOperationOptions,
-} from './coerce-operation';
+import { CoerceGetOperation } from './coerce-get-operation';
+import { CoerceOperationOptions } from './coerce-operation';
 import { DtoClassProperty } from './dto-class-property';
 
 export interface CoerceGetByIdControllerOptions extends Omit<CoerceOperationOptions, 'operationName'> {
@@ -17,7 +13,6 @@ export interface CoerceGetByIdControllerOptions extends Omit<CoerceOperationOpti
 export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) {
   const {
     controllerName,
-    isArray,
     paramList= [],
     propertyList = [],
     idProperty = { name: 'uuid', type: 'string' },
@@ -63,38 +58,12 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
     });
   }
 
-  return CoerceOperation({
+  return CoerceGetOperation({
     ...options,
-    nestModule,
-    controllerName,
-    paramList,
     operationName,
-    tsMorphTransform: (
-      project,
-      sourceFile,
-      classDeclaration,
-      controllerName,
-    ) => {
-
-      const {
-        className: dtoClassName,
-        filePath: dtoFilePath,
-      } = CoerceDtoClass({
-        project,
-        name: controllerName,
-        propertyList,
-      });
-
-      CoerceImports(sourceFile, {
-        namedImports: [ dtoClassName ],
-        moduleSpecifier: dtoFilePath,
-      });
-
-      return {
-        returnType: dtoClassName + (isArray ? '[]' : ''),
-      };
-
-    },
+    nestModule,
+    paramList,
+    propertyList,
   });
 
 }

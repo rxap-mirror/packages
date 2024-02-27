@@ -33,6 +33,7 @@ export * from './lib/nest/coerce-form-submit-operation';
 export * from './lib/nest/coerce-get-by-id-operation';
 export * from './lib/nest/coerce-get-children-operation';
 export * from './lib/nest/coerce-get-data-grid-operation';
+export * from './lib/nest/coerce-get-operation';
 export * from './lib/nest/coerce-get-page-operation';
 export * from './lib/nest/coerce-get-root-operation';
 export * from './lib/nest/coerce-nest-controller';
@@ -124,7 +125,7 @@ export * from './lib/angular/has-table-component';
 export * from './lib/angular/index';
 // endregion
 
-// region
+// region 
 export * from './lib/add-class-method';
 export * from './lib/add-dir';
 export * from './lib/add-fake-provider';
