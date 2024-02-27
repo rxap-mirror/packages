@@ -39,6 +39,11 @@
       "factory": "./src/generators/bundle-json-schema/generator",
       "schema": "./src/generators/bundle-json-schema/schema.json",
       "description": "bundle-json-schema generator"
+    },
+    "index-json-schema": {
+      "factory": "./src/generators/index-json-schema/generator",
+      "schema": "./src/generators/index-json-schema/schema.json",
+      "description": "index-json-schema generator"
     }
   },
   "schematics": {

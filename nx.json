@@ -185,14 +185,33 @@
         "^build"
       ]
     },
+    "index-json-schema": {
+      "inputs": [
+        "{projectRoot}/src/**/template.schema.json",
+        "{projectRoot}/src/**/*.schema.json"
+      ],
+      "outputs": [
+        "{workspaceRoot}/{projectRoot}/template.schema.json",
+        "{workspaceRoot}/{projectRoot}/schematic-input.schema.json"
+      ],
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-library:index-json-schema"
+      }
+    },
     "bundle-json-schema": {
+      "dependsOn": ["index-json-schema"],
       "inputs": [
         "{projectRoot}/src/**/template.schema.json",
         "{projectRoot}/src/**/*.schema.json"
       ],
       "outputs": [
         "{workspaceRoot}/{projectRoot}/src/**/schema.json"
-      ]
+      ],
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-library:bundle-json-schema"
+      }
     },
     "build": {
       "dependsOn": [
