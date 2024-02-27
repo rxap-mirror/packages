@@ -340,8 +340,14 @@ export function IsNormalizedCheckboxFormControl(template: NormalizedBaseFormCont
 export function NormalizeCheckboxFormControl(
   control: CheckboxFormControl,
 ): NormalizedCheckboxFormControl {
+  const importList = control.importList ?? [];
+  importList.push({
+    name: 'MatCheckboxModule',
+    moduleSpecifier: '@angular/material/checkbox',
+  });
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
+    importList: NormalizeTypeImportList(importList),
     kind: FormControlKinds.CHECKBOX,
     labelPosition: control.labelPosition ?? 'after',
   });
