@@ -89,7 +89,7 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
     ...normalizedAccordionItem,
     controllerName: controllerName ?? BuildNestControllerName({
       controllerName: name,
-      nestModule: hasSharedModifier ? undefined : nestModule,
+      // nestModule: hasSharedModifier ? undefined : nestModule,
     }),
     name,
     nestModule,
@@ -153,6 +153,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
     controllerName,
     identifier,
     upstream,
+    nestModule,
   } = normalizedOptions;
 
   const operationId = buildGetOperationId(normalizedOptions);
@@ -168,7 +169,8 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         feature,
         shared,
         idProperty: identifier.property,
-        upstream
+        upstream,
+        nestModule
       }),
     );
   } else {
@@ -179,6 +181,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         project,
         feature,
         shared,
+        nestModule,
       }),
     );
   }

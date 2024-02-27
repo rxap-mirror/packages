@@ -204,6 +204,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
     CoerceGetRootOperation({
       controllerName,
       project,
+      nestModule,
       feature,
       shared: hasSharedModifier,
       paramList,

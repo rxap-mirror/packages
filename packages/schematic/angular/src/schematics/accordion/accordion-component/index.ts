@@ -510,11 +510,14 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
     feature,
     controllerName,
     identifier,
+    nestModule,
   } = normalizedOptions;
 
   const operationId = buildGetOperationId(normalizedOptions);
 
   const rules: Rule[] = [];
+
+  console.log('Create Get Operation ...', { nestModule, controllerName });
 
   if (identifier) {
     rules.push(
@@ -523,6 +526,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
         controllerName,
         project,
         feature,
+        nestModule,
         shared: false,
         propertyList: buildPropertyList(normalizedOptions),
         idProperty: identifier.property,
@@ -535,6 +539,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
         controllerName,
         project,
         feature,
+        nestModule,
         shared: false,
         propertyList: buildPropertyList(normalizedOptions),
       }),

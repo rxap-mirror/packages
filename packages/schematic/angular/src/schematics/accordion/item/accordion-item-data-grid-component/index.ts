@@ -175,7 +175,8 @@ function nestjsBackendRule(
     shared,
     identifier,
     upstream,
-    controllerName
+    controllerName,
+    nestModule
   } = normalizedOptions;
   const {
     hasSharedModifier,
@@ -233,6 +234,7 @@ function nestjsBackendRule(
       controllerName,
       project,
       feature,
+      nestModule,
       shared,
       collection: hasCollectionModifier,
       paramList,
@@ -250,6 +252,7 @@ function nestjsBackendRule(
         project,
         feature,
         shared,
+        nestModule,
         collection: hasCollectionModifier,
         paramList,
         // idProperty: identifier?.property,

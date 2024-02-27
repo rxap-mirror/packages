@@ -128,6 +128,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
     project,
     feature,
     identifier,
+    nestModule,
   } = normalizedOptions;
 
   const { hasSharedModifier } = GetItemOptions(normalizedOptions);
@@ -144,6 +145,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
   return chain([
     () => console.log(`Modify the get page operation ...`),
     CoerceGetPageOperation({
+      nestModule,
       controllerName,
       project,
       feature,

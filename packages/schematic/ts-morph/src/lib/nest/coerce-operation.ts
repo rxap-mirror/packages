@@ -88,6 +88,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
    * name = "notification"
    * module = "report-details"
    */
+  console.log({ nestModule, controllerName });
   const isFirstBornSibling = !nestModule || nestModule === controllerName;
 
   const nestController = BuildNestControllerName({

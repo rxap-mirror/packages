@@ -140,8 +140,8 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
     idProperty = { name: 'uuid', type: 'string' },
     operationName = 'getById',
     coerceUpstreamOperationImplementation = CoerceUpstreamDefaultOperationImplementation,
+    nestModule,
   } = options;
-  let { nestModule } = options;
 
   if (idProperty) {
     /**
@@ -173,15 +173,11 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
       });
     }
 
-    if (isFirstBornSibling) {
-      nestModule = controllerName;
-    }
-
     if (!paramList.some(param => param.name === idProperty.name)) {
       paramList.push({
         name: idProperty.name,
         type: idProperty.type,
-        alias: idProperty.alias ?? isFirstBornSibling ? undefined : CoerceSuffix(nestModule!, '-' + idProperty.name),
+        alias: idProperty.alias ?? isFirstBornSibling ? undefined : CoerceSuffix(nestModule ?? controllerName, '-' + idProperty.name),
         fromParent: idProperty.fromParent ?? !isFirstBornSibling,
       });
     }
