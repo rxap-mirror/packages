@@ -20,6 +20,11 @@ import {
 import Handlebars from 'handlebars';
 import { join } from 'path';
 import {
+  AccordionIdentifier,
+  NormalizeAccordionIdentifier,
+  NormalizedAccordionIdentifier,
+} from './accordion-identifier';
+import {
   AccordionItemKinds,
   IsAccordionItemKind,
 } from './accordion-itme-kinds';
@@ -51,11 +56,13 @@ export interface BaseAccordionItem {
   permission?: string;
   importList?: TypeImport[];
   template?: string;
+  identifier?: AccordionIdentifier;
 }
 
 export interface NormalizedBaseAccordionItem extends Readonly<NonNullableSelected<Normalized<BaseAccordionItem>, 'kind'>> {
   importList: NormalizedTypeImport[];
   handlebars: Handlebars.TemplateDelegate<{ item: NormalizedBaseAccordionItem }>,
+  identifier: NormalizedAccordionIdentifier | null;
 }
 
 export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedBaseAccordionItem {
@@ -83,6 +90,7 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
     );
   }
   return Object.freeze({
+    identifier: NormalizeAccordionIdentifier(item.identifier),
     title,
     description,
     name: dasherize(name),

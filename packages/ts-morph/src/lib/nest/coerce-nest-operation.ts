@@ -21,15 +21,16 @@ import { CoerceClassMethod } from '../coerce-class-method';
 import { CoerceDecorator } from '../coerce-decorator';
 import { CoerceImports } from '../coerce-imports';
 import { CoerceStatements } from '../coerce-statements';
+import { DataProperty } from '../data-property';
+import { TypeImport } from '../type-import';
+import { WriteType } from '../write-type';
 import { GetControllerClass } from './get-controller-class';
 
-export interface OperationParameter {
-  name: string;
-  type?: string | WriterFunction;
+export interface OperationParameter extends DataProperty {
+  type?: string | WriterFunction | TypeImport;
   pipeList?: Array<string | WriterFunction>;
   defaultValue?: string | WriterFunction;
   required?: boolean;
-  isArray?: boolean;
 
   /**
    * (optional) the method parameter name. If not defined the name property will be used
@@ -71,7 +72,7 @@ export interface CoerceOperationOptions {
 
 function buildMethodQueryParameters(
   queryList: OperationParameter[],
-  importStructures: Array<OptionalKind<ImportDeclarationStructure>>,
+  sourceFile: SourceFile,
 ): Array<OptionalKind<ParameterDeclarationStructure>> {
   if (queryList.length) {
     return queryList.map(query => {
@@ -79,7 +80,7 @@ function buildMethodQueryParameters(
         undefined) {
         return query;
       }
-      importStructures.push({
+      CoerceImports(sourceFile, {
         namedImports: [ 'DefaultValuePipe' ],
         moduleSpecifier: '@nestjs/common',
       });
@@ -102,7 +103,7 @@ function buildMethodQueryParameters(
     }).map(query => ({
       name: query.alias ??
         query.name,
-      type: query.type,
+      type: WriteType({ type: query.type ?? 'unknown', isArray: query.isArray }, sourceFile),
       hasQuestionToken: !query.required &&
         query.defaultValue ===
         undefined,
@@ -121,12 +122,15 @@ function buildMethodQueryParameters(
   return [];
 }
 
-function buildMethodParamParameters(paramList: OperationParameter[]): Array<OptionalKind<ParameterDeclarationStructure>> {
+function buildMethodParamParameters(
+  paramList: OperationParameter[],
+  sourceFile: SourceFile,
+): Array<OptionalKind<ParameterDeclarationStructure>> {
   if (paramList.length) {
     return paramList.map(param => ({
       name: param.alias ??
         param.name,
-      type: param.type,
+      type: WriteType({ type: param.type ?? 'unknown', isArray: param.isArray }, sourceFile),
       decorators: [
         {
           name: 'Param',
@@ -307,8 +311,8 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
       scope: Scope.Public,
       isAsync,
       parameters: [
-        ...buildMethodQueryParameters(queryList, importStructures),
-        ...buildMethodParamParameters(paramList),
+        ...buildMethodQueryParameters(queryList, sourceFile),
+        ...buildMethodParamParameters(paramList, sourceFile),
         ...buildMethodBodyParameters(body),
       ].sort((a, b) => {
         if (a.hasQuestionToken && b.hasQuestionToken) {

@@ -5,6 +5,7 @@ import {
 } from '@angular-devkit/schematics';
 import { CoerceGetPageOperation } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
+import { OperationParameter } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   NormalizedTableAccordionItem,
@@ -18,6 +19,7 @@ import {
 import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TableModifiers } from '../../../../lib/table-options';
+import { TableColumnListAndPropertyListToGetPageOperationPropertyList } from '../../../table/table-component';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
@@ -122,30 +124,32 @@ function tableComponentSchematicRule(normalizedOptions: NormalizedAccordionItemT
 function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableComponentOptions) {
 
   const {
-    nestModule,
-    name,
+    controllerName,
     project,
     feature,
+    identifier,
   } = normalizedOptions;
 
   const { hasSharedModifier } = GetItemOptions(normalizedOptions);
 
+  const paramList: OperationParameter[] = [];
+
+  if (identifier) {
+    paramList.push({
+      ...identifier.property,
+      fromParent: !hasSharedModifier,
+    });
+  }
+
   return chain([
     () => console.log(`Modify the get page operation ...`),
     CoerceGetPageOperation({
-      controllerName: name,
-      nestModule: hasSharedModifier ? undefined : nestModule,
+      controllerName,
       project,
       feature,
       shared: hasSharedModifier,
-      paramList: [
-        {
-          name: 'uuid',
-          type: 'string',
-          fromParent: !hasSharedModifier,
-        },
-      ],
-      propertyList: [],
+      paramList,
+      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(normalizedOptions.table.columnList),
       skipCoerce: true,
     }),
   ]);

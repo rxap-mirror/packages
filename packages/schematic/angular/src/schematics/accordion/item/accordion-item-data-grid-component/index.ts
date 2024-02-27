@@ -22,6 +22,7 @@ import {
 import {
   CoerceComponentImport,
   CoercePropertyDeclaration,
+  OperationParameter,
 } from '@rxap/ts-morph';
 import {
   classify,
@@ -168,17 +169,27 @@ function nestjsBackendRule(
 
   const {
     name,
-    nestModule,
     directory,
     project,
     feature,
     shared,
+    identifier,
+    controllerName
   } = normalizedOptions;
   const {
     hasSharedModifier,
     hasCollectionModifier,
     hasEditModifier,
   } = GetItemOptions(normalizedOptions);
+
+  const paramList: OperationParameter[] = [];
+
+  if (identifier) {
+    paramList.push({
+      ...identifier.property,
+      fromParent: !hasSharedModifier,
+    });
+  }
 
   const rules = ([
     () => console.log(`Modify the data source class ...`),
@@ -218,19 +229,12 @@ function nestjsBackendRule(
     }),
     () => console.log(`Modify the get data grid operation ...`),
     CoerceGetDataGridOperation({
-      controllerName: name,
+      controllerName,
       project,
       feature,
       shared,
-      nestModule: hasSharedModifier ? undefined : nestModule,
       collection: hasCollectionModifier,
-      paramList: [
-        {
-          name: 'uuid',
-          type: 'string',
-          fromParent: !hasSharedModifier,
-        },
-      ],
+      paramList,
       skipCoerce: true,
     }),
   ]);
@@ -239,19 +243,12 @@ function nestjsBackendRule(
     rules.push(
       () => console.log(`Modify the submit data grid operation ...`),
       CoerceSubmitDataGridOperation({
-        controllerName: name,
-        nestModule: hasSharedModifier ? undefined : nestModule,
+        controllerName,
         project,
         feature,
         shared,
         collection: hasCollectionModifier,
-        paramList: [
-          {
-            name: 'uuid',
-            type: 'string',
-            fromParent: !hasSharedModifier,
-          },
-        ],
+        paramList,
         skipCoerce: true,
       }),
     );

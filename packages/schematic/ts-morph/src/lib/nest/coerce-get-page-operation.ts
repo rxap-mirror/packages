@@ -46,7 +46,7 @@ export interface GetPageOperationProperty extends NormalizedDataProperty {
 
 export interface CoerceGetPageOperationOptions
   extends Omit<Omit<CoerceOperationOptions, 'operationName'>, 'tsMorphTransform'> {
-  propertyList: GetPageOperationProperty[];
+  propertyList?: GetPageOperationProperty[];
   tsMorphTransform?: (
     project: Project,
     sourceFile: SourceFile,
@@ -134,7 +134,7 @@ export function CoerceToRowDtoMethod(
       (options.rowIdProperty === null ?
         '(pageIndex * pageSize + index).toFixed(0)' :
         `item.${ options.rowIdProperty ?? 'uuid' }`) + ',\n  ',
-      options.propertyList.map(GetPageOperationColumnToCodeText).join(',\n  '),
+      options.propertyList?.map(GetPageOperationColumnToCodeText).join(',\n  ') ?? '',
       '};',
     ],
   });

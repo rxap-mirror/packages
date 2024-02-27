@@ -24,11 +24,25 @@
       },
       "description": "The modifiers to apply to the accordion item type"
     },
+    "identifier": {
+      "$ref": "#/definitions/accordionIdentifier"
+    },
     "title": {
       "type": "string"
     },
     "description": {
       "type": "string"
+    }
+  },
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
+    },
+    "accordionIdentifier": {
+      "$ref": "./accordion-identifier.schema.json"
     }
   },
   "additionalProperties": true

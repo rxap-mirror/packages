@@ -12,6 +12,7 @@ import {
   CoerceComponentRule,
   CoerceDataSourceClass,
   CoerceGetByIdOperation,
+  CoerceGetOperation,
   CoerceImports,
   CoerceInterfaceRule,
   CoerceMethodClass,
@@ -61,29 +62,34 @@ import { AccordionItemComponentOptions } from './schema';
 export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'kind'>;
 
 export interface NormalizedAccordionItemStandaloneComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name'>, NormalizedBaseAccordionItem {
+  extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name' | 'identifier'>, NormalizedBaseAccordionItem {
   componentName: string;
+  controllerName: string;
 }
 
 export function NormalizeAccordionItemStandaloneComponentOptions(
   options: Readonly<AccordionItemStandaloneComponentOptions>,
 ): NormalizedAccordionItemStandaloneComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const { feature, controllerName } = normalizedAngularOptions;
+  const { feature, controllerName, shared } = normalizedAngularOptions;
   const name = dasherize(options.name);
+
   const componentName = CoerceSuffix(name, '-panel');
   let accordionName = options.accordionName ?? feature;
   accordionName = CoerceSuffix(dasherize(accordionName), '-accordion');
   const nestModule = options.nestModule ?? accordionName;
+  const normalizedAccordionItem = NormalizeAccordionItem({
+    kind: AccordionItemKinds.Default,
+    ...options,
+  });
+  const { modifiers } = normalizedAccordionItem;
+  const { hasSharedModifier } = GetItemOptions({ modifiers, shared });
   return Object.freeze({
     ...normalizedAngularOptions,
-    ...NormalizeAccordionItem({
-      kind: AccordionItemKinds.Default,
-      ...options,
-    }),
+    ...normalizedAccordionItem,
     controllerName: controllerName ?? BuildNestControllerName({
       controllerName: name,
-      nestModule,
+      nestModule: hasSharedModifier ? undefined : nestModule,
     }),
     name,
     nestModule,
@@ -123,6 +129,18 @@ interface ItemOptions {
 
 // region panel item
 
+function buildGetOperationId(normalizedOptions: NormalizedAccordionItemComponentOptions) {
+  const {
+    controllerName,
+    identifier,
+  } = normalizedOptions;
+  return buildOperationId(
+    normalizedOptions,
+    identifier ? 'getById' : 'get',
+    controllerName,
+  );
+}
+
 function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionItemComponentOptions) {
 
   const {
@@ -133,27 +151,38 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
     feature,
     shared,
     scope,
+    controllerName,
+    identifier,
   } = normalizedOptions;
 
-  const controllerName = BuildNestControllerName({
-    controllerName: name,
-    nestModule,
-  });
-  const operationId = buildOperationId(
-    normalizedOptions,
-    'getById',
-    controllerName,
-  );
+  const operationId = buildGetOperationId(normalizedOptions);
 
-  return chain([
-    () => console.log(`Coerce getById operation ...`),
-    CoerceGetByIdOperation({
-      controllerName: name,
-      project,
-      feature,
-      shared,
-      nestModule,
-    }),
+  const rules: Rule[] = [];
+
+  if (identifier) {
+    rules.push(
+      () => console.log(`Coerce getById operation ...`),
+      CoerceGetByIdOperation({
+        controllerName,
+        project,
+        feature,
+        shared,
+        idProperty: identifier.property,
+      }),
+    );
+  } else {
+    rules.push(
+      () => console.log(`Coerce getById operation ...`),
+      CoerceGetOperation({
+        controllerName,
+        project,
+        feature,
+        shared,
+      }),
+    );
+  }
+
+  rules.push(
     () => console.log(`Coerce panel data source ...`),
     CoerceDataSourceClass({
       project,
@@ -196,7 +225,9 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         });
       },
     }),
-  ]);
+  );
+
+  return chain(rules);
 
 }
 
@@ -389,7 +420,7 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
 
 // endregion
 
-export function GetItemOptions(normalizedOptions: Pick<NormalizedAccordionItemComponentOptions, 'modifiers' | 'shared'>): ItemOptions {
+export function GetItemOptions(normalizedOptions: { modifiers: string[], shared: boolean }): ItemOptions {
   const {
     shared,
     modifiers,

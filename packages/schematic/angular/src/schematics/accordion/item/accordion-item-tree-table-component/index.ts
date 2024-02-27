@@ -4,20 +4,19 @@ import {
   noop,
 } from '@angular-devkit/schematics';
 import {
-  BuildNestControllerName,
   buildOperationId,
-  CoerceClassConstructor,
   CoerceGetChildrenOperation,
   CoerceGetRootOperation,
-  CoerceImports,
   CoerceParameterDeclaration,
   CoerceTreeTableChildrenProxyRemoteMethodClass,
   CoerceTreeTableRootProxyRemoteMethodClass,
 } from '@rxap/schematics-ts-morph';
+import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import {
-  CoerceSuffix,
-  ExecuteSchematic,
-} from '@rxap/schematics-utilities';
+  CoerceClassConstructor,
+  CoerceImports,
+  OperationParameter,
+} from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   ClassDeclaration,
@@ -143,41 +142,71 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
 
 }
 
+function coerceIdentifierParameterResolver({ identifier }: NormalizedAccordionItemTreeTableComponentOptions) {
+  return (
+    project: Project,
+    sourceFile: SourceFile,
+    classDeclaration: ClassDeclaration,
+  ) => {
+    if (identifier?.source === 'route') {
+      CoerceImports(sourceFile, {
+        moduleSpecifier: '@angular/router',
+        namedImports: [ 'ActivatedRoute' ],
+      });
+      const [ constructorDeclaration ] =
+        CoerceClassConstructor(classDeclaration);
+      CoerceParameterDeclaration(
+        constructorDeclaration,
+        'route',
+      ).set({
+        type: 'ActivatedRoute',
+        isReadonly: true,
+        scope: Scope.Private,
+      });
+      return {
+        statements: [
+          `const { ${identifier.property.name} } = this.route.snapshot.params;`,
+          `return { parameters: { ${identifier.property.name} } };`,
+        ],
+      };
+    }
+    return {};
+  };
+}
+
 function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableComponentOptions) {
 
   const {
-    name,
     nestModule,
     directory,
     project,
     feature,
     shared,
     scope,
+    identifier,
+    controllerName,
   } = normalizedOptions;
   const {
     hasSharedModifier,
   } = GetItemOptions(normalizedOptions);
 
-  const controllerName = BuildNestControllerName({
-    controllerName: name,
-    nestModule: hasSharedModifier ? undefined : nestModule,
-  });
+  const paramList: OperationParameter[] = [];
+
+  if (identifier) {
+    paramList.push({
+      ...identifier.property,
+      fromParent: !hasSharedModifier,
+    });
+  }
 
   return chain([
     () => console.log(`Modify the get root operation ...`),
     CoerceGetRootOperation({
       controllerName,
-      nestModule: hasSharedModifier ? undefined : nestModule,
       project,
       feature,
       shared: hasSharedModifier,
-      paramList: [
-        {
-          name: 'uuid',
-          type: 'string',
-          fromParent: !hasSharedModifier,
-        },
-      ],
+      paramList,
       skipCoerce: true,
     }),
     () => console.log(`Modify the get children operation ...`),
@@ -187,13 +216,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       project,
       feature,
       shared: hasSharedModifier,
-      paramList: [
-        {
-          name: 'uuid',
-          type: 'string',
-          fromParent: !hasSharedModifier,
-        },
-      ],
+      paramList,
       skipCoerce: true,
     }),
     () => console.log(`Modify the get root proxy method ...`),
@@ -208,32 +231,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
         'get-root',
         controllerName,
       ),
-      tsMorphTransform: (
-        project: Project,
-        sourceFile: SourceFile,
-        classDeclaration: ClassDeclaration,
-      ) => {
-        CoerceImports(sourceFile, {
-          moduleSpecifier: '@angular/router',
-          namedImports: [ 'ActivatedRoute' ],
-        });
-        const [ constructorDeclaration ] =
-          CoerceClassConstructor(classDeclaration);
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'route',
-        ).set({
-          type: 'ActivatedRoute',
-          isReadonly: true,
-          scope: Scope.Private,
-        });
-        return {
-          statements: [
-            'const { uuid } = this.route.snapshot.params;',
-            'return { parameters: { uuid } };',
-          ],
-        };
-      },
+      tsMorphTransform: coerceIdentifierParameterResolver(normalizedOptions),
     }),
     () => console.log(`Modify the get children proxy method ...`),
     CoerceTreeTableChildrenProxyRemoteMethodClass({
@@ -247,32 +245,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
         'get-children',
         controllerName,
       ),
-      tsMorphTransform: (
-        project: Project,
-        sourceFile: SourceFile,
-        classDeclaration: ClassDeclaration,
-      ) => {
-        CoerceImports(sourceFile, {
-          moduleSpecifier: '@angular/router',
-          namedImports: [ 'ActivatedRoute' ],
-        });
-        const [ constructorDeclaration ] =
-          CoerceClassConstructor(classDeclaration);
-        CoerceParameterDeclaration(
-          constructorDeclaration,
-          'route',
-        ).set({
-          type: 'ActivatedRoute',
-          isReadonly: true,
-          scope: Scope.Private,
-        });
-        return {
-          statements: [
-            'const { uuid } = this.route.snapshot.params;',
-            'return { parameters: { uuid, parentUuid: source.id } };',
-          ],
-        };
-      },
+      tsMorphTransform: coerceIdentifierParameterResolver(normalizedOptions),
     }),
   ]);
 

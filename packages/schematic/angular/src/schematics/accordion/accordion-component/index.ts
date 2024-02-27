@@ -420,12 +420,14 @@ function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOption
     name,
     overwrite,
     identifier,
+    nestModule,
   } = normalizedOptions;
 
   return chain([
     () => console.log(`Create accordion item component '${ item.name }' ...`),
     ExecuteSchematic('accordion-item-component', {
       ...item,
+      nestModule,
       name: item.name,
       kind: item.kind,
       modifiers: item.modifiers,
@@ -510,7 +512,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
     identifier,
   } = normalizedOptions;
 
-  const getOperationId = buildGetOperationId(normalizedOptions);
+  const operationId = buildGetOperationId(normalizedOptions);
 
   const rules: Rule[] = [];
 
@@ -539,7 +541,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
     );
   }
 
-  rules.push(openApiDataSourceRule(normalizedOptions, getOperationId));
+  rules.push(openApiDataSourceRule(normalizedOptions, operationId));
 
   return chain(rules);
 

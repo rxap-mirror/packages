@@ -3,7 +3,12 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import { classify } from '@rxap/schematics-utilities';
-import { dasherize } from '@rxap/utilities';
+import { CoerceOperationParamList } from '@rxap/ts-morph';
+import {
+  dasherize,
+  noop,
+} from '@rxap/utilities';
+import { TsMorphNestProjectTransformOptions } from '@rxap/workspace-ts-morph';
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -11,7 +16,6 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
-  TsMorphNestProjectTransformOptions,
   TsMorphNestProjectTransformRule,
 } from '../ts-morph-transform';
 import {
@@ -48,41 +52,22 @@ export interface CoerceOperationOptions extends TsMorphNestProjectTransformOptio
   // responseDtoName?: string;
 }
 
-/**
- * @deprecated import from @rxap/ts-morph
- */
-export function CoerceOperationParamList(paramList: OperationParameter[], classDeclaration: ClassDeclaration) {
-  const currentControllerPath = classDeclaration.getDecoratorOrThrow('Controller').getArguments()[0]?.getText() ?? '';
-  const fragments = currentControllerPath.split('/');
-  const parameters = fragments.filter(fragment => fragment.startsWith(':'));
-  for (const parameter of parameters) {
-    if (!paramList.some(param => param.name === parameter.substr(1))) {
-      paramList.push({ name: parameter.substr(1) });
-    }
-  }
-}
-
 export function CoerceOperation(options: CoerceOperationOptions): Rule {
-  let {
-    nestModule,
+  const {
     controllerName,
     project,
-    paramList,
+    paramList = [],
     feature,
     shared,
-    tsMorphTransform,
+    tsMorphTransform = noop,
     operationName,
     skipCoerce,
     controllerPath,
-    queryList,
+    queryList = [],
     path,
-    overwriteControllerPath,
-    directory,
   } = options;
+  let { nestModule, directory } = options;
 
-  tsMorphTransform ??= () => ({});
-  paramList ??= [];
-  queryList ??= [];
 
   /**
    * If the module is not specified. This controller has an own module. Else the
@@ -127,9 +112,6 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
       name: nestController,
       nestModule,
     }),
-    // IMPORTANT: the use of the filePath parameter for the narrow loading of the source file CAN NOT BE USED here
-    //            because sub functions may need to load other source files that are then not loaded into the
-    //            project instance!
     TsMorphNestProjectTransformRule({
       project,
       feature,
@@ -142,24 +124,24 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
 
       const classDeclaration = controllerSourceFile.getClassOrThrow(`${ classify(nestController) }Controller`);
 
-      const operationOptions = tsMorphTransform!(project, controllerSourceFile, classDeclaration, nestController, moduleSourceFile);
+      const operationOptions = tsMorphTransform(project, controllerSourceFile, classDeclaration, nestController, moduleSourceFile) ?? {};
 
       if (controllerPath) {
         classDeclaration.getDecoratorOrThrow('Controller').set({
-          arguments: [ w => w.quote(controllerPath!) ],
+          arguments: [ w => w.quote(controllerPath) ],
         });
       } else if (!isFirstBornSibling) {
-        const parentParamList = paramList!.filter(p => p.fromParent);
+        const parentParamList = paramList.filter(p => p.fromParent);
         classDeclaration.getDecoratorOrThrow('Controller').set({
           arguments: [
             w => w.quote(`${ nestModule }/${ parentParamList.length ?
               parentParamList.map(param => `:${ param.name }`).join('/') + '/' :
-              '' }${ controllerName!.replace(nestModule + '-', '') }`),
+              '' }${ controllerName.replace(nestModule + '-', '') }`),
           ],
         });
       }
 
-      CoerceOperationParamList(paramList!, classDeclaration);
+      CoerceOperationParamList(paramList, classDeclaration);
 
       AddOperationToController(
         controllerSourceFile,
