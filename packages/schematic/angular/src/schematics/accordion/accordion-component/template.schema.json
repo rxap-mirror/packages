@@ -93,6 +93,9 @@
     },
     "accordionIdentifier": {
       "$ref": "../../accordion-identifier.schema.json"
+    },
+    "upstream": {
+      "$ref": "../../upstream.schema.json"
     }
   }
 }

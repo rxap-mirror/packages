@@ -24,6 +24,9 @@
     },
     "value": {
       "$ref": "../value.schema.json"
+    },
+    "upstream": {
+      "$ref": "../upstream.schema.json"
     }
   }
 }

@@ -34,11 +34,17 @@
       "type": "boolean",
       "description": "Whether the data grid is used in a card.",
       "default": true
+    },
+    "upstream": {
+      "$ref": "#/definitions/upstream"
     }
   },
   "definitions": {
     "type": {
       "$ref": "./type.schema.json"
+    },
+    "upstream": {
+      "$ref": "./upstream.schema.json"
     }
   }
 }

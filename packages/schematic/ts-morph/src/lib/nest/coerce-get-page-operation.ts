@@ -2,21 +2,16 @@ import { camelize } from '@rxap/schematics-utilities';
 import {
   CoerceClassMethod,
   CoerceImports,
-  CoerceNestModuleImport,
-  CoerceNestModuleProvider,
-  DataProperty,
   IsNormalizedOpenApiUpstreamOptions,
   NormalizedDataProperty,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
   OperationIdToCommandClassName,
-  RequiresTypeImport,
+  OperationIdToResponseClassName,
   TypeImport,
-  TypeImportToImportStructure,
 } from '@rxap/ts-morph';
 import {
   CoercePrefix,
-  joinWithDash,
   noop,
 } from '@rxap/utilities';
 import {
@@ -26,15 +21,16 @@ import {
   SourceFile,
 } from 'ts-morph';
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
+import { WriteType } from '../ts-morph/write-type';
 import { OperationOptions } from './add-operation-to-controller';
 import { CoercePropertyDeclaration } from './coerce-dto-class';
+import { CoerceUpstreamBasicOperationImplementation } from './coerce-get-by-id-operation';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
 import { CoercePageDtoClass } from './coerce-page-dto-class';
 import { CoerceRowDtoClass } from './coerce-row-dto-class';
-import { DtoClassProperty } from './dto-class-property';
 import { TABLE_QUERY_LIST } from './table-query-list';
 
 export interface GetPageOperationProperty extends NormalizedDataProperty {
@@ -81,6 +77,7 @@ export interface CoerceGetPageOperationOptions
   coerceGetPageDataMethod?: (
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
+    moduleSourceFile: SourceFile,
     options: CoerceGetPageOperationOptions,
   ) => void;
   upstream?: NormalizedUpstreamOptions | null;
@@ -109,7 +106,10 @@ export function CoerceToRowDtoMethod(
     parameters: [
       {
         name: 'item',
-        type: 'RawRowData',
+        type: WriteType({
+          isArray: false,
+          type: GetRawRowDataType(options),
+        }, sourceFile),
       },
       {
         name: 'index',
@@ -125,7 +125,10 @@ export function CoerceToRowDtoMethod(
       },
       {
         name: 'list',
-        type: 'RawRowData[]',
+        type: WriteType({
+          isArray: true,
+          type: GetRawRowDataType(options),
+        }, sourceFile),
       },
     ],
     statements: [
@@ -153,7 +156,10 @@ export function CoerceToPageDtoMethod(
     parameters: [
       {
         name: 'list',
-        type: 'RawRowData[]',
+        type: WriteType({
+          isArray: true,
+          type: GetRawRowDataType(options),
+        }, sourceFile),
       },
       {
         name: 'total',
@@ -192,10 +198,14 @@ export function CoerceToPageDtoMethod(
 export function CoerceGetPageDataMethod(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
-  { upstream }: CoerceGetPageOperationOptions,
+  moduleSourceFile: SourceFile,
+  options: CoerceGetPageOperationOptions,
 ) {
+  const { upstream } = options;
   const statements: string[] = [];
   if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
+    const { memberName: commandMemberName } = CoerceUpstreamBasicOperationImplementation(
+      sourceFile, classDeclaration, moduleSourceFile, upstream);
     const commandClassName = OperationIdToCommandClassName(upstream.operationId);
     const memberName = camelize(commandClassName);
     CoercePropertyDeclaration(classDeclaration, memberName, {
@@ -253,7 +263,10 @@ export function CoerceGetPageDataMethod(
   }
   CoerceClassMethod(classDeclaration, 'getPageData', {
     scope: Scope.Public,
-    returnType: 'Promise<{ list: RawRowData[], total: number }>',
+    returnType: `Promise<{ list: ${ WriteType({
+      isArray: true,
+      type: GetRawRowDataType(options),
+    }, sourceFile) }, total: number }>`,
     isAsync: true,
     parameters: [
       {
@@ -279,6 +292,26 @@ export function CoerceGetPageDataMethod(
     ],
     statements: statements,
   });
+}
+
+export function GetResponseTypeFromUpstream(upstream: NormalizedUpstreamOptions): TypeImport {
+  if (IsNormalizedOpenApiUpstreamOptions(upstream)) {
+    return {
+      name: OperationIdToResponseClassName(upstream.operationId),
+      moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope, upstream.isService),
+    };
+  }
+  throw new Error(`Upstream kind '${ upstream.kind }' not supported`);
+}
+
+export function GetRawRowDataType(options: Readonly<CoerceGetPageOperationOptions>): TypeImport {
+  const { upstream } = options;
+  if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
+    return GetResponseTypeFromUpstream(upstream);
+  }
+  return {
+    name: 'RawRowData',
+  };
 }
 
 export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationOptions>) {
@@ -331,24 +364,9 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
         rowFilePath,
       });
 
-      coerceGetPageDataMethod(sourceFile, classDeclaration, options);
+      coerceGetPageDataMethod(sourceFile, classDeclaration, moduleSourceFile, options);
       coerceToRowDtoMethod(sourceFile, classDeclaration, rowClassName, options);
       coerceToPageDtoMethod(sourceFile, classDeclaration, pageClassName, rowClassName, options);
-
-      if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
-        CoerceNestModuleProvider(moduleSourceFile, {
-          providerObject: OperationIdToCommandClassName(upstream.operationId),
-          moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope, upstream.isService),
-        });
-        CoerceNestModuleImport(moduleSourceFile, {
-          moduleName: 'HttpModule',
-          moduleSpecifier: '@nestjs/axios',
-        });
-        CoerceNestModuleProvider(moduleSourceFile, {
-          providerObject: 'Logger',
-          moduleSpecifier: '@nestjs/common',
-        });
-      }
 
       CoerceImports(sourceFile, [
         {
@@ -373,10 +391,12 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
         },
       ]);
 
-      CoerceTypeAlias(sourceFile, 'RawRowData', {
-        isExported: false,
-        type: 'any',
-      });
+      if (!upstream || !IsNormalizedOpenApiUpstreamOptions(upstream)) {
+        CoerceTypeAlias(sourceFile, 'RawRowData', {
+          isExported: false,
+          type: 'any',
+        });
+      }
 
       return {
         queryList: TABLE_QUERY_LIST,

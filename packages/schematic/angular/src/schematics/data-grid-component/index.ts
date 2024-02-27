@@ -7,7 +7,6 @@ import {
 import {
   AddComponentProvider,
   BuildNestControllerName,
-  buildNestProjectName,
   buildOperationId,
   CoerceComponentRule,
   CoerceDataSourceClass,
@@ -15,14 +14,10 @@ import {
   CoerceFormProviderRule,
   CoerceFormProvidersFile,
   CoerceGetDataGridOperation,
-  CoerceImports,
   CoercePropertyDeclaration,
   CoerceSubmitDataGridOperation,
-  OpenApiResponseClassImportPath,
   OperationIdToClassImportPath,
   OperationIdToClassName,
-  OperationIdToResponseClassImportPath,
-  OperationIdToResponseClassName,
 } from '@rxap/schematics-ts-morph';
 import {
   classify,
@@ -33,8 +28,11 @@ import {
 import {
   CoerceComponentImport,
   CoerceComponentInput,
+  CoerceImports,
   NormalizeDataProperty,
   NormalizedDataProperty,
+  OperationIdToResponseClassImportPath,
+  OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
@@ -348,9 +346,9 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
     shared,
     nestModule,
     name,
-    itemList,
     directory,
     scope,
+    upstream,
   } = normalizedOptions;
 
   const controllerName = getControllerName(normalizedOptions);
@@ -369,6 +367,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
       nestModule,
       collection,
       controllerName,
+      upstream,
       propertyList: getPropertyList(normalizedOptions),
     }),
     () => console.log('Coerce data grid data source class'),

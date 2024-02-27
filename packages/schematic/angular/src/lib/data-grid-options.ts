@@ -1,3 +1,8 @@
+import {
+  NormalizedUpstreamOptions,
+  NormalizeUpstreamOptions,
+  UpstreamOptions,
+} from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   DataGridItem,
@@ -17,12 +22,14 @@ export interface DataGridOptions {
   title?: string;
   subtitle?: string;
   inCard?: boolean;
+  upstream?: UpstreamOptions;
 }
 
 export interface NormalizedDataGridOptions extends Omit<Readonly<Normalized<DataGridOptions>>, 'itemList'> {
   mode: DataGridMode;
   itemList: ReadonlyArray<NormalizedDataGridItem>;
   isForm: boolean;
+  upstream: NormalizedUpstreamOptions | null;
 }
 
 export function NormalizeDataGridOptions(options: Readonly<DataGridOptions>): Readonly<NormalizedDataGridOptions> {
@@ -40,5 +47,6 @@ export function NormalizeDataGridOptions(options: Readonly<DataGridOptions>): Re
     subtitle: options.subtitle ?? null,
     inCard: options.inCard ?? true,
     isForm: mode === DataGridMode.Form,
+    upstream: NormalizeUpstreamOptions(options.upstream),
   });
 }
