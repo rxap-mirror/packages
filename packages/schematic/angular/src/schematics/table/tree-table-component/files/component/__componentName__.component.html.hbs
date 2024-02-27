@@ -196,6 +196,12 @@
           <!-- endregion -->
           {{#if hasColumnWithFilter}}
           <!-- region filter columns -->
+          <ng-container matColumnDef="filter_tree" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+          </ng-container>
+          <ng-container matColumnDef="filter___spinner__" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+          </ng-container>
           {{#if selectColumn}}
           <ng-container matColumnDef="filter_select" sticky>
             <th mat-header-cell *matHeaderCellDef></th>
