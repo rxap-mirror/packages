@@ -53,7 +53,7 @@ export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
         },
         {
           name: 'icon',
-          type: 'IconConfigDto',
+          type: 'IconDto',
           isType: true,
         },
         {
@@ -64,6 +64,11 @@ export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
           type: '<self>',
         },
         ]
+      });
+
+      CoerceImports(sourceFile, {
+        namedImports: ['IconDto'],
+        moduleSpecifier: '@rxap/nest-dto'
       });
 
       CoerceImports(
