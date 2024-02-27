@@ -19,6 +19,7 @@ import {
   Project,
   Scope,
   SourceFile,
+  Writers,
 } from 'ts-morph';
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
 import { WriteType } from '../ts-morph/write-type';
@@ -263,10 +264,17 @@ export function CoerceGetPageDataMethod(
   }
   CoerceClassMethod(classDeclaration, 'getPageData', {
     scope: Scope.Public,
-    returnType: `Promise<{ list: ${ WriteType({
-      isArray: true,
-      type: GetRawRowDataType(options),
-    }, sourceFile) }, total: number }>`,
+    returnType: w => {
+      w.write('Promise<');
+      Writers.object({
+        list: WriteType({
+          isArray: true,
+          type: GetRawRowDataType(options),
+        }, sourceFile),
+        total: 'number',
+      });
+      w.write('>');
+    },
     isAsync: true,
     parameters: [
       {
