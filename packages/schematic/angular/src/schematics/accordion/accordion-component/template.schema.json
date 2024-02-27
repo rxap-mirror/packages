@@ -37,20 +37,7 @@
           ]
         },
         "identifier": {
-          "type": "object",
-          "properties": {
-            "property": {
-              "$ref": "#/definitions/property"
-            },
-            "source": {
-              "type": "string",
-              "enum": [
-                "route"
-              ],
-              "default": "route"
-            }
-          },
-          "required": ["property"]
+          "$ref": "#/definitions/accordionIdentifier"
         },
         "header": {
           "oneOf": [
@@ -103,6 +90,9 @@
     },
     "value": {
       "$ref": "../../value.schema.json"
+    },
+    "accordionIdentifier": {
+      "$ref": "../../accordion-identifier.schema.json"
     }
   }
 }

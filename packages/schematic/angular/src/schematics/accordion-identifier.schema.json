@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-identifier",
+  "type": "object",
+  "properties": {
+    "property": {
+      "$ref": "#/definitions/property"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "route"
+      ],
+      "default": "route"
+    }
+  },
+  "required": [
+    "property"
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
+    }
+  }
+}

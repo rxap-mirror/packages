@@ -1,6 +1,7 @@
 import {
   chain,
   noop,
+  Rule,
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
@@ -12,9 +13,11 @@ import {
   CoerceComponentRule,
   CoerceDataSourceClass,
   CoerceGetByIdOperation,
+  CoerceGetOperation,
   CoerceImports,
   CoerceInterfaceRule,
   CoerceMethodClass,
+  CoerceOperation,
   CoerceParameterDeclaration,
   CoerceStatements,
   HasComponent,
@@ -85,6 +88,7 @@ export interface NormalizedAccordionComponentOptions
   withPermission: boolean;
   header: NormalizedAccordionHeader | null;
   identifier: NormalizedAccordionIdentifier | null;
+  controllerName: string;
 }
 
 function hasItemWithPermission(itemList: ReadonlyArray<NormalizedBaseAccordionItem>): boolean {
@@ -105,12 +109,17 @@ function NormalizeOptions(
 ): Readonly<NormalizedAccordionComponentOptions> {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
-  const { name } = normalizedAngularOptions;
-  let {  componentName } = normalizedAngularOptions;
+  const { name, nestModule } = normalizedAngularOptions;
+  let {  componentName, controllerName } = normalizedAngularOptions;
   const itemList = NormalizeAccordionItemList(options.itemList);
   componentName ??= CoerceSuffix(dasherize(name), '-accordion');
+  controllerName ??= BuildNestControllerName({
+    controllerName: componentName,
+    nestModule,
+  });
   return Object.freeze({
     ...normalizedAngularOptions,
+    controllerName,
     componentName,
     directory: componentName,
     itemList,
@@ -319,7 +328,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
       shared,
       directory,
       name,
-      propertyList: getPropertyList(normalizedOptions),
+      propertyList: buildPropertyList(normalizedOptions),
     }, TsMorphAngularProjectTransformRule),
     CoerceMethodClass({
       project,
@@ -410,6 +419,7 @@ function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOption
     backend,
     name,
     overwrite,
+    identifier,
   } = normalizedOptions;
 
   return chain([
@@ -424,6 +434,7 @@ function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOption
       accordionName: name,
       overwrite: overwrite || item.modifiers.includes('overwrite'),
       backend,
+      identifier,
     }),
   ]);
 
@@ -442,7 +453,7 @@ function itemListRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 
 }
 
-function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions): NormalizedDataProperty[] {
+function buildPropertyList(normalizedOptions: NormalizedAccordionComponentOptions): NormalizedDataProperty[] {
   const propertyList: NormalizedDataProperty[] = [];
   const {
     persistent,
@@ -478,36 +489,59 @@ function getPropertyList(normalizedOptions: NormalizedAccordionComponentOptions)
   return propertyList;
 }
 
+function buildGetOperationId(normalizedOptions: NormalizedAccordionComponentOptions) {
+  const {
+    controllerName,
+    identifier,
+  } = normalizedOptions;
+  return buildOperationId(
+    normalizedOptions,
+    identifier ? 'getById' : 'get',
+    controllerName,
+  );
+}
+
 function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 
   const {
     project,
     feature,
-    componentName,
-    nestModule,
+    controllerName,
+    identifier,
   } = normalizedOptions;
 
-  const controllerName = BuildNestControllerName({
-    controllerName: componentName,
-    nestModule,
-  });
-  const getOperationId = buildOperationId(
-    normalizedOptions,
-    'getById',
-    controllerName,
-  );
+  const getOperationId = buildGetOperationId(normalizedOptions);
 
-  return chain([
-    () => console.log('Create Get Operation ...'),
-    CoerceGetByIdOperation({
-      controllerName,
-      project,
-      feature,
-      shared: false,
-      propertyList: getPropertyList(normalizedOptions),
-    }),
-    openApiDataSourceRule(normalizedOptions, getOperationId),
-  ]);
+  const rules: Rule[] = [];
+
+  if (identifier) {
+    rules.push(
+      () => console.log('Create GetById Operation ...'),
+      CoerceGetByIdOperation({
+        controllerName,
+        project,
+        feature,
+        shared: false,
+        propertyList: buildPropertyList(normalizedOptions),
+        idProperty: identifier.property,
+      }),
+    );
+  } else {
+    rules.push(
+      () => console.log('Create Get Operation ...'),
+      CoerceGetOperation({
+        controllerName,
+        project,
+        feature,
+        shared: false,
+        propertyList: buildPropertyList(normalizedOptions),
+      }),
+    );
+  }
+
+  rules.push(openApiDataSourceRule(normalizedOptions, getOperationId));
+
+  return chain(rules);
 
 }
 
