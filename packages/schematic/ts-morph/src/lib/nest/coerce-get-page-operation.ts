@@ -2,6 +2,7 @@ import { camelize } from '@rxap/schematics-utilities';
 import {
   CoerceClassMethod,
   CoerceImports,
+  CoercePropertyDeclaration,
   IsNormalizedOpenApiUpstreamOptions,
   NormalizedDataProperty,
   NormalizedUpstreamOptions,
@@ -24,7 +25,6 @@ import {
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
 import { WriteType } from '../ts-morph/write-type';
 import { OperationOptions } from './add-operation-to-controller';
-import { CoercePropertyDeclaration } from './coerce-dto-class';
 import { CoerceUpstreamBasicOperationImplementation } from './coerce-get-by-id-operation';
 import {
   CoerceOperation,

@@ -2,9 +2,9 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
+import { CoercePropertyDeclaration } from '@rxap/ts-morph';
 import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { CoerceClassMethod } from '../coerce-class-method';
-import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,

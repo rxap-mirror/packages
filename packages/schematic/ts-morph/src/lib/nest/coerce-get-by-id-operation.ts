@@ -3,6 +3,7 @@ import {
   CoerceImports,
   CoerceNestModuleImport,
   CoerceNestModuleProvider,
+  CoercePropertyDeclaration,
   IsNormalizedOpenApiUpstreamOptions,
   OperationIdToCommandClassImportPath,
   OperationIdToCommandClassName,
@@ -23,7 +24,6 @@ import {
 import { OperationOptions } from './add-operation-to-controller';
 import {
   CoerceDtoClassOutput,
-  CoercePropertyDeclaration,
 } from './coerce-dto-class';
 import { CoerceGetDataGridOperationOptions } from './coerce-get-data-grid-operation';
 import {

@@ -1,11 +1,11 @@
 import {
   CoerceComponentOptions,
   CoerceComponentRule,
-  CoercePropertyDeclaration,
 } from '@rxap/schematics-ts-morph';
 import {
   CoerceComponentImport,
   CoerceImports,
+  CoercePropertyDeclaration,
 } from '@rxap/ts-morph';
 import {
   classify,

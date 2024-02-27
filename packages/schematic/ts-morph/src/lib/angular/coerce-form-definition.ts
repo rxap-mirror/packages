@@ -2,12 +2,12 @@ import {
   chain,
   Rule,
 } from '@angular-devkit/schematics';
+import { CoercePropertyDeclaration } from '@rxap/ts-morph';
 import {
   ClassDeclaration,
   Scope,
   SourceFile,
 } from 'ts-morph';
-import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import {
   TsMorphAngularProjectTransformOptions,
   TsMorphAngularProjectTransformRule,

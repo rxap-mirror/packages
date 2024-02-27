@@ -15,7 +15,6 @@ import {
 } from 'ts-morph';
 import { CoerceClass } from '../coerce-class';
 import { CoerceSourceFile } from '../coerce-source-file';
-import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import {
   TsMorphAngularProjectTransformOptions,
   TsMorphAngularProjectTransformRule,
@@ -23,7 +22,10 @@ import {
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceInterface } from '../ts-morph/coerce-interface';
-import { WriteType } from '@rxap/ts-morph';
+import {
+  CoercePropertyDeclaration,
+  WriteType,
+} from '@rxap/ts-morph';
 import { FormDefinitionControl } from '../types/form-definition-control';
 
 export interface CoerceFormDefinitionControlOptions extends Required<FormDefinitionControl>,

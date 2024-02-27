@@ -1,7 +1,7 @@
 import { classify } from '@rxap/schematics-utilities';
+import { CoercePropertyDeclaration } from '@rxap/ts-morph';
 import { Scope } from 'ts-morph';
 import { CoerceClassConstructor } from '../coerce-class-constructor';
-import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import {
   TsMorphAngularProjectTransformOptions,
   TsMorphAngularProjectTransformRule,

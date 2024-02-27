@@ -16,7 +16,6 @@ import {
   CoerceImports,
   CoerceInterfaceRule,
   CoerceMethodClass,
-  CoercePropertyDeclaration,
   OperationIdToClassImportPath,
   OperationIdToClassName,
   OperationIdToResponseClassImportPath,
@@ -31,6 +30,7 @@ import {
 import {
   CoerceClassProperty,
   CoerceComponentImport,
+  CoercePropertyDeclaration,
 } from '@rxap/ts-morph';
 import {
   classify,
