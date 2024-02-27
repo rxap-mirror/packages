@@ -3,7 +3,7 @@
   "$id": "form-table-action-schematic",
   "allOf": [
     {
-      "$ref": "../../table-action/template.schema.json"
+      "$ref": "#/definitions/tableActionSchematic"
     },
     {
       "type": "object",
@@ -59,17 +59,17 @@
           }
         },
         "formOptions": {
-          "$ref": "../../../form-component.schema.json"
+          "$ref": "#/definitions/formComponent"
         }
       }
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../../type.schema.json"
+    "formComponent": {
+      "$ref": "../../../form-component.schema.json"
     },
-    "property": {
-      "$ref": "../../../property.schema.json"
+    "tableActionSchematic": {
+      "$ref": "../../table-action/template.schema.json"
     }
   }
 }

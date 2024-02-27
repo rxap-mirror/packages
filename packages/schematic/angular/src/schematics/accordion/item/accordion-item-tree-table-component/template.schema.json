@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "accordion-item-table-component-schematic",
+  "$id": "accordion-item-tree-table-component-schematic",
   "allOf": [
     {
-      "$ref": "../../../angular.schema.json"
+      "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "../../../accordion-item.schema.json"
+      "$ref": "#/definitions/accordionItem"
     },
     {
       "type": "object",
@@ -24,29 +24,20 @@
           "description": "The table modifiers"
         },
         "table": {
-          "$ref": "../../../tree-table.schema.json"
+          "$ref": "#/definitions/treeTable"
         }
       }
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../../type.schema.json"
+    "treeTable": {
+      "$ref": "../../../tree-table.schema.json"
     },
-    "property": {
-      "$ref": "../../../property.schema.json"
+    "accordionItem": {
+      "$ref": "../../../accordion-item.schema.json"
     },
-    "button": {
-      "$ref": "../../../button.schema.json"
-    },
-    "upstream": {
-      "$ref": "../../../upstream.schema.json"
-    },
-    "pipe": {
-      "$ref": "../../../pipe.schema.json"
-    },
-    "value": {
-      "$ref": "../../../value.schema.json"
+    "angular": {
+      "$ref": "../../../angular.schema.json"
     }
   }
 }

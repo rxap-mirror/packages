@@ -3,7 +3,7 @@
   "$id": "tree-component-schematic",
   "allOf": [
     {
-      "$ref": "../angular.schema.json"
+      "$ref": "#/definitions/angular"
     },
     {
       "type": "object",
@@ -27,5 +27,10 @@
         }
       }
     }
-  ]
+  ],
+  "definitions": {
+    "angular": {
+      "$ref": "../angular.schema.json"
+    }
+  }
 }

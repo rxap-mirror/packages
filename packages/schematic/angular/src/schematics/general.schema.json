@@ -34,8 +34,5 @@
       "type": "boolean",
       "default": false
     }
-  },
-  "required": [
-    "project"
-  ]
+  }
 }

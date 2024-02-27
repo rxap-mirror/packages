@@ -3,15 +3,12 @@
   "$id": "operation-table-action-schematic",
   "allOf": [
     {
-      "$ref": "../../table-action/template.schema.json"
+      "$ref": "#/definitions/tableActionSchematic"
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../../type.schema.json"
-    },
-    "property": {
-      "$ref": "../../../property.schema.json"
+    "tableActionSchematic": {
+      "$ref": "../../table-action/template.schema.json"
     }
   }
 }

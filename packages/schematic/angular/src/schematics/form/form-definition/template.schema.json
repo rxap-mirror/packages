@@ -3,10 +3,10 @@
   "$id": "form-definition-schematic",
   "allOf": [
     {
-      "$ref": "../../angular.schema.json"
+      "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "../../form-definition.schema.json"
+      "$ref": "#/definitions/formDefinition"
     },
     {
       "type": "object",
@@ -20,14 +20,11 @@
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../type.schema.json"
+    "angular": {
+      "$ref": "../../angular.schema.json"
     },
-    "property": {
-      "$ref": "../../property.schema.json"
-    },
-    "button": {
-      "$ref": "../../button.schema.json"
+    "formDefinition": {
+      "$ref": "../../form-definition.schema.json"
     }
   }
 }

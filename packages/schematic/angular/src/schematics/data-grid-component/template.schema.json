@@ -3,30 +3,18 @@
   "$id": "data-grid-component-schematic",
   "allOf": [
     {
-      "$ref": "../angular.schema.json"
+      "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "../data-grid.schema.json"
+      "$ref": "#/definitions/dataGrid"
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../type.schema.json"
+    "angular": {
+      "$ref": "../angular.schema.json"
     },
-    "property": {
-      "$ref": "../property.schema.json"
-    },
-    "button": {
-      "$ref": "../button.schema.json"
-    },
-    "pipe": {
-      "$ref": "../pipe.schema.json"
-    },
-    "value": {
-      "$ref": "../value.schema.json"
-    },
-    "upstream": {
-      "$ref": "../upstream.schema.json"
+    "dataGrid": {
+      "$ref": "../data-grid.schema.json"
     }
   }
 }

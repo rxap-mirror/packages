@@ -3,7 +3,7 @@
   "$id": "angular",
   "allOf": [
     {
-      "$ref": "./general.schema.json"
+      "$ref": "#/definitions/general"
     },
     {
       "type": "object",
@@ -26,7 +26,7 @@
           "type": "string"
         },
         "backend": {
-          "$ref": "./backend.schema.json"
+          "$ref": "#/definitions/backend"
         },
         "directory": {
           "type": "string",
@@ -49,5 +49,13 @@
         }
       }
     }
-  ]
+  ],
+  "definitions": {
+    "general": {
+      "$ref": "./general.schema.json"
+    },
+    "backend": {
+      "$ref": "./backend.schema.json"
+    }
+  }
 }

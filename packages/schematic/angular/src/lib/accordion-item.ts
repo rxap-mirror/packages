@@ -4,9 +4,12 @@ import {
   NormalizeDataProperty,
   NormalizedDataProperty,
   NormalizedTypeImport,
+  NormalizedUpstreamOptions,
   NormalizeTypeImport,
   NormalizeTypeImportList,
+  NormalizeUpstreamOptions,
   TypeImport,
+  UpstreamOptions,
 } from '@rxap/ts-morph';
 import {
   capitalize,
@@ -57,12 +60,14 @@ export interface BaseAccordionItem {
   importList?: TypeImport[];
   template?: string;
   identifier?: AccordionIdentifier;
+  upstream?: UpstreamOptions;
 }
 
 export interface NormalizedBaseAccordionItem extends Readonly<NonNullableSelected<Normalized<BaseAccordionItem>, 'kind'>> {
   importList: NormalizedTypeImport[];
   handlebars: Handlebars.TemplateDelegate<{ item: NormalizedBaseAccordionItem }>,
   identifier: NormalizedAccordionIdentifier | null;
+  upstream: NormalizedUpstreamOptions | null;
 }
 
 export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedBaseAccordionItem {
@@ -90,6 +95,7 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
     );
   }
   return Object.freeze({
+    upstream: NormalizeUpstreamOptions(item.upstream),
     identifier: NormalizeAccordionIdentifier(item.identifier),
     title,
     description,

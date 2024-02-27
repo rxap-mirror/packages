@@ -3,21 +3,18 @@
   "$id": "input-form-control-schematic",
   "allOf": [
     {
-      "$ref": "../../form-control/template.schema.json"
+      "$ref": "#/definitions/formControl"
     },
     {
-      "$ref": "../../../input-form-control.schema.json"
+      "$ref": "#/definitions/inputFormControl"
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../../type.schema.json"
+    "formControl": {
+      "$ref": "../../form-control/template.schema.json"
     },
-    "property": {
-      "$ref": "../../../property.schema.json"
-    },
-    "button": {
-      "$ref": "../../../button.schema.json"
+    "inputFormControl": {
+      "$ref": "../../../input-form-control.schema.json"
     }
   }
 }

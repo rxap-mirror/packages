@@ -32,17 +32,17 @@
     },
     "description": {
       "type": "string"
+    },
+    "upstream": {
+      "$ref": "#/definitions/upstream"
     }
   },
   "definitions": {
-    "type": {
-      "$ref": "./type.schema.json"
-    },
-    "property": {
-      "$ref": "./property.schema.json"
-    },
     "accordionIdentifier": {
       "$ref": "./accordion-identifier.schema.json"
+    },
+    "upstream": {
+      "$ref": "./upstream.schema.json"
     }
   },
   "additionalProperties": true

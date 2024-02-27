@@ -3,30 +3,18 @@
   "$id": "tree-table-component-schematic",
   "allOf": [
     {
-      "$ref": "../../angular.schema.json"
+      "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "../../tree-table.schema.json"
+      "$ref": "#/definitions/treeTable"
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../type.schema.json"
+    "angular": {
+      "$ref": "../../angular.schema.json"
     },
-    "property": {
-      "$ref": "../../property.schema.json"
-    },
-    "button": {
-      "$ref": "../../button.schema.json"
-    },
-    "upstream": {
-      "$ref": "../../upstream.schema.json"
-    },
-    "pipe": {
-      "$ref": "../../pipe.schema.json"
-    },
-    "value": {
-      "$ref": "../../value.schema.json"
+    "treeTable": {
+      "$ref": "../../tree-table.schema.json"
     }
   }
 }

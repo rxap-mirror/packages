@@ -3,7 +3,7 @@
   "$id": "form-table-header-button-schematic",
   "allOf": [
     {
-      "$ref": "../../table-header-button/template.schema.json"
+      "$ref": "#/definitions/tableHeaderButtonSchematic"
     },
     {
       "type": "object",
@@ -31,7 +31,7 @@
               "alias": "control",
               "type": "array",
               "items": {
-                "$ref": "../../../form-control.schema.json"
+                "$ref": "#/definitions/formControl"
               }
             }
           },
@@ -41,11 +41,11 @@
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../../type.schema.json"
+    "formControl": {
+      "$ref": "../../../form-control.schema.json"
     },
-    "property": {
-      "$ref": "../../../property.schema.json"
+    "tableHeaderButtonSchematic": {
+      "$ref": "../../table-header-button/template.schema.json"
     }
   }
 }

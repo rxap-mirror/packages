@@ -7,7 +7,7 @@
       "alias": "control",
       "type": "array",
       "items": {
-        "$ref": "./form-control.schema.json"
+        "$ref": "#/definitions/formControl"
       }
     }
   },
@@ -15,8 +15,8 @@
     "controlList"
   ],
   "definitions": {
-    "type": {
-      "$ref": "./type.schema.json"
+    "formControl": {
+      "$ref": "./form-control.schema.json"
     }
   }
 }

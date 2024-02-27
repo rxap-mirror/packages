@@ -3,21 +3,18 @@
   "$id": "select-form-control-schematic",
   "allOf": [
     {
-      "$ref": "../../form-control/template.schema.json"
+      "$ref": "#/definitions/formControl"
     },
     {
-      "$ref": "../../../select-form-control.schema.json"
+      "$ref": "#/definitions/selectFormControl"
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../../type.schema.json"
+    "formControl": {
+      "$ref": "../../form-control/template.schema.json"
     },
-    "property": {
-      "$ref": "../../../property.schema.json"
-    },
-    "button": {
-      "$ref": "../../../button.schema.json"
+    "selectFormControl": {
+      "$ref": "../../../select-form-control.schema.json"
     }
   }
 }

@@ -3,7 +3,7 @@
   "$id": "table",
   "allOf": [
     {
-      "$ref": "./minimum-table.schema.json"
+      "$ref": "#/definitions/minimumTable"
     },
     {
       "type": "object",
@@ -49,6 +49,9 @@
   "definitions": {
     "type": {
       "$ref": "./type.schema.json"
+    },
+    "minimumTable": {
+      "$ref": "./minimum-table.schema.json"
     }
   }
 }

@@ -3,21 +3,18 @@
   "$id": "form-component-schematic",
   "allOf": [
     {
-      "$ref": "../../angular.schema.json"
+      "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "../../form-component.schema.json"
+      "$ref": "#/definitions/formComponent"
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../type.schema.json"
+    "angular": {
+      "$ref": "../../angular.schema.json"
     },
-    "property": {
-      "$ref": "../../property.schema.json"
-    },
-    "button": {
-      "$ref": "../../button.schema.json"
+    "formComponent": {
+      "$ref": "../../form-component.schema.json"
     }
   }
 }

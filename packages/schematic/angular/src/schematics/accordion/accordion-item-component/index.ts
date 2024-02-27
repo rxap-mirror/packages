@@ -62,7 +62,7 @@ import { AccordionItemComponentOptions } from './schema';
 export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'kind'>;
 
 export interface NormalizedAccordionItemStandaloneComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name' | 'identifier'>, NormalizedBaseAccordionItem {
+  extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name' | 'identifier' | 'upstream'>, NormalizedBaseAccordionItem {
   componentName: string;
   controllerName: string;
 }
@@ -145,7 +145,6 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
 
   const {
     name,
-    nestModule,
     directory,
     project,
     feature,
@@ -153,6 +152,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
     scope,
     controllerName,
     identifier,
+    upstream,
   } = normalizedOptions;
 
   const operationId = buildGetOperationId(normalizedOptions);
@@ -168,11 +168,12 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         feature,
         shared,
         idProperty: identifier.property,
+        upstream
       }),
     );
   } else {
     rules.push(
-      () => console.log(`Coerce getById operation ...`),
+      () => console.log(`Coerce get operation ...`),
       CoerceGetOperation({
         controllerName,
         project,

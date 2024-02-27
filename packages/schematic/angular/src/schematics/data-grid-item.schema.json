@@ -18,7 +18,7 @@
       }
     },
     "formControl": {
-      "$ref": "./form-control.schema.json"
+      "$ref": "#/definitions/formControl"
     },
     "template": {
       "type": "string"
@@ -42,6 +42,9 @@
     },
     "pipe": {
       "$ref": "./pipe.schema.json"
+    },
+    "formControl": {
+      "$ref": "./form-control.schema.json"
     }
   }
 }

@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "accordion-item-table-component-schematic",
+  "$id": "accordion-item-switch-component-schematic",
   "allOf": [
     {
-      "$ref": "../../../angular.schema.json"
+      "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "../../../accordion-item.schema.json"
+      "$ref": "#/definitions/accordionItem"
     },
     {
       "type": "object",
@@ -68,23 +68,14 @@
     }
   ],
   "definitions": {
+    "angular": {
+      "$ref": "../../../angular.schema.json"
+    },
     "accordionItem": {
       "$ref": "../../../accordion-item.schema.json"
     },
-    "type": {
-      "$ref": "../../../type.schema.json"
-    },
     "property": {
       "$ref": "../../../property.schema.json"
-    },
-    "button": {
-      "$ref": "../../../button.schema.json"
-    },
-    "pipe": {
-      "$ref": "../../../pipe.schema.json"
-    },
-    "value": {
-      "$ref": "../../../value.schema.json"
     }
   }
 }

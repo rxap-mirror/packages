@@ -174,6 +174,7 @@ function nestjsBackendRule(
     feature,
     shared,
     identifier,
+    upstream,
     controllerName
   } = normalizedOptions;
   const {
@@ -235,6 +236,8 @@ function nestjsBackendRule(
       shared,
       collection: hasCollectionModifier,
       paramList,
+      upstream,
+      idProperty: identifier?.property,
       skipCoerce: true,
     }),
   ]);
@@ -249,6 +252,7 @@ function nestjsBackendRule(
         shared,
         collection: hasCollectionModifier,
         paramList,
+        // idProperty: identifier?.property,
         skipCoerce: true,
       }),
     );

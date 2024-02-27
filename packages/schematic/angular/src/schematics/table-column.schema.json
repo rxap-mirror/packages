@@ -55,13 +55,16 @@
       "type": "boolean"
     },
     "filterControl": {
-      "$ref": "./form-control.schema.json"
+      "$ref": "#/definitions/formControl"
     }
   },
   "required": [
     "name"
   ],
   "definitions": {
+    "formControl": {
+      "$ref": "./form-control.schema.json"
+    },
     "type": {
       "$ref": "./type.schema.json"
     },

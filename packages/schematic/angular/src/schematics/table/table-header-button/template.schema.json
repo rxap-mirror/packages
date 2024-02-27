@@ -3,10 +3,10 @@
   "$id": "table-header-button-schematic",
   "allOf": [
     {
-      "$ref": "../../angular.schema.json"
+      "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "../../header-button.schema.json"
+      "$ref": "#/definitions/headerButton"
     },
     {
       "type": "object",
@@ -20,11 +20,11 @@
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../type.schema.json"
+    "angular": {
+      "$ref": "../../angular.schema.json"
     },
-    "property": {
-      "$ref": "../../property.schema.json"
+    "headerButton": {
+      "$ref": "../../header-button.schema.json"
     }
   }
 }

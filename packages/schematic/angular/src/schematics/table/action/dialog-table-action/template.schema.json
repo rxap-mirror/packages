@@ -3,7 +3,7 @@
   "$id": "dialog-table-action-schematic",
   "allOf": [
     {
-      "$ref": "../../table-action/template.schema.json"
+      "$ref": "#/definitions/tableActionSchematic"
     },
     {
       "type": "object",
@@ -51,11 +51,8 @@
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../../type.schema.json"
-    },
-    "property": {
-      "$ref": "../../../property.schema.json"
+    "tableActionSchematic": {
+      "$ref": "../../table-action/template.schema.json"
     }
   }
 }

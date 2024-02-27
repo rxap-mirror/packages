@@ -3,7 +3,7 @@
   "$id": "table-select-form-control-schematic",
   "allOf": [
     {
-      "$ref": "../../form-control/template.schema.json"
+      "$ref": "#/definitions/formControl"
     },
     {
       "type": "object",
@@ -62,14 +62,11 @@
     }
   ],
   "definitions": {
-    "type": {
-      "$ref": "../../../type.schema.json"
+    "formControl": {
+      "$ref": "../../form-control/template.schema.json"
     },
     "property": {
       "$ref": "../../../property.schema.json"
-    },
-    "button": {
-      "$ref": "../../../button.schema.json"
     },
     "upstream": {
       "$ref": "../../../upstream.schema.json"

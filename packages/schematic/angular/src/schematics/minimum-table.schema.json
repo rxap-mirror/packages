@@ -17,7 +17,7 @@
       "alias": "column",
       "type": "array",
       "items": {
-        "$ref": "./table-column.schema.json"
+        "$ref": "#/definitions/tableColumn"
       },
       "description": "List of table column names"
     },
@@ -25,11 +25,11 @@
       "alias": "action",
       "type": "array",
       "items": {
-        "$ref": "./table-action.schema.json"
+        "$ref": "#/definitions/tableAction"
       }
     },
     "headerButton": {
-      "$ref": "./header-button.schema.json"
+      "$ref": "#/definitions/headerButton"
     },
     "modifiers": {
       "alias": "modifier",
@@ -41,8 +41,14 @@
     }
   },
   "definitions": {
-    "type": {
-      "$ref": "./type.schema.json"
+    "headerButton": {
+      "$ref": "./header-button.schema.json"
+    },
+    "tableAction": {
+      "$ref": "./table-action.schema.json"
+    },
+    "tableColumn": {
+      "$ref": "./table-column.schema.json"
     },
     "property": {
       "$ref": "./property.schema.json"

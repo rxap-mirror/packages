@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "property",
+  "$id": "pipe",
   "oneOf": [
     {
       "type": "string"
