@@ -4,13 +4,18 @@ import {
   CoerceSuffix,
   dasherize,
 } from '@rxap/schematics-utilities';
+import {
+  CoerceClass,
+  CoerceDecorator,
+  CoerceImports,
+  CoerceSourceFile,
+  WriteType,
+} from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
-  ClassDeclarationStructure,
   ClassLikeDeclarationBase,
-  ImportDeclarationStructure,
   ObjectLiteralExpression,
   OptionalKind,
   Project,
@@ -22,14 +27,10 @@ import {
   TypeElementMemberedNode,
   Writers,
 } from 'ts-morph';
-import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import {
-  CoerceClass,
-  CoerceImports,
-  CoerceSourceFile,
-  WriteType,
-} from '@rxap/ts-morph';
-import { DtoClassProperty } from './create-dto-class';
+  DtoClassProperty,
+  NormalizeDataClassProperty,
+} from './dto-class-property';
 import 'colors';
 
 export interface CoerceDtoClassOutput {
@@ -91,10 +92,11 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
   const classDeclaration = CoerceClass(sourceFile, className);
   classDeclaration.setIsExported(true);
 
-  for (const property of propertyList) {
+  for (const property of propertyList.map(NormalizeDataClassProperty)) {
 
-    if (property.type === '<self>') {
-      property.type = className;
+    if (property.type.name === '<self>') {
+      property.type.name = className;
+      property.isType = true;
     }
 
     let propertyName = camelize(property.name);
@@ -110,7 +112,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
       propertyName,
     ).set({
       type: WriteType(property, sourceFile),
-      hasQuestionToken: !!property.isOptional,
+      hasQuestionToken: property.isOptional,
       hasExclamationToken: !property.isOptional,
     });
 
@@ -186,13 +188,8 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
         moduleSpecifier: 'class-validator',
       });
     }
-    let autoType = 'none';
-    if (typeof property.type === 'string') {
-      autoType = property.type;
-    } else if (typeof property.type === 'object') {
-      autoType = property.type.name;
-    }
-    switch (autoType) {
+
+    switch (property.type.name) {
       case 'date':
         CoerceDecorator(
           propertyDeclaration,
@@ -287,7 +284,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
           break;
     }
 
-    if (autoType !== 'unknown') {
+    if (property.type.name !== 'unknown') {
       const apiProperty = propertyDeclaration.getDecorators().find(d => d.getName() === 'ApiProperty');
       if (apiProperty) {
         const args = apiProperty.getArguments()[0];

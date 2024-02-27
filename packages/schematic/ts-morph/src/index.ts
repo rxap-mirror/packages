@@ -46,7 +46,7 @@ export * from './lib/nest/coerce-submit-data-grid-operation';
 export * from './lib/nest/coerce-table-select-operation';
 export * from './lib/nest/coerce-table-select-value-resolve-operation';
 export * from './lib/nest/coerce-tree-operation';
-export * from './lib/nest/create-dto-class';
+export * from './lib/nest/dto-class-property';
 export * from './lib/nest/find-nest-module-declaration';
 export * from './lib/nest/find-nest-module-source-file';
 export * from './lib/nest/get-nest-module-metadata';
@@ -124,7 +124,7 @@ export * from './lib/angular/has-table-component';
 export * from './lib/angular/index';
 // endregion
 
-// region 
+// region
 export * from './lib/add-class-method';
 export * from './lib/add-dir';
 export * from './lib/add-fake-provider';

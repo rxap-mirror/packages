@@ -15,7 +15,7 @@ import {
   CoerceDtoClass,
   CoerceDtoClassOptions,
 } from './coerce-dto-class';
-import { DtoClassProperty } from './create-dto-class';
+import { DtoClassProperty } from './dto-class-property';
 
 export interface CoercePageDtoClassOptions extends CoerceDtoClassOptions {
   rowClassName: string,
@@ -67,7 +67,7 @@ export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
       isType: true,
       isOptional: true,
     }
-  ]);
+  ], (a, b) => a.name === b.name);
   return CoerceDtoClass({
     ...options,
     project,

@@ -8,7 +8,7 @@ import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
-import { DtoClassProperty } from './create-dto-class';
+import { DtoClassProperty } from './dto-class-property';
 
 export interface CoerceFormSubmitOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   propertyList?: DtoClassProperty[],

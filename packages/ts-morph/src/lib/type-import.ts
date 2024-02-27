@@ -75,14 +75,14 @@ export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string, 
     isTypeOnly = typeImport.isTypeOnly ?? isTypeOnly;
     defaultImport = typeImport.defaultImport ?? defaultImport;
   }
-  return ({
+  return {
     name,
     moduleSpecifier,
     namedImport,
     namespaceImport,
     isTypeOnly,
     defaultImport,
-  });
+  };
 }
 
 export function NormalizeTypeImportList(typeImportList: Array<TypeImport | string> = [], defaultType = 'unknown'): NormalizedTypeImport[] {

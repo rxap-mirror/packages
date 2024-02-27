@@ -12,7 +12,7 @@ import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
-import { DtoClassProperty } from './create-dto-class';
+import { DtoClassProperty } from './dto-class-property';
 import { TABLE_QUERY_LIST } from './table-query-list';
 
 export interface CoerceGetRootOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {

@@ -4,7 +4,9 @@ import {
   CoerceImports,
   CoerceNestModuleImport,
   CoerceNestModuleProvider,
+  DataProperty,
   IsNormalizedOpenApiUpstreamOptions,
+  NormalizedDataProperty,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
   OperationIdToCommandClassName,
@@ -32,12 +34,10 @@ import {
 } from './coerce-operation';
 import { CoercePageDtoClass } from './coerce-page-dto-class';
 import { CoerceRowDtoClass } from './coerce-row-dto-class';
-import { DtoClassProperty } from './create-dto-class';
+import { DtoClassProperty } from './dto-class-property';
 import { TABLE_QUERY_LIST } from './table-query-list';
 
-export interface GetPageOperationProperty {
-  name: string;
-  type: TypeImport;
+export interface GetPageOperationProperty extends NormalizedDataProperty {
   /**
    * the property name of the source object. if not defined the name will be used
    */
@@ -84,31 +84,6 @@ export interface CoerceGetPageOperationOptions
     options: CoerceGetPageOperationOptions,
   ) => void;
   upstream?: NormalizedUpstreamOptions | null;
-}
-
-function GetPageOperationColumnTypeToTypeImport(property: GetPageOperationProperty): TypeImport {
-  if (!property.type) {
-    return { name: 'unknown' };
-  }
-  switch (property.type?.name) {
-    case 'IconConfig':
-      return {
-        name: 'IconDto',
-        moduleSpecifier: '@rxap/nest-dto',
-      };
-  }
-  return property.type ?? { name: 'unknown' };
-}
-
-export function GetPageOperationColumnToDtoClassProperty(property: GetPageOperationProperty): DtoClassProperty {
-  const type = GetPageOperationColumnTypeToTypeImport(property);
-  return {
-    name: property.name,
-    type: type.name.replace(/\[]$/, '').replace(/^Array<(.+)>/, '$1') ?? 'unknown',
-    isArray: type.name.endsWith('[]') || type.name.startsWith('Array<'),
-    isOptional: false,
-    isType: false,
-  };
 }
 
 export function GetPageOperationColumnToCodeText(property: GetPageOperationProperty): string {
@@ -339,18 +314,12 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       const {
         className: rowClassName,
         filePath: rowFilePath,
-        sourceFile: rowSourceFile,
       } = CoerceRowDtoClass({
         project,
         name: responseDtoName,
-        propertyList: propertyList.map(GetPageOperationColumnToDtoClassProperty),
+        propertyList,
         rowIdType: rowIdProperty === null ? null : undefined,
       });
-
-      CoerceImports(rowSourceFile, propertyList
-        .map(c => GetPageOperationColumnTypeToTypeImport(c))
-        .filter(type => RequiresTypeImport(type))
-        .map(type => TypeImportToImportStructure(type)));
 
       const {
         className: pageClassName,
