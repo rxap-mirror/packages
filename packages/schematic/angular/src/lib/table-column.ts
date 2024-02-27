@@ -195,7 +195,7 @@ function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[
   return importList;
 }
 
-function guessTyoe(kind: TableColumnKind, type?: string | TypeImport): string | TypeImport {
+export function GuessColumnTypeType(kind: TableColumnKind, type?: string | TypeImport): string | TypeImport {
   const autoType = type ? typeof type === 'string' ? type : type.name : null;
   if (!autoType || autoType === 'unknown') {
     switch (kind) {
@@ -206,7 +206,6 @@ function guessTyoe(kind: TableColumnKind, type?: string | TypeImport): string | 
         type = 'string';
         break;
       case TableColumnKind.ICON:
-        // TODO : use the IconConfig type
         type = {
           name: 'IconConfig',
           moduleSpecifier: '@rxap/utilities',
@@ -221,41 +220,7 @@ function guessTyoe(kind: TableColumnKind, type?: string | TypeImport): string | 
   return type;
 }
 
-export function NormalizeTableColumn(
-  column: Readonly<TableColumn>,
-): NormalizedTableColumn {
-  let name: string;
-  let modifiers: string[] = [];
-  let hasFilter = false;
-  let title: string | null = null;
-  let propertyPath: string | null = null;
-  let hidden = false;
-  let active = false;
-  let inactive = false;
-  let show = false;
-  let nowrap = false;
-  let withoutTitle = false;
-  let cssClass: string | null = null;
-  let kind: string = TableColumnKind.DEFAULT;
-  let template: string | null = null;
-  let pipeList: Array<string | TableColumnPipe> = [];
-  let importList: TypeImport[] = [];
-  name = column.name;
-  modifiers = column.modifiers ?? [];
-  hasFilter = column.hasFilter ?? false;
-  title = column.title ?? title;
-  propertyPath = column.propertyPath ?? propertyPath;
-  hidden = column.hidden ?? false;
-  active = column.active ?? false;
-  inactive = column.inactive ?? false;
-  show = column.show ?? false;
-  nowrap = column.nowrap ?? false;
-  withoutTitle = column.withoutTitle ?? false;
-  cssClass = column.cssClass ?? cssClass;
-  kind = column.kind ?? kind;
-  template = column.template ?? kind + '-table-column.hbs';
-  pipeList = column.pipeList ?? pipeList;
-  importList = coerceTableColumnImportList(column);
+export function TableColumnNameToPropertyPath(name: string, propertyPath: string | null | undefined = null): { name: string, propertyPath: string } {
   const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
   propertyPath ??= name
     .replace(/\?\./g, '.')
@@ -267,18 +232,36 @@ export function NormalizeTableColumn(
     name = namePrefix + name;
     propertyPath = namePrefix + propertyPath;
   }
-  title ??= dasherize(name)
+  return { name, propertyPath };
+}
+
+export function TableColumnNameToTitle(name: string) {
+  return dasherize(name)
     .replace(/_/g, '-')
     .split('-')
     .map((part) => capitalize(part))
     .join(' ');
-  hasFilter = modifiers.includes(TableColumnModifier.FILTER) || hasFilter;
-  active = modifiers.includes(TableColumnModifier.ACTIVE) || active;
-  inactive = modifiers.includes(TableColumnModifier.INACTIVE) || inactive;
-  show = modifiers.includes(TableColumnModifier.SHOW) || show;
-  hidden = modifiers.includes(TableColumnModifier.HIDDEN) || hidden;
-  nowrap = modifiers.includes(TableColumnModifier.NOWRAP) || nowrap;
-  withoutTitle = modifiers.includes(TableColumnModifier.WITHOUT_TITLE) || modifiers.includes(TableColumnModifier.NO_TITLE) || withoutTitle;
+}
+
+export function NormalizeTableColumn(
+  column: Readonly<TableColumn>,
+): NormalizedTableColumn {
+  const { name, propertyPath } = TableColumnNameToPropertyPath(column.name, column.propertyPath);
+  const modifiers = column.modifiers ?? [];
+  let hasFilter = modifiers.includes(TableColumnModifier.FILTER) || (column.hasFilter ?? false);
+  const title = column.title ?? TableColumnNameToTitle(name);
+  const hidden = modifiers.includes(TableColumnModifier.HIDDEN) || (column.hidden ?? false);
+  const active = modifiers.includes(TableColumnModifier.ACTIVE) || (column.active ?? false);
+  const inactive = modifiers.includes(TableColumnModifier.INACTIVE) || (column.inactive ?? false);
+  const show = modifiers.includes(TableColumnModifier.SHOW) || (column.show ?? false);
+  const nowrap = modifiers.includes(TableColumnModifier.NOWRAP) || (column.nowrap ?? false);
+  const withoutTitle = modifiers.includes(TableColumnModifier.WITHOUT_TITLE) || modifiers.includes(TableColumnModifier.NO_TITLE) || (column.withoutTitle ?? false);
+  let cssClass = column.cssClass ?? null;
+  const kind = column.kind ?? TableColumnKind.DEFAULT;
+  const template = column.template ?? kind + '-table-column.hbs';
+  const pipeList = column.pipeList ?? [];
+  const importList = coerceTableColumnImportList(column);
+  const type = GuessColumnTypeType(kind, column.type);
   if (nowrap) {
     if (!cssClass) {
       cssClass = 'nowrap';
@@ -292,9 +275,6 @@ export function NormalizeTableColumn(
   if (!IsTableColumnKind(kind)) {
     throw new Error(`Unknown kind in column ${ name } - ${ kind }`);
   }
-
-  const type = guessTyoe(kind, column.type);
-
   let filterControl: BaseFormControl | null = column.filterControl ?? null;
   if (Object.keys(filterControl ?? {}).length === 0) {
     filterControl = null;

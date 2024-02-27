@@ -26,6 +26,8 @@ import { join } from 'path';
 import { BackendTypes } from './backend-types';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
+  TableColumnNameToPropertyPath,
+  GuessColumnTypeType,
   NormalizedTableColumn,
   TableColumn,
   TableColumnKind,
@@ -392,43 +394,9 @@ export type NormalizedTableSelectColumn  = Pick<NormalizedTableColumn, 'name' | 
 export function NormalizeTableSelectColumn(
   column: TableSelectColumn,
 ): NormalizedTableSelectColumn {
-  let propertyPath = column.propertyPath ?? null;
-  let name = column.name;
-  const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
-  propertyPath ??= name
-    .replace(/\?\./g, '.')
-    .split('.')
-    .map((part) => camelize(part))
-    .join('?.');
-  name = dasherize(name.replace(/\??\./g, '_'));
-  if (namePrefix) {
-    name = namePrefix + name;
-    propertyPath = namePrefix + propertyPath;
-  }
+  const { name, propertyPath } = TableColumnNameToPropertyPath(column.name, column.propertyPath);
   const kind = column.kind ?? TableColumnKind.DEFAULT;
-  let type = column.type ?? 'unknown';
-  const autoType = type ? typeof type === 'string' ? type : type.name : null;
-  if (!autoType || autoType === 'unknown') {
-    switch (kind) {
-      case TableColumnKind.DATE:
-        type = 'number | Date';
-        break;
-      case TableColumnKind.LINK:
-        type = 'string';
-        break;
-      case TableColumnKind.ICON:
-        // TODO : use the IconConfig type
-        type = {
-          name: 'IconConfig',
-          moduleSpecifier: '@rxap/utilities',
-        };
-        break;
-      case TableColumnKind.BOOLEAN:
-        type = 'boolean';
-        break;
-    }
-  }
-  type ??= 'unknown';
+  const type = GuessColumnTypeType(kind, column.type ?? 'unknown');
   return Object.freeze({
     name,
     type: NormalizeTypeImport(type),
