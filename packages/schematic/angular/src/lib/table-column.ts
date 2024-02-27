@@ -4,8 +4,10 @@ import {
   dasherize,
 } from '@rxap/schematics-utilities';
 import {
+  DataProperty,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
   NormalizedTypeImport,
-  NormalizeTypeImport,
   NormalizeTypeImportList,
   TypeImport,
 } from '@rxap/ts-morph';
@@ -59,9 +61,7 @@ export function IsTableColumnKind(value: string): value is TableColumnKind {
   return Object.values(TableColumnKind).includes(value as TableColumnKind);
 }
 
-export interface TableColumn {
-  name: string;
-  type?: string | TypeImport;
+export interface TableColumn extends DataProperty {
   modifiers?: string[];
   hasFilter?: boolean;
   withoutTitle?: boolean;
@@ -82,7 +82,7 @@ export interface TableColumn {
 
 export type NormalizedTableColumnPipe = NormalizedTypeImport;
 
-export interface NormalizedTableColumn extends Omit<Readonly<Normalized<TableColumn>>, 'pipeList' | 'importList'> {
+export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableColumn, 'pipeList' | 'importList'>> & NormalizedDataProperty> {
   type: NormalizedTypeImport;
   propertyPath: string;
   pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
@@ -286,9 +286,11 @@ export function NormalizeTableColumn(
     hasFilter = true;
   }
   return Object.freeze({
+    ...NormalizeDataProperty({
+      name,
+      type,
+    }),
     kind,
-    name,
-    type: NormalizeTypeImport(type),
     modifiers,
     hasFilter,
     title,
