@@ -1,7 +1,17 @@
-import { Controller, DefaultValuePipe, Get, NotImplementedException, Query, Param } from '@nestjs/common';
-import { FilterQuery, FilterQueryPipe } from '@rxap/nest-utilities';
-import { DashboardAccordionReferenceItemDto } from './dtos/dashboard-accordion-reference-item.dto';
+import {
+  Controller,
+  DefaultValuePipe,
+  Get,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { ApiQuery } from '@nestjs/swagger';
+import { ToDtoInstance } from '@rxap/nest-dto';
+import {
+  FilterQuery,
+  FilterQueryPipe,
+} from '@rxap/nest-utilities';
+import { DashboardAccordionReferenceItemDto } from './dtos/dashboard-accordion-reference-item.dto';
 
 @Controller('dashboard-accordion/:uuid/reference')
 export class DashboardAccordionReferenceController {
@@ -29,10 +39,13 @@ export class DashboardAccordionReferenceController {
   @ApiQuery({
         name: 'filter',
         required: false,
-        isArray: false
+        isArray: true
       })
-  public async getRoot(@Query('filter', new FilterQueryPipe()) filter: FilterQuery[], @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number): Promise<DashboardAccordionReferenceItemDto[]> {
-    throw new NotImplementedException();
+  public async getRoot(@Param('uuid') uuid: string, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>): Promise<DashboardAccordionReferenceItemDto[]> {
+    return ToDtoInstance(
+    DashboardAccordionReferenceItemDto,
+    [],
+    );
   }
 
   @Get(':parentUuid')
@@ -59,9 +72,12 @@ export class DashboardAccordionReferenceController {
   @ApiQuery({
         name: 'filter',
         required: false,
-        isArray: false
+        isArray: true
       })
-  public async getChildren(@Param('parentUuid') parentUuid: string, @Query('filter', new FilterQueryPipe()) filter: FilterQuery[], @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number): Promise<DashboardAccordionReferenceItemDto[]> {
-    throw new NotImplementedException();
+  public async getChildren(@Param('uuid') uuid: string, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>, @Param('parentUuid') parentUuid: string): Promise<DashboardAccordionReferenceItemDto[]> {
+    return ToDtoInstance(
+    DashboardAccordionReferenceItemDto,
+    [],
+    );
   }
 }

@@ -1,16 +1,35 @@
-import { Controller, Inject, DefaultValuePipe, Get, NotImplementedException, Query, Post, Body, Param } from '@nestjs/common';
-import { FilterQuery, FilterQueryPipe, classTransformOptions } from '@rxap/nest-utilities';
-import { plainToInstance } from 'class-transformer';
-import { DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-page.dto';
-import { DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-row.dto';
+import {
+  Body,
+  Controller,
+  DefaultValuePipe,
+  Get,
+  NotImplementedException,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ApiQuery } from '@nestjs/swagger';
+import { ToDtoInstance } from '@rxap/nest-dto';
+import {
+  FilterQuery,
+  FilterQueryPipe,
+} from '@rxap/nest-utilities';
 import { DashboardAccordionGeneralInformationDashboardDto } from './dtos/dashboard-accordion-general-information-dashboard.dto';
+import { DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto } from './dtos/dashboard-accordion-general-information-dashboardlocation-table-select-page.dto';
+import { DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto } from './dtos/dashboard-accordion-general-information-dashboardlocation-table-select-row.dto';
+
+interface CompanyGuiControllerGetByFilterResponse {
+  entities: Array<any>;
+}
 
 @Controller('dashboard-accordion/:uuid/general-information-dashboard')
 export class DashboardAccordionGeneralInformationDashboardController {
-  private companyGuiControllerGetByFilterCommand!: any;
+  private readonly companyGuiControllerGetByFilterCommand?: any;
 
-  public async getPageData(sortBy: string, sortDirection: string, pageSize: number, pageIndex: number, filter: FilterQuery[]): Promise<{ list: RawRowData[], total: number }> {
+  public async getPageData(sortBy: string, sortDirection: string, pageSize: number, pageIndex: number, filter: FilterQuery[]): Promise<{
+      list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>,
+      total: number
+    }> {
     const response = await this.companyGuiControllerGetByFilterCommand.execute({
           parameters: {
             page: pageIndex,
@@ -26,7 +45,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
     };
   }
 
-  private toRowDto(item: RawRowData, index: number, pageIndex: number, pageSize: number, list: RawRowData[]): DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto {
+  private toRowDto(item: CompanyGuiControllerGetByFilterResponse['entities'][number], index: number, pageIndex: number, pageSize: number, list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>): DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto {
     return {
       __rowId: item.uuid,
 
@@ -37,7 +56,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
     };
   }
 
-  private toPageDto(list: RawRowData[], total: number, pageIndex: number, pageSize: number, sortBy: string, sortDirection: string, filter: FilterQuery[]): DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto {
+  private toPageDto(list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>, total: number, pageIndex: number, pageSize: number, sortBy: string, sortDirection: string, filter: FilterQuery[]): DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto {
     return {
       total, pageIndex, pageSize, sortBy, sortDirection, filter,
       rows: list.map((item, index) => this.toRowDto(item, index, pageIndex, pageSize, list))
@@ -68,26 +87,35 @@ export class DashboardAccordionGeneralInformationDashboardController {
   @ApiQuery({
         name: 'filter',
         required: false,
-        isArray: false
+        isArray: true
       })
-  public async getLocationControlTableSelectPage(@Query('filter', new FilterQueryPipe()) filter: FilterQuery[], @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto> {
+  public async getLocationControlTableSelectPage(@Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number): Promise<DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto> {
     const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);
-    return plainToInstance(
-      DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto,
-      this.toPageDto(data.list, data.total, pageIndex, pageSize, sortBy, sortDirection, filter),
-      classTransformOptions
+    return ToDtoInstance(
+    DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto,
+    this.toPageDto(data.list, data.total, pageIndex, pageSize, sortBy, sortDirection, filter),
     );
   }
 
+  private readonly dashboardControllerGetByUuidCommand?: any;
+
   @Get()
-  public async get(): Promise<DashboardAccordionGeneralInformationDashboardDto> {
-    throw new NotImplementedException();
+  public async get(@Param('uuid') uuid: string): Promise<DashboardAccordionGeneralInformationDashboardDto> {
+    const data = await this.dashboardControllerGetByUuidCommand.execute();
+    return ToDtoInstance(
+    DashboardAccordionGeneralInformationDashboardDto,
+    {
+      name: data.name,
+      location: data.location,
+      link: data.link,
+      company: data.company,
+      dashboardType: data.dashboardType
+    },
+    );
   }
 
   @Post()
-  public async submit(@Body() body: DashboardAccordionGeneralInformationDashboardDto): Promise<void> {
+  public async submit(@Body() body: DashboardAccordionGeneralInformationDashboardDto, @Param('uuid') uuid: string): Promise<void> {
     throw new NotImplementedException();
   }
 }
-
-type RawRowData = any;

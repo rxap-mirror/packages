@@ -1,11 +1,11 @@
-import { Expose } from 'class-transformer';
-import { IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
+import {
+  IsString,
+  IsUUID,
+} from 'class-validator';
 
-export class DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto {
-  @Expose()
-  @IsString()
-  __rowId!: string;
+export class DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto {
   @Expose()
   @IsString()
   __value!: string;
@@ -20,4 +20,7 @@ export class DashboardAccordionGeneralInformationDashboardLocationTableSelectRow
   @Expose()
   @IsUUID()
   uuid!: string;
+  @Expose()
+  @IsString()
+  __rowId!: string;
 }
