@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { OpenApiRemoteMethod, OpenApiRemoteMethodParameter, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import {
+  OpenApiRemoteMethod,
+  OpenApiRemoteMethodParameter,
+  RxapOpenApiRemoteMethod,
+} from '@rxap/open-api/remote-method';
+import { DashboardAccordionGeneralInformationDashboardControllerSubmitParameter } from '../parameters/dashboard-accordion-general-information-dashboard-controller-submit.parameter';
 import { DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBody } from '../request-bodies/dashboard-accordion-general-information-dashboard-controller-submit.request-body';
 
 @Injectable({
@@ -10,7 +15,16 @@ import { DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBod
     operationId: 'DashboardAccordionGeneralInformationDashboardController_submit',
     operation: `{
   "operationId": "DashboardAccordionGeneralInformationDashboardController_submit",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "uuid",
+      "required": true,
+      "in": "path",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
   "requestBody": {
     "required": true,
     "content": {
@@ -52,8 +66,8 @@ import { DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBod
   "path": "/dashboard-accordion/{uuid}/general-information-dashboard"
 }`
   })
-export class DashboardAccordionGeneralInformationDashboardControllerSubmitRemoteMethod extends OpenApiRemoteMethod<void, void, DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBody> {
-  public override call(parameters: OpenApiRemoteMethodParameter<void, DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBody>): Promise<void> {
+export class DashboardAccordionGeneralInformationDashboardControllerSubmitRemoteMethod extends OpenApiRemoteMethod<void, DashboardAccordionGeneralInformationDashboardControllerSubmitParameter, DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBody> {
+  public override call(parameters: OpenApiRemoteMethodParameter<DashboardAccordionGeneralInformationDashboardControllerSubmitParameter, DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBody>): Promise<void> {
     return super.call(parameters);
   }
 }

@@ -1,5 +1,5 @@
 export interface DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageResponse {
-  rows: Array<DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDtoResponse>;
+  rows: Array<DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDtoResponse>;
   pageSize: number;
   pageIndex: number;
   total: number;
@@ -7,5 +7,6 @@ export interface DashboardAccordionGeneralInformationDashboardControllerGetLocat
   sortBy?: string;
   filter?: Array<FilterQueryDtoResponse>;
 }
-import type { DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDtoResponse } from './dashboard-accordion-general-information-dashboard-location-table-select-row-dto.response';
+
+import type { DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDtoResponse } from './dashboard-accordion-general-information-dashboardlocation-table-select-row-dto.response';
 import type { FilterQueryDtoResponse } from './filter-query-dto.response';

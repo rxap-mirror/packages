@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { OpenApiRemoteMethod, OpenApiRemoteMethodParameter, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import {
+  OpenApiRemoteMethod,
+  OpenApiRemoteMethodParameter,
+  RxapOpenApiRemoteMethod,
+} from '@rxap/open-api/remote-method';
 import { DashboardAccordionReferenceControllerGetChildrenParameter } from '../parameters/dashboard-accordion-reference-controller-get-children.parameter';
 import { DashboardAccordionReferenceControllerGetChildrenResponse } from '../responses/dashboard-accordion-reference-controller-get-children.response';
 
@@ -13,9 +17,41 @@ import { DashboardAccordionReferenceControllerGetChildrenResponse } from '../res
   "operationId": "DashboardAccordionReferenceController_getChildren",
   "parameters": [
     {
-      "name": "parentUuid",
+      "name": "uuid",
       "required": true,
       "in": "path",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "pageIndex",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "number"
+      }
+    },
+    {
+      "name": "pageSize",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "number"
+      }
+    },
+    {
+      "name": "sortDirection",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "sortBy",
+      "required": false,
+      "in": "query",
       "schema": {
         "type": "string"
       }
@@ -32,35 +68,11 @@ import { DashboardAccordionReferenceControllerGetChildrenResponse } from '../res
       }
     },
     {
-      "name": "sortBy",
-      "required": false,
-      "in": "query",
+      "name": "parentUuid",
+      "required": true,
+      "in": "path",
       "schema": {
         "type": "string"
-      }
-    },
-    {
-      "name": "sortDirection",
-      "required": false,
-      "in": "query",
-      "schema": {
-        "type": "string"
-      }
-    },
-    {
-      "name": "pageSize",
-      "required": false,
-      "in": "query",
-      "schema": {
-        "type": "number"
-      }
-    },
-    {
-      "name": "pageIndex",
-      "required": false,
-      "in": "query",
-      "schema": {
-        "type": "number"
       }
     }
   ],

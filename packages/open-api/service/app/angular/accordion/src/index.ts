@@ -3,12 +3,12 @@ export * from './lib/responses/dashboard-accordion-controller-get-by-id.response
 export * from './lib/responses/dashboard-accordion-general-information-cloud-dashboard-controller-get.response';
 export * from './lib/responses/dashboard-accordion-general-information-dashboard-controller-get-location-control-table-select-page.response';
 export * from './lib/responses/dashboard-accordion-general-information-dashboard-controller-get.response';
-export * from './lib/responses/dashboard-accordion-general-information-dashboard-location-table-select-row-dto.response';
 export * from './lib/responses/dashboard-accordion-layout-cloud-dashboard-controller-get-by-id.response';
 export * from './lib/responses/dashboard-accordion-reference-controller-get-children.response';
 export * from './lib/responses/dashboard-accordion-reference-controller-get-root.response';
-export * from './lib/responses/dashboard-accordion-reference-item-dto.response';
 export * from './lib/responses/filter-query-dto.response';
+export * from './lib/responses/dashboard-accordion-general-information-dashboardlocation-table-select-row-dto.response';
+export * from './lib/responses/dashboard-accordion-reference-item-dto.response';
 // endregion
 
 // region request-bodies
@@ -30,7 +30,11 @@ export * from './lib/remote-methods/dashboard-accordion-reference-controller-get
 
 // region parameters
 export * from './lib/parameters/dashboard-accordion-controller-get-by-id.parameter';
+export * from './lib/parameters/dashboard-accordion-general-information-cloud-dashboard-controller-get.parameter';
+export * from './lib/parameters/dashboard-accordion-general-information-cloud-dashboard-controller-submit.parameter';
 export * from './lib/parameters/dashboard-accordion-general-information-dashboard-controller-get-location-control-table-select-page.parameter';
+export * from './lib/parameters/dashboard-accordion-general-information-dashboard-controller-get.parameter';
+export * from './lib/parameters/dashboard-accordion-general-information-dashboard-controller-submit.parameter';
 export * from './lib/parameters/dashboard-accordion-layout-cloud-dashboard-controller-get-by-id.parameter';
 export * from './lib/parameters/dashboard-accordion-reference-controller-get-children.parameter';
 export * from './lib/parameters/dashboard-accordion-reference-controller-get-root.parameter';
@@ -62,11 +66,11 @@ export * from './lib/data-sources/dashboard-accordion-reference-controller-get-r
 export * from './lib/components/dashboard-accordion-dto';
 export * from './lib/components/dashboard-accordion-general-information-cloud-dashboard-dto';
 export * from './lib/components/dashboard-accordion-general-information-dashboard-dto';
-export * from './lib/components/dashboard-accordion-general-information-dashboard-location-table-select-page-dto';
-export * from './lib/components/dashboard-accordion-general-information-dashboard-location-table-select-row-dto';
+export * from './lib/components/filter-query-dto';
+export * from './lib/components/dashboard-accordion-general-information-dashboardlocation-table-select-page-dto';
+export * from './lib/components/dashboard-accordion-general-information-dashboardlocation-table-select-row-dto';
 export * from './lib/components/dashboard-accordion-layout-cloud-dashboard-dto';
 export * from './lib/components/dashboard-accordion-reference-item-dto';
-export * from './lib/components/filter-query-dto';
 // endregion
 
 // region commands

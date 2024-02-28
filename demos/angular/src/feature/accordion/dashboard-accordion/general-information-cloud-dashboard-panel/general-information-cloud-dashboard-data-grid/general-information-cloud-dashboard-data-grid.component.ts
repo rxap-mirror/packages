@@ -24,10 +24,7 @@ import { GeneralInformationCloudDashboardDataGridDataSource } from './general-in
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './general-information-cloud-dashboard-data-grid.component.html',
     styleUrls: ['./general-information-cloud-dashboard-data-grid.component.scss'],
-  imports: [
-    DataGridModule, RxapFormsModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule,
-    InputClearButtonDirective, AsyncPipe, GetFromObjectPipe,
-  ],
+  imports: [DataGridModule, RxapFormsModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule, InputClearButtonDirective, AsyncPipe, GetFromObjectPipe],
   providers: [GeneralInformationCloudDashboardDataGridDataSource, FormProviders, FormComponentProviders],
 })
 export class GeneralInformationCloudDashboardDataGridComponent {

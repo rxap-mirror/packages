@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { OpenApiRemoteMethod, OpenApiRemoteMethodParameter, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import {
+  OpenApiRemoteMethod,
+  OpenApiRemoteMethodParameter,
+  RxapOpenApiRemoteMethod,
+} from '@rxap/open-api/remote-method';
 import { DashboardAccordionLayoutCloudDashboardControllerGetByIdParameter } from '../parameters/dashboard-accordion-layout-cloud-dashboard-controller-get-by-id.parameter';
 import { DashboardAccordionLayoutCloudDashboardControllerGetByIdResponse } from '../responses/dashboard-accordion-layout-cloud-dashboard-controller-get-by-id.response';
 
@@ -27,7 +31,14 @@ import { DashboardAccordionLayoutCloudDashboardControllerGetByIdResponse } from 
         "application/json": {
           "schema": {
             "type": "object",
-            "properties": {}
+            "properties": {
+              "uuid": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "uuid"
+            ]
           }
         }
       }

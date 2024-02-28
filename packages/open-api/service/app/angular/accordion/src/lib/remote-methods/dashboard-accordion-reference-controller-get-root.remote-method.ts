@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { OpenApiRemoteMethod, OpenApiRemoteMethodParameter, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import {
+  OpenApiRemoteMethod,
+  OpenApiRemoteMethodParameter,
+  RxapOpenApiRemoteMethod,
+} from '@rxap/open-api/remote-method';
 import { DashboardAccordionReferenceControllerGetRootParameter } from '../parameters/dashboard-accordion-reference-controller-get-root.parameter';
 import { DashboardAccordionReferenceControllerGetRootResponse } from '../responses/dashboard-accordion-reference-controller-get-root.response';
 
@@ -13,30 +17,19 @@ import { DashboardAccordionReferenceControllerGetRootResponse } from '../respons
   "operationId": "DashboardAccordionReferenceController_getRoot",
   "parameters": [
     {
-      "name": "filter",
-      "required": false,
-      "in": "query",
-      "schema": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "sortBy",
-      "required": false,
-      "in": "query",
+      "name": "uuid",
+      "required": true,
+      "in": "path",
       "schema": {
         "type": "string"
       }
     },
     {
-      "name": "sortDirection",
+      "name": "pageIndex",
       "required": false,
       "in": "query",
       "schema": {
-        "type": "string"
+        "type": "number"
       }
     },
     {
@@ -48,11 +41,30 @@ import { DashboardAccordionReferenceControllerGetRootResponse } from '../respons
       }
     },
     {
-      "name": "pageIndex",
+      "name": "sortDirection",
       "required": false,
       "in": "query",
       "schema": {
-        "type": "number"
+        "type": "string"
+      }
+    },
+    {
+      "name": "sortBy",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "filter",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     }
   ],

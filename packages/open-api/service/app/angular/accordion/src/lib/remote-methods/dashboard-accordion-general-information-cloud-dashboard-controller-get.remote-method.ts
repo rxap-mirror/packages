@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { OpenApiRemoteMethod, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import {
+  OpenApiRemoteMethod,
+  OpenApiRemoteMethodParameter,
+  RxapOpenApiRemoteMethod,
+} from '@rxap/open-api/remote-method';
+import { DashboardAccordionGeneralInformationCloudDashboardControllerGetParameter } from '../parameters/dashboard-accordion-general-information-cloud-dashboard-controller-get.parameter';
 import { DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse } from '../responses/dashboard-accordion-general-information-cloud-dashboard-controller-get.response';
 
 @Injectable({
@@ -10,7 +15,16 @@ import { DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse
     operationId: 'DashboardAccordionGeneralInformationCloudDashboardController_get',
     operation: `{
   "operationId": "DashboardAccordionGeneralInformationCloudDashboardController_get",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "uuid",
+      "required": true,
+      "in": "path",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
   "responses": {
     "200": {
       "content": {
@@ -42,8 +56,8 @@ import { DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse
   "path": "/dashboard-accordion/{uuid}/general-information-cloud-dashboard"
 }`
   })
-export class DashboardAccordionGeneralInformationCloudDashboardControllerGetRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse, void, void> {
-  public override call(): Promise<DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse> {
-    return super.call();
+export class DashboardAccordionGeneralInformationCloudDashboardControllerGetRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse, DashboardAccordionGeneralInformationCloudDashboardControllerGetParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<DashboardAccordionGeneralInformationCloudDashboardControllerGetParameter, void>): Promise<DashboardAccordionGeneralInformationCloudDashboardControllerGetResponse> {
+    return super.call(parameters);
   }
 }

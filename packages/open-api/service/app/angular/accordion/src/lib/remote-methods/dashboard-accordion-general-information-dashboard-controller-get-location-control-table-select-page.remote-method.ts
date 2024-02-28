@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { OpenApiRemoteMethod, OpenApiRemoteMethodParameter, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import {
+  OpenApiRemoteMethod,
+  OpenApiRemoteMethodParameter,
+  RxapOpenApiRemoteMethod,
+} from '@rxap/open-api/remote-method';
 import { DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageParameter } from '../parameters/dashboard-accordion-general-information-dashboard-controller-get-location-control-table-select-page.parameter';
 import { DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageResponse } from '../responses/dashboard-accordion-general-information-dashboard-controller-get-location-control-table-select-page.response';
 
@@ -66,7 +70,7 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetLocationContr
               "rows": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto"
+                  "$ref": "#/components/schemas/DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto"
                 }
               },
               "pageSize": {

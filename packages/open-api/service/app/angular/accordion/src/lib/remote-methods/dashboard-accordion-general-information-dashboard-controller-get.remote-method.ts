@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { OpenApiRemoteMethod, RxapOpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import {
+  OpenApiRemoteMethod,
+  OpenApiRemoteMethodParameter,
+  RxapOpenApiRemoteMethod,
+} from '@rxap/open-api/remote-method';
+import { DashboardAccordionGeneralInformationDashboardControllerGetParameter } from '../parameters/dashboard-accordion-general-information-dashboard-controller-get.parameter';
 import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } from '../responses/dashboard-accordion-general-information-dashboard-controller-get.response';
 
 @Injectable({
@@ -10,7 +15,16 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } fr
     operationId: 'DashboardAccordionGeneralInformationDashboardController_get',
     operation: `{
   "operationId": "DashboardAccordionGeneralInformationDashboardController_get",
-  "parameters": [],
+  "parameters": [
+    {
+      "name": "uuid",
+      "required": true,
+      "in": "path",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
   "responses": {
     "200": {
       "content": {
@@ -50,8 +64,8 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } fr
   "path": "/dashboard-accordion/{uuid}/general-information-dashboard"
 }`
   })
-export class DashboardAccordionGeneralInformationDashboardControllerGetRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionGeneralInformationDashboardControllerGetResponse, void, void> {
-  public override call(): Promise<DashboardAccordionGeneralInformationDashboardControllerGetResponse> {
-    return super.call();
+export class DashboardAccordionGeneralInformationDashboardControllerGetRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionGeneralInformationDashboardControllerGetResponse, DashboardAccordionGeneralInformationDashboardControllerGetParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<DashboardAccordionGeneralInformationDashboardControllerGetParameter, void>): Promise<DashboardAccordionGeneralInformationDashboardControllerGetResponse> {
+    return super.call(parameters);
   }
 }

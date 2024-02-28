@@ -1,19 +1,28 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { DataSourceErrorComponent } from '@rxap/data-source';
-import { DataSourceDirective } from '@rxap/data-source/directive';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatExpansionModule } from '@angular/material/expansion';
+import {
+  AsyncPipe,
+  NgIf,
+  NgSwitch,
+  NgSwitchDefault,
+} from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
-import { NavigateBackButtonComponent } from '@rxap/components';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { IfHasPermissionDirective } from '@rxap/authorization';
+import { NavigateBackButtonComponent } from '@rxap/components';
+import { DataSourceErrorComponent } from '@rxap/data-source';
+import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
+import { DataSourceDirective } from '@rxap/data-source/directive';
 import { PersistentAccordionDirective } from '@rxap/material-directives/expansion';
+import { DashboardAccordionDataSource } from './dashboard-accordion.data-source';
 import { GeneralInformationCloudDashboardPanelComponent } from './general-information-cloud-dashboard-panel/general-information-cloud-dashboard-panel.component';
 import { GeneralInformationDashboardPanelComponent } from './general-information-dashboard-panel/general-information-dashboard-panel.component';
-import { NgSwitch, AsyncPipe, NgIf, NgSwitchDefault } from '@angular/common';
 import { LayoutCloudDashboardPanelComponent } from './layout-cloud-dashboard-panel/layout-cloud-dashboard-panel.component';
 import { ReferencePanelComponent } from './reference-panel/reference-panel.component';
-import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
-import { DashboardAccordionDataSource } from './dashboard-accordion.data-source';
 
 @Component({
     standalone: true,
@@ -21,7 +30,7 @@ import { DashboardAccordionDataSource } from './dashboard-accordion.data-source'
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './dashboard-accordion.component.html',
     styleUrls: ['./dashboard-accordion.component.scss'],
-  imports: [DataSourceErrorComponent, DataSourceDirective, MatProgressBarModule, MatExpansionModule, MatDividerModule, NavigateBackButtonComponent, IfHasPermissionDirective, PersistentAccordionDirective, GeneralInformationCloudDashboardPanelComponent, GeneralInformationDashboardPanelComponent, NgSwitch, LayoutCloudDashboardPanelComponent, ReferencePanelComponent, AsyncPipe, NgIf, NgSwitchDefault],
+  imports: [DataSourceErrorComponent, DataSourceDirective, MatProgressBarModule, MatExpansionModule, AsyncPipe, NgIf, MatDividerModule, NavigateBackButtonComponent, IfHasPermissionDirective, PersistentAccordionDirective, GeneralInformationCloudDashboardPanelComponent, GeneralInformationDashboardPanelComponent, NgSwitch, NgSwitchDefault, LayoutCloudDashboardPanelComponent, ReferencePanelComponent],
   providers: [DashboardAccordionDataSource, {
       provide: ACCORDION_DATA_SOURCE,
       useExisting: DashboardAccordionDataSource
