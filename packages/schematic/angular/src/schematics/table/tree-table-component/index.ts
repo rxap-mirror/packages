@@ -4,6 +4,8 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentProvider,
+  BuildNestControllerName,
+  BuildNestControllerNameOptions,
   buildOperationId,
   CoerceComponentRule,
   CoerceGetChildrenOperation,
@@ -139,6 +141,22 @@ function componentRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
 
 // region backend
 
+export function BuildTreeTableGetRootOperationId(normalizedOptions: NormalizedAngularOptions & BuildNestControllerNameOptions) {
+  return buildOperationId(
+    normalizedOptions,
+    'get-root',
+    BuildNestControllerName(normalizedOptions),
+  );
+}
+
+export function BuildTreeTableGeChildrenOperationId(normalizedOptions: NormalizedAngularOptions & BuildNestControllerNameOptions) {
+  return buildOperationId(
+    normalizedOptions,
+    'get-children',
+    BuildNestControllerName(normalizedOptions),
+  );
+}
+
 function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
 
   const {
@@ -155,16 +173,8 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
     propertyList
   } = normalizedOptions;
 
-  const getRootOperationId = buildOperationId(
-    normalizedOptions,
-    'get-root',
-    controllerName,
-  );
-  const getChildrenOperationId = buildOperationId(
-    normalizedOptions,
-    'get-children',
-    controllerName,
-  );
+  const getRootOperationId = BuildTreeTableGetRootOperationId(normalizedOptions);
+  const getChildrenOperationId = BuildTreeTableGeChildrenOperationId(normalizedOptions);
 
   return chain([
     () => console.log(`Coerce the get root operation ${ getRootOperationId }`),

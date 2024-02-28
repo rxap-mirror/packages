@@ -99,7 +99,6 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
     feature,
     directory,
     shared,
-    controllerName,
     componentName,
   } = normalizedOptions;
   const { operationName = 'get-page', typePath = `['rows'][number]` } = options;
@@ -109,7 +108,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
   const operationId = buildOperationId(
     normalizedOptions,
     operationName,
-    controllerName,
+    BuildNestControllerName(normalizedOptions),
   );
   return chain([
     TsMorphAngularProjectTransformRule({

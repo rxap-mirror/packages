@@ -133,13 +133,12 @@ interface ItemOptions {
 
 function buildGetOperationId(normalizedOptions: NormalizedAccordionItemComponentOptions) {
   const {
-    controllerName,
     identifier,
   } = normalizedOptions;
   return buildOperationId(
     normalizedOptions,
     identifier ? 'getById' : 'get',
-    controllerName,
+    BuildNestControllerName(normalizedOptions)
   );
 }
 

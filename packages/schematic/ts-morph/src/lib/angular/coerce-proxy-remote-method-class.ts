@@ -9,6 +9,7 @@ import {
   CoerceSourceFile,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
+import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
 import {
   ClassDeclaration,
   MethodDeclarationStructure,
@@ -16,10 +17,7 @@ import {
   SourceFile,
   WriterFunction,
 } from 'ts-morph';
-import {
-  TsMorphAngularProjectTransformRule,
-} from '../ts-morph-transform';
-import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
+import { TsMorphAngularProjectTransformRule } from '../ts-morph-transform';
 
 export interface CoerceProxyRemoteMethodClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
@@ -112,7 +110,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
         type: sourceType,
       },
     ];
-    methodStructure.statements ??= [ 'return source as any' ];
+    methodStructure.statements ??= [ 'return source as any;' ];
     methodStructure.returnType ??= w => {
       w.write('Promise<');
       if (typeof targetType ===

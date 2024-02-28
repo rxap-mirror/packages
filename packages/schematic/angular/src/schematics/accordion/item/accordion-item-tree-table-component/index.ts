@@ -4,7 +4,6 @@ import {
   noop,
 } from '@angular-devkit/schematics';
 import {
-  buildOperationId,
   CoerceGetChildrenOperation,
   CoerceGetRootOperation,
   CoerceParameterDeclaration,
@@ -32,6 +31,10 @@ import { NormalizedAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TreeTableModifiers } from '../../../../lib/tree-table-options';
+import {
+  BuildTreeTableGeChildrenOperationId,
+  BuildTreeTableGetRootOperationId,
+} from '../../../table/tree-table-component';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
@@ -187,6 +190,9 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
     hasSharedModifier,
   } = GetItemOptions(normalizedOptions);
 
+  const getRootOperationId = BuildTreeTableGetRootOperationId(normalizedOptions);
+  const getChildrenOperationId = BuildTreeTableGeChildrenOperationId(normalizedOptions);
+
   return chain([
     () => console.log(`Modify the get root operation ...`),
     CoerceGetRootOperation({
@@ -215,11 +221,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       shared,
       directory,
       scope,
-      getRootOperationId: buildOperationId(
-        normalizedOptions,
-        'get-root',
-        controllerName,
-      ),
+      getRootOperationId,
       tsMorphTransform: coerceIdentifierParameterResolver(normalizedOptions),
     }),
     () => console.log(`Modify the get children proxy method ...`),
@@ -229,11 +231,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       shared,
       directory,
       scope,
-      getChildrenOperationId: buildOperationId(
-        normalizedOptions,
-        'get-children',
-        controllerName,
-      ),
+      getChildrenOperationId,
       tsMorphTransform: coerceIdentifierParameterResolver(normalizedOptions),
     }),
   ]);

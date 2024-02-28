@@ -1,5 +1,8 @@
 import { Rule } from '@angular-devkit/schematics';
-import { joinWithDash } from '@rxap/utilities';
+import {
+  CoerceSuffix,
+  joinWithDash,
+} from '@rxap/utilities';
 import { FormDefinitionControl } from '../types/form-definition-control';
 import {
   CoerceOperation,
@@ -14,10 +17,8 @@ export interface CoerceOptionsOperationRuleOptions extends CoerceOperationOption
 export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperationRuleOptions>): Rule {
   const {
     control,
-    context,
-    responseDtoName = joinWithDash([ context, control.name, 'options' ]),
-    dtoClassName = responseDtoName,
     isArray = true,
+    responseDtoName,
     propertyList = [
       {
         name: 'display',
@@ -32,7 +33,11 @@ export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperat
   return CoerceOperation({
     ...options,
     propertyList,
-    dtoClassName,
     isArray,
+    buildOperationDtoClassName: (controllerName, { dtoClassName, dtoClassNameSuffix }) => {
+      return dtoClassName ?? (
+        dtoClassNameSuffix ? CoerceSuffix(responseDtoName ?? joinWithDash([ dtoClassName, 'control', control.name, 'options' ]), dtoClassNameSuffix) : responseDtoName ?? joinWithDash([ dtoClassName, 'control', control.name, 'options' ])
+      );
+    },
   });
 }

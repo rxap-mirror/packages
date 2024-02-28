@@ -109,6 +109,7 @@ export interface CoerceOperationOptions<Options = Record<string, any>> extends T
     moduleSourceFile: SourceFile,
     options: Readonly<CoerceOperationOptions & Options>,
   ) => CoerceDtoClassOutput | null;
+  buildOperationDtoClassName?: (controllerName: string, options: Readonly<Pick<CoerceOperationOptions, 'dtoClassNameSuffix' | 'dtoClassName'>>) => string;
   upstream?: UpstreamOptions | null;
   propertyList?: DtoClassProperty[],
   isArray?: boolean,
@@ -189,12 +190,13 @@ export function CoerceOperationDtoClass(
     dtoClassName,
     propertyList = [],
     isReturnVoid,
+    buildOperationDtoClassName = BuildOperationDtoClassName
   } = options;
   let dto: CoerceDtoClassOutput | null = null;
   if (propertyList.length > 0 || isReturnVoid === false || dtoClassNameSuffix || dtoClassName) {
     dto = CoerceDtoClass({
       project,
-      name: BuildOperationDtoClassName(controllerName, options),
+      name: buildOperationDtoClassName(controllerName, options),
       propertyList,
     });
   }
@@ -415,7 +417,7 @@ export function CoerceOperation<Options = Record<string, any>>(options: CoerceOp
 
       const classDeclaration = controllerSourceFile.getClassOrThrow(`${ classify(nestController) }Controller`);
 
-      const dto = coerceOperationDtoClass(classDeclaration, controllerName, moduleSourceFile, options as any);
+      const dto = coerceOperationDtoClass(classDeclaration, nestController, moduleSourceFile, options as any);
 
       if (dto) {
         CoerceImports(controllerSourceFile, {

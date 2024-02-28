@@ -1,5 +1,5 @@
 import {
-  joinWithDash,
+  CoerceSuffix,
   noop,
 } from '@rxap/utilities';
 import {
@@ -14,10 +14,7 @@ export interface CoerceFormSubmitOperationOptions extends CoerceGetByIdControlle
 export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOptions) {
   const {
     tsMorphTransform = noop,
-    controllerName,
-    context,
-    bodyDtoName= joinWithDash([ context, controllerName ]),
-    dtoClassName = bodyDtoName,
+    bodyDtoName,
     operationName = 'submit',
     isReturnVoid = true,
   } = options;
@@ -26,7 +23,11 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
     ...options,
     operationName,
     isReturnVoid,
-    dtoClassName,
+    buildOperationDtoClassName: (controllerName, { dtoClassName, dtoClassNameSuffix }) => {
+      return dtoClassName ?? (
+        dtoClassNameSuffix ? CoerceSuffix(bodyDtoName ?? controllerName, dtoClassNameSuffix) : bodyDtoName ?? controllerName
+      );
+    },
     tsMorphTransform: (
       project,
       sourceFile,

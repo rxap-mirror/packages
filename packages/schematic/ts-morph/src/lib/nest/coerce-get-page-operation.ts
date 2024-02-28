@@ -360,7 +360,8 @@ export function CoerceGetPageOperationDtoClass(
     coerceToRowDtoMethod = CoerceToRowDtoMethod,
     coerceToPageDtoMethod = CoerceToPageDtoMethod,
     coerceGetPageDataMethod = CoerceGetPageDataMethod,
-    dtoClassName = controllerName,
+    buildOperationDtoClassName = BuildOperationDtoClassName,
+    dtoClassName = buildOperationDtoClassName(controllerName, options)
   } = options;
 
   const {
@@ -409,10 +410,8 @@ export function BuiltGetPageDtoDataMapperImplementation(
 export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationOptions>) {
   const {
     operationName = 'get-page',
-    controllerName,
     tsMorphTransform = noop,
     upstream,
-    dtoClassName = controllerName,
     builtDtoDataMapperImplementation = BuiltGetPageDtoDataMapperImplementation,
     coerceOperationDtoClass = CoerceGetPageOperationDtoClass,
     buildUpstreamGetDataImplementation = BuildGetPageUpstreamGetDataImplementation,
@@ -421,7 +420,6 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
   return CoerceOperation<CoerceGetPageOperationOptions>({
     ...options,
     operationName,
-    dtoClassName,
     builtDtoDataMapperImplementation,
     coerceOperationDtoClass,
     buildUpstreamGetDataImplementation,
