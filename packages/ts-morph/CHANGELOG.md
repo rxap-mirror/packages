@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.4...@rxap/ts-morph@1.1.0-dev.5) (2024-02-28)
+
+### Bug Fixes
+
+- respect the identifier option ([bd6c6b2](https://gitlab.com/rxap/packages/commit/bd6c6b2d6770534f7d2136ac489acae2de8f0d16))
+
+### Features
+
+- support custom properties for accordion controllers ([82da170](https://gitlab.com/rxap/packages/commit/82da170f9ff490ec2502e0b21283b100848e6108))
+
 # [1.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.3...@rxap/ts-morph@1.1.0-dev.4) (2024-02-26)
 
 ### Features

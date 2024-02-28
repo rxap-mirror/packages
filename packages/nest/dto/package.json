@@ -1,11 +1,12 @@
 {
-  "version": "10.1.0",
+  "version": "10.2.0-dev.0",
   "name": "@rxap/nest-dto",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@rxap/nest-utilities": "^10.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0"
   },
@@ -24,6 +25,14 @@
     "packages",
     "rxap"
   ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/nest-utilities",
+        "version": "10.1.0"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/dto"

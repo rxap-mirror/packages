@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.14...@rxap/schematic-angular@16.2.0-dev.15) (2024-02-28)
+
+### Bug Fixes
+
+- add missing filter column definition ([4b86212](https://gitlab.com/rxap/packages/commit/4b86212108489a3bb6cd73d422869a992a2286d8))
+- add missing module import ([b2614a2](https://gitlab.com/rxap/packages/commit/b2614a2e98b8809b3f054d975d673c0c251986a8))
+- correctly coerce the operation method parameters ([f68c03a](https://gitlab.com/rxap/packages/commit/f68c03a1d4d623db9c5523a180f7e3c421fb1998))
+- ensure nestModule is passed to the operation generators ([8bab63c](https://gitlab.com/rxap/packages/commit/8bab63ca21c50581f09566e65ee709d10a7f4bda))
+- generate index schema json file ([6c7522d](https://gitlab.com/rxap/packages/commit/6c7522df6d48ae3ac63b1c58afd1885669388625))
+- only add get by id operation if identifier is defined ([85cddd8](https://gitlab.com/rxap/packages/commit/85cddd827eacbc217ae4c4cae7539fa3a12d4c26))
+- respect the identifier option ([bd6c6b2](https://gitlab.com/rxap/packages/commit/bd6c6b2d6770534f7d2136ac489acae2de8f0d16))
+
+### Features
+
+- extend support for upstream options ([15057c5](https://gitlab.com/rxap/packages/commit/15057c5b8d4bf97ee0bf1aa3ff78825ac7bf7b73))
+- support custom properties for accordion controllers ([82da170](https://gitlab.com/rxap/packages/commit/82da170f9ff490ec2502e0b21283b100848e6108))
+
 # [16.2.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.13...@rxap/schematic-angular@16.2.0-dev.14) (2024-02-26)
 
 ### Bug Fixes

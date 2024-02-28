@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0...@rxap/plugin-utilities@16.1.1-dev.0) (2024-02-28)
+
+### Bug Fixes
+
+- include schematics ([59e7541](https://gitlab.com/rxap/packages/commit/59e75410e8fa5ac0aee85934e8ed09938f7ebe94))
+
 # [16.1.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.22...@rxap/plugin-utilities@16.1.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/plugin-utilities

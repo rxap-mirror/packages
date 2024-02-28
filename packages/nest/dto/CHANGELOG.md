@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-dto@10.1.0...@rxap/nest-dto@10.2.0-dev.0) (2024-02-28)
+
+### Features
+
+- add ToDtoInstance function ([6ac05ed](https://gitlab.com/rxap/packages/commit/6ac05ed252c669f69b448b7f50409e03c0273814))
+
 # [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-dto@10.1.0-dev.2...@rxap/nest-dto@10.1.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/nest-dto

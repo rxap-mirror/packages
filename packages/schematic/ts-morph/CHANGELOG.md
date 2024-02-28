@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.5...@rxap/schematics-ts-morph@16.1.0-dev.6) (2024-02-28)
+
+### Bug Fixes
+
+- correctly coerce the operation method parameters ([f68c03a](https://gitlab.com/rxap/packages/commit/f68c03a1d4d623db9c5523a180f7e3c421fb1998))
+- ensure nestModule is passed to the operation generators ([8bab63c](https://gitlab.com/rxap/packages/commit/8bab63ca21c50581f09566e65ee709d10a7f4bda))
+- import missing type ([98af15b](https://gitlab.com/rxap/packages/commit/98af15b4b1c3da52819df4a8ca6106472106fc77))
+- respect the identifier option ([bd6c6b2](https://gitlab.com/rxap/packages/commit/bd6c6b2d6770534f7d2136ac489acae2de8f0d16))
+- return type generation ([e97c0be](https://gitlab.com/rxap/packages/commit/e97c0be137dde5ca6a0af7df852e916f6ee7d481))
+
+### Features
+
+- add CoerceGetOperation function ([191d7fc](https://gitlab.com/rxap/packages/commit/191d7fcf8159646a990e3f8df7149c074f5872b7))
+- extend support for upstream options ([15057c5](https://gitlab.com/rxap/packages/commit/15057c5b8d4bf97ee0bf1aa3ff78825ac7bf7b73))
+- support custom properties for accordion controllers ([82da170](https://gitlab.com/rxap/packages/commit/82da170f9ff490ec2502e0b21283b100848e6108))
+
 # [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.4...@rxap/schematics-ts-morph@16.1.0-dev.5) (2024-02-26)
 
 ### Bug Fixes
