@@ -28,8 +28,9 @@ import { GetControllerClass } from './get-controller-class';
 
 export interface OperationParameter extends DataProperty {
   type?: string | WriterFunction | TypeImport;
-  pipeList?: Array<string | WriterFunction>;
+  pipeList?: Array<string | WriterFunction | TypeImport>;
   defaultValue?: string | WriterFunction;
+  hasQuestionToken?: boolean;
   required?: boolean;
 
   /**
@@ -100,20 +101,35 @@ function buildMethodQueryParameters(
         ...query,
         pipeList,
       };
-    }).map(query => ({
-      name: query.alias ??
-        query.name,
-      type: WriteType({ type: query.type ?? 'unknown', isArray: query.isArray }, sourceFile),
-      hasQuestionToken: !query.required &&
-        query.defaultValue ===
-        undefined,
+    }).map(({
+      alias,
+      name,
+      type,
+      hasQuestionToken,
+      required,
+      defaultValue,
+      pipeList = [],
+      isArray,
+    }) => ({
+      name: alias ?? name,
+      type: WriteType({ type: type ?? 'unknown', isArray: isArray }, sourceFile),
+      hasQuestionToken: hasQuestionToken ?? (
+        !required && defaultValue === undefined
+      ),
       decorators: [
         {
           name: 'Query',
           arguments: [
-            w => w.quote(query.name),
-            ...(query.pipeList ??
-              []),
+            w => w.quote(name),
+            ...pipeList.map(pipe => {
+              if (typeof pipe === 'string') {
+                return pipe;
+              }
+              if (typeof pipe === 'function') {
+                return pipe;
+              }
+              return WriteType(pipe, sourceFile);
+            }),
           ],
         },
       ],

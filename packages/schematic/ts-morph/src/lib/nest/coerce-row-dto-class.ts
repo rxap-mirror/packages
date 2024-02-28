@@ -1,4 +1,5 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceDtoClass,
   CoerceDtoClassOptions,
@@ -12,6 +13,10 @@ export interface CoerceRowDtoClassOptions extends CoerceDtoClassOptions {
   rowIdType?: string | null;
 }
 
+export function BuildRowDtoClassName(name: string): string {
+  return CoerceSuffix(name, '-row');
+}
+
 export function CoerceRowDtoClass(options: CoerceRowDtoClassOptions) {
   const {
     rowIdType,
@@ -19,15 +24,13 @@ export function CoerceRowDtoClass(options: CoerceRowDtoClassOptions) {
     name,
     propertyList = [],
   } = options;
-  propertyList.unshift(
-    {
-      name: '__rowId',
-      type: rowIdType === null ? 'number' : rowIdType ?? 'string',
-    },
-  );
+  CoerceArrayItems(propertyList, [{
+    name: '__rowId',
+    type: rowIdType === null ? 'number' : rowIdType ?? 'string',
+  }], (a, b) => a.name === b.name);
   return CoerceDtoClass({
     project,
-    name: CoerceSuffix(name, '-row'),
+    name: BuildRowDtoClassName(name),
     propertyList,
   });
 }

@@ -6,13 +6,11 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentProvider,
-  CoerceClassConstructor,
   CoerceComponentRule,
   CoerceDataSourceClass,
   CoerceFormComponentProviderRule,
   CoerceGetDataGridOperation,
   CoerceImports,
-  CoerceParameterDeclaration,
   CoerceSubmitDataGridOperation,
 } from '@rxap/schematics-ts-morph';
 import {
@@ -41,16 +39,14 @@ import {
   NormalizedDataGridAccordionItem,
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
-import {
-  NormalizedAngularOptions,
-  PrintAngularOptions,
-} from '../../../../lib/angular-options';
+import { NormalizedAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import { DataGridMode } from '../../../../lib/data-grid-mode';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
   NormalizedAccordionItemStandaloneComponentOptions,
+  printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
 import { AccordionItemDataGridComponentOptions } from './schema';
 
@@ -72,11 +68,11 @@ export function NormalizeAccordionItemDataGridComponentOptions(
 }
 
 function printOptions(options: NormalizedAccordionItemDataGridComponentOptions) {
-  PrintAngularOptions('accordion-item-data-grid-component', options);
+  printAccordionItemComponentOptions(options, 'accordion-item-data-grid-component');
   if (options.dataGrid.itemList.length) {
-    console.log(`=== items: \x1b[34m${ options.dataGrid.itemList.map((item) => item.name).join(', ') }\x1b[0m`);
+    console.log(`===== Data Grid Items: \x1b[34m${ options.dataGrid.itemList.map((item) => item.name).join(', ') }\x1b[0m`);
   } else {
-    console.log('=== items: \x1b[31mempty\x1b[0m');
+    console.log('===== Data Grid Items: \x1b[31mempty\x1b[0m');
   }
 }
 
@@ -94,6 +90,8 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
     backend,
     dataGrid,
     controllerName,
+    upstream,
+    identifier,
   } = normalizedOptions;
   const {
     hasSharedModifier,
@@ -121,6 +119,8 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
       mode: hasEditModifier ? 'form' : (dataGrid?.mode ?? 'plain'),
       backend: backend,
       overwrite,
+      upstream,
+      identifier,
     }),
     CoerceComponentRule({
       name: componentName,
@@ -176,7 +176,7 @@ function nestjsBackendRule(
     identifier,
     upstream,
     controllerName,
-    nestModule
+    nestModule,
   } = normalizedOptions;
   const {
     hasSharedModifier,
@@ -255,7 +255,7 @@ function nestjsBackendRule(
         nestModule,
         collection: hasCollectionModifier,
         paramList,
-        // idProperty: identifier?.property,
+        idProperty: identifier?.property,
         skipCoerce: true,
       }),
     );

@@ -1,5 +1,4 @@
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceDtoClass } from './coerce-dto-class';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceOperation,
   CoerceOperationOptions,
@@ -11,16 +10,44 @@ export interface CoerceTreeOperationOptions extends Omit<CoerceOperationOptions,
 }
 
 export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
-  let {
-    tsMorphTransform,
-    operationName,
-    fullTree,
-    path,
+  const {
+    operationName = 'tree',
+    fullTree= false,
+    path= 'true',
+    propertyList = [],
+    dtoClassNameSuffix = '-tree-node',
+    isArray = true,
   } = options;
-  operationName ??= 'tree';
-  fullTree ??= false;
-  path ??= 'tree';
-  tsMorphTransform ??= () => ({});
+
+  CoerceArrayItems(propertyList, [
+    {
+      name: 'id',
+      type: 'string',
+    },
+    {
+      name: 'name',
+      type: 'string',
+    },
+    {
+      name: 'type',
+      type: 'string',
+    },
+    {
+      name: 'icon',
+      type: {
+        name: 'IconDto',
+        moduleSpecifier: '@rxap/nest-dto'
+      },
+      isType: true,
+    },
+    {
+      name: 'children',
+      isOptional: true,
+      isArray: true,
+      isType: true,
+      type: '<self>',
+    },
+  ], (a, b) => a.name === b.name);
 
   if (!fullTree) {
     throw new Error('non full tree not implemented yet');
@@ -30,59 +57,8 @@ export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
     ...options,
     path,
     operationName,
-    tsMorphTransform: (project, sourceFile, classDeclaration, controllerName, moduleSourceFile) => {
-
-      const {
-        className,
-        filePath,
-      } = CoerceDtoClass({
-        project,
-        name: 'TreeNode',
-        propertyList: [
-        {
-          name: 'id',
-          type: 'string',
-        },
-        {
-          name: 'name',
-          type: 'string',
-        },
-        {
-          name: 'type',
-          type: 'string',
-        },
-        {
-          name: 'icon',
-          type: 'IconDto',
-          isType: true,
-        },
-        {
-          name: 'children',
-          isOptional: true,
-          isArray: true,
-          isType: true,
-          type: '<self>',
-        },
-        ]
-      });
-
-      CoerceImports(sourceFile, {
-        namedImports: ['IconDto'],
-        moduleSpecifier: '@rxap/nest-dto'
-      });
-
-      CoerceImports(
-        sourceFile,
-        {
-          namedImports: [ className ],
-          moduleSpecifier: filePath,
-        },
-      );
-
-      return {
-        returnType: className + '[]',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile),
-      };
-    },
+    dtoClassNameSuffix,
+    propertyList,
+    isArray,
   });
 }

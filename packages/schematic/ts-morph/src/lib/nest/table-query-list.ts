@@ -23,8 +23,16 @@ export const TABLE_QUERY_LIST: OperationParameter[] = [
   },
   {
     name: 'filter',
-    type: 'FilterQuery[]',
-    pipeList: [ 'new FilterQueryPipe()' ],
+    type: {
+      name: 'FilterQuery',
+      moduleSpecifier: '@rxap/nest-utilities',
+    },
+    isArray: true,
+    pipeList: [ {
+      name: 'new FilterQueryPipe()',
+      namedImport: 'FilterQueryPipe',
+      moduleSpecifier: '@rxap/nest-utilities',
+    } ],
     // the FilterQueryPipe will set the default value to an empty array
     hasQuestionToken: false,
   },

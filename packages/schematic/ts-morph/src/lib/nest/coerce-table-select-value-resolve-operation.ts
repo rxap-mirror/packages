@@ -1,9 +1,14 @@
-import { CoerceImports } from '../ts-morph/coerce-imports';
+import {
+  ClassDeclaration,
+  SourceFile,
+  WriterFunction,
+} from 'ts-morph';
+import { CoerceDtoClassOutput } from './coerce-dto-class';
 import {
   CoerceOperation,
   CoerceOperationOptions,
+  TransformOperation,
 } from './coerce-operation';
-import { CoercePageDtoClass } from './coerce-page-dto-class';
 import { CoerceRowDtoClass } from './coerce-row-dto-class';
 
 export interface CoerceTableSelectValueResolveOperationOptions
@@ -14,52 +19,46 @@ export interface CoerceTableSelectValueResolveOperationOptions
   responseDtoName?: string;
 }
 
-export function CoerceTableSelectValueResolveOperationRule(options: CoerceTableSelectValueResolveOperationOptions) {
-  let {
-    responseDtoName,
-    controllerName,
+export function BuiltTableSelectValueResolveDtoDataMapperImplementation(
+  classDeclaration: ClassDeclaration,
+  moduleSourceFile: SourceFile,
+  dto: CoerceDtoClassOutput | null,
+  options: Readonly<CoerceOperationOptions>,
+): TransformOperation<string | WriterFunction> {
+  return () => {
+    if (dto) {
+      return `this.to${ dto.className }({} as any),`;
+    }
+    return '{}';
+  };
+}
+
+export function CoerceTableSelectValueResolveOperationDtoClass(
+  classDeclaration: ClassDeclaration,
+  controllerName: string,
+  moduleSourceFile: SourceFile,
+  options: Readonly<CoerceTableSelectValueResolveOperationOptions>,
+): CoerceDtoClassOutput | null {
+  const {
+    responseDtoName = controllerName,
   } = options;
-  responseDtoName ??= controllerName;
+  const sourceFile = classDeclaration.getSourceFile();
+  const project = sourceFile.getProject();
+  return CoerceRowDtoClass({
+    project,
+    name: responseDtoName,
+  });
+}
+
+export function CoerceTableSelectValueResolveOperationRule(options: CoerceTableSelectValueResolveOperationOptions) {
+  const {
+    coerceOperationDtoClass = CoerceTableSelectValueResolveOperationDtoClass,
+    buildDtoReturnImplementation = BuiltTableSelectValueResolveDtoDataMapperImplementation,
+  } = options;
 
   return CoerceOperation({
     ...options,
-    tsMorphTransform: (project, sourceFile, classDeclaration, controllerName) => {
-
-      const {
-        className: rowClassName,
-        filePath: rowFilePath,
-      } = CoerceRowDtoClass({
-        project,
-        name: responseDtoName!,
-      });
-
-      const {
-        className: pageClassName,
-        filePath: pageFilePath,
-      } = CoercePageDtoClass({
-        project,
-        name: responseDtoName!,
-        rowClassName,
-        rowFilePath,
-      });
-
-      CoerceImports(sourceFile, {
-        moduleSpecifier: rowFilePath,
-        namedImports: [ rowClassName ],
-      });
-
-      return {
-        returnType: rowClassName,
-        statements: [
-          'const item = {} as any',
-          'return plainToInstance(',
-          rowClassName + ',',
-          `this.to${ rowClassName }(item),`,
-          'classTransformOptions',
-          ')',
-        ],
-      };
-
-    },
+    coerceOperationDtoClass,
+    buildDtoReturnImplementation,
   });
 }

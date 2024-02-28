@@ -2,16 +2,12 @@ import {
   joinWithDash,
   noop,
 } from '@rxap/utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceDtoClass } from './coerce-dto-class';
 import {
-  CoerceOperation,
-  CoerceOperationOptions,
-} from './coerce-operation';
-import { DtoClassProperty } from './dto-class-property';
+  CoerceGetByIdControllerOptions,
+  CoerceGetByIdOperation,
+} from './coerce-get-by-id-operation';
 
-export interface CoerceFormSubmitOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
-  propertyList?: DtoClassProperty[],
+export interface CoerceFormSubmitOperationOptions extends CoerceGetByIdControllerOptions {
   bodyDtoName?: string;
 }
 
@@ -19,40 +15,35 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
   const {
     tsMorphTransform = noop,
     controllerName,
-    propertyList= [],
     context,
     bodyDtoName= joinWithDash([ context, controllerName ]),
+    dtoClassName = bodyDtoName,
+    operationName = 'submit',
+    isReturnVoid = true,
   } = options;
 
-  return CoerceOperation({
+  return CoerceGetByIdOperation({
     ...options,
-    operationName: 'submit',
+    operationName,
+    isReturnVoid,
+    dtoClassName,
     tsMorphTransform: (
       project,
       sourceFile,
       classDeclaration,
       controllerName,
       moduleSourceFile,
+      dto,
     ) => {
 
-      const {
-        className: dtoClassName,
-        filePath: dtoFilePath,
-      } = CoerceDtoClass({
-        project,
-        name: bodyDtoName!,
-        propertyList,
-      });
-
-      CoerceImports(sourceFile, {
-        namedImports: [ dtoClassName ],
-        moduleSpecifier: dtoFilePath,
-      });
+      if (!dto) {
+        throw new Error('The dto must be created for an submit operation');
+      }
 
       return {
-        body: dtoClassName,
+        body: dto.className,
         method: 'post',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile, dto),
       };
 
     },

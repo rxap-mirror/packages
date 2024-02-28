@@ -1,23 +1,15 @@
 import {
-  classify,
-  CoerceSuffix,
-} from '@rxap/schematics-utilities';
-import {
   CoerceArrayItems,
   noop,
 } from '@rxap/utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceDtoClass } from './coerce-dto-class';
 import {
-  CoerceOperation,
-  CoerceOperationOptions,
-} from './coerce-operation';
-import { DtoClassProperty } from './dto-class-property';
+  CoerceGetByIdControllerOptions,
+  CoerceGetByIdOperation,
+} from './coerce-get-by-id-operation';
 import { TABLE_QUERY_LIST } from './table-query-list';
 
-export interface CoerceGetRootOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
-  propertyList?: DtoClassProperty[],
-  operationName?: string;
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CoerceGetRootOperationOptions extends CoerceGetByIdControllerOptions {
 }
 
 export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationOptions>) {
@@ -25,6 +17,9 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
     tsMorphTransform = noop,
     propertyList = [],
     operationName = 'get-root',
+    idProperty = null,
+    dtoClassNameSuffix = '-item',
+    isArray = true,
   } = options;
   CoerceArrayItems(propertyList, [
     {
@@ -39,41 +34,24 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
       isType: true,
     },
   ], (a, b) => a.name === b.name);
-  return CoerceOperation({
+  return CoerceGetByIdOperation({
     ...options,
     operationName,
+    idProperty,
+    dtoClassNameSuffix,
+    isArray,
     tsMorphTransform: (
       project,
       sourceFile,
       classDeclaration,
       controllerName,
       moduleSourceFile,
+      dto,
     ) => {
-
-      const {
-        className,
-        filePath,
-      } = CoerceDtoClass({
-        project,
-        name: CoerceSuffix(controllerName, '-item'),
-        propertyList,
-      });
-
-      CoerceImports(sourceFile, [
-        {
-          namedImports: [ 'FilterQuery', 'FilterQueryPipe' ],
-          moduleSpecifier: '@rxap/nest-utilities',
-        },
-        {
-          namedImports: [ className ],
-          moduleSpecifier: filePath,
-        },
-      ]);
 
       return {
         queryList: TABLE_QUERY_LIST,
-        returnType: className + '[]',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile, dto),
       };
     },
   });

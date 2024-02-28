@@ -6,20 +6,17 @@ import {
 } from '@rxap/utilities';
 import { basename } from 'path';
 import {
-  ClassDeclarationStructure,
-  ImportDeclarationStructure,
-  OptionalKind,
-  Project,
-} from 'ts-morph';
-import {
   CoerceDtoClass,
   CoerceDtoClassOptions,
 } from './coerce-dto-class';
-import { DtoClassProperty } from './dto-class-property';
 
 export interface CoercePageDtoClassOptions extends CoerceDtoClassOptions {
   rowClassName: string,
   rowFilePath: string,
+}
+
+export function BuildPageDtoClassName(name: string): string {
+  return CoerceSuffix(name, '-page');
 }
 
 export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
@@ -71,7 +68,7 @@ export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
   return CoerceDtoClass({
     ...options,
     project,
-    name: CoerceSuffix(name, '-page'),
+    name: BuildPageDtoClassName(name),
     propertyList,
     tsMorphTransform: (p, sourceFile, classDeclaration) => {
       CoerceImports(sourceFile, [

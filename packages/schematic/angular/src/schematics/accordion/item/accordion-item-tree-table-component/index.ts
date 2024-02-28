@@ -15,7 +15,6 @@ import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import {
   CoerceClassConstructor,
   CoerceImports,
-  OperationParameter,
 } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
@@ -29,10 +28,7 @@ import {
   NormalizeTreeTableAccordionItem,
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
-import {
-  NormalizedAngularOptions,
-  PrintAngularOptions,
-} from '../../../../lib/angular-options';
+import { NormalizedAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TreeTableModifiers } from '../../../../lib/tree-table-options';
@@ -40,6 +36,7 @@ import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
   NormalizedAccordionItemStandaloneComponentOptions,
+  printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
 import { AccordionItemTreeTableComponentOptions } from './schema';
 
@@ -61,7 +58,7 @@ export function NormalizeAccordionItemTreeTableComponentOptions(
 }
 
 function printOptions(options: NormalizedAccordionItemTreeTableComponentOptions) {
-  PrintAngularOptions('accordion-item-tree-table-component', options);
+  printAccordionItemComponentOptions(options, 'accordion-item-tree-table-component');
 }
 
 
@@ -190,15 +187,6 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
     hasSharedModifier,
   } = GetItemOptions(normalizedOptions);
 
-  const paramList: OperationParameter[] = [];
-
-  if (identifier) {
-    paramList.push({
-      ...identifier.property,
-      fromParent: !hasSharedModifier,
-    });
-  }
-
   return chain([
     () => console.log(`Modify the get root operation ...`),
     CoerceGetRootOperation({
@@ -207,7 +195,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       nestModule,
       feature,
       shared: hasSharedModifier,
-      paramList,
+      idProperty: identifier?.property,
       skipCoerce: true,
     }),
     () => console.log(`Modify the get children operation ...`),
@@ -217,7 +205,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       project,
       feature,
       shared: hasSharedModifier,
-      paramList,
+      idProperty: identifier?.property,
       skipCoerce: true,
     }),
     () => console.log(`Modify the get root proxy method ...`),

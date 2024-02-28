@@ -1,9 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import { joinWithDash } from '@rxap/utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { WriteType } from '@rxap/ts-morph';
 import { FormDefinitionControl } from '../types/form-definition-control';
-import { CoerceDtoClass } from './coerce-dto-class';
 import {
   CoerceOperation,
   CoerceOperationOptions,
@@ -15,57 +12,27 @@ export interface CoerceOptionsOperationRuleOptions extends CoerceOperationOption
 }
 
 export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperationRuleOptions>): Rule {
-  let {
-    responseDtoName,
+  const {
     control,
     context,
+    responseDtoName = joinWithDash([ context, control.name, 'options' ]),
+    dtoClassName = responseDtoName,
+    isArray = true,
+    propertyList = [
+      {
+        name: 'display',
+        type: 'string',
+      },
+      {
+        name: 'value',
+        type: control,
+      },
+    ],
   } = options;
-  responseDtoName ??= joinWithDash([ context, control.name, 'options' ]);
   return CoerceOperation({
     ...options,
-    tsMorphTransform: (project, sourceFile, classDeclaration, controllerName) => {
-
-      const {
-        className,
-        filePath,
-      } = CoerceDtoClass({
-        project,
-        name: responseDtoName!,
-        propertyList: [
-          {
-            name: 'display',
-            type: 'string',
-          },
-          {
-            name: 'value',
-            type: WriteType(control, sourceFile),
-          },
-        ],
-      });
-
-      CoerceImports(sourceFile, {
-        namedImports: [ className ],
-        moduleSpecifier: filePath,
-      });
-      CoerceImports(sourceFile, {
-        namedImports: [ 'plainToInstance' ],
-        moduleSpecifier: 'class-transformer',
-      });
-      CoerceImports(sourceFile, {
-        namedImports: [ 'classTransformOptions' ],
-        moduleSpecifier: '@rxap/nest-utilities',
-      });
-
-      return {
-        returnType: `Array<${ className }>`,
-        statements: [
-          'return plainToInstance(',
-          className + ',',
-          '[],',
-          'classTransformOptions',
-          ');',
-        ],
-      };
-    },
+    propertyList,
+    dtoClassName,
+    isArray,
   });
 }

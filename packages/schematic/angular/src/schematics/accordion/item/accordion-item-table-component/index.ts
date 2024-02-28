@@ -12,10 +12,7 @@ import {
   NormalizeTableAccordionItem,
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
-import {
-  NormalizedAngularOptions,
-  PrintAngularOptions,
-} from '../../../../lib/angular-options';
+import { NormalizedAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TableModifiers } from '../../../../lib/table-options';
@@ -24,6 +21,7 @@ import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
   NormalizedAccordionItemStandaloneComponentOptions,
+  printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
 import { AccordionItemTableComponentOptions } from './schema';
 
@@ -45,7 +43,7 @@ export function NormalizeAccordionItemTableComponentOptions(
 }
 
 function printOptions(options: NormalizedAccordionItemTableComponentOptions) {
-  PrintAngularOptions('accordion-item-table-component', options);
+  printAccordionItemComponentOptions(options, 'accordion-item-table-component');
 }
 
 

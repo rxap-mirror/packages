@@ -9,8 +9,6 @@ import {
   CoerceImports,
   CoerceTableDataSourceRule,
   CoerceTableSelectOperationRule,
-  CoerceTableSelectResolveValueMethodRule,
-  CoerceTableSelectValueResolveOperationRule,
   EnforceUseFormControlOrderRule,
   FormDefinitionControl,
 } from '@rxap/schematics-ts-morph';
@@ -36,7 +34,6 @@ import {
   NormalizedTableSelectFormControl,
   NormalizeTableSelectFormControl,
 } from '../../../../lib/form-control';
-import { NormalizedTableColumn } from '../../../../lib/table-column';
 import { TableColumnListAndPropertyListToGetPageOperationPropertyList } from '../../../table/table-component';
 import {
   NormalizedFormControlOptions,
@@ -170,7 +167,7 @@ export default function (options: TableSelectFormControlOptions) {
         propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
         operationName: optionsOperationName,
         path: optionsOperationPath,
-        responseDtoName: tableResponseDtoName,
+        dtoClassNameSuffix: tableResponseDtoName,
         context,
         upstream
       }),

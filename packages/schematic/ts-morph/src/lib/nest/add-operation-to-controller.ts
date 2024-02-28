@@ -8,12 +8,12 @@ import {
   CoerceImports,
   CoerceStatements,
   TypeImport,
+  WriteType,
 } from '@rxap/ts-morph';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
   ClassDeclaration,
   DecoratorStructure,
-  ImportDeclarationStructure,
   MethodDeclaration,
   ObjectLiteralExpression,
   OptionalKind,
@@ -25,12 +25,11 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { WriteType } from '@rxap/ts-morph';
 
 export interface OperationParameter {
   name: string;
   type?: string | WriterFunction | TypeImport;
-  pipeList?: Array<string | WriterFunction>;
+  pipeList?: Array<string | WriterFunction | TypeImport>;
   defaultValue?: string | WriterFunction;
   hasQuestionToken?: boolean;
   required?: boolean;
@@ -103,20 +102,35 @@ function buildMethodQueryParameters(
         ...query,
         pipeList,
       };
-    }).map(query => ({
-      name: query.alias ??
-        query.name,
-      type: query.type ? WriteType({ type: query.type, isArray: false }, sourceFile) : undefined,
-      hasQuestionToken: query.hasQuestionToken ?? (
-        !query.required && query.defaultValue === undefined
+    }).map(({
+      alias,
+      name,
+      type,
+      hasQuestionToken,
+      required,
+      defaultValue,
+      pipeList = [],
+      isArray
+    }) => ({
+      name: alias ?? name,
+      type: WriteType({ type: type ?? 'unknown', isArray: isArray }, sourceFile),
+      hasQuestionToken: hasQuestionToken ?? (
+        !required && defaultValue === undefined
       ),
       decorators: [
         {
           name: 'Query',
           arguments: [
-            w => w.quote(query.name),
-            ...(query.pipeList ??
-              []),
+            w => w.quote(name),
+            ...pipeList.map(pipe => {
+              if (typeof pipe === 'string') {
+                return pipe;
+              }
+              if (typeof pipe === 'function') {
+                return pipe;
+              }
+              return WriteType(pipe, sourceFile);
+            }),
           ],
         },
       ],

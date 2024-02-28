@@ -7,12 +7,11 @@ import {
   NormalizedDataProperty,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
-  OperationIdToCommandClassName,
   OperationIdToResponseClassName,
   TypeImport,
 } from '@rxap/ts-morph';
 import {
-  CoercePrefix,
+  coerceArray,
   noop,
 } from '@rxap/utilities';
 import {
@@ -20,18 +19,28 @@ import {
   Project,
   Scope,
   SourceFile,
+  WriterFunction,
   Writers,
 } from 'ts-morph';
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
 import { WriteType } from '../ts-morph/write-type';
 import { OperationOptions } from './add-operation-to-controller';
-import { CoerceUpstreamBasicOperationImplementation } from './coerce-get-by-id-operation';
+import { CoerceDtoClassOutput } from './coerce-dto-class';
 import {
+  BuildOperationDtoClassName,
   CoerceOperation,
   CoerceOperationOptions,
+  CoerceUpstreamBasicOperationImplementation,
+  TransformOperation,
 } from './coerce-operation';
-import { CoercePageDtoClass } from './coerce-page-dto-class';
-import { CoerceRowDtoClass } from './coerce-row-dto-class';
+import {
+  BuildPageDtoClassName,
+  CoercePageDtoClass,
+} from './coerce-page-dto-class';
+import {
+  BuildRowDtoClassName,
+  CoerceRowDtoClass,
+} from './coerce-row-dto-class';
 import { TABLE_QUERY_LIST } from './table-query-list';
 
 export interface GetPageOperationProperty extends NormalizedDataProperty {
@@ -42,13 +51,14 @@ export interface GetPageOperationProperty extends NormalizedDataProperty {
 }
 
 export interface CoerceGetPageOperationOptions
-  extends Omit<Omit<CoerceOperationOptions, 'operationName'>, 'tsMorphTransform'> {
+  extends Omit<CoerceOperationOptions, 'operationName' | 'tsMorphTransform' | 'coerceOperationDtoClass'> {
   propertyList?: GetPageOperationProperty[];
   tsMorphTransform?: (
     project: Project,
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     controllerName: string,
+    moduleSourceFile: SourceFile,
     pageClassName: string,
     rowClassName: string,
   ) => Partial<OperationOptions>;
@@ -58,10 +68,6 @@ export interface CoerceGetPageOperationOptions
    */
   rowIdProperty?: string | null;
   operationName?: string;
-  /**
-   * The base name of the page and row DTO class name. Defaults to the controller name
-   */
-  responseDtoName?: string;
   coerceToRowDtoMethod?: (
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
@@ -81,6 +87,12 @@ export interface CoerceGetPageOperationOptions
     moduleSourceFile: SourceFile,
     options: CoerceGetPageOperationOptions,
   ) => void;
+  coerceOperationDtoClass?: (
+    classDeclaration: ClassDeclaration,
+    controllerName: string,
+    moduleSourceFile: SourceFile,
+    options: Readonly<CoerceGetPageOperationOptions>,
+  ) => CoerceDtoClassOutput | null;
   upstream?: NormalizedUpstreamOptions | null;
 }
 
@@ -205,10 +217,7 @@ export function CoerceGetPageDataMethod(
   const { upstream } = options;
   const statements: string[] = [];
   if (upstream && IsNormalizedOpenApiUpstreamOptions(upstream)) {
-    const { memberName: commandMemberName } = CoerceUpstreamBasicOperationImplementation(
-      sourceFile, classDeclaration, moduleSourceFile, upstream);
-    const commandClassName = OperationIdToCommandClassName(upstream.operationId);
-    const memberName = camelize(commandClassName);
+    const { memberName, className: commandClassName } = CoerceUpstreamBasicOperationImplementation(classDeclaration, moduleSourceFile, upstream);
     CoercePropertyDeclaration(classDeclaration, memberName, {
       type: commandClassName,
       scope: Scope.Private,
@@ -272,7 +281,7 @@ export function CoerceGetPageDataMethod(
           type: GetRawRowDataType(options),
         }, sourceFile),
         total: 'number',
-      });
+      })(w);
       w.write('>');
     },
     isAsync: true,
@@ -304,8 +313,10 @@ export function CoerceGetPageDataMethod(
 
 export function GetResponseTypeFromUpstream(upstream: NormalizedUpstreamOptions): TypeImport {
   if (IsNormalizedOpenApiUpstreamOptions(upstream)) {
+    const className = OperationIdToResponseClassName(upstream.operationId);
     return {
-      name: OperationIdToResponseClassName(upstream.operationId),
+      name: `${className}['${upstream.mapper?.list ?? 'list'}'][number]`,
+      namedImport: className,
       moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope, upstream.isService),
     };
   }
@@ -322,22 +333,98 @@ export function GetRawRowDataType(options: Readonly<CoerceGetPageOperationOption
   };
 }
 
-export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationOptions>) {
+export function BuildGetPageUpstreamGetDataImplementation(
+  classDeclaration: ClassDeclaration,
+  moduleSourceFile: SourceFile,
+  dto: CoerceDtoClassOutput | null,
+  options: Readonly<CoerceOperationOptions>,
+): TransformOperation {
+  return (operationOptions) => {
+    operationOptions.statements ??= [];
+    operationOptions.statements = coerceArray(operationOptions.statements);
+    operationOptions.statements.push('const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);',);
+  };
+}
+
+export function CoerceGetPageOperationDtoClass(
+  classDeclaration: ClassDeclaration,
+  controllerName: string,
+  moduleSourceFile: SourceFile,
+  options: Readonly<CoerceGetPageOperationOptions>,
+): CoerceDtoClassOutput | null {
+  const sourceFile = classDeclaration.getSourceFile();
+  const project = sourceFile.getProject();
   const {
-    operationName = 'get-page',
     rowIdProperty,
-    tsMorphTransform = noop,
     propertyList,
     coerceToRowDtoMethod = CoerceToRowDtoMethod,
     coerceToPageDtoMethod = CoerceToPageDtoMethod,
     coerceGetPageDataMethod = CoerceGetPageDataMethod,
-    upstream,
+    dtoClassName = controllerName,
   } = options;
-  let { responseDtoName } = options;
 
-  return CoerceOperation({
+  const {
+    className: rowClassName,
+    filePath: rowFilePath,
+  } = CoerceRowDtoClass({
+    project,
+    name: dtoClassName,
+    propertyList,
+    rowIdType: rowIdProperty === null ? null : undefined,
+  });
+
+  CoerceImports(sourceFile, {
+    namedImports: [ rowClassName ],
+    moduleSpecifier: rowFilePath,
+  });
+
+  const dto = CoercePageDtoClass({
+    project,
+    name: dtoClassName,
+    rowClassName,
+    rowFilePath,
+  });
+
+  const { className: pageClassName } = dto;
+
+  coerceGetPageDataMethod(sourceFile, classDeclaration, moduleSourceFile, options);
+  coerceToRowDtoMethod(sourceFile, classDeclaration, rowClassName, options);
+  coerceToPageDtoMethod(sourceFile, classDeclaration, pageClassName, rowClassName, options);
+
+  return dto;
+
+}
+
+export function BuiltGetPageDtoDataMapperImplementation(
+  classDeclaration: ClassDeclaration,
+  moduleSourceFile: SourceFile,
+  dto: CoerceDtoClassOutput | null,
+  options: Readonly<CoerceOperationOptions>,
+): TransformOperation<string | WriterFunction> {
+  return () => {
+    return 'this.toPageDto(data.list, data.total, pageIndex, pageSize, sortBy, sortDirection, filter)';
+  };
+}
+
+export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationOptions>) {
+  const {
+    operationName = 'get-page',
+    controllerName,
+    tsMorphTransform = noop,
+    upstream,
+    dtoClassName = controllerName,
+    builtDtoDataMapperImplementation = BuiltGetPageDtoDataMapperImplementation,
+    coerceOperationDtoClass = CoerceGetPageOperationDtoClass,
+    buildUpstreamGetDataImplementation = BuildGetPageUpstreamGetDataImplementation,
+  } = options;
+
+  return CoerceOperation<CoerceGetPageOperationOptions>({
     ...options,
     operationName,
+    dtoClassName,
+    builtDtoDataMapperImplementation,
+    coerceOperationDtoClass,
+    buildUpstreamGetDataImplementation,
     tsMorphTransform: (
       project,
       sourceFile,
@@ -345,59 +432,6 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       controllerName,
       moduleSourceFile,
     ) => {
-
-      if (!responseDtoName) {
-        responseDtoName = controllerName;
-      } else {
-        responseDtoName = CoercePrefix(responseDtoName, controllerName + '-');
-      }
-
-      const {
-        className: rowClassName,
-        filePath: rowFilePath,
-      } = CoerceRowDtoClass({
-        project,
-        name: responseDtoName,
-        propertyList,
-        rowIdType: rowIdProperty === null ? null : undefined,
-      });
-
-      const {
-        className: pageClassName,
-        filePath: pageFilePath,
-      } = CoercePageDtoClass({
-        project,
-        name: responseDtoName,
-        rowClassName,
-        rowFilePath,
-      });
-
-      coerceGetPageDataMethod(sourceFile, classDeclaration, moduleSourceFile, options);
-      coerceToRowDtoMethod(sourceFile, classDeclaration, rowClassName, options);
-      coerceToPageDtoMethod(sourceFile, classDeclaration, pageClassName, rowClassName, options);
-
-      CoerceImports(sourceFile, [
-        {
-          namedImports: [ 'FilterQuery', 'FilterQueryPipe' ],
-          moduleSpecifier: '@rxap/nest-utilities',
-        },
-        {
-          namedImports: [ 'plainToInstance' ],
-          moduleSpecifier: 'class-transformer',
-        },
-        {
-          namedImports: [ 'classTransformOptions' ],
-          moduleSpecifier: '@rxap/nest-utilities',
-        },
-        {
-          namedImports: [ pageClassName ],
-          moduleSpecifier: pageFilePath,
-        },
-        {
-          namedImports: [ rowClassName ],
-          moduleSpecifier: rowFilePath,
-        },
-      ]);
 
       if (!upstream || !IsNormalizedOpenApiUpstreamOptions(upstream)) {
         CoerceTypeAlias(sourceFile, 'RawRowData', {
@@ -408,16 +442,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
 
       return {
         queryList: TABLE_QUERY_LIST,
-        returnType: pageClassName,
-        statements: [
-          'const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);',
-          'return plainToInstance(',
-          '  ' + pageClassName + ',',
-          `  this.toPageDto(data.list, data.total, pageIndex, pageSize, sortBy, sortDirection, filter),`,
-          '  classTransformOptions',
-          ');',
-        ],
-        ...tsMorphTransform(project, sourceFile, classDeclaration, controllerName, pageClassName, rowClassName),
+        ...tsMorphTransform(project, sourceFile, classDeclaration, controllerName, moduleSourceFile, BuildPageDtoClassName(BuildOperationDtoClassName(controllerName, options)), BuildRowDtoClassName(BuildOperationDtoClassName(controllerName, options))),
       };
     },
   });

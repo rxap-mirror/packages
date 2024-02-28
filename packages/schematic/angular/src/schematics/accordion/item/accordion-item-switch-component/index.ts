@@ -3,20 +3,21 @@ import {
   noop,
 } from '@angular-devkit/schematics';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
-import { Normalized } from '@rxap/utilities';
+import {
+  DeleteEmptyProperties,
+  Normalized,
+} from '@rxap/utilities';
 import {
   NormalizedBaseAccordionItem,
   NormalizedSwitchAccordionItem,
   NormalizeSwitchAccordionItem,
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
-import {
-  NormalizedAngularOptions,
-  PrintAngularOptions,
-} from '../../../../lib/angular-options';
+import { NormalizedAngularOptions } from '../../../../lib/angular-options';
 import {
   NormalizeAccordionItemStandaloneComponentOptions,
   NormalizedAccordionItemStandaloneComponentOptions,
+  printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
 import { AccordionItemSwitchComponentOptions } from './schema';
 
@@ -38,7 +39,7 @@ export function NormalizeAccordionItemSwitchComponentOptions(
 }
 
 function printOptions(options: NormalizedAccordionItemSwitchComponentOptions) {
-  PrintAngularOptions('accordion-item-switch-component', options);
+  printAccordionItemComponentOptions(options, 'accordion-item-switch-component');
 }
 
 function caseRule(
@@ -47,33 +48,42 @@ function caseRule(
 ) {
 
   const {
-    project,
-    feature,
-    backend,
-    accordionName,
     overwrite,
     directory,
+    project,
+    feature,
+    replace,
     nestModule,
+    backend,
+    accordionName,
+    shared,
+    prefix,
+    identifier,
   } = normalizedOptions;
 
   if (!directory) {
     throw new Error('The directory option is not defined! Ensure the accordion item switch component normalizer is correct!');
   }
 
+  const itemOptions = {
+    ...DeleteEmptyProperties({ ...item }),
+    project,
+    feature,
+    replace,
+    nestModule,
+    backend,
+    accordionName,
+    shared,
+    prefix,
+    identifier,
+    overwrite: overwrite || item.modifiers.includes('overwrite'),
+  };
+
+  console.log('itemOptions', itemOptions);
+
   return chain([
     () => console.log(`Create accordion switch item component '${ item.name }' ...`),
-    ExecuteSchematic('accordion-item-component', {
-      ...item,
-      nestModule,
-      name: item.name,
-      kind: item.kind,
-      modifiers: item.modifiers,
-      project,
-      feature,
-      accordionName,
-      overwrite: overwrite || item.modifiers.includes('overwrite'),
-      backend,
-    }),
+    ExecuteSchematic('accordion-item-component', itemOptions),
   ]);
 
 }

@@ -117,8 +117,10 @@ export function NormalizeAccordionItemComponentOptions(
   });
 }
 
-function printAccordionItemComponentOptions(options: NormalizedAccordionItemComponentOptions) {
-  PrintAngularOptions('accordion-item-component', options);
+export function printAccordionItemComponentOptions(options: NormalizedAccordionItemComponentOptions, schematicName = 'accordion-item-component') {
+  PrintAngularOptions(schematicName, options);
+  console.log('===== Kind:'.blue, options.kind);
+  console.log('===== Identifier:'.blue, options.identifier?.property?.name ?? 'NONE'.red);
 }
 
 interface ItemOptions {
