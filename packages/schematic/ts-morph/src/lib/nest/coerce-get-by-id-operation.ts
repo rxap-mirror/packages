@@ -4,6 +4,7 @@ import {
   ClassDeclaration,
   SourceFile,
   WriterFunction,
+  Writers,
 } from 'ts-morph';
 import { CoerceDtoClassOutput } from './coerce-dto-class';
 import {
@@ -28,6 +29,48 @@ export function BuildUpstreamGetByIdParametersImplementation(
   };
 }
 
+export function BuiltGetByIdDtoDataMapperImplementation(
+  classDeclaration: ClassDeclaration,
+  moduleSourceFile: SourceFile,
+  dto: CoerceDtoClassOutput | null,
+  options: Readonly<CoerceGetByIdControllerOptions>,
+): TransformOperation<string | WriterFunction> {
+  const {
+    propertyList = [],
+    upstream,
+    isArray,
+    idProperty,
+  } = options;
+  return () => {
+    if (upstream) {
+      const mapper: Record<string, string | WriterFunction> = {};
+      if (idProperty) {
+        mapper[idProperty.name] = idProperty.name;
+      }
+      for (const property of propertyList.filter(p => !idProperty || p.name !== idProperty.name)) {
+        mapper[property.name] = `data.${ property.name }`;
+      }
+      if (isArray) {
+        return w => {
+          w.write('data.map(item => (');
+          Writers.object(mapper)(w);
+          w.write('))');
+        };
+      } else {
+        return Writers.object(mapper);
+      }
+    } else {
+      if (isArray) {
+        return '[]';
+      }
+      if (idProperty) {
+        return `{ ${ idProperty.name } }`;
+      }
+      return '{}';
+    }
+  };
+}
+
 export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) {
   const {
     controllerName,
@@ -37,6 +80,7 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
     operationName = 'getById',
     nestModule,
     buildUpstreamGetParametersImplementation = BuildUpstreamGetByIdParametersImplementation,
+    builtDtoDataMapperImplementation = BuiltGetByIdDtoDataMapperImplementation,
   } = options;
 
   if (idProperty) {
@@ -83,6 +127,7 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
     paramList,
     propertyList,
     buildUpstreamGetParametersImplementation,
+    builtDtoDataMapperImplementation,
   });
 
 }

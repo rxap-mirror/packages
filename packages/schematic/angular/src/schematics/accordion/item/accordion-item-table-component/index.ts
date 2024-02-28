@@ -26,7 +26,7 @@ import {
 import { AccordionItemTableComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemTableComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList'>, Omit<NormalizedTableAccordionItem, 'kind'> {
+  extends Omit<Readonly<Normalized<AccordionItemTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList' | 'propertyList'>, Omit<NormalizedTableAccordionItem, 'kind'> {
 }
 
 export function NormalizeAccordionItemTableComponentOptions(

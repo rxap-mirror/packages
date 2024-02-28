@@ -1,3 +1,7 @@
+import {
+  DataProperty,
+  UpstreamOptions,
+} from '@rxap/ts-morph';
 import { AccordionHeader } from '../../../lib/accordion-header';
 import { AccordionIdentifier } from '../../../lib/accordion-identifier';
 import { BaseAccordionItem } from '../../../lib/accordion-item';
@@ -10,4 +14,6 @@ export interface AccordionComponentOptions extends AngularOptions {
   persistent?: Persistent;
   header?: AccordionHeader;
   identifier?: AccordionIdentifier;
+  upstream?: UpstreamOptions;
+  propertyList?: DataProperty[];
 }

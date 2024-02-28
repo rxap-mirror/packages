@@ -150,7 +150,7 @@ export function CoerceToRowDtoMethod(
       (options.rowIdProperty === null ?
         '(pageIndex * pageSize + index).toFixed(0)' :
         `item.${ options.rowIdProperty ?? 'uuid' }`) + ',\n  ',
-      options.propertyList?.map(GetPageOperationColumnToCodeText).join(',\n  ') ?? '',
+      options.propertyList?.filter(p => p.name !== '__rowId').map(GetPageOperationColumnToCodeText).join(',\n  ') ?? '',
       '};',
     ],
   });

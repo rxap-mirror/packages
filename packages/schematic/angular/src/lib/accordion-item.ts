@@ -2,10 +2,10 @@ import { SchematicsException } from '@angular-devkit/schematics';
 import {
   DataProperty,
   NormalizeDataProperty,
+  NormalizeDataPropertyList,
   NormalizedDataProperty,
   NormalizedTypeImport,
   NormalizedUpstreamOptions,
-  NormalizeTypeImport,
   NormalizeTypeImportList,
   NormalizeUpstreamOptions,
   TypeImport,
@@ -14,8 +14,8 @@ import {
 import {
   capitalize,
   classify,
+  CoerceArrayItems,
   CoercePrefix,
-  CoerceSuffix,
   dasherize,
   NonNullableSelected,
   Normalized,
@@ -61,13 +61,15 @@ export interface BaseAccordionItem {
   template?: string;
   identifier?: AccordionIdentifier;
   upstream?: UpstreamOptions;
+  propertyList?: DataProperty[];
 }
 
-export interface NormalizedBaseAccordionItem extends Readonly<NonNullableSelected<Normalized<BaseAccordionItem>, 'kind'>> {
+export interface NormalizedBaseAccordionItem extends Readonly<NonNullableSelected<Normalized<Omit<BaseAccordionItem, 'propertyList'>>, 'kind'>> {
   importList: NormalizedTypeImport[];
   handlebars: Handlebars.TemplateDelegate<{ item: NormalizedBaseAccordionItem }>,
   identifier: NormalizedAccordionIdentifier | null;
   upstream: NormalizedUpstreamOptions | null;
+  propertyList: Array<NormalizedDataProperty>;
 }
 
 export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedBaseAccordionItem {
@@ -94,9 +96,15 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
       `The item type '${ kind }' for item '${ name }' is not supported`,
     );
   }
+  const propertyList = item.propertyList ?? [];
+  const identifier = NormalizeAccordionIdentifier(item.identifier);
+  if (identifier) {
+    CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name, true);
+  }
   return Object.freeze({
+    propertyList: NormalizeDataPropertyList(propertyList),
     upstream: NormalizeUpstreamOptions(item.upstream),
-    identifier: NormalizeAccordionIdentifier(item.identifier),
+    identifier,
     title,
     description,
     name: dasherize(name),
@@ -122,7 +130,7 @@ export function IsDataGridAccordionItem(item: BaseAccordionItem): item is DataGr
   return item.kind === AccordionItemKinds.DataGrid;
 }
 
-export interface NormalizedDataGridAccordionItem extends Readonly<Normalized<Omit<DataGridAccordionItem, 'dataGrid'>> & NormalizedBaseAccordionItem> {
+export interface NormalizedDataGridAccordionItem extends Readonly<Normalized<Omit<DataGridAccordionItem, 'dataGrid' | 'propertyList'>> & NormalizedBaseAccordionItem> {
   dataGrid: NormalizedDataGridOptions;
 }
 
@@ -162,7 +170,7 @@ export function IsSwitchAccordionItem(item: BaseAccordionItem): item is SwitchAc
   return item.kind === AccordionItemKinds.Switch;
 }
 
-export interface NormalizedSwitchAccordionItem extends Readonly<Normalized<Omit<SwitchAccordionItem, 'switch'>> & NormalizedBaseAccordionItem> {
+export interface NormalizedSwitchAccordionItem extends Readonly<Normalized<Omit<SwitchAccordionItem, 'switch' | 'propertyList'>> & NormalizedBaseAccordionItem> {
   switch: Readonly<{
     property: NormalizedDataProperty;
     case: ReadonlyArray<{
@@ -283,7 +291,7 @@ export function IsTableAccordionItem(item: BaseAccordionItem): item is TableAcco
   return item.kind === AccordionItemKinds.Table;
 }
 
-export interface NormalizedTableAccordionItem extends Readonly<Normalized<Omit<TableAccordionItem, 'table'>> & NormalizedBaseAccordionItem> {
+export interface NormalizedTableAccordionItem extends Readonly<Normalized<Omit<TableAccordionItem, 'table' | 'propertyList'>> & NormalizedBaseAccordionItem> {
   table: NormalizedTableOptions;
 }
 
@@ -314,7 +322,7 @@ export function IsTreeTableAccordionItem(item: BaseAccordionItem): item is TreeT
   return item.kind === AccordionItemKinds.TreeTable;
 }
 
-export interface NormalizedTreeTableAccordionItem extends Readonly<Normalized<Omit<TreeTableAccordionItem, 'table'>> & NormalizedBaseAccordionItem> {
+export interface NormalizedTreeTableAccordionItem extends Readonly<Normalized<Omit<TreeTableAccordionItem, 'table' | 'propertyList'>> & NormalizedBaseAccordionItem> {
   table: NormalizedTreeTableOptions;
 }
 

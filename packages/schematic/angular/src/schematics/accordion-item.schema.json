@@ -35,6 +35,13 @@
     },
     "upstream": {
       "$ref": "#/definitions/upstream"
+    },
+    "propertyList": {
+      "alias": "property",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/property"
+      }
     }
   },
   "definitions": {
@@ -43,6 +50,9 @@
     },
     "upstream": {
       "$ref": "./upstream.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
     }
   },
   "additionalProperties": true

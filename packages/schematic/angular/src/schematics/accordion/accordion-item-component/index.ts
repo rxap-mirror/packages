@@ -62,7 +62,7 @@ import { AccordionItemComponentOptions } from './schema';
 export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'kind'>;
 
 export interface NormalizedAccordionItemStandaloneComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name' | 'identifier' | 'upstream'>, NormalizedBaseAccordionItem {
+  extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name' | 'identifier' | 'upstream' | 'propertyList'>, NormalizedBaseAccordionItem {
   componentName: string;
   controllerName: string;
 }
@@ -156,6 +156,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
     identifier,
     upstream,
     nestModule,
+    propertyList,
   } = normalizedOptions;
 
   const operationId = buildGetOperationId(normalizedOptions);
@@ -172,7 +173,8 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         shared,
         idProperty: identifier.property,
         upstream,
-        nestModule
+        nestModule,
+        propertyList
       }),
     );
   } else {
@@ -183,7 +185,9 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         project,
         feature,
         shared,
+        upstream,
         nestModule,
+        propertyList
       }),
     );
   }

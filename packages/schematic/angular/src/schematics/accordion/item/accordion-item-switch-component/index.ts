@@ -22,7 +22,7 @@ import {
 import { AccordionItemSwitchComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemSwitchComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch' | 'importList'>, Omit<NormalizedSwitchAccordionItem, 'kind'> {
+  extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch' | 'importList' | 'propertyList'>, Omit<NormalizedSwitchAccordionItem, 'kind'> {
 }
 
 export function NormalizeAccordionItemSwitchComponentOptions(

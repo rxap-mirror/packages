@@ -51,7 +51,7 @@ import {
 import { AccordionItemDataGridComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemDataGridComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemDataGridComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'dataGrid' | 'importList'>, Omit<NormalizedDataGridAccordionItem, 'kind'> {
+  extends Omit<Readonly<Normalized<AccordionItemDataGridComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'dataGrid' | 'importList' | 'propertyList'>, Omit<NormalizedDataGridAccordionItem, 'kind'> {
 }
 
 export function NormalizeAccordionItemDataGridComponentOptions(

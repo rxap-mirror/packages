@@ -17,7 +17,6 @@ import {
   CoerceImports,
   CoerceInterfaceRule,
   CoerceMethodClass,
-  CoerceOperation,
   CoerceParameterDeclaration,
   CoerceStatements,
   HasComponent,
@@ -37,12 +36,15 @@ import {
   CoerceClassMethod,
   CoerceClassProperty,
   NormalizeDataProperty,
+  NormalizeDataPropertyList,
   NormalizedDataProperty,
+  NormalizeUpstreamOptions,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
 } from '@rxap/ts-morph';
 import {
   classify,
+  CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
 import {
@@ -89,6 +91,7 @@ export interface NormalizedAccordionComponentOptions
   header: NormalizedAccordionHeader | null;
   identifier: NormalizedAccordionIdentifier | null;
   controllerName: string;
+  propertyList: NormalizedDataProperty[];
 }
 
 function hasItemWithPermission(itemList: ReadonlyArray<NormalizedBaseAccordionItem>): boolean {
@@ -117,6 +120,11 @@ function NormalizeOptions(
     controllerName: componentName,
     nestModule,
   });
+  const propertyList = options.propertyList ?? [];
+  const identifier = NormalizeAccordionIdentifier(options.identifier);
+  if (identifier) {
+    CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name, true);
+  }
   return Object.freeze({
     ...normalizedAngularOptions,
     controllerName,
@@ -128,7 +136,9 @@ function NormalizeOptions(
     persistent: options.persistent ? NormalizePersistent(options.persistent) : null,
     withPermission: hasItemWithPermission(itemList),
     header: NormalizeAccordionHeader(options.header),
-    identifier: NormalizeAccordionIdentifier(options.identifier),
+    identifier,
+    upstream: NormalizeUpstreamOptions(options.upstream),
+    propertyList: NormalizeDataPropertyList(propertyList),
   });
 }
 
@@ -456,12 +466,12 @@ function itemListRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 }
 
 function buildPropertyList(normalizedOptions: NormalizedAccordionComponentOptions): NormalizedDataProperty[] {
-  const propertyList: NormalizedDataProperty[] = [];
   const {
     persistent,
     itemList,
     header,
     identifier,
+    propertyList,
   } = normalizedOptions;
   if (persistent && IsNormalizedPropertyPersistent(persistent)) {
     if (!propertyList.some((property) => property.name === persistent.property.name)) {
@@ -511,6 +521,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
     controllerName,
     identifier,
     nestModule,
+    upstream,
   } = normalizedOptions;
 
   const operationId = buildGetOperationId(normalizedOptions);
@@ -530,6 +541,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
         shared: false,
         propertyList: buildPropertyList(normalizedOptions),
         idProperty: identifier.property,
+        upstream,
       }),
     );
   } else {
@@ -542,6 +554,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
         nestModule,
         shared: false,
         propertyList: buildPropertyList(normalizedOptions),
+        upstream,
       }),
     );
   }

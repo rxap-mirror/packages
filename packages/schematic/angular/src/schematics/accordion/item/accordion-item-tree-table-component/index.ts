@@ -41,7 +41,7 @@ import {
 import { AccordionItemTreeTableComponentOptions } from './schema';
 
 export interface NormalizedAccordionItemTreeTableComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList'>, Omit<NormalizedTreeTableAccordionItem, 'kind'> {
+  extends Omit<Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList' | 'propertyList'>, Omit<NormalizedTreeTableAccordionItem, 'kind'> {
 }
 
 export function NormalizeAccordionItemTreeTableComponentOptions(

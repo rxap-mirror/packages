@@ -65,8 +65,8 @@ export function NormalizeDataProperty(property: string | Readonly<DataProperty>,
   });
 }
 
-export function NormalizeDataPropertyList(propertyList?: Array<string | DataProperty>, defaultType = 'unknown'): ReadonlyArray<NormalizedDataProperty> {
-  return Object.freeze(propertyList?.map(property => NormalizeDataProperty(property, defaultType)) ?? []);
+export function NormalizeDataPropertyList(propertyList?: Array<string | DataProperty>, defaultType = 'unknown'): Array<NormalizedDataProperty> {
+  return propertyList?.map(property => NormalizeDataProperty(property, defaultType)) ?? [];
 }
 
 export function NormalizeDataPropertyToPropertySignatureStructure(
