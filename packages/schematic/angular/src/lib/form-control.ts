@@ -446,6 +446,7 @@ export interface TableSelectFormControl extends BaseFormControl {
   toDisplay?: TableSelectToFunction;
   toValue?: TableSelectToFunction;
   upstream?: UpstreamOptions;
+  resolver?: { upstream?: UpstreamOptions }
 }
 
 export interface NormalizedTableSelectFormControl
@@ -458,6 +459,7 @@ export interface NormalizedTableSelectFormControl
   toDisplay: NormalizedTableSelectToFunction;
   toValue: NormalizedTableSelectToFunction;
   upstream: NormalizedUpstreamOptions | null;
+  resolver: { upstream: NormalizedUpstreamOptions | null } | null;
 }
 
 export function IsNormalizedTableSelectFormControl(template: NormalizedBaseFormControl): template is NormalizedTableSelectFormControl {
@@ -496,6 +498,7 @@ export function NormalizeTableSelectFormControl(
   control.type ??= toValue.property.type;
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
+    resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
     importList: NormalizeTypeImportList(importList),
     kind: FormControlKinds.TABLE_SELECT,
     formField,

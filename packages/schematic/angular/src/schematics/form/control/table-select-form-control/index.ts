@@ -7,6 +7,8 @@ import {
   CoerceFormProviderRule,
   CoerceTableDataSourceRule,
   CoerceTableSelectOperationRule,
+  CoerceTableSelectResolveValueMethodRule,
+  CoerceTableSelectValueResolveOperationRule,
   EnforceUseFormControlOrderRule,
   FormDefinitionControl,
 } from '@rxap/schematics-ts-morph';
@@ -18,6 +20,7 @@ import {
 import {
   CoerceDecorator,
   CoerceImports,
+  NormalizedUpstreamOptions,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
@@ -48,6 +51,7 @@ import { TableSelectFormControlOptions } from './schema';
 export interface NormalizedTableSelectFormControlOptions
   extends Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList' | 'propertyList'>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl> {
   controllerName: string;
+  resolver: { upstream: NormalizedUpstreamOptions | null } | null;
 }
 
 export function NormalizeTableSelectFormControlOptions(
@@ -111,8 +115,140 @@ function buildOptionsOperationId(normalizedOptions: NormalizedTableSelectFormCon
   );
 }
 
-export default function (options: TableSelectFormControlOptions) {
-  const normalizedOptions = NormalizeTableSelectFormControlOptions(options);
+function buildDtoSuffix({ context, name }: NormalizedTableSelectFormControlOptions) {
+  return joinWithDash([ context, name, 'table-select' ]);
+}
+
+function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
+
+  const {
+    name,
+    project,
+    feature,
+    directory,
+    formName,
+    type,
+    isArray,
+    state,
+    isRequired,
+    validatorList,
+    nestModule,
+    controllerName,
+    shared,
+    context,
+    scope,
+    resolver,
+    columnList,
+    propertyList,
+    toDisplay,
+    toValue
+  } = normalizedOptions;
+  const { upstream } = resolver ?? {};
+
+  const resolveValueOperationName = [ 'resolve', name, 'control', 'value' ].join(
+    '-',
+  );
+  const resolveValueOperationPath = [ 'control', name, 'resolve', ':value' ].join(
+    '/',
+  );
+  const resolveValueOperationId = buildOperationId(
+    normalizedOptions,
+    resolveValueOperationName,
+    BuildNestControllerName({
+      controllerName,
+      nestModule,
+    }),
+  );
+  const resolveValueName = [ dasherize(name), 'table-select', 'value', 'resolver' ].join('-');
+  const resolveValueMethodName = classify(
+    [ resolveValueName, 'method' ].join('-'),
+  );
+  const resolveValueMethodImportPath = `./methods/${ resolveValueName }.method`;
+  const resolveValueMethodDirectory = join(directory ?? '', 'methods');
+
+  return chain([
+    CoerceTableSelectValueResolveOperationRule({
+      project,
+      feature,
+      nestModule,
+      controllerName,
+      upstream,
+      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
+      rowValueProperty: toValue.property.name,
+      rowDisplayProperty: toDisplay.property.name,
+      operationName: resolveValueOperationName,
+      path: resolveValueOperationPath,
+      dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
+      context,
+    }),
+    CoerceFormProviderRule({
+      project,
+      feature,
+      directory,
+      providerObject: resolveValueMethodName,
+      importStructures: [
+        {
+          namedImports: [ resolveValueMethodName ],
+          moduleSpecifier: resolveValueMethodImportPath,
+        },
+      ],
+    }),
+    CoerceTableSelectResolveValueMethodRule({
+      scope,
+      project,
+      feature,
+      directory: resolveValueMethodDirectory,
+      shared,
+      name: resolveValueName,
+      operationId: resolveValueOperationId,
+    }),
+    CoerceFormDefinitionControl({
+      project,
+      feature,
+      directory,
+      formName,
+      name,
+      type,
+      isArray,
+      state,
+      isRequired,
+      validatorList,
+      coerceFormControl: (
+        sourceFile: SourceFile,
+        classDeclaration: ClassDeclaration,
+        control: Required<FormDefinitionControl>,
+      ) => {
+        const {
+          propertyDeclaration,
+          decoratorDeclaration,
+        } =
+          CoerceFormControl(sourceFile, classDeclaration, control);
+
+        CoerceDecorator(propertyDeclaration, 'UseTableSelectMethod').set({
+          arguments: [ resolveValueMethodName ],
+        });
+        CoerceImports(sourceFile, {
+          namedImports: [ resolveValueMethodName ],
+          moduleSpecifier: resolveValueMethodImportPath,
+        });
+        CoerceImports(sourceFile, {
+          namedImports: [
+            'UseTableSelectMethod',
+          ],
+          moduleSpecifier: '@digitaix/eurogard-table-select',
+        });
+
+        return {
+          propertyDeclaration,
+          decoratorDeclaration,
+        };
+      },
+    }),
+  ]);
+}
+
+function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
+
   const {
     name,
     project,
@@ -135,26 +271,10 @@ export default function (options: TableSelectFormControlOptions) {
     propertyList,
     upstream,
   } = normalizedOptions;
-  printOptions(normalizedOptions);
 
   const optionsOperationName = buildOptionsOperationName(normalizedOptions);
   const optionsOperationPath = buildOptionsOperationPath(normalizedOptions);
   const optionsOperationId = buildOptionsOperationId(normalizedOptions);
-
-  // const resolveValueOperationName = [ 'resolve', name, 'option', 'value' ].join(
-  //   '-',
-  // );
-  // const resolveValueOperationPath = [ 'options', name, 'resolve', ':value' ].join(
-  //   '/',
-  // );
-  // const resolveValueOperationId = buildOperationId(
-  //   normalizedOptions,
-  //   resolveValueOperationName,
-  //   BuildNestControllerName({
-  //     controllerName,
-  //     nestModule,
-  //   }),
-  // );
 
   const tableDataSourceName = classify(
     [ name, 'select-table', 'data-source' ].join('-'),
@@ -164,152 +284,116 @@ export default function (options: TableSelectFormControlOptions) {
   ) }-select-table.data-source`;
   const tableDataSourceDirectory = join(directory ?? '', 'data-sources');
 
-  // const resolveValueMethodName = classify(
-  //   [ dasherize(name), 'table-select', 'value', 'resolver', 'method' ].join('-'),
-  // );
-  // const resolveValueMethodImportPath = `./methods/${ dasherize(
-  //   name,
-  // ) }-table-select-value-resolver.method`;
-  // const resolveValueMethodDirectory = join(directory ?? '', 'methods');
+  return chain([
+    CoerceTableSelectOperationRule({
+      project,
+      feature,
+      nestModule,
+      controllerName,
+      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
+      operationName: optionsOperationName,
+      path: optionsOperationPath,
+      dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
+      rowValueProperty: toValue.property.name,
+      rowDisplayProperty: toDisplay.property.name,
+      context,
+      upstream
+    }),
+    CoerceFormProviderRule({
+      project,
+      feature,
+      directory,
+      providerObject: tableDataSourceName,
+      importStructures: [
+        {
+          namedImports: [ tableDataSourceName ],
+          moduleSpecifier: tableDataSourceImportPath,
+        },
+      ],
+    }),
+    CoerceTableDataSourceRule({
+      scope,
+      project,
+      feature,
+      directory: tableDataSourceDirectory,
+      shared,
+      name: [ name, 'select-table' ].join('-'),
+      operationId: optionsOperationId,
+    }),
+    CoerceFormDefinitionControl({
+      project,
+      feature,
+      directory,
+      formName,
+      name,
+      type,
+      isArray,
+      state,
+      isRequired,
+      validatorList,
+      coerceFormControl: (
+        sourceFile: SourceFile,
+        classDeclaration: ClassDeclaration,
+        control: Required<FormDefinitionControl>,
+      ) => {
+        const {
+          propertyDeclaration,
+          decoratorDeclaration,
+        } =
+          CoerceFormControl(sourceFile, classDeclaration, control);
 
-  const tableResponseDtoName = joinWithDash([ context, name, 'table-select' ]);
+        const tableSelectOperationResponseClassName = OperationIdToResponseClassName(optionsOperationId);
+
+        CoerceImports(sourceFile, {
+          namedImports: [ tableSelectOperationResponseClassName ],
+          moduleSpecifier: OperationIdToResponseClassImportPath(optionsOperationId),
+        });
+
+        CoerceDecorator(propertyDeclaration, 'UseTableSelectDataSource').set({
+          arguments: [ tableDataSourceName ],
+        });
+        CoerceDecorator(propertyDeclaration, `UseTableSelectToDisplay<${tableSelectOperationResponseClassName}['rows'][number]>`).set({
+          arguments: [ `item => item.${ toDisplay.property.name }` ],
+        });
+        CoerceDecorator(propertyDeclaration, `UseTableSelectToValue<${tableSelectOperationResponseClassName}['rows'][number]>`).set({
+          arguments: [ `item => item.${ toValue.property.name }` ],
+        });
+        CoerceImports(sourceFile, {
+          namedImports: [ tableDataSourceName ],
+          moduleSpecifier: tableDataSourceImportPath,
+        });
+        CoerceDecorator(propertyDeclaration, 'UseTableSelectColumns').set({
+          arguments: [ TableColumnListToTableSelectColumnMap(columnList) ],
+        });
+        CoerceImports(sourceFile, {
+          namedImports: [
+            'UseTableSelectDataSource',
+            'UseTableSelectColumns',
+            'UseTableSelectToDisplay',
+            'UseTableSelectToValue'
+          ],
+          moduleSpecifier: '@digitaix/eurogard-table-select',
+        });
+
+        return {
+          propertyDeclaration,
+          decoratorDeclaration,
+        };
+      },
+    }),
+  ]);
+
+}
+
+export default function (options: TableSelectFormControlOptions) {
+  const normalizedOptions = NormalizeTableSelectFormControlOptions(options);
+  printOptions(normalizedOptions);
 
   return () => {
     return chain([
       () => console.group('\x1b[32m[@rxap/schematics-angular:table-select-form-control]\x1b[0m'),
-      CoerceTableSelectOperationRule({
-        project,
-        feature,
-        nestModule,
-        controllerName,
-        propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
-        operationName: optionsOperationName,
-        path: optionsOperationPath,
-        dtoClassNameSuffix: tableResponseDtoName,
-        context,
-        upstream
-      }),
-      // CoerceTableSelectValueResolveOperationRule({
-      //   project,
-      //   feature,
-      //   nestModule,
-      //   controllerName,
-      //   operationName: resolveValueOperationName,
-      //   path: resolveValueOperationPath,
-      //   responseDtoName: tableResponseDtoName,
-      //   context,
-      // }),
-      CoerceFormProviderRule({
-        project,
-        feature,
-        directory,
-        providerObject: tableDataSourceName,
-        importStructures: [
-          {
-            namedImports: [ tableDataSourceName ],
-            moduleSpecifier: tableDataSourceImportPath,
-          },
-        ],
-      }),
-      // CoerceFormProviderRule({
-      //   project,
-      //   feature,
-      //   directory,
-      //   providerObject: resolveValueMethodName,
-      //   importStructures: [
-      //     {
-      //       namedImports: [ resolveValueMethodName ],
-      //       moduleSpecifier: resolveValueMethodImportPath,
-      //     },
-      //   ],
-      // }),
-      CoerceTableDataSourceRule({
-        scope,
-        project,
-        feature,
-        directory: tableDataSourceDirectory,
-        shared,
-        name: [ name, 'select-table' ].join('-'),
-        operationId: optionsOperationId,
-      }),
-      // CoerceTableSelectResolveValueMethodRule({
-      //   scope,
-      //   project,
-      //   feature,
-      //   directory: resolveValueMethodDirectory,
-      //   shared,
-      //   name: [ name, 'table-select', 'value', 'resolver' ].join('-'),
-      //   operationId: resolveValueOperationId,
-      // }),
-      CoerceFormDefinitionControl({
-        project,
-        feature,
-        directory,
-        formName,
-        name,
-        type,
-        isArray,
-        state,
-        isRequired,
-        validatorList,
-        coerceFormControl: (
-          sourceFile: SourceFile,
-          classDeclaration: ClassDeclaration,
-          control: Required<FormDefinitionControl>,
-        ) => {
-          const {
-            propertyDeclaration,
-            decoratorDeclaration,
-          } =
-            CoerceFormControl(sourceFile, classDeclaration, control);
-
-          const tableSelectOperationResponseClassName = OperationIdToResponseClassName(optionsOperationId);
-
-          CoerceImports(sourceFile, {
-            namedImports: [ tableSelectOperationResponseClassName ],
-            moduleSpecifier: OperationIdToResponseClassImportPath(optionsOperationId),
-          });
-
-          CoerceDecorator(propertyDeclaration, 'UseTableSelectDataSource').set({
-            arguments: [ tableDataSourceName ],
-          });
-          CoerceDecorator(propertyDeclaration, `UseTableSelectToDisplay<${tableSelectOperationResponseClassName}['rows'][number]>`).set({
-            arguments: [ `item => item.${ toDisplay.property.name }` ],
-          });
-          CoerceDecorator(propertyDeclaration, `UseTableSelectToValue<${tableSelectOperationResponseClassName}['rows'][number]>`).set({
-            arguments: [ `item => item.${ toValue.property.name }` ],
-          });
-          CoerceImports(sourceFile, {
-            namedImports: [ tableDataSourceName ],
-            moduleSpecifier: tableDataSourceImportPath,
-          });
-          // CoerceDecorator(propertyDeclaration, 'UseTableSelectMethod').set({
-          //   arguments: [ resolveValueMethodName ],
-          // });
-          // CoerceImports(sourceFile, {
-          //   namedImports: [ resolveValueMethodName ],
-          //   moduleSpecifier: resolveValueMethodImportPath,
-          // });
-          CoerceDecorator(propertyDeclaration, 'UseTableSelectColumns').set({
-            arguments: [ TableColumnListToTableSelectColumnMap(columnList) ],
-          });
-          CoerceImports(sourceFile, {
-            namedImports: [
-              'UseTableSelectDataSource',
-              'UseTableSelectColumns',
-              // 'UseTableSelectMethod',
-              'UseTableSelectToDisplay',
-              'UseTableSelectToValue'
-            ],
-            moduleSpecifier: '@digitaix/eurogard-table-select',
-          });
-
-          return {
-            propertyDeclaration,
-            decoratorDeclaration,
-          };
-        },
-      }),
+      tableSelectDataSourceRule(normalizedOptions),
+      tableSelectResolveRule(normalizedOptions),
       EnforceUseFormControlOrderRule(normalizedOptions),
       () => console.groupEnd(),
     ]);

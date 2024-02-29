@@ -24,7 +24,7 @@ export function CoerceTableSelectResolveValueMethodRule(options: CoerceTableSele
     tsMorphTransform: (project, sourceFile, classDeclaration) => {
       const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
 
-      CoerceParameterDeclaration(constructorDeclaration, 'remoteMethod').set({
+      CoerceParameterDeclaration(constructorDeclaration, 'method').set({
         type: OperationIdToClassName(operationId),
         isReadonly: true,
         scope: Scope.Private,
@@ -36,7 +36,7 @@ export function CoerceTableSelectResolveValueMethodRule(options: CoerceTableSele
 
       return {
         statements: [
-          'return this.remoteMethod.call({ parameters: { ...(parameters.context ?? {}), value: parameters.value } });',
+          'return this.method.call({ parameters: { ...(parameters.context ?? {}), value: parameters.value } });',
         ],
       };
     },

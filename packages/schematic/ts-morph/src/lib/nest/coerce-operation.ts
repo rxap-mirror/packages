@@ -17,6 +17,7 @@ import {
 import {
   camelize,
   coerceArray,
+  CoercePrefix,
   CoerceSuffix,
   dasherize,
   noop,
@@ -44,11 +45,6 @@ import {
 } from './coerce-dto-class';
 import { CoerceNestController } from './coerce-nest-controller';
 import { DtoClassProperty } from './dto-class-property';
-
-export interface BuildUpstreamGetParametersImplementationOutput {
-  commandParameter: string | WriterFunction;
-  statements: Array<string | WriterFunction>;
-}
 
 export interface CoerceOperationOptions<Options = Record<string, any>> extends TsMorphNestProjectTransformOptions {
   controllerName: string;
@@ -173,7 +169,7 @@ export function BuildOperationDtoClassName(controllerName: string, options: Read
     dtoClassName,
   } = options;
   return dtoClassName ?? (
-    dtoClassNameSuffix ? CoerceSuffix(controllerName, dtoClassNameSuffix) : controllerName
+    dtoClassNameSuffix ? CoerceSuffix(controllerName, CoercePrefix(dtoClassNameSuffix, '-')) : controllerName
   );
 }
 

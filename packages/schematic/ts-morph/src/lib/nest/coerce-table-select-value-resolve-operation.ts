@@ -1,4 +1,8 @@
 import {
+  IsNormalizedOpenApiUpstreamOptions,
+  NormalizeTypeImport,
+} from '@rxap/ts-morph';
+import {
   ClassDeclaration,
   SourceFile,
   WriterFunction,
@@ -9,56 +13,56 @@ import {
   CoerceOperationOptions,
   TransformOperation,
 } from './coerce-operation';
-import { CoerceRowDtoClass } from './coerce-row-dto-class';
 
 export interface CoerceTableSelectValueResolveOperationOptions
-  extends Omit<CoerceOperationOptions, 'tsMorphTransform'> {
-  /**
-   * The base name of the page and row DTO class name. Defaults to the controller name
-   */
-  responseDtoName?: string;
+  extends CoerceOperationOptions {
+  rowDisplayProperty?: string;
+  rowValueProperty?: string;
 }
 
-export function BuiltTableSelectValueResolveDtoDataMapperImplementation(
-  classDeclaration: ClassDeclaration,
-  moduleSourceFile: SourceFile,
-  dto: CoerceDtoClassOutput | null,
-  options: Readonly<CoerceOperationOptions>,
-): TransformOperation<string | WriterFunction> {
+export function BuildTableSelectValueResolveUpstreamGetParametersImplementation(
+                                                             classDeclaration: ClassDeclaration,
+                                                             moduleSourceFile: SourceFile,
+                                                             dto: CoerceDtoClassOutput | null,
+                                                             options: Readonly<CoerceTableSelectValueResolveOperationOptions>,
+                                                           ): TransformOperation<string | WriterFunction> {
   return () => {
-    if (dto) {
-      return `this.to${ dto.className }({} as any),`;
+    const { upstream } = options;
+    if (upstream) {
+      if (IsNormalizedOpenApiUpstreamOptions(upstream)) {
+        if (upstream.mapper?.value) {
+          return `{ ${ upstream.mapper.value }: value }`;
+        }
+      }
+      return '{ value }';
     }
-    return '{}';
+    return '';
   };
-}
-
-export function CoerceTableSelectValueResolveOperationDtoClass(
-  classDeclaration: ClassDeclaration,
-  controllerName: string,
-  moduleSourceFile: SourceFile,
-  options: Readonly<CoerceTableSelectValueResolveOperationOptions>,
-): CoerceDtoClassOutput | null {
-  const {
-    responseDtoName = controllerName,
-  } = options;
-  const sourceFile = classDeclaration.getSourceFile();
-  const project = sourceFile.getProject();
-  return CoerceRowDtoClass({
-    project,
-    name: responseDtoName,
-  });
 }
 
 export function CoerceTableSelectValueResolveOperationRule(options: CoerceTableSelectValueResolveOperationOptions) {
   const {
-    coerceOperationDtoClass = CoerceTableSelectValueResolveOperationDtoClass,
-    buildDtoReturnImplementation = BuiltTableSelectValueResolveDtoDataMapperImplementation,
+    buildUpstreamGetParametersImplementation = BuildTableSelectValueResolveUpstreamGetParametersImplementation,
+    propertyList = [],
+    rowDisplayProperty = 'name',
+    rowValueProperty = 'uuid',
   } = options;
+
+  propertyList.unshift({
+    name: '__display',
+    type: NormalizeTypeImport('string'),
+    isArray: false,
+    source: rowDisplayProperty,
+  });
+  propertyList.unshift({
+    name: '__value',
+    type: NormalizeTypeImport('string'),
+    isArray: false,
+    source: rowValueProperty,
+  });
 
   return CoerceOperation({
     ...options,
-    coerceOperationDtoClass,
-    buildDtoReturnImplementation,
+    buildUpstreamGetParametersImplementation,
   });
 }

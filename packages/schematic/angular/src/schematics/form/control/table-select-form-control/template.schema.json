@@ -57,6 +57,14 @@
         },
         "upstream": {
           "$ref": "#/definitions/upstream"
+        },
+        "resolver": {
+          "type": "object",
+          "properties": {
+            "upstream": {
+              "$ref": "#/definitions/upstream"
+            }
+          }
         }
       }
     }

@@ -35,6 +35,7 @@ export interface CommandMapper {
   sortDirection?: string;
   list?: string;
   total?: string;
+  value?: string;
   filter?: {
     eq: string;
     join: string;
@@ -58,6 +59,7 @@ export function NormalizeCommandMapper(mapper?: CommandMapper | null): Normalize
     sortBy: mapper.sortBy ?? null,
     list: mapper.list ?? null,
     total: mapper.total ?? null,
+    value: mapper.value ?? null,
     sortDirection: mapper.sortDirection ?? null,
     filter: mapper.filter && Object.keys(mapper.filter ?? {}).length ? {
       eq: mapper.filter.eq,
