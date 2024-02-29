@@ -6,5 +6,5 @@ export function FindByNameFunction<
   CompareTo extends { name: string },
   Node extends { getName(): string | undefined },
 >(compareTo: CompareTo): (node: Node) => boolean {
-  return node => node.getName()?.trim().replace(/<[^>]+>$/, '') === compareTo.name.replace(/<[^>]+>$/, '');
+  return node => node.getName()?.trim() === compareTo.name;
 }

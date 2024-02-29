@@ -15,6 +15,11 @@ export function CoerceDecorator(
   structure: Partial<Omit<OptionalKind<DecoratorStructure>, 'name'>> = {},
   compareTo: FindFunctionFactory<Partial<DecoratorStructure> & { name: string }, Decorator> = FindByNameFunction,
 ): Decorator {
+  const match = name.match(/(.+)<(.+)>/);
+  if (match) {
+    name = match[1];
+    structure.typeArguments = match[2].split(',');
+  }
   let decorator = decoratableNode.getDecorator(compareTo({
     ...structure,
     name,
