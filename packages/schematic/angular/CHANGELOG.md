@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.15...@rxap/schematic-angular@16.2.0-dev.16) (2024-02-29)
+
+### Bug Fixes
+
+- improve operation naming and return types ([16ea0b3](https://gitlab.com/rxap/packages/commit/16ea0b3eb2f7679c101d034e72f8013f5513ecb6))
+
+### Features
+
+- generate table select resolve method ([5db6649](https://gitlab.com/rxap/packages/commit/5db6649cac0ff8dd36170679fc726057fa5d57d1))
+
 # [16.2.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.14...@rxap/schematic-angular@16.2.0-dev.15) (2024-02-28)
 
 ### Bug Fixes

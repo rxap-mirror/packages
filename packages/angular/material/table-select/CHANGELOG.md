@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.0.2-dev.0...@rxap/ngx-material-table-select@16.1.0-dev.0) (2024-02-29)
+
+### Features
+
+- add UseTableSelectMethod function ([53ddb3a](https://gitlab.com/rxap/packages/commit/53ddb3aaab58d2671bcd366e7ddf459b02b5fae2))
+
 ## [16.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.0.1...@rxap/ngx-material-table-select@16.0.2-dev.0) (2024-02-09)
 
 ### Bug Fixes
