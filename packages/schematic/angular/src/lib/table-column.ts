@@ -285,6 +285,10 @@ export function NormalizeTableColumn(
   if (filterControl && !hasFilter) {
     hasFilter = true;
   }
+  const normalizedFilterControl = filterControl ? NormalizeFormDefinitionControl(filterControl) : null;
+  if (normalizedFilterControl) {
+    CoerceArrayItems(importList, normalizedFilterControl.importList, (a, b) => a.name === b.name);
+  }
   return Object.freeze({
     ...NormalizeDataProperty({
       ...column,
@@ -307,7 +311,7 @@ export function NormalizeTableColumn(
     template,
     importList: NormalizeTypeImportList(importList),
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'table', 'templates')),
-    filterControl: filterControl ? NormalizeFormDefinitionControl(filterControl) : null,
+    filterControl: normalizedFilterControl,
   });
 }
 

@@ -270,7 +270,7 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
       moduleSpecifier: '@angular/common',
     });
   }
-  if (normalizeSwitch.case.length > 1) {
+  if (normalizeSwitch.case.length) {
     importList.push({
       name: 'NgSwitchCase',
       moduleSpecifier: '@angular/common',

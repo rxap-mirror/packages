@@ -31,7 +31,7 @@ export function BuildTableSelectValueResolveUpstreamGetParametersImplementation(
     if (upstream) {
       if (IsNormalizedOpenApiUpstreamOptions(upstream)) {
         if (upstream.mapper?.value) {
-          return `{ ${ upstream.mapper.value }: value }`;
+          return `{ parameters: { ${ upstream.mapper.value }: value } }`;
         }
       }
       return '{ value }';
