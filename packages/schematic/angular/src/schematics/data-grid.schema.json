@@ -37,6 +37,16 @@
     },
     "upstream": {
       "$ref": "#/definitions/upstream"
+    },
+    "propertyList": {
+      "alias": "property",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/property"
+      }
+    },
+    "identifier": {
+      "$ref": "#/definitions/accordionIdentifier"
     }
   },
   "definitions": {
@@ -45,6 +55,12 @@
     },
     "upstream": {
       "$ref": "./upstream.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
+    },
+    "accordionIdentifier": {
+      "$ref": "./accordion-identifier.schema.json"
     }
   }
 }

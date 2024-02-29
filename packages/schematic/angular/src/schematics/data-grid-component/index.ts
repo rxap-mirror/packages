@@ -29,15 +29,10 @@ import {
   CoerceComponentInput,
   CoerceImports,
   CoercePropertyDeclaration,
-  NormalizeDataProperty,
-  NormalizedDataProperty,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
-import {
-  CoerceArrayItems,
-  Normalized,
-} from '@rxap/utilities';
+import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -52,7 +47,6 @@ import {
   PrintAngularOptions,
 } from '../../lib/angular-options';
 import { BackendTypes } from '../../lib/backend-types';
-import { NormalizedDataGridItem } from '../../lib/data-grid-item';
 import { DataGridMode } from '../../lib/data-grid-mode';
 import {
   NormalizeDataGridOptions,
@@ -66,12 +60,12 @@ import {
 import { DataGridComponentOptions } from './schema';
 
 export interface NormalizedDataGridComponentOptions
-  extends Omit<Readonly<Normalized<DataGridComponentOptions> & NormalizedAngularOptions & NormalizedDataGridOptions>, 'itemList'> {
+  extends Readonly<Normalized<Omit<DataGridComponentOptions, 'itemList' | 'propertyList'>> & NormalizedAngularOptions & NormalizedDataGridOptions> {
   dataSourceClassName: string;
   dataSourceFileName: string;
   componentName: string;
+  controllerName: string;
   name: string;
-  itemList: ReadonlyArray<NormalizedDataGridItem>;
 }
 
 export function NormalizeDataGridComponentOptions(
@@ -83,22 +77,21 @@ export function NormalizeDataGridComponentOptions(
   const {
     name,
     directory,
+    nestModule,
   } = normalizedAngularOptions;
   const componentName = CoerceSuffix(dasherize(name), '-data-grid');
+  const controllerName = BuildNestControllerName({
+    controllerName: name,
+    nestModule,
+  });
   return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedDataGridOptions,
+    controllerName,
     directory: join(directory ?? '', componentName),
     componentName,
     dataSourceClassName: CoerceSuffix(classify(name), 'DataGridDataSource'),
     dataSourceFileName: CoerceSuffix(name, '-data-grid.data-source'),
-  });
-}
-
-function getControllerName({ name, nestModule }: Pick<NormalizedDataGridComponentOptions, 'nestModule' | 'name'>) {
-  return BuildNestControllerName({
-    controllerName: name,
-    nestModule,
   });
 }
 
@@ -189,6 +182,24 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
 
 }
 
+function buildGetOperationId(normalizedOptions: NormalizedDataGridComponentOptions) {
+  const { identifier } = normalizedOptions;
+  return buildOperationId(
+    normalizedOptions,
+    identifier ? 'getById' : 'get',
+    BuildNestControllerName(normalizedOptions),
+  );
+}
+
+function buildSubmitOperationId(normalizedOptions: NormalizedDataGridComponentOptions) {
+  const { identifier } = normalizedOptions;
+  return buildOperationId(
+    normalizedOptions,
+    identifier ? 'submitById' : 'submit',
+    BuildNestControllerName(normalizedOptions),
+  );
+}
+
 function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
 
   const {
@@ -201,19 +212,12 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
     itemList,
     collection,
     scope,
+    identifier,
+    controllerName,
   } = normalizedOptions;
 
-  const controllerName = getControllerName(normalizedOptions);
-  const submitOperationId = buildOperationId(
-    normalizedOptions,
-    'submit',
-    controllerName,
-  );
-  const getOperationId = buildOperationId(
-    normalizedOptions,
-    'get',
-    controllerName,
-  );
+  const submitOperationId = buildSubmitOperationId(normalizedOptions);
+  const getOperationId = buildGetOperationId(normalizedOptions);
   const dataGridResponseClassName = OperationIdToResponseClassName(getOperationId);
 
   return chain([
@@ -275,6 +279,10 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
           .filter(item => !item.formControl)
           .map(item => item.name)
           .filter(name => !itemList.filter(i => i.formControl).some(i => i.formControl?.name === name));
+        // if an identifier is defined and the identifier is not an item with a form control add the identifier property to the excluded properties list
+        if (identifier && !itemList.some(item => item.formControl?.name === identifier?.property.name)) {
+          excludedProperties.push(identifier.property.name);
+        }
         if (excludedProperties.length) {
           typeAliasDeclaration.setType(`Omit<${dataGridResponseClassName}, '${excludedProperties.join('\' | \'')}'>`);
         } else {
@@ -293,6 +301,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
       project,
       feature,
       shared,
+      idProperty: identifier?.property,
       propertyList: itemList
         .map(item => item.formControl)
         .filter((formControl): formControl is NormalizedFormDefinitionControl => !!formControl),
@@ -318,25 +327,6 @@ function nestjsModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
 
 }
 
-function getPropertyList({ itemList }: NormalizedDataGridComponentOptions) {
-  const propertyList: NormalizedDataProperty[] = [];
-  CoerceArrayItems(
-    propertyList,
-    itemList
-    .filter(item => item.formControl)
-    .map(item => item.formControl)
-  );
-  CoerceArrayItems(propertyList, itemList
-    .filter(item => !item.formControl)
-    .map((item) => NormalizeDataProperty({
-      name: item.name,
-      type: item.type,
-      isArray: item.isArray,
-    }))
-  );
-  return propertyList;
-}
-
 function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions): Rule {
 
   const {
@@ -349,14 +339,12 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
     directory,
     scope,
     upstream,
+    propertyList,
+    identifier,
+    controllerName,
   } = normalizedOptions;
 
-  const controllerName = getControllerName(normalizedOptions);
-  const getOperationId = buildOperationId(
-    normalizedOptions,
-    'get',
-    controllerName,
-  );
+  const getOperationId = buildGetOperationId(normalizedOptions);
 
   return chain([
     () => console.log('Coerce get operation for the data grid data source ...'),
@@ -368,7 +356,8 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
       collection,
       controllerName,
       upstream,
-      propertyList: getPropertyList(normalizedOptions),
+      propertyList,
+      idProperty: identifier?.property,
     }),
     () => console.log('Coerce data grid data source class'),
     CoerceDataSourceClass({
@@ -483,6 +472,7 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
     backend,
     nestModule,
     controllerName,
+    identifier,
   } = normalizedOptions;
 
   return chain([
@@ -497,6 +487,7 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       backend,
       nestModule,
       controllerName,
+      identifier,
     }),
     () => console.log('Coerce form providers ...'),
     CoerceFormProvidersFile({

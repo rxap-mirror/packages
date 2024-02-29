@@ -149,7 +149,7 @@ export function CoerceUpstreamBasicOperationImplementation(
     });
     CoercePropertyDeclaration(classDeclaration, commandMemberName, {
       type: commandClassName,
-      hasQuestionToken: true,
+      hasExclamationToken: true,
       scope: Scope.Private,
       isReadonly: true,
       decorators: [
@@ -221,7 +221,7 @@ export function BuiltDtoDataMapperImplementation(
     if (upstream) {
       const mapper: Record<string, string | WriterFunction> = {};
       for (const property of propertyList) {
-        mapper[property.name] = `data.${ property.name }`;
+        mapper[property.name] = `data.${ property.source ?? property.name }`;
       }
       if (isArray) {
         return w => {

@@ -14,9 +14,7 @@ import {
   BuildAngularBasePath,
   BuildNestControllerName,
   buildOperationId,
-  CoerceComponentRule,
   CoerceFormComponentProviderRule,
-  CoerceFormDefinition,
   CoerceFormSubmitOperation,
   DtoClassProperty,
   OperationIdToClassImportPath,
@@ -32,6 +30,10 @@ import {
 } from '@rxap/utilities';
 import { join } from 'path';
 import {
+  NormalizeAccordionIdentifier,
+  NormalizedAccordionIdentifier,
+} from '../../../lib/accordion-identifier';
+import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
@@ -43,7 +45,6 @@ import {
   NormalizedFormComponentControl,
   NormalizeFormComponentControlList,
 } from '../../../lib/form-component-control';
-import { GenerateFormTemplate } from '../../../lib/form/generate-form-template';
 import {
   NormalizedMatFormFieldDefaultOptions,
   NormalizeMatFormFieldDefaultOptions,
@@ -57,6 +58,7 @@ export interface NormalizedFormComponentOptions
   controlList: ReadonlyArray<NormalizedFormComponentControl>;
   name: string;
   matFormFieldDefaultOptions: NormalizedMatFormFieldDefaultOptions | null;
+  identifier: NormalizedAccordionIdentifier | null;
 }
 
 
@@ -84,6 +86,7 @@ export function NormalizeFormComponentOptions(
     controlList: NormalizeFormComponentControlList(options.controlList),
     context: options.context ? dasherize(options.context) : null,
     matFormFieldDefaultOptions: NormalizeMatFormFieldDefaultOptions(options.matFormFieldDefaultOptions),
+    identifier: NormalizeAccordionIdentifier(options.identifier),
   });
 }
 
@@ -210,6 +213,7 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
     controllerName,
     nestModule,
     shared,
+    identifier,
   } = normalizedOptions;
 
   switch (backend) {
@@ -223,6 +227,7 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
           feature,
           shared,
           nestModule,
+          idProperty: identifier?.property,
           propertyList: controlList.map(FormComponentControlToDtoClassProperty),
           bodyDtoName: controllerName,
         }),
@@ -289,6 +294,7 @@ function getSubmitOperationId(normalizedOptions: NormalizedFormComponentOptions)
     feature,
     shared,
     controllerName,
+    identifier,
   } = normalizedOptions;
   return buildOperationId(
     {
@@ -296,7 +302,7 @@ function getSubmitOperationId(normalizedOptions: NormalizedFormComponentOptions)
       feature,
       shared,
     },
-    'submit',
+    identifier ? 'submitById' : 'submit',
     controllerName,
   );
 }

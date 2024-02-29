@@ -4,6 +4,10 @@ import {
   NormalizedDataProperty,
 } from '@rxap/ts-morph';
 
+/**
+ * TODO : rename to `IdentifierOptions`
+ * @deprecated rename to `IdentifierOptions`
+ */
 export interface AccordionIdentifier {
   property: DataProperty;
   source: string;

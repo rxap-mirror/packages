@@ -140,9 +140,15 @@ export function IsNormalizedDataGridAccordionItem(item: NormalizedBaseAccordionI
 
 export function NormalizeDataGridAccordionItem(item: DataGridAccordionItem): NormalizedDataGridAccordionItem {
   const dataGrid = item.dataGrid;
+  const base = NormalizeBaseAccordionItem(item);
+  dataGrid.propertyList ??= [];
+  CoerceArrayItems(dataGrid.propertyList, base.propertyList, {
+    compareTo: (a, b) => a.name === b.name,
+    replace: true,
+  });
   dataGrid.inCard ??= false;
   return Object.freeze({
-    ...NormalizeBaseAccordionItem(item),
+    ...base,
     type: AccordionItemKinds.DataGrid,
     dataGrid: NormalizeDataGridOptions(dataGrid),
   });

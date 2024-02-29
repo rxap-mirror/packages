@@ -2,11 +2,9 @@ import { chain } from '@angular-devkit/schematics';
 import {
   BuildNestControllerName,
   buildOperationId,
-  CoerceDecorator,
   CoerceFormControl,
   CoerceFormDefinitionControl,
   CoerceFormProviderRule,
-  CoerceImports,
   CoerceTableDataSourceRule,
   CoerceTableSelectOperationRule,
   EnforceUseFormControlOrderRule,
@@ -17,6 +15,12 @@ import {
   classify,
   dasherize,
 } from '@rxap/schematics-utilities';
+import {
+  CoerceDecorator,
+  CoerceImports,
+  OperationIdToResponseClassImportPath,
+  OperationIdToResponseClassName,
+} from '@rxap/ts-morph';
 import {
   joinWithDash,
   Normalized,
@@ -41,14 +45,19 @@ import {
 } from '../../form-control';
 import { TableSelectFormControlOptions } from './schema';
 
-export type NormalizedTableSelectFormControlOptions = Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList' | 'propertyList'>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl>
+export interface NormalizedTableSelectFormControlOptions
+  extends Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList' | 'propertyList'>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl> {
+  controllerName: string;
+}
 
 export function NormalizeTableSelectFormControlOptions(
   options: TableSelectFormControlOptions,
 ): NormalizedTableSelectFormControlOptions {
+  const normalizedOptions = NormalizeFormControlOptions(options);
   return Object.freeze({
-    ...NormalizeFormControlOptions(options),
+    ...normalizedOptions,
     ...NormalizeTableSelectFormControl(options),
+    controllerName: BuildNestControllerName(normalizedOptions),
   });
 }
 
@@ -86,6 +95,22 @@ function printOptions(options: NormalizedTableSelectFormControlOptions) {
   PrintAngularOptions('table-select-form-control', options);
 }
 
+function buildOptionsOperationName({ name }: { name: string }) {
+  return [ 'get', name, 'control', 'table-select', 'page' ].join('-');
+}
+
+function buildOptionsOperationPath({ name }: { name: string }) {
+  return [ 'control', name, 'table-select', 'page' ].join('/');
+}
+
+function buildOptionsOperationId(normalizedOptions: NormalizedTableSelectFormControlOptions) {
+  return buildOperationId(
+    normalizedOptions,
+    buildOptionsOperationName(normalizedOptions),
+    BuildNestControllerName(normalizedOptions),
+  );
+}
+
 export default function (options: TableSelectFormControlOptions) {
   const normalizedOptions = NormalizeTableSelectFormControlOptions(options);
   const {
@@ -112,16 +137,9 @@ export default function (options: TableSelectFormControlOptions) {
   } = normalizedOptions;
   printOptions(normalizedOptions);
 
-  const optionsOperationName = [ 'get', name, 'control', 'table-select', 'page' ].join('-');
-  const optionsOperationPath = [ 'control', name, 'table-select', 'page' ].join('/');
-  const optionsOperationId = buildOperationId(
-    normalizedOptions,
-    optionsOperationName,
-    BuildNestControllerName({
-      controllerName,
-      nestModule,
-    }),
-  );
+  const optionsOperationName = buildOptionsOperationName(normalizedOptions);
+  const optionsOperationPath = buildOptionsOperationPath(normalizedOptions);
+  const optionsOperationId = buildOptionsOperationId(normalizedOptions);
 
   // const resolveValueOperationName = [ 'resolve', name, 'option', 'value' ].join(
   //   '-',
@@ -245,13 +263,20 @@ export default function (options: TableSelectFormControlOptions) {
           } =
             CoerceFormControl(sourceFile, classDeclaration, control);
 
+          const tableSelectOperationResponseClassName = OperationIdToResponseClassName(optionsOperationId);
+
+          CoerceImports(sourceFile, {
+            namedImports: [ tableSelectOperationResponseClassName ],
+            moduleSpecifier: OperationIdToResponseClassImportPath(optionsOperationId),
+          });
+
           CoerceDecorator(propertyDeclaration, 'UseTableSelectDataSource').set({
             arguments: [ tableDataSourceName ],
           });
-          CoerceDecorator(propertyDeclaration, 'UseTableSelectToDisplay').set({
+          CoerceDecorator(propertyDeclaration, `UseTableSelectToDisplay<${tableSelectOperationResponseClassName}['rows'][number]>`).set({
             arguments: [ `item => item.${ toDisplay.property.name }` ],
           });
-          CoerceDecorator(propertyDeclaration, 'UseTableSelectToValue').set({
+          CoerceDecorator(propertyDeclaration, `UseTableSelectToValue<${tableSelectOperationResponseClassName}['rows'][number]>`).set({
             arguments: [ `item => item.${ toValue.property.name }` ],
           });
           CoerceImports(sourceFile, {

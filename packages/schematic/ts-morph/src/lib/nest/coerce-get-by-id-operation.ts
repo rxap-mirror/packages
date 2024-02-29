@@ -48,7 +48,7 @@ export function BuiltGetByIdDtoDataMapperImplementation(
         mapper[idProperty.name] = idProperty.name;
       }
       for (const property of propertyList.filter(p => !idProperty || p.name !== idProperty.name)) {
-        mapper[property.name] = `data.${ property.name }`;
+        mapper[property.name] = `data.${ property.source ?? property.name }`;
       }
       if (isArray) {
         return w => {

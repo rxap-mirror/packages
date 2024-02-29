@@ -14,9 +14,9 @@ export function CoerceGetDataGridOperation(options: Readonly<CoerceGetDataGridOp
   const {
     collection= false,
     isArray = collection ?? false,
-    operationName = 'get',
     // if not explicitly defined the idProperty is set to null, as not each data grid operation has an id
     idProperty = null,
+    operationName = idProperty ? 'getById' : 'get',
   } = options;
 
   return CoerceGetByIdOperation({

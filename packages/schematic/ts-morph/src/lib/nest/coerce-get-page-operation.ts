@@ -4,7 +4,6 @@ import {
   CoerceImports,
   CoercePropertyDeclaration,
   IsNormalizedOpenApiUpstreamOptions,
-  NormalizedDataProperty,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
   OperationIdToResponseClassName,
@@ -41,18 +40,11 @@ import {
   BuildRowDtoClassName,
   CoerceRowDtoClass,
 } from './coerce-row-dto-class';
+import { DtoClassProperty } from './dto-class-property';
 import { TABLE_QUERY_LIST } from './table-query-list';
-
-export interface GetPageOperationProperty extends NormalizedDataProperty {
-  /**
-   * the property name of the source object. if not defined the name will be used
-   */
-  source?: string;
-}
 
 export interface CoerceGetPageOperationOptions
   extends Omit<CoerceOperationOptions, 'operationName' | 'tsMorphTransform' | 'coerceOperationDtoClass'> {
-  propertyList?: GetPageOperationProperty[];
   tsMorphTransform?: (
     project: Project,
     sourceFile: SourceFile,
@@ -96,7 +88,7 @@ export interface CoerceGetPageOperationOptions
   upstream?: NormalizedUpstreamOptions | null;
 }
 
-export function GetPageOperationColumnToCodeText(property: GetPageOperationProperty): string {
+export function GetPageOperationColumnToCodeText(property: DtoClassProperty): string {
   let propertyName = camelize(property.name);
   const prefixMatch = property.name.match(/^(_+)/);
 

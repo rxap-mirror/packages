@@ -287,6 +287,7 @@ export function NormalizeTableColumn(
   }
   return Object.freeze({
     ...NormalizeDataProperty({
+      ...column,
       name,
       type,
     }),

@@ -57,7 +57,6 @@ function guessPipeType(name: string): TypeImport {
 
 export function NormalizePipeOption(options: Readonly<PipeOption> | string): Readonly<NormalizedPipeOption> {
   let type: TypeImport;
-  console.log(`[PIPE]`, { options});
   let argumentList = typeof options === 'string' ? undefined : options.argumentList;
   if (typeof options === 'string') {
     const [ name, ...args ] = options.split(':');
@@ -68,7 +67,6 @@ export function NormalizePipeOption(options: Readonly<PipeOption> | string): Rea
   } else {
     type = options;
   }
-  console.log(`[PIPE]`, { type, argumentList });
   return Object.freeze({
     ...NormalizeTypeImport(type),
     argumentList: NormalizeValueOptionList(argumentList),

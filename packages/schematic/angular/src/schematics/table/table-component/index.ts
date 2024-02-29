@@ -12,23 +12,15 @@ import {
   CoerceImports,
   CoerceMethodClass,
   FormDefinitionControl,
-  GetPageOperationProperty,
   OperationIdToClassImportPath,
   OperationIdToClassName,
-  TsMorphAngularProjectTransformOptions,
-  TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
-import {
-  AddPackageJsonDependencyRule,
-  CoerceSuffix,
-  ExecuteSchematic,
-} from '@rxap/schematics-utilities';
+import { AddPackageJsonDependencyRule } from '@rxap/schematics-utilities';
 import {
   NormalizedDataProperty,
   TypeImportToImportStructure,
 } from '@rxap/ts-morph';
 import {
-  camelize,
   classify,
   Normalized,
 } from '@rxap/utilities';
@@ -59,8 +51,6 @@ import {
   TableModifiers,
 } from '../../../lib/table-options';
 import { TableFilterColumnRule } from '../../../lib/table/table-filter-column-rule';
-import { UsePickFromTableInterfaceAsFormTypeRule } from '../../../lib/use-pick-from-table-interface-as-form-type';
-import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
 export interface NormalizedTableComponentOptions
@@ -91,17 +81,26 @@ export function NormalizeTableComponentOptions(
   });
 }
 
+/**
+ * // TODO : refactor
+ * Options 1: remove this function and create the propertyList in the normalize functions
+ * Options 1: use the CoerceArrayItems function with merge = true
+ * @param columnList
+ * @param propertyList
+ * @constructor
+ */
 export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
   columnList: ReadonlyArray<Pick<NormalizedTableColumn, 'name' | 'type' | 'propertyPath' | 'isArray'>>,
   propertyList: ReadonlyArray<NormalizedDataProperty> = [],
-): GetPageOperationProperty[] {
-  const list: GetPageOperationProperty[] = [];
+): NormalizedDataProperty[] {
+  const list: NormalizedDataProperty[] = [];
   for (const column of columnList) {
     list.push({
       name: column.name,
       type: column.type,
       source: column.propertyPath,
       isArray: column.isArray,
+      isOptional: false,
     });
   }
   for (const property of propertyList) {
@@ -109,8 +108,9 @@ export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
       list.push({
         name: property.name,
         type: property.type,
-        source: property.name,
+        source: property.source,
         isArray: property.isArray,
+        isOptional: property.isOptional,
       });
     }
   }

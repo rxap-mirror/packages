@@ -12,6 +12,8 @@ export function MergeWithColumnList(
         name: column.propertyPath,
         type: column.type,
         isArray: false, // TODO : support array property for table columns
+        source: column.source,
+        isOptional: column.isOptional,
       });
     }
   }

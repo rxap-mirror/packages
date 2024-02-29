@@ -15,10 +15,13 @@ export interface DataProperty {
   name: string;
   type?: string | TypeImport;
   isArray?: boolean;
+  isOptional?: boolean,
+  source?: string | null;
 }
 
 export interface NormalizedDataProperty extends Readonly<Normalized<DataProperty>> {
   type: NormalizedTypeImport;
+  source: string | null;
 }
 
 function guessType(name: string): string {
@@ -26,6 +29,9 @@ function guessType(name: string): string {
     case 'uuid':
     case 'name':
       return 'string';
+  }
+  if (name.match(/Name$/)) {
+    return 'string';
   }
   if (name.match(/^(is|has)[A-Z]/)) {
     return 'boolean';
@@ -37,6 +43,8 @@ export function NormalizeDataProperty(property: string | Readonly<DataProperty>,
   let name: string;
   let type: string | TypeImport = 'unknown';
   let isArray = false;
+  let isOptional = false;
+  let source: string | null = null;
   if (typeof property === 'string') {
     // name:type
     // username:string
@@ -47,6 +55,8 @@ export function NormalizeDataProperty(property: string | Readonly<DataProperty>,
     name = property.name;
     type = property.type ?? guessType(name);
     isArray = property.isArray ?? isArray;
+    isOptional = property.isOptional ?? isOptional;
+    source = property.source ?? source;
   }
   if (name.endsWith('[]')) {
     isArray = true;
@@ -57,11 +67,16 @@ export function NormalizeDataProperty(property: string | Readonly<DataProperty>,
     name = name.slice(6, -1);
   }
   type ??= defaultType;
+  if (type === 'unknown') {
+    type = guessType(name);
+  }
   name = name.replace(/\.\?/g, '.').split('.').join('.?');
   return Object.freeze({
     name,
     type: NormalizeTypeImport(type),
     isArray,
+    isOptional,
+    source,
   });
 }
 

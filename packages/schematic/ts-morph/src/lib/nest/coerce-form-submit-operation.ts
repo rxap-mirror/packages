@@ -15,14 +15,17 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
   const {
     tsMorphTransform = noop,
     bodyDtoName,
-    operationName = 'submit',
     isReturnVoid = true,
+    // if not explicitly defined the idProperty is set to null, as not each data grid operation has an id
+    idProperty = null,
+    operationName = idProperty ? 'submitById' : 'submit',
   } = options;
 
   return CoerceGetByIdOperation({
     ...options,
     operationName,
     isReturnVoid,
+    idProperty,
     buildOperationDtoClassName: (controllerName, { dtoClassName, dtoClassNameSuffix }) => {
       return dtoClassName ?? (
         dtoClassNameSuffix ? CoerceSuffix(bodyDtoName ?? controllerName, dtoClassNameSuffix) : bodyDtoName ?? controllerName

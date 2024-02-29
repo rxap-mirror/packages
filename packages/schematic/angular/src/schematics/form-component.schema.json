@@ -27,6 +27,9 @@
               "outline"
             ]
           }
+        },
+        "identifier": {
+          "$ref": "#/definitions/accordionIdentifier"
         }
       }
     }
@@ -34,6 +37,9 @@
   "definitions": {
     "formDefinition": {
       "$ref": "./form-definition.schema.json"
+    },
+    "accordionIdentifier": {
+      "$ref": "./accordion-identifier.schema.json"
     }
   }
 }

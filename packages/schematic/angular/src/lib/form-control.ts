@@ -1,5 +1,4 @@
 import { SchematicsException } from '@angular-devkit/schematics';
-import { camelize } from '@rxap/schematics-utilities';
 import {
   DataProperty,
   NormalizeDataProperty,
@@ -26,11 +25,11 @@ import { join } from 'path';
 import { BackendTypes } from './backend-types';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
-  TableColumnNameToPropertyPath,
   GuessColumnTypeType,
   NormalizedTableColumn,
   TableColumn,
   TableColumnKind,
+  TableColumnNameToPropertyPath,
 } from './table-column';
 
 // region BaseFormControlOptions
@@ -398,13 +397,15 @@ export function NormalizeTableSelectColumn(
   const kind = column.kind ?? TableColumnKind.DEFAULT;
   const type = GuessColumnTypeType(kind, column.type ?? 'unknown');
   return Object.freeze({
-    name,
-    type: NormalizeTypeImport(type),
+    ...NormalizeDataProperty({
+      ...column,
+      name,
+      type,
+    }),
     title: column.title ?? dasherize(name).split('-').map(part => capitalize(part)).join(' '),
     hasFilter: column.hasFilter ?? false,
     kind,
     propertyPath,
-    isArray: column.isArray ?? false,
   });
 }
 
@@ -422,14 +423,15 @@ export interface NormalizedTableSelectToFunction extends Readonly<Normalized<Tab
 export function NormalizeTableSelectToFunction(
   toFunction: TableSelectToFunction | null | undefined,
   columnList: TableSelectColumn[],
+  defaultType = 'unknown',
 ): NormalizedTableSelectToFunction {
   if (!toFunction || Object.keys(toFunction).length === 0) {
     return Object.freeze({
-      property: NormalizeDataProperty(columnList[0].name),
+      property: NormalizeDataProperty(columnList[0].name, defaultType),
     });
   }
   return Object.freeze({
-    property: NormalizeDataProperty(toFunction.property),
+    property: NormalizeDataProperty(toFunction.property, defaultType),
   });
 }
 
@@ -474,7 +476,7 @@ export function NormalizeTableSelectFormControl(
     throw new Error('The column list must not be empty');
   }
   const propertyList = control.propertyList ?? [];
-  const toDisplay = NormalizeTableSelectToFunction(control.toDisplay, control.columnList);
+  const toDisplay = NormalizeTableSelectToFunction(control.toDisplay, control.columnList, 'string');
   const toValue = NormalizeTableSelectToFunction(control.toValue, control.columnList);
   CoerceArrayItems(propertyList, [toDisplay.property, toValue.property], (a, b) => a.name === b.name);
   const formField = NormalizeFormField(
