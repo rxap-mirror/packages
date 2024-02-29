@@ -18,7 +18,7 @@ export class DashboardAccordionController {
     {
       uuid: uuid,
       dashboardType: data.dashboardType,
-      name: data.name
+      name: data.name!
     },
     );
   }

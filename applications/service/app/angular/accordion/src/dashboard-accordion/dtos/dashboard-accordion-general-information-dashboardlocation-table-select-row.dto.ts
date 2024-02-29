@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 import {
   IsString,
@@ -13,10 +12,8 @@ export class DashboardAccordionGeneralInformationDashboardlocationTableSelectRow
   @IsString()
   __display!: string;
   @Expose()
-  @ApiProperty({
-        type: 'unknown'
-      })
-  name!: unknown;
+  @IsString()
+  name!: string;
   @Expose()
   @IsUUID()
   uuid!: string;

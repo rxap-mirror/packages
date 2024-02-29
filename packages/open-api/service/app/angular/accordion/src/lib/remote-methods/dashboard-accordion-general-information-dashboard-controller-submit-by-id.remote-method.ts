@@ -4,17 +4,17 @@ import {
   OpenApiRemoteMethodParameter,
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
-import { DashboardAccordionGeneralInformationDashboardControllerSubmitParameter } from '../parameters/dashboard-accordion-general-information-dashboard-controller-submit.parameter';
-import { DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBody } from '../request-bodies/dashboard-accordion-general-information-dashboard-controller-submit.request-body';
+import { DashboardAccordionGeneralInformationDashboardControllerSubmitByIdParameter } from '../parameters/dashboard-accordion-general-information-dashboard-controller-submit-by-id.parameter';
+import { DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRequestBody } from '../request-bodies/dashboard-accordion-general-information-dashboard-controller-submit-by-id.request-body';
 
 @Injectable({
     providedIn: 'root'
   })
 @RxapOpenApiRemoteMethod({
     serverId: 'service-app-angular-accordion',
-    operationId: 'DashboardAccordionGeneralInformationDashboardController_submit',
+    operationId: 'DashboardAccordionGeneralInformationDashboardController_submitById',
     operation: `{
-  "operationId": "DashboardAccordionGeneralInformationDashboardController_submit",
+  "operationId": "DashboardAccordionGeneralInformationDashboardController_submitById",
   "parameters": [
     {
       "name": "uuid",
@@ -46,6 +46,9 @@ import { DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBod
             },
             "dashboardType": {
               "type": "number"
+            },
+            "uuid": {
+              "type": "string"
             }
           },
           "required": [
@@ -53,7 +56,8 @@ import { DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBod
             "location",
             "link",
             "company",
-            "dashboardType"
+            "dashboardType",
+            "uuid"
           ]
         }
       }
@@ -66,8 +70,8 @@ import { DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBod
   "path": "/dashboard-accordion/{uuid}/general-information-dashboard"
 }`
   })
-export class DashboardAccordionGeneralInformationDashboardControllerSubmitRemoteMethod extends OpenApiRemoteMethod<void, DashboardAccordionGeneralInformationDashboardControllerSubmitParameter, DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBody> {
-  public override call(parameters: OpenApiRemoteMethodParameter<DashboardAccordionGeneralInformationDashboardControllerSubmitParameter, DashboardAccordionGeneralInformationDashboardControllerSubmitRequestBody>): Promise<void> {
+export class DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRemoteMethod extends OpenApiRemoteMethod<void, DashboardAccordionGeneralInformationDashboardControllerSubmitByIdParameter, DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRequestBody> {
+  public override call(parameters: OpenApiRemoteMethodParameter<DashboardAccordionGeneralInformationDashboardControllerSubmitByIdParameter, DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRequestBody>): Promise<void> {
     return super.call(parameters);
   }
 }

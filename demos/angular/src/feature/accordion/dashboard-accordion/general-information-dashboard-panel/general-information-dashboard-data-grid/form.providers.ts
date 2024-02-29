@@ -1,12 +1,31 @@
-import { LocationSelectTableDataSource } from './data-sources/location-select-table.data-source';
-import { Provider, INJECTOR, Injector, Optional } from '@angular/core';
-import { GeneralInformationDashboardForm, IGeneralInformationDashboardForm } from './general-information-dashboard.form';
-import { RxapFormBuilder, RXAP_FORM_DEFINITION_BUILDER, RXAP_FORM_DEFINITION, RXAP_FORM_INITIAL_STATE, RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD, RXAP_FORM_SUBMIT_METHOD, RXAP_FORM_CONTEXT } from '@rxap/forms';
-import { DataSourceRefreshToMethodAdapterFactory } from '@rxap/data-source';
-import { GeneralInformationDashboardDataGridDataSource } from './general-information-dashboard-data-grid.data-source';
-import { SubmitContextFormAdapterFactory, FormContextFromActivatedRouteFactory } from '@rxap/form-system';
-import { DashboardAccordionGeneralInformationDashboardControllerSubmitRemoteMethod } from 'open-api-service-app-angular-accordion/remote-methods/dashboard-accordion-general-information-dashboard-controller-submit.remote-method';
+import {
+  INJECTOR,
+  Injector,
+  Optional,
+  Provider,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataSourceRefreshToMethodAdapterFactory } from '@rxap/data-source';
+import {
+  FormContextFromActivatedRouteFactory,
+  SubmitContextFormAdapterFactory,
+} from '@rxap/form-system';
+import {
+  RXAP_FORM_CONTEXT,
+  RXAP_FORM_DEFINITION,
+  RXAP_FORM_DEFINITION_BUILDER,
+  RXAP_FORM_INITIAL_STATE,
+  RXAP_FORM_SUBMIT_METHOD,
+  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
+  RxapFormBuilder,
+} from '@rxap/forms';
+import { DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRemoteMethod } from 'open-api-service-app-angular-accordion/remote-methods/dashboard-accordion-general-information-dashboard-controller-submit-by-id.remote-method';
+import { LocationSelectTableDataSource } from './data-sources/location-select-table.data-source';
+import { GeneralInformationDashboardDataGridDataSource } from './general-information-dashboard-data-grid.data-source';
+import {
+  GeneralInformationDashboardForm,
+  IGeneralInformationDashboardForm,
+} from './general-information-dashboard.form';
 
 export const FormProviders: Provider[] = [LocationSelectTableDataSource, GeneralInformationDashboardForm, {
     provide: RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
@@ -15,7 +34,7 @@ export const FormProviders: Provider[] = [LocationSelectTableDataSource, General
   }, {
     provide: RXAP_FORM_SUBMIT_METHOD,
     useFactory: SubmitContextFormAdapterFactory,
-    deps: [ DashboardAccordionGeneralInformationDashboardControllerSubmitRemoteMethod,[ new Optional(), RXAP_FORM_CONTEXT ] ]
+    deps: [ DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRemoteMethod,[ new Optional(), RXAP_FORM_CONTEXT ] ]
   }];
 export const FormComponentProviders: Provider[] = [{
     provide: RXAP_FORM_DEFINITION,

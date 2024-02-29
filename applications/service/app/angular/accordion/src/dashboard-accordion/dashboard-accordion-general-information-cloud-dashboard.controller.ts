@@ -14,20 +14,21 @@ export class DashboardAccordionGeneralInformationCloudDashboardController {
   private readonly dashboardControllerGetByUuidCommand?: any;
 
   @Get()
-  public async get(@Param('uuid') uuid: string): Promise<DashboardAccordionGeneralInformationCloudDashboardDto> {
-    const data = await this.dashboardControllerGetByUuidCommand.execute();
+  public async getById(@Param('uuid') uuid: string): Promise<DashboardAccordionGeneralInformationCloudDashboardDto> {
+    const data = await this.dashboardControllerGetByUuidCommand.execute({ parameters: { uuid } });
     return ToDtoInstance(
     DashboardAccordionGeneralInformationCloudDashboardDto,
     {
-      name: data.name,
-      company: data.company,
-      dashboardType: data.dashboardType
+      uuid: uuid,
+      name: data.name!,
+      company: data.company?.uuid,
+      dashboardType: data.dashboardType!
     },
     );
   }
 
   @Post()
-  public async submit(@Body() body: DashboardAccordionGeneralInformationCloudDashboardDto, @Param('uuid') uuid: string): Promise<void> {
+  public async submitById(@Body() body: DashboardAccordionGeneralInformationCloudDashboardDto, @Param('uuid') uuid: string): Promise<void> {
     throw new NotImplementedException();
   }
 }

@@ -1,11 +1,30 @@
-import { Provider, INJECTOR, Injector, Optional } from '@angular/core';
-import { GeneralInformationCloudDashboardForm, IGeneralInformationCloudDashboardForm } from './general-information-cloud-dashboard.form';
-import { RxapFormBuilder, RXAP_FORM_DEFINITION_BUILDER, RXAP_FORM_DEFINITION, RXAP_FORM_INITIAL_STATE, RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD, RXAP_FORM_SUBMIT_METHOD, RXAP_FORM_CONTEXT } from '@rxap/forms';
-import { DataSourceRefreshToMethodAdapterFactory } from '@rxap/data-source';
-import { GeneralInformationCloudDashboardDataGridDataSource } from './general-information-cloud-dashboard-data-grid.data-source';
-import { SubmitContextFormAdapterFactory, FormContextFromActivatedRouteFactory } from '@rxap/form-system';
-import { DashboardAccordionGeneralInformationCloudDashboardControllerSubmitRemoteMethod } from 'open-api-service-app-angular-accordion/remote-methods/dashboard-accordion-general-information-cloud-dashboard-controller-submit.remote-method';
+import {
+  INJECTOR,
+  Injector,
+  Optional,
+  Provider,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataSourceRefreshToMethodAdapterFactory } from '@rxap/data-source';
+import {
+  FormContextFromActivatedRouteFactory,
+  SubmitContextFormAdapterFactory,
+} from '@rxap/form-system';
+import {
+  RXAP_FORM_CONTEXT,
+  RXAP_FORM_DEFINITION,
+  RXAP_FORM_DEFINITION_BUILDER,
+  RXAP_FORM_INITIAL_STATE,
+  RXAP_FORM_SUBMIT_METHOD,
+  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
+  RxapFormBuilder,
+} from '@rxap/forms';
+import { DashboardAccordionGeneralInformationCloudDashboardControllerSubmitByIdRemoteMethod } from 'open-api-service-app-angular-accordion/remote-methods/dashboard-accordion-general-information-cloud-dashboard-controller-submit-by-id.remote-method';
+import { GeneralInformationCloudDashboardDataGridDataSource } from './general-information-cloud-dashboard-data-grid.data-source';
+import {
+  GeneralInformationCloudDashboardForm,
+  IGeneralInformationCloudDashboardForm,
+} from './general-information-cloud-dashboard.form';
 
 export const FormProviders: Provider[] = [GeneralInformationCloudDashboardForm, {
     provide: RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
@@ -14,7 +33,7 @@ export const FormProviders: Provider[] = [GeneralInformationCloudDashboardForm, 
   }, {
     provide: RXAP_FORM_SUBMIT_METHOD,
     useFactory: SubmitContextFormAdapterFactory,
-    deps: [ DashboardAccordionGeneralInformationCloudDashboardControllerSubmitRemoteMethod,[ new Optional(), RXAP_FORM_CONTEXT ] ]
+    deps: [ DashboardAccordionGeneralInformationCloudDashboardControllerSubmitByIdRemoteMethod,[ new Optional(), RXAP_FORM_CONTEXT ] ]
   }];
 export const FormComponentProviders: Provider[] = [{
     provide: RXAP_FORM_DEFINITION,

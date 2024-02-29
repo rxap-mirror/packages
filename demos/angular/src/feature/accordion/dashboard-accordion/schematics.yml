@@ -18,6 +18,12 @@ options:
   upstream:
     kind: open-api
     operationId: dashboard-controller-getByUuid@legacy
+  propertyList:
+    - name: dashboardType
+      type: number
+      source: "dashboardType!"
+    - name: name
+      source: "name!"
   itemList:
     - name: general-information
       kind: switch
@@ -30,6 +36,22 @@ options:
             - kind: data-grid
               name: dashboard
               title: Allgemeine Informationen
+              propertyList:
+                - name: name
+                  type: string
+                  source: "name!"
+                - name: location
+                  source: "location?.uuid!"
+                  type: string
+                - name: link
+                  source: "link!"
+                  type: string
+                - name: company
+                  source: "company?.uuid!"
+                  type: string
+                - name: dashboardType
+                  source: "dashboardType!"
+                  type: number
               upstream:
                 kind: open-api
                 operationId: dashboard-controller-getByUuid@legacy
@@ -99,6 +121,16 @@ options:
               - kind: data-grid
                 name: cloud-dashboard
                 title: Allgemeine Informationen
+                propertyList:
+                  - name: name
+                    type: string
+                    source: "name!"
+                  - name: company
+                    source: "company?.uuid!"
+                    type: string
+                  - name: dashboardType
+                    source: "dashboardType!"
+                    type: number
                 upstream:
                   kind: open-api
                   operationId: dashboard-controller-getByUuid@legacy

@@ -19,7 +19,7 @@ import { DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto
 import { DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto } from './dtos/dashboard-accordion-general-information-dashboardlocation-table-select-row.dto';
 
 interface CompanyGuiControllerGetByFilterResponse {
-  entities: Array<any>;
+  entities: any[];
 }
 
 @Controller('dashboard-accordion/:uuid/general-information-dashboard')
@@ -100,22 +100,23 @@ export class DashboardAccordionGeneralInformationDashboardController {
   private readonly dashboardControllerGetByUuidCommand?: any;
 
   @Get()
-  public async get(@Param('uuid') uuid: string): Promise<DashboardAccordionGeneralInformationDashboardDto> {
-    const data = await this.dashboardControllerGetByUuidCommand.execute();
+  public async getById(@Param('uuid') uuid: string): Promise<DashboardAccordionGeneralInformationDashboardDto> {
+    const data = await this.dashboardControllerGetByUuidCommand.execute({ parameters: { uuid } });
     return ToDtoInstance(
     DashboardAccordionGeneralInformationDashboardDto,
     {
-      name: data.name,
-      location: data.location,
-      link: data.link,
-      company: data.company,
-      dashboardType: data.dashboardType
+      uuid: uuid,
+      name: data.name!,
+      location: data.location?.uuid,
+      link: data.link!,
+      company: data.company?.uuid,
+      dashboardType: data.dashboardType!
     },
     );
   }
 
   @Post()
-  public async submit(@Body() body: DashboardAccordionGeneralInformationDashboardDto, @Param('uuid') uuid: string): Promise<void> {
+  public async submitById(@Body() body: DashboardAccordionGeneralInformationDashboardDto, @Param('uuid') uuid: string): Promise<void> {
     throw new NotImplementedException();
   }
 }

@@ -4,17 +4,17 @@ import {
   OpenApiRemoteMethodParameter,
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
-import { DashboardAccordionGeneralInformationDashboardControllerGetParameter } from '../parameters/dashboard-accordion-general-information-dashboard-controller-get.parameter';
-import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } from '../responses/dashboard-accordion-general-information-dashboard-controller-get.response';
+import { DashboardAccordionGeneralInformationDashboardControllerGetByIdParameter } from '../parameters/dashboard-accordion-general-information-dashboard-controller-get-by-id.parameter';
+import { DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse } from '../responses/dashboard-accordion-general-information-dashboard-controller-get-by-id.response';
 
 @Injectable({
     providedIn: 'root'
   })
 @RxapOpenApiRemoteMethod({
     serverId: 'service-app-angular-accordion',
-    operationId: 'DashboardAccordionGeneralInformationDashboardController_get',
+    operationId: 'DashboardAccordionGeneralInformationDashboardController_getById',
     operation: `{
-  "operationId": "DashboardAccordionGeneralInformationDashboardController_get",
+  "operationId": "DashboardAccordionGeneralInformationDashboardController_getById",
   "parameters": [
     {
       "name": "uuid",
@@ -46,6 +46,9 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } fr
               },
               "dashboardType": {
                 "type": "number"
+              },
+              "uuid": {
+                "type": "string"
               }
             },
             "required": [
@@ -53,7 +56,8 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } fr
               "location",
               "link",
               "company",
-              "dashboardType"
+              "dashboardType",
+              "uuid"
             ]
           }
         }
@@ -64,8 +68,8 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } fr
   "path": "/dashboard-accordion/{uuid}/general-information-dashboard"
 }`
   })
-export class DashboardAccordionGeneralInformationDashboardControllerGetRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionGeneralInformationDashboardControllerGetResponse, DashboardAccordionGeneralInformationDashboardControllerGetParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<DashboardAccordionGeneralInformationDashboardControllerGetParameter, void>): Promise<DashboardAccordionGeneralInformationDashboardControllerGetResponse> {
+export class DashboardAccordionGeneralInformationDashboardControllerGetByIdRemoteMethod extends OpenApiRemoteMethod<DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse, DashboardAccordionGeneralInformationDashboardControllerGetByIdParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<DashboardAccordionGeneralInformationDashboardControllerGetByIdParameter, void>): Promise<DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse> {
     return super.call(parameters);
   }
 }

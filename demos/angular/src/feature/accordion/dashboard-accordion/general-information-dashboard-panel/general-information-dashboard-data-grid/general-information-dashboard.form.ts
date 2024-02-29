@@ -1,13 +1,21 @@
-import { FormType, RxapFormGroup, RxapFormControl, UseFormControl, RxapValidators, RxapForm } from '@rxap/forms';
 import { Injectable } from '@angular/core';
+import {
+  FormType,
+  RxapForm,
+  RxapFormControl,
+  RxapFormGroup,
+  RxapValidators,
+  UseFormControl,
+} from '@rxap/forms';
 import {
   UseTableSelectColumns,
   UseTableSelectDataSource,
   UseTableSelectToDisplay,
   UseTableSelectToValue,
 } from '@rxap/ngx-material-table-select';
+import { DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-controller-get-by-id.response';
+import { DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-controller-get-location-control-table-select-page.response';
 import { LocationSelectTableDataSource } from './data-sources/location-select-table.data-source';
-import { DashboardAccordionGeneralInformationDashboardControllerGetResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-controller-get.response';
 
 @RxapForm('general-information-dashboard')
 @Injectable()
@@ -17,8 +25,8 @@ export class GeneralInformationDashboardForm implements FormType<IGeneralInforma
   public readonly name!: RxapFormControl<string>;
 
   @UseTableSelectDataSource(LocationSelectTableDataSource)
-  @UseTableSelectToDisplay(item => item['name'])
-  @UseTableSelectToValue(item => item['uuid'])
+  @UseTableSelectToDisplay<DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageResponse['rows'][number]>(item => item.name)
+  @UseTableSelectToValue<DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageResponse['rows'][number]>(item => item.uuid)
   @UseTableSelectColumns({
         name: {
           label: $localize`Name`,
@@ -34,4 +42,4 @@ export class GeneralInformationDashboardForm implements FormType<IGeneralInforma
   public readonly link!: RxapFormControl<string>;
 }
 
-export type IGeneralInformationDashboardForm = Omit<DashboardAccordionGeneralInformationDashboardControllerGetResponse, 'company' | 'dashboardType'>;
+export type IGeneralInformationDashboardForm = Omit<DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse, 'company' | 'dashboardType' | 'uuid'>;

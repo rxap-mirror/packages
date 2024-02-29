@@ -1,5 +1,9 @@
 import { Expose } from 'class-transformer';
-import { IsString, IsNumber } from 'class-validator';
+import {
+  IsNumber,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 
 export class DashboardAccordionGeneralInformationDashboardDto {
   @Expose()
@@ -17,4 +21,7 @@ export class DashboardAccordionGeneralInformationDashboardDto {
   @Expose()
   @IsNumber()
   dashboardType!: number;
+  @Expose()
+  @IsUUID()
+  uuid!: string;
 }
