@@ -10,16 +10,16 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto } from './dashboard-accordion-general-information-dashboardlocation-table-select-row.dto';
+import { DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto } from './dashboard-accordion-general-information-dashboard-location-table-select-row.dto';
 
-export class DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto {
+export class DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto {
   @Expose()
   @IsArray()
-  @Type(() => DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto)
-  @IsInstance(DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto, {
+  @Type(() => DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto)
+  @IsInstance(DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto, {
         each: true
       })
-  rows!: Array<DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto>;
+  rows!: Array<DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto>;
   @Expose()
   @IsNumber()
   pageSize!: number;

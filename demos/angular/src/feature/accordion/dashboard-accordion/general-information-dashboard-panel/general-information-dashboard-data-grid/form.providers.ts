@@ -26,6 +26,7 @@ import {
   GeneralInformationDashboardForm,
   IGeneralInformationDashboardForm,
 } from './general-information-dashboard.form';
+import { LocationTableSelectValueResolverMethod } from './methods/location-table-select-value-resolver.method';
 
 export const FormProviders: Provider[] = [LocationSelectTableDataSource, GeneralInformationDashboardForm, {
     provide: RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
@@ -35,7 +36,7 @@ export const FormProviders: Provider[] = [LocationSelectTableDataSource, General
     provide: RXAP_FORM_SUBMIT_METHOD,
     useFactory: SubmitContextFormAdapterFactory,
     deps: [ DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRemoteMethod,[ new Optional(), RXAP_FORM_CONTEXT ] ]
-  }];
+  }, LocationTableSelectValueResolverMethod];
 export const FormComponentProviders: Provider[] = [{
     provide: RXAP_FORM_DEFINITION,
     useFactory: FormFactory,

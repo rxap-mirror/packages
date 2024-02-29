@@ -1,4 +1,4 @@
-export interface DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto {
+export interface DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto {
   __value: string;
   __display: string;
   name: string;

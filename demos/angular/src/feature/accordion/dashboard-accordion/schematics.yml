@@ -78,6 +78,12 @@ options:
                       columnList:
                         - name: name
                           hasFilter: true
+                      resolver:
+                        upstream:
+                          kind: open-api
+                          operationId: company-gui-controller-getByUuid@legacy
+                          mapper:
+                            value: uuid
                       upstream:
                         kind: open-api
                         operationId: company-gui-controller-getByFilter@legacy

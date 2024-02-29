@@ -17,30 +17,11 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetLocationContr
   "operationId": "DashboardAccordionGeneralInformationDashboardController_getLocationControlTableSelectPage",
   "parameters": [
     {
-      "name": "filter",
+      "name": "pageIndex",
       "required": false,
       "in": "query",
       "schema": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "sortBy",
-      "required": false,
-      "in": "query",
-      "schema": {
-        "type": "string"
-      }
-    },
-    {
-      "name": "sortDirection",
-      "required": false,
-      "in": "query",
-      "schema": {
-        "type": "string"
+        "type": "number"
       }
     },
     {
@@ -52,11 +33,30 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetLocationContr
       }
     },
     {
-      "name": "pageIndex",
+      "name": "sortDirection",
       "required": false,
       "in": "query",
       "schema": {
-        "type": "number"
+        "type": "string"
+      }
+    },
+    {
+      "name": "sortBy",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "filter",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     }
   ],
@@ -70,7 +70,7 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetLocationContr
               "rows": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto"
+                  "$ref": "#/components/schemas/DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto"
                 }
               },
               "pageSize": {

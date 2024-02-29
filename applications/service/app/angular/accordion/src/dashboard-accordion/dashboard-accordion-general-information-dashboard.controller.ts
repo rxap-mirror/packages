@@ -14,9 +14,10 @@ import {
   FilterQuery,
   FilterQueryPipe,
 } from '@rxap/nest-utilities';
+import { DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-page.dto';
+import { DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-row.dto';
+import { DashboardAccordionGeneralInformationDashboardLocationTableSelectDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select.dto';
 import { DashboardAccordionGeneralInformationDashboardDto } from './dtos/dashboard-accordion-general-information-dashboard.dto';
-import { DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto } from './dtos/dashboard-accordion-general-information-dashboardlocation-table-select-page.dto';
-import { DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto } from './dtos/dashboard-accordion-general-information-dashboardlocation-table-select-row.dto';
 
 interface CompanyGuiControllerGetByFilterResponse {
   entities: any[];
@@ -45,7 +46,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
     };
   }
 
-  private toRowDto(item: CompanyGuiControllerGetByFilterResponse['entities'][number], index: number, pageIndex: number, pageSize: number, list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>): DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto {
+  private toRowDto(item: CompanyGuiControllerGetByFilterResponse['entities'][number], index: number, pageIndex: number, pageSize: number, list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>): DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto {
     return {
       __rowId: item.uuid,
 
@@ -56,7 +57,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
     };
   }
 
-  private toPageDto(list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>, total: number, pageIndex: number, pageSize: number, sortBy: string, sortDirection: string, filter: FilterQuery[]): DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto {
+  private toPageDto(list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>, total: number, pageIndex: number, pageSize: number, sortBy: string, sortDirection: string, filter: FilterQuery[]): DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto {
     return {
       total, pageIndex, pageSize, sortBy, sortDirection, filter,
       rows: list.map((item, index) => this.toRowDto(item, index, pageIndex, pageSize, list))
@@ -89,10 +90,10 @@ export class DashboardAccordionGeneralInformationDashboardController {
         required: false,
         isArray: true
       })
-  public async getLocationControlTableSelectPage(@Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number): Promise<DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto> {
+  public async getLocationControlTableSelectPage(@Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto> {
     const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);
     return ToDtoInstance(
-    DashboardAccordionGeneralInformationDashboardlocationTableSelectPageDto,
+    DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto,
     this.toPageDto(data.list, data.total, pageIndex, pageSize, sortBy, sortDirection, filter),
     );
   }
@@ -116,7 +117,23 @@ export class DashboardAccordionGeneralInformationDashboardController {
   }
 
   @Post()
-  public async submitById(@Body() body: DashboardAccordionGeneralInformationDashboardDto, @Param('uuid') uuid: string): Promise<void> {
+  public async submitById(@Param('uuid') uuid: string, @Body() body: DashboardAccordionGeneralInformationDashboardDto): Promise<void> {
     throw new NotImplementedException();
+  }
+
+  private readonly companyGuiControllerGetByUuidCommand!: any;
+
+  @Get('control/location/resolve/:value')
+  public async resolveLocationControlValue(@Param('value') value: string): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectDto> {
+    const data = await this.companyGuiControllerGetByUuidCommand.execute({ uuid: value });
+    return ToDtoInstance(
+    DashboardAccordionGeneralInformationDashboardLocationTableSelectDto,
+    {
+      __value: data.uuid,
+      __display: data.name,
+      name: data.name,
+      uuid: data.uuid
+    },
+    );
   }
 }

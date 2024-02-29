@@ -4,7 +4,7 @@ import {
   IsUUID,
 } from 'class-validator';
 
-export class DashboardAccordionGeneralInformationDashboardlocationTableSelectRowDto {
+export class DashboardAccordionGeneralInformationDashboardLocationTableSelectDto {
   @Expose()
   @IsString()
   __value!: string;
@@ -17,7 +17,4 @@ export class DashboardAccordionGeneralInformationDashboardlocationTableSelectRow
   @Expose()
   @IsUUID()
   uuid!: string;
-  @Expose()
-  @IsString()
-  __rowId!: string;
 }
