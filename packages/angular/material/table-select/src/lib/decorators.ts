@@ -5,6 +5,7 @@ import {
   UseDataSource,
   UseDataSourceSettings,
 } from '@rxap/form-system';
+import { Method } from '@rxap/pattern';
 import { setMetadataMap } from '@rxap/reflect-metadata';
 import { Constructor } from '@rxap/utilities';
 import { TableSelectColumn } from './open-table-select-window.method';
@@ -12,6 +13,7 @@ import { TableSelectColumn } from './open-table-select-window.method';
 export const TABLE_SELECT_COLUMN_MAP = 'TABLE_SELECT_COLUMN_MAP';
 export const TABLE_SELECT_TO_DISPLAY = 'TABLE_SELECT_TO_DISPLAY';
 export const TABLE_SELECT_TO_VALUE = 'TABLE_SELECT_TO_VALUE';
+export const TABLE_SELECT_METHOD = 'TABLE_SELECT_TO_VALUE';
 export const TABLE_SELECT_DATA_SOURCE = 'TABLE_SELECT_DATA_SOURCE';
 
 export function UseTableSelectColumns(columnMap: Map<string, TableSelectColumn> | Record<string, TableSelectColumn>) {
@@ -36,5 +38,11 @@ export function UseTableSelectToDisplay<Data = Record<string, any>>(toDisplay: (
 export function UseTableSelectToValue<Data = Record<string, any>>(toValue: (value: Data) => unknown | Promise<unknown>) {
   return function (target: any, propertyKey: string) {
     setMetadataMap(propertyKey, toValue, TABLE_SELECT_TO_VALUE, target);
+  };
+}
+
+export function UseTableSelectMethod<Data = Record<string, any>>(method: Method) {
+  return function (target: any, propertyKey: string) {
+    setMetadataMap(propertyKey, method, TABLE_SELECT_METHOD, target);
   };
 }
