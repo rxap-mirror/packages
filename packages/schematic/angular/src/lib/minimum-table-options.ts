@@ -4,10 +4,10 @@ import {
   NormalizedDataProperty,
 } from '@rxap/ts-morph';
 import {
+  CoerceArrayItems,
   CoerceSuffix,
   Normalized,
 } from '@rxap/utilities';
-import { MergeWithColumnList } from './merge-with-column-list';
 import {
   NormalizedTableAction,
   NormalizeTableActionList,
@@ -47,7 +47,7 @@ export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
   componentName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: ReadonlyArray<NormalizedDataProperty>;
+  propertyList: Array<NormalizedDataProperty>;
   modifiers: Array<MODIFIER>;
 }
 
@@ -67,6 +67,7 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   if (!modifiers.every(isModifier)) {
     throw new Error(`Invalid table modifier for table: ${ componentName } - [ ${ modifiers.join(', ') } ] with function: ${ isModifier.name }`);
   }
+  CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
   return Object.freeze({
     componentName,
     actionList,
@@ -74,6 +75,6 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     headerButton,
     modifiers,
     title,
-    propertyList: MergeWithColumnList(propertyList, columnList),
+    propertyList,
   });
 }

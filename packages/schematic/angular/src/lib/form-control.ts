@@ -386,9 +386,9 @@ export function NormalizeSlideToggleFormControl(
 
 // region TableSelectColumn
 
-export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath' | 'type' | 'isArray'>
+export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath'> & DataProperty
 
-export type NormalizedTableSelectColumn  = Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath' | 'type' | 'isArray'>
+export type NormalizedTableSelectColumn  = Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath'> & NormalizedDataProperty
 
 export function NormalizeTableSelectColumn(
   column: TableSelectColumn,
@@ -455,7 +455,7 @@ export interface NormalizedTableSelectFormControl
   kind: FormControlKinds.TABLE_SELECT;
   backend: BackendTypes;
   columnList: NormalizedTableSelectColumn[];
-  propertyList: ReadonlyArray<NormalizedDataProperty>;
+  propertyList: Array<NormalizedDataProperty>;
   toDisplay: NormalizedTableSelectToFunction;
   toValue: NormalizedTableSelectToFunction;
   upstream: NormalizedUpstreamOptions | null;
@@ -477,7 +477,7 @@ export function NormalizeTableSelectFormControl(
   if (!control.columnList?.length) {
     throw new Error('The column list must not be empty');
   }
-  const propertyList = control.propertyList ?? [];
+  const propertyList = NormalizeDataPropertyList(control.propertyList);
   const toDisplay = NormalizeTableSelectToFunction(control.toDisplay, control.columnList, 'string');
   const toValue = NormalizeTableSelectToFunction(control.toValue, control.columnList);
   CoerceArrayItems(propertyList, [toDisplay.property, toValue.property], (a, b) => a.name === b.name);
@@ -495,6 +495,8 @@ export function NormalizeTableSelectFormControl(
       ]
     },
   );
+  const columnList = control.columnList.map(NormalizeTableSelectColumn);
+  CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
   control.type ??= toValue.property.type;
   return Object.freeze({
     ...NormalizeBaseFormControl(control),
@@ -504,10 +506,10 @@ export function NormalizeTableSelectFormControl(
     formField,
     backend: control.backend ?? BackendTypes.NONE,
     title: control.title ?? null,
-    columnList: control.columnList.map(NormalizeTableSelectColumn),
+    columnList,
     toDisplay,
     toValue,
-    propertyList: NormalizeDataPropertyList(propertyList),
+    propertyList,
     upstream: NormalizeUpstreamOptions(control.upstream),
   });
 }

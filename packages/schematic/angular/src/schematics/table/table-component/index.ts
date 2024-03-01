@@ -16,10 +16,7 @@ import {
   OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
 import { AddPackageJsonDependencyRule } from '@rxap/schematics-utilities';
-import {
-  NormalizedDataProperty,
-  TypeImportToImportStructure,
-} from '@rxap/ts-morph';
+import { TypeImportToImportStructure } from '@rxap/ts-morph';
 import {
   classify,
   Normalized,
@@ -83,42 +80,6 @@ export function NormalizeTableComponentOptions(
     ...normalizedMinimumTableComponentOptions,
     ...normalizedTableOptions,
   });
-}
-
-/**
- * // TODO : refactor
- * Options 1: remove this function and create the propertyList in the normalize functions
- * Options 1: use the CoerceArrayItems function with merge = true
- * @param columnList
- * @param propertyList
- * @constructor
- */
-export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
-  columnList: ReadonlyArray<Pick<NormalizedTableColumn, 'name' | 'type' | 'propertyPath' | 'isArray'>>,
-  propertyList: ReadonlyArray<NormalizedDataProperty> = [],
-): NormalizedDataProperty[] {
-  const list: NormalizedDataProperty[] = [];
-  for (const column of columnList) {
-    list.push({
-      name: column.name,
-      type: column.type,
-      source: column.propertyPath,
-      isArray: column.isArray,
-      isOptional: false,
-    });
-  }
-  for (const property of propertyList) {
-    if (!list.find((p) => p.source === property.name) && !list.find(p => p.name === property.name)) {
-      list.push({
-        name: property.name,
-        type: property.type,
-        source: property.source,
-        isArray: property.isArray,
-        isOptional: property.isOptional,
-      });
-    }
-  }
-  return list;
 }
 
 export function TableColumnToFormControl(
@@ -287,7 +248,6 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
     project,
     feature,
     shared,
-    columnList,
     propertyList,
     context,
     nestModule,
@@ -312,7 +272,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
       project,
       feature,
       shared,
-      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
+      propertyList,
       context,
     }),
     () => console.log('Add the open api methods to the table component providers'),

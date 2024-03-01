@@ -16,7 +16,6 @@ import { NormalizedAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TableModifiers } from '../../../../lib/table-options';
-import { TableColumnListAndPropertyListToGetPageOperationPropertyList } from '../../../table/table-component';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
@@ -149,7 +148,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
       feature,
       shared: hasSharedModifier,
       paramList,
-      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(normalizedOptions.table.columnList),
+      propertyList: normalizedOptions.table.propertyList,
       skipCoerce: true,
     }),
   ]);

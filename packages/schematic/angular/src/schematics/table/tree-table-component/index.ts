@@ -49,7 +49,6 @@ import {
   NormalizeTreeTableOptions,
   TreeTableModifiers,
 } from '../../../lib/tree-table-options';
-import { TableColumnListAndPropertyListToGetPageOperationPropertyList } from '../table-component';
 import { TreeTableComponentOptions } from './schema';
 
 export interface NormalizedTreeTableComponentOptions
@@ -179,7 +178,6 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
     overwrite,
     scope,
     controllerName,
-    columnList,
     propertyList
   } = normalizedOptions;
 
@@ -194,7 +192,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
       project,
       feature,
       shared,
-      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
+      propertyList,
     }),
     () => console.log(`Coerce the get children operation ${ getChildrenOperationId }`),
     CoerceGetChildrenOperation({
@@ -204,7 +202,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
       feature,
       shared,
       skipCoerce: true,
-      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
+      propertyList,
     }),
     () => console.log(`Coerce the tree table root proxy remote method class`),
     CoerceTreeTableRootProxyRemoteMethodClass({

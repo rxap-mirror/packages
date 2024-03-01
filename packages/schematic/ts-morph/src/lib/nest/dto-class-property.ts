@@ -17,7 +17,6 @@ export interface DtoClassProperty extends DataProperty {
    * indicates that the @Type decorator should be used as the type of the property is another dto class
    */
   isType?: boolean,
-  isOptional?: boolean,
 }
 
 export interface NormalizedDtoClassProperty extends Normalized<Omit<DtoClassProperty, 'type'>> {

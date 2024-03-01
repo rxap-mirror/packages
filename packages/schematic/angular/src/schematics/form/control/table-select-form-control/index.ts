@@ -41,7 +41,6 @@ import {
   NormalizedTableSelectFormControl,
   NormalizeTableSelectFormControl,
 } from '../../../../lib/form-control';
-import { TableColumnListAndPropertyListToGetPageOperationPropertyList } from '../../../table/table-component';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,
@@ -173,7 +172,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       nestModule,
       controllerName,
       upstream,
-      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
+      propertyList,
       rowValueProperty: toValue.property.name,
       rowDisplayProperty: toDisplay.property.name,
       operationName: resolveValueOperationName,
@@ -290,7 +289,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       feature,
       nestModule,
       controllerName,
-      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
+      propertyList,
       operationName: optionsOperationName,
       path: optionsOperationPath,
       dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),

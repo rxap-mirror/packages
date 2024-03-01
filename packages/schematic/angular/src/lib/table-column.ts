@@ -262,6 +262,7 @@ export function NormalizeTableColumn(
   const pipeList = column.pipeList ?? [];
   const importList = coerceTableColumnImportList(column);
   const type = GuessColumnTypeType(kind, column.type);
+  const source = column.source ?? propertyPath;
   if (nowrap) {
     if (!cssClass) {
       cssClass = 'nowrap';
@@ -294,6 +295,7 @@ export function NormalizeTableColumn(
       ...column,
       name,
       type,
+      source,
     }),
     kind,
     modifiers,

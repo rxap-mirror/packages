@@ -33,7 +33,7 @@ export interface NormalizedTreeTableOptions
   componentName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: ReadonlyArray<NormalizedDataProperty>;
+  propertyList: Array<NormalizedDataProperty>;
   tableRootMethod: NormalizedExistingMethod | null;
   tableChildMethod: NormalizedExistingMethod | null;
 }
