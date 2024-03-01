@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.16...@rxap/schematic-angular@16.2.0-dev.17) (2024-03-01)
+
+### Bug Fixes
+
+- add missing handlebars partial loaders ([4a38e18](https://gitlab.com/rxap/packages/commit/4a38e185a434b90e5589d9fe8e8d682a9c63a37e))
+- ensure all imports are added ([bbf00b4](https://gitlab.com/rxap/packages/commit/bbf00b46b2eb58e16d280ac09de05a1d12390bfd))
+
 # [16.2.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.15...@rxap/schematic-angular@16.2.0-dev.16) (2024-02-29)
 
 ### Bug Fixes

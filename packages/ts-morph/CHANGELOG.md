@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.7...@rxap/ts-morph@1.1.0-dev.8) (2024-03-01)
+
+### Bug Fixes
+
+- guess type for uuid ([c0dc126](https://gitlab.com/rxap/packages/commit/c0dc12663d77b56624b2dfb4be347ec3101cb4cd))
+
 # [1.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.6...@rxap/ts-morph@1.1.0-dev.7) (2024-02-29)
 
 ### Bug Fixes
