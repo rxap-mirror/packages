@@ -5,9 +5,9 @@ export interface CoerceArrayItemsOptions<T = any> {
   replace?: boolean,
 }
 
-export function CoerceArrayItems<T = any>(array: T[], items: T[], compareTo?: (a: T, b: T) => boolean, unshift?: boolean): void
-export function CoerceArrayItems<T = any>(array: T[], items: T[], options?: CoerceArrayItemsOptions): void
-export function CoerceArrayItems<T = any>(array: T[], items: T[], compareToOrOptions: CoerceArrayItemsOptions | ((a: T, b: T) => boolean) = ((a: T, b: T) => a === b), unshift = false) {
+export function CoerceArrayItems<T = any>(array: T[], items: ReadonlyArray<T>, compareTo?: (a: T, b: T) => boolean, unshift?: boolean): void
+export function CoerceArrayItems<T = any>(array: T[], items: ReadonlyArray<T>, options?: CoerceArrayItemsOptions): void
+export function CoerceArrayItems<T = any>(array: T[], items: ReadonlyArray<T>, compareToOrOptions: CoerceArrayItemsOptions | ((a: T, b: T) => boolean) = ((a: T, b: T) => a === b), unshift = false) {
   const options: Required<CoerceArrayItemsOptions<T>> = { merge: false, unshift: false, replace: false, compareTo: (a, b) => a === b };
   if (!compareToOrOptions) {
     options.unshift = unshift;
