@@ -30,6 +30,9 @@ function guessType(name: string): string {
     case 'name':
       return 'string';
   }
+  if (name.match(/Uuid$/)) {
+    return 'string';
+  }
   if (name.match(/Name$/)) {
     return 'string';
   }
