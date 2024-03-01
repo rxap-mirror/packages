@@ -46,6 +46,10 @@ import {
   NormalizeFormComponentControlList,
 } from '../../../lib/form-component-control';
 import {
+  LoadMatFormFieldHandlebarsTemplate,
+  LoadPipeHandlebarsTemplate,
+} from '../../../lib/load-handlebars-template';
+import {
   NormalizedMatFormFieldDefaultOptions,
   NormalizeMatFormFieldDefaultOptions,
 } from '../../../lib/mat-form-field-default-options';
@@ -119,6 +123,12 @@ function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule 
       name: componentName,
       directory,
       overwrite,
+      handlebars: {
+        partials: {
+          matFormField: LoadMatFormFieldHandlebarsTemplate(),
+          pipe: LoadPipeHandlebarsTemplate(),
+        }
+      },
       template: {
         options: {
           ...normalizedOptions,

@@ -37,6 +37,10 @@ import {
 import { BackendTypes } from '../../../lib/backend-types';
 import { CoerceMinimumTableComponentRule } from '../../../lib/coerce-minimum-table-component';
 import {
+  LoadMatFormFieldHandlebarsTemplate,
+  LoadPipeHandlebarsTemplate,
+} from '../../../lib/load-handlebars-template';
+import {
   actionListRule,
   cellComponentRule,
   headerButtonRule,
@@ -175,6 +179,12 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
       overwrite,
       template: {
         options: templateOptions,
+      },
+      handlebars: {
+        partials: {
+          matFormField: LoadMatFormFieldHandlebarsTemplate(),
+          pipe: LoadPipeHandlebarsTemplate(),
+        }
       },
       tsMorphTransform: (
         project: Project,

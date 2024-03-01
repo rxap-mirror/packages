@@ -32,6 +32,10 @@ import {
 import { BackendTypes } from '../../../lib/backend-types';
 import { CoerceTreeTableComponentRule } from '../../../lib/coerce-tree-table-component';
 import {
+  LoadMatFormFieldHandlebarsTemplate,
+  LoadPipeHandlebarsTemplate,
+} from '../../../lib/load-handlebars-template';
+import {
   actionListRule,
   cellComponentRule,
   headerButtonRule,
@@ -114,6 +118,12 @@ function componentRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
       overwrite,
       template: {
         options: templateOptions,
+      },
+      handlebars: {
+        partials: {
+          matFormField: LoadMatFormFieldHandlebarsTemplate(),
+          pipe: LoadPipeHandlebarsTemplate(),
+        }
       },
       tsMorphTransform: (project, [ sourceFile ]) => {
         AddComponentProvider(
