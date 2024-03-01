@@ -29,7 +29,8 @@
           "build-storybook",
           "copy-open-api-sdk",
           "copy-client-sdk",
-          "bundle-json-schema"
+          "bundle-json-schema",
+          "index-json-schema"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
