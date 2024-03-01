@@ -21,6 +21,7 @@ import {
   RXAP_TABLE_DATA_SOURCE_SORT,
   SortLike,
   TableDataSourceMetadata,
+  TableEvent,
 } from '@rxap/data-source/table';
 import {
   ExpandNodeFunction,
@@ -39,6 +40,7 @@ import {
   combineLatest,
   Observable,
   of,
+  share,
   Subject,
   Subscription,
 } from 'rxjs';
@@ -58,6 +60,13 @@ export const RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD =
 export const RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD =
   new InjectionToken('rxap/tree/data-source/children-method');
 
+export type TreeTableEvent = Omit<TableEvent, 'start' | 'end'>;
+
+export interface FilterQuery {
+  column: string;
+  filter: string;
+}
+
 @Injectable()
 export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
   Parameters = any>
@@ -66,56 +75,54 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
   public tree$ = new BehaviorSubject<Array<Node<RowData>>>([]);
 
   public expanded!: SelectionModel<string>;
-  public override _data$ = new Subject<Array<RowDataWithNode<RowData>>>();
+  public override _data$                                         = new Subject<Array<RowDataWithNode<RowData>>>();
   private _expandedLocalStorageSubscription: Subscription | null = null;
   private _subscription?: Subscription;
 
   constructor(
     @Inject(RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD)
-    public readonly rootMethod: Method<RowData | RowData[],
-      void>,
+    public readonly rootMethod: Method<RowData | RowData[], TreeTableEvent>,
     @Inject(RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD)
-    public readonly childrenMethod: Method<RowData[],
-      Node<RowData>>,
+    public readonly childrenMethod: Method<RowData[], { node: Node<RowData>, event: TreeTableEvent }>,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
-      paginator: PaginatorLike | null = null,
+      paginator: PaginatorLike | null           = null,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
-      sort: SortLike | null = null,
+      sort: SortLike | null                     = null,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
-      filter: FilterLike | null = null,
+      filter: FilterLike | null                 = null,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
       parameters: Observable<Parameters> | null = null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: TableDataSourceMetadata | null = rootMethod.metadata,
+      metadata: TableDataSourceMetadata | null  = rootMethod.metadata,
   ) {
     super(
       paginator,
       sort,
       filter,
       parameters,
-      metadata ?? rootMethod.metadata ?? { id: 'tree-table-data-source' },
+      metadata ?? rootMethod.metadata ?? {id: 'tree-table-data-source'},
     );
     this.tree$
-        .pipe(
-          debounceTime(100),
-          map((tree) =>
-            tree
-              .map((child) => this.flatTree(child))
-              .reduce((acc, nodes) => [ ...acc, ...nodes ], []),
-          ),
-          map((flatTree) =>
-            flatTree.map((node) => ({
-              ...node.item,
-              __node: node,
-            })),
-          ),
-        )
-        .subscribe(this._data$);
+      .pipe(
+        debounceTime(100),
+        map((tree) =>
+          tree
+            .map((child) => this.flatTree(child))
+            .reduce((acc, nodes) => [ ...acc, ...nodes ], []),
+        ),
+        map((flatTree) =>
+          flatTree.map((node) => ({
+            ...node.item,
+            __node: node,
+          })),
+        ),
+      )
+      .subscribe(this._data$);
     this.initExpanded();
   }
 
@@ -128,20 +135,20 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
     // TODO : workaround the handle parameters change
     if (this.parameters) {
       this._subscription = this.parameters
-                               .pipe(
-                                 distinctUntilChanged((a, b) => equals(a, b)),
-                                 skip(1),
-                                 tap(() => this.refresh()),
-                               )
-                               .subscribe();
+        .pipe(
+          distinctUntilChanged((a, b) => !equals(a, b)),
+          skip(1),
+          tap(() => this.refresh()),
+        )
+        .subscribe();
     }
   }
 
-  public async getTreeRoot(): Promise<void> {
+  public async getTreeRoot(event: TreeTableEvent = {}): Promise<void> {
     this.loading$.next(true);
     this.hasError$.disable();
 
-    const root: RowData | RowData[] = await this.getRoot().catch((error) => {
+    const root: RowData | RowData[] = await this.getRoot(event).catch((error) => {
       this.hasError$.enable();
       throw new Error(`Failed to load root nodes: ${ error.message }`);
     });
@@ -164,12 +171,12 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
     this.tree$.next(rootNode);
   }
 
-  public async getChildren(node: Node<RowData>): Promise<RowData[]> {
-    return this.childrenMethod.call(node);
+  public async getChildren(node: Node<RowData>, event: TreeTableEvent): Promise<RowData[]> {
+    return this.childrenMethod.call({node, event});
   }
 
-  public async getRoot(): Promise<RowData | RowData[]> {
-    return this.rootMethod.call();
+  public async getRoot(event: TreeTableEvent): Promise<RowData | RowData[]> {
+    return this.rootMethod.call(event);
   }
 
   public collapseNode(node: Node<RowData>): Promise<void> {
@@ -180,8 +187,8 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
 
   public async _toNode(
     row: RowData,
-    depth = 0,
-    onExpand: ExpandNodeFunction<RowData> = this.expandNode.bind(this),
+    depth                                   = 0,
+    onExpand: ExpandNodeFunction<RowData>   = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<RowData> = this.collapseNode.bind(this),
   ): Promise<Node<RowData>> {
     const node = await this.toNode(row, depth, onExpand, onCollapse);
@@ -217,7 +224,8 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
 
   public async expandNode(node: Node<RowData>): Promise<void> {
     if (node.item.hasChildren && !node.item.children?.length) {
-      const children: RowData[] = await this.getChildren(node).catch((error) => {
+      // TODO : get treeTableEvent from paginator, sort and filter
+      const children: RowData[] = await this.getChildren(node, {}).catch((error) => {
         this.hasError$.enable();
         throw new Error(`Failed to load children nodes for '${ node.id }': ${ error.message }`);
       });
@@ -247,8 +255,8 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
 
   public toNode(
     row: RowData,
-    depth = 0,
-    onExpand: ExpandNodeFunction<RowData> = this.expandNode.bind(this),
+    depth                                   = 0,
+    onExpand: ExpandNodeFunction<RowData>   = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<RowData> = this.collapseNode.bind(this),
   ): Node<RowData> | Promise<Node<RowData>> {
     return Node.ToNode(null, row, depth, onExpand, onCollapse);
@@ -294,10 +302,77 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
     return this.getTreeRoot();
   }
 
+  isMatchingFilter(item: RowDataWithNode<RowData>, filterList: Array<FilterQuery>): boolean {
+    for (const filter of filterList) {
+      const value = (item as any)[filter.column] as any;
+      if (value === filter.filter) {
+        return true;
+      }
+      if (typeof value === 'string' && typeof filter.filter === 'string') {
+        return value.toLowerCase().includes(filter.filter.toLowerCase());
+      }
+    }
+    return false;
+  }
+
+  hasMatchingNodesByFilter(
+    nodeList: ReadonlyArray<Node<any>>,
+    filterList: Array<FilterQuery>,
+  ): boolean {
+
+    if (!filterList.length) {
+      return true;
+    }
+
+    return nodeList.some((node) => {
+
+      if (this.isMatchingFilter(node.item, filterList)) {
+        return true;
+      }
+
+      if (!node.hasChildren) {
+        // If item has no children and doesn't pass the filter, remove it
+        return false;
+      }
+
+      return this.hasMatchingNodesByFilter(node.children ?? [], filterList);
+    });
+  }
+
+  override applyFilterBy(
+    data: ReadonlyArray<RowDataWithNode<RowData>>,
+    filter: Record<string, any> | string,
+  ): RowDataWithNode<RowData>[] {
+    const filterList = typeof filter === 'string' ?
+      [] :
+                       Object.entries(filter).map(([ column, filter ]) => ({column, filter}));
+    if (!filterList.length || filterList.every((filter) => !filter.filter && filter.filter !== false)) {
+      return data.slice();
+    }
+
+    return data.filter(item => {
+
+      if (this.isMatchingFilter(item, filterList)) {
+        return true;
+      }
+
+      const hasMatch = this.hasMatchingNodesByFilter(item.__node.children, filterList);
+
+      if (hasMatch) {
+        item.__node.expand();
+      }
+
+      return hasMatch;
+
+    });
+
+  }
+
   protected override _connect(
     viewer: BaseDataSourceViewer,
   ): Observable<Array<RowDataWithNode<RowData>>> {
     this.init();
+    console.log('connect tree table data source');
     return this._data$.pipe(
       tap((data) => this.updateTotalLength(data.length)),
       switchMap((data) => {
@@ -317,8 +392,16 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
           ) ?? of(null),
           this.filter?.change.pipe(startWith({})) ?? of(null),
         ]).pipe(
-          map(([ page, sort, filter ]) => {
-            let filteredData = data;
+          map(([ page, sort, filter ]) => ({
+            page,
+            sort,
+            filter,
+          })),
+          debounceTime(500),
+          distinctUntilChanged((a, b) => !equals(a, b)),
+          map((event) => {
+            const {page, sort, filter} = event;
+            let filteredData           = data;
 
             if (filter) {
               filteredData = this.applyFilterBy(filteredData, filter);
@@ -344,13 +427,14 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
 
             return sortData;
           }),
+          share(),
         );
       }),
     );
   }
 
   private initExpanded(): void {
-    const key = joinPath('rxap/table-system/tree-table', this.id, 'expanded');
+    const key    = joinPath('rxap/table-system/tree-table', this.id, 'expanded');
     let expanded = [];
     if (localStorage.getItem(key)) {
       try {
@@ -360,13 +444,14 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
       }
     }
 
-    this.expanded = new SelectionModel<string>(true, expanded);
+    this.expanded                          = new SelectionModel<string>(true, expanded);
     this._expandedLocalStorageSubscription = this.expanded.changed
-                                                 .pipe(
-                                                   tap(() =>
-                                                     localStorage.setItem(key, JSON.stringify(this.expanded.selected)),
-                                                   ),
-                                                 )
-                                                 .subscribe();
+      .pipe(
+        tap(() =>
+          localStorage.setItem(key, JSON.stringify(this.expanded.selected)),
+        ),
+      )
+      .subscribe();
   }
 }
+
