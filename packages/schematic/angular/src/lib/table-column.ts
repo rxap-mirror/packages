@@ -286,6 +286,9 @@ export function NormalizeTableColumn(
   if (filterControl && !hasFilter) {
     hasFilter = true;
   }
+  if (filterControl) {
+    filterControl.label ??= title;
+  }
   const normalizedFilterControl = filterControl ? NormalizeFormDefinitionControl(filterControl) : null;
   if (normalizedFilterControl) {
     CoerceArrayItems(importList, normalizedFilterControl.importList, (a, b) => a.name === b.name);

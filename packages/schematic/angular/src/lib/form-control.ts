@@ -193,18 +193,34 @@ export function NormalizeFormField(
   return Object.freeze(normalizedFormField);
 }
 
+export interface FormFieldFormControl extends BaseFormControl {
+  formField?: FormField;
+}
+
+export interface NormalizedFormFieldFormControl extends Readonly<Normalized<Omit<FormFieldFormControl, 'type' | 'importList'>>>, NormalizedBaseFormControl {
+  formField: NormalizedFormField;
+}
+
+export function IsFormFieldFormControl(control: BaseFormControl): control is FormFieldFormControl {
+  return (control as any).formField !== undefined;
+}
+
+export function IsNormalizedFormFieldFormControl(control: NormalizedBaseFormControl): control is NormalizedFormFieldFormControl {
+  return (control as any).formField !== undefined;
+}
+
 // endregion
 
 // region InputFormControlOptions
 
-export interface InputFormControl extends BaseFormControl {
+export interface InputFormControl extends BaseFormControl, FormFieldFormControl {
   inputType?: string;
   placeholder?: string;
   formField?: FormField;
 }
 
-export interface NormalizedInputFormControl extends Omit<Readonly<Normalized<InputFormControl>>, 'type' | 'importList'>,
-                                                    NormalizedBaseFormControl {
+export interface NormalizedInputFormControl extends Omit<Readonly<Normalized<InputFormControl>>, 'type' | 'importList' | 'formField'>,
+                                                    NormalizedBaseFormControl, NormalizedFormFieldFormControl {
   kind: FormControlKinds.INPUT;
 }
 
@@ -284,7 +300,7 @@ export function NormalizeInputFormControl(
 
 // region SelectFormControl
 
-export interface SelectFormControl extends BaseFormControl {
+export interface SelectFormControl extends BaseFormControl, FormFieldFormControl {
   options?: ControlOption[];
   backend?: BackendTypes;
   multiple?: boolean;
@@ -292,7 +308,7 @@ export interface SelectFormControl extends BaseFormControl {
 }
 
 export interface NormalizedSelectFormControl
-  extends Readonly<Normalized<Omit<SelectFormControl, 'options' | 'type' | 'importList'>>>, NormalizedBaseFormControl {
+  extends Readonly<Normalized<Omit<SelectFormControl, 'options' | 'type' | 'importList' | 'formField'>>>, NormalizedBaseFormControl, NormalizedFormFieldFormControl {
   kind: FormControlKinds.SELECT;
   options: ReadonlyArray<ControlOption> | null;
   backend: BackendTypes;
@@ -437,7 +453,7 @@ export function NormalizeTableSelectToFunction(
 
 // endregion
 
-export interface TableSelectFormControl extends BaseFormControl {
+export interface TableSelectFormControl extends BaseFormControl, FormFieldFormControl {
   backend?: BackendTypes;
   formField?: FormField;
   title?: string;
@@ -450,8 +466,8 @@ export interface TableSelectFormControl extends BaseFormControl {
 }
 
 export interface NormalizedTableSelectFormControl
-  extends Readonly<Normalized<Omit<TableSelectFormControl, 'type' | 'importList' | 'columnList' | 'propertyList'>>>,
-          NormalizedBaseFormControl {
+  extends Readonly<Normalized<Omit<TableSelectFormControl, 'type' | 'importList' | 'columnList' | 'propertyList' | 'formField'>>>,
+          NormalizedBaseFormControl, NormalizedFormFieldFormControl {
   kind: FormControlKinds.TABLE_SELECT;
   backend: BackendTypes;
   columnList: NormalizedTableSelectColumn[];
