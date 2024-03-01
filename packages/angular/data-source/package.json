@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.3",
+  "version": "16.1.0-dev.0",
   "name": "@rxap/data-source",
   "description": "Provides the DataSource concept for RxAP.",
   "license": "GPL-3.0-or-later",
@@ -16,7 +16,7 @@
     "@rxap/environment": "^16.0.0",
     "@rxap/pattern": "^1.1.0",
     "@rxap/rxjs": "^1.1.0",
-    "@rxap/utilities": "^16.1.0-dev.0",
+    "@rxap/utilities": "^16.1.0-dev.5",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -65,7 +65,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.0"
+        "version": "16.1.0-dev.5"
       }
     ]
   },

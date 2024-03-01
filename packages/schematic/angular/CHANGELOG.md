@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.19...@rxap/schematic-angular@16.2.0-dev.20) (2024-03-01)
+
+### Bug Fixes
+
+- add default filter control label ([65971f4](https://gitlab.com/rxap/packages/commit/65971f4f839d362d2145afa7ab988be782ef1bd6))
+
 # [16.2.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.18...@rxap/schematic-angular@16.2.0-dev.19) (2024-03-01)
 
 ### Bug Fixes

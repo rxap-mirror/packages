@@ -8960,7 +8960,7 @@ __metadata:
     "@rxap/environment": ^16.0.0
     "@rxap/pattern": ^1.1.0
     "@rxap/rxjs": ^1.1.0
-    "@rxap/utilities": ^16.1.0-dev.0
+    "@rxap/utilities": ^16.1.0-dev.5
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10099,7 +10099,7 @@ __metadata:
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/schematics-ts-morph": ^16.1.0-dev.9
     "@rxap/schematics-utilities": ^16.0.1-dev.0
-    "@rxap/ts-morph": ^1.1.0-dev.8
+    "@rxap/ts-morph": ^1.1.0-dev.9
     "@rxap/utilities": ^16.1.0-dev.5
     colors: ^1.4.0
     handlebars: ^4.7.7
