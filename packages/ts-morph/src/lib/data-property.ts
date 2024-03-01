@@ -24,11 +24,16 @@ export interface NormalizedDataProperty extends Readonly<Normalized<DataProperty
   source: string | null;
 }
 
-function guessType(name: string): string {
+function guessType(name: string): string | TypeImport {
   switch (name) {
     case 'uuid':
     case 'name':
       return 'string';
+    case 'icon':
+      return {
+        name: 'IconConfig',
+        moduleSpecifier: '@rxap/utilities',
+      };
   }
   if (name.match(/Uuid$/)) {
     return 'string';
