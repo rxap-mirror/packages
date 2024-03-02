@@ -1,7 +1,7 @@
 import { TypeImport } from '@rxap/ts-morph';
 import { WriterFunction } from 'ts-morph';
 
-export interface FormDefinitionControl {
+export interface AbstractControl {
   name: string;
   type?: string | TypeImport | WriterFunction;
   isArray?: boolean;

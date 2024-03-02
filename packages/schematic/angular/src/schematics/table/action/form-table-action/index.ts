@@ -38,10 +38,10 @@ import { PrintAngularOptions } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import { BackendTypes } from '../../../../lib/backend-types';
 import {
-  NormalizedFormComponentControl,
-  NormalizeFormComponentControlList,
-} from '../../../../lib/form-component-control';
-import { FormComponentControlToDtoClassProperty } from '../../../form/form-component/index';
+  ControlToDtoClassProperty,
+  NormalizeControlList,
+  NormalizedControl,
+} from '../../../../lib/form/control';
 import {
   NormalizedOperationTableActionOptions,
   NormalizeOperationTableActionOptions,
@@ -53,7 +53,7 @@ export interface NormalizedFormTableActionOptions
   formComponent: string;
   formOptions: {
     // TODO : create custom interface and normalization function for the formOptions property (also used in form-table-header-button)
-    controlList: ReadonlyArray<NormalizedFormComponentControl>;
+    controlList: ReadonlyArray<NormalizedControl>;
     role: string | null;
     window: boolean;
   };
@@ -85,7 +85,7 @@ export function NormalizeFormTableActionOptions(
     formOptions: {
       window: formOptions.window ?? true,
       role: formOptions.role ?? type,
-      controlList: NormalizeFormComponentControlList(formOptions.controlList),
+      controlList: NormalizeControlList(formOptions.controlList),
     },
   };
 }
@@ -185,7 +185,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
           project,
           name: controllerName,
           propertyList: normalizedOptions.formOptions?.controlList.map(
-            control => FormComponentControlToDtoClassProperty(control)) ?? [],
+            control => ControlToDtoClassProperty(control)) ?? [],
         });
 
         CoerceImports(sourceFile, {

@@ -5,6 +5,10 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import {
+  CoercePropertyDeclaration,
+  WriteType,
+} from '@rxap/ts-morph';
+import {
   ClassDeclaration,
   Decorator,
   PropertyDeclaration,
@@ -22,13 +26,9 @@ import {
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceInterface } from '../ts-morph/coerce-interface';
-import {
-  CoercePropertyDeclaration,
-  WriteType,
-} from '@rxap/ts-morph';
-import { FormDefinitionControl } from '../types/form-definition-control';
+import { AbstractControl } from '../types/abstract-control';
 
-export interface CoerceFormDefinitionControlOptions extends Required<FormDefinitionControl>,
+export interface CoerceFormDefinitionControlOptions extends Required<AbstractControl>,
                                                             TsMorphAngularProjectTransformOptions {
   tsMorphTransform?: (sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
   formName: string;
@@ -36,12 +36,12 @@ export interface CoerceFormDefinitionControlOptions extends Required<FormDefinit
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     formTypeName: string,
-    control: Required<FormDefinitionControl>,
+    control: Required<AbstractControl>,
   ) => void;
   coerceFormControl?: (
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
-    control: Required<FormDefinitionControl>,
+    control: Required<AbstractControl>,
   ) => { propertyDeclaration: PropertyDeclaration, decoratorDeclaration: Decorator };
 }
 
@@ -49,7 +49,7 @@ export function CoerceInterfaceFormTypeControl(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   formTypeName: string,
-  control: Required<FormDefinitionControl>,
+  control: Required<AbstractControl>,
 ) {
   if (sourceFile.getTypeAlias(formTypeName)) {
     console.log(`Type alias ${ formTypeName } already exists! Skip interface generation`);
@@ -77,7 +77,7 @@ export function isAngularValidator(validator: string) {
 export function CoerceFormControl(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
-  control: Required<FormDefinitionControl>,
+  control: Required<AbstractControl>,
 ) {
   CoerceImports(sourceFile, {
     namedImports: [ 'RxapFormControl', 'UseFormControl' ],

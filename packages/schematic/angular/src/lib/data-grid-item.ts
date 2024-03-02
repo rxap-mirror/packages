@@ -13,10 +13,10 @@ import {
 } from '@rxap/utilities';
 import { join } from 'path';
 import {
-  FormDefinitionControl,
-  NormalizedFormDefinitionControl,
-  NormalizeFormDefinitionControl,
-} from './form-definition-control';
+  Control,
+  NormalizeControl,
+  NormalizedControl,
+} from './form/control';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
   NormalizedPipeOption,
@@ -37,7 +37,7 @@ export type NormalizedDataGridItem = NormalizedBaseDataGridItem | NormalizedLink
 export interface BaseDataGridItem extends DataProperty {
   header?: string;
   pipeList?: Array<string | TypeImport>;
-  formControl?: Omit<FormDefinitionControl, 'name'> & { name?: string };
+  formControl?: Omit<Control, 'name'> & { name?: string };
   importList?: TypeImport[];
   hasCellDef?: boolean;
   hasHeaderCellDef?: boolean;
@@ -51,7 +51,7 @@ export interface NormalizedBaseDataGridItem extends Readonly<Normalized<Omit<Bas
   hasHeaderCellDef: boolean;
   hasEditCellDef: boolean;
   kind: DataGridKinds;
-  formControl: NormalizedFormDefinitionControl | null;
+  formControl: NormalizedControl | null;
   importList: ReadonlyArray<NormalizedTypeImport>;
   pipeList: ReadonlyArray<NormalizedPipeOption>;
   template: string;
@@ -62,7 +62,7 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   if (!item.name) {
     throw new SchematicsException('The data grid item is required');
   }
-  const formControl = item.formControl && Object.keys(item.formControl).length ? NormalizeFormDefinitionControl({
+  const formControl = item.formControl && Object.keys(item.formControl).length ? NormalizeControl({
     name: item.name,
     ...item.formControl,
   }) : null;

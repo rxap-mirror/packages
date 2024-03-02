@@ -12,7 +12,7 @@ export interface SlideToggleFormControl extends BaseFormControl {
 }
 
 export interface NormalizedSlideToggleFormControl
-  extends Readonly<Normalized<Omit<SlideToggleFormControl, 'type' | 'importList'>>>, NormalizedBaseFormControl {
+  extends Readonly<Normalized<Omit<SlideToggleFormControl, 'type' | 'importList' | 'role'>>>, NormalizedBaseFormControl {
   kind: FormControlKinds.CHECKBOX;
 }
 
@@ -23,8 +23,13 @@ export function IsNormalizedSlideToggleFormControl(template: NormalizedBaseFormC
 export function NormalizeSlideToggleFormControl(
   control: SlideToggleFormControl,
 ): NormalizedSlideToggleFormControl {
+  const importList = control.importList ?? [];
+  importList.push({
+    name: 'MatSlideToggleModule',
+    moduleSpecifier: '@angular/material/slide-toggle',
+  });
   return Object.freeze({
-    ...NormalizeBaseFormControl(control),
+    ...NormalizeBaseFormControl(control, importList, undefined, 'boolean', false),
     kind: FormControlKinds.CHECKBOX,
     labelPosition: control.labelPosition ?? 'after',
   });

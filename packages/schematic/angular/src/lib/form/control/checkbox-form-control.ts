@@ -1,4 +1,3 @@
-import { NormalizeTypeImportList } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   BaseFormControl,
@@ -13,7 +12,7 @@ export interface CheckboxFormControl extends BaseFormControl {
 }
 
 export interface NormalizedCheckboxFormControl
-  extends Readonly<Normalized<Omit<CheckboxFormControl, 'type' | 'importList'>>>, NormalizedBaseFormControl {
+  extends Readonly<Normalized<Omit<CheckboxFormControl, 'type' | 'importList' | 'role'>>>, NormalizedBaseFormControl {
   kind: FormControlKinds.CHECKBOX;
 }
 
@@ -30,8 +29,7 @@ export function NormalizeCheckboxFormControl(
     moduleSpecifier: '@angular/material/checkbox',
   });
   return Object.freeze({
-    ...NormalizeBaseFormControl(control),
-    importList: NormalizeTypeImportList(importList),
+    ...NormalizeBaseFormControl(control, importList, undefined,'boolean', false),
     kind: FormControlKinds.CHECKBOX,
     labelPosition: control.labelPosition ?? 'after',
   });

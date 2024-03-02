@@ -1,5 +1,6 @@
 import { chain } from '@angular-devkit/schematics';
 import {
+  AbstractControl,
   BuildNestControllerName,
   buildOperationId,
   CoerceFormControl,
@@ -10,7 +11,6 @@ import {
   CoerceTableSelectResolveValueMethodRule,
   CoerceTableSelectValueResolveOperationRule,
   EnforceUseFormControlOrderRule,
-  FormDefinitionControl,
 } from '@rxap/schematics-ts-morph';
 import {
   capitalize,
@@ -20,12 +20,12 @@ import {
 import {
   CoerceDecorator,
   CoerceImports,
-  NormalizedUpstreamOptions,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
 import {
   joinWithDash,
+  NonNullableSelected,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
@@ -47,11 +47,7 @@ import {
 } from '../../form-control';
 import { TableSelectFormControlOptions } from './schema';
 
-export interface NormalizedTableSelectFormControlOptions
-  extends Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList' | 'propertyList'>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl> {
-  controllerName: string;
-  resolver: { upstream: NormalizedUpstreamOptions | null } | null;
-}
+export type NormalizedTableSelectFormControlOptions = NonNullableSelected<Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList' | 'propertyList'>>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl, 'controllerName'>
 
 export function NormalizeTableSelectFormControlOptions(
   options: TableSelectFormControlOptions,
@@ -137,7 +133,6 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
     context,
     scope,
     resolver,
-    columnList,
     propertyList,
     toDisplay,
     toValue
@@ -215,7 +210,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       coerceFormControl: (
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
-        control: Required<FormDefinitionControl>,
+        control: Required<AbstractControl>,
       ) => {
         const {
           propertyDeclaration,
@@ -333,7 +328,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       coerceFormControl: (
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
-        control: Required<FormDefinitionControl>,
+        control: Required<AbstractControl>,
       ) => {
         const {
           propertyDeclaration,

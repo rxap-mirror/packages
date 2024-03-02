@@ -8,30 +8,30 @@ import {
   dasherize,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
-import { Normalized } from '@rxap/utilities';
+import {
+  NonNullableSelected,
+  Normalized,
+} from '@rxap/utilities';
 import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import {
-  NormalizedFormDefinitionControl,
-  NormalizeFormDefinitionControl,
-} from '../../../lib/form-definition-control';
+  NormalizeControl,
+  NormalizedControl,
+} from '../../../lib/form/control';
 import { FormControlKinds } from '../../../lib/form/control/form-control-kind';
 import { FormControlOptions } from './schema';
 import 'colors';
 
-export interface NormalizedFormControlOptions
-  extends Readonly<Normalized<FormControlOptions> & NormalizedAngularOptions & NormalizedFormDefinitionControl> {
-  controllerName: string;
-}
+export type NormalizedFormControlOptions = Readonly<Normalized<FormControlOptions>> & NonNullableSelected<NormalizedAngularOptions, 'controllerName'> & NormalizedControl;
 
 export function NormalizeFormControlOptions(
   options: Readonly<FormControlOptions>,
 ): NormalizedFormControlOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedFormDefinitionControl = NormalizeFormDefinitionControl(options);
+  const normalizedFormDefinitionControl = NormalizeControl(options);
   const formName = dasherize(options.formName);
   const controllerName = options.controllerName ?? formName;
   return Object.freeze({

@@ -18,8 +18,12 @@ import {
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
 import { join } from 'path';
-import { NormalizeFormDefinitionControl } from './form-definition-control';
-import { BaseFormControl } from './form/control/base-form-control';
+import { AbstractControlRolls } from './form/abstract-control';
+import {
+  FormControl,
+  NormalizedFormControl,
+  NormalizeFormControl,
+} from './form/control/form-control';
 import { FormControlKinds } from './form/control/form-control-kind';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
@@ -75,12 +79,12 @@ export interface TableColumn extends DataProperty {
   template?: string;
   pipeList?: Array<TableColumnPipe | string>;
   importList?: TypeImport[];
-  filterControl?: BaseFormControl;
+  filterControl?: FormControl;
 }
 
 export type NormalizedTableColumnPipe = NormalizedTypeImport;
 
-export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableColumn, 'pipeList' | 'importList'>> & NormalizedDataProperty> {
+export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableColumn, 'pipeList' | 'importList' | 'filterControl'>> & NormalizedDataProperty> {
   type: NormalizedTypeImport;
   propertyPath: string;
   pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
@@ -88,6 +92,7 @@ export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableCol
   importList: ReadonlyArray<NormalizedTypeImport>;
   kind: TableColumnKind;
   handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
+  filterControl: NormalizedFormControl | null;
 }
 
 function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[] {
@@ -274,12 +279,12 @@ export function NormalizeTableColumn(
   if (!IsTableColumnKind(kind)) {
     throw new Error(`Unknown kind in column ${ name } - ${ kind }`);
   }
-  let filterControl: BaseFormControl | null = column.filterControl ?? null;
+  let filterControl: FormControl | null = column.filterControl ?? null;
   if (Object.keys(filterControl ?? {}).length === 0) {
     filterControl = null;
   }
   if (hasFilter && !filterControl) {
-    filterControl = { name: column.name, kind: FormControlKinds.DEFAULT };
+    filterControl = { name: column.name, kind: FormControlKinds.DEFAULT, role: AbstractControlRolls.CONTROL };
   }
   if (filterControl && !hasFilter) {
     hasFilter = true;
@@ -287,7 +292,7 @@ export function NormalizeTableColumn(
   if (filterControl) {
     filterControl.label ??= title;
   }
-  const normalizedFilterControl = filterControl ? NormalizeFormDefinitionControl(filterControl) : null;
+  const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl) : null;
   if (normalizedFilterControl) {
     CoerceArrayItems(importList, normalizedFilterControl.importList, (a, b) => a.name === b.name);
   }

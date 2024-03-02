@@ -47,10 +47,9 @@ function guessType(name: string): string | TypeImport {
   return 'unknown';
 }
 
-export function NormalizeDataProperty(property: string | Readonly<DataProperty>, defaultType = 'unknown'): NormalizedDataProperty {
+export function NormalizeDataProperty(property: string | Readonly<DataProperty>, defaultType: TypeImport | string = 'unknown', isArray = false): NormalizedDataProperty {
   let name: string;
   let type: string | TypeImport = 'unknown';
-  let isArray = false;
   let isOptional = false;
   let source: string | null = null;
   if (typeof property === 'string') {
@@ -58,10 +57,10 @@ export function NormalizeDataProperty(property: string | Readonly<DataProperty>,
     // username:string
     const fragments = property.split(':');
     name = fragments[0];
-    type = fragments[1] || guessType(name); // convert an empty string to undefined
+    type = fragments[1] || type; // convert an empty string to undefined
   } else {
     name = property.name;
-    type = property.type ?? guessType(name);
+    type = property.type ?? type;
     isArray = property.isArray ?? isArray;
     isOptional = property.isOptional ?? isOptional;
     source = property.source ?? source;

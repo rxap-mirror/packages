@@ -4,7 +4,6 @@ import {
   NormalizeDataPropertyList,
   NormalizedDataProperty,
   NormalizedUpstreamOptions,
-  NormalizeTypeImportList,
   NormalizeUpstreamOptions,
   UpstreamOptions,
 } from '@rxap/ts-morph';
@@ -22,18 +21,13 @@ import {
   TableColumnKind,
   TableColumnNameToPropertyPath,
 } from '../../table-column';
-import {
-  BaseFormControl,
-  NormalizeBaseFormControl,
-  NormalizedBaseFormControl,
-} from './base-form-control';
+import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
 import {
-  FormField,
   FormFieldFormControl,
   NormalizedFormFieldFormControl,
-  NormalizeFormField,
+  NormalizeFormFieldFormControl,
 } from './form-field-form-control';
 
 export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath'>
@@ -87,9 +81,8 @@ export function NormalizeTableSelectToFunction(
   });
 }
 
-export interface TableSelectFormControl extends BaseFormControl, FormFieldFormControl {
+export interface TableSelectFormControl extends FormFieldFormControl {
   backend?: BackendTypes;
-  formField?: FormField;
   title?: string;
   propertyList?: DataProperty[];
   columnList?: TableSelectColumn[];
@@ -100,8 +93,8 @@ export interface TableSelectFormControl extends BaseFormControl, FormFieldFormCo
 }
 
 export interface NormalizedTableSelectFormControl
-  extends Readonly<Normalized<Omit<TableSelectFormControl, 'type' | 'importList' | 'columnList' | 'propertyList' | 'formField'>>>,
-          NormalizedBaseFormControl, NormalizedFormFieldFormControl {
+  extends Readonly<Normalized<Omit<TableSelectFormControl, 'type' | 'importList' | 'columnList' | 'propertyList' | 'formField' | 'role'>>>,
+          NormalizedFormFieldFormControl {
   kind: FormControlKinds.TABLE_SELECT;
   backend: BackendTypes;
   columnList: NormalizedTableSelectColumn[];
@@ -131,10 +124,11 @@ export function NormalizeTableSelectFormControl(
   const toDisplay = NormalizeTableSelectToFunction(control.toDisplay, control.columnList, 'string');
   const toValue = NormalizeTableSelectToFunction(control.toValue, control.columnList);
   CoerceArrayItems(propertyList, [ toDisplay.property, toValue.property ], (a, b) => a.name === b.name);
-  const formField = NormalizeFormField(
-    control.formField ?? {},
-    importList,
-    {
+  const columnList = control.columnList.map(NormalizeTableSelectColumn);
+  CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
+  control.type ??= toValue.property.type;
+  return Object.freeze({
+    ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, false, {
       label: control.label,
       directiveList: [
         {
@@ -143,17 +137,9 @@ export function NormalizeTableSelectFormControl(
           moduleSpecifier: '@digitaix/eurogard-table-select',
         },
       ],
-    },
-  );
-  const columnList = control.columnList.map(NormalizeTableSelectColumn);
-  CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
-  control.type ??= toValue.property.type;
-  return Object.freeze({
-    ...NormalizeBaseFormControl(control),
+    }),
     resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
-    importList: NormalizeTypeImportList(importList),
     kind: FormControlKinds.TABLE_SELECT,
-    formField,
     backend: control.backend ?? BackendTypes.NONE,
     title: control.title ?? null,
     columnList,

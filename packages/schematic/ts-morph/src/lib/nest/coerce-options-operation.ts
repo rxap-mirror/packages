@@ -3,14 +3,14 @@ import {
   CoerceSuffix,
   joinWithDash,
 } from '@rxap/utilities';
-import { FormDefinitionControl } from '../types/form-definition-control';
+import { AbstractControl } from '../types/abstract-control';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
 
 export interface CoerceOptionsOperationRuleOptions extends CoerceOperationOptions {
-  control: Required<FormDefinitionControl>;
+  control: Required<AbstractControl>;
   responseDtoName?: string;
 }
 

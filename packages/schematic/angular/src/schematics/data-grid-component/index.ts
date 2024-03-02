@@ -52,7 +52,7 @@ import {
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
 } from '../../lib/data-grid-options';
-import { NormalizedFormDefinitionControl } from '../../lib/form-definition-control';
+import { NormalizedControl } from '../../lib/form/control';
 import {
   LoadMatFormFieldHandlebarsTemplate,
   LoadPipeHandlebarsTemplate,
@@ -304,7 +304,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
       idProperty: identifier?.property,
       propertyList: itemList
         .map(item => item.formControl)
-        .filter((formControl): formControl is NormalizedFormDefinitionControl => !!formControl),
+        .filter((formControl): formControl is NormalizedControl => !!formControl),
       skipCoerce: true,
       collection,
     }),
@@ -482,7 +482,7 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
       project,
       directory,
       feature,
-      controlList: itemList.map(item => item.formControl).filter((formControl): formControl is NormalizedFormDefinitionControl => !!formControl),
+      controlList: itemList.map(item => item.formControl).filter((formControl): formControl is NormalizedControl => !!formControl),
       overwrite,
       backend,
       nestModule,

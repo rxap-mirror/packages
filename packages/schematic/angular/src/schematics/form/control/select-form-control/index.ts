@@ -4,6 +4,7 @@ import {
   SchematicsException,
 } from '@angular-devkit/schematics';
 import {
+  AbstractControl,
   BuildNestControllerName,
   buildOperationId,
   CoerceDecorator,
@@ -14,7 +15,6 @@ import {
   CoerceOptionsDataSourceRule,
   CoerceOptionsOperationRule,
   EnforceUseFormControlOrderRule,
-  FormDefinitionControl,
   OperationIdToClassImportPath,
   OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
@@ -110,7 +110,7 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
       coerceFormControl: (
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
-        control: Required<FormDefinitionControl>,
+        control: Required<AbstractControl>,
       ) => {
         const {
           propertyDeclaration,
@@ -191,7 +191,7 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
       coerceFormControl: (
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
-        control: Required<FormDefinitionControl>,
+        control: Required<AbstractControl>,
       ) => {
         const {
           propertyDeclaration,

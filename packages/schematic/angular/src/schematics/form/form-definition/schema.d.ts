@@ -1,7 +1,7 @@
 import { AngularOptions } from '../../../lib/angular-options';
-import { FormDefinitionControl } from '../../../lib/form-definition-control';
+import { Control } from '../../../lib/form/control';
 
 export interface FormDefinitionOptions extends AngularOptions {
-  controlList: Array<FormDefinitionControl>;
+  controlList: Array<Control>;
   standalone?: boolean;
 }

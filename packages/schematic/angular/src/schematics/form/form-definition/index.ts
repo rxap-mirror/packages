@@ -12,15 +12,15 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import {
-  NormalizedFormDefinitionControl,
-  NormalizeFormDefinitionControlList,
-} from '../../../lib/form-definition-control';
+  NormalizeControlList,
+  NormalizedControl,
+} from '../../../lib/form/control';
 import { FormDefinitionOptions } from './schema';
 
 export interface NormalizedFormDefinitionOptions
   extends Readonly<Normalized<Omit<FormDefinitionOptions, 'controlList'>> & NormalizedAngularOptions> {
   name: string;
-  controlList: ReadonlyArray<NormalizedFormDefinitionControl>;
+  controlList: ReadonlyArray<NormalizedControl>;
 }
 
 export function NormalizeFormDefinitionOptions(
@@ -30,7 +30,7 @@ export function NormalizeFormDefinitionOptions(
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   return Object.freeze({
     ...normalizedAngularOptions,
-    controlList: NormalizeFormDefinitionControlList(options.controlList),
+    controlList: NormalizeControlList(options.controlList),
     standalone: options.standalone ?? true,
   });
 }

@@ -29,9 +29,9 @@ import {
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import {
-  NormalizedFormComponentControl,
-  NormalizeFormComponentControlList,
-} from '../../../../lib/form-component-control';
+  NormalizeControlList,
+  NormalizedControl,
+} from '../../../../lib/form/control';
 import { NormalizedTableHeaderButton } from '../../../../lib/table-header-button';
 import { NormalizeTableHeaderButtonOptions } from '../../table-header-button/index';
 import { FormTableHeaderButtonOptions } from './schema';
@@ -43,7 +43,7 @@ export interface NormalizedFormTableHeaderButtonOptions
   formComponent: string;
   // TODO : create custom interface and normalization function for the formOptions property (also used in form-table-action)
   formOptions: {
-    controlList: ReadonlyArray<NormalizedFormComponentControl>;
+    controlList: ReadonlyArray<NormalizedControl>;
     role: string | null;
     window: boolean;
   };
@@ -70,7 +70,7 @@ export function NormalizeFormTableHeaderButtonOptions(
     formOptions: {
       window: formOptions.window ?? true,
       role: formOptions.role ?? null,
-      controlList: NormalizeFormComponentControlList(formOptions.controlList),
+      controlList: NormalizeControlList(formOptions.controlList),
     },
   });
 }

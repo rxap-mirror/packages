@@ -10,8 +10,13 @@ import {
 } from '@rxap/utilities';
 import {
   BaseFormControl,
+  NormalizeBaseFormControl,
   NormalizedBaseFormControl,
 } from './base-form-control';
+import {
+  FormControl,
+  NormalizedFormControl,
+} from './form-control';
 
 export interface FormFieldButton {
   svgIcon?: string;
@@ -117,18 +122,33 @@ export interface FormFieldFormControl extends BaseFormControl {
 }
 
 export interface NormalizedFormFieldFormControl
-  extends Readonly<Normalized<Omit<FormFieldFormControl, 'type' | 'importList'>>>, NormalizedBaseFormControl {
+  extends Readonly<Normalized<Omit<FormFieldFormControl, 'type' | 'importList' | 'role' | 'kind'>>>, NormalizedBaseFormControl {
   formField: NormalizedFormField;
 }
 
-export function IsFormFieldFormControl(control: BaseFormControl): control is FormFieldFormControl {
+export function IsFormFieldFormControl(control: FormControl): control is FormFieldFormControl {
   return (
            control as any
          ).formField !== undefined;
 }
 
-export function IsNormalizedFormFieldFormControl(control: NormalizedBaseFormControl): control is NormalizedFormFieldFormControl {
+export function IsNormalizedFormFieldFormControl(control: NormalizedFormControl): control is NormalizedFormFieldFormControl {
   return (
            control as any
          ).formField !== undefined;
+}
+
+export function NormalizeFormFieldFormControl(
+  control: FormFieldFormControl,
+  importList: TypeImport[] = [],
+  validatorList: string[] = [],
+  defaultType: TypeImport | string = 'unknown',
+  defaultIsArray = false,
+  defaultFormField: Partial<FormField> = { label: control.label },
+): NormalizedFormFieldFormControl {
+  const formField = NormalizeFormField(control.formField ?? {}, importList, defaultFormField);
+  return Object.freeze({
+    ...NormalizeBaseFormControl(control, importList, validatorList, defaultType, defaultIsArray),
+    formField,
+  });
 }

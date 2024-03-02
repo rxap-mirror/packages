@@ -1,5 +1,5 @@
 // region types
-export * from './lib/types/form-definition-control';
+export * from './lib/types/abstract-control';
 // endregion
 
 // region ts-morph

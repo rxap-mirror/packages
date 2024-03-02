@@ -51,7 +51,7 @@ export interface NormalizedTypeImport {
   defaultImport: string | null;
 }
 
-export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string, defaultType = 'unknown'): NormalizedTypeImport {
+export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string, defaultType: TypeImport | string = 'unknown'): NormalizedTypeImport {
   let name: string;
   let moduleSpecifier: string | null = null;
   let namedImport: string | null = null;
@@ -59,7 +59,16 @@ export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string, 
   let isTypeOnly = false;
   let defaultImport: string | null = null;
   if (!typeImport) {
-    name = defaultType;
+    if (typeof defaultType === 'string') {
+      name = defaultType;
+    } else {
+      name = defaultType.name;
+      moduleSpecifier = defaultType.moduleSpecifier ?? moduleSpecifier;
+      namedImport = defaultType.namedImport ?? namedImport;
+      namespaceImport = defaultType.namespaceImport ?? namespaceImport;
+      isTypeOnly = defaultType.isTypeOnly ?? isTypeOnly;
+      defaultImport = defaultType.defaultImport ?? defaultImport;
+    }
   } else if (typeof typeImport === 'string') {
     // name:moduleSpecifier:namedImport
     // IconConfig:@rxap/utilities

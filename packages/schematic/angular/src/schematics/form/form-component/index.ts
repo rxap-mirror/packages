@@ -16,7 +16,6 @@ import {
   buildOperationId,
   CoerceFormComponentProviderRule,
   CoerceFormSubmitOperation,
-  DtoClassProperty,
   OperationIdToClassImportPath,
   OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
@@ -42,9 +41,10 @@ import {
 import { BackendTypes } from '../../../lib/backend-types';
 import { CoerceFormComponentRule } from '../../../lib/coerce-form-component';
 import {
-  NormalizedFormComponentControl,
-  NormalizeFormComponentControlList,
-} from '../../../lib/form-component-control';
+  ControlToDtoClassProperty,
+  NormalizeControlList,
+  NormalizedControl,
+} from '../../../lib/form/control';
 import {
   LoadMatFormFieldHandlebarsTemplate,
   LoadPipeHandlebarsTemplate,
@@ -59,7 +59,7 @@ export interface NormalizedFormComponentOptions
   extends Omit<Readonly<Normalized<FormComponentOptions> & NormalizedAngularOptions>, 'controlList' | 'name' | 'matFormFieldDefaultOptions'> {
   componentName: string;
   controllerName: string;
-  controlList: ReadonlyArray<NormalizedFormComponentControl>;
+  controlList: ReadonlyArray<NormalizedControl>;
   name: string;
   matFormFieldDefaultOptions: NormalizedMatFormFieldDefaultOptions | null;
   identifier: NormalizedAccordionIdentifier | null;
@@ -87,21 +87,11 @@ export function NormalizeFormComponentOptions(
     role: options.role ?? null,
     componentName,
     controllerName,
-    controlList: NormalizeFormComponentControlList(options.controlList),
+    controlList: NormalizeControlList(options.controlList),
     context: options.context ? dasherize(options.context) : null,
     matFormFieldDefaultOptions: NormalizeMatFormFieldDefaultOptions(options.matFormFieldDefaultOptions),
     identifier: NormalizeAccordionIdentifier(options.identifier),
   });
-}
-
-export function FormComponentControlToDtoClassProperty(
-  control: NormalizedFormComponentControl,
-): DtoClassProperty {
-  return {
-    name: control.name,
-    type: control.type,
-    isOptional: !control.isRequired,
-  };
 }
 
 function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule {
@@ -238,7 +228,7 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
           shared,
           nestModule,
           idProperty: identifier?.property,
-          propertyList: controlList.map(FormComponentControlToDtoClassProperty),
+          propertyList: controlList.map(ControlToDtoClassProperty),
           bodyDtoName: controllerName,
         }),
       ]);

@@ -1,6 +1,4 @@
-import { FormDefinitionControl } from '../../../lib/form-definition-control';
 import { AngularOptions } from '../../../lib/angular-options';
+import { Control } from '../../../lib/form/control';
 
-export interface FormControlOptions extends FormDefinitionControl, AngularOptions {
-  formName: string;
-}
+export type FormControlOptions = Control & Omit<AngularOptions, 'name'> & { formName: string; };

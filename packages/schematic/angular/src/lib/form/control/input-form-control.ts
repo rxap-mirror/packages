@@ -1,34 +1,27 @@
-import {
-  NormalizeTypeImport,
-  NormalizeTypeImportList,
-} from '@rxap/ts-morph';
+import { NormalizeTypeImport } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
-import {
-  BaseFormControl,
-  NormalizeBaseFormControl,
-  NormalizedBaseFormControl,
-} from './base-form-control';
+import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
 import {
   FormField,
   FormFieldFormControl,
   NormalizedFormFieldFormControl,
-  NormalizeFormField,
+  NormalizeFormFieldFormControl,
 } from './form-field-form-control';
 
-export interface InputFormControl extends BaseFormControl, FormFieldFormControl {
+export interface InputFormControl extends FormFieldFormControl {
   inputType?: string;
   placeholder?: string;
   formField?: FormField;
 }
 
 export interface NormalizedInputFormControl
-  extends Omit<Readonly<Normalized<InputFormControl>>, 'type' | 'importList' | 'formField'>,
-          NormalizedBaseFormControl, NormalizedFormFieldFormControl {
+  extends Omit<Readonly<Normalized<InputFormControl>>, 'type' | 'importList' | 'formField' | 'role'>,
+          NormalizedFormFieldFormControl {
   kind: FormControlKinds.INPUT;
 }
 
@@ -90,16 +83,12 @@ export function NormalizeInputFormControl(
     case 'range':
       throw new Error(`The input type "${ inputType }" is not yet supported`);
   }
-  const formField = NormalizeFormField(control.formField ?? {}, importList, { label: control.label });
   // TODO : auto add validators
   return Object.freeze({
-    ...NormalizeBaseFormControl(control),
-    type,
+    ...NormalizeFormFieldFormControl(control, importList, validatorList, type, false),
     validatorList,
-    importList: NormalizeTypeImportList(importList),
     kind: FormControlKinds.INPUT,
     inputType,
     placeholder: control.placeholder ?? null,
-    formField,
   });
 }

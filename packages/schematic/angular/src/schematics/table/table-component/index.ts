@@ -4,6 +4,7 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import {
+  AbstractControl,
   AddComponentImport,
   AddComponentProvider,
   buildOperationId,
@@ -11,7 +12,6 @@ import {
   CoerceGetPageOperation,
   CoerceImports,
   CoerceMethodClass,
-  FormDefinitionControl,
   OperationIdToClassImportPath,
   OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
@@ -84,7 +84,7 @@ export function NormalizeTableComponentOptions(
 
 export function TableColumnToFormControl(
   column: NormalizedTableColumn,
-): FormDefinitionControl {
+): AbstractControl {
   return {
     name: column.name,
     type: column.type?.name ?? undefined,

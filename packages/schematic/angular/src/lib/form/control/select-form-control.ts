@@ -1,24 +1,19 @@
-import { NormalizeTypeImportList } from '@rxap/ts-morph';
 import {
   ControlOption,
   Normalized,
 } from '@rxap/utilities';
 import { BackendTypes } from '../../backend-types';
-import {
-  BaseFormControl,
-  NormalizeBaseFormControl,
-  NormalizedBaseFormControl,
-} from './base-form-control';
+import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
 import {
   FormField,
   FormFieldFormControl,
   NormalizedFormFieldFormControl,
-  NormalizeFormField,
+  NormalizeFormFieldFormControl,
 } from './form-field-form-control';
 
-export interface SelectFormControl extends BaseFormControl, FormFieldFormControl {
+export interface SelectFormControl extends FormFieldFormControl {
   options?: ControlOption[];
   backend?: BackendTypes;
   multiple?: boolean;
@@ -26,8 +21,8 @@ export interface SelectFormControl extends BaseFormControl, FormFieldFormControl
 }
 
 export interface NormalizedSelectFormControl
-  extends Readonly<Normalized<Omit<SelectFormControl, 'options' | 'type' | 'importList' | 'formField'>>>,
-          NormalizedBaseFormControl, NormalizedFormFieldFormControl {
+  extends Readonly<Normalized<Omit<SelectFormControl, 'options' | 'type' | 'importList' | 'formField' | 'role'>>>,
+          NormalizedFormFieldFormControl {
   kind: FormControlKinds.SELECT;
   options: ReadonlyArray<ControlOption> | null;
   backend: BackendTypes;
@@ -45,14 +40,12 @@ export function NormalizeSelectFormControl(
     name: 'MatSelectModule',
     moduleSpecifier: '@angular/material/select',
   });
-  const formField = NormalizeFormField(control.formField ?? {}, importList, { label: control.label });
+  const multiple = control.multiple ?? false;
   return Object.freeze({
-    ...NormalizeBaseFormControl(control),
-    importList: NormalizeTypeImportList(importList),
+    ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, multiple),
     kind: FormControlKinds.SELECT,
-    formField,
     options: control.options && control.options.length ? Object.freeze(control.options) : null,
     backend: control.backend ?? BackendTypes.NONE,
-    multiple: control.multiple ?? false,
+    multiple,
   });
 }

@@ -14,7 +14,7 @@ import {
 } from '../ts-morph-transform';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { FormDefinitionControl } from '../types/form-definition-control';
+import { AbstractControl } from '../types/abstract-control';
 import { CoerceFormControl } from './coerce-form-definition-control';
 import { CoerceFormDefinitionTypeRule } from './coerce-form-definition-type';
 import {
@@ -24,7 +24,7 @@ import {
 } from './form-definition-utilities';
 
 export interface CoerceFormDefinitionOptions extends TsMorphAngularProjectTransformOptions {
-  controlList?: ReadonlyArray<Required<FormDefinitionControl>>;
+  controlList?: ReadonlyArray<Required<AbstractControl>>;
   name: string;
   tsMorphTransform?: (sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
   coerceFormType?: (
