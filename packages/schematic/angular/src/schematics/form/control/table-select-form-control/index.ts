@@ -40,7 +40,7 @@ import {
   NormalizedTableSelectColumn,
   NormalizedTableSelectFormControl,
   NormalizeTableSelectFormControl,
-} from '../../../../lib/form-control';
+} from '../../../../lib/form/control/table-select-form-control';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,

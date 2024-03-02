@@ -1,4 +1,4 @@
-import { NormalizedBaseFormControl } from '../form-control';
+import { NormalizedBaseFormControl } from './control/base-form-control';
 
 export interface GenerateFormTemplateOptions {
   controlList: ReadonlyArray<NormalizedBaseFormControl>;

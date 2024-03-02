@@ -21,7 +21,6 @@ import {
 import {
   classify,
   dasherize,
-  ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
@@ -35,7 +34,7 @@ import { BackendTypes } from '../../../../lib/backend-types';
 import {
   NormalizedSelectFormControl,
   NormalizeSelectFormControl,
-} from '../../../../lib/form-control';
+} from '../../../../lib/form/control/select-form-control';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,

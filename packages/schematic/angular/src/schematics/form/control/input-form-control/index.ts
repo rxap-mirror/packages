@@ -1,11 +1,10 @@
 import { chain } from '@angular-devkit/schematics';
-import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
 import {
   NormalizedInputFormControl,
   NormalizeInputFormControl,
-} from '../../../../lib/form-control';
+} from '../../../../lib/form/control/input-form-control';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,

@@ -1,11 +1,9 @@
 import { Normalized } from '@rxap/utilities';
-import { NormalizedBaseFormControl } from './form-control';
 import {
   FormDefinitionControl,
   NormalizedFormDefinitionControl,
   NormalizeFormDefinitionControl,
 } from './form-definition-control';
-import { NormalizedTypeImport } from '@rxap/ts-morph';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface FormComponentControl extends FormDefinitionControl {

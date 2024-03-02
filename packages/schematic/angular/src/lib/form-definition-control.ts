@@ -1,14 +1,15 @@
 import {
   BaseFormControl,
-  FormControlKinds,
   NormalizeBaseFormControl,
-  NormalizeCheckboxFormControl,
   NormalizedBaseFormControl,
-  NormalizeInputFormControl,
-  NormalizeSelectFormControl,
-  NormalizeSlideToggleFormControl,
-  NormalizeTableSelectFormControl,
-} from './form-control';
+} from './form/control/base-form-control';
+import { NormalizeCheckboxFormControl } from './form/control/checkbox-form-control';
+
+import { FormControlKinds } from './form/control/form-control-kind';
+import { NormalizeInputFormControl } from './form/control/input-form-control';
+import { NormalizeSelectFormControl } from './form/control/select-form-control';
+import { NormalizeSlideToggleFormControl } from './form/control/slide-toggle-form-control';
+import { NormalizeTableSelectFormControl } from './form/control/table-select-form-control';
 
 export type FormDefinitionControl = BaseFormControl
 

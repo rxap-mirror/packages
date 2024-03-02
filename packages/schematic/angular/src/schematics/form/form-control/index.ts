@@ -14,11 +14,11 @@ import {
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
-import { FormControlKinds } from '../../../lib/form-control';
 import {
   NormalizedFormDefinitionControl,
   NormalizeFormDefinitionControl,
 } from '../../../lib/form-definition-control';
+import { FormControlKinds } from '../../../lib/form/control/form-control-kind';
 import { FormControlOptions } from './schema';
 import 'colors';
 

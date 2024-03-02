@@ -18,11 +18,9 @@ import {
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
 import { join } from 'path';
-import {
-  BaseFormControl,
-  FormControlKinds,
-} from './form-control';
 import { NormalizeFormDefinitionControl } from './form-definition-control';
+import { BaseFormControl } from './form/control/base-form-control';
+import { FormControlKinds } from './form/control/form-control-kind';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
   NormalizePipeOptionList,
