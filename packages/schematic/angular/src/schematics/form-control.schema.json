@@ -1,27 +1,54 @@
 {
   "$schema": "http://json-schema.org/schema",
   "$id": "form-control",
-  "oneOf": [
+  "allOf": [
     {
-      "$ref": "#/definitions/baseFormControl"
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string",
+          "const": "control",
+          "default": "control"
+        }
+      }
     },
     {
-      "$ref": "#/definitions/inputFormControl"
-    },
-    {
-      "$ref": "#/definitions/selectFormControl"
-    },
-    {
-      "$ref": "#/definitions/checkboxFormControl"
-    },
-    {
-      "$ref": "#/definitions/textareaFormControl"
-    },
-    {
-      "$ref": "#/definitions/tableSelectFormControl"
-    },
-    {
-      "$ref": "#/definitions/slideToggleFormControl"
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/baseFormControl"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "default"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$ref": "#/definitions/inputFormControl"
+        },
+        {
+          "$ref": "#/definitions/selectFormControl"
+        },
+        {
+          "$ref": "#/definitions/checkboxFormControl"
+        },
+        {
+          "$ref": "#/definitions/textareaFormControl"
+        },
+        {
+          "$ref": "#/definitions/tableSelectFormControl"
+        },
+        {
+          "$ref": "#/definitions/slideToggleFormControl"
+        }
+      ]
     }
   ],
   "definitions": {

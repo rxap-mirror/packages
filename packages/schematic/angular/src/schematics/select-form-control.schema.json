@@ -3,12 +3,19 @@
   "$id": "select-form-control",
   "allOf": [
     {
-      "$ref": "#/definitions/formFieldFormControl"
+      "$ref": "#/definitions/baseFormControl"
     },
     {
       "type": "object",
       "properties": {
-        "options": {
+        "formField": {
+          "$ref": "#/definitions/formField"
+        },
+        "kind": {
+          "type": "string",
+          "const": "select"
+        },
+        "optionList": {
           "type": "array",
           "items": {
             "type": "object",
@@ -51,8 +58,11 @@
     "backend": {
       "$ref": "./backend.schema.json"
     },
-    "formFieldFormControl": {
-      "$ref": "./form-field-form-control.schema.json"
+    "formField": {
+      "$ref": "./form-field.schema.json"
+    },
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
     }
   }
 }

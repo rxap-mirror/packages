@@ -10,31 +10,13 @@
       "properties": {
         "label": {
           "type": "string",
-          "description": "The name of the control"
-        },
-        "kind": {
-          "type": "string",
-          "description": "The name of the template",
-          "enum": [
-            "default",
-            "input",
-            "select",
-            "checkbox",
-            "autocomplete-table-select",
-            "table-select",
-            "textarea",
-            "slide-toggle"
-          ],
-          "default": "default"
+          "description": "The label of the control"
         },
         "role": {
           "type": "string",
-          "description": "The role of the control",
-          "enum": ["control"],
-          "default": "control"
+          "const": "control"
         }
-      },
-      "additionalProperties": true
+      }
     }
   ],
   "definitions": {

@@ -18,19 +18,14 @@
         "kind": {
           "type": "string",
           "description": "The kind of the group",
-          "enum": [
-            "default"
-          ],
+          "const": "default",
           "default": "default"
         },
         "role": {
           "type": "string",
-          "description": "The role of the control",
-          "enum": ["group"],
-          "default": "group"
+          "const": "group"
         }
-      },
-      "additionalProperties": true
+      }
     }
   ],
   "definitions": {

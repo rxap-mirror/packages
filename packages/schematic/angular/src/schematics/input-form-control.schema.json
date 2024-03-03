@@ -3,11 +3,18 @@
   "$id": "input-form-control",
   "allOf": [
     {
-      "$ref": "#/definitions/formFieldFormControl"
+      "$ref": "#/definitions/baseFormControl"
     },
     {
       "type": "object",
       "properties": {
+        "kind": {
+          "type": "string",
+          "const": "input"
+        },
+        "formField": {
+          "$ref": "#/definitions/formField"
+        },
         "inputType": {
           "type": "string",
           "enum": [
@@ -42,8 +49,11 @@
     }
   ],
   "definitions": {
-    "formFieldFormControl": {
-      "$ref": "./form-field-form-control.schema.json"
+    "formField": {
+      "$ref": "./form-field.schema.json"
+    },
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
     }
   }
 }

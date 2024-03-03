@@ -34,6 +34,10 @@ export function GetFormDefinitionFileName({ name }: GetFormDefinitionFileNameOpt
   return CoerceSuffix(dasherize(name), '.form.ts');
 }
 
+export function GetFormDefinitionFileImportPath(options: GetFormDefinitionFileNameOptions) {
+  return './' + GetFormDefinitionFileName(options).replace(/\.ts$/, '');
+}
+
 export type GetFormDefinitionFilePathOptions = GetFormDefinitionFileNameOptions;
 
 export function GetFormDefinitionFilePath(options: GetFormDefinitionFileNameOptions) {

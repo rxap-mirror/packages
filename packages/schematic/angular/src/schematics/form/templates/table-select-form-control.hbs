@@ -1,18 +1,18 @@
 {{#> matFormField control=control}}
-<eurogard-table-select-input
-  eurogardOpenTableSelectWindow
-  formControlName="{{control.name}}"
-  {{#if control.title}}i18n-label label="{{control.title}}"{{/if~}}
-  {{#if parentControlContainer}}parentControlContainer{{/if~}}
->
-</eurogard-table-select-input>
-<button
-  eurogardOpenTableSelectWindow
-  mat-icon-button
-  matPrefix
-  tabindex="-1"
-  {{#if control.title}}i18n-label label="{{control.title}}"{{/if~}}
->
-  <mat-icon svgIcon="table-eye"></mat-icon>
-</button>
+  <eurogard-table-select-input
+    eurogardOpenTableSelectWindow
+    formControlName="{{control.name}}"
+    {{#if control.title}}i18n-label label="{{control.title}}"{{/if~}}
+    {{#if parentControlContainer}}parentControlContainer{{/if~}}
+  >
+  </eurogard-table-select-input>
+  <button
+    eurogardOpenTableSelectWindow
+    mat-icon-button
+    matPrefix
+    tabindex="-1"
+    {{#if control.title}}i18n-label label="{{control.title}}"{{/if~}}
+  >
+    <mat-icon svgIcon="table-eye"></mat-icon>
+  </button>
 {{/matFormField}}

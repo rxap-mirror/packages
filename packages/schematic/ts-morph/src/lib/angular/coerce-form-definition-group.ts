@@ -1,6 +1,8 @@
 import { Rule } from '@angular-devkit/schematics';
 import { camelize } from '@rxap/schematics-utilities';
 import {
+  CoerceDecorator,
+  CoerceImports,
   CoercePropertyDeclaration,
   WriteType,
 } from '@rxap/ts-morph';
@@ -11,8 +13,6 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceInterface } from '../ts-morph/coerce-interface';
 import { AbstractControl } from '../types/abstract-control';
 import {
@@ -21,9 +21,18 @@ import {
   FormControlStateCodeBlockWriter,
   FormControlValidatorCodeBlockWriter,
 } from './coerce-form-definition-control';
+import {
+  GetFormDefinitionClassName,
+  GetFormDefinitionFileImportPath,
+  GetFormDefinitionInterfaceName,
+} from './form-definition-utilities';
 
 export interface CoerceFormDefinitionFormGroupOptions extends CoerceFormDefinitionControlOptions {
   controlList?: ReadonlyArray<Required<AbstractControl>>;
+}
+
+export function GetFormGroupNameFromFormDefinitionName(name: string, groupName: string) {
+  return [ name.replace(/Form$/, ''), groupName ].join('-');
 }
 
 export function CoerceInterfaceFormTypeGroup(
@@ -38,7 +47,14 @@ export function CoerceInterfaceFormTypeGroup(
   }
   const interfaceDeclaration = CoerceInterface(sourceFile, formTypeName);
   interfaceDeclaration.setIsExported(true);
-  CoercePropertyDeclaration(interfaceDeclaration, camelize(control.name)).set({ type: WriteType(control, sourceFile) });
+  const formGroupName = GetFormGroupNameFromFormDefinitionName(classDeclaration.getName()!, control.name);
+  CoercePropertyDeclaration(interfaceDeclaration, camelize(control.name)).set({
+    type: WriteType({
+      name: GetFormDefinitionInterfaceName({ name: formGroupName }),
+      moduleSpecifier: GetFormDefinitionFileImportPath({ name: formGroupName }),
+    }, sourceFile),
+    hasQuestionToken: control.isOptional,
+  });
 }
 
 export function CoerceFormGroup(
@@ -47,18 +63,20 @@ export function CoerceFormGroup(
   formTypeName: string,
   control: Required<AbstractControl>,
 ) {
+  const formGroupName = GetFormGroupNameFromFormDefinitionName(classDeclaration.getName()!, control.name);
+  CoerceImports(sourceFile, {
+    namedImports: [ GetFormDefinitionInterfaceName({ name: formGroupName }), GetFormDefinitionClassName({ name: formGroupName }) ],
+    moduleSpecifier: GetFormDefinitionFileImportPath({ name: formGroupName }),
+  });
   const propertyDeclaration = CoercePropertyDeclaration(classDeclaration, camelize(control.name)).set({
-    type: w => {
-      w.write('RxapFormGroup<');
-      w.write(`${formTypeName}['${control.name}']`);
-      w.write('>');
-    },
+    type: GetFormDefinitionClassName({ name: formGroupName }),
     hasExclamationToken: true,
     scope: Scope.Public,
     isReadonly: true,
   });
   const decoratorDeclaration = CoerceDecorator(propertyDeclaration, 'UseFormGroup').set({
     arguments: [
+      GetFormDefinitionClassName({ name: formGroupName }),
       w => {
         const items: Record<string, string | WriterFunction> = {};
         if (control.validatorList?.length || control.isRequired) {

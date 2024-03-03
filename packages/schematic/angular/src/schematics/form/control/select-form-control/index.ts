@@ -41,7 +41,7 @@ import {
 } from '../../form-control';
 import { SelectFormControlOptions } from './schema';
 
-export type NormalizedSelectFormControlOptions = Readonly<Normalized<Omit<SelectFormControlOptions, 'options'>>>
+export type NormalizedSelectFormControlOptions = Readonly<Normalized<Omit<SelectFormControlOptions, 'optionList'>>>
   & NormalizedFormControlOptions & NormalizedSelectFormControl;
 
 export function NormalizeSelectFormControlOptions(
@@ -72,6 +72,7 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
     role,
     isOptional,
     source,
+    optionList,
   } = normalizedOptions;
   const optionsDataSourceDirectory = join(directory ?? '', 'data-sources');
   const optionsDataSourceName = classify(
@@ -84,6 +85,7 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
     CoerceOptionsDataSourceRule({
       project,
       feature,
+      optionList: optionList ?? [],
       directory: optionsDataSourceDirectory,
       name: [ name, 'options' ].join('-'),
     }),

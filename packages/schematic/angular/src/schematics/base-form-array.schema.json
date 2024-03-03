@@ -17,20 +17,15 @@
         },
         "kind": {
           "type": "string",
-          "description": "The kind of the group",
-          "enum": [
-            "default"
-          ],
+          "description": "The kind of the array",
+          "const": "default",
           "default": "default"
         },
         "role": {
           "type": "string",
-          "description": "The role of the control",
-          "enum": ["array"],
-          "default": "array"
+          "const": "array"
         }
-      },
-      "additionalProperties": true
+      }
     }
   ],
   "definitions": {

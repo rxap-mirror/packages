@@ -21,6 +21,11 @@ import {
   FormControlStateCodeBlockWriter,
   FormControlValidatorCodeBlockWriter,
 } from './coerce-form-definition-control';
+import {
+  GetFormDefinitionClassName,
+  GetFormDefinitionFileImportPath,
+  GetFormDefinitionInterfaceName,
+} from './form-definition-utilities';
 
 export interface CoerceFormDefinitionFormArrayOptions extends CoerceFormDefinitionControlOptions {
   controlList?: ReadonlyArray<Required<AbstractControl>>;
@@ -37,7 +42,21 @@ export function CoerceInterfaceFormTypeArray(
   }
   const interfaceDeclaration = CoerceInterface(sourceFile, formTypeName);
   interfaceDeclaration.setIsExported(true);
-  CoercePropertyDeclaration(interfaceDeclaration, camelize(control.name)).set({ type: WriteType(control, sourceFile) });
+  const formArrayName = GetFormArrayNameFromFormDefinitionName(classDeclaration.getName()!, control.name);
+  CoercePropertyDeclaration(interfaceDeclaration, camelize(control.name)).set({
+    type: WriteType({
+      type: {
+        name: GetFormDefinitionInterfaceName({ name: formArrayName }),
+        moduleSpecifier: GetFormDefinitionFileImportPath({ name: formArrayName }),
+      },
+      isArray: true,
+    }, sourceFile),
+    hasQuestionToken: control.isOptional,
+  });
+}
+
+export function GetFormArrayNameFromFormDefinitionName(name: string, groupName: string) {
+  return [ name.replace(/Form$/, ''), groupName ].join('-');
 }
 
 export function CoerceFormArray(
@@ -46,18 +65,24 @@ export function CoerceFormArray(
   formTypeName: string,
   control: Required<AbstractControl>,
 ) {
+  const formArrayName = GetFormArrayNameFromFormDefinitionName(classDeclaration.getName()!, control.name);
+  CoerceImports(sourceFile, {
+    namedImports: [ GetFormDefinitionInterfaceName({ name: formArrayName }), GetFormDefinitionClassName({ name: formArrayName }) ],
+    moduleSpecifier: GetFormDefinitionFileImportPath({ name: formArrayName }),
+  });
   const propertyDeclaration = CoercePropertyDeclaration(classDeclaration, camelize(control.name)).set({
     type: w => {
-      w.write('RxapFormArray<');
-      w.write(`${formTypeName}['${control.name}']`);
+      w.write('FormDefinitionArray<');
+      w.write(GetFormDefinitionClassName({ name: formArrayName }));
       w.write('>');
     },
     hasExclamationToken: true,
     scope: Scope.Public,
     isReadonly: true,
   });
-  const decoratorDeclaration = CoerceDecorator(propertyDeclaration, 'UseFormControl').set({
+  const decoratorDeclaration = CoerceDecorator(propertyDeclaration, 'UseFormArrayGroup').set({
     arguments: [
+      GetFormDefinitionClassName({ name: formArrayName }),
       w => {
         const items: Record<string, string | WriterFunction> = {};
         if (control.validatorList?.length || control.isRequired) {
@@ -75,7 +100,7 @@ export function CoerceFormArray(
     ],
   });
   CoerceImports(sourceFile, {
-    namedImports: [ 'RxapFormArray', 'UseFormArray' ],
+    namedImports: [ 'UseFormArrayGroup', 'FormDefinitionArray' ],
     moduleSpecifier: '@rxap/forms',
   });
   return {

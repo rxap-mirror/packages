@@ -3,11 +3,18 @@
   "$id": "table-select-form-control",
   "allOf": [
     {
-      "$ref": "#/definitions/formFieldFormControl"
+      "$ref": "#/definitions/baseFormControl"
     },
     {
       "type": "object",
       "properties": {
+        "formField": {
+          "$ref": "#/definitions/formField"
+        },
+        "kind": {
+          "type": "string",
+          "const": "table-select"
+        },
         "placeholder": {
           "type": "string"
         },
@@ -73,14 +80,17 @@
     }
   ],
   "definitions": {
-    "formFieldFormControl": {
-      "$ref": "./form-field-form-control.schema.json"
-    },
     "property": {
       "$ref": "./property.schema.json"
     },
     "upstream": {
       "$ref": "./upstream.schema.json"
+    },
+    "formField": {
+      "$ref": "./form-field.schema.json"
+    },
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
     }
   }
 }

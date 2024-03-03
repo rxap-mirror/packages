@@ -1,9 +1,9 @@
 {{#> matFormField control=control}}
-<input
-  matInput
-  formControlName="{{control.name}}"
-  type="{{control.inputType}}"
-  {{#if parentControlContainer}}parentControlContainer{{/if~}}
-  {{#if control.placeholder}}i18n-placeholder placeholder="{{control.placeholder}}"{{/if~}}
-/>
+  <input
+    matInput
+    formControlName="{{control.name}}"
+    type="{{control.inputType}}"
+    {{#if parentControlContainer}}parentControlContainer{{/if~}}
+    {{#if control.placeholder}}i18n-placeholder placeholder="{{control.placeholder}}"{{/if~}}
+  />
 {{/matFormField}}

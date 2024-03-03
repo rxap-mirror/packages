@@ -3,6 +3,7 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import { CoerceFormDefinitionFormGroup } from '@rxap/schematics-ts-morph';
+import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import {
   dasherize,
   NonNullableSelected,
@@ -54,6 +55,17 @@ function formControlKind(normalizedOptions: NormalizedFormGroupOptions): Rule {
   }
 }
 
+function formDefinitionRule(normalizedOptions: NormalizedFormGroupOptions): Rule {
+  const { formName, name } = normalizedOptions;
+  return chain([
+    ExecuteSchematic('form-definition', {
+      ...normalizedOptions,
+      name: [formName, name].join('-'),
+      standalone: false,
+    }),
+  ]);
+}
+
 export default function (options: FormGroupOptions) {
   const normalizedOptions = NormalizeFormGroupOptions(options);
   printOptions(normalizedOptions);
@@ -64,6 +76,7 @@ export default function (options: FormGroupOptions) {
       () => console.log('Coerce form group in form definition class ...'),
       CoerceFormDefinitionFormGroup(normalizedOptions),
       formControlKind(normalizedOptions),
+      formDefinitionRule(normalizedOptions),
       () => console.groupEnd(),
     ]);
   };

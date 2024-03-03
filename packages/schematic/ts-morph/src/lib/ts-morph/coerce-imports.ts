@@ -14,7 +14,7 @@ export function CoerceImports(
 
   for (const structure of Array.isArray(structures) ? structures : [ structures ]) {
 
-    const moduleSpecifier = structure.moduleSpecifier;
+    const moduleSpecifier = structure.moduleSpecifier.endsWith('.ts') ? structure.moduleSpecifier.replace(/\.ts$/, '') : structure.moduleSpecifier;
     const namedImports = structure.namedImports;
 
     if (!moduleSpecifier ||

@@ -11,6 +11,7 @@ import {
   url,
 } from '@angular-devkit/schematics';
 import {
+  AddComponentProvider,
   BuildAngularBasePath,
   BuildNestControllerName,
   buildOperationId,
@@ -23,6 +24,7 @@ import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
+import { CoerceImports } from '@rxap/ts-morph';
 import {
   dasherize,
   Normalized,
@@ -126,6 +128,14 @@ function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule 
           OperationIdToClassImportPath,
         },
       },
+      tsMorphTransform: (project, [sourceFile]) => {
+        AddComponentProvider(sourceFile, 'FormProviders');
+        AddComponentProvider(sourceFile, 'FormComponentProviders');
+        CoerceImports(sourceFile, {
+          namedImports: [ 'FormProviders', 'FormComponentProviders' ],
+          moduleSpecifier: './form.providers',
+        });
+      }
     }),
   ]);
 
