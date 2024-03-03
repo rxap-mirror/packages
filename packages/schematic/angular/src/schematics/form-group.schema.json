@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "form-group",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/baseFormGroup"
+    }
+  ],
+  "definitions": {
+    "baseFormGroup": {
+      "$ref": "./base-form-group.schema.json"
+    }
+  }
+}

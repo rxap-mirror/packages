@@ -69,6 +69,9 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
     state,
     isRequired,
     validatorList,
+    role,
+    isOptional,
+    source,
   } = normalizedOptions;
   const optionsDataSourceDirectory = join(directory ?? '', 'data-sources');
   const optionsDataSourceName = classify(
@@ -97,6 +100,9 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
       ],
     }),
     CoerceFormDefinitionControl({
+      role,
+      isOptional,
+      source,
       project,
       feature,
       directory,
@@ -110,12 +116,13 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
       coerceFormControl: (
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
+        formTypeName: string,
         control: Required<AbstractControl>,
       ) => {
         const {
           propertyDeclaration,
           decoratorDeclaration,
-        } = CoerceFormControl(sourceFile, classDeclaration, control);
+        } = CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
         CoerceDecorator(propertyDeclaration, 'UseOptionsDataSource').set({
           arguments: [ optionsDataSourceName ],
@@ -155,6 +162,9 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
     controllerName,
     context,
     scope,
+    role,
+    isOptional,
+    source,
   } = normalizedOptions;
   const optionsOperationPath = [ 'options', name ].join('/');
   const optionsOperationName = [ 'get', name, 'options' ].join('-');
@@ -178,6 +188,9 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
       context,
     }),
     CoerceFormDefinitionControl({
+      role,
+      isOptional,
+      source,
       project,
       feature,
       directory,
@@ -191,12 +204,13 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
       coerceFormControl: (
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
+        formTypeName,
         control: Required<AbstractControl>,
       ) => {
         const {
           propertyDeclaration,
           decoratorDeclaration,
-        } = CoerceFormControl(sourceFile, classDeclaration, control);
+        } = CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
         CoerceDecorator(propertyDeclaration, 'UseOptionsMethod').set({
           arguments: [
@@ -249,7 +263,7 @@ export default function (options: SelectFormControlOptions) {
   printOptions(normalizedOptions);
   return () => {
     return chain([
-      () => console.group('\x1b[32m[@rxap/schematics-angular:select-form-control]\x1b[0m'),
+      () => console.group('[@rxap/schematics-angular:select-form-control]'.green),
       optionsRule(normalizedOptions),
       EnforceUseFormControlOrderRule(normalizedOptions),
       () => console.groupEnd(),

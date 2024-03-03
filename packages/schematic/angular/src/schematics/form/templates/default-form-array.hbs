@@ -1,0 +1,19 @@
+
+<ng-container
+  formArrayName="{{control.name}}"
+  {{#if parentControlContainer}}parentControlContainer{{/if~}}
+>
+  <div *rxapForFormArrayItem="let group" class="flex flex-col gap-3">
+    <div [formGroup]="group" class="flex flex-row gap-4" rxapFormArrayRemovable>
+      {{#each control.controlList}}
+      {{indent (compile this.handlebars control=this prefix=../prefix) 6}}
+      {{/each}}
+      <button color="warn" mat-icon-button rxapFormArrayItemRemoveButton>
+        <mat-icon>do_not_disturb_on</mat-icon>
+      </button>
+      <button color="accent" mat-icon-button rxapFormArrayItemRestoreButton>
+        <mat-icon>settings_backup_restore</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-container>

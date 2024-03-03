@@ -4,7 +4,10 @@ import {
   NormalizedTypeImport,
   TypeImport,
 } from '@rxap/ts-morph';
-import { Normalized } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  Normalized,
+} from '@rxap/utilities';
 import {
   AbstractControl,
   AbstractControlRolls,
@@ -15,10 +18,7 @@ import {
 import { FormControlKinds } from './form-control-kind';
 
 export interface BaseFormControl extends DataProperty, AbstractControl {
-  state?: string;
-  isRequired?: boolean;
   kind?: FormControlKinds;
-  template?: string;
   label?: string;
   role: AbstractControlRolls.CONTROL;
 }
@@ -37,6 +37,12 @@ export function NormalizeBaseFormControl(
 ): NormalizedBaseFormControl {
 
   const kind = control.kind ?? FormControlKinds.DEFAULT;
+  CoerceArrayItems(importList, [
+    {
+      name: 'ReactiveFormsModule',
+      moduleSpecifier: '@angular/forms',
+    }
+  ], (a, b) => a.name === b.name);
   return Object.freeze({
     ...NormalizeAbstractControl(control, kind, importList, validatorList, defaultType, defaultIsArray),
     role: AbstractControlRolls.CONTROL,

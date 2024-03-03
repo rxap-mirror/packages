@@ -1,0 +1,9 @@
+
+<ng-container
+  formGroupName="{{control.name}}"
+  {{#if parentControlContainer}}parentControlContainer{{/if~}}
+>
+{{#each control.controlList}}
+  {{indent (compile this.handlebars control=this prefix=../prefix) 2}}
+{{/each}}
+</ng-container>

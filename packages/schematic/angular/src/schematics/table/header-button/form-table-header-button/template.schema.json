@@ -17,35 +17,17 @@
           "description": "If true the schematic will not coerce the form component"
         },
         "formOptions": {
-          "type": "object",
-          "properties": {
-            "role": {
-              "type": "string",
-              "description": "Define the role of the form"
-            },
-            "window": {
-              "type": "boolean",
-              "description": "Whether the form can be opened in a window"
-            },
-            "controlList": {
-              "alias": "control",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/formControl"
-              }
-            }
-          },
-          "additionalProperties": true
+          "$ref": "#/definitions/formComponent"
         }
       }
     }
   ],
   "definitions": {
-    "formControl": {
-      "$ref": "../../../form-control.schema.json"
-    },
     "tableHeaderButtonSchematic": {
       "$ref": "../../table-header-button/template.schema.json"
+    },
+    "formComponent": {
+      "$ref": "../../../form-component.schema.json"
     }
   }
 }

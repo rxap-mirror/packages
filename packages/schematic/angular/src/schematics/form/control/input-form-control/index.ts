@@ -32,7 +32,7 @@ export default function (options: InputFormControlOptions) {
   printOptions(normalizedOptions);
   return () => {
     return chain([
-      () => console.group('\x1b[32m[@rxap/schematics-angular:input-form-control]\x1b[0m'),
+      () => console.group('[@rxap/schematics-angular:input-form-control]'.green),
       () => console.groupEnd(),
     ]);
   };

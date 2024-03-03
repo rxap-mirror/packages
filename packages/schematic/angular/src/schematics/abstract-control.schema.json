@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "abstract-control",
+  "allOf": [
+    {
+      "$ref": "#/definitions/property"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the control"
+        },
+        "isArray": {
+          "type": "boolean",
+          "description": "Whether the control value is an array",
+          "default": false
+        },
+        "state": {
+          "type": "string",
+          "description": "The initial state of the control"
+        },
+        "isRequired": {
+          "type": "boolean",
+          "description": "Whether the control value is required",
+          "default": false
+        },
+        "isReadonly": {
+          "type": "boolean",
+          "description": "Whether the control value is readonly",
+          "default": false
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "description": "Whether the control value is disabled",
+          "default": false
+        },
+        "validatorList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "kind": {
+          "type": "string",
+          "description": "The kind of the control",
+          "default": "default"
+        },
+        "importList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/type"
+          }
+        },
+        "template": {
+          "type": "string",
+          "description": "The template of the control"
+        },
+        "role": {
+          "type": "string",
+          "description": "The role of the control",
+          "enum": ["control", "group", "array"],
+          "default": "control"
+        }
+      },
+      "additionalProperties": true
+    }
+  ],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
+    }
+  }
+}

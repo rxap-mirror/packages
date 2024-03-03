@@ -3,7 +3,7 @@ import {
   noop,
   Rule,
 } from '@angular-devkit/schematics';
-import { CoerceFormDefinitionControl } from '@rxap/schematics-ts-morph';
+import { CoerceFormDefinitionFormControl } from '@rxap/schematics-ts-morph';
 import {
   dasherize,
   ExecuteSchematic,
@@ -18,20 +18,20 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import {
-  NormalizeControl,
-  NormalizedControl,
-} from '../../../lib/form/control';
+  NormalizedFormControl,
+  NormalizeFormControl,
+} from '../../../lib/form/control/form-control';
 import { FormControlKinds } from '../../../lib/form/control/form-control-kind';
 import { FormControlOptions } from './schema';
 import 'colors';
 
-export type NormalizedFormControlOptions = Readonly<Normalized<FormControlOptions>> & NonNullableSelected<NormalizedAngularOptions, 'controllerName'> & NormalizedControl;
+export type NormalizedFormControlOptions = Readonly<Normalized<Pick<FormControlOptions, 'formName'>>> & NonNullableSelected<NormalizedAngularOptions, 'controllerName'> & NormalizedFormControl;
 
 export function NormalizeFormControlOptions(
   options: Readonly<FormControlOptions>,
 ): NormalizedFormControlOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedFormDefinitionControl = NormalizeControl(options);
+  const normalizedFormDefinitionControl = NormalizeFormControl(options);
   const formName = dasherize(options.formName);
   const controllerName = options.controllerName ?? formName;
   return Object.freeze({
@@ -70,36 +70,13 @@ function formControlKind(normalizedOptions: NormalizedFormControlOptions): Rule 
 
 export default function (options: FormControlOptions) {
   const normalizedOptions = NormalizeFormControlOptions(options);
-  const {
-    name,
-    project,
-    feature,
-    directory,
-    formName,
-    type,
-    isArray,
-    state,
-    isRequired,
-    validatorList,
-  } = normalizedOptions;
   printOptions(normalizedOptions);
 
   return () => {
     return chain([
-      () => console.group('\x1b[32m[@rxap/schematics-angular:form-control]\x1b[0m'),
+      () => console.group('[@rxap/schematics-angular:form-control]'.green),
       () => console.log('Coerce control in form definition class ...'),
-      CoerceFormDefinitionControl({
-        project,
-        feature,
-        directory,
-        formName,
-        name,
-        type,
-        isArray,
-        state,
-        isRequired,
-        validatorList,
-      }),
+      CoerceFormDefinitionFormControl(normalizedOptions),
       formControlKind(normalizedOptions),
       () => console.groupEnd(),
     ]);

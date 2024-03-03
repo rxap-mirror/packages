@@ -1,11 +1,9 @@
-import { TypeImport } from '@rxap/ts-morph';
+import { DataProperty } from '@rxap/ts-morph';
 import { WriterFunction } from 'ts-morph';
 
-export interface AbstractControl {
-  name: string;
-  type?: string | TypeImport | WriterFunction;
-  isArray?: boolean;
+export interface AbstractControl extends DataProperty {
   state?: string | WriterFunction | null;
   isRequired?: boolean;
   validatorList?: string[];
+  role?: 'control' | 'group' | 'array';
 }

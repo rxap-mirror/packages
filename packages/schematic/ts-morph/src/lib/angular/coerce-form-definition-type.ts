@@ -8,7 +8,9 @@ import {
 } from '../ts-morph-transform';
 import { CoerceInterface } from '../ts-morph/coerce-interface';
 import { AbstractControl } from '../types/abstract-control';
-import { CoerceInterfaceFormTypeControl } from './coerce-form-definition-control';
+import { CoerceInterfaceFormTypeArray } from './coerce-form-definition-array';
+import { CoerceInterfaceFormTypeControl } from './coerce-form-definition-form-control';
+import { CoerceInterfaceFormTypeGroup } from './coerce-form-definition-group';
 import {
   CoerceFormDefinitionClass,
   GetFormDefinitionFilePath,
@@ -39,7 +41,19 @@ export function CoerceInterfaceFormType(
   const interfaceDeclaration = CoerceInterface(sourceFile, formTypeName);
   interfaceDeclaration.setIsExported(true);
   for (const control of controlList ?? []) {
-    CoerceInterfaceFormTypeControl(sourceFile, classDeclaration, formTypeName, control);
+    switch (control.role) {
+      case 'group':
+        CoerceInterfaceFormTypeGroup(sourceFile, classDeclaration, formTypeName, control);
+        break;
+      case 'control':
+        CoerceInterfaceFormTypeControl(sourceFile, classDeclaration, formTypeName, control);
+        break;
+      case 'array':
+        CoerceInterfaceFormTypeArray(sourceFile, classDeclaration, formTypeName, control);
+        break;
+      default:
+        throw new Error(`Unknown control role: ${ control.role }`);
+    }
   }
 }
 

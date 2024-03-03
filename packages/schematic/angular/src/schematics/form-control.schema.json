@@ -1,68 +1,50 @@
 {
   "$schema": "http://json-schema.org/schema",
   "$id": "form-control",
-  "type": "object",
-  "properties": {
-    "name": {
-      "type": "string",
-      "description": "The name of the control"
+  "oneOf": [
+    {
+      "$ref": "#/definitions/baseFormControl"
     },
-    "type": {
-      "$ref": "#/definitions/type"
+    {
+      "$ref": "#/definitions/inputFormControl"
     },
-    "isArray": {
-      "type": "boolean",
-      "description": "Whether the control value is an array",
-      "default": false
+    {
+      "$ref": "#/definitions/selectFormControl"
     },
-    "state": {
-      "type": "string",
-      "description": "The initial state of the control"
+    {
+      "$ref": "#/definitions/checkboxFormControl"
     },
-    "isRequired": {
-      "type": "boolean",
-      "description": "Whether the control value is required",
-      "default": false
+    {
+      "$ref": "#/definitions/textareaFormControl"
     },
-    "isReadonly": {
-      "type": "boolean",
-      "description": "Whether the control value is readonly",
-      "default": false
+    {
+      "$ref": "#/definitions/tableSelectFormControl"
     },
-    "isDisabled": {
-      "type": "boolean",
-      "description": "Whether the control value is disabled",
-      "default": false
-    },
-    "validatorList": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "kind": {
-      "type": "string",
-      "description": "The name of the template",
-      "enum": [
-        "default",
-        "input",
-        "select",
-        "checkbox",
-        "autocomplete-table-select",
-        "table-select",
-        "textarea",
-        "slide-toggle"
-      ],
-      "default": "default"
+    {
+      "$ref": "#/definitions/slideToggleFormControl"
     }
-  },
-  "required": [
-    "name"
   ],
-  "additionalProperties": true,
   "definitions": {
-    "type": {
-      "$ref": "./type.schema.json"
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
+    },
+    "inputFormControl": {
+      "$ref": "./input-form-control.schema.json"
+    },
+    "selectFormControl": {
+      "$ref": "./select-form-control.schema.json"
+    },
+    "checkboxFormControl": {
+      "$ref": "./checkbox-form-control.schema.json"
+    },
+    "textareaFormControl": {
+      "$ref": "./textarea-form-control.schema.json"
+    },
+    "tableSelectFormControl": {
+      "$ref": "./table-select-form-control.schema.json"
+    },
+    "slideToggleFormControl": {
+      "$ref": "./slide-toggle-form-control.schema.json"
     }
   }
 }

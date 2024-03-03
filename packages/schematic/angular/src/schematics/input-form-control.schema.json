@@ -3,7 +3,7 @@
   "$id": "input-form-control",
   "allOf": [
     {
-      "$ref": "#/definitions/formControl"
+      "$ref": "#/definitions/formFieldFormControl"
     },
     {
       "type": "object",
@@ -37,19 +37,13 @@
         },
         "placeholder": {
           "type": "string"
-        },
-        "formField": {
-          "$ref": "#/definitions/formField"
         }
       }
     }
   ],
   "definitions": {
-    "formField": {
-      "$ref": "./form-field.schema.json"
-    },
-    "formControl": {
-      "$ref": "./form-control.schema.json"
+    "formFieldFormControl": {
+      "$ref": "./form-field-form-control.schema.json"
     }
   }
 }

@@ -3,81 +3,37 @@
   "$id": "table-select-form-control-schematic",
   "allOf": [
     {
-      "$ref": "#/definitions/formControl"
+      "$ref": "#/definitions/angular"
+    },
+    {
+      "$ref": "#/definitions/tableSelectFormControl"
     },
     {
       "type": "object",
       "properties": {
-        "columnList": {
-          "alias": "column",
-          "type": "array",
-          "items": {
-            "description": "table column name",
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "table column name"
-              },
-              "title": {
-                "type": "string",
-                "description": "table column label"
-              },
-              "hasFilter": {
-                "type": "boolean",
-                "description": "Whether the column has a filter"
-              },
-              "kind": {
-                "type": "string",
-                "description": "The kind of data in the column"
-              }
-            }
-          },
-          "description": "List of table column names"
-        },
-        "title": {
+        "formName": {
+          "alias": "form",
           "type": "string",
-          "description": "The title of the table select window"
-        },
-        "toDisplay": {
-          "type": "object",
-          "properties": {
-            "property": {
-              "$ref": "#/definitions/property"
-            }
-          }
-        },
-        "toValue": {
-          "type": "object",
-          "properties": {
-            "property": {
-              "$ref": "#/definitions/property"
-            }
-          }
-        },
-        "upstream": {
-          "$ref": "#/definitions/upstream"
-        },
-        "resolver": {
-          "type": "object",
-          "properties": {
-            "upstream": {
-              "$ref": "#/definitions/upstream"
-            }
-          }
+          "description": "The name of the form where the form control should be added"
         }
-      }
+      },
+      "required": [
+        "formName"
+      ]
     }
   ],
   "definitions": {
-    "formControl": {
-      "$ref": "../../form-control/template.schema.json"
+    "angular": {
+      "$ref": "../../../angular.schema.json"
     },
     "property": {
       "$ref": "../../../property.schema.json"
     },
     "upstream": {
       "$ref": "../../../upstream.schema.json"
+    },
+    "tableSelectFormControl": {
+      "$ref": "../../../table-select-form-control.schema.json"
     }
   }
 }

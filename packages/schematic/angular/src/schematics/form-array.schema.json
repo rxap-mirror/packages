@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "form-array",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/baseFormArray"
+    }
+  ],
+  "definitions": {
+    "baseFormArray": {
+      "$ref": "./base-form-array.schema.json"
+    }
+  }
+}

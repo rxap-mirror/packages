@@ -2,9 +2,9 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { SourceFile } from 'ts-morph';
-import { CoerceClass } from '../coerce-class';
+import { CoerceClass } from '@rxap/ts-morph';
 import { dasherize } from '@rxap/utilities';
+import { SourceFile } from 'ts-morph';
 
 export interface GetFormDefinitionClassNameOptions {
   name: string;

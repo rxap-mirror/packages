@@ -42,7 +42,7 @@ export interface NormalizedAbstractControl extends Readonly<Normalized<Omit<Abst
 export function NormalizeAbstractControl(
   control: AbstractControl,
   kind: string,
-  importList: TypeImport[],
+  importList: TypeImport[] = [],
   validatorList: string[] = [],
   defaultType: TypeImport | string = 'unknown',
   defaultIsArray = false

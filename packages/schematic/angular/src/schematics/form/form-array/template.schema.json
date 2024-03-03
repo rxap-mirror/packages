@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "form-control-schematic",
+  "$id": "form-array-schematic",
   "allOf": [
     {
       "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "#/definitions/formControl"
+      "$ref": "#/definitions/formArray"
     },
     {
       "type": "object",
@@ -26,8 +26,8 @@
     "angular": {
       "$ref": "../../angular.schema.json"
     },
-    "formControl": {
-      "$ref": "../../form-control.schema.json"
+    "formArray": {
+      "$ref": "../../form-array.schema.json"
     }
   }
 }

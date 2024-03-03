@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "textarea-form-control",
+  "allOf": [
+    {
+      "$ref": "#/definitions/formFieldFormControl"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "placeholder": {
+          "type": "string"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "formFieldFormControl": {
+      "$ref": "./form-field-form-control.schema.json"
+    }
+  }
+}

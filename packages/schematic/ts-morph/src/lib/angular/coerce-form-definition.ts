@@ -3,6 +3,7 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import { CoercePropertyDeclaration } from '@rxap/ts-morph';
+import { noop } from '@rxap/utilities';
 import {
   ClassDeclaration,
   Scope,
@@ -15,7 +16,9 @@ import {
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { AbstractControl } from '../types/abstract-control';
-import { CoerceFormControl } from './coerce-form-definition-control';
+import { CoerceFormArray } from './coerce-form-definition-array';
+import { CoerceFormControl } from './coerce-form-definition-form-control';
+import { CoerceFormGroup } from './coerce-form-definition-group';
 import { CoerceFormDefinitionTypeRule } from './coerce-form-definition-type';
 import {
   CoerceFormDefinitionClass,
@@ -36,6 +39,7 @@ export interface CoerceFormDefinitionOptions extends TsMorphAngularProjectTransf
   coerceFormControls?: (
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
+    formTypeName: string,
     options: CoerceFormDefinitionOptions,
   ) => void;
 }
@@ -43,24 +47,32 @@ export interface CoerceFormDefinitionOptions extends TsMorphAngularProjectTransf
 export function CoerceFormControls(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
+  formTypeName: string,
   { controlList }: CoerceFormDefinitionOptions,
 ) {
   for (const control of controlList ?? []) {
-    CoerceFormControl(sourceFile, classDeclaration, control);
+    switch (control.role) {
+      case 'group':
+        CoerceFormGroup(sourceFile, classDeclaration, formTypeName, control);
+        break;
+      case 'control':
+        CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
+        break;
+      case 'array':
+        CoerceFormArray(sourceFile, classDeclaration, formTypeName, control);
+        break;
+      default:
+        throw new Error(`Unknown control role: ${ control.role }`);
+    }
   }
 }
 
 export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptions>): Rule {
-  let {
-    coerceFormControls,
-    tsMorphTransform,
+  const {
+    coerceFormControls = CoerceFormControls,
+    tsMorphTransform = noop,
     name,
   } = options;
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  tsMorphTransform ??= () => {
-  };
-  coerceFormControls ??= CoerceFormControls;
 
   const interfaceName = GetFormDefinitionInterfaceName(options);
 
@@ -90,7 +102,7 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
         moduleSpecifier: '@rxap/forms',
       });
 
-      coerceFormControls!(sourceFile, classDeclaration, options);
+      coerceFormControls!(sourceFile, classDeclaration, interfaceName, options);
 
       // region add class decorators
       CoerceDecorator(classDeclaration, 'RxapForm').set({ arguments: [ w => w.quote(name) ] });

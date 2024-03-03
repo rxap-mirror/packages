@@ -11,6 +11,7 @@ import {
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
+import { AbstractControlRolls } from '../../../lib/form/abstract-control';
 import {
   NormalizeControlList,
   NormalizedControl,
@@ -66,7 +67,7 @@ export default function (options: FormDefinitionOptions) {
   printFormDefinitionOptions(normalizedOptions);
   return () => {
     return chain([
-      () => console.group('\x1b[32m[@rxap/schematics-angular:form-definition]\x1b[0m'),
+      () => console.group('[@rxap/schematics-angular:form-definition]'.green),
       () => console.log('Coerce form definition class ...'),
       CoerceFormDefinition({
         project,
@@ -75,22 +76,40 @@ export default function (options: FormDefinitionOptions) {
         controlList,
         name,
       }),
-      chain(controlList.map(control => ExecuteSchematic('form-control', {
-        formName: name,
-        project,
-        feature,
-        directory,
-        context,
-        nestModule,
-        controllerName,
-        backend,
-        shared,
-        scope,
-        prefix,
-        overwrite,
-        replace,
-        ...control,
-      }))),
+      chain(controlList.map(control => {
+        const inputOptions = {
+          formName: name,
+          project,
+          feature,
+          directory,
+          context,
+          nestModule,
+          controllerName,
+          backend,
+          shared,
+          scope,
+          prefix,
+          overwrite,
+          replace,
+          ...control,
+        };
+        switch (control.role) {
+
+          case AbstractControlRolls.CONTROL:
+            return ExecuteSchematic('form-control', inputOptions);
+
+          case AbstractControlRolls.ARRAY:
+            return ExecuteSchematic('form-array', inputOptions);
+
+          case AbstractControlRolls.GROUP:
+            return ExecuteSchematic('form-group', inputOptions);
+
+          default:
+            return () => console.log(`No schematic for control role: ${ (control as any).role }`.yellow);
+
+        }
+
+      })),
       standalone ?
       chain([
         () => console.log('Coerce form providers file ...'),

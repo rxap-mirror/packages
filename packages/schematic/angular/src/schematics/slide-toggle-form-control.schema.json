@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "slide-toggle-form-control",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseFormControl"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "labelPosition": {
+          "type": "string",
+          "enum": [
+            "before",
+            "after"
+          ]
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
+    }
+  }
+}

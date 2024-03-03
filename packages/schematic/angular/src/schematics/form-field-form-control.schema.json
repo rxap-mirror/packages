@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "form-field-form-control",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseFormControl"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "formField": {
+          "$ref": "#/definitions/formField"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "formField": {
+      "$ref": "./form-field.schema.json"
+    },
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
+    }
+  }
+}

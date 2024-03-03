@@ -322,7 +322,7 @@ export default function (options: FormComponentOptions) {
   printFormComponentOptions(normalizedOptions);
   return function () {
     return chain([
-      () => console.group('\x1b[32m[@rxap/schematics-angular:form-component]\x1b[0m'),
+      () => console.group('[@rxap/schematics-angular:form-component]'.green),
       componentRule(normalizedOptions),
       windowRule(normalizedOptions),
       formDefinitionRule(normalizedOptions),

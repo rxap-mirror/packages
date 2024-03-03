@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "base-form-group",
+  "allOf": [
+    {
+      "$ref": "#/definitions/abstractControl"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "controlList": {
+          "type": "array",
+          "description": "The list of controls in the group",
+          "items": {
+            "$ref": "#/definitions/control"
+          }
+        },
+        "kind": {
+          "type": "string",
+          "description": "The kind of the group",
+          "enum": [
+            "default"
+          ],
+          "default": "default"
+        },
+        "role": {
+          "type": "string",
+          "description": "The role of the control",
+          "enum": ["group"],
+          "default": "group"
+        }
+      },
+      "additionalProperties": true
+    }
+  ],
+  "definitions": {
+    "abstractControl": {
+      "$ref": "./abstract-control.schema.json"
+    },
+    "control": {
+      "$ref": "./control.schema.json"
+    }
+  }
+}

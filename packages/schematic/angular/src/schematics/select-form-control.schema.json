@@ -3,14 +3,11 @@
   "$id": "select-form-control",
   "allOf": [
     {
-      "$ref": "#/definitions/formControl"
+      "$ref": "#/definitions/formFieldFormControl"
     },
     {
       "type": "object",
       "properties": {
-        "formField": {
-          "$ref": "#/definitions/formField"
-        },
         "options": {
           "type": "array",
           "items": {
@@ -54,11 +51,8 @@
     "backend": {
       "$ref": "./backend.schema.json"
     },
-    "formField": {
-      "$ref": "./form-field.schema.json"
-    },
-    "formControl": {
-      "$ref": "./form-control.schema.json"
+    "formFieldFormControl": {
+      "$ref": "./form-field-form-control.schema.json"
     }
   }
 }

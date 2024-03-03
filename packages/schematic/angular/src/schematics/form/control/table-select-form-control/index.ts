@@ -135,7 +135,10 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
     resolver,
     propertyList,
     toDisplay,
-    toValue
+    toValue,
+    role,
+    isOptional,
+    source,
   } = normalizedOptions;
   const { upstream } = resolver ?? {};
 
@@ -197,6 +200,9 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       operationId: resolveValueOperationId,
     }),
     CoerceFormDefinitionControl({
+      role,
+      isOptional,
+      source,
       project,
       feature,
       directory,
@@ -210,13 +216,14 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       coerceFormControl: (
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
+        formTypeName: string,
         control: Required<AbstractControl>,
       ) => {
         const {
           propertyDeclaration,
           decoratorDeclaration,
         } =
-          CoerceFormControl(sourceFile, classDeclaration, control);
+          CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
         CoerceDecorator(propertyDeclaration, 'UseTableSelectMethod').set({
           arguments: [ resolveValueMethodName ],
@@ -264,6 +271,9 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
     toValue,
     propertyList,
     upstream,
+    role,
+    isOptional,
+    source,
   } = normalizedOptions;
 
   const optionsOperationName = buildOptionsOperationName(normalizedOptions);
@@ -315,6 +325,9 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       operationId: optionsOperationId,
     }),
     CoerceFormDefinitionControl({
+      role,
+      isOptional,
+      source,
       project,
       feature,
       directory,
@@ -328,13 +341,14 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       coerceFormControl: (
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
+        formTypeName: string,
         control: Required<AbstractControl>,
       ) => {
         const {
           propertyDeclaration,
           decoratorDeclaration,
         } =
-          CoerceFormControl(sourceFile, classDeclaration, control);
+          CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
         const tableSelectOperationResponseClassName = OperationIdToResponseClassName(optionsOperationId);
 
@@ -385,7 +399,7 @@ export default function (options: TableSelectFormControlOptions) {
 
   return () => {
     return chain([
-      () => console.group('\x1b[32m[@rxap/schematics-angular:table-select-form-control]\x1b[0m'),
+      () => console.group('[@rxap/schematics-angular:table-select-form-control]'.green),
       tableSelectDataSourceRule(normalizedOptions),
       tableSelectResolveRule(normalizedOptions),
       EnforceUseFormControlOrderRule(normalizedOptions),
