@@ -44,11 +44,11 @@ function generateSchematicInputSchema(tree: Tree, options: IndexJsonSchemaGenera
       properties: {
         package: {
           type: "string",
-          enum: [packageJsonName],
+          const: packageJsonName,
         },
         name: {
           type: "string",
-          enum: [name],
+          const: name,
         },
         options: {
           $ref: `#/definitions/${camelize(content.$id)}`,
