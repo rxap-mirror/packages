@@ -2,7 +2,6 @@ import { DtoClassProperty } from '@rxap/schematics-ts-morph';
 import {
   AbstractControl,
   AbstractControlRolls,
-  NormalizeAbstractControl,
   NormalizedAbstractControl,
 } from './abstract-control';
 import {
@@ -25,6 +24,7 @@ export type Control = AbstractControl | FormControl;
 export type NormalizedControl = NormalizedAbstractControl | NormalizedFormControl;
 
 export function NormalizeControl(control: Control): NormalizedControl {
+  control.role ??= AbstractControlRolls.CONTROL;
   if (IsFormControl(control)) {
     return NormalizeFormControl(control);
   }
@@ -34,7 +34,7 @@ export function NormalizeControl(control: Control): NormalizedControl {
   if (IsFormArray(control)) {
     return NormalizeFormArray(control);
   }
-  return NormalizeAbstractControl(control, control.role ?? AbstractControlRolls.CONTROL);
+  throw new Error(`Unknown control role: '${control.role}'`);
 }
 
 export function NormalizeControlList(controlList?: Control[]): NormalizedControl[] {

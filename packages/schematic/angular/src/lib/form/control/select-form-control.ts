@@ -1,4 +1,5 @@
 import {
+  CoerceArrayItems,
   ControlOption,
   Normalized,
 } from '@rxap/utilities';
@@ -14,17 +15,17 @@ import {
 } from './form-field-form-control';
 
 export interface SelectFormControl extends FormFieldFormControl {
-  options?: ControlOption[];
+  optionList?: ControlOption[];
   backend?: BackendTypes;
   multiple?: boolean;
   formField?: FormField;
 }
 
 export interface NormalizedSelectFormControl
-  extends Readonly<Normalized<Omit<SelectFormControl, 'options' | 'type' | 'importList' | 'formField' | 'role'>>>,
+  extends Readonly<Normalized<Omit<SelectFormControl, 'optionList' | 'type' | 'importList' | 'formField' | 'role'>>>,
           NormalizedFormFieldFormControl {
   kind: FormControlKinds.SELECT;
-  options: ReadonlyArray<ControlOption> | null;
+  optionList: ReadonlyArray<ControlOption> | null;
   backend: BackendTypes;
 }
 
@@ -36,15 +37,17 @@ export function NormalizeSelectFormControl(
   control: SelectFormControl,
 ): NormalizedSelectFormControl {
   const importList = control.importList ?? [];
-  importList.push({
-    name: 'MatSelectModule',
-    moduleSpecifier: '@angular/material/select',
-  });
+  CoerceArrayItems(importList, [
+    {
+      name: 'MatSelectModule',
+      moduleSpecifier: '@angular/material/select',
+    }
+  ], (a, b) => a.name === b.name);
   const multiple = control.multiple ?? false;
   return Object.freeze({
     ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, multiple),
     kind: FormControlKinds.SELECT,
-    options: control.options && control.options.length ? Object.freeze(control.options) : null,
+    optionList: control.optionList && control.optionList.length ? Object.freeze(control.optionList) : null,
     backend: control.backend ?? BackendTypes.NONE,
     multiple,
   });

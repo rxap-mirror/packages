@@ -46,7 +46,6 @@ export function NormalizeBaseFormControl(
   return Object.freeze({
     ...NormalizeAbstractControl(control, kind, importList, validatorList, defaultType, defaultIsArray),
     role: AbstractControlRolls.CONTROL,
-    kind,
     label: control.label ?? null,
   });
 }

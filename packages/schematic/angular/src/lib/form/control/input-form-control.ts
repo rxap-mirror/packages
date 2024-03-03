@@ -35,10 +35,12 @@ export function NormalizeInputFormControl(
   const type = NormalizeTypeImport(control.type);
   const validatorList = control.validatorList ?? [];
   const importList = control.importList ?? [];
-  importList.push({
-    name: 'MatInputModule',
-    moduleSpecifier: '@angular/material/input',
-  });
+  CoerceArrayItems(importList, [
+    {
+      name: 'MatInputModule',
+      moduleSpecifier: '@angular/material/input',
+    }
+  ], (a, b) => a.name === b.name);
   const inputType: string = control.inputType ?? 'text';
   switch (inputType) {
     case 'checkbox':

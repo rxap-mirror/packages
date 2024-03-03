@@ -41,10 +41,10 @@ export function NormalizeBaseFormGroup(
       moduleSpecifier: '@angular/forms',
     }
   ], (a, b) => a.name === b.name);
+  const kind = group.kind ?? FormGroupKind.DEFAULT;
   return {
-    ...NormalizeAbstractControl(group, AbstractControlRolls.GROUP, importList, validatorList, defaultType, defaultIsArray),
+    ...NormalizeAbstractControl(group, kind, importList, validatorList, defaultType, defaultIsArray),
     role: AbstractControlRolls.GROUP,
     controlList: NormalizeControlList(group.controlList),
-    kind: FormGroupKind.DEFAULT,
   };
 }

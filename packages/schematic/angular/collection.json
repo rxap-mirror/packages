@@ -90,6 +90,16 @@
       "factory": "./src/schematics/form/form-control/index",
       "description": "The form-control schematic"
     },
+    "form-group": {
+      "schema": "./src/schematics/form/form-group/schema.json",
+      "factory": "./src/schematics/form/form-group/index",
+      "description": "The form-group schematic"
+    },
+    "form-array": {
+      "schema": "./src/schematics/form/form-array/schema.json",
+      "factory": "./src/schematics/form/form-array/index",
+      "description": "The form-array schematic"
+    },
     "dialog-table-action": {
       "schema": "./src/schematics/table/action/dialog-table-action/schema.json",
       "factory": "./src/schematics/table/action/dialog-table-action/index",

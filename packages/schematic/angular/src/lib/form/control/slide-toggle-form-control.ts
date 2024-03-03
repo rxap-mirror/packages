@@ -1,4 +1,7 @@
-import { Normalized } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  Normalized,
+} from '@rxap/utilities';
 import {
   BaseFormControl,
   NormalizeBaseFormControl,
@@ -24,10 +27,12 @@ export function NormalizeSlideToggleFormControl(
   control: SlideToggleFormControl,
 ): NormalizedSlideToggleFormControl {
   const importList = control.importList ?? [];
-  importList.push({
-    name: 'MatSlideToggleModule',
-    moduleSpecifier: '@angular/material/slide-toggle',
-  });
+  CoerceArrayItems(importList, [
+    {
+      name: 'MatSlideToggleModule',
+      moduleSpecifier: '@angular/material/slide-toggle',
+    },
+  ], (a, b) => a.name === b.name);
   return Object.freeze({
     ...NormalizeBaseFormControl(control, importList, undefined, 'boolean', false),
     kind: FormControlKinds.CHECKBOX,

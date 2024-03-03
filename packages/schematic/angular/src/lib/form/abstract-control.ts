@@ -9,6 +9,7 @@ import {
 } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
+  dasherize,
   Normalized,
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
@@ -39,14 +40,14 @@ export interface NormalizedAbstractControl extends Readonly<Normalized<Omit<Abst
   role: AbstractControlRolls;
 }
 
-export function NormalizeAbstractControl(
+export function NormalizeAbstractControl<Kind extends string>(
   control: AbstractControl,
-  kind: string,
+  kind: Kind,
   importList: TypeImport[] = [],
   validatorList: string[] = [],
   defaultType: TypeImport | string = 'unknown',
   defaultIsArray = false
-): NormalizedAbstractControl {
+): NormalizedAbstractControl & { kind: Kind } {
   if (!control.name) {
     throw new SchematicsException('The control name is required');
   }
@@ -54,12 +55,13 @@ export function NormalizeAbstractControl(
   const isReadonly: boolean = control.isReadonly ?? false;
   const isDisabled: boolean = control.isDisabled ?? false;
   CoerceArrayItems(validatorList, control.validatorList ?? []);
-  const template = control.template ?? `${ kind }-form-${role}.hbs`;
+  const template = control.template ?? `${ kind }-form-${ role }.hbs`;
   CoerceArrayItems(importList, control.importList ?? [], (a, b) => a === b);
   const state: string | null = control.state ?? null;
   const isRequired: boolean = control.isRequired ?? false;
   return Object.freeze({
     ...NormalizeDataProperty(control, defaultType, defaultIsArray),
+    name: dasherize(control.name),
     isRequired,
     state,
     kind,
@@ -68,7 +70,7 @@ export function NormalizeAbstractControl(
     isDisabled,
     validatorList,
     importList: NormalizeTypeImportList(importList),
-    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'form', 'templates')),
+    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', '..', 'schematics', 'form', 'templates')),
     role,
   });
 }

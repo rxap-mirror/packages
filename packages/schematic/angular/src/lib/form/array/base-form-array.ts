@@ -41,10 +41,10 @@ export function NormalizeBaseFormArray(
       moduleSpecifier: '@angular/forms',
     }
   ], (a, b) => a.name === b.name);
+  const kind = array.kind ?? FormArrayKind.DEFAULT;
   return {
-    ...NormalizeAbstractControl(array, AbstractControlRolls.ARRAY, importList, validatorList, defaultType, defaultIsArray),
+    ...NormalizeAbstractControl(array, kind, importList, validatorList, defaultType, defaultIsArray),
     role: AbstractControlRolls.ARRAY,
     controlList: NormalizeControlList(array.controlList),
-    kind: FormArrayKind.DEFAULT,
   };
 }

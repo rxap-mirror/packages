@@ -113,10 +113,12 @@ export function NormalizeTableSelectFormControl(
   control: TableSelectFormControl,
 ): NormalizedTableSelectFormControl {
   const importList = control.importList ?? [];
-  importList.push({
-    name: 'TableSelectControlModule',
-    moduleSpecifier: '@digitaix/eurogard-table-select',
-  });
+  CoerceArrayItems(importList, [
+    {
+      name: 'TableSelectControlModule',
+      moduleSpecifier: '@digitaix/eurogard-table-select',
+    }
+  ], (a, b) => a.name === b.name);
   if (!control.columnList?.length) {
     throw new Error('The column list must not be empty');
   }

@@ -1,4 +1,7 @@
-import { Normalized } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  Normalized,
+} from '@rxap/utilities';
 import {
   BaseFormControl,
   NormalizeBaseFormControl,
@@ -24,10 +27,12 @@ export function NormalizeCheckboxFormControl(
   control: CheckboxFormControl,
 ): NormalizedCheckboxFormControl {
   const importList = control.importList ?? [];
-  importList.push({
-    name: 'MatCheckboxModule',
-    moduleSpecifier: '@angular/material/checkbox',
-  });
+  CoerceArrayItems(importList, [
+    {
+      name: 'MatCheckboxModule',
+      moduleSpecifier: '@angular/material/checkbox',
+    }
+  ], (a, b) => a.name === b.name);
   return Object.freeze({
     ...NormalizeBaseFormControl(control, importList, undefined,'boolean', false),
     kind: FormControlKinds.CHECKBOX,
