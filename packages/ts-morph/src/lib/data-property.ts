@@ -1,4 +1,7 @@
-import { TypeImport } from '@rxap/ts-morph';
+import {
+  TypeImport,
+  TypeName,
+} from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   OptionalKind,
@@ -13,7 +16,7 @@ import { WriteType } from './write-type';
 
 export interface DataProperty {
   name: string;
-  type?: string | TypeImport;
+  type?: TypeImport | TypeName;
   isArray?: boolean;
   isOptional?: boolean,
   source?: string | null;
@@ -24,7 +27,7 @@ export interface NormalizedDataProperty extends Readonly<Normalized<DataProperty
   source: string | null;
 }
 
-function guessType(name: string): string | TypeImport {
+function guessType(name: string): TypeName | TypeImport {
   switch (name) {
     case 'uuid':
     case 'name':
@@ -47,7 +50,7 @@ function guessType(name: string): string | TypeImport {
   return 'unknown';
 }
 
-export function NormalizeDataProperty(property: string | Readonly<DataProperty>, defaultType: TypeImport | string = 'unknown', isArray = false): NormalizedDataProperty {
+export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty>, defaultType: TypeImport | TypeName = 'unknown', isArray = false): NormalizedDataProperty {
   let name: string;
   let type: string | TypeImport = 'unknown';
   let isOptional = false;

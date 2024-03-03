@@ -3,8 +3,10 @@ import {
   OptionalKind,
 } from 'ts-morph';
 
+export type TypeName = string | '<self>' | '<deferred>' | 'unknown' | 'string' | 'number' | 'boolean' | 'any';
+
 export interface TypeImport {
-  name: string;
+  name: TypeName;
   moduleSpecifier?: string | null;
   namedImport?: string | null;
   namespaceImport?: string | null;
@@ -43,7 +45,7 @@ export function TypeImportToImportStructure(typeImport: TypeImport): OptionalKin
 }
 
 export interface NormalizedTypeImport {
-  name: string;
+  name: string | '<self>' | '<deferred>';
   moduleSpecifier: string | null;
   namedImport: string | null;
   namespaceImport: string | null;
