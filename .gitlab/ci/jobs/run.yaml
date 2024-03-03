@@ -11,7 +11,7 @@ run:
     TARGET: "build,test,lint"
     NX_CI_EXECUTION_ID: "$CI_PIPELINE_ID"
     NX_BRANCH: "${CI_MERGE_REQUEST_ID:-$CI_COMMIT_REF_NAME}"
-    NX_CLOUD_DISTRIBUTED_EXECUTION_AGENT_COUNT: "3"
+    NX_CLOUD_DISTRIBUTED_EXECUTION_AGENT_COUNT: "9"
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
@@ -38,5 +38,5 @@ agent:
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
-  parallel: 3
+  parallel: 9
   <<: *run_rules
