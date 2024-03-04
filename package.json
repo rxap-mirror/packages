@@ -117,6 +117,7 @@
     "@cypress/code-coverage": "^3.12.19",
     "@cypress/webpack-dev-server": "2.5.0",
     "@enio.ai/typedoc": "1.0.8",
+    "@jsdevtools/coverage-istanbul-loader": "^3.0.5",
     "@localazy/cli": "1.7.3",
     "@nestjs/schematics": "10.0.1",
     "@nestjs/testing": "10.0.5",

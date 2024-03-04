@@ -5537,6 +5537,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jsdevtools/coverage-istanbul-loader@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "@jsdevtools/coverage-istanbul-loader@npm:3.0.5"
+  dependencies:
+    convert-source-map: ^1.7.0
+    istanbul-lib-instrument: ^4.0.3
+    loader-utils: ^2.0.0
+    merge-source-map: ^1.1.0
+    schema-utils: ^2.7.0
+  checksum: e5371e1b711130d75caa3771cb37e8e2cc627e8012571a9da45f6c85d46256c3583016b91a316de05df7ee98a6bc550337c40c275c3cb646becd14649f271157
+  languageName: node
+  linkType: hard
+
 "@jsdevtools/ono@npm:^7.1.3":
   version: 7.1.3
   resolution: "@jsdevtools/ono@npm:7.1.3"
@@ -12459,6 +12472,13 @@ __metadata:
   version: 7.0.12
   resolution: "@types/json-schema@npm:7.0.12"
   checksum: 00239e97234eeb5ceefb0c1875d98ade6e922bfec39dd365ec6bd360b5c2f825e612ac4f6e5f1d13601b8b30f378f15e6faa805a3a732f4a1bbe61915163d293
+  languageName: node
+  linkType: hard
+
+"@types/json-schema@npm:^7.0.5":
+  version: 7.0.15
+  resolution: "@types/json-schema@npm:7.0.15"
+  checksum: 97ed0cb44d4070aecea772b7b2e2ed971e10c81ec87dd4ecc160322ffa55ff330dace1793489540e3e318d90942064bb697cc0f8989391797792d919737b3b98
   languageName: node
   linkType: hard
 
@@ -22841,7 +22861,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"istanbul-lib-instrument@npm:^4.0.0":
+"istanbul-lib-instrument@npm:^4.0.0, istanbul-lib-instrument@npm:^4.0.3":
   version: 4.0.3
   resolution: "istanbul-lib-instrument@npm:4.0.3"
   dependencies:
@@ -25337,6 +25357,15 @@ __metadata:
   dependencies:
     source-map: ^0.5.6
   checksum: 86a4e60d83980393e61f069c7ae33e7899c4c012c3cd2cf50e01482e7a284bbe9c8cd08d37adbf241fc9eacfa4425241432e7461cf6559f7e9902587889660de
+  languageName: node
+  linkType: hard
+
+"merge-source-map@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "merge-source-map@npm:1.1.0"
+  dependencies:
+    source-map: ^0.6.1
+  checksum: 945a83dcc59eff77dde709be1d3d6cb575c11cd7164a7ccdc1c6f0d463aad7c12750a510bdf84af2c05fac4615c4305d97ac90477975348bb901a905c8e92c4b
   languageName: node
   linkType: hard
 
@@ -30455,6 +30484,7 @@ __metadata:
     "@cypress/webpack-dev-server": 2.5.0
     "@enio.ai/typedoc": 1.0.8
     "@faker-js/faker": 8.0.2
+    "@jsdevtools/coverage-istanbul-loader": ^3.0.5
     "@kvs/storage": 2.1.4
     "@localazy/cli": 1.7.3
     "@mdi/angular-material": 7.2.96
@@ -30778,6 +30808,17 @@ __metadata:
   dependencies:
     loose-envify: ^1.1.0
   checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
+  languageName: node
+  linkType: hard
+
+"schema-utils@npm:^2.7.0":
+  version: 2.7.1
+  resolution: "schema-utils@npm:2.7.1"
+  dependencies:
+    "@types/json-schema": ^7.0.5
+    ajv: ^6.12.4
+    ajv-keywords: ^3.5.2
+  checksum: 32c62fc9e28edd101e1bd83453a4216eb9bd875cc4d3775e4452b541908fa8f61a7bbac8ffde57484f01d7096279d3ba0337078e85a918ecbeb72872fb09fb2b
   languageName: node
   linkType: hard
 
