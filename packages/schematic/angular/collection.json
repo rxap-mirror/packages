@@ -85,6 +85,11 @@
       "factory": "./src/schematics/form/control/table-select-form-control/index",
       "description": "The table-select-form-control schematic"
     },
+    "autocomplete-table-select-form-control": {
+      "schema": "./src/schematics/form/control/autocomplete-table-select-form-control/schema.json",
+      "factory": "./src/schematics/form/control/autocomplete-table-select-form-control/index",
+      "description": "The autocomplete-table-select-form-control schematic"
+    },
     "form-control": {
       "schema": "./src/schematics/form/form-control/schema.json",
       "factory": "./src/schematics/form/form-control/index",

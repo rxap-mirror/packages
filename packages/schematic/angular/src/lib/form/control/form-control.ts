@@ -1,5 +1,10 @@
 import { AbstractControlRolls } from '../abstract-control';
 import {
+  Control,
+  NormalizedControl,
+} from '../control';
+import { NormalizeAutocompleteTableSelectFormControl } from './autocomplete-table-select-form-control';
+import {
   BaseFormControl,
   NormalizeBaseFormControl,
   NormalizedBaseFormControl,
@@ -9,10 +14,6 @@ import {
   NormalizeCheckboxFormControl,
   NormalizedCheckboxFormControl,
 } from './checkbox-form-control';
-import {
-  Control,
-  NormalizedControl,
-} from '../control';
 import { FormControlKinds } from './form-control-kind';
 import {
   FormFieldFormControl,
@@ -64,6 +65,8 @@ export function NormalizeFormControl(control: FormControl): NormalizedFormContro
       return NormalizeSlideToggleFormControl(control);
     case FormControlKinds.TABLE_SELECT:
       return NormalizeTableSelectFormControl(control);
+    case FormControlKinds.AUTOCOMPLETE_TABLE_SELECT:
+      return NormalizeAutocompleteTableSelectFormControl(control);
     case FormControlKinds.DEFAULT:
     default:
       return NormalizeBaseFormControl(control);

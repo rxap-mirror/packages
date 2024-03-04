@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "autocomplete-table-select-form-control",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseFormControl"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "formField": {
+          "$ref": "#/definitions/formField"
+        },
+        "kind": {
+          "type": "string",
+          "const": "table-select"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "columnList": {
+          "alias": "column",
+          "type": "array",
+          "items": {
+            "description": "table column name",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "table column name"
+              },
+              "title": {
+                "type": "string",
+                "description": "table column label"
+              },
+              "hasFilter": {
+                "type": "boolean",
+                "description": "Whether the column has a filter"
+              },
+              "kind": {
+                "type": "string",
+                "description": "The kind of data in the column"
+              }
+            }
+          },
+          "description": "List of table column names"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the table select window"
+        },
+        "toDisplay": {
+          "type": "object",
+          "properties": {
+            "property": {
+              "$ref": "#/definitions/property"
+            }
+          }
+        },
+        "toValue": {
+          "type": "object",
+          "properties": {
+            "property": {
+              "$ref": "#/definitions/property"
+            }
+          }
+        },
+        "upstream": {
+          "$ref": "#/definitions/upstream"
+        },
+        "resolver": {
+          "type": "object",
+          "properties": {
+            "upstream": {
+              "$ref": "#/definitions/upstream"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "property": {
+      "$ref": "./property.schema.json"
+    },
+    "upstream": {
+      "$ref": "./upstream.schema.json"
+    },
+    "formField": {
+      "$ref": "./form-field.schema.json"
+    },
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
+    }
+  }
+}
