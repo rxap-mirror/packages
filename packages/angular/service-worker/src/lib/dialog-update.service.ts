@@ -9,7 +9,10 @@ import {
   SwUpdate,
   VersionEvent,
 } from '@angular/service-worker';
-import { Observable } from 'rxjs';
+import {
+  filter,
+  Observable,
+} from 'rxjs';
 import {
   concatMap,
   tap,
@@ -35,6 +38,7 @@ export class DialogUpdateService {
     console.debug('start dialog update service');
     this.updates.versionUpdates
         .pipe(
+          filter(event => event.type === 'VERSION_READY'),
           concatMap((event) => this.openUpdateDialog(event)),
           tap(() => console.log('start app update')),
           tap(() =>
