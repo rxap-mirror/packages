@@ -180,7 +180,7 @@ export class KeycloakService {
       initOptions,
     } = options;
 
-    this._instance = Keycloak(config);
+    this._instance = new Keycloak(config);
     this.bindsKeycloakEvents();
 
     const authenticated = await this._instance.init(initOptions ?? {});

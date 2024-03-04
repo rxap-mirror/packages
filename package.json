@@ -76,7 +76,7 @@
     "helmet": "7.0.0",
     "ignore": "5.2.4",
     "joi": "17.9.2",
-    "keycloak-js": "21.1.2",
+    "keycloak-js": "23.0.7",
     "marked": "4.3.0",
     "minio": "7.1.1",
     "ngx-logger": "5.0.12",
