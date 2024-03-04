@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.0.0...@rxap/form-system@16.0.1-dev.0) (2024-03-04)
+
+### Bug Fixes
+
+- auto add deleted control ([654fd2d](https://gitlab.com/rxap/packages/commit/654fd2d4ebafaa174e953b97ab4340c5e406a138))
+
 # [16.0.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.0.0-dev.22...@rxap/form-system@16.0.0) (2024-02-07)
 
 **Note:** Version bump only for package @rxap/form-system

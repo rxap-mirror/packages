@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.9...@rxap/ts-morph@1.1.0-dev.10) (2024-03-04)
+
+### Bug Fixes
+
+- add type TypeName ([8e3f328](https://gitlab.com/rxap/packages/commit/8e3f32805558d10d80cad46e040e88efeaa7c0d3))
+
 # [1.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.8...@rxap/ts-morph@1.1.0-dev.9) (2024-03-01)
 
 ### Bug Fixes

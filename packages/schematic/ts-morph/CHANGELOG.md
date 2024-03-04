@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.9...@rxap/schematics-ts-morph@16.1.0-dev.10) (2024-03-04)
+
+### Features
+
+- support form group and form array ([512e2a3](https://gitlab.com/rxap/packages/commit/512e2a3953145cfad3426d38c48a18411a6ab80f))
+- support form group and form array ([8285ad8](https://gitlab.com/rxap/packages/commit/8285ad893ef07768ffd478a1612377bb449b1809))
+
 # [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.8...@rxap/schematics-ts-morph@16.1.0-dev.9) (2024-03-01)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph

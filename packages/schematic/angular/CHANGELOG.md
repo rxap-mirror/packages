@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.20...@rxap/schematic-angular@16.2.0-dev.21) (2024-03-04)
+
+### Bug Fixes
+
+- generate valid schema ([d285d6c](https://gitlab.com/rxap/packages/commit/d285d6c5998c18f24f5b6c59dd1d04b887552f8c))
+- resolve issues with form group/array generation ([ff2bc82](https://gitlab.com/rxap/packages/commit/ff2bc827646c48853444eebf82cfe9ac0e617b51))
+- use correct default column order ([2f8685a](https://gitlab.com/rxap/packages/commit/2f8685a54f6101fc1abd0a9e57fe139811406d45))
+
+### Features
+
+- support form group and form array ([512e2a3](https://gitlab.com/rxap/packages/commit/512e2a3953145cfad3426d38c48a18411a6ab80f))
+- support form group and form array ([8285ad8](https://gitlab.com/rxap/packages/commit/8285ad893ef07768ffd478a1612377bb449b1809))
+
 # [16.2.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.19...@rxap/schematic-angular@16.2.0-dev.20) (2024-03-01)
 
 ### Bug Fixes

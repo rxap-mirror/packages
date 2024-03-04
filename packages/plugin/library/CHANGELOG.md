@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.1...@rxap/plugin-library@16.1.0-dev.2) (2024-03-04)
+
+### Bug Fixes
+
+- generate valid schema ([aff3e0e](https://gitlab.com/rxap/packages/commit/aff3e0e0e340f1f2fbb6d08483a6199a1cabeb32))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.0...@rxap/plugin-library@16.1.0-dev.1) (2024-02-28)
 
 ### Features
