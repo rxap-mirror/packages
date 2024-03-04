@@ -28,5 +28,6 @@ export function ReadFileWithScope(path: string, scope?: string, encoding: Buffer
     }
     filePath = path;
   }
+  console.log(`Read file with scope '${scope}': ${ filePath }`);
   return readFileSync(filePath, encoding);
 }
