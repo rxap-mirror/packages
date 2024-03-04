@@ -15,6 +15,9 @@
             "$ref": "#/definitions/control"
           }
         },
+        "legend": {
+          "type": "string"
+        },
         "kind": {
           "type": "string",
           "description": "The kind of the group",

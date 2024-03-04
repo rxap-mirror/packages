@@ -1,10 +1,18 @@
 
-<ng-container
+<fieldset
   formArrayName="{{control.name}}"
+  class="flex flex-col gap-3 border border-solid border-gray-300 p-3"
   {{#if parentControlContainer}}parentControlContainer{{/if~}}
 >
-  <div *rxapForFormArrayItem="let group" class="flex flex-col gap-3">
-    <div [formGroup]="group" class="flex flex-row gap-4" rxapFormArrayRemovable>
+  {{#if control.legend}}
+  <legend class="text-sm" i18n>{{control.legend}}</legend>
+  {{/if}}
+  <button i18n mat-stroked-button rxapFormArrayItemAddButton>Add new entry</button>
+  <ng-container *rxapForFormArrayItem="let group">
+    <fieldset [formGroup]="group" class="flex flex-row gap-4 items-center border border-solid border-gray-300 p-3" rxapFormArrayRemovable>
+      {{#if control.groupLegend}}
+      <legend class="text-sm" i18n>{{control.groupLegend}}</legend>
+      {{/if}}
       {{#each control.controlList}}
       {{indent (compile this.handlebars control=this prefix=../prefix) 6}}
       {{/each}}
@@ -14,6 +22,6 @@
       <button color="accent" mat-icon-button rxapFormArrayItemRestoreButton>
         <mat-icon>settings_backup_restore</mat-icon>
       </button>
-    </div>
-  </div>
-</ng-container>
+    </fieldset>
+  </ng-container>
+</fieldset>

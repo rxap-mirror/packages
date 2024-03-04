@@ -1,4 +1,7 @@
-<form rxapForm>
+<form rxapForm class="flex flex-col gap-2">
+  {{#each controlList}}
+  {{ indent (compile this.handlebars control=this prefix=../prefix) 2 }}
+  {{/each}}
   {{#if window}}
   <ng-template rxapFormWindowFooter let-windowRef>
     <rxap-form-controls

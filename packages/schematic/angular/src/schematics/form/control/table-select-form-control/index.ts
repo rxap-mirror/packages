@@ -95,11 +95,11 @@ function printOptions(options: NormalizedTableSelectFormControlOptions) {
 }
 
 function buildOptionsOperationName({ name }: { name: string }) {
-  return [ 'get', name, 'control', 'table-select', 'page' ].join('-');
+  return [ 'get', dasherize(name), 'control', 'table-select', 'page' ].join('-');
 }
 
 function buildOptionsOperationPath({ name }: { name: string }) {
-  return [ 'control', name, 'table-select', 'page' ].join('/');
+  return [ 'control', dasherize(name), 'table-select', 'page' ].join('/');
 }
 
 function buildOptionsOperationId(normalizedOptions: NormalizedTableSelectFormControlOptions) {
@@ -111,7 +111,7 @@ function buildOptionsOperationId(normalizedOptions: NormalizedTableSelectFormCon
 }
 
 function buildDtoSuffix({ context, name }: NormalizedTableSelectFormControlOptions) {
-  return joinWithDash([ context, name, 'table-select' ]);
+  return joinWithDash([ context, dasherize(name), 'table-select' ]);
 }
 
 function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
@@ -142,10 +142,10 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
   } = normalizedOptions;
   const { upstream } = resolver ?? {};
 
-  const resolveValueOperationName = [ 'resolve', name, 'control', 'value' ].join(
+  const resolveValueOperationName = [ 'resolve', dasherize(name), 'control', 'value' ].join(
     '-',
   );
-  const resolveValueOperationPath = [ 'control', name, 'resolve', ':value' ].join(
+  const resolveValueOperationPath = [ 'control', dasherize(name), 'resolve', ':value' ].join(
     '/',
   );
   const resolveValueOperationId = buildOperationId(
@@ -281,7 +281,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
   const optionsOperationId = buildOptionsOperationId(normalizedOptions);
 
   const tableDataSourceName = classify(
-    [ name, 'select-table', 'data-source' ].join('-'),
+    [ dasherize(name), 'select-table', 'data-source' ].join('-'),
   );
   const tableDataSourceImportPath = `./data-sources/${ dasherize(
     name,
@@ -321,7 +321,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       feature,
       directory: tableDataSourceDirectory,
       shared,
-      name: [ name, 'select-table' ].join('-'),
+      name: [ dasherize(name), 'select-table' ].join('-'),
       operationId: optionsOperationId,
     }),
     CoerceFormDefinitionControl({

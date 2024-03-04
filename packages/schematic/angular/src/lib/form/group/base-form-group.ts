@@ -20,6 +20,7 @@ export interface BaseFormGroup extends AbstractControl {
   controlList?: Control[];
   kind?: FormGroupKind;
   role: AbstractControlRolls.GROUP;
+  legend?: string;
 }
 
 export interface NormalizedBaseFormGroup extends Readonly<Normalized<Omit<BaseFormGroup, 'role' | 'type' | 'importList' | 'controlList'>>>, NormalizedAbstractControl {
@@ -46,5 +47,6 @@ export function NormalizeBaseFormGroup(
     ...NormalizeAbstractControl(group, kind, importList, validatorList, defaultType, defaultIsArray),
     role: AbstractControlRolls.GROUP,
     controlList: NormalizeControlList(group.controlList),
+    legend: group.legend ?? null,
   };
 }

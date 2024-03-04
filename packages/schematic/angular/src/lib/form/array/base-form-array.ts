@@ -20,6 +20,8 @@ export interface BaseFormArray extends AbstractControl {
   controlList?: Control[];
   kind?: FormArrayKind;
   role: AbstractControlRolls.ARRAY;
+  legend?: string;
+  groupLegend?: string;
 }
 
 export interface NormalizedBaseFormArray extends Readonly<Normalized<Omit<BaseFormArray, 'role' | 'type' | 'importList' | 'controlList'>>>, NormalizedAbstractControl {
@@ -39,12 +41,34 @@ export function NormalizeBaseFormArray(
     {
       name: 'ReactiveFormsModule',
       moduleSpecifier: '@angular/forms',
-    }
+    },
+    {
+      name: 'ForFormArrayItemsDirective',
+      moduleSpecifier: '@rxap/form-system',
+    },
+    {
+      name: 'FormArrayRemovableDirective',
+      moduleSpecifier: '@rxap/form-system',
+    },
+    {
+      name: 'FormArrayItemRemoveButtonDirective',
+      moduleSpecifier: '@rxap/form-system',
+    },
+    {
+      name: 'FormArrayItemRestoreButtonDirective',
+      moduleSpecifier: '@rxap/form-system',
+    },
+    {
+      name: 'FormArrayAddItemButtonDirective',
+      moduleSpecifier: '@rxap/form-system',
+    },
   ], (a, b) => a.name === b.name);
   const kind = array.kind ?? FormArrayKind.DEFAULT;
   return {
     ...NormalizeAbstractControl(array, kind, importList, validatorList, defaultType, defaultIsArray),
     role: AbstractControlRolls.ARRAY,
     controlList: NormalizeControlList(array.controlList),
+    legend: array.legend ?? null,
+    groupLegend: array.groupLegend ?? null,
   };
 }

@@ -11,7 +11,6 @@ import {
   url,
 } from '@angular-devkit/schematics';
 import {
-  AddComponentProvider,
   BuildAngularBasePath,
   BuildNestControllerName,
   buildOperationId,
@@ -24,7 +23,6 @@ import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
-import { CoerceImports } from '@rxap/ts-morph';
 import {
   dasherize,
   Normalized,
@@ -47,10 +45,6 @@ import {
   NormalizeControlList,
   NormalizedControl,
 } from '../../../lib/form/control';
-import {
-  LoadMatFormFieldHandlebarsTemplate,
-  LoadPipeHandlebarsTemplate,
-} from '../../../lib/load-handlebars-template';
 import {
   NormalizedMatFormFieldDefaultOptions,
   NormalizeMatFormFieldDefaultOptions,
@@ -104,6 +98,7 @@ function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule 
     feature,
     directory,
     overwrite,
+    controlList,
   } = normalizedOptions;
 
   return chain([
@@ -115,26 +110,10 @@ function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule 
       name: componentName,
       directory,
       overwrite,
-      handlebars: {
-        partials: {
-          matFormField: LoadMatFormFieldHandlebarsTemplate(),
-          pipe: LoadPipeHandlebarsTemplate(),
-        }
-      },
       template: {
         options: {
           ...normalizedOptions,
-          OperationIdToClassName,
-          OperationIdToClassImportPath,
         },
-      },
-      tsMorphTransform: (project, [sourceFile]) => {
-        AddComponentProvider(sourceFile, 'FormProviders');
-        AddComponentProvider(sourceFile, 'FormComponentProviders');
-        CoerceImports(sourceFile, {
-          namedImports: [ 'FormProviders', 'FormComponentProviders' ],
-          moduleSpecifier: './form.providers',
-        });
       }
     }),
   ]);

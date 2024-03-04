@@ -5,6 +5,7 @@ import {
 } from '@rxap/schematics-ts-morph';
 import {
   CoerceComponentImport,
+  CoerceDefaultClassExport,
   CoerceImports,
 } from '@rxap/ts-morph';
 import {
@@ -16,7 +17,11 @@ import {
   Writers,
 } from 'ts-morph';
 import { NormalizedFormComponentOptions } from '../schematics/form/form-component';
-import { LoadMatFormFieldHandlebarsTemplate } from './load-handlebars-template';
+import { CoerceControlComponentImports } from './form/coerce-control-component-imports';
+import {
+  LoadMatFormFieldHandlebarsTemplate,
+  LoadPipeHandlebarsTemplate,
+} from './load-handlebars-template';
 
 export interface CoerceFormComponentOptions extends CoerceComponentOptions {
   form: NormalizedFormComponentOptions;
@@ -30,11 +35,13 @@ export function CoerceFormComponentRule(options: CoerceFormComponentOptions) {
       window,
       name,
       matFormFieldDefaultOptions,
+      controlList,
     },
     handlebars: { partials = {} } = {},
   } = options;
 
   partials['matFormField'] ??= LoadMatFormFieldHandlebarsTemplate();
+  partials['pipe'] ??= LoadPipeHandlebarsTemplate();
 
   return CoerceComponentRule({
     ...options,
@@ -107,7 +114,19 @@ export function CoerceFormComponentRule(options: CoerceFormComponentOptions) {
           },
         );
       }
+      AddComponentProvider(sourceFile, 'FormProviders');
+      AddComponentProvider(sourceFile, 'FormComponentProviders');
+      CoerceImports(sourceFile, {
+        namedImports: [ 'FormProviders', 'FormComponentProviders' ],
+        moduleSpecifier: './form.providers',
+      });
       // endregion
+
+      CoerceControlComponentImports(classDeclaration, controlList);
+
+      if (!!options.feature && (!options.directory || !options.directory.includes('/'))) {
+        CoerceDefaultClassExport(classDeclaration, true);
+      }
 
       tsMorphTransform(project, [ sourceFile ], [ classDeclaration ], options);
     },

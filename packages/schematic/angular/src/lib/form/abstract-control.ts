@@ -9,7 +9,6 @@ import {
 } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
-  dasherize,
   Normalized,
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
@@ -61,7 +60,6 @@ export function NormalizeAbstractControl<Kind extends string>(
   const isRequired: boolean = control.isRequired ?? false;
   return Object.freeze({
     ...NormalizeDataProperty(control, defaultType, defaultIsArray),
-    name: dasherize(control.name),
     isRequired,
     state,
     kind,

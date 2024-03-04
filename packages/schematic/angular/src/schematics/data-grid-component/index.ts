@@ -52,6 +52,7 @@ import {
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
 } from '../../lib/data-grid-options';
+import { CoerceControlComponentImports } from '../../lib/form/coerce-control-component-imports';
 import { NormalizedControl } from '../../lib/form/control';
 import {
   LoadMatFormFieldHandlebarsTemplate,
@@ -532,6 +533,9 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
         for (const item of itemList) {
           for (const angularImport of item.importList) {
             CoerceComponentImport(sourceFile, angularImport);
+          }
+          if (item.formControl) {
+            CoerceControlComponentImports(classDeclaration, [item.formControl]);
           }
         }
       },

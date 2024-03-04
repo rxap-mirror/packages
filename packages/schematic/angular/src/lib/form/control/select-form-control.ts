@@ -41,6 +41,10 @@ export function NormalizeSelectFormControl(
     {
       name: 'MatSelectModule',
       moduleSpecifier: '@angular/material/select',
+    },
+    {
+      name: 'InputSelectOptionsDirective',
+      moduleSpecifier: '@rxap/form-system',
     }
   ], (a, b) => a.name === b.name);
   const multiple = control.multiple ?? false;

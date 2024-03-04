@@ -76,7 +76,7 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
   } = normalizedOptions;
   const optionsDataSourceDirectory = join(directory ?? '', 'data-sources');
   const optionsDataSourceName = classify(
-    [ name, 'options', 'data-source' ].join('-'),
+    [ dasherize(name), 'options', 'data-source' ].join('-'),
   );
   const optionsDataSourceImportPath = `./data-sources/${ dasherize(
     name,
@@ -87,7 +87,7 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
       feature,
       optionList: optionList ?? [],
       directory: optionsDataSourceDirectory,
-      name: [ name, 'options' ].join('-'),
+      name: [ dasherize(name), 'options' ].join('-'),
     }),
     CoerceFormProviderRule({
       project,
@@ -168,8 +168,8 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
     isOptional,
     source,
   } = normalizedOptions;
-  const optionsOperationPath = [ 'options', name ].join('/');
-  const optionsOperationName = [ 'get', name, 'options' ].join('-');
+  const optionsOperationPath = [ 'options', dasherize(name) ].join('/');
+  const optionsOperationName = [ 'get', dasherize(name), 'options' ].join('-');
   const optionsOperationId = buildOperationId(
     normalizedOptions,
     optionsOperationName,

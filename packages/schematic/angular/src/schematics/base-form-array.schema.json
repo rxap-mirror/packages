@@ -15,6 +15,12 @@
             "$ref": "#/definitions/control"
           }
         },
+        "legend": {
+          "type": "string"
+        },
+        "groupLegend": {
+          "type": "string"
+        },
         "kind": {
           "type": "string",
           "description": "The kind of the array",
