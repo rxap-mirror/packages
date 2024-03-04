@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@16.0.1-dev.0...@rxap/material-form-system@16.0.1-dev.1) (2024-03-04)
+
+### Bug Fixes
+
+- use correct tailwind class for hidden ([e56611c](https://gitlab.com/rxap/packages/commit/e56611cfdf62e135d25d28614c5b4641855fa635))
+
 ## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@16.0.0...@rxap/material-form-system@16.0.1-dev.0) (2024-02-09)
 
 ### Bug Fixes
