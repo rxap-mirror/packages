@@ -26,6 +26,10 @@ const ROUTES: Route[] = [
     canActivateChild: [ StatusCheckGuard ],
     children: [
       {
+        path: 'window',
+        loadChildren: () => import('../feature/window/routes')
+      },
+      {
         path: 'form',
         loadChildren: () => import('../feature/form/routes')
       },
@@ -70,7 +74,7 @@ const ROUTES: Route[] = [
       },
       {
         path: '**',
-        redirectTo: 'error',
+        redirectTo: 'window',
       },
     ],
     providers: [
