@@ -92,10 +92,11 @@
           {{#if selectColumn}}
           <!-- region select column -->
           <ng-container matColumnDef="select" sticky>
-            <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
+            <th class="drop-shadow-2xl" mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
             <td
               mat-cell
               rxap-checkbox-cell
+              class="drop-shadow-2xl"
               [element]="element"
               *matCellDef="let element"
             ></td>
@@ -105,7 +106,7 @@
           {{#if actionList.length}}
           <!-- region actions column -->
           <ng-container matColumnDef="actions" stickyEnd>
-            <th mat-header-cell *matHeaderCellDef>
+            <th class="drop-shadow-2xl" mat-header-cell *matHeaderCellDef>
             {{#if selectColumn}}
               <!-- region header actions -->
               <div class="flex flex-row" *rxapSelectedRows="let selected">
@@ -139,7 +140,7 @@
             {{/if}}
             </th>
 
-            <td mat-cell *matCellDef="let element">
+            <td class="drop-shadow-2xl" mat-cell *matCellDef="let element">
               <div class="flex flex-row">
                 {{#each actionList}}
                 <button
