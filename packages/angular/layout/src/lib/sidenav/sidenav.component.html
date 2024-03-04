@@ -1,10 +1,10 @@
 <div [ngClass]="{ 'collapsed': sidenav.collapsed$ | async }" class="rxap-container">
   <div class="inner flex flex-col justify-between items-stretch">
     <ng-template [ngIf]="sidenavHeaderDirective?.template">
-      <div [ngClass]="{ hide: sidenav.collapsed$ | async }" class="header grow-0">
+      <div [ngClass]="{ hidden: sidenav.collapsed$ | async }" class="header grow-0">
         <ng-container *ngTemplateOutlet="sidenavHeaderDirective?.template ?? null"></ng-container>
       </div>
-      <mat-divider [ngClass]="{ hide: sidenav.collapsed$ | async }" class="grow-0"></mat-divider>
+      <mat-divider [ngClass]="{ hidden: sidenav.collapsed$ | async }" class="grow-0"></mat-divider>
     </ng-template>
     <div class="nav-container grow">
       <ul class="flex flex-col" root rxap-navigation></ul>
@@ -15,12 +15,12 @@
             mat-button>
       <span class="sidebar-toggle-inner flex flex-row items-center gap-4">
         <mat-icon class="arrow grow-0">double_arrow</mat-icon>
-        <span [ngClass]="{ hide: sidenav.collapsed$ | async }" class="label grow-0" i18n>Collapse sidebar</span>
+        <span [ngClass]="{ hidden: sidenav.collapsed$ | async }" class="label grow-0" i18n>Collapse sidebar</span>
       </span>
     </button>
     <ng-template [ngIf]="sidenavFooterDirective?.template ?? null">
-      <mat-divider [ngClass]="{ hide: sidenav.collapsed$ | async }" class="grow-0"></mat-divider>
-      <div [ngClass]="{ hide: sidenav.collapsed$ | async }" class="footer grow-0">
+      <mat-divider [ngClass]="{ hidden: sidenav.collapsed$ | async }" class="grow-0"></mat-divider>
+      <div [ngClass]="{ hidden: sidenav.collapsed$ | async }" class="footer grow-0">
         <ng-container *ngTemplateOutlet="sidenavFooterDirective?.template ?? null"></ng-container>
       </div>
     </ng-template>

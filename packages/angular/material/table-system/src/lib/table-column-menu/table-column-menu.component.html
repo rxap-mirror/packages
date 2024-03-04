@@ -6,7 +6,7 @@
   <span
     *ngFor="let column of $any(columns ?? [])"
     [disableRipple]="true"
-    [ngClass]="{ hide: column.hidden }"
+    [ngClass]="{ hidden: column.hidden }"
     mat-menu-item
     rxapStopPropagation
   >

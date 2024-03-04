@@ -26,7 +26,7 @@
         <span class="grow-0">
           <ng-container i18n>Submit</ng-container>
         </span>
-        <mat-spinner [diameter]="15" [ngClass]="{ hide: (submitting$ | async) === false }" color="accent" class="grow-0"
+        <mat-spinner [diameter]="15" [ngClass]="{ hidden: (submitting$ | async) === false }" color="accent" class="grow-0"
                      mode="indeterminate"></mat-spinner>
       </span>
     </button>
@@ -41,7 +41,7 @@
         <span class="grow-0">
           <ng-container i18n>Submit and Close</ng-container>
         </span>
-        <mat-spinner [diameter]="15" [ngClass]="{ hide: (submitting$ | async) === false }" color="accent" class="grow-0"
+        <mat-spinner [diameter]="15" [ngClass]="{ hidden: (submitting$ | async) === false }" color="accent" class="grow-0"
                      mode="indeterminate"></mat-spinner>
       </span>
     </button>

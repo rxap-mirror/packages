@@ -12,7 +12,7 @@
       <mat-icon *ngIf="expand">keyboard_arrow_down</mat-icon>
     </button>
   </div>
-  <mat-toolbar [ngClass]="{ hide: !expand }" class="tasks">
+  <mat-toolbar [ngClass]="{ hidden: !expand }" class="tasks">
     <rxap-window-task-bar></rxap-window-task-bar>
   </mat-toolbar>
 </div>
