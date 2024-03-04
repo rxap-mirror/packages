@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.21...@rxap/schematic-angular@16.2.0-dev.22) (2024-03-04)
+
+### Features
+
+- add autocomplete table select form control ([495df61](https://gitlab.com/rxap/packages/commit/495df61d661c2bce3fb2df185f1a3f7ac7fd12bc))
+
 # [16.2.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.20...@rxap/schematic-angular@16.2.0-dev.21) (2024-03-04)
 
 ### Bug Fixes
