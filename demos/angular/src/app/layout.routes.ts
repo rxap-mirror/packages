@@ -26,6 +26,10 @@ const ROUTES: Route[] = [
     canActivateChild: [ StatusCheckGuard ],
     children: [
       {
+        path: 'form',
+        loadChildren: () => import('../feature/form/routes')
+      },
+      {
         path: 'table',
         data: {
           statusCheck: {

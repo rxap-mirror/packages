@@ -1,0 +1,30 @@
+- package: "@rxap/schematic-angular"
+  name: form-component
+  options:
+    name: complex
+    controlList:
+      - name: name
+        kind: input
+      - name: variableList
+        role: array
+        controlList:
+          - name: name
+            kind: input
+          - name: required
+            kind: checkbox
+      - name: company
+        role: group
+        legend: Company
+        controlList:
+          - name: name
+            kind: input
+          - name: link
+            kind: input
+            inputType: url
+          - name: companyType
+            kind: select
+            optionList:
+              - value: 1
+                display: AG
+              - value: 2
+                display: GmbH

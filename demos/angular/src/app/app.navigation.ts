@@ -7,6 +7,18 @@ import { dasherize } from '@rxap/utilities';
 
 export const APP_NAVIGATION: () => NavigationWithInserts = () => [
   {
+    routerLink: ['/', 'form'],
+    icon: { icon: 'feed' },
+    label: $localize`Form`,
+    children: [
+      {
+        routerLink: ['/', 'form', 'complex'],
+        label: $localize`Complex`,
+        icon: { icon: 'format_align_justify' },
+      }
+    ]
+  },
+  {
     routerLink: [ '/', 'table' ],
     icon: { icon: 'table_rows' },
     label: $localize`Table`,

@@ -1,0 +1,96 @@
+<form rxapForm class="flex flex-col gap-2">
+  
+  <mat-form-field>
+    <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
+      <mat-icon>clear</mat-icon>
+    </button>
+      <input
+        matInput
+        formControlName="name"
+        type="text"
+        />
+  </mat-form-field>
+  
+  
+  <fieldset
+    formArrayName="variableList"
+    class="flex flex-col gap-3 border border-solid border-gray-300 p-3"
+    >
+    <button i18n mat-stroked-button rxapFormArrayItemAddButton>Add new entry</button>
+    <ng-container *rxapForFormArrayItem="let group">
+      <fieldset [formGroup]="group" class="flex flex-row gap-4 items-center border border-solid border-gray-300 p-3" rxapFormArrayRemovable>
+        
+        <mat-form-field>
+          <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
+            <mat-icon>clear</mat-icon>
+          </button>
+            <input
+              matInput
+              formControlName="name"
+              type="text"
+              />
+        </mat-form-field>
+        
+        
+        <mat-checkbox
+          [indeterminate]="true"
+          formControlName="required"
+          labelPosition="after"
+          >
+          <ng-container i18n></ng-container>
+        </mat-checkbox>
+        
+        <button color="warn" mat-icon-button rxapFormArrayItemRemoveButton>
+          <mat-icon>do_not_disturb_on</mat-icon>
+        </button>
+        <button color="accent" mat-icon-button rxapFormArrayItemRestoreButton>
+          <mat-icon>settings_backup_restore</mat-icon>
+        </button>
+      </fieldset>
+    </ng-container>
+  </fieldset>
+  
+  
+  <fieldset
+    formGroupName="company"
+    class="flex flex-col gap-3 border border-solid border-gray-300 p-3"
+    >
+    <legend class="text-sm" i18n>Company</legend>
+    
+    <mat-form-field>
+      <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
+        <mat-icon>clear</mat-icon>
+      </button>
+        <input
+          matInput
+          formControlName="name"
+          type="text"
+          />
+    </mat-form-field>
+    
+    
+    <mat-form-field>
+      <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
+        <mat-icon>clear</mat-icon>
+      </button>
+        <input
+          matInput
+          formControlName="link"
+          type="url"
+          />
+    </mat-form-field>
+    
+    
+    <mat-form-field>
+      <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
+        <mat-icon>clear</mat-icon>
+      </button>
+        <mat-select formControlName="companyType">
+          <mat-option *rxapInputSelectOptions="let option" [value]="option.value">{{option.display}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+  </fieldset>
+  
+  <rxap-form-controls></rxap-form-controls>
+</form>
