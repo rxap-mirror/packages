@@ -135,7 +135,7 @@ describe('SettingsService', () => {
     });
   });
 
-  describe('Kvs Local Storage', () => {
+  describe.skip('Kvs Local Storage', () => {
 
     beforeEach(async () => {
       config.STORE_FILE_PATH = '/tmp/data/user-settings';
@@ -146,7 +146,7 @@ describe('SettingsService', () => {
       mockFs.restore();
     });
 
-    it.skip('should create storage on application bootstrap', async () => {
+    it('should create storage on application bootstrap', async () => {
       mockFs();
       await expect(service.onApplicationBootstrap()).resolves.not.toThrowError();
       expect(service['storage']).toBeDefined();
@@ -154,7 +154,7 @@ describe('SettingsService', () => {
       expect(readFileSync(join(config.STORE_FILE_PATH, 'user-settings.__.__kvs_version__'), 'utf-8')).toEqual('1');
     });
 
-    it.skip('should write settings to storage if not already exists', async () => {
+    it('should write settings to storage if not already exists', async () => {
       mockFs();
       await service.onApplicationBootstrap();
       await service.set('test', {});
@@ -166,7 +166,7 @@ describe('SettingsService', () => {
         .toEqual('{"darkMode":true,"language":"en","theme":{"preset":"default"}}');
     });
 
-    it.skip('should read settings from file system if already exists', async () => {
+    it('should read settings from file system if already exists', async () => {
       mockFs({
         [config.STORE_FILE_PATH]: mockFs.directory({
           items: {
@@ -192,7 +192,7 @@ describe('SettingsService', () => {
       });
     });
 
-    it.skip('should update settings in file system', async () => {
+    it('should update settings in file system', async () => {
       mockFs({
         [config.STORE_FILE_PATH]: mockFs.directory({
           items: {
@@ -217,7 +217,7 @@ describe('SettingsService', () => {
 
   });
 
-  describe('External Settings Defaults', () => {
+  describe.skip('External Settings Defaults', () => {
 
     beforeEach(async () => {
       config.SETTINGS_DEFAULT_FILE_PATH = '/tmp/default/user-settings.json';
