@@ -18,7 +18,17 @@
                   </Item>
                   <Item>
                     <option name="pattern" value="true" />
+                    <option name="path" value="schematic.yml" />
+                    <option name="mappingKind" value="Pattern" />
+                  </Item>
+                  <Item>
+                    <option name="pattern" value="true" />
                     <option name="path" value="schematics.yaml" />
+                    <option name="mappingKind" value="Pattern" />
+                  </Item>
+                  <Item>
+                    <option name="pattern" value="true" />
+                    <option name="path" value="schematics.yml" />
                     <option name="mappingKind" value="Pattern" />
                   </Item>
                 </list>
