@@ -196,7 +196,8 @@
     "linking": {
       "executor": "@rxap/plugin-library:node-modules-linking",
       "dependsOn": [
-        "build"
+        "build",
+        "^linking"
       ],
       "inputs": [
         {

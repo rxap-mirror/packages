@@ -58,6 +58,7 @@ function setGeneralTargetDefaults(tree: Tree) {
     executor: '@rxap/plugin-library:node-modules-linking',
     dependsOn: [
       'build',
+      '^linking',
     ],
     inputs: [
       {
