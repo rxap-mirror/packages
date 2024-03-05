@@ -74,6 +74,7 @@
         "skipServe": true,
         "devServerTarget": "angular:build:development"
       }
-    }
+    },
+    "linking": {}
   }
 }

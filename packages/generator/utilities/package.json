@@ -24,7 +24,8 @@
     "generator-utilities",
     "packages",
     "rxap",
-    "utilities"
+    "utilities",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

@@ -28,7 +28,8 @@
     "rxap",
     "schematic",
     "schematic-xml-parser",
-    "xml-parser"
+    "xml-parser",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

@@ -33,7 +33,8 @@
     "ngx",
     "packages",
     "rxap",
-    "table-system"
+    "table-system",
+    "scope:compose"
   ],
   "nx-migrations": {
     "packageGroup": [

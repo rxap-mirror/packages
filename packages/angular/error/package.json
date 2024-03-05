@@ -31,7 +31,8 @@
     "angular-error",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:compose"
   ],
   "nx-migrations": {
     "packageGroup": [

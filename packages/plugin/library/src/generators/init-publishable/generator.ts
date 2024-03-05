@@ -1,5 +1,4 @@
 import {
-  generateFiles,
   getProjects,
   ProjectConfiguration,
   readJson,
@@ -53,6 +52,19 @@ function setGeneralTargetDefaults(tree: Tree) {
   CoerceTargetDefaultsOutput(nxJson, 'readme', '{projectRoot}/README.md');
 
   CoerceNxJsonCacheableOperation(nxJson, 'readme');
+  CoerceNxJsonCacheableOperation(nxJson, 'linking');
+
+  CoerceTarget(nxJson, 'linking', {
+    executor: '@rxap/plugin-library:node-modules-linking',
+    dependsOn: [
+      'build',
+    ],
+    inputs: [
+      {
+        env: 'CI_JOB_ID',
+      },
+    ],
+  });
 
   updateNxJson(tree, nxJson);
 
@@ -135,6 +147,7 @@ function updateProjectTargets(project: ProjectConfiguration) {
       },
     },
   });
+  CoerceTarget(project, 'linking', {});
 }
 
 function skipProject(

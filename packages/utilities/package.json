@@ -21,7 +21,9 @@
   "keywords": [
     "packages",
     "rxap",
-    "utilities"
+    "utilities",
+    "standalone",
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

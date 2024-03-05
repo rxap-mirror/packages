@@ -25,7 +25,8 @@
     "data-structure-tree",
     "packages",
     "rxap",
-    "tree"
+    "tree",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

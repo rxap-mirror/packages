@@ -28,7 +28,8 @@
     "packages",
     "rxap",
     "workspace",
-    "workspace-open-api"
+    "workspace-open-api",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

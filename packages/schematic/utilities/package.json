@@ -26,7 +26,8 @@
     "rxap",
     "schematic",
     "schematic-utilities",
-    "utilities"
+    "utilities",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

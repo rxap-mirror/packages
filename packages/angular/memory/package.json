@@ -22,7 +22,9 @@
     "angular-memory",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:utilities",
+    "angular:standalone"
   ],
   "publishConfig": {
     "access": "public",

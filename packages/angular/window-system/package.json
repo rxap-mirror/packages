@@ -33,7 +33,8 @@
     "ngx",
     "packages",
     "rxap",
-    "window-system"
+    "window-system",
+    "scope:core"
   ],
   "nx-migrations": {
     "packageGroup": [

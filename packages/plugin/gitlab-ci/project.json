@@ -105,7 +105,8 @@
           "strict": true
         }
       }
-    }
+    },
+    "linking": {}
   },
   "tags": [
     "plugin",

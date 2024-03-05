@@ -27,7 +27,8 @@
     "nest-socket-io-client",
     "packages",
     "rxap",
-    "socket-io-client"
+    "socket-io-client",
+    "scope:integration"
   ],
   "publishConfig": {
     "access": "public",

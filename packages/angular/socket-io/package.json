@@ -26,7 +26,8 @@
     "ngx",
     "packages",
     "rxap",
-    "socket-io"
+    "socket-io",
+    "scope:integration"
   ],
   "publishConfig": {
     "access": "public",

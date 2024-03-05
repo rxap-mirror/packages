@@ -30,7 +30,8 @@
     "nest-server",
     "packages",
     "rxap",
-    "server"
+    "server",
+    "scope:core"
   ],
   "nx-migrations": {
     "packageGroup": [

@@ -22,7 +22,8 @@
     "browser-utilities",
     "packages",
     "rxap",
-    "utilities"
+    "utilities",
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

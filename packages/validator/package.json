@@ -20,7 +20,9 @@
   "keywords": [
     "packages",
     "rxap",
-    "validator"
+    "validator",
+    "standalone",
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

@@ -27,7 +27,8 @@
     "rxap",
     "utilities",
     "workspace",
-    "workspace-utilities"
+    "workspace-utilities",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

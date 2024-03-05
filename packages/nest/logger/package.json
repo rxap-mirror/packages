@@ -23,7 +23,8 @@
     "nest",
     "nest-logger",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

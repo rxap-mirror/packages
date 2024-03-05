@@ -4,6 +4,7 @@
   "sourceRoot": "packages/utilities/src",
   "projectType": "library",
   "targets": {
+    "linking": {},
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": [

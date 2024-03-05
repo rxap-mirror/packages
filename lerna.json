@@ -25,7 +25,10 @@
         "**/*.handlebars",
         "**/tsconfig.json",
         "**/tsconfig.*.json",
-        "**/*.yaml"
+        "**/*.yaml",
+        "**/project.json",
+        "**/nx.json",
+        "**/.gitignore"
       ]
     }
   }

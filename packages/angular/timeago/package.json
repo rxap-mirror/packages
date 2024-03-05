@@ -25,7 +25,8 @@
     "angular-timeago",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "angular:standalone"
   ],
   "nx-migrations": {
     "packageGroup": [

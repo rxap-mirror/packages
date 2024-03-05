@@ -29,7 +29,8 @@
     "ngx",
     "packages",
     "rxap",
-    "service-worker"
+    "service-worker",
+    "scope:integration"
   ],
   "nx-migrations": {
     "packageGroup": [

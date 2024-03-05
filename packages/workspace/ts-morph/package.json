@@ -25,7 +25,8 @@
     "rxap",
     "ts-morph",
     "workspace",
-    "workspace-ts-morph"
+    "workspace-ts-morph",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

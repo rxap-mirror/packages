@@ -29,7 +29,8 @@
     "nest",
     "nest-jwt",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:integration"
   ],
   "nx-migrations": {
     "packageGroup": [

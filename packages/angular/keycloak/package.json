@@ -28,7 +28,9 @@
     "keycloak",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:integration",
+    "angular:standalone"
   ],
   "publishConfig": {
     "access": "public",

@@ -52,7 +52,8 @@
       }
     },
     "update-dependencies": {},
-    "update-package-group": {}
+    "update-package-group": {},
+    "linking": {}
   },
   "tags": [
     "schematic",

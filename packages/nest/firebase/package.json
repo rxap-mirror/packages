@@ -24,7 +24,8 @@
     "nest",
     "nest-firebase",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:integration"
   ],
   "publishConfig": {
     "access": "public",

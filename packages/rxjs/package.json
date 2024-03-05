@@ -22,7 +22,9 @@
   "keywords": [
     "packages",
     "rxap",
-    "rxjs"
+    "rxjs",
+    "standalone",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

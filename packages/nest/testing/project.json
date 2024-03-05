@@ -79,7 +79,8 @@
       "options": {
         "packageName": "@nestjs/core"
       }
-    }
+    },
+    "linking": {}
   },
   "tags": [
     "nest",

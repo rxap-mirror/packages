@@ -21,7 +21,9 @@
   "keywords": [
     "packages",
     "rxap",
-    "slugify"
+    "slugify",
+    "standalone",
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

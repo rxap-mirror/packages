@@ -72,7 +72,8 @@
           "strict": true
         }
       }
-    }
+    },
+    "linking": {}
   },
   "tags": [
     "packages",

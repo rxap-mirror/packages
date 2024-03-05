@@ -25,7 +25,8 @@
     "environment",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

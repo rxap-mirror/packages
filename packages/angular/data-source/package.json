@@ -35,7 +35,8 @@
     "data-source",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:core"
   ],
   "nx-migrations": {
     "packageGroup": [

@@ -22,7 +22,9 @@
   "keywords": [
     "packages",
     "reflect-metadata",
-    "rxap"
+    "rxap",
+    "standalone",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

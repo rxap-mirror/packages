@@ -23,7 +23,9 @@
     "angular-pub-sub",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "angular:standalone",
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

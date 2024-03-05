@@ -29,7 +29,8 @@
     "angular-changelog",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:compose"
   ],
   "nx-migrations": {
     "packageGroup": [

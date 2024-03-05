@@ -32,7 +32,8 @@
     "firebase",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:integration"
   ],
   "nx-migrations": {
     "packageGroup": [

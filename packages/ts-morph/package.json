@@ -22,7 +22,9 @@
   "keywords": [
     "packages",
     "rxap",
-    "ts-morph"
+    "ts-morph",
+    "standalone",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

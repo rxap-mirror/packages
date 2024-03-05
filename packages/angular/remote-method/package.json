@@ -30,7 +30,8 @@
     "ngx",
     "packages",
     "remote-method",
-    "rxap"
+    "rxap",
+    "scope:core"
   ],
   "nx-migrations": {
     "packageGroup": [

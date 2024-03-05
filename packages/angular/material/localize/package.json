@@ -26,7 +26,8 @@
     "material",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:integration"
   ],
   "publishConfig": {
     "access": "public",

@@ -83,7 +83,8 @@
         "development": {}
       }
     },
-    "check-ng-package": {}
+    "check-ng-package": {},
+    "linking": {}
   },
   "implicitDependencies": [
     "angular-error"

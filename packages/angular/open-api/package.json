@@ -38,7 +38,8 @@
     "ngx",
     "open-api",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:compose"
   ],
   "nx-migrations": {
     "packageGroup": [

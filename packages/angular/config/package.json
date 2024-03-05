@@ -29,7 +29,8 @@
     "config",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

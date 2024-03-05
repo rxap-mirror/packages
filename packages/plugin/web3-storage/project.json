@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/plugin/web3-storage",
         "main": "packages/plugin/web3-storage/src/index.ts",
@@ -38,11 +40,15 @@
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs plugin-web3-storage {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "lintFilePatterns": [
           "packages/plugin/web3-storage/**/*.ts",
@@ -53,7 +59,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "packages/plugin/web3-storage/jest.config.ts",
         "passWithNoTests": true
@@ -76,7 +84,9 @@
     },
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{workspaceRoot}/{projectRoot}/package.json"],
+      "outputs": [
+        "{workspaceRoot}/{projectRoot}/package.json"
+      ],
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
@@ -89,7 +99,13 @@
       "options": {
         "packageName": "nx"
       }
-    }
+    },
+    "linking": {}
   },
-  "tags": ["plugin", "nx", "nx-plugin", "packages"]
+  "tags": [
+    "plugin",
+    "nx",
+    "nx-plugin",
+    "packages"
+  ]
 }

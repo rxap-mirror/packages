@@ -18,7 +18,9 @@
     "node",
     "node-local-storage",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:utilities",
+    "standalone"
   ],
   "publishConfig": {
     "access": "public",

@@ -23,7 +23,8 @@
     "generator-ts-morph",
     "packages",
     "rxap",
-    "ts-morph"
+    "ts-morph",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

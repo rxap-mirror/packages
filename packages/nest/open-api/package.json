@@ -37,7 +37,8 @@
     "nest-open-api",
     "open-api",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:integration"
   ],
   "nx-migrations": {
     "packageGroup": [

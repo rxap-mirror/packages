@@ -27,7 +27,9 @@
   "keywords": [
     "packages",
     "rxap",
-    "xml-parser"
+    "xml-parser",
+    "scope:utilities",
+    "standalone"
   ],
   "nx-migrations": {
     "packageGroup": [

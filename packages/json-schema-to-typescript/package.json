@@ -24,7 +24,9 @@
   "keywords": [
     "json-schema-to-typescript",
     "packages",
-    "rxap"
+    "rxap",
+    "standalone",
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

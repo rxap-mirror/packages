@@ -31,7 +31,8 @@
     "rxap",
     "schematic",
     "schematic-ts-morph",
-    "ts-morph"
+    "ts-morph",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

@@ -30,7 +30,8 @@
           "copy-open-api-sdk",
           "copy-client-sdk",
           "bundle-json-schema",
-          "index-json-schema"
+          "index-json-schema",
+          "linking"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -38,7 +39,10 @@
   },
   "namedInputs": {
     "default": [
-      "{projectRoot}/**/*"
+      "{projectRoot}/**/*",
+      {
+        "runtime": "node --version"
+      }
     ],
     "typescript": [
       "{projectRoot}/**/*.ts",
@@ -184,6 +188,20 @@
       "inputs": [
         "build",
         "^build"
+      ],
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "linking": {
+      "executor": "@rxap/plugin-library:node-modules-linking",
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        {
+          "env": "CI_JOB_ID"
+        }
       ]
     },
     "index-json-schema": {
@@ -201,7 +219,9 @@
       }
     },
     "bundle-json-schema": {
-      "dependsOn": ["index-json-schema"],
+      "dependsOn": [
+        "index-json-schema"
+      ],
       "inputs": [
         "{projectRoot}/src/**/template.schema.json",
         "{projectRoot}/src/**/*.schema.json"
@@ -349,6 +369,10 @@
       "inputs": [
         "{workspaceRoot}/dist/swagger/{projectRoot}/main.js",
         "{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map"
+      ],
+      "dependsOn": [
+        "^linking",
+        "^build"
       ]
     },
     "check-version": {

@@ -23,7 +23,9 @@
   "keywords": [
     "mixin",
     "packages",
-    "rxap"
+    "rxap",
+    "standalone",
+    "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

@@ -43,7 +43,8 @@
     "ngx",
     "packages",
     "rxap",
-    "table-select"
+    "table-select",
+    "scope:compose"
   ],
   "nx-migrations": {
     "packageGroup": [

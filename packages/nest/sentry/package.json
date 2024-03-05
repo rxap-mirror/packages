@@ -30,7 +30,8 @@
     "nest-sentry",
     "packages",
     "rxap",
-    "sentry"
+    "sentry",
+    "scope:integration"
   ],
   "nx-migrations": {
     "packageGroup": [
