@@ -37,8 +37,6 @@ function updateProjectTargets(project: ProjectConfiguration) {
   const outputPath = (buildTargetOptions['outputPath'] as string).replace('dist/', 'dist/swagger/');
 
   CoerceTarget(project, 'swagger-build', {
-    executor: '@nx/webpack:webpack',
-    outputs: [ '{options.outputPath}' ],
     options: {
       outputPath,
       main: `${ project.sourceRoot }/swagger.ts`,
@@ -73,7 +71,32 @@ function updateNxDefaults(tree: Tree) {
     inputs: [
       '{workspaceRoot}/dist/swagger/{projectRoot}/main.js',
       '{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map'
+    ],
+    'dependsOn': [
+      '^build',
+      '^linking',
     ]
+  }, Strategy.REPLACE);
+
+  CoerceTarget(nxJson, 'swagger-build', {
+    executor: '@nx/webpack:webpack',
+    outputs: [
+      '{options.outputPath}',
+    ],
+    options: {
+      transformers: [
+        '@nestjs/swagger/plugin',
+      ],
+      compiler: 'tsc',
+      target: 'node',
+    },
+    inputs: [
+      'build',
+      '^build',
+    ],
+    dependsOn: [
+      '^build',
+    ],
   }, Strategy.REPLACE);
 
   updateNxJson(tree, nxJson);
