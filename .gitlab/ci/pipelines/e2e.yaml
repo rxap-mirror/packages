@@ -62,3 +62,22 @@ e2e:
           - chrome
           #- firefox
           #- edge
+
+e2e_report:
+  stage: .post
+  image: node:${NODE_VERSION}
+  needs:
+    - e2e
+  cache: null
+  tags:
+    - e2-standard-2
+  artifacts:
+    when: always
+    paths:
+      - cypress/
+      - mochawesome.json
+      - mochawesome-report/
+    expire_in: 9 day
+  script:
+    - npx mochawesome-merge "cypress/results/*.json" > mochawesome.json
+    - npx marge mochawesome.json

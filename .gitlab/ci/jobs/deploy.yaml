@@ -13,6 +13,7 @@ deployment:
       when: on_success
     # else only manual deploy
     - when: manual
+      allow_failure: true
 
 stop_deployment:
   extends: .stop_gcp-deployment

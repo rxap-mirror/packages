@@ -19,8 +19,8 @@ pages:
 
     if [ -d coverage ]; then
       echo "Copy coverage report to $output"
-      mkdir -p "$output/coverage"
-      cp -r coverage "$output/coverage/"
+      # it is not required to create the folder coverage. With the cp command the folder coverage will be created
+      cp -r coverage "$output/"
     fi
 
     if [ -d dist/writerside ]; then
@@ -39,7 +39,7 @@ pages:
   cache:
     # storage all page contents into one global cache
     # only one page can exist per project
-    key: v3_pages_$CI_PROJECT_ID
+    key: pages_$CI_PROJECT_ID
     paths:
       - public
   artifacts:

@@ -52,10 +52,10 @@ include:
       - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train"'
         when: never
       # do not run for merge request that target the renovate branch
-      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^renovate\// || $CI_COMMIT_BRANCH =~ /^renovate\//'
+      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^renovate\//'
         when: never
         # do not run for merge requests that target the snyk branch
-      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^snyk-/ || $CI_COMMIT_BRANCH =~ /^snyk-/'
+      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^snyk-/'
         when: never
       - when: always
   - local: .gitlab/ci/jobs/coverage-report.yaml
@@ -67,10 +67,10 @@ include:
       - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train"'
         when: never
       # do not run for merge request that target the renovate branch
-      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^renovate\// || $CI_COMMIT_BRANCH =~ /^renovate\//'
+      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^renovate\//'
         when: never
         # do not run for merge requests that target the snyk branch
-      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^snyk-/ || $CI_COMMIT_BRANCH =~ /^snyk-/'
+      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^snyk-/'
         when: never
       - when: always
 
@@ -87,10 +87,10 @@ include:
       - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^(release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x)$/'
         when: never
         # do not run for merge request that target the renovate branch
-      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^renovate\// || $CI_COMMIT_BRANCH =~ /^renovate\//'
+      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^renovate\//'
         when: never
         # do not run for merge requests that target the snyk branch
-      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^snyk-/ || $CI_COMMIT_BRANCH =~ /^snyk-/'
+      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^snyk-/'
         when: never
         # run for all other merge request types
       - if: '$CI_MERGE_REQUEST_EVENT_TYPE =~ /^merged_result|detached$/'

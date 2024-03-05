@@ -4,6 +4,11 @@ trigger:e2e:
       - local: .gitlab/ci/pipelines/e2e.yaml
   stage: .post
   allow_failure: true
+  needs:
+    - job: docker
+      artifacts: false
+    - job: run
+      artifacts: false
   rules:
     # if release tag always run e2e
     - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/'
