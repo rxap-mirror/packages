@@ -48,11 +48,11 @@ export default async function runExecutor(
 
   const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
   const packageName = packageJson.name.replace(/@rxap\//, '');
-  const nodeModulesDir = join(context.root, 'node_modules', '@rxap');
+  const nodeModulesDir = join(context.root, 'dist', 'node_modules', '@rxap');
   mkdirSync(nodeModulesDir, { recursive: true });
 
   const link = join(nodeModulesDir, packageName);
-  const target = join('../../', outputPath);
+  const target = join('../../../', outputPath);
 
   if (!checkSymlinkExists(link)) {
     console.log('Creating symlink:', link, '->', target);
