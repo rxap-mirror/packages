@@ -19,6 +19,7 @@ import {
 import { NormalizedFormComponentOptions } from '../schematics/form/form-component';
 import { CoerceControlComponentImports } from './form/coerce-control-component-imports';
 import {
+  LoadCssClassHandlebarsTemplate,
   LoadMatFormFieldHandlebarsTemplate,
   LoadPipeHandlebarsTemplate,
 } from './load-handlebars-template';
@@ -42,6 +43,7 @@ export function CoerceFormComponentRule(options: CoerceFormComponentOptions) {
 
   partials['matFormField'] ??= LoadMatFormFieldHandlebarsTemplate();
   partials['pipe'] ??= LoadPipeHandlebarsTemplate();
+  partials['cssClass'] ??= LoadCssClassHandlebarsTemplate();
 
   return CoerceComponentRule({
     ...options,

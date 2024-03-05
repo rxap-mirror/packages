@@ -9,6 +9,11 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import {
+  CssClass,
+  NormalizeCssClass,
+  NormalizedCssClass,
+} from './css-class';
+import {
   NormalizedTableAction,
   NormalizeTableActionList,
   TableAction,
@@ -40,6 +45,7 @@ export interface MinimumTableOptions {
   modifiers?: string[];
   title?: string;
   componentName?: string;
+  cssClass?: CssClass;
 }
 
 export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
@@ -49,6 +55,7 @@ export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
   actionList: ReadonlyArray<NormalizedTableAction>;
   propertyList: Array<NormalizedDataProperty>;
   modifiers: Array<MODIFIER>;
+  cssClass: NormalizedCssClass;
 }
 
 export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
@@ -76,5 +83,6 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     modifiers,
     title,
     propertyList,
+    cssClass: NormalizeCssClass(options.cssClass),
   });
 }

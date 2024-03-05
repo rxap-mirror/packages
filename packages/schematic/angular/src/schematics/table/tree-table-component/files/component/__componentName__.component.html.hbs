@@ -87,6 +87,7 @@
           rxapTableDataSource
           [parameters]="parameters"
           id="{{name}}"
+          {{#if cssClass}}{{> cssClass cssClass=cssClass}}{{/if~}}
           {{#if hasColumnWithFilter}}rxap-filter-header-row{{/if~}}
         >
           <!-- region columns -->
@@ -134,7 +135,7 @@
                   rxapTableRowHeaderAction="{{this.type}}"
                   mat-icon-button
                   {{#if this.color}}color="{{this.color}}"{{/if~}}
-                  {{#if this.cssClass}}class="{{this.cssClass}}"{{/if~}}
+                  {{#if this.cssClass}}{{> cssClass cssClass=this.cssClass}}{{/if~}}
                   *ngIf="selected | rxapRowActionCheck:'{{this.type}}'"
                   {{#if this.permission}}rxapHasEnablePermission="{{this.permission}}"{{/if~}}
                   matTooltip
@@ -165,7 +166,7 @@
                   rxapTableRowAction="{{this.type}}"
                   [element]="element"
                   {{#if this.color}}color="{{this.color}}"{{/if~}}
-                  {{#if this.cssClass}}class="{{this.cssClass}}"{{/if~}}
+                  {{#if this.cssClass}}{{> cssClass cssClass=this.cssClass}}{{/if~}}
                   mat-icon-button
                   *ngIf="element | rxapRowActionCheck:'{{this.type}}'"
                   {{#if this.permission}}rxapHasEnablePermission="{{this.permission}}"{{/if~}}

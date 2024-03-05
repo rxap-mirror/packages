@@ -55,6 +55,7 @@ import {
 import { CoerceControlComponentImports } from '../../lib/form/coerce-control-component-imports';
 import { NormalizedControl } from '../../lib/form/control';
 import {
+  LoadCssClassHandlebarsTemplate,
   LoadMatFormFieldHandlebarsTemplate,
   LoadPipeHandlebarsTemplate,
 } from '../../lib/load-handlebars-template';
@@ -130,6 +131,7 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
         partials: {
           matFormField: LoadMatFormFieldHandlebarsTemplate(),
           pipe: LoadPipeHandlebarsTemplate(),
+          cssClass: LoadCssClassHandlebarsTemplate(),
         }
       },
       tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {

@@ -2,7 +2,7 @@
   <th mat-header-cell *matHeaderCellDef mat-sort-header>
     <ng-container i18n>{{column.title}}</ng-container>
   </th>
-  <td *matCellDef="let element" mat-cell{{#if column.cssClass}} class="{{column.cssClass}}"{{/if}}>
+  <td *matCellDef="let element" mat-cell{{#if column.cssClass}}{{> cssClass cssClass=column.cssClass}}{{/if}}>
   \{{ element?.{{column.propertyPath}}{{> pipe pipeList=column.pipeList}} }}
   </td>
 </ng-container>

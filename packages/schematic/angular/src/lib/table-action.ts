@@ -1,4 +1,5 @@
 import { Normalized } from '@rxap/utilities';
+import { CssClass } from './css-class';
 import {
   NormalizeTableRowAction,
   TableRowAction,
@@ -33,7 +34,7 @@ export function NormalizeTableAction(
   let inHeader = false;
   let options: Record<string, any> = {};
   let color: string | undefined = undefined;
-  let cssClass: string | undefined = undefined;
+  let cssClass: CssClass | undefined = undefined;
   if (typeof tableAction === 'string') {
     // type:role:modifier1,modifier2
     // edit:form:refresh,confirm

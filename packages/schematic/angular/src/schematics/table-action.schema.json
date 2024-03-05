@@ -47,8 +47,7 @@
       "description": "Value for the color input of the mat-button / mat-icon component"
     },
     "cssClass": {
-      "type": "string",
-      "description": "Additional CSS classes added to the button element"
+      "$ref": "#/definitions/cssClass"
     },
     "options": {
       "type": "object",
@@ -57,5 +56,10 @@
   },
   "required": [
     "type"
-  ]
+  ],
+  "definitions": {
+    "cssClass": {
+      "$ref": "./css-class.schema.json"
+    }
+  }
 }

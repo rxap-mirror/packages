@@ -4,7 +4,8 @@
   </th>
   <td *matCellDef="let element"
     mat-cell
-    {{#if column.cssClass}}class="{{column.cssClass}}"{{/if~}}
-    [rxap-copy-to-clipboard-cell]="element?.{{column.propertyPath}}{{> pipe pipeList=column.pipeList}}">
+    [rxap-copy-to-clipboard-cell]="element?.{{column.propertyPath}}{{> pipe pipeList=column.pipeList}}"
+    {{#if column.cssClass}}{{> cssClass cssClass=column.cssClass}}{{/if~}}
+  >
   </td>
 </ng-container>

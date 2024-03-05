@@ -18,6 +18,11 @@ import {
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
 import { join } from 'path';
+import {
+  CssClass,
+  NormalizeCssClass,
+  NormalizedCssClass,
+} from './css-class';
 import { AbstractControlRolls } from './form/abstract-control';
 import {
   FormControl,
@@ -74,7 +79,7 @@ export interface TableColumn extends DataProperty {
   inactive?: boolean;
   show?: boolean;
   nowrap?: boolean;
-  cssClass?: string;
+  cssClass?: CssClass;
   kind?: TableColumnKind;
   template?: string;
   pipeList?: Array<TableColumnPipe | string>;
@@ -93,6 +98,7 @@ export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableCol
   kind: TableColumnKind;
   handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
   filterControl: NormalizedFormControl | null;
+  cssClass: NormalizedCssClass;
 }
 
 function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[] {
@@ -314,7 +320,7 @@ export function NormalizeTableColumn(
     show,
     nowrap,
     withoutTitle,
-    cssClass,
+    cssClass: NormalizeCssClass(cssClass),
     pipeList: NormalizePipeOptionList(pipeList),
     template,
     importList: NormalizeTypeImportList(importList),

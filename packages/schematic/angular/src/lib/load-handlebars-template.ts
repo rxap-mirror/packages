@@ -31,3 +31,9 @@ export function LoadPipeHandlebarsTemplate(
 ): Handlebars.TemplateDelegate {
   return LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'templates'));
 }
+
+export function LoadCssClassHandlebarsTemplate(
+  template = 'css-class.hbs'
+): Handlebars.TemplateDelegate {
+  return LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'templates'));
+}

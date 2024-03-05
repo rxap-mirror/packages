@@ -38,6 +38,9 @@
         "type": "string"
       },
       "description": "The table modifiers"
+    },
+    "cssClass": {
+      "$ref": "#/definitions/cssClass"
     }
   },
   "definitions": {
@@ -55,6 +58,9 @@
     },
     "upstream": {
       "$ref": "./upstream.schema.json"
+    },
+    "cssClass": {
+      "$ref": "./css-class.schema.json"
     }
   }
 }
