@@ -134,7 +134,7 @@ export function IsNormalLinkDataGridItem(item: Readonly<NormalizedDataGridItem>)
 
 export function NormalizeLinkDataGridItem(item: Readonly<LinkDataGridItem>): Readonly<NormalizedLinkDataGridItem> {
   const importList = item.importList ?? [];
-  importList.push(
+  CoerceArrayItems(importList, [
     {
     name: 'MatButtonModule',
     moduleSpecifier: '@angular/material/button',
@@ -143,7 +143,7 @@ export function NormalizeLinkDataGridItem(item: Readonly<LinkDataGridItem>): Rea
       name: 'MatIconModule',
       moduleSpecifier: '@angular/material/icon',
     },
-  );
+  ], (a, b) => a.name === b.name);
   return {
     ...NormalizeBaseDataGridItem({
       ...item,

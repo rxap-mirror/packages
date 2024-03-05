@@ -3,10 +3,10 @@ import {
   NormalizeDataProperty,
   NormalizedDataProperty,
   NormalizedTypeImport,
-  NormalizeTypeImport,
   NormalizeTypeImportList,
   TypeImport,
 } from '@rxap/ts-morph';
+import { CoerceArrayItems } from '@rxap/utilities';
 import { join } from 'path';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 
@@ -59,10 +59,12 @@ export function IsNormalizedPropertyAccordionHeader(header: NormalizedAccordionH
 
 function coerceBaseAccordionHeaderImportList(header: BaseAccordionHeader): TypeImport[] {
   const importList: TypeImport[] = header.importList ?? [];
-  importList.push({
-    name: 'NavigateBackButtonComponent',
-    moduleSpecifier: '@rxap/components'
-  });
+  CoerceArrayItems(importList, [
+    {
+      name: 'NavigateBackButtonComponent',
+      moduleSpecifier: '@rxap/components'
+    }
+  ], (a, b) => a.name === b.name);
   return importList;
 }
 

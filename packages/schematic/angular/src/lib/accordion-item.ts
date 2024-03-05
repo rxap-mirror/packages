@@ -86,10 +86,10 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
   description = item.description ?? description;
   permission = item.permission ?? permission;
   const importList: TypeImport[] = item.importList ?? [];
-  importList.push({
+  CoerceArrayItems(importList, [{
     name: `${classify(item.name)}PanelComponent`,
     moduleSpecifier: `./${dasherize(item.name)}-panel/${dasherize(item.name)}-panel.component`
-  });
+  }], (a, b) => a.name === b.name);
   title ??= dasherize(name).split('-').map(fragment => capitalize(fragment)).join(' ');
   if (!IsAccordionItemKind(kind)) {
     throw new SchematicsException(
@@ -258,23 +258,23 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
   const importList: TypeImport[] = item.importList ?? [];
   const itemList = flattenItemListFromSwitch(normalizeSwitch);
   for (const innerItem of itemList) {
-    importList.push(...innerItem.importList);
+    CoerceArrayItems(importList, innerItem.importList, (a, b) => a.name === b.name);
   }
-  importList.push({
+  CoerceArrayItems(importList, [{
     name: 'NgSwitch',
     moduleSpecifier: '@angular/common',
-  });
+  }], (a, b) => a.name === b.name);
   if (normalizeSwitch.defaultCase) {
-    importList.push({
+    CoerceArrayItems(importList, [{
       name: 'NgSwitchDefault',
       moduleSpecifier: '@angular/common',
-    });
+    }], (a, b) => a.name === b.name);
   }
   if (normalizeSwitch.case.length) {
-    importList.push({
+    CoerceArrayItems(importList, [{
       name: 'NgSwitchCase',
       moduleSpecifier: '@angular/common',
-    });
+    }], (a, b) => a.name === b.name);
   }
   return Object.freeze({
     ...base,
