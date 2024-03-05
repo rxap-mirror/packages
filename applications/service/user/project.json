@@ -101,6 +101,12 @@
       "options": {
         "jestConfig": "applications/service/user/jest.config.ts"
       },
+      "dependsOn": [
+        {
+          "projects": [ "node-local-storage" ],
+          "target": "test"
+        }
+      ],
       "configurations": {
         "ci": {
           "ci": true,
