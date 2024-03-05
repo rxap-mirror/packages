@@ -28,7 +28,7 @@ shift
 echo "arguments: $@"
 
 # Search for package.json files in the current directory and its subdirectories
-find . \( -type d \( -name node_modules -o -name dist -o -name .angular \) \) -prune -o -name "package.json" -type f | while read -r file; do
+find . \( -type d \( -name node_modules -o -name dist -o -name .angular -o -name .nx \) \) -prune -o -name "package.json" -type f | while read -r file; do
   # Check if the name property equals to $package
   if [ "$(jq -r .name "$file")" = "$package" ]; then
     # Get the directory of the matched package.json
@@ -66,11 +66,19 @@ if [ -z "$name" ]; then
   exit 1
 fi
 
+startTimestamp=$(date +%s)
+
 echo "Build project $name"
 
-yarn nx run "$name:build"
+randomString=$(openssl rand -hex 4)
+# set the env CI_JOB_ID to a random string to ensure that the linking target is always executed
+# in the default inputs (nx.json) the env value og CI_JOB_ID is used to determine if the linking target should be executed
+CI_JOB_ID="$randomString" yarn nx run "$name:linking"
 
-bash tools/scripts/dist-node-modules-linking.sh
+echo "Build time: $(($(date +%s) - startTimestamp))s"
+
+# will be done by the target linking of the project including all dependencies
+# bash tools/scripts/dist-node-modules-linking.sh
 
 # Search for package.json files in the current directory and its subdirectories
 find dist -type d -name node_modules -prune -o -name "package.json" -type f | while read -r file; do

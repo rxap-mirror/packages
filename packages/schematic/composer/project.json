@@ -4,7 +4,12 @@
   "sourceRoot": "packages/schematic/composer/src",
   "projectType": "library",
   "implicitDependencies": [
-    "schematic-angular"
+    "schematic-angular",
+    "schematic-nestjs",
+    "schematic-open-api",
+    "schematic-ts-morph",
+    "schematic-utilities",
+    "schematic-xml-parser"
   ],
   "targets": {
     "build": {
