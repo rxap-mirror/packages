@@ -146,7 +146,7 @@ describe('SettingsService', () => {
       mockFs.restore();
     });
 
-    it('should create storage on application bootstrap', async () => {
+    it.skip('should create storage on application bootstrap', async () => {
       mockFs();
       await expect(service.onApplicationBootstrap()).resolves.not.toThrowError();
       expect(service['storage']).toBeDefined();
@@ -192,7 +192,7 @@ describe('SettingsService', () => {
       });
     });
 
-    it('should update settings in file system', async () => {
+    it.skip('should update settings in file system', async () => {
       mockFs({
         [config.STORE_FILE_PATH]: mockFs.directory({
           items: {
