@@ -1,4 +1,3 @@
-$schema: "../../../../../../node_modules/@rxap/schematic-angular/src/schema.json"
 package: "@rxap/schematic-angular"
 name: accordion-component
 options:
@@ -70,7 +69,6 @@ options:
                       - async
                       - getFromObject:name
                     formControl:
-                      #kind: autocomplete-table-select
                       kind: table-select
                       toValue:
                         property:
@@ -184,11 +182,15 @@ options:
       kind: tree-table
       title: Zuordnung
       table:
+        cssClass:
+          - "!min-w-0"
         propertyList:
           - name: uuid
         columnList:
           - name: referenced
             type: boolean
+            cssClass:
+              - "min-w-[10px]"
             filterControl:
               name: referenced
               kind: checkbox
@@ -198,4 +200,6 @@ options:
               kind: input
             type: string
           - name: type
+            cssClass:
+              - "min-w-[8px]"
             type: string
