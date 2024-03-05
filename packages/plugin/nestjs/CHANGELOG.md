@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.1-dev.0...@rxap/plugin-nestjs@16.2.0-dev.0) (2024-03-05)
+
+### Bug Fixes
+
+- coerce swagger build target ([0ff56b6](https://gitlab.com/rxap/packages/commit/0ff56b694029a4cb4506d58394c702eb6f474be0))
+
+### Features
+
+- add swagger generate executor ([f56accc](https://gitlab.com/rxap/packages/commit/f56accc7d2d0c684e2f37bc2a52a27248b583045))
+- use swagger-executor for nestjs application init ([7d27262](https://gitlab.com/rxap/packages/commit/7d27262b0b0f756d4a85505d05a843cab4637572))
+
 ## [16.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0...@rxap/plugin-nestjs@16.1.1-dev.0) (2024-02-22)
 
 ### Bug Fixes

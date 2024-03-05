@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1",
+  "version": "16.0.2-dev.0",
   "name": "@rxap/ngx-pub-sub",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -21,10 +21,10 @@
   "keywords": [
     "angular",
     "angular-pub-sub",
+    "angular:standalone",
     "ngx",
     "packages",
     "rxap",
-    "angular:standalone",
     "scope:utilities"
   ],
   "publishConfig": {

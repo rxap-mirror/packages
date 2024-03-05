@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0",
+  "version": "16.1.1-dev.0",
   "name": "@rxap/ngx-memory",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -20,11 +20,11 @@
   "keywords": [
     "angular",
     "angular-memory",
+    "angular:standalone",
     "ngx",
     "packages",
     "rxap",
-    "scope:utilities",
-    "angular:standalone"
+    "scope:utilities"
   ],
   "publishConfig": {
     "access": "public",

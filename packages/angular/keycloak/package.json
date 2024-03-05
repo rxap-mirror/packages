@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.0",
+  "version": "16.1.0-dev.1",
   "name": "@rxap/keycloak",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -25,12 +25,12 @@
   "keywords": [
     "angular",
     "angular-keycloak",
+    "angular:standalone",
     "keycloak",
     "ngx",
     "packages",
     "rxap",
-    "scope:integration",
-    "angular:standalone"
+    "scope:integration"
   ],
   "publishConfig": {
     "access": "public",

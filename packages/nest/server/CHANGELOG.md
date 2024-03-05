@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.1-dev.0...@rxap/nest-server@10.1.1-dev.1) (2024-03-05)
+
+### Bug Fixes
+
+- print final environment at startup ([d845c34](https://gitlab.com/rxap/packages/commit/d845c3474ff9fb8e02a010dad7e352735883200b))
+
 ## [10.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0...@rxap/nest-server@10.1.1-dev.0) (2024-02-08)
 
 **Note:** Version bump only for package @rxap/nest-server

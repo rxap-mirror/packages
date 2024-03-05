@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.22...@rxap/schematic-angular@16.2.0-dev.23) (2024-03-05)
+
+### Bug Fixes
+
+- add drop shadow for each sticky column ([32c57ac](https://gitlab.com/rxap/packages/commit/32c57ac37d4c88c272b17e52a4a60a1230c1407a))
+- use coerce array items to merge importList items ([0520bfb](https://gitlab.com/rxap/packages/commit/0520bfb780c19b09a95998f2c2a02713b242de22))
+
+### Features
+
+- support table column and action css classes ([3023be5](https://gitlab.com/rxap/packages/commit/3023be5a8f3ca573262e76c81c622950d0d5ab93))
+
 # [16.2.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.21...@rxap/schematic-angular@16.2.0-dev.22) (2024-03-04)
 
 ### Features

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.10...@rxap/schematics-ts-morph@16.1.0-dev.11) (2024-03-05)
+
+**Note:** Version bump only for package @rxap/schematics-ts-morph
+
 # [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.9...@rxap/schematics-ts-morph@16.1.0-dev.10) (2024-03-04)
 
 ### Features

@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.0",
+  "version": "16.1.0-dev.1",
   "name": "@rxap/data-source",
   "description": "Provides the DataSource concept for RxAP.",
   "license": "GPL-3.0-or-later",
@@ -11,12 +11,12 @@
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/data-structure-tree": "^1.1.0",
-    "@rxap/definition": "^16.0.0",
-    "@rxap/environment": "^16.0.0",
-    "@rxap/pattern": "^1.1.0",
-    "@rxap/rxjs": "^1.1.0",
-    "@rxap/utilities": "^16.1.0-dev.5",
+    "@rxap/data-structure-tree": "^1.1.1-dev.0",
+    "@rxap/definition": "^16.0.1-dev.0",
+    "@rxap/environment": "^16.0.1-dev.0",
+    "@rxap/pattern": "^1.1.1-dev.0",
+    "@rxap/rxjs": "^1.1.1-dev.0",
+    "@rxap/utilities": "^16.1.0-dev.6",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -42,19 +42,19 @@
     "packageGroup": [
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.0"
+        "version": "1.1.1-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.0"
+        "version": "16.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0"
+        "version": "16.0.1-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.0"
+        "version": "1.1.1-dev.0"
       },
       {
         "package": "@rxap/remote-method",
@@ -62,11 +62,11 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.0"
+        "version": "1.1.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.5"
+        "version": "16.1.0-dev.6"
       }
     ]
   },

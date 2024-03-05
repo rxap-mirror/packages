@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.5",
+  "version": "16.1.0-dev.6",
   "name": "@rxap/utilities",
   "description": "A collection of utility functions, types and interfaces.",
   "license": "GPL-3.0-or-later",
@@ -21,9 +21,9 @@
   "keywords": [
     "packages",
     "rxap",
-    "utilities",
+    "scope:utilities",
     "standalone",
-    "scope:utilities"
+    "utilities"
   ],
   "publishConfig": {
     "access": "public",

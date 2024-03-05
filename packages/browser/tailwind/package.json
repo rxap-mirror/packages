@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2-dev.0",
   "name": "@rxap/browser-tailwind",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -24,8 +24,8 @@
     "browser-tailwind",
     "packages",
     "rxap",
-    "tailwind",
-    "scope:utilities"
+    "scope:utilities",
+    "tailwind"
   ],
   "publishConfig": {
     "access": "public",

@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0",
+  "version": "16.0.1-dev.0",
   "name": "@rxap/contenteditable",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,8 +7,8 @@
   },
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "@rxap/pattern": "^1.1.0",
-    "@rxap/utilities": "^16.0.0",
+    "@rxap/pattern": "^1.1.1-dev.0",
+    "@rxap/utilities": "^16.1.0-dev.6",
     "tslib": "2.6.2"
   },
   "author": {
@@ -23,22 +23,22 @@
   "keywords": [
     "angular",
     "angular-contenteditable",
+    "angular:standalone",
     "contenteditable",
     "ngx",
     "packages",
     "rxap",
-    "angular:standalone",
     "scope:utilities"
   ],
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/pattern",
-        "version": "1.1.0"
+        "version": "1.1.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0"
+        "version": "16.1.0-dev.6"
       }
     ]
   },

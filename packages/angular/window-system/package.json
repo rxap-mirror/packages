@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.2",
+  "version": "16.0.1-dev.3",
   "name": "@rxap/window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,11 +10,11 @@
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/directives": "^16.0.0",
-    "@rxap/material-directives": "^16.1.0-dev.0",
-    "@rxap/rxjs": "^1.1.0",
-    "@rxap/services": "^16.0.1-dev.0",
-    "@rxap/utilities": "^16.1.0-dev.5",
+    "@rxap/directives": "^16.0.1-dev.0",
+    "@rxap/material-directives": "^16.1.0-dev.1",
+    "@rxap/rxjs": "^1.1.1-dev.0",
+    "@rxap/services": "^16.0.1-dev.1",
+    "@rxap/utilities": "^16.1.0-dev.6",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -33,30 +33,30 @@
     "ngx",
     "packages",
     "rxap",
-    "window-system",
-    "scope:core"
+    "scope:core",
+    "window-system"
   ],
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/directives",
-        "version": "16.0.0"
-      },
-      {
-        "package": "@rxap/material-directives",
-        "version": "16.1.0-dev.0"
-      },
-      {
-        "package": "@rxap/rxjs",
-        "version": "1.1.0"
-      },
-      {
-        "package": "@rxap/services",
         "version": "16.0.1-dev.0"
       },
       {
+        "package": "@rxap/material-directives",
+        "version": "16.1.0-dev.1"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.1.1-dev.0"
+      },
+      {
+        "package": "@rxap/services",
+        "version": "16.0.1-dev.1"
+      },
+      {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.5"
+        "version": "16.1.0-dev.6"
       }
     ]
   },

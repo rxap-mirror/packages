@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1-dev.0",
   "name": "@rxap/data-structure-tree",
   "description": "Proves class, types and functions to work with tree data structures",
   "license": "GPL-3.0-or-later",
@@ -7,8 +7,8 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/rxjs": "^1.1.0",
-    "@rxap/utilities": "^16.0.0",
+    "@rxap/rxjs": "^1.1.1-dev.0",
+    "@rxap/utilities": "^16.1.0-dev.6",
     "tslib": "2.6.2"
   },
   "author": {
@@ -25,18 +25,18 @@
     "data-structure-tree",
     "packages",
     "rxap",
-    "tree",
-    "scope:utilities"
+    "scope:utilities",
+    "tree"
   ],
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.0"
+        "version": "1.1.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0"
+        "version": "16.1.0-dev.6"
       }
     ]
   },

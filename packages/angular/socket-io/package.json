@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0",
+  "version": "16.0.1-dev.0",
   "name": "@rxap/socket-io",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -26,8 +26,8 @@
     "ngx",
     "packages",
     "rxap",
-    "socket-io",
-    "scope:integration"
+    "scope:integration",
+    "socket-io"
   ],
   "publishConfig": {
     "access": "public",

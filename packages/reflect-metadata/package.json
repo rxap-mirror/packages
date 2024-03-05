@@ -1,12 +1,12 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2-dev.0",
   "name": "@rxap/reflect-metadata",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/utilities": "^16.0.0",
+    "@rxap/utilities": "^16.1.0-dev.6",
     "reflect-metadata": "^0.1.13",
     "tslib": "2.6.2"
   },
@@ -23,14 +23,14 @@
     "packages",
     "reflect-metadata",
     "rxap",
-    "standalone",
-    "scope:utilities"
+    "scope:utilities",
+    "standalone"
   ],
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0"
+        "version": "16.1.0-dev.6"
       }
     ]
   },

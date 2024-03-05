@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0",
+  "version": "3.0.1-dev.0",
   "name": "@rxap/validator",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -20,9 +20,9 @@
   "keywords": [
     "packages",
     "rxap",
-    "validator",
+    "scope:utilities",
     "standalone",
-    "scope:utilities"
+    "validator"
   ],
   "publishConfig": {
     "access": "public",

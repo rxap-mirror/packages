@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1-dev.0",
   "name": "@rxap/pattern",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -22,8 +22,8 @@
     "packages",
     "pattern",
     "rxap",
-    "standalone",
-    "scope:utilities"
+    "scope:utilities",
+    "standalone"
   ],
   "publishConfig": {
     "access": "public",

@@ -1,5 +1,5 @@
 {
-  "version": "10.1.0",
+  "version": "10.1.1-dev.0",
   "name": "@rxap/nest-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -29,8 +29,8 @@
     "nest-utilities",
     "packages",
     "rxap",
-    "utilities",
-    "scope:utilities"
+    "scope:utilities",
+    "utilities"
   ],
   "nx-migrations": {
     "packageGroup": [

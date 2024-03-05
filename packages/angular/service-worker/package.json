@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.1",
+  "version": "16.0.1-dev.2",
   "name": "@rxap/service-worker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,8 +9,8 @@
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/service-worker": "^16.1.4",
-    "@rxap/environment": "^16.0.0",
-    "@rxap/life-cycle": "^16.0.0",
+    "@rxap/environment": "^16.0.1-dev.0",
+    "@rxap/life-cycle": "^16.0.1-dev.0",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -29,18 +29,18 @@
     "ngx",
     "packages",
     "rxap",
-    "service-worker",
-    "scope:integration"
+    "scope:integration",
+    "service-worker"
   ],
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/environment",
-        "version": "16.0.0"
+        "version": "16.0.1-dev.0"
       },
       {
         "package": "@rxap/life-cycle",
-        "version": "16.0.0"
+        "version": "16.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-error",
