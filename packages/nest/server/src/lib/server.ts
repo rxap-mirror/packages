@@ -141,6 +141,7 @@ export abstract class Server<O extends object, T extends INestApplicationContext
     }
 
     RXAP_GLOBAL_STATE.environment = environment;
+    console.log('Final environment', JSON.stringify(RXAP_GLOBAL_STATE.environment));
   }
 
   protected abstract prepareOptions(app: T, logger: Logger, config: ConfigService): B;
