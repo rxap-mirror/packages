@@ -16,6 +16,7 @@ import {
   AddPackageJsonDependency,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { join } from 'path';
@@ -55,16 +56,7 @@ function updateProjectTargets(project: ProjectConfiguration) {
     },
   });
 
-  CoerceTarget(project, 'swagger-generate', {
-    executor: '@nx/js:node',
-    outputs: [
-      `{workspaceRoot}/${ outputPath }/openapi.json`,
-    ],
-    options: {
-      buildTarget: `${ project.name }:swagger-build`,
-      watch: false,
-    },
-  });
+  CoerceTarget(project, 'swagger-generate', {}, Strategy.REPLACE);
 
 }
 
@@ -72,6 +64,17 @@ function updateNxDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
   CoerceNxJsonCacheableOperation(nxJson, 'swagger-build', 'swagger-generate');
+
+  CoerceTarget(nxJson, 'swagger-generate', {
+    executor: '@rxap/plugin-nestjs:swagger-generate',
+    outputs: [
+      '{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json'
+    ],
+    inputs: [
+      '{workspaceRoot}/dist/swagger/{projectRoot}/main.js',
+      '{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map'
+    ]
+  }, Strategy.REPLACE);
 
   updateNxJson(tree, nxJson);
 }

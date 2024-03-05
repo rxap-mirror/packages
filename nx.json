@@ -344,7 +344,7 @@
     "swagger-generate": {
       "executor": "@rxap/plugin-nestjs:swagger-generate",
       "outputs": [
-        "dist/swagger/{projectRoot}/openapi.json"
+        "{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"
       ],
       "inputs": [
         "{workspaceRoot}/dist/swagger/{projectRoot}/main.js",
