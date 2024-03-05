@@ -89,14 +89,7 @@
         ]
       }
     },
-    "swagger-generate": {
-      "outputs": [
-        "dist/swagger/{projectRoot}/openapi.json"
-      ],
-      "options": {
-        "buildTarget": "service-user:swagger-build"
-      }
-    },
+    "swagger-generate": {},
     "test": {
       "options": {
         "jestConfig": "applications/service/user/jest.config.ts"

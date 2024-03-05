@@ -91,14 +91,7 @@
         ]
       }
     },
-    "swagger-generate": {
-      "outputs": [
-        "dist/swagger/{projectRoot}/openapi.json"
-      ],
-      "options": {
-        "buildTarget": "service-app-angular-table:swagger-build"
-      }
-    },
+    "swagger-generate": {},
     "test": {
       "options": {
         "jestConfig": "demos/service/app/angular/table/jest.config.ts"

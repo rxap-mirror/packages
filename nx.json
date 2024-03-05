@@ -342,13 +342,10 @@
       }
     },
     "swagger-generate": {
-      "executor": "@nx/js:node",
+      "executor": "@rxap/plugin-nestjs:swagger-generate",
       "outputs": [
         "dist/swagger/{projectRoot}/openapi.json"
       ],
-      "options": {
-        "watch": false
-      },
       "inputs": [
         "{workspaceRoot}/dist/swagger/{projectRoot}/main.js",
         "{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map"

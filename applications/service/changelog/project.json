@@ -145,16 +145,7 @@
         ]
       }
     },
-    "swagger-generate": {
-      "executor": "@nx/js:node",
-      "outputs": [
-        "dist/swagger/applications/service/changelog/openapi.json"
-      ],
-      "options": {
-        "buildTarget": "service-changelog:swagger-build",
-        "watch": false
-      }
-    }
+    "swagger-generate": {}
   },
   "tags": [
     "nest",

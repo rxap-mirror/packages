@@ -119,16 +119,7 @@
         ]
       }
     },
-    "swagger-generate": {
-      "executor": "@nx/js:node",
-      "outputs": [
-        "dist/swagger/applications/service/app/angular/accordion/openapi.json"
-      ],
-      "options": {
-        "buildTarget": "service-app-angular-accordion:swagger-build",
-        "watch": false
-      }
-    }
+    "swagger-generate": {}
   },
   "tags": [
     "nest",

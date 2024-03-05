@@ -83,11 +83,7 @@
         ]
       }
     },
-    "swagger-generate": {
-      "options": {
-        "buildTarget": "service-status:swagger-build"
-      }
-    },
+    "swagger-generate": {},
     "test": {
       "options": {
         "jestConfig": "applications/service/status/jest.config.ts"
