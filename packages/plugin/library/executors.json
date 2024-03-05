@@ -24,6 +24,11 @@
       "implementation": "./src/executors/check-version/executor",
       "schema": "./src/executors/check-version/schema.json",
       "description": "check-version executor"
+    },
+    "node-modules-linking": {
+      "implementation": "./src/executors/node-modules-linking/executor",
+      "schema": "./src/executors/node-modules-linking/schema.json",
+      "description": "node-modules-linking executor"
     }
   }
 }
