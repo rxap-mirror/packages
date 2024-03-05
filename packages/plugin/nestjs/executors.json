@@ -4,6 +4,11 @@
       "implementation": "./src/executors/package-json/executor",
       "schema": "./src/executors/package-json/schema.json",
       "description": "package-json executor"
+    },
+    "swagger-generate": {
+      "implementation": "./src/executors/swagger-generate/executor",
+      "schema": "./src/executors/swagger-generate/schema.json",
+      "description": "swagger-generate executor"
     }
   }
 }
