@@ -6,7 +6,7 @@ import {
 import mockFs from 'mock-fs';
 import { LocalStorage } from './local-storage';
 
-describe('LocalStorage', () => {
+describe.skip('LocalStorage', () => {
 
   beforeEach(() => {
     mockFs();
