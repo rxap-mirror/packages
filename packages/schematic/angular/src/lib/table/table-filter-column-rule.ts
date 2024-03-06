@@ -15,7 +15,6 @@ import {
   Project,
   SourceFile,
 } from 'ts-morph';
-import { TableColumnToFormControl } from '../../schematics/table/table-component';
 import { NormalizedAngularOptions } from '../angular-options';
 import { NormalizedMinimumTableOptions } from '../minimum-table-options';
 import { UsePickFromTableInterfaceAsFormTypeRule } from '../use-pick-from-table-interface-as-form-type';
@@ -51,8 +50,8 @@ export function TableFilterColumnRule(normalizedOptions: NormalizedMinimumTableO
         backend,
         overwrite,
         controlList: columnList
-          .filter((column) => column.hasFilter)
-          .map(TableColumnToFormControl),
+          .filter((column) => column.filterControl)
+          .map(column => column.filterControl),
       }),
       CoerceComponentRule({
         project,

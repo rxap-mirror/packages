@@ -12,8 +12,8 @@
           "properties": {
             "kind": {
               "type": "string",
-              "const": "panel",
-              "default": "panel"
+              "const": "default",
+              "default": "default"
             }
           }
         }

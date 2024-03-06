@@ -3,6 +3,9 @@
   "$id": "base-accordion-item",
   "type": "object",
   "properties": {
+    "name": {
+      "type": "string"
+    },
     "kind": {
       "type": "string"
     },
@@ -34,6 +37,7 @@
       }
     }
   },
+  "required": ["name"],
   "definitions": {
     "accordionIdentifier": {
       "$ref": "./accordion-identifier.schema.json"
@@ -44,6 +48,5 @@
     "property": {
       "$ref": "./property.schema.json"
     }
-  },
-  "additionalProperties": true
+  }
 }

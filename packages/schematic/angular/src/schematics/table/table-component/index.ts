@@ -4,7 +4,6 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import {
-  AbstractControl,
   AddComponentImport,
   AddComponentProvider,
   buildOperationId,
@@ -45,7 +44,6 @@ import {
   NormalizeMinimumTableComponentOptions,
   tableInterfaceRule,
 } from '../../../lib/minimum-table-component-options';
-import { NormalizedTableColumn } from '../../../lib/table-column';
 import {
   IsTableModifiers,
   NormalizedTableOptions,
@@ -81,15 +79,6 @@ export function NormalizeTableComponentOptions(
     ...normalizedMinimumTableComponentOptions,
     ...normalizedTableOptions,
   });
-}
-
-export function TableColumnToFormControl(
-  column: NormalizedTableColumn,
-): AbstractControl {
-  return {
-    name: column.name,
-    type: column.type?.name ?? undefined,
-  };
 }
 
 function printOptions(options: NormalizedTableComponentOptions) {

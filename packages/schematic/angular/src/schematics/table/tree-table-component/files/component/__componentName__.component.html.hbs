@@ -91,7 +91,7 @@
           {{#if hasColumnWithFilter}}rxap-filter-header-row{{/if~}}
         >
           <!-- region columns -->
-          <ng-container matColumnDef="tree" sticky>
+          <ng-container matColumnDef="tree" [sticky]="true">
             <th *matHeaderCellDef mat-header-cell></th>
             <td
               *matCellDef="let element"
@@ -110,7 +110,7 @@
           </ng-container>
           {{#if selectColumn}}
           <!-- region select column -->
-          <ng-container matColumnDef="select" sticky>
+          <ng-container matColumnDef="select" [sticky]="true">
             <th class="drop-shadow-2xl" mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
             <td
               mat-cell
@@ -124,7 +124,7 @@
           {{/if}}
           {{#if actionList.length}}
           <!-- region actions column -->
-          <ng-container matColumnDef="actions" stickyEnd>
+          <ng-container matColumnDef="actions" [stickyEnd]="true">
             <th class="drop-shadow-2xl" mat-header-cell *matHeaderCellDef>
             {{#if selectColumn}}
               <!-- region header actions -->
@@ -198,10 +198,10 @@
           <!-- endregion -->
           {{#if hasColumnWithFilter}}
           <!-- region filter columns -->
-          <ng-container matColumnDef="filter_tree" stickyEnd>
+          <ng-container matColumnDef="filter_tree" [stickyEnd]="true">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
-          <ng-container matColumnDef="filter___spinner__" stickyEnd>
+          <ng-container matColumnDef="filter___spinner__" [stickyEnd]="true">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
           {{#if selectColumn}}
@@ -210,7 +210,7 @@
           </ng-container>
           {{/if}}
           {{#if actionList.length}}
-          <ng-container matColumnDef="filter_actions" stickyEnd>
+          <ng-container matColumnDef="filter_actions" [stickyEnd]="true">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
           {{/if}}

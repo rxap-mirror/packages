@@ -92,7 +92,7 @@
           <!-- region columns -->
           {{#if selectColumn}}
           <!-- region select column -->
-          <ng-container matColumnDef="select" sticky>
+          <ng-container matColumnDef="select" [sticky]="true">
             <th class="drop-shadow-2xl" mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
             <td
               mat-cell
@@ -106,7 +106,7 @@
           {{/if}}
           {{#if actionList.length}}
           <!-- region actions column -->
-          <ng-container matColumnDef="actions" stickyEnd>
+          <ng-container matColumnDef="actions" [stickyEnd]="true">
             <th class="drop-shadow-2xl" mat-header-cell *matHeaderCellDef>
             {{#if selectColumn}}
               <!-- region header actions -->
@@ -181,12 +181,12 @@
           {{#if hasColumnWithFilter}}
           <!-- region filter columns -->
           {{#if selectColumn}}
-          <ng-container matColumnDef="filter_select" sticky>
+          <ng-container matColumnDef="filter_select" [sticky]="true">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
           {{/if}}
           {{#if actionList.length}}
-          <ng-container matColumnDef="filter_actions" stickyEnd>
+          <ng-container matColumnDef="filter_actions" [stickyEnd]="true">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
           {{/if}}

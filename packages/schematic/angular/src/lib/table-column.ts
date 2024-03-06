@@ -297,6 +297,10 @@ export function NormalizeTableColumn(
   }
   if (filterControl) {
     filterControl.label ??= title;
+    filterControl.name ??= name;
+    if (!filterControl.type || filterControl.type === 'unknown' || (typeof filterControl.type === 'object' && filterControl.type.name === 'unknown')) {
+      filterControl.type = type ?? 'unknown';
+    }
   }
   const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl) : null;
   if (normalizedFilterControl) {
