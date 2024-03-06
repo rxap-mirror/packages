@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "base-accordion-item",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "modifiers": {
+      "alias": "modifier",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The modifiers to apply to the accordion item type"
+    },
+    "identifier": {
+      "$ref": "#/definitions/accordionIdentifier"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "upstream": {
+      "$ref": "#/definitions/upstream"
+    },
+    "propertyList": {
+      "alias": "property",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/property"
+      }
+    }
+  },
+  "definitions": {
+    "accordionIdentifier": {
+      "$ref": "./accordion-identifier.schema.json"
+    },
+    "upstream": {
+      "$ref": "./upstream.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
+    }
+  },
+  "additionalProperties": true
+}

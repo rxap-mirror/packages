@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "tree-table-accordion-item",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseAccordionItem"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "tree-table"
+        },
+        "modifiers": {
+          "alias": "modifier",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "navigation-back-header",
+              "without-title"
+            ]
+          },
+          "description": "The table modifiers"
+        },
+        "table": {
+          "$ref": "#/definitions/treeTable"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "baseAccordionItem": {
+      "$ref": "./base-accordion-item.schema.json"
+    },
+    "treeTable": {
+      "$ref": "./tree-table.schema.json"
+    }
+  }
+}

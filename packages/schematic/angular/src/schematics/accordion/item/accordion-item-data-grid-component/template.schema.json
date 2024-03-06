@@ -6,26 +6,15 @@
       "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "#/definitions/accordionItem"
-    },
-    {
-      "type": "object",
-      "properties": {
-        "dataGrid": {
-          "$ref": "#/definitions/dataGrid"
-        }
-      }
+      "$ref": "#/definitions/dataGridAccordionItem"
     }
   ],
   "definitions": {
-    "accordionItem": {
-      "$ref": "../../../accordion-item.schema.json"
+    "dataGridAccordionItem": {
+      "$ref": "../../../data-grid-accordion-item.schema.json"
     },
     "angular": {
       "$ref": "../../../angular.schema.json"
-    },
-    "dataGrid": {
-      "$ref": "../../../data-grid.schema.json"
     }
   }
 }

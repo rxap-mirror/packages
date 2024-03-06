@@ -6,76 +6,15 @@
       "$ref": "#/definitions/angular"
     },
     {
-      "$ref": "#/definitions/accordionItem"
-    },
-    {
-      "type": "object",
-      "properties": {
-        "switch": {
-          "type": "object",
-          "properties": {
-            "property": {
-              "$ref": "#/definitions/property"
-            },
-            "defaultCase": {
-              "type": "object",
-              "properties": {
-                "itemList": {
-                  "alias": "item",
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/accordionItem"
-                  },
-                  "description": "The list of accordion expansion panels"
-                }
-              },
-              "required": ["itemList"]
-            },
-            "case": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "test": {
-                    "anyOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "number"
-                      },
-                      {
-                        "type": "boolean"
-                      }
-                    ]
-                  },
-                  "itemList": {
-                    "alias": "item",
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/definitions/accordionItem"
-                    },
-                    "description": "The list of accordion expansion panels"
-                  }
-                },
-                "required": ["test", "itemList"]
-              }
-            }
-          },
-          "required": ["property", "case"]
-        }
-      }
+      "$ref": "#/definitions/switchAccordionItem"
     }
   ],
   "definitions": {
     "angular": {
       "$ref": "../../../angular.schema.json"
     },
-    "accordionItem": {
-      "$ref": "../../../accordion-item.schema.json"
-    },
-    "property": {
-      "$ref": "../../../property.schema.json"
+    "switchAccordionItem": {
+      "$ref": "../../../switch-accordion-item.schema.json"
     }
   }
 }

@@ -1,59 +1,52 @@
 {
   "$schema": "http://json-schema.org/schema",
   "$id": "accordion-item",
-  "type": "object",
-  "properties": {
-    "kind": {
-      "type": "string",
-      "enum": [
-        "default",
-        "table",
-        "data-grid",
-        "data-grid-collection",
-        "tree-table",
-        "switch"
-      ],
-      "description": "The type of the accordion item",
-      "default": "panel"
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "#/definitions/baseAccordionItem"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "panel",
+              "default": "panel"
+            }
+          }
+        }
+      ]
     },
-    "modifiers": {
-      "alias": "modifier",
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "The modifiers to apply to the accordion item type"
+    {
+      "$ref": "#/definitions/switchAccordionItem"
     },
-    "identifier": {
-      "$ref": "#/definitions/accordionIdentifier"
+    {
+      "$ref": "#/definitions/tableAccordionItem"
     },
-    "title": {
-      "type": "string"
+    {
+      "$ref": "#/definitions/dataGridAccordionItem"
     },
-    "description": {
-      "type": "string"
-    },
-    "upstream": {
-      "$ref": "#/definitions/upstream"
-    },
-    "propertyList": {
-      "alias": "property",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/property"
-      }
+    {
+      "$ref": "#/definitions/treeTableAccordionItem"
     }
-  },
+  ],
   "definitions": {
-    "accordionIdentifier": {
-      "$ref": "./accordion-identifier.schema.json"
+    "baseAccordionItem": {
+      "$ref": "./base-accordion-item.schema.json"
     },
-    "upstream": {
-      "$ref": "./upstream.schema.json"
+    "dataGridAccordionItem": {
+      "$ref": "./data-grid-accordion-item.schema.json"
     },
-    "property": {
-      "$ref": "./property.schema.json"
+    "switchAccordionItem": {
+      "$ref": "./switch-accordion-item.schema.json"
+    },
+    "tableAccordionItem": {
+      "$ref": "./table-accordion-item.schema.json"
+    },
+    "treeTableAccordionItem": {
+      "$ref": "./tree-table-accordion-item.schema.json"
     }
-  },
-  "additionalProperties": true
+  }
 }

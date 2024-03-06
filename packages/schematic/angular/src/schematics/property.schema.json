@@ -17,10 +17,7 @@
         "isArray": {
           "type": "boolean"
         }
-      },
-      "required": [
-        "name"
-      ]
+      }
     }
   ],
   "definitions": {
