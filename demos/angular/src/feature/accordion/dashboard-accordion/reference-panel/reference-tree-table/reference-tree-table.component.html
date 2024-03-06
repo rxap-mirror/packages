@@ -12,7 +12,6 @@
         #rxapTableColumns="rxapTableColumns"
         inline>
         <rxap-table-column-option name="tree" hidden></rxap-table-column-option>
-        <rxap-table-column-option name="__spinner__" hidden></rxap-table-column-option>
         <rxap-table-column-option name="referenced">
           <ng-container i18n>Referenced</ng-container>
         </rxap-table-column-option>
@@ -22,6 +21,7 @@
         <rxap-table-column-option name="type">
           <ng-container i18n>Type</ng-container>
         </rxap-table-column-option>
+        <rxap-table-column-option hidden name="__spinner__"></rxap-table-column-option>
       </rxap-table-column-menu>
        </mat-card-header>
 
@@ -41,9 +41,10 @@
           rxapTableDataSource
           [parameters]="parameters"
           id="reference"
+          class="!min-w-0"
           rxap-filter-header-row>
           <!-- region columns -->
-          <ng-container matColumnDef="tree" sticky>
+          <ng-container [sticky]="true" matColumnDef="tree">
             <th *matHeaderCellDef mat-header-cell></th>
             <td
               *matCellDef="let element"
@@ -64,55 +65,64 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n>Referenced</ng-container>
             </th>
-            <td *matCellDef="let element" mat-cell>
+            <td *matCellDef="let element"
+                class="min-w-[10px]"
+                mat-cell
+            >
             {{ element?.referenced }}
             </td>
           </ng-container>
-          
+
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n>Name</ng-container>
             </th>
-            <td *matCellDef="let element" mat-cell>
+            <td *matCellDef="let element"
+                mat-cell
+            >
             {{ element?.name }}
             </td>
           </ng-container>
-          
+
           <ng-container matColumnDef="type">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n>Type</ng-container>
             </th>
-            <td *matCellDef="let element" mat-cell>
+            <td *matCellDef="let element"
+                class="min-w-[8px]"
+                mat-cell
+            >
             {{ element?.type }}
             </td>
           </ng-container>
-          
+
 
           <!-- endregion -->
           <!-- region filter columns -->
-          <ng-container matColumnDef="filter_tree" stickyEnd>
+          <ng-container [stickyEnd]="true" matColumnDef="filter_tree">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
-          <ng-container matColumnDef="filter___spinner__" stickyEnd>
+          <ng-container [stickyEnd]="true" matColumnDef="filter___spinner__">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
           <ng-container matColumnDef="filter_referenced">
             <th mat-header-cell *matHeaderCellDef>
-              
+
               <mat-checkbox
-                indeterminate
+                [indeterminate]="true"
                 formControlName="referenced"
                 labelPosition="after"
                 parentControlContainer>
-                <ng-container i18n></ng-container>
+                <ng-container i18n>Referenced</ng-container>
               </mat-checkbox>
-              
+
             </th>
           </ng-container>
           <ng-container matColumnDef="filter_name">
             <th mat-header-cell *matHeaderCellDef>
-              
+
               <mat-form-field>
+                <mat-label>Name</mat-label>
                 <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
                   <mat-icon>clear</mat-icon>
                 </button>
@@ -122,7 +132,7 @@
                   type="text"
                   parentControlContainer/>
               </mat-form-field>
-              
+
             </th>
           </ng-container>
           <ng-container matColumnDef="filter_type">

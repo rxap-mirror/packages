@@ -177,6 +177,7 @@ options:
               operationId: dashboard-controller-getByUuid@legacy
             itemList:
               - name: cloud-dashboard
+                kind: default
                 title: Layouts
     - name: reference
       kind: tree-table
@@ -192,11 +193,9 @@ options:
             cssClass:
               - "min-w-[10px]"
             filterControl:
-              name: referenced
               kind: checkbox
           - name: name
             filterControl:
-              name: name
               kind: input
             type: string
           - name: type

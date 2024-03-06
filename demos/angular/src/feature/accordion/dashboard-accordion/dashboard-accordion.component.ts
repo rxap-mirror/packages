@@ -2,6 +2,7 @@ import {
   AsyncPipe,
   NgIf,
   NgSwitch,
+  NgSwitchCase,
   NgSwitchDefault,
 } from '@angular/common';
 import {
@@ -30,7 +31,12 @@ import { ReferencePanelComponent } from './reference-panel/reference-panel.compo
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './dashboard-accordion.component.html',
     styleUrls: ['./dashboard-accordion.component.scss'],
-  imports: [DataSourceErrorComponent, DataSourceDirective, MatProgressBarModule, MatExpansionModule, AsyncPipe, NgIf, MatDividerModule, NavigateBackButtonComponent, IfHasPermissionDirective, PersistentAccordionDirective, GeneralInformationCloudDashboardPanelComponent, GeneralInformationDashboardPanelComponent, NgSwitch, NgSwitchDefault, LayoutCloudDashboardPanelComponent, ReferencePanelComponent],
+  imports: [
+    DataSourceErrorComponent, DataSourceDirective, MatProgressBarModule, MatExpansionModule, AsyncPipe, NgIf,
+    MatDividerModule, NavigateBackButtonComponent, IfHasPermissionDirective, PersistentAccordionDirective,
+    GeneralInformationCloudDashboardPanelComponent, GeneralInformationDashboardPanelComponent, NgSwitch,
+    NgSwitchDefault, LayoutCloudDashboardPanelComponent, ReferencePanelComponent, NgSwitchCase,
+  ],
   providers: [DashboardAccordionDataSource, {
       provide: ACCORDION_DATA_SOURCE,
       useExisting: DashboardAccordionDataSource
