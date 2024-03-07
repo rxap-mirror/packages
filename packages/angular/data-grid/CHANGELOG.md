@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.1-dev.2...@rxap/data-grid@16.0.1-dev.3) (2024-03-07)
+
+### Bug Fixes
+
+- only disable controls in form mode ([416e3e5](https://gitlab.com/rxap/packages/commit/416e3e59e51c5746a1e709a4c0d873f52b974bd6))
+- only show controls of in form mode ([a6c99aa](https://gitlab.com/rxap/packages/commit/a6c99aa80e157c831bc9e4a7916dfb99b695d834))
+
 ## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.1-dev.1...@rxap/data-grid@16.0.1-dev.2) (2024-03-07)
 
 ### Bug Fixes
