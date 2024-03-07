@@ -7,6 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ToDtoInstance } from '@rxap/nest-dto';
+import { DashboardAccordionGeneralInformationCloudDashboardSubmitDto } from './dtos/dashboard-accordion-general-information-cloud-dashboard-submit.dto';
 import { DashboardAccordionGeneralInformationCloudDashboardDto } from './dtos/dashboard-accordion-general-information-cloud-dashboard.dto';
 
 @Controller('dashboard-accordion/:uuid/general-information-cloud-dashboard')
@@ -28,7 +29,7 @@ export class DashboardAccordionGeneralInformationCloudDashboardController {
   }
 
   @Post()
-  public async submitById(@Param('uuid') uuid: string, @Body() body: DashboardAccordionGeneralInformationCloudDashboardDto): Promise<void> {
+  public async submitById(@Param('uuid') uuid: string, @Body() body: DashboardAccordionGeneralInformationCloudDashboardSubmitDto): Promise<void> {
     throw new NotImplementedException();
   }
 }

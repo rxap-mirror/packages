@@ -17,6 +17,7 @@ import {
 import { DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-page.dto';
 import { DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-row.dto';
 import { DashboardAccordionGeneralInformationDashboardLocationTableSelectDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select.dto';
+import { DashboardAccordionGeneralInformationDashboardSubmitDto } from './dtos/dashboard-accordion-general-information-dashboard-submit.dto';
 import { DashboardAccordionGeneralInformationDashboardDto } from './dtos/dashboard-accordion-general-information-dashboard.dto';
 
 interface CompanyGuiControllerGetByFilterResponse {
@@ -116,10 +117,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
     );
   }
 
-  @Post()
-  public async submitById(@Param('uuid') uuid: string, @Body() body: DashboardAccordionGeneralInformationDashboardDto): Promise<void> {
-    throw new NotImplementedException();
-  }
+
 
   private readonly companyGuiControllerGetByUuidCommand!: any;
 
@@ -136,5 +134,10 @@ export class DashboardAccordionGeneralInformationDashboardController {
       uuid: data.uuid
     },
     );
+  }
+
+  @Post()
+  public async submitById(@Param('uuid') uuid: string, @Body() body: DashboardAccordionGeneralInformationDashboardSubmitDto): Promise<void> {
+    throw new NotImplementedException();
   }
 }
