@@ -4,6 +4,7 @@ import {
   NormalizeDataProperty,
   NormalizedDataProperty,
 } from '@rxap/ts-morph';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   ClassDeclaration,
   SourceFile,
@@ -52,21 +53,23 @@ export function CoerceTableSelectValueResolveOperationRule(options: CoerceTableS
     rowValueProperty = NormalizeDataProperty(rowIdProperty),
   } = options;
 
-  propertyList.unshift({
-    ...rowDisplayProperty,
-    name: '__display',
-    source: rowDisplayProperty.name,
-  });
-  propertyList.unshift({
-    ...rowValueProperty,
-    name: '__value',
-    source: rowValueProperty.name,
-  });
-  propertyList.unshift(NormalizeDataProperty({
-    ...rowIdProperty,
-    name: '__rowId',
-    source: rowIdProperty.name,
-  }, 'number'));
+  CoerceArrayItems(propertyList, [
+    {
+      ...rowValueProperty,
+      name: '__value',
+      source: rowValueProperty.name,
+    },
+    {
+      ...rowDisplayProperty,
+      name: '__display',
+      source: rowDisplayProperty.name,
+    },
+    NormalizeDataProperty({
+      ...rowIdProperty,
+      name: '__rowId',
+      source: rowIdProperty.name,
+    }, 'number')
+  ], { compareTo: (a, b) => a.name === b.name, unshift: true });
 
   return CoerceOperation<CoerceTableSelectValueResolveOperationOptions>({
     ...options,

@@ -3,6 +3,7 @@ import {
   NormalizeDataProperty,
   NormalizedDataProperty,
 } from '@rxap/ts-morph';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceGetPageOperation,
   CoerceGetPageOperationOptions,
@@ -22,16 +23,18 @@ export function CoerceTableSelectOperationRule(options: CoerceTableSelectOperati
     rowValueProperty = NormalizeDataProperty(rowIdProperty),
   } = options;
 
-  propertyList.unshift({
-    ...rowDisplayProperty,
-    name: '__display',
-    source: rowDisplayProperty.name,
-  });
-  propertyList.unshift({
-    ...rowValueProperty,
-    name: '__value',
-    source: rowValueProperty.name,
-  });
+  CoerceArrayItems(propertyList, [
+    {
+      ...rowValueProperty,
+      name: '__value',
+      source: rowValueProperty.name,
+    },
+    {
+      ...rowDisplayProperty,
+      name: '__display',
+      source: rowDisplayProperty.name,
+    }
+  ], { compareTo: (a, b) => a.name === b.name, unshift: true });
 
   return CoerceGetPageOperation({
     ...options,
