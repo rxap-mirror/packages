@@ -63,6 +63,7 @@ export * from './lib/get-class-decorator-arguments';
 export * from './lib/get-class';
 export * from './lib/get-coerce-array-literal-form-object-literal';
 export * from './lib/has-constructor-parameter';
+export * from './lib/identifier';
 export * from './lib/provider-object';
 export * from './lib/to-mapping-object';
 export * from './lib/type-import';
