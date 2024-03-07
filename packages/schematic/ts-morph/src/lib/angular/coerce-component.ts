@@ -21,7 +21,10 @@ import {
   CoerceFile,
   GetProjectPrefix,
 } from '@rxap/schematics-utilities';
-import { CoerceComponent } from '@rxap/ts-morph';
+import {
+  CoerceComponent,
+  CoerceComponentOptions as _CoerceComponentOptions,
+} from '@rxap/ts-morph';
 import {
   camelize,
   capitalize,
@@ -54,6 +57,7 @@ export interface CoerceComponentOptions extends TsMorphAngularProjectTransformOp
   flat?: boolean;
   template?: TemplateOptions;
   overwrite?: boolean | string[];
+  componentOptions?: _CoerceComponentOptions;
   tsMorphTransform?: (
     project: Project,
     [ componentSourceFile ]: [ SourceFile ],
@@ -138,7 +142,8 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
     name,
     flat,
     overwrite,
-    handlebars
+    handlebars,
+    componentOptions = {},
   } = options;
   overwrite ??= false;
   directory ??= '';
@@ -158,10 +163,9 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
       rules.push(TsMorphAngularProjectTransformRule(
         options,
         (project, [ componentSourceFile ]) => {
-          CoerceComponent(componentSourceFile, name, {
-            prefix,
-            changeDetection: 'OnPush',
-          });
+          componentOptions.prefix ??= prefix;
+          componentOptions.changeDetection ??= 'OnPush';
+          CoerceComponent(componentSourceFile, name, componentOptions);
         },
         [
           join(componentPath, `${ name }.component.ts?`),

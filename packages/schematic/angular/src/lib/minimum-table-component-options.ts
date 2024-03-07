@@ -580,6 +580,9 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
             feature,
             shared,
             name: CoerceSuffix(dasherize(column.name), '-cell'),
+            componentOptions: {
+              selector: `mat-cell[{{prefix}}-${ dasherize(column.name) }]`,
+            },
             directory,
             overwrite: overwrite || column.modifiers.includes(TableColumnModifier.OVERWRITE),
             tsMorphTransform: (project, [ sourceFile ], [classDeclaration]) => {
