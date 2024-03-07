@@ -14,7 +14,6 @@ import {
 import { CoerceClass } from '../coerce-class';
 import { CoerceDecorator } from '../coerce-decorator';
 import { CoerceImports } from '../coerce-imports';
-import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
 
 export interface CoerceComponentOptions {
   selector?: string;
@@ -52,6 +51,15 @@ export function CoerceComponent(
   } = options;
 
   selector ??= prefix ? `${ prefix }-${ dasherize(name) }` : dasherize(name);
+  if (selector.includes('{{prefix}}')) {
+    if (!prefix) {
+      throw new Error(`The selector '${ selector }' contains a template expression '{{prefix}}' but no prefix is provided`);
+    }
+    selector = selector.replace('{{prefix}}', prefix);
+  }
+  if (selector.match(/\{\{.*}}/)) {
+    throw new Error(`The selector '${ selector }' contains an invalid templates expression`);
+  }
   if (templateUrl === true || !template) {
     template = undefined;
     templateUrl = `./${ dasherize(name) }.component.html`;
