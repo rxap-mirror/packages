@@ -4,9 +4,8 @@
 
 <mat-menu #columnMenu="matMenu">
   <span
-    *ngFor="let column of $any(columns ?? [])"
+    *ngFor="let column of $any(visibleColumns ?? [])"
     [disableRipple]="true"
-    [ngClass]="{ hidden: column.hidden }"
     mat-menu-item
     rxapStopPropagation
   >

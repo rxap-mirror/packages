@@ -37,6 +37,11 @@ import { TableColumnOptionComponent } from './table-column-option/table-column-o
   ],
 })
 export class TableColumnMenuComponent implements AfterContentInit {
+
+  public get visibleColumns() {
+    return this.columns?.filter((option) => !option.hidden);
+  }
+
   @ContentChildren(TableColumnOptionComponent)
   public columns?: QueryList<TableColumnOptionComponent>;
 
