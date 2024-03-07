@@ -4,11 +4,17 @@ export * from './lib/validators/is-selectable-value.directive';
 // endregion
 
 // region mixins
+export * from './lib/mixins/adapters';
+export * from './lib/mixins/apply-use-method.adapters';
 export * from './lib/mixins/extract-control-from-parent.mixin';
 export * from './lib/mixins/extract-control.mixin';
 export * from './lib/mixins/extract-data-sources.mixin';
 export * from './lib/mixins/extract-form-definition.mixin';
+export * from './lib/mixins/extract-method.mixin';
+export * from './lib/mixins/extract-methods.mixin';
 export * from './lib/mixins/extract-options-data-source.mixin';
+export * from './lib/mixins/extract-options-method.mixin';
+export * from './lib/mixins/extract-resolve-method.mixin';
 // endregion
 
 // region directives array
@@ -24,6 +30,7 @@ export * from './lib/directives/array/form-array-removable.directive';
 export * from './lib/directives/control-hide-show.directive';
 export * from './lib/directives/form-directives.module';
 export * from './lib/directives/input-select-options.directive';
+export * from './lib/directives/options-from-method.directive';
 export * from './lib/directives/options-from-remote-method.directive';
 // endregion
 
