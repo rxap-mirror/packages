@@ -1,0 +1,10 @@
+include:
+  - local: .gitlab/ci/jobs/deploy.yaml
+
+variables:
+  NODE_VERSION: "20.9.0"
+  HUSKY: "0"
+  ENVIRONMENT_NAME: deployment/$CI_COMMIT_REF_NAME
+
+stages:
+  - deploy

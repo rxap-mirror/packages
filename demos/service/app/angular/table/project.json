@@ -63,7 +63,7 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "service-app-angular-table:build"
+        "buildTarget": "service-app-angular-table:build:development"
       },
       "configurations": {
         "development": {
@@ -112,6 +112,7 @@
     "backend",
     "swagger",
     "health-indicator",
-    "express"
+    "express",
+    "application"
   ]
 }

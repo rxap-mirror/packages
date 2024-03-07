@@ -36,7 +36,8 @@
     "localazy",
     "user-interface",
     "sentry",
-    "service-worker"
+    "service-worker",
+    "application"
   ],
   "targets": {
     "build": {

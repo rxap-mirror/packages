@@ -8,7 +8,10 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { SkipNonApplicationProject } from '@rxap/generator-utilities';
+import {
+  CoerceProjectTags,
+  SkipNonApplicationProject,
+} from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
@@ -62,6 +65,12 @@ function buildDockerImageSuffix(project: ProjectConfiguration, projectName: stri
     imageSuffix += projectName;
   }
   return imageSuffix;
+}
+
+function updateTags(project: ProjectConfiguration, options: InitGeneratorSchema) {
+  const tags = [ 'application' ];
+
+  CoerceProjectTags(project, tags);
 }
 
 function updateProjectTargets(project: ProjectConfiguration, projectName: string, options: InitGeneratorSchema) {
@@ -221,6 +230,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
     if (!options.skipProjects) {
       console.log(`init project: ${ projectName }`);
+
+      updateTags(project, options);
 
       updateProjectTargets(project, projectName, options);
 

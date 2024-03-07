@@ -1,0 +1,10 @@
+include:
+  - local: .gitlab/ci/utilities/nx.yaml
+  - local: .gitlab/ci/jobs/component-test.yaml
+
+variables:
+  NODE_VERSION: "20.9.0"
+  HUSKY: "0"
+
+stages:
+  - run

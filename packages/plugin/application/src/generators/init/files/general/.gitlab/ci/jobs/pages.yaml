@@ -1,13 +1,36 @@
 pages:
-  image: registry.gitlab.com/rxap/gitlab-ci/apindex:$RXAP_CI_CONFIG_REF
-  stage: deploy
+  image: registry.gitlab.com/rxap/gitlab-ci/apindex:latest
+  stage: .post
   needs:
-    - build
-    - build-storybook
-  script:
-    - mkdir -p "public/${CI_COMMIT_REF_SLUG}"
-    - cp -r dist/* "public/${CI_COMMIT_REF_SLUG}/"
-    - apindex public
+    - job: coverage-report
+      optional: true
+    - job: writerside
+      optional: true
+  script: |
+    if [ ! -d public ]; then
+      echo "No public directory found, create a new one"
+    fi
+
+    output="public/${CI_COMMIT_REF_SLUG}"
+    mkdir -p "$output"
+
+    echo "Folder structure of the public directory:"
+    ls -l public
+
+    if [ -d coverage ]; then
+      echo "Copy coverage report to $output"
+      # it is not required to create the folder coverage. With the cp command the folder coverage will be created
+      cp -r coverage "$output/"
+    fi
+
+    if [ -d dist/writerside ]; then
+      echo "Copy Writerside help to $output"
+      mkdir -p "$output/docs"
+      cp -r dist/writerside/* "$output/docs/"
+    fi
+
+    echo "generate index.html"
+    apindex public
   environment:
     name: "pages/$CI_COMMIT_REF_NAME"
     deployment_tier: other
@@ -20,5 +43,14 @@ pages:
     paths:
       - public
   artifacts:
+    expire_in: 1 week
     paths:
       - public
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+      when: on_success
+    - if: '$CI_COMMIT_BRANCH =~ /^([0-9]+\.[0-9]+\.x|[0-9]+\.x)$/'
+      when: on_success
+    - when: manual

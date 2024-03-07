@@ -154,6 +154,7 @@
     "sentry",
     "swagger",
     "health-indicator",
-    "express"
+    "express",
+    "application"
   ]
 }

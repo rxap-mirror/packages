@@ -96,7 +96,9 @@
       },
       "dependsOn": [
         {
-          "projects": [ "node-local-storage" ],
+          "projects": [
+            "node-local-storage"
+          ],
           "target": "test"
         }
       ],
@@ -115,6 +117,7 @@
     "sentry",
     "swagger",
     "health-indicator",
-    "express"
+    "express",
+    "application"
   ]
 }

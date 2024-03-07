@@ -41,7 +41,7 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "service-app-angular-accordion:build"
+        "buildTarget": "service-app-angular-accordion:build:development"
       },
       "configurations": {
         "development": {
@@ -119,7 +119,17 @@
         ]
       }
     },
-    "swagger-generate": {}
+    "swagger-generate": {},
+    "docker": {
+      "options": {
+        "imageSuffix": "/service/app-angular-accordion",
+        "dockerfile": "shared/nestjs/Dockerfile",
+        "buildArgList": [
+          "REGEX:app/app.config.ts:validationSchema\\['GLOBAL_API_PREFIX'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*'(.+)',?\\s*\\);"
+        ]
+      }
+    },
+    "docker-save": {}
   },
   "tags": [
     "nest",
@@ -128,6 +138,7 @@
     "sentry",
     "swagger",
     "health-indicator",
-    "express"
+    "express",
+    "application"
   ]
 }

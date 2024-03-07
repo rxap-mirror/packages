@@ -1,0 +1,23 @@
+component-test:
+  image:
+    name: cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+    entrypoint: [ "" ]
+  extends: .run
+  stage: run
+  tags:
+    - e2-standard-2
+  variables:
+    TARGET: "${PROJECT}:component-test"
+    ADDITIONAL_TARGET_OPTIONS: "--browser ${BROWSER}"
+  allow_failure: true
+  environment:
+    action: prepare
+    name: $ENVIRONMENT_NAME
+  artifacts:
+    expire_in: 2 hrs
+    exclude:
+      - 'node_modules/**'
+    paths:
+      - '**/coverage/coverage-final.json'
+  parallel:
+    matrix: []

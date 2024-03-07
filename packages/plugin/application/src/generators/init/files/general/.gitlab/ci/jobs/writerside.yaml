@@ -1,0 +1,29 @@
+writerside:
+  stage: run
+  image: registry.jetbrains.team/p/writerside/builder/writerside-builder:233.14272
+  allow_failure: true
+  script:
+    - set -e
+    - export DISPLAY=:99
+    - Xvfb :99 &
+    - export INSTANCE="Writerside/${INSTANCE_ID,,}"
+    - export ARTIFACT="webHelp${INSTANCE_ID^^}2-all.zip"
+    - export DIST_DIR="$CI_PROJECT_DIR/dist/writerside/$INSTANCE_ID"
+    - echo "Run helpbuilderinspect for instance >$INSTANCE< to generate artifact file >$ARTIFACT<"
+    - /opt/builder/bin/idea.sh helpbuilderinspect -source-dir "$CI_PROJECT_DIR" -product $INSTANCE --runner gitlab -output-dir "$DIST_DIR" || true
+    - echo "Test existing of >$DIST_DIR/$ARTIFACT< artifact"
+    - test -e $DIST_DIR/$ARTIFACT
+    - cd $DIST_DIR
+    - echo "Unzip >$ARTIFACT<"
+    - unzip -O UTF-8 $ARTIFACT
+  artifacts:
+    paths:
+      - dist
+    expire_in: 2 hrs
+  parallel:
+    matrix:
+      - INSTANCE_ID: "ug"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - when: manual
