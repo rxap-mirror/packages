@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.1-dev.3...@rxap/data-grid@16.0.1-dev.4) (2024-03-07)
+
+### Bug Fixes
+
+- cleanup ([a08a303](https://gitlab.com/rxap/packages/commit/a08a3039e02efe7aaabe45d645ea0b69d35595d5))
+
 ## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.1-dev.2...@rxap/data-grid@16.0.1-dev.3) (2024-03-07)
 
 ### Bug Fixes
