@@ -1,4 +1,9 @@
 import {
+  NormalizedUpstreamOptions,
+  NormalizeUpstreamOptions,
+  UpstreamOptions,
+} from '@rxap/ts-morph';
+import {
   CoerceArrayItems,
   ControlOption,
   Normalized,
@@ -19,6 +24,7 @@ export interface SelectFormControl extends FormFieldFormControl {
   backend?: BackendTypes;
   multiple?: boolean;
   formField?: FormField;
+  upstream?: UpstreamOptions;
 }
 
 export interface NormalizedSelectFormControl
@@ -27,6 +33,7 @@ export interface NormalizedSelectFormControl
   kind: FormControlKinds.SELECT;
   optionList: ReadonlyArray<ControlOption> | null;
   backend: BackendTypes;
+  upstream: NormalizedUpstreamOptions | null;
 }
 
 export function IsNormalizedSelectFormControl(template: NormalizedBaseFormControl): template is NormalizedSelectFormControl {
@@ -54,5 +61,6 @@ export function NormalizeSelectFormControl(
     optionList: control.optionList && control.optionList.length ? Object.freeze(control.optionList) : null,
     backend: control.backend ?? BackendTypes.NONE,
     multiple,
+    upstream: NormalizeUpstreamOptions(control.upstream),
   });
 }
