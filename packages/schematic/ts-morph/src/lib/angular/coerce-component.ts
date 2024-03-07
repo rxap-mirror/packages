@@ -22,6 +22,14 @@ import {
   GetProjectPrefix,
 } from '@rxap/schematics-utilities';
 import { CoerceComponent } from '@rxap/ts-morph';
+import {
+  camelize,
+  capitalize,
+  dasherize,
+  decamelize,
+  underscore,
+} from '@rxap/utilities';
+import Handlebars from 'handlebars';
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -34,7 +42,6 @@ import {
 } from '../ts-morph-transform';
 import { BuildAngularBasePath } from './build-angular-base-path';
 import { HasComponent } from './has-component';
-import Handlebars from 'handlebars';
 import 'colors';
 
 export interface TemplateOptions {
@@ -76,6 +83,14 @@ function applyContentHandlebars<T>(options: T): FileOperator {
         return index === 0 ? line : indent + line;
       }).join('\n'));
     });
+
+    Handlebars.registerHelper('dasherize', value => dasherize(value));
+    Handlebars.registerHelper('classify', value => classify(value));
+    Handlebars.registerHelper('decamelize', value => decamelize(value));
+    Handlebars.registerHelper('camelize', value => camelize(value));
+    Handlebars.registerHelper('underscore', value => underscore(value));
+    Handlebars.registerHelper('capitalize', value => capitalize(value));
+
 
     try {
       const template = Handlebars.compile(content.toString());
