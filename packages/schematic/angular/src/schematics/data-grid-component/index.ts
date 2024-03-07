@@ -49,7 +49,6 @@ import {
   PrintAngularOptions,
 } from '../../lib/angular-options';
 import { BackendTypes } from '../../lib/backend-types';
-import { DataGridMode } from '../../lib/data-grid-mode';
 import {
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
@@ -111,6 +110,7 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
     collection,
     name,
     inCard,
+    isForm
   } = normalizedOptions;
 
   const templateOptions = {
@@ -166,19 +166,15 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
           CoerceComponentInput(classDeclaration, 'data', 'any', { isRequired: true });
         }
 
-        switch (mode) {
-          case DataGridMode.Form:
-            CoerceComponentImport(classDeclaration, { name: 'RxapFormsModule', moduleSpecifier: '@rxap/forms' });
-            CoerceComponentImport(classDeclaration, { name: 'ReactiveFormsModule', moduleSpecifier: '@angular/forms' });
-            AddComponentProvider(sourceFile, 'FormProviders');
-            AddComponentProvider(sourceFile, 'FormComponentProviders');
-            CoerceImports(sourceFile, {
-              namedImports: [ 'FormProviders', 'FormComponentProviders' ],
-              moduleSpecifier: './form.providers',
-            });
-            break;
-          case DataGridMode.Plain:
-            break;
+        if (isForm) {
+          CoerceComponentImport(classDeclaration, { name: 'RxapFormsModule', moduleSpecifier: '@rxap/forms' });
+          CoerceComponentImport(classDeclaration, { name: 'ReactiveFormsModule', moduleSpecifier: '@angular/forms' });
+          AddComponentProvider(sourceFile, 'FormProviders');
+          AddComponentProvider(sourceFile, 'FormComponentProviders');
+          CoerceImports(sourceFile, {
+            namedImports: [ 'FormProviders', 'FormComponentProviders' ],
+            moduleSpecifier: './form.providers',
+          });
         }
 
       },
@@ -324,13 +320,10 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
 
 function nestjsModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
 
-  const { mode } = normalizedOptions;
+  const { isForm } = normalizedOptions;
 
-  switch (mode) {
-
-    case DataGridMode.Form:
-      return nestjsFormModeRule(normalizedOptions);
-
+  if (isForm) {
+    return nestjsFormModeRule(normalizedOptions);
   }
 
   return noop();
@@ -555,13 +548,10 @@ function formModeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
 
 function modeRule(normalizedOptions: NormalizedDataGridComponentOptions) {
 
-  const { mode } = normalizedOptions;
+  const { isForm, itemList } = normalizedOptions;
 
-  switch (mode) {
-
-    case DataGridMode.Form:
-      return formModeRule(normalizedOptions);
-
+  if (isForm) {
+    return formModeRule(normalizedOptions);
   }
 
   return noop();

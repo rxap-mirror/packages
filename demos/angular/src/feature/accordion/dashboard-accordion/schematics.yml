@@ -55,12 +55,11 @@ options:
                 kind: open-api
                 operationId: dashboard-controller-getByUuid@legacy
               dataGrid:
-                mode: form
                 itemList:
-                  - name: name
-                    hasCellDef: true
-                    formControl:
-                      kind: input
+#                  - name: name
+#                    hasCellDef: true
+#                    formControl:
+#                      kind: input
                   - name: location
                     pipeList:
                       - name: company
@@ -69,7 +68,8 @@ options:
                       - async
                       - getFromObject:name
                     formControl:
-                      kind: table-select
+                      kind: autocomplete-table-select
+                      backend: nestjs
                       toValue:
                         property:
                           name: uuid
@@ -95,118 +95,121 @@ options:
                           filter:
                             eq: ':'
                             join: ';'
-                  - name: link
-                    kind: link
-                    target: _blank
-                    formControl:
-                      kind: input
-                      inputType: url
-                  - name: company
-                    type: string
-                    isReadonly: true
-                    pipeList:
-                      - name: company
-                        namedImport: CompanyPipe
-                        moduleSpecifier: "@digitaix/eurogard-pipes"
-                      - async
-                      - "getFromObject:'name'"
-                  - name: dashboardType
-                    header: Typ
-                    type: number
-                    isReadonly: true
-                    pipeList:
-                      - name: toDashboardTypesEnumValue
-                        namedImport: ToDashboardTypesEnumValuePipe
-                        moduleSpecifier: enum
-                      - async
-        case:
-          - test: 2
-            itemList:
-              - kind: data-grid
-                name: cloud-dashboard
-                title: Allgemeine Informationen
-                propertyList:
-                  - name: name
-                    type: string
-                    source: "name!"
-                  - name: company
-                    source: "company?.uuid!"
-                    type: string
-                  - name: dashboardType
-                    source: "dashboardType!"
-                    type: number
-                upstream:
-                  kind: open-api
-                  operationId: dashboard-controller-getByUuid@legacy
-                dataGrid:
-                  mode: form
-                  itemList:
-                    - name: name
-                      hasCellDef: true
-                      formControl:
-                        kind: input
-                    - name: company
-                      type: string
-                      isReadonly: true
-                      pipeList:
-                        - name: company
-                          namedImport: CompanyPipe
-                          moduleSpecifier: "@digitaix/eurogard-pipes"
-                        - async
-                        - "getFromObject:'name'"
-                    - name: dashboardType
-                      header: Typ
-                      type: number
-                      isReadonly: true
-                      pipeList:
-                        - name: toDashboardTypesEnumValue
-                          namedImport: ToDashboardTypesEnumValuePipe
-                          moduleSpecifier: enum
-                        - async
-    - name: layout
-      kind: switch
-      permission: dashboard.layout.get
-      switch:
-        property:
-          name: dashboardType
-          type: number
-        case:
-          - test: 2
-            upstream:
-              kind: open-api
-              operationId: dashboard-controller-getByUuid@legacy
-            itemList:
-              - name: cloud-dashboard
-                kind: default
-                title: Layouts
-    - name: reference
-      kind: tree-table
-      title: Zuordnung
-      table:
-        propertyList:
-          - name: referenceUuid
-          - name: type
-        columnList:
-          - name: isReferenced
-            cssClass:
-              - "w-[200px]"
-              - "min-w-[200px]"
-            filterControl:
-              kind: checkbox
-            kind: component
-          - name: name
-            filterControl:
-              kind: input
-            cssClass:
-              - "w-[500px]"
-              - "min-w-[250px]"
-            type: string
-          - name: scopeType
-            cssClass:
-              - "w-[280px]"
-              - "min-w-[280px]"
-            type: number
-            kind: component
-            filterControl:
-              kind: select
-              backend: nestjs
+#                  - name: link
+#                    kind: link
+#                    target: _blank
+#                    formControl:
+#                      kind: input
+#                      inputType: url
+#                  - name: company
+#                    type: string
+#                    isReadonly: true
+#                    pipeList:
+#                      - name: company
+#                        namedImport: CompanyPipe
+#                        moduleSpecifier: "@digitaix/eurogard-pipes"
+#                      - async
+#                      - "getFromObject:'name'"
+#                  - name: dashboardType
+#                    header: Typ
+#                    type: number
+#                    isReadonly: true
+#                    pipeList:
+#                      - name: toDashboardTypesEnumValue
+#                        namedImport: ToDashboardTypesEnumValuePipe
+#                        moduleSpecifier: enum
+#                      - async
+#        case:
+#          - test: 2
+#            itemList:
+#              - kind: data-grid
+#                name: cloud-dashboard
+#                title: Allgemeine Informationen
+#                propertyList:
+#                  - name: name
+#                    type: string
+#                    source: "name!"
+#                  - name: company
+#                    source: "company?.uuid!"
+#                    type: string
+#                  - name: dashboardType
+#                    source: "dashboardType!"
+#                    type: number
+#                upstream:
+#                  kind: open-api
+#                  operationId: dashboard-controller-getByUuid@legacy
+#                dataGrid:
+#                  itemList:
+#                    - name: name
+#                      hasCellDef: true
+#                      formControl:
+#                        kind: input
+#                    - name: company
+#                      type: string
+#                      isReadonly: true
+#                      pipeList:
+#                        - name: company
+#                          namedImport: CompanyPipe
+#                          moduleSpecifier: "@digitaix/eurogard-pipes"
+#                        - async
+#                        - "getFromObject:'name'"
+#                    - name: dashboardType
+#                      header: Typ
+#                      type: number
+#                      isReadonly: true
+#                      pipeList:
+#                        - name: toDashboardTypesEnumValue
+#                          namedImport: ToDashboardTypesEnumValuePipe
+#                          moduleSpecifier: enum
+#                        - async
+#    - name: layout
+#      kind: switch
+#      permission: dashboard.layout.get
+#      switch:
+#        property:
+#          name: dashboardType
+#          type: number
+#        case:
+#          - test: 2
+#            itemList:
+#              - name: cloud-dashboard
+#                upstream:
+#                  kind: open-api
+#                  operationId: dashboard-controller-getByUuid@legacy
+#                kind: default
+#                title: Layouts
+#                propertyList:
+#                  - name: layoutList
+#                    isArray: true
+#                    source: "layoutList!"
+#    - name: reference
+#      kind: tree-table
+#      title: Zuordnung
+#      table:
+#        propertyList:
+#          - name: referenceUuid
+#          - name: type
+#        columnList:
+#          - name: isReferenced
+#            cssClass:
+#              - "w-[200px]"
+#              - "min-w-[200px]"
+#            filterControl:
+#              kind: checkbox
+#            kind: component
+#          - name: name
+#            filterControl:
+#              kind: input
+#            cssClass:
+#              - "w-[500px]"
+#              - "min-w-[250px]"
+#            type: string
+#          - name: scopeType
+#            cssClass:
+#              - "w-[280px]"
+#              - "min-w-[280px]"
+#            type: number
+#            kind: component
+#            filterControl:
+#              kind: select
+#              backend: nestjs

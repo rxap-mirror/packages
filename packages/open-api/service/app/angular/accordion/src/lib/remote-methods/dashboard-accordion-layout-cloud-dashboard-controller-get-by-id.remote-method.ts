@@ -32,11 +32,15 @@ import { DashboardAccordionLayoutCloudDashboardControllerGetByIdResponse } from 
           "schema": {
             "type": "object",
             "properties": {
+              "layoutList": {
+                "type": "unknown"
+              },
               "uuid": {
                 "type": "string"
               }
             },
             "required": [
+              "layoutList",
               "uuid"
             ]
           }

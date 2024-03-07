@@ -14,9 +14,9 @@ import {
   FilterQuery,
   FilterQueryPipe,
 } from '@rxap/nest-utilities';
+import { DashboardAccordionGeneralInformationDashboardLocationControlOptionsDto } from './dtos/dashboard-accordion-general-information-dashboard-location-control-options.dto';
 import { DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-page.dto';
 import { DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-row.dto';
-import { DashboardAccordionGeneralInformationDashboardLocationTableSelectDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select.dto';
 import { DashboardAccordionGeneralInformationDashboardSubmitDto } from './dtos/dashboard-accordion-general-information-dashboard-submit.dto';
 import { DashboardAccordionGeneralInformationDashboardDto } from './dtos/dashboard-accordion-general-information-dashboard.dto';
 
@@ -26,7 +26,7 @@ interface CompanyGuiControllerGetByFilterResponse {
 
 @Controller('dashboard-accordion/:uuid/general-information-dashboard')
 export class DashboardAccordionGeneralInformationDashboardController {
-  private readonly companyGuiControllerGetByFilterCommand?: any;
+  private readonly companyGuiControllerGetByFilterCommand!: any;
 
   public async getPageData(sortBy: string, sortDirection: string, pageSize: number, pageIndex: number, filter: FilterQuery[]): Promise<{
       list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>,
@@ -50,8 +50,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
   private toRowDto(item: CompanyGuiControllerGetByFilterResponse['entities'][number], index: number, pageIndex: number, pageSize: number, list: Array<CompanyGuiControllerGetByFilterResponse['entities'][number]>): DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto {
     return {
       __rowId: item.uuid,
-
-    name: item.name,
+      name: item.name,
       uuid: item.uuid,
       __value: item.uuid,
       __display: item.name
@@ -102,17 +101,25 @@ export class DashboardAccordionGeneralInformationDashboardController {
   private readonly companyGuiControllerGetByUuidCommand!: any;
 
   @Get('control/location/resolve/:value')
-  public async resolveLocationControlValue(@Param('value') value: string): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectDto> {
+  public async resolveLocationControlValue(@Param('value') value: string): Promise<DashboardAccordionGeneralInformationDashboardLocationControlOptionsDto> {
     const data = await this.companyGuiControllerGetByUuidCommand.execute({ parameters: { uuid: value } });
     return ToDtoInstance(
-    DashboardAccordionGeneralInformationDashboardLocationTableSelectDto,
+    DashboardAccordionGeneralInformationDashboardLocationControlOptionsDto,
     {
       name: data.name,
       uuid: data.uuid,
-      __value: data.uuid,
-      __display: data.name,
-      __rowId: data.uuid
+      value: data.uuid,
+      display: data.name
     },
+    );
+  }
+
+  @Get('control/location/options')
+  public async getLocationControlOptions(): Promise<DashboardAccordionGeneralInformationDashboardLocationControlOptionsDto[]> {
+    const data = await this.companyGuiControllerGetByUuidCommand.execute();
+    return ToDtoInstance(
+    DashboardAccordionGeneralInformationDashboardLocationControlOptionsDto,
+    [],
     );
   }
 

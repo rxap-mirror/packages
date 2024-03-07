@@ -10,7 +10,6 @@ import {
   CoerceFormProviderRule,
   CoerceTableDataSourceRule,
   CoerceTableSelectOperationRule,
-  CoerceTableSelectResolveValueMethodRule,
   EnforceUseFormControlOrderRule,
   OperationIdToClassImportPath,
   OperationIdToClassName,
@@ -23,6 +22,8 @@ import {
 import {
   CoerceDecorator,
   CoerceImports,
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
@@ -114,7 +115,7 @@ function buildOptionsOperationId(normalizedOptions: NormalizedTableSelectFormCon
 }
 
 function buildDtoSuffix({ context, name }: NormalizedTableSelectFormControlOptions) {
-  return joinWithDash([ context, dasherize(name), 'control', 'options' ]);
+  return joinWithDash([ context, dasherize(name), 'table-select' ]);
 }
 
 function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
@@ -160,12 +161,6 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
       nestModule,
     }),
   );
-  const resolveValueName = [ dasherize(name), 'autocomplete-table-select', 'value', 'resolver' ].join('-');
-  const resolveValueMethodName = classify(
-    [ resolveValueName, 'method' ].join('-'),
-  );
-  const resolveValueMethodImportPath = `./methods/${ resolveValueName }.method`;
-  const resolveValueMethodDirectory = join(directory ?? '', 'methods');
 
   return chain([
     CoerceAutocompleteTableSelectValueResolveOperationRule({
@@ -174,34 +169,13 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
       nestModule,
       controllerName,
       upstream,
-      propertyList,
+      propertyList: propertyList.slice(),
       rowValueProperty: toValue.property,
       rowDisplayProperty: toDisplay.property,
       operationName: resolveValueOperationName,
       path: resolveValueOperationPath,
-      dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
+      dtoClassNameSuffix: joinWithDash([ context, dasherize(name), 'control', 'options' ]),
       context,
-    }),
-    CoerceFormProviderRule({
-      project,
-      feature,
-      directory,
-      providerObject: resolveValueMethodName,
-      importStructures: [
-        {
-          namedImports: [ resolveValueMethodName ],
-          moduleSpecifier: resolveValueMethodImportPath,
-        },
-      ],
-    }),
-    CoerceTableSelectResolveValueMethodRule({
-      scope,
-      project,
-      feature,
-      directory: resolveValueMethodDirectory,
-      shared,
-      name: resolveValueName,
-      operationId: resolveValueOperationId,
     }),
     CoerceFormDefinitionControl({
       role,
@@ -231,12 +205,12 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
 
         CoerceDecorator(propertyDeclaration, 'UseAutocompleteResolveMethod').set({
           arguments: [
-            resolveValueMethodName,
+            OperationIdToRemoteMethodClassName(resolveValueOperationId),
           ],
         });
         CoerceImports(sourceFile, {
-          namedImports: [ resolveValueMethodName ],
-          moduleSpecifier: resolveValueMethodImportPath,
+          namedImports: [ OperationIdToRemoteMethodClassName(resolveValueOperationId) ],
+          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(resolveValueOperationId, scope)
         });
         CoerceImports(sourceFile, {
           namedImports: [
@@ -305,12 +279,12 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
       nestModule,
       controllerName,
       upstream,
-      propertyList,
+      propertyList: propertyList.slice(),
       toValueProperty: toValue.property,
       toDisplayProperty: toDisplay.property,
       operationName: optionsOperationName,
       path: optionsOperationPath,
-      dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
+      dtoClassNameSuffix: joinWithDash([ context, dasherize(name), 'control', 'options' ]),
       context,
     }),
     CoerceFormDefinitionControl({
@@ -411,7 +385,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       feature,
       nestModule,
       controllerName,
-      propertyList,
+      propertyList: propertyList.slice(),
       operationName: optionsOperationName,
       path: optionsOperationPath,
       dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),

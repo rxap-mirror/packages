@@ -92,7 +92,7 @@ export function NormalizeDataGridOptions(options: Readonly<DataGridOptions>): Re
     title: options.title ?? null,
     subtitle: options.subtitle ?? null,
     inCard: options.inCard ?? true,
-    isForm: mode === DataGridMode.Form,
+    isForm: mode === DataGridMode.Form || itemList.some(item => item.formControl),
     upstream: NormalizeUpstreamOptions(options.upstream),
     propertyList: NormalizeDataPropertyList(propertyList),
     identifier: NormalizeAccordionIdentifier(options.identifier),

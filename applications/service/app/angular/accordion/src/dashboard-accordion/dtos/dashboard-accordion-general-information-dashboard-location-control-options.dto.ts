@@ -4,22 +4,13 @@ import {
   IsUUID,
 } from 'class-validator';
 
-export class DashboardAccordionGeneralInformationDashboardLocationTableSelectDto {
+export class DashboardAccordionGeneralInformationDashboardLocationControlOptionsDto {
   @Expose()
   @IsString()
   name!: string;
   @Expose()
   @IsUUID()
   uuid!: string;
-  @Expose()
-  @IsString()
-  __value!: string;
-  @Expose()
-  @IsString()
-  __display!: string;
-  @Expose()
-  @IsString()
-  __rowId!: string;
   @Expose()
   @IsString()
   value!: string;

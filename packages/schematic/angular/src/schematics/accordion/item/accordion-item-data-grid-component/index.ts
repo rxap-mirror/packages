@@ -41,7 +41,6 @@ import {
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
 import { NormalizedAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
-import { DataGridMode } from '../../../../lib/data-grid-mode';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
@@ -324,13 +323,10 @@ function dataGridFormModeRule(normalizedOptions: NormalizedAccordionItemDataGrid
 
 function dataGridModeRule(normalizedOptions: NormalizedAccordionItemDataGridComponentOptions) {
 
-  const { dataGrid: { mode } } = normalizedOptions;
+  const { dataGrid: { mode, isForm } } = normalizedOptions;
 
-  switch (mode) {
-
-    case DataGridMode.Form:
-      return dataGridFormModeRule(normalizedOptions);
-
+  if (isForm) {
+    return dataGridFormModeRule(normalizedOptions);
   }
 
   return noop();

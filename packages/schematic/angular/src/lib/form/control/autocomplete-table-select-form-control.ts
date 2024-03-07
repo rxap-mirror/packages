@@ -19,7 +19,9 @@ import {
 
 export type AutocompleteTableSelectFormControl = TableSelectFormControl
 
-export type NormalizedAutocompleteTableSelectFormControl = NormalizedTableSelectFormControl
+export interface NormalizedAutocompleteTableSelectFormControl extends Omit<NormalizedTableSelectFormControl, 'kind'> {
+  kind: FormControlKinds.AUTOCOMPLETE_TABLE_SELECT;
+}
 
 export function IsNormalizedAutocompleteTableSelectFormControl(template: NormalizedBaseFormControl): template is NormalizedAutocompleteTableSelectFormControl {
   return template.kind === FormControlKinds.AUTOCOMPLETE_TABLE_SELECT;
@@ -63,7 +65,7 @@ export function NormalizeAutocompleteTableSelectFormControl(
     ...NormalizeFormFieldFormControl(control, importList),
     identifier,
     resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
-    kind: FormControlKinds.TABLE_SELECT,
+    kind: FormControlKinds.AUTOCOMPLETE_TABLE_SELECT,
     backend: control.backend ?? BackendTypes.NONE,
     title: control.title ?? null,
     columnList,

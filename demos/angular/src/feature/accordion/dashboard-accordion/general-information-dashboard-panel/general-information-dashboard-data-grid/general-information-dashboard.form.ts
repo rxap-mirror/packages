@@ -46,4 +46,4 @@ export class GeneralInformationDashboardForm implements FormType<IGeneralInforma
   public readonly link!: RxapFormControl<string>;
 }
 
-export type IGeneralInformationDashboardForm = Partial<Omit<DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse, 'company' | 'dashboardType' | 'uuid'>> & DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRequestBody;
+export type IGeneralInformationDashboardForm = Partial<Omit<DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse, 'uuid'>> & DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRequestBody;

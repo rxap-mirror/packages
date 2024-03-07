@@ -12,7 +12,7 @@ export class DashboardAccordionLayoutCloudDashboardController {
   public async getById(@Param('uuid') uuid: string): Promise<DashboardAccordionLayoutCloudDashboardDto> {
     return ToDtoInstance(
     DashboardAccordionLayoutCloudDashboardDto,
-    { uuid },
+    { uuid } as any,
     );
   }
 }

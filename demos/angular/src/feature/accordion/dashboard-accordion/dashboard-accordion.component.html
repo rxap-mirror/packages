@@ -14,21 +14,6 @@
   <mat-accordion multi [rxapPersistentAccordion]="data.uuid">
     
     <ng-container [ngSwitch]="data.dashboardType">
-      <ng-template [ngSwitchCase]="2">
-      
-      <mat-expansion-panel>
-      
-        <mat-expansion-panel-header>
-          <mat-panel-title i18n>Allgemeine Informationen</mat-panel-title>
-        </mat-expansion-panel-header>
-      
-        <ng-template matExpansionPanelContent>
-          <rxap-general-information-cloud-dashboard-panel></rxap-general-information-cloud-dashboard-panel>
-        </ng-template>
-      
-      </mat-expansion-panel>
-      
-        </ng-template>
       <ng-template ngSwitchDefault>
       
       <mat-expansion-panel>
@@ -45,38 +30,6 @@
       
         </ng-template>
     </ng-container>
-    
-        <ng-template rxapIfHasPermission="dashboard.layout.get">
-    <ng-container [ngSwitch]="data.dashboardType">
-      <ng-template [ngSwitchCase]="2">
-      
-      <mat-expansion-panel>
-      
-        <mat-expansion-panel-header>
-          <mat-panel-title i18n>Layouts</mat-panel-title>
-        </mat-expansion-panel-header>
-      
-        <ng-template matExpansionPanelContent>
-          <rxap-layout-cloud-dashboard-panel></rxap-layout-cloud-dashboard-panel>
-        </ng-template>
-      
-      </mat-expansion-panel>
-      
-        </ng-template>
-    </ng-container>
-    
-    </ng-template>    
-    <mat-expansion-panel>
-    
-      <mat-expansion-panel-header>
-        <mat-panel-title i18n>Zuordnung</mat-panel-title>
-      </mat-expansion-panel-header>
-    
-      <ng-template matExpansionPanelContent>
-        <rxap-reference-panel></rxap-reference-panel>
-      </ng-template>
-    
-    </mat-expansion-panel>
     
       </mat-accordion>
 </div>

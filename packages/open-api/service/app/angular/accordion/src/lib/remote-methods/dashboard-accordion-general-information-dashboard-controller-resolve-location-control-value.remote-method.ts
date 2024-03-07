@@ -38,22 +38,18 @@ import { DashboardAccordionGeneralInformationDashboardControllerResolveLocationC
               "uuid": {
                 "type": "string"
               },
-              "__value": {
+              "value": {
                 "type": "string"
               },
-              "__display": {
-                "type": "string"
-              },
-              "__rowId": {
+              "display": {
                 "type": "string"
               }
             },
             "required": [
               "name",
               "uuid",
-              "__value",
-              "__display",
-              "__rowId"
+              "value",
+              "display"
             ]
           }
         }

@@ -11,7 +11,7 @@ import { DashboardAccordionLayoutCloudDashboardControllerGetByIdResponse } from 
 @OperationCommand({
     serverId: 'service-app-angular-accordion',
     operationId: 'DashboardAccordionLayoutCloudDashboardController_getById',
-    operation: '{"operationId":"DashboardAccordionLayoutCloudDashboardController_getById","parameters":[{"name":"uuid","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"uuid":{"type":"string"}},"required":["uuid"]}}}}},"method":"get","path":"/dashboard-accordion/{uuid}/layout-cloud-dashboard"}'
+    operation: '{"operationId":"DashboardAccordionLayoutCloudDashboardController_getById","parameters":[{"name":"uuid","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"layoutList":{"type":"unknown"},"uuid":{"type":"string"}},"required":["layoutList","uuid"]}}}}},"method":"get","path":"/dashboard-accordion/{uuid}/layout-cloud-dashboard"}'
   })
 export class DashboardAccordionLayoutCloudDashboardControllerGetByIdCommand extends OpenApiOperationCommand<DashboardAccordionLayoutCloudDashboardControllerGetByIdResponse, DashboardAccordionLayoutCloudDashboardControllerGetByIdParameter, void> {
   public override execute(parameters: OpenApiOperationCommandParameters<DashboardAccordionLayoutCloudDashboardControllerGetByIdParameter, void>): Promise<DashboardAccordionLayoutCloudDashboardControllerGetByIdResponse> {

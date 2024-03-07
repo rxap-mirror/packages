@@ -60,6 +60,9 @@ function formControlKind(normalizedOptions: NormalizedFormControlOptions): Rule 
     case FormControlKinds.TABLE_SELECT:
       return ExecuteSchematic('table-select-form-control', normalizedOptions);
 
+    case FormControlKinds.AUTOCOMPLETE_TABLE_SELECT:
+      return ExecuteSchematic('autocomplete-table-select-form-control', normalizedOptions);
+
     default:
       return () => console.log(`No schematic for form control kind: ${normalizedOptions.kind}`.yellow);
 
