@@ -2,6 +2,9 @@ import {
   DataProperty,
   NormalizeDataPropertyList,
   NormalizedDataProperty,
+  NormalizedUpstreamOptions,
+  NormalizeUpstreamOptions,
+  UpstreamOptions,
 } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
@@ -53,6 +56,7 @@ export interface MinimumTableOptions {
   cssClass?: CssClass;
   identifier?: AccordionIdentifier;
   hasPaginator?: boolean;
+  upstream?: UpstreamOptions;
 }
 
 export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
@@ -64,6 +68,7 @@ export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
   modifiers: Array<MODIFIER>;
   cssClass: NormalizedCssClass;
   identifier: NormalizedAccordionIdentifier | null;
+  upstream: NormalizedUpstreamOptions | null;
 }
 
 export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
@@ -99,5 +104,6 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     cssClass: NormalizeCssClass(options.cssClass),
     identifier,
     hasPaginator: options.hasPaginator ?? true,
+    upstream: NormalizeUpstreamOptions(options.upstream),
   });
 }
