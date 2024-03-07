@@ -2,7 +2,7 @@
       <form #form="rxapForm" rxapForm><rxap-data-grid [dataSource]="dataGridDataSource" mode="form">
           <ng-container rxapDataGridRowDef="name">
             <ng-template rxapDataGridEditCellDef>
-              
+
               <mat-form-field>
                 <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
                   <mat-icon>clear</mat-icon>
@@ -13,16 +13,16 @@
                     type="text"
                     />
               </mat-form-field>
-              
+
             </ng-template>
             <ng-template let-value rxapDataGridCellDef>
               {{ value }}
             </ng-template>
-            
+
           </ng-container>
           <ng-container rxapDataGridRowDef="location">
             <ng-template rxapDataGridEditCellDef>
-              
+
               <mat-form-field eurogardTableSelectControl>
                 <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
                   <mat-icon>clear</mat-icon>
@@ -41,16 +41,16 @@
                     <mat-icon svgIcon="table-eye"></mat-icon>
                   </button>
               </mat-form-field>
-              
+
             </ng-template>
             <ng-template let-value rxapDataGridCellDef>
-              {{ value | company | async | getFromObject:'name' }}
+              {{ value | async | getFromObject:'name' }}
             </ng-template>
-            
+
           </ng-container>
           <ng-container rxapDataGridRowDef="link">
             <ng-template rxapDataGridEditCellDef>
-              
+
               <mat-form-field>
                 <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
                   <mat-icon>clear</mat-icon>
@@ -61,7 +61,7 @@
                     type="url"
                     />
               </mat-form-field>
-              
+
             </ng-template>
             <ng-template let-value rxapDataGridCellDef>
               <a [href]="value" class="link" mat-flat-button target="_blank">
@@ -71,20 +71,20 @@
                 </span>
               </a>
             </ng-template>
-            
+
           </ng-container>
           <ng-container rxapDataGridRowDef="company">
             <ng-template let-value rxapDataGridCellDef>
-              {{ value | company | async | getFromObject:'name' }}
+              {{ value | async | getFromObject:'name' }}
             </ng-template>
-            
+
           </ng-container>
           <ng-container rxapDataGridRowDef="dashboardType">
             <th *rxapDataGridHeaderCellDef class="whitespace-nowrap" i18n>Typ</th>
             <ng-template let-value rxapDataGridCellDef>
-              {{ value | toDashboardTypesEnumValue | async }}
+              {{ value | async }}
             </ng-template>
-            
+
           </ng-container>
         </rxap-data-grid>
       </form>

@@ -14,7 +14,6 @@ import {
   FilterQuery,
   FilterQueryPipe,
 } from '@rxap/nest-utilities';
-import { CompanyGuiControllerGetByFilterResponse } from 'open-api-legacy/responses/company-gui-controller-get-by-filter.response';
 import { DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-page.dto';
 import { DashboardAccordionGeneralInformationDashboardLocationTableSelectRowDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select-row.dto';
 import { DashboardAccordionGeneralInformationDashboardLocationTableSelectDto } from './dtos/dashboard-accordion-general-information-dashboard-location-table-select.dto';
@@ -92,7 +91,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
         required: false,
         isArray: true
       })
-  public async getLocationControlTableSelectPage(@Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto> {
+  public async getLocationControlTableSelectPage(@Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto> {
     const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);
     return ToDtoInstance(
     DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto,
@@ -136,7 +135,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
   }
 
   @Post()
-  public async submitById(@Param('uuid') uuid: string, @Body() body: DashboardAccordionGeneralInformationDashboardSubmitDto): Promise<void> {
+  public async submitById(@Body() body: DashboardAccordionGeneralInformationDashboardSubmitDto, @Param('uuid') uuid: string): Promise<void> {
     throw new NotImplementedException();
   }
 }

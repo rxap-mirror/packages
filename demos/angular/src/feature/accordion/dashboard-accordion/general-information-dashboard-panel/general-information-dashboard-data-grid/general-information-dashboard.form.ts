@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
 import {
-  UseTableSelectColumns,
-  UseTableSelectDataSource,
-  UseTableSelectMethod,
-  UseTableSelectToDisplay,
-  UseTableSelectToValue,
-} from '@digitaix/eurogard-table-select';
-import {
   FormType,
   RxapForm,
   RxapFormControl,
@@ -14,6 +7,13 @@ import {
   RxapValidators,
   UseFormControl,
 } from '@rxap/forms';
+import {
+  UseTableSelectColumns,
+  UseTableSelectDataSource,
+  UseTableSelectMethod,
+  UseTableSelectToDisplay,
+  UseTableSelectToValue,
+} from '@rxap/ngx-material-table-select';
 import { DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRequestBody } from 'open-api-service-app-angular-accordion/request-bodies/dashboard-accordion-general-information-dashboard-controller-submit-by-id.request-body';
 import { DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-controller-get-by-id.response';
 import { DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-controller-get-location-control-table-select-page.response';

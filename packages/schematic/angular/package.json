@@ -67,5 +67,6 @@
     "directory": "packages/schematic/angular"
   },
   "schematics": "./collection.json",
-  "type": "commonjs"
+  "type": "commonjs",
+  "gitHead": "8a9f9062e47e16e62c2af0a3b848ad8b1900cad2"
 }
