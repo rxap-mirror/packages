@@ -77,8 +77,12 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
     name = name.slice(6, -1);
   }
   type ??= defaultType;
-  if (type === 'unknown') {
-    type = guessType(name);
+  if (type === 'unknown' || (typeof type === 'object' && type.name === 'unknown')) {
+    if (defaultType === 'unknown') {
+      type = guessType(name);
+    } else {
+      type = defaultType;
+    }
   }
   name = name.replace(/\.\?/g, '.').split('.').join('.?');
   return Object.freeze({
