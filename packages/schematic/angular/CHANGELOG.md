@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.30...@rxap/schematic-angular@16.2.0-dev.31) (2024-03-07)
+
+### Bug Fixes
+
+- add missing component selector suffix ([2634b68](https://gitlab.com/rxap/packages/commit/2634b6813fe0d30348d9067a2056b8eeb1e48b11))
+
 # [16.2.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.29...@rxap/schematic-angular@16.2.0-dev.30) (2024-03-07)
 
 ### Bug Fixes
