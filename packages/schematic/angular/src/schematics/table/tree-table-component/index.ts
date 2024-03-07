@@ -33,6 +33,7 @@ import { BackendTypes } from '../../../lib/backend-types';
 import { CoerceTreeTableComponentRule } from '../../../lib/coerce-tree-table-component';
 import {
   LoadCssClassHandlebarsTemplate,
+  LoadMatColumnDefHandlebarsTemplate,
   LoadMatFormFieldHandlebarsTemplate,
   LoadPipeHandlebarsTemplate,
 } from '../../../lib/load-handlebars-template';
@@ -124,6 +125,7 @@ function componentRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
           matFormField: LoadMatFormFieldHandlebarsTemplate(),
           pipe: LoadPipeHandlebarsTemplate(),
           cssClass: LoadCssClassHandlebarsTemplate(),
+          matColumnDef: LoadMatColumnDefHandlebarsTemplate(),
         }
       },
       tsMorphTransform: (project, [ sourceFile ]) => {

@@ -26,6 +26,12 @@ export function LoadMatFormFieldHandlebarsTemplate(
   return LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'form', 'templates'));
 }
 
+export function LoadMatColumnDefHandlebarsTemplate(
+  template = 'mat-column-def.hbs'
+): Handlebars.TemplateDelegate {
+  return LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'table', 'templates'));
+}
+
 export function LoadPipeHandlebarsTemplate(
   template = 'pipe.hbs'
 ): Handlebars.TemplateDelegate {

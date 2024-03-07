@@ -1,5 +1,8 @@
 import { NormalizedDataProperty } from '@rxap/ts-morph';
-import { Normalized } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  Normalized,
+} from '@rxap/utilities';
 import {
   ExistingMethod,
   NormalizedExistingMethod,
@@ -11,7 +14,11 @@ import {
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
-import { NormalizedTableColumn } from './table-column';
+import {
+  NormalizedTableColumn,
+  TableColumnKind,
+  TableColumnSticky,
+} from './table-column';
 
 export enum TreeTableModifiers {
   OVERWRITE = 'overwrite',
@@ -42,7 +49,33 @@ export function NormalizeTreeTableOptions(
   options: Readonly<TreeTableOptions>,
   name: string,
 ): NormalizedTreeTableOptions {
-  const normalizedOptions = NormalizeMinimumTableOptions(options, name, IsTreeTableModifiers, '-tree-table');
+  const columnList = options.columnList ?? [];
+  CoerceArrayItems(columnList, [{
+    name: 'tree',
+    hidden: true,
+    kind: TableColumnKind.TREE,
+    sticky: TableColumnSticky.START,
+    synthetic: true,
+    importList: [
+      { name: 'TreeControlCellComponent', moduleSpecifier: '@rxap/material-table-system' }
+    ],
+  }], { compareTo: (a, b) => a.name === b.name, unshift: true, merge: true });
+  CoerceArrayItems(columnList, [{
+    name: 'spinner',
+    hidden: true,
+    kind: TableColumnKind.SPINNER,
+    sticky: TableColumnSticky.END,
+    synthetic: true,
+    importList: [
+      { name: 'MatProgressSpinnerModule', moduleSpecifier: '@angular/material/progress-spinner' },
+      { name: 'NgIf', moduleSpecifier: '@angular/common' },
+      { name: 'AsyncPipe', moduleSpecifier: '@angular/common' }
+    ],
+  }], { compareTo: (a, b) => a.name === b.name, merge: true });
+  const normalizedOptions = NormalizeMinimumTableOptions({
+    ...options,
+    columnList,
+  }, name, IsTreeTableModifiers, '-tree-table');
   const tableRootMethod = NormalizeExistingMethod(options.tableRootMethod);
   const tableChildMethod = NormalizeExistingMethod(options.tableRootMethod) ?? tableRootMethod;
   return Object.freeze({

@@ -2,7 +2,6 @@ import {
   AddComponentProvider,
   CoerceComponentOptions,
 } from '@rxap/schematics-ts-morph';
-import { CoerceComponentImport } from '@rxap/ts-morph';
 import { CoerceMinimumTableComponentRule } from './coerce-minimum-table-component';
 import { NormalizedTreeTableOptions } from './tree-table-options';
 
@@ -14,10 +13,7 @@ export function CoerceTreeTableComponentRule(options: Readonly<CoerceTreeTableCo
 
   return CoerceMinimumTableComponentRule({
     ...options,
-    tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
-      CoerceComponentImport(classDeclaration, { name: 'TreeControlCellComponent', moduleSpecifier: '@rxap/material-table-system' });
-      CoerceComponentImport(classDeclaration, { name: 'MatProgressSpinnerModule', moduleSpecifier: '@angular/material/progress-spinner' });
-      CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
+    tsMorphTransform: (project, [sourceFile]) => {
       AddComponentProvider(sourceFile, {
         provide: 'TABLE_DATA_SOURCE',
         useClass: 'TreeTableDataSource',

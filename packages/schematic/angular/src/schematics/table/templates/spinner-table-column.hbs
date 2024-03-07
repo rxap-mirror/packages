@@ -1,0 +1,12 @@
+{{#> matColumnDef column=column}}
+  <th *matHeaderCellDef mat-header-cell></th>
+  <td *matCellDef="let element"
+    mat-cell
+    {{#if column.cssClass}}{{> cssClass cssClass=column.cssClass}}{{/if~}}
+  >
+    <mat-spinner
+      *ngIf="element.__metadata__?.loading$ | async"
+      diameter="15"
+    ></mat-spinner>
+  </td>
+{{/matColumnDef}}

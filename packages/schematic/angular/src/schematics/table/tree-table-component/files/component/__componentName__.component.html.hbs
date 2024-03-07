@@ -46,7 +46,6 @@
           <ng-container i18n>Select</ng-container>
         </rxap-table-column-option>
         {{/if}}
-        <rxap-table-column-option name="tree" hidden></rxap-table-column-option>
         {{#each columnList}}
         <rxap-table-column-option name="{{this.name}}"
           {{~#if this.active}} active{{/if~}}
@@ -56,7 +55,6 @@
           <ng-container i18n>{{this.title}}</ng-container>
         </rxap-table-column-option>
         {{/each}}
-        <rxap-table-column-option name="__spinner__" hidden></rxap-table-column-option>
         {{#if actionList.length}}
         <rxap-table-column-option hidden name="actions">
           <ng-container i18n>Actions</ng-container>
@@ -91,23 +89,6 @@
           {{#if hasColumnWithFilter}}rxap-filter-header-row{{/if~}}
         >
           <!-- region columns -->
-          <ng-container matColumnDef="tree" [sticky]="true">
-            <th *matHeaderCellDef mat-header-cell></th>
-            <td
-              *matCellDef="let element"
-              [rxap-tree-control-cell]="element"
-              mat-cell
-            ></td>
-          </ng-container>
-          <ng-container matColumnDef="__spinner__">
-            <th *matHeaderCellDef mat-header-cell></th>
-            <td *matCellDef="let element" mat-cell>
-              <mat-spinner
-                *ngIf="element.__metadata__?.loading$ | async"
-                diameter="15"
-              ></mat-spinner>
-            </td>
-          </ng-container>
           {{#if selectColumn}}
           <!-- region select column -->
           <ng-container matColumnDef="select" [sticky]="true">
@@ -198,14 +179,8 @@
           <!-- endregion -->
           {{#if hasColumnWithFilter}}
           <!-- region filter columns -->
-          <ng-container matColumnDef="filter_tree" [stickyEnd]="true">
-            <th mat-header-cell *matHeaderCellDef></th>
-          </ng-container>
-          <ng-container matColumnDef="filter___spinner__" [stickyEnd]="true">
-            <th mat-header-cell *matHeaderCellDef></th>
-          </ng-container>
           {{#if selectColumn}}
-          <ng-container matColumnDef="filter_select" sticky>
+          <ng-container matColumnDef="filter_select" [sticky]="true">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
           {{/if}}
@@ -215,13 +190,13 @@
           </ng-container>
           {{/if}}
           {{#each columnList}}
-          <ng-container matColumnDef="filter_{{this.name}}">
+          {{#> matColumnDef column=this columnName=this.filterName}}
             <th mat-header-cell *matHeaderCellDef>
               {{#if this.hasFilter}}
               {{ indent (compile this.filterControl.handlebars column=this control=this.filterControl parentControlContainer=true) 14 }}
               {{/if}}
             </th>
-          </ng-container>
+          {{/matColumnDef}}
           {{/each}}
 
           <!-- endregion -->

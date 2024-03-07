@@ -82,7 +82,7 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     throw new Error(`Invalid table modifier for table: ${ componentName } - [ ${ modifiers.join(', ') } ] with function: ${ isModifier.name }`);
   }
   // TODO : map the columnList to a propertyList
-  CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
+  CoerceArrayItems(propertyList, columnList.filter(column => !column.synthetic), (a, b) => a.name === b.name);
   const identifier = NormalizeAccordionIdentifier(options.identifier);
   if (identifier) {
     CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name);

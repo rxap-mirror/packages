@@ -62,10 +62,21 @@ export enum TableColumnKind {
   BOOLEAN = 'boolean',
   COMPONENT = 'component',
   COPY_TO_CLIPBOARD = 'copy-to-clipboard',
+  TREE = 'tree',
+  SPINNER = 'spinner',
 }
 
 export function IsTableColumnKind(value: string): value is TableColumnKind {
   return Object.values(TableColumnKind).includes(value as TableColumnKind);
+}
+
+export enum TableColumnSticky {
+  START = 'start',
+  END = 'end',
+}
+
+export function IsTableColumnSticky(value: string): value is TableColumnSticky {
+  return Object.values(TableColumnSticky).includes(value as TableColumnSticky);
 }
 
 export interface TableColumn extends DataProperty {
@@ -85,6 +96,8 @@ export interface TableColumn extends DataProperty {
   pipeList?: Array<TableColumnPipe | string>;
   importList?: TypeImport[];
   filterControl?: FormControl;
+  sticky?: boolean | TableColumnSticky;
+  synthetic?: boolean;
 }
 
 export type NormalizedTableColumnPipe = NormalizedTypeImport;
@@ -99,6 +112,13 @@ export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableCol
   handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
   filterControl: NormalizedFormControl | null;
   cssClass: NormalizedCssClass;
+  sticky: TableColumnSticky | null;
+  stickyEnd: boolean;
+  stickyStart: boolean;
+  /**
+   * the column name of the filter column matColumnDef
+   */
+  filterName: string;
 }
 
 function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[] {
@@ -272,6 +292,22 @@ export function NormalizeTableColumn(
   const importList = coerceTableColumnImportList(column);
   const type = GuessColumnTypeType(kind, column.type);
   const source = column.source ?? propertyPath;
+  let sticky: TableColumnSticky | null = null;
+  let stickyStart = false;
+  let stickyEnd = false;
+  if (column.sticky) {
+    if (typeof column.sticky !== 'string' || !IsTableColumnSticky(column.sticky)) {
+      sticky = TableColumnSticky.START;
+    } else {
+      sticky = column.sticky;
+    }
+    if (sticky === TableColumnSticky.START) {
+      stickyStart = true;
+    }
+    if (sticky === TableColumnSticky.END) {
+      stickyEnd = true;
+    }
+  }
   if (nowrap) {
     if (!cssClass) {
       cssClass = 'nowrap';
@@ -313,6 +349,11 @@ export function NormalizeTableColumn(
       type,
       source,
     }),
+    synthetic: column.synthetic ?? false,
+    filterName: `filter_${ name }`,
+    sticky,
+    stickyStart,
+    stickyEnd,
     kind,
     modifiers,
     hasFilter,

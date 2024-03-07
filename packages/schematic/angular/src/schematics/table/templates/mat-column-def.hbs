@@ -1,0 +1,3 @@
+<ng-container matColumnDef="{{#if columnName}}{{columnName}}{{/if}}{{#unless columnName}}{{column.name}}{{/unless}}"{{#if column.stickyStart}} [sticky]="true"{{/if}}{{#if column.stickyEnd}} [stickyEnd]="true"{{/if}}>
+  {{> @partial-block }}
+</ng-container>
