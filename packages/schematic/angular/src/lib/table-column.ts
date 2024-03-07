@@ -103,6 +103,7 @@ export interface TableColumn extends DataProperty {
   filterControl?: FormControl;
   sticky?: boolean | TableColumnSticky;
   synthetic?: boolean;
+  sortable?: boolean;
 }
 
 export type NormalizedTableColumnPipe = NormalizedTypeImport;
@@ -393,6 +394,7 @@ export function NormalizeTableColumn(
     importList: NormalizeTypeImportList(importList),
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'table', 'templates')),
     filterControl: normalizedFilterControl,
+    sortable: column.sortable ?? false,
   });
 }
 

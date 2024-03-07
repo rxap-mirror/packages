@@ -30,6 +30,9 @@
     "hasFilter": {
       "type": "boolean"
     },
+    "sortable": {
+      "type": "boolean"
+    },
     "nowrap": {
       "type": "boolean"
     },

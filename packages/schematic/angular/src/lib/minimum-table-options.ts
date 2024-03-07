@@ -57,6 +57,7 @@ export interface MinimumTableOptions {
   identifier?: AccordionIdentifier;
   hasPaginator?: boolean;
   upstream?: UpstreamOptions;
+  sortable?: boolean;
 }
 
 export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
@@ -79,7 +80,9 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
 ): NormalizedMinimumTableOptions<MODIFIER> {
   const componentName = options.componentName ?? CoerceSuffix(name, suffix);
   const actionList = NormalizeTableActionList(options.actionList);
-  const columnList = NormalizeTableColumnList(options.columnList);
+  let sortable = options.sortable ?? true;
+  const columnList = NormalizeTableColumnList(options.columnList.map(column => ({ sortable, ...column })));
+  sortable = columnList.some(column => column.sortable);
   const propertyList = NormalizeDataPropertyList(options.propertyList);
   const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
   const modifiers = options.modifiers ?? [];
@@ -105,5 +108,6 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     identifier,
     hasPaginator: options.hasPaginator ?? true,
     upstream: NormalizeUpstreamOptions(options.upstream),
+    sortable,
   });
 }

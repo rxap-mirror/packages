@@ -44,6 +44,10 @@
     },
     "identifier": {
       "$ref": "#/definitions/accordionIdentifier"
+    },
+    "sortable": {
+      "type": "boolean",
+      "description": "Whether the table is sortable"
     }
   },
   "definitions": {

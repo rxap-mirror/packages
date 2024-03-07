@@ -1,7 +1,7 @@
 {{#> matColumnDef column=column}}
   <th mat-header-cell
       *matHeaderCellDef
-      mat-sort-header
+      {{#if column.sortable}}mat-sort-header{{/if~}}
       {{#if column.headerCssClass}}{{> cssClass cssClass=column.headerCssClass}}{{/if~}}
     ></th>
   <td

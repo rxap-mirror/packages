@@ -61,6 +61,8 @@ export function NormalizeTreeTableOptions(
     kind: TableColumnKind.TREE,
     sticky: TableColumnSticky.START,
     synthetic: true,
+    sortable: false,
+    cssClass: ['w-[100px]'],
     importList: [
       { name: 'TreeControlCellComponent', moduleSpecifier: '@rxap/material-table-system' }
     ],
@@ -69,8 +71,9 @@ export function NormalizeTreeTableOptions(
     name: 'spinner',
     hidden: true,
     kind: TableColumnKind.SPINNER,
-    sticky: TableColumnSticky.END,
     synthetic: true,
+    sortable: false,
+    cssClass: ['w-[15px]', 'min-w-[15px]'],
     importList: [
       { name: 'MatProgressSpinnerModule', moduleSpecifier: '@angular/material/progress-spinner' },
       { name: 'NgIf', moduleSpecifier: '@angular/common' },
@@ -84,6 +87,7 @@ export function NormalizeTreeTableOptions(
   const normalizedOptions = NormalizeMinimumTableOptions({
     ...options,
     hasPaginator: options.hasPaginator ?? false,
+    sortable: options.sortable ?? false,
     columnList,
     propertyList,
   }, name, IsTreeTableModifiers, '-tree-table');

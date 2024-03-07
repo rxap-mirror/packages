@@ -79,7 +79,6 @@
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
         <table
           [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
-          matSort
           mat-table
           #tableDataSourceDirective="rxapTableDataSource"
           rxapTableDataSource
@@ -88,6 +87,7 @@
           {{#if cssClass}}{{> cssClass cssClass=cssClass}}{{/if~}}
           {{#if hasPaginator}}[paginator]="paginator"{{/if~}}
           {{#if hasColumnWithFilter}}rxap-filter-header-row{{/if~}}
+          {{#if sortable}}matSort{{/if~}}
         >
           <!-- region columns -->
           {{#if selectColumn}}
@@ -194,7 +194,6 @@
           {{#> matColumnDef column=this columnName=this.filterName}}
             <th mat-header-cell
               *matHeaderCellDef
-              mat-sort-header
               {{#if column.filterCssClass}}{{> cssClass cssClass=column.filterCssClass}}{{/if~}}
             >
               {{#if this.hasFilter}}
