@@ -43,7 +43,7 @@ export function NormalizeSelectFormControl(
       moduleSpecifier: '@angular/material/select',
     },
     {
-      name: 'InputSelectOptionsDirective',
+      name: 'OptionsFromMethodDirective',
       moduleSpecifier: '@rxap/form-system',
     }
   ], (a, b) => a.name === b.name);

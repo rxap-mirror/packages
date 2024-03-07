@@ -27,7 +27,6 @@ import { join } from 'path';
 import {
   ClassDeclaration,
   SourceFile,
-  Writers,
 } from 'ts-morph';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
@@ -168,7 +167,7 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
     isOptional,
     source,
   } = normalizedOptions;
-  const optionsOperationPath = [ 'options', dasherize(name) ].join('/');
+  const optionsOperationPath = [ 'control', dasherize(name), 'options' ].join('/');
   const optionsOperationName = [ 'get', dasherize(name), 'options' ].join('-');
   const optionsOperationId = buildOperationId(
     normalizedOptions,
@@ -217,7 +216,6 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
         CoerceDecorator(propertyDeclaration, 'UseOptionsMethod').set({
           arguments: [
             OperationIdToClassName(optionsOperationId),
-            Writers.object({ withoutParameters: 'true' }),
           ],
         });
         CoerceImports(sourceFile, {

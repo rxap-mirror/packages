@@ -26,7 +26,7 @@ export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperat
       },
       {
         name: 'value',
-        type: control,
+        type: control.type,
       },
     ],
   } = options;
@@ -35,8 +35,9 @@ export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperat
     propertyList,
     isArray,
     buildOperationDtoClassName: (controllerName, { dtoClassName, dtoClassNameSuffix }) => {
+      const className = responseDtoName ?? joinWithDash([ dtoClassName ?? controllerName, control.name, 'control', 'options' ]);
       return dtoClassName ?? (
-        dtoClassNameSuffix ? CoerceSuffix(responseDtoName ?? joinWithDash([ dtoClassName, 'control', control.name, 'options' ]), dtoClassNameSuffix) : responseDtoName ?? joinWithDash([ dtoClassName, 'control', control.name, 'options' ])
+        dtoClassNameSuffix ? CoerceSuffix(className, dtoClassNameSuffix) : className
       );
     },
   });

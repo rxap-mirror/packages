@@ -36,6 +36,8 @@ export function TableFilterColumnRule(normalizedOptions: NormalizedMinimumTableO
     backend,
     overwrite,
     componentName,
+    controllerName,
+    nestModule,
     name,
   } = normalizedOptions;
   if (columnList.some((c) => c.hasFilter)) {
@@ -47,6 +49,8 @@ export function TableFilterColumnRule(normalizedOptions: NormalizedMinimumTableO
         feature,
         shared,
         directory,
+        controllerName,
+        nestModule,
         backend,
         overwrite,
         controlList: columnList

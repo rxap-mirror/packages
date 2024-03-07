@@ -1,5 +1,5 @@
 {{#> matFormField control=control}}
   <mat-select formControlName="{{control.name}}"{{#if parentControlContainer}} parentControlContainer{{/if}}>
-    <mat-option *rxapInputSelectOptions="let option" [value]="option.value">\{{option.display}}</mat-option>
+    <mat-option *rxapOptionsFromMethod="let option" [value]="option.value">\{{option.display}}</mat-option>
   </mat-select>
 {{/matFormField}}
