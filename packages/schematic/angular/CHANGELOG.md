@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.37...@rxap/schematic-angular@16.2.0-dev.38) (2024-03-07)
+
+### Bug Fixes
+
+- support autocomplete controls ([b97c7d3](https://gitlab.com/rxap/packages/commit/b97c7d34172ad8de62f9440ce95df6db7fa14201))
+- support autocomplete controls ([8d0f488](https://gitlab.com/rxap/packages/commit/8d0f4886d99437a0977a1f7aa88ae368e5ff2c75))
+
 # [16.2.0-dev.37](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.36...@rxap/schematic-angular@16.2.0-dev.37) (2024-03-07)
 
 ### Reverts

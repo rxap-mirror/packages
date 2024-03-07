@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.18...@rxap/schematics-ts-morph@16.1.0-dev.19) (2024-03-07)
+
+### Bug Fixes
+
+- support autocomplete controls ([8d0f488](https://gitlab.com/rxap/packages/commit/8d0f4886d99437a0977a1f7aa88ae368e5ff2c75))
+
 # [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.17...@rxap/schematics-ts-morph@16.1.0-dev.18) (2024-03-07)
 
 ### Bug Fixes
