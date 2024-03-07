@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.34...@rxap/schematic-angular@16.2.0-dev.35) (2024-03-07)
+
+### Bug Fixes
+
+- add missing sortable option ([4ebd39c](https://gitlab.com/rxap/packages/commit/4ebd39c2b06a9796b9c2e714cbf2527c4c849015))
+
 # [16.2.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.33...@rxap/schematic-angular@16.2.0-dev.34) (2024-03-07)
 
 ### Bug Fixes
