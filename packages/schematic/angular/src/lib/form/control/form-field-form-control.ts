@@ -9,6 +9,11 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import {
+  CssClass,
+  NormalizeCssClass,
+  NormalizedCssClass,
+} from '../../css-class';
+import {
   BaseFormControl,
   NormalizeBaseFormControl,
   NormalizedBaseFormControl,
@@ -31,9 +36,12 @@ export interface FormField {
   suffixButton?: FormFieldButton;
   directiveList?: TypeImport[];
   hasClearButton?: boolean;
+  cssClass?: CssClass;
 }
 
-export type NormalizedFormField = Readonly<Normalized<FormField>>;
+export interface NormalizedFormField extends Readonly<Normalized<FormField>> {
+  cssClass: NormalizedCssClass;
+}
 
 export interface NormalizedFormFieldButton extends Readonly<Normalized<FormFieldButton>> {
   directiveList: NormalizedTypeImport[];
@@ -81,6 +89,7 @@ export function NormalizeFormField(
     suffixButton: NormalizeFormFieldButton(formField.suffixButton ?? defaultFormField.suffixButton),
     hasClearButton: formField.hasClearButton ?? defaultFormField.hasClearButton ?? true,
     directiveList: NormalizeTypeImportList(directiveList),
+    cssClass: NormalizeCssClass(formField.cssClass),
   };
   if (normalizedFormField.hasClearButton) {
     normalizedFormField.suffixButton ??= NormalizeFormFieldButton({

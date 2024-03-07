@@ -31,6 +31,8 @@ import {
   NormalizeFormControl,
 } from './form/control/form-control';
 import { FormControlKinds } from './form/control/form-control-kind';
+import { IsNormalizedFormFieldFormControl } from './form/control/form-field-form-control';
+import { IsInputFormControlOptions } from './form/control/input-form-control';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
   NormalizePipeOptionList,
@@ -345,10 +347,19 @@ export function NormalizeTableColumn(
     if (!filterControl.type || filterControl.type === 'unknown' || (typeof filterControl.type === 'object' && filterControl.type.name === 'unknown')) {
       filterControl.type = type ?? 'unknown';
     }
+    if (IsInputFormControlOptions(filterControl)) {
+      filterControl.placeholder ??= 'Enter filter';
+    }
   }
   const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl) : null;
   if (normalizedFilterControl) {
     CoerceArrayItems(importList, normalizedFilterControl.importList, (a, b) => a.name === b.name);
+    if (IsNormalizedFormFieldFormControl(normalizedFilterControl)) {
+      normalizedFilterControl.formField.cssClass ??= [];
+      CoerceArrayItems(normalizedFilterControl.formField.cssClass, [{
+        name: 'w-full'
+      }], (a, b) => a.name === b.name);
+    }
   }
   return Object.freeze({
     ...dataProperty,

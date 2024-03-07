@@ -3,7 +3,10 @@ import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
-import { NormalizedBaseFormControl } from './base-form-control';
+import {
+  BaseFormControl,
+  NormalizedBaseFormControl,
+} from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
 import {
@@ -23,6 +26,10 @@ export interface NormalizedInputFormControl
   extends Omit<Readonly<Normalized<InputFormControl>>, 'type' | 'importList' | 'formField' | 'role'>,
           NormalizedFormFieldFormControl {
   kind: FormControlKinds.INPUT;
+}
+
+export function IsInputFormControlOptions(options: BaseFormControl): options is InputFormControl {
+  return options.kind === FormControlKinds.INPUT;
 }
 
 export function IsNormalizedInputFormControlOptions(template: NormalizedBaseFormControl): template is NormalizedInputFormControl {
