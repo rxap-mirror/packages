@@ -70,10 +70,12 @@ export * from './lib/data-sources/dashboard-accordion-reference-controller-get-r
 // region components
 export * from './lib/components/dashboard-accordion-dto';
 export * from './lib/components/dashboard-accordion-general-information-cloud-dashboard-dto';
+export * from './lib/components/dashboard-accordion-general-information-cloud-dashboard-submit-dto';
 export * from './lib/components/dashboard-accordion-general-information-dashboard-dto';
 export * from './lib/components/dashboard-accordion-general-information-dashboard-location-table-select-dto';
 export * from './lib/components/dashboard-accordion-general-information-dashboard-location-table-select-page-dto';
 export * from './lib/components/dashboard-accordion-general-information-dashboard-location-table-select-row-dto';
+export * from './lib/components/dashboard-accordion-general-information-dashboard-submit-dto';
 export * from './lib/components/dashboard-accordion-layout-cloud-dashboard-dto';
 export * from './lib/components/dashboard-accordion-reference-item-dto';
 export * from './lib/components/filter-query-dto';

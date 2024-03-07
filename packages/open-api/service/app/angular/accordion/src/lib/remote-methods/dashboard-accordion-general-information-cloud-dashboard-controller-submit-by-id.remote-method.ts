@@ -34,22 +34,10 @@ import { DashboardAccordionGeneralInformationCloudDashboardControllerSubmitByIdR
           "properties": {
             "name": {
               "type": "string"
-            },
-            "company": {
-              "type": "string"
-            },
-            "dashboardType": {
-              "type": "number"
-            },
-            "uuid": {
-              "type": "string"
             }
           },
           "required": [
-            "name",
-            "company",
-            "dashboardType",
-            "uuid"
+            "name"
           ]
         }
       }

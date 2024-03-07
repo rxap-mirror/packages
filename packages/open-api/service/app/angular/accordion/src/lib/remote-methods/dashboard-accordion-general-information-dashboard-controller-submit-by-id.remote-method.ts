@@ -40,24 +40,12 @@ import { DashboardAccordionGeneralInformationDashboardControllerSubmitByIdReques
             },
             "link": {
               "type": "string"
-            },
-            "company": {
-              "type": "string"
-            },
-            "dashboardType": {
-              "type": "number"
-            },
-            "uuid": {
-              "type": "string"
             }
           },
           "required": [
             "name",
             "location",
-            "link",
-            "company",
-            "dashboardType",
-            "uuid"
+            "link"
           ]
         }
       }

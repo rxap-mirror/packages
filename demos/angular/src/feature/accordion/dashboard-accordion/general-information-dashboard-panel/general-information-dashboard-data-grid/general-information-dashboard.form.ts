@@ -14,6 +14,7 @@ import {
   UseTableSelectToDisplay,
   UseTableSelectToValue,
 } from '@rxap/ngx-material-table-select';
+import { DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRequestBody } from 'open-api-service-app-angular-accordion/request-bodies/dashboard-accordion-general-information-dashboard-controller-submit-by-id.request-body';
 import { DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-controller-get-by-id.response';
 import { DashboardAccordionGeneralInformationDashboardControllerGetLocationControlTableSelectPageResponse } from 'open-api-service-app-angular-accordion/responses/dashboard-accordion-general-information-dashboard-controller-get-location-control-table-select-page.response';
 import { LocationSelectTableDataSource } from './data-sources/location-select-table.data-source';
@@ -45,4 +46,4 @@ export class GeneralInformationDashboardForm implements FormType<IGeneralInforma
   public readonly link!: RxapFormControl<string>;
 }
 
-export type IGeneralInformationDashboardForm = Omit<DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse, 'company' | 'dashboardType' | 'uuid'>;
+export type IGeneralInformationDashboardForm = Partial<Omit<DashboardAccordionGeneralInformationDashboardControllerGetByIdResponse, 'company' | 'dashboardType' | 'uuid'>> & DashboardAccordionGeneralInformationDashboardControllerSubmitByIdRequestBody;
