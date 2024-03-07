@@ -6,22 +6,11 @@ import {
 import {
   CoerceGetChildrenOperation,
   CoerceGetRootOperation,
-  CoerceParameterDeclaration,
   CoerceTreeTableChildrenProxyRemoteMethodClass,
   CoerceTreeTableRootProxyRemoteMethodClass,
 } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
-import {
-  CoerceClassConstructor,
-  CoerceImports,
-} from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
-import {
-  ClassDeclaration,
-  Project,
-  Scope,
-  SourceFile,
-} from 'ts-morph';
 import {
   NormalizedTreeTableAccordionItem,
   NormalizeTreeTableAccordionItem,
@@ -111,6 +100,7 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
     overwrite,
     backend,
     controllerName,
+    identifier,
   } = normalizedOptions;
 
   const { hasSharedModifier } = GetItemOptions(normalizedOptions);
@@ -121,6 +111,7 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
       'tree-table-component',
       {
         ...table,
+        identifier,
         shared: hasSharedModifier,
         name,
         project,
@@ -135,38 +126,6 @@ function treeTableComponentSchematicRule(normalizedOptions: NormalizedAccordionI
     ),
   ]);
 
-}
-
-function coerceIdentifierParameterResolver({ identifier }: NormalizedAccordionItemTreeTableComponentOptions) {
-  return (
-    project: Project,
-    sourceFile: SourceFile,
-    classDeclaration: ClassDeclaration,
-  ) => {
-    if (identifier?.source === 'route') {
-      CoerceImports(sourceFile, {
-        moduleSpecifier: '@angular/router',
-        namedImports: [ 'ActivatedRoute' ],
-      });
-      const [ constructorDeclaration ] =
-        CoerceClassConstructor(classDeclaration);
-      CoerceParameterDeclaration(
-        constructorDeclaration,
-        'route',
-      ).set({
-        type: 'ActivatedRoute',
-        isReadonly: true,
-        scope: Scope.Private,
-      });
-      return {
-        statements: [
-          `const { ${identifier.property.name} } = this.route.snapshot.params;`,
-          `return { parameters: { ${identifier.property.name} } };`,
-        ],
-      };
-    }
-    return {};
-  };
 }
 
 function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableComponentOptions) {
@@ -217,7 +176,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       directory,
       scope,
       getRootOperationId,
-      tsMorphTransform: coerceIdentifierParameterResolver(normalizedOptions),
+      identifier,
     }),
     () => console.log(`Modify the get children proxy method ...`),
     CoerceTreeTableChildrenProxyRemoteMethodClass({
@@ -227,7 +186,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       directory,
       scope,
       getChildrenOperationId,
-      tsMorphTransform: coerceIdentifierParameterResolver(normalizedOptions),
+      identifier,
     }),
   ]);
 

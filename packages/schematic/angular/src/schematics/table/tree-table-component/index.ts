@@ -182,7 +182,8 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
     overwrite,
     scope,
     controllerName,
-    propertyList
+    propertyList,
+    identifier,
   } = normalizedOptions;
 
   const getRootOperationId = BuildTreeTableGetRootOperationId(normalizedOptions);
@@ -216,6 +217,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
       shared,
       directory,
       getRootOperationId,
+      identifier,
     }),
     () => console.log(`Coerce the tree table children proxy remote method class`),
     CoerceTreeTableChildrenProxyRemoteMethodClass({

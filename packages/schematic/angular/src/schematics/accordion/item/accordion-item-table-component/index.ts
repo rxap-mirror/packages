@@ -88,6 +88,8 @@ function tableComponentSchematicRule(normalizedOptions: NormalizedAccordionItemT
     overwrite,
     backend,
     table,
+    controllerName,
+    identifier
   } = normalizedOptions;
 
   const { hasSharedModifier } = GetItemOptions(normalizedOptions);
@@ -97,21 +99,18 @@ function tableComponentSchematicRule(normalizedOptions: NormalizedAccordionItemT
     ExecuteSchematic(
       'table-component',
       {
+        ...table,
         shared: hasSharedModifier,
         name,
         project,
         feature,
+        controllerName,
         directory: hasSharedModifier ? undefined : directory,
         nestModule: hasSharedModifier ? undefined : nestModule,
         modifiers: [ TableModifiers.WITHOUT_TITLE, ...table?.modifiers ?? [] ],
         overwrite,
         backend,
-        columnList: table?.columnList ?? [],
-        actionList: table?.actionList ?? [],
-        title: table?.title,
-        headerButton: table?.headerButton,
-        tableMethod: table.tableMethod,
-        selectColumn: table.selectColumn,
+        identifier,
       },
     ),
   ]);

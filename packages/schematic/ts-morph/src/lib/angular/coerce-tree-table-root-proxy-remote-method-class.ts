@@ -1,3 +1,5 @@
+import { OperationIdToParameterClassImportPath } from '@rxap/ts-morph';
+import { noop } from '@rxap/utilities';
 import {
   ClassDeclaration,
   Project,
@@ -6,7 +8,6 @@ import {
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
-  OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
 } from '../nest/operation-id-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
@@ -19,22 +20,29 @@ export interface CoerceTreeTableRootProxyRemoteMethodClassOptions
   extends Omit<Omit<Omit<Omit<CoerceProxyRemoteMethodClassOptions, 'name'>, 'sourceType'>, 'targetType'>, 'proxyMethod'> {
   getRootOperationId: string;
   scope?: string | null;
+  hasParameter?: boolean;
 }
 
 export function CoerceTreeTableRootProxyRemoteMethodClass(options: CoerceTreeTableRootProxyRemoteMethodClassOptions) {
-  let {
-    tsMorphTransform,
+  const {
+    tsMorphTransform = noop,
     getRootOperationId,
     scope,
+    identifier
   } = options;
-  tsMorphTransform ??= () => ({});
   return CoerceProxyRemoteMethodClass({
     ...options,
     name: 'tree-table-root',
     sourceType: 'Node<unknown>',
-    targetType: `OpenApiRemoteMethodParameter<void>`,
+    targetType: `OpenApiRemoteMethodParameter<${ identifier ? OperationIdToParameterClassName(getRootOperationId) : 'void' }>`,
     proxyMethod: OperationIdToClassName(getRootOperationId),
     tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {
+      if (identifier) {
+        CoerceImports(sourceFile, {
+          namedImports: [ OperationIdToParameterClassName(getRootOperationId) ],
+          moduleSpecifier: OperationIdToParameterClassImportPath(getRootOperationId, scope),
+        });
+      }
       CoerceImports(sourceFile, {
         namedImports: [ OperationIdToClassName(getRootOperationId) ],
         moduleSpecifier: OperationIdToClassImportPath(getRootOperationId, scope),

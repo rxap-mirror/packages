@@ -5,8 +5,10 @@ import {
 import {
   CoerceClass,
   CoerceClassMethod,
+  CoerceClassProperty,
   CoerceImports,
   CoerceSourceFile,
+  NormalizedIdentifierOptions,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
@@ -14,6 +16,7 @@ import {
   ClassDeclaration,
   MethodDeclarationStructure,
   Project,
+  Scope,
   SourceFile,
   WriterFunction,
 } from 'ts-morph';
@@ -30,6 +33,7 @@ export interface CoerceProxyRemoteMethodClassOptions extends TsMorphAngularProje
   sourceType: string | WriterFunction;
   targetType: string | WriterFunction;
   proxyMethod: string | WriterFunction;
+  identifier?: NormalizedIdentifierOptions | null;
 }
 
 export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodClassOptions) {
@@ -40,6 +44,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
     sourceType,
     targetType,
     proxyMethod,
+    identifier,
   } = options;
   const className = classify(CoerceSuffix(name, 'ProxyMethod'));
   const fileName = CoerceSuffix(name, '-proxy.method.ts');
@@ -75,21 +80,21 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
           statements: [ 'super(method);' ],
         },
       ],
-      extends: w => {
-        w.write('ProxyRemoteMethod<');
-        if (typeof sourceType === 'string') {
-          w.write(sourceType);
-        } else {
-          sourceType(w);
-        }
-        w.write(', ');
-        if (typeof targetType === 'string') {
-          w.write(targetType);
-        } else {
-          targetType(w);
-        }
-        w.write('>');
-      },
+    });
+    classDeclaration.setExtends(w => {
+      w.write('ProxyRemoteMethod<');
+      if (typeof sourceType === 'string') {
+        w.write(sourceType);
+      } else {
+        sourceType(w);
+      }
+      w.write(', ');
+      if (typeof targetType === 'string') {
+        w.write(targetType);
+      } else {
+        targetType(w);
+      }
+      w.write('>');
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@rxap/pattern',
@@ -110,7 +115,27 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
         type: sourceType,
       },
     ];
-    methodStructure.statements ??= [ 'return source as any;' ];
+    if (identifier?.source === 'route' && !methodStructure.statements) {
+      CoerceClassProperty(classDeclaration, 'route', {
+        scope: Scope.Protected,
+        initializer: 'inject(ActivatedRoute)',
+        isReadonly: true,
+      });
+      CoerceImports(sourceFile, {
+        moduleSpecifier: '@angular/router',
+        namedImports: [ 'ActivatedRoute' ],
+      });
+      CoerceImports(sourceFile, {
+        moduleSpecifier: '@angular/core',
+        namedImports: [ 'inject' ],
+      });
+      methodStructure.statements = [
+        `const { ${identifier.property.name} } = this.route.snapshot.params;`,
+        `return { parameters: { ${identifier.property.name} } };`,
+      ];
+    } else {
+      methodStructure.statements ??= [ 'return source as any;' ];
+    }
     methodStructure.returnType ??= w => {
       w.write('Promise<');
       if (typeof targetType ===
