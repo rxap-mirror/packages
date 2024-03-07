@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.1-dev.2...@rxap/material-table-system@16.0.1-dev.3) (2024-03-07)
+
+### Bug Fixes
+
+- only render visible columns ([0fd5c42](https://gitlab.com/rxap/packages/commit/0fd5c42f8486cf89c5d14f8f255d343af22711d4))
+
 ## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.1-dev.1...@rxap/material-table-system@16.0.1-dev.2) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/material-table-system

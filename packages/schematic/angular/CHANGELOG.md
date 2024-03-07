@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.31...@rxap/schematic-angular@16.2.0-dev.32) (2024-03-07)
+
+### Bug Fixes
+
+- add w-full class to form field controls ([7351a97](https://gitlab.com/rxap/packages/commit/7351a977c6900cf0a8275c1c3b475cfbf2d5b6b1))
+
+### Features
+
+- support select form control upstream ([8a9b9d6](https://gitlab.com/rxap/packages/commit/8a9b9d6380eba09744319f6db4b36b0d02d576ba))
+
 # [16.2.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.30...@rxap/schematic-angular@16.2.0-dev.31) (2024-03-07)
 
 ### Bug Fixes
