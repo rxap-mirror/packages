@@ -20,8 +20,8 @@ import {
 import Handlebars from 'handlebars';
 import { join } from 'path';
 import {
+  CoerceCssClass,
   CssClass,
-  CssClassOptions,
   NormalizeCssClass,
   NormalizedCssClass,
 } from './css-class';
@@ -94,6 +94,8 @@ export interface TableColumn extends DataProperty {
   show?: boolean;
   nowrap?: boolean;
   cssClass?: CssClass;
+  headerCssClass?: CssClass;
+  filterCssClass?: CssClass;
   kind?: TableColumnKind;
   template?: string;
   pipeList?: Array<TableColumnPipe | string>;
@@ -114,6 +116,8 @@ export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableCol
   handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
   filterControl: NormalizedFormControl | null;
   cssClass: NormalizedCssClass;
+  headerCssClass: NormalizedCssClass;
+  filterCssClass: NormalizedCssClass;
   sticky: TableColumnSticky | null;
   stickyEnd: boolean;
   stickyStart: boolean;
@@ -291,6 +295,8 @@ export function NormalizeTableColumn(
   const nowrap = modifiers.includes(TableColumnModifier.NOWRAP) || (column.nowrap ?? false);
   const withoutTitle = modifiers.includes(TableColumnModifier.WITHOUT_TITLE) || modifiers.includes(TableColumnModifier.NO_TITLE) || (column.withoutTitle ?? false);
   let cssClass = column.cssClass ?? null;
+  let headerCssClass = column.headerCssClass ?? null;
+  let filterCssClass = column.filterCssClass ?? null;
   const kind = column.kind ?? TableColumnKind.DEFAULT;
   const template = column.template ?? kind + '-table-column.hbs';
   const pipeList = column.pipeList ?? [];
@@ -319,12 +325,13 @@ export function NormalizeTableColumn(
       stickyEnd = true;
     }
   }
+  if (sticky || stickyEnd || stickyStart) {
+    cssClass = CoerceCssClass(cssClass, 'drop-shadow-2xl');
+    headerCssClass = CoerceCssClass(headerCssClass, 'drop-shadow-2xl');
+    filterCssClass = CoerceCssClass(filterCssClass, 'drop-shadow-2xl');
+  }
   if (nowrap) {
-    if (!cssClass) {
-      cssClass = 'nowrap';
-    } else {
-      cssClass += ' nowrap';
-    }
+    cssClass = CoerceCssClass(cssClass, 'nowrap');
   }
   if (!modifiers.every(IsTableColumnModifier)) {
     throw new Error(`Unknown modifier in column ${ name } - [ ${ modifiers.join(', ') } ]`);
@@ -353,29 +360,7 @@ export function NormalizeTableColumn(
     }
     if (IsFormFieldFormControl(filterControl)) {
       filterControl.formField ??= {};
-      filterControl.formField.cssClass ??= [];
-      if (Array.isArray(filterControl.formField.cssClass)) {
-        if (!filterControl.formField.cssClass.some(item => {
-          if (typeof item === 'string') {
-            return item.includes('w-full');
-          } else if (typeof item === 'object') {
-            return item.name === 'w-full';
-          }
-          return false;
-        })) {
-          filterControl.formField.cssClass.push('w-full');
-        }
-      } else if (typeof filterControl.formField.cssClass === 'string') {
-        if (!filterControl.formField.cssClass.includes('w-full')) {
-          filterControl.formField.cssClass += ' w-full';
-        }
-        filterControl.formField.cssClass = filterControl.formField.cssClass.trim();
-      } else if (typeof filterControl.formField.cssClass === 'object') {
-        filterControl.formField.cssClass = [ filterControl.formField.cssClass ];
-        CoerceArrayItems(filterControl.formField.cssClass as CssClassOptions[], [{
-          name: 'w-full'
-        }], (a, b) => a.name === b.name);
-      }
+      filterControl.formField.cssClass = CoerceCssClass(filterControl.formField.cssClass, 'w-full');
     }
   }
   const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl) : null;
@@ -401,6 +386,8 @@ export function NormalizeTableColumn(
     nowrap,
     withoutTitle,
     cssClass: NormalizeCssClass(cssClass),
+    headerCssClass: NormalizeCssClass(headerCssClass),
+    filterCssClass: NormalizeCssClass(filterCssClass),
     pipeList: NormalizePipeOptionList(pipeList),
     template,
     importList: NormalizeTypeImportList(importList),

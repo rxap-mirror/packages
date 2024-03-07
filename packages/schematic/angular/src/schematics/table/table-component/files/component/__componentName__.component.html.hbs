@@ -182,17 +182,21 @@
           <!-- region filter columns -->
           {{#if selectColumn}}
           <ng-container matColumnDef="filter_select" [sticky]="true">
-            <th mat-header-cell *matHeaderCellDef></th>
+            <th mat-header-cell *matHeaderCellDef class="drop-shadow-2xl"></th>
           </ng-container>
           {{/if}}
           {{#if actionList.length}}
           <ng-container matColumnDef="filter_actions" [stickyEnd]="true">
-            <th mat-header-cell *matHeaderCellDef></th>
+            <th mat-header-cell *matHeaderCellDef class="drop-shadow-2xl"></th>
           </ng-container>
           {{/if}}
           {{#each columnList}}
           {{#> matColumnDef column=this columnName=this.filterName}}
-            <th mat-header-cell *matHeaderCellDef>
+            <th mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              {{#if column.filterCssClass}}{{> cssClass cssClass=column.filterCssClass}}{{/if~}}
+            >
               {{#if this.hasFilter}}
               {{ indent (compile this.filterControl.handlebars column=this control=this.filterControl parentControlContainer=true) 14 }}
               {{/if}}
