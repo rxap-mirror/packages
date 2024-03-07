@@ -1,4 +1,10 @@
-import { AsyncPipe, NgClass, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
+import {
+  AsyncPipe,
+  NgClass,
+  NgFor,
+  NgIf,
+  NgTemplateOutlet,
+} from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -19,14 +25,42 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ActivationEnd, Router } from '@angular/router';
-import { FormDirective, RxapFormsModule } from '@rxap/forms';
-import { DataSource, DataSourceViewer } from '@rxap/pattern';
-import { EscapeQuotationMarkPipe, GetFromObjectPipe, ReplacePipe } from '@rxap/pipes';
+import {
+  ActivationEnd,
+  Router,
+} from '@angular/router';
+import {
+  FormDirective,
+  RxapFormsModule,
+} from '@rxap/forms';
+import {
+  DataSource,
+  DataSourceViewer,
+} from '@rxap/pattern';
+import {
+  EscapeQuotationMarkPipe,
+  GetFromObjectPipe,
+  ReplacePipe,
+} from '@rxap/pipes';
 import { ToggleSubject } from '@rxap/rxjs';
 import { clone } from '@rxap/utilities';
-import { BehaviorSubject, combineLatest, debounceTime, EMPTY, merge, Observable, of, Subscription } from 'rxjs';
-import { filter, map, shareReplay, take, tap } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  combineLatest,
+  debounceTime,
+  EMPTY,
+  merge,
+  Observable,
+  of,
+  Subscription,
+} from 'rxjs';
+import {
+  filter,
+  map,
+  shareReplay,
+  take,
+  tap,
+} from 'rxjs/operators';
 import { DataGridRowDefDirective } from './data-grid-row-def.directive';
 import { DataGridValuePipe } from './data-grid-value.pipe';
 import { IsEmptyPipe } from './is-empty.pipe';
@@ -137,8 +171,8 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     }
   }
 
-  public get isFormMode() {
-    return this._mode$.value === DataGridMode.FORM;
+  public get isFormModeOrHasAnyEditCells() {
+    return this._mode$.value === DataGridMode.FORM || this.hasAnyEditCells;
   }
 
   public get hasAnyEditCells() {
@@ -201,12 +235,12 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       debounceTime(100),
       tap(data => this.data = data),
       tap(data => {
-        if (this.formDirective && this.isFormMode) {
+        if (this.formDirective && this.isFormModeOrHasAnyEditCells) {
           this.formDirective.form.patchValue(data, {
             coerce: true,
             strict: true,
           });
-          if (this.isFormMode) {
+          if (this.isFormModeOrHasAnyEditCells) {
             this.formDirective.form.disable();
           }
         }
@@ -217,7 +251,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       this.hasError$    = this.dataSource.hasError$ ?? this.hasError$;
       this.dataLoading$ = this.dataSource.loading$ ?? this.dataLoading$;
     }
-    if (this.formDirective && this.isFormMode) {
+    if (this.formDirective && this.isFormModeOrHasAnyEditCells) {
       this.formDirective.form.disabledWhile(combineLatest([
         this._editMode$,
         this._mode$,
@@ -233,7 +267,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public enableEditMode(skipPatchValue = false) {
-    if (!this.isFormMode) {
+    if (!this.isFormModeOrHasAnyEditCells) {
       if (isDevMode()) {
         console.warn('Can not enable edit mode if the mode is not form');
       }
@@ -255,7 +289,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public disableEditMode() {
-    if (!this.isFormMode) {
+    if (!this.isFormModeOrHasAnyEditCells) {
       if (isDevMode()) {
         console.warn('Can not disable edit mode if the mode is not form');
       }
@@ -271,7 +305,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public submit() {
-    if (!this.isFormMode) {
+    if (!this.isFormModeOrHasAnyEditCells) {
       if (isDevMode()) {
         console.warn('Can not submit if the mode is not form');
       }
@@ -318,7 +352,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public reset() {
-    if (this.formDirective && this.data && this.isFormMode) {
+    if (this.formDirective && this.data && this.isFormModeOrHasAnyEditCells) {
       this.formDirective.form.patchValue(this.data, {
         coerce: true,
         strict: true,
