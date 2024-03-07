@@ -183,23 +183,28 @@ options:
       kind: tree-table
       title: Zuordnung
       table:
-        cssClass:
-          - "!min-w-0"
+        propertyList:
+          - name: referenceUuid
+          - name: type
         columnList:
           - name: tree
             cssClass:
-              - "min-w-[10px]"
-          - name: referenced
-            type: boolean
+              - "w-[100px]"
+          - name: isReferenced
             cssClass:
-              - "min-w-[10px]"
+              - "w-[180px]"
             filterControl:
               kind: checkbox
+            kind: component
           - name: name
             filterControl:
               kind: input
             type: string
-          - name: type
+          - name: scopeType
             cssClass:
-              - "min-w-[8px]"
-            type: string
+              - "w-[280px]"
+            type: number
+            kind: component
+            filterControl:
+              kind: select
+              backend: nestjs

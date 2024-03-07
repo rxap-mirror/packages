@@ -1,11 +1,8 @@
+import { OpenApiOperationCommand, OperationCommand } from '@rxap/nest-open-api';
 import { Injectable } from '@nestjs/common';
-import {
-  OpenApiOperationCommand,
-  OpenApiOperationCommandParameters,
-  OperationCommand,
-} from '@rxap/nest-open-api';
 import { DashboardAccordionGeneralInformationCloudDashboardControllerSubmitByIdParameter } from '../parameters/dashboard-accordion-general-information-cloud-dashboard-controller-submit-by-id.parameter';
 import { DashboardAccordionGeneralInformationCloudDashboardControllerSubmitByIdRequestBody } from '../request-bodies/dashboard-accordion-general-information-cloud-dashboard-controller-submit-by-id.request-body';
+import { OpenApiOperationCommandParameters } from '@rxap/nest-open-api';
 
 @Injectable()
 @OperationCommand({

@@ -1,9 +1,13 @@
 export type DashboardAccordionReferenceControllerGetRootResponse = Array<{
-    referenced: boolean;
+    type: unknown;
+    referenceUuid: string;
+    icon?: IconDtoResponse;
+    isReferenced: boolean;
     name: string;
-    type: string;
+    scopeType: number;
+    uuid: string;
     hasChildren: boolean;
     children?: Array<DashboardAccordionReferenceItemDtoResponse>;
-    uuid: string;
   }>;
 import type { DashboardAccordionReferenceItemDtoResponse } from './dashboard-accordion-reference-item-dto.response';
+import type { IconDtoResponse } from './icon-dto.response';

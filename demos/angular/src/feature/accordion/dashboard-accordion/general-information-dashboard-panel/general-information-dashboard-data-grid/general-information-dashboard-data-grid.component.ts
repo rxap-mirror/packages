@@ -25,7 +25,8 @@ import { GeneralInformationDashboardDataGridDataSource } from './general-informa
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './general-information-dashboard-data-grid.component.html',
     styleUrls: ['./general-information-dashboard-data-grid.component.scss'],
-  imports: [DataGridModule, RxapFormsModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule, InputClearButtonDirective, AsyncPipe, GetFromObjectPipe, TableSelectControlModule],
+  imports: [DataGridModule, RxapFormsModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule, InputClearButtonDirective,
+            AsyncPipe, GetFromObjectPipe, TableSelectControlModule],
   providers: [GeneralInformationDashboardDataGridDataSource, FormProviders, FormComponentProviders],
 })
 export class GeneralInformationDashboardDataGridComponent {

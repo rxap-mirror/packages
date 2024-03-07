@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { DataSourceErrorComponent } from '@rxap/data-source';
@@ -27,6 +28,7 @@ import {
   RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD,
   TreeTableDataSource,
 } from '@rxap/data-source/table/tree';
+import { OptionsFromMethodDirective } from '@rxap/form-system';
 import { ParentControlContainerDirective } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
@@ -46,6 +48,8 @@ import {
   FormFactory,
   FormProviders,
 } from './form.providers';
+import { IsReferencedCellComponent } from './is-referenced-cell/is-referenced-cell.component';
+import { ScopeTypeCellComponent } from './scope-type-cell/scope-type-cell.component';
 import { TreeTableChildrenProxyMethod } from './tree-table-children-proxy.method';
 import { TreeTableRootProxyMethod } from './tree-table-root-proxy.method';
 
@@ -56,13 +60,7 @@ import { TreeTableRootProxyMethod } from './tree-table-root-proxy.method';
     templateUrl: './reference-tree-table.component.html',
     styleUrls: ['./reference-tree-table.component.scss'],
   animations: [RowAnimation],
-  imports: [
-    TableColumnMenuModule, MatPaginatorModule, MatSortModule, PersistentPaginatorDirective, DataSourceErrorComponent,
-    MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule,
-    MatCardModule, AsyncPipe, NgClass, MatInputModule, MatButtonModule, MatIconModule, InputClearButtonDirective,
-    ReactiveFormsModule, ParentControlContainerDirective, TableFilterModule, TreeControlCellComponent,
-    MatProgressSpinnerModule, NgIf, MatCheckboxModule,
-  ],
+  imports: [TableColumnMenuModule, MatPaginatorModule, MatSortModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgClass, TreeControlCellComponent, IsReferencedCellComponent, MatCheckboxModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatIconModule, InputClearButtonDirective, ParentControlContainerDirective, ScopeTypeCellComponent, MatSelectModule, OptionsFromMethodDirective, MatProgressSpinnerModule, NgIf, TableFilterModule],
   providers: [{
       provide: TABLE_DATA_SOURCE,
       useClass: TreeTableDataSource

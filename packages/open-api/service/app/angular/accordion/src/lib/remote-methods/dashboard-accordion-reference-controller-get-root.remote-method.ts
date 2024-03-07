@@ -77,13 +77,25 @@ import { DashboardAccordionReferenceControllerGetRootResponse } from '../respons
             "items": {
               "type": "object",
               "properties": {
-                "referenced": {
+                "type": {
+                  "type": "unknown"
+                },
+                "referenceUuid": {
+                  "type": "string"
+                },
+                "icon": {
+                  "$ref": "#/components/schemas/IconDto"
+                },
+                "isReferenced": {
                   "type": "boolean"
                 },
                 "name": {
                   "type": "string"
                 },
-                "type": {
+                "scopeType": {
+                  "type": "number"
+                },
+                "uuid": {
                   "type": "string"
                 },
                 "hasChildren": {
@@ -94,17 +106,16 @@ import { DashboardAccordionReferenceControllerGetRootResponse } from '../respons
                   "items": {
                     "$ref": "#/components/schemas/DashboardAccordionReferenceItemDto"
                   }
-                },
-                "uuid": {
-                  "type": "string"
                 }
               },
               "required": [
-                "referenced",
-                "name",
                 "type",
-                "hasChildren",
-                "uuid"
+                "referenceUuid",
+                "isReferenced",
+                "name",
+                "scopeType",
+                "uuid",
+                "hasChildren"
               ]
             }
           }

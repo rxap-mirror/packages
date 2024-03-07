@@ -12,9 +12,18 @@ import {
   FilterQueryPipe,
 } from '@rxap/nest-utilities';
 import { DashboardAccordionReferenceItemDto } from './dtos/dashboard-accordion-reference-item.dto';
+import { DashboardAccordionReferenceScopeTypeControlOptionsDto } from './dtos/dashboard-accordion-reference-scope-type-control-options.dto';
 
 @Controller('dashboard-accordion/:uuid/reference')
 export class DashboardAccordionReferenceController {
+  @Get('control/scope-type/options')
+  public async getScopeTypeOptions(): Promise<DashboardAccordionReferenceScopeTypeControlOptionsDto[]> {
+    return ToDtoInstance(
+    DashboardAccordionReferenceScopeTypeControlOptionsDto,
+    [],
+    );
+  }
+
   @Get()
   @ApiQuery({
         name: 'pageIndex',

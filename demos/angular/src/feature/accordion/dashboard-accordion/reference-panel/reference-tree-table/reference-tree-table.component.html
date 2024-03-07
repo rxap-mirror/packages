@@ -14,14 +14,14 @@
         <rxap-table-column-option name="tree" hidden>
           <ng-container i18n>Tree</ng-container>
         </rxap-table-column-option>
-        <rxap-table-column-option name="referenced">
-          <ng-container i18n>Referenced</ng-container>
+        <rxap-table-column-option name="isReferenced">
+          <ng-container i18n>Is Referenced</ng-container>
         </rxap-table-column-option>
         <rxap-table-column-option name="name">
           <ng-container i18n>Name</ng-container>
         </rxap-table-column-option>
-        <rxap-table-column-option name="type">
-          <ng-container i18n>Type</ng-container>
+        <rxap-table-column-option name="scopeType">
+          <ng-container i18n>Scope Type</ng-container>
         </rxap-table-column-option>
         <rxap-table-column-option name="spinner" hidden>
           <ng-container i18n>Spinner</ng-container>
@@ -45,8 +45,7 @@
           rxapTableDataSource
           [parameters]="parameters"
           id="reference"
-          class="!min-w-0"
-rxap-filter-header-row>
+          rxap-filter-header-row>
           <!-- region columns -->
           <ng-container matColumnDef="tree" [sticky]="true">
               <th *matHeaderCellDef mat-header-cell></th>
@@ -54,19 +53,21 @@ rxap-filter-header-row>
                 *matCellDef="let element"
                 [rxap-tree-control-cell]="element"
                 mat-cell
-                class="min-w-[10px]"
+                class="w-[100px]"
             ></td>
           </ng-container>
           
-          <ng-container matColumnDef="referenced">
+          <ng-container matColumnDef="isReferenced">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              <ng-container i18n>Referenced</ng-container>
+              <ng-container i18n>Is Referenced</ng-container>
             </th>
             <td *matCellDef="let element"
-                mat-cell
-                class="min-w-[10px]"
+              mat-cell
+              rxap-is-referenced-cell
+              [element]="element"
+              [value]="element?.isReferenced"
+              class="w-[180px]"
           >
-            {{ element?.referenced }}
             </td>
           </ng-container>
           
@@ -81,15 +82,17 @@ rxap-filter-header-row>
             </td>
           </ng-container>
           
-          <ng-container matColumnDef="type">
+          <ng-container matColumnDef="scopeType">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              <ng-container i18n>Type</ng-container>
+              <ng-container i18n>Scope Type</ng-container>
             </th>
             <td *matCellDef="let element"
-                mat-cell
-                class="min-w-[8px]"
+              mat-cell
+              rxap-scope-type-cell
+              [element]="element"
+              [value]="element?.scopeType"
+              class="w-[280px]"
           >
-            {{ element?.type }}
             </td>
           </ng-container>
           
@@ -112,15 +115,15 @@ rxap-filter-header-row>
               <th mat-header-cell *matHeaderCellDef>
               </th>
 </ng-container>
-<ng-container matColumnDef="filter_referenced">
+<ng-container matColumnDef="filter_isReferenced">
               <th mat-header-cell *matHeaderCellDef>
                 
                 <mat-checkbox
                   [indeterminate]="true"
-                  formControlName="referenced"
+                  formControlName="isReferenced"
                   labelPosition="after"
                   parentControlContainer>
-                  <ng-container i18n>Referenced</ng-container>
+                  <ng-container i18n>Is Referenced</ng-container>
                 </mat-checkbox>
                 
               </th>
@@ -142,8 +145,19 @@ rxap-filter-header-row>
                 
               </th>
 </ng-container>
-<ng-container matColumnDef="filter_type">
+<ng-container matColumnDef="filter_scopeType">
               <th mat-header-cell *matHeaderCellDef>
+                
+                <mat-form-field>
+                  <mat-label>Scope Type</mat-label>
+                  <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                    <mat-select formControlName="scopeType" parentControlContainer>
+                      <mat-option *rxapOptionsFromMethod="let option" [value]="option.value">{{option.display}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
               </th>
 </ng-container>
 <ng-container matColumnDef="filter_spinner" [stickyEnd]="true">

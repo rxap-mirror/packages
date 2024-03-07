@@ -10,6 +10,8 @@ export * from './lib/responses/dashboard-accordion-reference-controller-get-chil
 export * from './lib/responses/dashboard-accordion-reference-controller-get-root.response';
 export * from './lib/responses/dashboard-accordion-reference-item-dto.response';
 export * from './lib/responses/filter-query-dto.response';
+export * from './lib/responses/dashboard-accordion-reference-controller-get-scope-type-options.response';
+export * from './lib/responses/icon-dto.response';
 // endregion
 
 // region request-bodies
@@ -28,6 +30,7 @@ export * from './lib/remote-methods/dashboard-accordion-general-information-dash
 export * from './lib/remote-methods/dashboard-accordion-layout-cloud-dashboard-controller-get-by-id.remote-method';
 export * from './lib/remote-methods/dashboard-accordion-reference-controller-get-children.remote-method';
 export * from './lib/remote-methods/dashboard-accordion-reference-controller-get-root.remote-method';
+export * from './lib/remote-methods/dashboard-accordion-reference-controller-get-scope-type-options.remote-method';
 // endregion
 
 // region parameters
@@ -54,6 +57,7 @@ export * from './lib/directives/dashboard-accordion-general-information-dashboar
 export * from './lib/directives/dashboard-accordion-layout-cloud-dashboard-controller-get-by-id.directive';
 export * from './lib/directives/dashboard-accordion-reference-controller-get-children.directive';
 export * from './lib/directives/dashboard-accordion-reference-controller-get-root.directive';
+export * from './lib/directives/dashboard-accordion-reference-controller-get-scope-type-options.directive';
 // endregion
 
 // region data-sources
@@ -65,6 +69,7 @@ export * from './lib/data-sources/dashboard-accordion-general-information-dashbo
 export * from './lib/data-sources/dashboard-accordion-layout-cloud-dashboard-controller-get-by-id.data-source';
 export * from './lib/data-sources/dashboard-accordion-reference-controller-get-children.data-source';
 export * from './lib/data-sources/dashboard-accordion-reference-controller-get-root.data-source';
+export * from './lib/data-sources/dashboard-accordion-reference-controller-get-scope-type-options.data-source';
 // endregion
 
 // region components
@@ -79,6 +84,8 @@ export * from './lib/components/dashboard-accordion-general-information-dashboar
 export * from './lib/components/dashboard-accordion-layout-cloud-dashboard-dto';
 export * from './lib/components/dashboard-accordion-reference-item-dto';
 export * from './lib/components/filter-query-dto';
+export * from './lib/components/dashboard-accordion-reference-scope-type-control-options-dto';
+export * from './lib/components/icon-dto';
 // endregion
 
 // region commands
@@ -92,4 +99,5 @@ export * from './lib/commands/dashboard-accordion-general-information-dashboard-
 export * from './lib/commands/dashboard-accordion-layout-cloud-dashboard-controller-get-by-id.command';
 export * from './lib/commands/dashboard-accordion-reference-controller-get-children.command';
 export * from './lib/commands/dashboard-accordion-reference-controller-get-root.command';
+export * from './lib/commands/dashboard-accordion-reference-controller-get-scope-type-options.command';
 // endregion

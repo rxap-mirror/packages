@@ -1,17 +1,11 @@
-import {
-  Inject,
-  inject,
-  Injectable,
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Node } from '@rxap/data-structure-tree';
-import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import {
-  ProxyRemoteMethod,
-  RxapRemoteMethod,
-} from '@rxap/remote-method';
+import { Method } from '@rxap/pattern';
+import { Injectable, Inject, inject } from '@angular/core';
+import { RxapRemoteMethod, ProxyRemoteMethod } from '@rxap/remote-method';
 import { DashboardAccordionReferenceControllerGetRootParameter } from 'open-api-service-app-angular-accordion/parameters/dashboard-accordion-reference-controller-get-root.parameter';
 import { DashboardAccordionReferenceControllerGetRootRemoteMethod } from 'open-api-service-app-angular-accordion/remote-methods/dashboard-accordion-reference-controller-get-root.remote-method';
+import { Node } from '@rxap/data-structure-tree';
+import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
 @RxapRemoteMethod('tree-table-root-proxy')

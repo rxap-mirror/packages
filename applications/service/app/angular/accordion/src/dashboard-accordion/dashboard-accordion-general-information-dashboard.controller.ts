@@ -51,10 +51,10 @@ export class DashboardAccordionGeneralInformationDashboardController {
     return {
       __rowId: item.uuid,
 
-    __value: item.uuid,
-      __display: item.name,
-      name: item.name,
-      uuid: item.uuid
+    name: item.name,
+      uuid: item.uuid,
+      __value: item.uuid,
+      __display: item.name
     };
   }
 
@@ -91,7 +91,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
         required: false,
         isArray: true
       })
-  public async getLocationControlTableSelectPage(@Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto> {
+  public async getLocationControlTableSelectPage(@Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto> {
     const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);
     return ToDtoInstance(
     DashboardAccordionGeneralInformationDashboardLocationTableSelectPageDto,
@@ -99,7 +99,24 @@ export class DashboardAccordionGeneralInformationDashboardController {
     );
   }
 
-  private readonly dashboardControllerGetByUuidCommand?: any;
+  private readonly companyGuiControllerGetByUuidCommand!: any;
+
+  @Get('control/location/resolve/:value')
+  public async resolveLocationControlValue(@Param('value') value: string): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectDto> {
+    const data = await this.companyGuiControllerGetByUuidCommand.execute({ parameters: { uuid: value } });
+    return ToDtoInstance(
+    DashboardAccordionGeneralInformationDashboardLocationTableSelectDto,
+    {
+      name: data.name,
+      uuid: data.uuid,
+      __value: data.uuid,
+      __display: data.name,
+      __rowId: data.uuid
+    },
+    );
+  }
+
+  private readonly dashboardControllerGetByUuidCommand!: any;
 
   @Get()
   public async getById(@Param('uuid') uuid: string): Promise<DashboardAccordionGeneralInformationDashboardDto> {
@@ -117,27 +134,8 @@ export class DashboardAccordionGeneralInformationDashboardController {
     );
   }
 
-
-
-  private readonly companyGuiControllerGetByUuidCommand!: any;
-
-  @Get('control/location/resolve/:value')
-  public async resolveLocationControlValue(@Param('value') value: string): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectDto> {
-    const data = await this.companyGuiControllerGetByUuidCommand.execute({ parameters: { uuid: value } });
-    return ToDtoInstance(
-    DashboardAccordionGeneralInformationDashboardLocationTableSelectDto,
-    {
-      __rowId: data.uuid,
-      __value: data.uuid,
-      __display: data.name,
-      name: data.name,
-      uuid: data.uuid
-    },
-    );
-  }
-
   @Post()
-  public async submitById(@Param('uuid') uuid: string, @Body() body: DashboardAccordionGeneralInformationDashboardSubmitDto): Promise<void> {
+  public async submitById(@Body() body: DashboardAccordionGeneralInformationDashboardSubmitDto, @Param('uuid') uuid: string): Promise<void> {
     throw new NotImplementedException();
   }
 }

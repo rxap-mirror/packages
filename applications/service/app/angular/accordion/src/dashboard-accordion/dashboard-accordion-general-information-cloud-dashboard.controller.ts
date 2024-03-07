@@ -29,7 +29,7 @@ export class DashboardAccordionGeneralInformationCloudDashboardController {
   }
 
   @Post()
-  public async submitById(@Param('uuid') uuid: string, @Body() body: DashboardAccordionGeneralInformationCloudDashboardSubmitDto): Promise<void> {
+  public async submitById(@Body() body: DashboardAccordionGeneralInformationCloudDashboardSubmitDto, @Param('uuid') uuid: string): Promise<void> {
     throw new NotImplementedException();
   }
 }

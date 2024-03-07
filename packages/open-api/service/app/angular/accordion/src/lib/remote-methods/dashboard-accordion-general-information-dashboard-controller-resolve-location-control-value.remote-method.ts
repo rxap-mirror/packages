@@ -32,16 +32,16 @@ import { DashboardAccordionGeneralInformationDashboardControllerResolveLocationC
           "schema": {
             "type": "object",
             "properties": {
-              "__value": {
-                "type": "string"
-              },
-              "__display": {
-                "type": "string"
-              },
               "name": {
                 "type": "string"
               },
               "uuid": {
+                "type": "string"
+              },
+              "__value": {
+                "type": "string"
+              },
+              "__display": {
                 "type": "string"
               },
               "__rowId": {
@@ -49,10 +49,10 @@ import { DashboardAccordionGeneralInformationDashboardControllerResolveLocationC
               }
             },
             "required": [
-              "__value",
-              "__display",
               "name",
               "uuid",
+              "__value",
+              "__display",
               "__rowId"
             ]
           }

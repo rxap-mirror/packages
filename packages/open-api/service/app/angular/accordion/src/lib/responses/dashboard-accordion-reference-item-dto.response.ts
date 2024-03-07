@@ -1,8 +1,13 @@
+import type { IconDtoResponse } from './icon-dto.response';
+
 export interface DashboardAccordionReferenceItemDtoResponse {
-  referenced: boolean;
+  type: unknown;
+  referenceUuid: string;
+  icon?: IconDtoResponse;
+  isReferenced: boolean;
   name: string;
-  type: string;
+  scopeType: number;
+  uuid: string;
   hasChildren: boolean;
   children?: Array<DashboardAccordionReferenceItemDtoResponse>;
-  uuid: string;
 }

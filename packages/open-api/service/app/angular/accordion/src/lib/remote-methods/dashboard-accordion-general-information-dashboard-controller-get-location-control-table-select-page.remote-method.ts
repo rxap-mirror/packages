@@ -17,27 +17,14 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetLocationContr
   "operationId": "DashboardAccordionGeneralInformationDashboardController_getLocationControlTableSelectPage",
   "parameters": [
     {
-      "name": "pageIndex",
+      "name": "filter",
       "required": false,
       "in": "query",
       "schema": {
-        "type": "number"
-      }
-    },
-    {
-      "name": "pageSize",
-      "required": false,
-      "in": "query",
-      "schema": {
-        "type": "number"
-      }
-    },
-    {
-      "name": "sortDirection",
-      "required": false,
-      "in": "query",
-      "schema": {
-        "type": "string"
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     },
     {
@@ -49,14 +36,27 @@ import { DashboardAccordionGeneralInformationDashboardControllerGetLocationContr
       }
     },
     {
-      "name": "filter",
+      "name": "sortDirection",
       "required": false,
       "in": "query",
       "schema": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
+        "type": "string"
+      }
+    },
+    {
+      "name": "pageSize",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "number"
+      }
+    },
+    {
+      "name": "pageIndex",
+      "required": false,
+      "in": "query",
+      "schema": {
+        "type": "number"
       }
     }
   ],

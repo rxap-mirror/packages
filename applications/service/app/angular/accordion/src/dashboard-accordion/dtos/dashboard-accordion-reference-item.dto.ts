@@ -1,3 +1,5 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IconDto } from '@rxap/nest-dto';
 import {
   Expose,
   Type,
@@ -6,6 +8,7 @@ import {
   IsArray,
   IsBoolean,
   IsInstance,
+  IsNumber,
   IsOptional,
   IsString,
   IsUUID,
@@ -13,14 +16,30 @@ import {
 
 export class DashboardAccordionReferenceItemDto {
   @Expose()
+  @IsString()
+  referenceUuid!: string;
+  @Expose()
+  @ApiProperty({
+        type: 'unknown'
+      })
+  type!: unknown;
+  @Expose()
+  @Type(() => IconDto)
+  @IsInstance(IconDto, )
+  @IsOptional()
+  icon?: IconDto;
+  @Expose()
   @IsBoolean()
-  referenced!: boolean;
+  isReferenced!: boolean;
   @Expose()
   @IsString()
   name!: string;
   @Expose()
-  @IsString()
-  type!: string;
+  @IsNumber()
+  scopeType!: number;
+  @Expose()
+  @IsUUID()
+  uuid!: string;
   @Expose()
   @IsBoolean()
   hasChildren!: boolean;
@@ -32,7 +51,4 @@ export class DashboardAccordionReferenceItemDto {
       })
   @IsOptional()
   children?: Array<DashboardAccordionReferenceItemDto>;
-  @Expose()
-  @IsUUID()
-  uuid!: string;
 }
