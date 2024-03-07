@@ -23,6 +23,7 @@ import {
   NormalizedTableColumn,
   TableColumn,
   TableColumnKind,
+  TableColumnNameToPropertyPath,
   TableColumnNameToTitle,
 } from '../../table-column';
 import { NormalizedBaseFormControl } from './base-form-control';
@@ -37,7 +38,7 @@ import {
 export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind'>
   & DataProperty
 export type NormalizedTableSelectColumn =
-  Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind'> & NormalizedDataProperty
+  Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath'> & NormalizedDataProperty
 
 export function NormalizeTableSelectColumn(
   column: TableSelectColumn,
@@ -47,11 +48,13 @@ export function NormalizeTableSelectColumn(
   }
   const kind = column.kind ?? TableColumnKind.DEFAULT;
   const type = GuessColumnTypeType(kind, column.type ?? 'unknown');
+  const propertyPath = TableColumnNameToPropertyPath(column.name);
   return Object.freeze({
     ...NormalizeDataProperty({
       ...column,
       type,
     }),
+    propertyPath,
     title: column.title ?? TableColumnNameToTitle(column.name),
     hasFilter: column.hasFilter ?? false,
     kind,

@@ -20,6 +20,7 @@ import {
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import {
+  CoerceComponentInput,
   NormalizedDataProperty,
   RequiresTypeImport,
   TypeImportToImportStructure,
@@ -561,6 +562,7 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
     feature,
     shared,
     directory,
+    componentName,
   } = normalizedOptions;
   if (columnList.some(column => column.kind === TableColumnKind.COMPONENT)) {
 
@@ -580,6 +582,13 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
             name: CoerceSuffix(dasherize(column.name), '-cell'),
             directory,
             overwrite: overwrite || column.modifiers.includes(TableColumnModifier.OVERWRITE),
+            tsMorphTransform: (project, [ sourceFile ], [classDeclaration]) => {
+              CoerceComponentInput(classDeclaration, 'element', {
+                name: `I${ classify(componentName) }`,
+                moduleSpecifier: `../${ dasherize(componentName) }`,
+              }, { isRequired: true });
+              CoerceComponentInput(classDeclaration, 'value', column.type, { isRequired: true });
+            }
           }),
         ),
     ]);

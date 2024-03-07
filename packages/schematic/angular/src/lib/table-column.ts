@@ -12,6 +12,7 @@ import {
   TypeImport,
 } from '@rxap/ts-morph';
 import {
+  camelize,
   classify,
   CoerceArrayItems,
   Normalized,
@@ -117,6 +118,10 @@ export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableCol
    * the column name of the filter column matColumnDef
    */
   filterName: string;
+  /**
+   * use in the html template to define how the value is accessed from the element variable
+   */
+  propertyPath: string;
 }
 
 function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[] {
@@ -247,6 +252,17 @@ export function GuessColumnTypeType(kind: TableColumnKind, type?: string | TypeI
   return type;
 }
 
+export function TableColumnNameToPropertyPath(name: string): string {
+  const leadingUnderscoreCount = name.match(/^_*/)?.[0].length ?? 0;
+  const nameWithoutLeadingUnderscores = name.slice(leadingUnderscoreCount);
+  const propertyPath = nameWithoutLeadingUnderscores
+    .replace(/\?\./g, '.')
+    .split('.')
+    .map((part) => camelize(part))
+    .join('?.');
+  return '_'.repeat(leadingUnderscoreCount) + propertyPath;
+}
+
 export function TableColumnNameToTitle(name: string) {
   return dasherize(name)
     .replace(/_/g, '-')
@@ -262,6 +278,7 @@ export function NormalizeTableColumn(
     throw new SchematicsException('The column name is required');
   }
   const modifiers = column.modifiers ?? [];
+  const propertyPath = TableColumnNameToPropertyPath(column.name);
   let hasFilter = modifiers.includes(TableColumnModifier.FILTER) || (column.hasFilter ?? false);
   const title = column.title ?? TableColumnNameToTitle(column.name);
   const hidden = modifiers.includes(TableColumnModifier.HIDDEN) || (column.hidden ?? false);
@@ -337,6 +354,7 @@ export function NormalizeTableColumn(
     ...dataProperty,
     synthetic: column.synthetic ?? false,
     filterName: `filter_${ name }`,
+    propertyPath,
     sticky,
     stickyStart,
     stickyEnd,
