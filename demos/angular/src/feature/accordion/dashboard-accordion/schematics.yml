@@ -187,22 +187,24 @@ options:
           - name: referenceUuid
           - name: type
         columnList:
-          - name: tree
-            cssClass:
-              - "w-[100px]"
           - name: isReferenced
             cssClass:
-              - "w-[180px]"
+              - "w-[200px]"
+              - "min-w-[200px]"
             filterControl:
               kind: checkbox
             kind: component
           - name: name
             filterControl:
               kind: input
+            cssClass:
+              - "w-[500px]"
+              - "min-w-[250px]"
             type: string
           - name: scopeType
             cssClass:
               - "w-[280px]"
+              - "min-w-[280px]"
             type: number
             kind: component
             filterControl:

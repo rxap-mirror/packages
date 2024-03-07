@@ -81,7 +81,10 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   const componentName = options.componentName ?? CoerceSuffix(name, suffix);
   const actionList = NormalizeTableActionList(options.actionList);
   let sortable = options.sortable ?? true;
-  const columnList = NormalizeTableColumnList(options.columnList.map(column => ({ sortable, ...column })));
+  for (const column of options.columnList) {
+    column.sortable ??= sortable;
+  }
+  const columnList = NormalizeTableColumnList(options.columnList);
   sortable = columnList.some(column => column.sortable);
   const propertyList = NormalizeDataPropertyList(options.propertyList);
   const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
