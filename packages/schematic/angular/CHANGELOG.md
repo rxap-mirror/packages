@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.23...@rxap/schematic-angular@16.2.0-dev.24) (2024-03-07)
+
+### Bug Fixes
+
+- ensure all properties are set correctly ([e2aa58e](https://gitlab.com/rxap/packages/commit/e2aa58e6418a53ddd1100790b82cae8495a02894))
+- ensure all types are set correctly ([67cdf4f](https://gitlab.com/rxap/packages/commit/67cdf4f82b7a44c483e17dfbb5321d1c963026cd))
+- ensure submit and load can have different interfaces ([401972b](https://gitlab.com/rxap/packages/commit/401972bd1c78db4def6192e3277a91ef0c6521a9))
+- json schema ([d2a52e6](https://gitlab.com/rxap/packages/commit/d2a52e68947ae7b652294306a13c39bcc806506a))
+
 # [16.2.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.22...@rxap/schematic-angular@16.2.0-dev.23) (2024-03-05)
 
 ### Bug Fixes

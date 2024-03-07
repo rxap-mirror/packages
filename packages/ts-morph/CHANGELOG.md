@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.11...@rxap/ts-morph@1.1.0-dev.12) (2024-03-07)
+
+### Bug Fixes
+
+- ensure the guess type is only used if required ([f663aee](https://gitlab.com/rxap/packages/commit/f663aee47f90dbd6398ed7f268f6d67d36b6f140))
+
 # [1.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.10...@rxap/ts-morph@1.1.0-dev.11) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/ts-morph

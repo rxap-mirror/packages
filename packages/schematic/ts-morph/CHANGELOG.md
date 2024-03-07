@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.11...@rxap/schematics-ts-morph@16.1.0-dev.12) (2024-03-07)
+
+### Bug Fixes
+
+- ensure all properties are set correctly ([e2aa58e](https://gitlab.com/rxap/packages/commit/e2aa58e6418a53ddd1100790b82cae8495a02894))
+- ensure submit and load can have different interfaces ([401972b](https://gitlab.com/rxap/packages/commit/401972bd1c78db4def6192e3277a91ef0c6521a9))
+
 # [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.10...@rxap/schematics-ts-morph@16.1.0-dev.11) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph
