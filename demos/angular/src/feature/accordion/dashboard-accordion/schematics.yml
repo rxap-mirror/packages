@@ -185,8 +185,9 @@ options:
       table:
         cssClass:
           - "!min-w-0"
-        propertyList:
-          - name: uuid
+        identifier:
+          property:
+            name: uuid
         columnList:
           - name: referenced
             type: boolean

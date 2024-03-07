@@ -4,4 +4,5 @@ export interface DashboardAccordionReferenceItemDto {
   type: string;
   hasChildren: boolean;
   children?: Array<DashboardAccordionReferenceItemDto>;
+  uuid: string;
 }

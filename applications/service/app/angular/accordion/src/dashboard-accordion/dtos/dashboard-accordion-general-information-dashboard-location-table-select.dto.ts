@@ -17,4 +17,7 @@ export class DashboardAccordionGeneralInformationDashboardLocationTableSelectDto
   @Expose()
   @IsUUID()
   uuid!: string;
+  @Expose()
+  @IsString()
+  __rowId!: string;
 }

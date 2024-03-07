@@ -3,4 +3,5 @@ export interface DashboardAccordionGeneralInformationDashboardControllerResolveL
   __display: string;
   name: string;
   uuid: string;
+  __rowId: string;
 }

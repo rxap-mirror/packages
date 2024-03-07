@@ -1,5 +1,15 @@
-import { Expose, Type } from 'class-transformer';
-import { IsBoolean, IsString, IsArray, IsInstance, IsOptional } from 'class-validator';
+import {
+  Expose,
+  Type,
+} from 'class-transformer';
+import {
+  IsArray,
+  IsBoolean,
+  IsInstance,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 
 export class DashboardAccordionReferenceItemDto {
   @Expose()
@@ -22,4 +32,7 @@ export class DashboardAccordionReferenceItemDto {
       })
   @IsOptional()
   children?: Array<DashboardAccordionReferenceItemDto>;
+  @Expose()
+  @IsUUID()
+  uuid!: string;
 }

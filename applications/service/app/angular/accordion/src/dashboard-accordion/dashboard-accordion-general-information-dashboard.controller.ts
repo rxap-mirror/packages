@@ -125,10 +125,11 @@ export class DashboardAccordionGeneralInformationDashboardController {
 
   @Get('control/location/resolve/:value')
   public async resolveLocationControlValue(@Param('value') value: string): Promise<DashboardAccordionGeneralInformationDashboardLocationTableSelectDto> {
-    const data = await this.companyGuiControllerGetByUuidCommand.execute({ uuid: value });
+    const data = await this.companyGuiControllerGetByUuidCommand.execute({ parameters: { uuid: value } });
     return ToDtoInstance(
     DashboardAccordionGeneralInformationDashboardLocationTableSelectDto,
     {
+      __rowId: data.uuid,
       __value: data.uuid,
       __display: data.name,
       name: data.name,

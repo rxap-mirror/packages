@@ -4,5 +4,6 @@ export type DashboardAccordionReferenceControllerGetRootResponse = Array<{
     type: string;
     hasChildren: boolean;
     children?: Array<DashboardAccordionReferenceItemDtoResponse>;
+    uuid: string;
   }>;
 import type { DashboardAccordionReferenceItemDtoResponse } from './dashboard-accordion-reference-item-dto.response';

@@ -102,13 +102,17 @@ import { DashboardAccordionReferenceControllerGetChildrenResponse } from '../res
                   "items": {
                     "$ref": "#/components/schemas/DashboardAccordionReferenceItemDto"
                   }
+                },
+                "uuid": {
+                  "type": "string"
                 }
               },
               "required": [
                 "referenced",
                 "name",
                 "type",
-                "hasChildren"
+                "hasChildren",
+                "uuid"
               ]
             }
           }

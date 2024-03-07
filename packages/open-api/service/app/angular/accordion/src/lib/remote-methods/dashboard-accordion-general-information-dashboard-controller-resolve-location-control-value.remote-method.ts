@@ -43,13 +43,17 @@ import { DashboardAccordionGeneralInformationDashboardControllerResolveLocationC
               },
               "uuid": {
                 "type": "string"
+              },
+              "__rowId": {
+                "type": "string"
               }
             },
             "required": [
               "__value",
               "__display",
               "name",
-              "uuid"
+              "uuid",
+              "__rowId"
             ]
           }
         }

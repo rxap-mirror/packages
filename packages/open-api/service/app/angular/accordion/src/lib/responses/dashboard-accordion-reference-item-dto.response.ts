@@ -4,4 +4,5 @@ export interface DashboardAccordionReferenceItemDtoResponse {
   type: string;
   hasChildren: boolean;
   children?: Array<DashboardAccordionReferenceItemDtoResponse>;
+  uuid: string;
 }

@@ -3,4 +3,5 @@ export interface DashboardAccordionGeneralInformationDashboardLocationTableSelec
   __display: string;
   name: string;
   uuid: string;
+  __rowId: string;
 }
