@@ -176,7 +176,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public get isFormMode() {
-    return this._mode$.value === DataGridMode.FORM || this.hasAnyEditCells;
+    return this._mode$.value === DataGridMode.FORM;
   }
 
   public get hasAnyEditCells() {
