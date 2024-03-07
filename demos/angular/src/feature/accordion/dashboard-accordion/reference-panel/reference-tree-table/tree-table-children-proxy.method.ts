@@ -1,5 +1,6 @@
 import {
   Inject,
+  inject,
   Injectable,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +16,9 @@ import { DashboardAccordionReferenceControllerGetChildrenRemoteMethod } from 'op
 @Injectable()
 @RxapRemoteMethod('tree-table-children-proxy')
 export class TreeTableChildrenProxyMethod extends ProxyRemoteMethod<Node<unknown>, OpenApiRemoteMethodParameter<DashboardAccordionReferenceControllerGetChildrenParameter>> {
-  constructor(@Inject(DashboardAccordionReferenceControllerGetChildrenRemoteMethod) method: DashboardAccordionReferenceControllerGetChildrenRemoteMethod, private readonly route: ActivatedRoute) {
+  protected readonly route = inject(ActivatedRoute);
+
+  constructor(@Inject(DashboardAccordionReferenceControllerGetChildrenRemoteMethod) method: DashboardAccordionReferenceControllerGetChildrenRemoteMethod) {
     super(method);
   }
 

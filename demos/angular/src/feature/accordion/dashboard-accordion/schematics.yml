@@ -185,10 +185,10 @@ options:
       table:
         cssClass:
           - "!min-w-0"
-        identifier:
-          property:
-            name: uuid
         columnList:
+          - name: tree
+            cssClass:
+              - "min-w-[10px]"
           - name: referenced
             type: boolean
             cssClass:

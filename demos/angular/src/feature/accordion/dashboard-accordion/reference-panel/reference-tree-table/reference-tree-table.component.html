@@ -11,7 +11,9 @@
         matCard
         #rxapTableColumns="rxapTableColumns"
         inline>
-        <rxap-table-column-option name="tree" hidden></rxap-table-column-option>
+        <rxap-table-column-option name="tree" hidden>
+          <ng-container i18n>Tree</ng-container>
+        </rxap-table-column-option>
         <rxap-table-column-option name="referenced">
           <ng-container i18n>Referenced</ng-container>
         </rxap-table-column-option>
@@ -21,7 +23,9 @@
         <rxap-table-column-option name="type">
           <ng-container i18n>Type</ng-container>
         </rxap-table-column-option>
-        <rxap-table-column-option name="__spinner__" hidden></rxap-table-column-option>
+        <rxap-table-column-option name="spinner" hidden>
+          <ng-container i18n>Spinner</ng-container>
+        </rxap-table-column-option>
       </rxap-table-column-menu>
        </mat-card-header>
 
@@ -45,22 +49,15 @@
 rxap-filter-header-row>
           <!-- region columns -->
           <ng-container matColumnDef="tree" [sticky]="true">
-            <th *matHeaderCellDef mat-header-cell></th>
-            <td
-              *matCellDef="let element"
-              [rxap-tree-control-cell]="element"
-              mat-cell
+              <th *matHeaderCellDef mat-header-cell></th>
+              <td
+                *matCellDef="let element"
+                [rxap-tree-control-cell]="element"
+                mat-cell
+                class="min-w-[10px]"
             ></td>
           </ng-container>
-          <ng-container matColumnDef="__spinner__">
-            <th *matHeaderCellDef mat-header-cell></th>
-            <td *matCellDef="let element" mat-cell>
-              <mat-spinner
-                *ngIf="element.__metadata__?.loading$ | async"
-                diameter="15"
-              ></mat-spinner>
-            </td>
-          </ng-container>
+          
           <ng-container matColumnDef="referenced">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n>Referenced</ng-container>
@@ -96,49 +93,63 @@ rxap-filter-header-row>
             </td>
           </ng-container>
           
+          <ng-container matColumnDef="spinner" [stickyEnd]="true">
+              <th *matHeaderCellDef mat-header-cell></th>
+              <td *matCellDef="let element"
+                mat-cell
+                >
+                <mat-spinner
+                  *ngIf="element.__metadata__?.loading$ | async"
+                  diameter="15"
+                ></mat-spinner>
+              </td>
+          </ng-container>
+          
 
           <!-- endregion -->
           <!-- region filter columns -->
-          <ng-container matColumnDef="filter_tree" [stickyEnd]="true">
-            <th mat-header-cell *matHeaderCellDef></th>
-          </ng-container>
-          <ng-container matColumnDef="filter___spinner__" [stickyEnd]="true">
-            <th mat-header-cell *matHeaderCellDef></th>
-          </ng-container>
-          <ng-container matColumnDef="filter_referenced">
-            <th mat-header-cell *matHeaderCellDef>
-              
-              <mat-checkbox
-                [indeterminate]="true"
-                formControlName="referenced"
-                labelPosition="after"
-                parentControlContainer>
-                <ng-container i18n>Referenced</ng-container>
-              </mat-checkbox>
-              
-            </th>
-          </ng-container>
-          <ng-container matColumnDef="filter_name">
-            <th mat-header-cell *matHeaderCellDef>
-              
-              <mat-form-field>
-                <mat-label>Name</mat-label>
-                <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
-                  <mat-icon>clear</mat-icon>
-                </button>
-                  <input
-                    matInput
-                    formControlName="name"
-                    type="text"
-                    parentControlContainer/>
-              </mat-form-field>
-              
-            </th>
-          </ng-container>
-          <ng-container matColumnDef="filter_type">
-            <th mat-header-cell *matHeaderCellDef>
-            </th>
-          </ng-container>
+<ng-container matColumnDef="filter_tree" [sticky]="true">
+              <th mat-header-cell *matHeaderCellDef>
+              </th>
+</ng-container>
+<ng-container matColumnDef="filter_referenced">
+              <th mat-header-cell *matHeaderCellDef>
+                
+                <mat-checkbox
+                  [indeterminate]="true"
+                  formControlName="referenced"
+                  labelPosition="after"
+                  parentControlContainer>
+                  <ng-container i18n>Referenced</ng-container>
+                </mat-checkbox>
+                
+              </th>
+</ng-container>
+<ng-container matColumnDef="filter_name">
+              <th mat-header-cell *matHeaderCellDef>
+                
+                <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                    <input
+                      matInput
+                      formControlName="name"
+                      type="text"
+                      parentControlContainer/>
+                </mat-form-field>
+                
+              </th>
+</ng-container>
+<ng-container matColumnDef="filter_type">
+              <th mat-header-cell *matHeaderCellDef>
+              </th>
+</ng-container>
+<ng-container matColumnDef="filter_spinner" [stickyEnd]="true">
+              <th mat-header-cell *matHeaderCellDef>
+              </th>
+</ng-container>
 
           <!-- endregion -->
           <tr
