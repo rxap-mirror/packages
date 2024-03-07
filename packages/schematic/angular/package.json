@@ -1,5 +1,5 @@
 {
-  "version": "16.2.0-dev.36",
+  "version": "16.2.0-dev.37",
   "name": "@rxap/schematic-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -25,6 +25,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "gitHead": "8a9f9062e47e16e62c2af0a3b848ad8b1900cad2",
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/angular",
   "keywords": [
     "angular",
@@ -67,6 +68,5 @@
     "directory": "packages/schematic/angular"
   },
   "schematics": "./collection.json",
-  "type": "commonjs",
-  "gitHead": "8a9f9062e47e16e62c2af0a3b848ad8b1900cad2"
+  "type": "commonjs"
 }

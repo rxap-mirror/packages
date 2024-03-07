@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.37](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.36...@rxap/schematic-angular@16.2.0-dev.37) (2024-03-07)
+
+### Reverts
+
+- generate dashboard accordion ([e09e29b](https://gitlab.com/rxap/packages/commit/e09e29b9df22c1f0c90d70844971ce04a809ba5c))
+
 # [16.2.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.35...@rxap/schematic-angular@16.2.0-dev.36) (2024-03-07)
 
 ### Bug Fixes
