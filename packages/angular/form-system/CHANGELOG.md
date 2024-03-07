@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.0.1-dev.1...@rxap/form-system@16.1.0-dev.0) (2024-03-07)
+
+### Features
+
+- add UseOptionMethod decorator ([cca6ed6](https://gitlab.com/rxap/packages/commit/cca6ed600c616142595547fbc7145eae61787805))
+- add UseOptionMethod decorator ([75496b2](https://gitlab.com/rxap/packages/commit/75496b225ff57ae186510d74253246db5c373e13))
+
 ## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.0.1-dev.0...@rxap/form-system@16.0.1-dev.1) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/form-system

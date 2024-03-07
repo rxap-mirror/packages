@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.16...@rxap/schematics-ts-morph@16.1.0-dev.17) (2024-03-07)
+
+### Bug Fixes
+
+- select form backend generation ([e5ba3c8](https://gitlab.com/rxap/packages/commit/e5ba3c8b183c6ee76eb90c1a05e1f4acbc1cf66f))
+
 # [16.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.15...@rxap/schematics-ts-morph@16.1.0-dev.16) (2024-03-07)
 
 ### Bug Fixes

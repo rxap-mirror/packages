@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.29...@rxap/schematic-angular@16.2.0-dev.30) (2024-03-07)
+
+### Bug Fixes
+
+- ensure the cell component are valid ([9635eba](https://gitlab.com/rxap/packages/commit/9635eba77aeeb74d61a5ef9ea2fc525722dbbcb7))
+- select form backend generation ([e5ba3c8](https://gitlab.com/rxap/packages/commit/e5ba3c8b183c6ee76eb90c1a05e1f4acbc1cf66f))
+
 # [16.2.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.28...@rxap/schematic-angular@16.2.0-dev.29) (2024-03-07)
 
 ### Bug Fixes

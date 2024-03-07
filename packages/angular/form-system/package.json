@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.1",
+  "version": "16.1.0-dev.0",
   "name": "@rxap/form-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {

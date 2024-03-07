@@ -32,6 +32,7 @@ export * from './lib/directives/form-directives.module';
 export * from './lib/directives/input-select-options.directive';
 export * from './lib/directives/options-from-method.directive';
 export * from './lib/directives/options-from-remote-method.directive';
+export * from './lib/directives/test-ng-control';
 // endregion
 
 // region decorators
