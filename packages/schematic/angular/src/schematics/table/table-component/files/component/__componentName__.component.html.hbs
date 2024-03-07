@@ -63,7 +63,7 @@
         {{#if hasShowArchivedSlide}}
         <mat-divider></mat-divider>
         <span mat-menu-item>
-          <rxap-table-show-archived-slide [paginator]="paginator"></rxap-table-show-archived-slide>
+          <rxap-table-show-archived-slide{{#if hasPaginator}} [paginator]="paginator"{{/if}}></rxap-table-show-archived-slide>
         </span>
         {{/if}}
       </rxap-table-column-menu>
@@ -79,7 +79,6 @@
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
         <table
           [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
-          [paginator]="paginator"
           matSort
           mat-table
           #tableDataSourceDirective="rxapTableDataSource"
@@ -87,6 +86,7 @@
           [parameters]="parameters"
           id="{{name}}"
           {{#if cssClass}}{{> cssClass cssClass=cssClass}}{{/if~}}
+          {{#if hasPaginator}}[paginator]="paginator"{{/if~}}
           {{#if hasColumnWithFilter}}rxap-filter-header-row{{/if~}}
         >
           <!-- region columns -->
@@ -232,7 +232,7 @@
         </table>
         </div>
       </mat-card-content>
-
+      {{#if hasPaginator}}
       <mat-card-footer>
         <mat-paginator
           [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
@@ -242,6 +242,7 @@
           #paginator="matPaginator"
         ></mat-paginator>
       </mat-card-footer>
+      {{/if}}
     </mat-card>
   </div>
 </div>

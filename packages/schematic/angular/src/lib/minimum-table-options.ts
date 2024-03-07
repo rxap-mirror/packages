@@ -52,6 +52,7 @@ export interface MinimumTableOptions {
   componentName?: string;
   cssClass?: CssClass;
   identifier?: AccordionIdentifier;
+  hasPaginator?: boolean;
 }
 
 export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
@@ -97,5 +98,6 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     propertyList,
     cssClass: NormalizeCssClass(options.cssClass),
     identifier,
+    hasPaginator: options.hasPaginator ?? true,
   });
 }

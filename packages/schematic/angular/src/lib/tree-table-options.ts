@@ -83,6 +83,7 @@ export function NormalizeTreeTableOptions(
   })], (a, b) => a.name === b.name);
   const normalizedOptions = NormalizeMinimumTableOptions({
     ...options,
+    hasPaginator: options.hasPaginator ?? false,
     columnList,
     propertyList,
   }, name, IsTreeTableModifiers, '-tree-table');
