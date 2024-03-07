@@ -95,8 +95,13 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   }
   const kind = item.kind ?? DataGridKinds.DEFAULT;
   const template = item.template ?? kind + '-data-grid-item.hbs';
+  console.log('DATA_GRID', JSON.stringify({ name: item.name, formControl: formControl?.type, source: item.formControl?.type }));
+  const type = formControl?.type ?? item.type;
   return Object.freeze({
-    ...NormalizeDataProperty(item),
+    ...NormalizeDataProperty({
+      ...item,
+      type,
+    }),
     template,
     kind,
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'data-grid-component', 'templates')),

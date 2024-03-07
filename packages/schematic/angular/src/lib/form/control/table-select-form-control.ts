@@ -13,6 +13,11 @@ import {
   dasherize,
   Normalized,
 } from '@rxap/utilities';
+import {
+  AccordionIdentifier,
+  NormalizeAccordionIdentifier,
+  NormalizedAccordionIdentifier,
+} from '../../accordion-identifier';
 import { BackendTypes } from '../../backend-types';
 import {
   GuessColumnTypeType,
@@ -90,6 +95,7 @@ export interface TableSelectFormControl extends FormFieldFormControl {
   toValue?: TableSelectToFunction;
   upstream?: UpstreamOptions;
   resolver?: { upstream?: UpstreamOptions };
+  identifier?: AccordionIdentifier;
 }
 
 export interface NormalizedTableSelectFormControl
@@ -103,6 +109,7 @@ export interface NormalizedTableSelectFormControl
   toValue: NormalizedTableSelectToFunction;
   upstream: NormalizedUpstreamOptions | null;
   resolver: { upstream: NormalizedUpstreamOptions | null } | null;
+  identifier: NormalizedAccordionIdentifier;
 }
 
 export function IsNormalizedTableSelectFormControl(template: NormalizedBaseFormControl): template is NormalizedTableSelectFormControl {
@@ -129,6 +136,15 @@ export function NormalizeTableSelectFormControl(
   const columnList = control.columnList.map(NormalizeTableSelectColumn);
   CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
   control.type ??= toValue.property.type;
+  let identifier = NormalizeAccordionIdentifier(control.identifier);
+  if (!identifier) {
+    identifier = NormalizeAccordionIdentifier({
+      property: { ...toValue.property },
+    })!;
+  }
+  if (identifier) {
+    CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name);
+  }
   return Object.freeze({
     ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, false, {
       label: control.label,
@@ -140,6 +156,7 @@ export function NormalizeTableSelectFormControl(
         },
       ],
     }),
+    identifier,
     resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
     kind: FormControlKinds.TABLE_SELECT,
     backend: control.backend ?? BackendTypes.NONE,

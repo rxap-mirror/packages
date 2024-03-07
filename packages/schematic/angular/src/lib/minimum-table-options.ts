@@ -9,6 +9,11 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import {
+  AccordionIdentifier,
+  NormalizeAccordionIdentifier,
+  NormalizedAccordionIdentifier,
+} from './accordion-identifier';
+import {
   CssClass,
   NormalizeCssClass,
   NormalizedCssClass,
@@ -46,6 +51,7 @@ export interface MinimumTableOptions {
   title?: string;
   componentName?: string;
   cssClass?: CssClass;
+  identifier?: AccordionIdentifier;
 }
 
 export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
@@ -56,6 +62,7 @@ export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
   propertyList: Array<NormalizedDataProperty>;
   modifiers: Array<MODIFIER>;
   cssClass: NormalizedCssClass;
+  identifier: NormalizedAccordionIdentifier | null;
 }
 
 export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
@@ -74,7 +81,12 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   if (!modifiers.every(isModifier)) {
     throw new Error(`Invalid table modifier for table: ${ componentName } - [ ${ modifiers.join(', ') } ] with function: ${ isModifier.name }`);
   }
+  // TODO : map the columnList to a propertyList
   CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
+  const identifier = NormalizeAccordionIdentifier(options.identifier);
+  if (identifier) {
+    CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name);
+  }
   return Object.freeze({
     componentName,
     actionList,
@@ -84,5 +96,6 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     title,
     propertyList,
     cssClass: NormalizeCssClass(options.cssClass),
+    identifier,
   });
 }

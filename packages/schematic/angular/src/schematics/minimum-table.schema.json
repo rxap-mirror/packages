@@ -41,6 +41,9 @@
     },
     "cssClass": {
       "$ref": "#/definitions/cssClass"
+    },
+    "identifier": {
+      "$ref": "#/definitions/accordionIdentifier"
     }
   },
   "definitions": {
@@ -61,6 +64,9 @@
     },
     "cssClass": {
       "$ref": "./css-class.schema.json"
+    },
+    "accordionIdentifier": {
+      "$ref": "./accordion-identifier.schema.json"
     }
   }
 }

@@ -10,8 +10,7 @@
       "type": "string",
       "enum": [
         "route"
-      ],
-      "default": "route"
+      ]
     }
   },
   "required": [

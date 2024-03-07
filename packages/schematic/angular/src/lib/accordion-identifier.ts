@@ -10,12 +10,12 @@ import {
  */
 export interface AccordionIdentifier {
   property: DataProperty;
-  source: string;
+  source?: string;
 }
 
 export interface NormalizedAccordionIdentifier {
   property: NormalizedDataProperty;
-  source: string;
+  source: string | null;
 }
 
 export function NormalizeAccordionIdentifier(identifier?: AccordionIdentifier): NormalizedAccordionIdentifier | null {
@@ -24,6 +24,6 @@ export function NormalizeAccordionIdentifier(identifier?: AccordionIdentifier): 
   }
   return {
     property: NormalizeDataProperty(identifier.property),
-    source: identifier.source,
+    source: identifier.source ?? null,
   };
 }

@@ -139,6 +139,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
     role,
     isOptional,
     source,
+    identifier,
   } = normalizedOptions;
   const { upstream } = resolver ?? {};
 
@@ -171,8 +172,9 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       controllerName,
       upstream,
       propertyList,
-      rowValueProperty: toValue.property.name,
-      rowDisplayProperty: toDisplay.property.name,
+      rowValueProperty: toValue.property,
+      rowDisplayProperty: toDisplay.property,
+      rowIdProperty: identifier.property,
       operationName: resolveValueOperationName,
       path: resolveValueOperationPath,
       dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
@@ -273,6 +275,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
     upstream,
     role,
     isOptional,
+    identifier,
     source,
   } = normalizedOptions;
 
@@ -298,8 +301,9 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       operationName: optionsOperationName,
       path: optionsOperationPath,
       dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
-      rowValueProperty: toValue.property.name,
-      rowDisplayProperty: toDisplay.property.name,
+      rowValueProperty: toValue.property,
+      rowDisplayProperty: toDisplay.property,
+      rowIdProperty: identifier.property,
       context,
       upstream
     }),

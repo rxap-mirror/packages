@@ -3,6 +3,7 @@ import {
   CoerceClassMethod,
   CoerceImports,
   CoercePropertyDeclaration,
+  DataProperty,
   IsNormalizedOpenApiUpstreamOptions,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
@@ -58,7 +59,7 @@ export interface CoerceGetPageOperationOptions
    * the name of the property used as row id value. defaults to the value 'uuid'. If null the __rowId property will be
    * set to the absolute row index absolute row index = page * pageSize + rowIndex
    */
-  rowIdProperty?: string | null;
+  rowIdProperty?: DataProperty;
   operationName?: string;
   coerceToRowDtoMethod?: (
     sourceFile: SourceFile,
@@ -139,9 +140,9 @@ export function CoerceToRowDtoMethod(
     statements: [
       'return {',
       '  __rowId: ' +
-      (options.rowIdProperty === null ?
+      (!options.rowIdProperty ?
         '(pageIndex * pageSize + index).toFixed(0)' :
-        `item.${ options.rowIdProperty ?? 'uuid' }`) + ',\n  ',
+        `item.${ options.rowIdProperty.name }`) + ',\n  ',
       options.propertyList?.filter(p => p.name !== '__rowId').map(GetPageOperationColumnToCodeText).join(',\n  ') ?? '',
       '};',
     ],
@@ -363,7 +364,7 @@ export function CoerceGetPageOperationDtoClass(
     project,
     name: dtoClassName,
     propertyList,
-    rowIdType: rowIdProperty === null ? null : undefined,
+    rowIdType: rowIdProperty?.type,
   });
 
   CoerceImports(sourceFile, {

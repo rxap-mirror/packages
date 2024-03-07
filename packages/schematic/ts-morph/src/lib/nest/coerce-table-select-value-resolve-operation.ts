@@ -1,6 +1,8 @@
 import {
+  DataProperty,
   IsNormalizedOpenApiUpstreamOptions,
-  NormalizeTypeImport,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
 } from '@rxap/ts-morph';
 import {
   ClassDeclaration,
@@ -16,8 +18,9 @@ import {
 
 export interface CoerceTableSelectValueResolveOperationOptions
   extends CoerceOperationOptions {
-  rowDisplayProperty?: string;
-  rowValueProperty?: string;
+  rowIdProperty: DataProperty;
+  rowDisplayProperty: NormalizedDataProperty;
+  rowValueProperty?: NormalizedDataProperty;
 }
 
 export function BuildTableSelectValueResolveUpstreamGetParametersImplementation(
@@ -44,24 +47,28 @@ export function CoerceTableSelectValueResolveOperationRule(options: CoerceTableS
   const {
     buildUpstreamGetParametersImplementation = BuildTableSelectValueResolveUpstreamGetParametersImplementation,
     propertyList = [],
-    rowDisplayProperty = 'name',
-    rowValueProperty = 'uuid',
+    rowIdProperty,
+    rowDisplayProperty,
+    rowValueProperty = NormalizeDataProperty(rowIdProperty),
   } = options;
 
   propertyList.unshift({
+    ...rowDisplayProperty,
     name: '__display',
-    type: NormalizeTypeImport('string'),
-    isArray: false,
-    source: rowDisplayProperty,
+    source: rowDisplayProperty.name,
   });
   propertyList.unshift({
+    ...rowValueProperty,
     name: '__value',
-    type: NormalizeTypeImport('string'),
-    isArray: false,
-    source: rowValueProperty,
+    source: rowValueProperty.name,
   });
+  propertyList.unshift(NormalizeDataProperty({
+    ...rowIdProperty,
+    name: '__rowId',
+    source: rowIdProperty.name,
+  }, 'number'));
 
-  return CoerceOperation({
+  return CoerceOperation<CoerceTableSelectValueResolveOperationOptions>({
     ...options,
     buildUpstreamGetParametersImplementation,
   });

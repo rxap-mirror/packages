@@ -1,4 +1,8 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
+import {
+  TypeImport,
+  TypeName,
+} from '@rxap/ts-morph';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceDtoClass,
@@ -10,7 +14,7 @@ export interface CoerceRowDtoClassOptions extends CoerceDtoClassOptions {
    * the type of the property used as row id type. defaults to the type 'string'. If null the type will be
    * set to number
    */
-  rowIdType?: string | null;
+  rowIdType?: TypeImport | TypeName;
 }
 
 export function BuildRowDtoClassName(name: string): string {
@@ -19,14 +23,14 @@ export function BuildRowDtoClassName(name: string): string {
 
 export function CoerceRowDtoClass(options: CoerceRowDtoClassOptions) {
   const {
-    rowIdType,
+    rowIdType = 'number',
     project,
     name,
     propertyList = [],
   } = options;
   CoerceArrayItems(propertyList, [{
     name: '__rowId',
-    type: rowIdType === null ? 'number' : rowIdType ?? 'string',
+    type: rowIdType,
   }], (a, b) => a.name === b.name);
   return CoerceDtoClass({
     project,

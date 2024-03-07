@@ -75,6 +75,9 @@
               "$ref": "#/definitions/upstream"
             }
           }
+        },
+        "identifier": {
+          "$ref": "#/definitions/accordionIdentifier"
         }
       }
     }
@@ -91,6 +94,9 @@
     },
     "baseFormControl": {
       "$ref": "./base-form-control.schema.json"
+    },
+    "accordionIdentifier": {
+      "$ref": "./accordion-identifier.schema.json"
     }
   }
 }

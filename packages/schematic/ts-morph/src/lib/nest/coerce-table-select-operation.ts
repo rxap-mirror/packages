@@ -1,33 +1,36 @@
-import { NormalizeTypeImport } from '@rxap/ts-morph';
+import {
+  DataProperty,
+  NormalizeDataProperty,
+  NormalizedDataProperty,
+} from '@rxap/ts-morph';
 import {
   CoerceGetPageOperation,
   CoerceGetPageOperationOptions,
 } from './coerce-get-page-operation';
 
 export interface CoerceTableSelectOperationOptions extends CoerceGetPageOperationOptions {
-  rowDisplayProperty?: string;
-  rowValueProperty?: string;
+  rowIdProperty: DataProperty;
+  rowDisplayProperty: NormalizedDataProperty;
+  rowValueProperty?: NormalizedDataProperty;
 }
 
 export function CoerceTableSelectOperationRule(options: CoerceTableSelectOperationOptions) {
   const {
     propertyList = [],
-    rowIdProperty= 'uuid',
-    rowDisplayProperty = 'name',
-    rowValueProperty = rowIdProperty ?? 'uuid',
+    rowIdProperty,
+    rowDisplayProperty,
+    rowValueProperty = NormalizeDataProperty(rowIdProperty),
   } = options;
 
   propertyList.unshift({
+    ...rowDisplayProperty,
     name: '__display',
-    type: NormalizeTypeImport('string'),
-    isArray: false,
-    source: rowDisplayProperty,
+    source: rowDisplayProperty.name,
   });
   propertyList.unshift({
+    ...rowValueProperty,
     name: '__value',
-    type: NormalizeTypeImport('string'),
-    isArray: false,
-    source: rowValueProperty,
+    source: rowValueProperty.name,
   });
 
   return CoerceGetPageOperation({

@@ -3,6 +3,7 @@ import {
   NormalizeUpstreamOptions,
 } from '@rxap/ts-morph';
 import { CoerceArrayItems } from '@rxap/utilities';
+import { NormalizeAccordionIdentifier } from '../../accordion-identifier';
 import { BackendTypes } from '../../backend-types';
 import { NormalizedBaseFormControl } from './base-form-control';
 
@@ -39,8 +40,18 @@ export function NormalizeAutocompleteTableSelectFormControl(
   const columnList = control.columnList.map(NormalizeTableSelectColumn);
   CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
   control.type ??= toValue.property.type;
+  let identifier = NormalizeAccordionIdentifier(control.identifier);
+  if (!identifier) {
+    identifier = NormalizeAccordionIdentifier({
+      property: { ...toValue.property },
+    })!;
+  }
+  if (identifier) {
+    CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name);
+  }
   return Object.freeze({
     ...NormalizeFormFieldFormControl(control, importList),
+    identifier,
     resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
     kind: FormControlKinds.TABLE_SELECT,
     backend: control.backend ?? BackendTypes.NONE,
