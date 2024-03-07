@@ -58,11 +58,11 @@ never shown. -->
     </ng-template>
     <ng-template #content>
       <td [attr.colspan]="row.flip ? 2 : 1" [ngClass]="{
-      'h-20': row.editCell?.template && (isEditMode || isFormModeOrHasAnyEditCells) && false,
+      'h-20': row.editCell?.template && (isEditMode || isFormMode) && false,
       }" class="pl-8 pr-4 w-full">
-        <ng-template [ngIfThen]="editMode" [ngIf]="row.editCell?.template && (isEditMode || isFormModeOrHasAnyEditCells)"></ng-template>
+        <ng-template [ngIfThen]="editMode" [ngIf]="row.editCell?.template && (isEditMode || isFormMode)"></ng-template>
         <ng-template [ngIfThen]="viewMode"
-                     [ngIf]="!row.editCell?.template || (!isEditMode && !isFormModeOrHasAnyEditCells)"></ng-template>
+                     [ngIf]="!row.editCell?.template || (!isEditMode && !isFormMode)"></ng-template>
       </td>
       <ng-template #viewMode>
         <ng-container
