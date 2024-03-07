@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.33...@rxap/schematic-angular@16.2.0-dev.34) (2024-03-07)
+
+### Bug Fixes
+
+- add default get tree operation mapper ([f4f8e08](https://gitlab.com/rxap/packages/commit/f4f8e08bca2a78cab843a21578826502490fc40c))
+- add default options operation mapper ([d519836](https://gitlab.com/rxap/packages/commit/d5198369f0c5d5d883d233b907b9ebde37638069))
+- add spinner placeholder ([7337bca](https://gitlab.com/rxap/packages/commit/7337bca060a9a85ed0fd924036b7fdd3fd4d3849))
+- unify table generators ([bbea49e](https://gitlab.com/rxap/packages/commit/bbea49e97e1a39d2c91548a52a5347edcc58e0e1))
+
+### Features
+
+- support header and filter custom css classes ([d366714](https://gitlab.com/rxap/packages/commit/d36671458e909916d5c3364778ce9dd1b6f19698))
+
 # [16.2.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.32...@rxap/schematic-angular@16.2.0-dev.33) (2024-03-07)
 
 ### Bug Fixes

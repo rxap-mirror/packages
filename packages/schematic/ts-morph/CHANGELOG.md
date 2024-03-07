@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.17...@rxap/schematics-ts-morph@16.1.0-dev.18) (2024-03-07)
+
+### Bug Fixes
+
+- add default get tree operation mapper ([f4f8e08](https://gitlab.com/rxap/packages/commit/f4f8e08bca2a78cab843a21578826502490fc40c))
+- add default options operation mapper ([d519836](https://gitlab.com/rxap/packages/commit/d5198369f0c5d5d883d233b907b9ebde37638069))
+
 # [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.16...@rxap/schematics-ts-morph@16.1.0-dev.17) (2024-03-07)
 
 ### Bug Fixes
