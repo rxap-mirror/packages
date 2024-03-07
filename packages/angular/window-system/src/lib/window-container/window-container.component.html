@@ -18,11 +18,11 @@
       <rxap-window-tool-bar></rxap-window-tool-bar>
     </div>
 
-    <div class="content h-[80vh] overflow-auto w-full">
+    <div class="content h-full overflow-auto w-full">
       <ng-content></ng-content>
     </div>
 
-    <mat-toolbar *ngIf="windowRef.footerPortal$ | async as footerPortal" class="footer mat-elevation-z1 grow-0 w-full h-[64px]">
+    <mat-toolbar *ngIf="windowRef.footerPortal$ | async as footerPortal" class="footer mat-elevation-z1 grow-0 w-full h-[64px] min-h-[64px]">
       <ng-template [cdkPortalOutlet]="footerPortal"></ng-template>
     </mat-toolbar>
 
