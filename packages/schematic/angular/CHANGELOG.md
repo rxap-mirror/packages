@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.35...@rxap/schematic-angular@16.2.0-dev.36) (2024-03-07)
+
+### Bug Fixes
+
+- ensure sticky columns are ordered correctly ([442ed19](https://gitlab.com/rxap/packages/commit/442ed19b5c6eeb24aa088ce3171cf74e16e33792))
+
 # [16.2.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.34...@rxap/schematic-angular@16.2.0-dev.35) (2024-03-07)
 
 ### Bug Fixes
