@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.24...@rxap/schematic-angular@16.2.0-dev.25) (2024-03-07)
+
+### Bug Fixes
+
+- use defined identifier property ([fd5fa55](https://gitlab.com/rxap/packages/commit/fd5fa55b7e580475227340ffd8b1d6c39847b626))
+
+### Features
+
+- support customization of static columns ([1fdd0ef](https://gitlab.com/rxap/packages/commit/1fdd0ef3d9b9dbe6c0ad2ff6813b897bc46da1b3))
+
 # [16.2.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.23...@rxap/schematic-angular@16.2.0-dev.24) (2024-03-07)
 
 ### Bug Fixes

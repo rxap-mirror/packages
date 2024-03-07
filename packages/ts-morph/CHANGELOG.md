@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.12...@rxap/ts-morph@1.1.0-dev.13) (2024-03-07)
+
+### Features
+
+- add IdentifierOptions interface ([0e16cc0](https://gitlab.com/rxap/packages/commit/0e16cc004509841f0ad7d4924c93ae81f90c4587))
+
 # [1.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.11...@rxap/ts-morph@1.1.0-dev.12) (2024-03-07)
 
 ### Bug Fixes
