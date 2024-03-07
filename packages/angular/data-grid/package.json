@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.1",
+  "version": "16.0.1-dev.2",
   "name": "@rxap/data-grid",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -40,7 +40,7 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.1.0-dev.1"
+        "version": "16.1.0-dev.2"
       },
       {
         "package": "@rxap/forms",
@@ -48,7 +48,7 @@
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "16.0.1-dev.2"
+        "version": "16.0.1-dev.3"
       },
       {
         "package": "@rxap/pattern",
