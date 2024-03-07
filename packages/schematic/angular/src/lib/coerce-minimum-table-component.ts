@@ -81,7 +81,7 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       if (columnList.some(column => column.hasFilter)) {
         CoerceComponentImport(classDeclaration, { name: 'TableFilterModule', moduleSpecifier: '@rxap/material-table-system' });
       }
-      if (columnList.some(column => column.propertyPath.includes('.'))) {
+      if (columnList.some(column => column.source?.includes('.'))) {
         CoerceComponentImport(classDeclaration, { name: 'GetFromObjectPipe', moduleSpecifier: '@rxap/pipes' });
       }
       // endregion

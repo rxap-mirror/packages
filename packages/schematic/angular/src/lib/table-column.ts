@@ -1,5 +1,5 @@
+import { SchematicsException } from '@angular-devkit/schematics';
 import {
-  camelize,
   capitalize,
   dasherize,
 } from '@rxap/schematics-utilities';
@@ -84,7 +84,6 @@ export interface TableColumn extends DataProperty {
   hasFilter?: boolean;
   withoutTitle?: boolean;
   title?: string;
-  propertyPath?: string;
   hidden?: boolean;
   active?: boolean;
   inactive?: boolean;
@@ -104,7 +103,6 @@ export type NormalizedTableColumnPipe = NormalizedTypeImport;
 
 export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableColumn, 'pipeList' | 'importList' | 'filterControl'>> & NormalizedDataProperty> {
   type: NormalizedTypeImport;
-  propertyPath: string;
   pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
   modifiers: TableColumnModifier[];
   importList: ReadonlyArray<NormalizedTypeImport>;
@@ -249,21 +247,6 @@ export function GuessColumnTypeType(kind: TableColumnKind, type?: string | TypeI
   return type;
 }
 
-export function TableColumnNameToPropertyPath(name: string, propertyPath: string | null | undefined = null): { name: string, propertyPath: string } {
-  const namePrefix = name.match(/^(_+)/)?.[1] ?? '';
-  propertyPath ??= name
-    .replace(/\?\./g, '.')
-    .split('.')
-    .map((part) => camelize(part))
-    .join('?.');
-  name = dasherize(name.replace(/\??\./g, '_'));
-  if (namePrefix) {
-    name = namePrefix + name;
-    propertyPath = namePrefix + propertyPath;
-  }
-  return { name, propertyPath };
-}
-
 export function TableColumnNameToTitle(name: string) {
   return dasherize(name)
     .replace(/_/g, '-')
@@ -275,10 +258,12 @@ export function TableColumnNameToTitle(name: string) {
 export function NormalizeTableColumn(
   column: Readonly<TableColumn>,
 ): NormalizedTableColumn {
-  const { name, propertyPath } = TableColumnNameToPropertyPath(column.name, column.propertyPath);
+  if (!column.name) {
+    throw new SchematicsException('The column name is required');
+  }
   const modifiers = column.modifiers ?? [];
   let hasFilter = modifiers.includes(TableColumnModifier.FILTER) || (column.hasFilter ?? false);
-  const title = column.title ?? TableColumnNameToTitle(name);
+  const title = column.title ?? TableColumnNameToTitle(column.name);
   const hidden = modifiers.includes(TableColumnModifier.HIDDEN) || (column.hidden ?? false);
   const active = modifiers.includes(TableColumnModifier.ACTIVE) || (column.active ?? false);
   const inactive = modifiers.includes(TableColumnModifier.INACTIVE) || (column.inactive ?? false);
@@ -291,10 +276,16 @@ export function NormalizeTableColumn(
   const pipeList = column.pipeList ?? [];
   const importList = coerceTableColumnImportList(column);
   const type = GuessColumnTypeType(kind, column.type);
-  const source = column.source ?? propertyPath;
+  const source = column.source ?? undefined;
   let sticky: TableColumnSticky | null = null;
   let stickyStart = false;
   let stickyEnd = false;
+  const dataProperty = NormalizeDataProperty({
+    ...column,
+    type,
+    source,
+  });
+  const { name } = dataProperty;
   if (column.sticky) {
     if (typeof column.sticky !== 'string' || !IsTableColumnSticky(column.sticky)) {
       sticky = TableColumnSticky.START;
@@ -343,12 +334,7 @@ export function NormalizeTableColumn(
     CoerceArrayItems(importList, normalizedFilterControl.importList, (a, b) => a.name === b.name);
   }
   return Object.freeze({
-    ...NormalizeDataProperty({
-      ...column,
-      name,
-      type,
-      source,
-    }),
+    ...dataProperty,
     synthetic: column.synthetic ?? false,
     filterName: `filter_${ name }`,
     sticky,
@@ -358,7 +344,6 @@ export function NormalizeTableColumn(
     modifiers,
     hasFilter,
     title,
-    propertyPath,
     hidden,
     active,
     inactive,

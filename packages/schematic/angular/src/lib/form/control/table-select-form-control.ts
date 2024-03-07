@@ -1,3 +1,4 @@
+import { SchematicsException } from '@angular-devkit/schematics';
 import {
   DataProperty,
   NormalizeDataProperty,
@@ -8,9 +9,7 @@ import {
   UpstreamOptions,
 } from '@rxap/ts-morph';
 import {
-  capitalize,
   CoerceArrayItems,
-  dasherize,
   Normalized,
 } from '@rxap/utilities';
 import {
@@ -24,7 +23,7 @@ import {
   NormalizedTableColumn,
   TableColumn,
   TableColumnKind,
-  TableColumnNameToPropertyPath,
+  TableColumnNameToTitle,
 } from '../../table-column';
 import { NormalizedBaseFormControl } from './base-form-control';
 
@@ -35,30 +34,27 @@ import {
   NormalizeFormFieldFormControl,
 } from './form-field-form-control';
 
-export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath'>
+export type TableSelectColumn = Pick<TableColumn, 'name' | 'title' | 'hasFilter' | 'kind'>
   & DataProperty
 export type NormalizedTableSelectColumn =
-  Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind' | 'propertyPath'> & NormalizedDataProperty
+  Pick<NormalizedTableColumn, 'name' | 'title' | 'hasFilter' | 'kind'> & NormalizedDataProperty
 
 export function NormalizeTableSelectColumn(
   column: TableSelectColumn,
 ): NormalizedTableSelectColumn {
-  const {
-    name,
-    propertyPath,
-  } = TableColumnNameToPropertyPath(column.name, column.propertyPath);
+  if (!column.name) {
+    throw new SchematicsException('The column name is required');
+  }
   const kind = column.kind ?? TableColumnKind.DEFAULT;
   const type = GuessColumnTypeType(kind, column.type ?? 'unknown');
   return Object.freeze({
     ...NormalizeDataProperty({
       ...column,
-      name,
       type,
     }),
-    title: column.title ?? dasherize(name).split('-').map(part => capitalize(part)).join(' '),
+    title: column.title ?? TableColumnNameToTitle(column.name),
     hasFilter: column.hasFilter ?? false,
     kind,
-    propertyPath,
   });
 }
 

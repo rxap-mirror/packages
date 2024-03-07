@@ -2,7 +2,10 @@ import {
   TypeImport,
   TypeName,
 } from '@rxap/ts-morph';
-import { Normalized } from '@rxap/utilities';
+import {
+  camelize,
+  Normalized,
+} from '@rxap/utilities';
 import {
   OptionalKind,
   PropertySignatureStructure,
@@ -50,6 +53,12 @@ function guessType(name: string): TypeName | TypeImport {
   return 'unknown';
 }
 
+const notAllowedInVariableNames = [
+  " ", "!", "\"", "#", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/",
+  ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "`", "{", "|", "}", "~"
+];
+
+
 export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty>, defaultType: TypeImport | TypeName = 'unknown', isArray = false): NormalizedDataProperty {
   let name: string;
   let type: string | TypeImport = 'unknown';
@@ -85,6 +94,15 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
     }
   }
   name = name.replace(/\.\?/g, '.').split('.').join('.?');
+  if (!isNaN(Number(name[0]))) {
+    name = `_${name}`;
+  }
+  if (notAllowedInVariableNames.some(c => name.includes(c))) {
+    const leadingUnderscoreCount = name.match(/^_*/)?.[0].length ?? 0;
+    const nameWithoutLeadingUnderscores = name.slice(leadingUnderscoreCount);
+    name = camelize(nameWithoutLeadingUnderscores);
+    name = '_'.repeat(leadingUnderscoreCount) + name;
+  }
   return Object.freeze({
     name,
     type: NormalizeTypeImport(type),
