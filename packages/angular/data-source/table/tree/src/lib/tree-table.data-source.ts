@@ -136,7 +136,7 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
     if (this.parameters) {
       this._subscription = this.parameters
         .pipe(
-          distinctUntilChanged((a, b) => !equals(a, b)),
+          distinctUntilChanged((a, b) => equals(a, b)),
           skip(1),
           tap(() => this.refresh()),
         )
@@ -346,7 +346,8 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
     const filterList = typeof filter === 'string' ?
       [] :
                        Object.entries(filter).map(([ column, filter ]) => ({column, filter}));
-    if (!filterList.length || filterList.every((filter) => !filter.filter && filter.filter !== false)) {
+    if (!filterList.length ||
+        filterList.every((filter) => !filter.filter && filter.filter !== false && filter.filter !== 0)) {
       return data.slice();
     }
 
@@ -375,6 +376,12 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
     console.log('connect tree table data source');
     return this._data$.pipe(
       tap((data) => this.updateTotalLength(data.length)),
+      distinctUntilChanged((a, b) => {
+        if (a.length !== b.length) {
+          return false;
+        }
+        return equals(a.map(item => item.__node.id), b.map(item => item.__node.id));
+      }),
       switchMap((data) => {
         return combineLatest([
           this.paginator?.page?.pipe(
@@ -398,7 +405,7 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
             filter,
           })),
           debounceTime(500),
-          distinctUntilChanged((a, b) => !equals(a, b)),
+          distinctUntilChanged((a, b) => equals(a, b)),
           map((event) => {
             const {page, sort, filter} = event;
             let filteredData           = data;
@@ -427,9 +434,9 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
 
             return sortData;
           }),
-          share(),
         );
       }),
+      share(),
     );
   }
 
@@ -454,4 +461,3 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
       .subscribe();
   }
 }
-
