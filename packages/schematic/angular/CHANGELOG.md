@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.28...@rxap/schematic-angular@16.2.0-dev.29) (2024-03-07)
+
+### Bug Fixes
+
+- ensure the cell component are valid ([2805418](https://gitlab.com/rxap/packages/commit/280541871df730c68bec790b1f7127d9add06bf3))
+
 # [16.2.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.27...@rxap/schematic-angular@16.2.0-dev.28) (2024-03-07)
 
 ### Bug Fixes

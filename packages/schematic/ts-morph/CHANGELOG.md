@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.15...@rxap/schematics-ts-morph@16.1.0-dev.16) (2024-03-07)
+
+### Bug Fixes
+
+- ensure the cell component are valid ([2805418](https://gitlab.com/rxap/packages/commit/280541871df730c68bec790b1f7127d9add06bf3))
+
 # [16.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.14...@rxap/schematics-ts-morph@16.1.0-dev.15) (2024-03-07)
 
 ### Features
