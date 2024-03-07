@@ -581,7 +581,7 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
             shared,
             name: CoerceSuffix(dasherize(column.name), '-cell'),
             componentOptions: {
-              selector: `mat-cell[{{prefix}}-${ dasherize(column.name) }]`,
+              selector: `td[mat-cell][{{prefix}}-${ dasherize(column.name) }]`,
             },
             directory,
             overwrite: overwrite || column.modifiers.includes(TableColumnModifier.OVERWRITE),
