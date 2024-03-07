@@ -28,10 +28,17 @@
 
 .run-many:
   extends: .run
-  script:
-    - echo "run-many ${TARGET} in parallel ${NX_PARALLEL:-3} with ${ADDITIONAL_TARGET_OPTIONS:-no additional options}"
-    - yarn nx run-many --target ${TARGET} --parallel ${NX_PARALLEL:-3} ${ADDITIONAL_TARGET_OPTIONS}
-    - NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn nx run workspace:ci-info
+  script: |
+    if [ -z "${APPLICATION_ADDITIONAL_TARGET_OPTIONS}" ]; then
+      echo "run-many ${TARGET} in parallel ${NX_PARALLEL:-3} with ${ADDITIONAL_TARGET_OPTIONS:-no additional options}"
+      yarn nx run-many --target ${TARGET} --parallel ${NX_PARALLEL:-3} ${ADDITIONAL_TARGET_OPTIONS}
+    else
+      echo "run-many ${TARGET} excluding application projects in parallel ${NX_PARALLEL:-3} with ${ADDITIONAL_TARGET_OPTIONS:-no additional options}"
+      yarn nx run-many --target ${TARGET} --parallel ${NX_PARALLEL:-3} --exclude=tag:application ${ADDITIONAL_TARGET_OPTIONS}
+      echo "run-many ${TARGET} for application projects in parallel ${NX_PARALLEL:-3} with ${APPLICATION_ADDITIONAL_TARGET_OPTIONS}"
+      yarn nx run-many --target ${TARGET} --parallel ${NX_PARALLEL:-3} --projects=tag:application ${APPLICATION_ADDITIONAL_TARGET_OPTIONS}
+    fi
+    NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn nx run workspace:ci-info
 
 .run-many-dte:
   extends: .run-many
