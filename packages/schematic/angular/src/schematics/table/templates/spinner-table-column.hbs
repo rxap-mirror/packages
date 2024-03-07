@@ -5,8 +5,11 @@
     {{#if column.cssClass}}{{> cssClass cssClass=column.cssClass}}{{/if~}}
   >
     <mat-spinner
-      *ngIf="element.__metadata__?.loading$ | async"
+      *ngIf="element.__metadata__?.loading$ | async; else noSpinner"
       diameter="15"
     ></mat-spinner>
+    <ng-template #noSpinner>
+      <div class="w-[15px] h-[15px]"></div>
+    </ng-template>
   </td>
 {{/matColumnDef}}
