@@ -1,4 +1,8 @@
-import { NormalizedDataProperty } from '@rxap/ts-morph';
+import {
+  NormalizeDataProperty,
+  NormalizeDataPropertyList,
+  NormalizedDataProperty,
+} from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
   Normalized,
@@ -50,6 +54,7 @@ export function NormalizeTreeTableOptions(
   name: string,
 ): NormalizedTreeTableOptions {
   const columnList = options.columnList ?? [];
+  const propertyList = NormalizeDataPropertyList(options.propertyList ?? []);
   CoerceArrayItems(columnList, [{
     name: 'tree',
     hidden: true,
@@ -72,9 +77,14 @@ export function NormalizeTreeTableOptions(
       { name: 'AsyncPipe', moduleSpecifier: '@angular/common' }
     ],
   }], { compareTo: (a, b) => a.name === b.name, merge: true });
+  CoerceArrayItems(propertyList, [NormalizeDataProperty({
+    name: 'icon',
+    isOptional: true,
+  })], (a, b) => a.name === b.name);
   const normalizedOptions = NormalizeMinimumTableOptions({
     ...options,
     columnList,
+    propertyList,
   }, name, IsTreeTableModifiers, '-tree-table');
   const tableRootMethod = NormalizeExistingMethod(options.tableRootMethod);
   const tableChildMethod = NormalizeExistingMethod(options.tableRootMethod) ?? tableRootMethod;
