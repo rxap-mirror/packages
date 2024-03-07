@@ -8,7 +8,7 @@ import { IReferenceTreeTable } from '../reference-tree-table';
 @Component({
     standalone: true,
   // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'td[mat-cell][rxap-is-referenced]',
+    selector: 'td[mat-cell][rxap-is-referenced-cell]',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './is-referenced-cell.component.html',
     styleUrls: ['./is-referenced-cell.component.scss']

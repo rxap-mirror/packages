@@ -54,31 +54,39 @@ import { TreeTableChildrenProxyMethod } from './tree-table-children-proxy.method
 import { TreeTableRootProxyMethod } from './tree-table-root-proxy.method';
 
 @Component({
-    standalone: true,
-    selector: 'rxap-reference-tree-table',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './reference-tree-table.component.html',
-    styleUrls: ['./reference-tree-table.component.scss'],
-  animations: [RowAnimation],
-  imports: [TableColumnMenuModule, MatPaginatorModule, MatSortModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgClass, TreeControlCellComponent, IsReferencedCellComponent, MatCheckboxModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatIconModule, InputClearButtonDirective, ParentControlContainerDirective, ScopeTypeCellComponent, MatSelectModule, OptionsFromMethodDirective, MatProgressSpinnerModule, NgIf, TableFilterModule],
-  providers: [{
+  standalone: true,
+  selector: 'rxap-reference-tree-table',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './reference-tree-table.component.html',
+  styleUrls: [ './reference-tree-table.component.scss' ],
+  animations: [ RowAnimation ],
+  imports: [
+    TableColumnMenuModule, MatPaginatorModule, MatSortModule, PersistentPaginatorDirective, DataSourceErrorComponent,
+    MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule,
+    MatCardModule, AsyncPipe, NgClass, TreeControlCellComponent, IsReferencedCellComponent, MatCheckboxModule,
+    ReactiveFormsModule, MatInputModule, MatButtonModule, MatIconModule, InputClearButtonDirective,
+    ParentControlContainerDirective, ScopeTypeCellComponent, MatSelectModule, OptionsFromMethodDirective,
+    MatProgressSpinnerModule, NgIf, TableFilterModule,
+  ],
+  providers: [
+    {
       provide: TABLE_DATA_SOURCE,
-      useClass: TreeTableDataSource
+      useClass: TreeTableDataSource,
     },
     FormProviders,
     TableFilterService,
     {
       provide: RXAP_TABLE_FILTER_FORM_DEFINITION,
       useFactory: FormFactory,
-      deps: [ INJECTOR ]
+      deps: [ INJECTOR ],
     },
     {
       provide: RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD,
-      useClass: TreeTableRootProxyMethod
+      useClass: TreeTableRootProxyMethod,
     },
     {
       provide: RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD,
-      useClass: TreeTableChildrenProxyMethod
+      useClass: TreeTableChildrenProxyMethod,
     },
   ],
 })
