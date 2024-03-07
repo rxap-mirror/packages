@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.13...@rxap/schematics-ts-morph@16.1.0-dev.14) (2024-03-07)
+
+### Bug Fixes
+
+- ensure the coerce array items function is used instead of unshift ([17b8d10](https://gitlab.com/rxap/packages/commit/17b8d10fa3df7eaec51180b79216d5c4913b3b1d))
+
 # [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.12...@rxap/schematics-ts-morph@16.1.0-dev.13) (2024-03-07)
 
 ### Bug Fixes

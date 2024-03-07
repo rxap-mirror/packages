@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.25...@rxap/schematic-angular@16.2.0-dev.26) (2024-03-07)
+
+### Bug Fixes
+
+- add optional icon property to tree table property list ([1638aac](https://gitlab.com/rxap/packages/commit/1638aac3c7ed030a7d1c33b6097f3df337c87094))
+
 # [16.2.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.24...@rxap/schematic-angular@16.2.0-dev.25) (2024-03-07)
 
 ### Bug Fixes
