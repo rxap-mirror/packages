@@ -173,7 +173,7 @@
 
           {{/if}}
           {{#each columnList}}
-          {{ indent (compile this.handlebars column=this) 10 }}
+          {{ indent (compile this.handlebars column=this prefix=../prefix) 10 }}
           {{/each}}
 
           <!-- endregion -->

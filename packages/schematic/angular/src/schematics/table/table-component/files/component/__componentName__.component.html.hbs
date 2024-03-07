@@ -174,7 +174,7 @@
 
           {{/if}}
           {{#each columnList}}
-          {{ indent (compile this.handlebars column=this) 10 }}
+          {{ indent (compile this.handlebars column=this prefix=../prefix) 10 }}
           {{/each}}
 
           <!-- endregion -->
@@ -191,13 +191,13 @@
           </ng-container>
           {{/if}}
           {{#each columnList}}
-          <ng-container matColumnDef="filter_{{this.name}}">
+          {{#> matColumnDef column=this columnName=this.filterName}}
             <th mat-header-cell *matHeaderCellDef>
               {{#if this.hasFilter}}
               {{ indent (compile this.filterControl.handlebars column=this control=this.filterControl parentControlContainer=true) 14 }}
               {{/if}}
             </th>
-          </ng-container>
+          {{/matColumnDef}}
           {{/each}}
 
           <!-- endregion -->

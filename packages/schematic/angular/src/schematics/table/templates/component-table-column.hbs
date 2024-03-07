@@ -4,7 +4,7 @@
   </th>
   <td *matCellDef="let element"
     mat-cell
-    {{prefix}}-{{column.name}}-cell
+    {{prefix}}-{{dasherize column.name}}-cell
     [element]="element"
     [value]="element?.{{column.propertyPath}}{{> pipe pipeList=column.pipeList}}"
     {{#if column.cssClass}}{{> cssClass cssClass=column.cssClass}}{{/if~}}

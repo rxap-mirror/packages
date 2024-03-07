@@ -577,7 +577,7 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
             project,
             feature,
             shared,
-            name: CoerceSuffix(column.name, '-cell'),
+            name: CoerceSuffix(dasherize(column.name), '-cell'),
             directory,
             overwrite: overwrite || column.modifiers.includes(TableColumnModifier.OVERWRITE),
           }),
