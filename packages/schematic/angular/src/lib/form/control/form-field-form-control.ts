@@ -22,6 +22,7 @@ import {
   FormControl,
   NormalizedFormControl,
 } from './form-control';
+import { FormControlKinds } from './form-control-kind';
 
 export interface FormFieldButton {
   svgIcon?: string;
@@ -135,16 +136,18 @@ export interface NormalizedFormFieldFormControl
   formField: NormalizedFormField;
 }
 
+export const FORM_FILED_FORM_CONTROL_KINDS = [FormControlKinds.INPUT, FormControlKinds.SELECT, FormControlKinds.TABLE_SELECT, FormControlKinds.AUTOCOMPLETE_TABLE_SELECT];
+
 export function IsFormFieldFormControl(control: FormControl): control is FormFieldFormControl {
   return (
            control as any
-         ).formField !== undefined;
+         ).formField !== undefined || FORM_FILED_FORM_CONTROL_KINDS.includes(control.kind ?? FormControlKinds.DEFAULT);
 }
 
 export function IsNormalizedFormFieldFormControl(control: NormalizedFormControl): control is NormalizedFormFieldFormControl {
   return (
            control as any
-         ).formField !== undefined;
+         ).formField !== undefined || FORM_FILED_FORM_CONTROL_KINDS.includes(control.kind);
 }
 
 export function NormalizeFormFieldFormControl(

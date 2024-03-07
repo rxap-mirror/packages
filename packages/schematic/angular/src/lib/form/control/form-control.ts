@@ -42,7 +42,7 @@ import {
 
 export type FormControl = { role: AbstractControlRolls.CONTROL } & (BaseFormControl | CheckboxFormControl | FormFieldFormControl | InputFormControl | SelectFormControl | SlideToggleFormControl | TableSelectFormControl);
 
-export type NormalizedFormControl = { role: AbstractControlRolls.CONTROL } & (NormalizedBaseFormControl | NormalizedCheckboxFormControl | NormalizedFormFieldFormControl | NormalizedInputFormControl | NormalizedSelectFormControl | NormalizedSlideToggleFormControl | NormalizedTableSelectFormControl);
+export type NormalizedFormControl = { role: AbstractControlRolls.CONTROL, kind: FormControlKinds } & (NormalizedBaseFormControl | NormalizedCheckboxFormControl | NormalizedFormFieldFormControl | NormalizedInputFormControl | NormalizedSelectFormControl | NormalizedSlideToggleFormControl | NormalizedTableSelectFormControl);
 
 export function IsFormControl(control: Control): control is FormControl {
   return control.role === AbstractControlRolls.CONTROL;

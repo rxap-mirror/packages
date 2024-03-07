@@ -21,6 +21,7 @@ import Handlebars from 'handlebars';
 import { join } from 'path';
 import {
   CssClass,
+  CssClassOptions,
   NormalizeCssClass,
   NormalizedCssClass,
 } from './css-class';
@@ -31,7 +32,7 @@ import {
   NormalizeFormControl,
 } from './form/control/form-control';
 import { FormControlKinds } from './form/control/form-control-kind';
-import { IsNormalizedFormFieldFormControl } from './form/control/form-field-form-control';
+import { IsFormFieldFormControl } from './form/control/form-field-form-control';
 import { IsInputFormControlOptions } from './form/control/input-form-control';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
@@ -350,16 +351,36 @@ export function NormalizeTableColumn(
     if (IsInputFormControlOptions(filterControl)) {
       filterControl.placeholder ??= 'Enter filter';
     }
+    if (IsFormFieldFormControl(filterControl)) {
+      filterControl.formField ??= {};
+      filterControl.formField.cssClass ??= [];
+      if (Array.isArray(filterControl.formField.cssClass)) {
+        if (!filterControl.formField.cssClass.some(item => {
+          if (typeof item === 'string') {
+            return item.includes('w-full');
+          } else if (typeof item === 'object') {
+            return item.name === 'w-full';
+          }
+          return false;
+        })) {
+          filterControl.formField.cssClass.push('w-full');
+        }
+      } else if (typeof filterControl.formField.cssClass === 'string') {
+        if (!filterControl.formField.cssClass.includes('w-full')) {
+          filterControl.formField.cssClass += ' w-full';
+        }
+        filterControl.formField.cssClass = filterControl.formField.cssClass.trim();
+      } else if (typeof filterControl.formField.cssClass === 'object') {
+        filterControl.formField.cssClass = [ filterControl.formField.cssClass ];
+        CoerceArrayItems(filterControl.formField.cssClass as CssClassOptions[], [{
+          name: 'w-full'
+        }], (a, b) => a.name === b.name);
+      }
+    }
   }
   const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl) : null;
   if (normalizedFilterControl) {
     CoerceArrayItems(importList, normalizedFilterControl.importList, (a, b) => a.name === b.name);
-    if (IsNormalizedFormFieldFormControl(normalizedFilterControl)) {
-      normalizedFilterControl.formField.cssClass ??= [];
-      CoerceArrayItems(normalizedFilterControl.formField.cssClass, [{
-        name: 'w-full'
-      }], (a, b) => a.name === b.name);
-    }
   }
   return Object.freeze({
     ...dataProperty,

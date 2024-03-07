@@ -26,6 +26,7 @@ export interface BaseFormControl extends DataProperty, AbstractControl {
 export interface NormalizedBaseFormControl extends Readonly<Normalized<Omit<BaseFormControl, 'type' | 'importList' | 'kind'>>>, NormalizedDataProperty, NormalizedAbstractControl {
   importList: NormalizedTypeImport[];
   role: AbstractControlRolls.CONTROL;
+  kind: FormControlKinds;
 }
 
 export function NormalizeBaseFormControl(
