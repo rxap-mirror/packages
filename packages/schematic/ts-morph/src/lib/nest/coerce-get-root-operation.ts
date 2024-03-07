@@ -3,13 +3,38 @@ import {
   noop,
 } from '@rxap/utilities';
 import {
+  ClassDeclaration,
+  SourceFile,
+  WriterFunction,
+} from 'ts-morph';
+import { CoerceDtoClassOutput } from './coerce-dto-class';
+import {
   CoerceGetByIdControllerOptions,
   CoerceGetByIdOperation,
 } from './coerce-get-by-id-operation';
+import {
+  CoerceOperationOptions,
+  TransformOperation,
+} from './coerce-operation';
 import { TABLE_QUERY_LIST } from './table-query-list';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CoerceGetRootOperationOptions extends CoerceGetByIdControllerOptions {
+}
+
+export function BuildGetRootDtoDataMapperImplementation(
+  classDeclaration: ClassDeclaration,
+  moduleSourceFile: SourceFile,
+  dto: CoerceDtoClassOutput | null,
+  options: Readonly<CoerceOperationOptions>,
+): TransformOperation<string | WriterFunction> {
+  const {
+    isArray,
+  } = options;
+  return () => {
+    // TODO : implement the data mapper
+    return isArray ? '[]' : '{}';
+  };
 }
 
 export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationOptions>) {
@@ -17,6 +42,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
     tsMorphTransform = noop,
     propertyList = [],
     operationName = 'get-root',
+    builtDtoDataMapperImplementation = BuildGetRootDtoDataMapperImplementation,
     idProperty = null,
     dtoClassNameSuffix = '-item',
     isArray = true,
@@ -40,6 +66,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
     idProperty,
     dtoClassNameSuffix,
     isArray,
+    builtDtoDataMapperImplementation,
     tsMorphTransform: (
       project,
       sourceFile,
