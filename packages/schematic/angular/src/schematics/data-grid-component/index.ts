@@ -29,6 +29,8 @@ import {
   CoerceComponentInput,
   CoerceImports,
   CoercePropertyDeclaration,
+  OperationIdToRequestBodyClassImportPath,
+  OperationIdToRequestBodyClassName,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
@@ -222,6 +224,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
   const submitOperationId = buildSubmitOperationId(normalizedOptions);
   const getOperationId = buildGetOperationId(normalizedOptions);
   const dataGridResponseClassName = OperationIdToResponseClassName(getOperationId);
+  const dataGridSubmitClassName = OperationIdToRequestBodyClassName(submitOperationId);
 
   return chain([
     () => console.log('Coerce form provider rule for the data grid data source submit method ...'),
@@ -286,11 +289,15 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
         if (identifier && !itemList.some(item => item.formControl?.name === identifier?.property.name)) {
           excludedProperties.push(identifier.property.name);
         }
+        let getType: string = dataGridResponseClassName;
         if (excludedProperties.length) {
-          typeAliasDeclaration.setType(`Omit<${dataGridResponseClassName}, '${excludedProperties.join('\' | \'')}'>`);
-        } else {
-          typeAliasDeclaration.setType(dataGridResponseClassName);
+          getType = `Omit<${dataGridResponseClassName}, '${excludedProperties.join('\' | \'')}'>`;
         }
+        typeAliasDeclaration.setType(`Partial<${getType}> & ${dataGridSubmitClassName}`);
+        CoerceImports(sourceFile, {
+          namedImports: [dataGridSubmitClassName],
+          moduleSpecifier: OperationIdToRequestBodyClassImportPath(submitOperationId, scope),
+        });
         CoerceImports(sourceFile, {
           namedImports: [ dataGridResponseClassName ],
           moduleSpecifier: OperationIdToResponseClassImportPath(getOperationId, scope),

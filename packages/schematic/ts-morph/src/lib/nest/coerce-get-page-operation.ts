@@ -7,6 +7,7 @@ import {
   IsNormalizedOpenApiUpstreamOptions,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
+  OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
   TypeImport,
 } from '@rxap/ts-morph';
@@ -310,7 +311,7 @@ export function GetResponseTypeFromUpstream(upstream: NormalizedUpstreamOptions)
     return {
       name: `${className}['${upstream.mapper?.list ?? 'list'}'][number]`,
       namedImport: className,
-      moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope, upstream.isService),
+      moduleSpecifier: OperationIdToResponseClassImportPath(upstream.operationId, upstream.scope),
     };
   }
   throw new Error(`Upstream kind '${ upstream.kind }' not supported`);

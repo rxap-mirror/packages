@@ -19,6 +19,7 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
     // if not explicitly defined the idProperty is set to null, as not each data grid operation has an id
     idProperty = null,
     operationName = idProperty ? 'submitById' : 'submit',
+    dtoClassNameSuffix = '-submit',
   } = options;
 
   return CoerceGetByIdOperation({
@@ -26,10 +27,9 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
     operationName,
     isReturnVoid,
     idProperty,
-    buildOperationDtoClassName: (controllerName, { dtoClassName, dtoClassNameSuffix }) => {
-      return dtoClassName ?? (
-        dtoClassNameSuffix ? CoerceSuffix(bodyDtoName ?? controllerName, dtoClassNameSuffix) : bodyDtoName ?? controllerName
-      );
+    dtoClassNameSuffix,
+    buildOperationDtoClassName: (controllerName, { dtoClassName, dtoClassNameSuffix = '-submit' }) => {
+      return dtoClassName ?? CoerceSuffix(bodyDtoName ?? controllerName, dtoClassNameSuffix);
     },
     tsMorphTransform: (
       project,
