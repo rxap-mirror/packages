@@ -28,6 +28,8 @@ export * from './lib/nest/add-operation-to-controller';
 export * from './lib/nest/assert-nest-project';
 export * from './lib/nest/build-nest-base-path';
 export * from './lib/nest/build-nest-controller-name';
+export * from './lib/nest/coerce-autocomplete-options-operation';
+export * from './lib/nest/coerce-autocomplete-table-select-value-resolve-operation';
 export * from './lib/nest/coerce-dto-class';
 export * from './lib/nest/coerce-form-submit-operation';
 export * from './lib/nest/coerce-get-by-id-operation';

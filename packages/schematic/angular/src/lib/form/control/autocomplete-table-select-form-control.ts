@@ -49,6 +49,16 @@ export function NormalizeAutocompleteTableSelectFormControl(
   if (identifier) {
     CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name);
   }
+  CoerceArrayItems(importList, [
+    {
+      name: 'MatInputModule',
+      moduleSpecifier: '@angular/material/input',
+    },
+    {
+      name: 'MatAutocompleteModule',
+      moduleSpecifier: '@angular/material/autocomplete',
+    }
+  ], (a, b) => a.name === b.name);
   return Object.freeze({
     ...NormalizeFormFieldFormControl(control, importList),
     identifier,

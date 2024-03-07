@@ -169,7 +169,7 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
     upstream,
   } = normalizedOptions;
   const optionsOperationPath = [ 'control', dasherize(name), 'options' ].join('/');
-  const optionsOperationName = [ 'get', dasherize(name), 'options' ].join('-');
+  const optionsOperationName = [ 'get', dasherize(name), 'control', 'options' ].join('-');
   const optionsOperationId = buildOperationId(
     normalizedOptions,
     optionsOperationName,

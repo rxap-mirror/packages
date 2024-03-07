@@ -3,14 +3,17 @@ import {
   AbstractControl,
   BuildNestControllerName,
   buildOperationId,
+  CoerceAutocompleteOptionsOperationRule,
+  CoerceAutocompleteTableSelectValueResolveOperationRule,
   CoerceFormControl,
   CoerceFormDefinitionControl,
   CoerceFormProviderRule,
   CoerceTableDataSourceRule,
   CoerceTableSelectOperationRule,
   CoerceTableSelectResolveValueMethodRule,
-  CoerceTableSelectValueResolveOperationRule,
   EnforceUseFormControlOrderRule,
+  OperationIdToClassImportPath,
+  OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
 import {
   capitalize,
@@ -111,10 +114,10 @@ function buildOptionsOperationId(normalizedOptions: NormalizedTableSelectFormCon
 }
 
 function buildDtoSuffix({ context, name }: NormalizedTableSelectFormControlOptions) {
-  return joinWithDash([ context, dasherize(name), 'table-select' ]);
+  return joinWithDash([ context, dasherize(name), 'control', 'options' ]);
 }
 
-function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
+function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
 
   const {
     name,
@@ -157,7 +160,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       nestModule,
     }),
   );
-  const resolveValueName = [ dasherize(name), 'table-select', 'value', 'resolver' ].join('-');
+  const resolveValueName = [ dasherize(name), 'autocomplete-table-select', 'value', 'resolver' ].join('-');
   const resolveValueMethodName = classify(
     [ resolveValueName, 'method' ].join('-'),
   );
@@ -165,7 +168,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
   const resolveValueMethodDirectory = join(directory ?? '', 'methods');
 
   return chain([
-    CoerceTableSelectValueResolveOperationRule({
+    CoerceAutocompleteTableSelectValueResolveOperationRule({
       project,
       feature,
       nestModule,
@@ -174,7 +177,6 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       propertyList,
       rowValueProperty: toValue.property,
       rowDisplayProperty: toDisplay.property,
-      rowIdProperty: identifier.property,
       operationName: resolveValueOperationName,
       path: resolveValueOperationPath,
       dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
@@ -227,8 +229,10 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
         } =
           CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
-        CoerceDecorator(propertyDeclaration, 'UseTableSelectMethod').set({
-          arguments: [ resolveValueMethodName ],
+        CoerceDecorator(propertyDeclaration, 'UseAutocompleteResolveMethod').set({
+          arguments: [
+            resolveValueMethodName,
+          ],
         });
         CoerceImports(sourceFile, {
           namedImports: [ resolveValueMethodName ],
@@ -236,9 +240,119 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
         });
         CoerceImports(sourceFile, {
           namedImports: [
-            'UseTableSelectMethod',
+            'UseAutocompleteResolveMethod',
           ],
-          moduleSpecifier: '@digitaix/eurogard-table-select',
+          moduleSpecifier: 'autocomplete-table-select',
+        });
+
+        return {
+          propertyDeclaration,
+          decoratorDeclaration,
+        };
+      },
+    }),
+  ]);
+}
+
+function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
+
+  const {
+    name,
+    project,
+    feature,
+    directory,
+    formName,
+    type,
+    isArray,
+    state,
+    isRequired,
+    validatorList,
+    nestModule,
+    controllerName,
+    shared,
+    context,
+    scope,
+    resolver,
+    propertyList,
+    toDisplay,
+    toValue,
+    role,
+    isOptional,
+    identifier,
+    source,
+  } = normalizedOptions;
+  const { upstream } = resolver ?? {};
+
+  const optionsOperationName = [ 'get', dasherize(name), 'control', 'options' ].join(
+    '-',
+  );
+  const optionsOperationPath = [ 'control', dasherize(name), 'options' ].join(
+    '/',
+  );
+  const optionsOperationId = buildOperationId(
+    normalizedOptions,
+    optionsOperationName,
+    BuildNestControllerName({
+      controllerName,
+      nestModule,
+    }),
+  );
+
+  return chain([
+    CoerceAutocompleteOptionsOperationRule({
+      project,
+      feature,
+      nestModule,
+      controllerName,
+      upstream,
+      propertyList,
+      toValueProperty: toValue.property,
+      toDisplayProperty: toDisplay.property,
+      operationName: optionsOperationName,
+      path: optionsOperationPath,
+      dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
+      context,
+    }),
+    CoerceFormDefinitionControl({
+      role,
+      isOptional,
+      source,
+      project,
+      feature,
+      directory,
+      formName,
+      name,
+      type,
+      isArray,
+      state,
+      isRequired,
+      validatorList,
+      coerceFormControl: (
+        sourceFile: SourceFile,
+        classDeclaration: ClassDeclaration,
+        formTypeName: string,
+        control: Required<AbstractControl>,
+      ) => {
+        const {
+          propertyDeclaration,
+          decoratorDeclaration,
+        } =
+          CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
+
+        CoerceDecorator(propertyDeclaration, 'UseAutocompleteOptionsMethod').set({
+          arguments: [
+            OperationIdToClassName(optionsOperationId),
+          ],
+        });
+        CoerceImports(sourceFile, {
+          namedImports: [ OperationIdToClassName(optionsOperationId) ],
+          moduleSpecifier: OperationIdToClassImportPath(optionsOperationId, scope),
+        });
+        CoerceImports(sourceFile, {
+          namedImports: [
+            'UseAutocompleteOptionsMethod',
+          ],
+          moduleSpecifier: 'autocomplete-table-select',
         });
 
         return {
@@ -364,18 +478,12 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
         CoerceDecorator(propertyDeclaration, 'UseTableSelectDataSource').set({
           arguments: [ tableDataSourceName ],
         });
-        CoerceDecorator(propertyDeclaration, `UseTableSelectToDisplay<${tableSelectOperationResponseClassName}['rows'][number]>`).set({
-          arguments: [ `item => item.${ toDisplay.property.name }` ],
-        });
-        CoerceDecorator(propertyDeclaration, `UseTableSelectToValue<${tableSelectOperationResponseClassName}['rows'][number]>`).set({
-          arguments: [ `item => item.${ toValue.property.name }` ],
+        CoerceDecorator(propertyDeclaration, 'UseTableSelectColumns').set({
+          arguments: [ TableColumnListToTableSelectColumnMap(columnList) ],
         });
         CoerceImports(sourceFile, {
           namedImports: [ tableDataSourceName ],
           moduleSpecifier: tableDataSourceImportPath,
-        });
-        CoerceDecorator(propertyDeclaration, 'UseTableSelectColumns').set({
-          arguments: [ TableColumnListToTableSelectColumnMap(columnList) ],
         });
         CoerceImports(sourceFile, {
           namedImports: [
@@ -403,9 +511,10 @@ export default function (options: AutocompleteTableSelectFormControlOptions) {
 
   return () => {
     return chain([
-      () => console.group('[@rxap/schematics-angular:table-select-form-control]'.green),
+      () => console.group('[@rxap/schematics-angular:autocomplete-table-select-form-control]'.green),
       tableSelectDataSourceRule(normalizedOptions),
-      tableSelectResolveRule(normalizedOptions),
+      autocompleteTableSelectResolveRule(normalizedOptions),
+      autocompleteTableSelectOptionsRule(normalizedOptions),
       EnforceUseFormControlOrderRule(normalizedOptions),
       () => console.groupEnd(),
     ]);

@@ -28,7 +28,7 @@ export function BuildTableSelectValueResolveUpstreamGetParametersImplementation(
                                                              classDeclaration: ClassDeclaration,
                                                              moduleSourceFile: SourceFile,
                                                              dto: CoerceDtoClassOutput | null,
-                                                             options: Readonly<CoerceTableSelectValueResolveOperationOptions>,
+                                                             options: Readonly<Pick<CoerceTableSelectValueResolveOperationOptions, 'upstream'>>,
                                                            ): TransformOperation<string | WriterFunction> {
   return () => {
     const { upstream } = options;
