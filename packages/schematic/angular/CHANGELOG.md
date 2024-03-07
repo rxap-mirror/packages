@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.26...@rxap/schematic-angular@16.2.0-dev.27) (2024-03-07)
+
+### Bug Fixes
+
+- ensure the column name is camelized ([08edb88](https://gitlab.com/rxap/packages/commit/08edb88eb0b68309eceebc2b5b9bf7824b687eaf))
+
 # [16.2.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.25...@rxap/schematic-angular@16.2.0-dev.26) (2024-03-07)
 
 ### Bug Fixes

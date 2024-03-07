@@ -10112,7 +10112,7 @@ __metadata:
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/schematics-ts-morph": ^16.1.0-dev.14
     "@rxap/schematics-utilities": ^16.0.1-dev.1
-    "@rxap/ts-morph": ^1.1.0-dev.13
+    "@rxap/ts-morph": ^1.1.0-dev.14
     "@rxap/utilities": ^16.1.0-dev.6
     colors: ^1.4.0
     handlebars: ^4.7.7

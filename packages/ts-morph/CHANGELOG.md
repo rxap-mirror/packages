@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.13...@rxap/ts-morph@1.1.0-dev.14) (2024-03-07)
+
+### Bug Fixes
+
+- ensure the column name is camelized ([08edb88](https://gitlab.com/rxap/packages/commit/08edb88eb0b68309eceebc2b5b9bf7824b687eaf))
+
 # [1.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.12...@rxap/ts-morph@1.1.0-dev.13) (2024-03-07)
 
 ### Features
