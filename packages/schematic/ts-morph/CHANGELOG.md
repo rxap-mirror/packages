@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.14...@rxap/schematics-ts-morph@16.1.0-dev.15) (2024-03-07)
+
+### Features
+
+- support string utilities in handlebar templates ([699005d](https://gitlab.com/rxap/packages/commit/699005d9b85e2a36da072112f46513136872a86a))
+
 # [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.13...@rxap/schematics-ts-morph@16.1.0-dev.14) (2024-03-07)
 
 ### Bug Fixes
