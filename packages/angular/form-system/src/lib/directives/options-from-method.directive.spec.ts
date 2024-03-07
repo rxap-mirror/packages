@@ -19,9 +19,9 @@ import {
 } from '@rxap/forms';
 import { Method } from '@rxap/pattern';
 import { ControlOptions } from '@rxap/utilities';
-import { TestNgControl } from 'testing';
 import { UseOptionsMethod } from '../mixins/extract-options-method.mixin';
 import { OptionsFromMethodDirective } from './options-from-method.directive';
+import { TestNgControl } from './test-ng-control';
 
 describe('OptionsFromMethodDirective', () => {
 
