@@ -175,8 +175,12 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     return this._mode$.value === DataGridMode.FORM || this.hasAnyEditCells;
   }
 
+  public get isFormMode() {
+    return this._mode$.value === DataGridMode.FORM || this.hasAnyEditCells;
+  }
+
   public get hasAnyEditCells() {
-    return this.rows.some(row => !!row.editCell);
+    return this.rows?.some(row => !!row.editCell) ?? false;
   }
 
   public get isEditMode() {
@@ -235,12 +239,12 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       debounceTime(100),
       tap(data => this.data = data),
       tap(data => {
-        if (this.formDirective && this.isFormModeOrHasAnyEditCells) {
+        if (this.formDirective && this.isFormMode) {
           this.formDirective.form.patchValue(data, {
             coerce: true,
             strict: true,
           });
-          if (this.isFormModeOrHasAnyEditCells) {
+          if (this.isFormMode) {
             this.formDirective.form.disable();
           }
         }
@@ -251,7 +255,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       this.hasError$    = this.dataSource.hasError$ ?? this.hasError$;
       this.dataLoading$ = this.dataSource.loading$ ?? this.dataLoading$;
     }
-    if (this.formDirective && this.isFormModeOrHasAnyEditCells) {
+    if (this.formDirective && this.isFormMode) {
       this.formDirective.form.disabledWhile(combineLatest([
         this._editMode$,
         this._mode$,
