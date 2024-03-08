@@ -159,6 +159,12 @@ export function NormalizeFormFieldFormControl(
   defaultFormField: Partial<FormField> = { label: control.label },
 ): NormalizedFormFieldFormControl {
   const formField = NormalizeFormField(control.formField ?? {}, importList, defaultFormField);
+  if (control.isRequired) {
+    CoerceArrayItems(importList, [{
+      name: 'RequiredDirective',
+      moduleSpecifier: '@rxap/material-form-system',
+    }], (a, b) => a.name === b.name);
+  }
   return Object.freeze({
     ...NormalizeBaseFormControl(control, importList, validatorList, defaultType, defaultIsArray),
     formField,

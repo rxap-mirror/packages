@@ -3,6 +3,7 @@
     formControlName="{{control.name}}"
     matInput
     type="text"
+    {{#if control.isRequired}}rxapRequired{{/if~}}
     {{#if parentControlContainer}}parentControlContainer{{/if~}}
     {{#if control.placeholder}}i18n-placeholder placeholder="{{control.placeholder}}"{{/if~}}
     />

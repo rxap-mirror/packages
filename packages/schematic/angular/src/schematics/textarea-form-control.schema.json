@@ -17,6 +17,17 @@
         },
         "placeholder": {
           "type": "string"
+        },
+        "autosize": {
+          "type": "object",
+          "properties": {
+            "minRows": {
+              "type": "number"
+            },
+            "maxRows": {
+              "type": "number"
+            }
+          }
         }
       }
     }

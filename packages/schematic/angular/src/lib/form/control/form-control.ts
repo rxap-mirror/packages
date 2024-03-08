@@ -39,6 +39,7 @@ import {
   NormalizeTableSelectFormControl,
   TableSelectFormControl,
 } from './table-select-form-control';
+import { NormalizeTextareaFormControl } from './textarea-form-control';
 
 export type FormControl = { role: AbstractControlRolls.CONTROL } & (BaseFormControl | CheckboxFormControl | FormFieldFormControl | InputFormControl | SelectFormControl | SlideToggleFormControl | TableSelectFormControl);
 
@@ -67,6 +68,8 @@ export function NormalizeFormControl(control: FormControl): NormalizedFormContro
       return NormalizeTableSelectFormControl(control);
     case FormControlKinds.AUTOCOMPLETE_TABLE_SELECT:
       return NormalizeAutocompleteTableSelectFormControl(control);
+    case FormControlKinds.TEXTAREA:
+      return NormalizeTextareaFormControl(control);
     case FormControlKinds.DEFAULT:
     default:
       return NormalizeBaseFormControl(control);
