@@ -1,6 +1,17 @@
 #!/bin/bash
 
+CURRENT_DIR=$(pwd)
+
+# Get the directory where the script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+echo "Script is located in: $SCRIPT_DIR"
+
+cd "$SCRIPT_DIR" || exit 1
+
 BASE_DIR=$(git rev-parse --show-toplevel)
+
+echo "BASE_DIR: $BASE_DIR"
 
 cd "$BASE_DIR" || exit 1
 
@@ -106,4 +117,10 @@ if [ -z "$dir" ]; then
   exit 1
 fi
 
-yarn nx g "./$dir:$schematic" "$@"
+rel_dir=$(realpath --relative-to="$CURRENT_DIR" "$dir")
+
+echo "relative dir: $rel_dir"
+echo "schematic: $schematic"
+echo "current dir: $CURRENT_DIR"
+
+yarn --cwd "$CURRENT_DIR" nx g "./$rel_dir:$schematic" "$@"
