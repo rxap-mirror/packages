@@ -93,7 +93,9 @@
           {{#if selectColumn}}
           <!-- region select column -->
           <ng-container matColumnDef="select" [sticky]="true">
+            {{#unless withoutHeader}}
             <th class="drop-shadow-2xl" mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
+            {{/unless}}
             <td
               mat-cell
               rxap-checkbox-cell
@@ -107,6 +109,7 @@
           {{#if actionList.length}}
           <!-- region actions column -->
           <ng-container matColumnDef="actions" [stickyEnd]="true">
+            {{#unless withoutHeader}}
             <th class="drop-shadow-2xl" mat-header-cell *matHeaderCellDef>
             {{#if selectColumn}}
               <!-- region header actions -->
@@ -140,6 +143,7 @@
               <!-- endregion -->
             {{/if}}
             </th>
+            {{/unless}}
 
             <td class="drop-shadow-2xl" mat-cell *matCellDef="let element">
               <div class="flex flex-row">
@@ -174,7 +178,7 @@
 
           {{/if}}
           {{#each columnList}}
-          {{ indent (compile this.handlebars column=this prefix=../prefix) 10 }}
+          {{ indent (compile this.handlebars column=this table=../. prefix=../prefix) 10 }}
           {{/each}}
 
           <!-- endregion -->
@@ -197,7 +201,7 @@
               {{#if column.filterCssClass}}{{> cssClass cssClass=column.filterCssClass}}{{/if~}}
             >
               {{#if this.hasFilter}}
-              {{ indent (compile this.filterControl.handlebars column=this control=this.filterControl parentControlContainer=true) 14 }}
+              {{ indent (compile this.filterControl.handlebars column=this table=../. control=this.filterControl parentControlContainer=true) 14 }}
               {{/if}}
             </th>
           {{/matColumnDef}}
@@ -211,10 +215,12 @@
           ></tr>
           {{/if}}
 
+          {{#unless withoutHeader}}
           <tr
             mat-header-row
             *matHeaderRowDef="rxapTableColumns.displayColumns"
           ></tr>
+          {{/unless}}
 
           <tr
             [@rowsAnimation]=""
