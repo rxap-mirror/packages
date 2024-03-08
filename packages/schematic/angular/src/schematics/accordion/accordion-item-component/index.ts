@@ -377,7 +377,6 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
     project,
     feature,
     shared,
-    overwrite,
     componentName,
   } = normalizedOptions;
 
@@ -393,7 +392,7 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
       feature,
       directory,
       shared,
-      overwrite,
+      overwrite: false,
       template: {
         options: templateOptions,
       },
