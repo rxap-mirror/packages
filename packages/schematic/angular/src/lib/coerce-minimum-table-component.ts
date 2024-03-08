@@ -27,6 +27,8 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       actionList,
       headerButton,
       modifiers,
+      sortable,
+      hasPaginator,
     },
     handlebars: { partials = {} } = {},
   } = options;
@@ -57,8 +59,18 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
 
       // region angular component imports
       CoerceComponentImport(classDeclaration, { name: 'TableColumnMenuModule', moduleSpecifier: '@rxap/material-table-system' });
-      CoerceComponentImport(classDeclaration, { name: 'MatPaginatorModule', moduleSpecifier: '@angular/material/paginator' });
-      CoerceComponentImport(classDeclaration, { name: 'MatSortModule', moduleSpecifier: '@angular/material/sort' });
+      if (hasPaginator) {
+        CoerceComponentImport(classDeclaration, {
+          name: 'MatPaginatorModule',
+          moduleSpecifier: '@angular/material/paginator'
+        });
+      }
+      if (sortable) {
+        CoerceComponentImport(classDeclaration, {
+          name: 'MatSortModule',
+          moduleSpecifier: '@angular/material/sort'
+        });
+      }
       CoerceComponentImport(classDeclaration, { name: 'PersistentPaginatorDirective', moduleSpecifier: '@rxap/material-table-system' });
       CoerceComponentImport(classDeclaration, { name: 'DataSourceErrorComponent', moduleSpecifier: '@rxap/data-source' });
       CoerceComponentImport(classDeclaration, { name: 'MatDividerModule', moduleSpecifier: '@angular/material/divider' });
