@@ -98,7 +98,7 @@ export interface TableSelectFormControl extends FormFieldFormControl {
 }
 
 export interface NormalizedTableSelectFormControl
-  extends Readonly<Normalized<Omit<TableSelectFormControl, 'type' | 'importList' | 'columnList' | 'propertyList' | 'formField' | 'role'>>>,
+  extends Readonly<Normalized<Omit<TableSelectFormControl, keyof NormalizedFormFieldFormControl | 'columnList' | 'propertyList' | 'formField' | 'role'>>>,
           NormalizedFormFieldFormControl {
   kind: FormControlKinds.TABLE_SELECT;
   backend: BackendTypes;

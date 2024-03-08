@@ -16,6 +16,16 @@
         },
         "isArray": {
           "type": "boolean"
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string"
+        },
+        "memberList": {
+          "type": "array",
+          "items": { "additionalProperties": true }
         }
       }
     }

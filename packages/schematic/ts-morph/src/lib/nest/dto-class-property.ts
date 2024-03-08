@@ -22,7 +22,7 @@ export function NormalizeDataClassProperty(property: DtoClassProperty): Normaliz
     name,
     type,
     isArray,
-    propertyList,
+    memberList,
     source,
     isOptional,
   } = NormalizeDataProperty(property);
@@ -36,7 +36,7 @@ export function NormalizeDataClassProperty(property: DtoClassProperty): Normaliz
   }
   return {
     source,
-    propertyList,
+    memberList,
     name,
     type,
     isArray,

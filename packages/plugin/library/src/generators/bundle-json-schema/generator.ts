@@ -36,7 +36,15 @@ function loadCleanDefinition(tree: Tree, projectSourceRoot: string, { $ref }: { 
 
 function cleanupDefinition(schema: any): any {
   if (schema['definitions']) {
-    delete schema['definitions'];
+    schema['definitions'] = Object.entries(schema['definitions']).reduce((acc, [key, value]) => {
+      if (!value['$ref']) {
+        acc[key] = cleanupDefinition(value);
+      }
+      return acc;
+    }, {} as Record<string, any>);
+    if (Object.keys(schema['definitions']).length === 0) {
+      delete schema['definitions'];
+    }
   }
   if (schema['$schema']) {
     delete schema['$schema'];
@@ -47,7 +55,7 @@ function cleanupDefinition(schema: any): any {
   for (const { key, value, propertyPath, parent } of EachProperty(schema)) {
     if (key === '$ref') {
       if (typeof value === 'string') {
-        parent[key] = value.replace(/^#\/definitions\//, '#/definitions/');
+        (parent ?? schema)[key] = value.replace(/^#\/definitions\//, '#/definitions/');
       }
     }
   }
