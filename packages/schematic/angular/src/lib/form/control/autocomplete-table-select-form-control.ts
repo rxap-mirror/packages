@@ -59,6 +59,10 @@ export function NormalizeAutocompleteTableSelectFormControl(
     {
       name: 'MatAutocompleteModule',
       moduleSpecifier: '@angular/material/autocomplete',
+    },
+    {
+      name: 'AutocompleteOptionsFormMethodDirective',
+      moduleSpecifier: 'autocomplete-table-select',
     }
   ], (a, b) => a.name === b.name);
   return Object.freeze({

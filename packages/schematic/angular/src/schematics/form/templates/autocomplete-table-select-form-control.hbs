@@ -8,7 +8,8 @@
     />
   <mat-autocomplete #auto{{classify control.name}}="matAutocomplete">
     <mat-option *rxapAutocompleteOptionsFromMethod="let option; matAutocomplete: auto{{classify control.name}}"
-                [value]="option.value">{{ option.display }}
+                [value]="option.value">
+                \{{ option.display }}
     </mat-option>
   </mat-autocomplete>
   <button

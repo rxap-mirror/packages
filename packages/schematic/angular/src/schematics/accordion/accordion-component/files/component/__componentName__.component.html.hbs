@@ -1,7 +1,7 @@
 <ng-template #errorTemplate let-error let-refresh="refresh">
   <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
 </ng-template>
-<div *rxapDataSource="let data from accordionDataSource; errorTemplate: errorTemplate" class="flex flex-col gap-y-6">
+<div class="flex flex-col gap-y-6">
   {{#if header}}
   {{ indent (compile header.handlebars header=header) 2 }}
   <ng-template #divider>
@@ -11,7 +11,7 @@
   {{else}}
   <mat-progress-bar *ngIf="accordionDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
   {{/if}}
-  <mat-accordion {{#if multiple}}multi{{/if}}
+  <mat-accordion *rxapDataSource="let data from accordionDataSource; errorTemplate: errorTemplate" {{#if multiple}}multi{{/if}}
     {{~#if persistent}}
     {{~#if persistent.key}} rxapPersistentAccordion="{{persistent.key}}"{{/if~}}
     {{~#if persistent.property}} [rxapPersistentAccordion]="data.{{persistent.property.name}}"{{/if~}}
