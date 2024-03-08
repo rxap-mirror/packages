@@ -28,7 +28,7 @@ export function CoerceInterfaceFormTypeControl(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   formTypeName: string,
-  control: Required<AbstractControl>,
+  control: AbstractControl,
 ) {
   if (sourceFile.getTypeAlias(formTypeName)) {
     console.log(`Type alias ${ formTypeName } already exists! Skip interface generation`);
@@ -43,7 +43,7 @@ export function CoerceFormControl(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   formTypeName: string,
-  control: Required<AbstractControl>,
+  control: AbstractControl,
 ) {
   const propertyDeclaration = CoercePropertyDeclaration(classDeclaration, camelize(control.name)).set({
     type: w => {

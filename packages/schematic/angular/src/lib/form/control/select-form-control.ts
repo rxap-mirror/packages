@@ -28,7 +28,7 @@ export interface SelectFormControl extends FormFieldFormControl {
 }
 
 export interface NormalizedSelectFormControl
-  extends Readonly<Normalized<Omit<SelectFormControl, 'optionList' | 'type' | 'importList' | 'formField' | 'role'>>>,
+  extends Readonly<Normalized<Omit<SelectFormControl, keyof NormalizedFormFieldFormControl | 'optionList'>>>,
           NormalizedFormFieldFormControl {
   kind: FormControlKinds.SELECT;
   optionList: ReadonlyArray<ControlOption> | null;

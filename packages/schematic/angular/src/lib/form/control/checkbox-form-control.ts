@@ -15,7 +15,7 @@ export interface CheckboxFormControl extends BaseFormControl {
 }
 
 export interface NormalizedCheckboxFormControl
-  extends Readonly<Normalized<Omit<CheckboxFormControl, 'type' | 'importList' | 'role'>>>, NormalizedBaseFormControl {
+  extends Readonly<Normalized<Omit<CheckboxFormControl, keyof NormalizedBaseFormControl>>>, NormalizedBaseFormControl {
   kind: FormControlKinds.CHECKBOX;
 }
 

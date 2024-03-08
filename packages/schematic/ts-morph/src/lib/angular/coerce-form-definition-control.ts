@@ -21,7 +21,7 @@ import {
   GetFormDefinitionInterfaceName,
 } from './form-definition-utilities';
 
-export interface CoerceFormDefinitionControlOptions extends Required<AbstractControl>,
+export interface CoerceFormDefinitionControlOptions extends AbstractControl,
                                                             TsMorphAngularProjectTransformOptions {
   tsMorphTransform?: (sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
   formName: string;
@@ -29,13 +29,13 @@ export interface CoerceFormDefinitionControlOptions extends Required<AbstractCon
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     formTypeName: string,
-    control: Required<AbstractControl>,
+    control: AbstractControl,
   ) => void;
   coerceFormControl?: (
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     formTypeName: string,
-    control: Required<AbstractControl>,
+    control: AbstractControl,
   ) => { propertyDeclaration: PropertyDeclaration, decoratorDeclaration: Decorator } | void;
 }
 
@@ -80,7 +80,7 @@ export function CoerceFormDefinitionControl(options: Readonly<CoerceFormDefiniti
 
 }
 
-export function FormControlValidatorCodeBlockWriter(sourceFile: SourceFile, control: Required<Pick<AbstractControl, 'validatorList' | 'isRequired'>>) {
+export function FormControlValidatorCodeBlockWriter(sourceFile: SourceFile, control: Pick<AbstractControl, 'validatorList' | 'isRequired'>) {
   return (w: CodeBlockWriter) => {
     w.write('[');
     if (control.validatorList.length > 1 || (control.validatorList.length && control.isRequired)) {

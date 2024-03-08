@@ -42,7 +42,7 @@ export interface TextareaFormControl extends FormFieldFormControl {
 }
 
 export interface NormalizedTextareaFormControl
-  extends Omit<Readonly<Normalized<TextareaFormControl>>, 'type' | 'importList' | 'formField' | 'role'>,
+  extends Omit<Readonly<Normalized<TextareaFormControl>>, keyof NormalizedFormFieldFormControl>,
           NormalizedFormFieldFormControl {
   kind: FormControlKinds.TEXTAREA;
   autosize: NormalizedTextareaAutosize | null;

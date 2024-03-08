@@ -28,13 +28,13 @@ import {
 } from './form-definition-utilities';
 
 export interface CoerceFormDefinitionFormArrayOptions extends CoerceFormDefinitionControlOptions {
-  controlList?: ReadonlyArray<Required<AbstractControl>>;
+  controlList?: ReadonlyArray<AbstractControl>;
 }
 export function CoerceInterfaceFormTypeArray(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   formTypeName: string,
-  control: Required<AbstractControl>,
+  control: AbstractControl,
 ) {
   if (sourceFile.getTypeAlias(formTypeName)) {
     console.log(`Type alias ${ formTypeName } already exists! Skip interface generation`);
@@ -63,7 +63,7 @@ export function CoerceFormArray(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   formTypeName: string,
-  control: Required<AbstractControl>,
+  control: AbstractControl,
 ) {
   const formArrayName = GetFormArrayNameFromFormDefinitionName(classDeclaration.getName()!, control.name);
   CoerceImports(sourceFile, {

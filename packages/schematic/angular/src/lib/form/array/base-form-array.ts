@@ -24,7 +24,7 @@ export interface BaseFormArray extends AbstractControl {
   groupLegend?: string;
 }
 
-export interface NormalizedBaseFormArray extends Readonly<Normalized<Omit<BaseFormArray, 'role' | 'type' | 'importList' | 'controlList'>>>, NormalizedAbstractControl {
+export interface NormalizedBaseFormArray extends Readonly<Normalized<Omit<BaseFormArray, keyof NormalizedAbstractControl | 'controlList'>>>, NormalizedAbstractControl {
   controlList: ReadonlyArray<NormalizedControl>;
   kind: FormArrayKind.DEFAULT;
   role: AbstractControlRolls.ARRAY;

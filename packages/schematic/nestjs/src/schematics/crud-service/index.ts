@@ -13,9 +13,6 @@ import { coerceArray } from '@rxap/schematics-utilities';
 import { CreateProject } from '@rxap/ts-morph';
 import { join } from 'path';
 import {
-  IndentationText,
-  Project,
-  QuoteKind,
   SourceFile,
   VariableDeclarationKind,
   Writers,

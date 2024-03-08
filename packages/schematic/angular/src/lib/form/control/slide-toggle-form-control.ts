@@ -15,7 +15,7 @@ export interface SlideToggleFormControl extends BaseFormControl {
 }
 
 export interface NormalizedSlideToggleFormControl
-  extends Readonly<Normalized<Omit<SlideToggleFormControl, 'type' | 'importList' | 'role'>>>, NormalizedBaseFormControl {
+  extends Readonly<Normalized<Omit<SlideToggleFormControl, keyof NormalizedBaseFormControl>>>, NormalizedBaseFormControl {
   kind: FormControlKinds.CHECKBOX;
 }
 

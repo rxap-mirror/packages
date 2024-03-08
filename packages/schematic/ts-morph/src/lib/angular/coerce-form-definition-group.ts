@@ -28,7 +28,7 @@ import {
 } from './form-definition-utilities';
 
 export interface CoerceFormDefinitionFormGroupOptions extends CoerceFormDefinitionControlOptions {
-  controlList?: ReadonlyArray<Required<AbstractControl>>;
+  controlList?: ReadonlyArray<AbstractControl>;
 }
 
 export function GetFormGroupNameFromFormDefinitionName(name: string, groupName: string) {
@@ -39,7 +39,7 @@ export function CoerceInterfaceFormTypeGroup(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   formTypeName: string,
-  control: Required<AbstractControl>,
+  control: AbstractControl,
 ) {
   if (sourceFile.getTypeAlias(formTypeName)) {
     console.log(`Type alias ${ formTypeName } already exists! Skip interface generation`);
@@ -61,7 +61,7 @@ export function CoerceFormGroup(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   formTypeName: string,
-  control: Required<AbstractControl>,
+  control: AbstractControl,
 ) {
   const formGroupName = GetFormGroupNameFromFormDefinitionName(classDeclaration.getName()!, control.name);
   CoerceImports(sourceFile, {

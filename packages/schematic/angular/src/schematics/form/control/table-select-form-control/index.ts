@@ -219,7 +219,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
         formTypeName: string,
-        control: Required<AbstractControl>,
+        control: AbstractControl,
       ) => {
         const {
           propertyDeclaration,
@@ -346,7 +346,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
         formTypeName: string,
-        control: Required<AbstractControl>,
+        control: AbstractControl,
       ) => {
         const {
           propertyDeclaration,

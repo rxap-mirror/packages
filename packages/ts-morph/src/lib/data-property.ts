@@ -25,15 +25,15 @@ export interface DataProperty {
   isOptional?: boolean,
   source?: string | null;
   /**
-   * If set the property is an object with the given properties
+   * If set the property is an object with the given members
    */
-  propertyList?: Array<string | DataProperty>;
+  memberList?: Array<string | DataProperty>;
 }
 
-export interface NormalizedDataProperty extends Readonly<Normalized<Omit<DataProperty, 'propertyList'>>> {
+export interface NormalizedDataProperty extends Readonly<Normalized<Omit<DataProperty, 'memberList'>>> {
   type: NormalizedTypeImport;
   source: string | null;
-  propertyList: Array<NormalizedDataProperty> | null;
+  memberList: Array<NormalizedDataProperty>;
 }
 
 function guessType(name: string): TypeName | TypeImport {
@@ -70,7 +70,7 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
   let type: string | TypeImport = 'unknown';
   let isOptional = false;
   let source: string | null = null;
-  let propertyList: Array<NormalizedDataProperty> | null = null;
+  let memberList: Array<NormalizedDataProperty> = [];
   if (typeof property === 'string') {
     // name:type
     // username:string
@@ -83,7 +83,7 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
     isArray = property.isArray ?? isArray;
     isOptional = property.isOptional ?? isOptional;
     source = property.source ?? source;
-    propertyList = property.propertyList?.length ? NormalizeDataPropertyList(property.propertyList, defaultType) : null;
+    memberList = NormalizeDataPropertyList(property.memberList, defaultType);
   }
   if (name.endsWith('[]')) {
     isArray = true;
@@ -101,7 +101,7 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
       type = defaultType;
     }
   }
-  if (propertyList) {
+  if (memberList.length) {
     type = TypeNames.Deferred;
   }
   name = name.replace(/\.\?/g, '.').split('.').join('.?');
@@ -120,7 +120,7 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
     isArray,
     isOptional,
     source,
-    propertyList,
+    memberList,
   });
 }
 

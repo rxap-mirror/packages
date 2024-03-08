@@ -23,7 +23,7 @@ export interface InputFormControl extends FormFieldFormControl {
 }
 
 export interface NormalizedInputFormControl
-  extends Omit<Readonly<Normalized<InputFormControl>>, 'type' | 'importList' | 'formField' | 'role'>,
+  extends Omit<Readonly<Normalized<InputFormControl>>, keyof NormalizedFormFieldFormControl>,
           NormalizedFormFieldFormControl {
   kind: FormControlKinds.INPUT;
 }

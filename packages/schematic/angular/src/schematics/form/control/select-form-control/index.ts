@@ -118,7 +118,7 @@ function noneBackendOptionsRule(normalizedOptions: NormalizedSelectFormControlOp
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
         formTypeName: string,
-        control: Required<AbstractControl>,
+        control: AbstractControl,
       ) => {
         const {
           propertyDeclaration,
@@ -208,7 +208,7 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
         sourceFile: SourceFile,
         classDeclaration: ClassDeclaration,
         formTypeName,
-        control: Required<AbstractControl>,
+        control: AbstractControl,
       ) => {
         const {
           propertyDeclaration,

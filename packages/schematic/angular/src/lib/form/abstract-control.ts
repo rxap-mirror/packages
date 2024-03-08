@@ -33,7 +33,7 @@ export interface AbstractControl extends DataProperty {
   template?: string;
 }
 
-export interface NormalizedAbstractControl extends Readonly<Normalized<Omit<AbstractControl, 'type'>>>, NormalizedDataProperty {
+export interface NormalizedAbstractControl extends Readonly<Normalized<Omit<AbstractControl, keyof NormalizedDataProperty>>>, NormalizedDataProperty {
   importList: NormalizedTypeImport[];
   handlebars: Handlebars.TemplateDelegate<{ control: NormalizedAbstractControl }>,
   role: AbstractControlRolls;

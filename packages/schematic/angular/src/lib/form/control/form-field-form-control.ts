@@ -132,7 +132,7 @@ export interface FormFieldFormControl extends BaseFormControl {
 }
 
 export interface NormalizedFormFieldFormControl
-  extends Readonly<Normalized<Omit<FormFieldFormControl, 'type' | 'importList' | 'role' | 'kind'>>>, NormalizedBaseFormControl {
+  extends Readonly<Normalized<Omit<FormFieldFormControl, keyof NormalizedBaseFormControl>>>, NormalizedBaseFormControl {
   formField: NormalizedFormField;
 }
 

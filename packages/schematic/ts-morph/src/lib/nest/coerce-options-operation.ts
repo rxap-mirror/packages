@@ -17,7 +17,7 @@ import {
 } from './coerce-operation';
 
 export interface CoerceOptionsOperationRuleOptions extends CoerceOperationOptions {
-  control: Required<AbstractControl>;
+  control: AbstractControl;
   responseDtoName?: string;
 }
 
