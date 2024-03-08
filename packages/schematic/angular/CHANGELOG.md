@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.41...@rxap/schematic-angular@16.2.0-dev.42) (2024-03-08)
+
+### Bug Fixes
+
+- only add modules if required ([bdbe0b3](https://gitlab.com/rxap/packages/commit/bdbe0b30f64ef48a52a4cb2d174708ff69be888b))
+
+### Features
+
+- support textarea control ([2087d42](https://gitlab.com/rxap/packages/commit/2087d428b34921ac99d3d22d5454ccf8e75552de))
+
 # [16.2.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.40...@rxap/schematic-angular@16.2.0-dev.41) (2024-03-08)
 
 ### Bug Fixes
