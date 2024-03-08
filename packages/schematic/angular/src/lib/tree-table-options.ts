@@ -28,7 +28,7 @@ export enum TreeTableModifiers {
   OVERWRITE = 'overwrite',
   NAVIGATION_BACK_HEADER = 'navigation-back-header',
   WITHOUT_TITLE = 'without-title',
-  WITHOUT_HEADER = 'without-header',
+  WITH_HEADER = 'with-header',
 }
 
 export function IsTreeTableModifiers(value: string): value is TreeTableModifiers {
@@ -48,7 +48,6 @@ export interface NormalizedTreeTableOptions
   propertyList: Array<NormalizedDataProperty>;
   tableRootMethod: NormalizedExistingMethod | null;
   tableChildMethod: NormalizedExistingMethod | null;
-  withoutHeader: boolean;
 }
 
 export function NormalizeTreeTableOptions(
@@ -99,6 +98,5 @@ export function NormalizeTreeTableOptions(
     ...normalizedOptions,
     tableRootMethod,
     tableChildMethod,
-    withoutHeader: options.modifiers?.includes(TreeTableModifiers.WITHOUT_HEADER) ?? false,
   });
 }

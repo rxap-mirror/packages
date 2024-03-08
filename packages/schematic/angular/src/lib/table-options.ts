@@ -1,5 +1,8 @@
 import { NormalizedDataProperty } from '@rxap/ts-morph';
-import { Normalized } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  Normalized,
+} from '@rxap/utilities';
 import {
   ExistingMethod,
   NormalizedExistingMethod,
@@ -11,7 +14,11 @@ import {
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
-import { NormalizedTableColumn } from './table-column';
+import {
+  NormalizedTableColumn,
+  TableColumnKind,
+  TableColumnSticky,
+} from './table-column';
 import {
   NormalizedTableOpenApiOptions,
   NormalizeTableOpenApiOptions,
@@ -23,7 +30,7 @@ export enum TableModifiers {
   NAVIGATION_BACK_HEADER = 'navigation-back-header',
   WITHOUT_TITLE = 'without-title',
   SHOW_ARCHIVED_SLIDE = 'show-archived-slide',
-
+  WITH_HEADER = 'with-header',
 }
 
 export function IsTableModifiers(value: string): value is TableModifiers {
@@ -47,11 +54,31 @@ export interface NormalizedTableOptions
 }
 
 export function NormalizeTableOptions(options: Readonly<TableOptions>, name: string): NormalizedTableOptions {
-  const normalizedOptions = NormalizeMinimumTableOptions(options, name, IsTableModifiers);
+  const columnList = options.columnList ?? [];
+  const propertyList = options.propertyList ?? [];
+  if (options.modifiers?.includes(TableModifiers.SHOW_ARCHIVED_SLIDE)) {
+    CoerceArrayItems(columnList, [{
+      name: '__removedAt',
+      kind: TableColumnKind.DATE,
+      inactive: true,
+      hidden: true,
+      sticky: TableColumnSticky.START,
+    }], { compareTo: (a, b) => a.name === b.name, unshift: true });
+    CoerceArrayItems(propertyList, [{
+      name: '__archived',
+      type: 'boolean',
+    }], { compareTo: (a, b) => a.name === b.name, unshift: true });
+  }
+  const normalizedOptions = NormalizeMinimumTableOptions({
+    ...options,
+    columnList,
+    propertyList,
+  }, name, IsTableModifiers);
   const { actionList } = normalizedOptions;
   const selectColumn = (options.selectColumn ?? false) || actionList.some(action => action.inHeader);
   const tableMethod = NormalizeExistingMethod(options.tableMethod);
   const openApi = NormalizeTableOpenApiOptions(options.openApi);
+
   return Object.freeze({
     ...normalizedOptions,
     selectColumn,

@@ -16,7 +16,7 @@
             "enum": [
               "navigation-back-header",
               "without-title",
-              "without-header"
+              "with-header"
             ]
           },
           "description": "The table modifiers"

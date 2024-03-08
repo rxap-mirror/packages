@@ -39,6 +39,9 @@ import { ToTitle } from './to-title';
 
 export enum MinimumTableModifiers {
   OVERWRITE = 'overwrite',
+  NAVIGATION_BACK_HEADER = 'navigation-back-header',
+  WITHOUT_TITLE = 'without-title',
+  WITH_HEADER = 'with-header',
 }
 
 export function IsMinimumTableModifiers(value: string): value is MinimumTableModifiers {
@@ -70,6 +73,7 @@ export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
   cssClass: NormalizedCssClass;
   identifier: NormalizedAccordionIdentifier | null;
   upstream: NormalizedUpstreamOptions | null;
+  withHeader: boolean;
 }
 
 export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
@@ -89,6 +93,9 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   const propertyList = NormalizeDataPropertyList(options.propertyList);
   const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
   const modifiers = options.modifiers ?? [];
+  if (!columnList.some(column => column.filterControl)) {
+    modifiers.push(MinimumTableModifiers.WITH_HEADER);
+  }
   const title = options.title ?? ToTitle(name);
   if (!modifiers.every(isModifier)) {
     throw new Error(`Invalid table modifier for table: ${ componentName } - [ ${ modifiers.join(', ') } ] with function: ${ isModifier.name }`);
@@ -112,5 +119,6 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     hasPaginator: options.hasPaginator ?? true,
     upstream: NormalizeUpstreamOptions(options.upstream),
     sortable,
+    withHeader: options.modifiers?.includes(MinimumTableModifiers.WITH_HEADER) ?? false,
   });
 }
