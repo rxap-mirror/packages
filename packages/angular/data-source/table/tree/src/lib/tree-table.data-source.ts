@@ -380,7 +380,10 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
         if (a.length !== b.length) {
           return false;
         }
-        return equals(a.map(item => item.__node.id), b.map(item => item.__node.id));
+        if (!equals(a.map(item => item.__node.id), b.map(item => item.__node.id))) {
+          return false;
+        }
+        return equals(a.map(item => item.__node.item).map(item => ({ ...item, children: null })), b.map(item => item.__node.item).map(item => ({ ...item, children: null })));
       }),
       switchMap((data) => {
         return combineLatest([
