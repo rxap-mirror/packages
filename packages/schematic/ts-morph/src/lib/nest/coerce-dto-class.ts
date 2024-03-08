@@ -10,22 +10,17 @@ import {
   CoerceImports,
   CoercePropertyDeclaration,
   CoerceSourceFile,
+  TypeNames,
   WriteType,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
-  ClassLikeDeclarationBase,
   ObjectLiteralExpression,
-  OptionalKind,
   Project,
   PropertyDeclaration,
-  PropertyDeclarationStructure,
-  PropertySignature,
-  PropertySignatureStructure,
   SourceFile,
-  TypeElementMemberedNode,
   Writers,
 } from 'ts-morph';
 import {
@@ -69,7 +64,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
 
   for (const property of propertyList.map(NormalizeDataClassProperty)) {
 
-    if (property.type.name === '<self>') {
+    if (property.type.name === TypeNames.Self) {
       property.type.name = className;
       property.isType = true;
     }

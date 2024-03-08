@@ -1,3 +1,4 @@
+import { TypeNames } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
   noop,
@@ -54,7 +55,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
     },
     {
       name: 'children',
-      type: '<self>',
+      type: TypeNames.Self,
       isArray: true,
       isOptional: true,
       isType: true,

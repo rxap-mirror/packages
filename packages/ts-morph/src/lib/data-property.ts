@@ -1,6 +1,7 @@
 import {
   TypeImport,
   TypeName,
+  TypeNames,
 } from '@rxap/ts-morph';
 import {
   camelize,
@@ -23,11 +24,16 @@ export interface DataProperty {
   isArray?: boolean;
   isOptional?: boolean,
   source?: string | null;
+  /**
+   * If set the property is an object with the given properties
+   */
+  propertyList?: Array<string | DataProperty>;
 }
 
-export interface NormalizedDataProperty extends Readonly<Normalized<DataProperty>> {
+export interface NormalizedDataProperty extends Readonly<Normalized<Omit<DataProperty, 'propertyList'>>> {
   type: NormalizedTypeImport;
   source: string | null;
+  propertyList: Array<NormalizedDataProperty> | null;
 }
 
 function guessType(name: string): TypeName | TypeImport {
@@ -64,6 +70,7 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
   let type: string | TypeImport = 'unknown';
   let isOptional = false;
   let source: string | null = null;
+  let propertyList: Array<NormalizedDataProperty> | null = null;
   if (typeof property === 'string') {
     // name:type
     // username:string
@@ -76,6 +83,7 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
     isArray = property.isArray ?? isArray;
     isOptional = property.isOptional ?? isOptional;
     source = property.source ?? source;
+    propertyList = property.propertyList?.length ? NormalizeDataPropertyList(property.propertyList, defaultType) : null;
   }
   if (name.endsWith('[]')) {
     isArray = true;
@@ -93,6 +101,9 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
       type = defaultType;
     }
   }
+  if (propertyList) {
+    type = TypeNames.Deferred;
+  }
   name = name.replace(/\.\?/g, '.').split('.').join('.?');
   if (!isNaN(Number(name[0]))) {
     name = `_${name}`;
@@ -109,10 +120,11 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
     isArray,
     isOptional,
     source,
+    propertyList,
   });
 }
 
-export function NormalizeDataPropertyList(propertyList?: Array<string | DataProperty>, defaultType = 'unknown'): Array<NormalizedDataProperty> {
+export function NormalizeDataPropertyList(propertyList?: Array<string | DataProperty>, defaultType: TypeImport | TypeName = 'unknown'): Array<NormalizedDataProperty> {
   return propertyList?.map(property => NormalizeDataProperty(property, defaultType)) ?? [];
 }
 

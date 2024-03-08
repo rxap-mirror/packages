@@ -1,3 +1,4 @@
+import { TypeNames } from '@rxap/ts-morph';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceOperation,
@@ -45,7 +46,7 @@ export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
       isOptional: true,
       isArray: true,
       isType: true,
-      type: '<self>',
+      type: TypeNames.Self,
     },
   ], (a, b) => a.name === b.name);
 
