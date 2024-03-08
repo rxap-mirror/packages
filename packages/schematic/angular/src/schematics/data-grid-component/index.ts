@@ -53,6 +53,7 @@ import {
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
 } from '../../lib/data-grid-options';
+import { AbstractControlToDataProperty } from '../../lib/form/abstract-control';
 import { CoerceControlComponentImports } from '../../lib/form/coerce-control-component-imports';
 import { NormalizedControl } from '../../lib/form/control';
 import {
@@ -310,7 +311,8 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
       idProperty: identifier?.property,
       propertyList: itemList
         .map(item => item.formControl)
-        .filter((formControl): formControl is NormalizedControl => !!formControl),
+        .filter((formControl): formControl is NormalizedControl => !!formControl)
+        .map(control => AbstractControlToDataProperty(control)),
       skipCoerce: true,
       collection,
     }),

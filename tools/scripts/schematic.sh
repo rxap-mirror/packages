@@ -125,6 +125,6 @@ echo "current dir: $CURRENT_DIR"
 
 yarn --cwd "$CURRENT_DIR" nx g "./$rel_dir:$schematic" "$@"
 
-cd "$CURRENT_DIR" || exit 1
-
-bash "$SCRIPT_DIR/format.sh"
+#cd "$CURRENT_DIR" || exit 1
+#
+#bash "$SCRIPT_DIR/format.sh"

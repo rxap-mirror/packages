@@ -6,6 +6,7 @@ import {
 import {
   AbstractControl,
   AbstractControlRolls,
+  AbstractControlToDataProperty,
   NormalizeAbstractControl,
   NormalizedAbstractControl,
 } from '../abstract-control';
@@ -64,10 +65,13 @@ export function NormalizeBaseFormArray(
     },
   ], (a, b) => a.name === b.name);
   const kind = array.kind ?? FormArrayKind.DEFAULT;
+  const controlList = NormalizeControlList(array.controlList);
   return {
     ...NormalizeAbstractControl(array, kind, importList, validatorList, defaultType, defaultIsArray),
     role: AbstractControlRolls.ARRAY,
-    controlList: NormalizeControlList(array.controlList),
+    controlList,
+    isArray: true,
+    memberList: controlList.map(control => AbstractControlToDataProperty(control)),
     legend: array.legend ?? null,
     groupLegend: array.groupLegend ?? null,
   };

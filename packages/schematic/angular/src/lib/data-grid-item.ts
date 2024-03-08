@@ -64,6 +64,7 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   }
   const formControl = item.formControl && Object.keys(item.formControl).length ? NormalizeControl({
     name: item.name,
+    type: item.type,
     ...item.formControl,
   }) : null;
 
@@ -95,12 +96,13 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   }
   const kind = item.kind ?? DataGridKinds.DEFAULT;
   const template = item.template ?? kind + '-data-grid-item.hbs';
-  console.log('DATA_GRID', JSON.stringify({ name: item.name, formControl: formControl?.type, source: item.formControl?.type }));
   const type = formControl?.type ?? item.type;
+  const memberList = formControl?.memberList ?? item.memberList;
   return Object.freeze({
     ...NormalizeDataProperty({
       ...item,
       type,
+      memberList
     }),
     template,
     kind,

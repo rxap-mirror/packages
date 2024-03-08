@@ -66,6 +66,7 @@ export function NormalizeDataGridOptions(options: Readonly<DataGridOptions>): Re
       isOptional: item.isOptional,
       isArray: item.isArray,
       source: item.source,
+      memberList: item.memberList,
     })),
     { compareTo: (a, b) => a.name === b.name },
   );

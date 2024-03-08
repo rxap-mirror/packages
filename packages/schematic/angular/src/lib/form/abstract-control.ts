@@ -39,6 +39,19 @@ export interface NormalizedAbstractControl extends Readonly<Normalized<Omit<Abst
   role: AbstractControlRolls;
 }
 
+export function AbstractControlToDataProperty(control: NormalizedAbstractControl): NormalizedDataProperty;
+export function AbstractControlToDataProperty(control: AbstractControl): DataProperty;
+export function AbstractControlToDataProperty(control: NormalizedAbstractControl | AbstractControl): NormalizedDataProperty | DataProperty {
+  return {
+    name: control.name,
+    type: control.type,
+    isArray: control.isArray,
+    isOptional: control.isOptional,
+    source: control.source,
+    memberList: control.memberList,
+  };
+}
+
 export function NormalizeAbstractControl<Kind extends string>(
   control: AbstractControl,
   kind: Kind,
