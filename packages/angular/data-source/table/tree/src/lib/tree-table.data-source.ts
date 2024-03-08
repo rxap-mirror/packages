@@ -373,7 +373,6 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
     viewer: BaseDataSourceViewer,
   ): Observable<Array<RowDataWithNode<RowData>>> {
     this.init();
-    console.log('connect tree table data source');
     return this._data$.pipe(
       tap((data) => this.updateTotalLength(data.length)),
       distinctUntilChanged((a, b) => {
