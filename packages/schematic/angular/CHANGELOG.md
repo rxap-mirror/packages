@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.40...@rxap/schematic-angular@16.2.0-dev.41) (2024-03-08)
+
+### Bug Fixes
+
+- hide header by default if for each column a filter exists ([36ffe0b](https://gitlab.com/rxap/packages/commit/36ffe0bc49cc9e6ee78f8009f56e9b91141bfe2d))
+
 # [16.2.0-dev.40](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.39...@rxap/schematic-angular@16.2.0-dev.40) (2024-03-08)
 
 ### Bug Fixes
