@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.44...@rxap/schematic-angular@16.2.0-dev.45) (2024-03-09)
+
+### Bug Fixes
+
+- set data grid header from name ([d332a5e](https://gitlab.com/rxap/packages/commit/d332a5e8a39e3476328fb792490a1a7ed134f13a))
+
+### Features
+
+- guess data grid kind ([fa1b8ac](https://gitlab.com/rxap/packages/commit/fa1b8ac70505e67b78b05622734049497ea9dd38))
+
 # [16.2.0-dev.44](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.43...@rxap/schematic-angular@16.2.0-dev.44) (2024-03-09)
 
 ### Features
