@@ -249,7 +249,7 @@ export function BuildDtoReturnImplementation(
     if (!isReturnVoid && dto) {
       const sourceFile = classDeclaration.getSourceFile();
       CoerceImports(sourceFile, {
-        namedImports: [ 'ToDtoInstance' ],
+        namedImports: [ isArray ? 'ToDtoInstanceList' : 'ToDtoInstance' ],
         moduleSpecifier: '@rxap/nest-dto',
       });
       const mapper = builtDtoDataMapperImplementation(classDeclaration, moduleSourceFile, dto, options)(operationOptions);
@@ -258,8 +258,12 @@ export function BuildDtoReturnImplementation(
       );
       operationOptions.statements ??= [];
       operationOptions.statements = coerceArray(operationOptions.statements);
+      if (isArray) {
+        operationOptions.statements.push('return ToDtoInstanceList(');
+      } else {
+        operationOptions.statements.push('return ToDtoInstance(');
+      }
       operationOptions.statements.push(
-        'return ToDtoInstance(',
         dto.className + ',',
         w => {
           if (typeof mapper === 'string') {

@@ -6,7 +6,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiQuery } from '@nestjs/swagger';
-import { ToDtoInstance } from '@rxap/nest-dto';
+import { ToDtoInstanceList } from '@rxap/nest-dto';
 import {
   FilterQuery,
   FilterQueryPipe,
@@ -18,7 +18,7 @@ import { DashboardAccordionReferenceScopeTypeControlOptionsDto } from './dtos/da
 export class DashboardAccordionReferenceController {
   @Get('control/scope-type/options')
   public async getScopeTypeOptions(): Promise<DashboardAccordionReferenceScopeTypeControlOptionsDto[]> {
-    return ToDtoInstance(
+    return ToDtoInstanceList(
     DashboardAccordionReferenceScopeTypeControlOptionsDto,
     [],
     );
@@ -51,7 +51,7 @@ export class DashboardAccordionReferenceController {
         isArray: true
       })
   public async getRoot(@Param('uuid') uuid: string, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>): Promise<DashboardAccordionReferenceItemDto[]> {
-    return ToDtoInstance(
+    return ToDtoInstanceList(
     DashboardAccordionReferenceItemDto,
     [],
     );
@@ -84,7 +84,7 @@ export class DashboardAccordionReferenceController {
         isArray: true
       })
   public async getChildren(@Param('uuid') uuid: string, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>, @Param('parentUuid') parentUuid: string): Promise<DashboardAccordionReferenceItemDto[]> {
-    return ToDtoInstance(
+    return ToDtoInstanceList(
     DashboardAccordionReferenceItemDto,
     [],
     );

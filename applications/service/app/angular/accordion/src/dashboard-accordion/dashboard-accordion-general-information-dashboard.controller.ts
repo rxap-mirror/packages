@@ -9,7 +9,10 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiQuery } from '@nestjs/swagger';
-import { ToDtoInstance } from '@rxap/nest-dto';
+import {
+  ToDtoInstance,
+  ToDtoInstanceList,
+} from '@rxap/nest-dto';
 import {
   FilterQuery,
   FilterQueryPipe,
@@ -117,7 +120,7 @@ export class DashboardAccordionGeneralInformationDashboardController {
   @Get('control/location/options')
   public async getLocationControlOptions(): Promise<DashboardAccordionGeneralInformationDashboardLocationControlOptionsDto[]> {
     const data = await this.companyGuiControllerGetByUuidCommand.execute();
-    return ToDtoInstance(
+    return ToDtoInstanceList(
     DashboardAccordionGeneralInformationDashboardLocationControlOptionsDto,
     [],
     );

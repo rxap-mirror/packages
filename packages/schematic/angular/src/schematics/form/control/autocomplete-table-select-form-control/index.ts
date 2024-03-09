@@ -246,7 +246,7 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
     shared,
     context,
     scope,
-    resolver,
+    upstream,
     propertyList,
     toDisplay,
     toValue,
@@ -255,7 +255,6 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
     identifier,
     source,
   } = normalizedOptions;
-  const { upstream } = resolver ?? {};
 
   const optionsOperationName = [ 'get', dasherize(name), 'control', 'options' ].join(
     '-',

@@ -431,6 +431,7 @@ function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOption
     overwrite,
     identifier,
     nestModule,
+    upstream,
   } = normalizedOptions;
 
   return chain([
@@ -446,7 +447,8 @@ function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOption
       accordionName: name,
       overwrite: overwrite || item.modifiers.includes('overwrite'),
       backend,
-      identifier,
+      identifier: item.identifier ?? identifier,
+      upstream: item.upstream ?? upstream,
     }),
   ]);
 
