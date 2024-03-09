@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.3...@rxap/plugin-library@16.1.0-dev.4) (2024-03-09)
+
+### Bug Fixes
+
+- support complex data properties ([3405885](https://gitlab.com/rxap/packages/commit/34058851b85062956effea40aec201e4581d9780))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.2...@rxap/plugin-library@16.1.0-dev.3) (2024-03-05)
 
 ### Bug Fixes

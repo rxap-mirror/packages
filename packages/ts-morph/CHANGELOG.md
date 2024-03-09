@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.15...@rxap/ts-morph@1.1.0-dev.16) (2024-03-09)
+
+### Bug Fixes
+
+- support complex data properties ([2294a05](https://gitlab.com/rxap/packages/commit/2294a05260c5d876ebf5ff209fd450592c7ebe4b))
+- support complex data properties ([39d8967](https://gitlab.com/rxap/packages/commit/39d8967c7e1ac111d15d4ac246f15494730b6b78))
+
 # [1.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.14...@rxap/ts-morph@1.1.0-dev.15) (2024-03-07)
 
 ### Bug Fixes

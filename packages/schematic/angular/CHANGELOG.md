@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.42...@rxap/schematic-angular@16.2.0-dev.43) (2024-03-09)
+
+### Bug Fixes
+
+- ensure data grid item type sync ([6158ffb](https://gitlab.com/rxap/packages/commit/6158ffb79a332c4f0fc5250662adb6a3aa1ce7d7))
+- never overwrite accordion default panel ([c7ee957](https://gitlab.com/rxap/packages/commit/c7ee95723758bea1fa4615833720cc092d3d6665))
+- support complex data properties ([3405885](https://gitlab.com/rxap/packages/commit/34058851b85062956effea40aec201e4581d9780))
+- support complex data properties ([2294a05](https://gitlab.com/rxap/packages/commit/2294a05260c5d876ebf5ff209fd450592c7ebe4b))
+
+### Features
+
+- add ToDtoInstanceList ([97d2963](https://gitlab.com/rxap/packages/commit/97d29635fd49dff369067d32a7150c6c169af340))
+
 # [16.2.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.41...@rxap/schematic-angular@16.2.0-dev.42) (2024-03-08)
 
 ### Bug Fixes
