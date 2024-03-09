@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.20...@rxap/schematics-ts-morph@16.1.0-dev.21) (2024-03-09)
+
+### Features
+
+- support custom mappers ([3970d65](https://gitlab.com/rxap/packages/commit/3970d65e099d85b57a345017af625bbc2d3b3475))
+- support to options mapper ([0672e06](https://gitlab.com/rxap/packages/commit/0672e06618f11e5af31daffc5ded8caac3ce7a16))
+
 # [16.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.19...@rxap/schematics-ts-morph@16.1.0-dev.20) (2024-03-09)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.44](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.43...@rxap/schematic-angular@16.2.0-dev.44) (2024-03-09)
+
+### Features
+
+- support custom mappers ([3970d65](https://gitlab.com/rxap/packages/commit/3970d65e099d85b57a345017af625bbc2d3b3475))
+
 # [16.2.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.42...@rxap/schematic-angular@16.2.0-dev.43) (2024-03-09)
 
 ### Bug Fixes

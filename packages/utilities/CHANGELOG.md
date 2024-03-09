@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.1.0-dev.6...@rxap/utilities@16.1.0-dev.7) (2024-03-09)
+
+### Bug Fixes
+
+- set default to value function ([78d2c49](https://gitlab.com/rxap/packages/commit/78d2c49c7629e4d6afd3c258befc9dba97dcafe4))
+
 # [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.1.0-dev.5...@rxap/utilities@16.1.0-dev.6) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/utilities

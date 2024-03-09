@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.16...@rxap/ts-morph@1.1.0-dev.17) (2024-03-09)
+
+### Features
+
+- support custom mappers ([3970d65](https://gitlab.com/rxap/packages/commit/3970d65e099d85b57a345017af625bbc2d3b3475))
+- support to options mapper ([0672e06](https://gitlab.com/rxap/packages/commit/0672e06618f11e5af31daffc5ded8caac3ce7a16))
+
 # [1.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.15...@rxap/ts-morph@1.1.0-dev.16) (2024-03-09)
 
 ### Bug Fixes
