@@ -8,6 +8,7 @@ import {
   TypeImport,
 } from '@rxap/ts-morph';
 import {
+  capitalize,
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
@@ -58,6 +59,15 @@ export interface NormalizedBaseDataGridItem extends Readonly<Normalized<Omit<Bas
   handlebars: Handlebars.TemplateDelegate<{ item: NormalizedBaseDataGridItem }>;
 }
 
+function guessDataGridItemKind(item: BaseDataGridItem): DataGridKinds {
+  switch (item.name) {
+    case 'link':
+      return DataGridKinds.LINK;
+  }
+
+  return DataGridKinds.DEFAULT;
+}
+
 export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): NormalizedBaseDataGridItem {
   if (!item.name) {
     throw new SchematicsException('The data grid item is required');
@@ -94,7 +104,7 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   if (formControl) {
     CoerceArrayItems(importList, formControl.importList, (a, b) => a.name === b.name && a.namedImport === b.namedImport);
   }
-  const kind = item.kind ?? DataGridKinds.DEFAULT;
+  const kind = item.kind ?? guessDataGridItemKind(item);
   const template = item.template ?? kind + '-data-grid-item.hbs';
   const type = formControl?.type ?? item.type;
   const memberList = formControl?.memberList ?? item.memberList;
@@ -108,7 +118,7 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
     kind,
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'data-grid-component', 'templates')),
     formControl,
-    header: item.header ?? null,
+    header: item.header ?? capitalize(item.name),
     pipeList,
     hasCellDef,
     hasHeaderCellDef,
