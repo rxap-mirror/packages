@@ -29,7 +29,7 @@ import { ControlOptions } from '../helpers';
  */
 export function ToOptionsFromObject<Value, Property>(
   source: Record<string, Property>,
-  toValue: (key: string) => Value,
+  toValue: (key: string) => Value = item => item as unknown as Value,
   toDisplay: (property: Property) => string = String,
 ): ControlOptions<Value> {
   return Object
