@@ -38,6 +38,7 @@ import {
   NormalizeDataProperty,
   NormalizeDataPropertyList,
   NormalizedDataProperty,
+  NormalizedUpstreamOptions,
   NormalizeUpstreamOptions,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
@@ -92,6 +93,7 @@ export interface NormalizedAccordionComponentOptions
   identifier: NormalizedAccordionIdentifier | null;
   controllerName: string;
   propertyList: NormalizedDataProperty[];
+  upstream: NormalizedUpstreamOptions | null;
 }
 
 function hasItemWithPermission(itemList: ReadonlyArray<NormalizedBaseAccordionItem>): boolean {

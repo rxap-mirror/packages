@@ -5,6 +5,7 @@ import {
   CoercePropertyDeclaration,
   DataProperty,
   IsNormalizedOpenApiUpstreamOptions,
+  IsNormalizedPagedRequestMapper,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
   OperationIdToResponseClassImportPath,
@@ -232,20 +233,40 @@ export function CoerceGetPageDataMethod(
         moduleSpecifier: '@nestjs/common',
       },
     ]);
+    let pageIndex = 'pageIndex';
+    let pageSize = 'pageSize';
+    let sortBy = 'sortBy';
+    let sortDirection = 'sortDirection';
+    let filter: { eq: string, join: string } | null = null;
+    let list = 'list';
+    let total = 'total';
+    const { mapper } = upstream;
+    if (mapper && IsNormalizedPagedRequestMapper(mapper)) {
+      pageIndex = mapper.pageIndex ?? pageIndex;
+      pageSize = mapper.pageSize ?? pageSize;
+      sortBy = mapper.sortBy ?? sortBy;
+      sortDirection = mapper.sortDirection ?? sortDirection;
+      filter = mapper.filter ?? filter;
+      list = mapper.list ?? list;
+      total = mapper.total ?? total;
+    }
     statements.push(
       `const response = await this.${ memberName }.execute({
       parameters: {
-        ${ upstream.mapper?.pageIndex ?? 'pageIndex' }: pageIndex,
-        ${ upstream.mapper?.pageSize ?? 'pageSize' }: pageSize,
-        ${ upstream.mapper?.sortBy ?? 'sortBy' }: sortBy,
-        ${ upstream.mapper?.sortDirection ?? 'sortDirection' }: sortDirection,
-        filter: ${ upstream.mapper?.filter ? `filter.map((item) => \`\${ item.column }:\${ item.filter }\`).join(';')` :
-                   'filter' },
+        ${ pageIndex }: pageIndex,
+        ${ pageSize }: pageSize,
+        ${ sortBy }: sortBy,
+        ${ sortDirection }: sortDirection,
+        filter: ${
+        filter ?
+        `filter.map((item) => \`\${ item.column }${ filter.eq }\${ item.filter }\`).join('${ filter.join }')` :
+        'filter'
+      },
       },
     });`,
       'return {',
-      `  list: response.${ upstream.mapper?.list ?? 'list' } ?? [],`,
-      `  total: response.${ upstream.mapper?.total ?? 'total' } ?? 0,`,
+      `  list: response.${ list } ?? [],`,
+      `  total: response.${ total } ?? 0,`,
       '};',
     );
   } else {
@@ -307,9 +328,14 @@ export function CoerceGetPageDataMethod(
 
 export function GetResponseTypeFromUpstream(upstream: NormalizedUpstreamOptions): TypeImport {
   if (IsNormalizedOpenApiUpstreamOptions(upstream)) {
+    const { mapper } = upstream;
+    let list = 'list';
+    if (mapper && IsNormalizedPagedRequestMapper(mapper)) {
+      list = mapper.list ?? list;
+    }
     const className = OperationIdToResponseClassName(upstream.operationId);
     return {
-      name: `${className}['${upstream.mapper?.list ?? 'list'}'][number]`,
+      name: `${className}['${list}'][number]`,
       namedImport: className,
       moduleSpecifier: OperationIdToResponseClassImportPath(upstream.operationId, upstream.scope),
     };

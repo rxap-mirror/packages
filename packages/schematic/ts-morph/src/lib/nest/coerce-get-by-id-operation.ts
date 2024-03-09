@@ -12,6 +12,10 @@ import {
   CoerceGetOperation,
 } from './coerce-get-operation';
 import { TransformOperation } from './coerce-operation';
+import {
+  DtoClassProperty,
+  NormalizeDataClassProperty,
+} from './dto-class-property';
 
 export interface CoerceGetByIdControllerOptions extends CoerceGetControllerOptions {
   idProperty?: OperationParameter | null,
@@ -29,6 +33,29 @@ export function BuildUpstreamGetByIdParametersImplementation(
   };
 }
 
+function UpstreamMapper(sourceProperty: string, propertyList: DtoClassProperty[], idProperty?: OperationParameter | null) {
+  const mapper: Record<string, string | WriterFunction> = {};
+  if (idProperty) {
+    mapper[idProperty.name] = idProperty.name;
+  }
+  for (const property of propertyList.filter(p => !idProperty || p.name !== idProperty.name).map(p => NormalizeDataClassProperty(p))) {
+    mapper[property.name] = `${sourceProperty}.${ property.source ?? property.name }`;
+    if (property.isType) {
+      // property is a complex object
+      if (property.isArray) {
+        mapper[property.name] = w => {
+          w.write(`${sourceProperty}.${ property.source ?? property.name }.map(item => (`);
+          Writers.object(UpstreamMapper('item', property.memberList))(w);
+          w.write('))');
+        };
+      } else {
+        mapper[property.name] = Writers.object(UpstreamMapper(mapper[property.name] as string,property.memberList));
+      }
+    }
+  }
+  return mapper;
+}
+
 export function BuiltGetByIdDtoDataMapperImplementation(
   classDeclaration: ClassDeclaration,
   moduleSourceFile: SourceFile,
@@ -43,21 +70,14 @@ export function BuiltGetByIdDtoDataMapperImplementation(
   } = options;
   return () => {
     if (upstream) {
-      const mapper: Record<string, string | WriterFunction> = {};
-      if (idProperty) {
-        mapper[idProperty.name] = idProperty.name;
-      }
-      for (const property of propertyList.filter(p => !idProperty || p.name !== idProperty.name)) {
-        mapper[property.name] = `data.${ property.source ?? property.name }`;
-      }
       if (isArray) {
         return w => {
           w.write('data.map(item => (');
-          Writers.object(mapper)(w);
+          Writers.object(UpstreamMapper('data', propertyList, idProperty))(w);
           w.write('))');
         };
       } else {
-        return Writers.object(mapper);
+        return Writers.object(UpstreamMapper('data', propertyList, idProperty));
       }
     } else {
       if (isArray) {

@@ -1,6 +1,7 @@
 import {
   DataProperty,
   IsNormalizedOpenApiUpstreamOptions,
+  IsNormalizedResolveRequestMapper,
   NormalizeDataProperty,
   NormalizedDataProperty,
 } from '@rxap/ts-morph';
@@ -34,8 +35,15 @@ export function BuildTableSelectValueResolveUpstreamGetParametersImplementation(
     const { upstream } = options;
     if (upstream) {
       if (IsNormalizedOpenApiUpstreamOptions(upstream)) {
-        if (upstream.mapper?.value) {
-          return `{ parameters: { ${ upstream.mapper.value }: value } }`;
+        const { mapper } = upstream;
+        let value: string | null = null;
+        if (mapper && IsNormalizedResolveRequestMapper(mapper)) {
+          value = mapper.value ?? value;
+        }
+        if (value) {
+          return `{ parameters: { ${ value }: value } }`;
+        } else {
+          return '{ parameters: { value } }';
         }
       }
       return '{ value }';

@@ -16,38 +16,77 @@
           "type": "string"
         },
         "mapper": {
-          "type": "object",
-          "properties": {
-            "pageIndex": {
-              "type": "string"
-            },
-            "pageSize": {
-              "type": "string"
-            },
-            "sortBy": {
-              "type": "string"
-            },
-            "sortDirection": {
-              "type": "string"
-            },
-            "list": {
-              "type": "string"
-            },
-            "total": {
-              "type": "string"
-            },
-            "filter": {
+          "oneOf": [
+            {
               "type": "object",
               "properties": {
-                "eq": {
+                "kind": {
+                  "type": "string",
+                  "const": "paged"
+                },
+                "pageIndex": {
                   "type": "string"
                 },
-                "join": {
+                "pageSize": {
+                  "type": "string"
+                },
+                "sortBy": {
+                  "type": "string"
+                },
+                "sortDirection": {
+                  "type": "string"
+                },
+                "list": {
+                  "type": "string"
+                },
+                "total": {
+                  "type": "string"
+                },
+                "filter": {
+                  "type": "object",
+                  "properties": {
+                    "eq": {
+                      "type": "string"
+                    },
+                    "join": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "options"
+                },
+                "toFunction": {
+                  "type": "string",
+                  "enum": ["ToOptions", "ToOptionsFromObject"]
+                },
+                "toValue": {
+                  "type": "string"
+                },
+                "toDisplay": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "resolve"
+                },
+                "value": {
                   "type": "string"
                 }
               }
             }
-          }
+          ]
         }
       },
       "required": ["kind", "operationId"]

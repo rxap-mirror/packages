@@ -26,7 +26,10 @@ export function NormalizeDataClassProperty(property: DtoClassProperty): Normaliz
     source,
     isOptional,
   } = NormalizeDataProperty(property);
-  let isType = property.isType ?? ([ TypeNames.Self, TypeNames.Deferred ] as string[]).includes(type.name) ?? false;
+  let isType = property.isType ?? false;
+  if (([ TypeNames.Self, TypeNames.Deferred ] as string[]).includes(type.name)) {
+    isType = true;
+  }
   switch (type.name) {
     case 'IconConfig':
       type.name = 'IconDto';

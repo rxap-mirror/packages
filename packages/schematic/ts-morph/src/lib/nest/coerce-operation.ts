@@ -10,9 +10,9 @@ import {
   CoerceOperationParamList,
   CoercePropertyDeclaration,
   IsNormalizedOpenApiUpstreamOptions,
+  NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
   OperationIdToCommandClassName,
-  UpstreamOptions,
 } from '@rxap/ts-morph';
 import {
   camelize,
@@ -106,7 +106,7 @@ export interface CoerceOperationOptions<Options = Record<string, any>> extends T
     options: Readonly<CoerceOperationOptions & Options>,
   ) => CoerceDtoClassOutput | null;
   buildOperationDtoClassName?: (controllerName: string, options: Readonly<Pick<CoerceOperationOptions, 'dtoClassNameSuffix' | 'dtoClassName'>>) => string;
-  upstream?: UpstreamOptions | null;
+  upstream?: NormalizedUpstreamOptions | null;
   propertyList?: DtoClassProperty[],
   isArray?: boolean,
   isReturnVoid?: boolean,
@@ -117,7 +117,7 @@ export interface CoerceOperationOptions<Options = Record<string, any>> extends T
 export function CoerceUpstreamBasicOperationImplementation(
   classDeclaration: ClassDeclaration,
   moduleSourceFile: SourceFile,
-  upstream: UpstreamOptions,
+  upstream: NormalizedUpstreamOptions,
 ): { className: string, memberName: string } {
   if (IsNormalizedOpenApiUpstreamOptions(upstream)) {
     const sourceFile = classDeclaration.getSourceFile();
