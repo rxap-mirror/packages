@@ -40,7 +40,12 @@ export function FindProject(host: Tree, projectName: string): ProjectJson | null
     if (!fileEntry.path.endsWith('project.json')) {
       continue;
     }
-    const project = JSON.parse(fileEntry.content.toString('utf-8')) as ProjectJson;
+    let project: ProjectJson;
+    try {
+      project = JSON.parse(fileEntry.content.toString('utf-8')) as ProjectJson;
+    } catch (e: any) {
+      throw new SchematicsException(`Failed to find project ${projectName}. Could not parse project configuration file: ${ fileEntry.path }: ` + e.message);
+    }
     if (project.name === projectName) {
       project.root ??= dirname(fileEntry.path).replace(/^\//, '');
       PROJECT_LOCATION_CACHE.set(projectName, fileEntry.path);
