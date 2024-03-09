@@ -139,6 +139,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
     role,
     isOptional,
     source,
+    overwrite,
     identifier,
   } = normalizedOptions;
   const { upstream } = resolver ?? {};
@@ -171,6 +172,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       nestModule,
       controllerName,
       upstream,
+      overwrite,
       propertyList,
       rowValueProperty: toValue.property,
       rowDisplayProperty: toDisplay.property,
@@ -275,6 +277,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
     upstream,
     role,
     isOptional,
+    overwrite,
     identifier,
     source,
   } = normalizedOptions;
@@ -297,6 +300,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       feature,
       nestModule,
       controllerName,
+      overwrite,
       propertyList,
       operationName: optionsOperationName,
       path: optionsOperationPath,

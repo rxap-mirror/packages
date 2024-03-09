@@ -524,6 +524,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
     feature,
     controllerName,
     identifier,
+    overwrite,
     nestModule,
     upstream,
   } = normalizedOptions;
@@ -542,6 +543,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
         project,
         feature,
         nestModule,
+        overwrite,
         shared: false,
         propertyList: buildPropertyList(normalizedOptions),
         idProperty: identifier.property,
@@ -555,6 +557,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
         controllerName,
         project,
         feature,
+        overwrite,
         nestModule,
         shared: false,
         propertyList: buildPropertyList(normalizedOptions),

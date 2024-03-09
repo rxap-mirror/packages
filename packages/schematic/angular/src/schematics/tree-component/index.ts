@@ -43,6 +43,7 @@ export default function (options: TreeComponentOptions) {
     feature,
     shared,
     controllerName,
+    overwrite,
   } =
     normalizedOptions;
 
@@ -54,6 +55,7 @@ export default function (options: TreeComponentOptions) {
         shared,
         controllerName,
         fullTree,
+        overwrite,
       }),
     ]);
   };

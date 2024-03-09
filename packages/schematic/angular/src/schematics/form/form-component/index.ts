@@ -202,6 +202,7 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
     controllerName,
     nestModule,
     shared,
+    overwrite,
     identifier,
   } = normalizedOptions;
 
@@ -213,6 +214,7 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
         CoerceFormSubmitOperation({
           controllerName,
           project,
+          overwrite,
           feature,
           shared,
           nestModule,

@@ -341,7 +341,7 @@ export function CleanUp(options: { project: string }) {
   ]);
 }
 
-function CoerceAppController(options: { project: string }) {
+function CoerceAppController(options: { project: string, overwrite: boolean }) {
 
   return chain([
     CoerceNestController({
@@ -368,6 +368,7 @@ function CoerceAppController(options: { project: string }) {
     }),
     CoerceOperation({
       project: options.project,
+      overwrite: options.overwrite,
       controllerName: 'app',
       nestModule: 'app',
       operationName: 'environment',

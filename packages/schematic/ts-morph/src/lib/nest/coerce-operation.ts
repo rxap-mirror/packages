@@ -2,7 +2,10 @@ import {
   chain,
   Rule,
 } from '@angular-devkit/schematics';
-import { classify } from '@rxap/schematics-utilities';
+import {
+  classify,
+  OverwriteOptions,
+} from '@rxap/schematics-utilities';
 import {
   CoerceImports,
   CoerceNestModuleImport,
@@ -112,6 +115,7 @@ export interface CoerceOperationOptions<Options = Record<string, any>> extends T
   isReturnVoid?: boolean,
   dtoClassNameSuffix?: string;
   dtoClassName?: string;
+  overwrite: OverwriteOptions;
 }
 
 export function CoerceUpstreamBasicOperationImplementation(

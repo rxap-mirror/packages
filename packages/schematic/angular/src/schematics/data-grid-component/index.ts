@@ -214,6 +214,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
     itemList,
     collection,
     scope,
+    overwrite,
     identifier,
     controllerName,
   } = normalizedOptions;
@@ -307,6 +308,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
       nestModule,
       project,
       feature,
+      overwrite,
       shared,
       idProperty: identifier?.property,
       propertyList: itemList
@@ -346,6 +348,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
     upstream,
     propertyList,
     identifier,
+    overwrite,
     controllerName,
   } = normalizedOptions;
 
@@ -360,6 +363,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
       nestModule,
       collection,
       controllerName,
+      overwrite,
       upstream,
       propertyList,
       idProperty: identifier?.property,

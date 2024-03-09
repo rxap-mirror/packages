@@ -175,6 +175,7 @@ function nestjsBackendRule(
     identifier,
     upstream,
     controllerName,
+    overwrite,
     nestModule,
   } = normalizedOptions;
   const {
@@ -235,6 +236,7 @@ function nestjsBackendRule(
       feature,
       nestModule,
       shared,
+      overwrite,
       collection: hasCollectionModifier,
       paramList,
       upstream,
@@ -252,6 +254,7 @@ function nestjsBackendRule(
         feature,
         shared,
         nestModule,
+        overwrite,
         collection: hasCollectionModifier,
         paramList,
         idProperty: identifier?.property,

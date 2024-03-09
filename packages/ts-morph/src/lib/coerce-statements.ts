@@ -7,9 +7,12 @@ import {
 export function CoerceStatements(
   node: StatementedNode,
   statements: (string | WriterFunction | StatementStructures)[] | string | WriterFunction,
+  overwrite = false
 ) {
-  if (node.getStatements().length ===
-    0) {
+  if (overwrite) {
+    node.removeStatements([0, node.getStatements().length - 1]);
+  }
+  if (node.getStatements().length === 0) {
     node.addStatements(statements);
   }
 }

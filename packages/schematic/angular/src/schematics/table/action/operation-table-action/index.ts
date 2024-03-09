@@ -64,6 +64,7 @@ function openApiOperationRule(normalizedOptions: NormalizedOperationTableActionO
     controllerName,
     type,
     scope,
+    overwrite,
   } = normalizedOptions;
 
   return chain([
@@ -95,6 +96,7 @@ function openApiOperationRule(normalizedOptions: NormalizedOperationTableActionO
       project,
       feature,
       shared,
+      overwrite,
       overwriteControllerPath: true,
       operationName: `${ type }-action`,
       tsMorphTransform: () => {

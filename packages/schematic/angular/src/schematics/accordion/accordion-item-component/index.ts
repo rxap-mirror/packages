@@ -155,6 +155,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
     identifier,
     upstream,
     nestModule,
+    overwrite,
     propertyList,
   } = normalizedOptions;
 
@@ -172,6 +173,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         shared,
         idProperty: identifier.property,
         upstream,
+        overwrite,
         nestModule,
         propertyList
       }),
@@ -183,6 +185,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         controllerName,
         project,
         feature,
+        overwrite,
         shared,
         upstream,
         nestModule,

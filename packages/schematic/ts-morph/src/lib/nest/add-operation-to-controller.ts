@@ -1,6 +1,7 @@
 import {
   camelize,
   capitalize,
+  OverwriteOptions,
 } from '@rxap/schematics-utilities';
 import {
   CoerceClassMethod,
@@ -60,6 +61,7 @@ export interface OperationOptions {
   paramList?: OperationParameter[],
   queryList?: OperationParameter[],
   method?: string,
+  overwrite?: OverwriteOptions;
 
   body?: string | WriterFunction,
   statements?: (string | WriterFunction | StatementStructures)[] | string | WriterFunction;
@@ -220,7 +222,7 @@ export function AddOperationToController(
   });
 
   CoerceImports(sourceFile,{
-    namedImports: [ method, 'NotImplementedException' ],
+    namedImports: [ method ],
     moduleSpecifier: '@nestjs/common',
   });
 
@@ -313,10 +315,19 @@ export function AddOperationToController(
 
   CoerceDecorator(methodDeclaration, method, { arguments: path ? [ w => w.quote(path!) ] : [] });
   coerceApiQueryDecorators(queryList, methodDeclaration);
+
+  if (!statements) {
+    CoerceImports(sourceFile, {
+      namedImports: [ 'NotImplementedException' ],
+      moduleSpecifier: '@nestjs/common',
+    });
+  }
+
   CoerceStatements(
     methodDeclaration,
     statements ??
     [ 'throw new NotImplementedException();' ],
+    options.overwrite === true ? true : Array.isArray(options.overwrite) ? options.overwrite.includes('statements') : false,
   );
 
   tsMorphTransform(sourceFile, classDeclaration, methodDeclaration, options);

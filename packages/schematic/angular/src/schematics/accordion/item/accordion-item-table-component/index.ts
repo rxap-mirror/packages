@@ -124,6 +124,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
     project,
     feature,
     identifier,
+    overwrite,
     nestModule,
   } = normalizedOptions;
 
@@ -145,6 +146,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
       controllerName,
       project,
       feature,
+      overwrite,
       shared: hasSharedModifier,
       paramList,
       propertyList: normalizedOptions.table.propertyList,

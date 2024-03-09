@@ -133,6 +133,7 @@ export default function (options: DialogTableActionOptions) {
         controllerName,
         project,
         feature,
+        overwrite,
         shared,
         overwriteControllerPath: true,
         operationName: `${ type }-action`,

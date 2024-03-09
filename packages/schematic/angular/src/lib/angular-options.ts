@@ -1,5 +1,6 @@
 import {
   GlobalOptions,
+  NormalizedGlobalOptions,
   NormalizeGlobalOptions,
   PrintGeneralOptions,
 } from '@rxap/schematics-utilities';
@@ -24,7 +25,7 @@ export interface AngularOptions extends GlobalOptions {
   openApi?: any;
 }
 
-export type NormalizedAngularOptions = Readonly<NonNullableSelected<Normalized<AngularOptions>, 'backend'>>;
+export type NormalizedAngularOptions = Readonly<NonNullableSelected<Normalized<AngularOptions>, 'backend'>> & NormalizedGlobalOptions;
 
 export function NormalizeAngularOptions(options: AngularOptions): NormalizedAngularOptions {
   let shared = options.shared ?? false;

@@ -267,6 +267,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
       shared,
       propertyList,
       context,
+      overwrite,
     }),
     () => console.log('Add the open api methods to the table component providers'),
     CoerceComponentRule({

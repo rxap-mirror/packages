@@ -142,6 +142,7 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
     toValue,
     role,
     isOptional,
+    overwrite,
     identifier,
     source,
   } = normalizedOptions;
@@ -169,6 +170,7 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
       nestModule,
       controllerName,
       upstream,
+      overwrite,
       propertyList: propertyList.slice(),
       rowValueProperty: toValue.property,
       rowDisplayProperty: toDisplay.property,
@@ -253,6 +255,7 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
     role,
     isOptional,
     identifier,
+    overwrite,
     source,
   } = normalizedOptions;
 
@@ -278,6 +281,7 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
       nestModule,
       controllerName,
       upstream,
+      overwrite,
       propertyList: propertyList.slice(),
       toValueProperty: toValue.property,
       toDisplayProperty: toDisplay.property,
@@ -363,6 +367,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
     role,
     isOptional,
     identifier,
+    overwrite,
     source,
   } = normalizedOptions;
 
@@ -384,6 +389,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       feature,
       nestModule,
       controllerName,
+      overwrite,
       propertyList: propertyList.slice(),
       operationName: optionsOperationName,
       path: optionsOperationPath,

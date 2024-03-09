@@ -139,6 +139,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
     scope,
     identifier,
     controllerName,
+    overwrite,
   } = normalizedOptions;
   const {
     hasSharedModifier,
@@ -153,6 +154,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       controllerName,
       project,
       nestModule,
+      overwrite,
       feature,
       shared: hasSharedModifier,
       idProperty: identifier?.property,
@@ -163,6 +165,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       controllerName,
       nestModule: hasSharedModifier ? undefined : nestModule,
       project,
+      overwrite,
       feature,
       shared: hasSharedModifier,
       idProperty: identifier?.property,
