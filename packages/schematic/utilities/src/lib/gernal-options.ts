@@ -3,20 +3,24 @@ import {
   Normalized,
 } from '@rxap/utilities';
 
+export type OverwriteOptions = boolean | string[];
+
 export interface GlobalOptions {
   project: string;
   feature?: string;
-  overwrite?: string[];
+  overwrite?: OverwriteOptions;
   replace?: boolean;
 }
 
-export type NormalizedGlobalOptions = Readonly<Normalized<GlobalOptions>>;
+export interface NormalizedGlobalOptions extends Readonly<Normalized<GlobalOptions>> {
+  overwrite: OverwriteOptions;
+}
 
 export function NormalizeGlobalOptions(options: GlobalOptions): NormalizedGlobalOptions {
   return Object.seal({
     project: dasherize(options.project),
     feature: options.feature ? dasherize(options.feature) : null,
-    overwrite: options.overwrite ?? false as any,
+    overwrite: options.overwrite ?? false,
     replace: options.replace ?? false,
   });
 }
