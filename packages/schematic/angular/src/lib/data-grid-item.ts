@@ -10,6 +10,7 @@ import {
 import {
   capitalize,
   CoerceArrayItems,
+  dasherize,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
@@ -118,7 +119,7 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
     kind,
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'data-grid-component', 'templates')),
     formControl,
-    header: item.header ?? capitalize(item.name),
+    header: item.header ?? dasherize(item.name).split('-').map(capitalize).join(' '),
     pipeList,
     hasCellDef,
     hasHeaderCellDef,
