@@ -146,7 +146,6 @@ export interface OptionsRequestMapper extends BaseRequestMapper {
 export interface NormalizedOptionsRequestMapper extends Readonly<Normalized<OptionsRequestMapper>> {
   kind: RequestMapperKinds.OPTIONS;
   toFunction: ToOptionsFunction;
-  toDisplay: string;
 }
 
 export function NormalizeOptionsRequestMapper(mapper: OptionsRequestMapper): NormalizedOptionsRequestMapper {
@@ -154,8 +153,8 @@ export function NormalizeOptionsRequestMapper(mapper: OptionsRequestMapper): Nor
     ...NormalizeBaseRequestMapper(mapper),
     kind: RequestMapperKinds.OPTIONS,
     toFunction: mapper.toFunction ?? ToOptionsFunction.TO_OPTIONS,
-    toValue: mapper.toValue ?? 'Number',
-    toDisplay: mapper.toDisplay ?? 'String',
+    toValue: mapper.toValue ?? null,
+    toDisplay: mapper.toDisplay ?? null,
   });
 }
 
