@@ -20,6 +20,7 @@ import {
   classify,
   Normalized,
 } from '@rxap/utilities';
+import { BuildNestControllerName } from '@rxap/workspace-utilities';
 import {
   Project,
   SourceFile,
@@ -254,7 +255,10 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
   const operationId = buildOperationId(
     normalizedOptions,
     'get-page',
-    controllerName,
+    BuildNestControllerName({
+      controllerName,
+      nestModule
+    }),
   );
 
   return chain([
