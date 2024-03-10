@@ -9,7 +9,6 @@ import {
   CoerceComponentRule,
   CoerceDataSourceClass,
   CoerceFormComponentProviderRule,
-  CoerceGetDataGridOperation,
   CoerceImports,
   CoerceSubmitDataGridOperation,
 } from '@rxap/schematics-ts-morph';
@@ -228,20 +227,6 @@ function nestjsBackendRule(
 
         sourceFile.getImportDeclaration('@rxap/data-grid')?.remove();
       },
-    }),
-    () => console.log(`Modify the get data grid operation ...`),
-    CoerceGetDataGridOperation({
-      controllerName,
-      project,
-      feature,
-      nestModule,
-      shared,
-      overwrite,
-      collection: hasCollectionModifier,
-      paramList,
-      upstream,
-      idProperty: identifier?.property,
-      skipCoerce: true,
     }),
   ]);
 
