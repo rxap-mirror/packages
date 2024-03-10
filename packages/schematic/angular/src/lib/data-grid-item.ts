@@ -109,6 +109,14 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
   const template = item.template ?? kind + '-data-grid-item.hbs';
   const type = formControl?.type ?? item.type;
   const memberList = formControl?.memberList ?? item.memberList;
+  switch (kind) {
+    case DataGridKinds.LINK:
+      CoerceArrayItems(importList, [{
+        name: 'MatTooltipModule',
+        moduleSpecifier: '@angular/material/tooltip'
+      }], (a, b) => a.name === b.name);
+      break;
+  }
   return Object.freeze({
     ...NormalizeDataProperty({
       ...item,

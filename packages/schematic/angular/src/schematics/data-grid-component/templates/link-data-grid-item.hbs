@@ -1,5 +1,5 @@
 <ng-template let-value rxapDataGridCellDef>
-  <a [href]="value{{> pipe pipeList=item.pipeList}}" class="link" mat-flat-button target="{{item.target}}">
+  <a [href]="value{{> pipe pipeList=item.pipeList}}" [matTooltip]="value{{> pipe pipeList=item.pipeList}}" class="link" mat-flat-button target="{{item.target}}">
     <span class="flex flex-row gap-4 items-center">
       <span class="overflow-hidden whitespace-nowrap text-overflow-ellipsis max-w-xs">\{{ value{{> pipe pipeList=item.pipeList}} }}</span>
       <mat-icon inline>open_in_new</mat-icon>
