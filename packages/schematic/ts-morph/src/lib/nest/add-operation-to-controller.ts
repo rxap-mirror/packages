@@ -327,7 +327,7 @@ export function AddOperationToController(
     methodDeclaration,
     statements ??
     [ 'throw new NotImplementedException();' ],
-    options.overwrite === true ? true : Array.isArray(options.overwrite) ? options.overwrite.includes('statements') : false,
+    Array.isArray(options.overwrite) ? options.overwrite.includes('statements') : options.overwrite ?? false,
   );
 
   tsMorphTransform(sourceFile, classDeclaration, methodDeclaration, options);

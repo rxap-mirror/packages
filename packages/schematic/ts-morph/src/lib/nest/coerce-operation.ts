@@ -350,6 +350,7 @@ export function CoerceOperation<Options = Record<string, any>>(options: CoerceOp
     queryList = [],
     coerceUpstreamOperationImplementation = CoerceUpstreamDefaultOperationImplementation,
     coerceOperationDtoClass = CoerceOperationDtoClass,
+    overwrite,
   } = options;
   let { nestModule, directory, path } = options;
 
@@ -466,6 +467,7 @@ export function CoerceOperation<Options = Record<string, any>>(options: CoerceOp
           paramList,
           queryList,
           path,
+          overwrite,
           ...operationOptions,
         },
       );
