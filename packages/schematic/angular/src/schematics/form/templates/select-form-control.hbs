@@ -1,8 +1,12 @@
 {{#> matFormField control=control}}
   <mat-select
     formControlName="{{control.name}}"
-    {{#if parentControlContainer}}parentControlContainer{{/if~}}
-    {{#if control.isRequired}}rxapRequired{{/if~}}
+    {{#if parentControlContainer}}
+    parentControlContainer
+    {{/if}}
+    {{#if control.isRequired}}
+    rxapRequired
+    {{/if}}
   >
     <mat-option *rxapOptionsFromMethod="let option" [value]="option.value">\{{option.display}}</mat-option>
   </mat-select>

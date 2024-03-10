@@ -24,7 +24,9 @@
         matTooltip
         [disabled]="tableDataSourceDirective.hasError$ | async"
         [rxapTableHeaderButton]="tableDataSourceDirective"
-        {{#if headerButton.permission}}rxapHasEnablePermission="{{headerButton.permission}}"{{/if~}}
+        {{#if headerButton.permission}}
+        rxapHasEnablePermission="{{headerButton.permission}}"
+        {{/if}}
       >
         {{#if headerButton.icon}}
         <mat-icon>{{headerButton.icon}}</mat-icon>
@@ -48,10 +50,19 @@
         {{/if}}
         {{#each columnList}}
         <rxap-table-column-option name="{{this.name}}"
-          {{~#if this.active}} active{{/if~}}
-          {{~#if this.hidden}} hidden{{/if~}}
-          {{~#if this.inactive}} inactive{{/if~}}
-          {{~#if this.show}} show{{/if~}}>
+          {{#if this.active}}
+           active
+          {{/if}}
+          {{#if this.hidden}}
+           hidden
+          {{/if}}
+          {{#if this.inactive}}
+           inactive
+          {{/if}}
+          {{#if this.show}}
+           show
+          {{/if}}
+          >
           <ng-container i18n>{{this.title}}</ng-container>
         </rxap-table-column-option>
         {{/each}}
@@ -84,10 +95,18 @@
           rxapTableDataSource
           [parameters]="parameters"
           id="{{name}}"
-          {{#if cssClass}}{{> cssClass cssClass=cssClass}}{{/if~}}
-          {{#if hasPaginator}}[paginator]="paginator"{{/if~}}
-          {{#if hasColumnWithFilter}}rxap-filter-header-row{{/if~}}
-          {{#if sortable}}matSort{{/if~}}
+          {{#if cssClass}}
+          {{> cssClass cssClass=cssClass}}
+          {{/if}}
+          {{#if hasPaginator}}
+          [paginator]="paginator"
+          {{/if}}
+          {{#if hasColumnWithFilter}}
+          rxap-filter-header-row
+          {{/if}}
+          {{#if sortable}}
+          matSort
+          {{/if}}
         >
           <!-- region columns -->
           {{#if selectColumn}}
@@ -119,10 +138,16 @@
                 <button
                   rxapTableRowHeaderAction="{{this.type}}"
                   mat-icon-button
-                  {{#if this.color}}color="{{this.color}}"{{/if~}}
-                  {{#if this.cssClass}}{{> cssClass cssClass=this.cssClass}}{{/if~}}
+                  {{#if this.color}}
+                  color="{{this.color}}"
+                  {{/if}}
+                  {{#if this.cssClass}}
+                  {{> cssClass cssClass=this.cssClass}}
+                  {{/if}}
                   *ngIf="selected | rxapRowActionCheck:'{{this.type}}'"
-                  {{#if this.permission}}rxapHasEnablePermission="{{this.permission}}"{{/if~}}
+                  {{#if this.permission}}
+                  rxapHasEnablePermission="{{this.permission}}"
+                  {{/if}}
                   matTooltip
                 >
                   {{#if this.icon}}
@@ -151,11 +176,17 @@
                 <button
                   rxapTableRowAction="{{this.type}}"
                   [element]="element"
-                  {{#if this.color}}color="{{this.color}}"{{/if~}}
-                  {{#if this.cssClass}}{{> cssClass cssClass=this.cssClass}}{{/if~}}
+                  {{#if this.color}}
+                  color="{{this.color}}"
+                  {{/if}}
+                  {{#if this.cssClass}}
+                  {{> cssClass cssClass=this.cssClass}}
+                  {{/if}}
                   mat-icon-button
                   *ngIf="element | rxapRowActionCheck:'{{this.type}}'"
-                  {{#if this.permission}}rxapHasEnablePermission="{{this.permission}}"{{/if~}}
+                  {{#if this.permission}}
+                  rxapHasEnablePermission="{{this.permission}}"
+                  {{/if}}
                   matTooltip
                 >
                   {{#if this.icon}}
@@ -198,7 +229,9 @@
           {{#> matColumnDef column=this columnName=this.filterName}}
             <th mat-header-cell
               *matHeaderCellDef
-              {{#if column.filterCssClass}}{{> cssClass cssClass=column.filterCssClass}}{{/if~}}
+              {{#if column.filterCssClass}}
+              {{> cssClass cssClass=column.filterCssClass}}
+              {{/if}}
             >
               {{#if this.hasFilter}}
               {{ indent (compile this.filterControl.handlebars column=this table=../. control=this.filterControl parentControlContainer=true) 14 }}

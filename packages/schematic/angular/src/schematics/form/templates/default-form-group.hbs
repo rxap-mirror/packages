@@ -2,7 +2,9 @@
 <fieldset
   formGroupName="{{control.name}}"
   class="flex flex-col gap-3 border border-solid border-gray-300 p-3"
-  {{#if parentControlContainer}}parentControlContainer{{/if~}}
+  {{#if parentControlContainer}}
+  parentControlContainer
+  {{/if}}
 >
   {{#if control.legend}}
   <legend class="text-sm" i18n>{{control.legend}}</legend>

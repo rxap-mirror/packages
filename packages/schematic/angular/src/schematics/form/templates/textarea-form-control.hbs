@@ -2,12 +2,24 @@
   <textarea
     formControlName="{{control.name}}"
     matInput
-    {{#if control.autosize}}cdkTextareaAutosize{{/if~}}
-    {{#if control.autosize.maxRows}}[cdkAutosizeMaxRows]="{{control.autosize.maxRows}}"{{/if~}}
-    {{#if control.autosize.minRows}}[cdkAutosizeMinRows]="{{control.autosize.minRows}}"{{/if~}}
-    {{#if control.isRequired}}rxapRequired{{/if~}}
-    {{#if parentControlContainer}}parentControlContainer{{/if~}}
-    {{#if control.placeholder}}i18n-placeholder placeholder="{{control.placeholder}}"{{/if~}}
+    {{#if control.autosize}}
+    cdkTextareaAutosize
+    {{/if}}
+    {{#if control.autosize.maxRows}}
+    [cdkAutosizeMaxRows]="{{control.autosize.maxRows}}"
+    {{/if}}
+    {{#if control.autosize.minRows}}
+    [cdkAutosizeMinRows]="{{control.autosize.minRows}}"
+    {{/if}}
+    {{#if control.isRequired}}
+    rxapRequired
+    {{/if}}
+    {{#if parentControlContainer}}
+    parentControlContainer
+    {{/if}}
+    {{#if control.placeholder}}
+    i18n-placeholder placeholder="{{control.placeholder}}"
+    {{/if}}
   >
   </textarea>
 {{/matFormField}}

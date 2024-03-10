@@ -275,16 +275,7 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
           isReadonly: true,
         });
         let parametersType = 'void';
-        if (identifier?.source === 'route') {
-          CoerceClassProperty(classDeclaration, 'route', {
-            scope: Scope.Protected,
-            initializer: 'inject(ActivatedRoute)',
-            isReadonly: true,
-          });
-          CoerceImports(sourceFile, {
-            moduleSpecifier: '@angular/router',
-            namedImports: [ 'ActivatedRoute' ],
-          });
+        if (identifier) {
           parametersType = `OpenApiRemoteMethodParameter<${OperationIdToParameterClassName(getOperationId)}, void>`;
           CoerceImports(sourceFile, {
             namedImports: [ OperationIdToParameterClassName(getOperationId) ],
@@ -295,19 +286,30 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
             namedImports: [ 'OpenApiRemoteMethodParameter' ],
             moduleSpecifier: '@rxap/open-api/remote-method',
           });
-          CoerceImports(sourceFile, {
-            namedImports: [ 'map' ],
-            moduleSpecifier: 'rxjs/operators',
-          });
-          CoerceClassMethod(classDeclaration, 'getParameters', {
-            statements: [ `return this.route.paramMap.pipe(map(paramMap => {
+          if (identifier.source === 'route') {
+            CoerceClassProperty(classDeclaration, 'route', {
+              scope: Scope.Protected,
+              initializer: 'inject(ActivatedRoute)',
+              isReadonly: true,
+            });
+            CoerceImports(sourceFile, {
+              moduleSpecifier: '@angular/router',
+              namedImports: [ 'ActivatedRoute' ],
+            });
+            CoerceImports(sourceFile, {
+              namedImports: [ 'map' ],
+              moduleSpecifier: 'rxjs/operators',
+            });
+            CoerceClassMethod(classDeclaration, 'getParameters', {
+              statements: [ `return this.route.paramMap.pipe(map(paramMap => {
             const ${identifier.property.name} = paramMap.get('${identifier.property.name}');
             if (!${identifier.property.name}) {
               throw new Error('The route does not contain the parameter ${identifier.property.name}');
             }
             return { parameters: { ${identifier.property.name} } };
             }));` ],
-          });
+            });
+          }
         } else {
           CoerceClassMethod(classDeclaration, 'getParameters', {
             statements: [ 'return undefined;' ],

@@ -3,13 +3,17 @@
   {{#if title}}
   <mat-card-header>
     <mat-card-title>{{title}}</mat-card-title>
-    {{#if subtitle}}<mat-card-subtitle>{{subtitle}}</mat-card-subtitle>{{/if}}
+    {{#if subtitle}}
+    <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
+    {{/if}}
   </mat-card-header>
   {{/if}}
   <mat-card-content>
 {{/if}}
     <div class="p-4">
-      {{#if isForm}}<form #form="rxapForm" rxapForm>{{/if~}}
+      {{#if isForm}}
+      <form #form="rxapForm" rxapForm>
+      {{/if}}
         <rxap-data-grid {{#if collection}}[data]="data"{{else}}[dataSource]="dataGridDataSource"{{/if}} mode="{{mode}}">
         {{#each itemList}}
           <ng-container rxapDataGridRowDef="{{this.name}}">
@@ -27,7 +31,9 @@
           </ng-container>
         {{/each}}
         </rxap-data-grid>
-      {{#if isForm}}</form>{{/if}}
+      {{#if isForm}}
+      </form>
+      {{/if}}
     </div>
 {{#if inCard}}
   </mat-card-content>

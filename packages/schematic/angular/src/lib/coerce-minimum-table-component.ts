@@ -80,6 +80,7 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       CoerceComponentImport(classDeclaration, { name: 'MatProgressBarModule', moduleSpecifier: '@angular/material/progress-bar' });
       CoerceComponentImport(classDeclaration, { name: 'MatCardModule', moduleSpecifier: '@angular/material/card' });
       CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
+      CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
       CoerceComponentImport(classDeclaration, { name: 'NgClass', moduleSpecifier: '@angular/common' });
       // region from column
       for (const column of columnList) {

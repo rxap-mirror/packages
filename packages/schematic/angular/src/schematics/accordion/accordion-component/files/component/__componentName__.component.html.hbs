@@ -13,13 +13,22 @@
   {{/if}}
   <mat-accordion *rxapDataSource="let data from accordionDataSource; errorTemplate: errorTemplate" {{#if multiple}}multi{{/if}}
     {{~#if persistent}}
-    {{~#if persistent.key}} rxapPersistentAccordion="{{persistent.key}}"{{/if~}}
-    {{~#if persistent.property}} [rxapPersistentAccordion]="data.{{persistent.property.name}}"{{/if~}}
-    {{/if}}>
+    {{#if persistent.key}}
+     rxapPersistentAccordion="{{persistent.key}}"
+    {{/if}}
+    {{#if persistent.property}}
+     [rxapPersistentAccordion]="data.{{persistent.property.name}}"
+    {{/if}}
+    {{/if}}
+    >
     {{#each itemList}}
-    {{#if this.permission}}<ng-template rxapIfHasPermission="{{this.permission}}">{{/if~}}
+    {{#if this.permission}}
+    <ng-template rxapIfHasPermission="{{this.permission}}">
+    {{/if}}
     {{ indent (compile this.handlebars item=this prefix=../prefix) 4 }}
-    {{#if this.permission}}</ng-template>{{/if~}}
+    {{#if this.permission}}
+    </ng-template>
+    {{/if}}
     {{/each}}
   </mat-accordion>
 </div>

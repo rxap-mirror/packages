@@ -3,9 +3,15 @@
     formControlName="{{control.name}}"
     matInput
     type="text"
-    {{#if control.isRequired}}rxapRequired{{/if~}}
-    {{#if parentControlContainer}}parentControlContainer{{/if~}}
-    {{#if control.placeholder}}i18n-placeholder placeholder="{{control.placeholder}}"{{/if~}}
+    {{#if control.isRequired}}
+    rxapRequired
+    {{/if}}
+    {{#if parentControlContainer}}
+    parentControlContainer
+    {{/if}}
+    {{#if control.placeholder}}
+    i18n-placeholder placeholder="{{control.placeholder}}"
+    {{/if}}
     />
   <mat-autocomplete #auto{{classify control.name}}="matAutocomplete">
     <mat-option *rxapAutocompleteOptionsFromMethod="let option; matAutocomplete: auto{{classify control.name}}"
@@ -19,7 +25,9 @@
     matPrefix
     tabindex="-1"
     role="button"
-    {{#if control.title}}i18n-label label="{{control.title}}"{{/if~}}
+    {{#if control.title}}
+    i18n-label label="{{control.title}}"
+    {{/if}}
   >
     <mat-icon svgIcon="table-eye"></mat-icon>
   </button>
