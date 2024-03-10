@@ -1,6 +1,7 @@
 import {
   CoerceImports,
   IsTypeImport,
+  RequiresTypeImport,
   TypeImport,
   TypeImportToImportStructure,
 } from '@rxap/ts-morph';
@@ -53,7 +54,7 @@ export function WriteType(propertyOrType: WriteTypeOptions | WriteType, sourceFi
   } else {
     type = propertyOrType;
   }
-  if (IsTypeImport(type)) {
+  if (IsTypeImport(type) && RequiresTypeImport(type)) {
     if (sourceFile) {
       CoerceImports(sourceFile, TypeImportToImportStructure(type));
     } else {
