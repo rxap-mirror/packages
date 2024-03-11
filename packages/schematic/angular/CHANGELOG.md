@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.46](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.45...@rxap/schematic-angular@16.2.0-dev.46) (2024-03-11)
+
+### Bug Fixes
+
+- add Overwrite options type ([abf5d68](https://gitlab.com/rxap/packages/commit/abf5d68e01b4883ebf865da740973d9a18c3e319))
+- add tooltip ([087a931](https://gitlab.com/rxap/packages/commit/087a931d69c7b9232892b24c6445a067263395ae))
+- correct handlebars templates ([bb65f55](https://gitlab.com/rxap/packages/commit/bb65f554bea5d6709a522d078ec02e1e42fe65e6))
+- ensure the controller name is correctly prefixed ([76f532c](https://gitlab.com/rxap/packages/commit/76f532c17f9b3f225c524b45355471d3e9174a00))
+- ensure the options are handled correctly ([0f8ec98](https://gitlab.com/rxap/packages/commit/0f8ec98de4cf2993c7293c7bfbe79615c287f670))
+- ensure the options are handled correctly ([0659d54](https://gitlab.com/rxap/packages/commit/0659d548e3c3b3bb765fb45fad614160c04ff97f))
+- remove duplicated coerce ([6d96473](https://gitlab.com/rxap/packages/commit/6d9647307a45f7e9eb443d01c6cf6d5e0d9c16a6))
+
 # [16.2.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.44...@rxap/schematic-angular@16.2.0-dev.45) (2024-03-09)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.1-dev.1...@rxap/schematics-utilities@16.0.1-dev.2) (2024-03-11)
+
+### Bug Fixes
+
+- add Overwrite options type ([446913e](https://gitlab.com/rxap/packages/commit/446913e7bff4d04632a48400f767228ff1c86e89))
+- capture json parse error ([0e53d84](https://gitlab.com/rxap/packages/commit/0e53d84087e6a15055da30fa81891efddf3a29ad))
+
 ## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.1-dev.0...@rxap/schematics-utilities@16.0.1-dev.1) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/schematics-utilities

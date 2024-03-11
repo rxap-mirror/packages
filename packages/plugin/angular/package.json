@@ -1,5 +1,5 @@
 {
-  "version": "16.1.1-dev.1",
+  "version": "16.1.1-dev.2",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,13 +9,15 @@
   "peerDependencies": {
     "@nx/angular": "^16.5.0",
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0",
+    "@rxap/generator-utilities": "^1.1.1-dev.0",
+    "@rxap/plugin-application": "^16.1.1-dev.1",
+    "@rxap/plugin-library": "^16.1.0-dev.5",
     "@rxap/plugin-localazy": "^16.1.0",
-    "@rxap/plugin-utilities": "^16.1.0",
-    "@rxap/ts-morph": "^1.1.0-dev.1",
-    "@rxap/utilities": "^16.1.0-dev.0",
-    "@rxap/workspace-ts-morph": "^16.0.1",
-    "@rxap/workspace-utilities": "^16.0.1",
+    "@rxap/plugin-utilities": "^16.1.1-dev.2",
+    "@rxap/ts-morph": "^1.1.0-dev.18",
+    "@rxap/utilities": "^16.1.0-dev.7",
+    "@rxap/workspace-ts-morph": "^16.0.2-dev.1",
+    "@rxap/workspace-utilities": "^16.1.0-dev.0",
     "nx": "^16.5.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
@@ -44,11 +46,19 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0"
+        "version": "1.1.1-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
         "version": "1.1.0-dev.9"
+      },
+      {
+        "package": "@rxap/plugin-application",
+        "version": "16.1.1-dev.1"
+      },
+      {
+        "package": "@rxap/plugin-library",
+        "version": "16.1.0-dev.5"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -56,7 +66,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0"
+        "version": "16.1.1-dev.2"
       },
       {
         "package": "@rxap/schematics-ts-morph",
@@ -64,19 +74,19 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.1.0-dev.1"
+        "version": "1.1.0-dev.18"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.0"
+        "version": "16.1.0-dev.7"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.1"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.0.1"
+        "version": "16.1.0-dev.0"
       }
     ]
   },

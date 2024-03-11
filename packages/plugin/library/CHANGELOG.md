@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.4...@rxap/plugin-library@16.1.0-dev.5) (2024-03-11)
+
+### Bug Fixes
+
+- link dependent project on the fly ([ffb247e](https://gitlab.com/rxap/packages/commit/ffb247eada915b9e547fd63a323fcb9ded9f239c))
+- resolve inverse dependency ([3e06851](https://gitlab.com/rxap/packages/commit/3e06851cd1432f596a4ecf6f34d077eb76d225dc))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.3...@rxap/plugin-library@16.1.0-dev.4) (2024-03-09)
 
 ### Bug Fixes

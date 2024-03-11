@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.1-dev.0...@rxap/nest-utilities@10.2.0-dev.0) (2024-03-11)
+
+### Features
+
+- add function CacheModuleOptionsLoader ([13d97af](https://gitlab.com/rxap/packages/commit/13d97afcae3f497eedd0cbb46a2be6d113157a60))
+
 ## [10.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0...@rxap/nest-utilities@10.1.1-dev.0) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/nest-utilities

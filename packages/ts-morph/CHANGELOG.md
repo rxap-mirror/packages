@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.17...@rxap/ts-morph@1.1.0-dev.18) (2024-03-11)
+
+### Bug Fixes
+
+- add Overwrite options type ([abf5d68](https://gitlab.com/rxap/packages/commit/abf5d68e01b4883ebf865da740973d9a18c3e319))
+- ensure no index out of change error occurs ([bdcd4e0](https://gitlab.com/rxap/packages/commit/bdcd4e0722e259ae5b50eeaf7e79d70034d50aa5))
+
+### Features
+
+- add function CoerceNestCacheModuleImport ([8de41bf](https://gitlab.com/rxap/packages/commit/8de41bf32674dd652d6846377f28514553426af4))
+
 # [1.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.16...@rxap/ts-morph@1.1.0-dev.17) (2024-03-09)
 
 ### Features

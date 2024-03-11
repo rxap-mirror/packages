@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@16.0.2-dev.0...@rxap/schematic-nestjs@16.0.2-dev.1) (2024-03-11)
+
+### Bug Fixes
+
+- add Overwrite options type ([abf5d68](https://gitlab.com/rxap/packages/commit/abf5d68e01b4883ebf865da740973d9a18c3e319))
+
 ## [16.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@16.0.1...@rxap/schematic-nestjs@16.0.2-dev.0) (2024-03-09)
 
 ### Bug Fixes

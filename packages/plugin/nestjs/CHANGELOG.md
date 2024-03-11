@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.0...@rxap/plugin-nestjs@16.2.0-dev.1) (2024-03-11)
+
+### Bug Fixes
+
+- add cache module import to app module ([3221681](https://gitlab.com/rxap/packages/commit/322168106eff0bb178f3ab01ef810b21f33186a6))
+- link dependent project on the fly ([ffb247e](https://gitlab.com/rxap/packages/commit/ffb247eada915b9e547fd63a323fcb9ded9f239c))
+- resolve inverse dependency ([3e06851](https://gitlab.com/rxap/packages/commit/3e06851cd1432f596a4ecf6f34d077eb76d225dc))
+- use simple api prefix for standalone applications ([03a5266](https://gitlab.com/rxap/packages/commit/03a5266839e0922e59061fc0e43c3f591f888896))
+
+### Features
+
+- add cache module import to app module ([68eb56d](https://gitlab.com/rxap/packages/commit/68eb56dd9156ba8dc08b51b5e7ce527b22ddb3fa))
+- add standalone option ([0dad42d](https://gitlab.com/rxap/packages/commit/0dad42d849c70d397a088f4412e154f5bdd5b205))
+- support service without api prefix ([84f1f3c](https://gitlab.com/rxap/packages/commit/84f1f3cafe80d20768868ff07f643c96706adfe1))
+
 # [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.1-dev.0...@rxap/plugin-nestjs@16.2.0-dev.0) (2024-03-05)
 
 ### Bug Fixes
