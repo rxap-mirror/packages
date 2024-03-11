@@ -4,12 +4,12 @@ import {
   readFileSync,
   writeFileSync,
 } from 'fs';
-import { get } from 'https';
 import { tmpdir } from 'os';
 import {
   dirname,
   join,
 } from 'path';
+import { GetPackageInfo } from './get-package-info';
 
 const CACHE_FILE = join(tmpdir(), 'rxap', 'latest-package-versions.json');
 
@@ -30,36 +30,15 @@ export async function GetLatestPackageVersion(packageName: string, skipCache?: b
   if (!skipCache && LATEST_PACKAGE_VERSIONS[packageName]) {
     return LATEST_PACKAGE_VERSIONS[packageName];
   }
-  return new Promise((resolve, reject) => {
-    get(`https://registry.npmjs.org/${ packageName }`, (res) => {
-      let data = '';
 
-      // A chunk of data has been received.
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
+  const info = await GetPackageInfo(packageName, skipCache);
 
-      // The whole response has been received.
-      res.on('end', () => {
-        try {
-          const jsonData = JSON.parse(data);
-          if (jsonData.error) {
-            console.error(`Error getting npm package version: ${ jsonData.error }`);
-            resolve(null);
-          } else {
-            const latestVersion = jsonData['dist-tags'].latest;
-            updateLastPackageVersionCache(packageName, latestVersion);
-            resolve(latestVersion);
-          }
-        } catch (error: any) {
-          console.error(`Error parsing npm JSON response: ${ error.message }`);
-          resolve(null);
-        }
-      });
-    }).on('error', (error) => {
-      console.error(`Network Error getting npm package version: ${ error.message }`);
-      resolve(null);
-    });
-  });
+  if (info) {
+    const latestVersion = info['dist-tags'].latest;
+    updateLastPackageVersionCache(packageName, latestVersion);
+    return latestVersion;
+  }
+
+  return null;
 }
 

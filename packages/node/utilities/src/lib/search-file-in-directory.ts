@@ -3,10 +3,10 @@ import {
   readFileSync,
   statSync,
 } from 'fs';
-import { join } from 'path';
 import { Ignore } from 'ignore';
+import { join } from 'path';
 
-export function* SearchFileInDirectory(directory: string, gitignore: Ignore | null = null): Generator<any> {
+export function* SearchFileInDirectory(directory: string, gitignore: Ignore | null = null): Generator<{ content: string, filePath: string }> {
   const files = readdirSync(directory);
 
   for (const file of files) {
