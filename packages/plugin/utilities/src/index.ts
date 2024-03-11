@@ -1,6 +1,7 @@
 // region 
 export * from './lib/generators';
 export * from './lib/get-all-package-dependencies-for-project';
+export * from './lib/get-dependent-projects-for-project';
 export * from './lib/get-direct-package-dependencies-for-project';
 export * from './lib/get-target-configuration-name-list';
 export * from './lib/guess-output-path';

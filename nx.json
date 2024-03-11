@@ -31,7 +31,6 @@
           "copy-client-sdk",
           "bundle-json-schema",
           "index-json-schema",
-          "linking",
           "docker",
           "deploy",
           "i18n-index-html"
@@ -375,8 +374,7 @@
         "{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map"
       ],
       "dependsOn": [
-        "^build",
-        "^linking"
+        "^build"
       ]
     },
     "check-version": {

@@ -1,6 +1,12 @@
-import { ExecutorContext } from '@nx/devkit';
+import {
+  ExecutorContext,
+  runExecutor as RunExecutor,
+} from '@nx/devkit';
 import nodeExecutor from '@nx/js/src/executors/node/node.impl';
-import { GuessOutputPathFromContext } from '@rxap/plugin-utilities';
+import {
+  GetDependentProjectsForProject,
+  GuessOutputPathFromContext,
+} from '@rxap/plugin-utilities';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { SwaggerGenerateExecutorSchema } from './schema';
@@ -13,6 +19,18 @@ function checkIfOpenApiFileExists(context: ExecutorContext): boolean {
   return existsSync(fullPath);
 }
 
+async function linkLibrariesToDistNodeModules(context: ExecutorContext) {
+  const dependentProjects = GetDependentProjectsForProject(context)
+    .map(name => ({ project: name, target: 'linking' }));
+
+  console.log('Dependent projects', dependentProjects);
+
+  for (const target of dependentProjects) {
+    console.log('Running executor for', target.project);
+    await RunExecutor(target, {}, context);
+  }
+}
+
 export default async function runExecutor(
   options: SwaggerGenerateExecutorSchema,
   context: ExecutorContext
@@ -20,6 +38,8 @@ export default async function runExecutor(
   console.log('Executor ran for SwaggerGenerate', options);
 
   const projectName = context.projectName;
+
+  await linkLibrariesToDistNodeModules(context);
 
   // This will give a random number between 9000 and 9999
   const port = Math.floor(Math.random() * 1000) + 9000;

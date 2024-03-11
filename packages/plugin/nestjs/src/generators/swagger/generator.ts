@@ -73,8 +73,7 @@ function updateNxDefaults(tree: Tree) {
       '{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map'
     ],
     'dependsOn': [
-      '^build',
-      '^linking',
+      '^build'
     ]
   }, Strategy.REPLACE);
 

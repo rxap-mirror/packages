@@ -52,7 +52,6 @@ function setGeneralTargetDefaults(tree: Tree) {
   CoerceTargetDefaultsOutput(nxJson, 'readme', '{projectRoot}/README.md');
 
   CoerceNxJsonCacheableOperation(nxJson, 'readme');
-  CoerceNxJsonCacheableOperation(nxJson, 'linking');
 
   CoerceTarget(nxJson, 'linking', {
     executor: '@rxap/plugin-library:node-modules-linking',
