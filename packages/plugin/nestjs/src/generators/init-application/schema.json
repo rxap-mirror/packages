@@ -128,7 +128,8 @@
     "standalone": {
       "type": "boolean",
       "default": false,
-      "description": "Whether the nest service should be standalone"
+      "description": "Whether the nest service should be standalone",
+      "x-prompt": "Should this service be standalone?"
     }
   },
   "required": []
