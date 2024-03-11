@@ -51,7 +51,7 @@ export function AddPackageJsonDependencyRule(
   packageName: string,
   packageVersion: string | 'latest' = 'latest',
   options?: AddPackageJsonDependencyOptions,
-  propertyPath = 'dependencies',
+  propertyPath: 'dependencies' | 'devDependencies' | 'peerDependencies' | 'optionalDependencies' = 'dependencies',
 ): Rule {
   return tree => AddPackageJsonDependency(tree, packageName, packageVersion, options, propertyPath);
 }
