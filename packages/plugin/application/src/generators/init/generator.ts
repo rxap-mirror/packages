@@ -12,9 +12,7 @@ import {
   CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
-import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
-import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
   deepMerge,
   DeleteEmptyProperties,
@@ -27,8 +25,6 @@ import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetPackageJson,
-  IsAngularProject,
-  IsNestJsProject,
   JSON_MERGE_STRATEGY,
   Strategy,
   YAML_MERGE_STRATEGY,
@@ -237,27 +233,6 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
-    }
-
-    if (IsAngularProject(project)) {
-      await AngularInitGenerator(tree,
-        {
-          ...options,
-          projects: [ projectName ],
-          skipProjects: options.skipProjects,
-        },
-      );
-    }
-
-    if (IsNestJsProject(project)) {
-      await nestJsInitGenerator(
-        tree,
-        {
-          ...options,
-          projects: [ projectName ],
-          skipProjects: options.skipProjects,
-        },
-      );
     }
 
   }

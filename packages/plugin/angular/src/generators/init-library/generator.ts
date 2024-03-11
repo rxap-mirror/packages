@@ -18,6 +18,7 @@ import {
   RemoveAssets,
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
+import { LibraryInitGenerator } from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   CoerceNxJsonCacheableOperation,
@@ -337,6 +338,12 @@ export async function initLibraryGenerator(
 
       console.log(`init project: ${ projectName }`);
 
+      await LibraryInitGenerator(tree, {
+        ...options,
+        projects: [ projectName ],
+        skipProjects: false,
+      });
+
       cleanup(tree, project, projectName);
       updatePackageJson(tree, project, rootPackageJson);
 
@@ -354,6 +361,12 @@ export async function initLibraryGenerator(
 
     }
 
+  } else {
+    await LibraryInitGenerator(tree, {
+      ...options,
+      projects: [],
+      skipProjects: true,
+    });
   }
 
 }

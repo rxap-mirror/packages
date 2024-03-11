@@ -11,15 +11,11 @@ import {
   IsPublishable,
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
-import { AngularInitGenerator } from '@rxap/plugin-angular';
-import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
-  IsAngularProject,
   IsGeneratorProject,
-  IsNestJsProject,
   IsPluginProject,
   IsSchematicProject,
 } from '@rxap/workspace-utilities';
@@ -121,29 +117,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       await initPublishableGenerator(tree, options);
     }
 
-    if (IsAngularProject(project)) {
-      await AngularInitGenerator(tree,
-        {
-          ...options,
-          projects: [ projectName ],
-          skipProjects: options.skipProjects,
-        },
-      );
-    }
-
     if (IsPluginProject(project)) {
       await initPluginGenerator(
-        tree,
-        {
-          ...options,
-          projects: [ projectName ],
-          skipProjects: options.skipProjects,
-        },
-      );
-    }
-
-    if (IsNestJsProject(project)) {
-      await nestJsInitGenerator(
         tree,
         {
           ...options,

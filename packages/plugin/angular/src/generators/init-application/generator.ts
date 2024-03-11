@@ -13,6 +13,7 @@ import {
   CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
+import { ApplicationInitGenerator } from '@rxap/plugin-application';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
 import {
   CoerceAppConfigProvider,
@@ -725,6 +726,12 @@ export async function initApplicationGenerator(
 
       console.log(`init project: ${ projectName }`);
 
+      await ApplicationInitGenerator(tree, {
+        ...options,
+        projects: [ projectName ],
+        skipProjects: false,
+      });
+
       updateProjectTargets(project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
@@ -885,6 +892,12 @@ export async function initApplicationGenerator(
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
     }
+  } else {
+    await ApplicationInitGenerator(tree, {
+      ...options,
+      projects: [],
+      skipProjects: true,
+    });
   }
 
   await LocalazyGitlabCiGenerator(tree, options);

@@ -12,6 +12,7 @@ import {
   CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
+import { ApplicationInitGenerator } from '@rxap/plugin-application';
 import {
   CoerceAppGuardProvider,
   CoerceImports,
@@ -678,6 +679,12 @@ export async function initApplicationGenerator(
 
       console.log(`init project: ${ projectName }`);
 
+      await ApplicationInitGenerator(tree, {
+        ...options,
+        projects: [ projectName ],
+        skipProjects: false,
+      });
+
       updateProjectTargets(project);
       updateGitIgnore(tree, project);
       updateTags(project, options);
@@ -845,6 +852,13 @@ export async function initApplicationGenerator(
       }
 
     }
+
+  } else {
+    await ApplicationInitGenerator(tree, {
+      ...options,
+      projects: [],
+      skipProjects: true,
+    });
 
   }
 }
