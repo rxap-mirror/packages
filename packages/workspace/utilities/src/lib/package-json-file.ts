@@ -1,4 +1,7 @@
-import { GetLatestPackageVersion } from '@rxap/node-utilities';
+import {
+  GetLatestPackageVersion,
+  GetPackagePeerDependencies,
+} from '@rxap/node-utilities';
 import { SortProperties } from '@rxap/utilities';
 import {
   existsSync,
@@ -62,15 +65,22 @@ export interface AddPackageJsonDependencyOptions extends UpdatePackageJsonOption
    * true - only update the version if the current version is lower than the new version and the anticipated version is not set to latest
    */
   soft?: boolean;
+  /**
+   * true (default) - also install the package peer dependencies
+   */
+  withPeerDependencies?: boolean;
 }
 
 export async function AddPackageJsonDependency<Tree extends TreeLike>(
   tree: Tree,
   packageName: string,
   packageVersion: string | 'latest' = 'latest',
-  options?: AddPackageJsonDependencyOptions,
+  options: AddPackageJsonDependencyOptions = {},
   propertyPath = 'dependencies',
 ) {
+
+  const { withPeerDependencies = true } = options;
+
   let mewPackageVersion: string | null = packageVersion;
   if (packageVersion === 'latest') {
     mewPackageVersion = await GetLatestPackageVersion(packageName);
@@ -79,6 +89,13 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
   if (!mewPackageVersion) {
     console.error(`Could not resolve the latest version of the package \x1b[31m${ packageName }\x1b[0m`);
     return;
+  }
+
+  if (withPeerDependencies) {
+    const peerDependencies = GetPackagePeerDependencies(packageName, mewPackageVersion);
+    for (const [ peerDependency, peerDependencyVersion ] of Object.entries(peerDependencies)) {
+      await AddPackageJsonDependency(tree, peerDependency, peerDependencyVersion, options, propertyPath);
+    }
   }
 
   return UpdatePackageJson(
