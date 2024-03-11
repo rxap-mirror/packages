@@ -8,6 +8,7 @@ export * from './lib/nest/coerce-health-module';
 export * from './lib/nest/coerce-nest-app-config';
 export * from './lib/nest/coerce-nest-app-controller';
 export * from './lib/nest/coerce-nest-app-module';
+export * from './lib/nest/coerce-nest-cache-module-import';
 export * from './lib/nest/coerce-nest-config-module-import';
 export * from './lib/nest/coerce-nest-controller';
 export * from './lib/nest/coerce-nest-environment-provider';

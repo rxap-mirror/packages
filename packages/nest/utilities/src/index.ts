@@ -2,6 +2,7 @@
 export * from './lib/apply-filter';
 export * from './lib/apply-paging';
 export * from './lib/apply-sort';
+export * from './lib/cache-module-options-loader';
 export * from './lib/class-transformer-options';
 export * from './lib/class-validator-options';
 export * from './lib/determine-environment';
