@@ -3,7 +3,6 @@ import {
   chain,
   noop,
 } from '@angular-devkit/schematics';
-import { CoerceGetPageOperation } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import { OperationParameter } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
@@ -140,18 +139,18 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
   }
 
   return chain([
-    () => console.log(`Modify the get page operation ...`),
-    CoerceGetPageOperation({
-      nestModule,
-      controllerName,
-      project,
-      feature,
-      overwrite,
-      shared: hasSharedModifier,
-      paramList,
-      propertyList: normalizedOptions.table.propertyList,
-      skipCoerce: true,
-    }),
+    // () => console.log(`Modify the get page operation ...`),
+    // CoerceGetPageOperation({
+    //   nestModule,
+    //   controllerName,
+    //   project,
+    //   feature,
+    //   overwrite,
+    //   shared: hasSharedModifier,
+    //   paramList,
+    //   propertyList: normalizedOptions.table.propertyList,
+    //   skipCoerce: true,
+    // }),
   ]);
 
 }
