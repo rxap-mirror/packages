@@ -1,4 +1,3 @@
-import { SearchFileInDirectory } from '@rxap/node-utilities';
 import {
   existsSync,
   mkdirSync,
@@ -11,6 +10,7 @@ import {
   join,
 } from 'path';
 import { PackageJson } from './package-json';
+import { SearchFileInDirectory } from './search-file-in-directory';
 
 export interface NpmPackageInfo {
   'dist-tags': {
@@ -36,7 +36,7 @@ const PACKAGE_INFO_CACHE: Record<string, NpmPackageInfo> = (() => {
 function updatePackageInfoCache(packageName: string, content: NpmPackageInfo) {
   PACKAGE_INFO_CACHE[packageName] = content;
   mkdirSync(CACHE_FOLDER, { recursive: true });
-  writeFileSync(join(CACHE_FOLDER, `${packageName.replace(/\//g, '___')}.json`), JSON.stringify(PACKAGE_INFO_CACHE, null, 2));
+  writeFileSync(join(CACHE_FOLDER, `${packageName.replace(/\//g, '___')}.json`), JSON.stringify(content, null, 2));
 }
 
 export async function GetPackageInfo(packageName: string, skipCache?: boolean): Promise<NpmPackageInfo | null> {
