@@ -26,7 +26,11 @@
     "browser-tailwind",
     "angular-status-check",
     "angular-changelog",
-    "angular-user"
+    "angular-user",
+    "plugin-application",
+    "plugin-docker",
+    "plugin-localazy",
+    "plugin-web3-storage"
   ],
   "tags": [
     "angular",

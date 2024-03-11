@@ -156,5 +156,10 @@
     "health-indicator",
     "express",
     "application"
+  ],
+  "implicitDependencies": [
+    "plugin-docker",
+    "plugin-nestjs",
+    "plugin-library"
   ]
 }
