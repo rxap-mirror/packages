@@ -619,7 +619,7 @@ export async function initApplicationGenerator(
   options.validator ??= true;
   options.healthIndicatorList ??= [];
   options.port ??= undefined;
-  options.apiPrefix ??= undefined;
+  options.apiPrefix ??= options.standalone ? false : undefined;
   options.sentryDsn ??= undefined;
   options.overwrite ??= false;
   options.openApi ??= false;
