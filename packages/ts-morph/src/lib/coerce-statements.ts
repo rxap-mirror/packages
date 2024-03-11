@@ -10,7 +10,10 @@ export function CoerceStatements(
   overwrite = false
 ) {
   if (overwrite) {
-    node.removeStatements([0, node.getStatements().length - 1]);
+    const length = node.getStatements().length;
+    if (length > 0) {
+      node.removeStatements([0, length - 1]);
+    }
   }
   if (node.getStatements().length === 0) {
     node.addStatements(statements);
