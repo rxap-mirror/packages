@@ -194,7 +194,7 @@ function setGeneralTargetDefaults(tree: Tree) {
   updateNxJson(tree, nxJson);
 }
 
-function updateProjectTargets(project: ProjectConfiguration) {
+function updateProjectTargets(project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
   CoerceTarget(project, 'generate-package-json', {
     executor: '@rxap/plugin-nestjs:package-json',
@@ -209,17 +209,19 @@ function updateProjectTargets(project: ProjectConfiguration) {
     throw new Error(`No outputPath found for project ${ project.name }`);
   }
 
-  CoerceTarget(project, 'generate-open-api', {
-    executor: '@rxap/plugin-library:run-generator',
-    options: {
-      generator: '@rxap/plugin-open-api:generate',
+  if (options.swagger && !options.standalone) {
+    CoerceTarget(project, 'generate-open-api', {
+      executor: '@rxap/plugin-library:run-generator',
       options: {
-        project: `open-api-${ project.name }`,
-        path: `${ outputPath.replace('dist/', 'dist/swagger/') }/openapi.json`,
-        serverId: project.name,
+        generator: '@rxap/plugin-open-api:generate',
+        options: {
+          project: `open-api-${ project.name }`,
+          path: `${ outputPath.replace('dist/', 'dist/swagger/') }/openapi.json`,
+          serverId: project.name,
+        },
       },
-    },
-  });
+    });
+  }
 
   CoerceTarget(project, 'build', {
     options: {
@@ -585,6 +587,10 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
     tags.push('openapi');
   }
 
+  if (options.standalone) {
+    tags.push('standalone');
+  }
+
   if (options.platform) {
     tags.push(options.platform);
   }
@@ -605,6 +611,7 @@ export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
 ) {
+  options.standalone ??= false;
   options.sentry ??= true;
   options.swagger ??= true;
   options.healthIndicator ??= true;
@@ -637,7 +644,9 @@ export async function initApplicationGenerator(
 
   if (options.swagger) {
     await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@rxap/workspace-open-api', 'latest', { soft: true });
+    if (!options.standalone) {
+      await AddPackageJsonDependency(tree, '@rxap/workspace-open-api', 'latest', { soft: true });
+    }
   }
 
   if (options.jwt) {
@@ -685,11 +694,15 @@ export async function initApplicationGenerator(
         skipProjects: false,
       });
 
-      updateProjectTargets(project);
+      updateProjectTargets(project, options);
       updateGitIgnore(tree, project);
       updateTags(project, options);
-      await updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
-      await createOpenApiClientSdkLibrary(tree, project, projects);
+      if (!options.standalone) {
+        await updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
+        if (options.swagger) {
+          await createOpenApiClientSdkLibrary(tree, project, projects);
+        }
+      }
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);

@@ -22,81 +22,87 @@ import * as path from 'path';
 import { join } from 'path';
 import { SwaggerGeneratorSchema } from './schema';
 
-function updateProjectTargets(project: ProjectConfiguration) {
+function updateProjectTargets(project: ProjectConfiguration, options: SwaggerGeneratorSchema) {
 
-  const buildTarget = GetTarget(project, 'build');
-  const buildTargetOptions = GetTargetOptions(buildTarget);
+  if (!options.standalone) {
+    const buildTarget = GetTarget(project, 'build');
+    const buildTargetOptions = GetTargetOptions(buildTarget);
 
-  if (!buildTargetOptions['outputPath']) {
-    throw new Error('The selected project has the build target without the option outputPath');
+    if (!buildTargetOptions['outputPath']) {
+      throw new Error('The selected project has the build target without the option outputPath');
+    }
+    if (!buildTargetOptions['tsConfig']) {
+      throw new Error('The selected project has the build target without the option tsConfig');
+    }
+
+    const outputPath = (
+      buildTargetOptions['outputPath'] as string
+    ).replace('dist/', 'dist/swagger/');
+
+    CoerceTarget(project, 'swagger-build', {
+      options: {
+        outputPath,
+        main: `${ project.sourceRoot }/swagger.ts`,
+        target: `node`,
+        compiler: `tsc`,
+        webpackConfig: `${ project.root }/webpack.config.js`,
+        transformers: [ '@nestjs/swagger/plugin' ],
+        tsConfig: buildTargetOptions['tsConfig'] as string,
+        fileReplacements: [
+          {
+            replace: `${ project.sourceRoot }/environments/environment.ts`,
+            with: `${ project.sourceRoot }/environments/environment.swagger.ts`,
+          },
+        ],
+      },
+    });
+
+    CoerceTarget(project, 'swagger-generate', {}, Strategy.REPLACE);
   }
-  if (!buildTargetOptions['tsConfig']) {
-    throw new Error('The selected project has the build target without the option tsConfig');
-  }
-
-  const outputPath = (buildTargetOptions['outputPath'] as string).replace('dist/', 'dist/swagger/');
-
-  CoerceTarget(project, 'swagger-build', {
-    options: {
-      outputPath,
-      main: `${ project.sourceRoot }/swagger.ts`,
-      target: `node`,
-      compiler: `tsc`,
-      webpackConfig: `${ project.root }/webpack.config.js`,
-      transformers: [ '@nestjs/swagger/plugin' ],
-      tsConfig: buildTargetOptions['tsConfig'] as string,
-      fileReplacements: [
-        {
-          replace: `${ project.sourceRoot }/environments/environment.ts`,
-          with: `${ project.sourceRoot }/environments/environment.swagger.ts`,
-        },
-      ],
-    },
-  });
-
-  CoerceTarget(project, 'swagger-generate', {}, Strategy.REPLACE);
 
 }
 
-function updateNxDefaults(tree: Tree) {
+function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
   const nxJson = readNxJson(tree);
 
-  CoerceNxJsonCacheableOperation(nxJson, 'swagger-build', 'swagger-generate');
+  if (!options.standalone) {
+    CoerceNxJsonCacheableOperation(nxJson, 'swagger-build', 'swagger-generate');
 
-  CoerceTarget(nxJson, 'swagger-generate', {
-    executor: '@rxap/plugin-nestjs:swagger-generate',
-    outputs: [
-      '{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json'
-    ],
-    inputs: [
-      '{workspaceRoot}/dist/swagger/{projectRoot}/main.js',
-      '{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map'
-    ],
-    'dependsOn': [
-      '^build'
-    ]
-  }, Strategy.REPLACE);
-
-  CoerceTarget(nxJson, 'swagger-build', {
-    executor: '@nx/webpack:webpack',
-    outputs: [
-      '{options.outputPath}',
-    ],
-    options: {
-      transformers: [
-        '@nestjs/swagger/plugin',
+    CoerceTarget(nxJson, 'swagger-generate', {
+      executor: '@rxap/plugin-nestjs:swagger-generate',
+      outputs: [
+        '{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json'
       ],
-      compiler: 'tsc',
-      target: 'node',
-    },
-    inputs: [
-      'build',
-      '^build',
-    ],
-    dependsOn: [
-      '^build',
-    ],
-  }, Strategy.REPLACE);
+      inputs: [
+        '{workspaceRoot}/dist/swagger/{projectRoot}/main.js',
+        '{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map'
+      ],
+      'dependsOn': [
+        '^build'
+      ]
+    }, Strategy.REPLACE);
+
+    CoerceTarget(nxJson, 'swagger-build', {
+      executor: '@nx/webpack:webpack',
+      outputs: [
+        '{options.outputPath}',
+      ],
+      options: {
+        transformers: [
+          '@nestjs/swagger/plugin',
+        ],
+        compiler: 'tsc',
+        target: 'node',
+      },
+      inputs: [
+        'build',
+        '^build',
+      ],
+      dependsOn: [
+        '^build',
+      ],
+    }, Strategy.REPLACE);
+  }
 
   updateNxJson(tree, nxJson);
 }
@@ -118,8 +124,8 @@ export async function swaggerGenerator(
 
   const project = readProjectConfiguration(tree, options.project);
 
-  updateNxDefaults(tree);
-  updateProjectTargets(project);
+  updateNxDefaults(tree, options);
+  updateProjectTargets(project, options);
   const projectSourceRoot = project.sourceRoot;
   if (!projectSourceRoot) {
     throw new Error('The selected project has no sourceRoot');

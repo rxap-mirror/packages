@@ -24,4 +24,5 @@ export interface InitApplicationGeneratorSchema {
   statusRegister?: boolean;
   skipProjects?: boolean;
   apiConfigurationFile?: string;
+  standalone?: boolean;
 }
