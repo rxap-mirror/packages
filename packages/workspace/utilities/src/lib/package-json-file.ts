@@ -76,7 +76,7 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
   packageName: string,
   packageVersion: string | 'latest' = 'latest',
   options: AddPackageJsonDependencyOptions = {},
-  propertyPath = 'dependencies',
+  propertyPath: 'dependencies' | 'devDependencies' | 'peerDependencies' | 'optionalDependencies' = 'dependencies',
 ) {
 
   const { withPeerDependencies = true } = options;
@@ -91,25 +91,22 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
     return;
   }
 
-  if (withPeerDependencies) {
-    const peerDependencies = GetPackagePeerDependencies(packageName, mewPackageVersion);
-    for (const [ peerDependency, peerDependencyVersion ] of Object.entries(peerDependencies)) {
-      await AddPackageJsonDependency(tree, peerDependency, peerDependencyVersion, options, propertyPath);
-    }
-  }
+  mewPackageVersion = mewPackageVersion.replace(/^(~|\^|>|<|<=|>=)/, '');
 
-  return UpdatePackageJson(
+  let addedNewPackage = false;
+
+  await UpdatePackageJson(
     tree,
     packageJson => {
-      packageJson[propertyPath] ??= {};
+      const dep = packageJson[propertyPath] ??= {};
       if (options?.soft) {
-        if (packageJson[propertyPath][packageName]) {
+        if (dep[packageName]) {
           if (packageVersion === 'latest') {
             console.log(`The package \x1b[34m${ packageName }\x1b[0m already exists in the \x1b[90m${ propertyPath }\x1b[0m`);
             // if soft and latest and the package already exists in the dependencies do nothing
             return;
           }
-          const currentVersion = packageJson[propertyPath][packageName].replace(/^(~|\^|>|<|<=|>=)/, '');
+          const currentVersion = dep[packageName].replace(/^(~|\^|>|<|<=|>=)/, '');
           if (currentVersion === mewPackageVersion) {
             return;
           }
@@ -120,19 +117,40 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
           }
         }
       }
-      if (packageJson[propertyPath][packageName]) {
-        console.log(`Change the package \x1b[34m${ packageName }\x1b[0m version from \x1b[31m${ packageJson[propertyPath][packageName] }\x1b[0m to \x1b[32m${ mewPackageVersion }\x1b[0m`);
+      if (dep[packageName]) {
+        console.log(`Change the package \x1b[34m${ packageName }\x1b[0m version from \x1b[31m${ dep[packageName] }\x1b[0m to \x1b[32m${ mewPackageVersion }\x1b[0m`);
       } else {
         console.log(`Add the package \x1b[34m${ packageName }\x1b[0m to the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ mewPackageVersion }\x1b[0m`);
+        addedNewPackage = true;
       }
       if (packageName.match(/^@rxap\//) && IsRxapRepository(tree)) {
         console.log(`\x1b[33mWARNING: Detecting that the workspace is the \x1b[34mrxap\x1b[33m workspace. The package \x1b[34m${ packageName }\x1b[33m will \x1b[31mNOT\x1b[33m be added to the package.json file.\x1b[0m`);
       } else {
-        packageJson[propertyPath][packageName] = mewPackageVersion;
+        dep[packageName] = mewPackageVersion!;
       }
     },
     options,
   );
+
+  if (addedNewPackage && withPeerDependencies) {
+    const peerDependencies = await GetPackagePeerDependencies(packageName, mewPackageVersion!);
+    if (Object.keys(peerDependencies).length === 0) {
+      console.log(`The package \x1b[34m${ packageName }\x1b[0m has no peer dependencies`);
+    } else {
+      console.log(
+        `The package \x1b[34m${ packageName }\x1b[0m has the following peer dependencies:`,
+        Object.keys(peerDependencies).join(', ')
+      );
+      for (const [ peerDependency, peerDependencyVersion ] of Object.entries(peerDependencies)) {
+        if (peerDependencyVersion.match(/^(~|\^|>|<|<=|>=)?\d+\.\d+\.\d+(-[a-zA-Z]+)?$/)) {
+          await AddPackageJsonDependency(tree, peerDependency, peerDependencyVersion, options, propertyPath);
+        } else {
+          console.log(`The peer dependency \x1b[34m${ peerDependency }\x1b[0m has an unsupported version \x1b[31m${ peerDependencyVersion }\x1b[0m`);
+        }
+      }
+    }
+  }
+
 }
 
 export async function AddPackageJsonDevDependency<Tree extends TreeLike>(
