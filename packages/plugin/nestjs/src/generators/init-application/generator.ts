@@ -633,6 +633,7 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/nest-logger', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/terminus', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/config', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/cache-manager', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, 'joi', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/plugin-library', 'latest', { soft: true });
