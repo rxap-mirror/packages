@@ -6,8 +6,8 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/ts-morph": "^1.1.0-dev.11",
-    "@rxap/workspace-utilities": "^16.0.2-dev.0",
+    "@rxap/ts-morph": "^1.1.0-dev.18",
+    "@rxap/workspace-utilities": "^16.1.0-dev.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },

@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@rxap/reflect-metadata": "^1.0.2-dev.0",
-    "@rxap/utilities": "^16.1.0-dev.6",
+    "@rxap/utilities": "^16.1.0-dev.7",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },

@@ -8,8 +8,8 @@
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.1.0-dev.11",
-    "@rxap/schematics-utilities": "^16.0.1-dev.1",
+    "@rxap/schematics-ts-morph": "^16.1.0-dev.23",
+    "@rxap/schematics-utilities": "^16.0.1-dev.2",
     "@rxap/xml-parser": "^16.0.1-dev.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"

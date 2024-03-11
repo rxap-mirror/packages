@@ -17,7 +17,7 @@
     "@rxap/authorization": "^16.0.1-dev.1",
     "@rxap/browser-utilities": "^1.0.2-dev.0",
     "@rxap/config": "^16.0.1-dev.0",
-    "@rxap/data-source": "^16.1.0-dev.1",
+    "@rxap/data-source": "^16.1.0-dev.4",
     "@rxap/directives": "^16.0.1-dev.0",
     "@rxap/environment": "^16.0.1-dev.0",
     "@rxap/icon": "^16.0.1-dev.0",
@@ -28,7 +28,7 @@
     "@rxap/ngx-theme": "^16.1.1-dev.0",
     "@rxap/ngx-user": "^16.1.1-dev.0",
     "@rxap/services": "^16.0.1-dev.1",
-    "@rxap/utilities": "^16.1.0-dev.6",
+    "@rxap/utilities": "^16.1.0-dev.7",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
