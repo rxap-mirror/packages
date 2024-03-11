@@ -275,7 +275,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
       context,
       overwrite,
       upstream,
-      rowIdProperty: identifier?.property,
+      idProperty: identifier?.property,
     }),
     () => console.log('Add the open api methods to the table component providers'),
     CoerceComponentRule({

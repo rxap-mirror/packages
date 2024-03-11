@@ -3,17 +3,18 @@ import {
   CoerceClassMethod,
   CoerceImports,
   CoercePropertyDeclaration,
-  DataProperty,
   IsNormalizedOpenApiUpstreamOptions,
   IsNormalizedPagedRequestMapper,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
+  OperationParameter,
   TypeImport,
 } from '@rxap/ts-morph';
 import {
   coerceArray,
+  CoerceArrayItems,
   noop,
 } from '@rxap/utilities';
 import {
@@ -61,7 +62,6 @@ export interface CoerceGetPageOperationOptions
    * the name of the property used as row id value. defaults to the value 'uuid'. If null the __rowId property will be
    * set to the absolute row index absolute row index = page * pageSize + rowIndex
    */
-  rowIdProperty?: DataProperty;
   operationName?: string;
   coerceToRowDtoMethod?: (
     sourceFile: SourceFile,
@@ -89,6 +89,7 @@ export interface CoerceGetPageOperationOptions
     options: Readonly<CoerceGetPageOperationOptions>,
   ) => CoerceDtoClassOutput | null;
   upstream?: NormalizedUpstreamOptions | null;
+  idProperty?: OperationParameter,
 }
 
 export function GetPageOperationColumnToCodeText(property: DtoClassProperty): string {
@@ -142,9 +143,9 @@ export function CoerceToRowDtoMethod(
     statements: [
       'return {',
       '  __rowId: ' +
-      (!options.rowIdProperty ?
+      (!options.idProperty ?
         '(pageIndex * pageSize + index).toFixed(0)' :
-        `item.${ options.rowIdProperty.name }`) + ',\n  ',
+        `item.${ options.idProperty.name }`) + ',\n  ',
       options.propertyList?.filter(p => p.name !== '__rowId').map(GetPageOperationColumnToCodeText).join(',\n  ') ?? '',
       '};',
     ],
@@ -375,7 +376,7 @@ export function CoerceGetPageOperationDtoClass(
   const sourceFile = classDeclaration.getSourceFile();
   const project = sourceFile.getProject();
   const {
-    rowIdProperty,
+    idProperty,
     propertyList,
     coerceToRowDtoMethod = CoerceToRowDtoMethod,
     coerceToPageDtoMethod = CoerceToPageDtoMethod,
@@ -391,7 +392,7 @@ export function CoerceGetPageOperationDtoClass(
     project,
     name: dtoClassName,
     propertyList,
-    rowIdType: rowIdProperty?.type,
+    rowIdType: idProperty?.type,
   });
 
   CoerceImports(sourceFile, {
@@ -435,10 +436,55 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
     builtDtoDataMapperImplementation = BuiltGetPageDtoDataMapperImplementation,
     coerceOperationDtoClass = CoerceGetPageOperationDtoClass,
     buildUpstreamGetDataImplementation = BuildGetPageUpstreamGetDataImplementation,
+    idProperty ,
+    nestModule,
+    controllerName,
+    propertyList = [],
+    paramList: paramList = [],
   } = options;
+
+  if (idProperty) {
+    /**
+     * If the module is not specified. This controller has an own module. Else the
+     * module is originated by another controller.
+     *
+     * **Example**
+     * true:
+     * The controller ReportDetailsController should be extended with getById Operation.
+     * And the controller is used in the module ReportDetailsModule
+     *
+     * name = "report-details"
+     * module = undefined
+     *
+     * false:
+     * The controller ReportDetailsNotificationController should be extend with getById Operation.
+     * And the controller ise used in the module ReportDetailsModule
+     *
+     * name = "notification"
+     * module = "report-details"
+     */
+    const isFirstBornSibling = !nestModule || nestModule === controllerName;
+
+    if (isFirstBornSibling) {
+      CoerceArrayItems(propertyList, [{
+        name: idProperty.name,
+        type: idProperty.type ?? 'string',
+        isArray: idProperty.isArray,
+      }], (a, b) => a.name === b.name, true);
+    }
+
+    CoerceArrayItems(paramList,[{
+      name: idProperty.name,
+      type: idProperty.type,
+      fromParent: idProperty.fromParent ?? !isFirstBornSibling,
+    }], (a, b) => a.name === b.name, true);
+
+  }
 
   return CoerceOperation<CoerceGetPageOperationOptions>({
     ...options,
+    propertyList,
+    paramList,
     operationName,
     builtDtoDataMapperImplementation,
     coerceOperationDtoClass,

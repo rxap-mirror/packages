@@ -307,7 +307,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
       rowValueProperty: toValue.property,
       rowDisplayProperty: toDisplay.property,
-      rowIdProperty: identifier.property,
+      idProperty: identifier.property,
       context,
       upstream
     }),

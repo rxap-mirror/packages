@@ -1,10 +1,6 @@
 import { strings } from '@angular-devkit/core';
-import {
-  chain,
-  noop,
-} from '@angular-devkit/schematics';
+import { chain } from '@angular-devkit/schematics';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
-import { OperationParameter } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import {
   NormalizedTableAccordionItem,
@@ -12,7 +8,6 @@ import {
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
 import { NormalizedAngularOptions } from '../../../../lib/angular-options';
-import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TableModifiers } from '../../../../lib/table-options';
 import {
@@ -88,7 +83,8 @@ function tableComponentSchematicRule(normalizedOptions: NormalizedAccordionItemT
     backend,
     table,
     controllerName,
-    identifier
+    identifier,
+    upstream
   } = normalizedOptions;
 
   const { hasSharedModifier } = GetItemOptions(normalizedOptions);
@@ -107,66 +103,13 @@ function tableComponentSchematicRule(normalizedOptions: NormalizedAccordionItemT
         directory: hasSharedModifier ? undefined : directory,
         nestModule: hasSharedModifier ? undefined : nestModule,
         modifiers: [ TableModifiers.WITHOUT_TITLE, ...table?.modifiers ?? [] ],
-        overwrite,
         backend,
-        identifier,
+        overwrite,
+        identifier: table.identifier ?? identifier,
+        upstream: table.upstream ?? upstream,
       },
     ),
   ]);
-
-}
-
-function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableComponentOptions) {
-
-  const {
-    controllerName,
-    project,
-    feature,
-    identifier,
-    overwrite,
-    nestModule,
-  } = normalizedOptions;
-
-  const { hasSharedModifier } = GetItemOptions(normalizedOptions);
-
-  const paramList: OperationParameter[] = [];
-
-  if (identifier) {
-    paramList.push({
-      ...identifier.property,
-      fromParent: !hasSharedModifier,
-    });
-  }
-
-  return chain([
-    // () => console.log(`Modify the get page operation ...`),
-    // CoerceGetPageOperation({
-    //   nestModule,
-    //   controllerName,
-    //   project,
-    //   feature,
-    //   overwrite,
-    //   shared: hasSharedModifier,
-    //   paramList,
-    //   propertyList: normalizedOptions.table.propertyList,
-    //   skipCoerce: true,
-    // }),
-  ]);
-
-}
-
-function backendRule(normalizedOptions: NormalizedAccordionItemTableComponentOptions) {
-
-  const { backend } = normalizedOptions;
-
-  switch (backend) {
-
-    case BackendTypes.NESTJS:
-      return nestjsBackendRule(normalizedOptions);
-
-  }
-
-  return noop();
 
 }
 
@@ -178,7 +121,6 @@ export default function (options: AccordionItemTableComponentOptions) {
       componentRule(normalizedOptions),
       () => console.log(`Modify accordion item component for type table ...`),
       tableComponentSchematicRule(normalizedOptions),
-      backendRule(normalizedOptions),
     ]);
   };
 }

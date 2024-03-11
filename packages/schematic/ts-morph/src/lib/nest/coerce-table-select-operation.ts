@@ -1,8 +1,4 @@
-import {
-  DataProperty,
-  NormalizeDataProperty,
-  NormalizedDataProperty,
-} from '@rxap/ts-morph';
+import { NormalizedDataProperty } from '@rxap/ts-morph';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceGetPageOperation,
@@ -10,7 +6,6 @@ import {
 } from './coerce-get-page-operation';
 
 export interface CoerceTableSelectOperationOptions extends CoerceGetPageOperationOptions {
-  rowIdProperty: DataProperty;
   rowDisplayProperty: NormalizedDataProperty;
   rowValueProperty?: NormalizedDataProperty;
 }
@@ -18,10 +13,14 @@ export interface CoerceTableSelectOperationOptions extends CoerceGetPageOperatio
 export function CoerceTableSelectOperationRule(options: CoerceTableSelectOperationOptions) {
   const {
     propertyList = [],
-    rowIdProperty,
+    idProperty,
     rowDisplayProperty,
-    rowValueProperty = NormalizeDataProperty(rowIdProperty),
+    rowValueProperty = idProperty,
   } = options;
+
+  if (!rowValueProperty) {
+    throw new Error('The row value property is required');
+  }
 
   CoerceArrayItems(propertyList, [
     {
@@ -39,7 +38,7 @@ export function CoerceTableSelectOperationRule(options: CoerceTableSelectOperati
   return CoerceGetPageOperation({
     ...options,
     propertyList: propertyList,
-    rowIdProperty,
+    idProperty,
   });
 
 }
