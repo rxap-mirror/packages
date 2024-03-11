@@ -636,9 +636,10 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@nestjs/config', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/cache-manager', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, 'joi', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@rxap/plugin-library', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@rxap/plugin-open-api', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/plugin-library', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/plugin-open-api', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
 
   if (options.sentry) {
     await AddPackageJsonDependency(tree, '@rxap/nest-sentry', 'latest', { soft: true });
@@ -647,7 +648,7 @@ export async function initApplicationGenerator(
   if (options.swagger) {
     await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });
     if (!options.standalone) {
-      await AddPackageJsonDependency(tree, '@rxap/workspace-open-api', 'latest', { soft: true });
+      await AddPackageJsonDevDependency(tree, '@rxap/workspace-open-api', 'latest', { soft: true });
     }
   }
 

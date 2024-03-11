@@ -680,11 +680,11 @@ export async function initApplicationGenerator(
 
   if (options.localazy) {
     await AddPackageJsonDevDependency(tree, '@localazy/cli', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@rxap/plugin-localazy', 'latest', { soft: true });
+    await AddPackageJsonDevDependency(tree, '@rxap/plugin-localazy', 'latest', { soft: true });
   }
 
   if (options.deploy === 'web3-storage') {
-    await AddPackageJsonDependency(tree, '@rxap/plugin-web3-storage', 'latest', { soft: true });
+    await AddPackageJsonDevDependency(tree, '@rxap/plugin-web3-storage', 'latest', { soft: true });
   }
 
   if (options.i18n && options.deploy === 'web3-storage') {

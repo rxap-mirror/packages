@@ -19,7 +19,7 @@ import {
   MergeDeepLeft,
 } from '@rxap/utilities';
 import {
-  AddPackageJsonDependency,
+  AddPackageJsonDevDependency,
   CoerceFilesStructure,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
@@ -189,7 +189,7 @@ function updateTargetDefaults(tree: Tree) {
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   console.log('application init generator:', options);
 
-  await AddPackageJsonDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
 
   updateTargetDefaults(tree);
 
