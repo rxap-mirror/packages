@@ -1,5 +1,5 @@
 {
-  "version": "16.1.1-dev.0",
+  "version": "16.2.0-dev.0",
   "name": "@rxap/plugin-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -14,7 +14,7 @@
     "@rxap/plugin-library": "^16.1.0-dev.5",
     "@rxap/plugin-utilities": "^16.1.1-dev.2",
     "@rxap/utilities": "^16.1.0-dev.7",
-    "@rxap/workspace-utilities": "^16.1.0-dev.1",
+    "@rxap/workspace-utilities": "^16.1.0-dev.2",
     "tslib": "2.6.2"
   },
   "author": {
@@ -61,7 +61,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.1"
+        "version": "16.1.0-dev.2"
       }
     ]
   },

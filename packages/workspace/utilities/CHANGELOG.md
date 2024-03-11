@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.1...@rxap/workspace-utilities@16.1.0-dev.2) (2024-03-11)
+
+### Features
+
+- add GetProjectByPackageName function ([04e0534](https://gitlab.com/rxap/packages/commit/04e053436d3d1b7e74da909bdadda837ba871ad4))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.0...@rxap/workspace-utilities@16.1.0-dev.1) (2024-03-11)
 
 ### Bug Fixes

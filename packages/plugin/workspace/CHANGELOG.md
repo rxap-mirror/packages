@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.1-dev.0...@rxap/plugin-workspace@16.2.0-dev.0) (2024-03-11)
+
+### Features
+
+- add generator fix-implicit-internal-dependencies ([4a3eb8c](https://gitlab.com/rxap/packages/commit/4a3eb8c143c8a78598bba7e974eb12662e7734ed))
+
 ## [16.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0...@rxap/plugin-workspace@16.1.1-dev.0) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/plugin-workspace

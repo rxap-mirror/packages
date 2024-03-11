@@ -36,6 +36,11 @@
       "factory": "./src/generators/project-target/index",
       "schema": "./src/generators/project-target/schema.json",
       "description": "project-target generator"
+    },
+    "fix-implicit-internal-dependencies": {
+      "factory": "./src/generators/fix-implicit-internal-dependencies/index",
+      "schema": "./src/generators/fix-implicit-internal-dependencies/schema.json",
+      "description": "fix-implicit-internal-dependencies generator"
     }
   }
 }
