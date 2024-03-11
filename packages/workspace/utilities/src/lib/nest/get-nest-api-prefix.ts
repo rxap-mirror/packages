@@ -5,7 +5,7 @@ import {
 import { join } from 'path';
 
 export interface GetNestApiPrefixOptions {
-  apiPrefix?: string;
+  apiPrefix?: string | false;
   projects?: string[];
 }
 
@@ -15,6 +15,9 @@ export function GetNestApiPrefix(
   projectSourceRoot: string,
   projectName: string,
 ) {
+  if (options.apiPrefix === false) {
+    return 'api';
+  }
   if (options.apiPrefix && options.projects?.length === 1) {
     return options.apiPrefix;
   }

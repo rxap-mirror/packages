@@ -74,8 +74,17 @@
       "description": "The default port where the server is listens"
     },
     "apiPrefix": {
-      "type": "string",
-      "description": "The default global api prefix"
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "The default global api prefix"
+        },
+        {
+          "description": "Disable the global api prefix",
+          "type": "boolean",
+          "const": false
+        }
+      ]
     },
     "pluginBuildInfoOptions": {
       "type": "object",

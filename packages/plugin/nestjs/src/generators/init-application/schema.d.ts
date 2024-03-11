@@ -16,7 +16,7 @@ export interface InitApplicationGeneratorSchema {
     save?: boolean;
   } & Record<string, unknown>;
   port?: number;
-  apiPrefix?: string;
+  apiPrefix?: string | false;
   sentryDsn?: string;
   overwrite?: boolean;
   openApi?: boolean;
