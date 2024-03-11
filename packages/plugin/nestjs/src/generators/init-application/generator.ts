@@ -19,6 +19,7 @@ import {
   CoerceNestAppConfig,
   CoerceNestAppController,
   CoerceNestAppModule,
+  CoerceNestCacheModuleImport,
   CoerceNestConfigModuleImport,
   CoerceNestEnvironmentProvider,
   CoerceNestLoggerProvider,
@@ -724,6 +725,7 @@ export async function initApplicationGenerator(
           CoerceNestAppController(controllerSourceFile);
           CoerceNestThrottlerModuleImport(moduleSourceFile, { overwrite: options.overwrite });
           CoerceNestConfigModuleImport(moduleSourceFile, { overwrite: options.overwrite });
+          CoerceNestCacheModuleImport(moduleSourceFile, { overwrite: options.overwrite });
           CoerceAppGuardProvider(moduleSourceFile);
           CoerceNestEnvironmentProvider(moduleSourceFile);
           CoerceNestLoggerProvider(moduleSourceFile);
