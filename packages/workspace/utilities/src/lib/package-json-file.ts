@@ -29,6 +29,10 @@ export function GetPackageJson<Tree extends TreeLike>(tree: Tree, basePath = '')
   return GetJsonFile(tree, join(basePath, 'package.json'));
 }
 
+export function HasPackageJson<Tree extends TreeLike>(tree: Tree, basePath = ''): boolean {
+  return tree.exists(join(basePath, 'package.json'));
+}
+
 export interface UpdatePackageJsonOptions extends UpdateJsonFileOptions {
   basePath?: string;
 }

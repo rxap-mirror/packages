@@ -12,6 +12,7 @@ import { UpdateJsonFileOptions } from './json-file';
 import { PackageJson } from './package-json';
 import {
   GetPackageJson,
+  HasPackageJson,
   UpdatePackageJson,
   UpdatePackageJsonOptions,
 } from './package-json-file';
@@ -26,6 +27,10 @@ export interface ProjectJson extends ProjectConfiguration, Record<string, any> {
 }
 
 export const PROJECT_LOCATION_CACHE = new Map<string, string>();
+
+export const PACKAGE_NAME_TO_PROJECT_LOCATION_CACHE = new Map<string, string>();
+
+export const PROJECT_LOCATION_CACHE_LIST: string[] = [];
 
 export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: string): ProjectJson | null {
   if (PROJECT_LOCATION_CACHE.has(projectName)) {
@@ -47,6 +52,26 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
     }
   }
   return null;
+}
+
+export function* ForEachProject<Tree extends TreeLike>(tree: Tree): Generator<ProjectJson> {
+  if (PROJECT_LOCATION_CACHE_LIST.length > 0) {
+    for (const path of PROJECT_LOCATION_CACHE_LIST) {
+      const treeAdapter = new TreeAdapter(tree);
+      const project = JSON.parse(treeAdapter.read(path)!.toString('utf-8')) as ProjectJson;
+      project.root ??= dirname(path).replace(/^\//, '');
+      yield project;
+    }
+  }
+  for (const fileEntry of SearchFile(tree)) {
+    if (!fileEntry.path.endsWith('project.json')) {
+      continue;
+    }
+    const project = JSON.parse(fileEntry.content.toString('utf-8')) as ProjectJson;
+    project.root ??= dirname(fileEntry.path).replace(/^\//, '');
+    PROJECT_LOCATION_CACHE_LIST.push(fileEntry.path);
+    yield project;
+  }
 }
 
 export function GetProject<Tree extends TreeLike>(tree: Tree, projectName: string): ProjectJson {
@@ -81,6 +106,34 @@ export function GetProjectPrefix<Tree extends TreeLike>(
 
   return prefix;
 
+}
+
+export function GetProjectByPackageName<Tree extends TreeLike>(tree: Tree, packageName: string): ProjectJson | null {
+  if (PACKAGE_NAME_TO_PROJECT_LOCATION_CACHE.has(packageName)) {
+    const path = PACKAGE_NAME_TO_PROJECT_LOCATION_CACHE.get(packageName)!;
+    const treeAdapter = new TreeAdapter(tree);
+    const project = JSON.parse(treeAdapter.read(path)!.toString('utf-8')) as ProjectJson;
+    project.root ??= dirname(path).replace(/^\//, '');
+    return project;
+  }
+  for (const project of ForEachProject(tree)) {
+    if (!project.name) {
+      console.warn('The project does not have a name', project);
+      continue;
+    }
+    if (project.projectType !== 'library') {
+      continue;
+    }
+    if (!HasProjectPackageJson(tree, project.name)) {
+      continue;
+    }
+    const packageJson = GetProjectPackageJson(tree, project.name);
+    if (packageJson.name === packageName) {
+      PACKAGE_NAME_TO_PROJECT_LOCATION_CACHE.set(packageName, join(project.root, 'project.json'));
+      return project;
+    }
+  }
+  return null;
 }
 
 export function GetProjectRoot<Tree extends TreeLike>(tree: Tree, projectName: string): string {
@@ -140,6 +193,11 @@ export function GetProjectPackageJson<Tree extends TreeLike>(tree: Tree, project
 
   return GetPackageJson(tree, projectRoot);
 
+}
+
+export function HasProjectPackageJson<Tree extends TreeLike>(tree: Tree, projectName: string): boolean {
+  const projectRoot = GetProjectRoot(tree, projectName);
+  return HasPackageJson(tree, projectRoot);
 }
 
 export function IsProjectType<Tree extends TreeLike>(
