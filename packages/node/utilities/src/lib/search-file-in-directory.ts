@@ -6,6 +6,13 @@ import {
 import { Ignore } from 'ignore';
 import { join } from 'path';
 
+/**
+ * Searches for files in a directory recursively.
+ *
+ * @param {string} directory - The directory path to search in.
+ * @param {Ignore|null} gitignore - The gitignore object to check if a file is ignored. Default is null.
+ * @yields {Object} - An object containing the file content and file path.
+ */
 export function* SearchFileInDirectory(directory: string, gitignore: Ignore | null = null): Generator<{ content: string, filePath: string }> {
   const files = readdirSync(directory);
 
