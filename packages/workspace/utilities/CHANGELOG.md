@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.0...@rxap/workspace-utilities@16.1.0-dev.1) (2024-03-11)
+
+### Bug Fixes
+
+- automatically install all peer dependencies ([cfe3f9e](https://gitlab.com/rxap/packages/commit/cfe3f9ed42382b0ec87e066a6863516bfce45c39))
+
+### Features
+
+- auto install peer dependencies ([0a7f45b](https://gitlab.com/rxap/packages/commit/0a7f45bf5f7b66449cd275cba77e51333f2c548d))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.0.2-dev.0...@rxap/workspace-utilities@16.1.0-dev.0) (2024-03-11)
 
 ### Features

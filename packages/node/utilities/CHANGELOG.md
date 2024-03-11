@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.1-dev.1...@rxap/node-utilities@1.2.0-dev.0) (2024-03-11)
+
+### Bug Fixes
+
+- store the correct cache value ([3b9380d](https://gitlab.com/rxap/packages/commit/3b9380d3d0710b628fc0203591ab63a93a894094))
+
+### Features
+
+- add GetPackageInfo function ([351c305](https://gitlab.com/rxap/packages/commit/351c305401f52c61b96c501410a7f284bfc82700))
+- add GetPackagePeerDependencies function ([6fe6c50](https://gitlab.com/rxap/packages/commit/6fe6c5062c2bcdb36bd41f98f122cd66cbdf7fba))
+
 ## [1.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.1-dev.0...@rxap/node-utilities@1.1.1-dev.1) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/node-utilities

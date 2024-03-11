@@ -1,5 +1,5 @@
 {
-  "version": "16.0.2-dev.0",
+  "version": "16.0.2-dev.1",
   "name": "@rxap/ngx-timeago",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -32,7 +32,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.6"
+        "version": "16.1.0-dev.7"
       }
     ]
   },

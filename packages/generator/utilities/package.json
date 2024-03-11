@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1-dev.0",
+  "version": "1.1.1-dev.1",
   "name": "@rxap/generator-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,7 +7,7 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/workspace-utilities": "^16.1.0-dev.0",
+    "@rxap/workspace-utilities": "^16.1.0-dev.1",
     "tslib": "2.6.2"
   },
   "author": {
@@ -31,7 +31,7 @@
     "packageGroup": [
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.0.2-dev.0"
+        "version": "16.1.0-dev.1"
       }
     ]
   },

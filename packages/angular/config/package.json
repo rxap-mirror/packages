@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.0",
+  "version": "16.0.1-dev.1",
   "name": "@rxap/config",
   "description": "Simple config file manager for angular applications.",
   "license": "GPL-3.0-or-later",
@@ -40,7 +40,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.6"
+        "version": "16.1.0-dev.7"
       }
     ]
   },
