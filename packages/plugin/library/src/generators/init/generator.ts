@@ -3,6 +3,7 @@ import {
   ProjectConfiguration,
   readNxJson,
   Tree,
+  updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
@@ -75,6 +76,8 @@ function updateDefaultProjectTargets(tree: Tree) {
   CoerceNxJsonCacheableOperation(nxJson, 'index-export');
   CoerceTargetDefaultsDependency(nxJson, 'build', '^index-export');
   CoerceTargetDefaultsDependency(nxJson, 'build', 'index-export');
+
+  updateNxJson(tree, nxJson);
 
 }
 
