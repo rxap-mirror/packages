@@ -30,14 +30,29 @@ interface SchematicCommand {
   options: Record<string, any>;
 }
 
-function detectedFeature(path: string): string | undefined {
-  const fragments = path.split('/').reverse();
+function detectedFeature(schematicCommandFilePath: string): string | undefined {
+  const fragments = schematicCommandFilePath.split('/').reverse();
   let last = fragments.pop();
   for (const fragment of fragments) {
     if (fragment === 'feature') {
       return last;
     }
     last = fragment;
+  }
+  return undefined;
+}
+
+function detectedProject(host: Tree, schematicCommandFilePath: string): string | undefined {
+  const fragments = schematicCommandFilePath.split('/');
+  fragments.pop();
+  while (fragments.length) {
+    const path = fragments.join('/');
+    if (host.exists(join(path, 'project.json'))) {
+      const content = JSON.parse(host.read(join(path, 'project.json'))!.toString('utf-8'));
+      if (content.name) {
+        return content.name;
+      }
+    }
   }
   return undefined;
 }
@@ -72,7 +87,6 @@ function executeSchematicCommandFile(
   host: Tree,
   schematicCommandFilePath: string,
   globalOptions: Partial<GlobalOptions>,
-  projectSourceRoot: string,
 ) {
 
   const schematicCommandList: SchematicCommand[] = parseSchematicCommandFile(host, schematicCommandFilePath);
@@ -84,7 +98,14 @@ function executeSchematicCommandFile(
       ...globalOptions,
       ...command.options,
     };
+    options.project ??= detectedProject(host, schematicCommandFilePath);
     options.feature ??= detectedFeature(schematicCommandFilePath);
+
+    if (!options.project) {
+      throw new SchematicsException(`The project option is required for the schematic command file '${ schematicCommandFilePath }'`);
+    }
+
+    const projectSourceRoot = GetProjectSourceRoot(host, options.project);
     const directoryParts = relative(projectSourceRoot, dirname(schematicCommandFilePath).replace(/^\//, '')).split('/');
     if (options.feature) {
       if (directoryParts[0] === 'feature') {
@@ -151,14 +172,13 @@ function getSchematicCommandRuleList(
   host: Tree,
   schematicCommandList: string[],
   globalOptions: Partial<GlobalOptions>,
-  projectSourceRoot: string,
 ) {
   const ruleList: Rule[] = [];
 
   for (const schematicCommandFilePath of schematicCommandList) {
     ruleList.push(chain([
       () => console.log(`Execute schematic command file '${ schematicCommandFilePath }'`.blue),
-      executeSchematicCommandFile(host, schematicCommandFilePath, globalOptions, projectSourceRoot),
+      executeSchematicCommandFile(host, schematicCommandFilePath, globalOptions),
     ]));
   }
 
@@ -170,7 +190,6 @@ function executeSchematicCommand(
   sourceRoot: string,
   globalOptions: Partial<GlobalOptions>,
   filter: string | null,
-  projectSourceRoot: string,
 ) {
   let schematicCommandList = getSchematicCommandList(host, sourceRoot);
 
@@ -178,7 +197,7 @@ function executeSchematicCommand(
     schematicCommandList = schematicCommandList.filter(path => dirname(path).split('/').pop() === filter);
   }
 
-  return getSchematicCommandRuleList(host, schematicCommandList, globalOptions, projectSourceRoot);
+  return getSchematicCommandRuleList(host, schematicCommandList, globalOptions);
 }
 
 function forFeature(
@@ -204,7 +223,7 @@ function forFeature(
     throw new SchematicsException(`The feature '${ featureName }' does not exists in project '${ projectName }'`);
   }
 
-  return executeSchematicCommand(host, featureSourceRoot, globalOptions, filter, projectSourceRoot);
+  return executeSchematicCommand(host, featureSourceRoot, globalOptions, filter);
 
 }
 
@@ -214,7 +233,14 @@ function forProject(host: Tree, projectName: string, globalOptions: Partial<Glob
 
   console.log('Use project source root:', projectSourceRoot);
 
-  return executeSchematicCommand(host, projectSourceRoot, globalOptions, filter, projectSourceRoot);
+  return executeSchematicCommand(host, projectSourceRoot, globalOptions, filter);
+
+}
+
+function forWorkspace(host: Tree, globalOptions: Partial<GlobalOptions>, filter: string | null) {
+
+  console.log('Use workspace source root');
+  return executeSchematicCommand(host, '/', globalOptions, filter);
 
 }
 
@@ -265,6 +291,7 @@ export default function (options: ComposeSchematicSchema) {
       }
       return forProject(host, project, globalOptions, filter);
     }
+    return forWorkspace(host, globalOptions, filter);
 
     throw new Error('Not yet implemented - project and feature options are required!');
   };
