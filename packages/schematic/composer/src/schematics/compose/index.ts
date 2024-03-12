@@ -15,6 +15,7 @@ import {
   dasherize,
   Normalized,
 } from '@rxap/utilities';
+import { GetProjectRoot } from '@rxap/workspace-utilities';
 import {
   dirname,
   join,
@@ -197,6 +198,12 @@ function executeSchematicCommand(
     schematicCommandList = schematicCommandList.filter(path => dirname(path).split('/').pop() === filter);
   }
 
+  if (!schematicCommandList.length) {
+    console.log('No schematic command files found in source root:'.yellow, sourceRoot);
+  } else {
+    console.log('Schematic Command List:\n'.blue, schematicCommandList.map(item => ` - ${ item }`).join('\n'));
+  }
+
   return getSchematicCommandRuleList(host, schematicCommandList, globalOptions);
 }
 
@@ -229,11 +236,11 @@ function forFeature(
 
 function forProject(host: Tree, projectName: string, globalOptions: Partial<GlobalOptions>, filter: string | null) {
 
-  const projectSourceRoot = GetProjectSourceRoot(host, projectName);
+  const projectRoot = GetProjectRoot(host, projectName);
 
-  console.log('Use project source root:', projectSourceRoot);
+  console.log('Use project root:', projectRoot);
 
-  return executeSchematicCommand(host, projectSourceRoot, globalOptions, filter);
+  return executeSchematicCommand(host, projectRoot, globalOptions, filter);
 
 }
 
