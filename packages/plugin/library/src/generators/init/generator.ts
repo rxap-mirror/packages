@@ -23,7 +23,7 @@ import initBuildableGenerator from '../init-buildable/generator';
 import initPluginGenerator from '../init-plugin/generator';
 import initPublishableGenerator from '../init-publishable/generator';
 import { InitGeneratorSchema } from './schema';
-
+import 'colors';
 
 function updateProjectTags(project: ProjectConfiguration) {
   const tags: string[] = project.root.split('/').filter(Boolean);
@@ -36,7 +36,7 @@ function updateProjectTags(project: ProjectConfiguration) {
   }
   CoerceProjectTags(project, tags);
   // if the tag list does not include the project name
-  if (!tags.includes(projectName)) {
+  if (projectName && !tags.includes(projectName) && project.tags) {
     // then remove the project name from the tags if it is included
     project.tags = project.tags.filter(tag => tag !== projectName);
   }
@@ -46,12 +46,18 @@ function updateProjectTargets(project: ProjectConfiguration) {
 
   if (!IsPluginProject(project) && !IsGeneratorProject(project) && !IsSchematicProject(project)) {
     CoerceTarget(project, 'index-export', {});
+  } else {
+    console.log('skip index-export target for plugin, generator or schematic project'.yellow);
   }
 
 }
 
 function updateDefaultProjectTargets(tree: Tree) {
   const nxJson = readNxJson(tree);
+
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
 
   CoerceTarget(nxJson, 'index-export', {
     'executor': '@rxap/plugin-library:run-generator',
@@ -100,13 +106,13 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
 
     if (!options.skipProjects) {
-      console.log(`init project: ${ projectName }`);
+      console.log(`init library project: ${ projectName }`);
 
       updateProjectTags(project);
 
       updateProjectTargets(project);
 
-      updateProjectConfiguration(tree, project.name, project);
+      updateProjectConfiguration(tree, projectName, project);
     }
 
     if (IsBuildable(project)) {
