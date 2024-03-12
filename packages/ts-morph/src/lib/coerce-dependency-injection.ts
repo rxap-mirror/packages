@@ -1,13 +1,12 @@
 import {
   ImportDeclarationStructure,
   OptionalKind,
-  ParameterDeclarationStructure,
   Scope,
   SourceFile,
-  Writers,
 } from 'ts-morph';
-import { CoerceClassConstructor } from './coerce-class-constructor';
+import { CoerceDecorator } from './coerce-decorator';
 import { CoerceImports } from './coerce-imports';
+import { CoercePropertyDeclaration } from './coerce-property-declaration';
 
 export enum Module {
   ANGULAR = '@angular/core',
@@ -20,7 +19,7 @@ export interface InjectionDefinition {
   optional?: boolean;
   type?: string;
   scope?: Scope;
-  module?: Module;
+  module: Module;
 }
 
 export function CoerceDependencyInjection(
@@ -29,57 +28,49 @@ export function CoerceDependencyInjection(
   structures: Array<OptionalKind<ImportDeclarationStructure>> = [],
 ) {
 
-  if (!definition.module) {
-    definition.module = Module.ANGULAR;
-  }
-
   const classDeclaration = sourceFile.getClasses()[0];
 
   if (!classDeclaration) {
     throw new Error('Could not find class declaration');
   }
 
-  const constructorDeclarations = CoerceClassConstructor(classDeclaration);
-  const constructorDeclaration = constructorDeclarations[0];
-
-  if (constructorDeclaration.getParameter(definition.parameterName)) {
-    return;
-  }
-
-  const constructorParameter: OptionalKind<ParameterDeclarationStructure> = {
-    name: definition.parameterName,
-    type: definition.type ?? definition.injectionToken,
+  const propertyDeclaration = CoercePropertyDeclaration(classDeclaration, definition.parameterName, {
     scope: definition.scope ?? Scope.Public,
     isReadonly: true,
-    decorators: [
-      {
-        name: 'Inject',
-        arguments: [ definition.injectionToken ],
-      },
-    ],
-  };
+  });
 
-  if (definition.optional) {
-    constructorParameter.decorators?.unshift({
-      name: 'Optional',
-      arguments: [],
-    });
-    constructorParameter.type = Writers.intersectionType(
-      definition.type ?? definition.injectionToken,
-      'null',
-    );
+  if (definition.module === Module.ANGULAR) {
+    if (definition.optional) {
+      propertyDeclaration.setInitializer(`inject(${definition.injectionToken}, { optional: true })`);
+    } else {
+      propertyDeclaration.setInitializer(`inject(${definition.injectionToken})`);
+    }
     CoerceImports(sourceFile, {
-      namedImports: [ 'Optional' ],
+      namedImports: [ 'inject' ],
+      moduleSpecifier: definition.module,
+    });
+  } else {
+    CoerceDecorator(propertyDeclaration, 'Inject',{
+      arguments: [ definition.injectionToken ],
+    });
+    if (definition.optional) {
+      CoerceDecorator(propertyDeclaration, 'Optional',{
+        arguments: [],
+      });
+      propertyDeclaration.setType(`${definition.type} | null`);
+      propertyDeclaration.setInitializer('null');
+      CoerceImports(sourceFile, {
+        namedImports: [ 'Optional' ],
+        moduleSpecifier: definition.module,
+      });
+    } else {
+      propertyDeclaration.setType(definition.type ?? definition.injectionToken);
+    }
+    CoerceImports(sourceFile, {
+      namedImports: [ 'Inject' ],
       moduleSpecifier: definition.module,
     });
   }
-
-  constructorDeclaration.addParameter(constructorParameter);
-
-  CoerceImports(sourceFile, {
-    namedImports: [ 'Inject' ],
-    moduleSpecifier: definition.module,
-  });
 
   CoerceImports(sourceFile, structures);
 }

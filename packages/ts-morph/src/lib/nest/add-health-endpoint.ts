@@ -7,7 +7,10 @@ import {
   Scope,
   SourceFile,
 } from 'ts-morph';
-import { CoerceDependencyInjection } from '../coerce-dependency-injection';
+import {
+  CoerceDependencyInjection,
+  Module,
+} from '../coerce-dependency-injection';
 
 export function AddHealthEndpoint(
   sourceFile: SourceFile,
@@ -62,6 +65,7 @@ export function AddHealthEndpoint(
       parameterName: camelize(healthIndicatorClass),
       injectionToken: healthIndicatorClass,
       scope: Scope.Private,
+      module: Module.NEST,
     },
     [
       {
