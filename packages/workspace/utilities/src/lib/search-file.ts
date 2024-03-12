@@ -44,7 +44,6 @@ export function* SearchFile(dirOrTree: DirEntryLike | TreeLike, path?: string): 
       return;
 
     } else if (IsSchematicTreeLike(dirOrTree)) {
-      console.log('is schematic tree like');
       dir = dirOrTree.getDir(path ?? dirOrTree.root.path);
     } else {
       throw new Error('Unknown tree type');
