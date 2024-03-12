@@ -77,6 +77,8 @@ export class TypescriptInterfaceGenerator {
     return Writers.intersectionType(first, second, ...array);
   }
 
+  private importList: Array<{ name: string, moduleSpecifier: string }> = [];
+
   constructor(
     private readonly schema: JSONSchema,
     private readonly options: TypescriptInterfaceGeneratorOptions = {},
@@ -101,12 +103,7 @@ export class TypescriptInterfaceGenerator {
 
   public async build(name: string): Promise<SourceFile> {
     await this.bundleSchema();
-
-    if (!this.bundledSchema) {
-      throw new Error('FATAL: bundleSchema was called but bundledSchema member is still empty!');
-    }
-
-    return this.addType(this.bundledSchema, name);
+    return this.buildSync(name, this.bundledSchema);
   }
 
   public buildSync(name: string, bundledSchema: JSONSchema | null = this.bundledSchema ?? this.schema): SourceFile {
@@ -116,7 +113,20 @@ export class TypescriptInterfaceGenerator {
       throw new Error('If buildSync is called, bundledSchema must be provided!');
     }
 
-    return this.addType(this.bundledSchema, name);
+    this.importList = [];
+
+    const sourceFile = this.addType(this.bundledSchema, name);
+
+    for (const importItem of this.importList) {
+      sourceFile.addImportDeclaration({
+        isTypeOnly: true,
+        moduleSpecifier: importItem.moduleSpecifier,
+        namedImports: [ importItem.name ],
+      });
+    }
+
+    return sourceFile;
+
   }
 
   private addType(schema: JSONSchema, name: string): SourceFile {
@@ -442,9 +452,8 @@ export class TypescriptInterfaceGenerator {
             this.options.addImports &&
             currentFile.getBaseNameWithoutExtension() !== this.getFileName(name)
           ) {
-            currentFile.addImportDeclaration({
-              isTypeOnly: true,
-              namedImports: [ { name: this.buildName(name) } ],
+            this.importList.push({
+              name: this.buildName(name),
               moduleSpecifier: `./${ this.getFileName(name) }`,
             });
           }
@@ -580,7 +589,7 @@ export class TypescriptInterfaceGenerator {
     return schema;
   }
 
-  private async bundleSchema(): Promise<void> {
+  public async bundleSchema(): Promise<void> {
     if (!this.bundledSchema) {
       this.bundledSchema = await TypescriptInterfaceGenerator.bundleSchema(this.schema, this.options);
     }
