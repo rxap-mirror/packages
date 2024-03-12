@@ -17,6 +17,7 @@ import {
   CoerceAppGuardProvider,
   CoerceImports,
   CoerceNestAppConfig,
+  CoerceNestAppConfigOptionsItem,
   CoerceNestAppController,
   CoerceNestAppModule,
   CoerceNestCacheModuleImport,
@@ -26,10 +27,7 @@ import {
   CoerceNestThrottlerModuleImport,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
-import {
-  TsMorphAngularProjectTransform,
-  TsMorphNestProjectTransform,
-} from '@rxap/workspace-ts-morph';
+import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
@@ -186,6 +184,10 @@ function skipProject(
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
+
   CoerceTargetDefaultsDependency(nxJson, 'build', 'generate-package-json');
   CoerceTargetDefaultsDependency(nxJson, 'generate-open-api', 'swagger-generate');
 
@@ -195,7 +197,7 @@ function setGeneralTargetDefaults(tree: Tree) {
   updateNxJson(tree, nxJson);
 }
 
-function updateProjectTargets(project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+function updateProjectTargets(projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
   CoerceTarget(project, 'generate-package-json', {
     executor: '@rxap/plugin-nestjs:package-json',
@@ -207,7 +209,7 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitApplic
   const outputPath = project.targets?.build?.options?.outputPath;
 
   if (!outputPath) {
-    throw new Error(`No outputPath found for project ${ project.name }`);
+    throw new Error(`No outputPath found for project ${ projectName }`);
   }
 
   if (options.swagger && !options.standalone) {
@@ -216,9 +218,9 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitApplic
       options: {
         generator: '@rxap/plugin-open-api:generate',
         options: {
-          project: `open-api-${ project.name }`,
+          project: `open-api-${ projectName }`,
           path: `${ outputPath.replace('dist/', 'dist/swagger/') }/openapi.json`,
-          serverId: project.name,
+          serverId: projectName,
         },
       },
     });
@@ -243,7 +245,7 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitApplic
     },
   }, Strategy.OVERWRITE);
 
-  if (project.targets['docker']) {
+  if (project.targets?.['docker']) {
     project.targets['docker'].options ??= {};
     project.targets['docker'].options.dockerfile ??= 'shared/nestjs/Dockerfile';
     project.targets['docker'].options.buildArgList ??= [];
@@ -294,20 +296,24 @@ async function addDependencies(tree: Tree, options: InitApplicationGeneratorSche
 
 async function createOpenApiClientSdkLibrary(
   tree: Tree,
+  projectName: string,
   project: ProjectConfiguration,
   projects: Map<string, ProjectConfiguration>,
 ) {
 
-  const openApiProjectName = `open-api-${ project.name }`;
+  const openApiProjectName = `open-api-${ projectName }`;
 
   if (projects.has(openApiProjectName)) {
-    console.log(`Open api client sdk library for project ${ project.name } already exists`);
+    console.log(`Open api client sdk library for project ${ projectName } already exists`);
     return;
   }
 
   const projectRoot = project.root;
   const fragments = projectRoot.split('/');
   const name = fragments.pop();
+  if (!name) {
+    throw new Error(`Can't find project folder from the project root path for project '${ projectName }'`);
+  }
   // only remove the root folder if it is one of the following
   if (['libs', 'applications', 'apps', 'packages'].includes(fragments[0])) {
     fragments.shift(); // remove the root folder
@@ -333,7 +339,7 @@ async function createOpenApiClientSdkLibrary(
   let tsConfig: any;
 
   try {
-    tsConfig = JSON.parse(tree.read('tsconfig.base.json').toString('utf-8'));
+    tsConfig = JSON.parse(tree.read('tsconfig.base.json')!.toString('utf-8'));
   } catch (e: any) {
     throw new Error(`Can't parse tsconfig.base.json: ${ e.message }`);
   }
@@ -362,8 +368,8 @@ async function createOpenApiClientSdkLibrary(
   }
 
   openApiProjectConfiguration.implicitDependencies ??= [];
-  if (!openApiProjectConfiguration.implicitDependencies.includes(project.name)) {
-    openApiProjectConfiguration.implicitDependencies.push(project.name);
+  if (!openApiProjectConfiguration.implicitDependencies.includes(projectName)) {
+    openApiProjectConfiguration.implicitDependencies.push(projectName);
   }
 
   updateProjectConfiguration(tree, openApiProjectName, openApiProjectConfiguration);
@@ -371,11 +377,11 @@ async function createOpenApiClientSdkLibrary(
 }
 
 function getPort(tree: Tree, options: InitApplicationGeneratorSchema, projectSourceRoot: string) {
-  if (options.port && options.projects.length === 1) {
+  if (options.port && options.projects?.length === 1) {
     return options.port;
   }
   if (tree.exists(join(projectSourceRoot, 'app', 'app.config.ts'))) {
-    const match = tree.read(join(projectSourceRoot, 'app', 'app.config.ts'))
+    const match = tree.read(join(projectSourceRoot, 'app', 'app.config.ts'))!
       .toString()
       .match(/validationSchema\['PORT'\] = Joi.number\(\).default\((\d+)\);/);
     if (match) {
@@ -383,7 +389,7 @@ function getPort(tree: Tree, options: InitApplicationGeneratorSchema, projectSou
     }
   }
   if (tree.exists(join(projectSourceRoot, 'app', 'app.module.ts'))) {
-    const match = tree.read(join(projectSourceRoot, 'app', 'app.module.ts'))
+    const match = tree.read(join(projectSourceRoot, 'app', 'app.module.ts'))!
       .toString()
       .match(/PORT: Joi.number\(\).default\((\d+)\)/);
     if (match) {
@@ -463,13 +469,12 @@ function assertMainStatements(sourceFile: SourceFile) {
 
 function updateMainFile(
   tree: Tree,
-  project: ProjectConfiguration,
   projectName: string,
   options: InitApplicationGeneratorSchema,
 ) {
 
-  TsMorphAngularProjectTransform(tree, {
-    project: project.name,
+  TsMorphNestProjectTransform(tree, {
+    project: projectName,
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
   }, (project, [ sourceFile ]) => {
 
@@ -697,13 +702,13 @@ export async function initApplicationGenerator(
         skipProjects: false,
       });
 
-      updateProjectTargets(project, options);
+      updateProjectTargets(projectName, project, options);
       updateGitIgnore(tree, project);
       updateTags(project, options);
       if (!options.standalone) {
         await updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
         if (options.swagger) {
-          await createOpenApiClientSdkLibrary(tree, project, projects);
+          await createOpenApiClientSdkLibrary(tree, projectName, project, projects);
         }
       }
 
@@ -753,7 +758,7 @@ export async function initApplicationGenerator(
               name: 'COOKIE_SECRET',
               defaultValue: 'GenerateRandomString()',
             },
-          ]) {
+          ] as Array<CoerceNestAppConfigOptionsItem>) {
             if (!itemList.find(i => i.name === item.name)) {
               itemList.push(item);
             }
@@ -790,7 +795,7 @@ export async function initApplicationGenerator(
       removeAppControllerSpecFile(tree, projectSourceRoot);
 
       if (options.generateMain) {
-        updateMainFile(tree, project, projectName, options);
+        updateMainFile(tree, projectName, options);
       }
 
       if (options.healthIndicator || options.healthIndicatorList?.length) {

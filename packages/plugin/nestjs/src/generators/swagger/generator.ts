@@ -65,6 +65,10 @@ function updateProjectTargets(project: ProjectConfiguration, options: SwaggerGen
 function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
   const nxJson = readNxJson(tree);
 
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
+
   if (!options.standalone) {
     CoerceNxJsonCacheableOperation(nxJson, 'swagger-build', 'swagger-generate');
 

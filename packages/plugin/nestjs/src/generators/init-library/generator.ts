@@ -49,6 +49,10 @@ function skipProject(
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
+
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
 
   CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'copy-client-sdk');
@@ -70,7 +74,7 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 }
 
 function getNestMajorVersion(rootPackageJson: ProjectPackageJson): string | null {
-  let targetVersion = rootPackageJson.dependencies['@nestjs/core'] ?? rootPackageJson.devDependencies['@nestjs/cli'];
+  let targetVersion = rootPackageJson.dependencies?.['@nestjs/core'] ?? rootPackageJson.devDependencies?.['@nestjs/cli'];
 
   if (!targetVersion) {
     console.error(`The package @nestjs/core and @nestjs/cli are not installed in the root package.json`);
@@ -80,6 +84,10 @@ function getNestMajorVersion(rootPackageJson: ProjectPackageJson): string | null
   targetVersion = targetVersion.replace(/^[~^]/, '');
 
   const version = parse(targetVersion);
+
+  if (!version) {
+    throw new Error(`Can't parse version: ${ targetVersion }`);
+  }
 
   return `${ version.major }.0.0`;
 }
@@ -92,6 +100,9 @@ function updatePackageJson(
   if (IsPublishable(tree, project) && tree.exists(join(project.root, 'package.json'))) {
     const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
     const version = getNestMajorVersion(rootPackageJson) ?? packageJson.version;
+    if (!version) {
+      throw new Error('Can\'t determine the nest major version');
+    }
     if (!packageJson.version || gte(version, packageJson.version)) {
       packageJson.version = version;
     }

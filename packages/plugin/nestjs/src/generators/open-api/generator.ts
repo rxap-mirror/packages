@@ -93,6 +93,9 @@ export async function openApiGenerator(
 ) {
   UpdateAppModule(tree, options);
   const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
+  if (!projectSourceRoot) {
+    throw new Error(`Could not find the source root of the project: ${ options.project }`);
+  }
   if (!tree.exists(join(projectSourceRoot, 'assets', 'open-api-server-config.json'))) {
     tree.write(join(projectSourceRoot, 'assets', 'open-api-server-config.json'), '[]');
   }

@@ -5,6 +5,7 @@ import {
   GetProjectRoot,
   LoadProjectToPackageMapping,
 } from '@rxap/plugin-utilities';
+import { PackageJson } from '@rxap/workspace-utilities';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { PackageJsonExecutorSchema } from './schema';
@@ -20,10 +21,10 @@ export default async function runExecutor(
   const dependencies = GetAllPackageDependenciesForProject(context);
 
   if (options.dependencies) {
-    const rootPackageJson = jsonFile(join(context.root, 'package.json'));
+    const rootPackageJson: PackageJson = jsonFile(join(context.root, 'package.json'));
     for (const dependency of options.dependencies) {
-      dependencies[dependency] = rootPackageJson.dependencies[dependency] ??
-                                 rootPackageJson.devDependencies[dependency] ?? 'latest';
+      dependencies[dependency] = rootPackageJson.dependencies?.[dependency] ??
+                                 rootPackageJson.devDependencies?.[dependency] ?? 'latest';
     }
   }
 

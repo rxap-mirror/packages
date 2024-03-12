@@ -12,6 +12,9 @@ export async function microserviceGenerator(
 ) {
 
   const nxJson = readNxJson(tree);
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
   const presetOptions = nxJson.generators?.['@nx/nest:application'] ?? {};
 
   options.directory ??= 'service';

@@ -11,6 +11,9 @@ export async function featureMicroserviceGenerator(
 ) {
 
   const nxJson = readNxJson(tree);
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
   const presetOptions = nxJson.generators?.['@rxap/plugin-nestjs:microservice'] ?? {};
 
   await microserviceGenerator(tree, {

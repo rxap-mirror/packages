@@ -24,7 +24,7 @@ export function ExtractExistingConfigValidation(sourceFile: SourceFile): CoerceN
         const configModuleArgument = configModuleArguments[0];
         const objectLiteralExpression = configModuleArgument.asKindOrThrow(SyntaxKind.ObjectLiteralExpression);
         const validateLiteralElement = objectLiteralExpression.getProperty('validationSchema')
-                                                              .asKindOrThrow(SyntaxKind.PropertyAssignment);
+                                                              ?.asKindOrThrow(SyntaxKind.PropertyAssignment);
         const joiObject = validateLiteralElement?.getInitializer();
         if (joiObject?.getKind() === SyntaxKind.CallExpression) {
           const joiObjectArgument = joiObject.asKindOrThrow(SyntaxKind.CallExpression).getArguments()[0];
@@ -33,6 +33,9 @@ export function ExtractExistingConfigValidation(sourceFile: SourceFile): CoerceN
           for (const property of objectLiteralExpression2.getProperties()) {
             const propertyAssignment = property.asKindOrThrow(SyntaxKind.PropertyAssignment);
             const initializer = propertyAssignment.getInitializer();
+            if (!initializer) {
+              throw new Error('No initializer found');
+            }
             const text = initializer.getText();
             const item: CoerceNestAppConfigOptionsItem = {
               name: propertyAssignment.getName(),
