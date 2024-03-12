@@ -37,7 +37,7 @@ function generateSchematicInputSchema(tree: Tree, options: IndexJsonSchemaGenera
     } else {
       schemaRefPath = schema;
     }
-    const content = JSON.parse(tree.read(join(projectRoot, schemaRefPath)).toString());
+    const content = JSON.parse(tree.read(join(projectRoot, schemaRefPath))!.toString());
     schemaRefPath = schemaRefPath.replace(/^\.\/[^/]+\//, './');
     schemaList.push({
       type: 'object',
@@ -78,7 +78,7 @@ export function GenerateSchematicDefinitionsMap(tree: Tree, options: IndexJsonSc
     } else {
       schemaRefPath = schema;
     }
-    const content = JSON.parse(tree.read(join(projectRoot, schemaRefPath)).toString());
+    const content = JSON.parse(tree.read(join(projectRoot, schemaRefPath))!.toString());
     definitions[camelize(content.$id)] = {
       $ref: relative(basePath, schemaRefPath)
     };
@@ -92,7 +92,7 @@ export function GenerateDefinitionsMap(tree: Tree, options: IndexJsonSchemaGener
   const definitions: Record<string, { $ref: string }> = GenerateSchematicDefinitionsMap(tree, options, basePath);
   for (const schematic of tree.children(schematicsFolder)) {
     if (schematic.endsWith('schema.json')) {
-      const schema = JSON.parse(tree.read(join(schematicsFolder, schematic)).toString());
+      const schema = JSON.parse(tree.read(join(schematicsFolder, schematic))!.toString());
       definitions[camelize(schema.$id)] = {
         $ref: relative(basePath, `./src/schematics/${schematic}`)
       };

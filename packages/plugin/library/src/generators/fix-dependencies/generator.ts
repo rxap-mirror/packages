@@ -18,13 +18,12 @@ import {
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import { CreateProject } from '@rxap/ts-morph';
-import { UpdatePackageJson } from '@rxap/workspace-utilities';
-import { join } from 'path';
 import {
-  IndentationText,
-  Project,
-  QuoteKind,
-} from 'ts-morph';
+  Dependency,
+  UpdatePackageJson,
+} from '@rxap/workspace-utilities';
+import { join } from 'path';
+import { Project } from 'ts-morph';
 import { FixDependenciesGeneratorSchema } from './schema';
 
 function resolveProjectDependencies(
@@ -202,11 +201,7 @@ function fixPeerDependenciesWithTsMorphProject(
   projectGraph: ProjectGraph,
   tree: Tree,
   projectRoot: string,
-  {
-    dependencies,
-    peerDependencies,
-    devDependencies,
-  }: ProjectPackageJson,
+  packageJson: ProjectPackageJson,
 ) {
 
   const project = CreateProject();
@@ -227,6 +222,14 @@ function fixPeerDependenciesWithTsMorphProject(
   const changedPackageList: string[] = [];
   const removedPackageList: string[] = [];
   const unknownPackageList: string[] = [];
+
+  packageJson.peerDependencies ??= {};
+  packageJson.dependencies ??= {};
+
+  const {
+    dependencies,
+    peerDependencies,
+  } = packageJson;
 
   for (const packageName of Object.keys(peerDependencies)) {
     if (!packageList.includes(packageName) && !PACKAGE_REMOVE_BLACK_LIST.includes(packageName)) {
@@ -279,11 +282,7 @@ function fixDevDependenciesWithTsMorphProject(
   projectGraph: ProjectGraph,
   tree: Tree,
   projectRoot: string,
-  {
-    dependencies,
-    peerDependencies,
-    devDependencies,
-  }: ProjectPackageJson,
+  packageJson: ProjectPackageJson,
 ) {
 
   const project = CreateProject();
@@ -300,6 +299,14 @@ function fixDevDependenciesWithTsMorphProject(
 
   const packageList: string[] = getPackageListFromSourceFiles(project);
 
+  packageJson.devDependencies ??= {};
+
+  const {
+    dependencies,
+    peerDependencies,
+    devDependencies,
+  } = packageJson;
+
   const addedPackageList: string[] = [];
   const changedPackageList: string[] = [];
   const removedPackageList: string[] = [];
@@ -307,7 +314,7 @@ function fixDevDependenciesWithTsMorphProject(
 
   for (const packageName of Object.keys(devDependencies)) {
     if (!packageList.includes(packageName) &&
-      !peerDependencies[packageName] &&
+      !peerDependencies?.[packageName] &&
       !PACKAGE_REMOVE_BLACK_LIST.includes(packageName)) {
       removedPackageList.push(`${ packageName }@${ devDependencies[packageName] } from devDependencies`);
       delete devDependencies[packageName];
@@ -316,13 +323,13 @@ function fixDevDependenciesWithTsMorphProject(
 
   for (const packageName of packageList) {
     if (HasProjectWithPackageName(packageName)) {
-      if (!peerDependencies[packageName] && !dependencies[packageName]) {
+      if (!peerDependencies?.[packageName] && !dependencies?.[packageName]) {
         devDependencies[packageName] = '*';
       }
     } else {
-      if (!peerDependencies[packageName] && !dependencies[packageName]) {
+      if (!peerDependencies?.[packageName] && !dependencies?.[packageName]) {
         const version = findBasePackageVersion(tree, packageName, projectRoot);
-        if (devDependencies[packageName]) {
+        if (devDependencies?.[packageName]) {
           if (devDependencies[packageName] !== version) {
             changedPackageList.push(`${ packageName }@${ devDependencies[packageName] } -> ${ version }`);
             devDependencies[packageName] = version;
@@ -447,7 +454,11 @@ export async function resolveLatestPackageVersion(packageName: string) {
   if (RESOLVED_PACKAGE_VERSION_MAP[packageName]) {
     return RESOLVED_PACKAGE_VERSION_MAP[packageName];
   }
-  return RESOLVED_PACKAGE_VERSION_MAP[packageName] = await GetLatestPackageVersion(packageName);
+  const latestVersion = await GetLatestPackageVersion(packageName);
+  if (latestVersion) {
+    RESOLVED_PACKAGE_VERSION_MAP[packageName] = latestVersion;
+  }
+  return latestVersion;
 }
 
 export async function replaceLatestPackageVersionForProject(tree: Tree, projectName: string) {
@@ -463,7 +474,7 @@ export async function replaceLatestPackageVersionForProject(tree: Tree, projectN
     for (const [ packageName, version ] of Object.entries(dependencies ?? {})) {
       if (version === 'latest') {
         const resolvedVersion = await resolveLatestPackageVersion(packageName);
-        if (resolvedVersion !== 'latest') {
+        if (resolvedVersion !== 'latest' && resolvedVersion) {
           dependencies![packageName] = resolvedVersion;
           console.log(`Replace latest version of ${ packageName } with ${ resolvedVersion }`);
         }
@@ -479,8 +490,8 @@ export async function replaceLatestPackageVersionForProject(tree: Tree, projectN
   tree.write(join(projectRoot, 'package.json'), JSON.stringify(packageJson, null, 2) + '\n');
 }
 
-export function removePackageFromDependencies(packageName: string, dependencies: Record<string, string>) {
-  if (dependencies[packageName]) {
+export function removePackageFromDependencies(packageName: string, dependencies: Dependency | undefined) {
+  if (dependencies?.[packageName]) {
     delete dependencies[packageName];
   }
 }
@@ -566,7 +577,7 @@ export async function fixDependenciesGenerator(
       packageJson.devDependencies ??= {};
       packageJson.optionalDependencies ??= {};
 
-      if (!packageJson.dependencies['tslib']) {
+      if (!packageJson.dependencies['tslib'] && latestTsLibVersion) {
         packageJson.dependencies['tslib'] = latestTsLibVersion;
       }
 

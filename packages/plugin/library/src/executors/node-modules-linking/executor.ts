@@ -23,7 +23,7 @@ function checkSymlinkExists(linkPath: string) {
   try {
     const stats = lstatSync(linkPath);
     return stats.isSymbolicLink();
-  } catch (error) {
+  } catch (error: any) {
     if (error.code === 'ENOENT') {
       // Link does not exist
       return false;

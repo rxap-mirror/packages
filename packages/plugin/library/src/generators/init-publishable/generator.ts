@@ -34,6 +34,10 @@ import { InitPublishableGeneratorSchema } from './schema';
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
+
   CoerceTargetDefaultsDependency(nxJson, 'build', 'readme');
   CoerceTargetDefaultsDependency(nxJson, 'fix-dependencies', '^fix-dependencies');
 
@@ -82,7 +86,7 @@ function updateProjectPackageJson(
   if (Object.keys(packageJson.scripts).length === 0) {
     delete packageJson.scripts;
   }
-  if (!packageJson.name.startsWith('@')) {
+  if (packageJson.name && !packageJson.name.startsWith('@')) {
     const newName = `${ scope }/${ projectName }`;
     updatePathsAliasInBaseTsConfig(tree, project, packageJson.name, newName);
     packageJson.name = newName;
@@ -196,14 +200,14 @@ export async function initPublishableGenerator(
       CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
       CoerceFile(tree, join(project.root, 'GUIDES.md'));
       if (tree.exists('LICENSE')) {
-        CoerceFile(tree, join(project.root, 'LICENSE.md'), tree.read('LICENSE'));
-        CoerceFile(tree, join(project.root, 'LICENSE'), tree.read('LICENSE'));
+        CoerceFile(tree, join(project.root, 'LICENSE.md'), tree.read('LICENSE')!);
+        CoerceFile(tree, join(project.root, 'LICENSE'), tree.read('LICENSE')!);
       } else {
         console.warn('no LICENSE file found in the workspace root');
       }
       CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'README.md' ]);
 
-      updateProjectConfiguration(tree, project.name, project);
+      updateProjectConfiguration(tree, projectName, project);
 
     }
 

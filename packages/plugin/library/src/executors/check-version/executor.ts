@@ -15,8 +15,8 @@ export default async function runExecutor(
   const projectJson = readPackageJsonForProject(context);
   const rootPackageJson = readPackageJsonForProject(context, 'workspace');
 
-  let targetVersion = rootPackageJson.devDependencies[options.packageName] ??
-    rootPackageJson.dependencies[options.packageName];
+  let targetVersion = rootPackageJson.devDependencies?.[options.packageName] ??
+    rootPackageJson.dependencies?.[options.packageName];
 
   if (!targetVersion) {
     console.error(`The package ${ options.packageName } is not installed in the root package.json`);
@@ -32,7 +32,21 @@ export default async function runExecutor(
 
   const version = parse(targetVersion);
 
+  if (!version) {
+    console.error(`Can't parse version: ${ targetVersion }`);
+    return {
+      success: false,
+    };
+  }
+
   const versionRange = `>=${ version.major }`;
+
+  if (!projectJson.version) {
+    console.error(`The project version is not defined`);
+    return {
+      success: false,
+    };
+  }
 
   const normalizedVersion = projectJson.version.replace(/-.*$/, '');
 

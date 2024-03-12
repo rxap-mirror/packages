@@ -84,12 +84,30 @@ export default async function runExecutor(options: RunGeneratorExecutorSchema, c
     options.options['project'] ??= context.projectName;
   }
 
+  if (!context.projectName) {
+    console.error(`No project name found in the context`);
+    return {
+      success: false,
+    };
+  }
+
+  if (!context.targetName) {
+    console.error(`No target name found in the context`);
+    return {
+      success: false,
+    };
+  }
+
+  if (!context.configurationName) {
+    console.warn(`No configuration name found in the context`);
+  }
+
   stringInterpolation(options.options, {
     workspaceRoot: context.root,
     projectRoot: GetProjectRoot(context),
     projectSourceRoot: GetProjectSourceRoot(context),
     projectName: context.projectName,
-    configurationName: context.configurationName,
+    configurationName: context.configurationName ?? '',
     cwd: context.cwd,
     targetName: context.targetName,
   });

@@ -205,7 +205,7 @@ function getPeerDependencyList(context: ExecutorContext): Array<{ name: string, 
   return peerDependencyList;
 }
 
-Handlebars.registerHelper('hasProperties', function (record: Record<string, unknown>, options: any) {
+Handlebars.registerHelper('hasProperties', function (this: any, record: Record<string, unknown>, options: any) {
   if (Object.keys(record).length > 0) {
     options.fn(this);
   }

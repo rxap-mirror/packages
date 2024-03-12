@@ -6,19 +6,13 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import {
-  IsBuildable,
-  IsPublishable,
-  SkipNonLibraryProject,
-} from '@rxap/generator-utilities';
+import { SkipNonLibraryProject } from '@rxap/generator-utilities';
 import { HasGenerators } from '@rxap/plugin-utilities';
 import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetNxVersion,
-  GetProjectPackageJson,
-  GetWorkspaceScope,
   IsPluginProject,
   UpdateProjectPackageJson,
 } from '@rxap/workspace-utilities';
@@ -66,6 +60,10 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
+
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version', 'expose-as-schematic');
 
   CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'expose-as-schematic');
@@ -73,7 +71,7 @@ function setGeneralTargetDefaults(tree: Tree) {
   updateNxJson(tree, nxJson);
 }
 
-async function updatePackageJson(tree: Tree, project: ProjectConfiguration) {
+async function updatePackageJson(tree: Tree, projectName: string, project: ProjectConfiguration) {
   await UpdateProjectPackageJson(tree, packageJson => {
 
     if (packageJson.version === '0.0.1') {
@@ -82,7 +80,7 @@ async function updatePackageJson(tree: Tree, project: ProjectConfiguration) {
       packageJson.version = `${ major }.0.0`;
     }
 
-  }, { projectName: project.name });
+  }, { projectName });
 }
 
 export async function initPluginGenerator(
@@ -105,9 +103,9 @@ export async function initPluginGenerator(
 
       updateProjectTargets(tree, project);
 
-      updateProjectConfiguration(tree, project.name, project);
+      updateProjectConfiguration(tree, projectName, project);
 
-      await updatePackageJson(tree, project);
+      await updatePackageJson(tree, projectName, project);
 
     }
 

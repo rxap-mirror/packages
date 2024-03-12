@@ -30,13 +30,13 @@ function loadCleanDefinition(tree: Tree, projectSourceRoot: string, { $ref }: { 
   if (!tree.exists(filePath)) {
     throw new Error(`The file '${filePath}' does not exist!`);
   }
-  const schema = JSON.parse(tree.read(filePath).toString());
+  const schema = JSON.parse(tree.read(filePath)!.toString());
   return cleanupDefinition(schema);
 }
 
 function cleanupDefinition(schema: any): any {
   if (schema['definitions']) {
-    schema['definitions'] = Object.entries(schema['definitions']).reduce((acc, [key, value]) => {
+    schema['definitions'] = Object.entries(schema['definitions']).reduce((acc, [key, value]: [string, any]) => {
       if (!value['$ref']) {
         acc[key] = cleanupDefinition(value);
       }
@@ -55,7 +55,7 @@ function cleanupDefinition(schema: any): any {
   for (const { key, value, propertyPath, parent } of EachProperty(schema)) {
     if (key === '$ref') {
       if (typeof value === 'string') {
-        (parent ?? schema)[key] = value.replace(/^#\/definitions\//, '#/definitions/');
+        ((parent ?? schema) as any)[key] = value.replace(/^#\/definitions\//, '#/definitions/');
       }
     }
   }
@@ -97,7 +97,7 @@ export async function bundleJsonSchemaGenerator(
               const relativeFromSchemaJsonFile = relative(workspaceRoot, url);
               const absoluteFromSourceRoot = join(relativePathFromProjectSourceRoot, relativeFromSchemaJsonFile);
               const absoluteFromWorkspaceRoot = join(projectSourceRoot, absoluteFromSourceRoot);
-              return tree.read(absoluteFromWorkspaceRoot).toString();
+              return tree.read(absoluteFromWorkspaceRoot)!.toString();
             }
           }
         }

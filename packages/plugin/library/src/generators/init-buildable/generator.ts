@@ -17,6 +17,10 @@ import { InitBuildableGeneratorSchema } from './schema';
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
+
   CoerceTargetDefaultsDependency(nxJson, 'build', '^build');
 
   updateNxJson(tree, nxJson);
@@ -64,7 +68,7 @@ export async function initBuildableGenerator(
       console.log(`init project: ${ projectName }`);
       updateProjectTargets(project);
 
-      updateProjectConfiguration(tree, project.name, project);
+      updateProjectConfiguration(tree, projectName, project);
 
     }
   }

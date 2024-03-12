@@ -33,7 +33,7 @@ function generateIndexFile(tree: Tree, sourceRoot: string) {
       !path.endsWith('.stories.ts') &&
       !path.endsWith('.d.ts')) {
       const content = tree.read(path, 'utf-8');
-      if (content.match(/^export /gm)) {
+      if (content?.match(/^export /gm)) {
         filePathList.push(path);
       }
     }
@@ -105,7 +105,14 @@ export async function indexExportGenerator(tree: Tree, options: IndexExportGener
       }
     }
 
-    generateIndexFile(tree, GetProjectSourceRoot(tree, projectName));
+    const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
+
+    if (!projectSourceRoot) {
+      console.warn(`no source root found for project: ${ projectName }`);
+      continue;
+    }
+
+    generateIndexFile(tree, projectSourceRoot);
 
   }
 
