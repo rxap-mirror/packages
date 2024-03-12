@@ -582,7 +582,7 @@ export class TypescriptInterfaceGenerator {
 
   private async bundleSchema(): Promise<void> {
     if (!this.bundledSchema) {
-      this.bundledSchema = TypescriptInterfaceGenerator.bundleSchema(this.schema, this.options);
+      this.bundledSchema = await TypescriptInterfaceGenerator.bundleSchema(this.schema, this.options);
     }
   }
 }
