@@ -31,6 +31,7 @@ import {
   CoerceNestThrottlerModuleImport,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
+import { CoerceArrayItems } from '@rxap/utilities';
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
@@ -319,7 +320,7 @@ async function createOpenApiClientSdkLibrary(
     throw new Error(`Can't find project folder from the project root path for project '${ projectName }'`);
   }
   // only remove the root folder if it is one of the following
-  if (['libs', 'applications', 'apps', 'packages'].includes(fragments[0])) {
+  if (['libs', 'applications', 'apps', 'packages', 'service'].includes(fragments[0])) {
     fragments.shift(); // remove the root folder
   }
   const directory = ['open-api', ...fragments].filter(Boolean).join('/');
@@ -636,6 +637,11 @@ export async function initApplicationGenerator(
   options.jwt ??= false;
   options.statusRegister ??= true;
   options.apiConfigurationFile ??= 'shared/service/configuration/latest/config.api.json';
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('nestjs application init generator:', options);
 
   await ApplicationInitWorkspace(tree, options);
@@ -646,6 +652,7 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@nestjs/terminus', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/config', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/cache-manager', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'cache-manager', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, 'joi', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-library', 'latest', { soft: true });

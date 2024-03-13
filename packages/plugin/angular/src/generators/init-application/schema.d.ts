@@ -2,6 +2,7 @@ export interface InitApplicationGeneratorSchema {
   sentry?: boolean;
   openApi?: boolean;
   config?: boolean;
+  project?: string;
   projects?: string[];
   localazy?: boolean;
   i18n?: boolean;

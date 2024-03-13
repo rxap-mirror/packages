@@ -27,6 +27,7 @@ import {
 } from '@rxap/ts-morph';
 import {
   classify,
+  CoerceArrayItems,
   dasherize,
   DeleteEmptyProperties,
   unique,
@@ -622,6 +623,11 @@ export async function initApplicationGenerator(
   options.authentik ??= false;
   options.oauth ??= false;
   options.oauth = options.oauth || options.authentik;
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('angular application init generator:', options);
 
   await ApplicationInitWorkspace(tree, options);

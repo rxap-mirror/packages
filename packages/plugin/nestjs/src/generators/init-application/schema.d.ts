@@ -1,6 +1,7 @@
 export interface InitApplicationGeneratorSchema {
   generateMain?: boolean;
   swaggerLive?: boolean;
+  project?: string;
   projects?: string[];
   sentry?: boolean;
   swagger?: boolean;
