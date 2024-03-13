@@ -2,7 +2,6 @@ import {
   formatFiles,
   generateFiles,
   GeneratorsJson,
-  getWorkspaceLayout,
   joinPathFragments,
   names,
   readJson,
@@ -12,6 +11,7 @@ import {
   updateProjectConfiguration,
   writeJson,
 } from '@nx/devkit';
+import { CoerceAssets } from '@rxap/generator-utilities';
 import {
   GetWorkspaceScope,
   PackageJson,
@@ -43,6 +43,10 @@ function normalizeOptions(host: Tree, options: SchematicGeneratorSchema): Normal
     description = options.description;
   } else {
     description = `${ options.name } schematic`;
+  }
+
+  if (!projectSourceRoot) {
+    throw new Error(`Project source root not found for project ${ options.project }`);
   }
 
   return {
@@ -149,19 +153,7 @@ function coerceBuildTarget(
     },
   ];
 
-  for (const asset of assets) {
-    if (!buildTarget.options.assets.some(a => {
-      if (typeof asset === typeof a) {
-        if (typeof asset === 'string') {
-          return asset === a;
-        } else {
-          return asset.input === a.input && asset.glob === a.glob && asset.output === a.output;
-        }
-      }
-    })) {
-      buildTarget.options.assets.push(asset);
-    }
-  }
+  CoerceAssets(buildTarget.options.assets, assets);
 
   updateProjectConfiguration(tree, project, projectConfiguration);
 }

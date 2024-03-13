@@ -45,6 +45,11 @@ import { InitGeneratorSchema } from '../init/schema';
 import { InitLibraryGeneratorSchema } from './schema';
 
 function hasIndexScss(tree: Tree, project: ProjectConfiguration) {
+
+  if (!project.sourceRoot) {
+    throw new Error(`The project ${ project.name } has no sourceRoot`);
+  }
+
   return tree.exists(join(project.sourceRoot, '_index.scss'));
 }
 
@@ -103,6 +108,11 @@ function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfigu
 }
 
 function coerceTailwindThemeScss(tree: Tree, project: ProjectConfiguration) {
+
+  if (!project.sourceRoot) {
+    throw new Error(`The project ${ project.name } has no sourceRoot`);
+  }
+
   const themeScssPath = join(project.sourceRoot, 'styles/theme.scss');
   if (hasTailwindConfig(tree, project)) {
     if (!tree.exists(themeScssPath)) {
@@ -150,7 +160,7 @@ function extendAngularSpecificEslint(tree: Tree, project: ProjectConfiguration) 
   };
   CoerceFile(tree, eslintConfigFilaPath, JSON.stringify(defaultEslintConfig, null, 2));
 
-  const eslintConfig = JSON.parse(tree.read(eslintConfigFilaPath).toString('utf-8'));
+  const eslintConfig = JSON.parse(tree.read(eslintConfigFilaPath)!.toString('utf-8'));
 
   if (eslintConfig.extends[0] !== extendsPath) {
     tree.write(eslintConfigFilaPath, JSON.stringify(defaultEslintConfig, null, 2));
@@ -180,7 +190,7 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
         },
       });
     } else {
-      if (project.targets['build-tailwind']) {
+      if (project.targets?.['build-tailwind']) {
         delete project.targets['build-tailwind'];
       }
     }
@@ -195,6 +205,10 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
+
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version', 'build-tailwind', 'check-ng-package');
   CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
@@ -231,8 +245,8 @@ function checkIfSecondaryEntrypointIncludeInTheTsConfig(tree: Tree, project: Pro
   const projectRoot = project.root;
   const libTsConfigPath = join(projectRoot, 'tsconfig.lib.json');
   const specTsConfigPath = join(projectRoot, 'tsconfig.spec.json');
-  const libTsConfig = tree.exists(libTsConfigPath) ? JSON.parse(tree.read(libTsConfigPath).toString('utf-8')) : null;
-  const specTsConfig = tree.exists(specTsConfigPath) ? JSON.parse(tree.read(specTsConfigPath).toString('utf-8')) : null;
+  const libTsConfig = tree.exists(libTsConfigPath) ? JSON.parse(tree.read(libTsConfigPath)!.toString('utf-8')) : null;
+  const specTsConfig = tree.exists(specTsConfigPath) ? JSON.parse(tree.read(specTsConfigPath)!.toString('utf-8')) : null;
   for (const { path } of SearchFile(tree, projectRoot)) {
     if (!path.endsWith('ng-package.json')) {
       continue;
@@ -264,6 +278,11 @@ function checkIfSecondaryEntrypointIncludeInTheTsConfig(tree: Tree, project: Pro
 
 function cleanup(tree: Tree, project: ProjectConfiguration, projectName: string) {
   const projectSourceRoot = project.sourceRoot;
+
+  if (!projectSourceRoot) {
+    throw new Error(`The project ${ projectName } has no sourceRoot`);
+  }
+
   if (tree.exists(join(projectSourceRoot, 'lib', projectName))) {
     DeleteRecursive(tree, join(projectSourceRoot, 'lib', projectName));
     tree.write(join(projectSourceRoot, 'index.ts'), 'export {};');
@@ -271,7 +290,7 @@ function cleanup(tree: Tree, project: ProjectConfiguration, projectName: string)
 }
 
 function getAngularMajorVersion(rootPackageJson: ProjectPackageJson): string | null {
-  let targetVersion = rootPackageJson.dependencies['@angular/core'] ?? rootPackageJson.devDependencies['@angular/cli'];
+  let targetVersion = rootPackageJson.dependencies?.['@angular/core'] ?? rootPackageJson.devDependencies?.['@angular/cli'];
 
   if (!targetVersion) {
     console.error(`The package @angular/core and @angular/cli are not installed in the root package.json`);
@@ -281,6 +300,10 @@ function getAngularMajorVersion(rootPackageJson: ProjectPackageJson): string | n
   targetVersion = targetVersion.replace(/^[~^]/, '');
 
   const version = parse(targetVersion);
+
+  if (!version) {
+    throw new Error(`Unable to parse the version ${ targetVersion }`);
+  }
 
   return `${ version.major }.0.0`;
 }
@@ -293,6 +316,9 @@ function updatePackageJson(
   if (IsPublishable(tree, project) && tree.exists(join(project.root, 'package.json'))) {
     const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
     const version = getAngularMajorVersion(rootPackageJson) ?? packageJson.version;
+    if (!version) {
+      throw new Error('Unable to determine the angular major version from the root package.json');
+    }
     if (!packageJson.version || gte(version, packageJson.version)) {
       packageJson.version = version;
     }
@@ -357,7 +383,7 @@ export async function initLibraryGenerator(
       updateProjectTargets(tree, project);
       await updateTsConfig(tree, project, options);
 
-      updateProjectConfiguration(tree, project.name, project);
+      updateProjectConfiguration(tree, projectName, project);
 
     }
 

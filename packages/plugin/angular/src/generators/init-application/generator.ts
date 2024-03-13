@@ -50,6 +50,7 @@ import {
 } from 'path';
 import {
   SourceFile,
+  Statement,
   WriterFunction,
   Writers,
 } from 'ts-morph';
@@ -104,6 +105,7 @@ function updateProjectTargets(
       if (options.languages.length === 0) {
         options.languages.push('en');
       }
+      project.targets['build'].configurations ??= {};
       if (options.overwrite) {
         project.targets['build'].configurations.production.localize = options.languages;
       } else {
@@ -121,6 +123,9 @@ function updateProjectTargets(
           baseHref: `${ language }/`,
         };
       }
+    }
+    if (!project.sourceRoot) {
+      throw new Error(`The project ${ project.name } has no source root`);
     }
     project.targets['extract-i18n'].options ??= {};
     project.targets['extract-i18n'].options.format = 'xliff2';
@@ -185,6 +190,9 @@ function updateProjectTargets(
     CoerceAssets(project.targets['build'].options.polyfills, [ '@angular/localize/init' ]);
   }
   if (options.serviceWorker) {
+    if (!project.sourceRoot) {
+      throw new Error(`The project ${ project.name } has no source root`);
+    }
     CoerceAssets(project.targets['build'].options.assets, [
       join(project.sourceRoot, 'manifest.webmanifest'),
     ]);
@@ -193,9 +201,10 @@ function updateProjectTargets(
     project.targets['build'].configurations.production.serviceWorker = true;
     project.targets['build'].configurations.production.ngswConfigPath ??= 'shared/angular/ngsw-config.json';
   }
+  project.targets['build'].configurations ??= {};
   project.targets['build'].configurations.production ??= {};
   project.targets['build'].configurations.production.budgets ??= [];
-  const budget = project.targets['build'].configurations.production.budgets.find(b => b.type === 'initial');
+  const budget = project.targets['build'].configurations.production.budgets.find((b: any) => b.type === 'initial');
   const defaultWarning = '2mb';
   const defaultError = '5mb';
   if (!budget) {
@@ -253,10 +262,15 @@ function compareBudget(a: string, b: string): -1 | 0 | 1 {
   if (aUnit === 'mb') {
     return bUnit === 'kb' ? 1 : -1;
   }
+  return 0;
 }
 
 function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchema) {
   const nxJson = readNxJson(tree);
+
+  if (!nxJson) {
+    throw new Error('NxJson not found');
+  }
 
   if (options.localazy) {
     CoerceTargetDefaultsDependency(nxJson, 'build', 'localazy-download');
@@ -302,6 +316,11 @@ function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchem
 function updateGitIgnore(project: ProjectConfiguration, tree: Tree, options: InitApplicationGeneratorSchema) {
 
   if (options.i18n) {
+
+    if (!project.sourceRoot) {
+      throw new Error(`The project ${ project.name } has no source root`);
+    }
+
     const gitIgnorePath = join(project.sourceRoot, '.gitignore');
     CoerceIgnorePattern(tree, gitIgnorePath, [
       '/i18n',
@@ -401,21 +420,21 @@ function cleanup(tree: Tree, projectSourceRoot: string) {
     }
   }
 
-  let content = tree.read(join(projectSourceRoot, 'app/app.component.ts'), 'utf-8')
+  let content = tree.read(join(projectSourceRoot, 'app/app.component.ts'), 'utf-8')!
     .replace('title = \'domain-product\';', '')
     .replace('import { NxWelcomeComponent } from \'./nx-welcome.component\';', '')
     .replace('NxWelcomeComponent, ', '');
   tree.write(join(projectSourceRoot, 'app/app.component.ts'), content);
 
-  content = tree.read(join(projectSourceRoot, 'app/app.component.html'), 'utf-8')
+  content = tree.read(join(projectSourceRoot, 'app/app.component.html'), 'utf-8')!
     .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '');
   tree.write(join(projectSourceRoot, 'app/app.component.html'), content);
 
 }
 
-function updateMainFile(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+function updateMainFile(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
   TsMorphAngularProjectTransform(tree, {
-    project: project.name,
+    project: projectName,
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
   }, (project, [ sourceFile ]) => {
 
@@ -458,7 +477,7 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
       const statement = statements[i];
       const lastStatement = i > 0 ? statements[i - 1] : null;
       const nestStatement = i < statements.length - 1 ? statements[i + 1] : null;
-      const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
+      const existingStatements: string[] = sourceFile.getStatements().map((s: Statement) => s.getText()) ?? [];
       if (!existingStatements.includes(statement)) {
         let index: number;
         if (lastStatement) {
@@ -849,7 +868,10 @@ export async function initApplicationGenerator(
       }, [ '/app/app.config.ts' ]);
 
       if (options.generateMain) {
-        updateMainFile(tree, project, options);
+        updateMainFile(tree, projectName, project, options);
+      }
+      if (!project.sourceRoot) {
+        throw new Error(`Project source root not found for project ${ projectName }`);
       }
       if (options.cleanup) {
         cleanup(tree, project.sourceRoot);

@@ -3,6 +3,7 @@ import {
   FindArrayElementByObjectProperty,
 } from '@rxap/ts-morph';
 import {
+  ArrayLiteralExpression,
   SourceFile,
   SyntaxKind,
 } from 'ts-morph';
@@ -15,7 +16,7 @@ import { FindParentRoute } from './find-parent-route';
 export function AddRoute(sourceFile: SourceFile, route: AngularRoute, path?: string[]) {
   const routes = sourceFile.getVariableDeclaration('ROUTES');
   if (routes) {
-    let initializer = routes.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
+    let initializer: ArrayLiteralExpression | null = routes.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
     if (path?.length) {
       initializer = FindParentRoute(initializer, path);
     }

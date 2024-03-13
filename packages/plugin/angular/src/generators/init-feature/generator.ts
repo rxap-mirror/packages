@@ -13,6 +13,11 @@ export async function initFeatureGenerator(
   options: InitFeatureGeneratorSchema,
 ) {
   const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
+
+  if (!projectSourceRoot) {
+    throw new Error(`Project source root not found for project ${ options.project }`);
+  }
+
   generateFiles(tree, path.join(__dirname, 'files'), projectSourceRoot, { name: options.name });
   TsMorphAngularProjectTransform(tree, {
     project: options.project,

@@ -5,6 +5,10 @@ import {
   VisitTree,
 } from '@rxap/generator-utilities';
 import {
+  GetProjectPackageJson,
+  HasProjectPackageJson,
+} from '@rxap/workspace-utilities';
+import {
   dirname,
   join,
   relative,
@@ -16,14 +20,22 @@ export async function fixSchematicGenerator(
   options: FixSchematicGeneratorSchema,
 ) {
   const projectRoot = GetProjectRoot(tree, options.project);
-  const schematicsSourceRoot = join(GetProjectSourceRoot(tree, options.project), 'schematics');
+  const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
+  if (!projectSourceRoot) {
+    throw new Error(`Project source root not found for project ${ options.project }`);
+  }
+  const schematicsSourceRoot = join(projectSourceRoot, 'schematics');
 
   if (!tree.exists(schematicsSourceRoot)) {
     console.warn(`The schematics source root ${ schematicsSourceRoot } does not exists!`);
     return;
   }
 
-  const packageJson = JSON.parse(tree.read(join(projectRoot, 'package.json')).toString('utf-8'));
+  if (!HasProjectPackageJson(tree, options.project)) {
+    throw new Error(`The project ${ options.project } does not contains a package.json file!`);
+  }
+
+  const packageJson = GetProjectPackageJson(tree, options.project);
 
   if (!packageJson.schematics) {
     console.warn(`The package.json file does not contains schematics property!`);
@@ -37,7 +49,7 @@ export async function fixSchematicGenerator(
     return;
   }
 
-  const collection = JSON.parse(tree.read(collectionFile).toString('utf-8'));
+  const collection = JSON.parse(tree.read(collectionFile)!.toString('utf-8'));
 
   collection.schematics ??= {};
 
@@ -80,7 +92,7 @@ export async function fixSchematicGenerator(
     };
   }
 
-  for (const [ name, schematic ] of Object.entries(schematics)) {
+  for (const [ name, schematic ] of Object.entries(schematics as Record<string, any>)) {
     schematic['description'] ??= `The ${ name } schematic`;
   }
 
