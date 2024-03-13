@@ -255,7 +255,7 @@ function updateProjectTargets(projectName: string, project: ProjectConfiguration
     project.targets['docker'].options.buildArgList ??= [];
     if (!project.targets['docker'].options.buildArgList.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {
       project.targets['docker'].options.buildArgList.push(
-        'REGEX:app/app.config.ts:validationSchema\\[\'GLOBAL_API_PREFIX\'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*\'(.+)\',?\\s*\\);');
+        'PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\[\'GLOBAL_API_PREFIX\'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*\'(.+)\',?\\s*\\);');
     }
   }
 
