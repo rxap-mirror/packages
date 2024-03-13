@@ -36,6 +36,7 @@ export async function gitlabCiGenerator(
   tree: Tree,
   options: GitlabCiGeneratorSchema,
 ) {
+  console.log('localazy gitlab-ci generator:', options);
 
   if (options.tags) {
     dotLocalazy.tags = options.tags;
@@ -60,7 +61,7 @@ export async function gitlabCiGenerator(
       continue;
     }
 
-    console.log(`add project: ${ projectName }`);
+    console.log(`add project: ${ projectName } to localazy gitlab-ci configuration`);
 
     dockerYaml['localazy-upload'].parallel.matrix.push({
       PROJECT_NAME: projectName,
