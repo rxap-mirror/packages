@@ -14,6 +14,7 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { ApplicationInitGenerator } from '@rxap/plugin-application';
+import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
 import {
   CoerceAppConfigProvider,
@@ -98,7 +99,6 @@ function updateProjectTargets(
     },
   }, Strategy.OVERWRITE);
 
-  CoerceTarget(project, 'config', {});
   if (project.targets['extract-i18n']) {
     if (options.i18n) {
       options.languages ??= [];
@@ -747,6 +747,7 @@ export async function initApplicationGenerator(
 
       await ApplicationInitGenerator(tree, {
         ...options,
+        dockerGitlabCi: false,
         projects: [ projectName ],
         skipProjects: false,
       });
@@ -922,7 +923,8 @@ export async function initApplicationGenerator(
     });
   }
 
-  await LocalazyGitlabCiGenerator(tree, options);
+  await LocalazyGitlabCiGenerator(tree, {});
+  await DockerGitlabCiGenerator(tree, {});
 
 }
 
