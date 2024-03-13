@@ -50,6 +50,7 @@ export * from './lib/coerce/coerce-nx-json-cacheable-operation';
 export * from './lib/coerce/coerce-target-defaults-dependency';
 export * from './lib/coerce/coerce-target-defaults-input';
 export * from './lib/coerce/coerce-target-defaults-output';
+export * from './lib/coerce/coerce-target-defaults';
 export * from './lib/coerce/coerce-target';
 // endregion
 
