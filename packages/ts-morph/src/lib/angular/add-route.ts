@@ -13,8 +13,8 @@ import {
 } from './build-route-object';
 import { FindParentRoute } from './find-parent-route';
 
-export function AddRoute(sourceFile: SourceFile, route: AngularRoute, path?: string[]) {
-  const routes = sourceFile.getVariableDeclaration('ROUTES');
+export function AddRoute(sourceFile: SourceFile, route: AngularRoute, path?: string[], name = 'ROUTES', insertAt = 0) {
+  const routes = sourceFile.getVariableDeclaration(name);
   if (routes) {
     let initializer: ArrayLiteralExpression | null = routes.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
     if (path?.length) {
@@ -22,11 +22,11 @@ export function AddRoute(sourceFile: SourceFile, route: AngularRoute, path?: str
     }
     if (initializer) {
       CoerceArrayElement(
-        initializer, BuildRouteObject(route), FindArrayElementByObjectProperty('path', route.path), () => 0);
+        initializer, BuildRouteObject(route), FindArrayElementByObjectProperty('path', route.path), () => insertAt);
     } else {
       console.warn('Initializer not found');
     }
   } else {
-    console.warn('appRoutes variable not found');
+    console.warn(`${name} variable not found`);
   }
 }
