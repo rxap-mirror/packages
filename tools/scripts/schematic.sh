@@ -81,10 +81,7 @@ startTimestamp=$(date +%s)
 
 echo "Build project $name"
 
-randomString=$(openssl rand -hex 4)
-# set the env CI_JOB_ID to a random string to ensure that the linking target is always executed
-# in the default inputs (nx.json) the env value og CI_JOB_ID is used to determine if the linking target should be executed
-CI_JOB_ID="$randomString" yarn nx run "$name:linking"
+yarn nx run "$name:linking"
 
 echo "Build time: $(($(date +%s) - startTimestamp))s"
 
