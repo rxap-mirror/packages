@@ -99,7 +99,7 @@ export async function initPluginGenerator(
         continue;
       }
 
-      console.log(`init project: ${ projectName }`);
+      console.log(`init plugin library project: ${ projectName }`);
 
       updateProjectTargets(tree, project);
 

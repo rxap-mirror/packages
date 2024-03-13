@@ -420,7 +420,7 @@ function assertMainStatements(sourceFile: SourceFile) {
   const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
   for (const statement of statements) {
     if (!existingStatements.includes(statement)) {
-      console.error(`Missing statement from main.ts:  ${ statement }`);
+      console.error(`Missing statement from nestjs main.ts:  ${ statement }`);
       sourceFile.set({
         statements: [
           MAIN_NEST_APP_OPTIONS_STATEMENT,
@@ -694,7 +694,7 @@ export async function initApplicationGenerator(
       const port = getPort(tree, options, projectSourceRoot);
       const globalApiPrefix = GetNestApiPrefix(tree, options, projectSourceRoot, projectName);
 
-      console.log(`init project: ${ projectName }`);
+      console.log(`init nestjs application project: ${ projectName }`);
 
       await ApplicationInitGenerator(tree, {
         ...options,

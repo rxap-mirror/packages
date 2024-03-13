@@ -362,7 +362,7 @@ export async function initLibraryGenerator(
         continue;
       }
 
-      console.log(`init project: ${ projectName }`);
+      console.log(`init angular library project: ${ projectName }`);
 
       await LibraryInitGenerator(tree, {
         ...options,

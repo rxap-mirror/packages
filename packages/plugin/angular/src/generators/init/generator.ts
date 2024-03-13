@@ -55,7 +55,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
     if (!options.skipProjects) {
 
-      console.log(`init project: ${ projectName }`);
+      console.log(`init angular project: ${ projectName }`);
 
       // execute the add cypress if the project has components after the library/application init
       // as the library init will remove the default components so that cypress is only added

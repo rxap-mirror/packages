@@ -187,7 +187,7 @@ export async function initPublishableGenerator(
         continue;
       }
 
-      console.log(`init project: ${ projectName }`);
+      console.log(`init publishable library project: ${ projectName }`);
 
       updateProjectTargets(project);
       updateProjectPackageJson(tree, project, projectName, rootPackageJson);

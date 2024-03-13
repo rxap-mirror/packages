@@ -33,7 +33,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
     if (!options.skipProjects) {
 
-      console.log(`init project: ${ projectName }`);
+      console.log(`init nestjs project: ${ projectName }`);
 
     }
 

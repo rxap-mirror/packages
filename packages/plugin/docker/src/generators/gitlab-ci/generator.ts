@@ -7,10 +7,7 @@ import {
   GetTargetOptions,
   GuessOutputPath,
 } from '@rxap/plugin-utilities';
-import {
-  clone,
-  CoerceSuffix,
-} from '@rxap/utilities';
+import { CoerceSuffix } from '@rxap/utilities';
 import {
   CoerceFilesStructure,
   GetNestApiPrefix,
@@ -297,7 +294,7 @@ export async function gitlabCiGenerator(
   options: GitlabCiGeneratorSchema,
 ) {
 
-  console.log('gitlab-ci generator:', options);
+  console.log('docker gitlab-ci generator:', options);
 
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files'),

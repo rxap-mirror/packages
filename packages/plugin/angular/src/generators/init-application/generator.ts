@@ -371,7 +371,7 @@ function assertMainStatements(sourceFile: SourceFile) {
   const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
   for (const statement of statements) {
     if (!existingStatements.includes(statement)) {
-      console.error(`Missing statement from main.ts:  ${ statement }`);
+      console.error(`Missing statement from angular main.ts:  ${ statement }`);
       sourceFile.set({
         statements: [
           MAIN_APP_CREATION_STATEMENT,
@@ -743,7 +743,7 @@ export async function initApplicationGenerator(
         continue;
       }
 
-      console.log(`init project: ${ projectName }`);
+      console.log(`init angular application project: ${ projectName }`);
 
       await ApplicationInitGenerator(tree, {
         ...options,

@@ -65,7 +65,7 @@ export async function initBuildableGenerator(
         continue;
       }
 
-      console.log(`init project: ${ projectName }`);
+      console.log(`init buildable library project: ${ projectName }`);
       updateProjectTargets(project);
 
       updateProjectConfiguration(tree, projectName, project);
