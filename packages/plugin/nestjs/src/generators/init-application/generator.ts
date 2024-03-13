@@ -12,7 +12,10 @@ import {
   CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
-import { ApplicationInitGenerator } from '@rxap/plugin-application';
+import {
+  ApplicationInitProject,
+  ApplicationInitWorkspace,
+} from '@rxap/plugin-application';
 import {
   CoerceAppGuardProvider,
   CoerceImports,
@@ -634,6 +637,8 @@ export async function initApplicationGenerator(
   options.apiConfigurationFile ??= 'shared/service/configuration/latest/config.api.json';
   console.log('nestjs application init generator:', options);
 
+  await ApplicationInitWorkspace(tree, options);
+
   await AddPackageJsonDependency(tree, '@rxap/nest-server', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-utilities', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-logger', 'latest', { soft: true });
@@ -696,11 +701,7 @@ export async function initApplicationGenerator(
 
       console.log(`init nestjs application project: ${ projectName }`);
 
-      await ApplicationInitGenerator(tree, {
-        ...options,
-        projects: [ projectName ],
-        skipProjects: false,
-      });
+      ApplicationInitProject(tree, projectName, project, options);
 
       updateProjectTargets(projectName, project, options);
       updateGitIgnore(tree, project);
@@ -874,13 +875,6 @@ export async function initApplicationGenerator(
       }
 
     }
-
-  } else {
-    await ApplicationInitGenerator(tree, {
-      ...options,
-      projects: [],
-      skipProjects: true,
-    });
 
   }
 }
