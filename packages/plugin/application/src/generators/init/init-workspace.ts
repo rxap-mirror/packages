@@ -13,6 +13,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   console.log('init application workspace');
 
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/plugin-workspace', 'latest', { soft: true });
 
   updateTargetDefaults(tree);
 
