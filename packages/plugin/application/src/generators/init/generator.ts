@@ -1,36 +1,13 @@
 import {
   getProjects,
-  NxJsonConfiguration,
   ProjectConfiguration,
-  readNxJson,
-  TargetConfiguration,
   Tree,
-  updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import {
-  CoerceProjectTags,
-  SkipNonApplicationProject,
-} from '@rxap/generator-utilities';
+import { SkipNonApplicationProject } from '@rxap/generator-utilities';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
-import {
-  deepMerge,
-  DeleteEmptyProperties,
-  MergeDeepLeft,
-} from '@rxap/utilities';
-import {
-  AddPackageJsonDevDependency,
-  CoerceFilesStructure,
-  CoerceNxJsonCacheableOperation,
-  CoerceTarget,
-  CoerceTargetDefaultsDependency,
-  GetPackageJson,
-  JSON_MERGE_STRATEGY,
-  Strategy,
-  YAML_MERGE_STRATEGY,
-} from '@rxap/workspace-utilities';
-import { join } from 'path';
-import * as process from 'process';
+import { initProject } from './init-project';
+import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
 
 function skipProject(
@@ -46,182 +23,14 @@ function skipProject(
   return false;
 }
 
-function buildDockerImageSuffix(project: ProjectConfiguration, projectName: string) {
-  let imageSuffix = `/`;
-  if (project.targets?.['build']?.executor?.includes('angular') ||
-    projectName.startsWith('frontend') ||
-    projectName.startsWith('ui') ||
-    projectName.startsWith('user-interface') ||
-    projectName.startsWith('application')) {
-    imageSuffix +=
-      [ 'user-interface', projectName.replace(/^(application|user-interface|ui|frontend)-/, '') ].join('/');
-  } else if (projectName.startsWith('service') || projectName.startsWith('backend')) {
-    imageSuffix += [ 'service', projectName.replace(/^(service|backend)-/, '') ].join('/');
-  } else {
-    imageSuffix += projectName;
-  }
-  return imageSuffix;
-}
-
-function updateTags(project: ProjectConfiguration, options: InitGeneratorSchema) {
-  const tags = [ 'application' ];
-
-  CoerceProjectTags(project, tags);
-}
-
-function updateProjectTargets(project: ProjectConfiguration, projectName: string, options: InitGeneratorSchema) {
-
-  CoerceTarget(project, 'docker', {
-    options: DeleteEmptyProperties({
-      imageName: options.dockerImageName,
-      imageSuffix: options.dockerImageSuffix ?? buildDockerImageSuffix(project, projectName),
-      imageRegistry: options.dockerImageRegistry,
-    }),
-  });
-  CoerceTarget(project, 'docker-save');
-
-  if (project.targets?.['build']) {
-
-    // if the build target has a configuration for production
-    if (project.targets['build']?.configurations?.['production']) {
-      // set the default configuration to production
-      project.targets['build'].defaultConfiguration = 'production';
-      // ensure the build target has a configuration for development
-      project.targets['build'].configurations['development'] ??= {};
-      // if the project has a serve target with a buildTarget option
-      if (project.targets['serve'].options?.buildTarget) {
-        // ensure that the target configuration is explicitly set
-        if (project.targets['serve'].options.buildTarget.match(new RegExp(`^${projectName}:build$`))) {
-          // if not the set the build configuration to development
-          project.targets['serve'].options.buildTarget += ':development';
-        }
-      }
-    }
-
-  } else {
-    console.warn(`The project '${ project.name }' has no build target`);
-  }
-
-}
-
-function guessImageName(tree: Tree) {
-  const rootPackageJson = GetPackageJson(tree);
-  if (rootPackageJson.repository) {
-    const repo = typeof rootPackageJson.repository === 'string' ?
-      rootPackageJson.repository :
-      rootPackageJson.repository.url;
-    if (repo) {
-      const match = repo.match(/https:\/\/([^/]+)\/(.+)\.git$/);
-      if (match) {
-        if (match[1] === 'gitlab.com') {
-          return match[2];
-        }
-      }
-    }
-  }
-  const name = rootPackageJson.name;
-  const match = name?.match(/@([^/]+)\/(.+)$/);
-  if (match) {
-    if (match[2] === 'source') {
-      return match[1];
-    }
-    return match[2];
-  }
-  return 'unknown';
-}
-
-function CoerceTargetDefaults(
-  nxJson: NxJsonConfiguration,
-  name: string,
-  target: Partial<TargetConfiguration>,
-  strategy = Strategy.DEFAULT,
-) {
-
-  nxJson.targetDefaults ??= {};
-  if (!nxJson.targetDefaults[name]) {
-    nxJson.targetDefaults[name] = target;
-  } else {
-    switch (strategy) {
-      case Strategy.DEFAULT:
-        break;
-      case Strategy.OVERWRITE:
-        nxJson.targetDefaults[name] = deepMerge(nxJson.targetDefaults[name], target);
-        break;
-      case Strategy.MERGE:
-        nxJson.targetDefaults[name] = deepMerge(nxJson.targetDefaults[name], target, MergeDeepLeft);
-        break;
-      case Strategy.REPLACE:
-        nxJson.targetDefaults[name] = target;
-        break;
-    }
-  }
-
-}
-
-function updateTargetDefaults(tree: Tree) {
-  const nxJson = readNxJson(tree);
-
-  if (!nxJson) {
-    throw new Error('No nx.json found');
-  }
-
-  CoerceTargetDefaultsDependency(nxJson, 'docker', 'build');
-  CoerceTargetDefaultsDependency(nxJson, 'deploy', 'build');
-  CoerceTargetDefaultsDependency(nxJson, 'docker-save', 'docker');
-
-  CoerceTargetDefaults(nxJson, 'docker-save', {
-    executor: '@rxap/plugin-docker:save',
-  });
-  CoerceTargetDefaults(nxJson, 'docker', {
-    executor: '@rxap/plugin-docker:build',
-    options: {
-      imageRegistry: process.env.REGISTRY ?? 'registry.gitlab.com',
-      imageName: process.env.IMAGE_NAME ?? guessImageName(tree),
-    },
-  }, Strategy.MERGE);
-
-  CoerceNxJsonCacheableOperation(nxJson, 'docker');
-  CoerceNxJsonCacheableOperation(nxJson, 'deploy');
-
-  updateNxJson(tree, nxJson);
-}
-
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   options.overwrite ??= false;
   options.skipProjects ??= false;
   options.authentik ??= false;
   options.minio ??= false;
-  options.dockerGitlabCi ??= true;
   console.log('application init generator:', options);
 
-  await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
-
-  updateTargetDefaults(tree);
-
-  CoerceFilesStructure(tree, {
-    srcFolder: join(__dirname, 'files', 'general'),
-    target: '',
-    overwrite: options.overwrite,
-    mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
-  });
-
-  if (options.authentik) {
-    CoerceFilesStructure(tree, {
-      srcFolder: join(__dirname, 'files', 'authentik'),
-      target: '',
-      overwrite: options.overwrite,
-      mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
-    });
-  }
-
-  if (options.minio) {
-    CoerceFilesStructure(tree, {
-      srcFolder: join(__dirname, 'files', 'minio'),
-      target: '',
-      overwrite: options.overwrite,
-      mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
-    });
-  }
+  await initWorkspace(tree, options);
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
@@ -230,11 +39,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
 
     if (!options.skipProjects) {
-      console.log(`init application project: ${ projectName }`);
-
-      updateTags(project, options);
-
-      updateProjectTargets(project, projectName, options);
+      initProject(project, projectName, options);
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
@@ -242,9 +47,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   }
 
-  if (options.dockerGitlabCi) {
-    await DockerGitlabCiGenerator(tree, {});
-  }
+  await DockerGitlabCiGenerator(tree, {});
 
 }
 
