@@ -1,23 +1,20 @@
-import {
-  AddRoute,
-  AngularRoute,
-  CoerceDefaultExport,
-  CoerceImports,
-} from '@rxap/ts-morph';
+import { CoerceImports } from '@rxap/ts-morph';
 import {
   SourceFile,
   Writers,
 } from 'ts-morph';
-import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
+import {
+  CoerceRoutes,
+  CoerceRoutesOptions,
+} from './coerce-routes';
 
-export interface CoerceLayoutRoutesOptions {
-  itemList?: Array<{ route: AngularRoute, path?: string[] }>
-}
+export type CoerceLayoutRoutesOptions = CoerceRoutesOptions;
 
 export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayoutRoutesOptions = {}) {
 
-  const variableDeclaration = CoerceVariableDeclaration(sourceFile, 'ROUTES', {
-    initializer: w => {
+  const variableDeclaration = CoerceRoutes(sourceFile, {
+    ...options,
+    initializer: options.initializer ?? (w => {
       w.writeLine('[');
       w.indent(() => {
         Writers.object({
@@ -54,10 +51,9 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
       })(w);
       w.newLine();
       w.write(']');
-    },
-    type: 'Route[]'
+    })
   });
-  CoerceDefaultExport(variableDeclaration);
+
   CoerceImports(sourceFile, [
     {
       namedImports: [ 'LayoutComponent', 'NavigationService' ],
@@ -68,17 +64,11 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
       moduleSpecifier: '@rxap/ngx-status-check'
     },
     {
-      namedImports: [ 'Route' ],
-      moduleSpecifier: '@angular/router'
-    },
-    {
       namedImports: [ 'APP_NAVIGATION_PROVIDER' ],
       moduleSpecifier: './app.navigation'
     }
   ]);
 
-  for (const { route, path } of options.itemList ?? []) {
-    AddRoute(sourceFile, route, path);
-  }
+  return variableDeclaration;
 
 }

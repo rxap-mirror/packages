@@ -1,28 +1,21 @@
-import {
-  AddRoute,
-  AngularRoute,
-  CoerceDefaultExport,
-  CoerceImports,
-  CoerceVariableDeclaration,
-} from '@rxap/ts-morph';
+import { CoerceImports } from '@rxap/ts-morph';
 import {
   SourceFile,
-  SyntaxKind,
   Writers,
 } from 'ts-morph';
+import {
+  CoerceRoutes,
+  CoerceRoutesOptions,
+} from './coerce-routes';
 
-export interface CoerceAppRoutesOptions {
-  itemList?: Array<{ route: AngularRoute, path?: string[] }>
-}
+export type CoerceAppRoutesOptions = CoerceRoutesOptions;
 
 export function CoerceAppRoutes(sourceFile: SourceFile, options: CoerceAppRoutesOptions = {}) {
 
-  let variableDeclaration = CoerceVariableDeclaration(sourceFile, 'appRoutes', {});
-  if (variableDeclaration.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression).getElements().length === 0) {
-    variableDeclaration.getVariableStatementOrThrow().remove();
-  }
-  variableDeclaration = CoerceVariableDeclaration(sourceFile, 'appRoutes', {
-    initializer: w => {
+  const variableDeclaration = CoerceRoutes(sourceFile, {
+    ...options,
+    name: options.name ?? 'appRoutes',
+    initializer: options.initializer ?? (w => {
       w.writeLine('[');
       w.write('STATUS_CHECK_ROUTE,');
       Writers.object({
@@ -30,23 +23,17 @@ export function CoerceAppRoutes(sourceFile: SourceFile, options: CoerceAppRoutes
         redirectTo: w => w.quote('')
       })(w);
       w.write(']');
-    },
-    type: 'Route[]'
+    })
   });
+
+
   CoerceImports(sourceFile, [
     {
       namedImports: [ 'STATUS_CHECK_ROUTE' ],
       moduleSpecifier: '@rxap/ngx-status-check'
     },
-    {
-      namedImports: [ 'Route' ],
-      moduleSpecifier: '@angular/router'
-    }
   ]);
-  CoerceDefaultExport(variableDeclaration);
 
-  for (const { route, path } of options.itemList ?? []) {
-    AddRoute(sourceFile, route, path, 'appRoutes', 1);
-  }
+  return variableDeclaration;
 
 }

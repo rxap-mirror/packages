@@ -41,6 +41,7 @@ export * from './lib/angular/coerce-component-import';
 export * from './lib/angular/coerce-component-input';
 export * from './lib/angular/coerce-component';
 export * from './lib/angular/coerce-layout-routes';
+export * from './lib/angular/coerce-routes';
 export * from './lib/angular/find-parent-route';
 export * from './lib/angular/get-component-class';
 export * from './lib/angular/get-component-decorator-object';
