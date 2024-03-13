@@ -1,11 +1,11 @@
-import {
-  generateFiles,
-  Tree,
-} from '@nx/devkit';
+import { Tree } from '@nx/devkit';
 import { GetProjectSourceRoot } from '@rxap/generator-utilities';
-import { CoerceLayoutRoutes } from '@rxap/ts-morph';
+import {
+  CoerceLayoutRoutes,
+  CoerceRoutes,
+} from '@rxap/ts-morph';
+import { dasherize } from '@rxap/utilities';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
-import { join } from 'path';
 import { InitFeatureGeneratorSchema } from './schema';
 
 export async function initFeatureGenerator(
@@ -18,11 +18,11 @@ export async function initFeatureGenerator(
     throw new Error(`Project source root not found for project ${ options.project }`);
   }
 
-  generateFiles(tree, join(__dirname, 'files'), projectSourceRoot, { name: options.name });
   TsMorphAngularProjectTransform(tree, {
     project: options.project,
-  }, (_, [ sourceFile ]) => {
-    CoerceLayoutRoutes(sourceFile, {
+  }, (_, [ layoutSourceFile, featureSourceFile ]) => {
+    CoerceRoutes(featureSourceFile);
+    CoerceLayoutRoutes(layoutSourceFile, {
       itemList: [
         {
           route: {
@@ -33,7 +33,7 @@ export async function initFeatureGenerator(
         }
       ]
     });
-  }, [ 'app/layout.routes.ts' ]);
+  }, [ 'app/layout.routes.ts?', `feature/${dasherize(options.name)}/routes.ts?` ]);
 }
 
 export default initFeatureGenerator;
