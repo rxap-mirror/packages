@@ -7,6 +7,7 @@ import {
 } from '@rxap/ts-morph';
 import {
   SourceFile,
+  SyntaxKind,
   Writers,
 } from 'ts-morph';
 
@@ -16,15 +17,19 @@ export interface CoerceAppRoutesOptions {
 
 export function CoerceAppRoutes(sourceFile: SourceFile, options: CoerceAppRoutesOptions = {}) {
 
-  const variableDeclaration = CoerceVariableDeclaration(sourceFile, 'appRoutes', {
+  let variableDeclaration = CoerceVariableDeclaration(sourceFile, 'appRoutes', {});
+  if (variableDeclaration.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression).getElements().length === 0) {
+    variableDeclaration.getVariableStatementOrThrow().remove();
+  }
+  variableDeclaration = CoerceVariableDeclaration(sourceFile, 'appRoutes', {
     initializer: w => {
       w.writeLine('[');
       w.write('STATUS_CHECK_ROUTE,');
       Writers.object({
         path: w => w.quote('**'),
-        redirectTo: w => w.quote()
+        redirectTo: w => w.quote('')
       })(w);
-      w.write('];');
+      w.write(']');
     },
     type: 'Route[]'
   });
@@ -41,7 +46,7 @@ export function CoerceAppRoutes(sourceFile: SourceFile, options: CoerceAppRoutes
   CoerceDefaultExport(variableDeclaration);
 
   for (const { route, path } of options.itemList ?? []) {
-    AddRoute(sourceFile, route, path);
+    AddRoute(sourceFile, route, path, 'appRoutes', 1);
   }
 
 }
