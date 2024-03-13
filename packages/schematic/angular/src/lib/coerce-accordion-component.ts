@@ -96,7 +96,7 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
       });
 
       if (!!options.feature && (!options.directory || !options.directory.includes('/'))) {
-        CoerceDefaultClassExport(classDeclaration, true);
+        CoerceDefaultClassExport(classDeclaration);
       }
 
       tsMorphTransform(project, [ sourceFile ], [ classDeclaration ], options);

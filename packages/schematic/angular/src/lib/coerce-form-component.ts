@@ -127,7 +127,7 @@ export function CoerceFormComponentRule(options: CoerceFormComponentOptions) {
       CoerceControlComponentImports(classDeclaration, controlList);
 
       if (!!options.feature && (!options.directory || !options.directory.includes('/'))) {
-        CoerceDefaultClassExport(classDeclaration, true);
+        CoerceDefaultClassExport(classDeclaration);
       }
 
       tsMorphTransform(project, [ sourceFile ], [ classDeclaration ], options);
