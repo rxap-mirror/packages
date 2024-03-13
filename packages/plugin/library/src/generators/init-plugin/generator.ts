@@ -1,21 +1,13 @@
 import {
   getProjects,
   ProjectConfiguration,
-  readNxJson,
   Tree,
-  updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { SkipNonLibraryProject } from '@rxap/generator-utilities';
-import { HasGenerators } from '@rxap/plugin-utilities';
-import {
-  CoerceNxJsonCacheableOperation,
-  CoerceTarget,
-  CoerceTargetDefaultsDependency,
-  GetNxVersion,
-  IsPluginProject,
-  UpdateProjectPackageJson,
-} from '@rxap/workspace-utilities';
+import { IsPluginProject } from '@rxap/workspace-utilities';
+import { initProject } from './init-project';
+import { initWorkspace } from './init-workspace';
 import { InitPluginGeneratorSchema } from './schema';
 
 function skipProject(
@@ -37,59 +29,13 @@ function skipProject(
 
 }
 
-function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
-
-  CoerceTarget(project, 'check-version', {
-    executor: '@rxap/plugin-library:check-version',
-    options: {
-      packageName: 'nx',
-    },
-  });
-
-  if (HasGenerators(tree, project)) {
-    CoerceTarget(project, 'expose-as-schematic', {
-      executor: '@rxap/plugin-library:run-generator',
-      options: {
-        generator: '@rxap/plugin-library:expose-as-schematic',
-      },
-    });
-  }
-
-}
-
-function setGeneralTargetDefaults(tree: Tree) {
-  const nxJson = readNxJson(tree);
-
-  if (!nxJson) {
-    throw new Error('No nx.json found');
-  }
-
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version', 'expose-as-schematic');
-
-  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'expose-as-schematic');
-
-  updateNxJson(tree, nxJson);
-}
-
-async function updatePackageJson(tree: Tree, projectName: string, project: ProjectConfiguration) {
-  await UpdateProjectPackageJson(tree, packageJson => {
-
-    if (packageJson.version === '0.0.1') {
-      const nxVersion = GetNxVersion(tree);
-      const major    = nxVersion.split('.')[0];
-      packageJson.version = `${ major }.0.0`;
-    }
-
-  }, { projectName });
-}
-
 export async function initPluginGenerator(
   tree: Tree,
   options: InitPluginGeneratorSchema,
 ) {
   console.log('plugin library init generator:', options);
 
-  setGeneralTargetDefaults(tree);
+  initWorkspace(tree, options);
 
   if (!options.skipProjects) {
 
@@ -99,13 +45,9 @@ export async function initPluginGenerator(
         continue;
       }
 
-      console.log(`init plugin library project: ${ projectName }`);
-
-      updateProjectTargets(tree, project);
+      await initProject(tree, projectName, project, options);
 
       updateProjectConfiguration(tree, projectName, project);
-
-      await updatePackageJson(tree, projectName, project);
 
     }
 
