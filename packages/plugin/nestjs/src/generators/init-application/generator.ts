@@ -16,6 +16,7 @@ import {
   ApplicationInitProject,
   ApplicationInitWorkspace,
 } from '@rxap/plugin-application';
+import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import {
   CoerceAppGuardProvider,
   CoerceImports,
@@ -877,6 +878,8 @@ export async function initApplicationGenerator(
     }
 
   }
+
+  await DockerGitlabCiGenerator(tree, {});
 }
 
 export default initApplicationGenerator;
