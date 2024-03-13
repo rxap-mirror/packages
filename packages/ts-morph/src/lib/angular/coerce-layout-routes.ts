@@ -21,7 +21,7 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
       w.writeLine('[');
       w.indent(() => {
         Writers.object({
-          path: w => w.quote(),
+          path: w => w.quote(''),
           component: 'LayoutComponent',
           canActivateChild: '[StatusCheckGuard]',
           children: w => {
@@ -29,29 +29,35 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
             w.indent(() => {
               Writers.object({
                 path: w => w.quote('**'),
-                redirectTo: w => w.quote()
+                redirectTo: w => w.quote('')
               })(w);
             });
-            w.write('],');
+            w.write(']');
           },
           providers: w => {
-            w.writeLine('[');
+            w.write('[');
             w.indent(() => {
               w.write('APP_NAVIGATION_PROVIDER');
+              w.write(',');
+              w.newLine();
               w.write('NavigationService');
             });
             w.write(']');
           }
         })(w);
+        w.write(',');
       });
+
       Writers.object({
         path: w => w.quote('**'),
-        redirectTo: w => w.quote()
+        redirectTo: w => w.quote('')
       })(w);
-      w.write('];');
+      w.newLine();
+      w.write(']');
     },
     type: 'Route[]'
   });
+  CoerceDefaultExport(variableDeclaration);
   CoerceImports(sourceFile, [
     {
       namedImports: [ 'LayoutComponent', 'NavigationService' ],
@@ -70,7 +76,6 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
       moduleSpecifier: './app.navigation'
     }
   ]);
-  CoerceDefaultExport(variableDeclaration);
 
   for (const { route, path } of options.itemList ?? []) {
     AddRoute(sourceFile, route, path);
