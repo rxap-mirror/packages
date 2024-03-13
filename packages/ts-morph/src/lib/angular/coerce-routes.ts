@@ -21,13 +21,15 @@ export function CoerceRoutes(sourceFile: SourceFile, options: CoerceRoutesOption
 
   const {
     name = 'ROUTES',
-    initializer = '[]'
+    initializer = `[{ path: '**', redirectTo: '' }]`
   } = options;
 
-  let variableDeclaration = CoerceVariableDeclaration(sourceFile, name, {});
+  // region remove a route declaration if the initializer is an empty array to ensure the initializer is set
+  let variableDeclaration = CoerceVariableDeclaration(sourceFile, name, { initializer: '[]', type: 'Route[]' });
   if (variableDeclaration.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression).getElements().length === 0) {
     variableDeclaration.getVariableStatementOrThrow().remove();
   }
+  // endregion
   variableDeclaration = CoerceVariableDeclaration(sourceFile, name, {
     initializer,
     type: 'Route[]'
