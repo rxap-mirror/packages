@@ -35,6 +35,7 @@ export * from './lib/nest/remove-nest-provider-to-array';
 export * from './lib/angular/add-route';
 export * from './lib/angular/build-route-object';
 export * from './lib/angular/coerce-app-config-provider';
+export * from './lib/angular/coerce-app-navigation';
 export * from './lib/angular/coerce-app-routes';
 export * from './lib/angular/coerce-component-import';
 export * from './lib/angular/coerce-component-input';
