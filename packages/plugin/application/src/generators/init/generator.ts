@@ -39,7 +39,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
 
     if (!options.skipProjects) {
-      initProject(project, projectName, options);
+      initProject(tree, projectName, project, options);
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
