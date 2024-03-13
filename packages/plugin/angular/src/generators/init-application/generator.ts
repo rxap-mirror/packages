@@ -44,14 +44,10 @@ import {
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
-  GetProjectPrefix,
   Strategy,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';
-import {
-  join,
-  relative,
-} from 'path';
+import { join } from 'path';
 import {
   SourceFile,
   Statement,
@@ -60,6 +56,7 @@ import {
 } from 'ts-morph';
 import { SkipNonAngularProject } from '../../lib/skip-project';
 import { InitGeneratorSchema } from '../init/schema';
+import { generateMonolithic } from './generate-monolithic';
 import { InitApplicationGeneratorSchema } from './schema';
 
 function skipProject(tree: Tree, options: InitGeneratorSchema, project: ProjectConfiguration, projectName: string) {
@@ -189,9 +186,8 @@ function updateProjectTargets(
     // ensure the property is an array
     project.targets['build'].options.polyfills = [ 'zone.js' ];
   }
-  if (options.i18n) {
-    CoerceAssets(project.targets['build'].options.polyfills, [ '@angular/localize/init' ]);
-  }
+  // always add the localize init polyfill as some rxap components use the i18n directive
+  CoerceAssets(project.targets['build'].options.polyfills, [ '@angular/localize/init' ]);
   if (options.serviceWorker) {
     if (!project.sourceRoot) {
       throw new Error(`The project ${ project.name } has no source root`);
@@ -804,6 +800,7 @@ export async function initApplicationGenerator(
           },
         ]);
         if (options.monolithic) {
+          providers.push('ProvidePubSub()');
           providers.push('ProvideChangelog()');
           importProvidersFrom.push('MarkdownModule.forRoot()');
           CoerceImports(sourceFile, [
@@ -814,6 +811,10 @@ export async function initApplicationGenerator(
             {
               moduleSpecifier: 'ngx-markdown',
               namedImports: [ 'MarkdownModule' ],
+            },
+            {
+              moduleSpecifier: '@rxap/ngx-pub-sub',
+              namedImports: [ 'ProvidePubSub' ],
             },
           ]);
         }
@@ -881,20 +882,7 @@ export async function initApplicationGenerator(
         coerceLocalazyConfigFile(tree, project);
       }
       if (options.monolithic) {
-        if (!tree.exists(join(project.sourceRoot, 'assets', 'logo.png'))) {
-          if (tree.exists('logo.png')) {
-            tree.write(join(project.sourceRoot, 'assets', 'logo.png'), tree.read('logo.png')!);
-          }
-        }
-        if (options.overwrite) {
-          generateFiles(tree, join(__dirname, 'files', 'monolithic'), project.sourceRoot, {
-            ...options,
-            relativePathToWorkspaceRoot: relative(project.sourceRoot, ''),
-            name: projectName.replace(/^user-interface-/, ''),
-            classify,
-            prefix: GetProjectPrefix(tree, projectName, 'rxap'),
-          });
-        }
+        generateMonolithic(tree, projectName, project, options);
       }
       if (options.serviceWorker) {
         if (options.overwrite || !tree.exists(join(project.sourceRoot, 'manifest.webmanifest'))) {
