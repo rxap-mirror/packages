@@ -3,40 +3,19 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { clone } from '@rxap/utilities';
 import { IsApplicationProject } from '@rxap/workspace-utilities';
 import { stringify } from 'yaml';
 import { GitlabCiGeneratorSchema } from './schema';
 
-const dotLocalazy = {
+const dotLocalazy: any = {
   extends: '.run',
-  tags: [ 'e2-standard-4' ],
   stage: 'localazy',
-  rules: [
-    {
-      if: '$LOCALAZY_WRITE_KEY == null',
-      when: 'never',
-    },
-    {
-      when: 'on_success',
-    },
-  ],
   environment: {
     action: 'prepare',
   },
-  needs: [
-    {
-      job: 'run',
-      artifacts: false,
-    },
-  ],
-};
-
-const localazy = {
-  extends: '.localazy',
-  environment: {
-    name: '$ENVIRONMENT_NAME',
-  },
+  variables: {
+    TARGET: '${PROJECT_NAME}:localazy-upload'
+  }
 };
 
 function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: ProjectConfiguration, projectName: string) {
@@ -58,8 +37,21 @@ export async function gitlabCiGenerator(
   options: GitlabCiGeneratorSchema,
 ) {
 
-  const dockerYaml: any = {
+  if (options.tags) {
+    dotLocalazy.tags = options.tags;
+  }
+
+  const dockerYaml = {
     '.localazy': dotLocalazy,
+    'localazy-upload': {
+      extends: '.localazy',
+      environment: {
+        name: '$ENVIRONMENT_NAME/$PROJECT_NAME',
+      },
+      parallel: {
+        matrix: [] as Record<string, any>,
+      }
+    }
   };
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
@@ -70,15 +62,14 @@ export async function gitlabCiGenerator(
 
     console.log(`add project: ${ projectName }`);
 
-    dockerYaml[`${ projectName }:localazy-upload`] = clone(localazy);
-    dockerYaml[`${ projectName }:localazy-upload`].environment.name += `/${ projectName }`;
+    dockerYaml['localazy-upload'].parallel.matrix.push({
+      PROJECT_NAME: projectName,
+    });
 
   }
 
   const gitlabCiYaml = stringify(dockerYaml);
 
-  console.log('.gitlab/ci/jobs/localazy.yaml');
-  console.log(gitlabCiYaml);
   tree.write('.gitlab/ci/jobs/localazy.yaml', gitlabCiYaml);
 
 }

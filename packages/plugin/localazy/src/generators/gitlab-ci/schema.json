@@ -3,6 +3,14 @@
   "$id": "GitlabCi",
   "title": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "tags": {
+      "alias": "tag",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
   "required": []
 }
