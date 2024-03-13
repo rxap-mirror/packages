@@ -32,10 +32,14 @@ export * from './lib/nest/remove-nest-provider-to-array';
 // endregion
 
 // region angular
+export * from './lib/angular/add-route';
+export * from './lib/angular/build-route-object';
 export * from './lib/angular/coerce-app-config-provider';
 export * from './lib/angular/coerce-component-import';
 export * from './lib/angular/coerce-component-input';
 export * from './lib/angular/coerce-component';
+export * from './lib/angular/coerce-layout-routes';
+export * from './lib/angular/find-parent-route';
 export * from './lib/angular/get-component-class';
 export * from './lib/angular/get-component-decorator-object';
 // endregion

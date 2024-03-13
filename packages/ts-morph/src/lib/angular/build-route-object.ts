@@ -14,10 +14,10 @@ export function BuildRouteObject(route: AngularRoute) {
     path: w => w.quote(route.path),
   };
   if (route.loadChildren) {
-    obj.loadChildren = `() => import('${ route.loadChildren }')`;
+    obj['loadChildren'] = `() => import('${ route.loadChildren }')`;
   }
   if (route.loadComponent) {
-    obj.loadComponent = `() => import('${ route.loadComponent }')`;
+    obj['loadComponent'] = `() => import('${ route.loadComponent }')`;
   }
   return Writers.object(obj);
 }
