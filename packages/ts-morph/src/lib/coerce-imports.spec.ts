@@ -1,11 +1,9 @@
-import { CreateProject } from '@rxap/ts-morph';
 import {
-  IndentationText,
   Project,
-  QuoteKind,
   SourceFile,
 } from 'ts-morph';
 import { CoerceImports } from './coerce-imports';
+import { CreateProject } from './create-project';
 
 describe('CoerceImports', () => {
 

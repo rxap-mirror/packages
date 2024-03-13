@@ -1,8 +1,8 @@
-import { CoerceImports } from '@rxap/ts-morph';
 import {
   SourceFile,
   Writers,
 } from 'ts-morph';
+import { CoerceImports } from '../coerce-imports';
 import {
   CoerceRoutes,
   CoerceRoutesOptions,

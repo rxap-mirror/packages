@@ -1,13 +1,11 @@
-import {
-  CoerceImports,
-  CoerceVariableDeclaration,
-} from '@rxap/ts-morph';
 import { IconConfig } from '@rxap/utilities';
 import {
   SourceFile,
   SyntaxKind,
   Writers,
 } from 'ts-morph';
+import { CoerceImports } from '../coerce-imports';
+import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
 
 export interface AppNavigationItem {
   routerLink: string[],

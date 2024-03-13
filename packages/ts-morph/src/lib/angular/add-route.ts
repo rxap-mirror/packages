@@ -1,12 +1,12 @@
 import {
-  CoerceArrayElement,
-  FindArrayElementByObjectProperty,
-} from '@rxap/ts-morph';
-import {
   ArrayLiteralExpression,
   SourceFile,
   SyntaxKind,
 } from 'ts-morph';
+import {
+  CoerceArrayElement,
+  FindArrayElementByObjectProperty,
+} from '../coerce-array-element';
 import {
   AngularRoute,
   BuildRouteObject,

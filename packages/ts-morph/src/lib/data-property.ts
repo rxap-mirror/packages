@@ -1,9 +1,4 @@
 import {
-  TypeImport,
-  TypeName,
-  TypeNames,
-} from '@rxap/ts-morph';
-import {
   camelize,
   Normalized,
 } from '@rxap/utilities';
@@ -15,6 +10,9 @@ import {
 import {
   NormalizedTypeImport,
   NormalizeTypeImport,
+  TypeImport,
+  TypeName,
+  TypeNames,
 } from './type-import';
 import { WriteType } from './write-type';
 

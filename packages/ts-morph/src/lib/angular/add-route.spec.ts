@@ -1,5 +1,5 @@
-import { CreateProject } from '@rxap/ts-morph';
 import { Project } from 'ts-morph';
+import { CreateProject } from '../create-project';
 import { AddRoute } from './add-route';
 
 describe('AddRoute', () => {

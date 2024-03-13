@@ -1,16 +1,16 @@
 import {
-  CoerceArrayElement,
-  GetComponentClass,
-  IsTypeImport,
-  TypeImport,
-  TypeImportToImportStructure,
-} from '@rxap/ts-morph';
-import { CoerceImports } from '../coerce-imports';
-import {
   ClassDeclaration,
   SourceFile,
 } from 'ts-morph';
+import { CoerceArrayElement } from '../coerce-array-element';
+import { CoerceImports } from '../coerce-imports';
 import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
+import {
+  IsTypeImport,
+  TypeImport,
+  TypeImportToImportStructure,
+} from '../type-import';
+import { GetComponentClass } from './get-component-class';
 import { GetComponentDecoratorObject } from './get-component-decorator-object';
 
 /**

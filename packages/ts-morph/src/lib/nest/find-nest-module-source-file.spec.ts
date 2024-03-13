@@ -1,8 +1,5 @@
-import { CreateProject } from '@rxap/ts-morph';
-import {
-  Project,
-  Writers,
-} from 'ts-morph';
+import { Writers } from 'ts-morph';
+import { CreateProject } from '../create-project';
 import { FindNestModuleSourceFile } from './find-nest-module-source-file';
 
 describe('@rxap/schematics-ts-morph', () => {

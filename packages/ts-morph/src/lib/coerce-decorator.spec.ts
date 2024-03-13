@@ -1,9 +1,6 @@
-import { CreateProject } from '@rxap/ts-morph';
-import {
-  DecoratableNode,
-  Project,
-} from 'ts-morph';
+import { DecoratableNode } from 'ts-morph';
 import { CoerceDecorator } from './coerce-decorator';
+import { CreateProject } from './create-project';
 
 describe('CoerceDecorator', () => {
 

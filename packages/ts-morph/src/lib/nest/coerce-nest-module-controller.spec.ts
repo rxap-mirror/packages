@@ -1,9 +1,8 @@
-import { CreateProject } from '@rxap/ts-morph';
 import {
-  Project,
   PropertyAssignment,
   Writers,
 } from 'ts-morph';
+import { CreateProject } from '../create-project';
 import { CoerceNestModuleController } from './coerce-nest-module-controller';
 import { GetNestModuleMetadata } from './get-nest-module-metadata';
 

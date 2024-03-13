@@ -1,9 +1,9 @@
-import { CreateProject } from '@rxap/ts-morph';
 import {
   Project,
   SourceFile,
   WriterFunction,
 } from 'ts-morph';
+import { CreateProject } from './create-project';
 import { ToMappingObject } from './to-mapping-object';
 
 function toPlain(sourceFile: SourceFile): string {

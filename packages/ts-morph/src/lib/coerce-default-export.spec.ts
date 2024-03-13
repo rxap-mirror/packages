@@ -1,5 +1,5 @@
-import { CoerceDefaultExport } from '@rxap/ts-morph';
 import { Project } from 'ts-morph';
+import { CoerceDefaultExport } from './coerce-default-export';
 import { CoerceVariableDeclaration } from './coerce-variable-declaration';
 import { CreateProject } from './create-project';
 

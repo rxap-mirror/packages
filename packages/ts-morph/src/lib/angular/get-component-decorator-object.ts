@@ -1,10 +1,10 @@
-import { GetComponentClass } from '@rxap/ts-morph';
 import {
   ClassDeclaration,
   ObjectLiteralExpression,
   SourceFile,
   Writers,
 } from 'ts-morph';
+import { GetComponentClass } from './get-component-class';
 
 export function GetComponentDecoratorObject(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration

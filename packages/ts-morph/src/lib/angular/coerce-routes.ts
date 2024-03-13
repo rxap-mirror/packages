@@ -1,15 +1,13 @@
 import {
-  AddRoute,
-  AngularRoute,
-  CoerceDefaultExport,
-  CoerceImports,
-} from '@rxap/ts-morph';
-import {
   SourceFile,
   SyntaxKind,
   WriterFunction,
 } from 'ts-morph';
+import { CoerceDefaultExport } from '../coerce-default-export';
+import { CoerceImports } from '../coerce-imports';
 import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
+import { AddRoute } from './add-route';
+import { AngularRoute } from './build-route-object';
 
 export interface CoerceRoutesOptions {
   name?: string;

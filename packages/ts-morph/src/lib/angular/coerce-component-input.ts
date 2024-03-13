@@ -1,9 +1,3 @@
-import { CoerceDecorator } from '@rxap/ts-morph';
-import { CoerceSetAccessorDeclaration } from '../coerce-accessor-declaration';
-import { CoerceClassProperty } from '../coerce-class-property';
-import {
-  CoerceImports,
-} from '../coerce-imports';
 import {
   ClassDeclaration,
   DecoratableNode,
@@ -17,11 +11,14 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
+import { CoerceSetAccessorDeclaration } from '../coerce-accessor-declaration';
+import { CoerceDecorator } from '../coerce-decorator';
+import { CoerceImports } from '../coerce-imports';
 import { CoercePropertyDeclaration } from '../coerce-property-declaration';
 import { HasConstructorParameter } from '../has-constructor-parameter';
-import { GetComponentClass } from './get-component-class';
 import { TypeImport } from '../type-import';
 import { WriteType } from '../write-type';
+import { GetComponentClass } from './get-component-class';
 
 export interface ComponentInputDefinition {
   alias?: string;
