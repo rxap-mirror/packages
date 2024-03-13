@@ -9,7 +9,19 @@
     "schematic-open-api",
     "schematic-ts-morph",
     "schematic-utilities",
-    "schematic-xml-parser"
+    "schematic-xml-parser",
+    "plugin-angular",
+    "plugin-application",
+    "plugin-docker",
+    "plugin-gitlab-ci",
+    "plugin-gpt",
+    "plugin-library",
+    "plugin-localazy",
+    "plugin-nestjs",
+    "plugin-open-api",
+    "plugin-utilities",
+    "plugin-web3-storage",
+    "plugin-workspace"
   ],
   "targets": {
     "build": {
