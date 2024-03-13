@@ -6,8 +6,5 @@
   "targets": {},
   "tags": [
     "open-api"
-  ],
-  "implicitDependencies": [
-    "service-app-angular-accordion"
   ]
 }

@@ -101,8 +101,6 @@
       <project name="schematic-ts-morph" file="file://$PROJECT_DIR$/packages/schematic/ts-morph/project.json" />
       <project name="schematic-utilities" file="file://$PROJECT_DIR$/packages/schematic/utilities/project.json" />
       <project name="schematic-xml-parser" file="file://$PROJECT_DIR$/packages/schematic/xml-parser/project.json" />
-      <project name="service-app-angular-accordion" file="file://$PROJECT_DIR$/applications/service/app/angular/accordion/project.json" />
-      <project name="service-app-angular-table" file="file://$PROJECT_DIR$/demos/service/app/angular/table/project.json" />
       <project name="service-changelog" file="file://$PROJECT_DIR$/applications/service/changelog/project.json" />
       <project name="service-configuration" file="file://$PROJECT_DIR$/applications/service/configuration/project.json" />
       <project name="service-status" file="file://$PROJECT_DIR$/applications/service/status/project.json" />
