@@ -13,7 +13,10 @@ import {
   CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
-import { ApplicationInitGenerator } from '@rxap/plugin-application';
+import {
+  ApplicationInitProject,
+  ApplicationInitWorkspace,
+} from '@rxap/plugin-application';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
 import {
@@ -625,6 +628,8 @@ export async function initApplicationGenerator(
   options.oauth = options.oauth || options.authentik;
   console.log('angular application init generator:', options);
 
+  await ApplicationInitWorkspace(tree, options);
+
   await AddPackageJsonDependency(tree, '@mdi/angular-material', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/ngx-bootstrap', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, 'ngx-logger', 'latest', { soft: true });
@@ -745,12 +750,7 @@ export async function initApplicationGenerator(
 
       console.log(`init angular application project: ${ projectName }`);
 
-      await ApplicationInitGenerator(tree, {
-        ...options,
-        dockerGitlabCi: false,
-        projects: [ projectName ],
-        skipProjects: false,
-      });
+      ApplicationInitProject(tree, projectName, project, options);
 
       updateProjectTargets(project, options);
       updateTags(project, options);
@@ -915,12 +915,6 @@ export async function initApplicationGenerator(
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
     }
-  } else {
-    await ApplicationInitGenerator(tree, {
-      ...options,
-      projects: [],
-      skipProjects: true,
-    });
   }
 
   await LocalazyGitlabCiGenerator(tree, {});
