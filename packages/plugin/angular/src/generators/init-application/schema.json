@@ -65,7 +65,7 @@
     },
     "cleanup": {
       "type": "boolean",
-      "default": false,
+      "default": true,
       "description": "Whether to cleanup files"
     },
     "monolithic": {
