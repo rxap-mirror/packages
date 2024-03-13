@@ -7,4 +7,5 @@ export interface InitGeneratorSchema {
   skipProjects?: boolean;
   authentik?: boolean;
   minio?: boolean;
+  dockerGitlabCi?: boolean;
 }

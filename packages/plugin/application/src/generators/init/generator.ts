@@ -187,6 +187,11 @@ function updateTargetDefaults(tree: Tree) {
 }
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
+  options.overwrite ??= false;
+  options.skipProjects ??= false;
+  options.authentik ??= false;
+  options.minio ??= false;
+  options.dockerGitlabCi ??= true;
   console.log('application init generator:', options);
 
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
@@ -225,7 +230,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
 
     if (!options.skipProjects) {
-      console.log(`init project: ${ projectName }`);
+      console.log(`init application project: ${ projectName }`);
 
       updateTags(project, options);
 
@@ -237,7 +242,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   }
 
-  await DockerGitlabCiGenerator(tree, options as any);
+  if (options.dockerGitlabCi) {
+    await DockerGitlabCiGenerator(tree, {});
+  }
 
 }
 

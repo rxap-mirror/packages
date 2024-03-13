@@ -30,6 +30,11 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to initialize minio docker compose setup"
+    },
+    "dockerGitlabCi": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to generate gitlab-ci docker jobs"
     }
   },
   "required": []
