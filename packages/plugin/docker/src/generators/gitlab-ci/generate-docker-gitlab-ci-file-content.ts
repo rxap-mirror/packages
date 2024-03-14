@@ -37,7 +37,20 @@ const dotDocker = {
       when: 'never',
     },
     {
+      if: '$CI_COMMIT_TAG =~ /^v\\d+\\.\\d+\\.\\d+$/',
       when: 'on_success',
+    },
+    {
+      if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH',
+      when: 'on_success',
+    },
+    {
+      if: '$CI_DEFAULT_BRANCH == $CI_BRANCH_NAME',
+      when: 'on_success',
+    },
+    {
+      when: 'manual',
+      allow_failure: true,
     },
   ],
   needs: [ 'run' ],

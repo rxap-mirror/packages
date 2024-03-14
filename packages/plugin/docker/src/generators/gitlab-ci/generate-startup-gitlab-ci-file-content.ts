@@ -43,7 +43,7 @@ const dotStartup = {
     },
     {
       if: '$CI_COMMIT_TAG =~ /^v\\d+\\.\\d+\\.\\d+$/',
-      when: 'always',
+      when: 'on_success',
     },
     {
       when: 'manual',
