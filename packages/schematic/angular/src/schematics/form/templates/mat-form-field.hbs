@@ -1,7 +1,7 @@
 
 <mat-form-field{{#each control.formField.directiveList}} {{this.name}}{{/each}}{{#if control.formField.cssClass}} {{> cssClass cssClass=control.formField.cssClass}}{{/if}}>
   {{#if control.formField.label}}
-  <mat-label>{{control.formField.label}}</mat-label>
+  <mat-label i18n>{{control.formField.label}}</mat-label>
   {{/if}}
 {{#if control.formField.prefixButton}}
   {{#if control.formField.prefixButton.icon}}
