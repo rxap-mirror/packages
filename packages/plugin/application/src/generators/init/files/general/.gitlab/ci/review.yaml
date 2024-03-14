@@ -6,7 +6,15 @@ include:
   - local: .gitlab/ci/jobs/e2e.yaml
   - local: .gitlab/ci/jobs/component-test.yaml
   - template: Jobs/SAST.latest.gitlab-ci.yml
+    rules:
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+        when: always
+      - when: never
   - template: Jobs/Secret-Detection.gitlab-ci.yml
+    rules:
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+        when: always
+      - when: never
   - local: .gitlab/ci/jobs/writerside.yaml
 
 stages:
