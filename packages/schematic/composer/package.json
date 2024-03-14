@@ -1,5 +1,5 @@
 {
-  "version": "16.0.2-dev.1",
+  "version": "16.1.0-dev.0",
   "name": "@rxap/schematic-composer",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,6 +11,7 @@
     "@rxap/schematics-ts-morph": "^16.1.0-dev.23",
     "@rxap/schematics-utilities": "^16.0.1-dev.3",
     "@rxap/utilities": "^16.1.0-dev.7",
+    "@rxap/workspace-utilities": "^16.1.0-dev.3",
     "colors": "^1.4.0",
     "tslib": "2.6.2"
   },
@@ -33,8 +34,56 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@rxap/plugin-angular",
+        "version": "16.2.0-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-application",
+        "version": "16.1.1-dev.3"
+      },
+      {
+        "package": "@rxap/plugin-docker",
+        "version": "16.1.0-dev.4"
+      },
+      {
+        "package": "@rxap/plugin-gitlab-ci",
+        "version": "16.1.0"
+      },
+      {
+        "package": "@rxap/plugin-gpt",
+        "version": "16.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-library",
+        "version": "16.1.0-dev.6"
+      },
+      {
+        "package": "@rxap/plugin-localazy",
+        "version": "16.1.1-dev.1"
+      },
+      {
+        "package": "@rxap/plugin-nestjs",
+        "version": "16.2.0-dev.3"
+      },
+      {
+        "package": "@rxap/plugin-open-api",
+        "version": "16.1.1-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.1.1-dev.3"
+      },
+      {
+        "package": "@rxap/plugin-web3-storage",
+        "version": "16.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-workspace",
+        "version": "16.2.0-dev.1"
+      },
+      {
         "package": "@rxap/schematic-angular",
-        "version": "16.2.0-dev.46"
+        "version": "16.2.0-dev.47"
       },
       {
         "package": "@rxap/schematic-nestjs",
@@ -59,6 +108,10 @@
       {
         "package": "@rxap/utilities",
         "version": "16.1.0-dev.7"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "16.1.0-dev.3"
       }
     ]
   },

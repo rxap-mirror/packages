@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.18...@rxap/ts-morph@1.1.0-dev.19) (2024-03-14)
+
+### Bug Fixes
+
+- initialize the routes var ([a76a951](https://gitlab.com/rxap/packages/commit/a76a951530d494dcd982ee31a5adcc9e18f7a29b))
+- resolve syntax errors ([ebd11fd](https://gitlab.com/rxap/packages/commit/ebd11fd86e5929929ba5801d4e92bf82f4599a57))
+- use current route var name ([9950d00](https://gitlab.com/rxap/packages/commit/9950d00216cef4b52f2341271e950e8e06dd95e2))
+- use new angular and nestjs injection concept ([be23f6a](https://gitlab.com/rxap/packages/commit/be23f6ad51b0e6268eb4f593304177236ddbd83a))
+
+### Features
+
+- add CoerceAppNavigations function ([92013b9](https://gitlab.com/rxap/packages/commit/92013b9e241af74d355528929cfd5018486d381c))
+- add CoerceAppRoutes function ([175f1fb](https://gitlab.com/rxap/packages/commit/175f1fb0d24280d73d0cea2d81583ea10c54e448))
+- add CoerceLayoutRoutes function ([9523ccb](https://gitlab.com/rxap/packages/commit/9523ccb4702e1c1237358ad9149c3edd5febca9a))
+
 # [1.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.17...@rxap/ts-morph@1.1.0-dev.18) (2024-03-11)
 
 ### Bug Fixes

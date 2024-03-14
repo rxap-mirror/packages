@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.1-dev.2...@rxap/plugin-utilities@16.1.1-dev.3) (2024-03-14)
+
+### Bug Fixes
+
+- resolve project dependencies recursive ([6ea3f34](https://gitlab.com/rxap/packages/commit/6ea3f34a1d90f2d1a8a1379c6988889b3cb8ee9b))
+
 ## [16.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.1-dev.1...@rxap/plugin-utilities@16.1.1-dev.2) (2024-03-11)
 
 ### Bug Fixes

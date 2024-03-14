@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@16.0.2-dev.1...@rxap/schematic-composer@16.1.0-dev.0) (2024-03-14)
+
+### Bug Fixes
+
+- use the project root instead of source root ([21cc75f](https://gitlab.com/rxap/packages/commit/21cc75fb02a0ae5bbe08c2b0b5ff1cd3c14335a0))
+
+### Features
+
+- support project detection ([db4e7b6](https://gitlab.com/rxap/packages/commit/db4e7b66c799adaddea874725aac21607748b2ff))
+
 ## [16.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@16.0.2-dev.0...@rxap/schematic-composer@16.0.2-dev.1) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/schematic-composer

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.1-dev.0...@rxap/json-schema-to-typescript@16.0.1-dev.1) (2024-03-14)
+
+### Bug Fixes
+
+- ensure the async is awaited ([0af9c9d](https://gitlab.com/rxap/packages/commit/0af9c9def57cdaee078b235b1d5a99de79839c22))
+- ensure the imports are added after the interface and type creation ([434951f](https://gitlab.com/rxap/packages/commit/434951f045e5672eaf3545a3cb817cb707c4cf2e))
+
 ## [16.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.0...@rxap/json-schema-to-typescript@16.0.1-dev.0) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/json-schema-to-typescript

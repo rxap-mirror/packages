@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.2...@rxap/plugin-nestjs@16.2.0-dev.3) (2024-03-14)
+
+### Bug Fixes
+
+- add missing docker gitlab ci generator call ([bb3da1b](https://gitlab.com/rxap/packages/commit/bb3da1b1ce5ca3d207b93bae131753d35aadbd55))
+- api prefix processing ([eed2206](https://gitlab.com/rxap/packages/commit/eed2206e85f077adc9ba29ad1208fe5ac2141b1a))
+
 # [16.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.1...@rxap/plugin-nestjs@16.2.0-dev.2) (2024-03-11)
 
 ### Bug Fixes

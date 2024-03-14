@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.0...@rxap/plugin-workspace@16.2.0-dev.1) (2024-03-14)
+
+### Bug Fixes
+
+- set nest library publishable default to false ([d478d10](https://gitlab.com/rxap/packages/commit/d478d10faf2e3bbc96f00c97eb3709eb956231e1))
+
 # [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.1-dev.0...@rxap/plugin-workspace@16.2.0-dev.0) (2024-03-11)
 
 ### Features

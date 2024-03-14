@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.1-dev.3...@rxap/plugin-angular@16.2.0-dev.0) (2024-03-14)
+
+### Bug Fixes
+
+- enable cleanup on default ([9943cbf](https://gitlab.com/rxap/packages/commit/9943cbffc23dcd9208dc58bf9304419c3fa6be19))
+- explicit trigger gitlab ci generators ([e9a7c4c](https://gitlab.com/rxap/packages/commit/e9a7c4cbb8876155bd16fd01558dfdeed22540c8))
+- only execute application init logic ([f7ae4e2](https://gitlab.com/rxap/packages/commit/f7ae4e298f815c4a8116e725276d568bec2a9e14))
+- support custom theme extensions ([9e3bf90](https://gitlab.com/rxap/packages/commit/9e3bf90f9abf37ad6ce99b04184f668ddb4f5601))
+- use utility function ([590a715](https://gitlab.com/rxap/packages/commit/590a71551fb37a4e8d842e661da6f1698458a5a1))
+
+### Features
+
+- add CoerceLayoutRoutes function ([9523ccb](https://gitlab.com/rxap/packages/commit/9523ccb4702e1c1237358ad9149c3edd5febca9a))
+
 ## [16.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.1-dev.2...@rxap/plugin-angular@16.1.1-dev.3) (2024-03-11)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.1-dev.0...@rxap/plugin-localazy@16.1.1-dev.1) (2024-03-14)
+
+### Bug Fixes
+
+- update to the new localazy ci concept ([21dbf31](https://gitlab.com/rxap/packages/commit/21dbf318e629b86f155bdb8ca44ae4048a7dbae1))
+
 ## [16.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0...@rxap/plugin-localazy@16.1.1-dev.0) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/plugin-localazy

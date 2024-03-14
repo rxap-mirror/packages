@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.5...@rxap/plugin-library@16.1.0-dev.6) (2024-03-14)
+
+### Bug Fixes
+
+- add missing nx json write ([4de8ffc](https://gitlab.com/rxap/packages/commit/4de8ffc544f169c0a08a087d4b4db207053f7e07))
+
 # [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.4...@rxap/plugin-library@16.1.0-dev.5) (2024-03-11)
 
 ### Bug Fixes

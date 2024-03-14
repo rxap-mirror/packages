@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.1-dev.2...@rxap/plugin-application@16.1.1-dev.3) (2024-03-14)
+
+### Bug Fixes
+
+- add dockerGitlabCi option ([baa24ab](https://gitlab.com/rxap/packages/commit/baa24abd4212597bc0361a49f74c4d6c0c987a09))
+- add missing package ([dd5feb5](https://gitlab.com/rxap/packages/commit/dd5feb55bd22b14242a77fd6402d9b3a0e073c44))
+
 ## [16.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.1-dev.1...@rxap/plugin-application@16.1.1-dev.2) (2024-03-11)
 
 ### Bug Fixes
