@@ -314,7 +314,7 @@ function coerceNxJson(tree: Tree) {
   CoerceNxJsonGenerators(nxJson, '@nx/nest:library', {
     'directory': 'nest',
     'tags': 'nest',
-    'publishable': true,
+    'publishable': false,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/angular:directive', {
     'standalone': true,
