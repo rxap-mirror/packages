@@ -5,6 +5,7 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { SkipNonLibraryProject } from '@rxap/generator-utilities';
+import { CoerceArrayItems } from '@rxap/utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
@@ -27,6 +28,11 @@ function skipProject(
 }
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('library init generator:', options);
 
   initWorkspace(tree, options);

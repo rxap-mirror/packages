@@ -1,4 +1,5 @@
 export interface InitGeneratorSchema {
+  project?: string;
   dockerImageRegistry?: string;
   dockerImageSuffix?: string;
   dockerImageName?: string;

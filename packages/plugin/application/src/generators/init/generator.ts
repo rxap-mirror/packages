@@ -6,6 +6,7 @@ import {
 } from '@nx/devkit';
 import { SkipNonApplicationProject } from '@rxap/generator-utilities';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
+import { CoerceArrayItems } from '@rxap/utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
@@ -28,6 +29,11 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   options.skipProjects ??= false;
   options.authentik ??= false;
   options.minio ??= false;
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('application init generator:', options);
 
   await initWorkspace(tree, options);
