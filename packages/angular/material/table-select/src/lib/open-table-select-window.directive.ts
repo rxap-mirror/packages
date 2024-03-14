@@ -120,7 +120,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     }
     this.selected = selected ?? [];
     this._hasOpenWindow = false;
-    this.selectedChange.emit(selected);
+    this.selectedChange.emit(this.selected);
   }
 
   public checkInputs() {
