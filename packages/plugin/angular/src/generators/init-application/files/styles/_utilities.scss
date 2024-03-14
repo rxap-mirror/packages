@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use 'palette' as palette;
+@use 'custom' as custom;
 
 @import "table";
 @import 'loading-animation';
@@ -22,10 +23,12 @@
 
 @mixin density($theme) {
   @include mat.all-component-densities($theme);
+  @include custom.density($theme);
 }
 
 @mixin typography($theme) {
   @include mat.all-component-typographies($theme);
+  @include custom.typography($theme);
 }
 
 @mixin base-theme() {
@@ -64,6 +67,7 @@
 
 @mixin body-theme($theme) {
   @include colors($theme);
+  @include custom.theme($theme);
 }
 
 @mixin init-theme(
