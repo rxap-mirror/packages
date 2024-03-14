@@ -13,9 +13,9 @@ describe('CoerceLayoutRouters', () => {
   it('should coerce layout routers', () => {
     const sourceFile = project.createSourceFile('layout.routes.ts');
     CoerceLayoutRoutes(sourceFile);
-    expect(sourceFile.getText()).toEqual(`import { LayoutComponent, NavigationService } from '@rxap/layout';
+    expect(sourceFile.getText()).toEqual(`import { Route } from '@angular/router';
+import { LayoutComponent, NavigationService } from '@rxap/layout';
 import { StatusCheckGuard } from '@rxap/ngx-status-check';
-import { Route } from '@angular/router';
 import { APP_NAVIGATION_PROVIDER } from './app.navigation';
 
 export const ROUTES: Route[] = [
