@@ -1,39 +1,83 @@
 {
+  "version": "16.0.1-dev.0",
   "name": "@rxap/ngx-material-authentication",
-  "version": "16.0.0",
-  "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0"
-  },
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/authentication"
+  "peerDependencies": {
+    "@angular/animations": "^16.1.4",
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4",
+    "@angular/forms": "^16.1.4",
+    "@angular/material": "^16.1.4",
+    "@angular/router": "^16.1.4",
+    "@rxap/authentication": "^16.0.1-dev.0",
+    "@rxap/config": "^16.0.1-dev.1",
+    "@rxap/forms": "^16.0.1-dev.1",
+    "@rxap/material-form-system": "^16.0.1-dev.4",
+    "@rxap/pattern": "^1.1.1-dev.0",
+    "@rxap/rxjs": "^1.1.1-dev.1",
+    "@rxap/utilities": "^16.1.0-dev.7",
+    "rxjs": "^7.8.1"
   },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "material",
-    "angular-material-authentication"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/authentication",
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "license": "GPL-3.0-or-later",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/authentication",
+  "keywords": [
+    "angular",
+    "angular-material-authentication",
+    "material",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/authentication",
+        "version": "16.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/config",
+        "version": "16.0.1-dev.1"
+      },
+      {
+        "package": "@rxap/forms",
+        "version": "16.0.1-dev.1"
+      },
+      {
+        "package": "@rxap/material-form-system",
+        "version": "16.0.1-dev.4"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.1.1-dev.0"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.1.1-dev.1"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.1.0-dev.7"
+      }
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../../dist/packages/angular/material/authentication"
+  },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/material/authentication"
   },
-  "author": {
-    "name": "Merzough Münker",
-    "email": "mmuenker@digitaix.com"
-  }
+  "sideEffects": false
 }

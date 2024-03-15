@@ -9628,8 +9628,20 @@ __metadata:
   dependencies:
     tslib: ^2.3.0
   peerDependencies:
-    "@angular/common": ^16.1.0
-    "@angular/core": ^16.1.0
+    "@angular/animations": ^16.1.4
+    "@angular/common": ^16.1.4
+    "@angular/core": ^16.1.4
+    "@angular/forms": ^16.1.4
+    "@angular/material": ^16.1.4
+    "@angular/router": ^16.1.4
+    "@rxap/authentication": ^16.0.1-dev.0
+    "@rxap/config": ^16.0.1-dev.1
+    "@rxap/forms": ^16.0.1-dev.1
+    "@rxap/material-form-system": ^16.0.1-dev.4
+    "@rxap/pattern": ^1.1.1-dev.0
+    "@rxap/rxjs": ^1.1.1-dev.1
+    "@rxap/utilities": ^16.1.0-dev.7
+    rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
 
@@ -9871,7 +9883,7 @@ __metadata:
     "@rxap/generator-utilities": ^1.1.1-dev.1
     "@rxap/plugin-application": ^16.1.1-dev.3
     "@rxap/plugin-docker": ^16.1.0-dev.5
-    "@rxap/plugin-library": ^16.1.0-dev.7
+    "@rxap/plugin-library": ^16.1.0-dev.8
     "@rxap/plugin-localazy": ^16.1.1-dev.1
     "@rxap/plugin-utilities": ^16.1.1-dev.3
     "@rxap/ts-morph": ^1.1.0-dev.20
@@ -9959,7 +9971,7 @@ __metadata:
     "@rxap/generator-utilities": ^1.1.1-dev.1
     "@rxap/node-utilities": ^1.2.0-dev.0
     "@rxap/plugin-utilities": ^16.1.1-dev.3
-    "@rxap/ts-morph": ^1.1.0-dev.19
+    "@rxap/ts-morph": ^1.1.0-dev.20
     "@rxap/utilities": ^16.1.0-dev.7
     "@rxap/workspace-utilities": ^16.1.0-dev.3
     colors: ^1.4.0

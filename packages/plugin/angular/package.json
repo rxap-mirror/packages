@@ -1,5 +1,5 @@
 {
-  "version": "16.2.0-dev.1",
+  "version": "16.2.0-dev.2",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -12,7 +12,7 @@
     "@rxap/generator-utilities": "^1.1.1-dev.1",
     "@rxap/plugin-application": "^16.1.1-dev.3",
     "@rxap/plugin-docker": "^16.1.0-dev.5",
-    "@rxap/plugin-library": "^16.1.0-dev.7",
+    "@rxap/plugin-library": "^16.1.0-dev.8",
     "@rxap/plugin-localazy": "^16.1.1-dev.1",
     "@rxap/plugin-utilities": "^16.1.1-dev.3",
     "@rxap/ts-morph": "^1.1.0-dev.20",
@@ -63,7 +63,7 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.1.0-dev.7"
+        "version": "16.1.0-dev.8"
       },
       {
         "package": "@rxap/plugin-localazy",
