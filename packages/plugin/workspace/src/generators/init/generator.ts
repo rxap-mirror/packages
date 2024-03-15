@@ -301,6 +301,7 @@ function coerceNxJson(tree: Tree) {
     'tags': 'angular,ngx',
     'prefix': 'rxap',
     'skipModule': true,
+    buildable: false,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/plugin:plugin', {
     'directory': 'plugin',
@@ -310,11 +311,13 @@ function coerceNxJson(tree: Tree) {
   CoerceNxJsonGenerators(nxJson, '@nx/js:library', {
     'unitTestRunner': 'jest',
     'publishable': false,
+    buildable: false,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/nest:library', {
     'directory': 'nest',
     'tags': 'nest',
     'publishable': false,
+    buildable: false,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/angular:directive', {
     'standalone': true,
