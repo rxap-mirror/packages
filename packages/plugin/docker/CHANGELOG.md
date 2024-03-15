@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.1.0-dev.4...@rxap/plugin-docker@16.1.0-dev.5) (2024-03-15)
+
+### Bug Fixes
+
+- limit docker image builds ([243db99](https://gitlab.com/rxap/packages/commit/243db992aac34032f97ad033c099aca3c5df18e9))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.1.0-dev.3...@rxap/plugin-docker@16.1.0-dev.4) (2024-03-14)
 
 **Note:** Version bump only for package @rxap/plugin-docker

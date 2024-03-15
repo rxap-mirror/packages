@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.6...@rxap/plugin-library@16.1.0-dev.7) (2024-03-15)
+
+### Features
+
+- exclude marked files from index export ([51f2afc](https://gitlab.com/rxap/packages/commit/51f2afc3f30c87e391d7e6fcfc430db411da9d21))
+
 # [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.5...@rxap/plugin-library@16.1.0-dev.6) (2024-03-14)
 
 ### Bug Fixes

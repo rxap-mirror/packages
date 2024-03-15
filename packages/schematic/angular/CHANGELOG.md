@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.48](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.47...@rxap/schematic-angular@16.2.0-dev.48) (2024-03-15)
+
+### Bug Fixes
+
+- add missing i18n directive ([bc8fd02](https://gitlab.com/rxap/packages/commit/bc8fd025db8430ebd746af9b53fc98f11b8cd5d3))
+- ensure the formField css class is processed ([7c12f90](https://gitlab.com/rxap/packages/commit/7c12f90159dffb4127204df3cbfc2d5b6e58cdcb))
+
 # [16.2.0-dev.47](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.46...@rxap/schematic-angular@16.2.0-dev.47) (2024-03-14)
 
 **Note:** Version bump only for package @rxap/schematic-angular

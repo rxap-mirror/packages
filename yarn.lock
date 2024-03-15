@@ -10057,7 +10057,7 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.1-dev.1
     "@rxap/plugin-application": ^16.1.1-dev.3
-    "@rxap/plugin-library": ^16.1.0-dev.6
+    "@rxap/plugin-library": ^16.1.0-dev.7
     "@rxap/plugin-utilities": ^16.1.1-dev.3
     "@rxap/utilities": ^16.1.0-dev.7
     "@rxap/workspace-utilities": ^16.1.0-dev.3
