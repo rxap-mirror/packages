@@ -78,8 +78,6 @@ export class TypescriptInterfaceGenerator {
     return Writers.intersectionType(first, second, ...array);
   }
 
-  private importList: Array<{ name: string, moduleSpecifier: string }> = [];
-
   constructor(
     private readonly schema: JSONSchema,
     private readonly options: TypescriptInterfaceGeneratorOptions = {},
@@ -114,19 +112,7 @@ export class TypescriptInterfaceGenerator {
       throw new Error('If buildSync is called, bundledSchema must be provided!');
     }
 
-    this.importList = [];
-
-    const sourceFile = this.addType(this.bundledSchema, name);
-
-    for (const importItem of this.importList) {
-      CoerceImports(sourceFile,{
-        isTypeOnly: true,
-        moduleSpecifier: importItem.moduleSpecifier,
-        namedImports: [ importItem.name ],
-      });
-    }
-
-    return sourceFile;
+    return this.addType(this.bundledSchema, name);
 
   }
 
@@ -141,16 +127,26 @@ export class TypescriptInterfaceGenerator {
 
     let sourceFile: SourceFile;
 
+    const importList: Array<{ name: string; moduleSpecifier: string }> = [];
+
     if (resolvedSchema.type === 'object' && resolvedSchema.properties) {
-      sourceFile = this.addInterface(resolvedSchema, name);
+      sourceFile = this.addInterface(resolvedSchema, name, importList);
     } else {
-      sourceFile = this.addTypeAlias(resolvedSchema, name);
+      sourceFile = this.addTypeAlias(resolvedSchema, name, importList);
+    }
+
+    for (const importItem of importList) {
+      CoerceImports(sourceFile,{
+        isTypeOnly: true,
+        moduleSpecifier: importItem.moduleSpecifier,
+        namedImports: [ importItem.name ],
+      });
     }
 
     return sourceFile;
   }
 
-  private addTypeAlias(schema: JSONSchema, name: string): SourceFile {
+  private addTypeAlias(schema: JSONSchema, name: string, importList: Array<{ name: string; moduleSpecifier: string }>): SourceFile {
     const filePath = joinPath(
       this.options.basePath,
       `${ this.getFileName(name) }.ts`,
@@ -164,7 +160,7 @@ export class TypescriptInterfaceGenerator {
 
     sourceFile = this.project.createSourceFile(filePath);
 
-    const type = this.propertyTypeWriteFunction(sourceFile, schema, name);
+    const type = this.propertyTypeWriteFunction(sourceFile, schema, name, importList);
 
     if (!type) {
       throw new Error('Could not create a write function for the type!');
@@ -190,7 +186,7 @@ export class TypescriptInterfaceGenerator {
     return sourceFile;
   }
 
-  private addInterface(schema: JSONSchema, name: string): SourceFile {
+  private addInterface(schema: JSONSchema, name: string, importList: Array<{ name: string; moduleSpecifier: string }>): SourceFile {
     const filePath = joinPath(
       this.options.basePath,
       `${ this.getFileName(name) }.ts`,
@@ -220,6 +216,7 @@ export class TypescriptInterfaceGenerator {
           key,
           property,
           TypescriptInterfaceGenerator.isRequired(schema, key),
+          importList,
         ),
       );
     }
@@ -260,10 +257,11 @@ export class TypescriptInterfaceGenerator {
     key: string,
     property: JSONSchema,
     required: boolean,
+    importList: Array<{ name: string; moduleSpecifier: string }>
   ): OptionalKind<PropertySignatureStructure> {
     const propertyStructure: OptionalKind<PropertySignatureStructure> = {
       name: TypescriptInterfaceGenerator.coercePropertyKey(key),
-      type: this.propertyTypeWriteFunction(currentFile, property, key),
+      type: this.propertyTypeWriteFunction(currentFile, property, key, importList),
       hasQuestionToken: !required,
     };
 
@@ -295,6 +293,7 @@ export class TypescriptInterfaceGenerator {
     currentFile: SourceFile,
     schema: JSONSchema,
     propertyName: string,
+    importList: Array<{ name: string; moduleSpecifier: string }>
   ): WriterFunction | string {
     // convert to any to support non-standard types like int, unknown, file, etc.
     switch (schema.type as any) {
@@ -357,7 +356,7 @@ export class TypescriptInterfaceGenerator {
           if (!Array.isArray(items) && items !== true) {
             return (writer) => {
               writer.write('Array<');
-              const type = this.propertyTypeWriteFunction(currentFile, items, propertyName);
+              const type = this.propertyTypeWriteFunction(currentFile, items, propertyName, importList);
 
               if (typeof type === 'string') {
                 writer.write(type);
@@ -394,6 +393,7 @@ export class TypescriptInterfaceGenerator {
                   key,
                   property,
                   TypescriptInterfaceGenerator.isRequired(schema, key),
+                  importList,
                 ),
               );
             }
@@ -408,7 +408,7 @@ export class TypescriptInterfaceGenerator {
               schema.patternProperties as Record<string, JSONSchema>,
             )) {
               typeList.push(
-                this.propertyTypeWriteFunction(currentFile, property, propertyName),
+                this.propertyTypeWriteFunction(currentFile, property, propertyName, importList),
               );
             }
             if (schema.properties && Object.keys(schema.properties).length) {
@@ -431,6 +431,7 @@ export class TypescriptInterfaceGenerator {
                 currentFile,
                 schema.additionalProperties,
                 propertyName,
+                importList
               );
             }
             if (schema.properties && Object.keys(schema.properties).length) {
@@ -453,7 +454,7 @@ export class TypescriptInterfaceGenerator {
             this.options.addImports &&
             currentFile.getBaseNameWithoutExtension() !== this.getFileName(name)
           ) {
-            this.importList.push({
+            importList.push({
               name: this.buildName(name),
               moduleSpecifier: `./${ this.getFileName(name) }`,
             });
@@ -465,7 +466,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.oneOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList));
             }
           }
 
@@ -475,7 +476,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.anyOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList));
             }
           }
 
@@ -485,7 +486,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.allOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList));
             }
           }
 
@@ -537,6 +538,7 @@ export class TypescriptInterfaceGenerator {
                   type: type as any,
                 },
                 propertyName,
+                importList
               ),
             );
           }
