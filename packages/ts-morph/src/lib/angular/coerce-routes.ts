@@ -41,7 +41,7 @@ export function CoerceRoutes(sourceFile: SourceFile, options: CoerceRoutesOption
   ]);
 
   for (const { route, path } of options.itemList ?? []) {
-    AddRoute(sourceFile, route, path);
+    AddRoute(sourceFile, route, path, name);
   }
 
   return variableDeclaration;
