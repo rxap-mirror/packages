@@ -27,6 +27,7 @@
       <project name="angular-layout" file="file://$PROJECT_DIR$/packages/angular/layout/project.json" />
       <project name="angular-life-cycle" file="file://$PROJECT_DIR$/packages/angular/life-cycle/project.json" />
       <project name="angular-localize" file="file://$PROJECT_DIR$/packages/angular/localize/project.json" />
+      <project name="angular-material-authentication" file="file://$PROJECT_DIR$/packages/angular/material/authentication/project.json" />
       <project name="angular-material-directives" file="file://$PROJECT_DIR$/packages/angular/material/directives/project.json" />
       <project name="angular-material-form-system" file="file://$PROJECT_DIR$/packages/angular/material/form-system/project.json" />
       <project name="angular-material-localize" file="file://$PROJECT_DIR$/packages/angular/material/localize/project.json" />
