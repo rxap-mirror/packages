@@ -379,7 +379,7 @@ export type WithIdentifier<IdentifierType = string> = (
   { index: IdentifierType }
   );
 
-export type WithChildren<T = any, Child = T> = T & { children?: Child[], hasChildren?: boolean };
+export type WithChildren<T = any, Child = T> = T & { children?: Array<WithChildren<Child>> | null, hasChildren?: boolean };
 
 export interface BaseIcon {
   inline?: boolean;

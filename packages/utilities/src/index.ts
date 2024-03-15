@@ -53,6 +53,7 @@ export * from './lib/asserts/object';
 export * from './lib/array/chunk';
 export * from './lib/array/coerce-array-items';
 export * from './lib/array/element-type';
+export * from './lib/array/flatten';
 export * from './lib/array/group-by';
 export * from './lib/array/unique';
 // endregion
