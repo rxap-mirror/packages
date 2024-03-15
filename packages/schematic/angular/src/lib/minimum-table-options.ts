@@ -89,12 +89,15 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     column.sortable ??= sortable;
   }
   const columnList = NormalizeTableColumnList(options.columnList);
-  sortable = columnList.some(column => column.sortable);
+  sortable = sortable || columnList.some(column => column.sortable);
   const propertyList = NormalizeDataPropertyList(options.propertyList);
   const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
   const modifiers = options.modifiers ?? [];
   if (!columnList.some(column => column.filterControl)) {
-    modifiers.push(MinimumTableModifiers.WITH_HEADER);
+    CoerceArrayItems(modifiers, [MinimumTableModifiers.WITH_HEADER]);
+  }
+  if (sortable) {
+    CoerceArrayItems(modifiers, [MinimumTableModifiers.WITH_HEADER]);
   }
   const title = options.title ?? ToTitle(name);
   if (!modifiers.every(isModifier)) {
