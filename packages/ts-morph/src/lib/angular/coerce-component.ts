@@ -16,7 +16,7 @@ import { CoerceDecorator } from '../coerce-decorator';
 import { CoerceImports } from '../coerce-imports';
 
 export interface CoerceComponentOptions {
-  selector?: string;
+  selector?: string | false;
   prefix?: string;
   template?: string;
   styles?: string;
@@ -50,15 +50,18 @@ export function CoerceComponent(
     styleUrls,
   } = options;
 
-  selector ??= prefix ? `${ prefix }-${ dasherize(name) }` : dasherize(name);
-  if (selector.includes('{{prefix}}')) {
-    if (!prefix) {
-      throw new Error(`The selector '${ selector }' contains a template expression '{{prefix}}' but no prefix is provided`);
+  if (selector !== false) {
+    selector ??= prefix ? `${ prefix }-${ dasherize(name) }` : dasherize(name);
+    if (selector.includes('{{prefix}}')) {
+      if (!prefix) {
+        throw new Error(
+          `The selector '${ selector }' contains a template expression '{{prefix}}' but no prefix is provided`);
+      }
+      selector = selector.replace('{{prefix}}', prefix);
     }
-    selector = selector.replace('{{prefix}}', prefix);
-  }
-  if (selector.match(/\{\{.*}}/)) {
-    throw new Error(`The selector '${ selector }' contains an invalid templates expression`);
+    if (selector.match(/\{\{.*}}/)) {
+      throw new Error(`The selector '${ selector }' contains an invalid templates expression`);
+    }
   }
   if (templateUrl === true || !template) {
     template = undefined;
@@ -87,8 +90,11 @@ export function CoerceComponent(
 
   const componentOptions: Record<string, string | WriterFunction> = {
     standalone: 'true',
-    selector: w => w.quote(selector!),
   };
+
+  if (selector) {
+    componentOptions['selector'] = w => w.quote(selector as string);
+  }
 
   if (changeDetection) {
     componentOptions['changeDetection'] = `ChangeDetectionStrategy.${ changeDetection }`;
