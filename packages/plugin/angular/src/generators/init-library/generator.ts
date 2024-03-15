@@ -18,7 +18,10 @@ import {
   RemoveAssets,
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
-import { LibraryInitGenerator } from '@rxap/plugin-library';
+import {
+  LibraryInitProject,
+  LibraryInitWorkspace,
+} from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   CoerceNxJsonCacheableOperation,
@@ -350,6 +353,8 @@ export async function initLibraryGenerator(
 ) {
   console.log('angular library init generator:', options);
 
+  LibraryInitWorkspace(tree, options);
+
   setGeneralTargetDefaults(tree);
 
   const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
@@ -364,11 +369,7 @@ export async function initLibraryGenerator(
 
       console.log(`init angular library project: ${ projectName }`);
 
-      await LibraryInitGenerator(tree, {
-        ...options,
-        projects: [ projectName ],
-        skipProjects: false,
-      });
+      await LibraryInitProject(tree, projectName, project, options);
 
       cleanup(tree, project, projectName);
       updatePackageJson(tree, project, rootPackageJson);
@@ -387,12 +388,6 @@ export async function initLibraryGenerator(
 
     }
 
-  } else {
-    await LibraryInitGenerator(tree, {
-      ...options,
-      projects: [],
-      skipProjects: true,
-    });
   }
 
 }
