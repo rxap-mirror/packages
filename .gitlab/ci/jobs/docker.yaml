@@ -14,7 +14,14 @@
   rules:
     - if: $DISABLE_DOCKER_BUILD
       when: never
-    - when: on_success
+    - if: $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/
+      when: on_success
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+      when: on_success
+    - if: $CI_DEFAULT_BRANCH == $CI_BRANCH_NAME
+      when: on_success
+    - when: manual
+      allow_failure: true
   needs:
     - run
 docker:
@@ -27,11 +34,6 @@ docker:
         DOCKER_CONTEXT: dist/demos/angular
         IMAGE_SUFFIX: /user-interface/angular
         DOCKERFILE: shared/angular/Dockerfile
-      - PROJECT_NAME: service-app-angular-table
-        PATH_PREFIX: api/app/angular/table
-        DOCKER_CONTEXT: dist/demos/service/app/angular/table
-        IMAGE_SUFFIX: /service/app-angular-table
-        DOCKERFILE: shared/nestjs/Dockerfile
       - PROJECT_NAME: service-changelog
         PATH_PREFIX: api/changelog
         NAME_PREFIX: rxap-
