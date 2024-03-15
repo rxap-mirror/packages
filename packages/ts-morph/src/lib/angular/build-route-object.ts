@@ -5,6 +5,7 @@ import {
 
 export interface AngularRoute {
   path: string;
+  component?: string;
   loadChildren?: string | { import: string, then: string };
   loadComponent?: string | { import: string, then: string };
 }
@@ -26,6 +27,8 @@ export function BuildRouteObject(route: AngularRoute) {
     } else {
       obj['loadComponent'] = `() => import('${ route.loadComponent.import }').then((m) => m.${ route.loadComponent.then })`;
     }
+  } else if (route.component) {
+    obj['component'] = route.component;
   }
   return Writers.object(obj);
 }
