@@ -890,7 +890,7 @@ export async function initApplicationGenerator(
         coerceLocalazyConfigFile(tree, project);
       }
       if (options.authentication) {
-        generateAuthentication(tree, projectName, project, options);
+        await generateAuthentication(tree, projectName, project, options);
       }
       if (options.monolithic) {
         generateMonolithic(tree, projectName, project, options);

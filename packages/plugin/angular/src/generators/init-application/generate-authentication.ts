@@ -4,9 +4,14 @@ import {
 } from '@nx/devkit';
 import { CoerceAppRoutes } from '@rxap/ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
+import { AddPackageJsonDependency } from '@rxap/workspace-utilities';
 import { InitApplicationGeneratorSchema } from './schema';
 
-export function generateAuthentication(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+export async function generateAuthentication(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+
+  console.log('generate authentication');
+
+  await AddPackageJsonDependency(tree, '@rxap/ngx-material-authentication', 'latest', { soft: true });
 
   TsMorphAngularProjectTransform(tree, {
     project: projectName,
