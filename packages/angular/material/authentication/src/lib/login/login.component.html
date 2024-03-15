@@ -1,0 +1,99 @@
+<form #form="rxapForm" [@fadeAnimation]="'in'"
+      class="inner mat-elevation-z5 flex flex-col justify-center items-center gap-4"
+      novalidate
+      rxapForm>
+
+  <div class="header flex flex-col items-center justify-center grow-0">
+
+    <mat-icon class="avatar-icon grow-0" color="primary">account_circle</mat-icon>
+
+  </div>
+
+  <div class="content flex flex-col gap-8">
+
+    <div class="flex flex-col">
+
+      <mat-form-field class="email-input">
+        <mat-icon inline matPrefix>email</mat-icon>
+        <mat-label i18n>Email</mat-label>
+        <input formControlName="email"
+               i18n-placeholder
+               matInput
+               name="email"
+               placeholder="Enter your email address"
+               type="email">
+        <mat-error *rxapControlError="let error key 'required'">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *rxapControlError="let error key 'email'">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="password-input">
+        <mat-icon inline matPrefix>vpn_key</mat-icon>
+        <mat-label i18n>Password</mat-label>
+        <input #passwordInput
+               formControlName="password"
+               i18n-placeholder
+               matInput
+               name="password"
+               placeholder="Enter your password"
+               type="password">
+        <mat-error *rxapControlError="let error key 'required'">
+          Password is <strong>required</strong>
+        </mat-error>
+        <button (click)="passwordInput.type = 'test'" *ngIf="passwordInput.type === 'password'" mat-icon-button
+                matSuffix tabIndex="-1"
+                type="button">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button (click)="passwordInput.type = 'password'" *ngIf="passwordInput.type === 'text'" mat-icon-button
+                matSuffix tabIndex="-1"
+                type="button">
+          <mat-icon>visibility_off</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </div>
+
+    <div class="sub-controls flex flex-row flex-wrap justify-between items-center gap-4">
+
+      <mat-checkbox class="remember-input grow-0" formControlName="remember">Remember me</mat-checkbox>
+
+      <div [matTooltipDisabled]="form.control.controls['email'].valid"
+           class="grow-0"
+           matTooltip="Please enter a valid email address"
+           matTooltipPosition="above">
+        <button (click)="requestPasswordReset(form.value.email)"
+                [disabled]="!form.value.email || form.control.controls['email'].hasError('email')"
+                color="accent"
+                mat-button
+                type="button">
+            <span class="flex flex-row justify-between items-center gap-2">
+              <mat-progress-spinner *ngIf="requestingPasswordReset$ | async" [diameter]="15"
+                                    mode="indeterminate"></mat-progress-spinner>
+              <span class="grow-0">Password forgotten</span>
+            </span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="grow-0 flex flex-row justify-center items-center">
+
+      <div class="grow-0">
+        <button color="primary" mat-raised-button rxapFormControlMarkDirty type="submit">Login</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div *rxapFormSubmitFailed="let error" class="flex flex-row justify-center items-center">
+    <mat-error>{{ error.message }}</mat-error>
+  </div>
+
+  <mat-progress-bar *rxapFormSubmitting class="loading-bar" mode="indeterminate"></mat-progress-bar>
+
+</form>
