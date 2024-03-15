@@ -22,6 +22,10 @@
       "type": "boolean",
       "default": true
     },
+    "authentication": {
+      "type": "boolean",
+      "default": false
+    },
     "openApi": {
       "type": "boolean",
       "default": false

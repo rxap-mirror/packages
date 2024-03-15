@@ -57,6 +57,7 @@ import {
 } from 'ts-morph';
 import { SkipNonAngularProject } from '../../lib/skip-project';
 import { InitGeneratorSchema } from '../init/schema';
+import { generateAuthentication } from './generate-authentication';
 import { generateMonolithic } from './generate-monolithic';
 import { InitApplicationGeneratorSchema } from './schema';
 
@@ -622,6 +623,7 @@ export async function initApplicationGenerator(
   options.openApi = options.openApi || options.monolithic;
   options.authentik ??= false;
   options.oauth ??= false;
+  options.authentication ??= false;
   options.oauth = options.oauth || options.authentik;
   options.project ??= undefined;
   options.projects ??= [];
@@ -886,6 +888,9 @@ export async function initApplicationGenerator(
       }
       if (options.localazy) {
         coerceLocalazyConfigFile(tree, project);
+      }
+      if (options.authentication) {
+        generateAuthentication(tree, projectName, project, options);
       }
       if (options.monolithic) {
         generateMonolithic(tree, projectName, project, options);
