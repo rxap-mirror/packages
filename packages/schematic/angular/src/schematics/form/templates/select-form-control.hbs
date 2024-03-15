@@ -8,6 +8,11 @@
     rxapRequired
     {{/if}}
   >
+    {{#if control.optionList}}
+    <mat-option *rxapInputSelectOptions="let option" [value]="option.value">\{{option.display}}</mat-option>
+    {{/if}}
+    {{#unless control.optionList}}
     <mat-option *rxapOptionsFromMethod="let option" [value]="option.value">\{{option.display}}</mat-option>
+    {{/unless}}
   </mat-select>
 {{/matFormField}}

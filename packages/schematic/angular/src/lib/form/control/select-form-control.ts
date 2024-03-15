@@ -36,6 +36,10 @@ export interface NormalizedSelectFormControl
   upstream: NormalizedUpstreamOptions | null;
 }
 
+export function IsSelectFormControl(template: FormFieldFormControl): template is SelectFormControl {
+  return template.kind === FormControlKinds.SELECT;
+}
+
 export function IsNormalizedSelectFormControl(template: NormalizedBaseFormControl): template is NormalizedSelectFormControl {
   return template.kind === FormControlKinds.SELECT;
 }
@@ -49,16 +53,28 @@ export function NormalizeSelectFormControl(
       name: 'MatSelectModule',
       moduleSpecifier: '@angular/material/select',
     },
-    {
-      name: 'OptionsFromMethodDirective',
-      moduleSpecifier: '@rxap/form-system',
-    }
   ], (a, b) => a.name === b.name);
+  const optionList = control.optionList && control.optionList.length ? Object.freeze(control.optionList) : null;
+  if (optionList) {
+    CoerceArrayItems(importList, [
+      {
+        name: 'InputSelectOptionsDirective',
+        moduleSpecifier: '@rxap/form-system',
+      }
+    ], (a, b) => a.name === b.name);
+  } else {
+    CoerceArrayItems(importList, [
+      {
+        name: 'OptionsFromMethodDirective',
+        moduleSpecifier: '@rxap/form-system',
+      }
+    ], (a, b) => a.name === b.name);
+  }
   const multiple = control.multiple ?? false;
   return Object.freeze({
     ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, multiple),
     kind: FormControlKinds.SELECT,
-    optionList: control.optionList && control.optionList.length ? Object.freeze(control.optionList) : null,
+    optionList,
     backend: control.backend ?? BackendTypes.NONE,
     multiple,
     upstream: NormalizeUpstreamOptions(control.upstream),

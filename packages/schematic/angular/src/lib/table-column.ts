@@ -34,6 +34,7 @@ import {
 import { FormControlKinds } from './form/control/form-control-kind';
 import { IsFormFieldFormControl } from './form/control/form-field-form-control';
 import { IsInputFormControlOptions } from './form/control/input-form-control';
+import { IsSelectFormControl } from './form/control/select-form-control';
 import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
   NormalizePipeOptionList,
@@ -279,6 +280,27 @@ export function TableColumnNameToTitle(name: string) {
     .join(' ');
 }
 
+function guessFilterControlKind(column: Readonly<TableColumn>, dataProperty: NormalizedDataProperty): FormControlKinds {
+
+  switch (column.kind) {
+    case TableColumnKind.DATE:
+      // return FormControlKinds.DATE;
+      return FormControlKinds.DEFAULT;
+    case TableColumnKind.LINK:
+      return FormControlKinds.INPUT;
+  }
+
+  switch (dataProperty.type.name) {
+    case 'number':
+    case 'string':
+      return FormControlKinds.INPUT;
+    case 'boolean':
+      return FormControlKinds.SELECT;
+  }
+
+  return FormControlKinds.DEFAULT;
+}
+
 export function NormalizeTableColumn(
   column: Readonly<TableColumn>,
 ): NormalizedTableColumn {
@@ -345,7 +367,11 @@ export function NormalizeTableColumn(
     filterControl = null;
   }
   if (hasFilter && !filterControl) {
-    filterControl = { name: column.name, kind: FormControlKinds.DEFAULT, role: AbstractControlRolls.CONTROL };
+    filterControl = {
+      name: column.name,
+      kind: guessFilterControlKind(column, dataProperty),
+      role: AbstractControlRolls.CONTROL,
+    };
   }
   if (filterControl && !hasFilter) {
     hasFilter = true;
@@ -363,6 +389,14 @@ export function NormalizeTableColumn(
       filterControl.formField ??= {};
       filterControl.formField.cssClass ??= [];
       filterControl.formField.cssClass = CoerceCssClass(filterControl.formField.cssClass, 'w-full', (a, b) => a.name === b.name || (a.name.startsWith('w-') && b.name.startsWith('w-')));
+    }
+    if (IsSelectFormControl(filterControl)) {
+      if (dataProperty.type.name === 'boolean') {
+        filterControl.optionList = [
+          { value: 'true', display: 'True' },
+          { value: 'false', display: 'False' },
+        ];
+      }
     }
   }
   const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl) : null;
