@@ -361,7 +361,8 @@ export function NormalizeTableColumn(
     }
     if (IsFormFieldFormControl(filterControl)) {
       filterControl.formField ??= {};
-      filterControl.formField.cssClass = CoerceCssClass(filterControl.formField.cssClass, 'w-full');
+      filterControl.formField.cssClass ??= [];
+      filterControl.formField.cssClass = CoerceCssClass(filterControl.formField.cssClass, 'w-full', (a, b) => a.name === b.name || (a.name.startsWith('w-') && b.name.startsWith('w-')));
     }
   }
   const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl) : null;

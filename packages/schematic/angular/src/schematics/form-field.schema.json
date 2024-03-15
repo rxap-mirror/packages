@@ -14,11 +14,17 @@
     },
     "hasClearButton": {
       "type": "boolean"
+    },
+    "cssClass": {
+      "$ref": "#/definitions/cssClass"
     }
   },
   "definitions": {
     "button": {
       "$ref": "./button.schema.json"
+    },
+    "cssClass": {
+      "$ref": "./css-class.schema.json"
     }
   }
 }

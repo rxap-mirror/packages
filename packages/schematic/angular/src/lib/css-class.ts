@@ -5,7 +5,11 @@ import {
 
 export type CssClass = string | CssClassOptions | Array<string | CssClassOptions>;
 
-export function CoerceCssClass(cssClass: CssClass | null | undefined, addCssClass: string | CssClassOptions): CssClass {
+export function CoerceCssClass(
+  cssClass: CssClass | null | undefined,
+  addCssClass: string | CssClassOptions,
+  compareTo: (a: CssClassOptions, b: CssClassOptions) => boolean = (a, b) => a.name === b.name
+): CssClass {
   cssClass ??= [];
 
   if (typeof cssClass === 'string') {
@@ -27,7 +31,7 @@ export function CoerceCssClass(cssClass: CssClass | null | undefined, addCssClas
     });
     CoerceArrayItems(
       cssClass as CssClassOptions[], [ typeof addCssClass === 'string' ? { name: addCssClass } : addCssClass ],
-      (a, b) => a.name === b.name,
+      compareTo,
     );
   }
   return cssClass;
