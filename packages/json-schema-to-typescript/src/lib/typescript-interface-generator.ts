@@ -15,6 +15,7 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
+import { CoerceImports } from './coerce-imports';
 import { getFromObject } from './get-from-object';
 import { joinPath } from './join';
 import {
@@ -118,7 +119,7 @@ export class TypescriptInterfaceGenerator {
     const sourceFile = this.addType(this.bundledSchema, name);
 
     for (const importItem of this.importList) {
-      sourceFile.addImportDeclaration({
+      CoerceImports(sourceFile,{
         isTypeOnly: true,
         moduleSpecifier: importItem.moduleSpecifier,
         namedImports: [ importItem.name ],
