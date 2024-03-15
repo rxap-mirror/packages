@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.1-dev.1...@rxap/json-schema-to-typescript@16.0.1-dev.2) (2024-03-15)
+
+### Bug Fixes
+
+- use coerce imports ([d1a5082](https://gitlab.com/rxap/packages/commit/d1a5082daf8f885a17b43350fd5cfa37e76854be))
+
 ## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.1-dev.0...@rxap/json-schema-to-typescript@16.0.1-dev.1) (2024-03-14)
 
 ### Bug Fixes

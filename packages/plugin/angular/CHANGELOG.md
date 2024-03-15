@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.0...@rxap/plugin-angular@16.2.0-dev.1) (2024-03-15)
+
+### Bug Fixes
+
+- install required packages ([8422598](https://gitlab.com/rxap/packages/commit/842259899f3ffcf3128587a7c0490512c92baed4))
+
+### Features
+
+- support default authentication route import ([90d7449](https://gitlab.com/rxap/packages/commit/90d7449c49017e7bb6208a878bd211a3b777dc97))
+
 # [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.1-dev.3...@rxap/plugin-angular@16.2.0-dev.0) (2024-03-14)
 
 ### Bug Fixes

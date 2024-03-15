@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.19...@rxap/ts-morph@1.1.0-dev.20) (2024-03-15)
+
+### Bug Fixes
+
+- pass missing name property ([3329809](https://gitlab.com/rxap/packages/commit/332980968b8440738e3441074fd2e4f187c01666))
+
+### Features
+
+- auto detect the inset at index ([948d812](https://gitlab.com/rxap/packages/commit/948d8127d132622f442d69a593ef995b16febe40))
+- support complex load children and component ([4c10be5](https://gitlab.com/rxap/packages/commit/4c10be5ce97e57c7f554870eb4f93a2555f621f3))
+
 # [1.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.18...@rxap/ts-morph@1.1.0-dev.19) (2024-03-14)
 
 ### Bug Fixes

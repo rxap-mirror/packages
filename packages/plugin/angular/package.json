@@ -1,5 +1,5 @@
 {
-  "version": "16.2.0-dev.0",
+  "version": "16.2.0-dev.1",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,11 +11,11 @@
     "@nx/devkit": "^16.5.0",
     "@rxap/generator-utilities": "^1.1.1-dev.1",
     "@rxap/plugin-application": "^16.1.1-dev.3",
-    "@rxap/plugin-docker": "^16.1.0-dev.4",
-    "@rxap/plugin-library": "^16.1.0-dev.6",
+    "@rxap/plugin-docker": "^16.1.0-dev.5",
+    "@rxap/plugin-library": "^16.1.0-dev.7",
     "@rxap/plugin-localazy": "^16.1.1-dev.1",
     "@rxap/plugin-utilities": "^16.1.1-dev.3",
-    "@rxap/ts-morph": "^1.1.0-dev.19",
+    "@rxap/ts-morph": "^1.1.0-dev.20",
     "@rxap/utilities": "^16.1.0-dev.7",
     "@rxap/workspace-ts-morph": "^16.0.2-dev.2",
     "@rxap/workspace-utilities": "^16.1.0-dev.3",
@@ -59,11 +59,11 @@
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "16.1.0-dev.4"
+        "version": "16.1.0-dev.5"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.1.0-dev.6"
+        "version": "16.1.0-dev.7"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.1.0-dev.19"
+        "version": "1.1.0-dev.20"
       },
       {
         "package": "@rxap/utilities",

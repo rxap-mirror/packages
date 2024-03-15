@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.49](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.48...@rxap/schematic-angular@16.2.0-dev.49) (2024-03-15)
+
+### Bug Fixes
+
+- add table header if sortable ([7d9387f](https://gitlab.com/rxap/packages/commit/7d9387fdc66004a18725b370012038396f5b878d))
+
+### Features
+
+- use select control for boolean controls ([1127446](https://gitlab.com/rxap/packages/commit/1127446069bfb90db823666b50f1dfe457a065a0))
+
 # [16.2.0-dev.48](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.47...@rxap/schematic-angular@16.2.0-dev.48) (2024-03-15)
 
 ### Bug Fixes

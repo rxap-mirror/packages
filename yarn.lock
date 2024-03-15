@@ -9193,6 +9193,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@apidevtools/json-schema-ref-parser": 9.0.9
+    "@rxap/utilities": ^16.1.0-dev.7
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -9858,11 +9859,11 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.1-dev.1
     "@rxap/plugin-application": ^16.1.1-dev.3
-    "@rxap/plugin-docker": ^16.1.0-dev.4
-    "@rxap/plugin-library": ^16.1.0-dev.6
+    "@rxap/plugin-docker": ^16.1.0-dev.5
+    "@rxap/plugin-library": ^16.1.0-dev.7
     "@rxap/plugin-localazy": ^16.1.1-dev.1
     "@rxap/plugin-utilities": ^16.1.1-dev.3
-    "@rxap/ts-morph": ^1.1.0-dev.19
+    "@rxap/ts-morph": ^1.1.0-dev.20
     "@rxap/utilities": ^16.1.0-dev.7
     "@rxap/workspace-ts-morph": ^16.0.2-dev.2
     "@rxap/workspace-utilities": ^16.1.0-dev.3
@@ -10115,7 +10116,7 @@ __metadata:
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/schematics-ts-morph": ^16.1.0-dev.23
     "@rxap/schematics-utilities": ^16.0.1-dev.3
-    "@rxap/ts-morph": ^1.1.0-dev.19
+    "@rxap/ts-morph": ^1.1.0-dev.20
     "@rxap/utilities": ^16.1.0-dev.7
     "@rxap/workspace-utilities": ^16.1.0-dev.3
     colors: ^1.4.0
