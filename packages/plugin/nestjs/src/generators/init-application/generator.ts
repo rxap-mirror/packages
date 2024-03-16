@@ -135,17 +135,22 @@ function removeAppServiceFile(tree: Tree, projectSourceRoot: string) {
 
   const appServiceFilePath = join(projectSourceRoot, 'app', 'app.service.ts');
   if (tree.exists(appServiceFilePath)) {
-    if (tree.read(appServiceFilePath)?.toString('utf-8')?.includes('return { message: \'Hello API\' };')) {
-      console.warn('Remove the app service file');
-      tree.delete(appServiceFilePath);
-      if (tree.exists(join(projectSourceRoot, 'app', 'app.service.spec.ts'))) {
-        console.warn('Remove the app service spec file');
-        tree.delete(join(projectSourceRoot, 'app', 'app.service.spec.ts'));
+    const content = tree.read(appServiceFilePath)?.toString('utf-8');
+    if (content) {
+      if (content.includes('{ message: \'Hello API\' }')) {
+        console.warn('Remove the app service file');
+        tree.delete(appServiceFilePath);
+        if (tree.exists(join(projectSourceRoot, 'app', 'app.service.spec.ts'))) {
+          console.warn('Remove the app service spec file');
+          tree.delete(join(projectSourceRoot, 'app', 'app.service.spec.ts'));
+        } else {
+          console.warn('The app service spec file does not exists');
+        }
       } else {
-        console.warn('The app service spec file does not exists');
+        console.warn('The app service file does not contains the default method', content);
       }
     } else {
-      console.warn('The app service file does not contains the default method');
+      console.warn('The app service file does not exists:', appServiceFilePath);
     }
   } else {
     console.warn('The app service file does not exists');
@@ -693,8 +698,6 @@ export async function initApplicationGenerator(
 
   setGeneralTargetDefaults(tree);
 
-  console.log('processing projects');
-
   if (!options.skipProjects) {
 
     let projects: Map<string, ProjectConfiguration>;
@@ -706,8 +709,6 @@ export async function initApplicationGenerator(
     }
 
     for (const [ projectName, project ] of projects.entries()) {
-
-      console.log('Processing project', projectName);
 
       if (skipProject(tree, options, project, projectName)) {
         continue;
