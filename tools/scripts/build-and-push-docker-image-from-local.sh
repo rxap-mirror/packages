@@ -55,7 +55,7 @@ for key in $keys; do
       IMAGE_TAG="$IMAGE_TAG" \
       DRY_RUN=true \
       DOCKER_BUILD_AND_PUSH_DEBUG=true \
-      ./tools/scripts/build-and-push-docker-image.sh
+      sh ./tools/scripts/build-and-push-docker-image.sh
     else
       echo -e "${GREEN}The target options does have the dockerfile option.${NC}"
       PUSH_TO_CUSTOM=true \
@@ -66,6 +66,6 @@ for key in $keys; do
   DOCKERFILE="$dockerfile" \
   DRY_RUN=true \
   DOCKER_BUILD_AND_PUSH_DEBUG=true \
-  ./tools/scripts/build-and-push-docker-image.sh
+  sh ./tools/scripts/build-and-push-docker-image.sh
     fi
 done

@@ -23,7 +23,7 @@ const dotDocker = {
     entrypoint: [ '' ],
   },
   stage: 'docker',
-  script: './tools/scripts/build-and-push-docker-image.sh',
+  script: 'sh ./tools/scripts/build-and-push-docker-image.sh',
   environment: {
     action: 'prepare',
     name: '$ENVIRONMENT_NAME',

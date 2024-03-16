@@ -3,7 +3,7 @@ setup:
   tags:
     - e2-standard-4
   image: node:${NODE_VERSION}-alpine
-  script: ./tools/scripts/install-dependencies.sh
+  script: sh ./tools/scripts/install-dependencies.sh
   cache:
     key:
       files:

@@ -9,7 +9,7 @@
       - .yarn/cache
     policy: pull
   before_script:
-    - ./tools/scripts/install-dependencies.sh
+    - sh ./tools/scripts/install-dependencies.sh
 
 # Creating template for DTE agents
 .dte-agent:
@@ -36,7 +36,7 @@
 .run-many-dte:
   extends: .run-many
   before_script:
-    - ./tools/scripts/install-dependencies.sh
+    - sh ./tools/scripts/install-dependencies.sh
     - yarn exec nx-cloud start-ci-run
   after_script:
     - yarn exec nx-cloud stop-all-agents

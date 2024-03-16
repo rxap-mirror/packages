@@ -1,7 +1,7 @@
 #!/bin/sh
 
 corepack enable
-corepack prepare yarn@stable --activate
+corepack prepare yarn@3.6.0 --activate
 
 echo "RUN: yarn --version"
 yarn --version
@@ -12,13 +12,13 @@ yarn config get cacheFolder
 case "$CI_COMMIT_REF_NAME" in
 renovate/*)
   echo "Detected Renovate branch."
-  echo "RUN: yarn --refresh-lockfile"
-  yarn --refresh-lockfile
+  echo "RUN: yarn --no-immutable --no-immutable-cache"
+  yarn --no-immutable --no-immutable-cache
   ;;
 snyk-*)
   echo "Detected Snyk branch."
-  echo "RUN: yarn --refresh-lockfile"
-  yarn --refresh-lockfile
+  echo "RUN: yarn --no-immutable --no-immutable-cache"
+  yarn --no-immutable --no-immutable-cache
   ;;
 *)
   if [ "$CI_JOB_STAGE" = ".pre" ]; then
