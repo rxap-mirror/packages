@@ -30,7 +30,10 @@ export interface CoerceFilesStructureOptions {
   mergeStrategies?: FileMergeStrategy[];
 }
 
-export function YamlMergeFunction(currentContent: string, newContent: string, fileName: string, filePath: string) {
+export function YamlMergeFunction(currentContent: string | undefined, newContent: string, fileName: string, filePath: string) {
+  if (!currentContent) {
+    return newContent;
+  }
   const currentData = parse(currentContent);
   const newData = parse(newContent);
   const mergedData = deepMerge(currentData, newData);
