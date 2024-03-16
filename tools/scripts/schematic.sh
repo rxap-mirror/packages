@@ -120,6 +120,8 @@ echo "relative dir: $rel_dir"
 echo "schematic: $schematic"
 echo "current dir: $CURRENT_DIR"
 
+echo "command: yarn --cwd $CURRENT_DIR nx g ./$rel_dir:$schematic $@"
+
 yarn --cwd "$CURRENT_DIR" nx g "./$rel_dir:$schematic" "$@"
 
 #cd "$CURRENT_DIR" || exit 1
