@@ -15,6 +15,11 @@
       "schema": "./src/schematics/form/form-component/schema.json",
       "description": "Generates a form component."
     },
+    "route-component": {
+      "factory": "./src/schematics/route-component/index",
+      "schema": "./src/schematics/route-component/schema.json",
+      "description": "Generates a route component."
+    },
     "form-definition": {
       "factory": "./src/schematics/form/form-definition/index",
       "schema": "./src/schematics/form/form-definition/schema.json",

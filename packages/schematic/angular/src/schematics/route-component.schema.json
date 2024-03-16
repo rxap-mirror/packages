@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "route-component",
+  "allOf": [
+    {
+      "$ref": "#/definitions/component"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "outlet": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "component": {
+      "$ref": "./component.schema.json"
+    }
+  }
+}
