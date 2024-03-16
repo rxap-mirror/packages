@@ -122,7 +122,21 @@ echo "current dir: $CURRENT_DIR"
 
 echo "command: yarn --cwd $CURRENT_DIR nx g ./$rel_dir:$schematic $@"
 
+# check if in the current directory an angular.json file exists
+tmp_angular_json="false"
+if [ ! -f "angular.json" ]; then
+  echo "angular.json does not exist"
+  # this is a workaround for nx generator/nx angular cli adapter. There is assumed that the angular.json file exists regardless if it is an angular project or not
+  echo "{}" > "$CURRENT_DIR/angular.json"
+  tmp_angular_json="true"
+fi
+
 yarn --cwd "$CURRENT_DIR" nx g "./$rel_dir:$schematic" "$@"
+
+# remove the temporary angular.json file
+if [ "$tmp_angular_json" = "true" ]; then
+  rm "$CURRENT_DIR/angular.json"
+fi
 
 #cd "$CURRENT_DIR" || exit 1
 #
