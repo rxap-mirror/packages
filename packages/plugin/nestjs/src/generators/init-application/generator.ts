@@ -187,6 +187,8 @@ function skipProject(
 }
 
 function setGeneralTargetDefaults(tree: Tree) {
+  console.log('updating default targets');
+
   const nxJson = readNxJson(tree);
 
   if (!nxJson) {
@@ -264,39 +266,6 @@ function updateProjectTargets(projectName: string, project: ProjectConfiguration
 
 function updateGitIgnore(tree: Tree, project: ProjectConfiguration) {
   CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'package.json' ]);
-}
-
-async function addDependencies(tree: Tree, options: InitApplicationGeneratorSchema) {
-
-  await AddPackageJsonDependency(tree, '@nestjs/throttler', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, 'cookie-parser', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@nestjs/config', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, 'joi', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@rxap/nest-utilities', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@rxap/nest-server', 'latest', { soft: true });
-  await AddPackageJsonDevDependency(tree, '@types/cookie-parser', 'latest', { soft: true });
-  await AddPackageJsonDevDependency(tree, '@types/csurf', 'latest', { soft: true });
-  await AddPackageJsonDevDependency(tree, '@rxap/plugin-application', 'latest', { soft: true });
-  await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
-
-  if (options.swagger) {
-    await AddPackageJsonDevDependency(tree, '@rxap/json-schema-to-typescript', 'latest', { soft: true });
-  }
-
-  switch (options.platform) {
-
-    case 'express':
-      await AddPackageJsonDependency(tree, '@nestjs/platform-express', 'latest', { soft: true });
-      await AddPackageJsonDependency(tree, 'helmet', 'latest', { soft: true });
-      break;
-
-    case 'fastify':
-      await AddPackageJsonDependency(tree, '@nestjs/platform-fastify', 'latest', { soft: true });
-      await AddPackageJsonDependency(tree, '@fastify/helmet', 'latest', { soft: true });
-      break;
-
-  }
-
 }
 
 async function createOpenApiClientSdkLibrary(
@@ -646,6 +615,8 @@ export async function initApplicationGenerator(
 
   await ApplicationInitWorkspace(tree, options);
 
+  console.group('adding nestjs application specific dependencies');
+
   await AddPackageJsonDependency(tree, '@rxap/nest-server', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-utilities', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-logger', 'latest', { soft: true });
@@ -658,25 +629,61 @@ export async function initApplicationGenerator(
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-library', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-open-api', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/throttler', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'cookie-parser', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@types/cookie-parser', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@types/csurf', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/plugin-application', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
+
+
+  console.group('adding feature specific dependencies');
 
   if (options.sentry) {
+    console.log('adding sentry specific dependencies');
     await AddPackageJsonDependency(tree, '@rxap/nest-sentry', 'latest', { soft: true });
   }
 
   if (options.swagger) {
+    console.log('adding swagger specific dependencies');
     await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });
+    await AddPackageJsonDevDependency(tree, '@rxap/json-schema-to-typescript', 'latest', { soft: true });
     if (!options.standalone) {
+      console.log('adding swagger specific dependencies for non standalone application');
       await AddPackageJsonDevDependency(tree, '@rxap/workspace-open-api', 'latest', { soft: true });
     }
   }
 
   if (options.jwt) {
+    console.log('adding jwt specific dependencies');
     await AddPackageJsonDependency(tree, '@rxap/nest-jwt', 'latest', { soft: true });
   }
 
   if (options.openApi) {
+    console.log('adding open api specific dependencies');
     await AddPackageJsonDependency(tree, '@rxap/nest-open-api', 'latest', { soft: true });
   }
+
+  switch (options.platform) {
+
+    case 'express':
+      console.log('adding express specific dependencies');
+      await AddPackageJsonDependency(tree, '@nestjs/platform-express', 'latest', { soft: true });
+      await AddPackageJsonDependency(tree, 'helmet', 'latest', { soft: true });
+      break;
+
+    case 'fastify':
+      console.log('adding fastify specific dependencies');
+      await AddPackageJsonDependency(tree, '@nestjs/platform-fastify', 'latest', { soft: true });
+      await AddPackageJsonDependency(tree, '@fastify/helmet', 'latest', { soft: true });
+      break;
+
+  }
+
+  console.groupEnd();
+  console.groupEnd();
+
+  console.log('coerce files structure');
 
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files', 'shared'),
@@ -686,13 +693,21 @@ export async function initApplicationGenerator(
 
   setGeneralTargetDefaults(tree);
 
-  await addDependencies(tree, options);
+  console.log('processing projects');
 
   if (!options.skipProjects) {
 
-    const projects = getProjects(tree);
+    let projects: Map<string, ProjectConfiguration>;
+
+    try {
+      projects = getProjects(tree);
+    } catch (e: any) {
+      throw new Error(`Could not get projects: ${e.message}`);
+    }
 
     for (const [ projectName, project ] of projects.entries()) {
+
+      console.log('Processing project', projectName);
 
       if (skipProject(tree, options, project, projectName)) {
         continue;
@@ -704,10 +719,12 @@ export async function initApplicationGenerator(
         throw new Error(`Can't find project source root for project ${ projectName }`);
       }
 
-      const port = getPort(tree, options, projectSourceRoot);
-      const globalApiPrefix = GetNestApiPrefix(tree, options, projectSourceRoot, projectName);
-
       console.log(`init nestjs application project: ${ projectName }`);
+
+      const port = getPort(tree, options, projectSourceRoot);
+      console.log(`Using port '${port}'`);
+      const globalApiPrefix = GetNestApiPrefix(tree, options, projectSourceRoot, projectName);
+      console.log(`Using api prefix '${globalApiPrefix}'`);
 
       ApplicationInitProject(tree, projectName, project, options);
 
