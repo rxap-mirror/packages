@@ -48,7 +48,12 @@ export function CoerceArrayElement(
   }
 
   if (insertAt) {
-    return array.insertElement(insertAt(array), element);
+    const index = insertAt(array);
+    if (index < 0) {
+      console.warn('The insertAt function returned a negative index - normalizing to 0');
+      return array.insertElement(0, element);
+    }
+    return array.insertElement(index, element);
   }
 
   return array.addElement(element);
