@@ -17,6 +17,9 @@ ENV TREAFIK_HEALTH_CHECK_INTERVAL=60s
 ENV TREAFIK_HEALTH_CHECK_TIMEOUT=30s
 ENV TREAFIK_HEALTH_CHECK_PATH=/health
 
+# required to ensure the husky install is not executed if the package.json contains husky
+ENV HUSKY=0
+
 LABEL traefik.enable=true
 
 LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.path=$TREAFIK_HEALTH_CHECK_PATH
@@ -30,6 +33,6 @@ LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.service=$TRAEFIK_SERVICE_NAME
 
 COPY package.json /app
 
-RUN yarn && yarn cache clean
+RUN yarn install --production && yarn cache clean
 
 COPY . /app
