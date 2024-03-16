@@ -28,6 +28,11 @@
       "default": false,
       "description": "Whether to initialize authentik docker compose setup"
     },
+    "standalone": {
+      "type": "boolean",
+      "description": "If true, the workspace will be initialized for standalone development",
+      "default": false
+    },
     "minio": {
       "type": "boolean",
       "default": false,

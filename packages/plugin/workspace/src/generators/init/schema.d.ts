@@ -3,4 +3,5 @@ export interface InitGeneratorSchema {
   packages: boolean;
   overwrite?: boolean;
   skipProjects?: boolean;
+  standalone?: boolean;
 }

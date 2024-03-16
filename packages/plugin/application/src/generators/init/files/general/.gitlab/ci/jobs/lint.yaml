@@ -1,7 +1,0 @@
-.lint:
-  stage: test
-  extends: .run-many
-  variables:
-    TARGET: "lint"
-  environment:
-    action: prepare

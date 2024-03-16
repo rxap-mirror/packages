@@ -8,8 +8,8 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { CoerceIgnorePattern } from '@rxap/generator-utilities';
-import { ApplicationInitGenerator } from '@rxap/plugin-application';
-import { LibraryInitGenerator } from '@rxap/plugin-library';
+import { ApplicationInitWorkspace } from '@rxap/plugin-application';
+import { LibraryInitWorkspace } from '@rxap/plugin-library';
 import {
   deepMerge,
   MergeDeepLeft,
@@ -88,7 +88,7 @@ const prettierIgnore = [
   'tmp.*',
 ];
 
-function coerceWorkspaceProject(tree: Tree) {
+function coerceWorkspaceProject(tree: Tree, options: InitGeneratorSchema) {
 
   if (!getProjects(tree).get('workspace')) {
     addProjectConfiguration(tree, 'workspace', {
@@ -146,13 +146,15 @@ function coerceWorkspaceProject(tree: Tree) {
     ],
   });
 
-  CoerceTarget(workspaceProject, 'docker-compose', {
-    executor: '@rxap/plugin-library:run-generator',
-    options: {
-      generator: '@rxap/plugin-workspace:docker-compose',
-      withoutProjectArgument: true,
-    },
-  });
+  if (!options.standalone) {
+    CoerceTarget(workspaceProject, 'docker-compose', {
+      executor: '@rxap/plugin-library:run-generator',
+      options: {
+        generator: '@rxap/plugin-workspace:docker-compose',
+        withoutProjectArgument: true,
+      },
+    });
+  }
 
   CoerceTarget(workspaceProject, 'docker-gitlab-ci', {
     executor: '@rxap/plugin-library:run-generator',
@@ -362,6 +364,17 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     CoerceLernaJson(tree);
   }
 
+  if (options.standalone) {
+    // TODO : write a proper function that renames the project
+    // ensure that the project name is updated in the hole project.json and not only in the name property
+    if (!tree.exists('project.json')) {
+      throw new Error('This is not standalone workspace. The /project.json file does not exist!');
+    }
+    const projectJson = JSON.parse(tree.read('project.json')!.toString('utf-8'));
+    projectJson.name = 'workspace';
+    tree.write('project.json', JSON.stringify(projectJson, null, 2));
+  }
+
   await AddPackageJsonDevDependency(tree, 'husky', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@commitlint/cli', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@commitlint/config-conventional', 'latest', { soft: true });
@@ -369,24 +382,16 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
 
-  coerceWorkspaceProject(tree);
+  coerceWorkspaceProject(tree, options);
   coerceNxJson(tree);
   await coerceRootPackageJsonScripts(tree);
 
-  await LibraryInitGenerator(tree,
-    {
-      overwrite: options.overwrite,
-      skipProjects: options.skipProjects,
-    },
-  );
+  if (!options.standalone) {
+    LibraryInitWorkspace(tree, options);
+  }
+
   if (options.applications) {
-    await ApplicationInitGenerator(
-      tree,
-      {
-        overwrite: options.overwrite,
-        skipProjects: options.skipProjects,
-      },
-    );
+    await ApplicationInitWorkspace(tree, options);
   }
 }
 

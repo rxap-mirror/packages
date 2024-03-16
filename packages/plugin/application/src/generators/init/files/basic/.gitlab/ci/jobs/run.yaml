@@ -1,5 +1,5 @@
 run:
-  extends: .run-many-dte
+  extends: .run-many
   stage: run
   tags:
     - e2-standard-2
@@ -7,7 +7,6 @@ run:
     TARGET: "build,test,lint"
     NX_CI_EXECUTION_ID: "$CI_PIPELINE_ID"
     NX_BRANCH: "${CI_MERGE_REQUEST_ID:-$CI_COMMIT_REF_NAME}"
-    NX_CLOUD_DISTRIBUTED_EXECUTION_AGENT_COUNT: "4"
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
@@ -20,21 +19,5 @@ run:
     expire_in: 1 week
     reports:
       junit: "junit/**/junit.xml"
-  rules:
-    - when: on_success
-
-agent:
-  extends: .dte-agent
-  allow_failure: true
-  stage: run
-  variables:
-    NX_CI_EXECUTION_ID: "$CI_PIPELINE_ID"
-    NX_BRANCH: "${CI_MERGE_REQUEST_ID:-$CI_COMMIT_REF_NAME}"
-  tags:
-    - e2-standard-8
-  environment:
-    action: prepare
-    name: $ENVIRONMENT_NAME
-  parallel: 4
   rules:
     - when: on_success

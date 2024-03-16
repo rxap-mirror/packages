@@ -8,4 +8,5 @@ export interface InitGeneratorSchema {
   skipProjects?: boolean;
   authentik?: boolean;
   minio?: boolean;
+  standalone?: boolean;
 }

@@ -191,7 +191,7 @@ function skipProject(
 
 }
 
-function setGeneralTargetDefaults(tree: Tree) {
+function setGeneralTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchema) {
   console.log('updating default targets');
 
   const nxJson = readNxJson(tree);
@@ -200,23 +200,27 @@ function setGeneralTargetDefaults(tree: Tree) {
     throw new Error('No nx.json found');
   }
 
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'generate-package-json');
+  if (!options.standalone) {
+    CoerceTargetDefaultsDependency(nxJson, 'build', 'generate-package-json');
+    CoerceNxJsonCacheableOperation(
+      nxJson, 'generate-package-json', 'generate-open-api', 'swagger-generate', 'swagger-build');
+    CoerceTarget(nxJson, 'generate-package-json', {
+      executor: '@rxap/plugin-nestjs:package-json',
+      configurations: {
+        production: {},
+      },
+    });
+  }
   CoerceTargetDefaultsDependency(nxJson, 'generate-open-api', 'swagger-generate');
-
-  CoerceNxJsonCacheableOperation(
-    nxJson, 'generate-package-json', 'generate-open-api', 'swagger-generate', 'swagger-build');
 
   updateNxJson(tree, nxJson);
 }
 
 function updateProjectTargets(projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
-  CoerceTarget(project, 'generate-package-json', {
-    executor: '@rxap/plugin-nestjs:package-json',
-    configurations: {
-      production: {},
-    },
-  });
+  if (!options.standalone) {
+    CoerceTarget(project, 'generate-package-json', {});
+  }
 
   const outputPath = project.targets?.build?.options?.outputPath;
 
@@ -269,8 +273,10 @@ function updateProjectTargets(projectName: string, project: ProjectConfiguration
 
 }
 
-function updateGitIgnore(tree: Tree, project: ProjectConfiguration) {
-  CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'package.json' ]);
+function updateGitIgnore(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+  if (!options.standalone) {
+    CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'package.json' ]);
+  }
 }
 
 async function createOpenApiClientSdkLibrary(
@@ -696,7 +702,7 @@ export async function initApplicationGenerator(
     overwrite: options.overwrite,
   });
 
-  setGeneralTargetDefaults(tree);
+  setGeneralTargetDefaults(tree, options);
 
   if (!options.skipProjects) {
 
@@ -730,7 +736,7 @@ export async function initApplicationGenerator(
       ApplicationInitProject(tree, projectName, project, options);
 
       updateProjectTargets(projectName, project, options);
-      updateGitIgnore(tree, project);
+      updateGitIgnore(tree, project, options);
       updateTags(project, options);
       if (!options.standalone) {
         await updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);

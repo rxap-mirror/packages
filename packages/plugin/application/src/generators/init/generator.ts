@@ -17,6 +17,7 @@ function skipProject(
   project: ProjectConfiguration,
   projectName: string,
 ): boolean {
+
   if (SkipNonApplicationProject(tree, options, project, projectName)) {
     return true;
   }
