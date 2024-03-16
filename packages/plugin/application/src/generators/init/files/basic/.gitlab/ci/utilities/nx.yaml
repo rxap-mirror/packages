@@ -9,6 +9,7 @@
       - .yarn/cache
     policy: pull
   before_script:
+    - apk add --no-cache git
     - sh ./tools/scripts/install-dependencies.sh
 
 # Creating template for DTE agents
