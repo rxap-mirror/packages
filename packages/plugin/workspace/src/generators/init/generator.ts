@@ -357,6 +357,32 @@ function coerceNxJson(tree: Tree) {
   CoerceNxJsonCacheableOperation(nxJson, 'component-test');
   CoerceNxJsonCacheableOperation(nxJson, 'generate-open-api');
 
+  CoerceTarget(nxJson, 'test', {
+    "executor": "@nx/jest:jest",
+    "outputs": [
+      "{workspaceRoot}/coverage/{projectRoot}",
+      "{workspaceRoot}/junit/{projectRoot}",
+      "{workspaceRoot}/{projectRoot}/coverage"
+    ],
+    "inputs": [
+      "test",
+      "^test",
+      "{workspaceRoot}/jest.preset.js",
+      "{workspaceRoot}/jest.preset.ts",
+      {
+        "env": "JEST_JUNIT_OUTPUT_DIR"
+      }
+    ],
+    "options": {
+      "passWithNoTests": true,
+      "silent": true,
+      "coverageReporters": [
+        "json"
+      ],
+      "codeCoverage": true
+    },
+  }, Strategy.REPLACE);
+
   updateNxJson(tree, nxJson);
 }
 
