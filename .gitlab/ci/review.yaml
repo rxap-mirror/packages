@@ -3,11 +3,23 @@ include:
   - local: .gitlab/ci/jobs/docker.yaml
   - local: .gitlab/ci/jobs/startup.yaml
   - local: .gitlab/ci/jobs/deploy.yaml
+    rules:
+      - exists:
+          - tools/scripts/deployment/ci/**
   - local: .gitlab/ci/jobs/e2e.yaml
+    rules:
+      - exists:
+          - "**/cypress.config.ts"
   - local: .gitlab/ci/jobs/component-test.yaml
+    rules:
+      - exists:
+          - "**/cypress.config.ts"
   - template: Jobs/SAST.latest.gitlab-ci.yml
   - template: Jobs/Secret-Detection.gitlab-ci.yml
   - local: .gitlab/ci/jobs/writerside.yaml
+    rules:
+      - exists:
+          - Writerside/*.tree
 
 stages:
   - test
