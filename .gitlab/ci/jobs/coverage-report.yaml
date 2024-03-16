@@ -18,7 +18,7 @@ coverage-report:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       when: on_success
-    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+/'
       when: on_success
     - if: '$CI_COMMIT_BRANCH =~ /^([0-9]+\.[0-9]+\.x|[0-9]+\.x)$/'
       when: on_success
