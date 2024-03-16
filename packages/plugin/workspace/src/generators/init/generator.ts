@@ -142,7 +142,7 @@ function coerceWorkspaceProject(tree: Tree, options: InitGeneratorSchema) {
       },
     ],
     outputs: [
-      'dist/**/build.json',
+      '{workspaceRoot}/dist/**/build.json',
     ],
   });
 
