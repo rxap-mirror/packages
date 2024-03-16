@@ -28,6 +28,11 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
+    },
+    "skipLicense": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip adding a license file"
     }
   },
   "required": []

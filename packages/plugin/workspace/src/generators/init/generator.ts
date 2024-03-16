@@ -191,6 +191,12 @@ async function coerceRootPackageJsonScripts(tree: Tree) {
   });
 }
 
+async function coercePackageJsonLicense(tree: Tree) {
+  await UpdatePackageJson(tree, (json) => {
+    json.license = 'GPL-3.0-or-later';
+  });
+}
+
 function CoerceNxJsonNamedInputs(
   nxJson: NxJsonConfiguration,
   name: string,
@@ -360,6 +366,15 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     target: '',
     overwrite: options.overwrite,
   });
+
+  if (!options.skipLicense) {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'gpl'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  }
+
   if (options.packages) {
     CoerceLernaJson(tree);
   }
@@ -385,6 +400,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   coerceWorkspaceProject(tree, options);
   coerceNxJson(tree);
   await coerceRootPackageJsonScripts(tree);
+  if (!options.skipLicense) {
+    await coercePackageJsonLicense(tree);
+  }
 
   if (!options.standalone) {
     LibraryInitWorkspace(tree, options);
