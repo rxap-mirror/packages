@@ -45,7 +45,7 @@ const dotDocker = {
       when: 'on_success',
     },
     {
-      if: '$CI_DEFAULT_BRANCH == $CI_BRANCH_NAME',
+      if: '$CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH',
       when: 'on_success',
     },
     {

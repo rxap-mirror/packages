@@ -18,7 +18,7 @@
       when: on_success
     - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
       when: on_success
-    - if: $CI_DEFAULT_BRANCH == $CI_BRANCH_NAME
+    - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
       when: on_success
     - when: manual
       allow_failure: true

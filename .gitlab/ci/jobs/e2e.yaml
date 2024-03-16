@@ -16,7 +16,7 @@ trigger:e2e:
     # if commit message contains [e2e] always deploy
     - if: '$CI_COMMIT_MESSAGE =~ /\[e2e\]/'
       when: on_success
-    - if: '$CI_BRANCH_NAME =~ /^e2e\//'
+    - if: '$CI_COMMIT_BRANCH =~ /^e2e\//'
       when: on_success
     # else only manual deploy
     - when: manual
