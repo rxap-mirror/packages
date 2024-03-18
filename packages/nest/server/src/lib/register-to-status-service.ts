@@ -58,7 +58,7 @@ export function RegisterToStatusService({ registerPath = '/register' }: Register
         ready = true;
         logger.log('Service registered', 'Bootstrap');
       } catch (e: any) {
-        logger.error(`Failed to register service (${ counter++ }): ${ e.message }`, undefined, 'Bootstrap');
+        logger.warn(`Failed to register service (${ counter++ }): ${ e.message }`, undefined, 'Bootstrap');
         if (e instanceof AxiosError) {
           if (e.response?.status && e.response.status < 500) {
             logger.debug('Response: ' + JSON.stringify(e.response?.data), 'Bootstrap');
