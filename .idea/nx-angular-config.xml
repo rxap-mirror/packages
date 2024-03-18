@@ -79,7 +79,6 @@
       <project name="open-api-service-changelog" file="file://$PROJECT_DIR$/packages/open-api/service/changelog/project.json" />
       <project name="open-api-service-configuration" file="file://$PROJECT_DIR$/packages/open-api/service/configuration/project.json" />
       <project name="open-api-service-status" file="file://$PROJECT_DIR$/packages/open-api/service/status/project.json" />
-      <project name="open-api-service-user" file="file://$PROJECT_DIR$/packages/open-api/service/user/project.json" />
       <project name="pattern" file="file://$PROJECT_DIR$/packages/pattern/project.json" />
       <project name="plugin-angular" file="file://$PROJECT_DIR$/packages/plugin/angular/project.json" />
       <project name="plugin-application" file="file://$PROJECT_DIR$/packages/plugin/application/project.json" />
@@ -105,7 +104,6 @@
       <project name="service-changelog" file="file://$PROJECT_DIR$/applications/service/changelog/project.json" />
       <project name="service-configuration" file="file://$PROJECT_DIR$/applications/service/configuration/project.json" />
       <project name="service-status" file="file://$PROJECT_DIR$/applications/service/status/project.json" />
-      <project name="service-user" file="file://$PROJECT_DIR$/applications/service/user/project.json" />
       <project name="slugify" file="file://$PROJECT_DIR$/packages/slugify/project.json" />
       <project name="ts-morph" file="file://$PROJECT_DIR$/packages/ts-morph/project.json" />
       <project name="utilities" file="file://$PROJECT_DIR$/packages/utilities/project.json" />
