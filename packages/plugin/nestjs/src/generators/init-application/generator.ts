@@ -771,6 +771,11 @@ export async function initApplicationGenerator(
           const itemList = ExtractExistingConfigValidation(moduleSourceFile);
           for (const item of [
             {
+              name: 'DISABLE_REGISTER_TO_STATUS_SERVICE',
+              type: 'boolean',
+              defaultValue: 'false'
+            },
+            {
               name: 'PORT',
               type: 'number',
               defaultValue: port.toFixed(0),

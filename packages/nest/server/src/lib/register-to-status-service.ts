@@ -17,6 +17,10 @@ export function RegisterToStatusService({ registerPath = '/register' }: Register
     __: any,
     environment: Environment,
   ) => {
+    if (config.get('DISABLE_REGISTER_TO_STATUS_SERVICE')) {
+      logger.warn('Registering with the status service is disabled');
+      return;
+    }
     const statusServiceBaseUrl = config.getOrThrow('STATUS_SERVICE_BASE_URL');
     const requestUrl = `${ statusServiceBaseUrl }${ registerPath }`;
     const port = config.getOrThrow('PORT');
