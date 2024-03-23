@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.1.0-dev.7...@rxap/utilities@16.1.0-dev.8) (2024-03-23)
+
+### Features
+
+- add flatten function ([243266c](https://gitlab.com/rxap/packages/commit/243266c6daa47acfd9764fd40fe3afc0dff346c2))
+
 # [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.1.0-dev.6...@rxap/utilities@16.1.0-dev.7) (2024-03-09)
 
 ### Bug Fixes

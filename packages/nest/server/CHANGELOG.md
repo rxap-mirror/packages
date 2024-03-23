@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.1-dev.2...@rxap/nest-server@10.2.0-dev.0) (2024-03-23)
+
+### Bug Fixes
+
+- log register to status failure as warning ([06c5636](https://gitlab.com/rxap/packages/commit/06c5636a0460665e70afec657cc1228ae4c7c6f3))
+
+### Features
+
+- introduce the DISABLE_REGISTER_TO_STATUS_SERVICE env ([bb72d62](https://gitlab.com/rxap/packages/commit/bb72d623879ce288e2cf42da9741b0125c18830a))
+
 ## [10.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.1-dev.1...@rxap/nest-server@10.1.1-dev.2) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/nest-server

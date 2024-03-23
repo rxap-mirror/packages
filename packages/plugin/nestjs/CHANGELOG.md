@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.3...@rxap/plugin-nestjs@16.2.0-dev.4) (2024-03-23)
+
+### Bug Fixes
+
+- support standalone workspaces ([3c80b3f](https://gitlab.com/rxap/packages/commit/3c80b3f49fe5842d49cbafc6011350b2f3e916e6))
+
+### Features
+
+- introduce the DISABLE_REGISTER_TO_STATUS_SERVICE env ([bb72d62](https://gitlab.com/rxap/packages/commit/bb72d623879ce288e2cf42da9741b0125c18830a))
+- support standalone workspaces ([bb75b98](https://gitlab.com/rxap/packages/commit/bb75b98bec2bd07107909755196b1ad234933527))
+
 # [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.2...@rxap/plugin-nestjs@16.2.0-dev.3) (2024-03-14)
 
 ### Bug Fixes

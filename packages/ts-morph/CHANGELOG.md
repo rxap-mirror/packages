@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.20...@rxap/ts-morph@1.1.0-dev.21) (2024-03-23)
+
+### Bug Fixes
+
+- normalize the insert at instead to 0 if negative ([11161d8](https://gitlab.com/rxap/packages/commit/11161d86fe48c6314c7fcea3389a7d67a7c7e809))
+- skip component selector if false ([d7d3bed](https://gitlab.com/rxap/packages/commit/d7d3bed5c74e204810132452d969c29e76d9f265))
+- support component routes ([6431132](https://gitlab.com/rxap/packages/commit/64311320d13db6e96699613b30ffbb336388f9bf))
+
+### Features
+
+- support route outlet and data ([ce4dec6](https://gitlab.com/rxap/packages/commit/ce4dec6008f77a8482a50d53c6b450522d64451c))
+
 # [1.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.19...@rxap/ts-morph@1.1.0-dev.20) (2024-03-15)
 
 ### Bug Fixes

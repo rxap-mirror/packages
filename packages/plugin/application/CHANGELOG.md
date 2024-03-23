@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.1-dev.3...@rxap/plugin-application@16.2.0-dev.0) (2024-03-23)
+
+### Bug Fixes
+
+- ensure scripts are called with the correct shell env ([154fcbd](https://gitlab.com/rxap/packages/commit/154fcbd08cfc18982ffabddc179d5c5ad0fafdc6))
+- ensure the merge coverage report script is copied ([7f1bafd](https://gitlab.com/rxap/packages/commit/7f1bafdf32093775f5bb2ca51b6188a09b71ca47))
+- install git for nx run jobs ([9c4ec93](https://gitlab.com/rxap/packages/commit/9c4ec93cb6f85697d52f26fabe5ae231fdc13b98))
+- match pre releases ([7816a86](https://gitlab.com/rxap/packages/commit/7816a86ff95f9113b2440386be64969bc43b662b))
+- only run sast and secret detection for special reviews ([4ac804c](https://gitlab.com/rxap/packages/commit/4ac804c70cd7d0db5aac182ff19a169d92ac5132))
+- use correct gitlab ci variable name ([723cc40](https://gitlab.com/rxap/packages/commit/723cc40f1b9438a42d20d0108d1dee121a591700))
+- use correct release tag regex ([9e6d743](https://gitlab.com/rxap/packages/commit/9e6d743947dbc59b2c06f0faf6914b521d7224dc))
+
+### Features
+
+- autodetect writerside instances ([0f083e3](https://gitlab.com/rxap/packages/commit/0f083e3d29f66f7fb162e3a3340947b6626a7d91))
+- support standalone workspaces ([bb75b98](https://gitlab.com/rxap/packages/commit/bb75b98bec2bd07107909755196b1ad234933527))
+
 ## [16.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.1-dev.2...@rxap/plugin-application@16.1.1-dev.3) (2024-03-14)
 
 ### Bug Fixes

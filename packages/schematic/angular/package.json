@@ -1,5 +1,5 @@
 {
-  "version": "16.2.0-dev.49",
+  "version": "16.2.0-dev.50",
   "name": "@rxap/schematic-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,9 +10,9 @@
     "@angular-devkit/schematics": "^16.1.4",
     "@rxap/schematics-ts-morph": "^16.1.0-dev.23",
     "@rxap/schematics-utilities": "^16.0.1-dev.3",
-    "@rxap/ts-morph": "^1.1.0-dev.20",
-    "@rxap/utilities": "^16.1.0-dev.7",
-    "@rxap/workspace-utilities": "^16.1.0-dev.3",
+    "@rxap/ts-morph": "^1.1.0-dev.21",
+    "@rxap/utilities": "^16.1.0-dev.8",
+    "@rxap/workspace-utilities": "^16.1.0-dev.4",
     "colors": "^1.4.0",
     "handlebars": "^4.7.7",
     "ts-morph": "^18.0.0",
@@ -47,15 +47,15 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.1.0-dev.20"
+        "version": "1.1.0-dev.21"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.7"
+        "version": "16.1.0-dev.8"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.3"
+        "version": "16.1.0-dev.4"
       }
     ]
   },

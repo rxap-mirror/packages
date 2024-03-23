@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.2...@rxap/plugin-workspace@16.2.0-dev.3) (2024-03-23)
+
+### Bug Fixes
+
+- add default workspace test configuration ([e42e0da](https://gitlab.com/rxap/packages/commit/e42e0da205f285d61e4f025bb6ae392ff62db769))
+- add missing outputs prefix ([f046fc7](https://gitlab.com/rxap/packages/commit/f046fc72f2982bd6f8a6ff8e872de1f5cc324f09))
+- ensure the proper license is set ([a476a16](https://gitlab.com/rxap/packages/commit/a476a16f59721d326cb6f1e3fdb9aca99b62abd3))
+
+### Features
+
+- support standalone workspaces ([bb75b98](https://gitlab.com/rxap/packages/commit/bb75b98bec2bd07107909755196b1ad234933527))
+
 # [16.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.1...@rxap/plugin-workspace@16.2.0-dev.2) (2024-03-15)
 
 ### Bug Fixes
