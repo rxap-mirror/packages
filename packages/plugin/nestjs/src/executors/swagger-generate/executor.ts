@@ -21,6 +21,7 @@ function checkIfOpenApiFileExists(context: ExecutorContext): boolean {
 
 async function linkLibrariesToDistNodeModules(context: ExecutorContext) {
   const dependentProjects = GetDependentProjectsForProject(context)
+    .filter(project => context.projectsConfigurations?.projects[project]?.targets?.['linking'])
     .map(name => ({ project: name, target: 'linking' }));
 
   console.log('Dependent projects', dependentProjects);
