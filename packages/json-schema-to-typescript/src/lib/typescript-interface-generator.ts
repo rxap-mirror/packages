@@ -143,6 +143,8 @@ export class TypescriptInterfaceGenerator {
       });
     }
 
+    sourceFile.organizeImports();
+
     return sourceFile;
   }
 
@@ -160,7 +162,7 @@ export class TypescriptInterfaceGenerator {
 
     sourceFile = this.project.createSourceFile(filePath);
 
-    const type = this.propertyTypeWriteFunction(sourceFile, schema, name, importList);
+    const type = this.propertyTypeWriteFunction(sourceFile, schema, name, importList, name);
 
     if (!type) {
       throw new Error('Could not create a write function for the type!');
@@ -182,6 +184,8 @@ export class TypescriptInterfaceGenerator {
       };
 
     sourceFile.addTypeAlias(typeAliasDeclarationStructure);
+
+    sourceFile.organizeImports();
 
     return sourceFile;
   }
@@ -217,6 +221,7 @@ export class TypescriptInterfaceGenerator {
           property,
           TypescriptInterfaceGenerator.isRequired(schema, key),
           importList,
+          name,
         ),
       );
     }
@@ -249,6 +254,8 @@ export class TypescriptInterfaceGenerator {
       });
     }
 
+    sourceFile.organizeImports();
+
     return sourceFile;
   }
 
@@ -257,11 +264,12 @@ export class TypescriptInterfaceGenerator {
     key: string,
     property: JSONSchema,
     required: boolean,
-    importList: Array<{ name: string; moduleSpecifier: string }>
+    importList: Array<{ name: string; moduleSpecifier: string }>,
+    parentName: string,
   ): OptionalKind<PropertySignatureStructure> {
     const propertyStructure: OptionalKind<PropertySignatureStructure> = {
       name: TypescriptInterfaceGenerator.coercePropertyKey(key),
-      type: this.propertyTypeWriteFunction(currentFile, property, key, importList),
+      type: this.propertyTypeWriteFunction(currentFile, property, key, importList, parentName),
       hasQuestionToken: !required,
     };
 
@@ -293,7 +301,8 @@ export class TypescriptInterfaceGenerator {
     currentFile: SourceFile,
     schema: JSONSchema,
     propertyName: string,
-    importList: Array<{ name: string; moduleSpecifier: string }>
+    importList: Array<{ name: string; moduleSpecifier: string }>,
+    parentName: string | undefined,
   ): WriterFunction | string {
     // convert to any to support non-standard types like int, unknown, file, etc.
     switch (schema.type as any) {
@@ -309,15 +318,16 @@ export class TypescriptInterfaceGenerator {
             if (schema.enum.every(item => item.match(/\d+/))) {
               return TypescriptInterfaceGenerator.unionType(schema.enum);
             } else {
+              const enumName = (parentName ? classify(parentName) : '') + classify(propertyName) + 'Enum';
               currentFile.addEnum({
-                name: classify(propertyName) + 'Enum',
+                name: enumName,
                 isExported: true,
                 members: schema.enum.map(item => ({
                   name: underscore(item).toUpperCase(),
                   value: item,
                 })),
               });
-              return classify(propertyName) + 'Enum';
+              return enumName;
             }
           }
           if (isNumberArray(schema.enum)) {
@@ -356,7 +366,7 @@ export class TypescriptInterfaceGenerator {
           if (!Array.isArray(items) && items !== true) {
             return (writer) => {
               writer.write('Array<');
-              const type = this.propertyTypeWriteFunction(currentFile, items, propertyName, importList);
+              const type = this.propertyTypeWriteFunction(currentFile, items, propertyName, importList, parentName);
 
               if (typeof type === 'string') {
                 writer.write(type);
@@ -394,6 +404,7 @@ export class TypescriptInterfaceGenerator {
                   property,
                   TypescriptInterfaceGenerator.isRequired(schema, key),
                   importList,
+                  propertyName,
                 ),
               );
             }
@@ -408,7 +419,7 @@ export class TypescriptInterfaceGenerator {
               schema.patternProperties as Record<string, JSONSchema>,
             )) {
               typeList.push(
-                this.propertyTypeWriteFunction(currentFile, property, propertyName, importList),
+                this.propertyTypeWriteFunction(currentFile, property, propertyName, importList, parentName),
               );
             }
             if (schema.properties && Object.keys(schema.properties).length) {
@@ -431,7 +442,8 @@ export class TypescriptInterfaceGenerator {
                 currentFile,
                 schema.additionalProperties,
                 propertyName,
-                importList
+                importList,
+                parentName
               );
             }
             if (schema.properties && Object.keys(schema.properties).length) {
@@ -466,7 +478,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.oneOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList, parentName));
             }
           }
 
@@ -476,7 +488,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.anyOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList, parentName));
             }
           }
 
@@ -486,7 +498,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.allOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName, importList, parentName));
             }
           }
 
@@ -538,7 +550,8 @@ export class TypescriptInterfaceGenerator {
                   type: type as any,
                 },
                 propertyName,
-                importList
+                importList,
+                parentName
               ),
             );
           }

@@ -482,7 +482,38 @@ describe('TypescriptInterfaceGenerator', () => {
 
     const result = generator.buildSync('MyInterface');
 
-    console.log(result.getFullText());
+    expect(result.getFullText()).toEqual(`import { type Layout } from './layout';
+import { type Role } from './role';
+
+export interface MyInterface {
+  uuid?: string;
+  username?: string;
+  activationKey?: string;
+  activationKeyCreationTime?: number;
+  activated?: boolean;
+  enabled?: boolean;
+  roles?: Array<Role>;
+  firebaseRegistrationToken?: string;
+  firebaseWebAppMessageToken?: string;
+  receiveMessages?: boolean;
+  favouriteLayout?: Layout;
+  privacyAccepted?: boolean;
+  privacyAcceptedTimestamp?: number;
+  desktopDesignMode?: 0 | 1;
+  mobileDesignMode?: 0 | 1;
+  userLanguage?: 0 | 1 | 2 | 3;
+  receiveEmailMessages?: boolean;
+  admin?: boolean;
+  primaryRole?: Role;
+  removedAt?: number;
+  __updatedBy?: string;
+  __updatedAt?: number;
+  __removedAt?: number;
+  __archived?: boolean;
+  deletedAt?: number;
+  updatedAt?: number;
+}
+`);
 
   });
 
@@ -562,7 +593,29 @@ describe('TypescriptInterfaceGenerator', () => {
 
     const result = generator.buildSync('MyInterface');
 
-    console.log(result.getFullText());
+    expect(result.getFullText()).toEqual(`import { type Filter } from './filter';
+
+export enum MyInterfaceOrderEnum {
+  DESC = 'desc',
+  ASC = 'asc'
+}
+
+export interface MyInterface {
+  filters?: Array<Filter>;
+  /** Sort descending or ascending. */
+  order?: MyInterfaceOrderEnum;
+  /** The page number. */
+  page?: number;
+  /** The total amount of retrievable pages. */
+  pages?: number;
+  /** The amount of items per page. */
+  per_page?: number;
+  /** The field that determines the order. */
+  sort?: string;
+  /** The total amount of retrievable items. */
+  total?: number;
+}
+`);
 
   });
 
