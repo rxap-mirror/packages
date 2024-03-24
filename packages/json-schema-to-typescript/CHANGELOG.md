@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.1-dev.3...@rxap/json-schema-to-typescript@16.0.1-dev.4) (2024-03-24)
+
+### Bug Fixes
+
+- ensure inline enums have unique names ([d4752e7](https://gitlab.com/rxap/packages/commit/d4752e73ed7adc0825fb7885aa4faaa12fbdc0c6))
+
 ## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.1-dev.2...@rxap/json-schema-to-typescript@16.0.1-dev.3) (2024-03-15)
 
 ### Bug Fixes
