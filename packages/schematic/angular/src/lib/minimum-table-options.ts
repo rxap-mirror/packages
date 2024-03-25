@@ -27,14 +27,14 @@ import {
   TableAction,
 } from './table-action';
 import {
-  NormalizedTableColumn,
-  NormalizeTableColumnList,
-  TableColumn,
-} from './table-column';
-import {
   NormalizeTableHeaderButton,
   TableHeaderButton,
 } from './table-header-button';
+import {
+  NormalizedTableColumn,
+  NormalizeTableColumnList,
+  TableColumn,
+} from './table/table-column';
 import { ToTitle } from './to-title';
 
 export enum MinimumTableModifiers {
