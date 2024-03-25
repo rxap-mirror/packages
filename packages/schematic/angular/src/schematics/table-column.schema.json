@@ -2,80 +2,75 @@
   "$schema": "http://json-schema.org/schema",
   "$id": "table-column",
   "type": "object",
-  "properties": {
-    "name": {
-      "type": "string"
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "#/definitions/baseTableColumn"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "default"
+            }
+          }
+        }
+      ]
     },
-    "type": {
-      "$ref": "#/definitions/type"
+    {
+      "$ref": "#/definitions/dateTableColumn"
     },
-    "kind": {
-      "type": "string"
+    {
+      "$ref": "#/definitions/linkTableColumn"
     },
-    "modifiers": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+    {
+      "$ref": "#/definitions/iconTableColumn"
     },
-    "template": {
-      "type": "string"
+    {
+      "$ref": "#/definitions/booleanTableColumn"
     },
-    "pipeList": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/pipe"
-      }
+    {
+      "$ref": "#/definitions/componentTableColumn"
     },
-    "hasFilter": {
-      "type": "boolean"
+    {
+      "$ref": "#/definitions/copyToClipboardTableColumn"
     },
-    "sortable": {
-      "type": "boolean"
+    {
+      "$ref": "#/definitions/treeTableColumn"
     },
-    "nowrap": {
-      "type": "boolean"
-    },
-    "cssClass": {
-      "$ref": "#/definitions/cssClass"
-    },
-    "title": {
-      "type": "string"
-    },
-    "propertyPath": {
-      "type": "string"
-    },
-    "hidden": {
-      "type": "boolean"
-    },
-    "active": {
-      "type": "boolean"
-    },
-    "inactive": {
-      "type": "boolean"
-    },
-    "show": {
-      "type": "boolean"
-    },
-    "filterControl": {
-      "$ref": "#/definitions/formControl"
+    {
+      "$ref": "#/definitions/spinnerTableColumn"
     }
-  },
-  "required": [
-    "name"
   ],
   "definitions": {
-    "formControl": {
-      "$ref": "./form-control.schema.json"
+    "baseTableColumn": {
+      "$ref": "./base-table-column.schema.json"
     },
-    "type": {
-      "$ref": "./type.schema.json"
+    "dateTableColumn": {
+      "$ref": "./date-table-column.schema.json"
     },
-    "pipe": {
-      "$ref": "./pipe.schema.json"
+    "linkTableColumn": {
+      "$ref": "./link-table-column.schema.json"
     },
-    "cssClass": {
-      "$ref": "./css-class.schema.json"
+    "iconTableColumn": {
+      "$ref": "./icon-table-column.schema.json"
+    },
+    "booleanTableColumn": {
+      "$ref": "./boolean-table-column.schema.json"
+    },
+    "componentTableColumn": {
+      "$ref": "./component-table-column.schema.json"
+    },
+    "copyToClipboardTableColumn": {
+      "$ref": "./copy-to-clipboard-table-column.schema.json"
+    },
+    "treeTableColumn": {
+      "$ref": "./tree-table-column.schema.json"
+    },
+    "spinnerTableColumn": {
+      "$ref": "./spinner-table-column.schema.json"
     }
   }
 }

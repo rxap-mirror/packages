@@ -20,12 +20,14 @@ import {
 import { BackendTypes } from '../../backend-types';
 import {
   GuessColumnTypeType,
-  NormalizedTableColumn,
-  TableColumn,
-  TableColumnKind,
   TableColumnNameToPropertyPath,
   TableColumnNameToTitle,
-} from '../../table-column';
+} from '../../table/column/base-table-column';
+import {
+  NormalizedTableColumn,
+  TableColumn,
+} from '../../table/table-column';
+import { TableColumnKind } from '../../table/table-column-kind';
 import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';

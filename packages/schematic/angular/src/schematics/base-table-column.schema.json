@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "base-table-column",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/definitions/type"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "modifiers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "template": {
+      "type": "string"
+    },
+    "pipeList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/pipe"
+      }
+    },
+    "hasFilter": {
+      "type": "boolean"
+    },
+    "sortable": {
+      "type": "boolean"
+    },
+    "nowrap": {
+      "type": "boolean"
+    },
+    "cssClass": {
+      "$ref": "#/definitions/cssClass"
+    },
+    "title": {
+      "type": "string"
+    },
+    "propertyPath": {
+      "type": "string"
+    },
+    "hidden": {
+      "type": "boolean"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "inactive": {
+      "type": "boolean"
+    },
+    "show": {
+      "type": "boolean"
+    },
+    "filterControl": {
+      "$ref": "#/definitions/formControl"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "definitions": {
+    "formControl": {
+      "$ref": "./form-control.schema.json"
+    },
+    "type": {
+      "$ref": "./type.schema.json"
+    },
+    "pipe": {
+      "$ref": "./pipe.schema.json"
+    },
+    "cssClass": {
+      "$ref": "./css-class.schema.json"
+    }
+  }
+}

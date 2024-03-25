@@ -51,11 +51,9 @@ import {
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
-import {
-  NormalizedTableColumn,
-  TableColumnKind,
-  TableColumnModifier,
-} from './table-column';
+import { NormalizedTableColumn } from './table/table-column';
+import { TableColumnKind } from './table/table-column-kind';
+import { TableColumnModifier } from './table/table-column-modifier';
 
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 

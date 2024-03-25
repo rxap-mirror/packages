@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "copy-to-clipboard-table-column",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseTableColumn"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "copy-to-clipboard"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "baseTableColumn": {
+      "$ref": "./base-table-column.schema.json"
+    }
+  }
+}

@@ -11,7 +11,7 @@ import {
   dasherize,
 } from '@rxap/utilities';
 import { CoerceTypeAlias } from '../schematics/table/action/form-table-action';
-import { NormalizedTableColumn } from './table-column';
+import { NormalizedTableColumn } from './table/table-column';
 
 export interface UsePickFromTableInterfaceAsFormTypeRuleOptions
   extends TsMorphAngularProjectTransformOptions {

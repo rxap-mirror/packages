@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "date-table-column",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseTableColumn"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "date"
+        },
+        "format": {
+          "type": "string"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "baseTableColumn": {
+      "$ref": "./base-table-column.schema.json"
+    }
+  }
+}

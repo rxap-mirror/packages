@@ -24,114 +24,39 @@ import {
   CssClass,
   NormalizeCssClass,
   NormalizedCssClass,
-} from './css-class';
-import { AbstractControlRolls } from './form/abstract-control';
+} from '../../css-class';
+import { AbstractControlRolls } from '../../form/abstract-control';
 import {
   FormControl,
   NormalizedFormControl,
   NormalizeFormControl,
-} from './form/control/form-control';
-import { FormControlKinds } from './form/control/form-control-kind';
-import { IsFormFieldFormControl } from './form/control/form-field-form-control';
-import { IsInputFormControlOptions } from './form/control/input-form-control';
-import { IsSelectFormControl } from './form/control/select-form-control';
-import { LoadHandlebarsTemplate } from './load-handlebars-template';
+} from '../../form/control/form-control';
+import { FormControlKinds } from '../../form/control/form-control-kind';
+import { IsFormFieldFormControl } from '../../form/control/form-field-form-control';
+import { IsInputFormControlOptions } from '../../form/control/input-form-control';
+import { IsSelectFormControl } from '../../form/control/select-form-control';
+import { LoadHandlebarsTemplate } from '../../load-handlebars-template';
+import { NormalizePipeOptionList } from '../../pipe-option';
 import {
-  NormalizePipeOptionList,
-  PipeOption,
-} from './pipe-option';
-
-export type TableColumnPipe = PipeOption;
-
-export enum TableColumnModifier {
-  FILTER = 'filter',
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
-  SHOW = 'show',
-  HIDDEN = 'hidden',
-  NOWRAP = 'nowrap',
-  WITHOUT_TITLE = 'withoutTitle',
-  NO_TITLE = 'noTitle',
-  OVERWRITE = 'overwrite',
-}
-
-export function IsTableColumnModifier(value: string): value is TableColumnModifier {
-  return Object.values(TableColumnModifier).includes(value as TableColumnModifier);
-}
-
-export enum TableColumnKind {
-  DEFAULT = 'default',
-  DATE = 'date',
-  LINK = 'link',
-  ICON = 'icon',
-  BOOLEAN = 'boolean',
-  COMPONENT = 'component',
-  COPY_TO_CLIPBOARD = 'copy-to-clipboard',
-  TREE = 'tree',
-  SPINNER = 'spinner',
-}
-
-export function IsTableColumnKind(value: string): value is TableColumnKind {
-  return Object.values(TableColumnKind).includes(value as TableColumnKind);
-}
-
-export enum TableColumnSticky {
-  START = 'start',
-  END = 'end',
-}
-
-export function IsTableColumnSticky(value: string): value is TableColumnSticky {
-  return Object.values(TableColumnSticky).includes(value as TableColumnSticky);
-}
-
-export interface TableColumn extends DataProperty {
-  modifiers?: string[];
-  hasFilter?: boolean;
-  withoutTitle?: boolean;
-  title?: string;
-  hidden?: boolean;
-  active?: boolean;
-  inactive?: boolean;
-  show?: boolean;
-  nowrap?: boolean;
-  cssClass?: CssClass;
-  headerCssClass?: CssClass;
-  filterCssClass?: CssClass;
-  kind?: TableColumnKind;
-  template?: string;
-  pipeList?: Array<TableColumnPipe | string>;
-  importList?: TypeImport[];
-  filterControl?: FormControl;
-  sticky?: boolean | TableColumnSticky;
-  synthetic?: boolean;
-  sortable?: boolean;
-}
-
-export type NormalizedTableColumnPipe = NormalizedTypeImport;
-
-export interface NormalizedTableColumn extends Readonly<Normalized<Omit<TableColumn, 'pipeList' | 'importList' | 'filterControl'>> & NormalizedDataProperty> {
-  type: NormalizedTypeImport;
-  pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
-  modifiers: TableColumnModifier[];
-  importList: ReadonlyArray<NormalizedTypeImport>;
-  kind: TableColumnKind;
-  handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
-  filterControl: NormalizedFormControl | null;
-  cssClass: NormalizedCssClass;
-  headerCssClass: NormalizedCssClass;
-  filterCssClass: NormalizedCssClass;
-  sticky: TableColumnSticky | null;
-  stickyEnd: boolean;
-  stickyStart: boolean;
-  /**
-   * the column name of the filter column matColumnDef
-   */
-  filterName: string;
-  /**
-   * use in the html template to define how the value is accessed from the element variable
-   */
-  propertyPath: string;
-}
+  NormalizedTableColumn,
+  TableColumn,
+} from '../table-column';
+import {
+  IsTableColumnKind,
+  TableColumnKind,
+} from '../table-column-kind';
+import {
+  IsTableColumnModifier,
+  TableColumnModifier,
+} from '../table-column-modifier';
+import {
+  NormalizedTableColumnPipe,
+  TableColumnPipe,
+} from '../table-column-pipe';
+import {
+  IsTableColumnSticky,
+  TableColumnSticky,
+} from '../table-column-sticky';
 
 function coerceTableColumnImportList(column: Readonly<TableColumn>): TypeImport[] {
   const importList = column.importList ?? [];
@@ -301,22 +226,86 @@ function guessFilterControlKind(column: Readonly<TableColumn>, dataProperty: Nor
   return FormControlKinds.DEFAULT;
 }
 
-export function NormalizeTableColumn(
-  column: Readonly<TableColumn>,
-): NormalizedTableColumn {
+// region base-table-column
+export interface BaseTableColumn extends DataProperty {
+  modifiers?: string[];
+  hasFilter?: boolean;
+  withoutTitle?: boolean;
+  title?: string;
+  hidden?: boolean;
+  active?: boolean;
+  inactive?: boolean;
+  show?: boolean;
+  nowrap?: boolean;
+  cssClass?: CssClass;
+  headerCssClass?: CssClass;
+  filterCssClass?: CssClass;
+  kind?: TableColumnKind;
+  template?: string;
+  pipeList?: Array<TableColumnPipe | string>;
+  importList?: TypeImport[];
+  filterControl?: FormControl;
+  sticky?: boolean | TableColumnSticky;
+  synthetic?: boolean;
+  sortable?: boolean;
+}
+
+export interface NormalizedBaseTableColumn
+  extends Readonly<Normalized<Omit<BaseTableColumn, keyof DataProperty | 'pipeList' | 'importList' | 'filterControl'>> & NormalizedDataProperty> {
+  type: NormalizedTypeImport;
+  pipeList: ReadonlyArray<NormalizedTableColumnPipe>;
+  modifiers: TableColumnModifier[];
+  importList: ReadonlyArray<NormalizedTypeImport>;
+  kind: TableColumnKind;
+  handlebars: Handlebars.TemplateDelegate<{ column: NormalizedTableColumn }>,
+  filterControl: NormalizedFormControl | null;
+  cssClass: NormalizedCssClass;
+  headerCssClass: NormalizedCssClass;
+  filterCssClass: NormalizedCssClass;
+  sticky: TableColumnSticky | null;
+  stickyEnd: boolean;
+  stickyStart: boolean;
+  /**
+   * the column name of the filter column matColumnDef
+   */
+  filterName: string;
+  /**
+   * use in the html template to define how the value is accessed from the element variable
+   */
+  propertyPath: string;
+}
+
+export function NormalizeBaseTableColumn(
+  column: Readonly<BaseTableColumn>,
+): NormalizedBaseTableColumn {
   if (!column.name) {
     throw new SchematicsException('The column name is required');
   }
   const modifiers = column.modifiers ?? [];
   const propertyPath = TableColumnNameToPropertyPath(column.name);
-  let hasFilter = modifiers.includes(TableColumnModifier.FILTER) || (column.hasFilter ?? false);
+  let hasFilter = modifiers.includes(TableColumnModifier.FILTER) || (
+    column.hasFilter ?? false
+  );
   const title = column.title ?? TableColumnNameToTitle(column.name);
-  const hidden = modifiers.includes(TableColumnModifier.HIDDEN) || (column.hidden ?? false);
-  const active = modifiers.includes(TableColumnModifier.ACTIVE) || (column.active ?? false);
-  const inactive = modifiers.includes(TableColumnModifier.INACTIVE) || (column.inactive ?? false);
-  const show = modifiers.includes(TableColumnModifier.SHOW) || (column.show ?? false);
-  const nowrap = modifiers.includes(TableColumnModifier.NOWRAP) || (column.nowrap ?? false);
-  const withoutTitle = modifiers.includes(TableColumnModifier.WITHOUT_TITLE) || modifiers.includes(TableColumnModifier.NO_TITLE) || (column.withoutTitle ?? false);
+  const hidden = modifiers.includes(TableColumnModifier.HIDDEN) || (
+    column.hidden ?? false
+  );
+  const active = modifiers.includes(TableColumnModifier.ACTIVE) || (
+    column.active ?? false
+  );
+  const inactive = modifiers.includes(TableColumnModifier.INACTIVE) || (
+    column.inactive ?? false
+  );
+  const show = modifiers.includes(TableColumnModifier.SHOW) || (
+    column.show ?? false
+  );
+  const nowrap = modifiers.includes(TableColumnModifier.NOWRAP) || (
+    column.nowrap ?? false
+  );
+  const withoutTitle = modifiers.includes(TableColumnModifier.WITHOUT_TITLE) ||
+                       modifiers.includes(TableColumnModifier.NO_TITLE) || (
+                         column.withoutTitle ?? false
+                       );
   let cssClass = column.cssClass ?? null;
   let headerCssClass = column.headerCssClass ?? null;
   let filterCssClass = column.filterCssClass ?? null;
@@ -379,7 +368,9 @@ export function NormalizeTableColumn(
   if (filterControl) {
     filterControl.label ??= title;
     filterControl.name ??= name;
-    if (!filterControl.type || filterControl.type === 'unknown' || (typeof filterControl.type === 'object' && filterControl.type.name === 'unknown')) {
+    if (!filterControl.type || filterControl.type === 'unknown' || (
+      typeof filterControl.type === 'object' && filterControl.type.name === 'unknown'
+    )) {
       filterControl.type = type ?? 'unknown';
     }
     if (IsInputFormControlOptions(filterControl)) {
@@ -388,13 +379,22 @@ export function NormalizeTableColumn(
     if (IsFormFieldFormControl(filterControl)) {
       filterControl.formField ??= {};
       filterControl.formField.cssClass ??= [];
-      filterControl.formField.cssClass = CoerceCssClass(filterControl.formField.cssClass, 'w-full', (a, b) => a.name === b.name || (a.name.startsWith('w-') && b.name.startsWith('w-')));
+      filterControl.formField.cssClass = CoerceCssClass(
+        filterControl.formField.cssClass, 'w-full', (a, b) => a.name === b.name || (
+          a.name.startsWith('w-') && b.name.startsWith('w-')
+        ));
     }
     if (IsSelectFormControl(filterControl)) {
       if (dataProperty.type.name === 'boolean') {
         filterControl.optionList = [
-          { value: 'true', display: 'True' },
-          { value: 'false', display: 'False' },
+          {
+            value: 'true',
+            display: 'True',
+          },
+          {
+            value: 'false',
+            display: 'False',
+          },
         ];
       }
     }
@@ -427,22 +427,8 @@ export function NormalizeTableColumn(
     pipeList: NormalizePipeOptionList(pipeList),
     template,
     importList: NormalizeTypeImportList(importList),
-    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'table', 'templates')),
+    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', '..', '..', 'schematics', 'table', 'templates')),
     filterControl: normalizedFilterControl,
     sortable: column.sortable ?? false,
   });
-}
-
-export function NormalizeTableColumnList(
-  columnList?: ReadonlyArray<Readonly<TableColumn>>,
-): ReadonlyArray<NormalizedTableColumn> {
-  return Object.freeze((columnList?.map(NormalizeTableColumn) ?? []).sort((a, b) => {
-    if (a.stickyStart) {
-      return b.stickyStart ? 0 : -1;
-    }
-    if (a.stickyEnd) {
-      return b.stickyEnd ? 0 : 1;
-    }
-    return 0;
-  }));
 }

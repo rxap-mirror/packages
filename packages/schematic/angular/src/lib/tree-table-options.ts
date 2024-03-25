@@ -18,11 +18,9 @@ import {
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
-import {
-  NormalizedTableColumn,
-  TableColumnKind,
-  TableColumnSticky,
-} from './table-column';
+import { NormalizedTableColumn } from './table/table-column';
+import { TableColumnKind } from './table/table-column-kind';
+import { TableColumnSticky } from './table/table-column-sticky';
 
 export enum TreeTableModifiers {
   OVERWRITE = 'overwrite',
