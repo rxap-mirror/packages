@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.1-dev.4...@rxap/json-schema-to-typescript@16.0.1-dev.5) (2024-03-25)
+
+### Bug Fixes
+
+- ensure the global suffix is included in the enum name ([b9b3e30](https://gitlab.com/rxap/packages/commit/b9b3e302931a5c7b6aeb4c3ab490422638623dda))
+
 ## [16.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.1-dev.3...@rxap/json-schema-to-typescript@16.0.1-dev.4) (2024-03-24)
 
 ### Bug Fixes
