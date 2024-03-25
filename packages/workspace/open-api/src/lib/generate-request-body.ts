@@ -6,7 +6,12 @@ import {
   REQUEST_BODY_FILE_SUFFIX,
 } from './config';
 import { IsAnySchemaObject } from './utilities/any-schema-object';
+import { CreateComponentTypeAliasSourceFile } from './utilities/create-component-type-alias-source-file';
 import { GetRequestBody } from './utilities/get-reqeust-body';
+import {
+  IsArrayRefSchemaObject,
+  IsRefSchemaObject,
+} from './utilities/ref-schema-object';
 
 export function GenerateRequestBody(
   operation: OpenAPIV3.OperationObject,
@@ -19,27 +24,43 @@ export function GenerateRequestBody(
   if (requestBodySchema && !IsAnySchemaObject(requestBodySchema) && operation.operationId) {
     const operationId = operation.operationId;
 
-    const generator = new TypescriptInterfaceGenerator(
-      {
-        ...requestBodySchema,
-        components,
-      },
-      {
-        suffix: REQUEST_BODY_FILE_SUFFIX,
-        basePath: REQUEST_BODY_BASE_PATH,
-        addImports: true,
-      },
-      project,
-    );
+    if (IsRefSchemaObject(requestBodySchema) || IsArrayRefSchemaObject(requestBodySchema)) {
 
-    console.debug(`Generate request body interface for: ${ operationId }`);
+      console.debug(`Skip request body interface generation for: ${ operationId }`);
 
-    try {
+      CreateComponentTypeAliasSourceFile(
+        project,
+        operationId,
+        requestBodySchema,
+        REQUEST_BODY_BASE_PATH,
+        REQUEST_BODY_FILE_SUFFIX,
+      );
 
-      generator.buildSync(operationId);
+    } else {
 
-    } catch (error: any) {
-      console.error(`Failed to generate request body interface for: ${ operationId }`, error.message);
+      const generator = new TypescriptInterfaceGenerator(
+        {
+          ...requestBodySchema,
+          components,
+        },
+        {
+          suffix: REQUEST_BODY_FILE_SUFFIX,
+          basePath: REQUEST_BODY_BASE_PATH,
+          addImports: true,
+        },
+        project,
+      );
+
+      console.debug(`Generate request body interface for: ${ operationId }`);
+
+      try {
+
+        generator.buildSync(operationId);
+
+      } catch (error: any) {
+        console.error(`Failed to generate request body interface for: ${ operationId }`, error.message);
+      }
+
     }
 
   }

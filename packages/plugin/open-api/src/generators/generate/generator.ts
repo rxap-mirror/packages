@@ -12,7 +12,6 @@ import {
   GeneratorFunction,
   LoadOpenApiConfig,
   OpenApiSchema,
-  ResolveRef,
 } from '@rxap/workspace-open-api';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
@@ -30,8 +29,8 @@ export async function generateGenerator(
 
   console.log('loading openapi config');
   const openapi = await LoadOpenApiConfig(tree, options);
-  console.log('resolve all schema refs');
-  ResolveRef(openapi, openapi.paths);
+  // console.log('resolve all schema refs');
+  // ResolveRef(openapi, openapi.paths);
 
   if (options.inline !== false) {
     options.inline = true;

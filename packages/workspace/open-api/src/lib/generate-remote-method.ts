@@ -113,7 +113,6 @@ export function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaB
           operationId: w => w.quote(parameter.operationId),
           operation: w => {
             w.write('`');
-            console.log(JSON.stringify(GenerateParameterToOperationObjectWithMetadata(parameter), undefined, 2));
             w.write(JSON.stringify(GenerateParameterToOperationObjectWithMetadata(parameter), undefined, 2));
             w.write('`');
           },

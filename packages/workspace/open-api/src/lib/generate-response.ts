@@ -6,7 +6,12 @@ import {
   RESPONSE_FILE_SUFFIX,
 } from './config';
 import { IsAnySchemaObject } from './utilities/any-schema-object';
+import { CreateComponentTypeAliasSourceFile } from './utilities/create-component-type-alias-source-file';
 import { GetResponse } from './utilities/get-response';
+import {
+  IsArrayRefSchemaObject,
+  IsRefSchemaObject,
+} from './utilities/ref-schema-object';
 
 export function GenerateResponse(
   operation: OpenAPIV3.OperationObject,
@@ -19,27 +24,43 @@ export function GenerateResponse(
   if (response && !IsAnySchemaObject(response) && operation.operationId) {
     const operationId = operation.operationId;
 
-    const generator = new TypescriptInterfaceGenerator(
-      {
-        ...response,
-        components,
-      },
-      {
-        suffix: RESPONSE_FILE_SUFFIX,
-        basePath: RESPONSE_BASE_PATH,
-        addImports: true,
-      },
-      project,
-    );
+    if (IsRefSchemaObject(response) || IsArrayRefSchemaObject(response)) {
 
-    console.debug(`Generate response interface for: ${ operationId }`);
+      console.debug(`Skip response interface generation for: ${ operationId }`);
 
-    try {
+      CreateComponentTypeAliasSourceFile(
+        project,
+        operationId,
+        response,
+        RESPONSE_BASE_PATH,
+        RESPONSE_FILE_SUFFIX,
+      );
 
-      generator.buildSync(operationId);
+    } else {
 
-    } catch (error: any) {
-      console.error(`Failed to generate response interface for: ${ operationId }`, error.message);
+      const generator = new TypescriptInterfaceGenerator(
+        {
+          ...response,
+          components,
+        },
+        {
+          suffix: RESPONSE_FILE_SUFFIX,
+          basePath: RESPONSE_BASE_PATH,
+          addImports: true,
+        },
+        project,
+      );
+
+      console.debug(`Generate response interface for: ${ operationId }`);
+
+      try {
+
+        generator.buildSync(operationId);
+
+      } catch (error: any) {
+        console.error(`Failed to generate response interface for: ${ operationId }`, error.message);
+      }
+
     }
 
   }

@@ -1,5 +1,6 @@
 // region utilities
 export * from './lib/utilities/any-schema-object';
+export * from './lib/utilities/create-component-type-alias-source-file';
 export * from './lib/utilities/get-parameter-type';
 export * from './lib/utilities/get-reqeust-body';
 export * from './lib/utilities/get-request-body-type';
@@ -16,6 +17,7 @@ export * from './lib/utilities/is-open-api-schema-from-path';
 export * from './lib/utilities/is-operation-object';
 export * from './lib/utilities/is-reference-object';
 export * from './lib/utilities/is-without-parameters';
+export * from './lib/utilities/ref-schema-object';
 // endregion
 
 // region 
