@@ -318,7 +318,7 @@ export class TypescriptInterfaceGenerator {
             if (schema.enum.every(item => item.match(/\d+/))) {
               return TypescriptInterfaceGenerator.unionType(schema.enum);
             } else {
-              const enumName = (parentName ? classify(parentName) : '') + classify(propertyName) + 'Enum';
+              const enumName = (parentName ? classify(parentName) : '') + classify(propertyName) + (this.options.suffix ? classify(this.options.suffix) : '') + 'Enum';
               currentFile.addEnum({
                 name: enumName,
                 isExported: true,
