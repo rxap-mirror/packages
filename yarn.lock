@@ -9322,7 +9322,7 @@ __metadata:
     "@rxap/pattern": ^1.1.1-dev.0
     "@rxap/reflect-metadata": ^1.0.2-dev.1
     "@rxap/rxjs": ^1.1.1-dev.1
-    "@rxap/utilities": ^16.1.0-dev.7
+    "@rxap/utilities": ^16.1.0-dev.8
     "@rxap/window-system": ^16.0.1-dev.5
     rxjs: ^7.8.1
     tslib: 2.6.2

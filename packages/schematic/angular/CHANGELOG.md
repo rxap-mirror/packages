@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.51](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.50...@rxap/schematic-angular@16.2.0-dev.51) (2024-03-25)
+
+### Bug Fixes
+
+- split table column schematics options ([70e2476](https://gitlab.com/rxap/packages/commit/70e24762916836725bc8c79cb651b994cc41915a))
+
 # [16.2.0-dev.50](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.49...@rxap/schematic-angular@16.2.0-dev.50) (2024-03-23)
 
 ### Features

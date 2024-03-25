@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.1-dev.4...@rxap/material-table-system@16.0.1-dev.5) (2024-03-25)
+
+### Bug Fixes
+
+- support \_\_removedAt as column name ([7ca2d9e](https://gitlab.com/rxap/packages/commit/7ca2d9ec574ad4336e1386f974fe8e311560ab79))
+
 ## [16.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.1-dev.3...@rxap/material-table-system@16.0.1-dev.4) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/material-table-system
