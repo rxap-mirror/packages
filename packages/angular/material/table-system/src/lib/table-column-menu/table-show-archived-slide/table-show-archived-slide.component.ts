@@ -46,11 +46,13 @@ export class TableShowArchivedSlideComponent implements AfterViewInit {
     this.selectRows?.clear();
     if ($event.checked) {
       this.tableColumnMenu.activate('removedAt');
+      this.tableColumnMenu.activate('__removedAt');
       this.tableColumnMenu.activate('__--removed-at');
       this.tableColumnMenu.activate('removed-at');
       this.tableColumnMenu.activate('__removed-at');
     } else {
       this.tableColumnMenu.deactivate('removedAt');
+      this.tableColumnMenu.deactivate('__removedAt');
       this.tableColumnMenu.deactivate('__--removed-at');
       this.tableColumnMenu.deactivate('removed-at');
       this.tableColumnMenu.deactivate('__removed-at');
@@ -59,6 +61,7 @@ export class TableShowArchivedSlideComponent implements AfterViewInit {
 
   public ngAfterViewInit() {
     this.tableColumnMenu.deactivate('removedAt');
+    this.tableColumnMenu.deactivate('__removedAt');
     this.tableColumnMenu.deactivate('__--removed-at');
     this.tableColumnMenu.deactivate('removed-at');
     this.tableColumnMenu.deactivate('__removed-at');
