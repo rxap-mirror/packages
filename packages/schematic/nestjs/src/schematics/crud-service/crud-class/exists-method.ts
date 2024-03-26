@@ -8,7 +8,7 @@ import {
 import { Options } from '../options';
 
 export function ExistsMethod(options: Options, className: string): OptionalKind<MethodDeclarationStructure> {
-  const { dtoName, documentId, collection, parentCollectionList } = options;
+  const { documentId, collection, parentCollectionList } = options;
   return {
     name: 'exists',
     scope: Scope.Public,
@@ -23,7 +23,7 @@ export function ExistsMethod(options: Options, className: string): OptionalKind<
         type: 'string',
       },
     ],
-    returnType: `Promise<${ dtoName }>`,
+    returnType: `Promise<boolean>`,
     statements: [
       `this.logger.verbose('exists: ' + ${ documentId }, '${ className }')`,
       writer => {
