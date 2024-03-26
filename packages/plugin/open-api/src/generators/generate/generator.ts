@@ -18,6 +18,7 @@ import {
   DeleteRecursive,
   GetProjectPackageJson,
   GetProjectRoot,
+  GetProjectSourceRoot,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { GenerateGeneratorSchema } from './schema';
@@ -99,7 +100,11 @@ export async function generateGenerator(
     entrypoint: options.packageName ? 'nest' : undefined,
   }, project => GenerateOperation(openapi, project, options, nestGeneratorFunctionList));
 
-  await LibraryIndexExportGenerator(tree, { projects: [ options.project ] });
+  if (options.export) {
+    await LibraryIndexExportGenerator(tree, { projects: [ options.project ] });
+  } else {
+    tree.write(join(GetProjectSourceRoot(tree, projectName), 'index.ts'), 'export {};');
+  }
 
 }
 
