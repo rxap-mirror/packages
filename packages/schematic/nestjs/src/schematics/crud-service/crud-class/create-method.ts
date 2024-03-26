@@ -34,7 +34,7 @@ export function CreateMethod(options: Options, className: string): OptionalKind<
     parameters,
     returnType: `Promise<${ dtoName }>`,
     statements: [
-      `this.logger.verbose('create: ' + ${ documentId }, '${ className }')`,
+      `this.logger.verbose('create: ' + (${ documentId } ?? '<generated>'), '${ className }')`,
       `if (!(create${ dtoName } instanceof Create${ dtoName })) { throw new InternalServerErrorException('Not instance of Create${ dtoName }') }`,
       `const ${ camelized } = ${ dtoName }.FromCreate${ dtoName }(create${ dtoName }, ${ [
         ...parentCollectionList.map(subCollection => `${ camelize(subCollection) }Id`),
@@ -62,7 +62,7 @@ export function CreateMethod(options: Options, className: string): OptionalKind<
         writer.writeLine(`.set(plain)`);
         writer.writeLine('.catch(FirestoreErrorHandler(this.logger));');
       },
-      `this.logger.debug('created: ' + ${ documentId }, '${ className }')`,
+      `this.logger.debug('created: ' + ${ camelized }.id, '${ className }')`,
       `return ${ camelized }`,
     ],
   };
