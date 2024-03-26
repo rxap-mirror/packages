@@ -3,7 +3,7 @@
 CURRENT_DIR=$(pwd)
 
 # Get the directory where the script is located
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 echo "Script is located in: $SCRIPT_DIR"
 
@@ -56,6 +56,19 @@ find . \( -type d \( -name node_modules -o -name dist -o -name .angular -o -name
       # write it to a file or pass it to a command as argument here,
       # because each iteration in the loop runs in a subshell
       echo "$name" >/tmp/name.txt
+
+      # Use jq to check if the property exists and is not null. If it exists, jq will output the value, otherwise "null".
+      value=$(jq -r '.targets.linking // "null"' tools/workspace-plugin/project.json)
+
+      # Check if the value is not "null"
+      if [ "$value" != "null" ]; then
+        echo "linking" >/tmp/target.txt
+      else
+        echo "build" >/tmp/target.txt
+      fi
+
+      echo $myVar
+
     else
       echo "No project.json file found in $dir"
       exit 1
@@ -69,19 +82,31 @@ if [ ! -f /tmp/name.txt ]; then
   exit 1
 fi
 
+# test if /tmp/name.txt exists
+if [ ! -f /tmp/target.txt ]; then
+  echo "No project found with name $package"
+  exit 1
+fi
+
 # Read the name from the file
 name=$(cat /tmp/name.txt)
+target=$(cat /tmp/target.txt)
 
 if [ -z "$name" ]; then
   echo "No package found with name $package"
   exit 1
 fi
 
+if [ -z "$target" ]; then
+  echo "No project found with name $package"
+  exit 1
+fi
+
 startTimestamp=$(date +%s)
 
-echo "Build project $name"
+echo "Build project $name:$target"
 
-yarn nx run "$name:linking"
+yarn nx run "$name:$target"
 
 echo "Build time: $(($(date +%s) - startTimestamp))s"
 
@@ -127,7 +152,7 @@ tmp_angular_json="false"
 if [ ! -f "angular.json" ]; then
   echo "angular.json does not exist"
   # this is a workaround for nx generator/nx angular cli adapter. There is assumed that the angular.json file exists regardless if it is an angular project or not
-  echo "{}" > "$CURRENT_DIR/angular.json"
+  echo "{}" >"$CURRENT_DIR/angular.json"
   tmp_angular_json="true"
 fi
 
