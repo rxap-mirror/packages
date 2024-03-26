@@ -29,6 +29,10 @@ export class OpenApiConfigService {
     return OpenApiConfigService.serverConfigMap;
   }
 
+  get serverIds(): string[] {
+    return Object.keys(this.serverConfigMap);
+  }
+
   constructor(
     @Optional()
     @Inject(RXAP_OPEN_API_CONFIG)
