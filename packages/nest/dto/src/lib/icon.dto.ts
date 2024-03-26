@@ -14,11 +14,21 @@ export class IconDto {
   @Expose()
   @IsString()
   @IsOptional()
+  icon?: string;
+
+  @Expose()
+  @IsString()
+  @IsOptional()
   color?: string;
 
   @Expose()
   @IsString()
   @IsOptional()
   fontColor?: string;
+
+  @Expose()
+  @IsString()
+  @IsOptional()
+  tooltip?: string;
 
 }
