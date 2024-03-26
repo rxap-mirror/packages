@@ -31,7 +31,7 @@ export function UpdateMethod(options: Options, className: string): OptionalKind<
     statements: [
       `this.logger.verbose('update: ' + ${ documentId }, '${ className }')`,
       `if (!(update${ dtoName } instanceof Update${ dtoName })) { throw new InternalServerErrorException('Not instance of Update${ dtoName }') }`,
-      `const result = validateSync(update${ dtoName }, CrudValidatorOptions());`,
+      `const result = validateSync(update${ dtoName }, CrudValidatorOptions({ skipMissingProperties: true }));`,
       `if (result.length) { throw new ValidationException(result); }`,
       writer => {
         writer.writeLine(`const plain = classToPlain(update${ dtoName }, CrudTransformOptions())`);
