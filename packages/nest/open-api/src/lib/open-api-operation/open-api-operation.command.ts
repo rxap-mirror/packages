@@ -74,7 +74,7 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
         this.logger.debug(`[${ requestId }] ${ config.method?.toUpperCase() } ${ config.url }${ HttpParams.ToHttpQueryString(
           config.params) }`, this.constructor.name);
         if (config.data) {
-          this.logger.verbose(`[${ requestId }] REQUEST ${ config.data }`, this.constructor.name);
+          this.logger.verbose(`[${ requestId }] REQUEST ${ JSON.stringify(config.data) }`, this.constructor.name);
         }
       }
       const now = Date.now();
@@ -98,7 +98,7 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
                 now }ms`, this.constructor.name);
                 if (this.log !== false) {
                   if (error.config.data) {
-                    this.logger.verbose(`[${ requestId }] REQUEST ${ error.config.data }`, this.constructor.name);
+                    this.logger.verbose(`[${ requestId }] REQUEST ${ JSON.stringify(error.config.data) }`, this.constructor.name);
                   }
                   if (error.response) {
                     if (error.response.data) {
