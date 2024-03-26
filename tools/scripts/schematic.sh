@@ -58,7 +58,7 @@ find . \( -type d \( -name node_modules -o -name dist -o -name .angular -o -name
       echo "$name" >/tmp/name.txt
 
       # Use jq to check if the property exists and is not null. If it exists, jq will output the value, otherwise "null".
-      value=$(jq -r '.targets.linking // "null"' tools/workspace-plugin/project.json)
+      value=$(jq -r '.targets.linking // "null"' "$dir/project.json")
 
       # Check if the value is not "null"
       if [ "$value" != "null" ]; then
