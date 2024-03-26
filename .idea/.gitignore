@@ -5,3 +5,5 @@
 /httpRequests/
 # GitHub Copilot persisted chat sessions
 /copilot/chatSessions
+nx-console.xml
+jsLibraryMappings.xml
