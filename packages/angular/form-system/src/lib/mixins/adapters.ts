@@ -1,9 +1,9 @@
 import { ControlOption } from '@rxap/utilities';
 
-export function ResolveByUuidParameter(uuid: string) {
+export function ResolveByUuidParameter({value}: { value: string }) {
   return {
     parameters: {
-      uuid,
+      uuid: value,
     },
   };
 }
