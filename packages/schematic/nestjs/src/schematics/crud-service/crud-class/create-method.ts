@@ -1,11 +1,11 @@
 import { underscore } from '@angular-devkit/core/src/utils/strings';
+import { camelize } from '@rxap/schematics-utilities';
 import {
   MethodDeclarationStructure,
   OptionalKind,
   Scope,
 } from 'ts-morph';
 import { Options } from '../options';
-import { camelize } from '@rxap/schematics-utilities';
 
 export function CreateMethod(options: Options, className: string): OptionalKind<MethodDeclarationStructure> {
   const { classified, dtoName, camelized, documentId, collection, parentCollectionList, privateName } = options;
@@ -44,8 +44,8 @@ export function CreateMethod(options: Options, className: string): OptionalKind<
       `if (result.length) { throw new ValidationException(result); }`,
       writer => {
         writer.writeLine(`const plain = classToPlain(${ camelized }, CrudTransformOptions())`);
-        writer.writeLine('plain.__createdAt = new Date()');
-        writer.writeLine('plain.__updatedAt = new Date()');
+        writer.writeLine(`plain['__createdAt'] = new Date()`);
+        writer.writeLine(`plain['__updatedAt'] = new Date()`);
         writer.write('await this.firestore');
         for (const subCollection of parentCollectionList) {
           writer.writeLine(`.collection(Collection.${ underscore(subCollection).toUpperCase() })`);

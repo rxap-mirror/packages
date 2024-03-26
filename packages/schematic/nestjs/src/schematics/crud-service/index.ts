@@ -1,4 +1,3 @@
-import { strings } from '@angular-devkit/core';
 import {
   chain,
   Rule,
@@ -11,6 +10,12 @@ import {
 } from '@rxap/schematics-ts-morph';
 import { coerceArray } from '@rxap/schematics-utilities';
 import { CreateProject } from '@rxap/ts-morph';
+import {
+  camelize,
+  classify,
+  dasherize,
+} from '@rxap/utilities';
+import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   SourceFile,
@@ -31,11 +36,11 @@ import { CrudServiceSchema } from './schema';
 
 export default function (options: CrudServiceSchema): Rule {
 
-  options.collection2 = (options.collection2 ? coerceArray(options.collection2) : []).map(strings.dasherize);
+  options.collection2 = (options.collection2 ? coerceArray(options.collection2) : []).map(dasherize);
 
   return async (host: Tree, context) => {
 
-    const basePath = join('libs', options.project, 'src');
+    const basePath = GetProjectSourceRoot(host, options.project);
 
     const project = CreateProject();
 
@@ -47,9 +52,9 @@ export default function (options: CrudServiceSchema): Rule {
 
     if (options.private) {
       const name = [ options.name, options.private ].join('-');
-      camelized = strings.camelize(name);
-      classified = strings.classify(name);
-      dasherized = strings.dasherize(name);
+      camelized = camelize(name);
+      classified = classify(name);
+      dasherized = dasherize(name);
       dtoName = `${ classified }CrudDto`;
       generateOptions = {
         camelized,
@@ -59,18 +64,18 @@ export default function (options: CrudServiceSchema): Rule {
         // bs this document id of parent document should be
         // used and for the current document the static id
         // defined in privateName is used
-        documentId: `${ strings.camelize(options.name) }Id`,
+        documentId: `${ camelize(options.name) }Id`,
         dtoName,
-        collection: strings.camelize(options.name),
+        collection: camelize(options.name),
         parentCollectionList: options.collection2,
         privateName: options.private,
         overwrite: options.overwrite ?? false,
       };
     } else {
       const name = options.name;
-      camelized = strings.camelize(name);
-      classified = strings.classify(name);
-      dasherized = strings.dasherize(name);
+      camelized = camelize(name);
+      classified = classify(name);
+      dasherized = dasherize(name);
       dtoName = `${ classified }CrudDto`;
       generateOptions = {
         camelized,

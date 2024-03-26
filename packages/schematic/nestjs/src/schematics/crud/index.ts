@@ -4,10 +4,11 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
+import { ExecuteSchematic } from '@rxap/schematics-utilities';
+import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { parse } from 'yaml';
 import { CrudSchema } from './schema';
-import { ExecuteSchematic } from '@rxap/schematics-utilities';
 
 interface CrudDbConfig {
   name?: string;
@@ -20,6 +21,7 @@ function BuildCrudRule(config: CrudDbConfig, options: CrudSchema, parentCollecti
   const rules: Rule[] = [];
 
   if (config.name) {
+    rules.push(() => console.log(`Create crud service for ${ config.name }`));
     rules.push(ExecuteSchematic('crud-service', {
       project: options.project,
       name: config.name,
@@ -30,6 +32,7 @@ function BuildCrudRule(config: CrudDbConfig, options: CrudSchema, parentCollecti
 
   if (config.private) {
     for (const privateName of config.private) {
+      rules.push(() => console.log(`Create private crud service for ${ config.name } with private collection ${ privateName }`));
       rules.push(ExecuteSchematic('crud-service', {
         project: options.project,
         name: config.name,
@@ -55,12 +58,12 @@ export default function (options: CrudSchema): Rule {
 
   return async (host: Tree) => {
 
-    const basePath = join('libs', options.project, 'src');
+    const basePath = GetProjectSourceRoot(host, options.project);
 
     const dbYamlFilePath = join(basePath, 'db.yaml');
 
     if (!host.exists(dbYamlFilePath)) {
-      throw new SchematicsException('Ensure that the db.yaml file exists in the src folder of the selected project.');
+      throw new SchematicsException(`Ensure that the ${dbYamlFilePath} file exists in the src folder of the selected project.`);
     }
 
     const dbConfig = parse(host.read(dbYamlFilePath)!.toString('utf-8'));

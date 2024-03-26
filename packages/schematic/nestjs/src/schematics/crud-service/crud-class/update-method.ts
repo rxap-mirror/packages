@@ -35,7 +35,7 @@ export function UpdateMethod(options: Options, className: string): OptionalKind<
       `if (result.length) { throw new ValidationException(result); }`,
       writer => {
         writer.writeLine(`const plain = classToPlain(update${ dtoName }, CrudTransformOptions())`);
-        writer.writeLine('plain.__updatedAt = new Date()');
+        writer.writeLine(`plain['__updatedAt'] = new Date()`);
         writer.write('await this.firestore');
         for (const subCollection of parentCollectionList) {
           writer.writeLine(`.collection(Collection.${ underscore(subCollection).toUpperCase() })`);
