@@ -20,7 +20,10 @@ export default async function runExecutor(
 
   const dependencies = GetAllPackageDependenciesForProject(context);
 
+  console.log('resolved local published package dependencies', JSON.stringify(dependencies));
+
   if (options.dependencies) {
+    console.log('adding dependencies from options', options.dependencies.join(', '));
     const rootPackageJson: PackageJson = jsonFile(join(context.root, 'package.json'));
     for (const dependency of options.dependencies) {
       dependencies[dependency] = rootPackageJson.dependencies?.[dependency] ??
@@ -30,7 +33,7 @@ export default async function runExecutor(
 
   const packageJson = { dependencies, name: context.projectName, private: true };
 
-  console.log('dependencies', dependencies);
+  console.log('generated package.json', JSON.stringify(packageJson));
 
   writeFileSync(join(GetProjectRoot(context), 'package.json'), JSON.stringify(packageJson, null, 2));
 
