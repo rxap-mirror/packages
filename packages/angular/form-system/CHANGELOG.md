@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.1.0-dev.1...@rxap/form-system@16.1.0-dev.2) (2024-03-26)
+
+### Bug Fixes
+
+- **form-system:** update ResolveByUuidParameter function to take an object as argument ([af356dc](https://gitlab.com/rxap/packages/commit/af356dcb89ac8f8c92df2e4725e82afe4b849fab))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.1.0-dev.0...@rxap/form-system@16.1.0-dev.1) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/form-system
