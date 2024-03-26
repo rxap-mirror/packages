@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.1.1-dev.1...@rxap/plugin-open-api@16.1.1-dev.2) (2024-03-26)
+
+### Bug Fixes
+
+- only generate index.ts if export is set to true ([89bb181](https://gitlab.com/rxap/packages/commit/89bb1816764e1f23bc317b2dd9f6f7c0601b947d))
+
 ## [16.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.1.1-dev.0...@rxap/plugin-open-api@16.1.1-dev.1) (2024-03-26)
 
 ### Bug Fixes

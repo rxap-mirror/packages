@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.3...@rxap/plugin-workspace@16.2.0-dev.4) (2024-03-26)
+
+### Bug Fixes
+
+- exclude standalone project from dev docker compose ([d3740d2](https://gitlab.com/rxap/packages/commit/d3740d2ce546927fed34597c07f1d96ca9a020af))
+
 # [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.2...@rxap/plugin-workspace@16.2.0-dev.3) (2024-03-23)
 
 ### Bug Fixes
