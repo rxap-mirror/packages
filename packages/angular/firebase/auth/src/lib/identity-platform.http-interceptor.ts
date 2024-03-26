@@ -1,86 +1,67 @@
 import {
-  HTTP_INTERCEPTORS,
   HttpErrorResponse,
   HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
+  HttpHandlerFn,
+  HttpInterceptorFn,
   HttpRequest,
 } from '@angular/common/http';
 import {
-  Inject,
-  Injectable,
+  inject,
   InjectionToken,
-  Provider,
 } from '@angular/core';
 import {
-  Observable,
-  throwError,
-} from 'rxjs';
+  Auth,
+  idToken,
+} from '@angular/fire/auth';
+import { isDefined } from '@rxap/rxjs';
 import { coerceArray } from '@rxap/utilities';
+import { Observable } from 'rxjs';
 import {
   catchError,
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { isDefined } from '@rxap/rxjs';
-import {
-  Auth,
-  idToken,
-} from '@angular/fire/auth';
 
 export const IDENTITY_PLATFORM_HTTP_INTERCEPTOR_URL_PATTERN = new InjectionToken<RegExp>(
   'identity-platform-http-interceptor-url-pattern');
 
 
-@Injectable()
-export class IdentityPlatformHttpInterceptor implements HttpInterceptor {
+export const IdentityPlatformHttpInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<any>> => {
 
-  private readonly urlPattern: RegExp[] = [];
+  const urlPattern: RegExp[] = coerceArray(
+    inject(IDENTITY_PLATFORM_HTTP_INTERCEPTOR_URL_PATTERN, { optional: true }) ?? []);
+  const auth = inject(Auth);
 
-  constructor(
-    public readonly auth: Auth,
-    @Inject(IDENTITY_PLATFORM_HTTP_INTERCEPTOR_URL_PATTERN)
-      urlPattern: RegExp | RegExp[],
-  ) {
-    this.urlPattern = coerceArray(urlPattern);
-  }
+  const isMatch = (req: HttpRequest<any>) => {
+    return urlPattern.some(pattern => req.url.match(pattern));
+  };
 
-  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.isMatch(req)) {
-      return idToken(this.auth).pipe(
-        tap(idTokenValue => {
-          if (!idTokenValue) {
-            throw new Error(`The isToken is not defined. Ensure that the user is logged in, before sending a request to '${ req.url }'`);
-          }
-        }),
-        isDefined(),
-        switchMap(idTokenValue => next.handle(req.clone({
-          setHeaders: {
-            idToken: idTokenValue,
-          },
-        })).pipe(
-          catchError(error => {
-            if (error instanceof HttpErrorResponse) {
-              if (error.status === 401) {
-                this.auth.signOut().then(() => location.reload());
-              }
+  if (isMatch(req)) {
+    return idToken(auth).pipe(
+      tap(idTokenValue => {
+        if (!idTokenValue) {
+          throw new Error(
+            `The isToken is not defined. Ensure that the user is logged in, before sending a request to '${ req.url }'`);
+        }
+      }),
+      isDefined(),
+      switchMap(idTokenValue => next(req.clone({
+        setHeaders: {
+          idToken: idTokenValue,
+        },
+      })).pipe(
+        catchError(error => {
+          if (error instanceof HttpErrorResponse) {
+            if (error.status === 401) {
+              auth.signOut().then(() => location.reload());
             }
-            return throwError(error);
-          }),
-        )),
-      );
-    }
-    return next.handle(req);
+          }
+          throw error;
+        }),
+      )),
+    );
   }
+  return next(req);
 
-  private isMatch(req: HttpRequest<any>) {
-    return this.urlPattern.some(pattern => req.url.match(pattern));
-  }
-
-}
-
-export const IDENTITY_PLATFORM_HTTP_INTERCEPTOR: Provider = {
-  provide: HTTP_INTERCEPTORS,
-  useClass: IdentityPlatformHttpInterceptor,
-  multi: true,
 };
+
