@@ -218,6 +218,7 @@ function getApplications(tree: Tree, options: DockerComposeGeneratorSchema): Arr
   return Array.from(projects.entries())
     .filter(([ , project ]) => IsApplicationProject(project))
               .filter(([ , project ]) => project.targets?.docker)
+              .filter(([ , project ]) => !project.tags?.includes('standalone'))
               .filter(([ projectName ]) => !options.ignoreProjects?.some((ignoreProject) => projectName ===
                 ignoreProject))
               .map(([ name, project ]) => ({
