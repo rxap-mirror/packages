@@ -1,7 +1,15 @@
 import { Request } from 'express';
 
+export interface JwtPayload extends Record<string, unknown> {
+  sub: string;
+}
+
+export function IsJwtPayload(payload: unknown): payload is JwtPayload {
+  return typeof payload === 'object' && payload !== null && 'sub' in payload;
+}
+
 export interface RequestWithJwt extends Request {
-  jwt: { sub: string } & Record<string, unknown>;
+  jwt: JwtPayload;
 }
 
 export interface DefaultUser {

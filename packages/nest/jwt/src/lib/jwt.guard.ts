@@ -4,8 +4,8 @@ import {
   ExecutionContext,
   Inject,
   Injectable,
-  UnauthorizedException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import {
   APP_GUARD,
   Reflector,
@@ -13,7 +13,10 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
 import { Observable } from 'rxjs';
-import { RequestWithJwt } from './types';
+import {
+  IsJwtPayload,
+  RequestWithJwt,
+} from './types';
 
 @Injectable()
 export class JwtGuard implements CanActivate {
@@ -23,6 +26,13 @@ export class JwtGuard implements CanActivate {
 
   @Inject(JwtService)
   private readonly jwtService!: JwtService;
+
+  @Inject(ConfigService)
+  private readonly config!: ConfigService;
+
+  private get authHeaderName(): string {
+    return this.config.get<string>('JWT_AUTH_HEADER', 'Authorization');
+  }
 
   canActivate(
     context: ExecutionContext,
@@ -36,21 +46,38 @@ export class JwtGuard implements CanActivate {
     }
     const request = context.switchToHttp().getRequest<RequestWithJwt>();
 
-    if (!request.header('Authorization')?.match(/^Bearer /)) {
-      throw new BadRequestException('Ensure Authorization header is set');
+    const headerValue = request.header(this.authHeaderName);
+
+    if (!headerValue) {
+      throw new BadRequestException(`Ensure ${this.authHeaderName} header is set`);
     }
 
-    const jwtRaw = request.header('Authorization')?.replace('Bearer ', '');
+    let token: string = headerValue;
 
-    if (!jwtRaw) {
-      throw new BadRequestException('Ensure Authorization header has a value after Bearer');
+    if (headerValue.startsWith('Bearer ')) {
+      token = headerValue.replace('Bearer ', '');
     }
 
+    let jwt: string | Record<string, any> | null;
     try {
-      request.jwt = this.jwtService.decode(jwtRaw, { json: true }) as any;
+      jwt = this.jwtService.decode(token, { json: true });
     } catch (e: any) {
-      throw new UnauthorizedException(`Ensure Authorization header has a valid JWT`);
+      throw new BadRequestException(`Ensure Authorization header has a valid JWT`);
     }
+
+    if (jwt === null) {
+      throw new BadRequestException('JWT is invalid');
+    }
+
+    if (typeof jwt === 'string') {
+      throw new BadRequestException('JWT token is decoded as a string');
+    }
+
+    if (!IsJwtPayload(jwt)) {
+      throw new BadRequestException('JWT token is missing sub claim');
+    }
+
+    request.jwt = jwt;
 
     return true;
   }
