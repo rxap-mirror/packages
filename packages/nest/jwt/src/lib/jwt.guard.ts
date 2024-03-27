@@ -49,7 +49,7 @@ export class JwtGuard implements CanActivate {
     const headerValue = request.header(this.authHeaderName);
 
     if (!headerValue) {
-      throw new BadRequestException(`Ensure ${this.authHeaderName} header is set`);
+      throw new BadRequestException(`Ensure '${this.authHeaderName}' header is set`);
     }
 
     let token: string = headerValue;
@@ -62,7 +62,7 @@ export class JwtGuard implements CanActivate {
     try {
       jwt = this.jwtService.decode(token, { json: true });
     } catch (e: any) {
-      throw new BadRequestException(`Ensure Authorization header has a valid JWT`);
+      throw new BadRequestException(`Ensure '${this.authHeaderName}' header has a valid JWT`);
     }
 
     if (jwt === null) {

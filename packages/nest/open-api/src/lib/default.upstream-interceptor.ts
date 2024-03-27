@@ -36,12 +36,12 @@ export class DefaultUpstreamInterceptor implements OpenApiUpstreamInterceptor {
 
     config.headers ??= {};
     const token = this.request.header(this.authHeaderName);
-    this.logger.debug(`Inject the ${this.upstreamHeaderName} header`, 'DefaultUpstreamInterceptor');
+    this.logger.debug(`Inject the '${this.upstreamHeaderName}' header`, 'DefaultUpstreamInterceptor');
     if (token) {
       config.headers[this.upstreamHeaderName] = this.request.header(this.authHeaderName);
     } else {
       this.logger.warn(
-        `No ${this.authHeaderName} header found in the request - [${ config.method?.toUpperCase() }] ${ config.url }`,
+        `No '${this.authHeaderName}' header found in the request - [${ config.method?.toUpperCase() }] ${ config.url }`,
         'DefaultUpstreamInterceptor',
       );
     }
