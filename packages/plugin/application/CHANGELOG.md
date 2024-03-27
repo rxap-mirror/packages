@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.0...@rxap/plugin-application@16.2.0-dev.1) (2024-03-27)
+
+### Bug Fixes
+
+- use new image location ([c4f01d5](https://gitlab.com/rxap/packages/commit/c4f01d564cc47eed0dee89257261489c89ddd323))
+
 # [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.1-dev.3...@rxap/plugin-application@16.2.0-dev.0) (2024-03-23)
 
 ### Bug Fixes

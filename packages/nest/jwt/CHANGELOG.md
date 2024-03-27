@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.1.0-dev.0...@rxap/nest-jwt@10.1.0-dev.1) (2024-03-27)
+
+### Bug Fixes
+
+- improve logging ([9561229](https://gitlab.com/rxap/packages/commit/9561229c3d845671f1642912c2f412299583e092))
+
 # [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.0.2-dev.1...@rxap/nest-jwt@10.1.0-dev.0) (2024-03-27)
 
 ### Features

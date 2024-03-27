@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-firebase@10.0.2-dev.0...@rxap/nest-firebase@10.0.2-dev.1) (2024-03-27)
+
+### Bug Fixes
+
+- reduce logging noise ([7381395](https://gitlab.com/rxap/packages/commit/7381395278e69dfc73efa999ca44c7516f36c227))
+
 ## [10.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-firebase@10.0.1...@rxap/nest-firebase@10.0.2-dev.0) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/nest-firebase
