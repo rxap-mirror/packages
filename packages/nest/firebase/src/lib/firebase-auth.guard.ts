@@ -9,12 +9,12 @@ import {
   Optional,
   UnauthorizedException,
 } from '@nestjs/common';
+import * as admin from 'firebase-admin';
 import {
   ALLOW_UNVERIFIED_EMAIL,
   DEACTIVATE_FIREBASE_AUTH_GUARD,
   FIREBASE_AUTH_HEADER,
 } from './tokens';
-import * as admin from 'firebase-admin';
 import { FirebaseUser } from './types';
 
 
@@ -41,8 +41,6 @@ export class FirebaseAuthGuard implements CanActivate {
   private readonly deactivated: boolean = false;
 
   public async canActivate(context: ExecutionContext): Promise<boolean> {
-
-    this.logger.verbose('canActivate', 'FirebaseAuthGuard');
 
     if (this.deactivated) {
       this.logger.debug('deactivated', 'FirebaseAuthGuard');
@@ -88,23 +86,18 @@ export class FirebaseAuthGuard implements CanActivate {
       .then((res) => {
         if (res.firebase?.sign_in_provider === 'anonymous') {
           // TODO : add options to disallow anonymous users
-          this.logger.debug('The idToken is valid and the user is anonymous', 'FirebaseAuthGuard');
+          this.logger.verbose('The idToken is valid and the user is anonymous', 'FirebaseAuthGuard');
           return res;
         } else {
-          this.logger.debug('The idToken is valid', 'FirebaseAuthGuard');
-          this.logger.verbose(
-            'check if email is verified. AllowUnverifiedEmail: ' + this.allowUnverifiedEmail,
-            'FirebaseAuthGuard',
-          );
           if (this.allowUnverifiedEmail || !!res.email_verified) {
             return res;
           }
-          this.logger.debug('Email is not verified', 'FirebaseAuthGuard');
+          this.logger.verbose('Email is not verified', 'FirebaseAuthGuard');
         }
         return null;
       })
       .catch((err) => {
-        this.logger.debug(`The idToken is not valid: ${ err.message }`, 'FirebaseAuthGuard');
+        this.logger.verbose(`The idToken is not valid: ${ err.message }`, 'FirebaseAuthGuard');
         return null;
       });
   }
