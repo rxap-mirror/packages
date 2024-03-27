@@ -1,5 +1,5 @@
 {
-  "version": "16.0.2-dev.3",
+  "version": "16.0.2-dev.4",
   "name": "@rxap/schematic-nestjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {

@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.2",
+  "version": "16.1.0-dev.3",
   "name": "@rxap/form-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -14,7 +14,7 @@
     "@rxap/definition": "^16.0.1-dev.1",
     "@rxap/forms": "^16.0.1-dev.1",
     "@rxap/mixin": "^16.0.1-dev.1",
-    "@rxap/open-api": "^16.0.1-dev.2",
+    "@rxap/open-api": "^16.0.1-dev.3",
     "@rxap/pattern": "^1.1.1-dev.0",
     "@rxap/reflect-metadata": "^1.0.2-dev.1",
     "@rxap/remote-method": "^16.0.1-dev.1",
@@ -60,7 +60,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.1-dev.2"
+        "version": "16.0.1-dev.3"
       },
       {
         "package": "@rxap/pattern",

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@16.0.2-dev.3...@rxap/schematic-nestjs@16.0.2-dev.4) (2024-03-27)
+
+### Bug Fixes
+
+- add correct return type for exists methods ([51ebe6d](https://gitlab.com/rxap/packages/commit/51ebe6d822d7d282b64841809f9cca6f241f76c3))
+- skip missing properties in update requests validation ([4a41442](https://gitlab.com/rxap/packages/commit/4a41442fcbeeda6a184f62c76b1a6937d0792a02))
+
 ## [16.0.2-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@16.0.2-dev.2...@rxap/schematic-nestjs@16.0.2-dev.3) (2024-03-26)
 
 ### Bug Fixes

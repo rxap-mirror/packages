@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.2",
+  "version": "16.0.1-dev.3",
   "name": "@rxap/firebase",
   "description": "A collection of utility angular services to interact with firebase.",
   "license": "GPL-3.0-or-later",
@@ -12,7 +12,7 @@
     "@angular/fire": "^7.5.0",
     "@rxap/config": "^16.0.1-dev.1",
     "@rxap/rxjs": "^1.1.1-dev.1",
-    "@rxap/utilities": "^16.1.0-dev.7",
+    "@rxap/utilities": "^16.1.0-dev.8",
     "firebase": "^9.23.0",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
@@ -47,7 +47,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.7"
+        "version": "16.1.0-dev.8"
       }
     ]
   },
