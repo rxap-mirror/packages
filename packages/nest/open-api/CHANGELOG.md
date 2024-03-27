@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.1.1-dev.3...@rxap/nest-open-api@10.2.0-dev.0) (2024-03-27)
+
+### Features
+
+- support custom jwt header name ([d8477c4](https://gitlab.com/rxap/packages/commit/d8477c4709c32222fe3807137346abff9e506d77))
+
 ## [10.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.1.1-dev.2...@rxap/nest-open-api@10.1.1-dev.3) (2024-03-26)
 
 ### Bug Fixes

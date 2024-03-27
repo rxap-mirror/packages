@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.6...@rxap/plugin-nestjs@16.2.0-dev.7) (2024-03-27)
+
+### Bug Fixes
+
+- coerce JWT_AUTH_HEADER token ([5c51fe7](https://gitlab.com/rxap/packages/commit/5c51fe7aced89215a99d86beb9941351aafe855f))
+
 # [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.5...@rxap/plugin-nestjs@16.2.0-dev.6) (2024-03-26)
 
 ### Bug Fixes
