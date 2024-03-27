@@ -86,7 +86,7 @@ services:
       - traefik
       - rxap-service-status
   rxap-service-user:
-    image: registry.gitlab.com/rxap/packages/service/user:${RXAP_CHANNEL:-development}
+    image: registry.gitlab.com/rxap/applications/services/user:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.path=/health
