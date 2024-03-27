@@ -77,6 +77,11 @@ function UpdateAppConfig(tree: Tree, options: JwtGeneratorSchema, projectName: s
             name: 'JWT_SECRET',
             defaultValue: 'GenerateRandomString()',
           },
+          {
+            name: 'JWT_AUTH_HEADER',
+            type: 'string',
+            defaultValue: 'Authorization',
+          },
         ],
         overwrite: options.overwrite,
       });
