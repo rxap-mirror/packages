@@ -58,7 +58,9 @@ export abstract class Server<O extends object, T extends INestApplicationContext
   public async bootstrap() {
 
     console.log('Server bootstrap started');
-    console.log('Initial environment', JSON.stringify(this.environment));
+    console.log('Initial environment', JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2));
+
+    this.printPackageVersions();
 
     this.prepareEnvironment(this.environment);
 
@@ -141,7 +143,7 @@ export abstract class Server<O extends object, T extends INestApplicationContext
     }
 
     RXAP_GLOBAL_STATE.environment = environment;
-    console.log('Final environment', JSON.stringify(RXAP_GLOBAL_STATE.environment));
+    console.log('Final environment', JSON.stringify(RXAP_GLOBAL_STATE.environment, undefined, this.environment.production ? undefined : 2));
   }
 
   protected abstract prepareOptions(app: T, logger: Logger, config: ConfigService): B;
@@ -178,6 +180,20 @@ export abstract class Server<O extends object, T extends INestApplicationContext
       }
     } else {
       Logger.warn(`The build.json file does not exists in the path '${ buildJsonFilePath }'`, 'Bootstrap');
+    }
+  }
+
+  protected printPackageVersions() {
+    const packageJsonFilePath = join(process.cwd(), 'package.json');
+    if (existsSync(packageJsonFilePath)) {
+      try {
+        const packageJson = JSON.parse(readFileSync(packageJsonFilePath).toString('utf-8'));
+        Logger.log('Package versions: ', JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+      } catch (e) {
+        Logger.warn(`Could not parse package.json in the path '${ packageJsonFilePath }'`, 'Bootstrap');
+      }
+    } else {
+      Logger.warn(`The package.json file does not exists in the path '${ packageJsonFilePath }'`, 'Bootstrap');
     }
   }
 
