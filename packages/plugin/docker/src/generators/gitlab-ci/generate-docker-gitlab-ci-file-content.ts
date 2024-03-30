@@ -128,7 +128,13 @@ export function generateDockerGitlabCiFileContent(
 
     if (Array.isArray(dockerTargetOptions.buildArgList)) {
       const buildArgList = processBuildArgs(
-        dockerTargetOptions.buildArgList, projectName, project.sourceRoot, { PROJECT_NAME: projectName });
+        dockerTargetOptions.buildArgList,
+        projectName,
+        project.sourceRoot,
+        { PROJECT_NAME: projectName },
+        path => tree.exists(path),
+        (path, encoding) => tree.read(path, encoding),
+      );
       for (const buildArg of buildArgList.sort()) {
         if (buildArg.includes('=')) {
           const [ env, value ] = buildArg.split('=');

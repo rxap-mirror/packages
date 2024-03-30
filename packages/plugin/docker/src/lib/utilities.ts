@@ -61,6 +61,8 @@ export function processBuildArgs(
   projectName: string,
   projectSourceRoot: string,
   processEnv: Record<string, string> = process.env,
+  existsFileFn: (path: string) => boolean = existsSync,
+  readFileSyncFn: (path: string, encoding: BufferEncoding) => string = readFileSync,
 ) {
   const processedBuildArgList: string[] = [];
   processedBuildArgList.push(`PROJECT_NAME=${ projectName }`);
@@ -74,10 +76,10 @@ export function processBuildArgs(
         if (!filePath || !regex) {
           throw new Error(`Invalid regex build arg value '${ value }'`);
         }
-        if (!existsSync(join(projectSourceRoot, filePath))) {
+        if (!existsFileFn(join(projectSourceRoot, filePath))) {
           throw new Error(`File '${ filePath }' does not exist in project source root '${ projectSourceRoot }'`);
         }
-        const content = readFileSync(join(projectSourceRoot, filePath), 'utf-8');
+        const content = readFileSyncFn(join(projectSourceRoot, filePath), 'utf-8');
         const match = content.match(new RegExp(regex));
         if (!match) {
           throw new Error(
