@@ -24,9 +24,11 @@ export function RegisterToStatusService({ registerPath = '/register' }: Register
     const statusServiceBaseUrl = config.getOrThrow('STATUS_SERVICE_BASE_URL');
     const requestUrl = `${ statusServiceBaseUrl }${ registerPath }`;
     const port = config.getOrThrow('PORT');
-    logger.debug(`Register service: ${ requestUrl } for port: ${ port }`, 'Bootstrap');
+    logger.log(`Register service: ${ requestUrl } for port: ${ port }`, 'Bootstrap');
     let ready = false;
+    let abort = false;
     let counter = 0;
+    const timeout = 15 * 1000;
     do {
       try {
         const data: any = {
@@ -60,15 +62,29 @@ export function RegisterToStatusService({ registerPath = '/register' }: Register
         }
         await axios.post(requestUrl, data);
         ready = true;
-        logger.log('Service registered', 'Bootstrap');
       } catch (e: any) {
-        logger.warn(`Failed to register service (${ counter++ }): ${ e.message }`, undefined, 'Bootstrap');
+        if (e.message.includes('getaddrinfo ENOTFOUND')) {
+          logger.error(`Unable to resolve the domain: ${e.message}`);
+          if (counter > 4) {
+            abort = true;
+          }
+        } else {
+          logger.warn(`Failed to register service (${ counter++ }): ${ e.message }`, 'Bootstrap');
+        }
         if (e instanceof AxiosError) {
           if (e.response?.status && e.response.status < 500) {
             logger.debug('Response: ' + JSON.stringify(e.response?.data), 'Bootstrap');
           }
         }
+        logger.verbose(`Retry in ${ timeout / 1000 } seconds`, 'Bootstrap');
       }
-    } while (!ready && await new Promise((resolve) => setTimeout(() => resolve(true), 15 * 1000)));
+    } while (!ready && !abort && await new Promise((resolve) => setTimeout(() => resolve(true), timeout)));
+    if (ready) {
+      logger.log('Service registered', 'Bootstrap');
+    } else if (abort) {
+      logger.warn(`Service registration aborted after ${counter} attempts`, 'Bootstrap');
+    } else {
+      logger.error('FATAL: Service registration failed', 'Bootstrap');
+    }
   };
 }
