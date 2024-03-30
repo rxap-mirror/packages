@@ -616,7 +616,7 @@ export async function initApplicationGenerator(
   options.openApi ??= false;
   options.jwt ??= false;
   options.statusRegister ??= true;
-  options.apiConfigurationFile ??= 'shared/service/configuration/latest/config.api.json';
+  options.apiConfigurationFile ??= options.standalone ? undefined : 'shared/service/configuration/latest/config.api.json';
   options.project ??= undefined;
   options.projects ??= [];
   if (options.project) {
