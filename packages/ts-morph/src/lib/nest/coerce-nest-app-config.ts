@@ -89,7 +89,18 @@ function buildValidationSchemaExpressionValue(item: Omit<CoerceNestAppConfigOpti
     w.write(`Joi.${ item.type ?? 'string' }()`);
     if (item.defaultValue) {
       if (typeof item.defaultValue === 'string') {
-        w.write(`.default(${ item.defaultValue })`);
+        if (item.type === 'string') {
+          w.write(`.default(`);
+          // wrap the string in single quotes if it is not already
+          if ((!item.defaultValue.startsWith("'") && !item.defaultValue.endsWith("'")) || (!item.defaultValue.startsWith('"') && !item.defaultValue.endsWith('"'))) {
+            w.quote(item.defaultValue);
+          } else {
+            w.write(item.defaultValue);
+          }
+          w.write(`)`);
+        } else {
+          w.write(`.default(${ item.defaultValue })`);
+        }
       } else {
         w.write('.default(');
         item.defaultValue(w);
