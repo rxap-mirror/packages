@@ -29,8 +29,12 @@ import { InitGeneratorSchema } from './schema';
 const gitIgnore = [
   // nx
   '/migrations.json',
+  // chrome
+  '~',
   // angular
   '.angular',
+  // nx
+  '.nx',
   // rxap
   '/docker-compose.frontends.yml',
   '/docker-compose.services.yml',
@@ -58,11 +62,15 @@ const gitIgnore = [
   '.sass-cache',
   'connect.lock',
   'coverage',
+  '.nyc_output',
   '*.log',
   '*.lock',
   '*.patch',
   'typings',
   '.env',
+  'junit.xml',
+  'nx-angular-config.xml',
+  'nx-config.xml',
   // system files
   '.DS_Store',
   'Thumbs.db',
@@ -403,17 +411,6 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   if (options.packages) {
     CoerceLernaJson(tree);
-  }
-
-  if (options.standalone) {
-    // TODO : write a proper function that renames the project
-    // ensure that the project name is updated in the hole project.json and not only in the name property
-    if (!tree.exists('project.json')) {
-      throw new Error('This is not standalone workspace. The /project.json file does not exist!');
-    }
-    const projectJson = JSON.parse(tree.read('project.json')!.toString('utf-8'));
-    projectJson.name = 'workspace';
-    tree.write('project.json', JSON.stringify(projectJson, null, 2));
   }
 
   await AddPackageJsonDevDependency(tree, 'husky', 'latest', { soft: true });
