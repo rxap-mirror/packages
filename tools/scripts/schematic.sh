@@ -156,6 +156,21 @@ if [ ! -f "angular.json" ]; then
   tmp_angular_json="true"
 fi
 
+# Define cleanup procedure
+cleanup() {
+    echo "Caught signal, cleaning up..."
+    if [ -f "$CURRENT_DIR/angular.json" ]; then
+        # Test if the file content is an empty JSON Object
+        if jq -e . "$CURRENT_DIR/angular.json" | cmp -s <(echo '{}'); then
+            echo "angular.json is an empty object, removing it..."
+            rm "$CURRENT_DIR/angular.json"
+        fi
+    fi
+    exit 1
+}
+# Setup trap, call cleanup() function when signal is caught
+trap "cleanup" ERR INT TERM
+
 yarn --cwd "$CURRENT_DIR" nx g "./$rel_dir:$schematic" "$@"
 
 # remove the temporary angular.json file
