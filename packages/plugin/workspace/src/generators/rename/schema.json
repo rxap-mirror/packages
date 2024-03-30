@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Rename",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of project that should be renamed"
+    },
+    "name": {
+      "type": "string",
+      "description": "The new name of the project"
+    },
+    "tags": {
+      "alias": "tag",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": []
+}

@@ -19,6 +19,11 @@
       "factory": "./src/generators/fix-implicit-internal-dependencies/generator",
       "schema": "./src/generators/fix-implicit-internal-dependencies/schema.json",
       "description": "fix-implicit-internal-dependencies generator"
+    },
+    "rename": {
+      "factory": "./src/generators/rename/generator",
+      "schema": "./src/generators/rename/schema.json",
+      "description": "rename generator"
     }
   },
   "schematics": {
@@ -41,6 +46,11 @@
       "factory": "./src/generators/fix-implicit-internal-dependencies/index",
       "schema": "./src/generators/fix-implicit-internal-dependencies/schema.json",
       "description": "fix-implicit-internal-dependencies generator"
+    },
+    "rename": {
+      "factory": "./src/generators/rename/index",
+      "schema": "./src/generators/rename/schema.json",
+      "description": "rename generator"
     }
   }
 }
