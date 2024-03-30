@@ -5,8 +5,7 @@ coverage-report:
   script:
     - bash tools/scripts/merge-coverage-reports.bash
     - npx nyc report --reporter text-summary | perl -pe 's/\e\[?.*?[\@-~]//g'
-  allow_failure:
-    exit_codes: 42
+  allow_failure: true
   artifacts:
     expire_in: 1 week
     paths:

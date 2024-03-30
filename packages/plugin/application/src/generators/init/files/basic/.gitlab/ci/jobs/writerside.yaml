@@ -9,10 +9,5 @@ writerside:
     expire_in: 2 hrs
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      exists:
-        - Writerside/*.tree
       when: on_success
-    - exists:
-        - Writerside/*.tree
-      when: manual
-    - when: never
+    - when: manual
