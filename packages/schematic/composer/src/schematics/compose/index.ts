@@ -7,6 +7,7 @@ import {
 } from '@angular-devkit/schematics';
 import { HasProjectFeature } from '@rxap/schematics-ts-morph';
 import {
+  AddPackageJsonDevDependencyRule,
   GetProjectSourceRoot,
   GlobalOptions,
 } from '@rxap/schematics-utilities';
@@ -125,6 +126,7 @@ function executeSchematicCommandFile(
     ruleList.push(chain([
       () => console.log(`Execute schematic '${ command.package }:${ command.name }'`.green),
       () => console.log(`Input Options: ${ JSON.stringify(options) }`.grey),
+      AddPackageJsonDevDependencyRule(command.package, 'latest', { soft: true }),
       () => {
         try {
           return externalSchematic(command.package, command.name, options);
