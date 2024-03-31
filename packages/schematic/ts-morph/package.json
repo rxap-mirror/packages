@@ -3,9 +3,9 @@
   "name": "@rxap/schematics-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "tslib": "2.6.2",
     "colors": "^1.4.0",
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
