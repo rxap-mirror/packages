@@ -23,7 +23,6 @@ include:
 
   - local: .gitlab/ci/utilities/nx.yaml
   - local: .gitlab/ci/utilities/npm-cache.yaml
-  - local: .gitlab/ci/utilities/gcp-deployment.yaml
   - local: .gitlab/ci/jobs/pages.yaml
     rules:
       # do not run for merge train merge requests
