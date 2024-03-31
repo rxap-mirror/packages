@@ -13,7 +13,6 @@ import {
   MatExpansionPanel,
   MatExpansionPanelHeader,
 } from '@angular/material/expansion';
-import { DOMElement } from 'react';
 import {
   startWith,
   Subscription,
