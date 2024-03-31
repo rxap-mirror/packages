@@ -42,7 +42,7 @@ export const VALIDATION_SCHEMA = Joi.object(validationSchema);`;
         {
           name: 'STORAGE_DIR',
           type: 'string',
-          defaultValue: 'join(__dirname, \'assets\')',
+          defaultValue: w => w.write('join(__dirname, \'assets\')'),
         },
       ],
     });
@@ -101,7 +101,7 @@ export const VALIDATION_SCHEMA = Joi.object(validationSchema);`;
         {
           name: 'STORAGE_DIR',
           type: 'string',
-          defaultValue: 'join(__dirname, \'assets\')',
+          defaultValue: w => w.write('join(__dirname, \'assets\')'),
         },
       ],
       overwrite: true,
