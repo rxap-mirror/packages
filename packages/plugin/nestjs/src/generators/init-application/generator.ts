@@ -38,6 +38,8 @@ import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetNestApiPrefix,
+  GetWorkspaceName,
+  IsStandaloneWorkspace,
   SkipNonApplicationProject,
   Strategy,
   UpdateJsonFile,
@@ -79,10 +81,15 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: 
         namedImports: [ 'Environment' ],
       });
 
+      let appName = options.project;
+      if (IsStandaloneWorkspace(tree)) {
+        appName = GetWorkspaceName(tree);
+      }
+
       const baseEnvironment: Record<string, WriterFunction | string> = {
         name: w => w.quote('development'),
         production: 'false',
-        app: w => w.quote(options.project),
+        app: w => w.quote(appName),
       };
 
       if (options.sentry) {
