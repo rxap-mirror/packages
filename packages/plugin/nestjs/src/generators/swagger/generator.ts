@@ -8,17 +8,71 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
+  CoerceImports,
+  CoerceVariableDeclaration,
+} from '@rxap/ts-morph';
+import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
+import {
   AddPackageJsonDependency,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   GetProjectRoot,
   GetTarget,
   GetTargetOptions,
+  GetWorkspaceName,
+  IsStandaloneWorkspace,
   Strategy,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { join } from 'path';
+import {
+  WriterFunction,
+  Writers,
+} from 'ts-morph';
 import { SwaggerGeneratorSchema } from './schema';
+
+function coerceEnvironmentFiles(tree: Tree, options: { project: string, overwrite?: boolean }) {
+
+  TsMorphNestProjectTransform(
+    tree,
+    {
+      project: options.project,
+    },
+    (project, [ sourceFile ]) => {
+
+      CoerceImports(sourceFile, {
+        moduleSpecifier: '@rxap/nest-utilities',
+        namedImports: [ 'Environment' ],
+      });
+
+      let appName = options.project;
+      if (IsStandaloneWorkspace(tree)) {
+        appName = GetWorkspaceName(tree);
+      }
+
+      const baseEnvironment: Record<string, WriterFunction | string> = {
+        name: w => w.quote('swagger'),
+        production: 'true',
+        swagger: 'true',
+        app: w => w.quote(appName),
+      };
+
+      const normal = CoerceVariableDeclaration(sourceFile, 'environment', {
+        type: 'Environment',
+        initializer: Writers.object(baseEnvironment),
+      });
+
+      if (options.overwrite) {
+        normal.set({ initializer: Writers.object(baseEnvironment) });
+      }
+
+    },
+    [
+      '/environments/environment.swagger.ts?',
+    ],
+  );
+
+}
 
 function updateProjectTargets(project: ProjectConfiguration, options: SwaggerGeneratorSchema) {
 
@@ -126,6 +180,7 @@ export async function swaggerGenerator(
 
   const project = readProjectConfiguration(tree, options.project);
 
+  coerceEnvironmentFiles(tree, options);
   updateNxDefaults(tree, options);
   updateProjectTargets(project, options);
   const projectSourceRoot = project.sourceRoot;
