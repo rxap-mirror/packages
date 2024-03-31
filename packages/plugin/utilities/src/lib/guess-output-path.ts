@@ -2,14 +2,13 @@ import {
   ExecutorContext,
   TargetConfiguration,
 } from '@nx/devkit';
+import { GetTargetOptions } from '@rxap/workspace-utilities';
 import {
   dirname,
   join,
 } from 'path';
-import { GetTargetOptions } from './get-target-configuration-name-list';
 import { GetProjectRoot } from './project';
 import { GetProjectTarget } from './project-target';
-
 
 export function GuessOutputPathFromContext(
   context: ExecutorContext,

@@ -1,16 +1,14 @@
+import { ProjectConfiguration } from '@nx/devkit';
 import {
-  ProjectConfiguration,
-  Tree,
-} from '@nx/devkit';
-import {
+  HasGenerators,
   IsPluginProject,
   SkipProject,
   SkipProjectOptions,
+  TreeLike,
 } from '@rxap/workspace-utilities';
-import { HasGenerators } from './generators';
 
 export function SkipNonGeneratorsProject(
-  tree: Tree,
+  tree: TreeLike,
   options: SkipProjectOptions,
   project: ProjectConfiguration,
   projectName: string,

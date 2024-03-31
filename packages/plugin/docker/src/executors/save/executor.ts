@@ -1,9 +1,9 @@
 import { ExecutorContext } from '@nx/devkit';
+import { GetProjectConfiguration } from '@rxap/plugin-utilities';
 import {
-  GetProjectConfiguration,
   GetTarget,
   GetTargetOptions,
-} from '@rxap/plugin-utilities';
+} from '@rxap/workspace-utilities';
 import {
   dockerSave,
   getFallBackImageTag,

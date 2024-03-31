@@ -2,8 +2,8 @@ import {
   getProjects,
   Tree,
 } from '@nx/devkit';
-import { GetTargetOptions } from '@rxap/plugin-utilities';
 import {
+  GetTargetOptions,
   IsServiceProject,
   IsUserInterfaceProject,
   RootDockerOptions,

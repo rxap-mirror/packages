@@ -6,8 +6,8 @@ import {
 import {
   SkipNonGeneratorsProject,
   UpdateGenerators,
-} from '@rxap/plugin-utilities';
-import { UpdateProjectPackageJson } from '@rxap/workspace-utilities';
+  UpdateProjectPackageJson,
+} from '@rxap/workspace-utilities';
 import {
   dirname,
   join,

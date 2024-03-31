@@ -1,10 +1,10 @@
 import { Tree } from '@nx/devkit';
-import { GetGenerators } from '@rxap/plugin-utilities';
 import {
   camelize,
   CoerceArrayItems,
 } from '@rxap/utilities';
 import {
+  GetGenerators,
   GetPackageJson,
   GetProjectRoot,
   GetProjectSourceRoot,

@@ -8,14 +8,12 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
-  GetTarget,
-  GetTargetOptions,
-} from '@rxap/plugin-utilities';
-import {
   AddPackageJsonDependency,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   GetProjectRoot,
+  GetTarget,
+  GetTargetOptions,
   Strategy,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';

@@ -1,11 +1,10 @@
-import {
-  ProjectConfiguration,
-  Tree,
-} from '@nx/devkit';
+import { ProjectConfiguration } from '@nx/devkit';
 import {
   GetPackageJson,
   GetProject,
   PackageJson,
+  TreeAdapter,
+  TreeLike,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 
@@ -27,7 +26,7 @@ export function GetGeneratorFilePath(projectRoot: string, packageJson: PackageJs
 
 }
 
-export function ExistsGeneratorFile(tree: Tree, projectRoot: string, packageJson: PackageJsonWithGenerators): boolean {
+export function ExistsGeneratorFile(tree: TreeLike, projectRoot: string, packageJson: PackageJsonWithGenerators): boolean {
   return tree.exists(GetGeneratorFilePath(projectRoot, packageJson));
 }
 
@@ -37,13 +36,14 @@ export interface GeneratorFile {
 }
 
 export function GetGeneratorFile(
-  tree: Tree,
+  tree: TreeLike,
   projectRoot: string,
   packageJson: PackageJsonWithGenerators,
 ): GeneratorFile {
+  const treeAdapter = new TreeAdapter(tree);
   const generatorFile = GetGeneratorFilePath(projectRoot, packageJson);
 
-  const content = tree.read(generatorFile)?.toString('utf-8');
+  const content = treeAdapter.read(generatorFile)?.toString('utf-8');
 
   if (!content) {
     throw new Error(`The generator file ${ generatorFile } does not exists!`);
@@ -57,7 +57,7 @@ export function GetGeneratorFile(
 }
 
 export function ProjectRootOrNameOrConfigurationToProjectRoot(
-  tree: Tree,
+  tree: TreeLike,
   projectRootOrNameOrConfiguration: string | ProjectConfiguration,
 ): string {
   if (typeof projectRootOrNameOrConfiguration === 'string') {
@@ -77,7 +77,7 @@ export function ProjectRootOrNameOrConfigurationToProjectRoot(
 }
 
 export function GetGenerators(
-  tree: Tree,
+  tree: TreeLike,
   projectRootOrNameOrConfiguration: string | ProjectConfiguration,
 ): GeneratorFile {
 
@@ -97,11 +97,11 @@ export function GetGenerators(
 }
 
 export function UpdateGenerators(
-  tree: Tree,
+  tree: TreeLike,
   projectRootOrNameOrConfiguration: string | ProjectConfiguration,
   update: (generators: GeneratorFile) => GeneratorFile,
 ) {
-
+  const treeAdapter = new TreeAdapter(tree);
   const projectRoot = ProjectRootOrNameOrConfigurationToProjectRoot(tree, projectRootOrNameOrConfiguration);
 
   const packageJson = GetPackageJson(tree, projectRoot);
@@ -116,11 +116,11 @@ export function UpdateGenerators(
 
   const generators = GetGeneratorFile(tree, projectRoot, packageJson);
 
-  tree.write(GetGeneratorFilePath(projectRoot, packageJson), JSON.stringify(update(generators), null, 2) + '\n');
+  treeAdapter.write(GetGeneratorFilePath(projectRoot, packageJson), JSON.stringify(update(generators), null, 2) + '\n');
 
 }
 
-export function HasGenerators(tree: Tree, projectRootOrNameOrConfiguration: string | ProjectConfiguration) {
+export function HasGenerators(tree: TreeLike, projectRootOrNameOrConfiguration: string | ProjectConfiguration) {
 
   const projectRoot = ProjectRootOrNameOrConfigurationToProjectRoot(tree, projectRootOrNameOrConfiguration);
 

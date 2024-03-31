@@ -1,10 +1,12 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
   GetProjectConfiguration,
-  GetTarget,
-  GetTargetOptions,
   YarnRun,
 } from '@rxap/plugin-utilities';
+import {
+  GetTarget,
+  GetTargetOptions,
+} from '@rxap/workspace-utilities';
 import * as process from 'process';
 import { GetAutoTag } from '../../lib/get-auto-tag';
 import { LoadKeysFromFile } from '../../lib/load-keys-from-file';

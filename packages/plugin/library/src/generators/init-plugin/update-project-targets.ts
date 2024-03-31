@@ -2,8 +2,10 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { HasGenerators } from '@rxap/plugin-utilities';
-import { CoerceTarget } from '@rxap/workspace-utilities';
+import {
+  CoerceTarget,
+  HasGenerators,
+} from '@rxap/workspace-utilities';
 
 export function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 

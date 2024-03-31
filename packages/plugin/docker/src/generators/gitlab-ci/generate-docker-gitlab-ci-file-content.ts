@@ -2,13 +2,11 @@ import {
   getProjects,
   Tree,
 } from '@nx/devkit';
-import {
-  GetTargetOptions,
-  GuessOutputPath,
-} from '@rxap/plugin-utilities';
+import { GuessOutputPath } from '@rxap/plugin-utilities';
 import { CoerceSuffix } from '@rxap/utilities';
 import {
   GetNestApiPrefix,
+  GetTargetOptions,
   IsNestJsProject,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';

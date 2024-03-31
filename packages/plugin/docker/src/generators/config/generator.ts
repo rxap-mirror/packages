@@ -5,9 +5,9 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { CreateConfigurationMapMatchingWithTarget } from '@rxap/plugin-utilities';
 import {
   CoerceFilesStructure,
+  CreateConfigurationMapMatchingWithTarget,
   GetProjectSourceRoot,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';

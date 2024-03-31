@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
-import { GetTargetOptions } from './get-target-configuration-name-list';
+import { GetTargetOptions } from '@rxap/workspace-utilities';
 import { GetProjectConfiguration } from './project';
 
 export function GetProjectTarget(context: ExecutorContext, projectName = context.projectName, targetName: string) {
