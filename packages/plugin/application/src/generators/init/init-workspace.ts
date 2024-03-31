@@ -14,6 +14,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
 
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-workspace', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, 'jest-junit', 'latest', { soft: true });
 
   updateTargetDefaults(tree);
 
