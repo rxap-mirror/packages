@@ -24,6 +24,7 @@ import {
   TreeAdapter,
   TreeLike,
 } from './tree';
+import 'colors';
 
 export function GetPackageJson<Tree extends TreeLike>(tree: Tree, basePath = ''): PackageJson {
   return GetJsonFile(tree, join(basePath, 'package.json'));
@@ -73,6 +74,10 @@ export interface AddPackageJsonDependencyOptions extends UpdatePackageJsonOption
    * true (default) - also install the package peer dependencies
    */
   withPeerDependencies?: boolean;
+  /**
+   * true (default) - do not install the package peer dependencies if they are not rxap packages
+   */
+  withoutNonRxapPeerDependencies?: boolean;
 }
 
 export async function AddPackageJsonDependency<Tree extends TreeLike>(
@@ -83,7 +88,7 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
   propertyPath: 'dependencies' | 'devDependencies' | 'peerDependencies' | 'optionalDependencies' = 'dependencies',
 ) {
 
-  const { withPeerDependencies = true } = options;
+  const { withPeerDependencies = true, withoutNonRxapPeerDependencies = true } = options;
 
   let mewPackageVersion: string | null = packageVersion;
   if (packageVersion === 'latest') {
@@ -99,38 +104,169 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
 
   let addedNewPackage = false;
 
+  function promotePackage(packageJson: PackageJson) {
+    const isDependency = packageJson.dependencies?.[packageName] !== undefined;
+    const isDevDependency = packageJson.devDependencies?.[packageName] !== undefined;
+    const isPeerDependency = packageJson.peerDependencies?.[packageName] !== undefined;
+    const isOptionalDependency = packageJson.optionalDependencies?.[packageName] !== undefined;
+    if (![isDevDependency, isDependency, isPeerDependency, isOptionalDependency].some(Boolean)) {
+      // the package is not in the dependencies and needs not to be promoted
+      return;
+    }
+    if (propertyPath === 'dependencies' && isDependency) {
+      // the package is already in the dependencies
+      return;
+    }
+    if (propertyPath === 'devDependencies' && isDevDependency) {
+      // the package is already in the devDependencies
+      return;
+    }
+    if (propertyPath === 'peerDependencies' && isPeerDependency) {
+      // the package is already in the peerDependencies
+      return;
+    }
+    if (propertyPath === 'optionalDependencies' && isOptionalDependency) {
+      // the package is already in the optionalDependencies
+      return;
+    }
+    console.log(`Promote the package \x1b[34m${ packageName }\x1b[0m from \x1b[90m${ isDependency ? 'dependencies' : isDevDependency ? 'devDependencies' : isPeerDependency ? 'peerDependencies' : 'optionalDependencies' }\x1b[0m to \x1b[90m${ propertyPath }\x1b[0m`.yellow);
+    const version = (packageJson.dependencies?.[packageName] ?? packageJson.devDependencies?.[packageName] ?? packageJson.peerDependencies?.[packageName] ?? packageJson.optionalDependencies?.[packageName])!;
+    switch (propertyPath) {
+
+      case 'dependencies':
+        if (isDevDependency) {
+          delete packageJson.devDependencies![packageName];
+        }
+        if (isPeerDependency) {
+          delete packageJson.peerDependencies![packageName];
+        }
+        if (isOptionalDependency) {
+          delete packageJson.optionalDependencies![packageName];
+        }
+        packageJson.dependencies ??= {};
+        packageJson.dependencies[packageName] = version;
+        break;
+
+      case 'devDependencies':
+        if (isDependency) {
+          // if the package is in the dependencies then it should not be promoted to the devDependencies
+          break;
+        }
+        if (isPeerDependency) {
+          delete packageJson.peerDependencies![packageName];
+        }
+        if (isOptionalDependency) {
+          delete packageJson.optionalDependencies![packageName];
+        }
+        packageJson.devDependencies ??= {};
+        packageJson.devDependencies[packageName] = version;
+        break;
+
+      case 'peerDependencies':
+        if (isDependency || isDevDependency) {
+          // if the package is in the dependencies or dev dependency then it should not be promoted to the peerDependencies
+          break;
+        }
+        if (isOptionalDependency) {
+          delete packageJson.optionalDependencies![packageName];
+        }
+        packageJson.peerDependencies ??= {};
+        packageJson.peerDependencies[packageName] = version;
+        break;
+    }
+  }
+
+  function cleanup(packageJson: PackageJson) {
+    const isDependency = packageJson.dependencies?.[packageName] !== undefined;
+    const isDevDependency = packageJson.devDependencies?.[packageName] !== undefined;
+    const isPeerDependency = packageJson.peerDependencies?.[packageName] !== undefined;
+    const isOptionalDependency = packageJson.optionalDependencies?.[packageName] !== undefined;
+    if ([isDevDependency, isDependency, isPeerDependency, isOptionalDependency].filter(Boolean).length > 1) {
+      console.log(`The package \x1b[34m${ packageName }\x1b[0m is in multiple dependencies`.yellow);
+      if (isDependency) {
+        if (isDevDependency) {
+          delete packageJson.devDependencies![packageName];
+        }
+        if (isPeerDependency) {
+          delete packageJson.peerDependencies![packageName];
+        }
+        if (isOptionalDependency) {
+          delete packageJson.optionalDependencies![packageName];
+        }
+      } else if (isDevDependency) {
+        if (isPeerDependency) {
+          delete packageJson.peerDependencies![packageName];
+        }
+        if (isOptionalDependency) {
+          delete packageJson.optionalDependencies![packageName];
+        }
+      } else if (isPeerDependency) {
+        if (isOptionalDependency) {
+          delete packageJson.optionalDependencies![packageName];
+        }
+      }
+      if ([isDevDependency, isDependency, isPeerDependency, isOptionalDependency].filter(Boolean).length > 1) {
+        throw new Error(`FATIAL: The package \x1b[34m${ packageName }\x1b[0m is in multiple dependencies`);
+      }
+    }
+  }
+
   await UpdatePackageJson(
     tree,
     packageJson => {
-      const dep = packageJson[propertyPath] ??= {};
+      cleanup(packageJson);
+      promotePackage(packageJson);
+      const currentVersion = packageJson.dependencies?.[packageName] ?? packageJson.devDependencies?.[packageName] ?? packageJson.peerDependencies?.[packageName] ?? packageJson.optionalDependencies?.[packageName] ?? null;
+      const isDependency = packageJson.dependencies?.[packageName] !== undefined;
+      const isDevDependency = packageJson.devDependencies?.[packageName] !== undefined;
+      const isPeerDependency = packageJson.peerDependencies?.[packageName] !== undefined;
+      const isOptionalDependency = packageJson.optionalDependencies?.[packageName] !== undefined;
+      let depObject: Record<string, string>;
+      if (isDependency) {
+        depObject = packageJson.dependencies!;
+        propertyPath = 'dependencies';
+      } else if (isDevDependency) {
+        depObject = packageJson.devDependencies!;
+        propertyPath = 'devDependencies';
+      } else if (isPeerDependency) {
+        depObject = packageJson.peerDependencies!;
+        propertyPath = 'peerDependencies';
+      } else if (isOptionalDependency) {
+        depObject = packageJson.optionalDependencies!;
+        propertyPath = 'optionalDependencies';
+      } else {
+        packageJson[propertyPath] ??= {};
+        depObject = packageJson[propertyPath]!;
+      }
       if (options?.soft) {
-        if (dep[packageName]) {
+        if (currentVersion) {
           if (packageVersion === 'latest') {
-            console.log(`The package \x1b[34m${ packageName }\x1b[0m already exists in the \x1b[90m${ propertyPath }\x1b[0m`);
+            console.log(`The package \x1b[34m${ packageName }\x1b[0m already exists in the \x1b[90m${ propertyPath }\x1b[0m`.grey);
             // if soft and latest and the package already exists in the dependencies do nothing
             return;
           }
-          const currentVersion = dep[packageName].replace(/^(~|\^|>|<|<=|>=)/, '');
-          if (currentVersion === mewPackageVersion) {
+          const cleanCurrentVersion = currentVersion.replace(/^(~|\^|>|<|<=|>=)/, '');
+          if (cleanCurrentVersion === mewPackageVersion) {
+            console.log(`The package \x1b[34m${ packageName }\x1b[0m version \x1b[32m${ currentVersion }\x1b[0m is equal to the anticipated version \x1b[32m${ mewPackageVersion }\x1b[0m`.grey);
             return;
           }
-          if (gt(currentVersion, mewPackageVersion!)) {
-            console.log(`The package \x1b[34m${ packageName }\x1b[0m version \x1b[31m${ currentVersion }\x1b[0m is greater than the anticipated version \x1b[32m${ mewPackageVersion }\x1b[0m`);
+          if (gt(cleanCurrentVersion, mewPackageVersion!)) {
+            console.log(`The package \x1b[34m${ packageName }\x1b[0m version \x1b[31m${ currentVersion }\x1b[0m is greater than the anticipated version \x1b[32m${ mewPackageVersion }\x1b[0m`.grey);
             // if soft and the current version is greater than the new version do nothing
             return;
           }
         }
       }
-      if (dep[packageName]) {
-        console.log(`Change the package \x1b[34m${ packageName }\x1b[0m version from \x1b[31m${ dep[packageName] }\x1b[0m to \x1b[32m${ mewPackageVersion }\x1b[0m`);
+      if (currentVersion) {
+        console.log(`Change the package \x1b[34m${ packageName }\x1b[0m version from \x1b[31m${ currentVersion }\x1b[0m to \x1b[32m${ mewPackageVersion }\x1b[0m`);
       } else {
-        console.log(`Add the package \x1b[34m${ packageName }\x1b[0m to the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ mewPackageVersion }\x1b[0m`);
+        console.log(`Add the package \x1b[34m${ packageName }\x1b[0m to the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ mewPackageVersion }\x1b[0m`.green);
         addedNewPackage = true;
       }
       if (packageName.match(/^@rxap\//) && IsRxapRepository(tree)) {
-        console.log(`\x1b[33mWARNING: Detecting that the workspace is the \x1b[34mrxap\x1b[33m workspace. The package \x1b[34m${ packageName }\x1b[33m will \x1b[31mNOT\x1b[33m be added to the package.json file.\x1b[0m`);
+        console.log(`Detecting that the workspace is the \x1b[34mrxap\x1b[33m workspace. The package \x1b[34m${ packageName }\x1b[33m will \x1b[31mNOT\x1b[33m be added to the package.json file.`.grey);
       } else {
-        dep[packageName] = mewPackageVersion!;
+        depObject[packageName] = mewPackageVersion!;
       }
     },
     options,
@@ -139,19 +275,24 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
   if (addedNewPackage && withPeerDependencies) {
     const peerDependencies = await GetPackagePeerDependencies(packageName, mewPackageVersion!);
     if (Object.keys(peerDependencies).length === 0) {
-      console.log(`The package \x1b[34m${ packageName }\x1b[0m has no peer dependencies`);
+      console.log(`The package \x1b[34m${ packageName }\x1b[0m has no peer dependencies`.grey);
     } else {
-      console.log(
-        `The package \x1b[34m${ packageName }\x1b[0m has the following peer dependencies:`,
-        Object.keys(peerDependencies).join(', ')
-      );
+      console.group(`The package \x1b[34m${ packageName }\x1b[0m has the following peer dependencies: ${Object.keys(peerDependencies).join(', ')}`);
       for (const [ peerDependency, peerDependencyVersion ] of Object.entries(peerDependencies)) {
+        if (withoutNonRxapPeerDependencies) {
+          if (!peerDependency.startsWith('@rxap/')) {
+            console.log(`Skip peer dependency \x1b[34m${ peerDependency }\x1b[0m as it is not a rxap package`.grey);
+            continue;
+          }
+        }
         if (peerDependencyVersion.match(/^(~|\^|>|<|<=|>=)?\d+\.\d+\.\d+(-[a-zA-Z]+)?$/)) {
+          console.log(`Add peer dependency \x1b[34m${ peerDependency }\x1b[0mto the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ peerDependencyVersion }\x1b[0m`.cyan);
           await AddPackageJsonDependency(tree, peerDependency, peerDependencyVersion, options, propertyPath);
         } else {
-          console.log(`The peer dependency \x1b[34m${ peerDependency }\x1b[0m has an unsupported version \x1b[31m${ peerDependencyVersion }\x1b[0m`);
+          console.log(`The peer dependency \x1b[34m${ peerDependency }\x1b[0m has an unsupported version \x1b[31m${ peerDependencyVersion }\x1b[0m`.yellow);
         }
       }
+      console.groupEnd();
     }
   }
 
