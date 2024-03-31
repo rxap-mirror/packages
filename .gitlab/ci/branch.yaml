@@ -1,15 +1,5 @@
 include:
   - local: .gitlab/ci/jobs/run.yaml
-  - local: .gitlab/ci/jobs/docker.yaml
-  - local: .gitlab/ci/jobs/startup.yaml
-  - local: .gitlab/ci/jobs/deploy.yaml
-    rules:
-      - exists:
-          - tools/scripts/deployment/ci/**
-  - local: .gitlab/ci/jobs/e2e.yaml
-    rules:
-      - exists:
-          - "**/cypress.config.ts"
   - local: .gitlab/ci/jobs/component-test.yaml
     rules:
       - exists:
@@ -24,9 +14,6 @@ include:
 stages:
   - test
   - run
-  - docker
-  - startup
-  - deploy
 
 variables:
   ENVIRONMENT_NAME: branch/$CI_COMMIT_REF_NAME

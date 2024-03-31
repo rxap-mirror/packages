@@ -1,5 +1,0 @@
-include:
-  - local: .gitlab/ci/jobs/release.yaml
-
-stages:
-  - release
