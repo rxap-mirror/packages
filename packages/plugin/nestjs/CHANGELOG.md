@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.8...@rxap/plugin-nestjs@16.2.0-dev.9) (2024-03-31)
+
+### Bug Fixes
+
+- only add the DISABLE_REGISTER_TO_STATUS_SERVICE env if status service is used ([e739656](https://gitlab.com/rxap/packages/commit/e73965657d1018fec85f6852e862abd7e1be4ce6))
+- use environment.app to get the default sentry server name ([c89f1bd](https://gitlab.com/rxap/packages/commit/c89f1bdc99425aaee1417b51dfe05c17dbb6565e))
+- use the workspace name if in standalone workspace ([6d337b0](https://gitlab.com/rxap/packages/commit/6d337b0d69698cd576e39723dc433349914dbff5))
+
 # [16.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.7...@rxap/plugin-nestjs@16.2.0-dev.8) (2024-03-31)
 
 ### Bug Fixes

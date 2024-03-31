@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.5...@rxap/workspace-utilities@16.1.0-dev.6) (2024-03-31)
+
+### Features
+
+- add function IsStandaloneWorkspace ([2170768](https://gitlab.com/rxap/packages/commit/21707681de04678366f611676abe6e206c1ffd38))
+
 # [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.4...@rxap/workspace-utilities@16.1.0-dev.5) (2024-03-31)
 
 ### Bug Fixes

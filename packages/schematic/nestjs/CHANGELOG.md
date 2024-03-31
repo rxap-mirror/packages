@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@16.0.2-dev.5...@rxap/schematic-nestjs@16.0.2-dev.6) (2024-03-31)
+
+### Bug Fixes
+
+- use environment.app to get the default sentry server name ([c89f1bd](https://gitlab.com/rxap/packages/commit/c89f1bdc99425aaee1417b51dfe05c17dbb6565e))
+
 ## [16.0.2-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@16.0.2-dev.4...@rxap/schematic-nestjs@16.0.2-dev.5) (2024-03-31)
 
 **Note:** Version bump only for package @rxap/schematic-nestjs

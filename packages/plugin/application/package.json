@@ -1,5 +1,5 @@
 {
-  "version": "16.2.0-dev.2",
+  "version": "16.2.0-dev.3",
   "name": "@rxap/plugin-application",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,10 +8,10 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/plugin-docker": "^16.1.0-dev.7",
+    "@rxap/plugin-docker": "^16.1.0-dev.8",
     "@rxap/plugin-utilities": "^16.1.1-dev.4",
     "@rxap/utilities": "^16.1.0-dev.8",
-    "@rxap/workspace-utilities": "^16.1.0-dev.5",
+    "@rxap/workspace-utilities": "^16.1.0-dev.6",
     "tslib": "2.6.2"
   },
   "author": {
@@ -46,7 +46,7 @@
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "16.1.0-dev.7"
+        "version": "16.1.0-dev.8"
       },
       {
         "package": "@rxap/plugin-nestjs",
@@ -62,7 +62,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.5"
+        "version": "16.1.0-dev.6"
       }
     ]
   },

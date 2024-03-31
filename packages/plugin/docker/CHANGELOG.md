@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.1.0-dev.7...@rxap/plugin-docker@16.1.0-dev.8) (2024-03-31)
+
+### Bug Fixes
+
+- use the workspace name if in standalone workspace ([9802c40](https://gitlab.com/rxap/packages/commit/9802c404cd07bc35990118ec6632d0c4919dfc66))
+
 # [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.1.0-dev.6...@rxap/plugin-docker@16.1.0-dev.7) (2024-03-31)
 
 ### Bug Fixes

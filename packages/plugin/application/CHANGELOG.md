@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.2...@rxap/plugin-application@16.2.0-dev.3) (2024-03-31)
+
+### Bug Fixes
+
+- use detected utility service locations ([130a989](https://gitlab.com/rxap/packages/commit/130a989a269718373de5afcc0e7737f79677124f))
+
 # [16.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.1...@rxap/plugin-application@16.2.0-dev.2) (2024-03-31)
 
 ### Bug Fixes
