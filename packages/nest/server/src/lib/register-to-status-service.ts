@@ -63,13 +63,14 @@ export function RegisterToStatusService({ registerPath = '/register' }: Register
         await axios.post(requestUrl, data);
         ready = true;
       } catch (e: any) {
+        counter++;
         if (e.message.includes('getaddrinfo ENOTFOUND')) {
           logger.error(`Unable to resolve the domain: ${e.message}`);
           if (counter > 4) {
             abort = true;
           }
         } else {
-          logger.warn(`Failed to register service (${ counter++ }): ${ e.message }`, 'Bootstrap');
+          logger.warn(`Failed to register service (${counter}): ${ e.message }`, 'Bootstrap');
         }
         if (e instanceof AxiosError) {
           if (e.response?.status && e.response.status < 500) {
