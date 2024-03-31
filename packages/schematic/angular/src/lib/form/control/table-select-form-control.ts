@@ -124,7 +124,7 @@ export function NormalizeTableSelectFormControl(
   CoerceArrayItems(importList, [
     {
       name: 'TableSelectControlModule',
-      moduleSpecifier: '@digitaix/eurogard-table-select',
+      moduleSpecifier: '@rxap/ngx-material-table-select',
     }
   ], (a, b) => a.name === b.name);
   if (!control.columnList?.length) {
@@ -151,9 +151,9 @@ export function NormalizeTableSelectFormControl(
       label: control.label,
       directiveList: [
         {
-          name: 'eurogardTableSelectControl',
+          name: 'rxapTableSelectControl',
           namedImport: 'TableSelectControlModule',
-          moduleSpecifier: '@digitaix/eurogard-table-select',
+          moduleSpecifier: '@rxap/ngx-material-table-select',
         },
       ],
     }),

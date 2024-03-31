@@ -159,12 +159,12 @@ export const Primary: Story = () => ({
         [data]="data"
         [columns]="columns"
         [toDisplay]="toDisplay"
-        eurogardTableSelectControl
+        rxapTableSelectControl
         [appearance]="appearance">
       <mat-label i18n>{{label}}</mat-label>
-      <eurogard-table-select-input placeholder="Select a company" ngModel></eurogard-table-select-input>
+      <rxap-table-select-input placeholder="Select a company" ngModel></rxap-table-select-input>
       <button
-        eurogardOpenTableSelectWindow
+        rxapOpenTableSelectWindow
         mat-icon-button
         matPrefix>
         <mat-icon>rule</mat-icon>
@@ -176,13 +176,13 @@ export const Primary: Story = () => ({
 export const WithForm: Story = () => ({
   template: `
   <form rxapForm>
-    <mat-form-field eurogardTableSelectControl>
+    <mat-form-field rxapTableSelectControl>
       <mat-label i18n>Select Company</mat-label>
-      <eurogard-table-select-input eurogardOpenTableSelectWindow
+      <rxap-table-select-input rxapOpenTableSelectWindow
         label="Select Location"
-        i18n-label formControlName="company"></eurogard-table-select-input>
+        i18n-label formControlName="company"></rxap-table-select-input>
       <button
-        eurogardOpenTableSelectWindow
+        rxapOpenTableSelectWindow
         mat-icon-button
         matPrefix>
         <mat-icon>rule</mat-icon>

@@ -507,6 +507,6 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add('smoccSelectableOptions', (formControlName: string, index: number) => {
-  return cy.get(`eurogard-select-multiple-or-create-control[formcontrolname="${ formControlName }"] .mat-mdc-action-list:nth-of-type(${ index })`);
+  return cy.get(`rxap-select-multiple-or-create-control[formcontrolname="${ formControlName }"] .mat-mdc-action-list:nth-of-type(${ index })`);
 });
 

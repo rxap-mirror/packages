@@ -240,7 +240,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
           namedImports: [
             'UseTableSelectMethod',
           ],
-          moduleSpecifier: '@digitaix/eurogard-table-select',
+          moduleSpecifier: '@rxap/ngx-material-table-select',
         });
 
         return {
@@ -388,7 +388,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
             'UseTableSelectToDisplay',
             'UseTableSelectToValue'
           ],
-          moduleSpecifier: '@digitaix/eurogard-table-select',
+          moduleSpecifier: '@rxap/ngx-material-table-select',
         });
 
         return {

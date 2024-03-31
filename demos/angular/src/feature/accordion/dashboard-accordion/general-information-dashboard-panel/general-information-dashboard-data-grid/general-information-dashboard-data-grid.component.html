@@ -23,17 +23,17 @@
           <ng-container rxapDataGridRowDef="location">
             <ng-template rxapDataGridEditCellDef>
 
-              <mat-form-field eurogardTableSelectControl>
+              <mat-form-field rxapTableSelectControl>
                 <button tabindex="-1" type="button" matSuffix mat-icon-button rxapInputClearButton>
                   <mat-icon>clear</mat-icon>
                 </button>
-                  <eurogard-table-select-input
-                    eurogardOpenTableSelectWindow
+                  <rxap-table-select-input
+                    rxapOpenTableSelectWindow
                     formControlName="location"
                     >
-                  </eurogard-table-select-input>
+                  </rxap-table-select-input>
                   <button
-                    eurogardOpenTableSelectWindow
+                    rxapOpenTableSelectWindow
                     mat-icon-button
                     matPrefix
                     tabindex="-1"

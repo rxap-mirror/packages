@@ -1,6 +1,6 @@
 {{#> matFormField control=control}}
-  <eurogard-table-select-input
-    eurogardOpenTableSelectWindow
+  <rxap-table-select-input
+    rxapOpenTableSelectWindow
     formControlName="{{control.name}}"
     {{#if control.title}}
     i18n-label label="{{control.title}}"
@@ -9,9 +9,9 @@
     parentControlContainer
     {{/if}}
   >
-  </eurogard-table-select-input>
+  </rxap-table-select-input>
   <button
-    eurogardOpenTableSelectWindow
+    rxapOpenTableSelectWindow
     mat-icon-button
     matPrefix
     tabindex="-1"

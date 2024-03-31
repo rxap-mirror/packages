@@ -52,7 +52,7 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
 
   static nextId = 0;
 
-  @HostBinding() id = `eurogard-table-select-input-${ TableSelectInputComponent.nextId++ }`;
+  @HostBinding() id = `rxap-table-select-input-${ TableSelectInputComponent.nextId++ }`;
 
   stateChanges = new Subject<void>();
 
