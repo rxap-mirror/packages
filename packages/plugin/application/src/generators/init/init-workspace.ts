@@ -3,6 +3,7 @@ import {
   AddPackageJsonDevDependency,
   CoerceFilesStructure,
   JSON_MERGE_STRATEGY,
+  UpdatePackageJson,
   YAML_MERGE_STRATEGY,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -15,6 +16,11 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-workspace', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, 'jest-junit', 'latest', { soft: true });
+
+  await UpdatePackageJson(tree, packageJson => {
+    packageJson['jest-junit'] ??= {};
+    packageJson['jest-junit'].uniqueOutputName = true;
+  });
 
   updateTargetDefaults(tree);
 
