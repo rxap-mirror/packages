@@ -30,6 +30,7 @@ export function CoerceNestCacheModuleImport(
       importWriter: w => {
         w.writeLine('CacheModule.registerAsync(');
         Writers.object({
+          isGlobal: 'true',
           useClass: 'CacheModuleOptionsLoader',
         })(w);
         w.write(')');
