@@ -35,7 +35,7 @@ function guessImageName(tree: Tree) {
     }
     return match[2];
   }
-  return 'unknown';
+  return name;
 }
 
 export function updateTargetDefaults(tree: Tree) {
