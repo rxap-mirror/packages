@@ -32,6 +32,7 @@ LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.priority=$TRAEFIK_ROUTER_PRIORIT
 LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.service=$TRAEFIK_SERVICE_NAME
 
 COPY package.json /app
+COPY yarn.lock /app
 
 RUN yarn install --production && yarn cache clean
 
