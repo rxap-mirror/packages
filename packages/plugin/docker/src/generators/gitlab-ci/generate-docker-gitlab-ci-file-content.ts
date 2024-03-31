@@ -37,7 +37,7 @@ const dotDocker = {
       when: 'never',
     },
     {
-      if: '$CI_COMMIT_TAG =~ /^v\\d+\\.\\d+\\.\\d+$/',
+      if: '$CI_COMMIT_TAG =~ /^v\\d+\\.\\d+\\.\\d+/',
       when: 'on_success',
     },
     {
