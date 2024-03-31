@@ -3587,7 +3587,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/code-coverage@npm:^3.12.19":
+"@cypress/code-coverage@npm:3.12.21":
   version: 3.12.21
   resolution: "@cypress/code-coverage@npm:3.12.21"
   dependencies:
@@ -5537,7 +5537,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jsdevtools/coverage-istanbul-loader@npm:^3.0.5":
+"@jsdevtools/coverage-istanbul-loader@npm:3.0.5":
   version: 3.0.5
   resolution: "@jsdevtools/coverage-istanbul-loader@npm:3.0.5"
   dependencies:
@@ -30504,11 +30504,11 @@ __metadata:
     "@commitlint/config-conventional": 17.6.6
     "@compodoc/compodoc": 1.1.21
     "@ctrl/tinycolor": 4.0.2
-    "@cypress/code-coverage": ^3.12.19
+    "@cypress/code-coverage": 3.12.21
     "@cypress/webpack-dev-server": 2.5.0
     "@enio.ai/typedoc": 1.0.8
     "@faker-js/faker": 8.0.2
-    "@jsdevtools/coverage-istanbul-loader": ^3.0.5
+    "@jsdevtools/coverage-istanbul-loader": 3.0.5
     "@kvs/storage": 2.1.4
     "@localazy/cli": 1.7.3
     "@mdi/angular-material": 7.2.96
