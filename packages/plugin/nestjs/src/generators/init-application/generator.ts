@@ -31,6 +31,7 @@ import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
+  CoerceAssets,
   CoerceFilesStructure,
   CoerceIgnorePattern,
   CoerceNxJsonCacheableOperation,
@@ -38,6 +39,7 @@ import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetNestApiPrefix,
+  GetTarget,
   GetWorkspaceName,
   IsStandaloneWorkspace,
   SkipNonApplicationProject,
@@ -221,7 +223,7 @@ function setGeneralTargetDefaults(tree: Tree, options: InitApplicationGeneratorS
   updateNxJson(tree, nxJson);
 }
 
-function updateProjectTargets(projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+function updateProjectTargets(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
   if (!options.standalone) {
     CoerceTarget(project, 'generate-package-json', {});
@@ -265,6 +267,20 @@ function updateProjectTargets(projectName: string, project: ProjectConfiguration
       },
     },
   }, Strategy.OVERWRITE);
+
+  if (tree.exists('LICENSE')) {
+    const buildConfiguration = GetTarget(project, 'build');
+    buildConfiguration.options ??= {};
+    buildConfiguration.options.assets ??= [];
+    CoerceAssets(buildConfiguration.options.assets, [
+      {
+        "input": "",
+        "glob": "LICENSE",
+        "output": "/"
+      }
+    ]);
+    CoerceTarget(project, 'build', buildConfiguration, Strategy.REPLACE);
+  }
 
   if (project.targets?.['docker']) {
     project.targets['docker'].options ??= {};
@@ -741,7 +757,7 @@ export async function initApplicationGenerator(
 
       ApplicationInitProject(tree, projectName, project, options);
 
-      updateProjectTargets(projectName, project, options);
+      updateProjectTargets(tree, projectName, project, options);
       updateGitIgnore(tree, project, options);
       updateTags(project, options);
       if (!options.standalone) {
