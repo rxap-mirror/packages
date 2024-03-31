@@ -126,16 +126,16 @@ export function generateDockerGitlabCiFileContent(
         tree,
         {},
         project.sourceRoot,
-        projectName,
+        matrix.PROJECT_NAME,
       ), '/', /\/$/);
     }
 
     if (Array.isArray(dockerTargetOptions.buildArgList)) {
       const buildArgList = processBuildArgs(
         dockerTargetOptions.buildArgList,
-        projectName,
+        matrix.PROJECT_NAME,
         project.sourceRoot,
-        { PROJECT_NAME: projectName },
+        { PROJECT_NAME: matrix.PROJECT_NAME },
         path => tree.exists(path),
         (path, encoding) => tree.read(path, encoding),
       );
