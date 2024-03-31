@@ -69,6 +69,7 @@ const gitIgnore = [
   'typings',
   '.env',
   'junit.xml',
+  '/junit',
   'nx-angular-config.xml',
   'nx-config.xml',
   // system files
