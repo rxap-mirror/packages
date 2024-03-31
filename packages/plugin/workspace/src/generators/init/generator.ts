@@ -8,8 +8,6 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { CoerceIgnorePattern } from '@rxap/generator-utilities';
-import { ApplicationInitWorkspace } from '@rxap/plugin-application';
-import { LibraryInitWorkspace } from '@rxap/plugin-library';
 import {
   deepMerge,
   MergeDeepLeft,
@@ -426,14 +424,6 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   await coerceRootPackageJsonScripts(tree);
   if (!options.skipLicense) {
     await coercePackageJsonLicense(tree);
-  }
-
-  if (!options.standalone) {
-    LibraryInitWorkspace(tree, options);
-  }
-
-  if (options.applications) {
-    await ApplicationInitWorkspace(tree, options);
   }
 }
 
