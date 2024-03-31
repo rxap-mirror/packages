@@ -5,7 +5,6 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "ajv": "8.12.0",
-    "openapi-types": "10.0.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -18,10 +17,8 @@
     "@rxap/remote-method": "^16.0.1-dev.1",
     "@rxap/rxjs": "^1.1.1-dev.1",
     "@rxap/utilities": "^16.1.0-dev.8",
-    "ajv": "8.12.0",
     "openapi-types": "10.0.0",
-    "rxjs": "^7.8.1",
-    "tslib": "2.6.2"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

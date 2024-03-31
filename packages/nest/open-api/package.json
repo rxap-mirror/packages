@@ -3,7 +3,6 @@
   "name": "@rxap/nest-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "openapi-types": "10.0.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
