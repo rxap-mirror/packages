@@ -7,7 +7,9 @@ import { CoerceSuffix } from '@rxap/utilities';
 import {
   GetNestApiPrefix,
   GetTargetOptions,
+  GetWorkspaceName,
   IsNestJsProject,
+  IsStandaloneWorkspace,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
 import { stringify } from 'yaml';
@@ -106,7 +108,11 @@ export function generateDockerGitlabCiFileContent(
 
     dockerYaml.docker.parallel.matrix.push(matrix);
 
-    matrix.PROJECT_NAME = projectName;
+    if (projectName === 'workspace' && IsStandaloneWorkspace(tree)) {
+      matrix.PROJECT_NAME = GetWorkspaceName(tree);
+    } else {
+      matrix.PROJECT_NAME = projectName;
+    }
 
     if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
       matrix.IMAGE_NAME = dockerTargetOptions.imageName as string;
