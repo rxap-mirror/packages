@@ -10,7 +10,7 @@ services:
       - $XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:ro
       - ./docker/traefik:/etc/traefik:ro
     ports:
-      - ${ROOT_DOMAIN_PORT}:443
+      - "${ROOT_DOMAIN_PORT}:443"
       - "8888:8080"
     labels:
       - traefik.enable=true
@@ -25,12 +25,7 @@ services:
   catch-all-api:
     image: registry.gitlab.com/rxap/docker/catch-all:alpine
   rxap-service-configuration:
-    image: registry.gitlab.com/rxap/packages/service/configuration:${RXAP_CHANNEL:-development}
-    labels:
-      - traefik.enable=true
-      - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.path=/health
-      - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.interval=10s
-      - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.timeout=3s
+    image: registry.gitlab.com/rxap/applications/services/configuration:${RXAP_SERVICE_CONFIGURATION:-development}
     volumes:
       - ./shared/service/configuration:/app/assets
     environment:
@@ -46,12 +41,7 @@ services:
       - traefik
       - rxap-service-status
   rxap-service-status:
-    image: registry.gitlab.com/rxap/packages/service/status:${RXAP_CHANNEL:-development}
-    labels:
-      - traefik.enable=true
-      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.path=/health
-      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.interval=10s
-      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.timeout=3s
+    image: registry.gitlab.com/rxap/applications/services/status:${RXAP_SERVICE_STATUS:-development}
     environment:
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
@@ -63,14 +53,9 @@ services:
     depends_on:
       - traefik
     ports:
-      - 5300:3000
+      - "5300:3000"
   rxap-service-changelog:
-    image: registry.gitlab.com/rxap/packages/service/changelog:${RXAP_CHANNEL:-development}
-    labels:
-      - traefik.enable=true
-      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.path=/health
-      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.interval=10s
-      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.timeout=3s
+    image: registry.gitlab.com/rxap/applications/services/changelog:${RXAP_SERVICE_CHANGELOG:-development}
     environment:
       - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
@@ -86,12 +71,7 @@ services:
       - traefik
       - rxap-service-status
   rxap-service-user:
-    image: registry.gitlab.com/rxap/applications/services/user:${RXAP_CHANNEL:-development}
-    labels:
-      - traefik.enable=true
-      - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.path=/health
-      - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.interval=10s
-      - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.timeout=3s
+    image: registry.gitlab.com/rxap/applications/services/user:${RXAP_SERVICE_USER:-development}
     environment:
       - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
