@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.2.0-dev.1...@rxap/nest-server@10.2.0-dev.2) (2024-03-31)
+
+### Bug Fixes
+
+- increase retry counter for all error cases ([291c147](https://gitlab.com/rxap/packages/commit/291c14700b4065eda4c0fd9cfcbe9d0dae526a23))
+
 # [10.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.2.0-dev.0...@rxap/nest-server@10.2.0-dev.1) (2024-03-31)
 
 ### Bug Fixes
