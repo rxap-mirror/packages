@@ -770,11 +770,6 @@ export async function initApplicationGenerator(
           const itemList = ExtractExistingConfigValidation(moduleSourceFile);
           for (const item of [
             {
-              name: 'DISABLE_REGISTER_TO_STATUS_SERVICE',
-              type: 'boolean',
-              defaultValue: 'false'
-            },
-            {
               name: 'PORT',
               type: 'number',
               defaultValue: port.toFixed(0),
@@ -801,12 +796,17 @@ export async function initApplicationGenerator(
             }
           }
           if (options.statusRegister && projectName !== 'service-status') {
-            if (!itemList.find(i => i.name === 'STATUS_SERVICE_BASE_URL')) {
-              itemList.push({
+            CoerceArrayItems(itemList, [
+              {
                 name: 'STATUS_SERVICE_BASE_URL',
                 defaultValue: `environment.production ? 'http://rxap-service-status:3000' : 'http://localhost:5300'`,
-              });
-            }
+              },
+              {
+                name: 'DISABLE_REGISTER_TO_STATUS_SERVICE',
+                type: 'boolean',
+                defaultValue: 'false'
+              },
+            ], (a, b) => a.name === b.name);
             CoerceImports(configSourceFile, {
               namespaceImport: 'process',
               moduleSpecifier: 'process',
