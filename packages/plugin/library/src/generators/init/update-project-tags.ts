@@ -1,5 +1,5 @@
 import { ProjectConfiguration } from '@nx/devkit';
-import { CoerceProjectTags } from '@rxap/generator-utilities';
+import { CoerceProjectTags } from '@rxap/workspace-utilities';
 
 export function updateProjectTags(project: ProjectConfiguration) {
   const tags: string[] = project.root.split('/').filter(Boolean);

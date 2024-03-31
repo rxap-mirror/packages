@@ -7,10 +7,10 @@ import {
   CoerceFile,
   GetProjectRoot,
   GetProjectSourceRoot,
+  SearchFile,
   SkipNonLibraryProject,
   VisitTree,
-} from '@rxap/generator-utilities';
-import { SearchFile } from '@rxap/workspace-utilities';
+} from '@rxap/workspace-utilities';
 import {
   dirname,
   join,

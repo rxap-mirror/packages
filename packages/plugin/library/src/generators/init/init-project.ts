@@ -4,9 +4,9 @@ import {
 } from '@nx/devkit';
 import {
   IsBuildable,
+  IsPluginProject,
   IsPublishable,
-} from '@rxap/generator-utilities';
-import { IsPluginProject } from '@rxap/workspace-utilities';
+} from '@rxap/workspace-utilities';
 import { initProject as initBuildableProject } from '../init-buildable/init-project';
 import { initProject as initPluginProject } from '../init-plugin/init-project';
 import { initProject as initPublishableProject } from '../init-publishable/init-project';

@@ -1,7 +1,7 @@
-import { Tree } from '@nx/devkit';
+import { TreeLike } from './tree';
 import { VisitTree } from './visit-tree';
 
-export function HasComponents(tree: Tree, projectRoot: string) {
+export function HasComponents(tree: TreeLike, projectRoot: string) {
   for (const {
     path,
     isFile

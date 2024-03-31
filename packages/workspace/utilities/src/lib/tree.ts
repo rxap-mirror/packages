@@ -62,6 +62,25 @@ export interface TreeWriteOptions {
   mode?: Mode;
 }
 
+export interface FileChange {
+  /**
+   * Path relative to the workspace root
+   */
+  path: string;
+  /**
+   * Type of change: 'CREATE' | 'DELETE' | 'UPDATE'
+   */
+  type: 'CREATE' | 'DELETE' | 'UPDATE';
+  /**
+   * The content of the file or null in case of delete.
+   */
+  content: Buffer | null;
+  /**
+   * Options to set on the file being created or updated.
+   */
+  options?: TreeWriteOptions;
+}
+
 export interface GeneratorTreeLike extends TreeLike {
   read(filePath: string): Buffer | null;
 
@@ -72,6 +91,10 @@ export interface GeneratorTreeLike extends TreeLike {
   isFile(filePath: string): boolean;
 
   children(dirPath: string): string[];
+
+  listChanges(): FileChange[];
+
+  changePermissions(filePath: string, mode: Mode): void;
 
   root: string;
 }
@@ -92,7 +115,7 @@ export function IsSchematicTreeLike(tree: TreeLike): tree is SchematicTreeLike {
 }
 
 export function IsGeneratorTreeLike(tree: TreeLike): tree is GeneratorTreeLike {
-  return typeof (tree as GeneratorTreeLike).root === 'string';
+  return !IsSchematicTreeLike(tree) && typeof (tree as GeneratorTreeLike).root === 'string';
 }
 
 export interface FileEntryLike {
@@ -262,6 +285,21 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
       return [ ...dir.subfiles, ...dir.subdirs ];
     }
     throw new Error('Invalid tree');
+  }
+
+  listChanges(): FileChange[] {
+    if (IsGeneratorTreeLike(this.wrapped)) {
+      return this.wrapped.listChanges();
+    }
+    throw new Error('Invalid tree. The method listChanges is not supported by nx tree objects!');
+  }
+
+  changePermissions(filePath: string, mode: Mode): void {
+    if (IsGeneratorTreeLike(this.wrapped)) {
+      this.wrapped.changePermissions(filePath, mode);
+      return;
+    }
+    throw new Error('Invalid tree. The method changePermissions is not supported by nx tree objects!');
   }
 
   // endregion

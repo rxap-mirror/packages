@@ -6,8 +6,9 @@ import {
 export function CoerceFile<Tree extends TreeLike>(
   tree: TreeLike,
   filePath: string,
-  content: string | Buffer,
-  overwrite = true,
+  content: string | Buffer = '',
+  overwrite = false,
+  encoding: BufferEncoding = 'utf-8',
 ): string {
   const treeAdapter = new TreeAdapter(tree);
   if (tree.exists(filePath)) {
@@ -17,5 +18,5 @@ export function CoerceFile<Tree extends TreeLike>(
   } else {
     treeAdapter.create(filePath, content);
   }
-  return treeAdapter.read(filePath)!.toString('utf-8');
+  return treeAdapter.read(filePath)!.toString(encoding);
 }

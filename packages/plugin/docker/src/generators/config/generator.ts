@@ -5,9 +5,11 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { GetProjectSourceRoot } from '@rxap/generator-utilities';
 import { CreateConfigurationMapMatchingWithTarget } from '@rxap/plugin-utilities';
-import { CoerceFilesStructure } from '@rxap/workspace-utilities';
+import {
+  CoerceFilesStructure,
+  GetProjectSourceRoot,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { ConfigGeneratorSchema } from './schema';
 

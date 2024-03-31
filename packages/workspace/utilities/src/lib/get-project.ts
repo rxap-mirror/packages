@@ -1,4 +1,7 @@
-import { ProjectConfiguration } from '@nx/devkit';
+import {
+  getProjects,
+  ProjectConfiguration,
+} from '@nx/devkit';
 import {
   clone,
   equals,
@@ -18,6 +21,7 @@ import {
 } from './package-json-file';
 import { SearchFile } from './search-file';
 import {
+  IsGeneratorTreeLike,
   TreeAdapter,
   TreeLike,
 } from './tree';
@@ -33,6 +37,10 @@ export const PACKAGE_NAME_TO_PROJECT_LOCATION_CACHE = new Map<string, string>();
 export const PROJECT_LOCATION_CACHE_LIST: string[] = [];
 
 export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: string): ProjectJson | null {
+  if (IsGeneratorTreeLike(tree)) {
+    const projects = getProjects(tree);
+    return projects.get(projectName) ?? null;
+  }
   if (PROJECT_LOCATION_CACHE.has(projectName)) {
     const path = PROJECT_LOCATION_CACHE.get(projectName)!;
     const treeAdapter = new TreeAdapter(tree);
@@ -55,6 +63,12 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
 }
 
 export function* ForEachProject<Tree extends TreeLike>(tree: Tree): Generator<ProjectJson> {
+  if (IsGeneratorTreeLike(tree)) {
+    const projects = getProjects(tree);
+    for (const project of projects.values()) {
+      yield project;
+    }
+  }
   if (PROJECT_LOCATION_CACHE_LIST.length > 0) {
     for (const path of PROJECT_LOCATION_CACHE_LIST) {
       const treeAdapter = new TreeAdapter(tree);
@@ -80,7 +94,7 @@ export function GetProject<Tree extends TreeLike>(tree: Tree, projectName: strin
   if (!projectConfiguration) {
     throw new Error(`The project '${ projectName }' does not exists`);
   }
-
+  projectConfiguration.name ??= projectName;
   return projectConfiguration;
 }
 

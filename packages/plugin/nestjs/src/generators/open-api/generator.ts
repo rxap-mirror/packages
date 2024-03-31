@@ -1,12 +1,14 @@
 import { Tree } from '@nx/devkit';
-import { GetProjectSourceRoot } from '@rxap/generator-utilities';
 import {
   CoerceImports,
   CoerceNestAppConfig,
   CoerceNestModuleImport,
 } from '@rxap/ts-morph';
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
-import { AddPackageJsonDependency } from '@rxap/workspace-utilities';
+import {
+  AddPackageJsonDependency,
+  GetProjectSourceRoot,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { Writers } from 'ts-morph';
 import { SentryGeneratorSchema } from '../sentry/schema';

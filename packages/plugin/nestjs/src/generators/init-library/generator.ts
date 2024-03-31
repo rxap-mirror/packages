@@ -8,16 +8,14 @@ import {
   updateProjectConfiguration,
   writeJson,
 } from '@nx/devkit';
-import {
-  IsPublishable,
-  SkipNonLibraryProject,
-} from '@rxap/generator-utilities';
 import { LibraryInitGenerator } from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  IsPublishable,
+  SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {

@@ -3,14 +3,12 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
-  CoerceFile,
-  GetProjectSourceRoot,
-} from '@rxap/generator-utilities';
-import {
   CoerceSuffix,
   IsRecord,
 } from '@rxap/utilities';
 import {
+  CoerceFile,
+  GetProjectSourceRoot,
   GetRootDockerOptions,
   IsApplicationProject,
   RootDockerOptions,

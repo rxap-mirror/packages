@@ -8,11 +8,6 @@ import {
 } from '@nx/devkit';
 import jsLibraryGenerator from '@nx/js/src/generators/library/library';
 import {
-  CoerceIgnorePattern,
-  CoerceProjectTags,
-  SkipNonApplicationProject,
-} from '@rxap/generator-utilities';
-import {
   ApplicationInitProject,
   ApplicationInitWorkspace,
 } from '@rxap/plugin-application';
@@ -37,10 +32,13 @@ import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
   CoerceFilesStructure,
+  CoerceIgnorePattern,
   CoerceNxJsonCacheableOperation,
+  CoerceProjectTags,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetNestApiPrefix,
+  SkipNonApplicationProject,
   Strategy,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';

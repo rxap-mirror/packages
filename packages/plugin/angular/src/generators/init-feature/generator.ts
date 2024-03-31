@@ -1,11 +1,11 @@
 import { Tree } from '@nx/devkit';
-import { GetProjectSourceRoot } from '@rxap/generator-utilities';
 import {
   CoerceLayoutRoutes,
   CoerceRoutes,
 } from '@rxap/ts-morph';
 import { dasherize } from '@rxap/utilities';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
+import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
 import { InitFeatureGeneratorSchema } from './schema';
 
 export async function initFeatureGenerator(

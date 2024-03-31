@@ -1,12 +1,10 @@
 import { Tree } from '@nx/devkit';
 import {
+  GetProjectPackageJson,
   GetProjectRoot,
   GetProjectSourceRoot,
-  VisitTree,
-} from '@rxap/generator-utilities';
-import {
-  GetProjectPackageJson,
   HasProjectPackageJson,
+  VisitTree,
 } from '@rxap/workspace-utilities';
 import {
   dirname,

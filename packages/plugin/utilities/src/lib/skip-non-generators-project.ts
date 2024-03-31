@@ -3,10 +3,10 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
+  IsPluginProject,
   SkipProject,
   SkipProjectOptions,
-} from '@rxap/generator-utilities';
-import { IsPluginProject } from '@rxap/workspace-utilities';
+} from '@rxap/workspace-utilities';
 import { HasGenerators } from './generators';
 
 export function SkipNonGeneratorsProject(

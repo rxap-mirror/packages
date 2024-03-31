@@ -9,29 +9,27 @@ import {
   writeJson,
 } from '@nx/devkit';
 import {
-  Assets,
-  CoerceAssets,
-  CoerceFile,
-  CoerceIgnorePattern,
-  IsBuildable,
-  IsPublishable,
-  RemoveAssets,
-  SkipNonLibraryProject,
-} from '@rxap/generator-utilities';
-import {
   LibraryInitProject,
   LibraryInitWorkspace,
 } from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
+  Assets,
+  CoerceAssets,
+  CoerceFile,
+  CoerceIgnorePattern,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
   DeleteRecursive,
+  IsBuildable,
+  IsPublishable,
   IsRxapRepository,
+  RemoveAssets,
   SearchFile,
+  SkipNonLibraryProject,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';
 import {

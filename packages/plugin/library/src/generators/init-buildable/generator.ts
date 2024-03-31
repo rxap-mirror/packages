@@ -4,7 +4,7 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { SkipNonBuildableProject } from '@rxap/generator-utilities';
+import { SkipNonBuildableProject } from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitBuildableGeneratorSchema } from './schema';

@@ -3,8 +3,8 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { HasComponents } from '@rxap/generator-utilities';
 import {
+  HasComponents,
   IsApplicationProject,
   IsLibraryProject,
 } from '@rxap/workspace-utilities';

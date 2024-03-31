@@ -7,7 +7,6 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { CoerceIgnorePattern } from '@rxap/generator-utilities';
 import {
   deepMerge,
   MergeDeepLeft,
@@ -15,6 +14,7 @@ import {
 import {
   AddPackageJsonDevDependency,
   CoerceFilesStructure,
+  CoerceIgnorePattern,
   CoerceLernaJson,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,

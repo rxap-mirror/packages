@@ -4,8 +4,8 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { SkipNonLibraryProject } from '@rxap/generator-utilities';
 import { CoerceArrayItems } from '@rxap/utilities';
+import { SkipNonLibraryProject } from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';

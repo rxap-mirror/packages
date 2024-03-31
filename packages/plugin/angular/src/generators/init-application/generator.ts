@@ -8,12 +8,6 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
-  CoerceAssets,
-  CoerceIgnorePattern,
-  CoerceProjectTags,
-  SkipNonApplicationProject,
-} from '@rxap/generator-utilities';
-import {
   ApplicationInitProject,
   ApplicationInitWorkspace,
 } from '@rxap/plugin-application';
@@ -39,12 +33,16 @@ import {
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
+  CoerceAssets,
   CoerceFilesStructure,
+  CoerceIgnorePattern,
   CoerceNxJsonCacheableOperation,
+  CoerceProjectTags,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
+  SkipNonApplicationProject,
   Strategy,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';

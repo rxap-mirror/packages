@@ -6,7 +6,11 @@ import {
   Tree,
 } from '@nx/devkit';
 import { AddDir } from '@rxap/generator-ts-morph';
+import { GetLatestPackageVersion } from '@rxap/node-utilities';
+import { ProjectPackageJson } from '@rxap/plugin-utilities';
+import { CreateProject } from '@rxap/ts-morph';
 import {
+  Dependency,
   GetProjectRoot,
   HasProjectWithPackageName,
   LoadProjectToPackageMapping,
@@ -14,12 +18,6 @@ import {
   ProjectNameToPackageName,
   SkipNonPublishableProject,
   SkipProjectOptions,
-} from '@rxap/generator-utilities';
-import { GetLatestPackageVersion } from '@rxap/node-utilities';
-import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { CreateProject } from '@rxap/ts-morph';
-import {
-  Dependency,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';

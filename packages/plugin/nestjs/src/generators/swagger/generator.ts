@@ -7,7 +7,6 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { GetProjectRoot } from '@rxap/generator-utilities';
 import {
   GetTarget,
   GetTargetOptions,
@@ -16,6 +15,7 @@ import {
   AddPackageJsonDependency,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
+  GetProjectRoot,
   Strategy,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';

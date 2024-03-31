@@ -1,5 +1,4 @@
 import { Tree } from '@nx/devkit';
-import { GetProject } from '@rxap/generator-utilities';
 import { LibraryIndexExportGenerator } from '@rxap/plugin-library';
 import { dasherize } from '@rxap/utilities';
 import {
@@ -16,6 +15,7 @@ import {
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   DeleteRecursive,
+  GetProject,
   GetProjectPackageJson,
   GetProjectRoot,
   GetProjectSourceRoot,

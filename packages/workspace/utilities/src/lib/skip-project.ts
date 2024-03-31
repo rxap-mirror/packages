@@ -1,7 +1,4 @@
-import {
-  ProjectConfiguration,
-  Tree,
-} from '@nx/devkit';
+import { ProjectConfiguration } from '@nx/devkit';
 import {
   IsApplicationProject,
   IsInternalProject,
@@ -10,13 +7,14 @@ import {
 import { join } from 'path';
 import { IsBuildable } from './is-buildable';
 import { IsPublishable } from './is-publishable';
+import { TreeLike } from './tree';
 
 export interface SkipProjectOptions {
   projects?: string[];
 }
 
 export function SkipProject(
-  tree: Tree,
+  tree: TreeLike,
   options: SkipProjectOptions,
   project: ProjectConfiguration,
   projectName: string,
@@ -40,7 +38,7 @@ export function SkipProject(
 }
 
 export function SkipNonLibraryProject(
-  tree: Tree,
+  tree: TreeLike,
   options: SkipProjectOptions,
   project: ProjectConfiguration,
   projectName: string,
@@ -59,7 +57,7 @@ export function SkipNonLibraryProject(
 }
 
 export function SkipNonBuildableProject(
-  tree: Tree,
+  tree: TreeLike,
   options: SkipProjectOptions,
   project: ProjectConfiguration,
   projectName: string,
@@ -78,7 +76,7 @@ export function SkipNonBuildableProject(
 }
 
 export function SkipNonPublishableProject(
-  tree: Tree,
+  tree: TreeLike,
   options: SkipProjectOptions,
   project: ProjectConfiguration,
   projectName: string,
@@ -97,7 +95,7 @@ export function SkipNonPublishableProject(
 }
 
 export function SkipNonApplicationProject(
-  tree: Tree,
+  tree: TreeLike,
   options: SkipProjectOptions,
   project: ProjectConfiguration,
   projectName: string,

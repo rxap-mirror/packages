@@ -1,5 +1,4 @@
 import {
-  generateFiles,
   readNxJson,
   readProjectConfiguration,
   Tree,
@@ -7,11 +6,10 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
+  CoerceFilesStructure,
   CoerceIgnorePattern,
   GetProjectSourceRoot,
-} from '@rxap/generator-utilities';
-import { CoerceFilesStructure } from '@rxap/workspace-utilities';
-import * as path from 'path';
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { UploadExecutorSchema } from '../../executors/upload/schema';
 import { ConfigGeneratorSchema } from './schema';

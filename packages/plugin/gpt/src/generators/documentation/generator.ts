@@ -4,8 +4,8 @@ import {
   Tree,
 } from '@nx/devkit';
 import { AddDir } from '@rxap/generator-ts-morph';
-import { GetProjectSourceRoot } from '@rxap/generator-utilities';
 import { CreateProject } from '@rxap/ts-morph';
+import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
 import {
   existsSync,
   readFileSync,
@@ -20,11 +20,9 @@ import * as process from 'process';
 import {
   ClassDeclaration,
   FunctionDeclaration,
-  IndentationText,
   JSDocableNode,
   MethodDeclaration,
   Project,
-  QuoteKind,
   SourceFile,
 } from 'ts-morph';
 import { DocumentationGeneratorSchema } from './schema';

@@ -4,9 +4,11 @@ import {
   Tree,
   writeJson,
 } from '@nx/devkit';
-import { GetBuildOutputForProject } from '@rxap/generator-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { GetWorkspaceScope } from '@rxap/workspace-utilities';
+import {
+  GetBuildOutputForProject,
+  GetWorkspaceScope,
+} from '@rxap/workspace-utilities';
 import {
   join,
   relative,

@@ -4,8 +4,10 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { SkipNonLibraryProject } from '@rxap/generator-utilities';
-import { IsPluginProject } from '@rxap/workspace-utilities';
+import {
+  IsPluginProject,
+  SkipNonLibraryProject,
+} from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitPluginGeneratorSchema } from './schema';

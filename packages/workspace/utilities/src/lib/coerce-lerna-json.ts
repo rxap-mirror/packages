@@ -4,7 +4,7 @@ import { CoerceFile } from './coerce-file';
 import { TreeLike } from './tree';
 
 export function CoerceLernaJson(tree: TreeLike, baseDir = '') {
-  const lernaJson = JSON.parse(CoerceFile(tree, join(baseDir, 'lerna.json'), '{}'));
+  const lernaJson = JSON.parse(CoerceFile(tree, join(baseDir, 'lerna.json'), '{}', true));
   lernaJson.$schema ??= 'https://json.schemastore.org/lerna';
   lernaJson.useWorkspaces ??= true;
   lernaJson.version ??= 'independent';

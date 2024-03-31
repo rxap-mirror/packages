@@ -4,9 +4,9 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { SkipNonApplicationProject } from '@rxap/generator-utilities';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import { CoerceArrayItems } from '@rxap/utilities';
+import { SkipNonApplicationProject } from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';

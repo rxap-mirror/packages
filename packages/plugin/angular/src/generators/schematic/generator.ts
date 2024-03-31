@@ -11,8 +11,8 @@ import {
   updateProjectConfiguration,
   writeJson,
 } from '@nx/devkit';
-import { CoerceAssets } from '@rxap/generator-utilities';
 import {
+  CoerceAssets,
   GetWorkspaceScope,
   PackageJson,
 } from '@rxap/workspace-utilities';

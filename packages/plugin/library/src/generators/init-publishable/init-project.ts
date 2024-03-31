@@ -3,12 +3,12 @@ import {
   readJson,
   Tree,
 } from '@nx/devkit';
+import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   CoerceFile,
+  CoerceFilesStructure,
   CoerceIgnorePattern,
-} from '@rxap/generator-utilities';
-import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { CoerceFilesStructure } from '@rxap/workspace-utilities';
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitPublishableGeneratorSchema } from './schema';
 import { updateProjectPackageJson } from './update-project-package-json';

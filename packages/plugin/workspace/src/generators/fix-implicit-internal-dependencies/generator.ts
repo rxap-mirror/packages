@@ -5,9 +5,11 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { SkipNonApplicationProject } from '@rxap/generator-utilities';
 import { CoerceArrayItems } from '@rxap/utilities';
-import { GetProjectByPackageName } from '@rxap/workspace-utilities';
+import {
+  GetProjectByPackageName,
+  SkipNonApplicationProject,
+} from '@rxap/workspace-utilities';
 import { FixImplicitInternalDependenciesGeneratorSchema } from './schema';
 
 function skipProject(
