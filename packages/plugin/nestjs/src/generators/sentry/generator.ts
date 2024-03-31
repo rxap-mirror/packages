@@ -160,7 +160,7 @@ function UpdateAppConfig(tree: Tree, options: SentryGeneratorSchema, projectName
           },
           {
             name: 'SENTRY_SERVER_NAME',
-            defaultValue: `process.env.ROOT_DOMAIN ?? '${ projectName }'`,
+            defaultValue: `process.env.ROOT_DOMAIN ?? environment.app`,
           },
           {
             name: 'SENTRY_DEBUG',

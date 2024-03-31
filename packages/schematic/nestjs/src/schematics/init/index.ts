@@ -119,7 +119,7 @@ function AddConfigModuleImport(sourceFile: SourceFile, options: InitSchema) {
               obj['SENTRY_ENABLED'] = 'Joi.string().default(environment.sentry?.enabled ?? false)';
               obj['SENTRY_ENVIRONMENT'] = 'Joi.string()';
               obj['SENTRY_RELEASE'] = 'Joi.string()';
-              obj['SENTRY_SERVER_NAME'] = `Joi.string().default(process.env.ROOT_DOMAIN ?? '${ options.project }')`;
+              obj['SENTRY_SERVER_NAME'] = `Joi.string().default(process.env.ROOT_DOMAIN ?? environment.app)`;
               obj['SENTRY_DEBUG'] = 'Joi.string().default(environment.sentry?.debug ?? false)';
             }
             Writers.object(obj)(w1);

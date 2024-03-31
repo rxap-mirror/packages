@@ -51,7 +51,7 @@ import { ServerConfig } from 'nest-open-api';
         ),
         SENTRY_ENVIRONMENT: Joi.string(),
         SENTRY_RELEASE: Joi.string(),
-        SENTRY_SERVER_NAME: Joi.string().default(process.env.ROOT_DOMAIN ?? 'service-feature-report'),
+        SENTRY_SERVER_NAME: Joi.string().default(process.env.ROOT_DOMAIN ?? environment.app),
         SENTRY_DEBUG: Joi.boolean().default(environment.sentry?.debug ?? false),
 
         LEGACY_BASE_URL: Joi.string().default('http://cloud-server:8082'),
