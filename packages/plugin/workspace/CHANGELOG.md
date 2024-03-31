@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.4...@rxap/plugin-workspace@16.2.0-dev.5) (2024-03-31)
+
+### Bug Fixes
+
+- add initial package json properties ([3788575](https://gitlab.com/rxap/packages/commit/378857514fd8b72176b9e8705010bb2765a348bf))
+- add junit gitignore ([3d17f3c](https://gitlab.com/rxap/packages/commit/3d17f3c7363dfb9bff1749e2fbdad8c4180696b5))
+- add missing default git ignore entries ([342cdc3](https://gitlab.com/rxap/packages/commit/342cdc3f6c8fcf53b9a68d95d940293dad1f528f))
+- remove direct dependency to library and application plugin ([22c7834](https://gitlab.com/rxap/packages/commit/22c7834d292da1b3c1c8b0222b6d77c0bcd2ba67))
+- restructure tool scripts ([e156546](https://gitlab.com/rxap/packages/commit/e156546c06dfb8f611c6a23dbbcd8f27f87e1ec2))
+
+### Features
+
+- add rename generator ([b580b45](https://gitlab.com/rxap/packages/commit/b580b4579f68f36c36d1668dab3f6642e7fcbdae))
+
 # [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.3...@rxap/plugin-workspace@16.2.0-dev.4) (2024-03-26)
 
 ### Bug Fixes

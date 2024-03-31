@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.1...@rxap/plugin-application@16.2.0-dev.2) (2024-03-31)
+
+### Bug Fixes
+
+- add jest junit config to packageJson ([9ad8c84](https://gitlab.com/rxap/packages/commit/9ad8c84ec9066cde0d84c26b852b05958f3e43ac))
+- add the jest-junit reporter as default ([4fa80d1](https://gitlab.com/rxap/packages/commit/4fa80d16b53e61af232acee2fc0cdf5a90832124))
+- restructure tool scripts ([e156546](https://gitlab.com/rxap/packages/commit/e156546c06dfb8f611c6a23dbbcd8f27f87e1ec2))
+- update default gitlab ci configuration ([e4b0102](https://gitlab.com/rxap/packages/commit/e4b01027c230f9cdc52fb83d1c4d678382808add))
+- use root package json name as default docker registry name ([84b9248](https://gitlab.com/rxap/packages/commit/84b9248e65b73c16616830f10f0c8a6fd66452c3))
+
 # [16.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.0...@rxap/plugin-application@16.2.0-dev.1) (2024-03-27)
 
 ### Bug Fixes

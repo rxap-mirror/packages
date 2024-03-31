@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.7...@rxap/plugin-nestjs@16.2.0-dev.8) (2024-03-31)
+
+### Bug Fixes
+
+- copy yarn lock file for docker build ([c003aaa](https://gitlab.com/rxap/packages/commit/c003aaad55c87e38b1910cbd345fdf7d22515538))
+- install the @rxap/utilities package as dependency ([089dc50](https://gitlab.com/rxap/packages/commit/089dc50eb9c892cf1a28ce8a4acb3f2c276660d0))
+- only add service to api configuration if not standalone ([00a637e](https://gitlab.com/rxap/packages/commit/00a637e5343ed790a2eb0b9e3209db8d0cb1a9fd))
+- remove apiConfigurationFile default ([d3887fe](https://gitlab.com/rxap/packages/commit/d3887fe8056e05955d80807de549da98ea9213d5))
+
 # [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.6...@rxap/plugin-nestjs@16.2.0-dev.7) (2024-03-27)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@16.1.0-dev.0...@rxap/schematic-composer@16.1.0-dev.1) (2024-03-31)
+
+### Bug Fixes
+
+- ensure the generator package is installed ([cfd7821](https://gitlab.com/rxap/packages/commit/cfd78219b3896aca9617404342b560ab8ae8e3dc))
+- install packages before executing external schematic ([dc72a5c](https://gitlab.com/rxap/packages/commit/dc72a5c60713559de146d000120c75550f9f8440))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@16.0.2-dev.1...@rxap/schematic-composer@16.1.0-dev.0) (2024-03-14)
 
 ### Bug Fixes

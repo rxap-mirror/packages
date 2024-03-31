@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.2.0-dev.0...@rxap/nest-server@10.2.0-dev.1) (2024-03-31)
+
+### Bug Fixes
+
+- abort the status service registration after 4 tries ([188df81](https://gitlab.com/rxap/packages/commit/188df81224a48c1ee2ed2ebf57aca3c7790da17f))
+- print the versions of the used packages ([77d92ad](https://gitlab.com/rxap/packages/commit/77d92ad407a3c23caf11de33725c669ec6852813))
+
 # [10.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.1-dev.2...@rxap/nest-server@10.2.0-dev.0) (2024-03-23)
 
 ### Bug Fixes

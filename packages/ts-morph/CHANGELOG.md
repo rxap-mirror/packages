@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.21...@rxap/ts-morph@1.1.0-dev.22) (2024-03-31)
+
+### Bug Fixes
+
+- ensure default string value is wrapped in quotes ([2d16467](https://gitlab.com/rxap/packages/commit/2d16467015b36db9a67e9655961a961a576ef47f))
+- import CacheModule as global module ([fe1b28e](https://gitlab.com/rxap/packages/commit/fe1b28e86aa282c4e06968e36328bc30d1283133))
+
 # [1.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.20...@rxap/ts-morph@1.1.0-dev.21) (2024-03-23)
 
 ### Bug Fixes
