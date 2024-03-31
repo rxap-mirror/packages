@@ -44,7 +44,7 @@ import { ServerConfig } from 'nest-open-api';
         PORT: Joi.number().default(3652),
         GLOBAL_API_PREFIX: Joi.string().default('api/feature/report'),
         SENTRY_DSN: Joi.string().default(
-          'https://95d1d8694ba54d16b554809088ecb448@sentry.eurogard.cloud/21',
+          'https://95d1df454ba54d548090ff488ecb448@sentry.com/21',
         ),
         SENTRY_ENABLED: Joi.boolean().default(
           environment.sentry?.enabled ?? false,
@@ -123,7 +123,7 @@ export class AppModule {
       {
         'builder': () => {},
         'name': 'SENTRY_DSN',
-        'text': 'Joi.string().default(\n          \'https://95d1d8694ba54d16b554809088ecb448@sentry.eurogard.cloud/21\',\n        )',
+        'text': 'Joi.string().default(\n          \'https://95d1df454ba54d548090ff488ecb448@sentry.com/21\',\n        )',
       },
       {
         'builder': () => {},
@@ -143,7 +143,7 @@ export class AppModule {
       {
         'builder': () => {},
         'name': 'SENTRY_SERVER_NAME',
-        'text': 'Joi.string().default(process.env.ROOT_DOMAIN ?? \'service-feature-report\')',
+        'text': 'Joi.string().default(process.env.ROOT_DOMAIN ?? environment.app)',
       },
       {
         'builder': () => {},
