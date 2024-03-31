@@ -8,6 +8,7 @@ import {
   CoerceTargetDefaults,
   CoerceTargetDefaultsDependency,
   GetPackageJson,
+  GetWorkspaceName,
   Strategy,
 } from '@rxap/workspace-utilities';
 import process from 'process';
@@ -27,15 +28,7 @@ function guessImageName(tree: Tree) {
       }
     }
   }
-  const name = rootPackageJson.name;
-  const match = name?.match(/@([^/]+)\/(.+)$/);
-  if (match) {
-    if (match[2] === 'source') {
-      return match[1];
-    }
-    return match[2];
-  }
-  return name;
+  return GetWorkspaceName(tree);
 }
 
 export function updateTargetDefaults(tree: Tree) {
