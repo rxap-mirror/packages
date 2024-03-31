@@ -5,6 +5,7 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { HasProjectFeature } from '@rxap/schematics-ts-morph';
 import {
   AddPackageJsonDevDependencyRule,
@@ -127,6 +128,9 @@ function executeSchematicCommandFile(
       () => console.log(`Execute schematic '${ command.package }:${ command.name }'`.green),
       () => console.log(`Input Options: ${ JSON.stringify(options) }`.grey),
       AddPackageJsonDevDependencyRule(command.package, 'latest', { soft: true }),
+      (_, context) => {
+        context.addTask(new NodePackageInstallTask({ packageManager: 'yarn' }));
+      },
       () => {
         try {
           return externalSchematic(command.package, command.name, options);
