@@ -28,6 +28,10 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip adding a license file"
+    },
+    "repositoryUrl": {
+      "type": "string",
+      "description": "The URL of the repository"
     }
   },
   "required": []

@@ -8,6 +8,8 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
+  CoerceArrayItems,
+  CoerceSuffix,
   deepMerge,
   MergeDeepLeft,
 } from '@rxap/utilities';
@@ -18,6 +20,7 @@ import {
   CoerceLernaJson,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
+  GetWorkspaceName,
   Strategy,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
@@ -418,6 +421,28 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
+
+  await UpdatePackageJson(tree, packageJson => {
+    packageJson.engines ??= {};
+    packageJson.engines.node = '>=18 <21';
+    packageJson.engines.yarn = '1.22 || 3.6';
+    packageJson.os ??= [];
+    packageJson.packageManager = 'yarn@3.6.0';
+    CoerceArrayItems(packageJson.os, ['!win32']);
+    if (options.repositoryUrl) {
+      let repositoryUrl = options.repositoryUrl;
+      if (!repositoryUrl.startsWith('http')) {
+        repositoryUrl = `https://gitlab.com/${ repositoryUrl }`;
+      }
+      if (repositoryUrl.includes('{workspaceName}')) {
+        repositoryUrl = repositoryUrl.replace('{workspaceName}', GetWorkspaceName(tree));
+      }
+      packageJson.repository = {
+        type: 'git',
+        url: CoerceSuffix(repositoryUrl, '.git'),
+      };
+    }
+  });
 
   coerceWorkspaceProject(tree, options);
   coerceNxJson(tree);
