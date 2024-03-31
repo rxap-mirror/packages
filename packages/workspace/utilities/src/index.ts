@@ -84,6 +84,7 @@ export * from './lib/is-buildable';
 export * from './lib/is-project';
 export * from './lib/is-publishable';
 export * from './lib/is-rxap-repository';
+export * from './lib/is-standalone-workspace';
 export * from './lib/json-file';
 export * from './lib/nx-json-file';
 export * from './lib/package-json-file';
