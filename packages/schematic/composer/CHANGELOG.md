@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@16.1.0-dev.1...@rxap/schematic-composer@16.1.0-dev.2) (2024-04-01)
+
+### Bug Fixes
+
+- resolve infinity loop ([d9394be](https://gitlab.com/rxap/packages/commit/d9394be8087e3022ab183ad0d50b8e36ce521898))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@16.1.0-dev.0...@rxap/schematic-composer@16.1.0-dev.1) (2024-03-31)
 
 ### Bug Fixes

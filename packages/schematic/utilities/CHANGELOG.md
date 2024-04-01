@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.1-dev.3...@rxap/schematics-utilities@16.1.0-dev.0) (2024-04-01)
+
+### Features
+
+- add function HasProjectSourceRoot ([768b323](https://gitlab.com/rxap/packages/commit/768b323af5c822ed825e0da04dce366b71812d26))
+
 ## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.1-dev.2...@rxap/schematics-utilities@16.0.1-dev.3) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/schematics-utilities
