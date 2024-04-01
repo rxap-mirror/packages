@@ -5,12 +5,11 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { HasProjectFeature } from '@rxap/schematics-ts-morph';
 import {
-  AddPackageJsonDevDependencyRule,
   GetProjectSourceRoot,
   GlobalOptions,
+  HasProjectSourceRoot,
 } from '@rxap/schematics-utilities';
 import {
   coerceArray,
@@ -56,11 +55,13 @@ function detectedProject(host: Tree, schematicCommandFilePath: string): string |
         return content.name;
       }
     }
+    fragments.pop();
   }
   return undefined;
 }
 
 function parseSchematicCommandFile(host: Tree, filePath: string): SchematicCommand[] {
+  console.log(`Parse schematic command file '${ filePath }'`.grey);
 
   const schematicCommandFile = host.read(filePath)?.toString('utf-8');
 
@@ -97,6 +98,7 @@ function executeSchematicCommandFile(
   const ruleList: Rule[] = [];
 
   for (const command of schematicCommandList) {
+    console.log(`Prepare schematic execution '${ command.package }:${ command.name }'`.grey);
     const options: { feature?: string, directory?: string, project?: string } & Record<string, any> = {
       ...globalOptions,
       ...command.options,
@@ -108,29 +110,34 @@ function executeSchematicCommandFile(
       throw new SchematicsException(`The project option is required for the schematic command file '${ schematicCommandFilePath }'`);
     }
 
-    const projectSourceRoot = GetProjectSourceRoot(host, options.project);
-    const directoryParts = relative(projectSourceRoot, dirname(schematicCommandFilePath).replace(/^\//, '')).split('/');
-    if (options.feature) {
-      if (directoryParts[0] === 'feature') {
-        directoryParts.shift();
+    if (HasProjectSourceRoot(host, options.project)) {
+      const projectSourceRoot = GetProjectSourceRoot(host, options.project);
+      const directoryParts = relative(projectSourceRoot, dirname(schematicCommandFilePath).replace(/^\//, '')).split(
+        '/');
+      if (options.feature) {
+        if (directoryParts[0] === 'feature') {
+          directoryParts.shift();
+        }
+        if (directoryParts[0] === options.feature) {
+          directoryParts.shift();
+        }
       }
-      if (directoryParts[0] === options.feature) {
-        directoryParts.shift();
+      if (directoryParts.length) {
+        directoryParts.pop(); // remove schematics directory
       }
-    }
-    if (directoryParts.length) {
-      directoryParts.pop(); // remove schematics directory
-    }
-    if (directoryParts.length) {
-      options.directory = directoryParts.join('/');
+      if (directoryParts.length) {
+        options.directory = directoryParts.join('/');
+      }
     }
     ruleList.push(chain([
       () => console.log(`Execute schematic '${ command.package }:${ command.name }'`.green),
       () => console.log(`Input Options: ${ JSON.stringify(options) }`.grey),
-      AddPackageJsonDevDependencyRule(command.package, 'latest', { soft: true }),
-      (_, context) => {
-        context.addTask(new NodePackageInstallTask({ packageManager: 'yarn' }));
-      },
+      // TODO : find a way to install the package if not exists before the external schematic is executed
+      // this implementation will only trigger the node package installer task after the schematic is executed
+      // AddPackageJsonDevDependencyRule(command.package, 'latest', { soft: true }),
+      // (_, context) => {
+      //   context.addTask(new NodePackageInstallTask({ packageManager: 'yarn' }));
+      // },
       () => {
         try {
           return externalSchematic(command.package, command.name, options);
@@ -207,8 +214,11 @@ function executeSchematicCommand(
   if (!schematicCommandList.length) {
     console.log('No schematic command files found in source root:'.yellow, sourceRoot);
   } else {
-    console.log('Schematic Command List:\n'.blue, schematicCommandList.map(item => ` - ${ item }`).join('\n'));
+    console.log('Schematic Command List:'.blue);
+    console.log(schematicCommandList.map(item => ` - ${ item }`).join('\n'));
   }
+
+  console.log('Execute schematic command files.'.grey);
 
   return getSchematicCommandRuleList(host, schematicCommandList, globalOptions);
 }
