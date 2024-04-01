@@ -144,6 +144,10 @@ export function GetProjectType(host: Tree, projectName: string): 'library' | 'ap
 
 }
 
+export function HasProjectSourceRoot(host: Tree, projectName: string): boolean {
+  return GetProject(host, projectName).sourceRoot !== undefined;
+}
+
 export function GetProjectSourceRoot(host: Tree, projectName: string): string {
 
   const project = GetProject(host, projectName);
