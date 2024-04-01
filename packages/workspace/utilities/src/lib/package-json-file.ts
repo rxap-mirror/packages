@@ -206,7 +206,7 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
         }
       }
       if ([isDevDependency, isDependency, isPeerDependency, isOptionalDependency].filter(Boolean).length > 1) {
-        throw new Error(`FATIAL: The package \x1b[34m${ packageName }\x1b[0m is in multiple dependencies`);
+        throw new Error(`FATIAL: The package \x1b[34m${ packageName }\x1b[0m is in multiple dependencies: ` + JSON.stringify({ isDependency, isDevDependency, isPeerDependency, isOptionalDependency }));
       }
     }
   }
