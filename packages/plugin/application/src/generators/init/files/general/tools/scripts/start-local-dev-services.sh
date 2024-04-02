@@ -2,12 +2,37 @@
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+source "${GIT_ROOT}/tools/scripts/colors.sh"
+
+# Initialize default values for flags
+local_mode="false"
+
+# Loop through arguments and process them
+while [ "$1" != "" ]; do
+  case $1 in
+  --local) local_mode="true" ;;
+  *)
+    echo "Usage: $0 --local"
+    exit 1
+    ;;
+  esac
+  shift
+done
+
+if [ "$local_mode" == "true" ]; then
+  echo "Local mode activated."
+  # Place your code for local mode here
+else
+  echo "Normal mode."
+  # Place your code for normal mode here
+fi
 
 cd "${GIT_ROOT}" || exit 1
+
+if [ ! -f .env ]; then
+  echo "No .env file found. Generating one..."
+  yarn init:env
+fi
 
 yarn nx run workspace:docker-compose
 
@@ -19,6 +44,7 @@ channel=${current_branch//\//-}
 source .env
 
 CHANNEL=${CHANNEL:-$channel}
+BUILD_LOCAL=${BUILD_LOCAL:-$local_mode}
 
 echo "ROOT_DOMAIN=$ROOT_DOMAIN"
 echo "REMOTE_DOMAIN=$REMOTE_DOMAIN"
@@ -27,6 +53,7 @@ echo "HOST_IP=$HOST_IP"
 echo "REGISTRY=$REGISTRY"
 echo "ROOT_DOMAIN_PORT=$ROOT_DOMAIN_PORT"
 echo "SKIP_PULL=$SKIP_PULL"
+echo "BUILD_LOCAL=$BUILD_LOCAL"
 
 read -p "Does everything look good (y/N)? "
 
@@ -35,6 +62,10 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 export CHANNEL
+
+# region check if authenticated with docker
+
+/bin/bash "${GIT_ROOT}/tools/scripts/check-docker-auth.sh" "${REGISTRY:-registry.gitlab.com}" || docker login "${REGISTRY:-registry.gitlab.com}"# endregion
 
 LOCAL_DOCKER_COMPOSE_FILES="-f docker-compose.services.yml -f docker-compose.frontends.yml"
 REMOTE_DOCKER_COMPOSE_FILES="-f docker-compose.yml"
@@ -50,48 +81,62 @@ DOCKER_COMPOSE_FILES="${REMOTE_DOCKER_COMPOSE_FILES} ${LOCAL_DOCKER_COMPOSE_FILE
 
 docker compose $REMOTE_DOCKER_COMPOSE_FILES pull || exit 1
 
-if [[ $SKIP_PULL != "true" ]]; then
+if [[ $BUILD_LOCAL == "true" ]]; then
 
-  docker compose $DOCKER_COMPOSE_FILES pull && VALID=true || VALID=false
-
-  if [[ $VALID == true ]]; then
-    echo -e "${GREEN}channel $channel is valid${NC}"
-  else
-    echo -e "${RED}channel $channel is not valid${NC}"
-
-    read -p "Do you want to use the 'development' channel (y/N)? "
-
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      channel=development
-      CHANNEL=$channel
-    else
-      echo "exiting"
-      exit 1
-    fi
+  PARAMS="--target docker --configuration development --tag $channel"
+  if [[ $REGISTRY != "" ]]; then
+    PARAMS="$PARAMS --imageRegistry $REGISTRY"
   fi
+  echo "yarn nx run-many $PARAMS"
+  # don't use double quotes around $PARAMS here. or else the $PARAMS will be expanded and passed as a single argument
+  yarn nx run-many $PARAMS
 
-  export CHANNEL
+else
 
-  docker compose $DOCKER_COMPOSE_FILES pull && VALID=true || VALID=false
+  if [[ $SKIP_PULL != "true" ]]; then
 
-  if [[ $VALID == true ]]; then
-    echo -e "${GREEN}channel $channel is valid${NC}"
-  else
-    echo -e "${RED}channel $channel is not valid${NC}"
+    docker compose $DOCKER_COMPOSE_FILES pull && VALID=true || VALID=false
 
-    read -p "Do you want to try to build the images locally (y/N)? "
-
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      PARAMS="--target docker --configuration production --tag $channel"
-      if [[ $REGISTRY != "" ]]; then
-        PARAMS="$PARAMS --imageRegistry $REGISTRY"
-      fi
-      echo "yarn nx run-many $PARAMS"
-      # don't use double quotes around $PARAMS here. or else the $PARAMS will be expanded and passed as a single argument
-      yarn nx run-many $PARAMS
+    if [[ $VALID == true ]]; then
+      echo -e "${GREEN}channel $channel is valid${NC}"
     else
-      echo "exiting"
-      exit 1
+      echo -e "${RED}channel $channel is not valid${NC}"
+
+      read -p "Do you want to use the 'development' channel (y/N)? "
+
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        channel=development
+        CHANNEL=$channel
+      else
+        echo "exiting"
+        exit 1
+      fi
+    fi
+
+    export CHANNEL
+
+    docker compose $DOCKER_COMPOSE_FILES pull && VALID=true || VALID=false
+
+    if [[ $VALID == true ]]; then
+      echo -e "${GREEN}channel $channel is valid${NC}"
+    else
+      echo -e "${RED}channel $channel is not valid${NC}"
+
+      read -p "Do you want to try to build the images locally (y/N)? "
+
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        PARAMS="--target docker --configuration development --tag $channel"
+        if [[ $REGISTRY != "" ]]; then
+          PARAMS="$PARAMS --imageRegistry $REGISTRY"
+        fi
+        echo "yarn nx run-many $PARAMS"
+        # don't use double quotes around $PARAMS here. or else the $PARAMS will be expanded and passed as a single argument
+        yarn nx run-many $PARAMS
+      else
+        echo "exiting"
+        exit 1
+      fi
+
     fi
 
   fi
