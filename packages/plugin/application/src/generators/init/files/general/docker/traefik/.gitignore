@@ -4,3 +4,4 @@ tls/*.crt
 tls/*.key
 tls/*.csr
 tls/*.cnf
+tls/*.srl
