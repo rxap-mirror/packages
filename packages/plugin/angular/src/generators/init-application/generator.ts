@@ -872,6 +872,15 @@ export async function initApplicationGenerator(
             },
           ]);
         }
+        if (options.material) {
+          providers.push('ProvideIconAssetPath()');
+          CoerceImports(sourceFile, [
+            {
+              moduleSpecifier: '@rxap/icon',
+              namedImports: [ 'ProvideIconAssetPath' ],
+            },
+          ]);
+        }
         CoerceAppConfigProvider(sourceFile, {
           overwrite: options.overwrite,
           providers,
