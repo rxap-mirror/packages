@@ -25,6 +25,7 @@ import {
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
+import { coerceDevContainerConfig } from './coerce-dev-container-config';
 import { InitGeneratorSchema } from './schema';
 
 const gitIgnore = [
@@ -446,6 +447,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   coerceWorkspaceProject(tree, options);
   coerceNxJson(tree);
+  coerceDevContainerConfig(tree);
   await coerceRootPackageJsonScripts(tree);
   if (!options.skipLicense) {
     await coercePackageJsonLicense(tree);
