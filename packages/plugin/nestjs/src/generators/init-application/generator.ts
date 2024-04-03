@@ -769,8 +769,8 @@ export async function initApplicationGenerator(
               },
             ], (a, b) => a.name === b.name);
             CoerceImports(configSourceFile, {
-              namespaceImport: 'process',
-              moduleSpecifier: 'process',
+              namedImports: ['environment'],
+              moduleSpecifier: '../environments/environment',
             });
           }
           CoerceNestAppConfig(configSourceFile, {
