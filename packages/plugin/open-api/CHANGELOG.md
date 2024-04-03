@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.1.1-dev.3...@rxap/plugin-open-api@16.2.0-dev.0) (2024-04-03)
+
+### Bug Fixes
+
+- use the old import path scopes ([fa6fe9d](https://gitlab.com/rxap/packages/commit/fa6fe9d9530335979f734c1f49c19f97f6118832))
+
+### Features
+
+- add open api client sdk library init generator ([1c5e8e0](https://gitlab.com/rxap/packages/commit/1c5e8e05614124a1d7d618d013a433830ec80832))
+
 ## [16.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.1.1-dev.2...@rxap/plugin-open-api@16.1.1-dev.3) (2024-03-31)
 
 **Note:** Version bump only for package @rxap/plugin-open-api

@@ -1,5 +1,5 @@
 {
-  "version": "16.1.1-dev.3",
+  "version": "16.2.0-dev.0",
   "name": "@rxap/plugin-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@rxap/utilities": "^16.1.0-dev.8",
     "@rxap/workspace-open-api": "^16.0.2-dev.2",
     "@rxap/workspace-ts-morph": "^16.0.2-dev.2",
-    "@rxap/workspace-utilities": "^16.1.0-dev.5",
+    "@rxap/workspace-utilities": "^16.1.0-dev.8",
     "tslib": "2.6.2"
   },
   "author": {
@@ -67,7 +67,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.5"
+        "version": "16.1.0-dev.8"
       }
     ]
   },

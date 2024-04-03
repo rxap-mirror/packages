@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.10...@rxap/plugin-nestjs@16.2.0-dev.11) (2024-04-03)
+
+### Bug Fixes
+
+- add correct config imports ([52f0331](https://gitlab.com/rxap/packages/commit/52f033158f8066cb6b4d2016d8bb9d1179a7b437))
+- print command required to init the open api client sdk library project ([e97fe6f](https://gitlab.com/rxap/packages/commit/e97fe6f0986ffa2c033dbee0ab557f98923d965b))
+
 # [16.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.9...@rxap/plugin-nestjs@16.2.0-dev.10) (2024-04-01)
 
 ### Bug Fixes

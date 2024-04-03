@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.4...@rxap/plugin-angular@16.2.0-dev.5) (2024-04-03)
+
+### Bug Fixes
+
+- add the angular localize types ([12acd77](https://gitlab.com/rxap/packages/commit/12acd777823a863c4c9bf12e5fd90912cff97fa2))
+- only use i18n frontend docker file if i18n is enabled ([cfd2fd3](https://gitlab.com/rxap/packages/commit/cfd2fd3de4d1f992f6bfdd9500b5d7d3f09f66f8))
+
+### Features
+
+- add the default auth guard ([c439ec4](https://gitlab.com/rxap/packages/commit/c439ec4dd30bbc25772a80e765790d0f05544cd5))
+
 # [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.3...@rxap/plugin-angular@16.2.0-dev.4) (2024-04-03)
 
 ### Bug Fixes

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.7...@rxap/workspace-utilities@16.1.0-dev.8) (2024-04-03)
+
+### Bug Fixes
+
+- only return the scope ([bd17c40](https://gitlab.com/rxap/packages/commit/bd17c405fab6311f738f9658019ec97ac70f142b))
+
+### Features
+
+- add buildNestProjectDirectoryPath function ([c3ec499](https://gitlab.com/rxap/packages/commit/c3ec4991be78d19f1d6b69262da53588af609e46))
+
 # [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.6...@rxap/workspace-utilities@16.1.0-dev.7) (2024-04-01)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

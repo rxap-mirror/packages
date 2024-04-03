@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.23...@rxap/ts-morph@1.1.0-dev.24) (2024-04-03)
+
+### Features
+
+- add CoerceRouteGuard function ([813eb34](https://gitlab.com/rxap/packages/commit/813eb34199c51b643dca36217b68b6b3a9c4e324))
+- add the default auth guard ([c439ec4](https://gitlab.com/rxap/packages/commit/c439ec4dd30bbc25772a80e765790d0f05544cd5))
+
 # [1.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.22...@rxap/ts-morph@1.1.0-dev.23) (2024-04-03)
 
 ### Bug Fixes

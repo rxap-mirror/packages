@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.24...@rxap/schematics-ts-morph@16.1.0-dev.25) (2024-04-03)
+
+### Bug Fixes
+
+- print the required commands to setup projects ([146e987](https://gitlab.com/rxap/packages/commit/146e987f550145373f340516947e316d4ae31818))
+- support non upstream nestjs backends ([2df819e](https://gitlab.com/rxap/packages/commit/2df819ec47b14a7920d03acb7f70003974d9d158))
+
 # [16.1.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.23...@rxap/schematics-ts-morph@16.1.0-dev.24) (2024-03-31)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph
