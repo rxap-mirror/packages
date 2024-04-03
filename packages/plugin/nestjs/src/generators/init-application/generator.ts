@@ -6,7 +6,6 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import jsLibraryGenerator from '@nx/js/src/generators/library/library';
 import {
   ApplicationInitProject,
   ApplicationInitWorkspace,
@@ -41,6 +40,7 @@ import {
   GetNestApiPrefix,
   GetTarget,
   GetWorkspaceName,
+  HasProject,
   IsStandaloneWorkspace,
   SkipNonApplicationProject,
   Strategy,
@@ -64,6 +64,7 @@ import swaggerGenerator from '../swagger/generator';
 import validatorGenerator from '../validator/generator';
 import { ExtractExistingConfigValidation } from './extract-existing-config-validation';
 import { InitApplicationGeneratorSchema } from './schema';
+import 'colors';
 
 function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: boolean, overwrite: boolean }) {
 
@@ -300,85 +301,22 @@ function updateGitIgnore(tree: Tree, project: ProjectConfiguration, options: Ini
   }
 }
 
-async function createOpenApiClientSdkLibrary(
+function assertOpenApiClientSdkLibrary(
   tree: Tree,
   projectName: string,
-  project: ProjectConfiguration,
-  projects: Map<string, ProjectConfiguration>,
 ) {
 
   const openApiProjectName = `open-api-${ projectName }`;
 
-  if (projects.has(openApiProjectName)) {
-    console.log(`Open api client sdk library for project ${ projectName } already exists`);
-    return;
+  if (!HasProject(tree, openApiProjectName)) {
+
+    // TODO : run the commands on the fly instead of throwing an error
+
+    console.log('Use the command: ' + `nx g @nx/js:library --name ${openApiProjectName} --directory open-api/${projectName} --importPath ${openApiProjectName} --projectNameAndRootFormat as-provided --linter none --minimal --unitTestRunner none --tags open-api --no-publishable --bundler none`.blue);
+    console.log('Use the command: ' + `nx g @rxap/plugin-open-api:init-library --project ${openApiProjectName}`.blue);
+    throw new Error(`Can't create open api client sdk library for project ${ projectName }`);
+
   }
-
-  const projectRoot = project.root;
-  const fragments = projectRoot.split('/');
-  const name = fragments.pop();
-  if (!name) {
-    throw new Error(`Can't find project folder from the project root path for project '${ projectName }'`);
-  }
-  // only remove the root folder if it is one of the following
-  if (['libs', 'applications', 'apps', 'packages', 'service'].includes(fragments[0])) {
-    fragments.shift(); // remove the root folder
-  }
-  const directory = ['open-api', ...fragments].filter(Boolean).join('/');
-
-  const manuelCreateCommand = `nx g @nx/js:library --name ${name} --directory ${directory} --unitTestRunner none --tags open-api --buildable false --bundler none`;
-
-  try {
-    await jsLibraryGenerator(tree, {
-      name,
-      directory,
-      unitTestRunner: 'none',
-      tags: 'open-api',
-      buildable: false,
-      bundler: 'none',
-    });
-  } catch (e: any) {
-    console.log(`Manuel create open api client sdk library: ${manuelCreateCommand}`);
-    throw new Error(`Can't create open api client sdk library: ${ e.message }`);
-  }
-
-  let tsConfig: any;
-
-  try {
-    tsConfig = JSON.parse(tree.read('tsconfig.base.json')!.toString('utf-8'));
-  } catch (e: any) {
-    throw new Error(`Can't parse tsconfig.base.json: ${ e.message }`);
-  }
-
-  projects = getProjects(tree);
-
-  if (!projects.has(openApiProjectName)) {
-    console.log(`Manuel create open api client sdk library: ${manuelCreateCommand}`);
-    throw new Error(`Can't find project ${ openApiProjectName }`);
-  }
-
-  const openApiProjectConfiguration = projects.get(openApiProjectName)!;
-  const openApiProjectRoot = openApiProjectConfiguration.root;
-
-  if (tsConfig.compilerOptions.paths[`${ directory }/${ name }`]) {
-    delete tsConfig.compilerOptions.paths[`${ directory }/${ name }`];
-    tsConfig.compilerOptions.paths[`${ openApiProjectName }/*`] = [ `${ openApiProjectRoot }/src/lib/*` ];
-    tree.write('tsconfig.base.json', JSON.stringify(tsConfig, null, 2));
-  }
-  tree.write(`${ openApiProjectRoot }/src/index.ts`, 'export {};');
-  if (tree.exists(`${ openApiProjectRoot }/src/lib/${ openApiProjectName }.ts`)) {
-    tree.delete(`${ openApiProjectRoot }/src/lib/${ openApiProjectName }.ts`);
-  }
-  if (tree.exists(`${ openApiProjectRoot }/README.md`)) {
-    tree.delete(`${ openApiProjectRoot }/README.md`);
-  }
-
-  openApiProjectConfiguration.implicitDependencies ??= [];
-  if (!openApiProjectConfiguration.implicitDependencies.includes(projectName)) {
-    openApiProjectConfiguration.implicitDependencies.push(projectName);
-  }
-
-  updateProjectConfiguration(tree, openApiProjectName, openApiProjectConfiguration);
 
 }
 
@@ -763,7 +701,7 @@ export async function initApplicationGenerator(
       if (!options.standalone) {
         await updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
         if (options.swagger) {
-          await createOpenApiClientSdkLibrary(tree, projectName, project, projects);
+          assertOpenApiClientSdkLibrary(tree, projectName);
         }
       }
 
