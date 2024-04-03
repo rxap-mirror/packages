@@ -48,9 +48,9 @@ export async function initLibraryGenerator(
       delete tsConfig.compilerOptions.paths[options.project];
     }
     const scope = GetWorkspaceScope(tree);
-    tsConfig.compilerOptions.paths[`${scope}/${options.project}/*`] = [ `${projectSourceRoot}/lib/*` ];
+    tsConfig.compilerOptions.paths[`${options.project}/*`] = [ `${projectSourceRoot}/lib/*` ];
     tsConfig.compilerOptions.paths[`${scope}/open-api/*`] ??= [];
-    CoerceArrayItems(tsConfig.compilerOptions.paths[`${scope}/open-api/*`], tsConfig.compilerOptions.paths[`${scope}/${options.project}/*`]);
+    CoerceArrayItems(tsConfig.compilerOptions.paths[`${scope}/open-api/*`], tsConfig.compilerOptions.paths[`${options.project}/*`]);
   }, { infix: 'base' });
   // endregion
 }
