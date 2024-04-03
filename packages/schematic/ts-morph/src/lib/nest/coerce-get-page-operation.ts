@@ -109,6 +109,7 @@ export function CoerceToRowDtoMethod(
   rowClassName: string,
   options: CoerceGetPageOperationOptions,
 ) {
+  const rowIdProperty = options.propertyList?.find(p => p.name === '__rowId') ?? { type: 'number' };
   CoerceClassMethod(classDeclaration, 'toRowDto', {
     scope: Scope.Private,
     returnType: rowClassName,
@@ -144,7 +145,7 @@ export function CoerceToRowDtoMethod(
       'return {',
       '  __rowId: ' +
       (!options.idProperty ?
-        '(pageIndex * pageSize + index).toFixed(0)' :
+        '(pageIndex * pageSize + index)' + (rowIdProperty.type !== 'number' ? '.toFixed(0)' : '') :
         `item.${ options.idProperty.name }`) + ',\n  ',
       options.propertyList?.filter(p => p.name !== '__rowId').map(GetPageOperationColumnToCodeText).join(',\n  ') ?? '',
       '};',
@@ -272,18 +273,9 @@ export function CoerceGetPageDataMethod(
     );
   } else {
     statements.push(
-      `const response = await ((() => { throw new NotImplementedException(); })() as any).execute({
-      parameters: {
-        page: pageIndex,
-        size: pageSize,
-        sort: sortBy,
-        order: sortDirection,
-        filter: filter.map((item) => \`\${ item.column }:\${ item.filter }\`).join(';'),
-      },
-    });`,
       'return {',
-      '  list: response.entities ?? [],',
-      '  total: response.maxCount ?? 0,',
+      '  list: [],',
+      '  total: 0,',
       '};',
     );
   }
@@ -354,7 +346,7 @@ export function GetRawRowDataType(options: Readonly<CoerceGetPageOperationOption
   };
 }
 
-export function BuildGetPageUpstreamGetDataImplementation(
+export function BuildGetPageGetDataImplementation(
   classDeclaration: ClassDeclaration,
   moduleSourceFile: SourceFile,
   dto: CoerceDtoClassOutput | null,
@@ -435,7 +427,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
     upstream,
     builtDtoDataMapperImplementation = BuiltGetPageDtoDataMapperImplementation,
     coerceOperationDtoClass = CoerceGetPageOperationDtoClass,
-    buildUpstreamGetDataImplementation = BuildGetPageUpstreamGetDataImplementation,
+    buildGetDataImplementation = BuildGetPageGetDataImplementation,
     idProperty ,
     nestModule,
     controllerName,
@@ -488,7 +480,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
     operationName,
     builtDtoDataMapperImplementation,
     coerceOperationDtoClass,
-    buildUpstreamGetDataImplementation,
+    buildGetDataImplementation,
     tsMorphTransform: (
       project,
       sourceFile,

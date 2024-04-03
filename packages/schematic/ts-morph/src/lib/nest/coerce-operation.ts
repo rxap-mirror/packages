@@ -102,6 +102,12 @@ export interface CoerceOperationOptions<Options = Record<string, any>> extends T
     dto: CoerceDtoClassOutput | null,
     options: Readonly<CoerceOperationOptions & Options>,
   ) => TransformOperation<void>;
+  buildGetDataImplementation?: (
+    classDeclaration: ClassDeclaration,
+    moduleSourceFile: SourceFile,
+    dto: CoerceDtoClassOutput | null,
+    options: Readonly<CoerceOperationOptions & Options>,
+  ) => TransformOperation<void>;
   coerceOperationDtoClass?: (
     classDeclaration: ClassDeclaration,
     controllerName: string,
@@ -327,7 +333,9 @@ export function CoerceUpstreamDefaultOperationImplementation(
       upstream,
       buildDtoReturnImplementation = BuildDtoReturnImplementation,
       buildUpstreamGetDataImplementation = BuildUpstreamGetDataImplementation,
+      buildGetDataImplementation = noop,
     } = options;
+    buildGetDataImplementation(classDeclaration, moduleSourceFile, dto, options)?.(operationOptions);
     if (upstream) {
       operationOptions.isAsync = true;
       buildUpstreamGetDataImplementation(classDeclaration, moduleSourceFile, dto, options)(operationOptions);
