@@ -6,31 +6,34 @@ import {
   SyntaxKind,
 } from 'ts-morph';
 
-export function FindParentRoute(ale: ArrayLiteralExpression, path: string[]): ArrayLiteralExpression | null {
+export function GetRouteChildrenArray(e: ObjectLiteralExpression): ArrayLiteralExpression {
+  const childrenProperty = e.getProperty('children') ?? e.addProperty({
+    name: 'children',
+    initializer: '[]',
+    kind: StructureKind.PropertyAssignment,
+  });
+  if (childrenProperty instanceof PropertyAssignment) {
+    return childrenProperty.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
+  }
+  throw new Error('Children property is not a PropertyAssignment');
+}
+
+export function FindParentRoute(ale: ArrayLiteralExpression, path: string[]): ObjectLiteralExpression | null {
+  const fragment = path.pop();
   for (const e of ale.getElements()) {
     if (e instanceof ObjectLiteralExpression) {
       const pathProperty = e.getProperty('path');
       if (pathProperty && pathProperty instanceof PropertyAssignment) {
         const initializer = pathProperty.getInitializerIfKind(SyntaxKind.StringLiteral);
         if (initializer) {
-          const fragment = path.pop();
           if (initializer.getLiteralText() === fragment) {
-            const childrenProperty = e.getProperty('children') ?? e.addProperty({
-              name: 'children',
-              initializer: '[]',
-              kind: StructureKind.PropertyAssignment,
-            });
-            if (childrenProperty instanceof PropertyAssignment) {
-              const children = childrenProperty.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
-              if (path.length) {
-                // console.log('Continue search for parent route');
-                return FindParentRoute(children, path);
-              } else {
-                // console.log('Found parent route');
-                return children;
-              }
+            const children = GetRouteChildrenArray(e);
+            if (path.length) {
+              // console.log('Continue search for parent route');
+              return FindParentRoute(children, path);
             } else {
-              // console.log('Children property is not a PropertyAssignment');
+              // console.log('Found parent route');
+              return e;
             }
           } else {
             // console.log('Path property does not match', initializer.getLiteralText(), fragment);
@@ -46,4 +49,9 @@ export function FindParentRoute(ale: ArrayLiteralExpression, path: string[]): Ar
     }
   }
   return null;
+}
+
+export function FindParentRouteChildrenArray(ale: ArrayLiteralExpression, path: string[]) {
+  const parent = FindParentRoute(ale, path);
+  return parent ? GetRouteChildrenArray(parent) : null;
 }

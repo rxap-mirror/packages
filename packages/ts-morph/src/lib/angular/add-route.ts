@@ -11,7 +11,7 @@ import {
   AngularRoute,
   BuildRouteObject,
 } from './build-route-object';
-import { FindParentRoute } from './find-parent-route';
+import { FindParentRouteChildrenArray } from './find-parent-route';
 
 export function DefaultInsertAtFactory(route: AngularRoute): (array: ArrayLiteralExpression) => number {
   return (array: ArrayLiteralExpression) => {
@@ -34,6 +34,12 @@ export function DefaultInsertAtFactory(route: AngularRoute): (array: ArrayLitera
       for (const element of array.getElements()) {
         if (!element.isKind(SyntaxKind.ObjectLiteralExpression)) {
           insertAt++;
+        } if (element.isKind(SyntaxKind.ObjectLiteralExpression)) {
+          if (element.asKindOrThrow(SyntaxKind.ObjectLiteralExpression).getProperty('path')?.getText() === '') {
+            insertAt++;
+          } else {
+            break;
+          }
         } else {
           break;
         }
@@ -48,7 +54,7 @@ export function AddRoute(sourceFile: SourceFile, route: AngularRoute, path?: str
   if (routes) {
     let initializer: ArrayLiteralExpression | null = routes.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
     if (path?.length) {
-      initializer = FindParentRoute(initializer, path);
+      initializer = FindParentRouteChildrenArray(initializer, path);
     }
     if (initializer) {
       CoerceArrayElement(
