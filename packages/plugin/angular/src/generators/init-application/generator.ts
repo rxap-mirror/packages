@@ -26,10 +26,7 @@ import {
   DeleteEmptyProperties,
   unique,
 } from '@rxap/utilities';
-import {
-  TsMorphAngularProjectTransform,
-  TsMorphNestProjectTransform,
-} from '@rxap/workspace-ts-morph';
+import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
@@ -42,9 +39,10 @@ import {
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
+  GetProjectRoot,
   SkipNonApplicationProject,
   Strategy,
-  UpdateJsonFile,
+  UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
@@ -496,7 +494,7 @@ function updateMainFile(tree: Tree, projectName: string, project: ProjectConfigu
 
 function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: boolean, overwrite: boolean }) {
 
-  TsMorphNestProjectTransform(
+  TsMorphAngularProjectTransform(
     tree,
     {
       project: options.project,
@@ -585,20 +583,16 @@ function coerceLocalazyConfigFile(tree: Tree, project: ProjectConfiguration) {
   }
 }
 
-async function updateTsConfig(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+async function updateTsConfig(tree: Tree, projectName: string) {
 
-  const projectRoot = project.root;
-
-  if (options.i18n) {
-    for (const tsConfigName of [ 'app', 'editor', 'spec' ]) {
-      await UpdateJsonFile(tree, tsConfig => {
-        tsConfig.compilerOptions ??= {};
-        tsConfig.compilerOptions.types ??= [];
-        if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
-          tsConfig.compilerOptions.types.push('@angular/localize');
-        }
-      }, join(projectRoot, `tsconfig.${ tsConfigName }.json`));
-    }
+  for (const tsConfigName of [ 'app', 'editor', 'spec' ]) {
+    await UpdateTsConfigJson(tree, tsConfig => {
+      tsConfig.compilerOptions ??= {};
+      tsConfig.compilerOptions.types ??= [];
+      if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
+        tsConfig.compilerOptions.types.push('@angular/localize');
+      }
+    }, { infix: tsConfigName, basePath: GetProjectRoot(tree,projectName) });
   }
 
 }
@@ -768,7 +762,7 @@ export async function initApplicationGenerator(
       updateProjectTargets(project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
-      await updateTsConfig(tree, project, options);
+      await updateTsConfig(tree, projectName);
       coerceEnvironmentFiles(
         tree,
         {
@@ -777,7 +771,7 @@ export async function initApplicationGenerator(
           overwrite: options.overwrite,
         },
       );
-      TsMorphNestProjectTransform(tree, {
+      TsMorphAngularProjectTransform(tree, {
         project: projectName,
       }, (_, [ sourceFile ]) => {
         const providers: Array<string | ProviderObject> = [
