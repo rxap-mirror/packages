@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.3...@rxap/plugin-application@16.2.0-dev.4) (2024-04-03)
+
+### Bug Fixes
+
+- ignore tls file ([c3ed460](https://gitlab.com/rxap/packages/commit/c3ed460ba50b64b20058db12cb20c7862f0251b8))
+
+### Features
+
+- check docker registry auth state and support direct local builds ([20670c4](https://gitlab.com/rxap/packages/commit/20670c494072d7c1d729a9e730fced8b502309fc))
+
 # [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.2...@rxap/plugin-application@16.2.0-dev.3) (2024-03-31)
 
 ### Bug Fixes

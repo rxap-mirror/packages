@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.2",
+  "version": "16.1.0-dev.3",
   "name": "@rxap/schematic-composer",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -35,11 +35,11 @@
     "packageGroup": [
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.2.0-dev.3"
+        "version": "16.2.0-dev.4"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "16.2.0-dev.3"
+        "version": "16.2.0-dev.4"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "16.2.0-dev.5"
+        "version": "16.2.0-dev.6"
       },
       {
         "package": "@rxap/schematic-angular",

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.22...@rxap/ts-morph@1.1.0-dev.23) (2024-04-03)
+
+### Bug Fixes
+
+- use environment.app to get the default sentry server name ([c89f1bd](https://gitlab.com/rxap/packages/commit/c89f1bdc99425aaee1417b51dfe05c17dbb6565e))
+
+### Features
+
+- support app navigation icon coerce ([b37c6c8](https://gitlab.com/rxap/packages/commit/b37c6c814d21420260c5d4966152a11ca49a81bd))
+
 # [1.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.21...@rxap/ts-morph@1.1.0-dev.22) (2024-03-31)
 
 ### Bug Fixes

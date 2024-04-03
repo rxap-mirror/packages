@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@16.0.1-dev.4...@rxap/material-form-system@16.0.1-dev.5) (2024-04-03)
+
+### Bug Fixes
+
+- support formControl directive ([3f6aecb](https://gitlab.com/rxap/packages/commit/3f6aecbae55ac548236c82243a747dcd57b5b494))
+
 ## [16.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@16.0.1-dev.3...@rxap/material-form-system@16.0.1-dev.4) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/material-form-system

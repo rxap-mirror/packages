@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.5...@rxap/plugin-workspace@16.2.0-dev.6) (2024-04-03)
+
+### Features
+
+- add dev container initialization ([b0f0518](https://gitlab.com/rxap/packages/commit/b0f051894b581593ea1735c7864691e50a75de92))
+
 # [16.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.4...@rxap/plugin-workspace@16.2.0-dev.5) (2024-03-31)
 
 ### Bug Fixes

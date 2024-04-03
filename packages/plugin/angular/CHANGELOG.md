@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.3...@rxap/plugin-angular@16.2.0-dev.4) (2024-04-03)
+
+### Bug Fixes
+
+- add empty custom icon file ([189072a](https://gitlab.com/rxap/packages/commit/189072a7e6222374c9bc071ffca6d47737710328))
+- ensure required packages are installed ([27ae433](https://gitlab.com/rxap/packages/commit/27ae433d8758f1adf1c621db203916eb910b9325))
+
+### Features
+
+- support app navigation icon coerce ([b37c6c8](https://gitlab.com/rxap/packages/commit/b37c6c814d21420260c5d4966152a11ca49a81bd))
+- use the ProvideIconAssetPath function ([54fa438](https://gitlab.com/rxap/packages/commit/54fa4380e634612c3d256ddeec997de740dad422))
+
 # [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.2...@rxap/plugin-angular@16.2.0-dev.3) (2024-03-31)
 
 **Note:** Version bump only for package @rxap/plugin-angular
