@@ -5,8 +5,10 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { HasProjectFeature } from '@rxap/schematics-ts-morph';
 import {
+  AddPackageJsonDevDependencyRule,
   GetProjectSourceRoot,
   GlobalOptions,
   HasProjectSourceRoot,
@@ -304,14 +306,24 @@ export default function (options: ComposeSchematicSchema) {
 
   return (host: Tree) => {
 
+    let rule: Rule;
+
     if (project) {
       if (feature) {
-        return forFeature(host, project, feature, globalOptions, filter);
+        rule = forFeature(host, project, feature, globalOptions, filter);
+      } else {
+        rule = forProject(host, project, globalOptions, filter);
       }
-      return forProject(host, project, globalOptions, filter);
+    } else {
+      rule = forWorkspace(host, globalOptions, filter);
     }
-    return forWorkspace(host, globalOptions, filter);
 
-    throw new Error('Not yet implemented - project and feature options are required!');
+    return chain([
+      rule,
+      AddPackageJsonDevDependencyRule('@rxap/schematic-composer', 'latest', { soft: true }),
+      (_, context) => {
+        context.addTask(new NodePackageInstallTask({ packageManager: 'yarn' }));
+      },
+    ]);
   };
 }
