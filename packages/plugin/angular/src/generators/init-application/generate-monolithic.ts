@@ -43,7 +43,7 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
         }
       ]
     });
-    CoerceAppNavigation(navigationSourceFile);
+    CoerceAppNavigation(navigationSourceFile, { overwrite: options.overwrite });
   }, [ 'app/app.routes.ts?', 'app/layout.routes.ts?', 'app/app.navigation.ts?' ]);
 
   if (options.overwrite) {

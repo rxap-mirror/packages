@@ -1,5 +1,6 @@
 import { Tree } from '@nx/devkit';
 import {
+  CoerceAppNavigation,
   CoerceLayoutRoutes,
   CoerceRoutes,
 } from '@rxap/ts-morph';
@@ -20,7 +21,7 @@ export async function initFeatureGenerator(
 
   TsMorphAngularProjectTransform(tree, {
     project: options.project,
-  }, (_, [ layoutSourceFile, featureSourceFile ]) => {
+  }, (_, [ layoutSourceFile, featureSourceFile, navigationSourceFile ]) => {
     CoerceRoutes(featureSourceFile);
     CoerceLayoutRoutes(layoutSourceFile, {
       itemList: [
@@ -33,7 +34,17 @@ export async function initFeatureGenerator(
         }
       ]
     });
-  }, [ 'app/layout.routes.ts?', `feature/${dasherize(options.name)}/routes.ts?` ]);
+    if (options.navigation) {
+      CoerceAppNavigation(navigationSourceFile, {
+        itemList: [{
+          routerLink: [ '/', options.name ],
+          label: options.navigation.label,
+          icon: options.navigation.icon
+        }],
+        overwrite: options.overwrite,
+      });
+    }
+  }, [ 'app/layout.routes.ts?', `feature/${dasherize(options.name)}/routes.ts?`, 'app/app.navigation.ts?' ]);
 }
 
 export default initFeatureGenerator;

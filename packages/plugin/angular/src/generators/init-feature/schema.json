@@ -11,6 +11,60 @@
     "project": {
       "type": "string",
       "description": "The name of the project where the feature should be added"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "If the feature should be overwritten if it already exists"
+    },
+    "navigation": {
+      "type": "object",
+      "properties":{
+        "label": {
+          "type": "string",
+          "description": "The label of the navigation item"
+        },
+        "icon": {
+          "description": "The icon of the navigation item",
+          "allOf": [
+            {
+              "type": "object",
+              "properties":{
+                "color": {
+                  "type": "string",
+                  "description": "The color of the icon"
+                }
+              }
+            },
+            {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "description": "The icon is a material icon",
+                  "properties": {
+                    "icon": {
+                      "type": "string",
+                      "description": "The name of the icon"
+                    }
+                  },
+                  "required": ["icon"]
+                },
+                {
+                  "type": "object",
+                  "description": "The icon is a svg icon",
+                  "properties": {
+                    "svgIcon": {
+                      "type": "string",
+                      "description": "The name of the icon"
+                    }
+                  },
+                  "required": ["svgIcon"]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "required": ["label"]
     }
   },
   "required": [
