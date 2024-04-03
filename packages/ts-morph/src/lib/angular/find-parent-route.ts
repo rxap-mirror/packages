@@ -27,8 +27,8 @@ export function FindParentRoute(ale: ArrayLiteralExpression, path: string[]): Ob
         const initializer = pathProperty.getInitializerIfKind(SyntaxKind.StringLiteral);
         if (initializer) {
           if (initializer.getLiteralText() === fragment) {
-            const children = GetRouteChildrenArray(e);
             if (path.length) {
+              const children = GetRouteChildrenArray(e);
               // console.log('Continue search for parent route');
               return FindParentRoute(children, path);
             } else {

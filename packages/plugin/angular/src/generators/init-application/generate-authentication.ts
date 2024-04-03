@@ -2,7 +2,11 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { CoerceAppRoutes } from '@rxap/ts-morph';
+import {
+  CoerceAppRoutes,
+  CoerceImports,
+  CoerceRouteGuard,
+} from '@rxap/ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import { AddPackageJsonDependency } from '@rxap/workspace-utilities';
 import { InitApplicationGeneratorSchema } from './schema';
@@ -28,6 +32,11 @@ export async function generateAuthentication(tree: Tree, projectName: string, pr
           }
         }
       ]
+    });
+    CoerceRouteGuard(appSourceFile, [''], 'RxapAuthenticationGuard', { routeArrayName: 'appRoutes' });
+    CoerceImports(appSourceFile, {
+      namedImports: ['RxapAuthenticationGuard'],
+      moduleSpecifier: '@rxap/authentication',
     });
   }, [ 'app/app.routes.ts?' ]);
 
