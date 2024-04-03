@@ -11,7 +11,7 @@ export function GetWorkspaceScope(tree?: TreeLike) {
   }
 
   if (name.startsWith('@')) {
-    return name;
+    return name.split('/')[0];
   }
 
   return `@${ name }`;
