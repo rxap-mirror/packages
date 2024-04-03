@@ -732,6 +732,12 @@ export async function initApplicationGenerator(
     overwrite: options.overwrite,
   });
 
+  if (options.i18n) {
+    let dockerfileContent = tree.read('shared/angular/Dockerfile', 'utf-8')!;
+    dockerfileContent = dockerfileContent.replace('registry.gitlab.com/rxap/docker/nginx:', 'registry.gitlab.com/rxap/docker/i18n-nginx:');
+    tree.write('shared/angular/Dockerfile', dockerfileContent);
+  }
+
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files', 'styles'),
     target: 'shared/angular/styles',

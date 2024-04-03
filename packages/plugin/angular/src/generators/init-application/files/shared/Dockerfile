@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/rxap/docker/i18n-nginx:alpine
+FROM registry.gitlab.com/rxap/docker/nginx:alpine
 
 ARG PROJECT_NAME
 ARG SUB_DOMAIN
