@@ -9,15 +9,31 @@ export interface BuildNestProjectNameOptions {
 }
 
 export function buildNestProjectName(options: BuildNestProjectNameOptions) {
+  const project = options.project.replace(/user-interface-/, '');
   if (options.feature) {
     if (options.shared) {
       return `service-feature-${ options.feature }`;
     } else {
-      return `service-app-${ options.project.replace(/user-interface-/, '') }-${ options.feature }`;
+      return `service-app-${ project }-${ options.feature }`;
     }
   } else {
-    return options.project;
+    return project;
   }
+}
+
+export function buildNestProjectDirectoryPath(options: BuildNestProjectNameOptions) {
+  const project = options.project.replace(/user-interface-/, '');
+  const fragments = [ 'service' ];
+  if (options.feature) {
+    if (options.shared) {
+      fragments.push('feature', options.feature);
+    } else {
+      fragments.push('app', project, options.feature);
+    }
+  } else {
+    fragments.push(project);
+  }
+  return fragments.join('/');
 }
 
 export interface HasNestServiceProjectOptions {
