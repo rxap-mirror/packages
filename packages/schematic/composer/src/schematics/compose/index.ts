@@ -106,11 +106,7 @@ function executeSchematicCommandFile(
     options.project ??= detectedProject(host, schematicCommandFilePath);
     options.feature ??= detectedFeature(schematicCommandFilePath);
 
-    if (!options.project) {
-      throw new SchematicsException(`The project option is required for the schematic command file '${ schematicCommandFilePath }'`);
-    }
-
-    if (HasProjectSourceRoot(host, options.project)) {
+    if (options.project && HasProjectSourceRoot(host, options.project)) {
       const projectSourceRoot = GetProjectSourceRoot(host, options.project);
       const directoryParts = relative(projectSourceRoot, dirname(schematicCommandFilePath).replace(/^\//, '')).split(
         '/');
