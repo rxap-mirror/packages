@@ -652,6 +652,12 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/pipes', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/mixin', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/reflect-metadata', 'latest', { soft: true });
+  const angularVersion = '~16.2.0';
+  // must always be added as some rxap components use the i18n tag
+  await AddPackageJsonDependency(tree, '@angular/localize', angularVersion, { soft: true });
+  // must always be added as some rxap components use interfaces from the package
+  // TODO : refactor the @rxap/ngx-error and @rxap/ngx-status-check to be independent from the @sentry/angular-ivy package
+  await AddPackageJsonDependency(tree, '@sentry/angular-ivy', 'latest', { soft: true });
 
   if (options.oauth) {
     await AddPackageJsonDependency(tree, 'angular-oauth2-oidc', 'latest', { soft: true });
@@ -660,12 +666,13 @@ export async function initApplicationGenerator(
   }
 
   if (options.material) {
-    await AddPackageJsonDependency(tree, '@angular/material', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@angular/cdk', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/material', angularVersion, { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/cdk', angularVersion, { soft: true });
   }
 
   if (options.serviceWorker) {
     await AddPackageJsonDependency(tree, '@rxap/service-worker', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/service-worker', angularVersion, { soft: true });
   }
 
   if (options.monolithic) {
@@ -693,13 +700,11 @@ export async function initApplicationGenerator(
 
   if (options.sentry) {
     await AddPackageJsonDependency(tree, '@rxap/ngx-sentry', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@sentry/angular-ivy', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@sentry/browser', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@sentry/integrations', 'latest', { soft: true });
   }
 
   if (options.i18n) {
-    await AddPackageJsonDependency(tree, '@angular/localize', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/ngx-localize', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/ngx-user', 'latest', { soft: true });
   }
