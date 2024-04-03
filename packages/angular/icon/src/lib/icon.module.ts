@@ -10,7 +10,7 @@ import {
 } from './tokens';
 
 /**
- * @deprecated instead use the IconLoaderService - the service is automatically loaded in the LayoutComponent
+ * @deprecated use the ProvideIconAssetPath function in the app.config.ts file
  */
 @NgModule({
   imports: [ HttpClientModule ],

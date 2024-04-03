@@ -8,6 +8,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { coerceArray } from '@rxap/utilities';
 import { RXAP_ICON_ASSET_PATH } from './tokens';
 
+/**
+ * @deprecated use the ProvideIconAssetPath function in the app.config.ts file
+ */
 @Injectable({ providedIn: 'root' })
 export class IconLoaderService {
 
