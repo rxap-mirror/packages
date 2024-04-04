@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@16.0.1-dev.5...@rxap/material-form-system@16.0.1-dev.6) (2024-04-04)
+
+### Bug Fixes
+
+- ensure the control is set to null if possible ([b43cee2](https://gitlab.com/rxap/packages/commit/b43cee2349ddcaa629a51028e972acee55006d8b))
+
 ## [16.0.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@16.0.1-dev.4...@rxap/material-form-system@16.0.1-dev.5) (2024-04-03)
 
 ### Bug Fixes
