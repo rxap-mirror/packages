@@ -4,6 +4,7 @@ import {
   ExecutionContext,
   Inject,
   Injectable,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
@@ -58,20 +59,7 @@ export class JwtGuard implements CanActivate {
       token = headerValue.replace('Bearer ', '');
     }
 
-    let jwt: string | Record<string, any> | null;
-    try {
-      jwt = this.jwtService.decode(token, { json: true });
-    } catch (e: any) {
-      throw new BadRequestException(`Ensure '${this.authHeaderName}' header has a valid JWT`);
-    }
-
-    if (jwt === null) {
-      throw new BadRequestException('JWT is invalid');
-    }
-
-    if (typeof jwt === 'string') {
-      throw new BadRequestException('JWT token is decoded as a string');
-    }
+    const jwt = this.verify(token);
 
     if (!IsJwtPayload(jwt)) {
       throw new BadRequestException('JWT token is missing sub claim');
@@ -80,6 +68,34 @@ export class JwtGuard implements CanActivate {
     request.jwt = jwt;
 
     return true;
+  }
+
+  protected verify(token: string): Record<string, any> {
+
+    if (this.config.get<boolean>('JWT_VERIFY')) {
+      try {
+        return this.jwtService.verify(token);
+      } catch (e: any) {
+        throw new UnauthorizedException(`Ensure '${this.authHeaderName}' header has a valid JWT`);
+      }
+    }
+    let jwt: string | Record<string, any> | null;
+    try {
+      jwt = this.jwtService.decode(token, { json: true });
+    } catch (e: any) {
+      throw new BadRequestException(`Failed to decode the jwt token in the header '${this.authHeaderName}'`);
+    }
+
+    if (jwt === null) {
+      throw new BadRequestException('JWT is decoded as null');
+    }
+
+    if (typeof jwt === 'string') {
+      throw new BadRequestException('JWT token is decoded as a string');
+    }
+
+    return jwt;
+
   }
 
 }
