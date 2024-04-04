@@ -90,6 +90,7 @@ export interface CoerceGetPageOperationOptions
   ) => CoerceDtoClassOutput | null;
   upstream?: NormalizedUpstreamOptions | null;
   idProperty?: OperationParameter,
+  rowId: DtoClassProperty | null;
 }
 
 export function GetPageOperationColumnToCodeText(property: DtoClassProperty): string {
@@ -109,7 +110,13 @@ export function CoerceToRowDtoMethod(
   rowClassName: string,
   options: CoerceGetPageOperationOptions,
 ) {
-  const rowIdProperty = options.propertyList?.find(p => p.name === '__rowId') ?? { type: 'number' };
+  const { rowId } = options;
+  let rowIdSource: string;
+  if (rowId?.name) {
+    rowIdSource = `item.${ rowId.name }`;
+  } else {
+    rowIdSource = '(pageIndex * pageSize + index).toFixed(0)';
+  }
   CoerceClassMethod(classDeclaration, 'toRowDto', {
     scope: Scope.Private,
     returnType: rowClassName,
@@ -143,10 +150,7 @@ export function CoerceToRowDtoMethod(
     ],
     statements: [
       'return {',
-      '  __rowId: ' +
-      (!options.idProperty ?
-        '(pageIndex * pageSize + index)' + (rowIdProperty.type !== 'number' ? '.toFixed(0)' : '') :
-        `item.${ options.idProperty.name }`) + ',\n  ',
+      `  __rowId: ${ rowIdSource },\n  `,
       options.propertyList?.filter(p => p.name !== '__rowId').map(GetPageOperationColumnToCodeText).join(',\n  ') ?? '',
       '};',
     ],
@@ -368,13 +372,13 @@ export function CoerceGetPageOperationDtoClass(
   const sourceFile = classDeclaration.getSourceFile();
   const project = sourceFile.getProject();
   const {
-    idProperty,
     propertyList,
     coerceToRowDtoMethod = CoerceToRowDtoMethod,
     coerceToPageDtoMethod = CoerceToPageDtoMethod,
     coerceGetPageDataMethod = CoerceGetPageDataMethod,
     buildOperationDtoClassName = BuildOperationDtoClassName,
-    dtoClassName = buildOperationDtoClassName(controllerName, options)
+    dtoClassName = buildOperationDtoClassName(controllerName, options),
+    rowId,
   } = options;
 
   const {
@@ -384,7 +388,7 @@ export function CoerceGetPageOperationDtoClass(
     project,
     name: dtoClassName,
     propertyList,
-    rowIdType: idProperty?.type,
+    rowIdType: rowId?.type,
   });
 
   CoerceImports(sourceFile, {
@@ -457,13 +461,13 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
      */
     const isFirstBornSibling = !nestModule || nestModule === controllerName;
 
-    if (isFirstBornSibling) {
-      CoerceArrayItems(propertyList, [{
-        name: idProperty.name,
-        type: idProperty.type ?? 'string',
-        isArray: idProperty.isArray,
-      }], (a, b) => a.name === b.name, true);
-    }
+    // if (isFirstBornSibling) {
+    //   CoerceArrayItems(propertyList, [{
+    //     name: idProperty.name,
+    //     type: idProperty.type ?? 'string',
+    //     isArray: idProperty.isArray,
+    //   }], (a, b) => a.name === b.name, true);
+    // }
 
     CoerceArrayItems(paramList,[{
       name: idProperty.name,

@@ -2,6 +2,8 @@ import {
   DataProperty,
   NormalizeDataProperty,
   NormalizedDataProperty,
+  TypeImport,
+  TypeName,
 } from '@rxap/ts-morph';
 
 /**
@@ -18,12 +20,12 @@ export interface NormalizedAccordionIdentifier {
   source: string | null;
 }
 
-export function NormalizeAccordionIdentifier(identifier?: AccordionIdentifier): NormalizedAccordionIdentifier | null {
+export function NormalizeAccordionIdentifier(identifier?: AccordionIdentifier, defaultType: TypeImport | TypeName = 'unknown'): NormalizedAccordionIdentifier | null {
   if (!identifier || Object.keys(identifier).length === 0 || Object.keys(identifier.property).length === 0 || identifier.property.name === undefined) {
     return null;
   }
   return {
-    property: NormalizeDataProperty(identifier.property),
+    property: NormalizeDataProperty(identifier.property, defaultType),
     source: identifier.source ?? null,
   };
 }

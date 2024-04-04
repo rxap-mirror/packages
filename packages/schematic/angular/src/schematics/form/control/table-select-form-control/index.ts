@@ -308,6 +308,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       rowValueProperty: toValue.property,
       rowDisplayProperty: toDisplay.property,
       idProperty: identifier.property,
+      rowId: toValue.property,
       context,
       upstream
     }),

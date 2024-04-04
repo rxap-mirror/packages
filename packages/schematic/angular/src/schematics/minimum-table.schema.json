@@ -13,6 +13,9 @@
     "upstream": {
       "$ref": "#/definitions/upstream"
     },
+    "rowId": {
+      "$ref": "#/definitions/property"
+    },
     "columnList": {
       "alias": "column",
       "type": "array",

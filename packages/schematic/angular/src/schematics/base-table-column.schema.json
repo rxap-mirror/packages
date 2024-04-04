@@ -42,7 +42,7 @@
     "title": {
       "type": "string"
     },
-    "propertyPath": {
+    "source": {
       "type": "string"
     },
     "hidden": {

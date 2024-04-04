@@ -1,5 +1,6 @@
 import {
   DataProperty,
+  NormalizeDataProperty,
   NormalizeDataPropertyList,
   NormalizedDataProperty,
   NormalizedUpstreamOptions,
@@ -58,6 +59,7 @@ export interface MinimumTableOptions {
   componentName?: string;
   cssClass?: CssClass;
   identifier?: AccordionIdentifier;
+  rowId?: DataProperty;
   hasPaginator?: boolean;
   upstream?: UpstreamOptions;
   sortable?: boolean;
@@ -72,6 +74,7 @@ export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
   modifiers: Array<MODIFIER>;
   cssClass: NormalizedCssClass;
   identifier: NormalizedAccordionIdentifier | null;
+  rowId: NormalizedDataProperty | null;
   upstream: NormalizedUpstreamOptions | null;
   withHeader: boolean;
 }
@@ -117,11 +120,12 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     modifiers,
     title,
     propertyList,
+    rowId: options.rowId ? NormalizeDataProperty(options.rowId) : null,
     cssClass: NormalizeCssClass(options.cssClass),
     identifier,
     hasPaginator: options.hasPaginator ?? true,
     upstream: NormalizeUpstreamOptions(options.upstream),
     sortable,
-    withHeader: options.modifiers?.includes(MinimumTableModifiers.WITH_HEADER) ?? false,
+    withHeader: modifiers?.includes(MinimumTableModifiers.WITH_HEADER as any) ?? false,
   });
 }

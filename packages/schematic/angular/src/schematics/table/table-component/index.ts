@@ -252,6 +252,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
     controllerName,
     upstream,
     identifier,
+    rowId,
   } = normalizedOptions;
 
   const operationId = buildOperationId(
@@ -276,6 +277,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
       overwrite,
       upstream,
       idProperty: identifier?.property,
+      rowId,
     }),
     () => console.log('Add the open api methods to the table component providers'),
     CoerceComponentRule({

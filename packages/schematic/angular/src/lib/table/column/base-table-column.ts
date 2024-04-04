@@ -282,7 +282,6 @@ export function NormalizeBaseTableColumn(
     throw new SchematicsException('The column name is required');
   }
   const modifiers = column.modifiers ?? [];
-  const propertyPath = TableColumnNameToPropertyPath(column.name);
   let hasFilter = modifiers.includes(TableColumnModifier.FILTER) || (
     column.hasFilter ?? false
   );
@@ -315,6 +314,7 @@ export function NormalizeBaseTableColumn(
   const importList = coerceTableColumnImportList(column);
   const type = GuessColumnTypeType(kind, column.type);
   const source = column.source ?? undefined;
+  const propertyPath = source ?? TableColumnNameToPropertyPath(column.name);
   let sticky: TableColumnSticky | null = null;
   let stickyStart = false;
   let stickyEnd = false;
