@@ -19,7 +19,8 @@
             "after"
           ]
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

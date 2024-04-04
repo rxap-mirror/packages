@@ -79,7 +79,8 @@
         "identifier": {
           "$ref": "#/definitions/accordionIdentifier"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

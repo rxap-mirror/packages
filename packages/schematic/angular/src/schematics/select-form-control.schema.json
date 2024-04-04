@@ -54,7 +54,8 @@
           "type": "boolean",
           "description": "Whether the select form control is multiple mode"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

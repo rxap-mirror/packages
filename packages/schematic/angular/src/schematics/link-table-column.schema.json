@@ -12,7 +12,8 @@
           "type": "string",
           "const": "link"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

@@ -12,7 +12,8 @@
           "type": "string",
           "const": "boolean"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

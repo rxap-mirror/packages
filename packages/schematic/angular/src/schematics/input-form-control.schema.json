@@ -45,7 +45,8 @@
         "placeholder": {
           "type": "string"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

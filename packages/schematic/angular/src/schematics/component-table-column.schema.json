@@ -12,7 +12,8 @@
           "type": "string",
           "const": "component"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

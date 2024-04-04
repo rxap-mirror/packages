@@ -12,7 +12,8 @@
           "type": "string",
           "const": "copy-to-clipboard"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

@@ -12,7 +12,8 @@
           "type": "string",
           "const": "spinner"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

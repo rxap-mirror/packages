@@ -27,7 +27,8 @@
         "table": {
           "$ref": "#/definitions/table"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

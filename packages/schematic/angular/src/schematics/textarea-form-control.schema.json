@@ -29,7 +29,8 @@
             }
           }
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

@@ -76,7 +76,8 @@
             }
           }
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

@@ -12,7 +12,8 @@
           "type": "string",
           "const": "tree"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

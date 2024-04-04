@@ -65,7 +65,8 @@
           },
           "required": ["property"]
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

@@ -12,7 +12,8 @@
           "type": "string",
           "const": "data-grid"
         }
-      }
+      },
+      "required": ["kind"]
     },
     {
       "type": "object",

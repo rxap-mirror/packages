@@ -13,7 +13,8 @@
           "properties": {
             "kind": {
               "type": "string",
-              "const": "default"
+              "const": "default",
+              "default": "default"
             }
           }
         }

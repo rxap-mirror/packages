@@ -12,7 +12,8 @@
           "type": "string",
           "const": "icon"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {

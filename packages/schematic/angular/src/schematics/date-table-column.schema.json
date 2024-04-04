@@ -15,7 +15,8 @@
         "format": {
           "type": "string"
         }
-      }
+      },
+      "required": ["kind"]
     }
   ],
   "definitions": {
