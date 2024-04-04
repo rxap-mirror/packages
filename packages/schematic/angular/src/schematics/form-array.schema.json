@@ -9,7 +9,8 @@
           "type": "string",
           "const": "array"
         }
-      }
+      },
+      "required": [ "role" ]
     },
     {
       "oneOf": [
@@ -23,7 +24,8 @@
               "properties": {
                 "kind": {
                   "type": "string",
-                  "const": "default"
+                  "const": "default",
+                  "default": "default"
                 }
               }
             }
