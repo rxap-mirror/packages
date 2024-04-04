@@ -40,8 +40,13 @@ export class InputClearButtonDirective {
   @HostListener('click')
   public onClick() {
     if (this.control.ngControl) {
-      this.control.ngControl.reset();
+      if (this.control.ngControl.control) {
+        this.control.ngControl.control.setValue(null);
+      } else {
+        this.control.ngControl.reset();
+      }
     } else {
+      console.log('InputClearButtonDirective.onClick', 'value = null');
       this.control.value = null;
     }
   }
