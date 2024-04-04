@@ -19,7 +19,10 @@ export function NormalizeDateTableColumn(
   column: Readonly<DateTableColumn>,
 ): NormalizedDateTableColumn {
   return {
-    ...NormalizeBaseTableColumn(column),
+    ...NormalizeBaseTableColumn({
+      type: 'number | Date',
+      ...column,
+    }),
     kind: TableColumnKind.DATE,
     format: column.format ?? 'dd.MM.yyyy HH:mm:ss',
   };

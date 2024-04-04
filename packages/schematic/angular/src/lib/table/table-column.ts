@@ -3,6 +3,7 @@ import {
   NormalizeBaseTableColumn,
   NormalizedBaseTableColumn,
 } from './column/base-table-column';
+import { NormalizeBooleanTableColumn } from './column/boolean-table-column';
 import { NormalizeCustomTableColumn } from './column/custom-table-column';
 import {
   DateTableColumn,
@@ -23,6 +24,8 @@ export function NormalizeTableColumn(
       return NormalizeDateTableColumn(column);
     case TableColumnKind.CUSTOM:
       return NormalizeCustomTableColumn(column);
+    case TableColumnKind.BOOLEAN:
+      return NormalizeBooleanTableColumn(column);
     case TableColumnKind.DEFAULT:
     default:
       return NormalizeBaseTableColumn(column);
