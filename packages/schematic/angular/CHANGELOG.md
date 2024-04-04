@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.54](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.53...@rxap/schematic-angular@16.2.0-dev.54) (2024-04-04)
+
+### Bug Fixes
+
+- add missing kind required flags ([2fa1de9](https://gitlab.com/rxap/packages/commit/2fa1de9f79851d5025b7948d3eb560ea0b81dc77))
+- add missing kind required flags ([7a803a6](https://gitlab.com/rxap/packages/commit/7a803a613413ad6b98513b20eddc2dd39b428836))
+- set table column default types ([1195f5e](https://gitlab.com/rxap/packages/commit/1195f5ec8764987e4a55bb15267a98e7a9e134e4))
+
+### Features
+
+- add table column type custom ([8026ccb](https://gitlab.com/rxap/packages/commit/8026ccb0d096fdd67f05315e68d8c049b739e91c))
+
 # [16.2.0-dev.53](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.52...@rxap/schematic-angular@16.2.0-dev.53) (2024-03-31)
 
 **Note:** Version bump only for package @rxap/schematic-angular

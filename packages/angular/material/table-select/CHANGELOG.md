@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.1.0-dev.4...@rxap/ngx-material-table-select@16.1.0-dev.5) (2024-04-04)
+
+### Bug Fixes
+
+- apply external changes ([d64b468](https://gitlab.com/rxap/packages/commit/d64b468c606e5c905a0940138a482c2e8e1b602e))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.1.0-dev.3...@rxap/ngx-material-table-select@16.1.0-dev.4) (2024-03-31)
 
 **Note:** Version bump only for package @rxap/ngx-material-table-select

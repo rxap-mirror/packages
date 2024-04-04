@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.1.0-dev.0...@rxap/schematics-utilities@16.1.0-dev.1) (2024-04-04)
+
+### Bug Fixes
+
+- return false if the source root is an empty string ([743be77](https://gitlab.com/rxap/packages/commit/743be77fd6a202c160a9c4251e03bd77bbfdc1a9))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.1-dev.3...@rxap/schematics-utilities@16.1.0-dev.0) (2024-04-01)
 
 ### Features
