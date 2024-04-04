@@ -60,7 +60,66 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
   rxapControl: RxapFormControl | null = null;
 
   focused = false;
+
+  get empty() {
+    return this._value === null;
+  }
+
+  @HostBinding('class.floating')
+  get shouldLabelFloat() {
+    return this.focused || !this.empty;
+  }
+
+  @Input()
+  get required() {
+    return this._required;
+  }
+  set required(req) {
+    this._required = coerceBooleanProperty(req);
+    this.stateChanges.next();
+  }
+
+  @Input()
+  get disabled(): boolean { return this._disabled; }
+
+  set disabled(value: boolean) {
+    this._disabled = coerceBooleanProperty(value);
+    this.stateChanges.next();
+  }
+
   private _subscription = new Subscription();
+
+  get errorState(): boolean {
+    return this.ngControl?.invalid || false;
+  }
+
+
+  private _disabled = false;
+
+  private _required = false;
+
+  private _value: Data | null = null;
+
+  private _placeholder = '';
+
+  @Input()
+  get placeholder() {
+    return this._placeholder;
+  }
+
+  set placeholder(placeholder: string) {
+    this._placeholder = placeholder;
+    this.stateChanges.next();
+  }
+
+  set value(value: Data | null) {
+    this._value = value;
+    this.stateChanges.next();
+  }
+
+  get value(): Data | null {
+    return this._value;
+  }
 
   constructor(
     @Optional() @Self() public ngControl: NgControl | null,
@@ -73,64 +132,6 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
       // the providers) to avoid running into a circular import.
       this.ngControl.valueAccessor = this;
     }
-  }
-
-  get empty() {
-    return this._value === null;
-  }
-
-  @HostBinding('class.floating')
-  get shouldLabelFloat() {
-    return this.focused || !this.empty;
-  }
-
-  get errorState(): boolean {
-    return this.ngControl?.invalid || false;
-  }
-
-  private _disabled = false;
-
-  @Input()
-  get disabled(): boolean { return this._disabled; }
-
-  set disabled(value: boolean) {
-    this._disabled = coerceBooleanProperty(value);
-    this.stateChanges.next();
-  }
-
-  private _required = false;
-
-  @Input()
-  get required() {
-    return this._required;
-  }
-
-  set required(req) {
-    this._required = coerceBooleanProperty(req);
-    this.stateChanges.next();
-  }
-
-  private _value: Data | null = null;
-
-  get value(): Data | null {
-    return this._value;
-  }
-
-  set value(value: Data | null) {
-    this._value = value;
-    this.stateChanges.next();
-  }
-
-  private _placeholder = '';
-
-  @Input()
-  get placeholder() {
-    return this._placeholder;
-  }
-
-  set placeholder(placeholder: string) {
-    this._placeholder = placeholder;
-    this.stateChanges.next();
   }
 
   private _display?: string;
@@ -185,12 +186,12 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
     this._subscription?.unsubscribe();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setDescribedByIds(ids: string[]): void {
+    // no op
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onContainerClick(event: MouseEvent): void {
+    // no op
   }
 
 }

@@ -25,6 +25,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ParentControlContainerDirective } from '@rxap/forms';
+import { FormFieldNoPaddingDirective } from '@rxap/material-directives/form-field';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
   BooleanCellComponent,
@@ -85,6 +86,7 @@ import { OpenTableSelectWindowMethodParameters } from '../open-table-select-wind
     AsyncPipe,
     KeyValuePipe,
     GetFromObjectPipe,
+    FormFieldNoPaddingDirective,
   ],
 })
 export class TableSelectWindowComponent<Data = unknown> {
@@ -101,7 +103,7 @@ export class TableSelectWindowComponent<Data = unknown> {
     public readonly data: OpenTableSelectWindowMethodParameters,
     private readonly selectRows: SelectRowService<Data>,
     @Inject(RXAP_WINDOW_REF)
-    private readonly windowRef: WindowRef,
+    private readonly windowRef: WindowRef
   ) {
     this.id = this.data.id;
     this.displayColumns = [ ...this.data.columns.keys() ];
@@ -111,7 +113,7 @@ export class TableSelectWindowComponent<Data = unknown> {
     this.filterDisplayColumns = this.displayColumns.map(column => [ 'filter', column ].join('__'));
     this.hasSomeFilterColumn = Array.from(this.data.columns.values()).some(column => column.filter);
     this.hasNotSelected$ = this.selectRows.selectedRows$.pipe(
-      map((selected) => selected.length === 0),
+      map((selected) => selected.length === 0)
     );
   }
 

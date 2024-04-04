@@ -6,6 +6,7 @@ import {
   StaticProvider,
   ViewContainerRef,
 } from '@angular/core';
+import '@rxap/rxjs';
 import {
   BaseDataSource,
   staticDataSource,
@@ -22,19 +23,15 @@ import {
   TABLE_REMOTE_METHOD_ADAPTER_FACTORY,
 } from '@rxap/material-table-system';
 import { Method } from '@rxap/pattern';
-import '@rxap/rxjs';
 import {
   RXAP_WINDOW_SETTINGS,
   WindowConfig,
   WindowService,
 } from '@rxap/window-system';
-import {
-  firstValueFrom,
-  Observable,
-} from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { CreateFilterFormProvider } from './create-filter-form-provider';
 import { TableSelectWindowComponent } from './table-select-window/table-select-window.component';
+
 declare const $localize: any;
 
 export interface SelectColumn {
@@ -93,7 +90,7 @@ export class OpenTableSelectWindowMethod<Data extends Record<string, any> = Reco
   ) {
   }
 
-  public call(parameters: OpenTableSelectWindowMethodParameters<Data>): Promise<Data[]> {
+  public async call(parameters: OpenTableSelectWindowMethodParameters<Data>): Promise<Data[]> {
 
     const providers: StaticProvider[] = [
       {
@@ -143,7 +140,7 @@ export class OpenTableSelectWindowMethod<Data extends Record<string, any> = Reco
       useValue: null,
     });
 
-    providers.push(CreateFilterFormProvider(parameters.columns));
+    providers.push(this.createFilterForm(parameters.columns));
 
     const windowRef = this.windowService.open({
       ...parameters.windowConfig,
@@ -157,8 +154,18 @@ export class OpenTableSelectWindowMethod<Data extends Record<string, any> = Reco
       component: TableSelectWindowComponent,
     });
 
-    return firstValueFrom(windowRef.pipe(map(selected => selected ?? [])));
+    return new Promise((resolve, reject) => {
+      windowRef.subscribe({
+        next: data => resolve(data ?? []),
+        error: error => reject(error),
+        complete: () => resolve([]),
+      });
+    });
 
+  }
+
+  private createFilterForm(columns: TableSelectColumnMap): StaticProvider {
+    return CreateFilterFormProvider(columns);
   }
 
 }

@@ -1,163 +1,165 @@
 <mat-progress-bar *ngIf="tableDataSourceDirective.loading$ | async" mode="indeterminate"></mat-progress-bar>
-<table #tableDataSourceDirective="rxapTableDataSource"
-       [id]="id ?? 'table-select'"
-       [paginator]="paginator"
-       [parameters]="data.parameters"
-       mat-table
-       matSort
-       rxap-filter-header-row
-       rxapTableDataSource>
+<div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
+  <table #tableDataSourceDirective="rxapTableDataSource"
+         [id]="id ?? 'table-select'"
+         [paginator]="paginator"
+         [parameters]="data.parameters"
+         mat-table
+         matSort
+         rxap-filter-header-row
+         rxapTableDataSource>
 
-  <ng-container *ngIf="data.multiple" matColumnDef="select" sticky>
-    <th *matHeaderCellDef mat-header-cell rxap-checkbox-header-cell></th>
-    <td
-      *matCellDef="let element"
-      [element]="element"
-      mat-cell
-      rxap-checkbox-cell
-    ></td>
-  </ng-container>
-
-  <ng-container *ngIf="hasSomeFilterColumn">
-
-    <ng-container *ngIf="data.multiple" [matColumnDef]="'filter__select'">
-      <th *matHeaderCellDef mat-header-cell></th>
+    <ng-container *ngIf="data.multiple" matColumnDef="select" [sticky]="true">
+      <th *matHeaderCellDef class="drop-shadow-2xl" mat-header-cell rxap-checkbox-header-cell></th>
+      <td
+        *matCellDef="let element"
+        [element]="element"
+        class="drop-shadow-2xl"
+        mat-cell
+        rxap-checkbox-cell
+      ></td>
     </ng-container>
 
-    <ng-container *ngFor="let item of data.columns | keyvalue">
+    <ng-container *ngIf="hasSomeFilterColumn">
 
-      <ng-container *ngIf="item.value.filter">
+      <ng-container *ngIf="data.multiple" [matColumnDef]="'filter__select'">
+        <th *matHeaderCellDef mat-header-cell></th>
+      </ng-container>
 
-        <ng-container [ngSwitch]="item.value.type">
+      <ng-container *ngFor="let item of data.columns | keyvalue">
 
-          <ng-container *ngSwitchCase="'date'">
+        <ng-container *ngIf="item.value.filter">
 
-            <ng-container [matColumnDef]="'filter__' + item.key">
-              <th *matHeaderCellDef mat-header-cell>
+          <ng-container [ngSwitch]="item.value.type">
 
-              </th>
+            <ng-container *ngSwitchCase="'date'">
+
+              <ng-container [matColumnDef]="'filter__' + item.key">
+                <th *matHeaderCellDef mat-header-cell>
+
+                </th>
+              </ng-container>
+
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'boolean'">
+
+              <ng-container [matColumnDef]="'filter__' + item.key">
+                <th *matHeaderCellDef mat-header-cell>
+
+                </th>
+              </ng-container>
+
+            </ng-container>
+
+            <ng-container *ngSwitchDefault>
+
+              <ng-container [matColumnDef]="'filter__' + item.key">
+                <th *matHeaderCellDef mat-header-cell>
+                  <mat-form-field rxapNoPadding>
+                    <mat-label i18n>{{ item.value.label }}</mat-label>
+                    <input
+                      [formControlName]="item.key"
+                      [placeholder]="'Enter the ' + item.value.label + ' filter'"
+                      matInput
+                      parentControlContainer
+                    />
+                    <button mat-icon-button matSuffix rxapInputClearButton>
+                      <mat-icon>clear</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </th>
+              </ng-container>
+
             </ng-container>
 
           </ng-container>
 
-          <ng-container *ngSwitchCase="'boolean'">
+        </ng-container>
 
-            <ng-container [matColumnDef]="'filter__' + item.key">
-              <th *matHeaderCellDef mat-header-cell>
-
-              </th>
-            </ng-container>
-
+        <ng-container *ngIf="!item.value.filter">
+          <ng-container [matColumnDef]="'filter__' + item.key">
+            <th *matHeaderCellDef mat-header-cell>{{ data.showHeader ? '' : item.value.label }}</th>
           </ng-container>
-
-          <ng-container *ngSwitchDefault>
-
-            <ng-container [matColumnDef]="'filter__' + item.key">
-              <th *matHeaderCellDef mat-header-cell>
-                <mat-form-field rxapNoPadding>
-                  <mat-label i18n>{{item.value.label}}</mat-label>
-                  <input
-                    [formControlName]="item.key"
-                    [placeholder]="'Enter the ' + item.value.label + ' filter'"
-                    i18n-placeholder
-                    matInput
-                    parentControlContainer
-                  />
-                  <button type="button" mat-icon-button matSuffix rxapInputClearButton>
-                    <mat-icon>clear</mat-icon>
-                  </button>
-                </mat-form-field>
-              </th>
-            </ng-container>
-
-          </ng-container>
-
-        </ng-container>
-
-      </ng-container>
-
-      <ng-container *ngIf="!item.value.filter">
-        <ng-container [matColumnDef]="'filter__' + item.key">
-          <th *matHeaderCellDef mat-header-cell>{{data.showHeader ? '' : item.value.label}}</th>
-        </ng-container>
-      </ng-container>
-
-    </ng-container>
-
-  </ng-container>
-
-  <ng-container *ngFor="let item of data.columns | keyvalue">
-
-    <ng-container [ngSwitch]="item.value.type">
-
-      <ng-container *ngSwitchCase="'date'">
-
-        <ng-container [matColumnDef]="item.key">
-          <th *matHeaderCellDef mat-header-cell mat-sort-header>{{item.value.label}}</th>
-          <td
-            *matCellDef="let element"
-            [format]="item.value.format"
-            [rxap-date-cell]="element | getFromObject:item.key"
-            mat-cell
-          ></td>
-        </ng-container>
-
-      </ng-container>
-
-      <ng-container *ngSwitchCase="'boolean'">
-
-        <ng-container [matColumnDef]="item.key">
-          <th *matHeaderCellDef mat-header-cell mat-sort-header>{{item.value.label}}</th>
-          <td
-            *matCellDef="let element"
-            [rxap-boolean-cell]="element | getFromObject:item.key"
-            mat-cell
-          ></td>
-        </ng-container>
-
-      </ng-container>
-
-      <ng-container *ngSwitchDefault>
-
-        <ng-container [matColumnDef]="item.key">
-          <th *matHeaderCellDef mat-header-cell mat-sort-header>
-            {{item.value.label}}
-          </th>
-          <td *matCellDef="let element" mat-cell>
-            {{ element | getFromObject:item.key }}
-          </td>
         </ng-container>
 
       </ng-container>
 
     </ng-container>
 
-  </ng-container>
+    <ng-container *ngFor="let item of data.columns | keyvalue">
 
-  <ng-container *ngIf="hasSomeFilterColumn">
+      <ng-container [ngSwitch]="item.value.type">
+
+        <ng-container *ngSwitchCase="'date'">
+
+          <ng-container [matColumnDef]="item.key">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ item.value.label }}</th>
+            <td
+              *matCellDef="let element"
+              [format]="item.value['format']"
+              [rxap-date-cell]="element | getFromObject:item.key"
+              mat-cell
+            ></td>
+          </ng-container>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'boolean'">
+
+          <ng-container [matColumnDef]="item.key">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ item.value.label }}</th>
+            <td
+              *matCellDef="let element"
+              [rxap-boolean-cell]="element | getFromObject:item.key"
+              mat-cell
+            ></td>
+          </ng-container>
+
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+
+          <ng-container [matColumnDef]="item.key">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>
+              {{ item.value.label }}
+            </th>
+            <td *matCellDef="let element" mat-cell>
+              {{ element | getFromObject:item.key }}
+            </td>
+          </ng-container>
+
+        </ng-container>
+
+      </ng-container>
+
+    </ng-container>
+
+    <ng-container *ngIf="hasSomeFilterColumn">
+      <tr
+        *matHeaderRowDef="filterDisplayColumns"
+        class="filter-header"
+        mat-header-row
+      ></tr>
+    </ng-container>
+
+    <ng-template [ngIf]="data.showHeader">
+      <tr
+        *matHeaderRowDef="displayColumns"
+        mat-header-row
+      ></tr>
+    </ng-template>
+
     <tr
-      *matHeaderRowDef="filterDisplayColumns"
-      class="filter-header"
-      mat-header-row
+      (click)="selectRow(element)"
+      *matRowDef="let element; columns: displayColumns"
+      [@rowsAnimation]
+      class="cursor-pointer"
+      mat-row
     ></tr>
-  </ng-container>
 
-  <ng-template [ngIf]="data.showHeader">
-    <tr
-      *matHeaderRowDef="displayColumns"
-      mat-header-row
-    ></tr>
-  </ng-template>
-
-  <tr
-    (click)="selectRow(element)"
-    *matRowDef="let element; columns: displayColumns"
-    [@rowsAnimation]
-    mat-row
-  ></tr>
-
-</table>
-
+  </table>
+</div>
 <mat-paginator
   #paginator="matPaginator"
   [pageSizeOptions]="[5, 10, 25, 50, 75, 100, 150, 200]"

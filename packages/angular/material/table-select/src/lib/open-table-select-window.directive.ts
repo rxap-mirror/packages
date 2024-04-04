@@ -1,8 +1,11 @@
 import {
+  AfterViewInit,
   Directive,
   EventEmitter,
   HostBinding,
   HostListener,
+  inject,
+  INJECTOR,
   Injector,
   Input,
   isDevMode,
@@ -11,62 +14,75 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatFormField } from '@angular/material/form-field';
 import {
-  MatButton,
-  MatFabButton,
-  MatIconButton,
-  MatMiniFabButton,
-} from '@angular/material/button';
-import { BaseDataSource } from '@rxap/data-source';
+  BaseDataSource,
+  DataSourceLoader,
+} from '@rxap/data-source';
 import { AbstractTableDataSource } from '@rxap/data-source/table';
+import { RxapFormControl } from '@rxap/forms';
+import { Mixin } from '@rxap/mixin';
 import { GenerateRandomString } from '@rxap/utilities';
 import { WindowService } from '@rxap/window-system';
 import { Observable } from 'rxjs';
+import { ExtractTableSelectColumnMapMixin } from './extract-table-select-column-map.mixin';
+import { ExtractTableSelectDataSourceMixin } from './extract-table-select-data-source.mixin';
+import { ExtractTableSelectToValueMixin } from './extract-table-select-to-value.mixin';
 import {
   OpenTableSelectWindowMethod,
   TableSelectColumn,
 } from './open-table-select-window.method';
 
+export interface OpenTableSelectWindowDirective<Data extends Record<string, any>, Value = Data>
+  extends ExtractTableSelectDataSourceMixin<Data>, ExtractTableSelectColumnMapMixin,
+    ExtractTableSelectToValueMixin<Data, Value> {
+}
+
+@Mixin(ExtractTableSelectDataSourceMixin,
+  ExtractTableSelectColumnMapMixin,
+  ExtractTableSelectToValueMixin,
+)
 @Directive({
   selector: '[rxapOpenTableSelectWindow]',
   standalone: true,
+  providers: [ OpenTableSelectWindowMethod ],
 })
-export class OpenTableSelectWindowDirective<Data extends Record<string, any> = Record<string, any>>
-  implements OnChanges, OnInit, OnDestroy {
+export class OpenTableSelectWindowDirective<Data extends Record<string, any> = Record<string, any>, Value = Data>
+  implements OnChanges, OnInit, OnDestroy, AfterViewInit {
   @Input()
   public data?: Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>;
   @Input()
   public columns?: Map<string, TableSelectColumn> | Record<string, TableSelectColumn>;
   @Input()
-  public selected: Data[] = [];
+  public selected: Data[]               = [];
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
   @Output()
-  public selectedChange = new EventEmitter<Data[]>();
+  public selectedChange                 = new EventEmitter<Data[]>();
   @Input()
   public label?: string;
   @Input()
   public id?: string;
+  public _internalId                    = GenerateRandomString();
   @Input()
   public compareWith?: (o1: Data, o2: Data) => boolean;
   @HostBinding('type')
-  public type = 'button';
-  protected _hasOpenWindow = false;
-  private invalidInputs = false;
-
-  private matButton: MatButton | null = null;
-
-  public _internalId = GenerateRandomString();
-
-  constructor(
-    private readonly openMethod: OpenTableSelectWindowMethod<Data>,
-    private readonly windowService: WindowService,
-    private readonly injector: Injector,
-  ) {
-  }
+  public type                           = 'button';
+  public control!: RxapFormControl;
+  // required for the use mixin ExtractDatasourceMixin
+  public readonly dataSourceLoader      = inject(DataSourceLoader);
+  protected _hasOpenWindow              = false;
+  protected readonly openMethod         = inject<OpenTableSelectWindowMethod<Data>>(OpenTableSelectWindowMethod);
+  protected readonly windowService      = inject(WindowService);
+  protected readonly injector: Injector = inject(INJECTOR);
+  protected matButton                   = inject(MatButton, {optional: true});
+  private invalidInputs                 = false;
 
   private _disabled = false;
 
+  @HostBinding('disabled')
   get disabled(): boolean {
     return this._disabled || this.invalidInputs;
   }
@@ -75,15 +91,16 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     this._disabled = value;
   }
 
+  @Input()
+  public toValue: (value: Data) => Value | Promise<Value> = (value: Data) => {
+    return value as any;
+  };
+
   public ngOnChanges() {
     this.checkInputs();
   }
 
   public ngOnInit() {
-    this.matButton = this.injector.get<MatButton>(
-      MatButton,
-      this.injector.get(MatIconButton, this.injector.get(MatMiniFabButton, this.injector.get(MatFabButton, null))),
-    );
     this.checkInputs();
   }
 
@@ -95,13 +112,17 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
 
   @HostListener('click', [ '$event' ])
   public async onClick($event: Event) {
+    $event.stopPropagation();
     if (this.disabled || this._hasOpenWindow) {
+      console.debug('disabled or has open window', {disabled: this.disabled, hasOpenWindow: this._hasOpenWindow});
       return;
     }
-    $event.stopPropagation();
     if (!this.data || !this.columns) {
       throw new Error('FATAL: The data or columns input is not set');
     }
+    setTimeout(() => {
+      this.control.disable();
+    });
     const selected = await this.openMethod.call({
       windowConfig: {
         id: this._internalId,
@@ -115,12 +136,42 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       id: this.id ?? GenerateRandomString(10),
       parameters: this.parameters,
     });
+    this.control.enable();
     if (isDevMode()) {
       console.debug('selected', selected);
     }
-    this.selected = selected ?? [];
+    this.selected       = selected ?? [];
     this._hasOpenWindow = false;
     this.selectedChange.emit(this.selected);
+    if (this.selected.length) {
+      this.control?.setValue(this.toValue(this.selected[0]));
+    } else {
+      this.control?.reset();
+    }
+  }
+
+  ngAfterViewInit() {
+    const hasNgControl    = !!this.injector.get(NgControl, null);
+    const hasMatFormField = !!this.injector.get(MatFormField, null);
+    if (hasMatFormField || hasNgControl) {
+      this.matFormField = this.injector.get(MatFormField);
+      this.ngControl    = this.matFormField._control.ngControl;
+      this.control ??= this.ngControl?.control as RxapFormControl ?? null;
+      this.data ??= this.extractTableSelectDataSource();
+      this.columns ??= this.extractTableSelectColumnMap();
+      try {
+        this.toValue = this.extractTableSelectToValue() ?? this.toValue;
+      } catch (e: any) {
+        console.log('HACKING WORKAROUND', e);
+      }
+      if (this.control) {
+        this.disabled = this.control.disabled;
+        this.control.registerOnDisabledChange(isDisabled => {
+          this.disabled = isDisabled;
+        });
+      }
+    }
+    this.checkInputs();
   }
 
   public checkInputs() {
