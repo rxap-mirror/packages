@@ -101,12 +101,20 @@ function executeSchematicCommandFile(
 
   for (const command of schematicCommandList) {
     console.log(`Prepare schematic execution '${ command.package }:${ command.name }'`.grey);
-    const options: { feature?: string, directory?: string, project?: string } & Record<string, any> = {
+    const options: { feature?: string, directory?: string, project?: string, overwrite?: boolean | string[] } & Record<string, any> = {
       ...globalOptions,
       ...command.options,
     };
     options.project ??= detectedProject(host, schematicCommandFilePath);
     options.feature ??= detectedFeature(schematicCommandFilePath);
+
+    // region workaround for non-schematic packages that do not support an overwrite option as array
+    if (Array.isArray(globalOptions.overwrite)) {
+      if (!command.package.startsWith('@rxap/schematic')) {
+        options.overwrite = true;
+      }
+    }
+    // endregion
 
     if (options.project && HasProjectSourceRoot(host, options.project)) {
       const projectSourceRoot = GetProjectSourceRoot(host, options.project);
