@@ -24,6 +24,9 @@
       "$ref": "#/definitions/dateTableColumn"
     },
     {
+      "$ref": "#/definitions/customTableColumn"
+    },
+    {
       "$ref": "#/definitions/linkTableColumn"
     },
     {
@@ -51,6 +54,9 @@
     },
     "dateTableColumn": {
       "$ref": "./date-table-column.schema.json"
+    },
+    "customTableColumn": {
+      "$ref": "./custom-table-column.schema.json"
     },
     "linkTableColumn": {
       "$ref": "./link-table-column.schema.json"

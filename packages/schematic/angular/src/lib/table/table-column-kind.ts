@@ -1,6 +1,7 @@
 export enum TableColumnKind {
   DEFAULT = 'default',
   DATE = 'date',
+  CUSTOM = 'custom',
   LINK = 'link',
   ICON = 'icon',
   BOOLEAN = 'boolean',

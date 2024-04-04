@@ -3,6 +3,7 @@ import {
   NormalizeBaseTableColumn,
   NormalizedBaseTableColumn,
 } from './column/base-table-column';
+import { NormalizeCustomTableColumn } from './column/custom-table-column';
 import {
   DateTableColumn,
   NormalizeDateTableColumn,
@@ -20,6 +21,8 @@ export function NormalizeTableColumn(
   switch (column.kind) {
     case TableColumnKind.DATE:
       return NormalizeDateTableColumn(column);
+    case TableColumnKind.CUSTOM:
+      return NormalizeCustomTableColumn(column);
     case TableColumnKind.DEFAULT:
     default:
       return NormalizeBaseTableColumn(column);
