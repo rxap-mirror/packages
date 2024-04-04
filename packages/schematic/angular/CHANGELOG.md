@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.55](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.54...@rxap/schematic-angular@16.2.0-dev.55) (2024-04-04)
+
+### Bug Fixes
+
+- add rowId option ([eddad32](https://gitlab.com/rxap/packages/commit/eddad321b4d1cb68a2354da13bbf8217dc3b042f))
+
 # [16.2.0-dev.54](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.53...@rxap/schematic-angular@16.2.0-dev.54) (2024-04-04)
 
 ### Bug Fixes

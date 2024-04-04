@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.25...@rxap/schematics-ts-morph@16.1.0-dev.26) (2024-04-04)
+
+### Bug Fixes
+
+- add rowId option ([eddad32](https://gitlab.com/rxap/packages/commit/eddad321b4d1cb68a2354da13bbf8217dc3b042f))
+
 # [16.1.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.24...@rxap/schematics-ts-morph@16.1.0-dev.25) (2024-04-03)
 
 ### Bug Fixes

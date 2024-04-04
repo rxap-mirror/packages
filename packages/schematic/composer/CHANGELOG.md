@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@16.1.0-dev.4...@rxap/schematic-composer@16.1.0-dev.5) (2024-04-04)
+
+### Bug Fixes
+
+- normalize overwrite option if required ([aca6447](https://gitlab.com/rxap/packages/commit/aca6447105b7b9a2ff9fb3db32bce9384cce42c8))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@16.1.0-dev.3...@rxap/schematic-composer@16.1.0-dev.4) (2024-04-03)
 
 ### Bug Fixes
