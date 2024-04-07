@@ -2,6 +2,7 @@
 export * from './lib/get-all-package-dependencies-for-project';
 export * from './lib/get-dependent-projects-for-project';
 export * from './lib/get-direct-package-dependencies-for-project';
+export * from './lib/get-workspace-name';
 export * from './lib/guess-output-path';
 export * from './lib/project-package-json';
 export * from './lib/project-package-name-mapping';
