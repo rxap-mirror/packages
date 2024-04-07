@@ -10034,6 +10034,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-storybook@workspace:packages/plugin/storybook":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-storybook@workspace:packages/plugin/storybook"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-utilities@workspace:packages/plugin/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-utilities@workspace:packages/plugin/utilities"

@@ -1,0 +1,96 @@
+{
+  "name": "plugin-storybook",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/plugin/storybook/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/plugin/storybook",
+        "main": "packages/plugin/storybook/src/index.ts",
+        "tsConfig": "packages/plugin/storybook/tsconfig.lib.json",
+        "assets": [
+          "packages/plugin/storybook/*.md",
+          {
+            "input": "./packages/plugin/storybook/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/storybook/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/storybook",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/storybook",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs plugin-storybook {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/plugin/storybook/**/*.ts",
+          "packages/plugin/storybook/package.json",
+          "packages/plugin/storybook/generators.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/plugin/storybook/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    },
+    "fix-dependencies": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": ["{workspaceRoot}/{projectRoot}/package.json"],
+      "options": {
+        "generator": "@rxap/plugin-library:fix-dependencies",
+        "options": {
+          "strict": true
+        }
+      }
+    },
+    "linking": {},
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
+      "options": {
+        "packageName": "nx"
+      }
+    }
+  },
+  "tags": ["plugin", "nx", "nx-plugin", "packages"]
+}
