@@ -25,16 +25,14 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   await initWorkspace(tree, options);
 
-  if (options.workspaceDocs) {
-    const project = readProjectConfiguration(tree, 'workspace');
-    CoerceCompodocTarget(tree, 'workspace', project);
-    updateProjectConfiguration(tree, 'workspace', project);
-    const angularProjectIncludeList = Array.from(getProjects(tree))
-      .filter(([projectName, project]) => !SkipNonAngularProject(tree, {}, project, projectName))
-      .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
-      .map(sourceRoot => join(sourceRoot, '**/*.ts'));
-    await CoerceCompodocTsConfig(tree, 'workspace', angularProjectIncludeList);
-  }
+  const project = readProjectConfiguration(tree, 'workspace');
+  CoerceCompodocTarget(tree, 'workspace', project);
+  updateProjectConfiguration(tree, 'workspace', project);
+  const angularProjectIncludeList = Array.from(getProjects(tree))
+    .filter(([projectName, project]) => !SkipNonAngularProject(tree, {}, project, projectName))
+    .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
+    .map(sourceRoot => join(sourceRoot, '**/*.ts'));
+  await CoerceCompodocTsConfig(tree, 'workspace', angularProjectIncludeList);
 
 }
 

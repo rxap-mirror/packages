@@ -22,11 +22,6 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
-    },
-    "workspaceDocs": {
-      "type": "boolean",
-      "default": false,
-      "description": "Whether to setup compodoc for the complete workspace"
     }
   },
   "required": []
