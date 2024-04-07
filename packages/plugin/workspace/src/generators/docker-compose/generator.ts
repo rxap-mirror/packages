@@ -4,6 +4,7 @@ import {
 } from '@nx/devkit';
 import {
   CoerceSuffix,
+  deepMerge,
   IsRecord,
 } from '@rxap/utilities';
 import {
@@ -18,7 +19,10 @@ import 'colors';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import * as process from 'process';
-import { stringify } from 'yaml';
+import {
+  parse,
+  stringify,
+} from 'yaml';
 import { DockerComposeGeneratorSchema } from './schema';
 
 function getServiceApiPrefixFromDockerFile(name: string, host: Tree): string | null {
@@ -434,6 +438,14 @@ function verifyCert(tree: Tree) {
   console.log(runOpensslCommand(tree, 'verify', '-CAfile ca.crt', 'default.crt'));
 }
 
+function mergeTraefikConfig(tree: Tree, newTraefikConfig: string): string {
+  const existingTraefikConfig = tree.read('docker/traefik/traefik.yml')!.toString('utf-8');
+  const eJson = parse(existingTraefikConfig);
+  const nJson = parse(newTraefikConfig);
+  const merged = deepMerge(eJson, nJson);
+  return stringify(merged);
+}
+
 export async function dockerComposeGenerator(
   tree: Tree,
   options: DockerComposeGeneratorSchema,
@@ -448,8 +460,11 @@ export async function dockerComposeGenerator(
   const serviceDockerCompose = createServiceDockerCompose(serviceApplications, rootDocker, options);
   const frontendDockerCompose = createFrontendDockerCompose(frontendApplications, rootDocker);
   const localServiceTraefikConfig = createDevServiceTraefikConfig(serviceApplications, tree);
-  const traefikConfig = createTraefikConfig(rootDomain, frontendApplications, tree);
-
+  let traefikConfig = createTraefikConfig(rootDomain, frontendApplications, tree);
+  const traefikConfigPath = 'docker/traefik/traefik.yml';
+  if (!tree.exists(traefikConfigPath)) {
+    traefikConfig = mergeTraefikConfig(tree, traefikConfig);
+  }
   CoerceFile(tree, 'docker-compose.services.yml', serviceDockerCompose, true);
   CoerceFile(tree, 'docker-compose.frontends.yml', frontendDockerCompose, true);
   if (serviceApplications.length) {
@@ -457,7 +472,7 @@ export async function dockerComposeGenerator(
   } else if (tree.exists('docker/traefik/dynamic/local-services.yml')) {
     tree.delete('docker/traefik/dynamic/local-services.yml');
   }
-  CoerceFile(tree, 'docker/traefik/traefik.yml', traefikConfig, true);
+  CoerceFile(tree, traefikConfigPath, traefikConfig, true);
 
   coerceCaCert(rootDomain, tree);
   createDefaultCerts(rootDomain, tree);
