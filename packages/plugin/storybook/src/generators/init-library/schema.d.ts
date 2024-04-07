@@ -1,3 +1,8 @@
-export interface InitLibraryGeneratorSchema {
-  name: string;
+import { StorybookConfigurationOptions } from '@nx/angular/src/generators/storybook-configuration/schema';
+
+export interface InitLibraryGeneratorSchema extends Omit<StorybookConfigurationOptions, 'name'> {
+  project?: string;
+  projects?: string[];
+  overwrite?: boolean;
+  skipProjects?: boolean;
 }
