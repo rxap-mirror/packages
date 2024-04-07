@@ -10,6 +10,8 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "executors": "./executors.json",
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/compodoc",
   "keywords": [
     "nx",
@@ -28,7 +30,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/compodoc"
   },
-  "type": "commonjs",
-  "generators": "./generators.json",
-  "executors": "./executors.json"
+  "schematics": "./generators.json",
+  "type": "commonjs"
 }
