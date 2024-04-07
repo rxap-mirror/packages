@@ -3,6 +3,7 @@ import {
   BuildAngularBasePath,
   BuildAngularBasePathOptions,
   BuildNestBasePath,
+  GetProjectRoot,
   TreeLike,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -214,6 +215,45 @@ export function TsMorphAngularProjectTransform(
   return TsMorphTransform(
     tree,
     basePath,
+    cb as any,
+    options,
+    options.projectOptions,
+    filePath as any,
+  );
+}
+
+export interface TsMorphProjectTransformOptions extends TsMorphTransformOptions {
+  projectOptions?: Partial<ProjectOptions>;
+  project: string;
+}
+
+export function TsMorphProjectTransform(
+  tree: TreeLike,
+  options: Readonly<TsMorphProjectTransformOptions>,
+  cb: (project: Project, sourceFile: SourceFile[]) => void,
+  filePath: string[],
+): void
+export function TsMorphProjectTransform(
+  tree: TreeLike,
+  options: Readonly<TsMorphProjectTransformOptions>,
+  cb: (project: Project, sourceFile: SourceFile) => void,
+  filePath: string,
+): void
+export function TsMorphProjectTransform(
+  tree: TreeLike,
+  options: Readonly<TsMorphProjectTransformOptions>,
+  cb: (project: Project, sourceFile: undefined) => void,
+  filePath?: undefined,
+): void
+export function TsMorphProjectTransform(
+  tree: TreeLike,
+  options: Readonly<TsMorphProjectTransformOptions>,
+  cb: TsMorphTransformCallback,
+  filePath?: undefined | string | string[],
+): void {
+  return TsMorphTransform(
+    tree,
+    GetProjectRoot(tree, options.project),
     cb as any,
     options,
     options.projectOptions,
