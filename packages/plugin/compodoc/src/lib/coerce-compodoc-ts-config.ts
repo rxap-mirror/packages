@@ -11,6 +11,9 @@ export async function CoerceCompodocTsConfig(tree: Tree, projectName: string, in
 
   await UpdateTsConfigJson(tree, tsConfig => {
     tsConfig.extends ??= './tsconfig.json';
+    tsConfig.compilerOptions ??= {};
+    tsConfig.compilerOptions.types ??= [];
+    CoerceArrayItems(tsConfig.compilerOptions.types, ['@angular/localize']);
     tsConfig.include ??= [];
     tsConfig.exclude ??= [];
     CoerceArrayItems(tsConfig.include, include);
