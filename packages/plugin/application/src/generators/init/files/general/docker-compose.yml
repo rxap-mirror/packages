@@ -7,7 +7,7 @@ services:
     image: traefik:latest
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - $XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:ro
+      - ${XDG_RUNTIME_DIR:-/var/run}/docker.sock:/var/run/docker.sock:ro
       - ./docker/traefik:/etc/traefik:ro
     ports:
       - "${ROOT_DOMAIN_PORT}:443"

@@ -74,7 +74,7 @@ services:
     # (1000:1000 by default)
     user: root
     volumes:
-      - "$XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:ro"
+      - "${XDG_RUNTIME_DIR:-/var/run}/docker.sock:/var/run/docker.sock:ro"
       - ./docker/authentik/media:/media
       - ./docker/authentik/certs:/certs
       - ./docker/authentik/custom-templates:/templates
