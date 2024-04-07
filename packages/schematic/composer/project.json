@@ -21,7 +21,9 @@
     "plugin-open-api",
     "plugin-utilities",
     "plugin-web3-storage",
-    "plugin-workspace"
+    "plugin-workspace",
+    "plugin-storybook",
+    "plugin-compodoc"
   ],
   "targets": {
     "build": {
