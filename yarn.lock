@@ -9904,6 +9904,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-compodoc@workspace:packages/plugin/compodoc":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-compodoc@workspace:packages/plugin/compodoc"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-docker@workspace:packages/plugin/docker":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-docker@workspace:packages/plugin/docker"
