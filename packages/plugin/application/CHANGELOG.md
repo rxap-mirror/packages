@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.4...@rxap/plugin-application@16.2.0-dev.5) (2024-04-07)
+
+### Bug Fixes
+
+- add fallback for XDG_RUNTIME_DIR env ([f9e8c8b](https://gitlab.com/rxap/packages/commit/f9e8c8b9b59424475e27052aa1776b0504e71442))
+- set default priority to 200 ([71bf54b](https://gitlab.com/rxap/packages/commit/71bf54b01bafe0c202d427f771b8655358df0830))
+
 # [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.3...@rxap/plugin-application@16.2.0-dev.4) (2024-04-03)
 
 ### Bug Fixes

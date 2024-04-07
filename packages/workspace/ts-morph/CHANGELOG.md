@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@16.0.2-dev.2...@rxap/workspace-ts-morph@16.1.0-dev.0) (2024-04-07)
+
+### Features
+
+- add TsMorphProjectTransform function ([d193cb0](https://gitlab.com/rxap/packages/commit/d193cb0d52925a7fe25f09643b89e2a3c40bc2e3))
+
 ## [16.0.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@16.0.2-dev.1...@rxap/workspace-ts-morph@16.0.2-dev.2) (2024-03-11)
 
 **Note:** Version bump only for package @rxap/workspace-ts-morph

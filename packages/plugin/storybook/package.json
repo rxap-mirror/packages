@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.0",
+  "version": "16.0.1-dev.1",
   "name": "@rxap/plugin-storybook",
   "license": "MIT",
   "dependencies": {
@@ -9,8 +9,12 @@
     "@nx/angular": "^16.5.0",
     "@nx/devkit": "^16.5.0",
     "@nx/linter": "^16.5.0",
+    "@rxap/ts-morph": "^1.1.0-dev.25",
     "@rxap/utilities": "^16.1.0-dev.8",
-    "@rxap/workspace-utilities": "^16.1.0-dev.9"
+    "@rxap/workspace-ts-morph": "^16.1.0-dev.0",
+    "@rxap/workspace-utilities": "^16.1.0-dev.9",
+    "colors": "^1.4.0",
+    "ts-morph": "^18.0.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -33,8 +37,16 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@rxap/ts-morph",
+        "version": "1.1.0-dev.25"
+      },
+      {
         "package": "@rxap/utilities",
         "version": "16.1.0-dev.8"
+      },
+      {
+        "package": "@rxap/workspace-ts-morph",
+        "version": "16.1.0-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
