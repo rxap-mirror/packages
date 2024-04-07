@@ -331,16 +331,14 @@ async function updateTsConfig(tree: Tree, project: ProjectConfiguration, options
 
   const projectRoot = project.root;
 
-  if (options.i18n) {
-    for (const tsConfigName of ['lib', 'spec']) {
-      await UpdateJsonFile(tree, tsConfig => {
-        tsConfig.compilerOptions ??= {};
-        tsConfig.compilerOptions.types ??= [];
-        if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
-          tsConfig.compilerOptions.types.push('@angular/localize');
-        }
-      }, join(projectRoot, `tsconfig.${tsConfigName}.json`));
-    }
+  for (const tsConfigName of ['lib', 'spec']) {
+    await UpdateJsonFile(tree, tsConfig => {
+      tsConfig.compilerOptions ??= {};
+      tsConfig.compilerOptions.types ??= [];
+      if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
+        tsConfig.compilerOptions.types.push('@angular/localize');
+      }
+    }, join(projectRoot, `tsconfig.${tsConfigName}.json`));
   }
 
 }
