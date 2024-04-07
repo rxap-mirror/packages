@@ -86,6 +86,11 @@
         "**/**/src/**/*.other.*",
         "libs/my-lib/src/not-stories/**,**/**/src/**/*.other.*,apps/my-app/**/*.something.ts"
       ]
+    },
+    "compodoc": {
+      "type": "boolean",
+      "description": "Generate documentation using Compodoc.",
+      "default": true
     }
   },
   "required": []

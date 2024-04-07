@@ -5,4 +5,5 @@ export interface InitApplicationGeneratorSchema extends Omit<StorybookConfigurat
   projects?: string[];
   overwrite?: boolean;
   skipProjects?: boolean;
+  compodoc?: boolean;
 }

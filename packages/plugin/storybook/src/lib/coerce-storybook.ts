@@ -1,14 +1,24 @@
 import { storybookConfigurationGenerator } from '@nx/angular/generators';
 import type { StorybookConfigurationOptions } from '@nx/angular/src/generators/storybook-configuration/schema';
-import { Tree } from '@nx/devkit';
-import { Linter } from '@nx/linter';
 import {
-  CoerceFilesStructure,
-  GetProjectRoot,
-} from '@rxap/workspace-utilities';
-import { join } from 'path';
+  ProjectConfiguration,
+  readProjectConfiguration,
+  Tree,
+} from '@nx/devkit';
+import { Linter } from '@nx/linter';
+import 'colors';
+import { CoerceTarget } from '@rxap/workspace-utilities';
 
-export async function coerceStorybook(tree: Tree, projectName: string, options: Omit<StorybookConfigurationOptions, 'name'> & { overwrite?: boolean }) {
+export async function coerceStorybook(
+  tree: Tree, projectName: string, project: ProjectConfiguration,
+  options: Omit<StorybookConfigurationOptions, 'name'> & { overwrite?: boolean },
+) {
+
+  if (project.targets?.storybook) {
+    console.log(`storybook target already exists for project: ${ projectName }`.yellow);
+    return;
+  }
+
   const storybookOptions: StorybookConfigurationOptions = {
     ...options,
     name: projectName,
@@ -23,10 +33,12 @@ export async function coerceStorybook(tree: Tree, projectName: string, options: 
   storybookOptions.linter ??= Linter.EsLint;
 
   await storybookConfigurationGenerator(tree, storybookOptions);
-  const projectRoot = GetProjectRoot(tree, projectName);
-  CoerceFilesStructure(tree, {
-    srcFolder: join(__dirname, 'files', 'storybook'),
-    target: join(projectRoot, '.storybook'),
-    overwrite: options.overwrite,
-  });
+
+  // the external generator does not update the project configuration
+  // to reflect the changes made in the current project object we need to merge the changes
+  const { targets } = readProjectConfiguration(tree, projectName);
+  for (const [name, target] of Object.entries(targets)) {
+    CoerceTarget(project, name, target);
+  }
+
 }
