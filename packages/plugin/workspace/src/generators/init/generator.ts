@@ -394,6 +394,9 @@ function coerceNxJson(tree: Tree) {
     },
   }, Strategy.REPLACE);
 
+  nxJson.cli ??= {};
+  nxJson.cli.packageManager ??= 'yarn';
+
   updateNxJson(tree, nxJson);
 }
 
