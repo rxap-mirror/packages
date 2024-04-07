@@ -1,12 +1,12 @@
 import { ProjectConfiguration } from '@nx/devkit';
+import { join } from 'path';
+import { GetProject } from './get-project';
+import { PackageJson } from './package-json';
+import { GetPackageJson } from './package-json-file';
 import {
-  GetPackageJson,
-  GetProject,
-  PackageJson,
   TreeAdapter,
   TreeLike,
-} from '@rxap/workspace-utilities';
-import { join } from 'path';
+} from './tree';
 
 export interface PackageJsonWithGenerators extends PackageJson {
   generators: string;

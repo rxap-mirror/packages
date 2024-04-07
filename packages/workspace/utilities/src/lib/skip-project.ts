@@ -2,6 +2,8 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
+import { join } from 'path';
+import { IsBuildable } from './is-buildable';
 import {
   IsAngularProject,
   IsApplicationProject,
@@ -9,9 +11,7 @@ import {
   IsLibraryProject,
   IsPluginProject,
   IsSchematicProject,
-} from '@rxap/workspace-utilities';
-import { join } from 'path';
-import { IsBuildable } from './is-buildable';
+} from './is-project';
 import { IsPublishable } from './is-publishable';
 import { TreeLike } from './tree';
 

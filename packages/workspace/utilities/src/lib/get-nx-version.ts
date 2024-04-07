@@ -1,8 +1,8 @@
+import { GetRootPackageJson } from './package-json-file';
 import {
-  GetRootPackageJson,
   IsJsonObject,
   TreeLike,
-} from '@rxap/workspace-utilities';
+} from './tree';
 
 export function GetNxVersion(tree?: TreeLike) {
   const rootPackageJson = GetRootPackageJson(tree);

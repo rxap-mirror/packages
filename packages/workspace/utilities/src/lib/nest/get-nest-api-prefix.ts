@@ -1,8 +1,8 @@
+import { join } from 'path';
 import {
   TreeAdapter,
   TreeLike,
-} from '@rxap/workspace-utilities';
-import { join } from 'path';
+} from '../tree';
 
 export interface GetNestApiPrefixOptions {
   apiPrefix?: string | false;

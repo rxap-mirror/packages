@@ -6,7 +6,7 @@ import {
   deepMerge,
   MergeDeepLeft,
 } from '@rxap/utilities';
-import { Strategy } from '@rxap/workspace-utilities';
+import { Strategy } from './coerce-target';
 
 export function CoerceTargetDefaults(
   nxJson: NxJsonConfiguration,
