@@ -43,6 +43,7 @@ import {
 } from 'semver';
 import { SkipNonAngularProject } from '../../lib/skip-project';
 import { InitGeneratorSchema } from '../init/schema';
+import { coerceStorybook } from './coerce-storybook';
 import { InitLibraryGeneratorSchema } from './schema';
 
 function hasIndexScss(tree: Tree, project: ProjectConfiguration) {
@@ -371,6 +372,10 @@ export async function initLibraryGenerator(
       updatePackageJson(tree, project, rootPackageJson);
 
       checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
+
+      if (options.storybook) {
+        await coerceStorybook(tree, projectName, options);
+      }
 
       if (IsBuildable(project)) {
         updateProjectNgPackageConfiguration(tree, project);

@@ -25,6 +25,84 @@
       "type": "boolean",
       "default": true,
       "description": "Whether to add the index-export target to the library"
+    },
+    "storybook": {
+      "default": false,
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "interactionTests": {
+              "type": "boolean",
+              "description": "Set up Storybook interaction tests.",
+              "alias": ["configureTestRunner"],
+              "x-priority": "important",
+              "default": true
+            },
+            "configureCypress": {
+              "type": "boolean",
+              "description": "Specifies whether to configure Cypress or not."
+            },
+            "generateStories": {
+              "type": "boolean",
+              "description": "Specifies whether to automatically generate `*.stories.ts` files for components declared in this project or not.",
+              "default": true,
+              "x-priority": "important"
+            },
+            "generateCypressSpecs": {
+              "type": "boolean",
+              "description": "Specifies whether to automatically generate test files in the generated Cypress e2e app."
+            },
+            "configureStaticServe": {
+              "type": "boolean",
+              "description": "Specifies whether to configure a static file server target for serving storybook. Helpful for speeding up CI build/test times.",
+              "default": true,
+              "x-priority": "important"
+            },
+            "cypressDirectory": {
+              "type": "string",
+              "description": "A directory where the Cypress project will be placed. Placed at the root by default."
+            },
+            "linter": {
+              "description": "The tool to use for running lint checks.",
+              "type": "string",
+              "enum": ["eslint", "none"],
+              "default": "eslint"
+            },
+            "tsConfiguration": {
+              "type": "boolean",
+              "description": "Configure your project with TypeScript. Generate main.ts and preview.ts files, instead of main.js and preview.js.",
+              "default": true,
+              "x-priority": "important"
+            },
+            "skipFormat": {
+              "description": "Skip formatting files.",
+              "type": "boolean",
+              "default": false,
+              "x-priority": "internal"
+            },
+            "ignorePaths": {
+              "type": "array",
+              "description": "Paths to ignore when looking for components.",
+              "items": {
+                "type": "string",
+                "description": "Path to ignore."
+              },
+              "examples": [
+                "apps/my-app/src/not-stories/**",
+                "**/**/src/**/not-stories/**",
+                "libs/my-lib/**/*.something.ts",
+                "**/**/src/**/*.other.*",
+                "libs/my-lib/src/not-stories/**,**/**/src/**/*.other.*,apps/my-app/**/*.something.ts"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
     }
   },
   "required": []
