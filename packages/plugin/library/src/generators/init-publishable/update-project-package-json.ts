@@ -55,7 +55,7 @@ export function updateProjectPackageJson(
     packageJson.homepage = join(rootPackageJson.homepage, project.root);
   }
   packageJson.bugs = rootPackageJson.bugs;
-  packageJson.license = rootPackageJson.license;
+  packageJson.license ??= rootPackageJson.license;
   packageJson.contributors = rootPackageJson.contributors;
   packageJson.funding = rootPackageJson.funding;
   packageJson.repository = rootPackageJson.repository;
