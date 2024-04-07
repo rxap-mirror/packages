@@ -1,7 +1,7 @@
 {
   "version": "16.0.0",
   "name": "@rxap/plugin-compodoc",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
@@ -29,5 +29,6 @@
     "directory": "packages/plugin/compodoc"
   },
   "type": "commonjs",
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "executors": "./executors.json"
 }

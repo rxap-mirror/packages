@@ -47,7 +47,8 @@
         "lintFilePatterns": [
           "packages/plugin/compodoc/**/*.ts",
           "packages/plugin/compodoc/package.json",
-          "packages/plugin/compodoc/generators.json"
+          "packages/plugin/compodoc/generators.json",
+          "packages/plugin/compodoc/executors.json"
         ]
       }
     },

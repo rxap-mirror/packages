@@ -1,0 +1,228 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Build executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "tsConfig": {
+      "description": "Path to project's TypeScript configuration file. (default: `<projectRoot>/tsconfig.json`)",
+      "type": "string"
+    },
+    "outputPath": {
+      "description": "The output path of the generated files. (default: `dist/compodoc/<projectName>`)",
+      "type": "string"
+    },
+    "exportFormat": {
+      "description": "Format of generated documentation: html, json (json implicitly enables Compodoc's `minimal` mode)",
+      "type": "string",
+      "default": "html",
+      "anyOf": [
+        {
+          "enum": ["html", "json"]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "name": {
+      "description": "Title of the documentation.",
+      "type": "string"
+    },
+    "includes": {
+      "description": "Path to external markdown files, folder should contain a summary.json.",
+      "type": "string"
+    },
+    "includesName": {
+      "description": "Name of menu item containing external markdown files.",
+      "type": "string"
+    },
+    "assetsFolder": {
+      "description": "External assets folder to copy in generated documentation folder.",
+      "type": "string"
+    },
+    "unitTestCoverage": {
+      "description": "Path to unit test coverage in json-summary format.",
+      "type": "string"
+    },
+    "disableCoverage": {
+      "description": "Do not add the documentation coverage report.",
+      "type": "boolean",
+      "default": true
+    },
+    "disableSourceCode": {
+      "description": "Do not add source code tab and links to source code.",
+      "type": "boolean",
+      "default": false
+    },
+    "disableDomTree": {
+      "description": "Do not add dom tree tab.",
+      "type": "boolean",
+      "default": false
+    },
+    "disableTemplateTab": {
+      "description": "Do not add template tab.",
+      "type": "boolean",
+      "default": false
+    },
+    "disableStyleTab": {
+      "description": "Do not add style tab.",
+      "type": "boolean",
+      "default": false
+    },
+    "disableGraph": {
+      "description": "Disable rendering of the dependency graph.",
+      "type": "boolean",
+      "default": false
+    },
+    "disablePrivate": {
+      "description": "Do not show private in generated documentation.",
+      "type": "boolean",
+      "default": true
+    },
+    "disableProtected": {
+      "description": "Do not show protected in generated documentation.",
+      "type": "boolean",
+      "default": false
+    },
+    "disableInternal": {
+      "description": "Do not show @internal in generated documentation.",
+      "type": "boolean",
+      "default": true
+    },
+    "disableLifeCycleHooks": {
+      "description": "Do not show Angular lifecycle hooks in generated documentation.",
+      "type": "boolean",
+      "default": true
+    },
+    "disableRoutesGraph": {
+      "description": "Do not add the routes graph.",
+      "type": "boolean",
+      "default": false
+    },
+    "disableSearch": {
+      "description": "Do not add the search input.",
+      "type": "boolean",
+      "default": false
+    },
+    "disableDependencies": {
+      "description": "Do not add the dependencies list.",
+      "type": "boolean",
+      "default": false
+    },
+    "coverageTest": {
+      "description": "Threshold for global documentation coverage.",
+      "type": "integer",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "coverageMinimumPerFile": {
+      "description": "Threshold for documentation coverage of each file.",
+      "type": "integer",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "coverageTestThresholdFail": {
+      "description": "bort compodoc with an error instead of a warn log, if coverage threshold (global or per file) is not reached (true: error, false: warn).",
+      "type": "boolean",
+      "default": true
+    },
+    "language": {
+      "description": "Language used for generated documentation.",
+      "type": "string",
+      "default": "en-US",
+      "anyOf": [
+        {
+          "enum": [
+            "en-US",
+            "de-DE",
+            "es-ES",
+            "fr-FR",
+            "hu-HU",
+            "it-IT",
+            "ja-JP",
+            "ko-KR",
+            "nl-NL",
+            "pl-PL",
+            "pt-BR",
+            "sk-SK",
+            "zh-CN"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "theme": {
+      "description": "Theme used for generated documentation.",
+      "type": "string",
+      "default": "gitbook",
+      "anyOf": [
+        {
+          "enum": [
+            "gitbook",
+            "laravel",
+            "original",
+            "material",
+            "postmark",
+            "readthedocs",
+            "stripe",
+            "vagrant"
+          ]
+        },
+        {
+          "minLength": 1
+        }
+      ]
+    },
+    "extTheme": {
+      "description": "Path to external theme file.",
+      "type": "string"
+    },
+    "templates": {
+      "description": "Path to directory of Handlebars templates to override built-in templates.",
+      "type": "string"
+    },
+    "customLogo": {
+      "description": "Path to custom logo.",
+      "type": "string"
+    },
+    "customFavicon": {
+      "description": "Path to custom favicon.",
+      "type": "string"
+    },
+    "hideGenerator": {
+      "description": "Do not print the Compodoc logo at the bottom of the page.",
+      "type": "boolean",
+      "default": false
+    },
+    "serve": {
+      "description": "Serve generated documentation.",
+      "type": "boolean"
+    },
+    "port": {
+      "description": "Port for serving of documentation. (default: 8080)",
+      "type": "number",
+      "default": 8080
+    },
+    "watch": {
+      "description": "Watch for source files changes to automatically rebuild documentation.",
+      "type": "boolean",
+      "default": false
+    },
+    "silent": {
+      "description": "Suppress verbose build output.",
+      "type": "boolean"
+    },
+    "debug": {
+      "description": "Show executor logs like compodoc command with arguments and working directory.",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": ["outputPath", "tsConfig"]
+}
