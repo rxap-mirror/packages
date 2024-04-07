@@ -19,7 +19,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   updateProjectTags(project);
 
-  updateProjectTargets(project);
+  updateProjectTargets(project, options);
 
   if (IsBuildable(project)) {
     initBuildableProject(tree, projectName, project, options);

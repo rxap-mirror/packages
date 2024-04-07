@@ -20,6 +20,11 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
+    },
+    "indexExport": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to add the index-export target to the library"
     }
   },
   "required": []
