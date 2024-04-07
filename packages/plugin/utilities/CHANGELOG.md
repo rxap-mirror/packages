@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.1-dev.4...@rxap/plugin-utilities@16.2.0-dev.0) (2024-04-07)
+
+### Features
+
+- add GetWorkspaceName function ([c5b5010](https://gitlab.com/rxap/packages/commit/c5b5010fd11914600a266a9d55e7a7d60d6c9b33))
+
 ## [16.1.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.1-dev.3...@rxap/plugin-utilities@16.1.1-dev.4) (2024-03-31)
 
 **Note:** Version bump only for package @rxap/plugin-utilities

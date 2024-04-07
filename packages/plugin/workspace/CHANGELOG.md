@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.6...@rxap/plugin-workspace@16.2.0-dev.7) (2024-04-07)
+
+### Features
+
+- merge with existing traefik config ([34c646a](https://gitlab.com/rxap/packages/commit/34c646a61a49ddfdb1c3d1226963d67e8f054013))
+- support mit license preset ([da1aaad](https://gitlab.com/rxap/packages/commit/da1aaad4213c67ad13ad29d989973c04109e7042))
+
 # [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.5...@rxap/plugin-workspace@16.2.0-dev.6) (2024-04-03)
 
 ### Features

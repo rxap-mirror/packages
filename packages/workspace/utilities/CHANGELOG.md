@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.8...@rxap/workspace-utilities@16.1.0-dev.9) (2024-04-07)
+
+### Bug Fixes
+
+- mv SkipNonAngularProject to utilities package ([abcbaa6](https://gitlab.com/rxap/packages/commit/abcbaa6e407714a9f2f426e6635974c10353bb3c))
+
 # [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.7...@rxap/workspace-utilities@16.1.0-dev.8) (2024-04-03)
 
 ### Bug Fixes

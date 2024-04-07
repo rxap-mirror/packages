@@ -9875,13 +9875,13 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/plugin-application": ^16.2.0-dev.4
     "@rxap/plugin-docker": ^16.1.0-dev.9
-    "@rxap/plugin-library": ^16.1.0-dev.9
+    "@rxap/plugin-library": ^16.1.0-dev.10
     "@rxap/plugin-localazy": ^16.1.1-dev.2
-    "@rxap/plugin-utilities": ^16.1.1-dev.4
+    "@rxap/plugin-utilities": ^16.2.0-dev.0
     "@rxap/ts-morph": ^1.1.0-dev.24
     "@rxap/utilities": ^16.1.0-dev.8
     "@rxap/workspace-ts-morph": ^16.0.2-dev.2
-    "@rxap/workspace-utilities": ^16.1.0-dev.8
+    "@rxap/workspace-utilities": ^16.1.0-dev.9
     nx: ^16.5.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -9907,6 +9907,13 @@ __metadata:
 "@rxap/plugin-compodoc@workspace:packages/plugin/compodoc":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-compodoc@workspace:packages/plugin/compodoc"
+  dependencies:
+    tslib: 2.6.2
+  peerDependencies:
+    "@nx/devkit": ^16.5.0
+    "@rxap/plugin-utilities": ^16.2.0-dev.0
+    "@rxap/utilities": ^16.1.0-dev.8
+    "@rxap/workspace-utilities": ^16.1.0-dev.9
   languageName: unknown
   linkType: soft
 
@@ -9967,10 +9974,10 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-ts-morph": ^1.0.2-dev.0
     "@rxap/node-utilities": ^1.2.0-dev.1
-    "@rxap/plugin-utilities": ^16.1.1-dev.4
-    "@rxap/ts-morph": ^1.1.0-dev.22
+    "@rxap/plugin-utilities": ^16.2.0-dev.0
+    "@rxap/ts-morph": ^1.1.0-dev.24
     "@rxap/utilities": ^16.1.0-dev.8
-    "@rxap/workspace-utilities": ^16.1.0-dev.5
+    "@rxap/workspace-utilities": ^16.1.0-dev.9
     nx: ^16.5.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -10037,6 +10044,14 @@ __metadata:
 "@rxap/plugin-storybook@workspace:packages/plugin/storybook":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-storybook@workspace:packages/plugin/storybook"
+  dependencies:
+    tslib: 2.6.2
+  peerDependencies:
+    "@nx/angular": ^16.5.0
+    "@nx/devkit": ^16.5.0
+    "@nx/linter": ^16.5.0
+    "@rxap/utilities": ^16.1.0-dev.8
+    "@rxap/workspace-utilities": ^16.1.0-dev.9
   languageName: unknown
   linkType: soft
 
@@ -10048,7 +10063,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/node-utilities": ^1.2.0-dev.1
-    "@rxap/workspace-utilities": ^16.1.0-dev.5
+    "@rxap/workspace-utilities": ^16.1.0-dev.9
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10075,9 +10090,9 @@ __metadata:
     yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/plugin-utilities": ^16.1.1-dev.4
+    "@rxap/plugin-utilities": ^16.2.0-dev.0
     "@rxap/utilities": ^16.1.0-dev.8
-    "@rxap/workspace-utilities": ^16.1.0-dev.7
+    "@rxap/workspace-utilities": ^16.1.0-dev.9
     tslib: 2.6.2
   languageName: unknown
   linkType: soft

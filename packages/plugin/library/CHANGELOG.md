@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.9...@rxap/plugin-library@16.1.0-dev.10) (2024-04-07)
+
+### Bug Fixes
+
+- only set license if not defined ([bdfd74b](https://gitlab.com/rxap/packages/commit/bdfd74b6f00a794687782d6bc6d1d0e46cdf75d3))
+
+### Features
+
+- add index-export option ([801b4a4](https://gitlab.com/rxap/packages/commit/801b4a42034defa9bfe00683c71a04e859063ad0))
+
 # [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.8...@rxap/plugin-library@16.1.0-dev.9) (2024-03-31)
 
 **Note:** Version bump only for package @rxap/plugin-library

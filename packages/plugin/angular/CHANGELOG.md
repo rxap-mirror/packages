@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.5...@rxap/plugin-angular@16.2.0-dev.6) (2024-04-07)
+
+### Bug Fixes
+
+- always include angular localazy types ([35c1358](https://gitlab.com/rxap/packages/commit/35c1358a3042ff023e3fcda9967a1d8ea163b4d7))
+- mv SkipNonAngularProject to utilities package ([abcbaa6](https://gitlab.com/rxap/packages/commit/abcbaa6e407714a9f2f426e6635974c10353bb3c))
+
+### Features
+
+- add index-export option ([801b4a4](https://gitlab.com/rxap/packages/commit/801b4a42034defa9bfe00683c71a04e859063ad0))
+- add storybook initializer ([6fabdb3](https://gitlab.com/rxap/packages/commit/6fabdb371c7f4f66bd9eced07565670a5c2d77c4))
+
 # [16.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.4...@rxap/plugin-angular@16.2.0-dev.5) (2024-04-03)
 
 ### Bug Fixes
