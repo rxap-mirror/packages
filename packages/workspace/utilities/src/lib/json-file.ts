@@ -25,6 +25,18 @@ export function HasJsonFile<Tree extends TreeLike>(tree: Tree, filePath: string)
   return false;
 }
 
+/**
+ * Retrieves the contents of a JSON file and returns it as an object.
+ * If the file does not exist and `create` flag is set to `true`, an empty JSON file will be created.
+ *
+ * @template T - The type of the returned JSON object.
+ * @param tree - The file system tree-like object.
+ * @param filePath - The path to the JSON file.
+ * @param [create=false] - Flag indicating whether to create the file if it does not exist (default: false).
+ * @throws If the JSON file does not exist and `create` flag is set to `false`.
+ * @throws If the content of the JSON file could not be parsed.
+ * @returns {T} The parsed JSON object.
+ */
 export function GetJsonFile<T = any>(tree: TreeLike, filePath: string, create = false): T {
 
   const treeAdapter = new TreeAdapter(tree);
@@ -49,6 +61,9 @@ export function GetJsonFile<T = any>(tree: TreeLike, filePath: string, create = 
 
 export interface UpdateJsonFileOptions {
   space?: string | number;
+  /**
+   * true - create the file if it does not exist
+   */
   create?: boolean;
 }
 
