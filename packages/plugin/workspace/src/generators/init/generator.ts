@@ -202,9 +202,9 @@ async function coerceRootPackageJsonScripts(tree: Tree) {
   });
 }
 
-async function coercePackageJsonLicense(tree: Tree) {
+async function coercePackageJsonLicense(tree: Tree, options: InitGeneratorSchema) {
   await UpdatePackageJson(tree, (json) => {
-    json.license = 'GPL-3.0-or-later';
+    json.license ??= options.license === 'mit' ? 'MIT' : 'GPL-3.0-or-later';
   });
 }
 
@@ -398,15 +398,18 @@ function coerceNxJson(tree: Tree) {
 }
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
+  options.license ??= !options.skipLicense ? 'gpl' : undefined;
+  console.log('workspace init generator:', options);
+
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files', 'general'),
     target: '',
     overwrite: options.overwrite,
   });
 
-  if (!options.skipLicense) {
+  if (!options.skipLicense && options.license) {
     CoerceFilesStructure(tree, {
-      srcFolder: join(__dirname, 'files', 'gpl'),
+      srcFolder: join(__dirname, 'files', options.license),
       target: '',
       overwrite: options.overwrite,
     });
@@ -450,7 +453,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   coerceDevContainerConfig(tree);
   await coerceRootPackageJsonScripts(tree);
   if (!options.skipLicense) {
-    await coercePackageJsonLicense(tree);
+    await coercePackageJsonLicense(tree, options);
   }
 }
 

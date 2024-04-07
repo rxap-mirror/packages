@@ -29,6 +29,14 @@
       "default": false,
       "description": "Whether to skip adding a license file"
     },
+    "license": {
+      "type": "string",
+      "default": "gpl",
+      "enum": [
+        "mit",
+        "gpl"
+      ]
+    },
     "repositoryUrl": {
       "type": "string",
       "description": "The URL of the repository"
