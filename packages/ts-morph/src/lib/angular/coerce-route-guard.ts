@@ -30,7 +30,7 @@ export function CoerceRouteGuard(sourceFile: SourceFile, path: string[], guard: 
         throw new Error('Guard array is not a PropertyAssignment');
       }
     } else {
-      throw new Error('Initializer not found');
+      console.warn('Initializer not found');
     }
   } else {
     throw new Error(`${routeArrayName} variable not found`);

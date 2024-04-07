@@ -94,6 +94,7 @@ function routeRule(normalizedOptions: NormalizedRouteComponentOptions, parentRou
       }
       AddRoute(sourceFile, route, parentRoute, isFeatureRoute ? 'ROUTES' : 'appRoutes');
     }, [ isFeatureRoute ? 'routes.ts' : 'app.routes.ts' ]),
+    () => console.log('Coerce the children components to route configuration'),
     chain((normalizedOptions.children ?? []).map(child => routeRule({ ...normalizedOptions, ...child }, [ ...parentRoute ?? [], path ])))
   ]);
 
@@ -152,8 +153,11 @@ export default function (options: RouteComponentOptions) {
     return chain([
       () => console.group('\x1b[32m[@rxap/schematics-angular:route-component]\x1b[0m'),
       componentRule(normalizedOptions),
+      () => console.log('Coerce children components'),
       chain(flatten(normalizedOptions.children ?? []).map(child => componentRule({ ...normalizedOptions, ...child }))),
+      () => console.log('Coerce the route configuration'),
       routeRule(normalizedOptions),
+      () => console.groupEnd(),
     ]);
 
   };
