@@ -20,6 +20,18 @@
     "plugin-storybook",
     "rxap"
   ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/utilities",
+        "version": "16.1.0-dev.8"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "16.1.0-dev.8"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/plugin/storybook"

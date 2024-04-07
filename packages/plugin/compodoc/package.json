@@ -21,6 +21,22 @@
     "plugin-compodoc",
     "rxap"
   ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.1.1-dev.4"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.1.0-dev.8"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "16.1.0-dev.8"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/plugin/compodoc"
