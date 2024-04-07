@@ -20,6 +20,15 @@ export async function CoerceCompodocTsConfig(tree: Tree, projectName: string, in
     CoerceArrayItems(tsConfig.exclude, exclude);
   }, { infix: 'compodoc', basePath: projectRoot, create: true });
 
+  if (projectName === 'workspace') {
+    await UpdateTsConfigJson(tree, tsConfig => {
+    tsConfig.extends = `./tsconfig.base.json`;
+    tsConfig.include = [];
+    tsConfig.exclude = [];
+    tsConfig.files = [];
+    }, { basePath: projectRoot, create: true });
+  }
+
   await UpdateTsConfigJson(tree, tsConfig => {
     tsConfig.references ??= [];
     CoerceArrayItems(tsConfig.references, [{ path: './tsconfig.compodoc.json' }], (a, b) => a.path === b.path);
