@@ -1,8 +1,14 @@
-import { ProjectConfiguration } from '@nx/devkit';
 import {
+  ProjectConfiguration,
+  Tree,
+} from '@nx/devkit';
+import {
+  IsAngularProject,
   IsApplicationProject,
   IsInternalProject,
   IsLibraryProject,
+  IsPluginProject,
+  IsSchematicProject,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { IsBuildable } from './is-buildable';
@@ -119,4 +125,17 @@ export function SkipNonApplicationProject(
 
   return false;
 
+}
+
+export function SkipNonAngularProject(tree: Tree, options: SkipProjectOptions, project: ProjectConfiguration, projectName: string) {
+  if (SkipProject(tree, options, project, projectName)) {
+    return true;
+  }
+  if (!IsAngularProject(project)) {
+    return true;
+  }
+  if (IsPluginProject(project) || IsSchematicProject(project)) {
+    return true;
+  }
+  return false;
 }

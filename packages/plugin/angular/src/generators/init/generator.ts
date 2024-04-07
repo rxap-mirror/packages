@@ -7,9 +7,9 @@ import {
   HasComponents,
   IsApplicationProject,
   IsLibraryProject,
+  SkipNonAngularProject,
 } from '@rxap/workspace-utilities';
 import { CoerceCypressComponentTesting } from '../../lib/coerce-cypress-component-testing';
-import { SkipNonAngularProject } from '../../lib/skip-project';
 import initApplicationGenerator from '../init-application/generator';
 import initLibraryGenerator from '../init-library/generator';
 import { InitGeneratorSchema } from './schema';

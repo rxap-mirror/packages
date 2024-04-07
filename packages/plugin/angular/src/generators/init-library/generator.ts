@@ -29,6 +29,7 @@ import {
   IsRxapRepository,
   RemoveAssets,
   SearchFile,
+  SkipNonAngularProject,
   SkipNonLibraryProject,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';
@@ -41,7 +42,6 @@ import {
   gte,
   parse,
 } from 'semver';
-import { SkipNonAngularProject } from '../../lib/skip-project';
 import { InitGeneratorSchema } from '../init/schema';
 import { coerceStorybook } from './coerce-storybook';
 import { InitLibraryGeneratorSchema } from './schema';

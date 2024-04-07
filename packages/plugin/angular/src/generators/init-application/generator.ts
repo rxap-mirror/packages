@@ -40,6 +40,7 @@ import {
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
   GetProjectRoot,
+  SkipNonAngularProject,
   SkipNonApplicationProject,
   Strategy,
   UpdateTsConfigJson,
@@ -51,7 +52,6 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { SkipNonAngularProject } from '../../lib/skip-project';
 import { InitGeneratorSchema } from '../init/schema';
 import { generateAuthentication } from './generate-authentication';
 import { generateMonolithic } from './generate-monolithic';
