@@ -28,5 +28,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/compodoc"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "generators": "./generators.json"
 }

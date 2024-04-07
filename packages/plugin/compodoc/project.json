@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/plugin/compodoc",
         "main": "packages/plugin/compodoc/src/index.ts",
@@ -40,27 +38,22 @@
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs plugin-compodoc {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "packages/plugin/compodoc/**/*.ts",
-          "packages/plugin/compodoc/package.json"
+          "packages/plugin/compodoc/package.json",
+          "packages/plugin/compodoc/generators.json"
         ]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "packages/plugin/compodoc/jest.config.ts",
         "passWithNoTests": true
@@ -83,9 +76,7 @@
     },
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:run-generator",
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/package.json"
-      ],
+      "outputs": ["{workspaceRoot}/{projectRoot}/package.json"],
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
@@ -101,10 +92,5 @@
       }
     }
   },
-  "tags": [
-    "plugin",
-    "nx",
-    "nx-plugin",
-    "packages"
-  ]
+  "tags": ["plugin", "nx", "nx-plugin", "packages"]
 }

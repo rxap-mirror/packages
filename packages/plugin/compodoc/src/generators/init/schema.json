@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Init",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "skipProjects": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip executing project specific initialization"
+    },
+    "workspaceDocs": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to setup compodoc for the complete workspace"
+    }
+  },
+  "required": []
+}
