@@ -4,6 +4,7 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
+import { CoerceArrayItems } from '@rxap/utilities';
 import { SkipNonBuildableProject } from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
@@ -28,6 +29,11 @@ export async function initBuildableGenerator(
   tree: Tree,
   options: InitBuildableGeneratorSchema,
 ) {
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('buildable library init generator:', options);
 
   initWorkspace(tree, options);

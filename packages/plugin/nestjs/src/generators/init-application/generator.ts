@@ -25,7 +25,10 @@ import {
   CoerceNestThrottlerModuleImport,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
-import { CoerceArrayItems } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  DeleteProperties,
+} from '@rxap/utilities';
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
@@ -37,7 +40,9 @@ import {
   CoerceProjectTags,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  GenerateSerializedSchematicFile,
   GetNestApiPrefix,
+  GetProjectRoot,
   GetTarget,
   GetWorkspaceName,
   HasProject,
@@ -685,6 +690,14 @@ export async function initApplicationGenerator(
       if (!projectSourceRoot) {
         throw new Error(`Can't find project source root for project ${ projectName }`);
       }
+
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-nestjs',
+        'init-application',
+        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+      );
 
       console.log(`init nestjs application project: ${ projectName }`);
 

@@ -4,6 +4,11 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
+  CoerceArrayItems,
+  DeleteProperties,
+} from '@rxap/utilities';
+import {
+  GenerateSerializedSchematicFile,
   IsApplicationProject,
   IsLibraryProject,
 } from '@rxap/workspace-utilities';
@@ -23,7 +28,20 @@ function skipProject(tree: Tree, options: InitGeneratorSchema, project: ProjectC
 }
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('nestjs init generator:', options);
+
+  GenerateSerializedSchematicFile(
+    tree,
+    '/',
+    '@rxap/plugin-nestjs',
+    'init',
+    DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+  );
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 

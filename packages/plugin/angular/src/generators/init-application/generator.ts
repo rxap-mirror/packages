@@ -24,6 +24,7 @@ import {
   CoerceArrayItems,
   dasherize,
   DeleteEmptyProperties,
+  DeleteProperties,
   unique,
 } from '@rxap/utilities';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
@@ -39,6 +40,7 @@ import {
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
+  GenerateSerializedSchematicFile,
   GetProjectRoot,
   SkipNonAngularProject,
   SkipNonApplicationProject,
@@ -754,6 +756,14 @@ export async function initApplicationGenerator(
       if (skipProject(tree, options, project, projectName)) {
         continue;
       }
+
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-angular',
+        'init-application',
+        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+      );
 
       console.log(`init angular application project: ${ projectName }`);
 

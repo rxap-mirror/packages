@@ -4,6 +4,7 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   IsPluginProject,
   SkipNonLibraryProject,
@@ -35,6 +36,11 @@ export async function initPluginGenerator(
   tree: Tree,
   options: InitPluginGeneratorSchema,
 ) {
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('plugin library init generator:', options);
 
   initWorkspace(tree, options);

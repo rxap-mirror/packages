@@ -5,8 +5,15 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
-import { CoerceArrayItems } from '@rxap/utilities';
-import { SkipNonApplicationProject } from '@rxap/workspace-utilities';
+import {
+  CoerceArrayItems,
+  DeleteProperties,
+} from '@rxap/utilities';
+import {
+  GenerateSerializedSchematicFile,
+  GetProjectRoot,
+  SkipNonApplicationProject,
+} from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
@@ -39,13 +46,21 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   await initWorkspace(tree, options);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
-    }
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
 
-    if (!options.skipProjects) {
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-application',
+        'init',
+        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+      );
+
       initProject(tree, projectName, project, options);
 
       // apply changes to the project configuration

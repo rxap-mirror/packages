@@ -1,9 +1,19 @@
 import { Tree } from '@nx/devkit';
+import { DeleteProperties } from '@rxap/utilities';
+import { GenerateSerializedSchematicFile } from '@rxap/workspace-utilities';
 import initLibraryGenerator from '../init-library/generator';
 import { InitGeneratorSchema } from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   console.log('angular init generator:', options);
+
+  GenerateSerializedSchematicFile(
+    tree,
+    '/',
+    '@rxap/plugin-angular',
+    'init',
+    DeleteProperties(options, [ 'projects', 'overwrite', 'skipProjects' ]),
+  );
 
   await initLibraryGenerator(tree, {
     projects: [

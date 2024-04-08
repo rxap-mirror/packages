@@ -15,7 +15,10 @@ import {
   LibraryInitWorkspace,
 } from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { CoerceArrayItems } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  DeleteProperties,
+} from '@rxap/utilities';
 import {
   Assets,
   CoerceAssets,
@@ -27,6 +30,8 @@ import {
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
   DeleteRecursive,
+  GenerateSerializedSchematicFile,
+  GetProjectRoot,
   HasProject,
   IsBuildable,
   IsPublishable,
@@ -436,6 +441,14 @@ export async function initLibraryGenerator(
       if (skipProject(tree, options, project, projectName)) {
         continue;
       }
+
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-angular',
+        'init-library',
+        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects', 'coerce' ]),
+      );
 
       console.log(`init angular library project: ${ projectName }`);
 

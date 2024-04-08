@@ -4,6 +4,7 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
+import { CoerceArrayItems } from '@rxap/utilities';
 import { SkipNonPublishableProject } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from '../init/schema';
 import { initProject } from './init-project';
@@ -29,6 +30,11 @@ export async function initPublishableGenerator(
   tree: Tree,
   options: InitPublishableGeneratorSchema,
 ) {
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('publishable library init generator:', options);
 
   initWorkspace(tree, options);

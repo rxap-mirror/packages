@@ -11,9 +11,15 @@ import {
 import { LibraryInitGenerator } from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
+  CoerceArrayItems,
+  DeleteProperties,
+} from '@rxap/utilities';
+import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  GenerateSerializedSchematicFile,
+  GetProjectRoot,
   IsPublishable,
   SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
@@ -112,6 +118,11 @@ export async function initLibraryGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
 ) {
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('nestjs library init generator:', options);
 
   setGeneralTargetDefaults(tree);
@@ -125,6 +136,14 @@ export async function initLibraryGenerator(
       if (skipProject(tree, options, project, projectName)) {
         continue;
       }
+
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-nestjs',
+        'init-library',
+        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+      );
 
       console.log(`init nestjs library project: ${ projectName }`);
 

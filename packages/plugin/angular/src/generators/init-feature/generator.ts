@@ -4,20 +4,38 @@ import {
   CoerceLayoutRoutes,
   CoerceRoutes,
 } from '@rxap/ts-morph';
-import { dasherize } from '@rxap/utilities';
+import {
+  dasherize,
+  DeleteProperties,
+} from '@rxap/utilities';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
-import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
+import {
+  GenerateSerializedSchematicFile,
+  GetProjectRoot,
+  GetProjectSourceRoot,
+} from '@rxap/workspace-utilities';
+import { join } from 'path';
 import { InitFeatureGeneratorSchema } from './schema';
 
 export async function initFeatureGenerator(
   tree: Tree,
   options: InitFeatureGeneratorSchema,
 ) {
+  options.name = dasherize(options.name);
+  console.log('angular init feature generator:', options);
   const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
 
   if (!projectSourceRoot) {
     throw new Error(`Project source root not found for project ${ options.project }`);
   }
+
+  GenerateSerializedSchematicFile(
+    tree,
+    join(GetProjectRoot(tree, options.project), 'feature', options.name),
+    '@rxap/plugin-angular',
+    'init-feature',
+    DeleteProperties(options, [ 'project', 'overwrite' ]),
+  );
 
   TsMorphAngularProjectTransform(tree, {
     project: options.project,

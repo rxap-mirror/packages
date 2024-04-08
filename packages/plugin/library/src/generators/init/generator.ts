@@ -4,8 +4,15 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { CoerceArrayItems } from '@rxap/utilities';
-import { SkipNonLibraryProject } from '@rxap/workspace-utilities';
+import {
+  CoerceArrayItems,
+  DeleteProperties,
+} from '@rxap/utilities';
+import {
+  GenerateSerializedSchematicFile,
+  GetProjectRoot,
+  SkipNonLibraryProject,
+} from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
@@ -31,19 +38,28 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   options.project ??= undefined;
   options.projects ??= [];
   if (options.project) {
-    CoerceArrayItems(options.projects, [options.project]);
+    CoerceArrayItems(options.projects, [ options.project ]);
   }
   console.log('library init generator:', options);
 
   initWorkspace(tree, options);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
-    }
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
 
-    if (!options.skipProjects) {
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-library',
+        'init',
+        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+      );
+
       await initProject(tree, projectName, project, options);
 
       updateProjectConfiguration(tree, projectName, project);
