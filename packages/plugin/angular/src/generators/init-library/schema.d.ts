@@ -1,3 +1,5 @@
+import { Schema as AngularLibraryGeneratorSchema } from '@nx/angular/src/generators/library/schema';
+
 export interface InitLibraryGeneratorSchema {
   project?: string;
   projects?: string[];
@@ -5,5 +7,5 @@ export interface InitLibraryGeneratorSchema {
   skipProjects?: boolean;
   indexExport?: boolean;
   compodoc?: boolean;
-  coerce?: boolean;
+  coerce?: boolean | Omit<AngularLibraryGeneratorSchema, 'name'>;
 }

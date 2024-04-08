@@ -353,12 +353,49 @@ async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
   const defaultOptions: Partial<AngularLibraryGeneratorSchema> = nxJson?.generators?.['@nx/angular:library'] ?? {};
   const tags = (defaultOptions.tags ?? '').split(',').map(tag => tag.trim());
   tags.push('angular');
+  tags.push('ngx');
+  defaultOptions.projectNameAndRootFormat = 'as-provided';
+  defaultOptions.publishable ??= false;
+  defaultOptions.buildable ??= false;
+  defaultOptions.skipFormat ??= false;
+  defaultOptions.simpleName ??= false;
+  defaultOptions.addModuleSpec ??= false;
+  defaultOptions.skipPackageJson ??= false;
+  defaultOptions.skipPackageJson ??= false;
+  defaultOptions.routing ??= false;
+  defaultOptions.lazy ??= false;
+  defaultOptions.unitTestRunner ??= 'jest' as any;
+  defaultOptions.strict ??= true;
+  defaultOptions.linter ??= 'eslint' as any;
+  defaultOptions.standaloneConfig ??= true;
+  defaultOptions.setParserOptionsProject ??= false;
+  defaultOptions.addTailwind ??= false;
+  defaultOptions.skipModule ??= false;
+  defaultOptions.standalone ??= true;
+  defaultOptions.displayBlock ??= false;
+  defaultOptions.inlineStyle ??= false;
+  defaultOptions.inlineTemplate ??= false;
+  defaultOptions.changeDetection ??= 'OnPush';
+  defaultOptions.style ??= 'scss';
+  defaultOptions.skipTests ??= false;
+  defaultOptions.skipSelector ??= false;
+  defaultOptions.flat ??= false;
   for (const projectName of options.projects ?? []) {
 
     if (!HasProject(tree, projectName)) {
 
+      let directory = projectName;
+      if (typeof options.coerce === 'object' && options.coerce.directory) {
+        if (options.projects?.length === 1) {
+          directory = options.coerce.directory;
+        } else {
+          directory = join(options.coerce.directory, projectName);
+        }
+      }
+
       const schema: AngularLibraryGeneratorSchema = {
         ...defaultOptions,
+        directory,
         name: projectName,
         tags: tags.join(','),
       };
