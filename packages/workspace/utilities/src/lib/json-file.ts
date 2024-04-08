@@ -1,6 +1,7 @@
 import {
   equals,
   IsFunction,
+  isPromise,
 } from '@rxap/utilities';
 import { CoerceFile } from './coerce-file';
 import {
@@ -67,17 +68,30 @@ export interface UpdateJsonFileOptions {
   create?: boolean;
 }
 
-export async function UpdateJsonFile<T extends Record<string, any> = Record<string, any>>(
+export function UpdateJsonFile<T extends Record<string, any> = Record<string, any>>(
   tree: TreeLike,
-  updaterOrJsonFile: T | ((jsonFile: T) => void | PromiseLike<void>),
+  updaterOrJsonFile: T | ((jsonFile: T) => void),
   filePath: string,
   options?: UpdateJsonFileOptions,
-) {
+): void
+export function UpdateJsonFile<T extends Record<string, any> = Record<string, any>>(
+  tree: TreeLike,
+  updaterOrJsonFile: T | ((jsonFile: T) => Promise<void>),
+  filePath: string,
+  options?: UpdateJsonFileOptions,
+): Promise<void>
+export function UpdateJsonFile<T extends Record<string, any> = Record<string, any>>(
+  tree: TreeLike,
+  updaterOrJsonFile: T | ((jsonFile: T) => void | Promise<void>),
+  filePath: string,
+  options?: UpdateJsonFileOptions,
+): void | Promise<void> {
   let jsonFile: T;
+  let promise: Promise<void> | void | undefined;
 
   if (IsFunction(updaterOrJsonFile)) {
     jsonFile = GetJsonFile<T>(tree, filePath, options?.create);
-    await updaterOrJsonFile(jsonFile);
+    promise = updaterOrJsonFile(jsonFile);
   } else if (typeof updaterOrJsonFile === 'function') {
     throw new Error('FATAL: the update function was not a function');
   } else {
@@ -86,7 +100,16 @@ export async function UpdateJsonFile<T extends Record<string, any> = Record<stri
 
   const currentJsonFile = GetJsonFile<T>(tree, filePath, options?.create);
 
+  if (promise && isPromise(promise)) {
+    return promise.then(() => {
+      if (!equals(jsonFile, currentJsonFile)) {
+        CoerceFile(tree, filePath, JSON.stringify(jsonFile, undefined, options?.space ?? 2) + '\n', true);
+      }
+    });
+  }
+
   if (!equals(jsonFile, currentJsonFile)) {
     CoerceFile(tree, filePath, JSON.stringify(jsonFile, undefined, options?.space ?? 2) + '\n', true);
   }
+
 }

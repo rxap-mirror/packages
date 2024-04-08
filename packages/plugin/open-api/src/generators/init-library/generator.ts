@@ -41,7 +41,7 @@ export async function initLibraryGenerator(
   if (!tree.exists(tsConfigBasePath)) {
     throw new Error(`The tsconfig.base.json file does not exists in the workspace root!`);
   }
-  await UpdateTsConfigJson(tree, tsConfig => {
+  UpdateTsConfigJson(tree, tsConfig => {
     tsConfig.compilerOptions ??= {};
     tsConfig.compilerOptions.paths ??= {};
     if (tsConfig.compilerOptions.paths[options.project]) {

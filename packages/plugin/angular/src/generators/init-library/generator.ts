@@ -32,6 +32,7 @@ import {
   DeleteRecursive,
   GenerateSerializedSchematicFile,
   GetProjectRoot,
+  GetWorkspaceScope,
   HasProject,
   IsBuildable,
   IsPublishable,
@@ -40,7 +41,7 @@ import {
   SearchFile,
   SkipNonAngularProject,
   SkipNonLibraryProject,
-  UpdateJsonFile,
+  UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
 import {
   dirname,
@@ -336,18 +337,18 @@ function updatePackageJson(
   }
 }
 
-async function updateTsConfig(tree: Tree, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
+function updateTsConfig(tree: Tree, projectName: string) {
 
-  const projectRoot = project.root;
+  const projectRoot = GetProjectRoot(tree, projectName);
 
-  for (const tsConfigName of ['lib', 'spec']) {
-    await UpdateJsonFile(tree, tsConfig => {
+  for (const infix of ['lib', 'spec']) {
+    UpdateTsConfigJson(tree, tsConfig => {
       tsConfig.compilerOptions ??= {};
       tsConfig.compilerOptions.types ??= [];
       if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
         tsConfig.compilerOptions.types.push('@angular/localize');
       }
-    }, join(projectRoot, `tsconfig.${tsConfigName}.json`));
+    }, { basePath: projectRoot, infix });
   }
 
 }
@@ -385,6 +386,9 @@ async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
   defaultOptions.skipTests ??= false;
   defaultOptions.skipSelector ??= false;
   defaultOptions.flat ??= false;
+
+  const scope = GetWorkspaceScope(tree);
+
   for (const projectName of options.projects ?? []) {
 
     if (!HasProject(tree, projectName)) {
@@ -401,6 +405,7 @@ async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
       const schema: AngularLibraryGeneratorSchema = {
         ...defaultOptions,
         directory,
+        importPath: `${scope}/${projectName}`,
         name: projectName,
         tags: tags.join(','),
       };
@@ -465,7 +470,7 @@ export async function initLibraryGenerator(
       }
       extendAngularSpecificEslint(tree, project);
       updateProjectTargets(tree, project);
-      await updateTsConfig(tree, project, options);
+      updateTsConfig(tree, projectName);
 
       updateProjectConfiguration(tree, projectName, project);
 

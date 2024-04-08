@@ -5,11 +5,11 @@ import {
   UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
 
-export async function CoerceCompodocTsConfig(tree: Tree, projectName: string, include: string[] = ['src/**/*.ts'], exclude: string[] = ['**/*.stories.ts', '**/*.spec.ts', '**/*.cy.ts']) {
+export function CoerceCompodocTsConfig(tree: Tree, projectName: string, include: string[] = ['src/**/*.ts'], exclude: string[] = ['**/*.stories.ts', '**/*.spec.ts', '**/*.cy.ts']) {
 
   const projectRoot = GetProjectRoot(tree, projectName);
 
-  await UpdateTsConfigJson(tree, tsConfig => {
+  UpdateTsConfigJson(tree, tsConfig => {
     tsConfig.extends ??= './tsconfig.json';
     tsConfig.compilerOptions ??= {};
     tsConfig.compilerOptions.types ??= [];
@@ -21,7 +21,7 @@ export async function CoerceCompodocTsConfig(tree: Tree, projectName: string, in
   }, { infix: 'compodoc', basePath: projectRoot, create: true });
 
   if (projectName === 'workspace') {
-    await UpdateTsConfigJson(tree, tsConfig => {
+    UpdateTsConfigJson(tree, tsConfig => {
     tsConfig.extends = `./tsconfig.base.json`;
     tsConfig.include = [];
     tsConfig.exclude = [];
@@ -29,7 +29,7 @@ export async function CoerceCompodocTsConfig(tree: Tree, projectName: string, in
     }, { basePath: projectRoot, create: true });
   }
 
-  await UpdateTsConfigJson(tree, tsConfig => {
+  UpdateTsConfigJson(tree, tsConfig => {
     tsConfig.references ??= [];
     CoerceArrayItems(tsConfig.references, [{ path: './tsconfig.compodoc.json' }], (a, b) => a.path === b.path);
   }, { basePath: projectRoot });

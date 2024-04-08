@@ -19,9 +19,19 @@ export interface UpdateTsConfigJsonOptions extends UpdateJsonFileOptions {
 
 export function UpdateTsConfigJson<Tree extends TreeLike>(
   tree: Tree,
-  updater: (tsConfig: TsConfigJson) => void | PromiseLike<void>,
+  updater: (tsConfig: TsConfigJson) => void,
   options?: UpdateTsConfigJsonOptions,
-) {
+): void
+export function UpdateTsConfigJson<Tree extends TreeLike>(
+  tree: Tree,
+  updater: (tsConfig: TsConfigJson) => Promise<void>,
+  options?: UpdateTsConfigJsonOptions,
+): Promise<void>
+export function UpdateTsConfigJson<Tree extends TreeLike>(
+  tree: Tree,
+  updater: (tsConfig: TsConfigJson) => void | Promise<void>,
+  options?: UpdateTsConfigJsonOptions,
+): void | Promise<void> {
   return UpdateJsonFile(
     tree,
     updater,
@@ -35,12 +45,21 @@ export interface UpdateProjectTsConfigJsonOptions extends UpdateJsonFileOptions 
   project: string;
 }
 
-
 export function UpdateProjectTsConfigJson<Tree extends TreeLike>(
   tree: Tree,
-  updater: (tsConfig: TsConfigJson) => void | PromiseLike<void>,
+  updater: (tsConfig: TsConfigJson) => void,
   options: UpdateProjectTsConfigJsonOptions,
-) {
+): void
+export function UpdateProjectTsConfigJson<Tree extends TreeLike>(
+  tree: Tree,
+  updater: (tsConfig: TsConfigJson) => Promise<void>,
+  options: UpdateProjectTsConfigJsonOptions,
+): Promise<void>
+export function UpdateProjectTsConfigJson<Tree extends TreeLike>(
+  tree: Tree,
+  updater: (tsConfig: TsConfigJson) => void | Promise<void>,
+  options: UpdateProjectTsConfigJsonOptions,
+): void | Promise<void> {
   const projectRoot = GetProjectRoot(tree, options.project);
   return UpdateTsConfigJson(
     tree,

@@ -8,6 +8,7 @@ import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   GetBuildOutputForProject,
   GetWorkspaceScope,
+  UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
 import {
   join,
@@ -72,11 +73,13 @@ function updatePathsAliasInBaseTsConfig(
   currentPackageJsonName: string,
   newPackageJsonName: string,
 ) {
-  const tsConfig = readJson(tree, join('/', 'tsconfig.base.json'));
-  if (tsConfig.compilerOptions.paths[currentPackageJsonName]) {
-    const aliasList = tsConfig.compilerOptions.paths[currentPackageJsonName];
-    delete tsConfig.compilerOptions.paths[currentPackageJsonName];
-    tsConfig.compilerOptions.paths[newPackageJsonName] = aliasList;
-  }
-  writeJson(tree, join('/', 'tsconfig.base.json'), tsConfig);
+  UpdateTsConfigJson(tree, tsConfig => {
+    tsConfig.compilerOptions ??= {};
+    tsConfig.compilerOptions.paths ??= {};
+    if (tsConfig.compilerOptions.paths[currentPackageJsonName]) {
+      const aliasList = tsConfig.compilerOptions.paths[currentPackageJsonName];
+      delete tsConfig.compilerOptions.paths[currentPackageJsonName];
+      tsConfig.compilerOptions.paths[newPackageJsonName] = aliasList;
+    }
+  }, { infix: 'base' });
 }

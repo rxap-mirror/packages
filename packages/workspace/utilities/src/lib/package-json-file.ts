@@ -2,7 +2,10 @@ import {
   GetLatestPackageVersion,
   GetPackagePeerDependencies,
 } from '@rxap/node-utilities';
-import { SortProperties } from '@rxap/utilities';
+import {
+  isPromise,
+  SortProperties,
+} from '@rxap/utilities';
 import {
   existsSync,
   readFileSync,
@@ -40,12 +43,28 @@ export interface UpdatePackageJsonOptions extends UpdateJsonFileOptions {
 
 export function UpdatePackageJson<Tree extends TreeLike>(
   tree: Tree,
-  updaterOrJsonFile: ((packageJson: PackageJson) => void | PromiseLike<void>),
+  updaterOrJsonFile: ((packageJson: PackageJson) => void),
   options?: UpdatePackageJsonOptions,
-) {
-  return UpdateJsonFile(tree, async (packageJson) => {
-    await updaterOrJsonFile(packageJson);
+): void
+export function UpdatePackageJson<Tree extends TreeLike>(
+  tree: Tree,
+  updaterOrJsonFile: ((packageJson: PackageJson) => Promise<void>),
+  options?: UpdatePackageJsonOptions,
+): Promise<void>
+export function UpdatePackageJson<Tree extends TreeLike>(
+  tree: Tree,
+  updaterOrJsonFile: ((packageJson: PackageJson) => void | Promise<void>),
+  options?: UpdatePackageJsonOptions,
+): void | Promise<void> {
+  return UpdateJsonFile(tree, (packageJson) => {
+    const promise = updaterOrJsonFile(packageJson);
+    if (isPromise(promise)) {
+      return promise.then(() => {
+        CleanupPackageJsonFile(packageJson);
+      });
+    }
     CleanupPackageJsonFile(packageJson);
+    return undefined;
   }, join(options?.basePath ?? '', 'package.json'), options);
 }
 

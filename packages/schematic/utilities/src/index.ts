@@ -89,7 +89,6 @@ export * from './lib/nx-json-file';
 export * from './lib/package-json-file';
 export * from './lib/required';
 export * from './lib/search-file';
-export * from './lib/ts-config-file';
 export * from './lib/workspace';
 // endregion
 export * from './lib/delete-directory';

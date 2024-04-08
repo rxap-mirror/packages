@@ -32,7 +32,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     .filter(([projectName, project]) => !SkipNonAngularProject(tree, {}, project, projectName))
     .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
     .map(sourceRoot => join(sourceRoot, '**/*.ts'));
-  await CoerceCompodocTsConfig(tree, 'workspace', angularProjectIncludeList);
+  CoerceCompodocTsConfig(tree, 'workspace', angularProjectIncludeList);
 
 }
 

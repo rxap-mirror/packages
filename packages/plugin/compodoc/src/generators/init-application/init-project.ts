@@ -11,6 +11,6 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   CoerceCompodocTarget(tree, projectName, project);
 
-  await CoerceCompodocTsConfig(tree, projectName);
+  CoerceCompodocTsConfig(tree, projectName);
 
 }

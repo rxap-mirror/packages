@@ -30,6 +30,6 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   await coercePreview(tree, projectName, options);
   await coerceProjectTarget(tree, projectName, project, options);
   await coerceProjectTarget(tree, projectName, project, options);
-  await coerceTsConfig(tree, projectName, options);
+  coerceTsConfig(tree, projectName, options);
 
 }

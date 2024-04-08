@@ -553,10 +553,10 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
   CoerceProjectTags(project, tags);
 }
 
-async function updateApiConfigurationFile(
+function updateApiConfigurationFile(
   tree: Tree, projectName: string, apiPrefix: string, apiConfigurationFile?: string) {
   if (apiConfigurationFile) {
-    await UpdateJsonFile(tree, json => {
+    UpdateJsonFile(tree, json => {
       json[projectName] = { baseUrl: `/${ apiPrefix }` };
     }, apiConfigurationFile, { create: true });
   }
@@ -712,7 +712,7 @@ export async function initApplicationGenerator(
       updateGitIgnore(tree, project, options);
       updateTags(project, options);
       if (!options.standalone) {
-        await updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
+        updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
         if (options.swagger) {
           assertOpenApiClientSdkLibrary(tree, projectName);
         }

@@ -585,16 +585,17 @@ function coerceLocalazyConfigFile(tree: Tree, project: ProjectConfiguration) {
   }
 }
 
-async function updateTsConfig(tree: Tree, projectName: string) {
+function updateTsConfig(tree: Tree, projectName: string) {
 
+  const projectRoot = GetProjectRoot(tree, projectName);
   for (const tsConfigName of [ 'app', 'editor', 'spec' ]) {
-    await UpdateTsConfigJson(tree, tsConfig => {
+    UpdateTsConfigJson(tree, tsConfig => {
       tsConfig.compilerOptions ??= {};
       tsConfig.compilerOptions.types ??= [];
       if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
         tsConfig.compilerOptions.types.push('@angular/localize');
       }
-    }, { infix: tsConfigName, basePath: GetProjectRoot(tree,projectName) });
+    }, { infix: tsConfigName, basePath: projectRoot });
   }
 
 }
@@ -772,7 +773,7 @@ export async function initApplicationGenerator(
       updateProjectTargets(project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
-      await updateTsConfig(tree, projectName);
+      updateTsConfig(tree, projectName);
       coerceEnvironmentFiles(
         tree,
         {

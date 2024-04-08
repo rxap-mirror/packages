@@ -7,10 +7,10 @@ import {
 import { join } from 'path';
 import { InitLibraryGeneratorSchema } from '../generators/init-library/schema';
 
-export async function coerceTsConfig(tree: Tree, projectName: string, options: InitLibraryGeneratorSchema) {
+export function coerceTsConfig(tree: Tree, projectName: string, options: InitLibraryGeneratorSchema) {
 
   const projectRoot = GetProjectRoot(tree, projectName);
-  await UpdateTsConfigJson(tree, tsConfig => {
+  UpdateTsConfigJson(tree, tsConfig => {
     tsConfig.include ??= [];
     tsConfig.compilerOptions ??= {};
     if (options.compodoc) {
