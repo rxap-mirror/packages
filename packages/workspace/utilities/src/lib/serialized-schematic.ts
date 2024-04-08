@@ -1,4 +1,7 @@
-import { isPromise } from '@rxap/utilities';
+import {
+  DeleteProperties,
+  isPromise,
+} from '@rxap/utilities';
 import {
   TreeAdapter,
   TreeLike,
@@ -39,7 +42,7 @@ export function WriteSerializedSchematicFile(
   const treeAdapter = new TreeAdapter(tree);
   DeleteSerializedSchematicFile(tree, path);
   if (Array.isArray(data)) {
-    treeAdapter.write(join(path, 'schematics.yaml'), stringify(data));
+    treeAdapter.write(join(path, 'schematics.yaml'), stringify(data.filter(item => Object.keys(item).length > 0)));
   } else {
     treeAdapter.write(join(path, 'schematic.yaml'), stringify(data));
   }
@@ -127,12 +130,12 @@ export function GenerateSerializedSchematicFile(
   path: string,
   packageName: string,
   schematicName: string,
-  options?: Record<string, unknown>,
+  options: Record<string, unknown> = {},
 ): void {
   const newData = {
     package: packageName,
     name: schematicName,
-    options: options ?? {},
+    options: DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects', 'coerce', 'replace', 'feature' ]),
   };
 
   function isEqual(data: Record<string, unknown>) {
@@ -142,6 +145,9 @@ export function GenerateSerializedSchematicFile(
   UpdateSerializedSchematicFile(tree, path, (data: SerializedSchematic) => {
     console.log('current data:', data);
     if (Array.isArray(data)) {
+      if (data.length === 1 && Object.keys(data[0]).length === 0) {
+        return newData;
+      }
       const index = data.findIndex(isEqual);
       if (index !== -1) {
         data[index] = newData;
@@ -153,6 +159,9 @@ export function GenerateSerializedSchematicFile(
       if (isEqual(data)) {
         return newData;
       } else {
+        if (Object.keys(data).length === 0) {
+          return newData;
+        }
         return [data, newData];
       }
     }

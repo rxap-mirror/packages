@@ -32,6 +32,7 @@ import {
   DeleteRecursive,
   GenerateSerializedSchematicFile,
   GetProjectRoot,
+  GetProjectSourceRoot,
   GetWorkspaceScope,
   HasProject,
   IsBuildable,
@@ -402,15 +403,26 @@ async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
         }
       }
 
+      const importPath = `${scope}/${projectName}`;
+
       const schema: AngularLibraryGeneratorSchema = {
         ...defaultOptions,
         directory,
-        importPath: `${scope}/${projectName}`,
+        importPath,
         name: projectName,
         tags: tags.join(','),
       };
 
       await angularLibraryGenerator(tree, schema);
+
+      UpdateTsConfigJson(tree, tsConfig => {
+        tsConfig.compilerOptions ??= {};
+        tsConfig.compilerOptions.paths ??= {};
+        if (tsConfig.compilerOptions.paths[importPath]) {
+          delete tsConfig.compilerOptions.paths[importPath];
+        }
+        tsConfig.compilerOptions.paths[`${importPath}/*`] = [ `${GetProjectSourceRoot(tree, projectName)}/lib/*` ];
+      }, { infix: 'base' });
 
     }
 
