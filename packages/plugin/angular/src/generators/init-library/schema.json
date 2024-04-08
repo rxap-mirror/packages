@@ -4,8 +4,10 @@
   "title": "",
   "type": "object",
   "properties": {
+    "project": {
+      "type": "string"
+    },
     "projects": {
-      "alias": "project",
       "type": "array",
       "items": {
         "type": "string"
@@ -25,6 +27,11 @@
       "type": "boolean",
       "default": true,
       "description": "Whether to add the index-export target to the library"
+    },
+    "coerce": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to create the library project if not exist"
     }
   },
   "required": []

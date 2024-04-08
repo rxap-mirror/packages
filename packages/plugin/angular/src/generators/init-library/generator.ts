@@ -1,3 +1,5 @@
+import { libraryGenerator as angularLibraryGenerator } from '@nx/angular/generators';
+import { Schema as AngularLibraryGeneratorSchema } from '@nx/angular/src/generators/library/schema';
 import {
   getProjects,
   ProjectConfiguration,
@@ -13,6 +15,7 @@ import {
   LibraryInitWorkspace,
 } from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   Assets,
   CoerceAssets,
@@ -24,6 +27,7 @@ import {
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
   DeleteRecursive,
+  HasProject,
   IsBuildable,
   IsPublishable,
   IsRxapRepository,
@@ -343,15 +347,48 @@ async function updateTsConfig(tree: Tree, project: ProjectConfiguration, options
 
 }
 
+async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
+
+  const nxJson = readNxJson(tree);
+  const defaultOptions: Partial<AngularLibraryGeneratorSchema> = nxJson?.generators?.['@nx/angular:library'] ?? {};
+  const tags = (defaultOptions.tags ?? '').split(',').map(tag => tag.trim());
+  tags.push('angular');
+  for (const projectName of options.projects ?? []) {
+
+    if (!HasProject(tree, projectName)) {
+
+      const schema: AngularLibraryGeneratorSchema = {
+        ...defaultOptions,
+        name: projectName,
+        tags: tags.join(','),
+      };
+
+      await angularLibraryGenerator(tree, schema);
+
+    }
+
+  }
+
+}
+
 export async function initLibraryGenerator(
   tree: Tree,
   options: InitLibraryGeneratorSchema,
 ) {
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('angular library init generator:', options);
 
   LibraryInitWorkspace(tree, options);
 
   setGeneralTargetDefaults(tree);
+
+  if (options.coerce) {
+    await coerceProjects(tree, options);
+  }
 
   const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
 
