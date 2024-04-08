@@ -16,7 +16,8 @@
         "main": "packages/nest/firebase/src/index.ts",
         "assets": [
           "packages/nest/firebase/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "check-version": {

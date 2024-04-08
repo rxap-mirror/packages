@@ -18,7 +18,8 @@
       ],
       "options": {
         "project": "packages/angular/layout/ng-package.json",
-        "tailwindConfig": "packages/angular/layout/tailwind.config.js"
+        "tailwindConfig": "packages/angular/layout/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

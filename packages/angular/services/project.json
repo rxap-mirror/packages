@@ -19,7 +19,8 @@
       ],
       "options": {
         "project": "packages/angular/services/ng-package.json",
-        "tailwindConfig": "packages/angular/services/tailwind.config.js"
+        "tailwindConfig": "packages/angular/services/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

@@ -15,7 +15,8 @@
         "tsConfig": "packages/workspace/ts-morph/tsconfig.lib.json",
         "assets": [
           "packages/workspace/ts-morph/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

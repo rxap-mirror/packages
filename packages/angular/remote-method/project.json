@@ -18,7 +18,8 @@
       ],
       "options": {
         "project": "packages/angular/remote-method/ng-package.json",
-        "tailwindConfig": "packages/angular/remote-method/tailwind.config.js"
+        "tailwindConfig": "packages/angular/remote-method/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

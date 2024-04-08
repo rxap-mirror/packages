@@ -15,7 +15,8 @@
         "tsConfig": "packages/workspace/open-api/tsconfig.lib.json",
         "assets": [
           "packages/workspace/open-api/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

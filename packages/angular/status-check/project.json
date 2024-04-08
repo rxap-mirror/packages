@@ -29,7 +29,8 @@
       ],
       "options": {
         "project": "packages/angular/status-check/ng-package.json",
-        "tailwindConfig": "packages/angular/status-check/tailwind.config.js"
+        "tailwindConfig": "packages/angular/status-check/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

@@ -16,7 +16,8 @@
         "main": "packages/nest/supabase/src/index.ts",
         "assets": [
           "packages/nest/supabase/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "publish": {

@@ -16,7 +16,8 @@
         "main": "packages/nest/logger/src/index.ts",
         "assets": [
           "packages/nest/logger/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "check-version": {

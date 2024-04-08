@@ -91,7 +91,7 @@
         }
       ],
       "outputs": [
-        "dist/**/build.json"
+        "{projectRoot}/dist/**/build.json"
       ]
     },
     "docker-compose": {

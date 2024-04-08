@@ -19,7 +19,8 @@
       ],
       "options": {
         "project": "packages/angular/handlebars/ng-package.json",
-        "tailwindConfig": "packages/angular/handlebars/tailwind.config.js"
+        "tailwindConfig": "packages/angular/handlebars/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

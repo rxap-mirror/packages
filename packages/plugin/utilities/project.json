@@ -16,7 +16,8 @@
         "tsConfig": "packages/plugin/utilities/tsconfig.lib.json",
         "assets": [
           "packages/plugin/utilities/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "check-version": {
@@ -59,7 +60,7 @@
     "typedoc": {
       "executor": "@enio.ai/typedoc:typedoc",
       "outputs": [
-        "docs/packages/plugin/utilities"
+        "{workspaceRoot}/docs/packages/plugin/utilities"
       ],
       "options": {
         "options": "typedoc.json"

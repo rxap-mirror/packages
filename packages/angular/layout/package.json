@@ -6,13 +6,13 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/animations": "^16.1.4",
-    "@angular/cdk": "^16.1.4",
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@angular/forms": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "@angular/router": "^16.1.4",
+    "@angular/animations": "^16.2.12",
+    "@angular/cdk": "^16.2.14",
+    "@angular/common": "^16.2.12",
+    "@angular/core": "^16.2.12",
+    "@angular/forms": "^16.2.12",
+    "@angular/material": "^16.2.14",
+    "@angular/router": "^16.2.12",
     "@rxap/authentication": "^16.0.1-dev.0",
     "@rxap/authorization": "^16.0.1-dev.2",
     "@rxap/browser-utilities": "^1.0.2-dev.0",
@@ -20,15 +20,15 @@
     "@rxap/data-source": "^16.1.0-dev.5",
     "@rxap/directives": "^16.0.1-dev.1",
     "@rxap/environment": "^16.0.1-dev.0",
-    "@rxap/icon": "^16.0.1-dev.1",
-    "@rxap/material-directives": "^16.1.0-dev.2",
+    "@rxap/icon": "^16.1.0-dev.0",
+    "@rxap/material-directives": "^16.1.0-dev.3",
     "@rxap/ngx-changelog": "^16.1.1-dev.0",
     "@rxap/ngx-localize": "^16.1.1-dev.0",
     "@rxap/ngx-status-check": "^16.1.1-dev.0",
     "@rxap/ngx-theme": "^16.1.1-dev.0",
     "@rxap/ngx-user": "^16.1.1-dev.1",
     "@rxap/services": "^16.0.1-dev.2",
-    "@rxap/utilities": "^16.1.0-dev.7",
+    "@rxap/utilities": "^16.1.0-dev.8",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -82,11 +82,11 @@
       },
       {
         "package": "@rxap/icon",
-        "version": "16.0.1-dev.1"
+        "version": "16.1.0-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.1.0-dev.2"
+        "version": "16.1.0-dev.3"
       },
       {
         "package": "@rxap/ngx-changelog",
@@ -118,7 +118,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0-dev.7"
+        "version": "16.1.0-dev.8"
       }
     ]
   },

@@ -17,7 +17,8 @@
         "main": "packages/nest/testing/src/index.ts",
         "assets": [
           "packages/nest/testing/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "publish": {

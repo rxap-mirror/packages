@@ -15,7 +15,8 @@
         "tsConfig": "packages/mixin/tsconfig.lib.json",
         "assets": [
           "packages/mixin/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

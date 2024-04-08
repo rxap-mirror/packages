@@ -16,7 +16,8 @@
         "main": "packages/nest/utilities/src/index.ts",
         "assets": [
           "packages/nest/utilities/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "check-version": {

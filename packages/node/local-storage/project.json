@@ -16,7 +16,8 @@
         "tsConfig": "packages/node/local-storage/tsconfig.lib.json",
         "assets": [
           "packages/node/local-storage/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "publish": {

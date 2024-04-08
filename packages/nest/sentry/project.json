@@ -17,7 +17,8 @@
         "main": "packages/nest/sentry/src/index.ts",
         "assets": [
           "packages/nest/sentry/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "check-version": {

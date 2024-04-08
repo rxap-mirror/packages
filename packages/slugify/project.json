@@ -15,7 +15,8 @@
         "tsConfig": "packages/slugify/tsconfig.lib.json",
         "assets": [
           "packages/slugify/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

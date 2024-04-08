@@ -15,7 +15,8 @@
         "tsConfig": "packages/validator/tsconfig.lib.json",
         "assets": [
           "packages/validator/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

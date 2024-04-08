@@ -15,7 +15,8 @@
         "tsConfig": "packages/json-schema-to-typescript/tsconfig.lib.json",
         "assets": [
           "packages/json-schema-to-typescript/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

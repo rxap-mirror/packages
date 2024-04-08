@@ -15,7 +15,8 @@
         "tsConfig": "packages/schematic/utilities/tsconfig.lib.json",
         "assets": [
           "packages/schematic/utilities/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

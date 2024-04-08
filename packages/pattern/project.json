@@ -16,7 +16,8 @@
         "tsConfig": "packages/pattern/tsconfig.lib.json",
         "assets": [
           "packages/pattern/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

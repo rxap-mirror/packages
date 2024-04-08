@@ -15,7 +15,8 @@
         "tsConfig": "packages/reflect-metadata/tsconfig.lib.json",
         "assets": [
           "packages/reflect-metadata/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

@@ -15,7 +15,8 @@
         "tsConfig": "packages/rxjs/tsconfig.lib.json",
         "assets": [
           "packages/rxjs/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

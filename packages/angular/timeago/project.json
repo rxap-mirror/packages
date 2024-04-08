@@ -19,7 +19,8 @@
       ],
       "options": {
         "project": "packages/angular/timeago/ng-package.json",
-        "tailwindConfig": "packages/angular/timeago/tailwind.config.js"
+        "tailwindConfig": "packages/angular/timeago/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

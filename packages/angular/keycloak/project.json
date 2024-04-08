@@ -20,7 +20,8 @@
       ],
       "options": {
         "project": "packages/angular/keycloak/ng-package.json",
-        "tailwindConfig": "packages/angular/keycloak/tailwind.config.js"
+        "tailwindConfig": "packages/angular/keycloak/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

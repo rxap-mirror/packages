@@ -194,7 +194,7 @@
     "deploy": {
       "executor": "@rxap/plugin-web3-storage:deploy",
       "outputs": [
-        "dist/{projectRoot}/ipfs-cid.txt"
+        "{workspaceRoot}/dist/{projectRoot}/ipfs-cid.txt"
       ]
     },
     "i18n-index-html": {}

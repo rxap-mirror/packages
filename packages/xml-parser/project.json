@@ -16,7 +16,8 @@
         "tsConfig": "packages/xml-parser/tsconfig.lib.json",
         "assets": [
           "packages/xml-parser/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

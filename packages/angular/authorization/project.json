@@ -19,7 +19,8 @@
       ],
       "options": {
         "project": "packages/angular/authorization/ng-package.json",
-        "tailwindConfig": "packages/angular/authorization/tailwind.config.js"
+        "tailwindConfig": "packages/angular/authorization/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

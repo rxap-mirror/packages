@@ -18,7 +18,8 @@
       ],
       "options": {
         "project": "packages/angular/sentry/ng-package.json",
-        "tailwindConfig": "packages/angular/sentry/tailwind.config.js"
+        "tailwindConfig": "packages/angular/sentry/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

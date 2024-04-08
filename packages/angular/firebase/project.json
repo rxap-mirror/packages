@@ -18,7 +18,8 @@
       ],
       "options": {
         "project": "packages/angular/firebase/ng-package.json",
-        "tailwindConfig": "packages/angular/firebase/tailwind.config.js"
+        "tailwindConfig": "packages/angular/firebase/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

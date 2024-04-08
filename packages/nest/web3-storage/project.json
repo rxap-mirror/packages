@@ -16,7 +16,8 @@
         "main": "packages/nest/web3-storage/src/index.ts",
         "assets": [
           "packages/nest/web3-storage/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "publish": {

@@ -6,7 +6,7 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/config": "^16.0.1-dev.0",
+    "@rxap/config": "^16.0.1-dev.1",
     "@rxap/environment": "^16.0.1-dev.0",
     "@sentry/angular-ivy": "^7.60.1",
     "@sentry/browser": "^7.60.1",
@@ -35,7 +35,7 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.1-dev.0"
+        "version": "16.0.1-dev.1"
       },
       {
         "package": "@rxap/environment",

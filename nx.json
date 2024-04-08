@@ -491,7 +491,7 @@
       ],
       "executor": "@rxap/plugin-application:i18n",
       "outputs": [
-        "dist/{projectRoot}/index.html"
+        "{workspaceRoot}/dist/{projectRoot}/index.html"
       ],
       "inputs": [
         "{workspaceRoot}/{projectRoot}/project.json"

@@ -18,7 +18,8 @@
       ],
       "options": {
         "project": "packages/angular/form-window-system/ng-package.json",
-        "tailwindConfig": "packages/angular/form-window-system/tailwind.config.js"
+        "tailwindConfig": "packages/angular/form-window-system/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

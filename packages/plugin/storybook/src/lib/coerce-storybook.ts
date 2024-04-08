@@ -24,7 +24,6 @@ export async function coerceStorybook(
     name: projectName,
   };
 
-  storybookOptions.configureTestRunner ??= true;
   storybookOptions.configureCypress ??= false;
   storybookOptions.generateCypressSpecs ??= false;
   storybookOptions.generateStories ??= true;

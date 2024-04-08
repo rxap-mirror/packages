@@ -7,11 +7,11 @@
     "yaml": "2.3.1"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.5.0",
+    "@nx/devkit": "^16.10.0",
     "@rxap/node-utilities": "^1.2.0-dev.1",
-    "@rxap/plugin-utilities": "^16.1.1-dev.4",
+    "@rxap/plugin-utilities": "^16.2.0-dev.0",
     "@rxap/utilities": "^16.1.0-dev.8",
-    "@rxap/workspace-utilities": "^16.1.0-dev.6",
+    "@rxap/workspace-utilities": "^16.1.0-dev.9",
     "tslib": "2.6.2"
   },
   "author": {
@@ -46,7 +46,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.1-dev.4"
+        "version": "16.2.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -54,7 +54,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.6"
+        "version": "16.1.0-dev.9"
       }
     ]
   },

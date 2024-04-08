@@ -6,9 +6,9 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nx/angular": "^16.5.0",
-    "@nx/devkit": "^16.5.0",
-    "@nx/linter": "^16.5.0",
+    "@nx/angular": "^16.10.0",
+    "@nx/devkit": "^16.10.0",
+    "@nx/linter": "^16.10.0",
     "@rxap/ts-morph": "^1.1.0-dev.25",
     "@rxap/utilities": "^16.1.0-dev.8",
     "@rxap/workspace-ts-morph": "^16.1.0-dev.0",

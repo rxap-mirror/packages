@@ -16,7 +16,8 @@
         "tsConfig": "packages/node/utilities/tsconfig.lib.json",
         "assets": [
           "packages/node/utilities/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {
@@ -54,7 +55,7 @@
     "typedoc": {
       "executor": "@enio.ai/typedoc:typedoc",
       "outputs": [
-        "docs/packages/node/utilities"
+        "{workspaceRoot}/docs/packages/node/utilities"
       ],
       "options": {
         "options": "typedoc.json"

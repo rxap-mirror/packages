@@ -15,7 +15,8 @@
         "tsConfig": "packages/workspace/cypress/tsconfig.lib.json",
         "assets": [
           "packages/workspace/cypress/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "publish": {

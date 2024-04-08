@@ -17,7 +17,8 @@
         "main": "packages/nest/dto/src/index.ts",
         "assets": [
           "packages/nest/dto/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "publish": {

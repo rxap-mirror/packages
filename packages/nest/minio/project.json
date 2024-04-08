@@ -16,7 +16,8 @@
         "main": "packages/nest/minio/src/index.ts",
         "assets": [
           "packages/nest/minio/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "check-version": {

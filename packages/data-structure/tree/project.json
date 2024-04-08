@@ -15,7 +15,8 @@
         "tsConfig": "packages/data-structure/tree/tsconfig.lib.json",
         "assets": [
           "packages/data-structure/tree/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "fix-dependencies": {

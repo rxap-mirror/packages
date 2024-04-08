@@ -16,7 +16,8 @@
         "main": "packages/nest/socket-io-client/src/index.ts",
         "assets": [
           "packages/nest/socket-io-client/*.md"
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "check-version": {

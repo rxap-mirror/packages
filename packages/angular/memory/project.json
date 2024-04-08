@@ -20,7 +20,8 @@
       ],
       "options": {
         "project": "packages/angular/memory/ng-package.json",
-        "tailwindConfig": "packages/angular/memory/tailwind.config.js"
+        "tailwindConfig": "packages/angular/memory/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

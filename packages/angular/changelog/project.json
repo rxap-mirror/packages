@@ -30,7 +30,8 @@
       ],
       "options": {
         "project": "packages/angular/changelog/ng-package.json",
-        "tailwindConfig": "packages/angular/changelog/tailwind.config.js"
+        "tailwindConfig": "packages/angular/changelog/tailwind.config.js",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {
