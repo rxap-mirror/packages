@@ -94,9 +94,6 @@ function createServiceDockerCompose(
     ) => {
       services[name] = {
         image: buildImageName(docker, rootDocker),
-        labels: [
-          'traefik.enable=true',
-        ],
         environment: [
           ...options.serviceEnvironments ?? [],
           'STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000',
@@ -121,6 +118,7 @@ function createServiceDockerCompose(
 function createFrontendDockerCompose(
   services: Array<{ name: string; docker: Record<string, string> }>,
   rootDocker: RootDockerOptions,
+  options: DockerComposeGeneratorSchema,
 ): string {
   return stringify({
     version: '3.8',
@@ -131,13 +129,16 @@ function createFrontendDockerCompose(
         docker,
       },
     ) => {
+      const host = buildSubDomainForService(name, docker);
+      const labels = [
+        `traefik.http.routers.${ name }.rule=Host(\`${host}\${DOT:-.}\${ROOT_DOMAIN}\`)`,
+      ];
+      if (options.middlewares?.length) {
+        labels.push(`traefik.http.routers.${ name }.middlewares=${options.middlewares.join(',')}`);
+      }
       services[name] = {
         image: buildImageName(docker, rootDocker),
-        labels: [
-          'traefik.enable=true',
-          `traefik.http.routers.${ name }.rule=Host(\`${ buildSubDomainForService(
-            name, docker) }\${DOT:-.}\${ROOT_DOMAIN}\`)`,
-        ],
+        labels,
         env_file: [ '.env' ],
         depends_on: [
           'traefik',
@@ -154,6 +155,7 @@ function createFrontendDockerCompose(
 function createDevServiceTraefikConfig(
   services: Array<{ name: string; docker: Record<string, string> }>,
   host: Tree,
+  options: DockerComposeGeneratorSchema,
 ): string {
   return stringify({
     http: {
@@ -164,6 +166,9 @@ function createDevServiceTraefikConfig(
           service: name,
           entryPoints: 'https',
         };
+        if (options.middlewares?.length) {
+          routers[name]['middlewares'] = options.middlewares;
+        }
         return routers;
       }, {} as Record<string, any>),
       services: services.reduce((services, { name }) => {
@@ -450,6 +455,7 @@ export async function dockerComposeGenerator(
   tree: Tree,
   options: DockerComposeGeneratorSchema,
 ) {
+  options.middlewares ??= [];
 
   const applications = getApplications(tree, options);
   const serviceApplications = getServiceApplications(applications, options);
@@ -458,8 +464,8 @@ export async function dockerComposeGenerator(
 
   const rootDocker = GetRootDockerOptions(tree);
   const serviceDockerCompose = createServiceDockerCompose(serviceApplications, rootDocker, options);
-  const frontendDockerCompose = createFrontendDockerCompose(frontendApplications, rootDocker);
-  const localServiceTraefikConfig = createDevServiceTraefikConfig(serviceApplications, tree);
+  const frontendDockerCompose = createFrontendDockerCompose(frontendApplications, rootDocker, options);
+  const localServiceTraefikConfig = createDevServiceTraefikConfig(serviceApplications, tree, options);
   let traefikConfig = createTraefikConfig(rootDomain, frontendApplications, tree);
   const traefikConfigPath = 'docker/traefik/traefik.yml';
   if (!tree.exists(traefikConfigPath)) {

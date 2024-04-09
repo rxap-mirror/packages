@@ -31,6 +31,14 @@
     "rootDomain": {
       "type": "string",
       "description": "The root domain to be used in docker compose service"
+    },
+    "middlewares": {
+      "alias": "middleware",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The traefik middlewares to be add to each service"
     }
   },
   "required": []
