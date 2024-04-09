@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.9...@rxap/plugin-angular@16.2.0-dev.10) (2024-04-09)
+
+### Bug Fixes
+
+- add mfe defaults ([36cb0dc](https://gitlab.com/rxap/packages/commit/36cb0dc08d90e352070d23ebaf71f1a41e11e3a9))
+
+### Features
+
+- cleanup module federation application ([f04eac3](https://gitlab.com/rxap/packages/commit/f04eac34f463908b4d7670e6ab50f5989e41d495))
+
 # [16.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.8...@rxap/plugin-angular@16.2.0-dev.9) (2024-04-09)
 
 ### Features
