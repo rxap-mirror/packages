@@ -46,6 +46,7 @@ export * from './lib/angular/coerce-routes';
 export * from './lib/angular/find-parent-route';
 export * from './lib/angular/get-component-class';
 export * from './lib/angular/get-component-decorator-object';
+export * from './lib/angular/remove-route';
 // endregion
 
 // region 
