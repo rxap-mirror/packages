@@ -1,5 +1,7 @@
-import { setRemoteDefinitions } from '@nx/angular/mf';
-import { setRemoteUrlResolver } from '@nx/angular/mf/mf';
+import {
+  setRemoteDefinitions,
+  setRemoteUrlResolver,
+} from '@nx/angular/mf';
 import {
   DetermineReleaseName,
   Environment,
