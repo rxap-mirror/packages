@@ -44,6 +44,10 @@ export interface Environment {
     name?: string;
   };
 
+  moduleFederation?: {
+    manifest?: string | Record<string, string>;
+  }
+
   sentry?: {
     enabled?: boolean,
     debug?: boolean,

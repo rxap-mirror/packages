@@ -435,7 +435,7 @@ function updateMainFile(tree: Tree, projectName: string, project: ProjectConfigu
   TsMorphAngularProjectTransform(tree, {
     project: projectName,
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
-  }, (project, [ sourceFile ]) => {
+  }, (project, [ sourceFile, mainSourceFile ]) => {
 
     assertMainStatements(sourceFile);
 
@@ -491,10 +491,22 @@ function updateMainFile(tree: Tree, projectName: string, project: ProjectConfigu
       }
     }
 
-  }, [ 'main.ts' ]);
+    if (options.moduleFederation) {
+      mainSourceFile.set({
+        statements: [
+          'import { SetupDynamicMfe } from \'@rxap/ngx-bootstrap\';',
+          'SetupDynamicMfe(environment).then(() => import(\'./bootstrap\').catch((err) => console.error(err)));',
+        ]
+      });
+    }
+
+  }, [
+    options.moduleFederation ? 'bootstrap.ts' : 'main.ts',
+    'main.ts'
+  ]);
 }
 
-function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: boolean, overwrite: boolean }) {
+function coerceEnvironmentFiles(tree: Tree, options: InitApplicationGeneratorSchema & { project: string }) {
 
   TsMorphAngularProjectTransform(
     tree,
@@ -526,10 +538,20 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: 
         });
       }
 
+      if (options.moduleFederation === 'host') {
+        baseEnvironment['moduleFederation'] = Writers.object({
+          manifest: w => w.quote('/assets/module-federation.manifest.json'),
+        });
+      }
+
       const normal = CoerceVariableDeclaration(sourceFile, 'environment', {
         type: 'Environment',
         initializer: Writers.object(baseEnvironment),
       });
+
+      if (options.moduleFederation === 'host') {
+        delete baseEnvironment['moduleFederation'];
+      }
 
       if (options.overwrite) {
         normal.set({ initializer: Writers.object(baseEnvironment) });
@@ -604,6 +626,7 @@ export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
 ) {
+  options.moduleFederation ??= undefined;
   options.sentry ??= true;
   options.openApi ??= false;
   options.config ??= true;
@@ -624,6 +647,12 @@ export async function initApplicationGenerator(
   options.projects ??= [];
   if (options.project) {
     CoerceArrayItems(options.projects, [options.project]);
+  }
+  if (options.moduleFederation === 'remote') {
+    options.authentication = false;
+    options.oauth = false;
+    options.authentik = false;
+    options.serviceWorker = false;
   }
   console.log('angular application init generator:', options);
 
@@ -777,9 +806,8 @@ export async function initApplicationGenerator(
       coerceEnvironmentFiles(
         tree,
         {
+          ...options,
           project: projectName,
-          sentry: options.sentry,
-          overwrite: options.overwrite,
         },
       );
       TsMorphAngularProjectTransform(tree, {

@@ -13,6 +13,11 @@
         "type": "string"
       }
     },
+    "moduleFederation": {
+      "alias": "mfe",
+      "type": "string",
+      "enum": ["host", "remote"]
+    },
     "deploy": {
       "type": "string",
       "description": "Add target to deploy to after build",
