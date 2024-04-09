@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.8...@rxap/plugin-angular@16.2.0-dev.9) (2024-04-09)
+
+### Features
+
+- support module federation ([ae6aaa7](https://gitlab.com/rxap/packages/commit/ae6aaa734d95001c1b469c06fcfbe5e5ad01ee5c))
+
 # [16.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.7...@rxap/plugin-angular@16.2.0-dev.8) (2024-04-09)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-bootstrap@16.1.1-dev.1...@rxap/ngx-bootstrap@16.2.0-dev.0) (2024-04-09)
+
+### Features
+
+- support module federation ([ae6aaa7](https://gitlab.com/rxap/packages/commit/ae6aaa734d95001c1b469c06fcfbe5e5ad01ee5c))
+
 ## [16.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-bootstrap@16.1.1-dev.0...@rxap/ngx-bootstrap@16.1.1-dev.1) (2024-04-09)
 
 **Note:** Version bump only for package @rxap/ngx-bootstrap

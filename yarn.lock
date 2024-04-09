@@ -10891,8 +10891,9 @@ __metadata:
     "@angular/core": ^16.2.12
     "@angular/platform-browser": ^16.2.12
     "@angular/platform-browser-dynamic": ^16.2.12
+    "@nx/angular": ^16.10.0
     "@rxap/config": ^16.0.1-dev.2
-    "@rxap/environment": ^16.0.1-dev.1
+    "@rxap/environment": ^16.1.0-dev.0
     ngx-logger: ^5.0.12
     tslib: 2.6.2
   languageName: unknown
@@ -11426,7 +11427,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.10.0
     "@rxap/plugin-utilities": ^16.2.0-dev.1
-    "@rxap/utilities": ^16.1.0-dev.8
+    "@rxap/utilities": ^16.1.0-dev.9
     "@rxap/workspace-utilities": ^16.1.0-dev.10
     tslib: 2.6.2
   languageName: unknown

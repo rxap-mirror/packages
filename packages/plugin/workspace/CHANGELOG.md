@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.9...@rxap/plugin-workspace@16.2.0-dev.10) (2024-04-09)
+
+### Features
+
+- add the traefik middleware option ([c3dce9d](https://gitlab.com/rxap/packages/commit/c3dce9d5417d8d71f8c72fe60b83ecef402c09cb))
+
 # [16.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.8...@rxap/plugin-workspace@16.2.0-dev.9) (2024-04-09)
 
 **Note:** Version bump only for package @rxap/plugin-workspace
