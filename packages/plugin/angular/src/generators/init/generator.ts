@@ -36,7 +36,11 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       'pipes',
       'directives',
       'guards',
-      'services'
+      'services',
+      'application-providers',
+      'testing',
+      'resolvers',
+      'http-interceptors',
     ],
     coerce: {
       directory: 'angular'
