@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.7...@rxap/plugin-angular@16.2.0-dev.8) (2024-04-09)
+
+### Bug Fixes
+
+- add more utility projects ([12513aa](https://gitlab.com/rxap/packages/commit/12513aa57daed2473ce9743c0defd76b1b2a444d))
+- only change the import path if no index export ([5b45695](https://gitlab.com/rxap/packages/commit/5b456955f00a9e86355a80326eff0343ed31f4df))
+
 # [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.6...@rxap/plugin-angular@16.2.0-dev.7) (2024-04-09)
 
 ### Bug Fixes

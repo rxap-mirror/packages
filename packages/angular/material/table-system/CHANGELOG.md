@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.1-dev.6...@rxap/material-table-system@16.1.0-dev.0) (2024-04-09)
+
+### Features
+
+- add table column filter ([9e0e367](https://gitlab.com/rxap/packages/commit/9e0e36737d663c68856ab32c91693e238606b75a))
+
 ## [16.0.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.1-dev.5...@rxap/material-table-system@16.0.1-dev.6) (2024-04-09)
 
 **Note:** Version bump only for package @rxap/material-table-system

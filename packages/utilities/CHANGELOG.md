@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.1.0-dev.8...@rxap/utilities@16.1.0-dev.9) (2024-04-09)
+
+### Features
+
+- add PropertyPathIterator class ([e86aaa3](https://gitlab.com/rxap/packages/commit/e86aaa318f417f3053f80f4630e2aeb03c1343a8))
+
 # [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.1.0-dev.7...@rxap/utilities@16.1.0-dev.8) (2024-03-23)
 
 ### Features
