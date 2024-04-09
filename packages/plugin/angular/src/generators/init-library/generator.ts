@@ -415,14 +415,19 @@ async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
 
       await angularLibraryGenerator(tree, schema);
 
-      UpdateTsConfigJson(tree, tsConfig => {
-        tsConfig.compilerOptions ??= {};
-        tsConfig.compilerOptions.paths ??= {};
-        if (tsConfig.compilerOptions.paths[importPath]) {
-          delete tsConfig.compilerOptions.paths[importPath];
-        }
-        tsConfig.compilerOptions.paths[`${importPath}/*`] = [ `${GetProjectSourceRoot(tree, projectName)}/lib/*` ];
-      }, { infix: 'base' });
+      if (!options.indexExport) {
+        UpdateTsConfigJson(tree, tsConfig => {
+          tsConfig.compilerOptions ??= {};
+          tsConfig.compilerOptions.paths ??= {};
+          if (tsConfig.compilerOptions.paths[importPath]) {
+            delete tsConfig.compilerOptions.paths[importPath];
+          }
+          tsConfig.compilerOptions.paths[`${ importPath }/*`] = [
+            `${ GetProjectSourceRoot(
+              tree, projectName) }/lib/*`
+          ];
+        }, { infix: 'base' });
+      }
 
     }
 
