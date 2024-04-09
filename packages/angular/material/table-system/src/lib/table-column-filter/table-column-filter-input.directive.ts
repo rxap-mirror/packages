@@ -6,12 +6,12 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { RXAP_TABLE_FILTER } from '@rxap/material-table-system';
 import { Subscription } from 'rxjs';
 import {
   debounceTime,
   tap,
 } from 'rxjs/operators';
+import { RXAP_TABLE_FILTER } from '../table-data-source.directive';
 import { TableColumnFilterService } from './table-column-filter.service';
 
 // TODO : move to rxap packages

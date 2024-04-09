@@ -49,6 +49,11 @@ export * from './lib/table-column-menu/table-column-menu.component';
 export * from './lib/table-column-menu/table-column-menu.module';
 // endregion
 
+// region table-column-filter
+export * from './lib/table-column-filter/table-column-filter-input.directive';
+export * from './lib/table-column-filter/table-column-filter.service';
+// endregion
+
 // region select-row checkbox-header-cell
 export * from './lib/select-row/checkbox-header-cell/checkbox-header-cell.component';
 // endregion
