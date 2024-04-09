@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.1",
+  "version": "16.1.0-dev.2",
   "name": "@rxap/schematics-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@angular-devkit/schematics": "^16.2.13",
     "@nx/devkit": "^16.10.0",
     "@rxap/utilities": "^16.1.0-dev.8",
-    "@rxap/workspace-utilities": "^16.1.0-dev.9",
+    "@rxap/workspace-utilities": "^16.1.0-dev.10",
     "tslib": "2.6.2"
   },
   "author": {
@@ -41,7 +41,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.9"
+        "version": "16.1.0-dev.10"
       }
     ]
   },

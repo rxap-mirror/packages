@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.9...@rxap/workspace-utilities@16.1.0-dev.10) (2024-04-09)
+
+### Bug Fixes
+
+- set proprs ([1075c59](https://gitlab.com/rxap/packages/commit/1075c599fe83066813c4e9fc7d8703f6e885789f))
+
+### Features
+
+- add schematic serialize functions ([9abea76](https://gitlab.com/rxap/packages/commit/9abea76e1d1471c1955c3ad7d47d4c0f247464a1))
+
 # [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.8...@rxap/workspace-utilities@16.1.0-dev.9) (2024-04-07)
 
 ### Bug Fixes

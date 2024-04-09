@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.6...@rxap/plugin-angular@16.2.0-dev.7) (2024-04-09)
+
+### Bug Fixes
+
+- set default library options ([d74e30f](https://gitlab.com/rxap/packages/commit/d74e30fc50f8db81f7b223dd3d7ca5c2cea6b21b))
+- set proprs ([1075c59](https://gitlab.com/rxap/packages/commit/1075c599fe83066813c4e9fc7d8703f6e885789f))
+
+### Features
+
+- init the shared library projects ([f124752](https://gitlab.com/rxap/packages/commit/f1247525b5f593be33fed1cb52295e80cdbb7c25))
+- serialize the generator options ([e781286](https://gitlab.com/rxap/packages/commit/e78128606eaac8a0dd7168f568e9aa7a3fa710e8))
+- support coerce project ([cdc3404](https://gitlab.com/rxap/packages/commit/cdc34048fc47158aab3f9f575ac212c2a1718924))
+
 # [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.5...@rxap/plugin-angular@16.2.0-dev.6) (2024-04-07)
 
 ### Bug Fixes

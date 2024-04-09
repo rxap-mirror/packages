@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.11...@rxap/plugin-nestjs@16.2.0-dev.12) (2024-04-09)
+
+### Bug Fixes
+
+- only add the api prefix regex if api prefix is defined ([35d3510](https://gitlab.com/rxap/packages/commit/35d3510e20f8b0b95b5c0572cd7ddb7baa7a2d63))
+
+### Features
+
+- serialize the generator options ([e781286](https://gitlab.com/rxap/packages/commit/e78128606eaac8a0dd7168f568e9aa7a3fa710e8))
+
 # [16.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.10...@rxap/plugin-nestjs@16.2.0-dev.11) (2024-04-03)
 
 ### Bug Fixes

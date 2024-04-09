@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.10...@rxap/plugin-library@16.1.0-dev.11) (2024-04-09)
+
+### Features
+
+- serialize the generator options ([e781286](https://gitlab.com/rxap/packages/commit/e78128606eaac8a0dd7168f568e9aa7a3fa710e8))
+
 # [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.9...@rxap/plugin-library@16.1.0-dev.10) (2024-04-07)
 
 ### Bug Fixes
