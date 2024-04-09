@@ -22,6 +22,15 @@
           "*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
       }
+    },
+    {
+      "name": "mfe",
+      "installMode": "lazy",
+      "resources": {
+        "files": [
+          "__mfe/**"
+        ]
+      }
     }
   ],
   "dataGroups": [
@@ -45,6 +54,7 @@
     "!/**/*__*/**",
     "!/tunnel/**",
     "!/tunnel",
-    "!/api/**"
+    "!/api/**",
+    "!/__mfe/**"
   ]
 }
