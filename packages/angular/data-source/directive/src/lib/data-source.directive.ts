@@ -22,17 +22,18 @@ import {
   BaseDataSourceViewer,
   DataSourceLoader,
 } from '@rxap/data-source';
-import { Required } from '@rxap/utilities';
-import {
-  filter,
-  take,
-  tap,
-} from 'rxjs/operators';
+import { IdOrInstanceOrToken } from '@rxap/definition';
+import { noop } from '@rxap/utilities';
 import {
   Observable,
   Subscription,
 } from 'rxjs';
-import { IdOrInstanceOrToken } from '@rxap/definition';
+import {
+  distinctUntilChanged,
+  filter,
+  take,
+  tap,
+} from 'rxjs/operators';
 
 export interface DataSourceTemplateContext<Data> {
   $implicit: Data;
@@ -51,6 +52,19 @@ export interface DataSourceErrorTemplateContext {
 })
 export class DataSourceDirective<Data = any>
   implements OnDestroy, OnChanges, AfterViewInit {
+
+  /**
+   * Asserts the correct type of the context for the template that `NgForOf` will render.
+   *
+   * The presence of this method is a signal to the Ivy template type-check compiler that the
+   * `NgForOf` structural directive renders its template with a specific context type.
+   */
+  static ngTemplateContextGuard<T>(
+    dir: DataSourceDirective<T>,
+    ctx: any,
+  ): ctx is DataSourceTemplateContext<T> {
+    return true;
+  }
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input({
@@ -78,8 +92,8 @@ export class DataSourceDirective<Data = any>
    * @protected
    */
   protected readonly subscription = new Subscription();
-  protected embeddedViewRef?: EmbeddedViewRef<DataSourceTemplateContext<Data>>;
-  protected embeddedErrorViewRef?: EmbeddedViewRef<DataSourceErrorTemplateContext>;
+  protected embeddedViewRef: EmbeddedViewRef<DataSourceTemplateContext<Data>> | null = null;
+  protected embeddedErrorViewRef: EmbeddedViewRef<DataSourceErrorTemplateContext> | null = null;
   private _dataSourceLoadingSubscription: Subscription | null = null;
   private _dataSourceConnectionSubscription: Subscription | null = null;
 
@@ -93,19 +107,6 @@ export class DataSourceDirective<Data = any>
     private readonly zone: NgZone,
   ) {
     this.viewer = this;
-  }
-
-  /**
-   * Asserts the correct type of the context for the template that `NgForOf` will render.
-   *
-   * The presence of this method is a signal to the Ivy template type-check compiler that the
-   * `NgForOf` structural directive renders its template with a specific context type.
-   */
-  static ngTemplateContextGuard<T>(
-    dir: DataSourceDirective<T>,
-    ctx: any,
-  ): ctx is DataSourceTemplateContext<T> {
-    return true;
   }
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -139,11 +140,13 @@ export class DataSourceDirective<Data = any>
     const context = {
       $implicit: error,
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      refresh: this.dataSource?.refresh.bind(this.dataSource) ?? (() => {
-      }),
+      refresh: this.dataSource?.refresh.bind(this.dataSource) ?? noop,
     };
-    this.embeddedErrorViewRef?.destroy();
+
     this.embeddedViewRef?.destroy();
+    this.embeddedViewRef = null;
+
+    this.embeddedErrorViewRef?.destroy();
     this.embeddedErrorViewRef = this.viewContainerRef.createEmbeddedView(
       this.errorTemplate,
       context,
@@ -153,6 +156,7 @@ export class DataSourceDirective<Data = any>
 
   public embedTemplate(response: any) {
     this.embeddedErrorViewRef?.destroy();
+    this.embeddedErrorViewRef = null;
     const context = {
       $implicit: response,
       connection$: this.connection$,
@@ -201,41 +205,44 @@ export class DataSourceDirective<Data = any>
   protected connect() {
     if (this.dataSource) {
       this.dataSource.hasError$.pipe(
-        filter(Boolean),
+        distinctUntilChanged(),
         tap(hasError => {
           if (hasError) {
             this.embedErrorTemplate(null);
           } else {
             this.embeddedErrorViewRef?.destroy();
+            this.embeddedErrorViewRef = null;
           }
         }),
       ).subscribe();
       this.connection$ = this.dataSource.connect(this.viewer);
       this.zone.onStable
-          .pipe(
-            take(1),
-            tap(() => {
-              this.zone.run(() => {
-                this._dataSourceConnectionSubscription?.unsubscribe();
-                this._dataSourceConnectionSubscription = this.connection$
-                                                             .pipe(
-                                                               tap({
-                                                                 next: (response) => this.embedTemplate(response),
-                                                                 error: (error) => {
-                                                                   this.error.emit(error);
-                                                                   console.error(
-                                                                     `Connection failure in ${ this.dataSource!.constructor.name }: ${ error.message }`,
-                                                                     error,
-                                                                   );
-                                                                   this.embedErrorTemplate(error);
-                                                                 },
-                                                               }),
-                                                             )
-                                                             .subscribe();
-              });
-            }),
-          )
-          .subscribe();
+        .pipe(
+          take(1),
+          tap(() => {
+            this.zone.run(() => {
+              this._dataSourceConnectionSubscription?.unsubscribe();
+              this._dataSourceConnectionSubscription = this.connection$
+                .pipe(
+                  tap({
+                    next: (response) => {
+                      this.embedTemplate(response);
+                    },
+                    error: (error) => {
+                      this.error.emit(error);
+                      console.error(
+                        `Connection failure in ${ this.dataSource!.constructor.name }: ${ error.message }`,
+                        error,
+                      );
+                      this.embedErrorTemplate(error);
+                    },
+                  }),
+                )
+                .subscribe();
+            });
+          }),
+        )
+        .subscribe();
     }
   }
 
