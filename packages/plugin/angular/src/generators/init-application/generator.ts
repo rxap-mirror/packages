@@ -18,6 +18,7 @@ import {
   CoerceImports,
   CoerceVariableDeclaration,
   ProviderObject,
+  RemoveRoute,
 } from '@rxap/ts-morph';
 import {
   classify,
@@ -42,6 +43,7 @@ import {
   CoerceTargetDefaultsOutput,
   GenerateSerializedSchematicFile,
   GetProjectRoot,
+  GetProjectSourceRoot,
   SkipNonAngularProject,
   SkipNonApplicationProject,
   Strategy,
@@ -51,6 +53,7 @@ import { join } from 'path';
 import {
   SourceFile,
   Statement,
+  SyntaxKind,
   WriterFunction,
   Writers,
 } from 'ts-morph';
@@ -405,7 +408,9 @@ function assertMainStatements(sourceFile: SourceFile) {
   }
 }
 
-function cleanup(tree: Tree, projectSourceRoot: string) {
+function cleanup(tree: Tree, projectName: string) {
+
+  const sourceRoot = GetProjectSourceRoot(tree, projectName);
 
   const deleteFiles = [
     'app/app.component.spec.ts',
@@ -414,20 +419,35 @@ function cleanup(tree: Tree, projectSourceRoot: string) {
   ];
 
   for (const file of deleteFiles) {
-    if (tree.exists(join(projectSourceRoot, file))) {
-      tree.delete(join(projectSourceRoot, file));
+    if (tree.exists(join(sourceRoot, file))) {
+      tree.delete(join(sourceRoot, file));
     }
   }
 
-  let content = tree.read(join(projectSourceRoot, 'app/app.component.ts'), 'utf-8')!
-    .replace('title = \'domain-product\';', '')
-    .replace('import { NxWelcomeComponent } from \'./nx-welcome.component\';', '')
-    .replace('NxWelcomeComponent, ', '');
-  tree.write(join(projectSourceRoot, 'app/app.component.ts'), content);
+  const content = tree.read(join(sourceRoot, 'app/app.component.html'), 'utf-8')!
+    .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '')
+    .replace(/<ul class="remote-menu">[\s\S]*<\/ul>/, '');
+  tree.write(join(sourceRoot, 'app/app.component.html'), content);
 
-  content = tree.read(join(projectSourceRoot, 'app/app.component.html'), 'utf-8')!
-    .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '');
-  tree.write(join(projectSourceRoot, 'app/app.component.html'), content);
+  TsMorphAngularProjectTransform(tree, {
+    project: projectName,
+  }, (_, [ appRoutes, appComponent ]) => {
+    RemoveRoute(appRoutes, { component: 'NxWelcomeComponent', name: 'appRoutes' });
+    appRoutes.getImportDeclaration('./nx-welcome.component')?.remove();
+    appComponent.getClass('AppComponent')?.getProperty('title')?.remove();
+    appComponent.getImportDeclaration('./nx-welcome.component')?.remove();
+    const imports = appComponent.getClass('AppComponent')
+      ?.getDecorator('Component')
+      ?.getArguments()[0]
+      ?.asKindOrThrow(SyntaxKind.ObjectLiteralExpression)
+      .getProperty('imports')
+      ?.asKindOrThrow(SyntaxKind.PropertyAssignment)
+      .getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
+    const element = imports?.getElements().find(e => e.getText().includes('NxWelcomeComponent'));
+    if (element) {
+      imports?.removeElement(element);
+    }
+  }, [ 'app/app.routes.ts', 'app/app.component.ts' ]);
 
 }
 
@@ -495,6 +515,7 @@ function updateMainFile(tree: Tree, projectName: string, project: ProjectConfigu
       mainSourceFile.set({
         statements: [
           'import { SetupDynamicMfe } from \'@rxap/ngx-bootstrap\';',
+          'import { environment } from \'./environments/environment\';',
           'SetupDynamicMfe(environment).then(() => import(\'./bootstrap\').catch((err) => console.error(err)));',
         ]
       });
@@ -528,8 +549,13 @@ function coerceEnvironmentFiles(tree: Tree, options: InitApplicationGeneratorSch
         name: w => w.quote('development'),
         production: 'false',
         app: w => w.quote(options.project),
-        serviceWorker: 'false',
       };
+
+      // region dev environment
+
+      if (options.serviceWorker) {
+        baseEnvironment['serviceWorker'] = 'false';
+      }
 
       if (options.sentry) {
         baseEnvironment['sentry'] = Writers.object({
@@ -549,17 +575,21 @@ function coerceEnvironmentFiles(tree: Tree, options: InitApplicationGeneratorSch
         initializer: Writers.object(baseEnvironment),
       });
 
-      if (options.moduleFederation === 'host') {
-        delete baseEnvironment['moduleFederation'];
-      }
-
       if (options.overwrite) {
         normal.set({ initializer: Writers.object(baseEnvironment) });
       }
 
-      baseEnvironment['name'] = w => w.quote('production');
-      baseEnvironment['production'] = 'true';
-      baseEnvironment['serviceWorker'] = 'true';
+      // region
+
+      // region prod environment
+
+      if (options.moduleFederation === 'host') {
+        delete baseEnvironment['moduleFederation'];
+      }
+
+      if (options.serviceWorker) {
+        baseEnvironment['serviceWorker'] = 'true';
+      }
 
       if (options.sentry) {
         baseEnvironment['sentry'] = Writers.object({
@@ -567,6 +597,9 @@ function coerceEnvironmentFiles(tree: Tree, options: InitApplicationGeneratorSch
           debug: 'false',
         });
       }
+
+      baseEnvironment['name'] = w => w.quote('production');
+      baseEnvironment['production'] = 'true';
 
       const prod = CoerceVariableDeclaration(prodSourceFile, 'environment', {
         type: 'Environment',
@@ -576,6 +609,8 @@ function coerceEnvironmentFiles(tree: Tree, options: InitApplicationGeneratorSch
       if (options.overwrite) {
         prod.set({ initializer: Writers.object(baseEnvironment) });
       }
+
+      // endregion
 
     },
     [
@@ -645,6 +680,7 @@ export async function initApplicationGenerator(
   options.oauth = options.oauth || options.authentik;
   options.project ??= undefined;
   options.projects ??= [];
+  options.cleanup ??= true;
   if (options.project) {
     CoerceArrayItems(options.projects, [options.project]);
   }
@@ -797,12 +833,19 @@ export async function initApplicationGenerator(
 
       console.log(`init angular application project: ${ projectName }`);
 
+      const sourceRoot = GetProjectSourceRoot(tree, projectName);
+
       ApplicationInitProject(tree, projectName, project, options);
 
       updateProjectTargets(project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
       updateTsConfig(tree, projectName);
+
+      if (options.cleanup) {
+        cleanup(tree, projectName);
+      }
+
       coerceEnvironmentFiles(
         tree,
         {
@@ -810,6 +853,7 @@ export async function initApplicationGenerator(
           project: projectName,
         },
       );
+
       TsMorphAngularProjectTransform(tree, {
         project: projectName,
       }, (_, [ sourceFile ]) => {
@@ -931,12 +975,6 @@ export async function initApplicationGenerator(
       if (options.generateMain) {
         updateMainFile(tree, projectName, project, options);
       }
-      if (!project.sourceRoot) {
-        throw new Error(`Project source root not found for project ${ projectName }`);
-      }
-      if (options.cleanup) {
-        cleanup(tree, project.sourceRoot);
-      }
       if (options.localazy) {
         coerceLocalazyConfigFile(tree, project);
       }
@@ -947,8 +985,8 @@ export async function initApplicationGenerator(
         generateMonolithic(tree, projectName, project, options);
       }
       if (options.serviceWorker) {
-        if (options.overwrite || !tree.exists(join(project.sourceRoot, 'manifest.webmanifest'))) {
-          generateFiles(tree, join(__dirname, 'files', 'service-worker'), project.sourceRoot, {
+        if (options.overwrite || !tree.exists(join(sourceRoot, 'manifest.webmanifest'))) {
+          generateFiles(tree, join(__dirname, 'files', 'service-worker'), sourceRoot, {
             ...options,
             name: projectName.replace(/^user-interface-/, ''),
             classify,
@@ -956,9 +994,10 @@ export async function initApplicationGenerator(
           });
         }
       }
+
       CoerceFilesStructure(tree, {
         srcFolder: join(__dirname, 'files', 'assets'),
-        target: join(project.sourceRoot, 'assets'),
+        target: join(sourceRoot, 'assets'),
         overwrite: options.overwrite,
       });
 
