@@ -16,4 +16,5 @@ export interface NxJson {
     runner: string;
     options: Record<string, any>;
   }>;
+  generators?: Record<string, Record<string, unknown>>;
 }

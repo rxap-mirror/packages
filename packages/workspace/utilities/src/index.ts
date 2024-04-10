@@ -73,6 +73,7 @@ export * from './lib/coerce-project-tags';
 export * from './lib/delete-recursive';
 export * from './lib/generators';
 export * from './lib/get-build-output-for-project';
+export * from './lib/get-default-generator-options';
 export * from './lib/get-nx-version';
 export * from './lib/get-project';
 export * from './lib/get-root-docker-options';
