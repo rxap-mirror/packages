@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.10...@rxap/workspace-utilities@16.1.0-dev.11) (2024-04-10)
+
+### Bug Fixes
+
+- format json files ([59c8c59](https://gitlab.com/rxap/packages/commit/59c8c59bc129116e28a753cdb814033f19b49983))
+
+### Features
+
+- add GetDefaultGeneratorOptions function ([bbe3a05](https://gitlab.com/rxap/packages/commit/bbe3a050d1e7f8d7d4a0bae0f408273c66da4e92))
+
 # [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.9...@rxap/workspace-utilities@16.1.0-dev.10) (2024-04-09)
 
 ### Bug Fixes

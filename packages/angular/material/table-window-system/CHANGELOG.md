@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@16.0.1-dev.2...@rxap/material-table-window-system@16.0.1-dev.3) (2024-04-10)
+
+### Bug Fixes
+
+- add control null checks ([812658b](https://gitlab.com/rxap/packages/commit/812658b8039928cc605b5deaa41e0c89f3d0a958))
+
 ## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@16.0.1-dev.1...@rxap/material-table-window-system@16.0.1-dev.2) (2024-04-09)
 
 **Note:** Version bump only for package @rxap/material-table-window-system

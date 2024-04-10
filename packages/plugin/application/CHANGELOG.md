@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.6...@rxap/plugin-application@16.2.0-dev.7) (2024-04-10)
+
+### Bug Fixes
+
+- only write env setup script once ([741976d](https://gitlab.com/rxap/packages/commit/741976d295acfec27ffe31c4b426e6b5eb8ab1c3))
+- split coerce function ([35276dd](https://gitlab.com/rxap/packages/commit/35276dde7bc2506743c0beac064e266262fb7766))
+- use project name as image suffix ([68f6bb0](https://gitlab.com/rxap/packages/commit/68f6bb0aa12f2755ddc80da2f4a0dc41e26c7a07))
+
+### Features
+
+- add gitlab ci init generator ([d2a412d](https://gitlab.com/rxap/packages/commit/d2a412d1907921159467ba2c764327547db6534f))
+
 # [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.5...@rxap/plugin-application@16.2.0-dev.6) (2024-04-09)
 
 ### Features

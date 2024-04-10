@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.10...@rxap/plugin-angular@16.2.0-dev.11) (2024-04-10)
+
+### Bug Fixes
+
+- add default files ([6fda47c](https://gitlab.com/rxap/packages/commit/6fda47c4cced3c736cc417022c96aaec617e9c31))
+- add mfe remote dockerfile ([14214b0](https://gitlab.com/rxap/packages/commit/14214b0af43ebab65f1a44256a0dc07d8b5a7aa2))
+- cleanup tsconfig paths ([2b6bf97](https://gitlab.com/rxap/packages/commit/2b6bf97d267569e322cb4808d86ed260d7fdcd89))
+- only add localazy file if required ([9949bb2](https://gitlab.com/rxap/packages/commit/9949bb2b17cb976af449d85d3818b2773e47677c))
+- use inline setup ([ec4b29f](https://gitlab.com/rxap/packages/commit/ec4b29f06431f9f8ffc05c0d4828cfd2546c0e3f))
+- use utility function ([290ddbc](https://gitlab.com/rxap/packages/commit/290ddbcca380838c5e771ffe9f51e31a67e6ef1e))
+
+### Features
+
+- support coerce project ([c30defc](https://gitlab.com/rxap/packages/commit/c30defc08b09117d7b4b3931a372a1fd316d1b89))
+- support module federation for remote ([266db9d](https://gitlab.com/rxap/packages/commit/266db9df0a2e3a0b446e218eb0ae8682f497b17c))
+
 # [16.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.9...@rxap/plugin-angular@16.2.0-dev.10) (2024-04-09)
 
 ### Bug Fixes

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.26...@rxap/ts-morph@1.1.0-dev.27) (2024-04-10)
+
+### Bug Fixes
+
+- use regex to test text ([039d854](https://gitlab.com/rxap/packages/commit/039d854c60ab798444fc527bab13f865bfc274f4))
+
+### Features
+
+- support module federation ([814c393](https://gitlab.com/rxap/packages/commit/814c393c174b8baae969bec4f060eb8a58aaa316))
+
 # [1.1.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.25...@rxap/ts-morph@1.1.0-dev.26) (2024-04-09)
 
 ### Features
