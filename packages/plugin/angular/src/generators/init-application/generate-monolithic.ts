@@ -1,5 +1,4 @@
 import {
-  generateFiles,
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
@@ -8,13 +7,8 @@ import {
   CoerceAppRoutes,
   CoerceLayoutRoutes,
 } from '@rxap/ts-morph';
-import { classify } from '@rxap/utilities';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
-import { GetProjectPrefix } from '@rxap/workspace-utilities';
-import {
-  join,
-  relative,
-} from 'path';
+import { join } from 'path';
 import { InitApplicationGeneratorSchema } from './schema';
 
 export function generateMonolithic(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
@@ -45,15 +39,5 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
     });
     CoerceAppNavigation(navigationSourceFile, { overwrite: options.overwrite });
   }, [ 'app/app.routes.ts?', 'app/layout.routes.ts?', 'app/app.navigation.ts?' ]);
-
-  if (options.overwrite) {
-    generateFiles(tree, join(__dirname, 'files', 'monolithic'), project.sourceRoot, {
-      ...options,
-      relativePathToWorkspaceRoot: relative(project.sourceRoot, ''),
-      name: projectName.replace(/^user-interface-/, ''),
-      classify,
-      prefix: GetProjectPrefix(tree, projectName, 'rxap'),
-    });
-  }
 
 }

@@ -1,15 +1,13 @@
 import {
   applicationGenerator as angularApplicationGenerator,
+  E2eTestRunner,
   host as angularHostGenerator,
   remote as angularRemoteGenerator,
+  UnitTestRunner,
 } from '@nx/angular/generators';
 import { Schema as AngularApplicationGeneratorSchema } from '@nx/angular/src/generators/application/schema';
 import { Schema as AngularHostGeneratorSchema } from '@nx/angular/src/generators/host/schema';
 import { Schema as AngularRemoteGeneratorSchema } from '@nx/angular/src/generators/remote/schema';
-import {
-  E2eTestRunner,
-  UnitTestRunner,
-} from '@nx/angular/src/utils/test-runners';
 import { Tree } from '@nx/devkit';
 import { Linter } from '@nx/linter/src/generators/utils/linter';
 import {
@@ -45,7 +43,7 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
 
   let directory = 'user-interface';
   if (projectName.includes('-feature-')) {
-    directory += '/features';
+    directory += '/feature';
   }
   directory += `/${ projectName.replace('user-interface-', '').replace('feature-', '') }`;
 

@@ -471,6 +471,7 @@ function cleanup(tree: Tree, projectName: string, options: InitApplicationGenera
         name: 'appRoutes'
       });
       appRoutes.getImportDeclaration('./nx-welcome.component')?.remove();
+      appComponent.getClass('AppComponent')?.getProperty('title')?.remove();
       RemoveComponentImport(appComponent, 'NxWelcomeComponent');
     }, [ 'app/app.routes.ts', 'app/app.component.ts' ]);
 
@@ -775,6 +776,8 @@ function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApp
   const hostSourceRoot = GetProjectSourceRoot(tree, options.host);
   const isHostMonolithic = tree.exists(join(hostSourceRoot, 'app/layout.routes.ts'));
 
+  const path = projectName.replace('user-interface-', '').replace('feature-', '');
+
   if (isHostMonolithic) {
     TsMorphAngularProjectTransform(tree, {
       project: options.host,
@@ -783,7 +786,7 @@ function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApp
         itemList: [
           {
             route: {
-              path: projectName,
+              path,
               loadRemoteModule: projectName
             },
             path: ['']
@@ -799,7 +802,7 @@ function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApp
         itemList: [
           {
             route: {
-              path: projectName,
+              path,
               loadRemoteModule: projectName
             },
           },
@@ -953,6 +956,10 @@ export async function initApplicationGenerator(
     overwrite: options.overwrite,
   });
 
+  if (!tree.exists('shared/angular/assets/custom.svg')) {
+    tree.write('shared/angular/assets/custom.svg', '<svg></svg>');
+  }
+
   if (options.i18n) {
     let dockerfileContent = tree.read('shared/angular/Dockerfile', 'utf-8')!;
     dockerfileContent = dockerfileContent.replace('registry.gitlab.com/rxap/docker/nginx:', 'registry.gitlab.com/rxap/docker/i18n-nginx:');
@@ -997,6 +1004,16 @@ export async function initApplicationGenerator(
       const sourceRoot = GetProjectSourceRoot(tree, projectName);
 
       ApplicationInitProject(tree, projectName, project, options);
+
+      if (options.overwrite) {
+        generateFiles(tree, join(__dirname, 'files', 'root'), sourceRoot, {
+          ...options,
+          relativePathToWorkspaceRoot: relative(sourceRoot, ''),
+          name: projectName.replace(/^user-interface-/, ''),
+          classify,
+          prefix: GetProjectPrefix(tree, projectName, 'rxap'),
+        });
+      }
 
       updateProjectTargets(project, options);
       updateTags(project, options);
