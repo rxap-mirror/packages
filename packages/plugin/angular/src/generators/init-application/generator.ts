@@ -104,7 +104,7 @@ function updateProjectTargets(
 
   if (project.targets['docker']) {
     project.targets['docker'].options ??= {};
-    project.targets['docker'].options.dockerfile ??= 'shared/angular/Dockerfile';
+    project.targets['docker'].options.dockerfile ??= options.moduleFederation === 'remote' ? join(project.sourceRoot!, 'Dockerfile') : 'shared/angular/Dockerfile';
   }
 
   CoerceTarget(project, 'serve', {
