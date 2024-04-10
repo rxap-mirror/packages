@@ -9,10 +9,10 @@ import {
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
 import { stringify } from 'yaml';
-import { GitlabCiGeneratorSchema } from './schema';
+import { DockerGeneratorSchema } from './schema';
 import { skipProject } from './skip-project';
 
-const dotStartup = {
+const DOT_STARTUP = {
   image: 'curlimages/curl:8.3.0',
   stage: 'startup',
   needs: [
@@ -52,7 +52,7 @@ const dotStartup = {
   ],
   tags: [],
 };
-const startup = {
+const STARTUP = {
   extends: '.startup',
   variables: {} as Record<string, string>,
   parallel: {
@@ -62,9 +62,11 @@ const startup = {
 
 export function generateStartupGitlabCiFileContent(
   tree: Tree,
-  options: GitlabCiGeneratorSchema,
+  options: DockerGeneratorSchema,
   rootDocker: RootDockerOptions,
 ) {
+
+  const dotStartup = structuredClone(DOT_STARTUP);
 
   if (options.tags?.length) {
     dotStartup.tags = options.tags;
@@ -72,7 +74,7 @@ export function generateStartupGitlabCiFileContent(
 
   const startupYaml = {
     '.startup': dotStartup,
-    startup: startup,
+    startup: structuredClone(STARTUP),
   };
 
   if (options.gitlab !== false) {
@@ -84,7 +86,7 @@ export function generateStartupGitlabCiFileContent(
   }
 
   if (rootDocker.imageName) {
-    startup.variables.IMAGE_NAME = rootDocker.imageName;
+    startupYaml.startup.variables.IMAGE_NAME = rootDocker.imageName;
   }
 
   for (const [ projectName, project ] of

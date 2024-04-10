@@ -12,7 +12,7 @@ import {
   ApplicationInitProject,
   ApplicationInitWorkspace,
 } from '@rxap/plugin-application';
-import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
+import { GenerateGitlabCi } from '@rxap/plugin-gitlab-ci';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
 import {
   CoerceAppConfigProvider,
@@ -1231,7 +1231,7 @@ export async function initApplicationGenerator(
   if (options.localazy) {
     await LocalazyGitlabCiGenerator(tree, {});
   }
-  await DockerGitlabCiGenerator(tree, {});
+  GenerateGitlabCi(tree, {});
 
   if (!options.skipFormat) {
     await formatFiles(tree);

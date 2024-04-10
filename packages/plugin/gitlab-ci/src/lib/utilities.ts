@@ -1,0 +1,47 @@
+import {
+  existsSync,
+  readFileSync,
+} from 'fs';
+import { join } from 'path';
+
+export function processBuildArgs(
+  buildArgList: string[] = [],
+  projectName: string,
+  projectSourceRoot: string,
+  processEnv: Record<string, string> = process.env,
+  existsFileFn: (path: string) => boolean = existsSync,
+  readFileSyncFn: (path: string, encoding: BufferEncoding) => string = readFileSync,
+) {
+  const processedBuildArgList: string[] = [];
+  processedBuildArgList.push(`PROJECT_NAME=${ projectName }`);
+  processedBuildArgList.push(`RELEASE=${ processEnv['CI_COMMIT_REF_NAME'] ?? 'latest' }`);
+  for (const buildArg of buildArgList) {
+    if (buildArg.includes('=')) {
+      const [ key, ...values ] = buildArg.split('=');
+      let value = values.join('=');
+      if (value.startsWith('REGEX:')) {
+        const [ _, filePath, ...regexps ] = value.split(':');
+        const regex = regexps.join(':');
+        if (!filePath || !regex) {
+          throw new Error(`Invalid regex build arg value '${ value }'`);
+        }
+        if (!existsFileFn(join(projectSourceRoot, filePath))) {
+          throw new Error(`File '${ filePath }' does not exist in project source root '${ projectSourceRoot }'`);
+        }
+        const content = readFileSyncFn(join(projectSourceRoot, filePath), 'utf-8');
+        const match = content.match(new RegExp(regex));
+        if (!match) {
+          throw new Error(
+            `Could not find match for regex '${ regex }' in file '${ filePath }' in project source root '${ projectSourceRoot }'`);
+        }
+        value = match[1] ?? match[0];
+      }
+      processedBuildArgList.push(`${ key }=${ processEnv[value] ?? processEnv[value.replace(/^\$/, '')] ?? value }`);
+    } else if (processEnv[buildArg] || processEnv[buildArg.replace(/^\$/, '')]) {
+      processedBuildArgList.push(`${ buildArg }=${ processEnv[buildArg] ?? processEnv[buildArg.replace(/^\$/, '')] }`);
+    } else {
+      console.warn(`Build arg value for '${ buildArg }' is not defined`);
+    }
+  }
+  return processedBuildArgList;
+}

@@ -3,10 +3,10 @@ import {
   Tree,
 } from '@nx/devkit';
 import { IsApplicationProject } from '@rxap/workspace-utilities';
-import { GitlabCiGeneratorSchema } from './schema';
+import { DockerGeneratorSchema } from './schema';
 
 export function skipProject(
-  tree: Tree, options: GitlabCiGeneratorSchema, project: ProjectConfiguration, projectName: string) {
+  tree: Tree, options: DockerGeneratorSchema, project: ProjectConfiguration, projectName: string) {
 
   if (!IsApplicationProject(project)) {
     return true;

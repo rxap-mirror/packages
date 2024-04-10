@@ -14,10 +14,10 @@ import {
 } from '@rxap/workspace-utilities';
 import { stringify } from 'yaml';
 import { processBuildArgs } from '../../lib/utilities';
-import { GitlabCiGeneratorSchema } from './schema';
+import { DockerGeneratorSchema } from './schema';
 import { skipProject } from './skip-project';
 
-const dotDocker = {
+const DOT_DOCKER = {
   image: {
     name: 'registry.gitlab.com/rxap/gitlab-ci/kaniko:latest',
     entrypoint: [ '' ],
@@ -56,7 +56,7 @@ const dotDocker = {
   needs: [ 'run' ],
   tags: [],
 };
-const docker = {
+const DOCKER = {
   extends: '.docker',
   variables: {} as Record<string, string>,
   parallel: {
@@ -66,9 +66,11 @@ const docker = {
 
 export function generateDockerGitlabCiFileContent(
   tree: Tree,
-  options: GitlabCiGeneratorSchema,
+  options: DockerGeneratorSchema,
   rootDocker: RootDockerOptions,
 ): string {
+
+  const dotDocker = structuredClone(DOT_DOCKER);
 
   if (options.tags?.length) {
     dotDocker.tags = options.tags;
@@ -76,7 +78,7 @@ export function generateDockerGitlabCiFileContent(
 
   const dockerYaml = {
     '.docker': dotDocker,
-    docker: docker,
+    docker: structuredClone(DOCKER),
   };
 
   if (rootDocker.imageName) {

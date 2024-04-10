@@ -9,6 +9,11 @@
       "factory": "./src/generators/init/generator",
       "schema": "./src/generators/init/schema.json",
       "description": "init generator"
+    },
+    "docker": {
+      "factory": "./src/generators/docker/generator",
+      "schema": "./src/generators/docker/schema.json",
+      "description": "docker generator"
     }
   },
   "schematics": {
@@ -21,6 +26,11 @@
       "factory": "./src/generators/init/index",
       "schema": "./src/generators/init/schema.json",
       "description": "init generator"
+    },
+    "docker": {
+      "factory": "./src/generators/docker/index",
+      "schema": "./src/generators/docker/schema.json",
+      "description": "docker generator"
     }
   }
 }

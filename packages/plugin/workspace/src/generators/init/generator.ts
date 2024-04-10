@@ -172,14 +172,6 @@ function coerceWorkspaceProject(tree: Tree, options: InitGeneratorSchema) {
     });
   }
 
-  CoerceTarget(workspaceProject, 'docker-gitlab-ci', {
-    executor: '@rxap/plugin-library:run-generator',
-    options: {
-      generator: '@rxap/plugin-docker:gitlab-ci',
-      withoutProjectArgument: true,
-    },
-  });
-
   CoerceTarget(workspaceProject, 'init', {
     executor: '@rxap/plugin-library:run-generator',
     options: {

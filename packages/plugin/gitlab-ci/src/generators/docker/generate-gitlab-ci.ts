@@ -3,9 +3,9 @@ import { GetRootDockerOptions } from '@rxap/workspace-utilities';
 import { generateDockerGitlabCiFileContent } from './generate-docker-gitlab-ci-file-content';
 import { generateStartupGitlabCiFileContent } from './generate-startup-gitlab-ci-file-content';
 import { mergeYaml } from './merge-yaml';
-import { GitlabCiGeneratorSchema } from './schema';
+import { DockerGeneratorSchema } from './schema';
 
-export function generateGitlabCi(tree: Tree, options: GitlabCiGeneratorSchema) {
+export function GenerateGitlabCi(tree: Tree, options: DockerGeneratorSchema) {
 
   const rootDocker = GetRootDockerOptions(tree);
 

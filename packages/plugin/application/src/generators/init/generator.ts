@@ -5,7 +5,7 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
+import { GenerateGitlabCi } from '@rxap/plugin-gitlab-ci';
 import {
   CoerceArrayItems,
   DeleteProperties,
@@ -70,7 +70,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   }
 
-  await DockerGitlabCiGenerator(tree, {});
+  GenerateGitlabCi(tree, {});
 
   if (!options.skipFormat) {
     await formatFiles(tree);
