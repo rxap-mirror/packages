@@ -44,7 +44,7 @@ export function JsonMergeFunction(currentContent: string, newContent: string, fi
   const currentData = JSON.parse(currentContent);
   const newData = JSON.parse(newContent);
   const mergedData = deepMerge(currentData, newData);
-  return JSON.stringify(mergedData);
+  return JSON.stringify(mergedData, undefined, 2);
 }
 
 export const YAML_MERGE_STRATEGY = {
