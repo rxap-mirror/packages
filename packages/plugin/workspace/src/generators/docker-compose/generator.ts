@@ -79,7 +79,7 @@ function buildImageName(docker: Record<string, string>, rootDocker: RootDockerOp
 }
 
 function createServiceDockerCompose(
-  services: Array<{ name: string; docker: Record<string, string> }>,
+  services: Array<Application>,
   rootDocker: RootDockerOptions,
   options: DockerComposeGeneratorSchema,
 ): string {
@@ -105,8 +105,6 @@ function createServiceDockerCompose(
         ],
         env_file: [ '.env' ],
         depends_on: [
-          'traefik',
-          'catch-all-api',
           'rxap-service-status',
         ],
       };
@@ -116,7 +114,7 @@ function createServiceDockerCompose(
 }
 
 function createFrontendDockerCompose(
-  services: Array<{ name: string; docker: Record<string, string> }>,
+  services: Array<Application>,
   rootDocker: RootDockerOptions,
   options: DockerComposeGeneratorSchema,
 ): string {
@@ -127,12 +125,20 @@ function createFrontendDockerCompose(
       {
         name,
         docker,
+        tags,
       },
     ) => {
       const host = buildSubDomainForService(name, docker);
-      const labels = [
-        `traefik.http.routers.${ name }.rule=Host(\`${host}\${DOT:-.}\${ROOT_DOMAIN}\`)`,
-      ];
+      const labels: string[] = [];
+      if (tags?.includes('module-federation')) {
+        if (tags.includes('mfe:host')) {
+          labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`{host:.*}\`)`);
+        } else {
+          labels.push(`traefik.http.routers.${ name }.rule=PathPrefix(\`__mfe/latest/${ name }\`)`);
+        }
+      } else {
+        labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`${host}{host:.*}\`)`);
+      }
       if (options.middlewares?.length) {
         labels.push(`traefik.http.routers.${ name }.middlewares=${options.middlewares.join(',')}`);
       }
@@ -140,12 +146,6 @@ function createFrontendDockerCompose(
         image: buildImageName(docker, rootDocker),
         labels,
         env_file: [ '.env' ],
-        depends_on: [
-          'traefik',
-          'rxap-service-configuration',
-          'rxap-service-status',
-          'catch-all-api',
-        ],
       };
       return services;
     }, {} as Record<string, any>),
@@ -153,7 +153,7 @@ function createFrontendDockerCompose(
 }
 
 function createDevServiceTraefikConfig(
-  services: Array<{ name: string; docker: Record<string, string> }>,
+  services: Array<Application>,
   host: Tree,
   options: DockerComposeGeneratorSchema,
 ): string {
