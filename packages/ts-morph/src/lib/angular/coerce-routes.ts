@@ -6,13 +6,15 @@ import {
 import { CoerceDefaultExport } from '../coerce-default-export';
 import { CoerceImports } from '../coerce-imports';
 import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
-import { AddRoute } from './add-route';
-import { AngularRoute } from './build-route-object';
+import {
+  AddRoute,
+  AddRouteOptions,
+} from './add-route';
 
 export interface CoerceRoutesOptions {
   name?: string;
   initializer?: string | WriterFunction;
-  itemList?: Array<{ route: AngularRoute, path?: string[] }>
+  itemList?: Array<Omit<AddRouteOptions, 'name'>>
 }
 
 export function CoerceRoutes(sourceFile: SourceFile, options: CoerceRoutesOptions = {}) {
@@ -48,8 +50,8 @@ export function CoerceRoutes(sourceFile: SourceFile, options: CoerceRoutesOption
     ]);
   }
 
-  for (const { route, path } of options.itemList ?? []) {
-    AddRoute(sourceFile, route, path, name);
+  for (const item of options.itemList ?? []) {
+    AddRoute(sourceFile, { ...item, name });
   }
 
   return variableDeclaration;

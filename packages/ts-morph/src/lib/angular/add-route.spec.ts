@@ -16,7 +16,7 @@ describe('AddRoute', () => {
 
     const sourceFile = project.createSourceFile('routes.ts', sourceCode);
 
-    AddRoute(sourceFile, { path: 'path' });
+    AddRoute(sourceFile, { route: { path: 'path' } });
 
     expect(sourceFile.getText()).toEqual(`const ROUTES: Route[] = [{
     path: 'path'
@@ -29,7 +29,7 @@ describe('AddRoute', () => {
 
     const sourceFile = project.createSourceFile('routes.ts', sourceCode);
 
-    AddRoute(sourceFile, { path: 'newPath' });
+    AddRoute(sourceFile, { route: { path: 'newPath' } });
 
     expect(sourceFile.getText()).toEqual(`const ROUTES: Route[] = [{
     path: 'newPath'

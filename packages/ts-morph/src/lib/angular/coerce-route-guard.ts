@@ -1,6 +1,6 @@
 import {
   CoerceArrayElement,
-  FindParentRoute,
+  FindParentRouteByPath,
 } from '@rxap/ts-morph';
 import {
   PropertyAssignment,
@@ -17,7 +17,7 @@ export function CoerceRouteGuard(sourceFile: SourceFile, path: string[], guard: 
   const { routeArrayName = 'ROUTES', type = 'canActivate' } = options;
   const routes = sourceFile.getVariableDeclaration(routeArrayName);
   if (routes) {
-    const initializer = FindParentRoute(routes.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression), path);
+    const initializer = FindParentRouteByPath(routes.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression), path);
     if (initializer) {
       const guardArray = initializer.getProperty(type) ?? initializer.addPropertyAssignment({
         name: type,

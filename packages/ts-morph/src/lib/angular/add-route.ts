@@ -11,7 +11,11 @@ import {
   AngularRoute,
   BuildRouteObject,
 } from './build-route-object';
-import { FindParentRouteChildrenArray } from './find-parent-route';
+import {
+  FindParentRouteChildrenArrayByComponent,
+  FindParentRouteChildrenArrayByPath,
+} from './find-parent-route';
+import 'colors';
 
 export function DefaultInsertAtFactory(route: AngularRoute): (array: ArrayLiteralExpression) => number {
   return (array: ArrayLiteralExpression) => {
@@ -49,20 +53,36 @@ export function DefaultInsertAtFactory(route: AngularRoute): (array: ArrayLitera
   };
 }
 
-export function AddRoute(sourceFile: SourceFile, route: AngularRoute, path?: string[], name = 'ROUTES', insertAt: (array: ArrayLiteralExpression) => number = DefaultInsertAtFactory(route)) {
+export interface AddRouteOptions {
+  route: AngularRoute;
+  path?: string[];
+  component?: string;
+  name?: string,
+  insertAt?: (array: ArrayLiteralExpression) => number;
+}
+
+export function AddRoute(sourceFile: SourceFile, options: AddRouteOptions) {
+  const { component, route, path, name = 'ROUTES', insertAt = DefaultInsertAtFactory(route) } = options;
   const routes = sourceFile.getVariableDeclaration(name);
   if (routes) {
     let initializer: ArrayLiteralExpression | null = routes.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
     if (path?.length) {
-      initializer = FindParentRouteChildrenArray(initializer, path);
+      initializer = FindParentRouteChildrenArrayByPath(initializer, path);
     }
     if (initializer) {
-      CoerceArrayElement(
-        initializer, BuildRouteObject(route), FindArrayElementByObjectProperty('path', route.path), insertAt);
+      if (component) {
+        initializer = FindParentRouteChildrenArrayByComponent(initializer, component);
+      }
+      if (initializer) {
+        CoerceArrayElement(
+          initializer, BuildRouteObject(route), FindArrayElementByObjectProperty('path', route.path), insertAt);
+      } else {
+        console.log(`Could not find parent route by component for '${component}'`.yellow);
+      }
     } else {
-      console.warn('Initializer not found');
+      console.log(`Could not find parent route by path for '${path}'`.yellow);
     }
   } else {
-    console.warn(`${name} variable not found`);
+    console.log(`${name} variable not found`.red);
   }
 }

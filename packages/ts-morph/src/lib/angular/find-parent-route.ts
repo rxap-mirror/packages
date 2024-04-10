@@ -18,28 +18,24 @@ export function GetRouteChildrenArray(e: ObjectLiteralExpression): ArrayLiteralE
   throw new Error('Children property is not a PropertyAssignment');
 }
 
-export function FindParentRoute(ale: ArrayLiteralExpression, path: string[]): ObjectLiteralExpression | null {
+export function FindParentRouteByPath(ale: ArrayLiteralExpression, path: string[]): ObjectLiteralExpression | null {
   const fragment = path.pop();
   for (const e of ale.getElements()) {
-    if (e instanceof ObjectLiteralExpression) {
+    if (e.isKind(SyntaxKind.ObjectLiteralExpression)) {
       const pathProperty = e.getProperty('path');
-      if (pathProperty && pathProperty instanceof PropertyAssignment) {
+      if (pathProperty?.isKind(SyntaxKind.PropertyAssignment)) {
         const initializer = pathProperty.getInitializerIfKind(SyntaxKind.StringLiteral);
-        if (initializer) {
-          if (initializer.getLiteralText() === fragment) {
-            if (path.length) {
-              const children = GetRouteChildrenArray(e);
-              // console.log('Continue search for parent route');
-              return FindParentRoute(children, path);
-            } else {
-              // console.log('Found parent route');
-              return e;
-            }
+        if (initializer?.getLiteralText() === fragment) {
+          if (path.length) {
+            const children = GetRouteChildrenArray(e);
+            // console.log('Continue search for parent route');
+            return FindParentRouteByPath(children, path);
           } else {
-            // console.log('Path property does not match', initializer.getLiteralText(), fragment);
+            // console.log('Found parent route');
+            return e;
           }
         } else {
-          // console.log('Path property has no StringLiteral initializer');
+          // console.log('Path property does not match', initializer.getLiteralText(), fragment);
         }
       } else {
         // console.log('Element has no path property');
@@ -51,7 +47,27 @@ export function FindParentRoute(ale: ArrayLiteralExpression, path: string[]): Ob
   return null;
 }
 
-export function FindParentRouteChildrenArray(ale: ArrayLiteralExpression, path: string[]) {
-  const parent = FindParentRoute(ale, path);
+export function FindParentRouteByComponent(ale: ArrayLiteralExpression, component: string): ObjectLiteralExpression | null {
+  for (const e of ale.getElements()) {
+    if (e.isKind(SyntaxKind.ObjectLiteralExpression)) {
+      const componentProperty = e.getProperty('component');
+      if (componentProperty?.isKind(SyntaxKind.PropertyAssignment)) {
+        const initializer = componentProperty.getInitializer();
+        if (initializer?.getText() === component) {
+          return e;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+export function FindParentRouteChildrenArrayByPath(ale: ArrayLiteralExpression, path: string[]) {
+  const parent = FindParentRouteByPath(ale, path);
+  return parent ? GetRouteChildrenArray(parent) : null;
+}
+
+export function FindParentRouteChildrenArrayByComponent(ale: ArrayLiteralExpression, component: string) {
+  const parent = FindParentRouteByComponent(ale, component);
   return parent ? GetRouteChildrenArray(parent) : null;
 }
