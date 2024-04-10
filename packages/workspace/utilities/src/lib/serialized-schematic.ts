@@ -128,7 +128,7 @@ export function GenerateSerializedSchematicFile(
   path: string,
   packageName: string,
   schematicName: string,
-  options: Record<string, unknown> = {},
+  options: Record<string, unknown> | any = {},
 ): void {
   const newData = {
     package: packageName,
