@@ -10,6 +10,7 @@ export interface AngularRoute {
   loadComponent?: string | { import: string, then: string };
   outlet?: string | null;
   data?: Record<string, any> | null;
+  loadRemoteModule?: string | { name: string, entry?: string };
 }
 
 export function BuildRouteObject(route: AngularRoute) {
@@ -22,6 +23,17 @@ export function BuildRouteObject(route: AngularRoute) {
     } else {
       obj['loadChildren'] = `() => import('${ route.loadChildren.import }').then((m) => m.${ route.loadChildren.then })`;
     }
+  }
+  if (route.loadRemoteModule) {
+    let entry = './routes';
+    let name: string;
+    if (typeof route.loadRemoteModule === 'string') {
+      name = route.loadRemoteModule;
+    } else {
+      name = route.loadRemoteModule.name;
+      entry = route.loadRemoteModule.entry ?? entry;
+    }
+    obj['loadChildren'] = `() => loadRemoteModule('${ name }', '${entry}')`;
   }
   if (route.loadComponent) {
     if (typeof route.loadComponent === 'string') {

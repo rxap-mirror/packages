@@ -4,6 +4,35 @@ import {
   PropertyAssignment,
 } from 'ts-morph';
 
+export function GetArrayLiteralFromObjectLiteral(
+  objectLiteral: ObjectLiteralExpression,
+  propertyKey: string,
+): ArrayLiteralExpression | null {
+
+  const arrayLiteralAssignment = objectLiteral.getProperty(propertyKey);
+
+  if (!arrayLiteralAssignment) {
+    return null;
+  }
+
+  if (!(arrayLiteralAssignment instanceof PropertyAssignment)) {
+    throw new Error('The imports property is not type of Property Assignment!');
+  }
+
+  const arrayLiteral = arrayLiteralAssignment.getInitializer();
+
+  if (!arrayLiteral) {
+    throw new Error('The imports property a not a initializer');
+  }
+
+  if (!(arrayLiteral instanceof ArrayLiteralExpression)) {
+    throw new Error('The imports property initializer is not an array');
+  }
+
+  return arrayLiteral;
+
+}
+
 export function GetCoerceArrayLiteralFromObjectLiteral(
   objectLiteral: ObjectLiteralExpression,
   propertyKey: string,

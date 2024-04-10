@@ -39,6 +39,14 @@ export function CoerceRoutes(sourceFile: SourceFile, options: CoerceRoutesOption
       moduleSpecifier: '@angular/router'
     },
   ]);
+  if (options.itemList?.some(item => item.route.loadRemoteModule)) {
+    CoerceImports(sourceFile, [
+      {
+        namedImports: [ 'loadRemoteModule' ],
+        moduleSpecifier: '@nx/angular/mf'
+      },
+    ]);
+  }
 
   for (const { route, path } of options.itemList ?? []) {
     AddRoute(sourceFile, route, path, name);
