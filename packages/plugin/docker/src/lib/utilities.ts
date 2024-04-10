@@ -66,6 +66,7 @@ export function processBuildArgs(
 ) {
   const processedBuildArgList: string[] = [];
   processedBuildArgList.push(`PROJECT_NAME=${ projectName }`);
+  processedBuildArgList.push(`RELEASE=${ processEnv['CI_COMMIT_REF_NAME'] ?? 'latest' }`);
   for (const buildArg of buildArgList) {
     if (buildArg.includes('=')) {
       const [ key, ...values ] = buildArg.split('=');
