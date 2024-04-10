@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.11...@rxap/plugin-angular@16.2.0-dev.12) (2024-04-10)
+
+### Bug Fixes
+
+- add module federation tags to project ([fa1463f](https://gitlab.com/rxap/packages/commit/fa1463f9619eff98ab7bd3079bf1d7f722c77a41))
+
 # [16.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.10...@rxap/plugin-angular@16.2.0-dev.11) (2024-04-10)
 
 ### Bug Fixes

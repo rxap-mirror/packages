@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.11...@rxap/plugin-workspace@16.2.0-dev.12) (2024-04-10)
+
+### Bug Fixes
+
+- support custom router rule for mfe application ([e317ea1](https://gitlab.com/rxap/packages/commit/e317ea1ba77c5df86b4037d1dee9d3594d381bba))
+
 # [16.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.10...@rxap/plugin-workspace@16.2.0-dev.11) (2024-04-10)
 
 ### Bug Fixes
