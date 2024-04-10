@@ -8,7 +8,7 @@ export function updateProjectTargets(project: ProjectConfiguration, projectName:
   CoerceTarget(project, 'docker', {
     options: DeleteEmptyProperties({
       imageName: options.dockerImageName,
-      imageSuffix: options.dockerImageSuffix ?? options.standalone ? undefined : projectName,
+      imageSuffix: options.dockerImageSuffix ?? options.standalone ? undefined : '/' + projectName,
       imageRegistry: options.dockerImageRegistry,
     }),
   });
