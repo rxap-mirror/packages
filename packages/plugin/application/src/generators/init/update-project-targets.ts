@@ -3,29 +3,12 @@ import { DeleteEmptyProperties } from '@rxap/utilities';
 import { CoerceTarget } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
-function buildDockerImageSuffix(project: ProjectConfiguration, projectName: string) {
-  let imageSuffix = `/`;
-  if (project.targets?.['build']?.executor?.includes('angular') ||
-      projectName.startsWith('frontend') ||
-      projectName.startsWith('ui') ||
-      projectName.startsWith('user-interface') ||
-      projectName.startsWith('application')) {
-    imageSuffix +=
-      [ 'user-interface', projectName.replace(/^(application|user-interface|ui|frontend)-/, '') ].join('/');
-  } else if (projectName.startsWith('service') || projectName.startsWith('backend')) {
-    imageSuffix += [ 'service', projectName.replace(/^(service|backend)-/, '') ].join('/');
-  } else {
-    imageSuffix += projectName;
-  }
-  return imageSuffix;
-}
-
 export function updateProjectTargets(project: ProjectConfiguration, projectName: string, options: InitGeneratorSchema) {
 
   CoerceTarget(project, 'docker', {
     options: DeleteEmptyProperties({
       imageName: options.dockerImageName,
-      imageSuffix: options.dockerImageSuffix ?? options.standalone ? undefined : buildDockerImageSuffix(project, projectName),
+      imageSuffix: options.dockerImageSuffix ?? options.standalone ? undefined : projectName,
       imageRegistry: options.dockerImageRegistry,
     }),
   });
