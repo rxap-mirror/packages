@@ -476,6 +476,24 @@ function cleanup(tree: Tree, projectName: string, options: InitApplicationGenera
   }
 
   if (options.moduleFederation === 'remote') {
+
+    // region module-federation config
+    const projectRoot = GetProjectRoot(tree, projectName);
+    let content = tree.read(join(projectRoot, 'module-federation.config.js'), 'utf-8')!;
+    content = content.replace('./Routes', './routes');
+    tree.write(join(projectRoot, 'module-federation.config.js'), content);
+    // endregion
+
+    // region tsconfig.base.json
+    UpdateTsConfigJson(tree, tsConfig => {
+      tsConfig.compilerOptions ??= {};
+      tsConfig.compilerOptions.paths ??= {};
+      if (tsConfig.compilerOptions.paths[`${projectName}/Routes`]) {
+        delete tsConfig.compilerOptions.paths[`${projectName}/Routes`];
+      }
+    }, { infix: 'base' });
+    // endregion
+
     TsMorphAngularProjectTransform(tree, {
       project: projectName,
     }, (_, [ entryComponent, entryRoutes ]) => {
