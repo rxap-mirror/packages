@@ -24,13 +24,6 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
 
   updateTargetDefaults(tree);
 
-  CoerceFilesStructure(tree, {
-    srcFolder: join(__dirname, 'files', 'basic'),
-    target: '',
-    overwrite: options.overwrite,
-    mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
-  });
-
   if (!options.standalone) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'general'),
