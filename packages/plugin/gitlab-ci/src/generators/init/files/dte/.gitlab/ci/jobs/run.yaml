@@ -4,7 +4,7 @@ run:
   tags:
     - e2-standard-2
   variables:
-    TARGET: "build,test,lint"
+    TARGET: "build,test,lint,build-storybook,compodoc"
     NX_CI_EXECUTION_ID: "$CI_PIPELINE_ID"
     NX_BRANCH: "${CI_MERGE_REQUEST_ID:-$CI_COMMIT_REF_NAME}"
     NX_CLOUD_DISTRIBUTED_EXECUTION_AGENT_COUNT: "4"
