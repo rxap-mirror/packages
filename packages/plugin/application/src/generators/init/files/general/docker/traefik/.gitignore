@@ -5,3 +5,4 @@ tls/*.key
 tls/*.csr
 tls/*.cnf
 tls/*.srl
+tls/*

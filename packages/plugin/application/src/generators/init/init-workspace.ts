@@ -7,6 +7,7 @@ import {
   YAML_MERGE_STRATEGY,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
+import { coerceDockerCompose } from './coerce-docker-compose';
 import { coerceSharedServiceConfiguration } from './coerce-shared-service-configuration';
 import { coerceSharedServiceUserConfig } from './coerce-shared-service-user-config';
 import { InitGeneratorSchema } from './schema';
@@ -33,6 +34,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
       overwrite: options.overwrite,
       mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
     });
+    coerceDockerCompose(tree);
     coerceSharedServiceUserConfig(tree);
     coerceSharedServiceConfiguration(tree);
   }
