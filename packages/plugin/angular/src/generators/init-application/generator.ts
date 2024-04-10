@@ -572,12 +572,41 @@ function updateMainFile(tree: Tree, projectName: string, project: ProjectConfigu
       }
     }
 
-    if (options.moduleFederation !== 'remote') {
+    if (options.moduleFederation === 'host') {
       mainSourceFile.set({
         statements: [
-          'import { SetupDynamicMfe } from \'@rxap/ngx-bootstrap\';',
-          'import { environment } from \'./environments/environment\';',
-          'SetupDynamicMfe(environment).then(() => import(\'./bootstrap\').catch((err) => console.error(err)));',
+          `import {
+  setRemoteDefinitions,
+  setRemoteUrlResolver
+} from '@nx/angular/mf';
+import type { Environment } from '@rxap/environment';
+import { environment } from './environments/environment';
+
+export async function SetupDynamicMfe(environment: Environment) {
+
+  const manifest = environment.moduleFederation?.manifest;
+
+  if (!manifest) {
+    const release = environment.tag || environment.branch || 'latest';
+    setRemoteUrlResolver((remoteName: string) => \`\${ location.origin }/__mfe/\${ release }/\${ remoteName }\`);
+  } else {
+
+    let definitions: Record<string, string>;
+
+    if (typeof manifest === 'object') {
+      definitions = manifest;
+    } else {
+      definitions = await fetch(manifest).then((res) => res.json());
+    }
+
+    setRemoteDefinitions(definitions);
+
+  }
+
+}
+
+SetupDynamicMfe(environment).then(() => import('./bootstrap').catch((err) => console.error(err)));
+`,
         ]
       });
     }
