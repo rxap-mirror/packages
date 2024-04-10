@@ -2,17 +2,19 @@ import {
   setRemoteDefinitions,
   setRemoteUrlResolver,
 } from '@nx/angular/mf';
-import {
-  DetermineReleaseName,
-  Environment,
-} from '@rxap/environment';
+import type { Environment } from '@rxap/environment';
 
+/**
+ * @deprecated It is not possible to use the `import` statement in the `main.ts` file. This results in a runtime error.
+ * @param environment
+ */
 export async function SetupDynamicMfe(environment: Environment) {
 
   const manifest = environment.moduleFederation?.manifest;
 
   if (!manifest) {
-    setRemoteUrlResolver((remoteName: string) => `${location.origin}/__mfe/${DetermineReleaseName(environment, 'latest')}/${remoteName}`);
+    const release = environment.tag || environment.branch || 'latest';
+    setRemoteUrlResolver((remoteName: string) => `${location.origin}/__mfe/${release}/${remoteName}`);
   } else {
 
     let definitions: Record<string, string>;
