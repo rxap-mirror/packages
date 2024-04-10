@@ -134,7 +134,7 @@ function createFrontendDockerCompose(
         if (tags.includes('mfe:host')) {
           labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`{host:.*}\`)`);
         } else {
-          labels.push(`traefik.http.routers.${ name }.rule=PathPrefix(\`__mfe/latest/${ name }\`)`);
+          labels.push(`traefik.http.routers.${ name }.rule=PathPrefix(\`/__mfe/latest/${ name }\`)`);
         }
       } else {
         labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`${host}{host:.*}\`)`);
