@@ -1184,7 +1184,9 @@ export async function initApplicationGenerator(
     }
   }
 
-  await LocalazyGitlabCiGenerator(tree, {});
+  if (options.localazy) {
+    await LocalazyGitlabCiGenerator(tree, {});
+  }
   await DockerGitlabCiGenerator(tree, {});
 
 }
