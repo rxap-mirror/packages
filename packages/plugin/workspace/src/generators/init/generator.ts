@@ -259,7 +259,7 @@ function CoerceNxJsonGenerators(
 
 }
 
-function coerceNxJson(tree: Tree) {
+function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   const nxJson = readNxJson(tree)!;
 
   CoerceNxJsonNamedInputs(nxJson, 'default', [ '{projectRoot}/**/*' ]);
@@ -298,11 +298,35 @@ function coerceNxJson(tree: Tree) {
     'unitTestRunner': 'jest',
     'e2eTestRunner': 'none',
     'tags': 'angular,ngx',
-    'prefix': 'rxap',
+    'prefix': options.prefix ?? 'rxap',
     'standalone': true,
     'addTailwind': true,
     'routing': true,
     'directory': `user-interface`,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/angular:host', {
+    'style': 'scss',
+    'linter': 'eslint',
+    'unitTestRunner': 'jest',
+    'e2eTestRunner': 'none',
+    'tags': 'angular,ngx',
+    'prefix': options.prefix ?? 'rxap',
+    'standalone': true,
+    'addTailwind': true,
+    name: 'shell',
+    'directory': `user-interface/shell`,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/angular:remote', {
+    'style': 'scss',
+    'linter': 'eslint',
+    'unitTestRunner': 'jest',
+    'e2eTestRunner': 'none',
+    'tags': 'angular,ngx',
+    'prefix': options.prefix ?? 'rxap',
+    'standalone': true,
+    'addTailwind': true,
+    host: 'shell',
+    'directory': `user-interface/feature`,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/angular:component', {
     'style': 'scss',
@@ -452,7 +476,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   });
 
   coerceWorkspaceProject(tree, options);
-  coerceNxJson(tree);
+  coerceNxJson(tree, options);
   coerceDevContainerConfig(tree);
   await coerceRootPackageJsonScripts(tree);
   if (!options.skipLicense) {
