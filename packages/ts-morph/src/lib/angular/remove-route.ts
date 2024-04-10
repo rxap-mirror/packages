@@ -8,7 +8,7 @@ import 'colors';
 export interface RemoveRouteOptions {
   path?: string[];
   index?: number;
-  loadRemoteModule?: string;
+  loadRemoteModule?: string | { name: string, entry?: string };
   component?: string;
   name?: string;
 }
@@ -59,7 +59,13 @@ export function RemoveRoute(sourceFile: SourceFile, options: RemoveRouteOptions)
         const loadChildrenProperty = obj.getProperty('loadChildren');
         if (loadChildrenProperty) {
           const value = loadChildrenProperty.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializer()!;
-          if (value.getText().match(new RegExp(`^\\(\\) =>[\\s\\S]+loadRemoteModule\\('${loadRemoteModule}'`))) {
+          let regex: RegExp;
+          if (typeof loadRemoteModule === 'string') {
+            regex = new RegExp(`^\\(\\) =>[\\s\\S]+loadRemoteModule\\('${loadRemoteModule}'`);
+          } else {
+            regex = new RegExp(`^\\(\\) =>[\\s\\S]+loadRemoteModule\\('${loadRemoteModule.name}',\\s*'${loadRemoteModule.entry ?? './routes'}'\\)`);
+          }
+          if (value.getText().match(regex)) {
             arrayLiteralExpression.removeElement(item);
             return;
           }
