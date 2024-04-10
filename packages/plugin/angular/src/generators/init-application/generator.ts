@@ -778,6 +778,13 @@ function updateTsConfig(tree: Tree, projectName: string) {
       if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
         tsConfig.compilerOptions.types.push('@angular/localize');
       }
+      if ([ 'app', 'spec' ].includes(tsConfigName)) {
+        tsConfig.exclude ??= [];
+        CoerceArrayItems(tsConfig.exclude, [
+          'src/**/*.stories.ts',
+          'src/**/*.cy.ts',
+        ]);
+      }
     }, { infix: tsConfigName, basePath: projectRoot });
   }
 
