@@ -59,7 +59,7 @@ export function RemoveRoute(sourceFile: SourceFile, options: RemoveRouteOptions)
         const loadChildrenProperty = obj.getProperty('loadChildren');
         if (loadChildrenProperty) {
           const value = loadChildrenProperty.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializer()!;
-          if (value.getText().startsWith(`() => loadRemoteModule('${loadRemoteModule}',`)) {
+          if (value.getText().match(new RegExp(`^\\(\\) =>[\\s\\S]+loadRemoteModule\\('${loadRemoteModule}'`))) {
             arrayLiteralExpression.removeElement(item);
             return;
           }

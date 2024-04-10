@@ -21,7 +21,7 @@ export interface CoerceAppConfigProviderOptions {
 export function CoerceAppConfigProvider(sourceFile: SourceFile, options: CoerceAppConfigProviderOptions) {
   const { providers = [], httpInterceptors = [], importProvidersFrom = [], overwrite = false } = options;
   const appConfigVariableDeclaration = CoerceVariableDeclaration(sourceFile, 'appConfig', {
-    initializer: '{ providers: [] }',
+    initializer: '{ providers: [\n] }',
     type: 'ApplicationConfig',
   });
   CoerceImports(sourceFile, {
