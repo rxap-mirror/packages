@@ -87,9 +87,9 @@ export function processBuildArgs(
         }
         value = match[1] ?? match[0];
       }
-      processedBuildArgList.push(`${ key }=${ value }`);
-    } else if (processEnv[buildArg]) {
-      processedBuildArgList.push(`${ buildArg }=${ processEnv[buildArg] }`);
+      processedBuildArgList.push(`${ key }=${ processEnv[value] ?? processEnv[value.replace(/^\$/, '')] ?? value }`);
+    } else if (processEnv[buildArg] || processEnv[buildArg.replace(/^\$/, '')]) {
+      processedBuildArgList.push(`${ buildArg }=${ processEnv[buildArg] ?? processEnv[buildArg.replace(/^\$/, '')] }`);
     } else {
       console.warn(`Build arg value for '${ buildArg }' is not defined`);
     }
