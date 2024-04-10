@@ -8,7 +8,9 @@
     "yaml": "2.3.1"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.10.0"
+    "@nx/devkit": "^16.10.0",
+    "@rxap/utilities": "*",
+    "@rxap/workspace-utilities": "*"
   },
   "author": {
     "name": "Merzough Münker",

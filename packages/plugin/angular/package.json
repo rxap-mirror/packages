@@ -9,6 +9,7 @@
   "peerDependencies": {
     "@nx/angular": "^16.10.0",
     "@nx/devkit": "^16.10.0",
+    "@nx/linter": "^16.10.0",
     "@rxap/plugin-application": "^16.2.0-dev.6",
     "@rxap/plugin-docker": "^16.1.0-dev.10",
     "@rxap/plugin-library": "^16.1.0-dev.11",

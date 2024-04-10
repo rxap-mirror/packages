@@ -16,6 +16,11 @@
       "factory": "./src/generators/component-test/index",
       "schema": "./src/generators/component-test/schema.json",
       "description": "component-test generator"
+    },
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "init generator"
     }
   }
 }
