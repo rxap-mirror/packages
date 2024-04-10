@@ -70,7 +70,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
   public compareWith?: (o1: Data, o2: Data) => boolean;
   @HostBinding('type')
   public type                           = 'button';
-  public control!: RxapFormControl;
+  public control?: RxapFormControl;
   // required for the use mixin ExtractDatasourceMixin
   public readonly dataSourceLoader      = inject(DataSourceLoader);
   protected _hasOpenWindow              = false;
@@ -121,7 +121,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       throw new Error('FATAL: The data or columns input is not set');
     }
     setTimeout(() => {
-      this.control.disable();
+      this.control?.disable();
     });
     const selected = await this.openMethod.call({
       windowConfig: {
@@ -136,7 +136,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       id: this.id ?? GenerateRandomString(10),
       parameters: this.parameters,
     });
-    this.control.enable();
+    this.control?.enable();
     if (isDevMode()) {
       console.debug('selected', selected);
     }
