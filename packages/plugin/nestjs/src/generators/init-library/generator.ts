@@ -9,7 +9,7 @@ import {
   writeJson,
 } from '@nx/devkit';
 import {
-  LibraryInitGenerator,
+  LibraryInitProject,
   LibraryInitWorkspace,
 } from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
@@ -152,11 +152,7 @@ export async function initLibraryGenerator(
 
       console.log(`init nestjs library project: ${ projectName }`);
 
-      await LibraryInitGenerator(tree, {
-        ...options,
-        projects: [ projectName ],
-        skipProjects: false,
-      });
+      await LibraryInitProject(tree, projectName, project, options);
 
       updateProjectTargets(tree, project);
       updatePackageJson(tree, project, rootPackageJson);
