@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.12...@rxap/plugin-nestjs@16.2.0-dev.13) (2024-04-10)
+
+### Bug Fixes
+
+- use init project function directly ([b1409c3](https://gitlab.com/rxap/packages/commit/b1409c3ab4bd87b7711a40a19711bec5743d0433))
+- use init workspace function directly ([85f91f7](https://gitlab.com/rxap/packages/commit/85f91f7bb67e82a275edf884673342b230ea3150))
+
+### Features
+
+- add format files ([672c753](https://gitlab.com/rxap/packages/commit/672c7533b8b0248d19c9dc2ad4a203c482cfd9ae))
+
 # [16.2.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.11...@rxap/plugin-nestjs@16.2.0-dev.12) (2024-04-09)
 
 ### Bug Fixes

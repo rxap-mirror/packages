@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.13...@rxap/plugin-workspace@16.2.0-dev.14) (2024-04-10)
+
+### Bug Fixes
+
+- coerce prettier config ([d19907f](https://gitlab.com/rxap/packages/commit/d19907f378a8ca6d49b337baf28460808fc43b5f))
+
+### Features
+
+- add format files ([672c753](https://gitlab.com/rxap/packages/commit/672c7533b8b0248d19c9dc2ad4a203c482cfd9ae))
+
 # [16.2.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.12...@rxap/plugin-workspace@16.2.0-dev.13) (2024-04-10)
 
 ### Bug Fixes

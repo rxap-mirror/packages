@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.13...@rxap/plugin-angular@16.2.0-dev.14) (2024-04-10)
+
+### Bug Fixes
+
+- add stories and cy files to is config exclude ([d80af1b](https://gitlab.com/rxap/packages/commit/d80af1b770521cbab4a975e0140e5575c87a5f42))
+- detected layout children array by component name ([0ca7179](https://gitlab.com/rxap/packages/commit/0ca7179bd81e3cbb7922eaca440de0fe18f460d6))
+
+### Features
+
+- add format files ([672c753](https://gitlab.com/rxap/packages/commit/672c7533b8b0248d19c9dc2ad4a203c482cfd9ae))
+- add layoutRoutePath and standaloneImport options ([8ae83ff](https://gitlab.com/rxap/packages/commit/8ae83ff71d3793130df5e10f24113be6b1d791fd))
+
 # [16.2.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.12...@rxap/plugin-angular@16.2.0-dev.13) (2024-04-10)
 
 ### Bug Fixes

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.8...@rxap/plugin-application@16.2.0-dev.9) (2024-04-10)
+
+### Bug Fixes
+
+- use custom coerce function for docker compose ([dd796d9](https://gitlab.com/rxap/packages/commit/dd796d9ee75c0bcc3c3f9c53f878d05130372c52))
+
+### Features
+
+- add format files ([672c753](https://gitlab.com/rxap/packages/commit/672c7533b8b0248d19c9dc2ad4a203c482cfd9ae))
+
 # [16.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.7...@rxap/plugin-application@16.2.0-dev.8) (2024-04-10)
 
 ### Bug Fixes

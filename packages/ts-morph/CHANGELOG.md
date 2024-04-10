@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.27...@rxap/ts-morph@1.1.0-dev.28) (2024-04-10)
+
+### Features
+
+- support complex remove instructions ([960fac0](https://gitlab.com/rxap/packages/commit/960fac050bec4e2b017c2006fac615ccede09ab2))
+- support search and add route by component ([6dd9f2e](https://gitlab.com/rxap/packages/commit/6dd9f2e7fedfe4cbd3af86f88be7b8221c3ae867))
+
 # [1.1.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.26...@rxap/ts-morph@1.1.0-dev.27) (2024-04-10)
 
 ### Bug Fixes
