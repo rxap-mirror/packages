@@ -21,4 +21,5 @@ export interface InitApplicationGeneratorSchema {
   authentication?: boolean;
   deploy?: 'web3-storage';
   moduleFederation?: 'host' | 'remote';
+  host?: string;
 }

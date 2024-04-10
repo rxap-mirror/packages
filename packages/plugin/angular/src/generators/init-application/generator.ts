@@ -15,9 +15,15 @@ import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
 import {
   CoerceAppConfigProvider,
+  CoerceAppRoutes,
+  CoerceComponentImport,
+  CoerceDefaultExport,
   CoerceImports,
+  CoerceLayoutRoutes,
   CoerceVariableDeclaration,
+  GetComponentDecoratorObject,
   ProviderObject,
+  RemoveComponentImport,
   RemoveRoute,
 } from '@rxap/ts-morph';
 import {
@@ -42,6 +48,7 @@ import {
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
   GenerateSerializedSchematicFile,
+  GetProjectPrefix,
   GetProjectRoot,
   GetProjectSourceRoot,
   SkipNonAngularProject,
@@ -49,7 +56,10 @@ import {
   Strategy,
   UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
-import { join } from 'path';
+import {
+  join,
+  relative,
+} from 'path';
 import {
   SourceFile,
   Statement,
@@ -168,8 +178,10 @@ function updateProjectTargets(
   project.targets['build'].options.sourceMap = true;
   project.targets['build'].options.assets ??= [];
   project.targets['build'].options.scripts ??= [];
-  if (!project.targets['build'].options.scripts.includes('node_modules/marked/marked.min.js')) {
-    project.targets['build'].options.scripts.push('node_modules/marked/marked.min.js');
+  if (options.moduleFederation !== 'remote') {
+    if (!project.targets['build'].options.scripts.includes('node_modules/marked/marked.min.js')) {
+      project.targets['build'].options.scripts.push('node_modules/marked/marked.min.js');
+    }
   }
   CoerceAssets(project.targets['build'].options.assets, [
     {
@@ -364,8 +376,13 @@ const MAIN_APP_CREATION_STATEMENT = `const application = new StandaloneApplicati
   AppComponent,
   appConfig,
 );`;
+const REMOTE_MAIN_APP_CREATION_STATEMENT = `const application = new StandaloneApplication(
+  environment,
+  RemoteEntryComponent,
+  appConfig,
+);`;
 
-function assertMainStatements(sourceFile: SourceFile) {
+function assertMainStatements(sourceFile: SourceFile, options: InitApplicationGeneratorSchema) {
   const statements: string[] = [];
 
   statements.push('const application = new StandaloneApplication(');
@@ -376,16 +393,12 @@ function assertMainStatements(sourceFile: SourceFile) {
       console.error(`Missing statement from angular main.ts:  ${ statement }`);
       sourceFile.set({
         statements: [
-          MAIN_APP_CREATION_STATEMENT,
+          options.moduleFederation === 'remote' ? REMOTE_MAIN_APP_CREATION_STATEMENT : MAIN_APP_CREATION_STATEMENT,
           MAIN_LOGGER_STATEMENT,
           MAIN_BOOTSTRAP_STATEMENT,
         ],
       });
       CoerceImports(sourceFile, [
-        {
-          moduleSpecifier: './app/app.component',
-          namedImports: [ 'AppComponent' ],
-        },
         {
           moduleSpecifier: './app/app.config',
           namedImports: [ 'appConfig' ],
@@ -403,18 +416,34 @@ function assertMainStatements(sourceFile: SourceFile) {
           namedImports: [ 'StandaloneApplication' ],
         },
       ]);
+      if (options.moduleFederation === 'remote') {
+        CoerceImports(sourceFile, [
+          {
+            moduleSpecifier: './app/remote-entry/entry.component',
+            namedImports: [ 'RemoteEntryComponent' ],
+          },
+        ]);
+      } else {
+        CoerceImports(sourceFile, [
+          {
+            moduleSpecifier: './app/app.component',
+            namedImports: [ 'AppComponent' ],
+          },
+        ]);
+      }
       return;
     }
   }
 }
 
-function cleanup(tree: Tree, projectName: string) {
+function cleanup(tree: Tree, projectName: string, options: InitApplicationGeneratorSchema) {
 
   const sourceRoot = GetProjectSourceRoot(tree, projectName);
 
   const deleteFiles = [
     'app/app.component.spec.ts',
     'app/nx-welcome.component.ts',
+    'app/remote-entry/nx-welcome.component.ts',
     'app/nx-welcome.component.cy.ts',
   ];
 
@@ -424,30 +453,62 @@ function cleanup(tree: Tree, projectName: string) {
     }
   }
 
-  const content = tree.read(join(sourceRoot, 'app/app.component.html'), 'utf-8')!
-    .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '')
-    .replace(/<ul class="remote-menu">[\s\S]*<\/ul>/, '');
-  tree.write(join(sourceRoot, 'app/app.component.html'), content);
+  if (tree.exists(join(sourceRoot, 'app/app.component.html'))) {
+    const content = tree.read(join(sourceRoot, 'app/app.component.html'), 'utf-8')!
+      .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '')
+      .replace(/<ul class="remote-menu">[\s\S]*<\/ul>/, '');
+    tree.write(join(sourceRoot, 'app/app.component.html'), content);
+  }
 
-  TsMorphAngularProjectTransform(tree, {
-    project: projectName,
-  }, (_, [ appRoutes, appComponent ]) => {
-    RemoveRoute(appRoutes, { component: 'NxWelcomeComponent', name: 'appRoutes' });
-    appRoutes.getImportDeclaration('./nx-welcome.component')?.remove();
-    appComponent.getClass('AppComponent')?.getProperty('title')?.remove();
-    appComponent.getImportDeclaration('./nx-welcome.component')?.remove();
-    const imports = appComponent.getClass('AppComponent')
-      ?.getDecorator('Component')
-      ?.getArguments()[0]
-      ?.asKindOrThrow(SyntaxKind.ObjectLiteralExpression)
-      .getProperty('imports')
-      ?.asKindOrThrow(SyntaxKind.PropertyAssignment)
-      .getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
-    const element = imports?.getElements().find(e => e.getText().includes('NxWelcomeComponent'));
-    if (element) {
-      imports?.removeElement(element);
+  if (options.moduleFederation !== 'remote') {
+
+    TsMorphAngularProjectTransform(tree, {
+      project: projectName,
+    }, (_, [ appRoutes, appComponent ]) => {
+      RemoveRoute(appRoutes, {
+        component: 'NxWelcomeComponent',
+        name: 'appRoutes'
+      });
+      appRoutes.getImportDeclaration('./nx-welcome.component')?.remove();
+      RemoveComponentImport(appComponent, 'NxWelcomeComponent');
+    }, [ 'app/app.routes.ts', 'app/app.component.ts' ]);
+
+  }
+
+  if (options.moduleFederation === 'remote') {
+    TsMorphAngularProjectTransform(tree, {
+      project: projectName,
+    }, (_, [ entryComponent, entryRoutes ]) => {
+      entryComponent.getImportDeclaration('./nx-welcome.component')?.remove();
+      RemoveComponentImport(entryComponent, 'NxWelcomeComponent');
+      RemoveComponentImport(entryComponent, 'CommonModule');
+      const componentOptions = GetComponentDecoratorObject(entryComponent);
+      const templateProp = componentOptions.getProperty('template');
+      if (templateProp && templateProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializer()?.getText().match(/<.+nx-welcome><\/.+nx-welcome>/)) {
+        templateProp.remove();
+        componentOptions.addPropertyAssignment({
+          name: 'template',
+          initializer: w => w.quote('<router-outlet></router-outlet>'),
+        });
+        CoerceComponentImport(entryComponent, { name: 'RouterModule', moduleSpecifier: '@angular/router' });
+      }
+      CoerceDefaultExport(entryRoutes.getVariableStatement('remoteRoutes')!.getDeclarations()[0]);
+    }, [
+      'app/remote-entry/entry.component.ts',
+      'app/remote-entry/entry.routes.ts',
+    ]);
+    if (options.host) {
+      TsMorphAngularProjectTransform(tree, {
+        project: options.host,
+      }, (_, [ appRoutes ]) => {
+        RemoveRoute(appRoutes, {
+          loadRemoteModule: projectName,
+          name: 'appRoutes'
+        });
+        appRoutes.organizeImports();
+      }, [ 'app/app.routes.ts' ]);
     }
-  }, [ 'app/app.routes.ts', 'app/app.component.ts' ]);
+  }
 
 }
 
@@ -457,7 +518,7 @@ function updateMainFile(tree: Tree, projectName: string, project: ProjectConfigu
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
   }, (project, [ sourceFile, mainSourceFile ]) => {
 
-    assertMainStatements(sourceFile);
+    assertMainStatements(sourceFile, options);
 
     const importDeclarations = [];
     const statements: string[] = [];
@@ -511,7 +572,7 @@ function updateMainFile(tree: Tree, projectName: string, project: ProjectConfigu
       }
     }
 
-    if (options.moduleFederation) {
+    if (options.moduleFederation !== 'remote') {
       mainSourceFile.set({
         statements: [
           'import { SetupDynamicMfe } from \'@rxap/ngx-bootstrap\';',
@@ -657,6 +718,50 @@ function updateTsConfig(tree: Tree, projectName: string) {
 
 }
 
+function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApplicationGeneratorSchema) {
+
+  if (!options.host) {
+    throw new Error('The host project must be defined');
+  }
+
+  const hostSourceRoot = GetProjectSourceRoot(tree, options.host);
+  const isHostMonolithic = tree.exists(join(hostSourceRoot, 'app/layout.routes.ts'));
+
+  if (isHostMonolithic) {
+    TsMorphAngularProjectTransform(tree, {
+      project: options.host,
+    }, (project, [ layoutSourceFile ]) => {
+      CoerceLayoutRoutes(layoutSourceFile, {
+        itemList: [
+          {
+            route: {
+              path: projectName,
+              loadRemoteModule: projectName
+            },
+            path: ['']
+          }
+        ]
+      });
+    }, [ 'app/layout.routes.ts' ]);
+  } else {
+    TsMorphAngularProjectTransform(tree, {
+      project: options.host,
+    }, (project, [ appRoutes ]) => {
+      CoerceAppRoutes(appRoutes, {
+        itemList: [
+          {
+            route: {
+              path: projectName,
+              loadRemoteModule: projectName
+            },
+          },
+        ],
+      });
+    }, [ 'app/app.routes.ts' ]);
+  }
+
+}
+
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
@@ -681,14 +786,20 @@ export async function initApplicationGenerator(
   options.project ??= undefined;
   options.projects ??= [];
   options.cleanup ??= true;
+  options.host ??= undefined;
   if (options.project) {
     CoerceArrayItems(options.projects, [options.project]);
+  }
+  if (options.host) {
+    options.moduleFederation = 'remote';
   }
   if (options.moduleFederation === 'remote') {
     options.authentication = false;
     options.oauth = false;
     options.authentik = false;
     options.serviceWorker = false;
+    options.sentry = false;
+    options.monolithic = false;
   }
   console.log('angular application init generator:', options);
 
@@ -843,7 +954,7 @@ export async function initApplicationGenerator(
       updateTsConfig(tree, projectName);
 
       if (options.cleanup) {
-        cleanup(tree, projectName);
+        cleanup(tree, projectName, options);
       }
 
       coerceEnvironmentFiles(
@@ -983,6 +1094,23 @@ export async function initApplicationGenerator(
       }
       if (options.monolithic) {
         generateMonolithic(tree, projectName, project, options);
+      }
+      if (options.moduleFederation === 'remote') {
+        if (options.overwrite) {
+          generateFiles(tree, join(__dirname, 'files', 'mfe-remote'), sourceRoot, {
+            ...options,
+            relativePathToWorkspaceRoot: relative(sourceRoot, ''),
+            name: projectName
+              .replace(/^user-interface-/, '')
+              .replace(/^feature-/, ''),
+            classify,
+            dasherize,
+            prefix: GetProjectPrefix(tree, projectName, 'rxap'),
+          });
+        }
+        if (options.host) {
+          linkMfeRemoteWithHost(tree, projectName, options);
+        }
       }
       if (options.serviceWorker) {
         if (options.overwrite || !tree.exists(join(sourceRoot, 'manifest.webmanifest'))) {

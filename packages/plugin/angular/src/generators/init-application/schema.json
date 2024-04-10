@@ -18,6 +18,10 @@
       "type": "string",
       "enum": ["host", "remote"]
     },
+    "host": {
+      "type": "string",
+      "description": "Host project for module federation"
+    },
     "deploy": {
       "type": "string",
       "description": "Add target to deploy to after build",
