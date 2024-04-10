@@ -812,7 +812,7 @@ function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApp
               path,
               loadRemoteModule: projectName
             },
-            path: ['']
+            component: 'LayoutComponent'
           }
         ]
       });

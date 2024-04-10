@@ -48,7 +48,7 @@ export async function initFeatureGenerator(
             path: options.name,
             loadChildren: '../feature/' + options.name + '/routes',
           },
-          path: ['']
+          component: 'LayoutComponent'
         }
       ]
     });
