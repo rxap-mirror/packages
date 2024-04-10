@@ -1,4 +1,7 @@
-import { Tree } from '@nx/devkit';
+import {
+  formatFiles,
+  Tree,
+} from '@nx/devkit';
 import {
   CoerceAppNavigation,
   CoerceLayoutRoutes,
@@ -63,6 +66,11 @@ export async function initFeatureGenerator(
       });
     }
   }, [ 'app/layout.routes.ts?', `feature/${dasherize(options.name)}/routes.ts?`, 'app/app.navigation.ts?' ]);
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+
 }
 
 export default initFeatureGenerator;

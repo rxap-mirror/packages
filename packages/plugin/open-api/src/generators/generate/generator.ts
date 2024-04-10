@@ -1,4 +1,7 @@
-import { Tree } from '@nx/devkit';
+import {
+  formatFiles,
+  Tree,
+} from '@nx/devkit';
 import { LibraryIndexExportGenerator } from '@rxap/plugin-library';
 import { dasherize } from '@rxap/utilities';
 import {
@@ -104,6 +107,10 @@ export async function generateGenerator(
     await LibraryIndexExportGenerator(tree, { projects: [ options.project ] });
   } else {
     tree.write(join(GetProjectSourceRoot(tree, projectName), 'index.ts'), 'export {};');
+  }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
   }
 
 }

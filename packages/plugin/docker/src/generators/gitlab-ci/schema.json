@@ -16,6 +16,10 @@
       "type": "boolean",
       "description": "Overwrite existing files"
     },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
     "tags": {
       "alias": "tag",
       "type": "array",

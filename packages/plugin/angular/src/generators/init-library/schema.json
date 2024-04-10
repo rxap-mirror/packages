@@ -23,6 +23,10 @@
       "default": false,
       "description": "Whether to skip executing project specific initialization"
     },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
     "indexExport": {
       "type": "boolean",
       "default": true,

@@ -1,4 +1,7 @@
-import { Tree } from '@nx/devkit';
+import {
+  formatFiles,
+  Tree,
+} from '@nx/devkit';
 import { CoerceFilesStructure } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { generateGitlabCi } from './generate-gitlab-ci';
@@ -18,6 +21,10 @@ export async function gitlabCiGenerator(
   });
 
   generateGitlabCi(tree, options);
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 
 }
 

@@ -9,4 +9,5 @@ export interface InitGeneratorSchema {
   authentik?: boolean;
   minio?: boolean;
   standalone?: boolean;
+  skipFormat?: boolean;
 }

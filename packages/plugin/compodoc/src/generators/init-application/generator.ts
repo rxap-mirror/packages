@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -73,6 +74,11 @@ export async function initApplicationGenerator(
     }
 
   }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+
 }
 
 export default initApplicationGenerator;

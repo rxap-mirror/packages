@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -51,6 +52,11 @@ export async function initBuildableGenerator(
 
     }
   }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+
 }
 
 export default initBuildableGenerator;

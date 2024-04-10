@@ -26,4 +26,5 @@ export interface InitApplicationGeneratorSchema {
   skipProjects?: boolean;
   apiConfigurationFile?: string;
   standalone?: boolean;
+  skipFormat?: boolean;
 }

@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   readProjectConfiguration,
   Tree,
@@ -45,6 +46,10 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'init',
     DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
   );
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 
 }
 

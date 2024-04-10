@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -72,6 +73,11 @@ export async function initLibraryGenerator(
     }
 
   }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+
 }
 
 export default initLibraryGenerator;

@@ -8,4 +8,5 @@ export interface InitLibraryGeneratorSchema {
   indexExport?: boolean;
   compodoc?: boolean;
   coerce?: boolean | Omit<AngularLibraryGeneratorSchema, 'name'>;
+  skipFormat?: boolean;
 }

@@ -3,4 +3,5 @@ export interface InitApplicationGeneratorSchema {
   projects?: string[];
   overwrite?: boolean;
   skipProjects?: boolean;
+  skipFormat?: boolean;
 }

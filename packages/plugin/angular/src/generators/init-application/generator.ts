@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   generateFiles,
   getProjects,
   ProjectConfiguration,
@@ -804,7 +805,7 @@ function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApp
 
   const path = projectName.replace('user-interface-', '').replace('feature-', '');
 
-  if (isHostMonolithic || options.standaloneImport) {
+  if (isHostMonolithic && !options.standaloneImport) {
     TsMorphAngularProjectTransform(tree, {
       project: options.host,
     }, (project, [ layoutSourceFile ]) => {
@@ -1231,6 +1232,10 @@ export async function initApplicationGenerator(
     await LocalazyGitlabCiGenerator(tree, {});
   }
   await DockerGitlabCiGenerator(tree, {});
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 
 }
 

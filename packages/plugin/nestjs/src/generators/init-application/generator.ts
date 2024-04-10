@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   ProjectConfiguration,
   readNxJson,
@@ -889,6 +890,11 @@ export async function initApplicationGenerator(
   }
 
   await DockerGitlabCiGenerator(tree, {});
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+
 }
 
 export default initApplicationGenerator;

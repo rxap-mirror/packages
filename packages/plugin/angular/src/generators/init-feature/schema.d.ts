@@ -7,5 +7,6 @@ export interface InitFeatureGeneratorSchema {
   navigation?: {
     label: string;
     icon?: IconConfig;
-  }
+  };
+  skipFormat?: boolean;
 }

@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -70,6 +71,10 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   }
 
   await DockerGitlabCiGenerator(tree, {});
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 
 }
 

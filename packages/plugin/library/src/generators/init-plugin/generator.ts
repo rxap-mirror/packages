@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -59,6 +60,10 @@ export async function initPluginGenerator(
 
     }
 
+  }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
   }
 
 }

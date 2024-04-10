@@ -1,5 +1,6 @@
 import {
   addProjectConfiguration,
+  formatFiles,
   getProjects,
   NxJsonConfiguration,
   readNxJson,
@@ -482,6 +483,11 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   if (!options.skipLicense) {
     await coercePackageJsonLicense(tree, options);
   }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+
 }
 
 export default initGenerator;

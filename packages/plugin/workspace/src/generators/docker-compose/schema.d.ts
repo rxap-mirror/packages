@@ -5,4 +5,5 @@ export interface DockerComposeGeneratorSchema {
   ignoreProjects: string[];
   serviceEnvironments?: string[];
   middlewares?: string[];
+  skipFormat?: boolean;
 }

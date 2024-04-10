@@ -1,4 +1,7 @@
-import { Tree } from '@nx/devkit';
+import {
+  formatFiles,
+  Tree,
+} from '@nx/devkit';
 import {
   CoerceArrayItems,
   DeleteProperties,
@@ -26,6 +29,10 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'init',
     DeleteProperties(options, [ 'project', 'projects', 'overwrite' ]),
   );
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 
 }
 

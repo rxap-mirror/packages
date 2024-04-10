@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
@@ -53,6 +54,11 @@ export async function initLibraryGenerator(
     CoerceArrayItems(tsConfig.compilerOptions.paths[`${scope}/open-api/*`], tsConfig.compilerOptions.paths[`${options.project}/*`]);
   }, { infix: 'base' });
   // endregion
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
+
 }
 
 export default initLibraryGenerator;

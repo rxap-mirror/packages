@@ -6,6 +6,10 @@
   "properties": {
     "project": {
       "type": "string"
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["project"]

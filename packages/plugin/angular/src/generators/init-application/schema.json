@@ -24,7 +24,7 @@
     },
     "standaloneImport": {
       "type": "boolean",
-      "description": "Whether to import the mfe remote as a standalone import",
+      "description": "Whether to import the mfe remote as a standalone import"
     },
     "host": {
       "type": "string",
@@ -117,6 +117,10 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
     },
     "coerce": {
       "default": true,

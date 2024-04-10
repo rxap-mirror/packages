@@ -4,4 +4,5 @@ export interface GitlabCiGeneratorSchema {
   gcp?: boolean;
   gitlab?: boolean;
   tags?: string[];
+  skipFormat?: boolean;
 }

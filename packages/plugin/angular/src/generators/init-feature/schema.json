@@ -16,6 +16,10 @@
       "type": "boolean",
       "description": "If the feature should be overwritten if it already exists"
     },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
     "navigation": {
       "type": "object",
       "properties":{

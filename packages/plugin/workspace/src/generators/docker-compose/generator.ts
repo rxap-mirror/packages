@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   Tree,
 } from '@nx/devkit';
@@ -487,6 +488,10 @@ export async function dockerComposeGenerator(
   printSingedCert(tree);
 
   printEtcHostsConfig(rootDomain, frontendApplications);
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 
 }
 

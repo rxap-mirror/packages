@@ -20,6 +20,10 @@
       },
       "description": "The projects to ignore when generating docker compose service"
     },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
     "serviceEnvironments": {
       "alias": "serviceEnvironment",
       "type": "array",

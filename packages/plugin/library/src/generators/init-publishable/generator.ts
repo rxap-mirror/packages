@@ -1,4 +1,5 @@
 import {
+  formatFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -53,6 +54,10 @@ export async function initPublishableGenerator(
 
     }
 
+  }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
   }
 
 }

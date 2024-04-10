@@ -3,4 +3,5 @@ export interface InitGeneratorSchema {
   projects?: string[];
   overwrite?: boolean;
   dte?: boolean;
+  skipFormat?: boolean;
 }

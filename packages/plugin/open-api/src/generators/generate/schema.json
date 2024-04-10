@@ -12,6 +12,10 @@
           "description": "The path to the openapi config",
           "format": "path"
         },
+        "skipFormat": {
+          "type": "boolean",
+          "default": false
+        },
         "project": {
           "type": "string",
           "description": "The target project where the data sources and remote methods should be generated.",
@@ -77,6 +81,10 @@
           "type": "string",
           "description": "The target project where the data sources and remote methods should be generated.",
           "default": "open-api"
+        },
+        "skipFormat": {
+          "type": "boolean",
+          "default": false
         },
         "directory": {
           "type": "string",

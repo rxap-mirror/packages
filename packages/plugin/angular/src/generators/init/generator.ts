@@ -1,4 +1,7 @@
-import { Tree } from '@nx/devkit';
+import {
+  formatFiles,
+  Tree,
+} from '@nx/devkit';
 import { DeleteProperties } from '@rxap/utilities';
 import { GenerateSerializedSchematicFile } from '@rxap/workspace-utilities';
 import initLibraryGenerator from '../init-library/generator';
@@ -47,6 +50,10 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     },
     indexExport: false,
   });
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 
 }
 

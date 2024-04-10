@@ -1,6 +1,7 @@
 import { libraryGenerator as angularLibraryGenerator } from '@nx/angular/generators';
 import { Schema as AngularLibraryGeneratorSchema } from '@nx/angular/src/generators/library/schema';
 import {
+  formatFiles,
   getProjects,
   ProjectConfiguration,
   readJson,
@@ -494,6 +495,10 @@ export async function initLibraryGenerator(
 
     }
 
+  }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
   }
 
 }

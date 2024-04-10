@@ -19,6 +19,10 @@
       "description": "Whether this service should use sentry",
       "x-prompt": "Should this service use sentry?"
     },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
     "swagger": {
       "type": "boolean",
       "default": true,

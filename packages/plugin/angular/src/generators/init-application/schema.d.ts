@@ -29,4 +29,5 @@ export interface InitApplicationGeneratorSchema {
   coerce?: boolean | AngularHostGeneratorSchema | AngularRemoteGeneratorSchema | AngularApplicationGeneratorSchema;
   layoutRoutePath?: string;
   standaloneImport?: boolean;
+  skipFormat?: boolean;
 }
