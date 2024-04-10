@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.1.0-dev.11...@rxap/plugin-docker@16.1.0-dev.12) (2024-04-10)
+
+### Bug Fixes
+
+- set release build arg ([f9e96b6](https://gitlab.com/rxap/packages/commit/f9e96b63f39c600cfcdfa7023ecc620a68258a6e))
+
 # [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.1.0-dev.10...@rxap/plugin-docker@16.1.0-dev.11) (2024-04-10)
 
 ### Bug Fixes

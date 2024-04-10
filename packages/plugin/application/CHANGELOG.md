@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.7...@rxap/plugin-application@16.2.0-dev.8) (2024-04-10)
+
+### Bug Fixes
+
+- add missing prefix ([e0d5b15](https://gitlab.com/rxap/packages/commit/e0d5b1592b0ad13dcdce4fc061600442dbf845ce))
+- update tool scripts ([ae62df2](https://gitlab.com/rxap/packages/commit/ae62df2cc4fe79dc52732fb40df85c3bf4645726))
+
 # [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.6...@rxap/plugin-application@16.2.0-dev.7) (2024-04-10)
 
 ### Bug Fixes

@@ -1,5 +1,5 @@
 {
-  "version": "16.2.0-dev.12",
+  "version": "16.2.0-dev.13",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,8 +10,8 @@
     "@nx/angular": "^16.10.0",
     "@nx/devkit": "^16.10.0",
     "@nx/linter": "^16.10.0",
-    "@rxap/plugin-application": "^16.2.0-dev.7",
-    "@rxap/plugin-docker": "^16.1.0-dev.11",
+    "@rxap/plugin-application": "^16.2.0-dev.8",
+    "@rxap/plugin-docker": "^16.1.0-dev.12",
     "@rxap/plugin-library": "^16.1.0-dev.11",
     "@rxap/plugin-localazy": "^16.1.1-dev.3",
     "@rxap/plugin-utilities": "^16.2.0-dev.1",
@@ -55,11 +55,11 @@
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "16.2.0-dev.7"
+        "version": "16.2.0-dev.8"
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "16.1.0-dev.11"
+        "version": "16.1.0-dev.12"
       },
       {
         "package": "@rxap/plugin-library",
