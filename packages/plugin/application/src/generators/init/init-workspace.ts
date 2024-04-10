@@ -37,6 +37,13 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     coerceSharedServiceConfiguration(tree);
   }
 
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files', 'initial'),
+    target: '',
+    overwrite: false,
+    mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
+  });
+
   if (options.authentik) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'authentik'),
