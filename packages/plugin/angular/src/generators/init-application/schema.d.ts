@@ -27,4 +27,6 @@ export interface InitApplicationGeneratorSchema {
   moduleFederation?: 'host' | 'remote';
   host?: string;
   coerce?: boolean | AngularHostGeneratorSchema | AngularRemoteGeneratorSchema | AngularApplicationGeneratorSchema;
+  layoutRoutePath?: string;
+  standaloneImport?: boolean;
 }

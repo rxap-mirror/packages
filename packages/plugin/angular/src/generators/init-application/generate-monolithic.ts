@@ -31,7 +31,7 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
       itemList: [
         {
           route: {
-            path: '',
+            path: options.layoutRoutePath ?? '',
             loadChildren: './layout.routes'
           }
         }

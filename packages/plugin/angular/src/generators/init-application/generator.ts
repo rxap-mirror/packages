@@ -538,7 +538,10 @@ function cleanup(tree: Tree, projectName: string, options: InitApplicationGenera
         project: options.host,
       }, (_, [ appRoutes ]) => {
         RemoveRoute(appRoutes, {
-          loadRemoteModule: projectName,
+          loadRemoteModule: {
+            name: projectName,
+            entry: './Routes',
+          },
           name: 'appRoutes'
         });
         appRoutes.organizeImports();
@@ -801,7 +804,7 @@ function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApp
 
   const path = projectName.replace('user-interface-', '').replace('feature-', '');
 
-  if (isHostMonolithic) {
+  if (isHostMonolithic || options.standaloneImport) {
     TsMorphAngularProjectTransform(tree, {
       project: options.host,
     }, (project, [ layoutSourceFile ]) => {
