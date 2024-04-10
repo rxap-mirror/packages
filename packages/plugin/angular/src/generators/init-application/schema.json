@@ -109,6 +109,20 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
+    },
+    "coerce": {
+      "default": true,
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "properties": {
+
+          }
+        }
+      ]
     }
   },
   "required": []

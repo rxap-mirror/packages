@@ -68,6 +68,7 @@ import {
   Writers,
 } from 'ts-morph';
 import { InitGeneratorSchema } from '../init/schema';
+import { CoerceProjects } from './coerce-project';
 import { generateAuthentication } from './generate-authentication';
 import { generateMonolithic } from './generate-monolithic';
 import { InitApplicationGeneratorSchema } from './schema';
@@ -973,6 +974,8 @@ export async function initApplicationGenerator(
   }
 
   updateTargetDefaults(tree, options);
+
+  await CoerceProjects(tree, options);
 
   if (!options.skipProjects) {
     for (const [ projectName, project ] of getProjects(tree).entries()) {

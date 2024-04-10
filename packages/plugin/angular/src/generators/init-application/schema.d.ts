@@ -1,3 +1,7 @@
+import { Schema as AngularApplicationGeneratorSchema } from '@nx/angular/src/generators/application/schema';
+import { Schema as AngularHostGeneratorSchema } from '@nx/angular/src/generators/host/schema';
+import { Schema as AngularRemoteGeneratorSchema } from '@nx/angular/src/generators/remote/schema';
+
 export interface InitApplicationGeneratorSchema {
   sentry?: boolean;
   openApi?: boolean;
@@ -22,4 +26,5 @@ export interface InitApplicationGeneratorSchema {
   deploy?: 'web3-storage';
   moduleFederation?: 'host' | 'remote';
   host?: string;
+  coerce?: boolean | AngularHostGeneratorSchema | AngularRemoteGeneratorSchema | AngularApplicationGeneratorSchema;
 }
