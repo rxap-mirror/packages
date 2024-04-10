@@ -12,6 +12,7 @@ import {
   CoerceArrayItems,
   CoerceSuffix,
   deepMerge,
+  equals,
   MergeDeepLeft,
 } from '@rxap/utilities';
 import {
@@ -23,6 +24,7 @@ import {
   CoerceTarget,
   GetWorkspaceName,
   Strategy,
+  UpdateJsonFile,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -98,6 +100,8 @@ const prettierIgnore = [
   'node_modules',
   'tmp',
   'tmp.*',
+  '.nx',
+  '.nyc_output',
 ];
 
 function coerceWorkspaceProject(tree: Tree, options: InitGeneratorSchema) {
@@ -425,6 +429,24 @@ function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   updateNxJson(tree, nxJson);
 }
 
+function coercePrettierConfig(tree: Tree) {
+  UpdateJsonFile(tree, prettierConfig => {
+    prettierConfig.singleQuote = true;
+    prettierConfig.overrides ??= [];
+    CoerceArrayItems(prettierConfig.overrides, [
+      {
+        files: [
+          "*.yml",
+          "*.yaml"
+        ],
+        options: {
+          singleQuote: false
+        }
+      }
+    ], (a, b) => equals(a.files, b.files));
+  }, '.prettierrc');
+}
+
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   options.license ??= !options.skipLicense ? 'gpl' : undefined;
   console.log('workspace init generator:', options);
@@ -454,7 +476,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
 
-  await UpdatePackageJson(tree, packageJson => {
+  UpdatePackageJson(tree, packageJson => {
     packageJson.engines ??= {};
     packageJson.engines.node = '>=18 <21';
     packageJson.engines.yarn = '1.22 || 3.6';
@@ -479,6 +501,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   coerceWorkspaceProject(tree, options);
   coerceNxJson(tree, options);
   coerceDevContainerConfig(tree);
+  coercePrettierConfig(tree);
   await coerceRootPackageJsonScripts(tree);
   if (!options.skipLicense) {
     await coercePackageJsonLicense(tree, options);
