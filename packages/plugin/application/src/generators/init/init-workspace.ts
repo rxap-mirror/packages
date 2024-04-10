@@ -7,6 +7,8 @@ import {
   YAML_MERGE_STRATEGY,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
+import { coerceSharedServiceConfiguration } from './coerce-shared-service-configuration';
+import { coerceSharedServiceUserConfig } from './coerce-shared-service-user-config';
 import { InitGeneratorSchema } from './schema';
 import { updateTargetDefaults } from './update-target-defaults';
 
@@ -31,6 +33,8 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
       overwrite: options.overwrite,
       mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
     });
+    coerceSharedServiceUserConfig(tree);
+    coerceSharedServiceConfiguration(tree);
   }
 
   if (options.authentik) {
