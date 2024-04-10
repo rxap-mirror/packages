@@ -31,6 +31,7 @@ import {
   CoerceTargetDefaultsOutput,
   DeleteRecursive,
   GenerateSerializedSchematicFile,
+  GetDefaultGeneratorOptions,
   GetProjectRoot,
   GetProjectSourceRoot,
   GetWorkspaceScope,
@@ -356,8 +357,8 @@ function updateTsConfig(tree: Tree, projectName: string) {
 
 async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
 
-  const nxJson = readNxJson(tree);
-  const defaultOptions: Partial<AngularLibraryGeneratorSchema> = nxJson?.generators?.['@nx/angular:library'] ?? {};
+
+  const defaultOptions = GetDefaultGeneratorOptions<Partial<AngularLibraryGeneratorSchema>>(tree, '@nx/angular:library');
   const tags = (defaultOptions.tags ?? '').split(',').map(tag => tag.trim());
   tags.push('angular');
   tags.push('ngx');
