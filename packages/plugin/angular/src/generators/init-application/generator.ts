@@ -363,6 +363,11 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
     tags.push('sentry');
   }
 
+  if (options.moduleFederation) {
+    tags.push('module-federation');
+    tags.push(`mfe:${ options.moduleFederation }`);
+  }
+
   CoerceProjectTags(project, tags);
 }
 
