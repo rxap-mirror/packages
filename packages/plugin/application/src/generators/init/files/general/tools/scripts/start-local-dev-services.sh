@@ -6,11 +6,17 @@ source "${GIT_ROOT}/tools/scripts/colors.sh"
 
 # Initialize default values for flags
 local_mode="false"
+skip_generate="false"
+always_yes="false"
+configuration="development"
 
 # Loop through arguments and process them
 while [ "$1" != "" ]; do
   case $1 in
   --local) local_mode="true" ;;
+  --skip-generate) skip_generate="true" ;;
+  --yes) always_yes="true" ;;
+  --production) configuration="production" ;;
   *)
     echo "Usage: $0 --local"
     exit 1
@@ -34,7 +40,9 @@ if [ ! -f .env ]; then
   yarn init:env
 fi
 
-yarn nx run workspace:docker-compose
+if [[ $skip_generate != "true" ]]; then
+  yarn nx run workspace:docker-compose
+fi
 
 # Get the current branch name or the commit hash if in detached HEAD state
 current_branch=$(git symbolic-ref --short -q HEAD || git rev-parse --short HEAD)
@@ -55,11 +63,14 @@ echo "ROOT_DOMAIN_PORT=$ROOT_DOMAIN_PORT"
 echo "SKIP_PULL=$SKIP_PULL"
 echo "BUILD_LOCAL=$BUILD_LOCAL"
 
-read -p "Does everything look good (y/N)? "
+if [[ $always_yes != "true" ]]; then
+  read -rp "Does everything look good (y/N)? "
 
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-  exit 1
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    exit 1
+  fi
 fi
+
 
 export CHANNEL
 
@@ -81,9 +92,14 @@ DOCKER_COMPOSE_FILES="${REMOTE_DOCKER_COMPOSE_FILES} ${LOCAL_DOCKER_COMPOSE_FILE
 
 docker compose $REMOTE_DOCKER_COMPOSE_FILES pull || exit 1
 
-if [[ $BUILD_LOCAL == "true" ]]; then
+function build {
 
-  PARAMS="--target docker --configuration development --tag $channel"
+  echo "Building images locally"
+
+  echo "docker compose $DOCKER_COMPOSE_FILES down"
+  docker compose $DOCKER_COMPOSE_FILES down
+
+  local PARAMS="--target docker --configuration $configuration --tag $channel"
   if [[ $REGISTRY != "" ]]; then
     PARAMS="$PARAMS --imageRegistry $REGISTRY"
   fi
@@ -91,47 +107,25 @@ if [[ $BUILD_LOCAL == "true" ]]; then
   # don't use double quotes around $PARAMS here. or else the $PARAMS will be expanded and passed as a single argument
   yarn nx run-many $PARAMS
 
+}
+
+if [[ $BUILD_LOCAL == "true" ]]; then
+
+  build
+
 else
 
   if [[ $SKIP_PULL != "true" ]]; then
 
-    docker compose $DOCKER_COMPOSE_FILES pull && VALID=true || VALID=false
-
-    if [[ $VALID == true ]]; then
+    if docker compose $DOCKER_COMPOSE_FILES pull; then
       echo -e "${GREEN}channel $channel is valid${NC}"
     else
       echo -e "${RED}channel $channel is not valid${NC}"
 
-      read -p "Do you want to use the 'development' channel (y/N)? "
+      read -rp "Do you want to try to build the images locally (y/N)? "
 
       if [[ $REPLY =~ ^[Yy]$ ]]; then
-        channel=development
-        CHANNEL=$channel
-      else
-        echo "exiting"
-        exit 1
-      fi
-    fi
-
-    export CHANNEL
-
-    docker compose $DOCKER_COMPOSE_FILES pull && VALID=true || VALID=false
-
-    if [[ $VALID == true ]]; then
-      echo -e "${GREEN}channel $channel is valid${NC}"
-    else
-      echo -e "${RED}channel $channel is not valid${NC}"
-
-      read -p "Do you want to try to build the images locally (y/N)? "
-
-      if [[ $REPLY =~ ^[Yy]$ ]]; then
-        PARAMS="--target docker --configuration development --tag $channel"
-        if [[ $REGISTRY != "" ]]; then
-          PARAMS="$PARAMS --imageRegistry $REGISTRY"
-        fi
-        echo "yarn nx run-many $PARAMS"
-        # don't use double quotes around $PARAMS here. or else the $PARAMS will be expanded and passed as a single argument
-        yarn nx run-many $PARAMS
+        build
       else
         echo "exiting"
         exit 1

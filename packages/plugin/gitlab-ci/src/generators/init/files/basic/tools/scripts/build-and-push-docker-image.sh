@@ -69,6 +69,10 @@ if [ -n "$PATH_PREFIX" ]; then
   COMMON_EXEC_PARAMS="$COMMON_EXEC_PARAMS --build-arg PATH_PREFIX=${PATH_PREFIX}"
 fi
 
+if [ -n "$RELEASE" ]; then
+  COMMON_EXEC_PARAMS="$COMMON_EXEC_PARAMS --build-arg RELEASE=${RELEASE}"
+fi
+
 PUSH_TO_GITLAB=${PUSH_TO_GITLAB:-false}
 
 # region check gcp variables
