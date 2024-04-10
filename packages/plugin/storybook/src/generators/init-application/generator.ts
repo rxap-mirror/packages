@@ -4,8 +4,13 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { CoerceArrayItems } from '@rxap/utilities';
 import {
+  CoerceArrayItems,
+  DeleteProperties,
+} from '@rxap/utilities';
+import {
+  GenerateSerializedSchematicFile,
+  GetProjectRoot,
   SkipNonAngularProject,
   SkipNonApplicationProject,
 } from '@rxap/workspace-utilities';
@@ -35,25 +40,34 @@ function skipProject(
 
 export async function initApplicationGenerator(
   tree: Tree,
-  options: InitApplicationGeneratorSchema
+  options: InitApplicationGeneratorSchema,
 ) {
   options.project ??= undefined;
   options.projects ??= [];
   if (options.project) {
-    CoerceArrayItems(options.projects, [options.project]);
+    CoerceArrayItems(options.projects, [ options.project ]);
   }
   console.log('storybook application init generator:', options);
 
   await initWorkspace(tree, options);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
-    }
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
 
-    if (!options.skipProjects) {
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
       await initProject(tree, projectName, project, options);
+
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-storybook',
+        'init-application',
+        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+      );
 
       updateProjectConfiguration(tree, projectName, project);
     }

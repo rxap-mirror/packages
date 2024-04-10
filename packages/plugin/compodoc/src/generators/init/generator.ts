@@ -4,8 +4,12 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { CoerceArrayItems } from '@rxap/utilities';
 import {
+  CoerceArrayItems,
+  DeleteProperties,
+} from '@rxap/utilities';
+import {
+  GenerateSerializedSchematicFile,
   GetProjectSourceRoot,
   SkipNonAngularProject,
 } from '@rxap/workspace-utilities';
@@ -33,6 +37,14 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
     .map(sourceRoot => join(sourceRoot, '**/*.ts'));
   CoerceCompodocTsConfig(tree, 'workspace', angularProjectIncludeList);
+
+  GenerateSerializedSchematicFile(
+    tree,
+    '/',
+    '@rxap/plugin-compodoc',
+    'init',
+    DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+  );
 
 }
 
