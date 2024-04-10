@@ -92,7 +92,11 @@ function routeRule(normalizedOptions: NormalizedRouteComponentOptions, parentRou
           data
         };
       }
-      AddRoute(sourceFile, route, parentRoute, isFeatureRoute ? 'ROUTES' : 'appRoutes');
+      AddRoute(sourceFile, {
+        route,
+        path: parentRoute,
+        name: isFeatureRoute ? 'ROUTES' : 'appRoutes',
+      });
     }, [ isFeatureRoute ? 'routes.ts' : 'app.routes.ts' ]),
     () => console.log('Coerce the children components to route configuration'),
     chain((normalizedOptions.children ?? []).map(child => routeRule({ ...normalizedOptions, ...child }, [ ...parentRoute ?? [], path ])))
