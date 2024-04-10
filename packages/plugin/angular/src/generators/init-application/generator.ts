@@ -503,25 +503,36 @@ function cleanup(tree: Tree, projectName: string, options: InitApplicationGenera
 
     TsMorphAngularProjectTransform(tree, {
       project: projectName,
-    }, (_, [ entryComponent, entryRoutes ]) => {
-      entryComponent.getImportDeclaration('./nx-welcome.component')?.remove();
-      RemoveComponentImport(entryComponent, 'NxWelcomeComponent');
-      RemoveComponentImport(entryComponent, 'CommonModule');
-      const componentOptions = GetComponentDecoratorObject(entryComponent);
-      const templateProp = componentOptions.getProperty('template');
-      if (templateProp && templateProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializer()?.getText().match(/<.+nx-welcome><\/.+nx-welcome>/)) {
-        templateProp.remove();
-        componentOptions.addPropertyAssignment({
-          name: 'template',
-          initializer: w => w.quote('<router-outlet></router-outlet>'),
-        });
-        CoerceComponentImport(entryComponent, { name: 'RouterModule', moduleSpecifier: '@angular/router' });
-      }
+    }, (_, [ entryRoutes ]) => {
       CoerceDefaultExport(entryRoutes.getVariableStatement('remoteRoutes')!.getDeclarations()[0]);
     }, [
-      'app/remote-entry/entry.component.ts',
       'app/remote-entry/entry.routes.ts',
     ]);
+    if (tree.exists(join(sourceRoot, 'app/remote-entry/entry.component.ts'))) {
+      TsMorphAngularProjectTransform(tree, {
+        project: projectName,
+      }, (_, [ entryComponent ]) => {
+        entryComponent.getImportDeclaration('./nx-welcome.component')?.remove();
+        RemoveComponentImport(entryComponent, 'NxWelcomeComponent');
+        RemoveComponentImport(entryComponent, 'CommonModule');
+        const componentOptions = GetComponentDecoratorObject(entryComponent);
+        const templateProp = componentOptions.getProperty('template');
+        if (templateProp && templateProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializer()?.getText().match(
+          /<.+nx-welcome><\/.+nx-welcome>/)) {
+          templateProp.remove();
+          componentOptions.addPropertyAssignment({
+            name: 'template',
+            initializer: w => w.quote('<router-outlet></router-outlet>'),
+          });
+          CoerceComponentImport(entryComponent, {
+            name: 'RouterModule',
+            moduleSpecifier: '@angular/router'
+          });
+        }
+      }, [
+        'app/remote-entry/entry.component.ts',
+      ]);
+    }
     if (options.host) {
       TsMorphAngularProjectTransform(tree, {
         project: options.host,
