@@ -172,17 +172,6 @@ function coerceWorkspaceProject(tree: Tree, options: InitGeneratorSchema) {
     });
   }
 
-  CoerceTarget(workspaceProject, 'init', {
-    executor: '@rxap/plugin-library:run-generator',
-    options: {
-      generator: '@rxap/plugin-library:init',
-      withoutProjectArgument: true,
-      options: {
-        applications: true,
-      },
-    },
-  });
-
   updateProjectConfiguration(tree, 'workspace', workspaceProject);
 
 }
