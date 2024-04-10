@@ -12,30 +12,30 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import {
-  coerceArray,
-  ControlOptions,
-} from '@rxap/utilities';
-import {
   MAT_FORM_FIELD,
   MatFormField,
 } from '@angular/material/form-field';
-import {
-  ExtractDataSourcesMixin,
-  ExtractFormDefinitionMixin,
-} from '@rxap/form-system';
-import { Mixin } from '@rxap/mixin';
-import { RxapFormControl } from '@rxap/forms';
+import { MatSelect } from '@angular/material/select';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
   DataSourceLoader,
   PipeDataSource,
 } from '@rxap/data-source';
-import { map } from 'rxjs/operators';
-import { MatSelect } from '@angular/material/select';
-import { WindowTableSelectOptions } from './window-table-select.service';
+import {
+  ExtractDataSourcesMixin,
+  ExtractFormDefinitionMixin,
+} from '@rxap/form-system';
+import { RxapFormControl } from '@rxap/forms';
+import { Mixin } from '@rxap/mixin';
 import { Method } from '@rxap/pattern';
+import {
+  coerceArray,
+  ControlOptions,
+} from '@rxap/utilities';
 import { WindowRef } from '@rxap/window-system';
+import { map } from 'rxjs/operators';
+import { WindowTableSelectOptions } from './window-table-select.service';
 
 export interface ExtractDatasourceMixin extends ExtractFormDefinitionMixin, ExtractDataSourcesMixin {
 }
@@ -44,7 +44,7 @@ export interface ExtractDatasourceMixin extends ExtractFormDefinitionMixin, Extr
 export class ExtractDatasourceMixin {
 
   public metadata?: BaseDataSourceMetadata;
-  protected control!: RxapFormControl;
+  protected control?: RxapFormControl;
   protected injector!: Injector;
   protected dataSourceLoader!: DataSourceLoader;
   protected dataSource!: BaseDataSource<ControlOptions | Record<string, any>>;
@@ -52,7 +52,7 @@ export class ExtractDatasourceMixin {
   // TODO : mv to rxap and replace in InputSelectOptionsDirective
   protected extractDatasource(
     dataSourceName: string,
-    control: RxapFormControl = this.control,
+    control: RxapFormControl | undefined = this.control,
   ): BaseDataSource<ControlOptions | Record<string, any>> {
 
     const useDataSourceValue = this.extractDataSourceValue(dataSourceName, control);
@@ -74,8 +74,13 @@ export class ExtractDatasourceMixin {
 
   protected extractDataSourceValue(
     dataSourceName: string,
-    control: RxapFormControl = this.control,
+    control: RxapFormControl | undefined = this.control,
   ) {
+
+    if (!control) {
+      throw new Error('The control is not defined');
+    }
+
     const formDefinition = this.extractFormDefinition(control);
 
     const useDataSourceValueMap = this.extractDataSources(formDefinition, control.controlId);
@@ -89,8 +94,13 @@ export class ExtractDatasourceMixin {
 
   protected extractDataSourceTransformer(
     dataSourceName: string,
-    control: RxapFormControl = this.control,
+    control: RxapFormControl | undefined = this.control,
   ) {
+
+    if (!control) {
+      throw new Error('The control is not defined');
+    }
+
     const useDataSourceValue = this.extractDataSourceValue(dataSourceName, control);
     const settings = useDataSourceValue.settings;
     return settings?.transformer ?? (v => v);
@@ -160,7 +170,7 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
   public async onClick() {
     const selected$ = this.openMethod.call({
       data: this.tableSelectDataSource,
-      selected: coerceArray(this.control.value),
+      selected: coerceArray(this.control?.value),
       multiple: this.isMultiple(),
       injector: this.injector,
       viewContainerRef: this.viewContainerRef,
@@ -176,9 +186,9 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
     }
     if (selected && Array.isArray(selected)) {
       if (this.isMultiple()) {
-        this.control.setValue(selected);
+        this.control?.setValue(selected);
       } else {
-        this.control.setValue(selected[0] ?? null);
+        this.control?.setValue(selected[0] ?? null);
       }
     }
   }
