@@ -56,8 +56,6 @@ export function HasSerializedSchematicFile(
   path: string,
 ): boolean {
   const treeAdapter = new TreeAdapter(tree);
-  console.log('check directory:', path);
-  console.log('subfiles:', treeAdapter.children(path));
   for (const file of treeAdapter.children(path)) {
     if (file.endsWith('.yaml') || file.endsWith('.yml') || file.endsWith('.json')) {
       if (file.startsWith('schematics') || file.startsWith('schematic')) {
@@ -135,7 +133,7 @@ export function GenerateSerializedSchematicFile(
   const newData = {
     package: packageName,
     name: schematicName,
-    options: DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects', 'coerce', 'replace', 'feature' ]),
+    options: DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects', 'coerce', 'replace', 'feature', 'skipFormat' ]),
   };
 
   function isEqual(data: Record<string, unknown>) {
@@ -143,7 +141,6 @@ export function GenerateSerializedSchematicFile(
   }
 
   UpdateSerializedSchematicFile(tree, path, (data: SerializedSchematic) => {
-    console.log('current data:', data);
     if (Array.isArray(data)) {
       if (data.length === 1 && Object.keys(data[0]).length === 0) {
         return newData;
