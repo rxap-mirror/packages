@@ -8,7 +8,10 @@ import {
   updateProjectConfiguration,
   writeJson,
 } from '@nx/devkit';
-import { LibraryInitGenerator } from '@rxap/plugin-library';
+import {
+  LibraryInitGenerator,
+  LibraryInitWorkspace,
+} from '@rxap/plugin-library';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   CoerceArrayItems,
@@ -125,6 +128,8 @@ export async function initLibraryGenerator(
   }
   console.log('nestjs library init generator:', options);
 
+  LibraryInitWorkspace(tree, options);
+
   setGeneralTargetDefaults(tree);
 
   const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
@@ -160,14 +165,6 @@ export async function initLibraryGenerator(
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
     }
-
-  } else {
-
-    await LibraryInitGenerator(tree, {
-      ...options,
-      projects: [ ],
-      skipProjects: true,
-    });
 
   }
 }
