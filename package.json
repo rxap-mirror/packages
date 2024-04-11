@@ -192,8 +192,8 @@
     "verdaccio": "5.21.2"
   },
   "engines": {
-    "yarn": ">=3.6.0 <4",
-    "node": ">=20.9.0 <21"
+    "yarn": "1.22 || 3.6",
+    "node": ">=18 <21"
   },
   "homepage": "https://gitlab.com/rxap/packages",
   "keywords": [

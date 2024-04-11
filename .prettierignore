@@ -8,3 +8,6 @@ node_modules
 tmp
 
 tmp.*
+
+.nx
+.nyc_output

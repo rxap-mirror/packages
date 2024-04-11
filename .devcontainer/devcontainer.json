@@ -1,0 +1,28 @@
+{
+  "name": "RxAP Workspace",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [4200, 8888],
+  "postCreateCommand": "yarn && yarn init:env",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Angular.ng-template",
+        "vivaxy.vscode-conventional-commits",
+        "nrwl.angular-console",
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode",
+        "firsttris.vscode-jest-runner",
+        "dbaeumer.vscode-eslint"
+      ]
+    },
+    "jetbrains": {
+      "backend": "WebStorm"
+    }
+  },
+  "remoteUser": "root"
+}
