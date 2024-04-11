@@ -90,6 +90,7 @@ const gitIgnore = [
   '!.yarn/sdks',
   '!.yarn/versions',
   // '!.yarn/cache',
+  'documentation.json',
 ];
 
 const prettierIgnore = [
