@@ -6,5 +6,8 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   console.log('init storybook workspace');
 
   await AddPackageJsonDevDependency(tree, '@compodoc/compodoc', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@storybook/addon-themes', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@storybook/addon-interactions', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@storybook/addon-themes', 'latest', { soft: true });
 
 }
