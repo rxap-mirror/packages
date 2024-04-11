@@ -1,0 +1,12 @@
+- package: "@rxap/plugin-gitlab-ci"
+  name: init
+  options:
+    onlyPackages: true
+    dte: true
+- package: "@rxap/plugin-workspace"
+  name: init
+  options:
+    packages: true
+    standalone: false
+    license: gpl
+    skipLicense: false
