@@ -5,7 +5,7 @@ export interface InitGeneratorSchema {
   standalone?: boolean;
   skipLicense?: boolean;
   repositoryUrl?: string;
-  license?: 'mit' | 'gpl';
+  license?: 'mit' | 'gpl' | 'none';
   prefix?: string;
   skipFormat?: boolean;
 }
