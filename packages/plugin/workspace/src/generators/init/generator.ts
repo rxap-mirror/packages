@@ -22,6 +22,7 @@ import {
   CoerceLernaJson,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
+  GenerateSerializedSchematicFile,
   GetWorkspaceName,
   Strategy,
   UpdateJsonFile,
@@ -490,6 +491,14 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   if (!options.skipLicense) {
     await coercePackageJsonLicense(tree, options);
   }
+
+  GenerateSerializedSchematicFile(
+    tree,
+    '/',
+    '@rxap/plugin-workspace',
+    'init',
+    options,
+  );
 
   if (!options.skipFormat) {
     await formatFiles(tree);
