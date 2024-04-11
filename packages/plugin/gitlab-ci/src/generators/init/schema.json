@@ -21,6 +21,18 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to overwrite existing files"
+    },
+    "onlyPackages": {
+      "type": "boolean",
+      "description": "If true, the gitlab ci will be initialized exclusively for package development",
+      "x-prompt": "Does this package only includes packages?",
+      "default": false
+    },
+    "dte": {
+      "type": "boolean",
+      "description": "If true, the gitlab ci will be initialized with dte execution for the targets",
+      "x-prompt": "Should nx workspace DTE be used?",
+      "default": false
     }
   },
   "required": []

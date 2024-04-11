@@ -4,4 +4,5 @@ export interface InitGeneratorSchema {
   overwrite?: boolean;
   dte?: boolean;
   skipFormat?: boolean;
+  onlyPackages?: boolean;
 }

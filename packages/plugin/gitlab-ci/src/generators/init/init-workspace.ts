@@ -12,6 +12,20 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     overwrite: options.overwrite,
   });
 
+  if (options.onlyPackages) {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'packages'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  } else {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'application'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  }
+
   if (options.dte) {
 
     CoerceFilesStructure(tree, {
