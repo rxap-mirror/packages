@@ -7,3 +7,5 @@
 /packages/nest/package.json
 /packages/plugin/package.json
 /packages/schematic/package.json
+node_modules
+node_modules/**/project.json
