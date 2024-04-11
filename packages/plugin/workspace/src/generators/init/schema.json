@@ -12,7 +12,7 @@
     "standalone": {
       "type": "boolean",
       "description": "If true, the workspace will be initialized for standalone development",
-      "x-prompt": "Has this workspace a standalone project?"
+      "x-prompt": "Is this a standalone workspace?"
     },
     "overwrite": {
       "type": "boolean",
@@ -37,9 +37,11 @@
       "type": "string",
       "default": "gpl",
       "enum": [
+        "none",
         "mit",
         "gpl"
-      ]
+      ],
+      "x-prompt": "Which license does this project has?"
     },
     "repositoryUrl": {
       "type": "string",

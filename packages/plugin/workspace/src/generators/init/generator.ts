@@ -430,6 +430,9 @@ function coercePrettierConfig(tree: Tree) {
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   options.license ??= !options.skipLicense ? 'gpl' : undefined;
+  if (options.license === 'none') {
+    options.skipLicense = true;
+  }
   console.log('workspace init generator:', options);
 
   CoerceFilesStructure(tree, {
