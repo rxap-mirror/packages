@@ -7,6 +7,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogModule,
 } from '@angular/material/dialog';
+import { MessageDialogService } from './message-dialog.service';
 import { MessageDialogData } from './types';
 import { SantizationPipe } from '@rxap/pipes/santization';
 import { NgFor } from '@angular/common';
@@ -19,6 +20,9 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [ MatDialogModule, MatButtonModule, NgFor, SantizationPipe ],
+  providers: [
+    MessageDialogService,
+  ],
 })
 export class MessageDialogComponent {
 
