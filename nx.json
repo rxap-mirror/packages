@@ -381,6 +381,20 @@
       "executor": "@rxap/plugin-application:i18n",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}/index.html"],
       "inputs": ["{workspaceRoot}/{projectRoot}/project.json"]
+    },
+    "compodoc": {
+      "executor": "@rxap/plugin-compodoc:build",
+      "defaultConfiguration": "html",
+      "outputs": ["{options.outputPath}"],
+      "inputs": ["production", "^production"],
+      "configurations": {
+        "json": {
+          "exportFormat": "json"
+        },
+        "html": {
+          "exportFormat": "html"
+        }
+      }
     }
   },
   "affected": {

@@ -10,3 +10,6 @@
     standalone: false
     license: gpl
     skipLicense: false
+- package: "@rxap/plugin-compodoc"
+  name: init
+  options: {}

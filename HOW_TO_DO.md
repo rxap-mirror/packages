@@ -59,7 +59,7 @@ yarn nx g @rxap/plugin-library:init --project angular-<project-name>
 To add the executor to generate the compodoc documentation for the library run the command:
 
 ```shell
-yarn nx g @twittwer/compodoc:config <project-name>
+yarn nx g @rxap/plugin-compodoc:init-library <project-name>
 ```
 
 To add a secondary entry point to the library run the command:

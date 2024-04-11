@@ -90,9 +90,7 @@
           "env": "CI_COMMIT_REF_SLUG"
         }
       ],
-      "outputs": [
-        "{projectRoot}/dist/**/build.json"
-      ]
+      "outputs": ["{projectRoot}/dist/**/build.json"]
     },
     "docker-compose": {
       "executor": "@rxap/plugin-library:run-generator",
@@ -107,6 +105,13 @@
             "service-changelog"
           ]
         }
+      }
+    },
+    "compodoc": {
+      "options": {
+        "tsConfig": "tsconfig.compodoc.json",
+        "output": "dist/compodoc",
+        "outputPath": "dist/compodoc"
       }
     }
   }
