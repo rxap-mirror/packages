@@ -5,6 +5,7 @@ import {
 import {
   CoerceTarget,
   GetProjectRoot,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 
@@ -14,7 +15,7 @@ export function CoerceCompodocTarget(tree: Tree, projectName: string, project: P
   CoerceTarget(project, 'compodoc', {
     options: {
       tsConfig: join(projectRoot, 'tsconfig.compodoc.json'),
-      output: join('dist', 'compodoc', projectRoot),
+      outputPath: join('dist', 'compodoc', projectRoot),
     }
-  });
+  }, Strategy.OVERWRITE);
 }
