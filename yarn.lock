@@ -11094,6 +11094,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-angular@workspace:packages/plugin/angular"
   dependencies:
+    "@nx/devkit": 16.10.0
     semver: ^7.3.5
     tslib: 2.6.2
   peerDependencies:

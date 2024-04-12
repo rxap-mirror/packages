@@ -81,6 +81,7 @@ export * from './lib/get-target-configuration-name-list';
 export * from './lib/get-workspace-name';
 export * from './lib/get-workspace-scope';
 export * from './lib/has-components';
+export * from './lib/has-target';
 export * from './lib/is-buildable';
 export * from './lib/is-project';
 export * from './lib/is-publishable';
