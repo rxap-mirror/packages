@@ -298,6 +298,10 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
     } else {
       console.group(`The package \x1b[34m${ packageName }\x1b[0m has the following peer dependencies: ${Object.keys(peerDependencies).join(', ')}`);
       for (const [ peerDependency, peerDependencyVersion ] of Object.entries(peerDependencies)) {
+        if (peerDependency === 'tslib') {
+          console.log(`Skip peer dependency \x1b[34m${ peerDependency }\x1b[0m as it is a typescript library`.grey);
+          continue;
+        }
         if (withoutNonRxapPeerDependencies) {
           if (!peerDependency.startsWith('@rxap/')) {
             console.log(`Skip peer dependency \x1b[34m${ peerDependency }\x1b[0m as it is not a rxap package`.grey);
