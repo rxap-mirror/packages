@@ -1,5 +1,6 @@
 import {
   DeleteProperties,
+  DeleteUndefinedProperties,
   isPromise,
 } from '@rxap/utilities';
 import {
@@ -133,7 +134,7 @@ export function GenerateSerializedSchematicFile(
   const newData = {
     package: packageName,
     name: schematicName,
-    options: DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects', 'coerce', 'replace', 'feature', 'skipFormat' ]),
+    options: DeleteUndefinedProperties(DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects', 'coerce', 'replace', 'feature', 'skipFormat', 'cleanup' ])),
   };
 
   function isEqual(data: Record<string, unknown>) {
