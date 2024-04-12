@@ -34,6 +34,10 @@ export async function GetLatestPackageVersion(packageName: string, skipCache?: b
   const info = await GetPackageInfo(packageName, skipCache);
 
   if (info) {
+    if (!info['dist-tags']) {
+      console.log(JSON.stringify(info, null, 2));
+      throw new Error(`Invalid package info for ${packageName}`);
+    }
     const latestVersion = info['dist-tags'].latest;
     updateLastPackageVersionCache(packageName, latestVersion);
     return latestVersion;
