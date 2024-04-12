@@ -11,7 +11,7 @@ export async function coerceToolsProject(tree: Tree) {
   if (!HasProject(tree, 'workspace-tools')) {
     // nx g @nx/js:library --name=workspace-tools --directory=tools --importPath=workspace-tools --projectNameAndRootFormat=as-provided
     const defaultOptions = GetDefaultGeneratorOptions(tree, '@nx/js:library');
-    const tags = (defaultOptions.tags as string ?? '').split(',').map(tag => tag.trim());
+    const tags = (defaultOptions.tags as string ?? '').split(',').map(tag => tag.trim()).filter(Boolean);
     CoerceArrayItems(tags, ['internal']);
     await libraryGenerator(tree, {
       ...defaultOptions,
@@ -20,13 +20,19 @@ export async function coerceToolsProject(tree: Tree) {
       directory: 'tools',
       importPath: 'workspace-tools',
       projectNameAndRootFormat: 'as-provided',
+      minimal: true,
     });
-    tree.write('tools/project.json', JSON.stringify({
-      name: 'workspace-tools',
-      $schema: '../node_modules/nx/schemas/project-schema.json',
-      targets: {},
-      tags: [ 'internal' ],
-    }));
+    // throw new Error('The workspace-tools project was created. Please run the generator again.');
+    if (tree.exists('tools/src/lib/workspace-tools.ts')) {
+      console.log('delete tools/src/lib/workspace-tools.ts');
+      tree.delete('tools/src/lib/workspace-tools.ts');
+    }
+    if (tree.exists('tools/src/lib/workspace-tools.spec.ts')) {
+      console.log('delete tools/src/lib/workspace-tools.spec.ts');
+      tree.delete('tools/src/lib/workspace-tools.spec.ts');
+    }
+    console.log('create tools/src/index.ts');
+    tree.write('tools/src/index.ts', 'export {};');
   }
 
 }

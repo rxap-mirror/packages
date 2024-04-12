@@ -489,7 +489,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   coerceNxJson(tree, options);
   coerceDevContainerConfig(tree);
   coercePrettierConfig(tree);
-  coerceToolsProject(tree);
+  await coerceToolsProject(tree);
   await coerceRootPackageJsonScripts(tree);
   if (!options.skipLicense) {
     await coercePackageJsonLicense(tree, options);
