@@ -26,8 +26,9 @@ export interface InitApplicationGeneratorSchema {
   deploy?: 'web3-storage';
   moduleFederation?: 'host' | 'remote';
   host?: string;
-  coerce?: boolean | AngularHostGeneratorSchema | AngularRemoteGeneratorSchema | AngularApplicationGeneratorSchema;
+  coerce?: boolean | Omit<AngularHostGeneratorSchema | AngularRemoteGeneratorSchema | AngularApplicationGeneratorSchema, 'name'>;
   layoutRoutePath?: string;
   standaloneImport?: boolean;
   skipFormat?: boolean;
+  skipDocker?: boolean;
 }

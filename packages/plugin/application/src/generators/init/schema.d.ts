@@ -10,4 +10,5 @@ export interface InitGeneratorSchema {
   minio?: boolean;
   standalone?: boolean;
   skipFormat?: boolean;
+  skipDocker?: boolean;
 }

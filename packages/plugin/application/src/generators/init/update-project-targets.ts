@@ -5,14 +5,16 @@ import { InitGeneratorSchema } from './schema';
 
 export function updateProjectTargets(project: ProjectConfiguration, projectName: string, options: InitGeneratorSchema) {
 
-  CoerceTarget(project, 'docker', {
-    options: DeleteEmptyProperties({
-      imageName: options.dockerImageName,
-      imageSuffix: options.dockerImageSuffix ?? options.standalone ? undefined : '/' + projectName,
-      imageRegistry: options.dockerImageRegistry,
-    }),
-  });
-  CoerceTarget(project, 'docker-save');
+  if (!options.skipDocker) {
+    CoerceTarget(project, 'docker', {
+      options: DeleteEmptyProperties({
+        imageName: options.dockerImageName,
+        imageSuffix: options.dockerImageSuffix ?? options.standalone ? undefined : '/' + projectName,
+        imageRegistry: options.dockerImageRegistry,
+      }),
+    });
+    CoerceTarget(project, 'docker-save');
+  }
 
   if (project.targets?.['build']) {
 

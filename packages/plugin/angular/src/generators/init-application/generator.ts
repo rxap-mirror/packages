@@ -103,9 +103,13 @@ function updateProjectTargets(
     throw new Error(`The project '${ project.name }' has no build target`);
   }
 
-  if (project.targets['docker']) {
-    project.targets['docker'].options ??= {};
-    project.targets['docker'].options.dockerfile ??= options.moduleFederation === 'remote' ? join(project.sourceRoot!, 'Dockerfile') : 'shared/angular/Dockerfile';
+  if (!options.skipDocker) {
+    if (project.targets['docker']) {
+      project.targets['docker'].options ??= {};
+      project.targets['docker'].options.dockerfile ??= options.moduleFederation === 'remote' ?
+                                                       join(project.sourceRoot!, 'Dockerfile') :
+                                                       'shared/angular/Dockerfile';
+    }
   }
 
   CoerceTarget(project, 'serve', {
@@ -844,28 +848,17 @@ export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
 ) {
-  options.moduleFederation ??= undefined;
-  options.sentry ??= true;
-  options.openApi ??= false;
-  options.config ??= true;
-  options.localazy ??= false;
-  options.i18n ??= false;
-  options.serviceWorker ??= false;
-  options.languages ??= options.i18n ? [ 'en' ] : [];
-  options.material ??= true;
-  options.generateMain ??= false;
-  options.overwrite ??= false;
-  options.monolithic ??= false;
-  options.openApi = options.openApi || options.monolithic;
-  options.authentik ??= false;
-  options.oauth ??= false;
-  options.authentication ??= false;
-  options.oauth = options.oauth || options.authentik;
-  options.project ??= undefined;
-  options.projects ??= [];
-  options.cleanup ??= true;
-  options.host ??= undefined;
+  if (options.authentik) {
+    options.oauth = true;
+  }
+  if (options.monolithic) {
+    options.openApi = true;
+  }
+  if (options.i18n) {
+    options.languages ??= ['en'];
+  }
   if (options.project) {
+    options.projects ??= [];
     CoerceArrayItems(options.projects, [options.project]);
   }
   if (options.host) {
@@ -987,7 +980,7 @@ export async function initApplicationGenerator(
     tree.write('shared/angular/assets/custom.svg', '<svg></svg>');
   }
 
-  if (options.i18n) {
+  if (options.i18n && !options.skipDocker) {
     let dockerfileContent = tree.read('shared/angular/Dockerfile', 'utf-8')!;
     dockerfileContent = dockerfileContent.replace('registry.gitlab.com/rxap/docker/nginx:', 'registry.gitlab.com/rxap/docker/i18n-nginx:');
     tree.write('shared/angular/Dockerfile', dockerfileContent);
@@ -1047,7 +1040,7 @@ export async function initApplicationGenerator(
       updateGitIgnore(project, tree, options);
       updateTsConfig(tree, projectName);
 
-      if (options.cleanup) {
+      if (options.cleanup || options.coerce) {
         cleanup(tree, projectName, options);
       }
 

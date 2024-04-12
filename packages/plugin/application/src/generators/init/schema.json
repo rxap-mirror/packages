@@ -18,6 +18,10 @@
       "default": false,
       "description": "Whether to overwrite existing files"
     },
+    "skipDocker": {
+      "type": "boolean",
+      "description": "Whether to skip the docker configuration"
+    },
     "skipFormat": {
       "type": "boolean",
       "default": false
