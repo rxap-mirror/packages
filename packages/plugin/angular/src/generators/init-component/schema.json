@@ -53,7 +53,7 @@
     "standalone": {
       "description": "Whether the generated component is standalone. _Note: This is only supported in Angular versions >= 14.1.0_.",
       "type": "boolean",
-      "default": false,
+      "default": true,
       "x-priority": "important"
     },
     "viewEncapsulation": {
@@ -66,7 +66,7 @@
       "description": "The change detection strategy to use in the new component.",
       "enum": ["Default", "OnPush"],
       "type": "string",
-      "default": "Default",
+      "default": "OnPush",
       "alias": "c"
     },
     "module": {
@@ -125,7 +125,6 @@
     "interactionTests": {
       "type": "boolean",
       "description": "Set up Storybook interaction tests.",
-      "x-prompt": "Do you want to set up Storybook interaction tests?",
       "x-priority": "important",
       "default": true
     },

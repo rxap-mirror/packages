@@ -11,11 +11,17 @@ import {
 } from '@rxap/utilities';
 import {
   GenerateSerializedSchematicFile,
+  GetDefaultGeneratorOptions,
+  GetProject,
   GetProjectRoot,
   GetProjectSourceRoot,
   HasTarget,
+  IsLibraryProject,
 } from '@rxap/workspace-utilities';
-import { relative } from 'path';
+import {
+  join,
+  relative,
+} from 'path';
 import { InitComponentGeneratorSchema } from './schema';
 
 export async function initComponentGenerator(
@@ -25,7 +31,7 @@ export async function initComponentGenerator(
 
   const projectRoot = GetProjectRoot(tree, options.project);
   const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
-  const path = (options.path ?? projectSourceRoot) + (options.flat ? '' : dasherize(options.name));
+  const path = options.path ?? (projectSourceRoot + (IsLibraryProject(GetProject(tree, options.project)) ? '/lib' : '/app') + (options.flat ? '' : '/' + dasherize(options.name)));
   const componentPath = relative(projectRoot, path);
 
   GenerateSerializedSchematicFile(
@@ -36,19 +42,39 @@ export async function initComponentGenerator(
     options,
   );
 
-  await componentGenerator(tree, options);
+  const defaultOptions = GetDefaultGeneratorOptions(tree, '@nx/angular: component');
+  const componentOptions = {
+    ...defaultOptions,
+    ...options,
+  };
 
-  const componentName = classify(options.name) + 'Component';
-  const componentFileName = dasherize(options.name) + '.component';
+  componentOptions.displayBlock ??= false;
+  componentOptions.inlineStyle ??= false;
+  componentOptions.standalone ??= true;
+  componentOptions.changeDetection ??= 'OnPush';
+  componentOptions.skipTests ??= false;
+  componentOptions.flat ??= false;
+  componentOptions.skipImport ??= false;
+  componentOptions.skipSelector ??= false;
+  componentOptions.type ??= 'component';
+  componentOptions.export ??= false;
+  componentOptions.skipFormat ??= false;
 
-  if (HasTarget(tree, options.project, 'storybook')) {
+  const componentName = classify(componentOptions.name) + 'Component';
+  const componentFileName = dasherize(componentOptions.name) + '.component';
+
+  if (!tree.exists(join(path, componentFileName + '.ts'))) {
+    await componentGenerator(tree, componentOptions);
+  }
+
+  if (!tree.exists(join(path, componentFileName + '.stories.ts')) && HasTarget(tree, options.project, 'storybook')) {
     await componentStoryGenerator(tree, {
       projectPath: projectRoot,
-      interactionTests: options.interactionTests,
+      interactionTests: componentOptions.interactionTests,
       componentName,
       componentPath,
       componentFileName,
-      skipFormat: options.skipFormat,
+      skipFormat: componentOptions.skipFormat,
     });
 
     if (options.cypressProject || HasTarget(tree, options.project, 'e2e')) {
@@ -58,21 +84,21 @@ export async function initComponentGenerator(
         componentName,
         componentPath,
         componentFileName,
-        cypressProject: options.cypressProject ?? options.project,
-        skipFormat: options.skipFormat,
-        specDirectory: options.specDirectory,
+        cypressProject: componentOptions.cypressProject ?? options.project,
+        skipFormat: componentOptions.skipFormat,
+        specDirectory: componentOptions.specDirectory,
       });
     }
 
   }
 
-  if (HasTarget(tree, options.project, 'component-test')) {
+  if (!tree.exists(join(path, componentFileName + '.cy.ts')) && HasTarget(tree, options.project, 'component-test')) {
     componentTestGenerator(tree, {
       project: options.project,
       componentName,
       componentDir: componentPath,
       componentFileName,
-      skipFormat: options.skipFormat
+      skipFormat: componentOptions.skipFormat
     });
   }
 
