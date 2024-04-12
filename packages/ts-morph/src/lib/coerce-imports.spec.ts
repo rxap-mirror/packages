@@ -15,13 +15,13 @@ describe('CoerceImports', () => {
     sourceFile = project.createSourceFile('test.ts', '');
   });
 
-  it('should not throw if only the moduleSpecifier property is given', () => {
+  it('should add simple import if only the moduleSpecifier property is given', () => {
     expect(() => {
       CoerceImports(sourceFile, {
         moduleSpecifier: '@angular/core',
       });
     }).not.toThrow();
-    expect(sourceFile.getFullText()).toEqual('');
+    expect(sourceFile.getFullText()).toEqual(`import '@angular/core';\n`);
   });
 
   it('should handle array of structures', () => {
