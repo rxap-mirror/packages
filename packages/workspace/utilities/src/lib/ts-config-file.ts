@@ -12,6 +12,25 @@ export function GetTsConfigJson<Tree extends TreeLike>(tree: Tree, infix?: strin
   return GetJsonFile(tree, infix ? `tsconfig.${ infix }.json` : 'tsconfig.json');
 }
 
+export function UpdateTsConfigPaths<Tree extends TreeLike>(
+  tree: Tree,
+  updater: (paths: Record<string, Array<string>>) => void,
+  options: UpdateTsConfigJsonOptions = {},
+) {
+
+  if (!options.basePath) {
+    options.infix ??= 'base';
+  }
+
+  UpdateTsConfigJson(tree, tsConfig => {
+    tsConfig.compilerOptions ??= {};
+    tsConfig.compilerOptions.paths ??= {};
+    updater(tsConfig.compilerOptions.paths);
+  }, options);
+
+}
+
+
 export interface UpdateTsConfigJsonOptions extends UpdateJsonFileOptions {
   infix?: string;
   basePath?: string;
