@@ -176,6 +176,7 @@
       "@rxap/plugin-angular": ["packages/plugin/angular/src/index.ts"],
       "@rxap/plugin-application": ["packages/plugin/application/src/index.ts"],
       "@rxap/plugin-compodoc": ["packages/plugin/compodoc/src/index.ts"],
+      "@rxap/plugin-cypress": ["packages/plugin/cypress/src/index.ts"],
       "@rxap/plugin-docker": ["packages/plugin/docker/src/index.ts"],
       "@rxap/plugin-gitlab-ci": ["packages/plugin/gitlab-ci/src/index.ts"],
       "@rxap/plugin-gpt": ["packages/plugin/gpt/src/index.ts"],

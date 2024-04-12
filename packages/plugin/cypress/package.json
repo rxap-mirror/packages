@@ -1,0 +1,37 @@
+{
+  "version": "16.0.0",
+  "name": "@rxap/plugin-cypress",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/cypress",
+  "keywords": [
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-cypress",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/cypress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/cypress"
+  },
+  "type": "commonjs",
+  "typings": "./src/index.d.ts"
+}

@@ -11146,6 +11146,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-cypress@workspace:packages/plugin/cypress":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-cypress@workspace:packages/plugin/cypress"
+  dependencies:
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-docker@workspace:packages/plugin/docker":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-docker@workspace:packages/plugin/docker"
