@@ -85,6 +85,9 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
         namedImports: [ 'applicationConfig' ],
         moduleSpecifier: '@storybook/angular',
       },
+      {
+        moduleSpecifier: '@angular/localize/init',
+      }
     ]);
   }, '.storybook/preview.ts');
 
