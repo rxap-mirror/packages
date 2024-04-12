@@ -66,11 +66,11 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
         strict: true,
         standaloneConfig: true,
         ...defaultOptions,
+        directory,
         ...formOptions,
         name: projectName,
         dynamic: true,
         projectNameAndRootFormat: 'as-provided',
-        directory,
       };
       await angularHostGenerator(tree, schema);
     } else {
@@ -88,11 +88,11 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
         strict: true,
         standaloneConfig: true,
         ...defaultOptions,
+        directory,
         ...formOptions,
         host: options.host,
         name: projectName,
         projectNameAndRootFormat: 'as-provided',
-        directory,
       };
       await angularRemoteGenerator(tree, schema);
     }
@@ -114,10 +114,10 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
       standaloneConfig: true,
       minimal: true,
       ...defaultOptions,
+      directory,
       ...formOptions,
       name: projectName,
       projectNameAndRootFormat: 'as-provided',
-      directory,
     };
     await angularApplicationGenerator(tree, schema);
   }
