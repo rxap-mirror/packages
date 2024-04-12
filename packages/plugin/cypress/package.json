@@ -8,6 +8,7 @@
   },
   "peerDependencies": {
     "@nx/angular": "^16.10.0",
+    "@rxap/plugin-angular": "*",
     "@rxap/ts-morph": "*",
     "@rxap/utilities": "*",
     "@rxap/workspace-ts-morph": "*",

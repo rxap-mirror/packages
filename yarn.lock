@@ -10103,7 +10103,6 @@ __metadata:
   peerDependencies:
     "@tailwindcss/typography": ^0.5.10
     tailwindcss: ^3.3.2
-    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -11150,7 +11149,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-cypress@workspace:packages/plugin/cypress"
   dependencies:
+    "@nx/devkit": 16.10.0
     tslib: ^2.3.0
+  peerDependencies:
+    "@nx/angular": ^16.10.0
+    "@rxap/plugin-angular": "*"
+    "@rxap/ts-morph": "*"
+    "@rxap/utilities": "*"
+    "@rxap/workspace-ts-morph": "*"
+    "@rxap/workspace-utilities": "*"
   languageName: unknown
   linkType: soft
 

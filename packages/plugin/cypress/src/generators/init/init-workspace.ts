@@ -15,6 +15,7 @@ import {
   UpdateTsConfigPaths,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
+import { coerceCypressApplicationProject } from '../../lib/coerce-cypress-application-project';
 import { InitGeneratorSchema } from './schema';
 
 export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
@@ -56,6 +57,8 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     }
   }, Strategy.OVERWRITE);
   updateNxJson(tree, nxJson);
+
+  await coerceCypressApplicationProject(tree);
 
 
 }

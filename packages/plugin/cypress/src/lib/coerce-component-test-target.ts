@@ -6,6 +6,12 @@ import { CoerceTarget } from '@rxap/workspace-utilities';
 
 export function coerceComponentTestTarget(tree: Tree, projectName: string, project: ProjectConfiguration) {
 
-  CoerceTarget(project, 'component-test', {});
+  CoerceTarget(project, 'open-component-test', {
+    executor: project.targets['component-test'].executor,
+    options: {
+      ...project.targets['component-test'].options,
+      watch: true,
+    }
+  });
 
 }

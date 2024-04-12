@@ -8,6 +8,7 @@ import { cleanup } from '../../lib/cleanup';
 import { coerceComponentTestTarget } from '../../lib/coerce-component-test-target';
 import { coerceCypressConfig } from '../../lib/coerce-cypress-config';
 import { coerceCypressImports } from '../../lib/coerce-cypress-imports';
+import { coerceImplicitDependency } from '../../lib/coerce-implicit-dependency';
 import { setupComponentTestTarget } from '../../lib/setup-component-test-target';
 import { InitLibraryGeneratorSchema } from './schema';
 
@@ -23,6 +24,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     }
   }
 
+  coerceImplicitDependency(tree, projectName);
   coerceComponentTestTarget(tree, projectName, project);
   coerceCypressImports(tree, projectName);
   coerceCypressConfig(tree, projectName);
