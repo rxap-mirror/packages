@@ -11,7 +11,6 @@ import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
-
   options.overwrite ??= false;
   options.project ??= undefined;
   options.projects ??= [];
