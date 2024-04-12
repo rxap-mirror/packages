@@ -67,7 +67,7 @@ export function CoerceFilesStructure(tree: TreeLike,
 ) {
   for (const file of EachDirSync(srcFolder)) {
     const filePath = relative(srcFolder, file);
-    const fullFilePath = join(target, filePath);
+    const fullFilePath = join(target, filePath).replace(/\.template$/, '');
     if (!tree.exists(fullFilePath) || overwrite || mergeStrategies?.some(({ match }) => match.test(filePath))) {
       const mergeFunction: FileMergeFunction | undefined = mergeStrategies?.find(
         ({ match }) => match.test(filePath))?.fnc;
