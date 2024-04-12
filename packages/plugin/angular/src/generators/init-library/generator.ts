@@ -55,6 +55,7 @@ import {
   gte,
   parse,
 } from 'semver';
+import { coerceTestSetup } from '../../lib/coerce-test-setup';
 import { InitGeneratorSchema } from '../init/schema';
 import { InitLibraryGeneratorSchema } from './schema';
 
@@ -490,6 +491,7 @@ export async function initLibraryGenerator(
       extendAngularSpecificEslint(tree, project);
       updateProjectTargets(tree, project);
       updateTsConfig(tree, projectName);
+      coerceTestSetup(tree, projectName);
 
       updateProjectConfiguration(tree, projectName, project);
 

@@ -68,6 +68,7 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
+import { coerceTestSetup } from '../../lib/coerce-test-setup';
 import { InitGeneratorSchema } from '../init/schema';
 import { CoerceProjects } from './coerce-project';
 import { generateAuthentication } from './generate-authentication';
@@ -1217,6 +1218,7 @@ export async function initApplicationGenerator(
         target: join(sourceRoot, 'assets'),
         overwrite: options.overwrite,
       });
+      coerceTestSetup(tree, projectName);
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
