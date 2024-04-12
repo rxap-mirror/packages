@@ -896,6 +896,7 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/pipes', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/mixin', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/reflect-metadata', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@rxap/browser-tailwind', 'latest', { soft: true, withoutNonRxapPeerDependencies: false });
   const angularVersion = '~16.2.0';
   // must always be added as some rxap components use the i18n tag
   await AddPackageJsonDependency(tree, '@angular/localize', angularVersion, { soft: true });
@@ -1025,8 +1026,9 @@ export async function initApplicationGenerator(
 
       ApplicationInitProject(tree, projectName, project, options);
 
-      if (options.overwrite) {
+      if (options.overwrite || !tree.read(join(sourceRoot, 'styles.scss'), 'utf-8')?.match(/@use ".+\/shared\/angular\/styles";/)) {
         generateFiles(tree, join(__dirname, 'files', 'root'), sourceRoot, {
+          serviceWorker: false,
           ...options,
           relativePathToWorkspaceRoot: relative(sourceRoot, ''),
           name: projectName.replace(/^user-interface-/, ''),
