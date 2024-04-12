@@ -46,7 +46,8 @@
       "options": {
         "lintFilePatterns": [
           "packages/plugin/cypress/**/*.ts",
-          "packages/plugin/cypress/package.json"
+          "packages/plugin/cypress/package.json",
+          "packages/plugin/cypress/generators.json"
         ]
       }
     },

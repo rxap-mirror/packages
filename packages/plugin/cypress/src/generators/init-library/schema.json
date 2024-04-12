@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "InitLibrary",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "skipProjects": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip executing project specific initialization"
+    },
+    "component": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to setup cypress component testing"
+    },
+    "generateTests": {
+      "type": "boolean",
+      "description": "Whether to generate tests for the components"
+    },
+    "buildTarget": {
+      "type": "string",
+      "description": "A build target used to configure Cypress component testing in the format of `project:target[:configuration]`. The build target should be an angular app. If not provided we will try to infer it from your projects usage.",
+      "pattern": "^[^:\\s]+:[^:\\s]+(:\\S+)?$",
+      "x-priority": "important"
+    }
+  },
+  "required": []
+}

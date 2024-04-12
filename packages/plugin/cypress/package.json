@@ -3,7 +3,15 @@
   "name": "@rxap/plugin-cypress",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "16.10.0",
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@nx/angular": "^16.10.0",
+    "@rxap/ts-morph": "*",
+    "@rxap/utilities": "*",
+    "@rxap/workspace-ts-morph": "*",
+    "@rxap/workspace-utilities": "*"
   },
   "author": {
     "name": "Merzough Münker",
@@ -13,6 +21,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/cypress",
   "keywords": [
     "nx",
