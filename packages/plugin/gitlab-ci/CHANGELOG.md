@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0-dev.6...@rxap/plugin-gitlab-ci@16.2.0-dev.7) (2024-04-12)
+
+### Bug Fixes
+
+- run docker and startup for renovate and snyk branches ([3ab5201](https://gitlab.com/rxap/packages/commit/3ab5201ce8a8664e0a23f06515e526f9722bf513))
+
 # [16.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0-dev.5...@rxap/plugin-gitlab-ci@16.2.0-dev.6) (2024-04-12)
 
 ### Bug Fixes
