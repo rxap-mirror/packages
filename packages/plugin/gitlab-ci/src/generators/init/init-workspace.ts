@@ -27,21 +27,17 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   }
 
   if (options.dte) {
-
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'dte'),
       target: '',
       overwrite: options.overwrite,
     });
-
   } else {
-
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'simple'),
       target: '',
       overwrite: options.overwrite,
     });
-
   }
 
 }

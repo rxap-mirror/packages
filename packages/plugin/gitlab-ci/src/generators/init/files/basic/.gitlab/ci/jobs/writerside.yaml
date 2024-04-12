@@ -2,7 +2,7 @@ writerside:
   stage: run
   image: registry.jetbrains.team/p/writerside/builder/writerside-builder:233.14272
   allow_failure: true
-  script: bash ./tools/scripts/writerside.sh
+  script: bash ./tools/scripts/build-writerside.bash
   artifacts:
     paths:
       - dist
