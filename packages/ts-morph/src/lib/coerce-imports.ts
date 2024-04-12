@@ -53,8 +53,20 @@ export function CoerceImports(
       coerceDefaultImport(sourceFile, moduleSpecifier, defaultImport);
     }
 
+    if (!namedImports && !namespaceImport && !defaultImport) {
+      coerceModuleSpecifierImport(sourceFile, moduleSpecifier);
+    }
+
   }
 
+}
+
+function coerceModuleSpecifierImport(sourceFile: SourceFile, moduleSpecifier: string): void {
+  if (!sourceFile.getImportDeclaration(moduleSpecifier)) {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier,
+    });
+  }
 }
 
 /**
