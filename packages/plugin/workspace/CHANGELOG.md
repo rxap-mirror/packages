@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.14...@rxap/plugin-workspace@16.2.0-dev.15) (2024-04-12)
+
+### Bug Fixes
+
+- add documentation.json to default gitignore ([be61f74](https://gitlab.com/rxap/packages/commit/be61f7419af7c7be6ce6e33c2fd49cbd59612bfb))
+- cleanup the workspace tools project ([ebe5841](https://gitlab.com/rxap/packages/commit/ebe58411f1d296e29f004a3c46acc949e86d47b9))
+- serialize schematic options ([258a9b4](https://gitlab.com/rxap/packages/commit/258a9b49311264fe1caab5c8f4f759735b0ab904))
+- support license option none ([fd23b06](https://gitlab.com/rxap/packages/commit/fd23b06a644a0eaf419320cb521d73853a9e2cab))
+
+### Features
+
+- coerce the workspace tools project ([a810a2f](https://gitlab.com/rxap/packages/commit/a810a2fea5225e2bbefada1d81ce542c475df2e1))
+
 # [16.2.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.13...@rxap/plugin-workspace@16.2.0-dev.14) (2024-04-10)
 
 ### Bug Fixes

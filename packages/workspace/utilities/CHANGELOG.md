@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.12...@rxap/workspace-utilities@16.1.0-dev.13) (2024-04-12)
+
+### Bug Fixes
+
+- cleanup serialized options ([2adf5ae](https://gitlab.com/rxap/packages/commit/2adf5ae041f13aa5798778307ef5e173cbf6ca0c))
+- skip tslib dep ([e913d35](https://gitlab.com/rxap/packages/commit/e913d353f53bbbf085d3c5125ca00e0adff68ca0))
+- support .template files ([c168ad2](https://gitlab.com/rxap/packages/commit/c168ad265b06e301311c01c0392a81056577fcdd))
+- use json update function ([252d59f](https://gitlab.com/rxap/packages/commit/252d59fc94f886a52559560943cab224ebd2365c))
+
+### Features
+
+- add DeleteTarget function ([a63e68d](https://gitlab.com/rxap/packages/commit/a63e68d940fc179f702615bda1643427b802e12e))
+- add init-component generator ([a023d64](https://gitlab.com/rxap/packages/commit/a023d6402b09cf049b82f70a4a1a1e0c2a1671ae))
+- add UpdateTsConfigPaths function ([b33f327](https://gitlab.com/rxap/packages/commit/b33f3279bf77c08c5980daa688587c6da8383193))
+
 # [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.11...@rxap/workspace-utilities@16.1.0-dev.12) (2024-04-10)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

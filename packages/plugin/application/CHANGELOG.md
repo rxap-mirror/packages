@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.9...@rxap/plugin-application@16.2.0-dev.10) (2024-04-12)
+
+### Features
+
+- support option --skip-docker ([38341fc](https://gitlab.com/rxap/packages/commit/38341fcc50d2c705251630f6933ebd81829ed6f3))
+
 # [16.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.8...@rxap/plugin-application@16.2.0-dev.9) (2024-04-10)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@16.1.0-dev.0...@rxap/plugin-storybook@16.1.0-dev.1) (2024-04-12)
+
+### Bug Fixes
+
+- add angular localize import ([80f3256](https://gitlab.com/rxap/packages/commit/80f325662d2ad6aa7805578e7d02bc2a1a5792da))
+- add required package to workspace ([ddf8db8](https://gitlab.com/rxap/packages/commit/ddf8db8519e0815c69e5c53755ce35610a627d17))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@16.0.1-dev.2...@rxap/plugin-storybook@16.1.0-dev.0) (2024-04-10)
 
 ### Bug Fixes

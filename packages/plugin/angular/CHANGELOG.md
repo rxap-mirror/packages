@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.14...@rxap/plugin-angular@16.2.0-dev.15) (2024-04-12)
+
+### Bug Fixes
+
+- add index and scss files if not updated ([2a0d639](https://gitlab.com/rxap/packages/commit/2a0d639814d389ab3eb18601b88cdbe684228452))
+- coerce the test setup file ([e30586b](https://gitlab.com/rxap/packages/commit/e30586b7f616d9f9e95b167ccbb10e4c9aebee94))
+- preserve custom directory ([deecebb](https://gitlab.com/rxap/packages/commit/deecebbf21a796c327b5721dd7ce07e20038d4ad))
+- use correct component path prefixes and option defaults ([4594d6a](https://gitlab.com/rxap/packages/commit/4594d6a1cbde8cdb52c8e73072a7a2ea67c77d7b))
+
+### Features
+
+- add init-component generator ([a023d64](https://gitlab.com/rxap/packages/commit/a023d6402b09cf049b82f70a4a1a1e0c2a1671ae))
+- support option --skip-docker ([38341fc](https://gitlab.com/rxap/packages/commit/38341fcc50d2c705251630f6933ebd81829ed6f3))
+
 # [16.2.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.13...@rxap/plugin-angular@16.2.0-dev.14) (2024-04-10)
 
 ### Bug Fixes
