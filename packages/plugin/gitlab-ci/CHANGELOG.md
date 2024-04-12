@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0-dev.4...@rxap/plugin-gitlab-ci@16.2.0-dev.5) (2024-04-12)
+
+### Bug Fixes
+
+- use correct write side script ([43a40e5](https://gitlab.com/rxap/packages/commit/43a40e5263c5a23f382024ac014efda539d17daf))
+
 # [16.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0-dev.3...@rxap/plugin-gitlab-ci@16.2.0-dev.4) (2024-04-12)
 
 ### Bug Fixes
