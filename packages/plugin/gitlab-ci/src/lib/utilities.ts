@@ -14,7 +14,7 @@ export function processBuildArgs(
 ) {
   const processedBuildArgList: string[] = [];
   processedBuildArgList.push(`PROJECT_NAME=${ projectName }`);
-  processedBuildArgList.push(`RELEASE=${ processEnv['CI_COMMIT_REF_NAME'] ?? 'latest' }`);
+  processedBuildArgList.push(`RELEASE=$CI_COMMIT_REF_NAME`);
   for (const buildArg of buildArgList) {
     if (buildArg.includes('=')) {
       const [ key, ...values ] = buildArg.split('=');
@@ -36,9 +36,9 @@ export function processBuildArgs(
         }
         value = match[1] ?? match[0];
       }
-      processedBuildArgList.push(`${ key }=${ processEnv[value] ?? processEnv[value.replace(/^\$/, '')] ?? value }`);
-    } else if (processEnv[buildArg] || processEnv[buildArg.replace(/^\$/, '')]) {
-      processedBuildArgList.push(`${ buildArg }=${ processEnv[buildArg] ?? processEnv[buildArg.replace(/^\$/, '')] }`);
+      processedBuildArgList.push(`${ key }=${ value }`);
+    } else if (processEnv[buildArg]) {
+      processedBuildArgList.push(`${ buildArg }=${ processEnv[buildArg] }`);
     } else {
       console.warn(`Build arg value for '${ buildArg }' is not defined`);
     }
