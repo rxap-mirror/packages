@@ -31,6 +31,7 @@
   extends: .run
   script:
     - echo "run-many ${TARGET} in parallel ${NX_PARALLEL:-3} with ${ADDITIONAL_TARGET_OPTIONS:-no additional options}"
+    - echo "yarn nx run-many --target ${TARGET} --parallel ${NX_PARALLEL:-3} ${ADDITIONAL_TARGET_OPTIONS}"
     - yarn nx run-many --target ${TARGET} --parallel ${NX_PARALLEL:-3} ${ADDITIONAL_TARGET_OPTIONS}
     - NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn nx run workspace:ci-info
 
