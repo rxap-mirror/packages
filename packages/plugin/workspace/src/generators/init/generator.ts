@@ -428,7 +428,7 @@ function coercePrettierConfig(tree: Tree) {
         }
       }
     ], (a, b) => equals(a.files, b.files));
-  }, '.prettierrc');
+  }, '.prettierrc', { create: true });
 }
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
