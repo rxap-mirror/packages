@@ -10515,7 +10515,7 @@ __metadata:
     "@rxap/forms": ^16.0.1-dev.2
     "@rxap/mixin": ^16.0.1-dev.2
     "@rxap/reflect-metadata": ^1.0.2-dev.2
-    "@rxap/utilities": ^16.1.0-dev.8
+    "@rxap/utilities": ^16.1.0-dev.9
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -11101,14 +11101,14 @@ __metadata:
     "@nx/devkit": ^16.10.0
     "@nx/linter": ^16.10.0
     "@rxap/plugin-application": ^16.2.0-dev.10
-    "@rxap/plugin-gitlab-ci": ^16.2.0-dev.3
+    "@rxap/plugin-gitlab-ci": ^16.2.0-dev.7
     "@rxap/plugin-library": ^16.1.0-dev.12
     "@rxap/plugin-localazy": ^16.1.1-dev.3
     "@rxap/plugin-utilities": ^16.2.0-dev.1
     "@rxap/ts-morph": ^1.1.0-dev.29
     "@rxap/utilities": ^16.1.0-dev.9
     "@rxap/workspace-ts-morph": ^16.1.0-dev.0
-    "@rxap/workspace-utilities": ^16.1.0-dev.13
+    "@rxap/workspace-utilities": ^16.1.0-dev.14
     nx: ^16.10.0
     ts-morph: ^18.0.0
     tslib: 2.6.2

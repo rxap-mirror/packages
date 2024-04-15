@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.15...@rxap/plugin-angular@16.2.0-dev.16) (2024-04-15)
+
+### Bug Fixes
+
+- update tailwind and ng package check for buildable libraries ([9fcda25](https://gitlab.com/rxap/packages/commit/9fcda25dc5661f37a79b19adae3801ce774775c4))
+
 # [16.2.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.14...@rxap/plugin-angular@16.2.0-dev.15) (2024-04-12)
 
 ### Bug Fixes

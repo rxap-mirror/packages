@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@16.0.1-dev.7...@rxap/material-form-system@16.0.1-dev.8) (2024-04-15)
+
+### Bug Fixes
+
+- add missing flex class ([2f73ef0](https://gitlab.com/rxap/packages/commit/2f73ef0379e185f52cdce0f5ed7efd20c05fe9ef))
+
 ## [16.0.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@16.0.1-dev.6...@rxap/material-form-system@16.0.1-dev.7) (2024-04-09)
 
 **Note:** Version bump only for package @rxap/material-form-system

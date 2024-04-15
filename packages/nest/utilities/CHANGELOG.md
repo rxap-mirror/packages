@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.2.0-dev.0...@rxap/nest-utilities@10.2.0-dev.1) (2024-04-15)
+
+### Bug Fixes
+
+- set default cache ttl to 1h ([2bfa9a1](https://gitlab.com/rxap/packages/commit/2bfa9a1cbc8df745913938bd0d9bdd1eb264431c))
+
 # [10.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.1-dev.0...@rxap/nest-utilities@10.2.0-dev.0) (2024-03-11)
 
 ### Features

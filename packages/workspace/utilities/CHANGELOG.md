@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.13...@rxap/workspace-utilities@16.1.0-dev.14) (2024-04-15)
+
+### Bug Fixes
+
+- check if package is private or not ([7048367](https://gitlab.com/rxap/packages/commit/70483672efbe9fb8107c39003d61abd52e274a01))
+- support custom type ([4732641](https://gitlab.com/rxap/packages/commit/473264194598852abb88025165018cf2bb146592))
+
 # [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.12...@rxap/workspace-utilities@16.1.0-dev.13) (2024-04-12)
 
 ### Bug Fixes
