@@ -47,6 +47,7 @@
       }
     ],
     "typescript": [
+      "default",
       "{projectRoot}/**/*.ts",
       "{projectRoot}/tsconfig.json",
       "{projectRoot}/tsconfig.*.json"
