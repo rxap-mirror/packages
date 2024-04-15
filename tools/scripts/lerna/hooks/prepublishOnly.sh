@@ -14,11 +14,27 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
+cached_changed_projects=$(cat "${BASE_DIR}/dist/changed-projects.txt")
+
 rm -fr "${BASE_DIR}/dist/packages"
 
-yarn nx run-many \
-  --target="build" \
-  --configuration="production"
+if [ -z "$cached_changed_projects" ]; then
+  echo "No changed projects found"
+  echo "yarn nx run-many --target=build --configuration=production"
+
+  yarn nx run-many \
+    --target="build" \
+    --configuration="production"
+else
+  echo "Building changed projects: $cached_changed_projects"
+  echo "yarn nx run-many --target=build --configuration=production --projects=$cached_changed_projects --skip-nx-cache"
+
+  yarn nx run-many \
+    --target="build" \
+    --configuration="production" \
+    --projects="$cached_changed_projects" \
+    --skip-nx-cache
+fi
 
 # exit with error if some package.json files are missing the publishConfig
 
