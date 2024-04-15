@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.1-dev.9...@rxap/window-system@16.0.1-dev.10) (2024-04-15)
+
+### Bug Fixes
+
+- ensure the initial window height and width is not undefined ([974a545](https://gitlab.com/rxap/packages/commit/974a545a0cdb4215df4af34441f04b823dc8e8b3))
+
 ## [16.0.1-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.1-dev.8...@rxap/window-system@16.0.1-dev.9) (2024-04-15)
 
 **Note:** Version bump only for package @rxap/window-system
