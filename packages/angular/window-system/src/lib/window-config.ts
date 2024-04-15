@@ -47,7 +47,7 @@ export const DEFAULT_WINDOW_CONFIG: WindowConfig<any, any> = {
   componentFactoryResolver: null,
   minWidth: '384px',
   minHeight: '192px',
-  maxWidth: '90vw',
-  maxHeight: '90vh',
+  maxWidth: '100vw',
+  maxHeight: '100vh',
   minimizable: false,
 };

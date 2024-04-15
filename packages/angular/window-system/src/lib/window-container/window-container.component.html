@@ -12,13 +12,13 @@
      cdkDrag
      cdkDragBoundary=".cdk-overlay-container"
      class="window-container mat-elevation-z4 mat-drawer-container ">
-  <div class="flex flex-col max-h-full">
+  <div class="flex flex-col h-full max-h-full">
 
-    <div cdkDragHandle class="tool-bar grow-0 w-full">
+    <div cdkDragHandle class="tool-bar grow-0 w-full h-[64px] min-h-[64px]">
       <rxap-window-tool-bar></rxap-window-tool-bar>
     </div>
 
-    <div class="content h-full overflow-auto w-full">
+    <div class="content grow overflow-auto w-full">
       <ng-content></ng-content>
     </div>
 
