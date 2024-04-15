@@ -113,15 +113,19 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
     }
     this.ngControl = this.matFormField._control.ngControl as NgControl;
     if (this.ngControl) {
-      this.data      = this.extractTableSelectDataSource();
-      this.toDisplay = this.extractTableSelectToDisplay() ?? this.toDisplay;
-      this.toValue   = this.extractTableSelectToValue() ?? this.toValue;
-      this.columns   = this.extractTableSelectColumnMap();
+      if (this.ngControl.control instanceof RxapFormControl) {
+        this.data      = this.extractTableSelectDataSource();
+        this.toDisplay = this.extractTableSelectToDisplay() ?? this.toDisplay;
+        this.toValue   = this.extractTableSelectToValue() ?? this.toValue;
+        this.columns   = this.extractTableSelectColumnMap();
+      }
       this.updateOpenTableSelectWindow();
-      this._subscription?.add(this.control.disabled$.pipe(
-        tap(disabled => this.disabled = disabled),
-        tap(() => this.updateOpenTableSelectWindowDisabledState()),
-      ).subscribe());
+      if (this.ngControl.control instanceof RxapFormControl) {
+        this._subscription?.add(this.control.disabled$.pipe(
+          tap(disabled => this.disabled = disabled),
+          tap(() => this.updateOpenTableSelectWindowDisabledState()),
+        ).subscribe());
+      }
     } else {
       if (isDevMode()) {
         console.log('standalone mode');
