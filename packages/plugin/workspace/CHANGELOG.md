@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.15...@rxap/plugin-workspace@16.2.0-dev.16) (2024-04-15)
+
+### Bug Fixes
+
+- add a empty angular.json config file ([98524fd](https://gitlab.com/rxap/packages/commit/98524fdc8e720029ac89cb5037e0c79d98e64e84))
+- coerce file .prettierrc ([7375540](https://gitlab.com/rxap/packages/commit/73755400ff9335b50fefde1f2adc52cbf67ba259))
+
 # [16.2.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.14...@rxap/plugin-workspace@16.2.0-dev.15) (2024-04-12)
 
 ### Bug Fixes

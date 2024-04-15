@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.1-dev.6...@rxap/window-system@16.0.1-dev.7) (2024-04-15)
+
+### Bug Fixes
+
+- use proper window classes ([4be5074](https://gitlab.com/rxap/packages/commit/4be5074f969328cb3786667992cb5b5947942410))
+
 ## [16.0.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.1-dev.5...@rxap/window-system@16.0.1-dev.6) (2024-04-09)
 
 **Note:** Version bump only for package @rxap/window-system

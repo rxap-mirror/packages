@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.7",
+  "version": "16.1.0-dev.8",
   "name": "@rxap/ngx-material-table-select",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -24,7 +24,7 @@
     "@rxap/reflect-metadata": "^1.0.2-dev.2",
     "@rxap/rxjs": "^1.1.1-dev.2",
     "@rxap/utilities": "^16.1.0-dev.9",
-    "@rxap/window-system": "^16.0.1-dev.6",
+    "@rxap/window-system": "^16.0.1-dev.7",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -103,7 +103,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.1-dev.6"
+        "version": "16.0.1-dev.7"
       }
     ]
   },
