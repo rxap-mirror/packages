@@ -32,6 +32,7 @@ export interface WindowSettings<D = any> {
 }
 
 export interface WindowConfig<D = any, T = any> extends WindowSettings<D> {
+  windowComponent?: ComponentType<T>;
   component?: ComponentType<T>;
   template?: TemplateRef<T>;
   injector?: Injector | null;

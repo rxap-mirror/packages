@@ -143,7 +143,7 @@ export class WindowService {
     });
 
     const containerPortal = new ComponentPortal(
-      DefaultWindowComponent,
+      windowConfig.windowComponent ?? DefaultWindowComponent,
       injector.get(ViewContainerRef, null, InjectFlags.Optional) ??
       windowConfig.viewContainerRef ??
       null,
