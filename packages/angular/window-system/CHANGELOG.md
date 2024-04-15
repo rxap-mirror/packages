@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.1-dev.7...@rxap/window-system@16.0.1-dev.8) (2024-04-15)
+
+### Bug Fixes
+
+- support custom window component ([01f3ce5](https://gitlab.com/rxap/packages/commit/01f3ce54e84fd888bc65a8f8825bf2e44a3e5860))
+
 ## [16.0.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.1-dev.6...@rxap/window-system@16.0.1-dev.7) (2024-04-15)
 
 ### Bug Fixes
