@@ -194,26 +194,26 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
       },
     });
 
-    if (hasTailwindConfig(tree, project)) {
-      CoerceTarget(project, 'build-tailwind', {
-        executor: '@rxap/plugin-angular:tailwind',
-        configurations: {
-          production: {
-            minify: true,
-          },
-          development: {},
+  }
+
+  if (hasTailwindConfig(tree, project)) {
+    CoerceTarget(project, 'build-tailwind', {
+      executor: '@rxap/plugin-angular:tailwind',
+      configurations: {
+        production: {
+          minify: true,
         },
-      });
-    } else {
-      if (project.targets?.['build-tailwind']) {
-        delete project.targets['build-tailwind'];
-      }
+        development: {},
+      },
+    });
+  } else {
+    if (project.targets?.['build-tailwind']) {
+      delete project.targets['build-tailwind'];
     }
+  }
 
-    if (isNgPackagrProject(tree, project)) {
-      CoerceTarget(project, 'check-ng-package', { executor: '@rxap/plugin-angular:check-ng-package' });
-    }
-
+  if (isNgPackagrProject(tree, project)) {
+    CoerceTarget(project, 'check-ng-package', { executor: '@rxap/plugin-angular:check-ng-package' });
   }
 
 }
