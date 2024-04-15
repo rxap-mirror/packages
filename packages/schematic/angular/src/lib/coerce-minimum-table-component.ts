@@ -65,7 +65,7 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
           moduleSpecifier: '@angular/material/paginator'
         });
       }
-      if (sortable) {
+      if (sortable?.enabled) {
         CoerceComponentImport(classDeclaration, {
           name: 'MatSortModule',
           moduleSpecifier: '@angular/material/sort'

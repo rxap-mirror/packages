@@ -50,7 +50,37 @@
     },
     "sortable": {
       "type": "boolean",
-      "description": "Whether the table is sortable"
+      "description": "Whether the table is sortable",
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether the table is sortable",
+              "default": true
+            },
+            "default": {
+              "type": "object",
+              "properties": {
+                "active": {
+                  "type": "string",
+                  "description": "The default active column"
+                },
+                "direction": {
+                  "type": "string",
+                  "description": "The default sort direction",
+                  "enum": ["asc", "desc"]
+                }
+              }
+            }
+          },
+          "required": ["enabled"]
+        }
+      ]
     }
   },
   "definitions": {

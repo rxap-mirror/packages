@@ -104,8 +104,16 @@
           {{#if hasColumnWithFilter}}
           rxap-filter-header-row
           {{/if}}
-          {{#if sortable}}
+          {{#if sortable.enabled}}
           matSort
+          {{#if sortable.default}}
+          {{#if sortable.default.active}}
+          matSortActive="{{sortable.default.active}}"
+          {{/if}}
+          {{#if sortable.default.direction}}
+          matSortDirection="{{sortable.default.direction}}"
+          {{/if}}
+          {{/if}}
           {{/if}}
         >
           <!-- region columns -->

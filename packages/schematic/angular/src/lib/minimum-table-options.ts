@@ -32,6 +32,11 @@ import {
   TableHeaderButton,
 } from './table-header-button';
 import {
+  NormalizedSortable,
+  NormalizeSortable,
+  Sortable,
+} from './table/sortable';
+import {
   NormalizedTableColumn,
   NormalizeTableColumnList,
   TableColumn,
@@ -62,7 +67,7 @@ export interface MinimumTableOptions {
   rowId?: DataProperty;
   hasPaginator?: boolean;
   upstream?: UpstreamOptions;
-  sortable?: boolean;
+  sortable?: Sortable;
 }
 
 export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
@@ -77,6 +82,7 @@ export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
   rowId: NormalizedDataProperty | null;
   upstream: NormalizedUpstreamOptions | null;
   withHeader: boolean;
+  sortable: NormalizedSortable;
 }
 
 export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
@@ -87,19 +93,21 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
 ): NormalizedMinimumTableOptions<MODIFIER> {
   const componentName = options.componentName ?? CoerceSuffix(name, suffix);
   const actionList = NormalizeTableActionList(options.actionList);
-  let sortable = options.sortable ?? true;
+  const sortable = NormalizeSortable(options.sortable);
   for (const column of options.columnList) {
-    column.sortable ??= sortable;
+    column.sortable ??= sortable.enabled;
   }
   const columnList = NormalizeTableColumnList(options.columnList);
-  sortable = sortable || columnList.some(column => column.sortable);
+  if (!sortable.enabled && columnList.some(column => column.sortable)) {
+    sortable.enabled = true;
+  }
   const propertyList = NormalizeDataPropertyList(options.propertyList);
   const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
   const modifiers = options.modifiers ?? [];
   if (!columnList.some(column => column.filterControl)) {
     CoerceArrayItems(modifiers, [MinimumTableModifiers.WITH_HEADER]);
   }
-  if (sortable) {
+  if (sortable.enabled) {
     CoerceArrayItems(modifiers, [MinimumTableModifiers.WITH_HEADER]);
   }
   const title = options.title ?? ToTitle(name);
