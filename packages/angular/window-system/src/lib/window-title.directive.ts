@@ -1,13 +1,13 @@
+import { TemplatePortal } from '@angular/cdk/portal';
 import {
   Directive,
-  Inject,
+  inject,
   OnInit,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { WindowRef } from './window-ref';
 import { RXAP_WINDOW_REF } from './tokens';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { WindowRef } from './window-ref';
 
 export interface WindowTitleTemplateContext {
   $implicit: WindowRef;
@@ -19,15 +19,9 @@ export interface WindowTitleTemplateContext {
 })
 export class WindowTitleDirective implements OnInit {
 
-  constructor(
-    @Inject(RXAP_WINDOW_REF)
-    private readonly windowRef: WindowRef,
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<WindowTitleTemplateContext>,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-  ) {
-  }
+  private readonly windowRef: WindowRef = inject(RXAP_WINDOW_REF);
+  private readonly template: TemplateRef<WindowTitleTemplateContext> = inject(TemplateRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
 
   /**
    * Asserts the correct type of the context for the template that `NgForOf` will render.
