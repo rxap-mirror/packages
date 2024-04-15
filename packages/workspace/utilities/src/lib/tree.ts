@@ -346,9 +346,9 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
     throw new Error('Invalid tree');
   }
 
-  readJson(path: string): JsonValue {
+  readJson<T = JsonValue>(path: string): T {
     if (IsSchematicTreeLike(this.wrapped)) {
-      return this.wrapped.readJson(path);
+      return this.wrapped.readJson(path) as T;
     }
     if (IsGeneratorTreeLike(this.wrapped)) {
       const content = this.wrapped.read(path, 'utf-8');
