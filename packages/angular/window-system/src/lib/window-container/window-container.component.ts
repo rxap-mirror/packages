@@ -1,43 +1,40 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  ElementRef,
-  HostBinding,
-  Inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import {
-  RXAP_WINDOW_CONTEXT,
-  RXAP_WINDOW_REF,
-} from '../tokens';
-import {
-  merge,
-  Observable,
-} from 'rxjs';
-import {
   CdkDrag,
   CdkDragEnd,
   CdkDragHandle,
 } from '@angular/cdk/drag-drop';
-import { WindowResizerComponent } from '../window-resizer/window-resizer.component';
-import { WindowRef } from '../window-ref';
-import { LoadingIndicatorService } from '@rxap/services';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PortalModule } from '@angular/cdk/portal';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.component';
 import {
   AsyncPipe,
   NgIf,
   NgStyle,
 } from '@angular/common';
-
-export interface Point {
-  x: number;
-  y: number;
-}
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  ElementRef,
+  HostBinding,
+  inject,
+  INJECTOR,
+  OnInit,
+  runInInjectionContext,
+  Signal,
+  ViewChild,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { isDefined } from '@rxap/rxjs';
+import { LoadingIndicatorService } from '@rxap/services';
+import { merge } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import {
+  RXAP_WINDOW_CONTEXT,
+  RXAP_WINDOW_REF,
+} from '../tokens';
+import { WindowResizerComponent } from '../window-resizer/window-resizer.component';
+import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.component';
 
 @Component({
   selector: 'rxap-window-container',
@@ -62,45 +59,47 @@ export interface Point {
     AsyncPipe,
   ],
 })
-export class WindowContainerComponent<D> implements OnInit {
+export class WindowContainerComponent implements OnInit {
 
-  @ContentChild('[footer]', { static: true }) public footerContent!: ElementRef<any>;
+  @ContentChild('[footer]', { static: true }) public footerContent!: ElementRef;
 
-  @ViewChild('container', { static: true }) public containerRef!: ElementRef<any>;
+  @ViewChild('container', { static: true }) public containerRef!: ElementRef;
   @ViewChild(WindowResizerComponent, { static: true }) public windowContainerResizer!: WindowResizerComponent;
-  public width$!: Observable<string>;
-  public height$!: Observable<string>;
 
-  constructor(
-    @Inject(RXAP_WINDOW_CONTEXT)
-    public readonly context: any,
-    @Inject(RXAP_WINDOW_REF)
-    public readonly windowRef: WindowRef<D>,
-    @Inject(LoadingIndicatorService)
-    public readonly windowInstance: LoadingIndicatorService,
-  ) {
-  }
+  public width!: Signal<string>;
+  public height!: Signal<string>;
+
+  private readonly injector = inject(INJECTOR);
+  public readonly context = inject(RXAP_WINDOW_CONTEXT);
+  public readonly windowRef = inject(RXAP_WINDOW_REF);
+  public readonly windowInstance = inject(LoadingIndicatorService);
 
   @HostBinding('attr.data-id')
   public get id(): string {
     return this.context.id;
   }
 
-  public ngOnInit() {
+  ngOnInit() {
+    runInInjectionContext(this.injector, () => {
+      this.width = toSignal(
+        merge(
+          this.windowContainerResizer.width$,
+          this.windowRef.width$,
+        ).pipe(isDefined(), filter(value => !!value?.match(/^\d+/))),
+        { initialValue: '100%' },
+      );
 
-    this.width$ = merge(
-      this.windowContainerResizer.width$,
-      this.windowRef.width$,
-    );
-
-    this.height$ = merge(
-      this.windowContainerResizer.height$,
-      this.windowRef.height$,
-    );
-
+      this.height = toSignal(
+        merge(
+          this.windowContainerResizer.height$,
+          this.windowRef.height$,
+        ).pipe(isDefined(), filter(value => !!value?.match(/^\d+/))),
+        { initialValue: '100%' },
+      );
+    });
   }
 
-  public onDragEnded($event: CdkDragEnd<any>) {
+  public onDragEnded($event: CdkDragEnd) {
     const nativeElement = $event.source.element.nativeElement;
     const pos = nativeElement.getBoundingClientRect();
     $event.source.reset();

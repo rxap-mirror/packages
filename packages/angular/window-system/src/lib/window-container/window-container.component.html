@@ -2,8 +2,8 @@
      (cdkDragEnded)="onDragEnded($event)"
      [cdkDragDisabled]="windowRef.draggable === false"
      [ngStyle]="{
-     'width': width$ | async,
-     'height': height$ | async,
+     'width': width(),
+     'height': height(),
      'minWidth': windowRef.minWidth,
      'minHeight': windowRef.minHeight,
      'maxWidth': windowRef.maxWidth,
@@ -11,18 +11,19 @@
      }"
      cdkDrag
      cdkDragBoundary=".cdk-overlay-container"
-     class="window-container mat-elevation-z4 mat-drawer-container ">
+     class="mat-elevation-z4 mat-drawer-container z-[1]">
   <div class="flex flex-col h-full max-h-full">
 
-    <div cdkDragHandle class="tool-bar grow-0 w-full h-[64px] min-h-[64px]">
+    <div cdkDragHandle class="grow-0 w-full h-[64px] min-h-[64px] cursor-move">
       <rxap-window-tool-bar></rxap-window-tool-bar>
     </div>
 
-    <div class="content grow overflow-auto w-full">
+    <div class="grow overflow-auto w-full">
       <ng-content></ng-content>
     </div>
 
-    <mat-toolbar *ngIf="windowRef.footerPortal$ | async as footerPortal" class="footer mat-elevation-z1 grow-0 w-full h-[64px] min-h-[64px]">
+    <mat-toolbar *ngIf="windowRef.footerPortal$ | async as footerPortal"
+                 class="mat-elevation-z1 grow-0 w-full h-[64px] min-h-[64px]">
       <ng-template [cdkPortalOutlet]="footerPortal"></ng-template>
     </mat-toolbar>
 
