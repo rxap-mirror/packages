@@ -1,12 +1,8 @@
 import {
   Component,
-  NgModule,
   TemplateRef,
 } from '@angular/core';
-import {
-  moduleMetadata,
-  Story,
-} from '@storybook/angular';
+import { Story } from '@storybook/angular';
 import { WindowService } from './window.service';
 
 @Component({
@@ -27,6 +23,7 @@ import { WindowService } from './window.service';
         }
     `,
   ],
+  standalone: true,
 })
 class WindowSystemPlaygroundComponent {
 
@@ -40,28 +37,9 @@ class WindowSystemPlaygroundComponent {
     });
   }
 }
-
-@NgModule({
-  declarations: [ WindowSystemPlaygroundComponent ],
-  imports: [
-    RxapWindowSystemModule,
-  ],
-  exports: [ WindowSystemPlaygroundComponent ],
-})
-class WindowSystemPlaygroundModule {
-}
-
 export default {
   title: 'WindowSystemPlaygroundComponent',
   component: WindowSystemPlaygroundComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [
-        WindowSystemPlaygroundModule,
-      ],
-      providers: [],
-    }),
-  ],
 };
 
 const Template: Story<WindowSystemPlaygroundComponent> = (args: any) => ({
