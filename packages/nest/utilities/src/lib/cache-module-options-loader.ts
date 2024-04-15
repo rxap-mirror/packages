@@ -15,11 +15,11 @@ export class CacheModuleOptionsLoader implements CacheOptionsFactory {
   private readonly config!: ConfigService;
 
   createCacheOptions(): CacheModuleOptions {
-    const ttl = Number(this.config.get('CACHE_TTL', 60 * 60 * 24));
+    const ttl = Number(this.config.get('CACHE_TTL', 60 * 60 * 1000));
     const max = Number(this.config.get('CACHE_MAX', 100));
     return {
       isGlobal: true,
-      ttl: isNaN(ttl) ? 60 * 60 * 24 : ttl,
+      ttl: isNaN(ttl) ? 60 * 60 * 1000 : ttl,
       max: isNaN(max) ? 100 : max,
     };
   }
