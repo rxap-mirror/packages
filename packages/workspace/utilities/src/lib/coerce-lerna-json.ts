@@ -33,7 +33,8 @@ export function CoerceLernaJson(tree: TreeLike, baseDir = '') {
       '**/*.handlebars',
       '**/tsconfig.json',
       '**/tsconfig.*.json',
-      '**/*.yaml',
+      ".gitlab/**",
+      "gitlab-ci.yml",
     ]);
   }, join(baseDir, 'lerna.json'), { create: true });
 

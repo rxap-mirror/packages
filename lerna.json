@@ -25,7 +25,8 @@
         "**/*.handlebars",
         "**/tsconfig.json",
         "**/tsconfig.*.json",
-        "**/*.yaml",
+        ".gitlab/**",
+        "gitlab-ci.yml",
         "**/project.json",
         "**/nx.json",
         "**/.gitignore"
