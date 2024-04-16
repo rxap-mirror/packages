@@ -129,6 +129,7 @@ export interface PackageJson {
   /** A 'config' hash can be used to set configuration parameters used in package scripts that persist across upgrades. */
   config?: Record<string, any>;
   dependencies?: Dependency;
+  sideEffects?: boolean | string | Array<string>;
   devDependencies?: Dependency;
   optionalDependencies?: Dependency;
   peerDependencies?: Dependency;

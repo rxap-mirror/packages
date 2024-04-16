@@ -1,4 +1,5 @@
 export type CompilerOptionsDefinition = {
+  angularCompilerOptions?: Record<string, any>;
   /** Instructs the TypeScript compiler how to compile .ts files. */
   compilerOptions?: {
     /** No longer supported. In early versions, manually set the text encoding for reading files. */
