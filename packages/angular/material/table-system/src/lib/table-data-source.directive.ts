@@ -237,8 +237,11 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   }
 
   public reset() {
-    this.tableFilter?.reset();
-    this.dataSource?.retry();
+    if (this.tableFilter) {
+      this.tableFilter.reset();
+    } else {
+      this.dataSource?.reset();
+    }
   }
 
 }
