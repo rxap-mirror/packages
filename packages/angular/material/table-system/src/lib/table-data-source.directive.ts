@@ -5,6 +5,7 @@ import {
   Inject,
   InjectionToken,
   Input,
+  isDevMode,
   OnDestroy,
   OnInit,
   Optional,
@@ -25,14 +26,10 @@ import { Method } from '@rxap/pattern';
 import { ToggleSubject } from '@rxap/rxjs';
 import {
   Observable,
+  Subject,
   Subscription,
 } from 'rxjs';
-import {
-  debounceTime,
-  delay,
-  filter,
-  tap,
-} from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { TableFilterService } from './table-filter/table-filter.service';
 
 export { RXAP_TABLE_METHOD } from '@rxap/data-source/table';
@@ -90,6 +87,8 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   public method?: Method<Data[], TableEvent>;
 
   public readonly hasError$ = new ToggleSubject();
+
+  public readonly error$ = new Subject<unknown>();
 
   /**
    * @deprecated use method instead
@@ -199,6 +198,11 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
         tap(hasError => this.hasError$.next(!!hasError)),
       ).subscribe(),
     );
+    this._subscription.add(
+      this.dataSource.error$.pipe(
+        tap(error => this.error$.next(error)),
+      ).subscribe(),
+    );
     // create the id property for the mat table component.
     // the instance of the mat table component is used as viewer object
     // with the set of the id property it is possible to use the same data source
@@ -208,40 +212,15 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     Reflect.set(this.matTable, 'id', this.id);
     this.matTable.dataSource = pipeDataSource(this.dataSource, tap(rowList => {
       if (rowList.some((element: any) => !element.__metadata__)) {
-        console.debug('Ensure to use the NormalizeTableRow function to normalize the table row!');
+        if (isDevMode()) {
+          console.debug('Ensure to use the NormalizeTableRow function to normalize the table row!');
+        }
         rowList.forEach((element: any) => {
-          element.__metadata__ ??= { loading$: new ToggleSubject() };
+          element.__metadata__ ??= {};
           element.__metadata__.loading$ ??= new ToggleSubject();
         });
       }
     }));
-    // TODO : remove hack to trigger change detection after data source refresh (machine-definition -> physical unit)
-    this._subscription.add(
-      this.loading$
-          .pipe(
-            filter((loading) => !loading),
-            debounceTime(2000),
-            tap(() => this.cdr.detectChanges()),
-            tap(() => this.cdr.markForCheck()),
-            delay(500),
-            tap(() => this.cdr.detectChanges()),
-            tap(() => this.cdr.markForCheck()),
-            delay(500),
-            tap(() => this.cdr.detectChanges()),
-            tap(() => this.cdr.markForCheck()),
-            delay(500),
-            tap(() => this.cdr.detectChanges()),
-            tap(() => this.cdr.markForCheck()),
-            delay(500),
-            tap(() => this.cdr.detectChanges()),
-            tap(() => this.cdr.markForCheck()),
-            delay(500),
-            tap(() => this.cdr.detectChanges()),
-            tap(() => this.cdr.markForCheck()),
-            delay(500),
-          )
-          .subscribe(),
-    );
   }
 
   public ngOnDestroy() {
@@ -253,6 +232,11 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   }
 
   public retry() {
+    this.dataSource?.retry();
+  }
+
+  public reset() {
+    this.tableFilter?.reset();
     this.dataSource?.retry();
   }
 

@@ -1,17 +1,18 @@
-import { FilterLike } from '@rxap/data-source/table';
 import {
   Injectable,
   OnDestroy,
 } from '@angular/core';
-import {
-  ReplaySubject,
-  Subscription,
-} from 'rxjs';
+import { FilterLike } from '@rxap/data-source/table';
 import {
   clone,
   DeleteEmptyProperties,
   equals,
 } from '@rxap/utilities';
+import {
+  ReplaySubject,
+  Subject,
+  Subscription,
+} from 'rxjs';
 
 @Injectable()
 export class TableFilterService implements FilterLike, OnDestroy {
@@ -21,6 +22,8 @@ export class TableFilterService implements FilterLike, OnDestroy {
   public current: Record<string, any> = {};
 
   private _subscription: Subscription;
+
+  public readonly reset$ = new Subject<void>();
 
   /**
    * a flag to indicate whether any value was already send to the change subject
@@ -32,6 +35,10 @@ export class TableFilterService implements FilterLike, OnDestroy {
 
   constructor() {
     this._subscription = this.change.subscribe(current => this.current = current);
+  }
+
+  public reset() {
+    this.reset$.next();
   }
 
   public setMap(map: Record<string, any>): void {

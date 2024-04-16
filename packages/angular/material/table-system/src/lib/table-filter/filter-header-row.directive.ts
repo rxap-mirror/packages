@@ -1,8 +1,4 @@
 import {
-  FormDefinition,
-  FormDirective,
-} from '@rxap/forms';
-import {
   ChangeDetectorRef,
   Directive,
   forwardRef,
@@ -12,16 +8,20 @@ import {
   OnInit,
   Optional,
 } from '@angular/core';
-import { TableFilterService } from './table-filter.service';
+import { ControlContainer } from '@angular/forms';
+import {
+  FormDefinition,
+  FormDirective,
+} from '@rxap/forms';
+import { equals } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
   tap,
 } from 'rxjs/operators';
+import { TableFilterService } from './table-filter.service';
 import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
-import { ControlContainer } from '@angular/forms';
-import { equals } from '@rxap/utilities';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -61,13 +61,15 @@ export class FilterHeaderRowDirective
 
   public override ngOnInit() {
     super.ngOnInit();
-    this._subscription = this.form.value$
+    this._subscription = new Subscription();
+    this._subscription.add(this.tableFilter.reset$.subscribe(() => this.form.reset()));
+    this._subscription.add(this.form.value$
                              .pipe(
                                debounceTime(1000),
                                distinctUntilChanged((a, b) => equals(a, b)),
                                tap(values => this.tableFilter.setMap(values)),
                              )
-                             .subscribe();
+                             .subscribe());
   }
 
   public override ngOnDestroy() {
