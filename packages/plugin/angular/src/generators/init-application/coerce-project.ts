@@ -9,7 +9,6 @@ import { Schema as AngularApplicationGeneratorSchema } from '@nx/angular/src/gen
 import { Schema as AngularHostGeneratorSchema } from '@nx/angular/src/generators/host/schema';
 import { Schema as AngularRemoteGeneratorSchema } from '@nx/angular/src/generators/remote/schema';
 import { Tree } from '@nx/devkit';
-import { Linter } from '@nx/linter/src/generators/utils/linter';
 import {
   GetDefaultGeneratorOptions,
   HasProject,
@@ -62,7 +61,7 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
         skipPackageJson: false,
         unitTestRunner: UnitTestRunner.Jest,
         e2eTestRunner: E2eTestRunner.None,
-        linter: Linter.EsLint,
+        linter: 'eslint',
         strict: true,
         standaloneConfig: true,
         ...defaultOptions,
@@ -84,7 +83,7 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
         skipPackageJson: false,
         unitTestRunner: UnitTestRunner.Jest,
         e2eTestRunner: E2eTestRunner.None,
-        linter: Linter.EsLint,
+        linter: 'eslint',
         strict: true,
         standaloneConfig: true,
         ...defaultOptions,
@@ -109,7 +108,7 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
       skipPackageJson: false,
       unitTestRunner: UnitTestRunner.Jest,
       e2eTestRunner: E2eTestRunner.None,
-      linter: Linter.EsLint,
+      linter: 'eslint',
       strict: true,
       standaloneConfig: true,
       minimal: true,
