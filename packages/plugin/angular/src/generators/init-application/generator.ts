@@ -95,6 +95,7 @@ interface ProjectI18nConfiguration {
 }
 
 function updateProjectTargets(
+  projectName: string,
   project: ProjectConfiguration & { i18n?: ProjectI18nConfiguration },
   options: InitApplicationGeneratorSchema,
 ) {
@@ -251,7 +252,20 @@ function updateProjectTargets(
   if (options.incrementalBuild) {
     project.targets['build'].executor = '@nx/angular:webpack-browser';
     project.targets['build'].options.buildLibsFromSource = false;
-    project.targets['serve'].executor = '@nx/web:file-server';
+    CoerceTarget(project, 'serve-static', {
+      executor: '@nx/web:file-server',
+      options: {
+        proxyUrl: 'https://127-0-0-1.nip.io:8443'
+      },
+      configurations: {
+        production: {
+          buildTarget: `${projectName}:build:production`
+        },
+        development: {
+          buildTarget: `${projectName}:build:development`
+        }
+      }
+    });
   }
 
   if (options.deploy) {
@@ -1045,7 +1059,7 @@ export async function initApplicationGenerator(
         });
       }
 
-      updateProjectTargets(project, options);
+      updateProjectTargets(projectName, project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
       updateTsConfig(tree, projectName);
