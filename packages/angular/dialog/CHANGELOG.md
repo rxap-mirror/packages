@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/dialog@16.0.1-dev.2...@rxap/dialog@16.0.1-dev.3) (2024-04-16)
+
+### Bug Fixes
+
+- mark dialog service as global ([fc4728d](https://gitlab.com/rxap/packages/commit/fc4728d9bdfeffa9f5d246ddb326facdf6253d15))
+
 ## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/dialog@16.0.1-dev.1...@rxap/dialog@16.0.1-dev.2) (2024-04-12)
 
 **Note:** Version bump only for package @rxap/dialog

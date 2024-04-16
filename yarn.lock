@@ -11099,13 +11099,12 @@ __metadata:
   peerDependencies:
     "@nx/angular": ^16.10.0
     "@nx/devkit": ^16.10.0
-    "@nx/linter": ^16.10.0
     "@rxap/plugin-application": ^16.2.0-dev.10
     "@rxap/plugin-gitlab-ci": ^16.2.0-dev.7
     "@rxap/plugin-library": ^16.1.0-dev.12
     "@rxap/plugin-localazy": ^16.1.1-dev.3
     "@rxap/plugin-utilities": ^16.2.0-dev.1
-    "@rxap/ts-morph": ^1.1.0-dev.29
+    "@rxap/ts-morph": ^1.1.0-dev.30
     "@rxap/utilities": ^16.1.0-dev.9
     "@rxap/workspace-ts-morph": ^16.1.0-dev.0
     "@rxap/workspace-utilities": ^16.1.0-dev.15

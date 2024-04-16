@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.29...@rxap/ts-morph@1.1.0-dev.30) (2024-04-16)
+
+### Performance Improvements
+
+- skip ([e0163e7](https://gitlab.com/rxap/packages/commit/e0163e7bdaa3f9397f68570365686da1a3285196))
+
 # [1.1.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.28...@rxap/ts-morph@1.1.0-dev.29) (2024-04-12)
 
 ### Features
