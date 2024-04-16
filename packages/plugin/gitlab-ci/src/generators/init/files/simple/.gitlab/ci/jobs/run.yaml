@@ -2,7 +2,7 @@ run:
   extends: .run-many
   stage: run
   tags:
-    - e2-standard-8
+    - run
   variables:
     TARGET: "build,test,lint,build-storybook,compodoc"
     NX_CI_EXECUTION_ID: "$CI_PIPELINE_ID"

@@ -5,7 +5,7 @@ component-test:
   extends: .run
   stage: run
   tags:
-    - e2-standard-2
+    - component-test
   variables:
     TARGET: "${PROJECT}:component-test"
     ADDITIONAL_TARGET_OPTIONS: "--browser ${BROWSER}"

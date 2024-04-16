@@ -39,7 +39,7 @@ e2e:
   needs: null
   cache: null
   tags:
-    - e2-standard-4
+    - e2e
   variables:
     TARGET: "${PROJECT}:e2e"
     ADDITIONAL_TARGET_OPTIONS: "--configuration ci --browser ${BROWSER} --record --key ${RECORD_KEY} --base-url https://${DOMAIN_PREFIX}${CI_ENVIRONMENT_SLUG}.${ROOT_DOMAIN}/en/"
@@ -69,8 +69,6 @@ e2e_report:
   needs:
     - e2e
   cache: null
-  tags:
-    - e2-standard-2
   artifacts:
     when: always
     paths:

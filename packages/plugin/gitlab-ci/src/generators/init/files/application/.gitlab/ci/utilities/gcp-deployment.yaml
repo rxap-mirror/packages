@@ -1,7 +1,7 @@
 .gcp-deployment:
   image: eu.gcr.io/google.com/cloudsdktool/google-cloud-cli:latest
   tags:
-    - ephemeral-manager
+    - gcp-deployment
   variables:
     INSTANCE_NAME: ${CI_PROJECT_NAME}-${CI_COMMIT_REF_SLUG}
     ZONE: europe-west1-b
@@ -23,7 +23,7 @@
 .stop_gcp-deployment:
   image: eu.gcr.io/google.com/cloudsdktool/google-cloud-cli:latest
   tags:
-    - ephemeral-manager
+    - gcp-deployment
   variables:
     INSTANCE_NAME: ${CI_PROJECT_NAME}-${CI_COMMIT_REF_SLUG}
     ZONE: europe-west1-b

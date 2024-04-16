@@ -1,7 +1,7 @@
 setup:
   stage: .pre
   tags:
-    - e2-standard-4
+    - setup
   image: node:${NODE_VERSION}-alpine
   script: sh ./tools/scripts/install-dependencies.sh
   cache:
