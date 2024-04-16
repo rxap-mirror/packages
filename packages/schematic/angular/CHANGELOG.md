@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.62](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.61...@rxap/schematic-angular@16.2.0-dev.62) (2024-04-16)
+
+### Bug Fixes
+
+- remove schema property ([761ac32](https://gitlab.com/rxap/packages/commit/761ac32ffb8e24dd447230a24aad3707a8898d7e))
+
 # [16.2.0-dev.61](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.60...@rxap/schematic-angular@16.2.0-dev.61) (2024-04-16)
 
 ### Bug Fixes

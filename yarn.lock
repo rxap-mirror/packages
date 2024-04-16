@@ -11186,7 +11186,7 @@ __metadata:
     "@nx/devkit": ^16.10.0
     "@rxap/plugin-utilities": ^16.2.0-dev.1
     "@rxap/utilities": ^16.1.0-dev.9
-    "@rxap/workspace-utilities": ^16.1.0-dev.13
+    "@rxap/workspace-utilities": ^16.1.0-dev.16
   languageName: unknown
   linkType: soft
 
@@ -11402,7 +11402,7 @@ __metadata:
     "@rxap/schematics-utilities": ^16.1.0-dev.2
     "@rxap/ts-morph": ^1.1.0-dev.30
     "@rxap/utilities": ^16.1.0-dev.9
-    "@rxap/workspace-utilities": ^16.1.0-dev.15
+    "@rxap/workspace-utilities": ^16.1.0-dev.16
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
