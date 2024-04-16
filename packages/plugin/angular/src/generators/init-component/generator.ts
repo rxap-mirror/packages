@@ -59,6 +59,7 @@ export async function initComponentGenerator(
   componentOptions.type ??= 'component';
   componentOptions.export ??= false;
   componentOptions.skipFormat ??= false;
+  componentOptions.style ??= 'scss';
 
   const componentName = classify(componentOptions.name) + 'Component';
   const componentFileName = dasherize(componentOptions.name) + '.component';
