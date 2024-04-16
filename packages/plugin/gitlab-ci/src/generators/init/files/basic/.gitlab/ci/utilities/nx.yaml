@@ -1,5 +1,9 @@
 .nx-base:
   image: node:${NODE_VERSION}-alpine
+  needs:
+    - job: setup
+      artifacts: false
+      optional: true
   cache:
     key:
       files:
