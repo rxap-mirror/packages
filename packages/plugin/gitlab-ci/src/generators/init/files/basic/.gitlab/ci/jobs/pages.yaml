@@ -2,6 +2,8 @@ pages:
   image: registry.gitlab.com/rxap/gitlab-ci/apindex:latest
   stage: .post
   needs:
+    - job: run
+      optional: true
     - job: coverage-report
       optional: true
     - job: writerside
@@ -27,6 +29,18 @@ pages:
       echo "Copy Writerside help to $output"
       mkdir -p "$output/docs"
       cp -r dist/writerside/* "$output/docs/"
+    fi
+
+    if [ -d dist/compodoc ]; then
+      echo "Copy Compodoc to $output"
+      mkdir -p "$output/compodoc"
+      cp -r dist/compodoc/* "$output/compodoc/"
+    fi
+
+    if [ -d dist/storybook ]; then
+      echo "Copy storybook to $output"
+      mkdir -p "$output/storybook"
+      cp -r dist/storybook/* "$output/storybook/"
     fi
 
     echo "generate index.html"
