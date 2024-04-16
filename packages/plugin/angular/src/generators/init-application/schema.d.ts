@@ -31,4 +31,5 @@ export interface InitApplicationGeneratorSchema {
   standaloneImport?: boolean;
   skipFormat?: boolean;
   skipDocker?: boolean;
+  incrementalBuild?: boolean;
 }

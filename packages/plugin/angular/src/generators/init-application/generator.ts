@@ -247,6 +247,13 @@ function updateProjectTargets(
       }
     }
   }
+
+  if (options.incrementalBuild) {
+    project.targets['build'].executor = '@nx/angular:webpack-browser';
+    project.targets['build'].options.buildLibsFromSource = false;
+    project.targets['serve'].executor = '@nx/web:file-server';
+  }
+
   if (options.deploy) {
     switch (options.deploy) {
       case 'web3-storage':
