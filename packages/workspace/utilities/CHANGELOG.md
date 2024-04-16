@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.14...@rxap/workspace-utilities@16.1.0-dev.15) (2024-04-16)
+
+### Bug Fixes
+
+- update package and tsConfig json type definitions ([0dba533](https://gitlab.com/rxap/packages/commit/0dba53340fb13188821fa64fbb197b7194bf046b))
+
 # [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.1.0-dev.13...@rxap/workspace-utilities@16.1.0-dev.14) (2024-04-15)
 
 ### Bug Fixes

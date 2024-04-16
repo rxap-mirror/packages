@@ -1,5 +1,5 @@
 {
-  "version": "16.2.0-dev.16",
+  "version": "16.2.0-dev.17",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -19,7 +19,7 @@
     "@rxap/ts-morph": "^1.1.0-dev.29",
     "@rxap/utilities": "^16.1.0-dev.9",
     "@rxap/workspace-ts-morph": "^16.1.0-dev.0",
-    "@rxap/workspace-utilities": "^16.1.0-dev.14",
+    "@rxap/workspace-utilities": "^16.1.0-dev.15",
     "nx": "^16.10.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
@@ -96,7 +96,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.14"
+        "version": "16.1.0-dev.15"
       }
     ]
   },

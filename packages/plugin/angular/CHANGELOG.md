@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.16...@rxap/plugin-angular@16.2.0-dev.17) (2024-04-16)
+
+### Bug Fixes
+
+- ensure the package json of buildable libs has private set to true ([ab19af4](https://gitlab.com/rxap/packages/commit/ab19af4f6d88456b33d7230a756f689f29a51770))
+- resolve schema issue ([7ee6c3b](https://gitlab.com/rxap/packages/commit/7ee6c3b5d762c3125ef0462e5b76f78f945a189f))
+- set default style to scss ([8ad40bf](https://gitlab.com/rxap/packages/commit/8ad40bf77a5041f42f2db13db4266fe8d1327a2a))
+
+### Features
+
+- add convert-to-buildable-library generator ([86e45d0](https://gitlab.com/rxap/packages/commit/86e45d0221bb1fbe35ecd1c79ddcea277edaf8fd))
+- add incremental build option ([d26a938](https://gitlab.com/rxap/packages/commit/d26a938c7006822d50674e59d14ee3c1c0a9e5af))
+
 # [16.2.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.15...@rxap/plugin-angular@16.2.0-dev.16) (2024-04-15)
 
 ### Bug Fixes
