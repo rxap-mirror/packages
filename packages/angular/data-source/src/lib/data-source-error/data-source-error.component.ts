@@ -25,6 +25,16 @@ import {
   Subscription,
 } from 'rxjs';
 
+export interface DataSourceLikeForErrorHandling {
+  refresh?: () => void;
+  retry?: () => void;
+  reset?: () => void;
+  loading?: Observable<boolean> | boolean;
+  loading$?: Observable<boolean>;
+  error$?: Observable<unknown>;
+  error?: Observable<unknown> | unknown | null;
+}
+
 @Component({
   selector: 'rxap-data-source-error',
   templateUrl: './data-source-error.component.html',
@@ -47,6 +57,21 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
   public refresh?: () => void;
 
   @Input()
+  public retry?: () => void;
+
+  @Input()
+  public reset?: () => void;
+
+  @Input()
+  public set dataSourceLike(value: DataSourceLikeForErrorHandling) {
+    this.refresh ??= value.refresh;
+    this.retry ??= value.retry;
+    this.reset ??= value.reset;
+    this.loading ??= value.loading ?? value.loading$;
+    this.error ??= value.error ?? value.error$;
+  }
+
+  @Input()
   public loading?: Observable<boolean> | boolean;
 
   public isNotRelease = false;
@@ -54,6 +79,7 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
   public errorMessage = signal('Unknown Error');
 
   public retryInProgress = signal(false);
+  public resetInProgress = signal(false);
 
   private _subscription?: Subscription;
 
@@ -67,10 +93,12 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['error']) {
       this.retryInProgress.set(false);
+      this.resetInProgress.set(false);
     }
     if (changes['loading']) {
       if (!changes['loading'].currentValue && typeof changes['loading'].currentValue === 'boolean') {
         this.retryInProgress.set(false);
+        this.resetInProgress.set(false);
       }
     }
   }
@@ -83,8 +111,13 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
     this._subscription = new Subscription();
     if (this.loading instanceof Observable) {
       this._subscription.add(this.loading.subscribe((loading) => {
-        if (!loading && this.retryInProgress()) {
-          this.retryInProgress.set(false);
+        if (!loading) {
+          if (this.retryInProgress()) {
+            this.retryInProgress.set(false);
+          }
+          if (this.resetInProgress()) {
+            this.resetInProgress.set(false);
+          }
         }
       }));
     }
@@ -97,11 +130,21 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
     }
   }
 
-  retry() {
-    if (this.refresh) {
+  triggerRetry() {
+    if (this.retry) {
+      this.retryInProgress.set(true);
+      this.retry();
+    } else if (this.refresh) {
+      this.retryInProgress.set(true);
       this.refresh();
     }
-    this.retryInProgress.set(true);
+  }
+
+  triggerReset() {
+    if (this.reset) {
+      this.resetInProgress.set(true);
+      this.reset();
+    }
   }
 
 }
