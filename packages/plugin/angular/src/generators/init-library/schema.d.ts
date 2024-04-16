@@ -6,7 +6,6 @@ export interface InitLibraryGeneratorSchema {
   overwrite?: boolean;
   skipProjects?: boolean;
   indexExport?: boolean;
-  compodoc?: boolean;
   coerce?: boolean | Omit<AngularLibraryGeneratorSchema, 'name'>;
   skipFormat?: boolean;
 }
