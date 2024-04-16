@@ -9,7 +9,7 @@
     </button>
     <button *ngIf="reset" type="button" (click)="triggerReset()" [disabled]="resetInProgress() || retryInProgress()" mat-stroked-button>
       <span class="flex flex-row items-center gap-4">
-        <span i18n>Retry</span>
+        <span i18n>Reset</span>
         <mat-spinner *ngIf="resetInProgress()" [diameter]="15"></mat-spinner>
       </span>
     </button>
