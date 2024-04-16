@@ -56,5 +56,3 @@ for instance in "${instances[@]}"; do
   echo "DONE"
 
 done
-
-

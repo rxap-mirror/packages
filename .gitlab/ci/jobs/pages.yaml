@@ -2,6 +2,8 @@ pages:
   image: registry.gitlab.com/rxap/gitlab-ci/apindex:latest
   stage: .post
   needs:
+    - job: run
+      optional: true
     - job: coverage-report
       optional: true
     - job: writerside
@@ -29,6 +31,18 @@ pages:
       cp -r dist/writerside/* "$output/docs/"
     fi
 
+    if [ -d dist/compodoc ]; then
+      echo "Copy Compodoc to $output"
+      mkdir -p "$output/compodoc"
+      cp -r dist/compodoc/* "$output/compodoc/"
+    fi
+
+    if [ -d dist/storybook ]; then
+      echo "Copy storybook to $output"
+      mkdir -p "$output/storybook"
+      cp -r dist/storybook/* "$output/storybook/"
+    fi
+
     echo "generate index.html"
     apindex public
   environment:
@@ -47,7 +61,7 @@ pages:
     paths:
       - public
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
       when: on_success
     - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+/'
       when: on_success
