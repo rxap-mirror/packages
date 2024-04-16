@@ -130,6 +130,8 @@ export default async function runExecutor(
 
     const outputPath = GuessOutputPathFromContext(context, projectName);
 
+    console.log('Guess output path:', outputPath);
+
     if (!existsSync(outputPath)) {
       console.log(`Skipping ${ projectName } because the output path does not exist`);
       continue;
