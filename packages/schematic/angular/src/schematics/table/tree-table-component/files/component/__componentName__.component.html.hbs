@@ -82,10 +82,8 @@
 
       <mat-card-content>
         <rxap-data-source-error
-          [loading]="tableDataSourceDirective.loading$"
-          [error]="tableDataSourceDirective.dataSource?.error$"
           *ngIf="tableDataSourceDirective.hasError$ | async"
-          [refresh]="tableDataSourceDirective.retry">
+          [dataSourceLike]="tableDataSourceDirective">
         </rxap-data-source-error>
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
         <table
