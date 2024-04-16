@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.1.0-dev.7...@rxap/data-source@16.1.0-dev.8) (2024-04-16)
+
+### Bug Fixes
+
+- add div wrapper around buttons ([fa60214](https://gitlab.com/rxap/packages/commit/fa60214c3edc4332b4bfe1070365d42ccc03b2b9))
+- support refresh, reset and retry data source methods ([ea5e971](https://gitlab.com/rxap/packages/commit/ea5e971d3617494cc9b34b22a31afcf92c052bbd))
+- use correct button label ([a78ae37](https://gitlab.com/rxap/packages/commit/a78ae370cd9555c86b34927bd2c6df8d324b61f6))
+
 # [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.1.0-dev.6...@rxap/data-source@16.1.0-dev.7) (2024-04-09)
 
 ### Bug Fixes

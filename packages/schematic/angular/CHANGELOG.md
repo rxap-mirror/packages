@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.60](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.59...@rxap/schematic-angular@16.2.0-dev.60) (2024-04-16)
+
+### Bug Fixes
+
+- use new data source error component features ([d502cf7](https://gitlab.com/rxap/packages/commit/d502cf791d2f2b096425fcdf353fad3c62fbfdd1))
+
 # [16.2.0-dev.59](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.58...@rxap/schematic-angular@16.2.0-dev.59) (2024-04-15)
 
 ### Features

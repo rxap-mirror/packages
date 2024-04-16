@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.18...@rxap/plugin-angular@16.2.0-dev.19) (2024-04-16)
+
+### Bug Fixes
+
+- add serve-static target for incremental build ([6804e64](https://gitlab.com/rxap/packages/commit/6804e64c5373b4a35146eadc571cf8559e7e79e7))
+
 # [16.2.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.0-dev.17...@rxap/plugin-angular@16.2.0-dev.18) (2024-04-16)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.1.0-dev.0...@rxap/material-table-system@16.1.0-dev.1) (2024-04-16)
+
+### Features
+
+- support reset of table data source ([e974428](https://gitlab.com/rxap/packages/commit/e974428da3c732ed5abab386a2a119e64c9c366e))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.1-dev.6...@rxap/material-table-system@16.1.0-dev.0) (2024-04-09)
 
 ### Features
