@@ -1,6 +1,7 @@
 import { ExecutorContext } from '@nx/devkit';
 import { GuessOutputPathFromContext } from '@rxap/plugin-utilities';
 import {
+  existsSync,
   readdirSync,
   statSync,
   writeFileSync,
@@ -128,6 +129,11 @@ export default async function runExecutor(
     }
 
     const outputPath = GuessOutputPathFromContext(context, projectName);
+
+    if (!existsSync(outputPath)) {
+      console.log(`Skipping ${ projectName } because the output path does not exist`);
+      continue;
+    }
 
     const outputPathList: string[] = [ outputPath ];
 
