@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0-dev.8...@rxap/plugin-gitlab-ci@16.2.0-dev.9) (2024-04-16)
+
+### Bug Fixes
+
+- use generic tag names ([8a0e96b](https://gitlab.com/rxap/packages/commit/8a0e96b0a70fb1594291355cff14f917e43446ca))
+- use separate build pipelines ([c651e2c](https://gitlab.com/rxap/packages/commit/c651e2c0072766497552e833d549444f71bc2e12))
+
 # [16.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0-dev.7...@rxap/plugin-gitlab-ci@16.2.0-dev.8) (2024-04-16)
 
 ### Bug Fixes
