@@ -444,6 +444,11 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     overwrite: options.overwrite,
   });
 
+  UpdateJsonFile(tree, angularJson => {
+    angularJson.version = 1;
+    angularJson.projects ??= {};
+  }, 'angular.json', { create: true });
+
   if (!options.skipLicense && options.license) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', options.license),
