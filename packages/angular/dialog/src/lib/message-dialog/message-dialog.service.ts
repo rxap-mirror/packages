@@ -1,3 +1,5 @@
+import { Direction } from '@angular/cdk/bidi';
+import { ScrollStrategy } from '@angular/cdk/overlay';
 import {
   Inject,
   Injectable,
@@ -6,8 +8,6 @@ import {
   DialogPosition,
   MatDialog,
 } from '@angular/material/dialog';
-import { Direction } from '@angular/cdk/bidi';
-import { ScrollStrategy } from '@angular/cdk/overlay';
 import {
   map,
   take,
@@ -61,7 +61,7 @@ export interface MessageDialogConfig {
   closeOnNavigation?: boolean;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MessageDialogService {
   constructor(
     @Inject(MatDialog)

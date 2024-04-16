@@ -3,13 +3,12 @@ import {
   Component,
   Inject,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
 } from '@angular/material/dialog';
 import { SantizationPipe } from '@rxap/pipes/santization';
-import { MatButtonModule } from '@angular/material/button';
-import { ConfirmDialogService } from './confirm-dialog.service';
 
 export interface ConfirmDialogData {
   message: string;
@@ -23,7 +22,6 @@ export interface ConfirmDialogData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [ MatDialogModule, MatButtonModule, SantizationPipe ],
-  providers: [ ConfirmDialogService ],
 })
 export class ConfirmDialogComponent {
 

@@ -1,3 +1,5 @@
+import { Direction } from '@angular/cdk/bidi';
+import { ScrollStrategy } from '@angular/cdk/overlay';
 import {
   Inject,
   Injectable,
@@ -6,14 +8,12 @@ import {
   DialogPosition,
   MatDialog,
 } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from './confirm-dialog.component';
-import { Direction } from '@angular/cdk/bidi';
-import { ScrollStrategy } from '@angular/cdk/overlay';
+import { firstValueFrom } from 'rxjs';
 import {
   map,
   take,
 } from 'rxjs/operators';
-import { firstValueFrom } from 'rxjs';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
 
 export interface ConfirmDialogConfig {
   /** Custom class for the overlay pane. */
@@ -61,7 +61,7 @@ export interface ConfirmDialogConfig {
   closeOnNavigation?: boolean;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ConfirmDialogService {
   constructor(
     @Inject(MatDialog)

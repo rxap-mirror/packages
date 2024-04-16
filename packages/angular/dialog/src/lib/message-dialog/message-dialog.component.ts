@@ -1,17 +1,16 @@
+import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Inject,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
 } from '@angular/material/dialog';
-import { MessageDialogService } from './message-dialog.service';
-import { MessageDialogData } from './types';
 import { SantizationPipe } from '@rxap/pipes/santization';
-import { NgFor } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
+import { MessageDialogData } from './types';
 
 @Component({
   selector: 'rxap-message-dialog',
@@ -20,9 +19,6 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [ MatDialogModule, MatButtonModule, NgFor, SantizationPipe ],
-  providers: [
-    MessageDialogService,
-  ],
 })
 export class MessageDialogComponent {
 
