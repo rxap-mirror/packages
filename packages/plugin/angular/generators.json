@@ -39,6 +39,11 @@
       "factory": "./src/generators/convert-to-buildable-library/generator",
       "schema": "./src/generators/convert-to-buildable-library/schema.json",
       "description": "convert-to-buildable-library generator"
+    },
+    "init-feature-library": {
+      "factory": "./src/generators/init-feature-library/generator",
+      "schema": "./src/generators/init-feature-library/schema.json",
+      "description": "init-feature-library generator"
     }
   },
   "schematics": {
