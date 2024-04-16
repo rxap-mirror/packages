@@ -217,15 +217,15 @@ function setGeneralTargetDefaults(tree: Tree, options: InitApplicationGeneratorS
   if (!options.standalone) {
     CoerceTargetDefaultsDependency(nxJson, 'build', 'generate-package-json');
     CoerceNxJsonCacheableOperation(
-      nxJson, 'generate-package-json', 'generate-open-api', 'swagger-generate', 'swagger-build');
+      nxJson, 'generate-package-json', 'generate-open-api');
     CoerceTarget(nxJson, 'generate-package-json', {
       executor: '@rxap/plugin-nestjs:package-json',
       configurations: {
         production: {},
       },
     });
+    CoerceTargetDefaultsDependency(nxJson, 'generate-open-api', 'swagger-generate');
   }
-  CoerceTargetDefaultsDependency(nxJson, 'generate-open-api', 'swagger-generate');
 
   updateNxJson(tree, nxJson);
 }
