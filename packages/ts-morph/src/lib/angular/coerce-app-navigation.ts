@@ -45,6 +45,10 @@ export function CoerceAppNavigation(sourceFile: SourceFile, options: CoerceAppNa
     },
   ]);
 
+  if (!options.itemList?.length) {
+    return;
+  }
+
   const arrowFunction = variableDeclaration.getInitializerIfKindOrThrow(SyntaxKind.ArrowFunction);
   const array = arrowFunction.getBody().asKindOrThrow(SyntaxKind.ArrayLiteralExpression);
   const arrayLiteralExpression = array.asKindOrThrow(SyntaxKind.ArrayLiteralExpression);
