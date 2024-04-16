@@ -44,6 +44,7 @@ import {
   SearchFile,
   SkipNonAngularProject,
   SkipNonLibraryProject,
+  UpdateProjectPackageJson,
   UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
 import {
@@ -398,11 +399,15 @@ async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
     if (!HasProject(tree, projectName)) {
 
       let directory = projectName;
-      if (typeof options.coerce === 'object' && options.coerce.directory) {
-        if (options.projects?.length === 1) {
-          directory = options.coerce.directory;
-        } else {
-          directory = join(options.coerce.directory, projectName);
+      let customOptions: Partial<AngularLibraryGeneratorSchema> = {};
+      if (typeof options.coerce === 'object') {
+        customOptions = options.coerce;
+        if (options.coerce.directory) {
+          if (options.projects?.length === 1) {
+            directory = options.coerce.directory;
+          } else {
+            directory = join(options.coerce.directory, projectName);
+          }
         }
       }
 
@@ -410,6 +415,7 @@ async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
 
       const schema: AngularLibraryGeneratorSchema = {
         ...defaultOptions,
+        ...customOptions,
         directory,
         importPath,
         name: projectName,
@@ -430,6 +436,12 @@ async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
               tree, projectName) }/lib/*`
           ];
         }, { infix: 'base' });
+      }
+
+      if (defaultOptions.buildable && !defaultOptions.publishable) {
+        UpdateProjectPackageJson(tree, packageJson => {
+          packageJson.private = true;
+        }, { projectName });
       }
 
     }
