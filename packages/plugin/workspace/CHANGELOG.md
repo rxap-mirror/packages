@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.16...@rxap/plugin-workspace@16.2.0-dev.17) (2024-04-16)
+
+### Bug Fixes
+
+- ensure the angular.json is created ([bd10e36](https://gitlab.com/rxap/packages/commit/bd10e366481f2353da8f48d3428f0e4f2838a4eb))
+
 # [16.2.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.15...@rxap/plugin-workspace@16.2.0-dev.16) (2024-04-15)
 
 ### Bug Fixes

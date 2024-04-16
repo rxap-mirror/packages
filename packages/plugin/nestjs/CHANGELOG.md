@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.13...@rxap/plugin-nestjs@16.2.0-dev.14) (2024-04-16)
+
+### Bug Fixes
+
+- enable swagger generate for standalone applications ([146b18c](https://gitlab.com/rxap/packages/commit/146b18cd2c4b5ded0126bfac905ae81990dccf77))
+
 # [16.2.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.0-dev.12...@rxap/plugin-nestjs@16.2.0-dev.13) (2024-04-10)
 
 ### Bug Fixes
