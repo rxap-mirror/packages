@@ -18,14 +18,14 @@ import 'jest-preset-angular/setup-jest';
   }
 
   let content = tree.read(testSetupPath, 'utf-8')!;
-  if (!content.includes("import { TextDecoder, TextEncoder } from 'util';")) {
+  if (!content.match(/import\s+\{.+}\s+from\s+'util';/)) {
     content += `
 import { TextDecoder, TextEncoder } from 'util';
 global.TextEncoder ??= TextEncoder as any;
 global.TextDecoder ??= TextDecoder as any;
 `;
   }
-  if (!content.includes('import \'@angular/localize/init\';')) {
+  if (!content.match(/import\s+'@angular\/localize\/init';/)) {
     content += `
 import '@angular/localize/init';
 jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
