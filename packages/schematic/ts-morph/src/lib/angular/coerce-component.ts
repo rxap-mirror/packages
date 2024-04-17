@@ -95,6 +95,26 @@ function applyContentHandlebars<T>(options: T): FileOperator {
       return value;
     });
 
+    /*
+     * {{#ifeq variable "string"}}
+     * ... do this ...
+     * {{/ifeq}}
+     */
+    Handlebars.registerHelper('ifeq', function (this: any, a, b, options) {
+      if (a == b) { return options.fn(this); }
+      return options.inverse(this);
+    });
+
+    /*
+     * {{#ifnoteq variable "string"}}
+     * ... do this ...
+     * {{/ifnoteq}}
+     */
+    Handlebars.registerHelper('ifnoteq', function (this: any, a, b, options) {
+      if (a != b) { return options.fn(this); }
+      return options.inverse(this);
+    });
+
     Handlebars.registerHelper('dasherize', value => dasherize(value));
     Handlebars.registerHelper('classify', value => classify(value));
     Handlebars.registerHelper('decamelize', value => decamelize(value));
