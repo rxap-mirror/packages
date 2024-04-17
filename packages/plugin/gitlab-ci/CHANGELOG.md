@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.2...@rxap/plugin-gitlab-ci@16.2.1-dev.3) (2024-04-17)
+
+### Bug Fixes
+
+- only add component test to angular applications ([24efc1e](https://gitlab.com/rxap/packages/commit/24efc1e2bcdf7b0ff2da6b6a2964fbd6bf6f674e))
+
 ## [16.2.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.1...@rxap/plugin-gitlab-ci@16.2.1-dev.2) (2024-04-17)
 
 ### Bug Fixes
