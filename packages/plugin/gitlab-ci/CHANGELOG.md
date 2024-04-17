@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0...@rxap/plugin-gitlab-ci@16.2.1-dev.0) (2024-04-17)
+
+### Bug Fixes
+
+- include all projects with a docker target ([b2aa2bf](https://gitlab.com/rxap/packages/commit/b2aa2bf4cabbaf021f5dcd6653e154606ae5178a))
+
 # [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0-dev.9...@rxap/plugin-gitlab-ci@16.2.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/plugin-gitlab-ci
