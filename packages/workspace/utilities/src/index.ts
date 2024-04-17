@@ -100,4 +100,5 @@ export * from './lib/skip-project';
 export * from './lib/tree';
 export * from './lib/ts-config-file';
 export * from './lib/visit-tree';
+export * from './lib/yaml-file';
 // endregion
