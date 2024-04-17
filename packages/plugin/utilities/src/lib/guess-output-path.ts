@@ -7,8 +7,14 @@ import {
   dirname,
   join,
 } from 'path';
-import { GetProjectRoot } from './project';
-import { GetProjectTarget } from './project-target';
+import {
+  GetProjectRoot,
+  GetProjectSourceRoot,
+} from './project';
+import {
+  GetProjectTarget,
+  HasProjectTarget,
+} from './project-target';
 
 export function GuessOutputPathFromContext(
   context: ExecutorContext,
@@ -21,15 +27,19 @@ export function GuessOutputPathFromContext(
     throw new Error('The projectName is undefined. Ensure the projectName is passed into the executor context.');
   }
 
-  const buildTarget = GetProjectTarget(context, projectName, targetName);
+  if (!HasProjectTarget(context, projectName, targetName)) {
+    return GetProjectSourceRoot(context, projectName);
+  }
 
-  if (!buildTarget) {
+  const target = GetProjectTarget(context, projectName, targetName);
+
+  if (!target) {
     throw new Error(`Could not find target 'build' for project '${ projectName }'`);
   }
 
   const projectRoot = GetProjectRoot(context, projectName);
 
-  return GuessOutputPath(projectRoot, buildTarget, configurationName);
+  return GuessOutputPath(projectRoot, target, configurationName);
 
 }
 
