@@ -3,6 +3,7 @@ import {
   CoerceMappingClassMethod,
   ToMappingObjectOptions,
 } from '@rxap/ts-morph';
+import { noop } from '@rxap/utilities';
 import { Scope } from 'ts-morph';
 import { CoerceClassConstructor } from '../coerce-class-constructor';
 import {
@@ -37,8 +38,8 @@ const toMappingObjectOptions: ToMappingObjectOptions = {
 };
 
 export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRuleOptions) {
-  let {
-    tsMorphTransform,
+  const {
+    tsMorphTransform = noop,
     operationId,
     body,
     parameters,
@@ -46,10 +47,6 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
     scope,
     tableName,
   } = options;
-  tsMorphTransform ??= () => (
-    {}
-  );
-
 
   return CoerceTableActionRule({
     ...options,
@@ -111,7 +108,7 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
       return {
         statements: statements,
         returnType: `Promise<any>`,
-        ...tsMorphTransform!(project, sourceFile, classDeclaration),
+        ...tsMorphTransform(project, sourceFile, classDeclaration) ?? {},
       };
     },
   });

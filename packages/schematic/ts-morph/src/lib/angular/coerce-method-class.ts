@@ -2,6 +2,7 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
+import { noop } from '@rxap/utilities';
 import {
   ClassDeclaration,
   MethodDeclarationStructure,
@@ -27,17 +28,16 @@ export interface CoerceMethodClassOptions extends TsMorphAngularProjectTransform
     project: Project,
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
-  ) => Partial<Omit<OptionalKind<MethodDeclarationStructure>, 'name'>>;
+  ) => Partial<Omit<OptionalKind<MethodDeclarationStructure>, 'name'>> | void;
 }
 
 export function CoerceMethodClass(options: CoerceMethodClassOptions) {
-  let {
+  const {
     overwrite,
     name,
-    tsMorphTransform,
+    tsMorphTransform = noop,
     providedIn,
   } = options;
-  tsMorphTransform ??= () => ({});
   const className = classify(CoerceSuffix(name, 'Method'));
   const fileName = CoerceSuffix(name, '.method.ts');
   return TsMorphAngularProjectTransformRule(options, (project) => {
@@ -61,7 +61,7 @@ export function CoerceMethodClass(options: CoerceMethodClassOptions) {
       moduleSpecifier: '@angular/core',
       namedImports: [ 'Injectable' ],
     });
-    const methodStructure = tsMorphTransform!(project, sourceFile, classDeclaration);
+    const methodStructure = tsMorphTransform(project, sourceFile, classDeclaration) ?? {};
     methodStructure.parameters ??= [
       {
         name: 'parameters',
