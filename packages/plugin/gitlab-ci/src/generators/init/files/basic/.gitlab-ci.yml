@@ -1,0 +1,5 @@
+include:
+  - local: .gitlab/ci/utilities/base.yaml
+  - local: .gitlab/ci/pipelines/build.yaml
+    rules:
+      - if: '$CI_PIPELINE_SOURCE =~ /^(push|web|merge_request_event)$/'

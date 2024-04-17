@@ -1,5 +1,9 @@
 import { Tree } from '@nx/devkit';
-import { CoerceFilesStructure } from '@rxap/workspace-utilities';
+import { CoerceArrayItems } from '@rxap/utilities';
+import {
+  CoerceFilesStructure,
+  UpdateYamlFile,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitGeneratorSchema } from './schema';
 
@@ -38,6 +42,21 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
       target: '',
       overwrite: options.overwrite,
     });
+  }
+
+  if (options.angular) {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'angular'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+    UpdateYamlFile(tree, gitlabCi => {
+      CoerceArrayItems(gitlabCi.include, [
+        {
+          local: '.gitlab/ci/pipelines/angular.yaml',
+        }
+      ], (a, b) => a.local === b.local);
+    }, '.gitlab-ci.yml');
   }
 
 }

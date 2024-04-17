@@ -5,4 +5,6 @@ export interface InitGeneratorSchema {
   dte?: boolean;
   skipFormat?: boolean;
   onlyPackages?: boolean;
+  angular?: boolean;
+  nest?: boolean;
 }

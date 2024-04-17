@@ -47,7 +47,6 @@
       }
     ],
     "typescript": [
-      "default",
       "{projectRoot}/**/*.ts",
       "{projectRoot}/tsconfig.json",
       "{projectRoot}/tsconfig.*.json"
@@ -70,25 +69,7 @@
       "!{projectRoot}/cypress.config.[jt]s"
     ],
     "build": [
-
-      "{projectRoot}/**/*",
-      {
-        "runtime": "node --version"
-      },
-
-      "{projectRoot}/**/*.ts",
-      "{projectRoot}/tsconfig.json",
-      "{projectRoot}/tsconfig.*.json",
-
-      "{projectRoot}/src/**/*",
-      "!{projectRoot}/**/*.{spec,stories,cy}.ts",
-      "!{projectRoot}/jest.config.ts",
-      "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/cypress/**/*",
-      "!{projectRoot}/**/*.cy.[jt]s?(x)",
-      "!{projectRoot}/cypress.config.[jt]s",
-
+      "production",
       "{projectRoot}/package.json",
       "{projectRoot}/collection.json",
       "{projectRoot}/generators.json",

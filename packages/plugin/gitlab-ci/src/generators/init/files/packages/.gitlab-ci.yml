@@ -1,9 +1,0 @@
-variables:
-  HUSKY: "0"
-  GIT_STRATEGY: "fetch"
-  GIT_DEPTH: "3"
-  ADDITIONAL_TARGET_OPTIONS: "--exclude angular"
-
-include:
-  - local: .gitlab/ci/utilities/base.yaml
-  - local: .gitlab/ci/pipelines/build.yaml
