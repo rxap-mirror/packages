@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0...@rxap/plugin-workspace@16.2.1-dev.0) (2024-04-17)
+
+### Bug Fixes
+
+- add rxap utility scripts to workspace package json ([3b866cf](https://gitlab.com/rxap/packages/commit/3b866cf72b8d96364544bd4180123a755cdab55e))
+
 # [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.0-dev.18...@rxap/plugin-workspace@16.2.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/plugin-workspace

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.0...@rxap/plugin-gitlab-ci@16.2.1-dev.1) (2024-04-17)
+
+### Bug Fixes
+
+- add default job config to retry on runner system failure ([b8c23b0](https://gitlab.com/rxap/packages/commit/b8c23b088662d314dd9de9d525f1ef413f33bb93))
+- add npm cache base job ([f25f78f](https://gitlab.com/rxap/packages/commit/f25f78f7faaa05ae5bc82b51bddb7e03361d8f72))
+- remove unused channel parameter ([93dc787](https://gitlab.com/rxap/packages/commit/93dc7871d5b9cf49a39a132892dcc454062ca346))
+
 ## [16.2.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.0...@rxap/plugin-gitlab-ci@16.2.1-dev.0) (2024-04-17)
 
 ### Bug Fixes
