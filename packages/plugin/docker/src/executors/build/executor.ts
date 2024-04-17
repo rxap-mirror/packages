@@ -69,6 +69,7 @@ export default async function runExecutor(
       fallbackImageTag,
     ));
   } else {
+    console.log('Using provided tags');
     for (const tag of options.tag) {
       destinationList.push(getGitlabRegistryDestination(
         options,

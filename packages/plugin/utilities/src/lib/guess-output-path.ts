@@ -28,6 +28,7 @@ export function GuessOutputPathFromContext(
   }
 
   if (!HasProjectTarget(context, projectName, targetName)) {
+    console.warn(`Could not find target '${ targetName }' for project '${ projectName }'. Falling back to the project source root.`);
     return GetProjectSourceRoot(context, projectName);
   }
 
