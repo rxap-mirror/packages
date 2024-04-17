@@ -41,6 +41,9 @@ export default async function runExecutor(
     if (!options.dockerfile.startsWith('/')) {
       options.dockerfile = join(context.root, options.dockerfile);
     }
+    console.log(`Using dockerfile: ${ options.dockerfile }`);
+  } else {
+    console.log('No dockerfile specified');
   }
 
   console.log('Executor ran for Build', options);
@@ -84,7 +87,7 @@ export default async function runExecutor(
     ));
   }
 
-  console.log(`start docker build for ${ options.dockerfile }`);
+  console.log(`start docker build`);
 
   let result = await dockerBuild(
     options.command,
