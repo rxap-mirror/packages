@@ -1,5 +1,5 @@
 {
-  "version": "16.1.1-dev.3",
+  "version": "16.1.1",
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,10 +9,10 @@
     "@angular/cdk": "^16.2.14",
     "@angular/common": "^16.2.12",
     "@angular/core": "^16.2.12",
-    "@rxap/components": "^16.0.1-dev.2",
-    "@rxap/config": "^16.0.1-dev.2",
-    "@rxap/data-grid": "^16.0.1-dev.6",
-    "@rxap/environment": "^16.0.1-dev.1",
+    "@rxap/components": "^16.0.1",
+    "@rxap/config": "^16.0.1",
+    "@rxap/data-grid": "^16.0.1",
+    "@rxap/environment": "^16.1.0",
     "@sentry/angular-ivy": "^7.60.1",
     "rxjs": "^7.8.1",
     "tslib": "^2.3.0"
@@ -38,19 +38,19 @@
     "packageGroup": [
       {
         "package": "@rxap/components",
-        "version": "16.0.1-dev.2"
+        "version": "16.0.1"
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.1-dev.2"
+        "version": "16.0.1"
       },
       {
         "package": "@rxap/data-grid",
-        "version": "16.0.1-dev.6"
+        "version": "16.0.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.1-dev.1"
+        "version": "16.1.0"
       }
     ]
   },

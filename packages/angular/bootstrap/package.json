@@ -1,5 +1,5 @@
 {
-  "version": "16.2.0-dev.3",
+  "version": "16.2.0",
   "name": "@rxap/ngx-bootstrap",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,8 +10,8 @@
     "@angular/platform-browser": "^16.2.12",
     "@angular/platform-browser-dynamic": "^16.2.12",
     "@nx/angular": "^16.10.0",
-    "@rxap/config": "^16.0.1-dev.2",
-    "@rxap/environment": "^16.1.0-dev.0",
+    "@rxap/config": "^16.0.1",
+    "@rxap/environment": "^16.1.0",
     "ngx-logger": "^5.0.12",
     "tslib": "2.6.2"
   },
@@ -37,11 +37,11 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.1-dev.2"
+        "version": "16.0.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.1.0-dev.0"
+        "version": "16.1.0"
       }
     ]
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://gitlab.com/rxap/packages/compare/@rxap/node-local-storage@1.0.2-dev.0...@rxap/node-local-storage@1.0.2) (2024-04-17)
+
+### Bug Fixes
+
+- skip local storage tests ([9030c84](https://gitlab.com/rxap/packages/commit/9030c8478fd38d08aab01be3dac38e02101d060e))
+
 ## [1.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/node-local-storage@1.0.1...@rxap/node-local-storage@1.0.2-dev.0) (2024-03-05)
 
 **Note:** Version bump only for package @rxap/node-local-storage

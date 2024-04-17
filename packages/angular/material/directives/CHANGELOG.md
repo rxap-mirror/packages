@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.1.0-dev.4...@rxap/material-directives@16.1.0) (2024-04-17)
+
+**Note:** Version bump only for package @rxap/material-directives
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.1.0-dev.3...@rxap/material-directives@16.1.0-dev.4) (2024-04-09)
 
 **Note:** Version bump only for package @rxap/material-directives

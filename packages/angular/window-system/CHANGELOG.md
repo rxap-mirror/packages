@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.1-dev.10...@rxap/window-system@16.0.1) (2024-04-17)
+
+**Note:** Version bump only for package @rxap/window-system
+
 ## [16.0.1-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.1-dev.9...@rxap/window-system@16.0.1-dev.10) (2024-04-15)
 
 ### Bug Fixes

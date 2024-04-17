@@ -1,5 +1,5 @@
 {
-  "version": "16.1.1-dev.3",
+  "version": "16.1.1",
   "name": "@rxap/plugin-localazy",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,8 +8,8 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.10.0",
-    "@rxap/plugin-utilities": "^16.2.0-dev.1",
-    "@rxap/workspace-utilities": "^16.1.0-dev.10",
+    "@rxap/plugin-utilities": "^16.2.0",
+    "@rxap/workspace-utilities": "^16.1.0",
     "tslib": "2.6.2"
   },
   "author": {
@@ -40,7 +40,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/utilities",
@@ -48,7 +48,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.10"
+        "version": "16.1.0"
       }
     ]
   },

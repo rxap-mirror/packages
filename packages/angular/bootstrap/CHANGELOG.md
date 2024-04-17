@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-bootstrap@16.2.0-dev.3...@rxap/ngx-bootstrap@16.2.0) (2024-04-17)
+
+**Note:** Version bump only for package @rxap/ngx-bootstrap
+
 # [16.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-bootstrap@16.2.0-dev.2...@rxap/ngx-bootstrap@16.2.0-dev.3) (2024-04-10)
 
 **Note:** Version bump only for package @rxap/ngx-bootstrap

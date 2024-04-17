@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.13",
+  "version": "16.1.0",
   "name": "@rxap/plugin-docker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,10 +7,10 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.10.0",
-    "@rxap/node-utilities": "^1.2.0-dev.1",
-    "@rxap/plugin-gitlab-ci": "^16.2.0-dev.2",
-    "@rxap/plugin-utilities": "^16.2.0-dev.1",
-    "@rxap/workspace-utilities": "^16.1.0-dev.12",
+    "@rxap/node-utilities": "^1.2.0",
+    "@rxap/plugin-gitlab-ci": "^16.2.0",
+    "@rxap/plugin-utilities": "^16.2.0",
+    "@rxap/workspace-utilities": "^16.1.0",
     "tslib": "2.6.2"
   },
   "author": {
@@ -41,15 +41,15 @@
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.0-dev.1"
+        "version": "1.2.0"
       },
       {
         "package": "@rxap/plugin-gitlab-ci",
-        "version": "16.2.0-dev.2"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/utilities",
@@ -57,7 +57,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.12"
+        "version": "16.1.0"
       }
     ]
   },
