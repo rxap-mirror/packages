@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0...@rxap/schematics-ts-morph@16.2.0-dev.0) (2024-04-17)
+
+### Bug Fixes
+
+- add if utilities ([63a9783](https://gitlab.com/rxap/packages/commit/63a9783fb171e4c5bedb166f6f44dd39fda3592e))
+
+### Features
+
+- add propertyValue handlebare helper ([65fb831](https://gitlab.com/rxap/packages/commit/65fb831c217aa58876f69cb0b4ffbdb6c355c7f1))
+
 # [16.1.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.1.0-dev.27...@rxap/schematics-ts-morph@16.1.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph

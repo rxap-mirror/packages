@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.3...@rxap/plugin-gitlab-ci@16.2.1-dev.4) (2024-04-17)
+
+### Bug Fixes
+
+- remove unused utility import ([db1a391](https://gitlab.com/rxap/packages/commit/db1a3916fa8f7b6fb74036b175aeeabb6f6caeb6))
+
 ## [16.2.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.2...@rxap/plugin-gitlab-ci@16.2.1-dev.3) (2024-04-17)
 
 ### Bug Fixes

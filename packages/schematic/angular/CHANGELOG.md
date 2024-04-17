@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0...@rxap/schematic-angular@16.3.0-dev.0) (2024-04-17)
+
+### Features
+
+- support table column kind option ([0ee317b](https://gitlab.com/rxap/packages/commit/0ee317bc1e7092054de7b865583dc43257952098))
+
 # [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.2.0-dev.62...@rxap/schematic-angular@16.2.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/schematic-angular
