@@ -9,6 +9,7 @@ export enum TableColumnKind {
   COPY_TO_CLIPBOARD = 'copy-to-clipboard',
   TREE = 'tree',
   SPINNER = 'spinner',
+  OPTIONS = 'options',
 }
 
 export function IsTableColumnKind(value: string): value is TableColumnKind {

@@ -10,6 +10,7 @@ import {
   NormalizeDateTableColumn,
   NormalizedDateTableColumn,
 } from './column/date-table-column';
+import { NormalizeOptionsTableColumn } from './column/options-table-column';
 import { TableColumnKind } from './table-column-kind';
 
 export type TableColumn = BaseTableColumn | DateTableColumn;
@@ -26,6 +27,8 @@ export function NormalizeTableColumn(
       return NormalizeCustomTableColumn(column);
     case TableColumnKind.BOOLEAN:
       return NormalizeBooleanTableColumn(column);
+    case TableColumnKind.OPTIONS:
+      return NormalizeOptionsTableColumn(column);
     case TableColumnKind.DEFAULT:
     default:
       return NormalizeBaseTableColumn(column);

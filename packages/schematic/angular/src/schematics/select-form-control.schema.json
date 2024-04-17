@@ -21,29 +21,7 @@
         "optionList": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "display": {
-                "type": "string"
-              },
-              "value": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  },
-                  {
-                    "type": "boolean"
-                  },
-                  {
-                    "type": "object",
-                    "additionalProperties": true
-                  }
-                ]
-              }
-            }
+            "$ref": "#/definitions/option"
           }
         },
         "backend": {
@@ -70,6 +48,9 @@
     },
     "upstream": {
       "$ref": "./upstream.schema.json"
+    },
+    "option": {
+      "$ref": "./option.schema.json"
     }
   }
 }

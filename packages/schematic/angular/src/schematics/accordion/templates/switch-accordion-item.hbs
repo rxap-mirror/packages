@@ -1,7 +1,7 @@
 
 <ng-container [ngSwitch]="data.{{item.switch.property.name}}">
   {{#each item.switch.case}}
-  <ng-template [ngSwitchCase]="{{this.test}}">
+  <ng-template [ngSwitchCase]="{{propertyValue this.test}}">
   {{#each this.itemList}}
   {{#if this.permission}}
   <ng-template rxapIfHasPermission="{{item.permission}}">

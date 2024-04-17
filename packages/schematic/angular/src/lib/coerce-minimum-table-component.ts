@@ -10,12 +10,13 @@ import {
   CoerceImports,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
+import { BackendTypes } from './backend-types';
 import { LoadMatFormFieldHandlebarsTemplate } from './load-handlebars-template';
 import { NormalizedMinimumTableOptions } from './minimum-table-options';
 import { TableModifiers } from './table-options';
 
 export interface CoerceMinimumTableComponentOptions extends CoerceComponentOptions {
-  table: NormalizedMinimumTableOptions;
+  table: NormalizedMinimumTableOptions & { backend?: BackendTypes };
 }
 
 export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumTableComponentOptions>) {
@@ -55,6 +56,10 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
         moduleSpecifier: 'rxjs',
         namedImports: ['Observable'],
       });
+      if (options.table.backend === BackendTypes.DATA_SOURCE) {
+        CoerceComponentInput(classDeclaration, 'dataSource', 'AbstractTableDataSource');
+        CoerceComponentImport(classDeclaration, { name: 'AbstractTableDataSource', moduleSpecifier: '@rxap/data-source/table' });
+      }
       // endregion
 
       // region angular component imports

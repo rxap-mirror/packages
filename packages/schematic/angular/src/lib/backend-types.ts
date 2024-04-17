@@ -3,4 +3,5 @@ export enum BackendTypes {
   NESTJS = 'nestjs',
   OPEN_API = 'open-api',
   LOCAL = 'local',
+  DATA_SOURCE = 'data-source',
 }

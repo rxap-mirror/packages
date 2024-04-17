@@ -90,6 +90,9 @@
           [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
           mat-table
           #tableDataSourceDirective="rxapTableDataSource"
+          {{#ifeq backend "data-source"}}
+          [dataSource]="dataSource"
+          {{/ifeq}}
           rxapTableDataSource
           [parameters]="parameters"
           id="{{name}}"

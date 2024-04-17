@@ -117,7 +117,8 @@ export function PrintAngularOptions(schematicName: string, options: NormalizedAn
       break;
 
     default:
-      throw new Error(`Unknown backend type: ${ backend }`);
+      console.log(`\x1b[31m===== Backend: ${ backend.toUpperCase() }\x1b[0m`);
+      break;
 
   }
 

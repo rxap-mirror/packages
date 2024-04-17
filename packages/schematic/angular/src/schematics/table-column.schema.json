@@ -46,6 +46,9 @@
     },
     {
       "$ref": "#/definitions/spinnerTableColumn"
+    },
+    {
+      "$ref": "#/definitions/optionsTableColumn"
     }
   ],
   "definitions": {
@@ -78,6 +81,9 @@
     },
     "spinnerTableColumn": {
       "$ref": "./spinner-table-column.schema.json"
+    },
+    "optionsTableColumn": {
+      "$ref": "./options-table-column.schema.json"
     }
   }
 }

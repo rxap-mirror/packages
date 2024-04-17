@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "options-table-column",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseTableColumn"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "options"
+        },
+        "optionList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/option"
+          }
+        }
+      },
+      "required": ["kind", "optionList"]
+    }
+  ],
+  "definitions": {
+    "baseTableColumn": {
+      "$ref": "./base-table-column.schema.json"
+    },
+    "option": {
+      "$ref": "./option.schema.json"
+    }
+  }
+}
