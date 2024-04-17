@@ -11343,7 +11343,7 @@ __metadata:
     "@nx/js": ^16.10.0
     "@rxap/plugin-utilities": ^16.2.0-dev.1
     "@rxap/utilities": ^16.1.0-dev.9
-    "@rxap/workspace-utilities": ^16.1.0-dev.14
+    "@rxap/workspace-utilities": ^16.1.0-dev.16
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
