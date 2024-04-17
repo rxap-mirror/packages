@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.2.0...@rxap/plugin-utilities@16.3.0-dev.0) (2024-04-17)
+
+### Bug Fixes
+
+- fallback to project source root ([c7c5b3a](https://gitlab.com/rxap/packages/commit/c7c5b3ad799e8c6d81f8b5ea9e375d8dc61f1aa1))
+
+### Features
+
+- add HasProjectTarget function ([2e125c5](https://gitlab.com/rxap/packages/commit/2e125c5838dc89a3f75da05380d4282c75a113cb))
+
 # [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.2.0-dev.1...@rxap/plugin-utilities@16.2.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/plugin-utilities

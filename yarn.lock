@@ -11169,7 +11169,7 @@ __metadata:
     "@nx/devkit": ^16.10.0
     "@rxap/node-utilities": ^1.2.0
     "@rxap/plugin-gitlab-ci": ^16.2.0
-    "@rxap/plugin-utilities": ^16.2.0
+    "@rxap/plugin-utilities": ^16.3.0-dev.0
     "@rxap/workspace-utilities": ^16.1.0
     tslib: 2.6.2
   languageName: unknown
