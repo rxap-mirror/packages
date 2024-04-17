@@ -22,6 +22,7 @@ variables:
     description: "Enable the coerce image pipeline."
 
 include:
+  - local: .gitlab/ci/utilities/base.yaml
 
   - local: .gitlab/ci/pipelines/build.yaml
     rules:

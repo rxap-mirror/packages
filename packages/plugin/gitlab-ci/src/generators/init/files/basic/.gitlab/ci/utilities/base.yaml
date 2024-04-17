@@ -1,0 +1,11 @@
+variables:
+  HUSKY: "0"
+  GIT_STRATEGY: "fetch"
+  GIT_DEPTH: "3"
+
+default:
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - scheduler_failure

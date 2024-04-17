@@ -5,4 +5,5 @@ variables:
   ADDITIONAL_TARGET_OPTIONS: "--exclude angular"
 
 include:
+  - local: .gitlab/ci/utilities/base.yaml
   - local: .gitlab/ci/pipelines/build.yaml
