@@ -1,20 +1,5 @@
 .nx-base:
-  image: node:${NODE_VERSION}-alpine
-  needs:
-    - job: setup
-      artifacts: false
-      optional: true
-  cache:
-    key:
-      files:
-        - yarn.lock
-    paths:
-      - '**/node_modules/**'
-      - .yarn/cache
-    policy: pull
-  before_script:
-    - apk add --no-cache git || apt-get update && apt-get install -y git || true
-    - sh ./tools/scripts/install-dependencies.sh
+  extends: .with_npm_cache
 
 # Creating template for DTE agents
 .dte-agent:
