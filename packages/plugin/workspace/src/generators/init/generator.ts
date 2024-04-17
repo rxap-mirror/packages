@@ -488,6 +488,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
         url: CoerceSuffix(repositoryUrl, '.git'),
       };
     }
+    packageJson.scripts ??= {};
+    packageJson.scripts['rxap:update'] = 'npx npm-check-updates --filter /@rxap/ --target newest -u && yarn';
+    packageJson.scripts['rxap:migrate'] = 'yarn rxap:update && nx g @rxap/schematic-composer:compose';
   });
 
   coerceWorkspaceProject(tree, options);
