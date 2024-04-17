@@ -88,6 +88,13 @@ function applyContentHandlebars<T>(options: T): FileOperator {
       }).join('\n'));
     });
 
+    Handlebars.registerHelper('propertyValue', (value) => {
+      if (typeof value === 'string') {
+        return `'${ value }'`;
+      }
+      return value;
+    });
+
     Handlebars.registerHelper('dasherize', value => dasherize(value));
     Handlebars.registerHelper('classify', value => classify(value));
     Handlebars.registerHelper('decamelize', value => decamelize(value));
