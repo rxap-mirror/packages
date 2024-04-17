@@ -2,6 +2,12 @@ import { ExecutorContext } from '@nx/devkit';
 import { GetTargetOptions } from '@rxap/workspace-utilities';
 import { GetProjectConfiguration } from './project';
 
+export function HasProjectTarget(context: ExecutorContext, projectName = context.projectName, targetName: string) {
+  const projectConfiguration = GetProjectConfiguration(context, projectName);
+
+  return !!projectConfiguration.targets?.[targetName];
+}
+
 export function GetProjectTarget(context: ExecutorContext, projectName = context.projectName, targetName: string) {
   const projectConfiguration = GetProjectConfiguration(context, projectName);
 
