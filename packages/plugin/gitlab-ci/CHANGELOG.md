@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.1...@rxap/plugin-gitlab-ci@16.2.1-dev.2) (2024-04-17)
+
+### Bug Fixes
+
+- support specific angular workspaces ([b71d2b2](https://gitlab.com/rxap/packages/commit/b71d2b2ff8b978aa78ede3f8cbc49307bc49eaa9))
+
 ## [16.2.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.0...@rxap/plugin-gitlab-ci@16.2.1-dev.1) (2024-04-17)
 
 ### Bug Fixes
