@@ -21,6 +21,7 @@ import {
   DeleteProperties,
 } from '@rxap/utilities';
 import {
+  AddPackageJsonDependency,
   Assets,
   CoerceAssets,
   CoerceFile,
@@ -56,6 +57,7 @@ import {
   gte,
   parse,
 } from 'semver';
+import { ANGULAR_VERSION } from '../../lib/angular-version';
 import { coerceTestSetup } from '../../lib/coerce-test-setup';
 import { InitGeneratorSchema } from '../init/schema';
 import { InitLibraryGeneratorSchema } from './schema';
@@ -460,6 +462,9 @@ export async function initLibraryGenerator(
     CoerceArrayItems(options.projects, [options.project]);
   }
   console.log('angular library init generator:', options);
+
+  // must always be added as some rxap components use the i18n tag
+  await AddPackageJsonDependency(tree, '@angular/localize', ANGULAR_VERSION, { soft: true });
 
   LibraryInitWorkspace(tree, options);
 

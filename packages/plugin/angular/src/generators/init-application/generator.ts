@@ -68,6 +68,7 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
+import { ANGULAR_VERSION } from '../../lib/angular-version';
 import { coerceTestSetup } from '../../lib/coerce-test-setup';
 import { InitGeneratorSchema } from '../init/schema';
 import { CoerceProjects } from './coerce-project';
@@ -919,9 +920,8 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/mixin', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/reflect-metadata', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/browser-tailwind', 'latest', { soft: true, withoutNonRxapPeerDependencies: false });
-  const angularVersion = '~16.2.0';
   // must always be added as some rxap components use the i18n tag
-  await AddPackageJsonDependency(tree, '@angular/localize', angularVersion, { soft: true });
+  await AddPackageJsonDependency(tree, '@angular/localize', ANGULAR_VERSION, { soft: true });
   // must always be added as some rxap components use interfaces from the package
   // TODO : refactor the @rxap/ngx-error and @rxap/ngx-status-check to be independent from the @sentry/angular-ivy package
   await AddPackageJsonDependency(tree, '@sentry/angular-ivy', 'latest', { soft: true });
@@ -933,13 +933,13 @@ export async function initApplicationGenerator(
   }
 
   if (options.material) {
-    await AddPackageJsonDependency(tree, '@angular/material', angularVersion, { soft: true });
-    await AddPackageJsonDependency(tree, '@angular/cdk', angularVersion, { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/material', ANGULAR_VERSION, { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/cdk', ANGULAR_VERSION, { soft: true });
   }
 
   if (options.serviceWorker) {
     await AddPackageJsonDependency(tree, '@rxap/service-worker', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@angular/service-worker', angularVersion, { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/service-worker', ANGULAR_VERSION, { soft: true });
   }
 
   if (options.monolithic) {
