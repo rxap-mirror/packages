@@ -28,7 +28,3 @@ stages:
 
 variables:
   ENVIRONMENT_NAME: release/$CI_COMMIT_TAG
-
-run:
-  variables:
-    ADDITIONAL_TARGET_OPTIONS: "--channel $CI_ENVIRONMENT_SLUG"
