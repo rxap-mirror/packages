@@ -60,6 +60,12 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
+import {
+  NESTJS_CACHE_MANAGER_VERSION,
+  NESTJS_CONFIG_VERSION,
+  NESTJS_THROTTLE_VERSION,
+  NESTJS_VERSION,
+} from '../../lib/nestjs-version';
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
 import healthIndicatorInitGenerator from '../health-indicator-init/generator';
 import healthIndicatorGenerator from '../health-indicator/generator';
@@ -597,21 +603,23 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/nest-utilities', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-logger', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/utilities', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@nestjs/terminus', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@nestjs/config', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@nestjs/cache-manager', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/terminus', NESTJS_VERSION, { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/config', NESTJS_CONFIG_VERSION, { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/cache-manager', NESTJS_CACHE_MANAGER_VERSION, { soft: true });
   await AddPackageJsonDependency(tree, 'cache-manager', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, 'joi', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-library', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-open-api', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@nestjs/throttler', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/throttler', NESTJS_THROTTLE_VERSION, { soft: true });
   await AddPackageJsonDependency(tree, 'cookie-parser', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@types/cookie-parser', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@types/csurf', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-application', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
+  // needs to be added always as the app.controller uses the decorator @ApiExcludeController
+  await AddPackageJsonDependency(tree, '@nestjs/swagger', NESTJS_VERSION, { soft: true });
 
 
   console.group('adding feature specific dependencies');
@@ -623,7 +631,6 @@ export async function initApplicationGenerator(
 
   if (options.swagger) {
     console.log('adding swagger specific dependencies');
-    await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });
     await AddPackageJsonDevDependency(tree, '@rxap/json-schema-to-typescript', 'latest', { soft: true });
     if (!options.standalone) {
       console.log('adding swagger specific dependencies for non standalone application');
@@ -645,7 +652,7 @@ export async function initApplicationGenerator(
 
     case 'express':
       console.log('adding express specific dependencies');
-      await AddPackageJsonDependency(tree, '@nestjs/platform-express', 'latest', { soft: true });
+      await AddPackageJsonDependency(tree, '@nestjs/platform-express', NESTJS_VERSION, { soft: true });
       await AddPackageJsonDependency(tree, 'helmet', 'latest', { soft: true });
       break;
 
