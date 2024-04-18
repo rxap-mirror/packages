@@ -9,7 +9,7 @@
     "@nx/devkit": "^16.10.0",
     "@rxap/generator-ts-morph": "^1.0.2",
     "@rxap/ts-morph": "^1.1.0",
-    "@rxap/workspace-utilities": "^16.1.0",
+    "@rxap/workspace-utilities": "^16.2.0",
     "gpt-3-encoder": "^1.1.4",
     "openai": "^3.3.0",
     "ts-morph": "^18.0.0",
@@ -51,7 +51,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0"
+        "version": "16.2.0"
       }
     ]
   },

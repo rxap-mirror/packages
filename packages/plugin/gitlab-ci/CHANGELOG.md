@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.4...@rxap/plugin-gitlab-ci@16.2.1) (2024-04-18)
+
+**Note:** Version bump only for package @rxap/plugin-gitlab-ci
+
 ## [16.2.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.3...@rxap/plugin-gitlab-ci@16.2.1-dev.4) (2024-04-17)
 
 ### Bug Fixes

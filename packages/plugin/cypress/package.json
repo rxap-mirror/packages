@@ -8,11 +8,11 @@
   },
   "peerDependencies": {
     "@nx/angular": "^16.10.0",
-    "@rxap/plugin-angular": "^16.2.0",
+    "@rxap/plugin-angular": "^16.2.1",
     "@rxap/ts-morph": "^1.1.0",
     "@rxap/utilities": "^16.1.0",
     "@rxap/workspace-ts-morph": "^16.1.0",
-    "@rxap/workspace-utilities": "^16.1.0"
+    "@rxap/workspace-utilities": "^16.2.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -37,7 +37,7 @@
     "packageGroup": [
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.2.0"
+        "version": "16.2.1"
       },
       {
         "package": "@rxap/ts-morph",
@@ -53,7 +53,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0"
+        "version": "16.2.0"
       }
     ]
   },

@@ -9,7 +9,7 @@
     "@angular-devkit/schematics": "^16.2.13",
     "@nx/devkit": "^16.10.0",
     "@rxap/utilities": "^16.1.0",
-    "@rxap/workspace-utilities": "^16.1.0",
+    "@rxap/workspace-utilities": "^16.2.0",
     "tslib": "2.6.2"
   },
   "author": {
@@ -41,7 +41,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0"
+        "version": "16.2.0"
       }
     ]
   },

@@ -7,7 +7,7 @@
   },
   "peerDependencies": {
     "@rxap/ts-morph": "^1.1.0",
-    "@rxap/workspace-utilities": "^16.1.0",
+    "@rxap/workspace-utilities": "^16.2.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
@@ -40,7 +40,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0"
+        "version": "16.2.0"
       }
     ]
   },

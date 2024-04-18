@@ -9,10 +9,10 @@
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^16.2.13",
-    "@rxap/schematics-ts-morph": "^16.1.0",
+    "@rxap/schematics-ts-morph": "^16.2.0",
     "@rxap/schematics-utilities": "^16.1.0",
     "@rxap/utilities": "^16.1.0",
-    "@rxap/workspace-utilities": "^16.1.0",
+    "@rxap/workspace-utilities": "^16.2.0",
     "tslib": "2.6.2"
   },
   "author": {
@@ -35,7 +35,7 @@
     "packageGroup": [
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.2.0"
+        "version": "16.2.1"
       },
       {
         "package": "@rxap/plugin-application",
@@ -47,11 +47,11 @@
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "16.1.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/plugin-gitlab-ci",
-        "version": "16.2.0"
+        "version": "16.2.1"
       },
       {
         "package": "@rxap/plugin-gpt",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.2.0"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/plugin-web3-storage",
@@ -87,11 +87,11 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "16.2.0"
+        "version": "16.2.1"
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "16.2.0"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/schematic-nestjs",
@@ -103,7 +103,7 @@
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.1.0"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/schematics-utilities",
@@ -119,7 +119,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.1.0"
+        "version": "16.2.0"
       }
     ]
   },

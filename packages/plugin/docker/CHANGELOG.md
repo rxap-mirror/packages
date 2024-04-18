@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.1.1-dev.1...@rxap/plugin-docker@16.1.1) (2024-04-18)
+
+**Note:** Version bump only for package @rxap/plugin-docker
+
 ## [16.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.1.1-dev.0...@rxap/plugin-docker@16.1.1-dev.1) (2024-04-17)
 
 ### Bug Fixes
