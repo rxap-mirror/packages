@@ -11274,13 +11274,14 @@ __metadata:
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
   dependencies:
     tslib: 2.6.2
+    yaml: ^2.3.1
   peerDependencies:
     "@nx/devkit": ^16.10.0
     "@rxap/node-utilities": ^1.2.0
     "@rxap/plugin-library": ^16.1.0
     "@rxap/plugin-utilities": ^16.3.0
     "@rxap/utilities": ^16.1.0
-    "@rxap/workspace-open-api": ^16.0.2
+    "@rxap/workspace-open-api": ^16.1.0-dev.0
     "@rxap/workspace-ts-morph": ^16.1.0
     "@rxap/workspace-utilities": ^16.2.0
     tslib: 2.6.2
@@ -11697,6 +11698,7 @@ __metadata:
   dependencies:
     openapi-types: 10.0.0
     tslib: 2.6.2
+    yaml: ^2.3.1
   peerDependencies:
     "@angular-devkit/core": ^16.2.13
     "@rxap/json-schema-to-typescript": ^16.0.1
@@ -36603,6 +36605,15 @@ __metadata:
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.3.1":
+  version: 2.4.1
+  resolution: "yaml@npm:2.4.1"
+  bin:
+    yaml: bin.mjs
+  checksum: 4c391d07a5d5e935e058babb71026c9cdc9a6fd889e35dd91b53cfb0a12691b67c6c5c740858e71345fef18cd9c13c554a6dda9196f59820d769d94041badb0b
   languageName: node
   linkType: hard
 

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@16.0.2...@rxap/workspace-open-api@16.1.0-dev.0) (2024-04-18)
+
+### Features
+
+- support yaml files ([b8b7daa](https://gitlab.com/rxap/packages/commit/b8b7daae5571268f9043873c6d19d5c22b589beb))
+
 ## [16.0.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@16.0.2-dev.3...@rxap/workspace-open-api@16.0.2) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/workspace-open-api

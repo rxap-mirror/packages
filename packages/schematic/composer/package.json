@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0",
+  "version": "16.2.0-dev.0",
   "name": "@rxap/schematic-composer",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -67,11 +67,11 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.2.0"
+        "version": "16.2.1-dev.0"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "16.2.0"
+        "version": "16.3.0-dev.0"
       },
       {
         "package": "@rxap/plugin-storybook",
@@ -87,7 +87,7 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "16.2.1"
+        "version": "16.2.2-dev.0"
       },
       {
         "package": "@rxap/schematic-angular",

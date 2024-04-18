@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.2.0...@rxap/plugin-open-api@16.3.0-dev.0) (2024-04-18)
+
+### Features
+
+- support standalone open api project init ([a2dbd15](https://gitlab.com/rxap/packages/commit/a2dbd15a76b6df05581cfd5506fc5ede40a540ec))
+
 # [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.2.0-dev.2...@rxap/plugin-open-api@16.2.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/plugin-open-api
