@@ -490,7 +490,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
     packageJson.scripts ??= {};
     packageJson.scripts['rxap:update'] = 'npx npm-check-updates --filter /@rxap/ --target newest -u && yarn';
-    packageJson.scripts['rxap:migrate'] = 'yarn rxap:update && nx g @rxap/schematic-composer:compose';
+    packageJson.scripts['rxap:migrate'] = 'yarn rxap:update && yarn rxap:compose';
+    packageJson.scripts['rxap:compose'] = 'nx g @rxap/schematic-composer:compose';
   });
 
   coerceWorkspaceProject(tree, options);
