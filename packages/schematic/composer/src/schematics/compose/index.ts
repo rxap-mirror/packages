@@ -16,9 +16,13 @@ import {
 import {
   coerceArray,
   dasherize,
+  equals,
   Normalized,
 } from '@rxap/utilities';
-import { GetProjectRoot } from '@rxap/workspace-utilities';
+import {
+  GetProjectRoot,
+  GetRootPackageJson,
+} from '@rxap/workspace-utilities';
 import {
   dirname,
   join,
@@ -314,6 +318,8 @@ export default function (options: ComposeSchematicSchema) {
 
   return (host: Tree) => {
 
+    const rootPackageJson = GetRootPackageJson(host);
+
     let rule: Rule;
 
     if (project) {
@@ -329,8 +335,13 @@ export default function (options: ComposeSchematicSchema) {
     return chain([
       rule,
       AddPackageJsonDevDependencyRule('@rxap/schematic-composer', 'latest', { soft: true }),
-      (_, context) => {
-        context.addTask(new NodePackageInstallTask({ packageManager: 'yarn' }));
+      (tree, context) => {
+        const newRootPackageJson = GetRootPackageJson(tree);
+        if (!equals(rootPackageJson.dependencies, newRootPackageJson.dependencies) || !equals(rootPackageJson.devDependencies, newRootPackageJson.devDependencies)) {
+          context.addTask(new NodePackageInstallTask({ packageManager: 'yarn' }));
+        } else {
+          console.log('No package.json changes detected. Skip package installation'.green);
+        }
       },
     ]);
   };
