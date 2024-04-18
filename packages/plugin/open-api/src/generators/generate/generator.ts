@@ -79,7 +79,10 @@ export async function generateGenerator(
     nestGeneratorFunctionList.push(GenerateOperationCommand);
   }
 
-  DeleteRecursive(tree, join(projectRoot, 'src'));
+  DeleteRecursive(tree, join(projectRoot, 'src', 'lib'));
+  if (tree.exists(join(projectRoot, 'src', 'index.ts'))) {
+    tree.delete(join(projectRoot, 'src', 'index.ts'));
+  }
   if (tree.exists(join(projectRoot, 'angular', 'src'))) {
     DeleteRecursive(tree, join(projectRoot, 'angular', 'src'));
   }
