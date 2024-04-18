@@ -7,6 +7,11 @@
     "project": {
       "type": "string"
     },
+    "external": {
+      "type": "boolean",
+      "default": false,
+      "x-prompt": "Is the open api specification source external?"
+    },
     "skipFormat": {
       "type": "boolean",
       "default": false
