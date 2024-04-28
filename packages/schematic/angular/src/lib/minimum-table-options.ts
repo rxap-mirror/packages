@@ -104,7 +104,7 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   const propertyList = NormalizeDataPropertyList(options.propertyList);
   const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
   const modifiers = options.modifiers ?? [];
-  if (!columnList.some(column => !column.filterControl)) {
+  if (columnList.some(column => !column.filterControl)) {
     CoerceArrayItems(modifiers, [MinimumTableModifiers.WITH_HEADER]);
   }
   if (sortable.enabled) {
