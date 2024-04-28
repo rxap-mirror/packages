@@ -39,6 +39,7 @@
         "build"
       ]
     },
+    "index-export": {},
     "readme": {},
     "test": {
       "options": {
