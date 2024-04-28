@@ -90,6 +90,10 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
 
   public readonly error$ = new Subject<unknown>();
 
+  public get lastRefreshed(): Date | null {
+    return this.dataSource?.lastRefreshed ?? null;
+  }
+
   /**
    * @deprecated use method instead
    */

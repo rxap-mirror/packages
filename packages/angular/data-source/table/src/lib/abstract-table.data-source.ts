@@ -1,21 +1,10 @@
-import { RXAP_DATA_SOURCE_METADATA } from '@rxap/data-source';
-import { Observable } from 'rxjs';
-import {
-  Constructor,
-  hasIndexSignature,
-} from '@rxap/utilities';
 import {
   Inject,
   Injectable,
   isDevMode,
   Optional,
 } from '@angular/core';
-import {
-  RXAP_TABLE_DATA_SOURCE_FILTER,
-  RXAP_TABLE_DATA_SOURCE_PAGINATOR,
-  RXAP_TABLE_DATA_SOURCE_PARAMETERS,
-  RXAP_TABLE_DATA_SOURCE_SORT,
-} from './tokens';
+import { RXAP_DATA_SOURCE_METADATA } from '@rxap/data-source';
 import {
   AbstractPaginationDataSource,
   AbstractPaginationDataSourceMetadata,
@@ -23,6 +12,17 @@ import {
   RxapAbstractPaginationDataSource,
 } from '@rxap/data-source/pagination';
 import { ToggleSubject } from '@rxap/rxjs';
+import {
+  Constructor,
+  hasIndexSignature,
+} from '@rxap/utilities';
+import { Observable } from 'rxjs';
+import {
+  RXAP_TABLE_DATA_SOURCE_FILTER,
+  RXAP_TABLE_DATA_SOURCE_PAGINATOR,
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS,
+  RXAP_TABLE_DATA_SOURCE_SORT,
+} from './tokens';
 
 export type SortDirection = 'asc' | 'desc' | '';
 

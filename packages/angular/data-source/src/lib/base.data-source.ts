@@ -69,6 +69,10 @@ export class BaseDataSource<
   public loading$: Observable<boolean> = EMPTY;
   public readonly hasError$ = new ToggleSubject();
   public readonly error$ = new ReplaySubject<Error>(1);
+  public get lastRefreshed(): Date | null {
+    return this._lastRefreshed;
+  }
+  protected _lastRefreshed: Date | null = null;
   protected _connectedViewer = new Map<DataSourceViewerId, Observable<Data>>();
   protected _connectedViewerTeardown = new Map<
     DataSourceViewerId,
@@ -156,6 +160,7 @@ export class BaseDataSource<
         }
       }),
       tap((data) => this.change$.next(data)),
+      tap(() => this._lastRefreshed = new Date()),
       finalize(() => this.disconnect(viewer)),
       takeUntil(destroy$),
     );
