@@ -4,6 +4,7 @@ import {
   LOCALE_ID,
 } from '@angular/core';
 import { AuthorizationService } from '@rxap/authorization';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { ClickOnLink } from '@rxap/browser-utilities';
 import { ConfigService } from '@rxap/config';
 import {

@@ -4,6 +4,7 @@ import {
   ElementRef,
   inject,
 } from '@angular/core';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { ObserveElementHeight } from '@rxap/browser-utilities';
 import { log } from '@rxap/rxjs';
 import {
