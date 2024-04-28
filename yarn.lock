@@ -10537,10 +10537,10 @@ __metadata:
     "@angular/material": ^16.2.14
     "@angular/router": ^16.2.12
     "@rxap/components": ^16.0.1
-    "@rxap/data-source": ^16.1.0
+    "@rxap/data-source": ^16.2.0-dev.0
     "@rxap/directives": ^16.0.1
     "@rxap/forms": ^16.0.1
-    "@rxap/material-directives": ^16.1.0
+    "@rxap/material-directives": ^16.2.0-dev.0
     "@rxap/pattern": ^1.1.1
     "@rxap/reflect-metadata": ^1.0.2
     "@rxap/rxjs": ^1.1.1

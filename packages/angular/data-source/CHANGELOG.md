@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.1.0...@rxap/data-source@16.2.0-dev.0) (2024-04-28)
+
+### Features
+
+- add last refresh date concept ([012f64c](https://gitlab.com/rxap/packages/commit/012f64cb4de47f6fc1f2351a47bdf9b2833a169d))
+
 # [16.1.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.1.0-dev.8...@rxap/data-source@16.1.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/data-source
