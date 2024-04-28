@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.1.0...@rxap/material-directives@16.2.0-dev.0) (2024-04-28)
+
+### Features
+
+- add AutoFormFieldHeightBottomContainerDirective ([0e6e4cb](https://gitlab.com/rxap/packages/commit/0e6e4cb4c39f8643fb3c76e39182c8285264af1e))
+
 # [16.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.1.0-dev.4...@rxap/material-directives@16.1.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/material-directives

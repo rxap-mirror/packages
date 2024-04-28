@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/browser-utilities@1.0.2...@rxap/browser-utilities@1.1.0-dev.0) (2024-04-28)
+
+### Features
+
+- add ObserveElementHeight function ([508d8f2](https://gitlab.com/rxap/packages/commit/508d8f2c9a67c83f631e70a8cb3e1cacc3e1ebd3))
+
 ## [1.0.2](https://gitlab.com/rxap/packages/compare/@rxap/browser-utilities@1.0.2-dev.0...@rxap/browser-utilities@1.0.2) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/browser-utilities

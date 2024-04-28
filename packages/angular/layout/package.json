@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1",
+  "version": "16.0.2-dev.0",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -15,13 +15,13 @@
     "@angular/router": "^16.2.12",
     "@rxap/authentication": "^16.0.1",
     "@rxap/authorization": "^16.0.1",
-    "@rxap/browser-utilities": "^1.0.2",
+    "@rxap/browser-utilities": "^1.1.0-dev.0",
     "@rxap/config": "^16.0.1",
     "@rxap/data-source": "^16.1.0",
     "@rxap/directives": "^16.0.1",
     "@rxap/environment": "^16.1.0",
     "@rxap/icon": "^16.1.0",
-    "@rxap/material-directives": "^16.1.0",
+    "@rxap/material-directives": "^16.2.0-dev.0",
     "@rxap/ngx-changelog": "^16.1.1",
     "@rxap/ngx-localize": "^16.1.1",
     "@rxap/ngx-status-check": "^16.1.1",
@@ -62,7 +62,7 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.0.2"
+        "version": "1.1.0-dev.0"
       },
       {
         "package": "@rxap/config",
@@ -86,7 +86,7 @@
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.1.0"
+        "version": "16.2.0-dev.0"
       },
       {
         "package": "@rxap/ngx-changelog",
