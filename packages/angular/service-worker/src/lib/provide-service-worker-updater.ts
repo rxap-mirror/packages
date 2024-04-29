@@ -2,6 +2,7 @@ import {
   APP_INITIALIZER,
   Provider,
 } from '@angular/core';
+import { AutoUpdateService } from './auto-update.service';
 import { CheckForUpdateService } from './check-for-update.service';
 import { DialogUpdateService } from './dialog-update.service';
 import { LogUpdateService } from './log-update.service';
@@ -33,5 +34,14 @@ export function withDialogUpdater(): Provider {
     multi: true,
     useFactory: (dus: DialogUpdateService) => () => dus.start(),
     deps: [ DialogUpdateService ],
+  };
+}
+
+export function withAutoUpdater(): Provider {
+  return {
+    provide: APP_INITIALIZER,
+    multi: true,
+    useFactory: (aus: AutoUpdateService) => () => aus.start(),
+    deps: [ AutoUpdateService ],
   };
 }
