@@ -32,7 +32,7 @@
                 [checked]="node.selected"
                 [disabled]="!node.hasDetails"
                 [ngStyle]="node.style"
-                class="grow-0">
+                class="grow-0 truncate">
                 {{ node.display }}
               </mat-checkbox>
             </ng-template>
@@ -42,7 +42,7 @@
                 [color]="node.selected ? 'primary' : undefined"
                 [disabled]="!node.hasDetails"
                 [ngStyle]="node.style"
-                class="grow-0"
+                class="grow-0 truncate"
                 mat-button
                 type="button"
               >
@@ -71,7 +71,7 @@
                 (click)="node.select()"
                 [color]="node.selected ? 'primary' : undefined"
                 [ngStyle]="node.style"
-                class="grow-0"
+                class="grow-0 truncate"
                 mat-button
                 type="button"
               >
@@ -83,7 +83,7 @@
                 (change)="onContentEditableChange($event, node)"
                 [disabled]="!nodeDisplayEditable"
                 [ngStyle]="node.style"
-                class="grow-0"
+                class="grow-0 truncate"
                 rxapContenteditable>
                 {{ node.display }}
               </span>
