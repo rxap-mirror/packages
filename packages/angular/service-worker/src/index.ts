@@ -3,6 +3,7 @@ export * from './lib/service-worker-update-dialog/service-worker-update-dialog.c
 // endregion
 
 // region 
+export * from './lib/auto-update.service';
 export * from './lib/check-for-update.service';
 export * from './lib/dialog-update.service';
 export * from './lib/log-update.service';

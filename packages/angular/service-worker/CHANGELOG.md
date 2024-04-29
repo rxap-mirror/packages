@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.1...@rxap/service-worker@16.1.0-dev.0) (2024-04-29)
+
+### Features
+
+- add AutoUpdateService ([67a37f6](https://gitlab.com/rxap/packages/commit/67a37f6dafaa4137a20ba7d0ac568d10f6c4e733))
+
 ## [16.0.1](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.1-dev.3...@rxap/service-worker@16.0.1) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/service-worker
