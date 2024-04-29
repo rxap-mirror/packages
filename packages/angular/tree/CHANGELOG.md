@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.2-dev.0...@rxap/tree@16.0.2-dev.1) (2024-04-29)
+
+### Bug Fixes
+
+- truncate node display ([435c5bb](https://gitlab.com/rxap/packages/commit/435c5bbafa73d4c98842c9d9e390e89a805e2e18))
+
 ## [16.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.1...@rxap/tree@16.0.2-dev.0) (2024-04-29)
 
 ### Bug Fixes

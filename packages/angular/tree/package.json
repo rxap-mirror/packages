@@ -1,5 +1,5 @@
 {
-  "version": "16.0.2-dev.0",
+  "version": "16.0.2-dev.1",
   "name": "@rxap/tree",
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "license": "GPL-3.0-or-later",
