@@ -295,21 +295,31 @@ export class ThemeService {
 
   // region get available
 
-  public getAvailableColorPalettes(): string[] {
-    const colorPalettesConfigs: Record<string, unknown> = this.config.get('colorPalettes', {});
+  public getAvailableColorPalettes(): string[] | null {
+    const colorPalettesConfigs: Record<string, unknown> | boolean = this.config.get('colorPalettes', false);
+    if (!colorPalettesConfigs) {
+      return null;
+    }
     const availableColorPalettes: string[] = Object.keys(colorPalettesConfigs);
     availableColorPalettes.unshift('default');
     return availableColorPalettes;
   }
 
-  public getAvailableThemes(): string[] {
-    const themeConfigs: Record<string, unknown> = this.config.get('themes', {});
+  public getAvailableThemes(): string[] | null {
+    const themeConfigs: Record<string, unknown> | boolean = this.config.get('themes', false);
+    if (!themeConfigs) {
+      return null;
+    }
     const availableThemes: string[] = Object.keys(themeConfigs);
     availableThemes.unshift('default');
     return availableThemes;
   }
 
-  public getAvailableTypographies() {
+  public getAvailableTypographies(): string[] | null {
+    const availableTypographies = this.config.get('typographies', false);
+    if (!availableTypographies) {
+      return null;
+    }
     return Array
       .from(document.styleSheets)
       .filter(sheet => sheet.href === null || sheet.href.startsWith(window.location.origin))

@@ -47,10 +47,10 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
   private savePreviewTypographyValue = false;
   private currentTypographyValue: string | null = null;
 
-  public readonly availableTypographies: string[];
+  public readonly availableTypographies: string[] | null;
   private savePreviewThemeValue = false;
 
-  public readonly availableThemes: string[];
+  public readonly availableThemes: string[] | null;
   private currentThemeValue: string | null = null;
 
   constructor(
