@@ -1,6 +1,16 @@
-import { SelectionChange, SelectionModel } from '@angular/cdk/collections';
+import {
+  SelectionChange,
+  SelectionModel,
+} from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Inject, Injectable, InjectionToken, isDevMode, OnInit, Optional } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  isDevMode,
+  OnInit,
+  Optional,
+} from '@angular/core';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
@@ -28,9 +38,25 @@ import {
   WithChildren,
   WithIdentifier,
 } from '@rxap/utilities';
-import { BehaviorSubject, combineLatest, from, merge, Observable, Subject, Subscription } from 'rxjs';
-import { map, startWith, switchMap, tap } from 'rxjs/operators';
-import { ISearchForm, SearchForm } from './search.form';
+import {
+  BehaviorSubject,
+  combineLatest,
+  from,
+  merge,
+  Observable,
+  Subject,
+  Subscription,
+} from 'rxjs';
+import {
+  map,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import {
+  ISearchForm,
+  SearchForm,
+} from './search.form';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
   return !!obj && obj['added'] !== undefined && obj['removed'] !== undefined;
@@ -265,18 +291,26 @@ export class TreeDataSource<
         this.tree$,
         this.searchForm.rxapFormGroup.value$ as Observable<any>,
       ]).pipe(
-        switchMap(async ([ tree, filter ]) => await this.applyFilterMethod.call({
-          tree,
-          filter,
-          scopeTypes: this.metadata?.scopeTypes,
-        })),
-        map(nodes => coerceArray(nodes)),
-      )
-      .subscribe(data => this._data$.next(data));
+          switchMap(async ([ tree, filter ]) => await this.applyFilterMethod.call({
+            tree,
+            filter,
+            scopeTypes: this.metadata?.scopeTypes,
+          })),
+          map(nodes => coerceArray(nodes)),
+        )
+        .subscribe(data => this._data$.next(data));
     } else {
       this.tree$.pipe(
         map(tree => flatTree(tree).filter(node => node.isVisible)),
-        tap(nodes => nodes.forEach(node => node.show())),
+        tap(nodes => nodes.forEach(node => {
+          node.show();
+          if (this.expanded.isSelected(node.id)) {
+            node.expand({quite: true, onlySelf: true});
+          }
+          if (this.selected.isSelected(node)) {
+            node.select({quite: true, onlySelf: true});
+          }
+        })),
       ).subscribe(data => this._data$.next(data));
     }
   }
@@ -303,9 +337,9 @@ export class TreeDataSource<
     let rootNodes: Array<Node<Data>>;
 
     if (Array.isArray(root)) {
-      rootNodes = await Promise.all(root.map((node) => this._toNode(null, node)));
+      rootNodes = await Promise.all(root.map((node) => this.toNode(null, node)));
     } else {
-      rootNodes = [ await this._toNode(null, root) ];
+      rootNodes = [ await this.toNode(null, root) ];
     }
 
     this.tree$.next(rootNodes);
@@ -323,6 +357,7 @@ export class TreeDataSource<
       }
     }
     this.selected.select(node);
+    node.parent?.expand();
     return Promise.resolve();
   }
 
@@ -355,59 +390,11 @@ export class TreeDataSource<
     return Promise.resolve();
   }
 
-  // - the SelectModel that stores the selection into the local storage?
-  public async _toNode(
-    parent: Node<Data> | null,
-    item: Data,
-    depth                                = 0,
-    onExpand: ExpandNodeFunction<Data>   = this.expandNode.bind(this),
-    onCollapse: ExpandNodeFunction<Data> = this.collapseNode.bind(this),
-    onSelect: ExpandNodeFunction<Data>   = this.selectNode.bind(this),
-    onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this),
-  ): Promise<Node<Data>> {
-    const node = await this.toNode(
-      parent,
-      item,
-      depth,
-      onExpand,
-      onCollapse,
-      onSelect,
-      onDeselect,
-    );
-
-    if (this.expanded.isSelected(node.id)) {
-      node
-      .expand()
-      .then(() => {
-        // TODO : remove redundant this.expanded SelectionModel. Only store expanded nodes in
-        // this.treeControl.expansionModel das problem ist das ich beim speicher in localStorage nur die id speicher.
-        // Des wegen kann ich beim laden aus dem localStorage this.treeControl.expansionModel nicht einfach mit den
-        // expanend nodes fullen. Da dort das node object benötigt wird möglich lösungen: - das node object läde die
-        // entity mithilfe der id automatisch nach
-        this.treeControl.expansionModel.select(node);
-        // console.debug(`Restore expand for node '${node.id}' SUCCESSFULLY`);
-      });
-      // .catch(() =>
-      //   console.debug(`Restore expand for node '${node.id}' FAILED`)
-      // );
-    }
-
-    if (this._preSelected.includes(node.id)) {
-      await node
-      .select();
-      // .then(() =>
-      //   console.debug(`Restore select for node '${node.id}' SUCCESSFULLY`)
-      // )
-      // .catch(() =>
-      //   console.debug(`Restore select for node '${node.id}' FAILED`)
-      // );
-    }
-
-    return node;
-  }
-
   public async expandNode(node: Node<Data>, options?: EventOptions): Promise<void> {
-
+    if (node.parent && !node.parent.expanded) {
+      console.log('expand parent', node.parent.display);
+      node.parent?.expand({quite: true});
+    }
     if (!options?.onlySelf) {
       // required to sync the expanstion state with the tree control
       // if the collpase is trigged by node.expand this state is not
@@ -425,14 +412,17 @@ export class TreeDataSource<
 
       node.addChildren(
         await Promise.all(children.map((child) =>
-          this._toNode(node, child, node.depth + 1, node.onExpand, node.onCollapse),
+          this.toNode(node, child, node.depth + 1, node.onExpand, node.onCollapse),
         )),
       );
 
       node.isLoading$.disable();
     }
 
+    console.log('expand node', node.display);
     this.expanded.select(node.id);
+
+    // node.parent?.expand({quite: true});
 
     if (!options?.quite) {
       this.tree$.next(this.tree$.value);
@@ -474,8 +464,8 @@ export class TreeDataSource<
 
     return (
       this.tree$.value
-      .map((node) => getNodeById(node, id))
-      .filter(Boolean)[0] || null
+        .map((node) => getNodeById(node, id))
+        .filter(Boolean)[0] || null
     );
   }
 
@@ -549,29 +539,41 @@ export class TreeDataSource<
   }
 
   public override async refresh(): Promise<any> {
-    const rootNodes = await this.getTreeRoot({cache: false});
+    if (!this._preSelected?.length) {
+      this._preSelected = this.selected.selected.map((node) => node.id);
+    }
+    console.log('refresh preSelected', this._preSelected);
+    await this.getTreeRoot({cache: false});
 
     // refresh all expanded nodes;
 
-    const loadExpandedNodes = async (children: ReadonlyArray<Node<Data>>) => {
-      for (const child of children) {
-        if (this.expanded.isSelected(child.id)) {
-          // call the node method to ensure that the expanded property of
-          // Node is set.
-          await child.expand();
-        }
+    // const loadExpandedNodes = async (children: ReadonlyArray<Node<Data>>) => {
+    //   for (const child of children) {
+    //     if (this.expanded.isSelected(child.id)) {
+    //       // call the node method to ensure that the expanded property of
+    //       // Node is set.
+    //       await child.expand();
+    //     }
+    //
+    //     if (child.hasChildren) {
+    //       await loadExpandedNodes(child.children);
+    //     }
+    //   }
+    // };
+    //
+    // await Promise.all(
+    //   rootNodes
+    //   .filter((node) => node.hasChildren)
+    //   .map((node) => loadExpandedNodes(node.children)),
+    // );
 
-        if (child.hasChildren) {
-          await loadExpandedNodes(child.children);
-        }
-      }
-    };
-
-    await Promise.all(
-      rootNodes
-      .filter((node) => node.hasChildren)
-      .map((node) => loadExpandedNodes(node.children)),
-    );
+    // console.log('selected', this.selected.selected.map((node) => node.id));
+    //
+    // const preSelected = this.selected.selected.slice();
+    // this.selected.clear();
+    // preSelected.forEach(node => {
+    //   node?.select();
+    // });
 
     // const selected: Array<Node<Data>> = this.selected.selected
     // .map((node) => this.getNodeById(node.id))
@@ -620,9 +622,9 @@ export class TreeDataSource<
           }
           if (change.removed) {
             promiseList.push(...change.removed
-            .slice()
-            .reverse()
-            .map((node) => node.collapse({onlySelf: true, quite: true})));
+              .slice()
+              .reverse()
+              .map((node) => node.collapse({onlySelf: true, quite: true})));
           }
           await Promise.all(promiseList);
           this.tree$.next(this.tree$.value);
@@ -636,48 +638,43 @@ export class TreeDataSource<
       loadRoot = this.getTreeRoot();
     }
 
-    if (this.metadata.autoRefreshWithoutCache) {
-      loadRoot = loadRoot.then(data => {
-        this.refresh();
-        return data;
-      });
-    }
+    let autoRefreshExecuted = false;
 
     return from(loadRoot).pipe(
-      tap((rootNodes) => {
-        if (rootNodes) {
-          const promises: Promise<any>[] = [];
-          if (this.metadata.selectMultiple) {
-            if (!this.selected.hasValue()) {
-              promises.push(
-                ...rootNodes
-                .filter((node) => node.hasDetails)
-                .map((node) => node.select()),
-              );
-            }
-            if (!this.expanded.hasValue()) {
-              promises.push(
-                ...rootNodes
-                .filter((node) => node.hasChildren)
-                .map((node) => node.expand()),
-              );
-            }
-          } else if (rootNodes.length) {
-            const rootNode = rootNodes[0];
-            if (!this.selected.hasValue()) {
-              // TODO : rename hasDetails to isSelectable
-              if (rootNode.hasDetails) {
-                promises.push(rootNode.select());
-              }
-            }
-            if (!this.expanded.hasValue()) {
-              promises.push(rootNode.expand());
-            }
-          }
-          return Promise.all(promises);
-        }
-        return Promise.resolve();
-      }),
+      // tap((rootNodes) => {
+      //   if (rootNodes) {
+      //     const promises: Promise<any>[] = [];
+      //     if (this.metadata.selectMultiple) {
+      //       // if (!this.selected.hasValue()) {
+      //       //   promises.push(
+      //       //     ...rootNodes
+      //       //     .filter((node) => node.hasDetails)
+      //       //     .map((node) => node.select()),
+      //       //   );
+      //       // }
+      //       if (!this.expanded.hasValue()) {
+      //         promises.push(
+      //           ...rootNodes
+      //           .filter((node) => node.hasChildren)
+      //           .map((node) => node.expand()),
+      //         );
+      //       }
+      //     } else if (rootNodes.length) {
+      //       const rootNode = rootNodes[0];
+      //       // if (!this.selected.hasValue()) {
+      //       //   // TODO : rename hasDetails to isSelectable
+      //       //   if (rootNode.hasDetails) {
+      //       //     promises.push(rootNode.select());
+      //       //   }
+      //       // }
+      //       if (!this.expanded.hasValue()) {
+      //         promises.push(rootNode.expand());
+      //       }
+      //     }
+      //     return Promise.all(promises);
+      //   }
+      //   return Promise.resolve();
+      // }),
       switchMap(() =>
         merge(collectionViewer.viewChange, this._data$).pipe(
           map(() => this._data$.value),
@@ -687,6 +684,26 @@ export class TreeDataSource<
         startWith(null),
         map(() => nodeList.filter(node => this.matchFilter(node))),
       )),
+      tap(() => {
+        if (this._preSelected.length) {
+          console.log('restore selected', this._preSelected);
+          this.selected.clear();
+          const nodes       = this._preSelected.map((id) => this.getNodeById(id));
+          this._preSelected = [];
+          nodes.forEach(node => {
+            node?.select();
+          });
+        }
+      }),
+      tap(() => {
+        if (this.metadata.autoRefreshWithoutCache) {
+          if (!autoRefreshExecuted) {
+            autoRefreshExecuted = true;
+            console.log('auto refresh');
+            this.refresh();
+          }
+        }
+      }),
     );
   }
 
@@ -708,15 +725,15 @@ export class TreeDataSource<
     );
     if (this.metadata['cacheSelected']) {
       this._selectedLocalStorageSubscription = this.selected.changed
-      .pipe(
-        tap(() =>
-          localStorage.setItem(
-            key,
-            JSON.stringify(this.selected.selected.map((s) => s.id)),
+        .pipe(
+          tap(() =>
+            localStorage.setItem(
+              key,
+              JSON.stringify(this.selected.selected.map((s) => s.id)),
+            ),
           ),
-        ),
-      )
-      .subscribe();
+        )
+        .subscribe();
     }
   }
 
@@ -739,15 +756,15 @@ export class TreeDataSource<
     );
     if (this.metadata['cacheExpanded']) {
       this._expandedLocalStorageSubscription = this.expanded.changed
-      .pipe(
-        tap(() =>
-          localStorage.setItem(
-            key,
-            JSON.stringify(this.expanded.selected),
+        .pipe(
+          tap(() =>
+            localStorage.setItem(
+              key,
+              JSON.stringify(this.expanded.selected),
+            ),
           ),
-        ),
-      )
-      .subscribe();
+        )
+        .subscribe();
     }
   }
 
