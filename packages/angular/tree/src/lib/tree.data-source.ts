@@ -334,14 +334,22 @@ export class TreeDataSource<
       rootNodes = [ await this.toNode(null, root) ];
     }
 
-    const restoreExpandState = (node: Node<Data>) => {
+    const tmpSelectedNodes: Node<Data>[] = [];
+
+    const restoreExpandAndSelectedState = (node: Node<Data>) => {
       if (this.expanded.isSelected(node.id)) {
         (node as any)._expanded = true;
-        node.children.forEach(restoreExpandState);
       }
+      if (this.selected.selected.some(n => n.id === node.id)) {
+        (node as any)._selected = true;
+        tmpSelectedNodes.push(node);
+      }
+      node.children.forEach(restoreExpandAndSelectedState);
     };
 
-    rootNodes.forEach(restoreExpandState);
+    this.selected.setSelection(...tmpSelectedNodes);
+
+    rootNodes.forEach(restoreExpandAndSelectedState);
 
     this.tree$.next(rootNodes);
 
