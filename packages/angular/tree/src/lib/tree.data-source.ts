@@ -302,15 +302,7 @@ export class TreeDataSource<
     } else {
       this.tree$.pipe(
         map(tree => flatTree(tree).filter(node => node.isVisible)),
-        tap(nodes => nodes.forEach(node => {
-          node.show();
-          if (this.expanded.isSelected(node.id)) {
-            node.expand({quite: true, onlySelf: true});
-          }
-          if (this.selected.isSelected(node)) {
-            node.select({quite: true, onlySelf: true});
-          }
-        })),
+        tap(nodes => nodes.forEach(node => node.show())),
       ).subscribe(data => this._data$.next(data));
     }
   }
@@ -341,6 +333,15 @@ export class TreeDataSource<
     } else {
       rootNodes = [ await this.toNode(null, root) ];
     }
+
+    const restoreExpandState = (node: Node<Data>) => {
+      if (this.expanded.isSelected(node.id)) {
+        (node as any)._expanded = true;
+        node.children.forEach(restoreExpandState);
+      }
+    };
+
+    rootNodes.forEach(restoreExpandState);
 
     this.tree$.next(rootNodes);
 
@@ -539,10 +540,8 @@ export class TreeDataSource<
   }
 
   public override async refresh(): Promise<any> {
-    if (!this._preSelected?.length) {
-      this._preSelected = this.selected.selected.map((node) => node.id);
-    }
-    console.log('refresh preSelected', this._preSelected);
+    console.log('selected', this.selected.selected.map((node) => node.id));
+    console.log('expanded', this.expanded.selected.slice());
     await this.getTreeRoot({cache: false});
 
     // refresh all expanded nodes;
