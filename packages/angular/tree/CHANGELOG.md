@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.2-dev.3...@rxap/tree@16.0.2-dev.4) (2024-04-30)
+
+### Bug Fixes
+
+- improve tree data source select restoring ([9645b97](https://gitlab.com/rxap/packages/commit/9645b97cf8086895fd140d6c68431c19d99d9fcf))
+
 ## [16.0.2-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.2-dev.2...@rxap/tree@16.0.2-dev.3) (2024-04-30)
 
 ### Bug Fixes

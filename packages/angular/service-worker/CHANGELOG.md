@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.1.0-dev.0...@rxap/service-worker@16.1.0-dev.1) (2024-04-30)
+
+### Bug Fixes
+
+- add i18n tags ([946e9a1](https://gitlab.com/rxap/packages/commit/946e9a1275dba0d090d788ea8d9e68b4325bfacb))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.1...@rxap/service-worker@16.1.0-dev.0) (2024-04-29)
 
 ### Features
