@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.1...@rxap/components@16.0.2-dev.0) (2024-04-30)
+
+### Bug Fixes
+
+- remove color from navigate back button ([854f9ee](https://gitlab.com/rxap/packages/commit/854f9ee48314020a6e7cfb773c59d6a70c0595cd))
+
 ## [16.0.1](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.1-dev.2...@rxap/components@16.0.1) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/components
