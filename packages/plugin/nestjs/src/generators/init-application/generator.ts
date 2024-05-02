@@ -619,7 +619,7 @@ export async function initApplicationGenerator(
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-application', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
   // needs to be added always as the app.controller uses the decorator @ApiExcludeController
-  await AddPackageJsonDependency(tree, '@nestjs/swagger', NESTJS_VERSION, { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });
 
 
   console.group('adding feature specific dependencies');
