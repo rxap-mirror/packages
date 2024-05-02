@@ -1,4 +1,4 @@
-setup:
+.setup:
   stage: .pre
   tags:
     - setup
@@ -9,7 +9,7 @@ setup:
       files:
         - yarn.lock
     paths:
-      - '**/node_modules/**'
+      - "**/node_modules/**"
       - .yarn/cache
   rules:
     - if: '$SKIP_SETUP == "true"'
