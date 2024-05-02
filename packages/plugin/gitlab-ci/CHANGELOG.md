@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1...@rxap/plugin-gitlab-ci@16.2.2-dev.0) (2024-05-02)
+
+### Bug Fixes
+
+- add setup job file ([be0ba61](https://gitlab.com/rxap/packages/commit/be0ba6191fb0dc78e8e74e3ffc940137bc0e8acb))
+- improve script logging ([c18caa6](https://gitlab.com/rxap/packages/commit/c18caa6384c50012709512d5a592e45d7a56338b))
+- install required package ([7730a91](https://gitlab.com/rxap/packages/commit/7730a91c75a45a6a43a1150da1508cad714860eb))
+
 ## [16.2.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.2.1-dev.4...@rxap/plugin-gitlab-ci@16.2.1) (2024-04-18)
 
 **Note:** Version bump only for package @rxap/plugin-gitlab-ci
