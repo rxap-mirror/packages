@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# exit when any command fails
+set -e
+
 GIT_ROOT=${CI_PROJECT_DIR:-$(git rev-parse --show-toplevel)}
 
 cd "${GIT_ROOT}" || exit 1
