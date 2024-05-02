@@ -41,6 +41,7 @@ import {
 import {
   BehaviorSubject,
   combineLatest,
+  debounceTime,
   from,
   merge,
   Observable,
@@ -133,9 +134,9 @@ export class DefaultTreeApplyFilterMethod<Data extends WithIdentifier & WithChil
 
     const nodes = flatTree(tree, true);
 
-    if (this.isEqualToLastFilter(filter)) {
-      return flatTree(tree, false).filter(node => node.isVisible);
-    }
+    // if (this.isEqualToLastFilter(filter)) {
+    //   return flatTree(tree, false).filter(node => node.isVisible);
+    // }
 
     const hasScopeFilter = (
       filter.scope &&
@@ -289,7 +290,7 @@ export class TreeDataSource<
     if (this.searchForm) {
       combineLatest([
         this.tree$,
-        this.searchForm.rxapFormGroup.value$ as Observable<any>,
+        (this.searchForm.rxapFormGroup.value$ as Observable<any>).pipe(debounceTime(1000)),
       ]).pipe(
           switchMap(async ([ tree, filter ]) => await this.applyFilterMethod.call({
             tree,
@@ -341,15 +342,17 @@ export class TreeDataSource<
         (node as any)._expanded = true;
       }
       if (this.selected.selected.some(n => n.id === node.id)) {
+        console.log('restore selected', node.display);
         (node as any)._selected = true;
         tmpSelectedNodes.push(node);
       }
       node.children.forEach(restoreExpandAndSelectedState);
     };
 
-    this.selected.setSelection(...tmpSelectedNodes);
-
     rootNodes.forEach(restoreExpandAndSelectedState);
+
+    console.log('restore expand and selected state', tmpSelectedNodes);
+    this.selected.setSelection(...tmpSelectedNodes);
 
     this.tree$.next(rootNodes);
 
