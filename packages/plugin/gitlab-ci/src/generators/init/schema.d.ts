@@ -7,4 +7,5 @@ export interface InitGeneratorSchema {
   onlyPackages?: boolean;
   angular?: boolean;
   nest?: boolean;
+  release?: 'release-it' | 'semantic-release';
 }

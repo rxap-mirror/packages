@@ -1,0 +1,53 @@
+variables:
+  RELEASE_IT:
+    value: "false"
+    options:
+      - "true"
+      - "false"
+    description: "Enable the release it pipeline."
+  RELEASE_IT_CHANNEL:
+    value: "auto"
+    options:
+      - "preview"
+      - "rc"
+      - "release"
+      - "auto"
+    description: "Set the release it channel. If set to release a new release will be created. If set to auto the last used channel will be used. Else a pre release will be created."
+  RELEASE_IT_PROMOTE:
+    value: "false"
+    options:
+      - "true"
+      - "false"
+    description: "Promote to the next higher release channel."
+  RELEASE_IT_DEMOTE:
+    value: "false"
+    options:
+      - "true"
+      - "false"
+    description: "Demote to the next lower release channel."
+  RELEASE_IT_FORCE:
+    value: "false"
+    options:
+      - "true"
+      - "false"
+    description: "Force the creation of a new release."
+
+release:
+  stage: deploy
+  image: registry.gitlab.com/rxap/gitlab-ci/release-it:latest
+  before_script:
+    - sh ./tools/scripts/ci-setup-git-via-ssh.sh
+  script:
+    - node ./tools/scripts/release-it.mjs
+  rules:
+    # only execute the release pipeline if the target is a branch
+    - if: '$CI_COMMIT_BRANCH == null'
+      when: never
+    # always execute the release pipeline if the current branch is the default branch
+    - if: '$CI_PIPELINE_SOURCE =~ /web|api|schedule/ && $RELEASE_IT == "true" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: always
+    # always execute the release pipeline if the current branch is a maintenance branch
+    - if: '$CI_PIPELINE_SOURCE =~ /web|api|schedule/ && $RELEASE_IT == "true" && $CI_COMMIT_BRANCH =~ /^[0-9]+\.[0-9]+\.x|[0-9]+\.x$/'
+      when: always
+    # default rule - never execute the release pipeline
+    - when: never
