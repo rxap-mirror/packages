@@ -71,7 +71,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   buildYaml.workflow.rules ??= [];
   buildYaml.include ??= [];
 
-  CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/base.yaml');
+  CoerceInclude(gitlabCi.include, '.gitlab/ci/utilities/base.yaml');
 
   if (!options.onlyPackages) {
     CoerceInclude(buildYaml.include, '.gitlab/ci/release.yaml', [
