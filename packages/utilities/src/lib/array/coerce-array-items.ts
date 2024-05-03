@@ -1,6 +1,7 @@
 export interface CoerceArrayItemsOptions<T = any> {
   merge?: boolean,
   compareTo?: (a: T, b: T) => boolean,
+  compareFn?: ((a: T, b: T) => number) | null,
   unshift?: boolean,
   replace?: boolean,
 }
@@ -8,7 +9,7 @@ export interface CoerceArrayItemsOptions<T = any> {
 export function CoerceArrayItems<T = any>(array: T[], items: ReadonlyArray<T>, compareTo?: (a: T, b: T) => boolean, unshift?: boolean): void
 export function CoerceArrayItems<T = any>(array: T[], items: ReadonlyArray<T>, options?: CoerceArrayItemsOptions): void
 export function CoerceArrayItems<T = any>(array: T[], items: ReadonlyArray<T>, compareToOrOptions: CoerceArrayItemsOptions | ((a: T, b: T) => boolean) = ((a: T, b: T) => a === b), unshift = false) {
-  const options: Required<CoerceArrayItemsOptions<T>> = { merge: false, unshift: false, replace: false, compareTo: (a, b) => a === b };
+  const options: Required<CoerceArrayItemsOptions<T>> = { merge: false, unshift: false, replace: false, compareTo: (a, b) => a === b, compareFn: null };
   if (!compareToOrOptions) {
     options.unshift = unshift;
   }
@@ -32,6 +33,22 @@ export function CoerceArrayItems<T = any>(array: T[], items: ReadonlyArray<T>, c
             array[index] = { ...existingItem, ...item };
           } else {
             array[index] = item;
+          }
+        }
+      }
+    } else if (options.compareFn) {
+      if (unshift) {
+        for (let i = array.length - 1; i >= 0; i--) {
+          if (options.compareFn(array[i], item) < 0) {
+            array.splice(i + 1, 0, item);
+            break;
+          }
+        }
+      } else {
+        for (let i = 0; i < array.length; i++) {
+          if (options.compareFn(array[i], item) > 0) {
+            array.splice(i, 0, item);
+            break;
           }
         }
       }
