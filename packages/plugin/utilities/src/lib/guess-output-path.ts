@@ -40,7 +40,7 @@ export function GuessOutputPathFromContext(
 
   const projectRoot = GetProjectRoot(context, projectName);
 
-  return GuessOutputPath(projectRoot, target, configurationName);
+  return GuessOutputPath(projectName, projectRoot, target, configurationName);
 
 }
 
@@ -67,7 +67,7 @@ export function GuessOutputPathFromTargetString(
   return GuessOutputPathFromContext(context, projectName, configurationName, targetName);
 }
 
-export function GuessOutputPath(projectRoot: string, buildTarget: TargetConfiguration, configurationName?: string) {
+export function GuessOutputPath(projectName: string, projectRoot: string, buildTarget: TargetConfiguration, configurationName?: string) {
 
   let outputPath = GetTargetOptions(buildTarget, configurationName)['outputPath'];
 
@@ -89,6 +89,7 @@ export function GuessOutputPath(projectRoot: string, buildTarget: TargetConfigur
   }
 
   return outputPath
+    .replace(/\{projectName}/, projectName)
     .replace(/\{projectRoot}/, projectRoot)
     .replace(/\{workspaceRoot}\//, '');
 

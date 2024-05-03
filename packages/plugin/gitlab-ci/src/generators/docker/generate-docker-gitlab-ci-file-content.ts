@@ -108,7 +108,7 @@ export function generateDockerGitlabCiFileContent(
     const dockerfile = dockerTargetOptions.dockerfile;
     const context = dockerTargetOptions.context ??
                     (
-                      project.targets['build'] ? GuessOutputPath(project.root, project.targets['build'], 'production') :
+                      project.targets['build'] ? GuessOutputPath(projectName, project.root, project.targets['build'], 'production') :
                       null
                     ) ??
                     project.sourceRoot ??
