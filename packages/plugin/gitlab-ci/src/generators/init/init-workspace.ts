@@ -8,10 +8,11 @@ import {
   parse,
   stringify,
 } from 'yaml';
+import { CoerceInclude } from './coerce-include';
 import {
-  CoerceInclude,
   CoerceRules,
-} from './coerce-include';
+  RuleWhen,
+} from './coerce-rule';
 import { InitGeneratorSchema } from './schema';
 
 export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
@@ -60,7 +61,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   }
 
   const gitlabCiContent = CoerceFile(tree, '.gitlab-ci.yml', '');
-  const gitlabCi = parse(gitlabCiContent);
+  const gitlabCi = parse(gitlabCiContent) ?? {};
 
   gitlabCi.variables ??= {};
   gitlabCi.include ??= [];
@@ -85,27 +86,27 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/build.yaml', [
       {
         if: '$DEPLOYMENT_TRIGGER == "true"',
-        when: 'never'
+        when: RuleWhen.NEVER
       },
       {
         if: '$E2E_TRIGGER == "true"',
-        when: 'never'
+        when: RuleWhen.NEVER
       },
       {
         if: '$COERCE_IMAGE_TRIGGER == "true"',
-        when: 'never'
+        when: RuleWhen.NEVER
       },
       {
         if: '$CI_COMMIT_MESSAGE =~ /\\[(e2e)\\]/',
-        when: 'never'
+        when: RuleWhen.NEVER
       },
       {
         if: '$CI_COMMIT_MESSAGE =~ /\\[(deploy)\\]/',
-        when: 'never'
+        when: RuleWhen.NEVER
       },
       {
         if: '$CI_COMMIT_MESSAGE =~ /\\[(image)\\]/',
-        when: 'never'
+        when: RuleWhen.NEVER
       }
     ]);
   }
@@ -113,56 +114,57 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   if (options.release === 'release-it') {
     CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/release-it.yaml');
     CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/build.yaml', [
-      { if: '$RELEASE_IT == \'true\'', when: 'never' }
+      { if: '$RELEASE_IT == \'true\'', when: RuleWhen.NEVER }
     ]);
   }
+
   if (options.release === 'semantic-release') {
     if (options.angular) {
       CoerceRules(buildYaml.workflow.rules, [
         {
           if: '$CI_COMMIT_BRANCH && $CI_COMMIT_MESSAGE =~ /^release:/',
-          when: 'never'
+          when: RuleWhen.NEVER
         },
         {
           if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
-          when: 'never'
+          when: RuleWhen.NEVER
         },
         {
           if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
-          when: 'never'
+          when: RuleWhen.NEVER
         }
       ]);
       CoerceInclude(buildYaml.include, '.gitlab/ci/jobs/setup.yaml', [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
-          when: 'never'
+          when: RuleWhen.NEVER
         },
         {
-          when: 'always'
+          when: RuleWhen.ALWAYS
         }
       ]);
       CoerceInclude(buildYaml.include, '.gitlab/ci/jobs/pages.yaml', [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
-          when: 'never'
+          when: RuleWhen.NEVER
         }
       ]);
       CoerceInclude(buildYaml.include, '.gitlab/ci/jobs/coverage-report.yaml', [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
-          when: 'never'
+          when: RuleWhen.NEVER
         }
       ]);
       CoerceInclude(buildYaml.include, '.gitlab/ci/review.yaml', [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
-          when: 'never'
+          when: RuleWhen.NEVER
         }
       ]);
       CoerceInclude(buildYaml.include, '.gitlab/ci/branch.yaml', [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
-          when: 'never'
+          when: RuleWhen.NEVER
         }
       ]);
       CoerceInclude(buildYaml.include, '.gitlab/ci/channel.yaml', [
@@ -177,6 +179,21 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     { if: '$CI_PIPELINE_SOURCE =~ /^(push|web|merge_request_event)$/' }
   ]);
 
+  if (Object.keys(gitlabCi.variables).length === 0) {
+    delete gitlabCi.variables;
+  }
+  if (gitlabCi.include.length === 0) {
+    delete gitlabCi.include;
+  }
+  if (buildYaml.workflow.rules.length === 0) {
+    delete buildYaml.workflow.rules;
+  }
+  if (Object.keys(buildYaml.workflow).length === 0) {
+    delete buildYaml.workflow;
+  }
+  if (buildYaml.include.length === 0) {
+    delete buildYaml.include;
+  }
   tree.write('.gitlab-ci.yml', stringify(gitlabCi));
   tree.write('.gitlab/ci/pipelines/build.yaml', stringify(buildYaml));
 

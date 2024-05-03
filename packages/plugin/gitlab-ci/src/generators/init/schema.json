@@ -15,7 +15,9 @@
     },
     "release": {
       "type": "string",
-      "enum": ["release-it", "schematic-release"]
+      "enum": ["none", "release-it", "schematic-release"],
+      "default": "release-it",
+      "x-prompt": "Which release strategy do you want to use?"
     },
     "skipFormat": {
       "type": "boolean",
