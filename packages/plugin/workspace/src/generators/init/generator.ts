@@ -9,6 +9,7 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
+  classify,
   CoerceArrayItems,
   CoerceSuffix,
   deepMerge,
@@ -502,6 +503,12 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   await coerceRootPackageJsonScripts(tree);
   if (!options.skipLicense) {
     await coercePackageJsonLicense(tree, options);
+  }
+
+  const readMeContent = tree.read('README.md', 'utf-8');
+  if (readMeContent?.includes('href="https://nx.dev"')) {
+    const title = classify(GetWorkspaceName(tree));
+    tree.write('README.md', `${title}\n${'='.repeat(title.length)}\n`);
   }
 
   GenerateSerializedSchematicFile(
