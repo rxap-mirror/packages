@@ -1,12 +1,9 @@
 import {
-  addProjectConfiguration,
   formatFiles,
-  getProjects,
   NxJsonConfiguration,
   readNxJson,
   Tree,
   updateNxJson,
-  updateProjectConfiguration,
 } from '@nx/devkit';
 import {
   classify,
@@ -32,6 +29,7 @@ import {
 import { join } from 'path';
 import { coerceDevContainerConfig } from './coerce-dev-container-config';
 import { coerceToolsProject } from './coerce-tools-project';
+import { coerceWorkspaceProject } from './coerce-workspace-project';
 import { InitGeneratorSchema } from './schema';
 
 const gitIgnore = [
@@ -107,78 +105,6 @@ const prettierIgnore = [
   '.nx',
   '.nyc_output',
 ];
-
-function coerceWorkspaceProject(tree: Tree, options: InitGeneratorSchema) {
-
-  if (!getProjects(tree).get('workspace')) {
-    addProjectConfiguration(tree, 'workspace', {
-      root: '',
-    });
-  }
-
-  const workspaceProject = getProjects(tree).get('workspace')!;
-
-  CoerceTarget(workspaceProject, 'ci-info', {
-    executor: '@rxap/plugin-workspace:ci-info',
-    inputs: [
-      {
-        'env': 'CI_COMMIT_TIMESTAMP',
-      },
-      {
-        'env': 'CI_COMMIT_BRANCH',
-      },
-      {
-        'env': 'CI_COMMIT_TAG',
-      },
-      {
-        'env': 'CI_COMMIT_SHA',
-      },
-      {
-        'env': 'CI_ENVIRONMENT_NAME',
-      },
-      {
-        'env': 'CI_JOB_ID',
-      },
-      {
-        'env': 'CI_PIPELINE_ID',
-      },
-      {
-        'env': 'CI_PROJECT_ID',
-      },
-      {
-        'env': 'CI_RUNNER_ID',
-      },
-      {
-        'env': 'CI_ENVIRONMENT_URL',
-      },
-      {
-        'env': 'CI_ENVIRONMENT_TIER',
-      },
-      {
-        'env': 'CI_ENVIRONMENT_SLUG',
-      },
-      {
-        'env': 'CI_COMMIT_REF_SLUG',
-      },
-    ],
-    outputs: [
-      '{workspaceRoot}/dist/**/build.json',
-    ],
-  });
-
-  if (!options.standalone) {
-    CoerceTarget(workspaceProject, 'docker-compose', {
-      executor: '@rxap/plugin-library:run-generator',
-      options: {
-        generator: '@rxap/plugin-workspace:docker-compose',
-        withoutProjectArgument: true,
-      },
-    });
-  }
-
-  updateProjectConfiguration(tree, 'workspace', workspaceProject);
-
-}
 
 async function coerceRootPackageJsonScripts(tree: Tree) {
   await UpdatePackageJson(tree, (json) => {
