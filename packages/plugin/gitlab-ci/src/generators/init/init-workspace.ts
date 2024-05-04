@@ -86,15 +86,13 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   buildYaml.workflow ??= {};
   buildYaml.workflow.rules ??= [];
   buildYaml.include ??= [];
+  let buildYamlChanged = false;
 
   CoerceInclude(gitlabCi.include, '.gitlab/ci/utilities/base.yaml');
 
-  if (!options.onlyPackages) {
-    CoerceInclude(buildYaml.include, '.gitlab/ci/release.yaml', [
-      {
-        if: '$CI_COMMIT_TAG =~ /^v\\d+\\.\\d+\\.\\d+/'
-      }
-    ]);
+  if (options.onlyPackages) {
+    buildYamlChanged = true;
+    buildYaml.include = buildYaml.include.filter(({local}) => local !== '.gitlab/ci/release.yaml');
   }
 
   if (options.angular) {
@@ -136,11 +134,8 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
 
   if (options.release === 'semantic-release') {
     if (options.angular) {
+      buildYamlChanged = true;
       CoerceRules(buildYaml.workflow.rules, [
-        {
-          if: '$CI_COMMIT_BRANCH && $CI_COMMIT_MESSAGE =~ /^release:/',
-          when: RuleWhen.NEVER
-        },
         {
           if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
           when: RuleWhen.NEVER
@@ -201,16 +196,19 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   if (gitlabCi.include.length === 0) {
     delete gitlabCi.include;
   }
-  if (buildYaml.workflow.rules.length === 0) {
-    delete buildYaml.workflow.rules;
-  }
-  if (Object.keys(buildYaml.workflow).length === 0) {
-    delete buildYaml.workflow;
-  }
-  if (buildYaml.include.length === 0) {
-    delete buildYaml.include;
-  }
   tree.write('.gitlab-ci.yml', stringify(gitlabCi));
-  tree.write('.gitlab/ci/pipelines/build.yaml', stringify(buildYaml));
+
+  if (buildYamlChanged) {
+    if (buildYaml.workflow.rules.length === 0) {
+      delete buildYaml.workflow.rules;
+    }
+    if (Object.keys(buildYaml.workflow).length === 0) {
+      delete buildYaml.workflow;
+    }
+    if (buildYaml.include.length === 0) {
+      delete buildYaml.include;
+    }
+    tree.write('.gitlab/ci/pipelines/build.yaml', stringify(buildYaml));
+  }
 
 }

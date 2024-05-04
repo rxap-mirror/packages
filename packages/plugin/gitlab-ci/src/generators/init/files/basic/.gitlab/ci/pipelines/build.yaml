@@ -3,6 +3,10 @@ workflow:
     # don't run a pipeline for a issue branch that does not have a merge request
     - if: '$CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE != "merge_request_event" && $CI_COMMIT_REF_NAME =~ /^[0-9]+-/'
       when: never
+    # skip branch pipeline if the commit starts with release
+    # the release job will create a commit for each new release. This commit should not be handled by the ci!
+    - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_MESSAGE =~ /^release:/'
+      when: never
     # if the current branch is not protected or renovate branch and a merge request for this branch exists
     # skip the pipeline
     - if: '$CI_COMMIT_REF_PROTECTED != "true" && $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_COMMIT_BRANCH !~ /^renovate\//'
@@ -108,3 +112,8 @@ include:
   - local: .gitlab/ci/default.yaml
     rules:
       - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+
+  # include the pipeline for release tags
+  - local: .gitlab/ci/release.yaml
+    rules:
+      - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/'
