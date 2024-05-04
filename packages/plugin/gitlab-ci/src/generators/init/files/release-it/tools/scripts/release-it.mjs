@@ -3,6 +3,16 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { spawn } from 'child_process';
 
+// region ensure environment variables are set
+process.env.RELEASE_IT_INCREMENT ??= 'false';
+process.env.RELEASE_IT ??= 'false';
+process.env.RELEASE_IT_CHANNEL ??= 'auto';
+process.env.RELEASE_IT_PROMOTE ??= 'false';
+process.env.RELEASE_IT_DEMOTE ??= 'false';
+process.env.RELEASE_IT_FORCE ??= 'false';
+process.env.RELEASE_IT_INCREMENT ??= 'false';
+// endregion
+
 /**
  * sorted from most stable to least stable
  */
@@ -48,8 +58,11 @@ export function git(args) {
   });
 }
 
-export function releaseCli(args) {
+export function releaseCli(args, dryRun) {
   console.log(`$ release-cli ${args.join(' ')}`);
+  if (dryRun) {
+    return Promise.resolve('dry-run');
+  }
   return new Promise((resolve, reject) => {
     const s        = spawn(
       'release-cli',
@@ -98,24 +111,22 @@ export function createGitlabRelease(tagName, name, changelog) {
   args.push(`--name=${name}`);
   args.push(`--description="${changelog}"`);
 
-  return releaseCli(args);
+  return releaseCli(args, !process.env.CI || process.env.CI === 'false');
 
 }
 
 /**
  * Retrieves the latest git tag that matches the pattern v*.
  *
- * @returns {Promise<string>} The latest git tag.
+ * @returns {Promise<string | null>} The latest git tag.
  */
 async function getLatestTag() {
   const data = await git(['tag', '--sort=-taggerdate', '-l', '"v*"']);
   if (!data) {
-    throw new Error('no tags found');
+    return null;
   }
-  console.log('all tags:')
-  console.log(data)
   const [ latest ] = data.split('\n').map(tag => tag.trim());
-  return latest;
+  return latest || null;
 }
 
 /**
@@ -211,9 +222,13 @@ async function gitFetch() {
 
 async function hasChangesSinceLastTag() {
 
-  const lastTag = await getLatestTag();
+  const latestTag = await getLatestTag();
 
-  const commitCount = Number(await git([ 'rev-list', '--count', `${lastTag}..HEAD` ]));
+  if (!latestTag) {
+    return true;
+  }
+
+  const commitCount = Number(await git([ 'rev-list', '--count', `${latestTag}..HEAD` ]));
 
   if (isNaN(commitCount)) {
     throw new Error('unable to determine commit count');
@@ -253,26 +268,31 @@ async function buildOptions() {
     case 'auto':
       console.log('automatic channel detection');
       const latestTag = await getLatestTag();
-      console.log('latest tag:', latestTag);
-      let channel = extractChannel(latestTag);
-      if (!channel) {
-        channel = CHANNELS[CHANNELS.length - 1][0];
-        console.log(`no channel found, default to ${channel} channel`);
-      } else {
-        console.log('channel:', channel);
-        if (process.env.RELEASE_IT_PROMOTE === 'true') {
-          console.log('promoting')
-          channel = getNextChannel(channel);
-          console.log(`promoting to '${channel}'`)
-        } else if (process.env.RELEASE_IT_DEMOTE === 'true') {
-          console.log('demoting')
-          channel = getPreviousChannel(channel);
-          console.log(`demoting to '${channel}'`)
-        } else if (!channel) {
-          // if the latest tag has no channel, default to preview
-          console.log('no channel found, defaulting to preview');
-          channel = 'preview';
+      let channel;
+      if (latestTag) {
+        console.log('latest tag:', latestTag);
+        channel = extractChannel(latestTag);
+        if (!channel) {
+          channel = CHANNELS[CHANNELS.length - 1][0];
+          console.log(`no channel found, default to ${channel} channel`);
+        } else {
+          console.log('channel:', channel);
+          if (process.env.RELEASE_IT_PROMOTE === 'true') {
+            console.log('promoting')
+            channel = getNextChannel(channel);
+            console.log(`promoting to '${channel}'`)
+          } else if (process.env.RELEASE_IT_DEMOTE === 'true') {
+            console.log('demoting')
+            channel = getPreviousChannel(channel);
+            console.log(`demoting to '${channel}'`)
+          } else if (!channel) {
+            // if the latest tag has no channel, default to preview
+            console.log('no channel found, defaulting to preview');
+            channel = 'preview';
+          }
         }
+      } else {
+        channel = CHANNELS[CHANNELS.length - 1][0];
       }
       console.log(`setting pre-release to '${channel}'`);
       options.preRelease = channel;
@@ -281,8 +301,11 @@ async function buildOptions() {
       if (!process.env.RELEASE_IT_CHANNEL) {
         console.log('no channel found');
         const latestTag = await getLatestTag();
-        console.log('latest tag:', latestTag);
-        const currentChannel = extractChannel(latestTag);
+        let currentChannel = CHANNELS[CHANNELS.length - 1][0];
+        if (latestTag) {
+          console.log('latest tag:', latestTag);
+          currentChannel = extractChannel(latestTag);
+        }
         console.log('current channel:', currentChannel);
         process.env.RELEASE_IT_CHANNEL = currentChannel;
       }
@@ -297,6 +320,27 @@ async function buildOptions() {
       options.preRelease = process.env.RELEASE_IT_CHANNEL;
       break;
 
+  }
+
+  if (process.env.RELEASE_IT_INCREMENT !== 'false') {
+    console.log(`incrementing version by ${process.env.RELEASE_IT_INCREMENT}`)
+    // ensure that the plugin is not be used to determine the next version based
+    // on the commit messages, but the version bump is determined by the environment variable
+    options.plugins['@release-it/conventional-changelog'].ignoreRecommendedBump = true;
+    switch (process.env.RELEASE_IT_INCREMENT) {
+      case 'patch':
+        options.version ??= {};
+        options.version.increment = 'patch';
+        break;
+      case 'minor':
+        options.version ??= {};
+        options.version.increment = 'minor';
+        break;
+      case 'major':
+        options.version ??= {};
+        options.version.increment = 'major';
+        break;
+    }
   }
 
   if (options.preRelease) {
@@ -315,9 +359,12 @@ async function checkPrerequisites() {
   const releaseCliVersion = await releaseCli(['--version'])
   if (!releaseCliVersion.match(/release-cli version/)) {
     console.error('release-cli version valid found:', releaseCliVersion);
-    process.exit(1);
+    if (!(!process.env.CI || process.env.CI === 'false')) {
+      process.exit(1);
+    }
+  } else {
+    console.log('release-cli version:', releaseCliVersion)
   }
-  console.log('release-cli version:', releaseCliVersion)
 }
 
 function buildTagName(version, options) {
@@ -360,7 +407,7 @@ async function main() {
   }
 
   if (!(await hasChangesSinceLastTag())) {
-    if (process.env.RELEASE_IT_FORCE !== 'true') {
+    if (process.env.RELEASE_IT_FORCE !== 'true' && !(process.env.RELEASE_IT_INCREMENT !== 'false')) {
       console.log('no changes since last tag, skipping release');
       process.exit(0);
     }

@@ -16,6 +16,9 @@ workflow:
         LATEST: "true"
     - when: always
 
+variables:
+  NODE_VERSION: "20.11.0"
+
 include:
   - local: .gitlab/ci/utilities/nx.yaml
   - local: .gitlab/ci/utilities/npm-cache.yaml

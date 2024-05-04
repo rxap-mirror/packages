@@ -1,0 +1,21 @@
+{
+  "strictSemVer": true,
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md",
+      "header": "# Changelog"
+    }
+  },
+  "git": {
+    "commitMessage": "release: v${version}",
+    "tagName": "v${version}",
+    "tagAnnotation": ""
+  },
+  "npm": {
+    "publish": false
+  },
+  "gitlab": {
+    "releaseName": "v${version}"
+  }
+}

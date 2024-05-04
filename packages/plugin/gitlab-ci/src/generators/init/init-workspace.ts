@@ -60,6 +60,22 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     });
   }
 
+  if (options.release === 'release-it') {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'release-it'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  }
+
+  if (options.release === 'semantic-release') {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'semantic-release'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  }
+
   const gitlabCiContent = CoerceFile(tree, '.gitlab-ci.yml', '');
   const gitlabCi = parse(gitlabCiContent) ?? {};
 

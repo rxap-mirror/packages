@@ -31,6 +31,14 @@ variables:
       - "true"
       - "false"
     description: "Force the creation of a new release."
+  RELEASE_IT_INCREMENT:
+    value: "false"
+    options:
+      - "false"
+      - "patch"
+      - "minor"
+      - "major"
+    description: "Bump the version."
 
 release:
   stage: deploy

@@ -4,6 +4,12 @@ const options = { write: false };
 
 class RxapPlugin extends Plugin {
 
+  async getIncrement() {
+    if (process.env.RELEASE_IT_INCREMENT !== 'false') {
+      return process.env.RELEASE_IT_INCREMENT;
+    }
+  }
+
   async getLatestVersion() {
     console.log('rxap getLatestVersion');
     const tagList = await this.exec(`git tag --sort=-taggerdate -l "v*"`, { options }).then(
