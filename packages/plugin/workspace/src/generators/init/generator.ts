@@ -22,6 +22,7 @@ import {
   CoerceTarget,
   GenerateSerializedSchematicFile,
   GetWorkspaceName,
+  RemoveIgnorePattern,
   Strategy,
   UpdateJsonFile,
   UpdatePackageJson,
@@ -393,7 +394,14 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   await AddPackageJsonDevDependency(tree, '@commitlint/config-conventional', 'latest', { soft: true });
 
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
+  RemoveIgnorePattern(tree, '.gitignore', ['/.idea']);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
+  CoerceIgnorePattern(tree, '.idea/.gitignore', [
+    '/copilot/chatSessions',
+    'jsLibraryMappings.xml',
+    'nx-angular-config.xml',
+    'nx-console.xml'
+  ]);
 
   UpdatePackageJson(tree, packageJson => {
     packageJson.engines ??= {};
