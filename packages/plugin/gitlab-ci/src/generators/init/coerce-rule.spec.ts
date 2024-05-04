@@ -34,6 +34,19 @@ describe('CoerceRule function', () => {
     expect(rulesList).toEqual([ ruleA, ruleB ]);
   });
 
+  it('add rule without "when" property to the end of the list if it is the last rule', () => {
+    const ruleA: Rule = {
+      when: RuleWhen.NEVER,
+      if: 'true',
+    };
+    const ruleB: Rule = {
+      if: 'true',
+    };
+    const rulesList: Rule[] = [ ruleA ];
+    CoerceRule(rulesList, ruleB);
+    expect(rulesList).toEqual([ ruleA, ruleB ]);
+  });
+
   it('adds rule with "when" property to the start of the list if it is RuleWhen.NEVER', () => {
     const ruleA: Rule = {
       when: RuleWhen.ALWAYS,
