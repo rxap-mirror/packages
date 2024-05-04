@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.2-dev.0...@rxap/plugin-workspace@16.2.2-dev.1) (2024-05-04)
+
+### Bug Fixes
+
+- overwrite default nx readme ([064832c](https://gitlab.com/rxap/packages/commit/064832c8a142e65d8c399270ff07600932547c77))
+
 ## [16.2.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.1...@rxap/plugin-workspace@16.2.2-dev.0) (2024-04-18)
 
 ### Bug Fixes

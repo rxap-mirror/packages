@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.3.0...@rxap/plugin-utilities@16.4.0-dev.0) (2024-05-04)
+
+### Features
+
+- support replacement of the projectName variable name ([06ed250](https://gitlab.com/rxap/packages/commit/06ed2508794db12fed5558a316ee5b8c862ed92b))
+
 # [16.3.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.3.0-dev.1...@rxap/plugin-utilities@16.3.0) (2024-04-18)
 
 **Note:** Version bump only for package @rxap/plugin-utilities
