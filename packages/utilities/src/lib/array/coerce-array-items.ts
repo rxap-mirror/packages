@@ -50,16 +50,18 @@ export function CoerceArrayItems_handleCompareFnCase<T>(options: Required<Coerce
     for (let i = array.length - 1; i >= 0; i--) {
       if (options.compareFn(array[i], item) < 0) {
         array.splice(i + 1, 0, item);
-        break;
+        return;
       }
     }
+    array.unshift(item);
   } else {
     for (let i = 0; i < array.length; i++) {
       if (options.compareFn(array[i], item) > 0) {
         array.splice(i, 0, item);
-        break;
+        return;
       }
     }
+    array.push(item);
   }
 }
 
