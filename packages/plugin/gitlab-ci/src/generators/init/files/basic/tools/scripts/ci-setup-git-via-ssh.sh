@@ -8,6 +8,9 @@ if [ -z "$GIT_SSH_KEY" ]; then
   exit 1
 fi
 
+GIT_COMMITTER_EMAIL=${GIT_COMMITTER_EMAIL:-$GITLAB_USER_EMAIL}
+GIT_COMMITTER_NAME=${GIT_COMMITTER_NAME:-$GITLAB_USER_NAME}
+
 if [ -z "$GIT_COMMITTER_EMAIL" ]; then
   echo "No GIT_COMMITTER_EMAIL variable found"
   exit 1
@@ -17,6 +20,9 @@ if [ -z "$GIT_COMMITTER_NAME" ]; then
   echo "No GIT_COMMITTER_NAME variable found"
   exit 1
 fi
+
+echo "GIT_COMMITTER_EMAIL: $GIT_COMMITTER_EMAIL"
+echo "GIT_COMMITTER_NAME: $GIT_COMMITTER_NAME"
 
 mkdir -p ~/.ssh
 
