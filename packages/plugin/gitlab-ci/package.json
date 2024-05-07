@@ -1,5 +1,5 @@
 {
-  "version": "16.3.0-dev.1",
+  "version": "16.3.0-dev.2",
   "name": "@rxap/plugin-gitlab-ci",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,7 +11,7 @@
     "@nx/devkit": "^16.10.0",
     "@rxap/plugin-utilities": "^16.4.0-dev.0",
     "@rxap/utilities": "^16.2.0-dev.1",
-    "@rxap/workspace-utilities": "^16.2.0"
+    "@rxap/workspace-utilities": "^16.3.0-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.2.0"
+        "version": "16.3.0-dev.0"
       }
     ]
   },

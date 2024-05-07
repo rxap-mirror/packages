@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.1-dev.1...@rxap/plugin-nestjs@16.2.1-dev.2) (2024-05-07)
+
+### Bug Fixes
+
+- remove PATH_PREFIX from required variables ([8d584ae](https://gitlab.com/rxap/packages/commit/8d584ae372296b2dfbd4925a5798ad1d5726b6ab))
+
 ## [16.2.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.1-dev.0...@rxap/plugin-nestjs@16.2.1-dev.1) (2024-05-02)
 
 ### Bug Fixes

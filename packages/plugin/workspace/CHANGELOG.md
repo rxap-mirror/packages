@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.2-dev.1...@rxap/plugin-workspace@16.2.2-dev.2) (2024-05-07)
+
+### Bug Fixes
+
+- add missing default gitignore entries ([6286fa4](https://gitlab.com/rxap/packages/commit/6286fa463c3d468964b128de2b8775002cee6266))
+
 ## [16.2.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.2-dev.0...@rxap/plugin-workspace@16.2.2-dev.1) (2024-05-04)
 
 ### Bug Fixes

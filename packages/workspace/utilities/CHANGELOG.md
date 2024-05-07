@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.2.0...@rxap/workspace-utilities@16.3.0-dev.0) (2024-05-07)
+
+### Features
+
+- add RemoveIgnorePattern function ([ded572b](https://gitlab.com/rxap/packages/commit/ded572b64466a022844e882c254b1b6eb89d6a5c))
+
 # [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.2.0-dev.0...@rxap/workspace-utilities@16.2.0) (2024-04-18)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

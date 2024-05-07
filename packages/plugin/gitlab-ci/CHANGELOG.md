@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.1...@rxap/plugin-gitlab-ci@16.3.0-dev.2) (2024-05-07)
+
+### Bug Fixes
+
+- fallback to default gitlab email and username ([bbc5e56](https://gitlab.com/rxap/packages/commit/bbc5e5607c28abfa19f09fa82abc3401fd508699))
+- only update the build yaml if required ([0b586cb](https://gitlab.com/rxap/packages/commit/0b586cb75ad35711a1ee28797a21612ed7f971e1))
+
 # [16.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.0...@rxap/plugin-gitlab-ci@16.3.0-dev.1) (2024-05-04)
 
 ### Bug Fixes
