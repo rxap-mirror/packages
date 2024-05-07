@@ -8,6 +8,8 @@ variables:
   RELEASE_IT_CHANNEL:
     value: "auto"
     options:
+      - "edge"
+      - "nightly"
       - "preview"
       - "rc"
       - "release"
@@ -44,9 +46,9 @@ release:
   stage: deploy
   image: registry.gitlab.com/rxap/gitlab-ci/release-it:latest
   before_script:
-    - sh ./tools/scripts/ci-setup-git-via-ssh.sh
+    - sh /tools/scripts/ci-setup-git-via-ssh.sh
   script:
-    - node ./tools/scripts/release-it.mjs
+    - node /tools/scripts/release-it.mjs
   rules:
     # only execute the release pipeline if the target is a branch
     - if: '$CI_COMMIT_BRANCH == null'
