@@ -12,11 +12,11 @@
     "@nx/nest": "^16.10.0",
     "@rxap/node-utilities": "^1.2.0",
     "@rxap/plugin-application": "^16.2.0",
-    "@rxap/plugin-gitlab-ci": "^16.2.2-dev.0",
+    "@rxap/plugin-gitlab-ci": "^16.3.0-dev.1",
     "@rxap/plugin-library": "^16.1.0",
-    "@rxap/plugin-utilities": "^16.3.0",
+    "@rxap/plugin-utilities": "^16.4.0-dev.0",
     "@rxap/ts-morph": "^1.1.0",
-    "@rxap/utilities": "^16.1.0",
+    "@rxap/utilities": "^16.2.0-dev.1",
     "@rxap/workspace-ts-morph": "^16.1.0",
     "@rxap/workspace-utilities": "^16.2.0",
     "colors": "^1.4.0",
@@ -63,7 +63,7 @@
       },
       {
         "package": "@rxap/plugin-gitlab-ci",
-        "version": "16.2.2-dev.0"
+        "version": "16.3.0-dev.1"
       },
       {
         "package": "@rxap/plugin-library",
@@ -71,7 +71,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.3.0"
+        "version": "16.4.0-dev.0"
       },
       {
         "package": "@rxap/ts-morph",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0"
+        "version": "16.2.0-dev.1"
       },
       {
         "package": "@rxap/workspace-ts-morph",
