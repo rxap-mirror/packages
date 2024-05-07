@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0...@rxap/plugin-application@16.3.0-dev.0) (2024-05-07)
+
+### Bug Fixes
+
+- ensure the correct output path for the jest junit reported is used ([3309ee7](https://gitlab.com/rxap/packages/commit/3309ee731ae516b7fe3ebc5bccb2a6c22c1a62c0))
+
+### Features
+
+- init the standalone e2e project ([2451b54](https://gitlab.com/rxap/packages/commit/2451b548f4680406b705af12ecdad8c20607ad05))
+
 # [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0-dev.10...@rxap/plugin-application@16.2.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/plugin-application

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.2...@rxap/plugin-gitlab-ci@16.3.0-dev.3) (2024-05-07)
+
+### Features
+
+- support service e2e targets ([422e764](https://gitlab.com/rxap/packages/commit/422e7646276b65b2dd70e2b1fd444ab8d743c072))
+
 # [16.3.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.1...@rxap/plugin-gitlab-ci@16.3.0-dev.2) (2024-05-07)
 
 ### Bug Fixes
