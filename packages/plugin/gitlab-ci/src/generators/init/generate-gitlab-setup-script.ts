@@ -28,7 +28,7 @@ function generateReleaseItSetup(workspaceName: string) {
   bashScript += 'rm ./id_rsa_deploy\n';
   bashScript += 'rm ./id_rsa_deploy.pub\n\n';
   bashScript += 'echo "Create nightly ci/cd schedule..."\n';
-  bashScript += `glab schedule create --cron "${randomMinute()} ${randomHour()} * * *" --description "Nightly Release" --ref "development" --variable "RELEASE_IT:true"\n\n`;
+  bashScript += `glab schedule create --cron "${randomMinute()} ${randomHour()} * * *" --description "Nightly Release" --ref "development" --variable "RELEASE_IT:true" --variable "RELEASE_IT_CHANNEL:nightly"\n\n`;
   bashScript += 'echo "Done!"\n\n';
 
   return bashScript;
