@@ -13,6 +13,7 @@ import {
   CoerceRules,
   RuleWhen,
 } from './coerce-rule';
+import { generateGitlabCiSetupScript } from './generate-gitlab-setup-script';
 import { InitGeneratorSchema } from './schema';
 
 export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
@@ -210,5 +211,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     }
     tree.write('.gitlab/ci/pipelines/build.yaml', stringify(buildYaml));
   }
+
+  generateGitlabCiSetupScript(tree, options);
 
 }
