@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.3...@rxap/plugin-gitlab-ci@16.3.0-dev.4) (2024-05-07)
+
+### Features
+
+- generate gitlab setup script ([07ce907](https://gitlab.com/rxap/packages/commit/07ce907d2ea1812477cb3546f9bb6acb6dad83c4))
+
 # [16.3.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.2...@rxap/plugin-gitlab-ci@16.3.0-dev.3) (2024-05-07)
 
 ### Features
