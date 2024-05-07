@@ -9,6 +9,7 @@ export function updateJestConfig(tree: Tree, project: ProjectConfiguration, proj
   const projectRoot = project.root;
   const jestConfigFilePath = `${ projectRoot }/jest.config.ts`;
   if (tree.exists(jestConfigFilePath)) {
+    const projectRoot = project.root;
     let content = tree.read(jestConfigFilePath, 'utf-8')!;
     // region add reporters
     if (!content.includes('reporters: [')) {
@@ -18,7 +19,7 @@ export function updateJestConfig(tree: Tree, project: ProjectConfiguration, proj
     [
       "jest-junit",
       {
-        outputDirectory: "junit/apps/settings",
+        outputDirectory: "junit/${projectRoot}",
         suiteName: "workspace",
         uniqueOutputName: true,
         classNameTemplate: "{classname}",
