@@ -4,13 +4,19 @@ import {
 } from '@nx/devkit';
 import { InitGeneratorSchema } from './schema';
 
-export function updateJestConfig(tree: Tree, project: ProjectConfiguration, projectName: string, options: InitGeneratorSchema) {
+export function updateJestConfig(
+  tree: Tree,
+  project: ProjectConfiguration,
+  projectName: string,
+  options: InitGeneratorSchema,
+  jestConfigFileName = 'jest.config.ts'
+) {
 
   const projectRoot = project.root;
-  const jestConfigFilePath = `${ projectRoot }/jest.config.ts`;
+  const jestConfigFilePath = `${ projectRoot }/${jestConfigFileName}`;
   if (tree.exists(jestConfigFilePath)) {
-    const projectRoot = project.root;
     let content = tree.read(jestConfigFilePath, 'utf-8')!;
+    const outputDirectorySuffix = project.root === '' ? projectName : project.root;
     // region add reporters
     if (!content.includes('reporters: [')) {
       content = content.replace(`displayName: '${ projectName }',`, `displayName: '${ projectName }',
@@ -19,7 +25,7 @@ export function updateJestConfig(tree: Tree, project: ProjectConfiguration, proj
     [
       "jest-junit",
       {
-        outputDirectory: "junit/${projectRoot}",
+        outputDirectory: "junit/${outputDirectorySuffix}",
         suiteName: "workspace",
         uniqueOutputName: true,
         classNameTemplate: "{classname}",

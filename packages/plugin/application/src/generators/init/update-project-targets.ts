@@ -16,6 +16,15 @@ export function updateProjectTargets(project: ProjectConfiguration, projectName:
     CoerceTarget(project, 'docker-save');
   }
 
+  if (options.standalone) {
+    if (project.targets?.['test']) {
+      project.targets['test'].outputs = [
+        "{workspaceRoot}/coverage/{projectName}",
+        "{workspaceRoot}/junit/{projectName}"
+      ];
+    }
+  }
+
   if (project.targets?.['build']) {
 
     // if the build target has a configuration for production
