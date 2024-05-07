@@ -2,6 +2,7 @@ include:
   - local: .gitlab/ci/jobs/run.yaml
   - local: .gitlab/ci/jobs/docker.yaml
   - local: .gitlab/ci/jobs/startup.yaml
+  - local: .gitlab/ci/jobs/service-e2e.yaml
 
 stages:
   - run
