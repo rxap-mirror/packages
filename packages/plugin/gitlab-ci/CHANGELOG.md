@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.5...@rxap/plugin-gitlab-ci@16.3.0-dev.6) (2024-05-16)
+
+### Bug Fixes
+
+- ensure the nest api prefix has a leading slash ([8a82afd](https://gitlab.com/rxap/packages/commit/8a82afd3f86e32767af4b56206415165c206cc41))
+
 # [16.3.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.4...@rxap/plugin-gitlab-ci@16.3.0-dev.5) (2024-05-16)
 
 ### Bug Fixes

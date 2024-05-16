@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.3.0-dev.0...@rxap/workspace-utilities@16.3.0-dev.1) (2024-05-16)
+
+### Bug Fixes
+
+- default the api prefix to an empty string ([783a551](https://gitlab.com/rxap/packages/commit/783a551674bb308a55105c9ad1bc510dd9ece435))
+
 # [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@16.2.0...@rxap/workspace-utilities@16.3.0-dev.0) (2024-05-07)
 
 ### Features
