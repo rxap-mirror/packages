@@ -43,6 +43,7 @@ import {
   CoerceTargetDefaultsDependency,
   GenerateSerializedSchematicFile,
   GetNestApiPrefix,
+  GetProject,
   GetProjectRoot,
   GetTarget,
   GetWorkspaceName,
@@ -75,6 +76,7 @@ import sentryGenerator from '../sentry/generator';
 import swaggerGenerator from '../swagger/generator';
 import validatorGenerator from '../validator/generator';
 import { ExtractExistingConfigValidation } from './extract-existing-config-validation';
+import { initE2eProject } from './init-e2e-project';
 import { InitApplicationGeneratorSchema } from './schema';
 import 'colors';
 
@@ -890,6 +892,13 @@ export async function initApplicationGenerator(
             overwrite: options.overwrite,
           },
         );
+      }
+
+      if (options.standalone) {
+        if (HasProject(tree, `${projectName}-e2e`)) {
+          const e2eProject = GetProject(tree, `${projectName}-e2e`);
+          initE2eProject(tree, `${projectName}-e2e`, e2eProject, options);
+        }
       }
 
     }
