@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.3.0-dev.0...@rxap/plugin-application@16.3.0-dev.1) (2024-05-16)
+
+### Bug Fixes
+
+- check if the serve target exists ([7c15368](https://gitlab.com/rxap/packages/commit/7c15368a9f28789cefe47abec7523e50474e7c31))
+
 # [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.2.0...@rxap/plugin-application@16.3.0-dev.0) (2024-05-07)
 
 ### Bug Fixes
