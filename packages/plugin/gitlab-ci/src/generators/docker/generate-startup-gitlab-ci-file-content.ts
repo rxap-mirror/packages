@@ -46,6 +46,10 @@ const DOT_STARTUP = {
       when: 'on_success',
     },
     {
+      if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH',
+      when: 'on_success',
+    },
+    {
       if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^renovate\\// || $CI_COMMIT_BRANCH =~ /^renovate\\//',
       when: 'on_success',
     },

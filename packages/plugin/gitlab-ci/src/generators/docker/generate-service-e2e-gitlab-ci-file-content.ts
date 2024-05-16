@@ -20,6 +20,11 @@ const DOT_SERVICE_E2E = {
       job: 'docker',
       artifacts: false,
     },
+    {
+      job: 'startup',
+      artifacts: false,
+      optional: true,
+    }
   ],
   services: [
     {
