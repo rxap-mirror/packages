@@ -3,7 +3,7 @@ import {
   Tree,
 } from '@nx/devkit';
 import { GuessOutputPath } from '@rxap/plugin-utilities';
-import { CoerceSuffix } from '@rxap/utilities';
+import { CoercePrefix } from '@rxap/utilities';
 import {
   GetNestApiPrefix,
   GetTargetOptions,
@@ -132,12 +132,15 @@ export function generateDockerGitlabCiFileContent(
       if (!project.sourceRoot) {
         throw new Error(`The project '${ projectName }' has no source root`);
       }
-      matrix.PATH_PREFIX = CoerceSuffix(GetNestApiPrefix(
+      const nestApiPrefix = GetNestApiPrefix(
         tree,
         {},
         project.sourceRoot,
         matrix.PROJECT_NAME,
-      ), '/', /\/$/);
+      );
+      if (nestApiPrefix) {
+        matrix.PATH_PREFIX = CoercePrefix(nestApiPrefix, '/');
+      }
     }
 
     if (Array.isArray(dockerTargetOptions.buildArgList)) {
