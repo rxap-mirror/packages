@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.1-dev.2...@rxap/plugin-nestjs@16.3.0-dev.0) (2024-05-16)
+
+### Bug Fixes
+
+- ensure the port is set correctly ([61274ed](https://gitlab.com/rxap/packages/commit/61274edada41f5c3a4ca4d3b2de36472f5e961d9))
+- ensure the source root is set ([1061ad1](https://gitlab.com/rxap/packages/commit/1061ad1429c6d31c6c01cacfafc3b6b23f455ab0))
+
+### Features
+
+- replace the default e2e test with a new one ([4861115](https://gitlab.com/rxap/packages/commit/486111501fe159093e526e8ad506e2e66289fc9f))
+
 ## [16.2.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.1-dev.1...@rxap/plugin-nestjs@16.2.1-dev.2) (2024-05-07)
 
 ### Bug Fixes

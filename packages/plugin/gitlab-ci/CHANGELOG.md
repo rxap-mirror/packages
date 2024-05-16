@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.6...@rxap/plugin-gitlab-ci@16.3.0-dev.7) (2024-05-16)
+
+### Bug Fixes
+
+- add e2e stage for service e2e tests ([40967c8](https://gitlab.com/rxap/packages/commit/40967c836b492ebe7e7564b547dff025dc4cad55))
+- ensure startup jobs are executed on every default branch ([44256d7](https://gitlab.com/rxap/packages/commit/44256d7e1fa157f1ba878491314f5b10b71e6ab8))
+
 # [16.3.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.5...@rxap/plugin-gitlab-ci@16.3.0-dev.6) (2024-05-16)
 
 ### Bug Fixes
