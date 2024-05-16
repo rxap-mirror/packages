@@ -34,6 +34,8 @@ import { coerceWorkspaceProject } from './coerce-workspace-project';
 import { InitGeneratorSchema } from './schema';
 
 const gitIgnore = [
+  '.idea/JetClient',
+  'cody_history.xml',
   // nx
   '/migrations.json',
   // chrome
@@ -400,7 +402,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     '/copilot/chatSessions',
     'jsLibraryMappings.xml',
     'nx-angular-config.xml',
-    'nx-console.xml'
+    'nx-console.xml',
+    'cody_history.xml',
+    '/JetClient'
   ]);
 
   UpdatePackageJson(tree, packageJson => {
