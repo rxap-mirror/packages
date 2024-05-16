@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.4...@rxap/plugin-gitlab-ci@16.3.0-dev.5) (2024-05-16)
+
+### Bug Fixes
+
+- add explicit channel definition ([cf2ce2d](https://gitlab.com/rxap/packages/commit/cf2ce2df579007bc201f89b0d520ab3f9e7ffba7))
+- add nightly and edge channels ([a30c17b](https://gitlab.com/rxap/packages/commit/a30c17b9965d484d2f93fbbf4fa84d32561e187e))
+- remove duplicated code ([e5f8443](https://gitlab.com/rxap/packages/commit/e5f8443f73517bf3ecde1d72dc3bbc3478b651e7))
+
 # [16.3.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.3...@rxap/plugin-gitlab-ci@16.3.0-dev.4) (2024-05-07)
 
 ### Features
