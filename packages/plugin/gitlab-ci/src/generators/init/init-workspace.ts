@@ -77,6 +77,18 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     });
   }
 
+  if (options.helmChart) {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'update-helm-chart-version'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+    const pipelineFile = tree.read('.gitlab/ci/pipelines/update-helm-chart-version.yaml', 'utf-8')!;
+    const pipeline = parse(pipelineFile);
+    pipeline['trigger-update-helm-chart-version'].trigger.project = options.helmChart;
+    tree.write('.gitlab/ci/pipelines/update-helm-chart-version.yaml', stringify(pipeline));
+  }
+
   const gitlabCiContent = CoerceFile(tree, '.gitlab-ci.yml', '');
   const gitlabCi = parse(gitlabCiContent) ?? {};
 
@@ -94,6 +106,10 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   if (options.onlyPackages) {
     buildYamlChanged = true;
     buildYaml.include = buildYaml.include.filter(({local}) => local !== '.gitlab/ci/release.yaml');
+  }
+
+  if (options.helmChart) {
+    CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/update-helm-chart-version.yaml');
   }
 
   if (options.angular) {

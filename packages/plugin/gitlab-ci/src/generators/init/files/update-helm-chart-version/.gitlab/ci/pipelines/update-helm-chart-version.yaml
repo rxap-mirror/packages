@@ -1,0 +1,9 @@
+trigger-update-helm-chart-version:
+  stage: deploy
+  variables:
+    UPDATE_APP_VERSION: "true"
+    NEW_APP_VERSION: "$CI_COMMIT_TAG"
+  trigger:
+    project: rxap/charts/project
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'

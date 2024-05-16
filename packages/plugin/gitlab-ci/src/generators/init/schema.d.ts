@@ -8,4 +8,5 @@ export interface InitGeneratorSchema {
   angular?: boolean;
   nest?: boolean;
   release?: 'none' | 'release-it' | 'semantic-release';
+  helmChart?: string;
 }
