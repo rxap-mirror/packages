@@ -1,6 +1,7 @@
 import {
   ProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nx/devkit';
 import {
   CoerceFilesStructure,
@@ -9,10 +10,11 @@ import {
 import { join } from 'path';
 import { InitApplicationGeneratorSchema } from './schema';
 
-export function initE2eProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+export function initE2eProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema, port: number) {
 
   const projectSourceRoot = join(GetProjectRoot(tree, projectName), 'src');
   project.sourceRoot ??= projectSourceRoot;
+  updateProjectConfiguration(tree, projectName, project);
 
   const e2eTestFolder = join(projectSourceRoot, 'server');
   const defaultE2eTestFilePath = join(e2eTestFolder, 'server.spec.ts');
@@ -33,7 +35,7 @@ export function initE2eProject(tree: Tree, projectName: string, project: Project
   const testSetupFilePath = join(projectSourceRoot, 'support', 'test-setup.ts');
   if (tree.exists(testSetupFilePath)) {
     let testSetupContent = tree.read(testSetupFilePath, 'utf-8')!;
-    testSetupContent = testSetupContent.replace(/process.env.PORT \?\? '\d+';/, `process.env.PORT ?? '${options.port}';`);
+    testSetupContent = testSetupContent.replace(/process.env.PORT \?\? '\d+';/, `process.env.PORT ?? '${port}';`);
     tree.write(testSetupFilePath, testSetupContent);
   }
 

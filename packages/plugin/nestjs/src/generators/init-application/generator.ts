@@ -897,7 +897,7 @@ export async function initApplicationGenerator(
       if (options.standalone) {
         if (HasProject(tree, `${projectName}-e2e`)) {
           const e2eProject = GetProject(tree, `${projectName}-e2e`);
-          initE2eProject(tree, `${projectName}-e2e`, e2eProject, options);
+          initE2eProject(tree, `${projectName}-e2e`, e2eProject, options, port);
         }
       }
 
