@@ -16,7 +16,7 @@ export function GetNestApiPrefix(
   projectName: string,
 ) {
   if (options.apiPrefix === false) {
-    return 'api';
+    return '';
   }
   if (options.apiPrefix && options.projects?.length === 1) {
     return options.apiPrefix;
