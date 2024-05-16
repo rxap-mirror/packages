@@ -35,6 +35,7 @@ stages:
   - run
   - docker
   - startup
+  - e2e
   - deploy
 
 variables:

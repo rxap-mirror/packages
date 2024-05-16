@@ -14,7 +14,7 @@ import { skipProject } from './skip-project';
 
 const DOT_SERVICE_E2E = {
   extends: '.run',
-  stage: 'startup',
+  stage: 'e2e',
   needs: [
     {
       job: 'docker',
@@ -90,21 +90,21 @@ export function generateServiceE2eGitlabCiFileContent(
     dotServiceE2e.tags = options.tags;
   }
 
-  const startupYaml = {
+  const serviceE2eYaml = {
     '.service-e2e': dotServiceE2e,
-    startup: structuredClone(SERVICE_E2E),
+    'service-e2e': structuredClone(SERVICE_E2E),
   };
 
   if (options.gitlab !== false) {
-    startupYaml['.service-e2e'].variables.SERVICE_REGISTRY_IMAGE = '${CI_REGISTRY_IMAGE}';
+    serviceE2eYaml['.service-e2e'].variables.SERVICE_REGISTRY_IMAGE = '${CI_REGISTRY_IMAGE}';
   }
 
   if (options.gcp) {
-    startupYaml['.service-e2e'].variables.SERVICE_REGISTRY_IMAGE = '${GCP_REGISTRY}/${GCP_PROJECT}/${IMAGE_NAME}';
+    serviceE2eYaml['.service-e2e'].variables.SERVICE_REGISTRY_IMAGE = '${GCP_REGISTRY}/${GCP_PROJECT}/${IMAGE_NAME}';
   }
 
   if (rootDocker.imageName) {
-    startupYaml.startup.variables.IMAGE_NAME = rootDocker.imageName;
+    serviceE2eYaml['service-e2e'].variables.IMAGE_NAME = rootDocker.imageName;
   }
 
   for (const [ projectName, project ] of
@@ -129,7 +129,7 @@ export function generateServiceE2eGitlabCiFileContent(
 
     const matrix: Record<string, string> = {};
 
-    startupYaml.startup.parallel.matrix.push(matrix);
+    serviceE2eYaml['service-e2e'].parallel.matrix.push(matrix);
 
     if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
       matrix.IMAGE_NAME = dockerTargetOptions.imageName as string;
@@ -143,5 +143,5 @@ export function generateServiceE2eGitlabCiFileContent(
 
   }
 
-  return stringify(startupYaml);
+  return stringify(serviceE2eYaml);
 }

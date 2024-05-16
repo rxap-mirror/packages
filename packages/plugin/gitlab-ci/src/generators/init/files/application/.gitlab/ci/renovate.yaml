@@ -8,6 +8,7 @@ stages:
   - run
   - docker
   - startup
+  - e2e
 
 variables:
   ENVIRONMENT_NAME: $CI_COMMIT_REF_NAME
