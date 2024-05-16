@@ -4,14 +4,15 @@ import {
 } from '@nx/devkit';
 import {
   CoerceFilesStructure,
-  GetProjectSourceRoot,
+  GetProjectRoot,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitApplicationGeneratorSchema } from './schema';
 
 export function initE2eProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
-  const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
+  const projectSourceRoot = join(GetProjectRoot(tree, projectName), 'src');
+  project.sourceRoot ??= projectSourceRoot;
 
   const e2eTestFolder = join(projectSourceRoot, 'server');
   const defaultE2eTestFilePath = join(e2eTestFolder, 'server.spec.ts');
