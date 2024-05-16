@@ -21,9 +21,9 @@ function generateReleaseItSetup(workspaceName: string) {
   bashScript += 'echo "Generate Deploy SSH Key..."\n';
   bashScript += `ssh-keygen -t rsa -b 4096 -C "release-it@${ workspaceName }" -f ./id_rsa_deploy -N ""\n\n`;
   bashScript += 'echo "Add Deploy Key to Gitlab..."\n';
-  bashScript += 'glab api /projects/:id/deploy_keys -f title="Release It" -f key="@./id_rsa_deploy.pub" -f can_push=true\n\n';
+  bashScript += 'glab api /projects/:id/deploy_keys -F title="Release It" -F key="@./id_rsa_deploy.pub" -F can_push=true --silent\n\n';
   bashScript += 'echo "Add GIT_SSH_KEY to Gitlab CI/CD Variables..."\n';
-  bashScript += 'glab ci variable create --type file --protected "GIT_SSH_KEY" "$(cat ./id_rsa_deploy; echo)"\n\n';
+  bashScript += 'cat ./id_rsa_deploy | glab variable set "GIT_SSH_KEY" --type file --protected\n\n';
   bashScript += 'echo "Delete Deploy SSH Key..."\n';
   bashScript += 'rm ./id_rsa_deploy\n';
   bashScript += 'rm ./id_rsa_deploy.pub\n\n';
