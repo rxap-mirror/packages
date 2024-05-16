@@ -34,7 +34,7 @@ export function updateProjectTargets(project: ProjectConfiguration, projectName:
       // ensure the build target has a configuration for development
       project.targets['build'].configurations['development'] ??= {};
       // if the project has a serve target with a buildTarget option
-      if (project.targets['serve'].options?.buildTarget) {
+      if (project.targets['serve']?.options?.buildTarget) {
         // ensure that the target configuration is explicitly set
         if (project.targets['serve'].options.buildTarget.match(new RegExp(`^${ projectName }:build$`))) {
           // if not the set the build configuration to development
