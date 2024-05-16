@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.7...@rxap/plugin-gitlab-ci@16.3.0-dev.8) (2024-05-16)
+
+### Bug Fixes
+
+- generate a valid setup script ([bdee594](https://gitlab.com/rxap/packages/commit/bdee594f1aa8ff4b78c2b8e1fd605e93a674b0c8))
+
+### Features
+
+- add update helm chart version ci pipeline ([eccab03](https://gitlab.com/rxap/packages/commit/eccab0373ebd2e083734cd40feb65e968a72bc97))
+
 # [16.3.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.6...@rxap/plugin-gitlab-ci@16.3.0-dev.7) (2024-05-16)
 
 ### Bug Fixes
