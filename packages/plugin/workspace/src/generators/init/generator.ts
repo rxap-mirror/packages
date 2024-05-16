@@ -94,6 +94,7 @@ const gitIgnore = [
   '!.yarn/versions',
   // '!.yarn/cache',
   'documentation.json',
+  'gitlab-ci-setup.sh'
 ];
 
 const prettierIgnore = [
