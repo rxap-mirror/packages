@@ -12,9 +12,14 @@ import {
   ValidatorOptions,
 } from 'class-validator';
 
+type OptionalMethods<T> = {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  [P in keyof T]?: T[P] extends Function ? never : T[P]
+};
+
 export function ToDtoInstance<T>(
   cls: ClassConstructor<T>,
-  plain: T,
+  plain: OptionalMethods<T>,
   options: ClassTransformOptions = classTransformOptions,
   vOptions: ValidatorOptions = validatorOptions,
 ): T {
@@ -25,7 +30,7 @@ export function ToDtoInstance<T>(
 
 export function ToDtoInstanceList<T>(
   cls: ClassConstructor<T>,
-  plain: T[],
+  plain: Array<OptionalMethods<T>>,
   options: ClassTransformOptions = classTransformOptions,
   vOptions: ValidatorOptions = validatorOptions,
 ): T[] {
