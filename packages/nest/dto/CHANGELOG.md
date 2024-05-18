@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-dto@10.2.0...@rxap/nest-dto@10.2.1-dev.0) (2024-05-18)
+
+### Bug Fixes
+
+- support dto classes with method members ([2552ce0](https://gitlab.com/rxap/packages/commit/2552ce031b86a029e0e082974ae0d7e19e5e93c7))
+
 # [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-dto@10.2.0-dev.3...@rxap/nest-dto@10.2.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/nest-dto

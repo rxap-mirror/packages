@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.2.0...@rxap/nest-server@10.3.0-dev.0) (2024-05-18)
+
+### Features
+
+- support multiple micro service at once ([55bec3c](https://gitlab.com/rxap/packages/commit/55bec3c732e8f115d025f37ee11a5f808bcc6e20))
+
 # [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.2.0-dev.2...@rxap/nest-server@10.2.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/nest-server
