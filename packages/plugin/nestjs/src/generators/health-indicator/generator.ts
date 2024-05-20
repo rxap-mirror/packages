@@ -28,7 +28,7 @@ export async function healthIndicatorGenerator(
   }, [
     '/app/health/health.module.ts',
     '/app/health/health.controller.ts',
-    `/app/health/${ dasherize(options.name) }.health-indicator.ts`,
+    `/app/health/${ dasherize(options.name) }.health-indicator.ts?`,
   ]);
 }
 
