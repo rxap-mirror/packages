@@ -405,7 +405,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'nx-angular-config.xml',
     'nx-console.xml',
     'cody_history.xml',
-    '/JetClient'
+    '/JetClient',
+    '/developer-tools.xml'
   ]);
 
   UpdatePackageJson(tree, packageJson => {
