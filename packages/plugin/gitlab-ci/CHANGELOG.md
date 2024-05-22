@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.9...@rxap/plugin-gitlab-ci@16.3.0-dev.10) (2024-05-22)
+
+### Bug Fixes
+
+- ensure the gitlab ci object is not null ([100aab6](https://gitlab.com/rxap/packages/commit/100aab6cd936dbed735e36e5a815f89cc8d3fa87))
+
 # [16.3.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.8...@rxap/plugin-gitlab-ci@16.3.0-dev.9) (2024-05-22)
 
 ### Features
