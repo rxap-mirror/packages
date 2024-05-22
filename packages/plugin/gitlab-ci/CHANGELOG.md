@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.10...@rxap/plugin-gitlab-ci@16.3.0-dev.11) (2024-05-22)
+
+### Features
+
+- **gitlab-ci:** enhance docker generation with additional matrices ([54babc7](https://gitlab.com/rxap/packages/commit/54babc704039b0d1d602036afcd5152eaa64dd83))
+
 # [16.3.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.9...@rxap/plugin-gitlab-ci@16.3.0-dev.10) (2024-05-22)
 
 ### Bug Fixes
