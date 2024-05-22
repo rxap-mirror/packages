@@ -2,12 +2,12 @@ import {
   chain,
   Tree,
 } from '@angular-devkit/schematics';
+import { CoerceTableHeaderButtonMethodRule } from '@rxap/schematics-ts-morph';
 import {
-  CoerceClassConstructor,
+  CoerceDependencyInjection,
   CoerceImports,
-  CoerceParameterDeclaration,
-  CoerceTableHeaderButtonMethodRule,
-} from '@rxap/schematics-ts-morph';
+  Module,
+} from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import { Scope } from 'ts-morph';
 import {
@@ -76,12 +76,12 @@ export default function (options: NavigationTableHeaderButtonOptions) {
         errorMessage,
         successMessage,
         tsMorphTransform: (project, sourceFile, classDeclaration) => {
-          const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
           if (relativeTo) {
-            CoerceParameterDeclaration(constructorDeclaration, 'route', {
-              isReadonly: true,
+            CoerceDependencyInjection(sourceFile, {
+              injectionToken: 'ActivatedRoute',
+              parameterName: 'route',
               scope: Scope.Private,
-              type: 'ActivatedRoute',
+              module: Module.ANGULAR,
             });
             CoerceImports(sourceFile, [
               {
@@ -90,10 +90,11 @@ export default function (options: NavigationTableHeaderButtonOptions) {
               },
             ]);
           }
-          CoerceParameterDeclaration(constructorDeclaration, 'router', {
-            isReadonly: true,
+          CoerceDependencyInjection(sourceFile, {
+            injectionToken: 'Router',
+            parameterName: 'router',
             scope: Scope.Private,
-            type: 'Router',
+            module: Module.ANGULAR,
           });
           CoerceImports(sourceFile, [
             {

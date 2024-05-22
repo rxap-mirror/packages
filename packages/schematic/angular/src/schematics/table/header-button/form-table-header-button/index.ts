@@ -6,12 +6,14 @@ import {
 import {
   AddComponentProvider,
   BuildNestControllerName,
-  CoerceClassConstructor,
-  CoerceImports,
   CoerceParameterDeclaration,
   CoerceTableHeaderButtonMethodRule,
 } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
+import {
+  CoerceClassConstructor,
+  CoerceImports,
+} from '@rxap/ts-morph';
 import {
   classify,
   CoerceSuffix,

@@ -1,11 +1,12 @@
 import { classify } from '@rxap/schematics-utilities';
 import {
+  CoerceDependencyInjection,
   CoerceMappingClassMethod,
+  Module,
   ToMappingObjectOptions,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import { Scope } from 'ts-morph';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
@@ -15,7 +16,6 @@ import {
   OperationIdToRequestBodyClassName,
 } from '../nest/operation-id-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
@@ -52,12 +52,11 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
     ...options,
     tsMorphTransform: (project, sourceFile, classDeclaration) => {
 
-      const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-
-      CoerceParameterDeclaration(constructorDeclaration, 'method').set({
-        type: OperationIdToClassName(operationId),
-        isReadonly: true,
+      CoerceDependencyInjection(sourceFile, {
+        injectionToken: OperationIdToClassName(operationId),
+        parameterName: 'method',
         scope: Scope.Private,
+        module: Module.ANGULAR,
       });
 
       CoerceImports(sourceFile, {

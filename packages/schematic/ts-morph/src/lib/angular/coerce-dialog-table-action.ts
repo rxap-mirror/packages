@@ -1,15 +1,17 @@
 import {
-  CoerceTableActionOptions,
-  CoerceTableActionRule,
-} from './coerce-table-action';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
-import { Scope } from 'ts-morph';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import {
   classify,
   dasherize,
 } from '@rxap/schematics-utilities';
+import {
+  CoerceDependencyInjection,
+  CoerceImports,
+  Module,
+} from '@rxap/ts-morph';
+import { Scope } from 'ts-morph';
+import {
+  CoerceTableActionOptions,
+  CoerceTableActionRule,
+} from './coerce-table-action';
 
 export type CoerceDialogTableActionRuleOptions = CoerceTableActionOptions
 
@@ -26,12 +28,11 @@ export function CoerceDialogTableActionRule(options: CoerceDialogTableActionRule
     ...options,
     tsMorphTransform: (project, sourceFile, classDeclaration) => {
 
-      const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-
-      CoerceParameterDeclaration(constructorDeclaration, 'dialog').set({
-        type: 'MatDialog',
-        isReadonly: true,
+      CoerceDependencyInjection(sourceFile, {
+        injectionToken: 'MatDialog',
+        parameterName: 'dialog',
         scope: Scope.Private,
+        module: Module.ANGULAR,
       });
 
       CoerceImports(sourceFile, {

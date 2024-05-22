@@ -1,6 +1,8 @@
 import { classify } from '@rxap/schematics-utilities';
 import {
+  CoerceDependencyInjection,
   CoerceMappingClassMethod,
+  Module,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
   OperationIdToRequestBodyClassImportPath,
@@ -15,13 +17,11 @@ import {
   StatementStructures,
   WriterFunction,
 } from 'ts-morph';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
 } from '../nest/operation-id-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
@@ -94,40 +94,31 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
         }
       }
 
-      const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-      CoerceParameterDeclaration(constructorDeclaration, 'openFormWindow').set({
-        name: 'openFormWindow',
-        type: openFormWindowMethod,
-        isReadonly: true,
+      CoerceDependencyInjection(sourceFile, {
+        injectionToken: openFormWindowMethod,
+        parameterName: 'openFormWindow',
         scope: Scope.Private,
-        decorators: [
-          {
-            name: 'Inject',
-            arguments: [ openFormWindowMethod ],
-          },
-        ],
+        module: Module.ANGULAR,
       });
-      CoerceParameterDeclaration(constructorDeclaration, 'injector').set({
+      CoerceDependencyInjection(sourceFile, {
+        injectionToken: 'INJECTOR',
+        parameterName: 'injector',
         type: 'Injector',
-        isReadonly: true,
         scope: Scope.Private,
-        decorators: [
-          {
-            name: 'Inject',
-            arguments: [ 'INJECTOR' ],
-          },
-        ],
+        module: Module.ANGULAR,
       });
-      CoerceParameterDeclaration(constructorDeclaration, 'cdr').set({
-        type: 'ChangeDetectorRef',
-        isReadonly: true,
+      CoerceDependencyInjection(sourceFile, {
+        injectionToken: 'ChangeDetectorRef',
+        parameterName: 'cdr',
         scope: Scope.Private,
+        module: Module.ANGULAR,
       });
       if (loadFrom?.operationId) {
-        CoerceParameterDeclaration(constructorDeclaration, 'getInitial').set({
-          isReadonly: true,
+        CoerceDependencyInjection(sourceFile, {
+          injectionToken: OperationIdToClassName(loadFrom.operationId),
+          parameterName: 'getInitial',
           scope: Scope.Private,
-          type: OperationIdToClassName(loadFrom.operationId),
+          module: Module.ANGULAR,
         });
       }
       const statements: (string | WriterFunction | StatementStructures)[] = [];

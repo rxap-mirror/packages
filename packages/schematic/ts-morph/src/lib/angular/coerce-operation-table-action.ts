@@ -1,11 +1,13 @@
+import {
+  CoerceDependencyInjection,
+  Module,
+} from '@rxap/ts-morph';
 import { Scope } from 'ts-morph';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
 } from '../nest/operation-id-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
@@ -31,12 +33,11 @@ export function CoerceOperationTableActionRule(options: CoerceOperationTableActi
     ...options,
     tsMorphTransform: (project, sourceFile, classDeclaration) => {
 
-      const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-
-      CoerceParameterDeclaration(constructorDeclaration, 'method').set({
-        type: OperationIdToClassName(operationId),
-        isReadonly: true,
+      CoerceDependencyInjection(sourceFile, {
+        injectionToken: OperationIdToClassName(operationId),
+        parameterName: 'method',
         scope: Scope.Private,
+        module: Module.ANGULAR,
       });
 
       CoerceImports(sourceFile, {

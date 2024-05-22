@@ -1,11 +1,13 @@
 import {
+  CoerceDependencyInjection,
+  CoerceImports,
+  Module,
+} from '@rxap/ts-morph';
+import {
   Scope,
   StatementStructures,
   WriterFunction,
 } from 'ts-morph';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
@@ -54,18 +56,18 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
         namedImports: [ 'Router' ],
         moduleSpecifier: '@angular/router',
       });
-      const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-      CoerceParameterDeclaration(constructorDeclaration, 'router').set({
-        name: 'router',
-        type: 'Router',
-        isReadonly: true,
+      CoerceDependencyInjection(sourceFile, {
+        injectionToken: 'Router',
+        parameterName: 'router',
         scope: Scope.Private,
+        module: Module.ANGULAR,
       });
       if (relativeTo) {
-        CoerceParameterDeclaration(constructorDeclaration, 'route').set({
-          type: 'ActivatedRoute',
-          isReadonly: true,
+        CoerceDependencyInjection(sourceFile, {
+          injectionToken: 'ActivatedRoute',
+          parameterName: 'route',
           scope: Scope.Private,
+          module: Module.ANGULAR,
         });
         CoerceImports(sourceFile, {
           namedImports: [ 'ActivatedRoute' ],

@@ -1,13 +1,15 @@
 import { classify } from '@rxap/schematics-utilities';
-import { CoercePropertyDeclaration } from '@rxap/ts-morph';
+import {
+  CoerceDependencyInjection,
+  CoercePropertyDeclaration,
+  Module,
+} from '@rxap/ts-morph';
 import { Scope } from 'ts-morph';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
 import {
   TsMorphAngularProjectTransformOptions,
   TsMorphAngularProjectTransformRule,
 } from '../ts-morph-transform';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 
 export interface CoerceTableParametersFromRouteRuleOptions extends TsMorphAngularProjectTransformOptions {
   parameterList: string[];
@@ -24,16 +26,12 @@ export function CoerceTableParametersFromRouteRule(options: CoerceTableParameter
     const sourceFile = project.getSourceFileOrThrow(`${ tableName }.component.ts`);
     const classDeclaration = sourceFile.getClassOrThrow(`${ classify(tableName) }Component`);
 
-    const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-    CoerceParameterDeclaration(
-      constructorDeclaration,
-      'route',
-      {
-        type: 'ActivatedRoute',
-        isReadonly: true,
-        scope: Scope.Private,
-      },
-    );
+    CoerceDependencyInjection(sourceFile, {
+      injectionToken: 'ActivatedRoute',
+      parameterName: 'route',
+      scope: Scope.Private,
+      module: Module.ANGULAR,
+    });
     CoerceImports(sourceFile, {
       namedImports: [ 'ActivatedRoute' ],
       moduleSpecifier: '@angular/router',
