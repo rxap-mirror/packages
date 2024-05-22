@@ -27,7 +27,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     ],
     coerce: {
       directory: 'angular',
-      addTailwind: true
+      addTailwind: true,
+      buildable: true,
     },
     indexExport: false,
   });
