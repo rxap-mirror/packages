@@ -72,26 +72,13 @@ const DOCKER = {
   },
 };
 
-export function generateDockerGitlabCiFileContent(
+export function buildDockerMatrix(
   tree: Tree,
   options: DockerGeneratorSchema,
   rootDocker: RootDockerOptions,
-): string {
+) {
 
-  const dotDocker = structuredClone(DOT_DOCKER);
-
-  if (options.tags?.length) {
-    dotDocker.tags = options.tags;
-  }
-
-  const dockerYaml = {
-    '.docker': dotDocker,
-    docker: structuredClone(DOCKER),
-  };
-
-  if (rootDocker.imageName) {
-    dockerYaml.docker.variables.IMAGE_NAME = rootDocker.imageName;
-  }
+  const matrix: Array<Record<string, string>> = [];
 
   for (const [ projectName, project ] of
     Array.from(getProjects(tree).entries()).sort(([ a ], [ b ]) => a.localeCompare(b))) {
@@ -114,18 +101,18 @@ export function generateDockerGitlabCiFileContent(
                     project.sourceRoot ??
                     project.root;
 
-    const matrix: Record<string, string> = {};
+    const matrixItem: Record<string, string> = {};
 
-    dockerYaml.docker.parallel.matrix.push(matrix);
+    matrix.push(matrixItem);
 
     if (projectName === 'workspace' && IsStandaloneWorkspace(tree)) {
-      matrix.PROJECT_NAME = GetWorkspaceName(tree);
+      matrixItem.PROJECT_NAME = GetWorkspaceName(tree);
     } else {
-      matrix.PROJECT_NAME = projectName;
+      matrixItem.PROJECT_NAME = projectName;
     }
 
     if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
-      matrix.IMAGE_NAME = dockerTargetOptions.imageName as string;
+      matrixItem.IMAGE_NAME = dockerTargetOptions.imageName as string;
     }
 
     if (IsNestJsProject(project)) {
@@ -136,26 +123,26 @@ export function generateDockerGitlabCiFileContent(
         tree,
         {},
         project.sourceRoot,
-        matrix.PROJECT_NAME,
+        matrixItem.PROJECT_NAME,
       );
       if (nestApiPrefix) {
-        matrix.PATH_PREFIX = CoercePrefix(nestApiPrefix, '/');
+        matrixItem.PATH_PREFIX = CoercePrefix(nestApiPrefix, '/');
       }
     }
 
     if (Array.isArray(dockerTargetOptions.buildArgList)) {
       const buildArgList = processBuildArgs(
         dockerTargetOptions.buildArgList,
-        matrix.PROJECT_NAME,
+        matrixItem.PROJECT_NAME,
         project.sourceRoot,
-        { PROJECT_NAME: matrix.PROJECT_NAME },
+        { PROJECT_NAME: matrixItem.PROJECT_NAME },
         path => tree.exists(path),
         (path, encoding) => tree.read(path, encoding),
       );
       for (const buildArg of buildArgList.sort()) {
         if (buildArg.includes('=')) {
           const [ env, value ] = buildArg.split('=');
-          matrix[env] = value;
+          matrixItem[env] = value;
         } else {
           console.warn(`Build arg value for '${ buildArg }' is not defined`);
         }
@@ -163,18 +150,46 @@ export function generateDockerGitlabCiFileContent(
     }
 
     if (context) {
-      matrix.DOCKER_CONTEXT = context as string;
+      matrixItem.DOCKER_CONTEXT = context as string;
     }
 
     if (imageSuffix) {
-      matrix.IMAGE_SUFFIX = imageSuffix as string;
+      matrixItem.IMAGE_SUFFIX = imageSuffix as string;
     }
 
     if (dockerfile) {
-      matrix.DOCKERFILE = dockerfile as string;
+      matrixItem.DOCKERFILE = dockerfile as string;
     }
 
   }
+
+
+  return matrix;
+
+}
+
+export function generateDockerGitlabCiFileContent(
+  tree: Tree,
+  options: DockerGeneratorSchema,
+  rootDocker: RootDockerOptions,
+): string {
+
+  const dotDocker = structuredClone(DOT_DOCKER);
+
+  if (options.tags?.length) {
+    dotDocker.tags = options.tags;
+  }
+
+  const dockerYaml = {
+    '.docker': dotDocker,
+    docker: structuredClone(DOCKER),
+  };
+
+  if (rootDocker.imageName) {
+    dockerYaml.docker.variables.IMAGE_NAME = rootDocker.imageName;
+  }
+
+  dockerYaml.docker.parallel.matrix = buildDockerMatrix(tree, options, rootDocker);
 
   return stringify(dockerYaml);
 }

@@ -11,7 +11,6 @@ import {
   ApplicationInitProject,
   ApplicationInitWorkspace,
 } from '@rxap/plugin-application';
-import { GenerateGitlabCi } from '@rxap/plugin-gitlab-ci';
 import {
   CoerceAppGuardProvider,
   CoerceImports,
@@ -904,8 +903,6 @@ export async function initApplicationGenerator(
     }
 
   }
-
-  GenerateGitlabCi(tree, {});
 
   if (!options.skipFormat) {
     await formatFiles(tree);

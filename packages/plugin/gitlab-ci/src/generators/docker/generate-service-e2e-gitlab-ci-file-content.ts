@@ -83,6 +83,54 @@ const SERVICE_E2E = {
   },
 };
 
+export function buildServiceE2eMatrix(
+  tree: Tree,
+  options: DockerGeneratorSchema,
+  rootDocker: RootDockerOptions,
+) {
+
+  const matrix: Array<Record<string, string>> = [];
+
+  for (const [ projectName, project ] of
+    Array.from(getProjects(tree).entries()).sort(([ a ], [ b ]) => a.localeCompare(b))) {
+
+    if (skipProject(tree, options, project, projectName)) {
+      continue;
+    }
+
+    if (!IsServiceProject(project)) {
+      continue;
+    }
+
+    const e2eProjectName = `${projectName}-e2e`;
+    if (!HasProject(tree, e2eProjectName)) {
+      continue;
+    }
+
+    const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
+
+    const imageSuffix = dockerTargetOptions.imageSuffix as string | undefined;
+
+    const matrixItem: Record<string, string> = {};
+
+    matrix.push(matrixItem);
+
+    if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
+      matrixItem.IMAGE_NAME = dockerTargetOptions.imageName as string;
+    }
+
+    matrixItem.TARGET = `${e2eProjectName}:e2e:ci`;
+
+    if (imageSuffix) {
+      matrixItem.IMAGE_SUFFIX = imageSuffix;
+    }
+
+  }
+
+  return matrix;
+
+}
+
 export function generateServiceE2eGitlabCiFileContent(
   tree: Tree,
   options: DockerGeneratorSchema,
@@ -112,41 +160,7 @@ export function generateServiceE2eGitlabCiFileContent(
     serviceE2eYaml['service-e2e'].variables.IMAGE_NAME = rootDocker.imageName;
   }
 
-  for (const [ projectName, project ] of
-    Array.from(getProjects(tree).entries()).sort(([ a ], [ b ]) => a.localeCompare(b))) {
-
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
-    }
-
-    if (!IsServiceProject(project)) {
-      continue;
-    }
-
-    const e2eProjectName = `${projectName}-e2e`;
-    if (!HasProject(tree, e2eProjectName)) {
-      continue;
-    }
-
-    const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
-
-    const imageSuffix = dockerTargetOptions.imageSuffix as string | undefined;
-
-    const matrix: Record<string, string> = {};
-
-    serviceE2eYaml['service-e2e'].parallel.matrix.push(matrix);
-
-    if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
-      matrix.IMAGE_NAME = dockerTargetOptions.imageName as string;
-    }
-
-    matrix.TARGET = `${e2eProjectName}:e2e:ci`;
-
-    if (imageSuffix) {
-      matrix.IMAGE_SUFFIX = imageSuffix;
-    }
-
-  }
+  serviceE2eYaml['service-e2e'].parallel.matrix = buildServiceE2eMatrix(tree, options, rootDocker);
 
   return stringify(serviceE2eYaml);
 }

@@ -72,6 +72,56 @@ const STARTUP = {
   },
 };
 
+export function buildStartupMatrix(
+  tree: Tree,
+  options: DockerGeneratorSchema,
+  rootDocker: RootDockerOptions,
+): Array<Record<string, string>> {
+
+  const matrix: Array<Record<string, string>> = [];
+
+  for (const [ projectName, project ] of
+    Array.from(getProjects(tree).entries()).sort(([ a ], [ b ]) => a.localeCompare(b))) {
+
+    if (skipProject(tree, options, project, projectName)) {
+      continue;
+    }
+
+    if (!IsUserInterfaceProject(project) && !IsServiceProject(project)) {
+      continue;
+    }
+
+    const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
+
+    const imageSuffix = dockerTargetOptions.imageSuffix as string | undefined;
+
+    const matrixItem: Record<string, string> = {};
+
+    matrix.push(matrixItem);
+
+    if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
+      matrixItem.IMAGE_NAME = dockerTargetOptions.imageName as string;
+    }
+
+    if (IsServiceProject(project)) {
+      matrixItem.SERVICE_PORT = '3000';
+      matrixItem.SERVICE_PATH = '/info';
+    }
+
+    if (IsUserInterfaceProject(project)) {
+      matrixItem.SERVICE_PORT = '80';
+    }
+
+    if (imageSuffix) {
+      matrixItem.IMAGE_SUFFIX = imageSuffix;
+    }
+
+  }
+
+  return matrix;
+
+}
+
 export function generateStartupGitlabCiFileContent(
   tree: Tree,
   options: DockerGeneratorSchema,
@@ -101,43 +151,7 @@ export function generateStartupGitlabCiFileContent(
     startupYaml.startup.variables.IMAGE_NAME = rootDocker.imageName;
   }
 
-  for (const [ projectName, project ] of
-    Array.from(getProjects(tree).entries()).sort(([ a ], [ b ]) => a.localeCompare(b))) {
-
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
-    }
-
-    if (!IsUserInterfaceProject(project) && !IsServiceProject(project)) {
-      continue;
-    }
-
-    const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
-
-    const imageSuffix = dockerTargetOptions.imageSuffix as string | undefined;
-
-    const matrix: Record<string, string> = {};
-
-    startupYaml.startup.parallel.matrix.push(matrix);
-
-    if (dockerTargetOptions.imageName && dockerTargetOptions.imageName !== rootDocker.imageName) {
-      matrix.IMAGE_NAME = dockerTargetOptions.imageName as string;
-    }
-
-    if (IsServiceProject(project)) {
-      matrix.SERVICE_PORT = '3000';
-      matrix.SERVICE_PATH = '/info';
-    }
-
-    if (IsUserInterfaceProject(project)) {
-      matrix.SERVICE_PORT = '80';
-    }
-
-    if (imageSuffix) {
-      matrix.IMAGE_SUFFIX = imageSuffix;
-    }
-
-  }
+  startupYaml.startup.parallel.matrix = buildStartupMatrix(tree, options, rootDocker);
 
   return stringify(startupYaml);
 }

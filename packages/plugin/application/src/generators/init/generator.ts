@@ -5,7 +5,6 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { GenerateGitlabCi } from '@rxap/plugin-gitlab-ci';
 import {
   CoerceArrayItems,
   DeleteProperties,
@@ -69,8 +68,6 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
 
   }
-
-  GenerateGitlabCi(tree, {});
 
   if (!options.skipFormat) {
     await formatFiles(tree);

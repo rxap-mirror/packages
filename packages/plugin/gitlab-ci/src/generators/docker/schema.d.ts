@@ -5,4 +5,5 @@ export interface DockerGeneratorSchema {
   gitlab?: boolean;
   tags?: string[];
   skipFormat?: boolean;
+  components: boolean;
 }

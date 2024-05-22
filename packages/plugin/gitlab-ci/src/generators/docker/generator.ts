@@ -2,11 +2,7 @@ import {
   formatFiles,
   Tree,
 } from '@nx/devkit';
-import {
-  CoerceFilesStructure,
-  GenerateSerializedSchematicFile,
-} from '@rxap/workspace-utilities';
-import { join } from 'path';
+import { GenerateSerializedSchematicFile } from '@rxap/workspace-utilities';
 import { GenerateGitlabCi } from './generate-gitlab-ci';
 import { DockerGeneratorSchema } from './schema';
 
@@ -16,12 +12,6 @@ export async function dockerGenerator(
 ) {
 
   console.log('docker gitlab-ci generator:', options);
-
-  CoerceFilesStructure(tree, {
-    srcFolder: join(__dirname, 'files'),
-    target: 'tools/scripts',
-    overwrite: options.overwrite,
-  });
 
   GenerateGitlabCi(tree, options);
 

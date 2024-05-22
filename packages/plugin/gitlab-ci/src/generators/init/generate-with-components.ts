@@ -1,6 +1,9 @@
 import { Tree } from '@nx/devkit';
 import { CoerceFile } from '@rxap/workspace-utilities';
-import { parse } from 'yaml';
+import {
+  parse,
+  stringify,
+} from 'yaml';
 import { CoerceInclude } from './coerce-include';
 import { InitGeneratorSchema } from './schema';
 
@@ -42,5 +45,7 @@ export function generateWithComponents(tree: Tree, options: InitGeneratorSchema)
     ],
     inputs,
   });
+
+  tree.write('.gitlab-ci.yml', stringify(gitlabCi));
 
 }
