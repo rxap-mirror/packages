@@ -9,5 +9,6 @@ export interface InitGeneratorSchema {
   nest?: boolean;
   release?: 'none' | 'release-it' | 'semantic-release';
   helmChart?: string;
-  components?: boolean;
+  components: boolean;
+  parallel: number;
 }

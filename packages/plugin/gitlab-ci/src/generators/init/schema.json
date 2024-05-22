@@ -50,6 +50,11 @@
       "x-prompt": "Should nx workspace DTE be used?",
       "default": false
     },
+    "parallel": {
+      "type": "number",
+      "default": 3,
+      "description": "The number of parallel agents started for the nx workspace run tasks to run in the pipeline"
+    },
     "angular": {
       "type": "boolean",
       "description": "If true, the gitlab ci will be initialized for a workspace with angular projects",

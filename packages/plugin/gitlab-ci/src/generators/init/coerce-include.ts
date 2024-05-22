@@ -1,5 +1,9 @@
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
+  CoerceInputs,
+  IncludeComponentInput,
+} from './coerce-inputs';
+import {
   CoerceRule,
   Rule,
 } from './coerce-rule';
@@ -20,6 +24,7 @@ export function IsLocalInclude(include: Include): include is LocalInclude {
 
 export interface ComponentInclude extends BaseInclude {
   component: string;
+  inputs?: IncludeComponentInput;
 }
 
 export function IsComponentInclude(include: Include): include is ComponentInclude {
@@ -42,5 +47,15 @@ export function CoerceInclude(includeList: Include[], coerceInclude: Include) {
   if (coerceInclude.rules?.length) {
     include.rules ??= [];
     coerceInclude.rules.forEach(rule => CoerceRule(include.rules, rule));
+    if (include.rules.length === 0) {
+      delete include.rules;
+    }
+  }
+  if (IsComponentInclude(coerceInclude) && IsComponentInclude(include) && coerceInclude.inputs) {
+    include.inputs ??= {};
+    CoerceInputs(include.inputs, coerceInclude.inputs);
+    if (Object.keys(include.inputs).length === 0) {
+      delete include.inputs;
+    }
   }
 }
