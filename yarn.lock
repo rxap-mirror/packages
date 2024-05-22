@@ -10770,7 +10770,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-vault@workspace:packages/nest/vault"
   dependencies:
+    node-vault: ^0.10.2
     tslib: ^2.3.0
+  peerDependencies:
+    "@nestjs/common": ^10.0.5
+    "@nestjs/config": ^3.0.0
   languageName: unknown
   linkType: soft
 
@@ -11110,15 +11114,14 @@ __metadata:
   peerDependencies:
     "@nx/angular": ^16.10.0
     "@nx/devkit": ^16.10.0
-    "@rxap/plugin-application": ^16.2.0
-    "@rxap/plugin-gitlab-ci": ^16.2.1
+    "@rxap/plugin-application": ^16.3.0-dev.2
     "@rxap/plugin-library": ^16.1.0
     "@rxap/plugin-localazy": ^16.1.1
-    "@rxap/plugin-utilities": ^16.3.0
+    "@rxap/plugin-utilities": ^16.4.0-dev.0
     "@rxap/ts-morph": ^1.1.0
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/workspace-ts-morph": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     nx: ^16.10.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -11134,7 +11137,6 @@ __metadata:
     yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.10.0
-    "@rxap/plugin-gitlab-ci": ^16.3.0-dev.8
     "@rxap/plugin-utilities": ^16.4.0-dev.0
     "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/workspace-utilities": ^16.3.0-dev.1
@@ -11266,8 +11268,7 @@ __metadata:
     "@nx/js": ^16.10.0
     "@nx/nest": ^16.10.0
     "@rxap/node-utilities": ^1.2.0
-    "@rxap/plugin-application": ^16.3.0-dev.0
-    "@rxap/plugin-gitlab-ci": ^16.3.0-dev.7
+    "@rxap/plugin-application": ^16.3.0-dev.2
     "@rxap/plugin-library": ^16.1.0
     "@rxap/plugin-utilities": ^16.4.0-dev.0
     "@rxap/ts-morph": ^1.1.0

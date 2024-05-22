@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.8...@rxap/plugin-gitlab-ci@16.3.0-dev.9) (2024-05-22)
+
+### Features
+
+- introduce gitlab ci/cd components support ([6916f0b](https://gitlab.com/rxap/packages/commit/6916f0b975b0e6ae2eef8cf2ac5baa82635dc67f))
+- support component includes ([41f3250](https://gitlab.com/rxap/packages/commit/41f3250fc9a560de1b4a5bfbad99457b5982078f))
+- support component includes ([b7d7e6a](https://gitlab.com/rxap/packages/commit/b7d7e6a4760a72f51ddb8924186c54f9b4a270ca))
+
 # [16.3.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@16.3.0-dev.7...@rxap/plugin-gitlab-ci@16.3.0-dev.8) (2024-05-16)
 
 ### Bug Fixes

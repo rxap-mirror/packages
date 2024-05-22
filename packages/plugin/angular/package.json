@@ -1,5 +1,5 @@
 {
-  "version": "16.2.1",
+  "version": "16.3.0-dev.0",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,15 +10,14 @@
   "peerDependencies": {
     "@nx/angular": "^16.10.0",
     "@nx/devkit": "^16.10.0",
-    "@rxap/plugin-application": "^16.2.0",
-    "@rxap/plugin-gitlab-ci": "^16.2.1",
+    "@rxap/plugin-application": "^16.3.0-dev.2",
     "@rxap/plugin-library": "^16.1.0",
     "@rxap/plugin-localazy": "^16.1.1",
-    "@rxap/plugin-utilities": "^16.3.0",
+    "@rxap/plugin-utilities": "^16.4.0-dev.0",
     "@rxap/ts-morph": "^1.1.0",
-    "@rxap/utilities": "^16.1.0",
+    "@rxap/utilities": "^16.2.0-dev.1",
     "@rxap/workspace-ts-morph": "^16.1.0",
-    "@rxap/workspace-utilities": "^16.2.0",
+    "@rxap/workspace-utilities": "^16.3.0-dev.1",
     "nx": "^16.10.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
@@ -55,7 +54,7 @@
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "16.2.0"
+        "version": "16.3.0-dev.2"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -75,7 +74,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.3.0"
+        "version": "16.4.0-dev.0"
       },
       {
         "package": "@rxap/schematics-ts-morph",
@@ -87,7 +86,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0"
+        "version": "16.2.0-dev.1"
       },
       {
         "package": "@rxap/workspace-ts-morph",
@@ -95,7 +94,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.2.0"
+        "version": "16.3.0-dev.1"
       }
     ]
   },

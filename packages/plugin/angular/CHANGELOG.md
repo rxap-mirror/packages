@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.1...@rxap/plugin-angular@16.3.0-dev.0) (2024-05-22)
+
+### Features
+
+- support component includes ([41f3250](https://gitlab.com/rxap/packages/commit/41f3250fc9a560de1b4a5bfbad99457b5982078f))
+
 ## [16.2.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.1-dev.0...@rxap/plugin-angular@16.2.1) (2024-04-18)
 
 **Note:** Version bump only for package @rxap/plugin-angular

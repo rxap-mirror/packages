@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.3.0-dev.0...@rxap/plugin-nestjs@16.3.0-dev.1) (2024-05-22)
+
+### Bug Fixes
+
+- create health indicator file if not exists ([ead1cba](https://gitlab.com/rxap/packages/commit/ead1cbafbda0b5247441819dd19d4834caca3140))
+
+### Features
+
+- support component includes ([41f3250](https://gitlab.com/rxap/packages/commit/41f3250fc9a560de1b4a5bfbad99457b5982078f))
+
 # [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.2.1-dev.2...@rxap/plugin-nestjs@16.3.0-dev.0) (2024-05-16)
 
 ### Bug Fixes
