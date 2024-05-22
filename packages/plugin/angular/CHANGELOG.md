@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.3.0-dev.0...@rxap/plugin-angular@16.3.0-dev.1) (2024-05-22)
+
+### Bug Fixes
+
+- add missing required option ([0f2790a](https://gitlab.com/rxap/packages/commit/0f2790a0b7df065b075eca049869af6fe2317852))
+
 # [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.2.1...@rxap/plugin-angular@16.3.0-dev.0) (2024-05-22)
 
 ### Features
