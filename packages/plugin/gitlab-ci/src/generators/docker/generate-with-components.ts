@@ -22,7 +22,7 @@ export function generateWithComponents(tree: Tree, options: DockerGeneratorSchem
 
   const gitlabCiContent = CoerceFile(tree, '.gitlab-ci.yml', '', options.overwrite);
 
-  const gitlabCi: { include: Include[] } = parse(gitlabCiContent);
+  const gitlabCi: { include: Include[] } = parse(gitlabCiContent) ?? {};
 
   gitlabCi.include ??= [];
 

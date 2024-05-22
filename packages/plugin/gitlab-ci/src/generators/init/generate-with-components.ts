@@ -4,14 +4,17 @@ import {
   parse,
   stringify,
 } from 'yaml';
-import { CoerceInclude } from './coerce-include';
+import {
+  CoerceInclude,
+  Include,
+} from './coerce-include';
 import { InitGeneratorSchema } from './schema';
 
 export function generateWithComponents(tree: Tree, options: InitGeneratorSchema) {
 
   const gitlabCiContent = CoerceFile(tree, '.gitlab-ci.yml', '', options.overwrite);
 
-  const gitlabCi = parse(gitlabCiContent);
+  const gitlabCi: { include: Include[] } = parse(gitlabCiContent) ?? {};
 
   gitlabCi.include ??= [];
 
