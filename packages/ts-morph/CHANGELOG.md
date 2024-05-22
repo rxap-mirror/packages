@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0...@rxap/ts-morph@1.2.0-dev.0) (2024-05-22)
+
+### Features
+
+- **ts-morph:** add parameter existence check in constructor ([c97c18b](https://gitlab.com/rxap/packages/commit/c97c18b165227f12beb9b812d1d57bbefae3e6be))
+
 # [1.1.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.1.0-dev.30...@rxap/ts-morph@1.1.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/ts-morph
