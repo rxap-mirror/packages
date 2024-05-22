@@ -34,6 +34,14 @@ export function CoerceDependencyInjection(
     throw new Error('Could not find class declaration');
   }
 
+  const constructorDeclaration = classDeclaration.getConstructors()[0];
+  if (constructorDeclaration) {
+    if (constructorDeclaration.getParameters().some((parameter) => parameter.getName() === definition.parameterName)) {
+      console.warn(`Parameter ${definition.parameterName} already exists in constructor`);
+      return;
+    }
+  }
+
   const propertyDeclaration = CoercePropertyDeclaration(classDeclaration, definition.parameterName, {
     scope: definition.scope ?? Scope.Public,
     isReadonly: true,
