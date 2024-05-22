@@ -1,0 +1,40 @@
+{
+  "version": "0.0.1",
+  "name": "@rxap/nest-vault",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "node-vault": "^0.10.2",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.5",
+    "@nestjs/config": "^3.0.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/vault",
+  "keywords": [
+    "nest",
+    "nest-vault",
+    "packages",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/vault"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/vault"
+  },
+  "type": "commonjs",
+  "typings": "./src/index.d.ts"
+}

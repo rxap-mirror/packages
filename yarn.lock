@@ -10766,6 +10766,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/nest-vault@workspace:packages/nest/vault":
+  version: 0.0.0-use.local
+  resolution: "@rxap/nest-vault@workspace:packages/nest/vault"
+  dependencies:
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/nest-web3-storage@workspace:packages/nest/web3-storage":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-web3-storage@workspace:packages/nest/web3-storage"
@@ -16488,6 +16496,13 @@ __metadata:
   version: 3.7.1
   resolution: "bluebird@npm:3.7.1"
   checksum: 58c295399e109925149977ebcb40e42fd109d3e458899e71441bc7e5e0867bbd796fdd20278b425fa29f13377fe335fbfc2a6e68e5ca1da03b1c3afdc439d097
+  languageName: node
+  linkType: hard
+
+"bluebird@npm:^2.6.2":
+  version: 2.11.0
+  resolution: "bluebird@npm:2.11.0"
+  checksum: f1c6cbec64100bca65c88e5de0d9ee9bbb435f7c74c68a16a9466a8b40daf64346805c2fe04af821564ce6d4199085e7855d2e272282a065eb723344815cc354
   languageName: node
   linkType: hard
 
@@ -27751,6 +27766,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mustache@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "mustache@npm:4.2.0"
+  bin:
+    mustache: bin/mustache
+  checksum: 928fcb63e3aa44a562bfe9b59ba202cccbe40a46da50be6f0dd831b495be1dd7e38ca4657f0ecab2c1a89dc7bccba0885eab7ee7c1b215830da765758c7e0506
+  languageName: node
+  linkType: hard
+
 "mute-stream@npm:0.0.8, mute-stream@npm:~0.0.4":
   version: 0.0.8
   resolution: "mute-stream@npm:0.0.8"
@@ -28164,6 +28188,18 @@ __metadata:
   version: 2.0.14
   resolution: "node-releases@npm:2.0.14"
   checksum: 59443a2f77acac854c42d321bf1b43dea0aef55cd544c6a686e9816a697300458d4e82239e2d794ea05f7bbbc8a94500332e2d3ac3f11f52e4b16cbe638b3c41
+  languageName: node
+  linkType: hard
+
+"node-vault@npm:^0.10.2":
+  version: 0.10.2
+  resolution: "node-vault@npm:0.10.2"
+  dependencies:
+    debug: ^4.3.4
+    mustache: ^4.2.0
+    postman-request: ^2.88.1-postman.33
+    tv4: ^1.3.0
+  checksum: 1e2a172a54b6ac5b7f98f5118475b1f9ff208344fa4e5b05b0d7cfa2891a4f9095ff18f647d47f8182b7e94bfa5c7933f09a7697666382837a2dd340e8b87aa4
   languageName: node
   linkType: hard
 
@@ -30729,6 +30765,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postman-request@npm:^2.88.1-postman.33":
+  version: 2.88.1-postman.8-beta.1
+  resolution: "postman-request@npm:2.88.1-postman.8-beta.1"
+  dependencies:
+    aws-sign2: ~0.7.0
+    aws4: ^1.8.0
+    caseless: ~0.12.0
+    combined-stream: ~1.0.6
+    extend: ~3.0.2
+    forever-agent: ~0.6.1
+    form-data: ~2.3.2
+    har-validator: ~5.1.3
+    http-signature: ~1.2.0
+    is-typedarray: ~1.0.0
+    isstream: ~0.1.2
+    json-stringify-safe: ~5.0.1
+    mime-types: ~2.1.19
+    oauth-sign: ~0.9.0
+    performance-now: ^2.1.0
+    postman-url-encoder: 1.0.1
+    qs: ~6.5.2
+    safe-buffer: ^5.1.2
+    stream-length: ^1.0.2
+    tough-cookie: ~2.5.0
+    tunnel-agent: ^0.6.0
+    uuid: ^3.3.2
+  checksum: 040580bf9e23eaecdde42761ca4e54804083d263016bdc40d09c34d4ee3926a82f59cb6a72ee10861c2b76e32ea9ab3d8d90e6e960e8c42f49372d9b72826903
+  languageName: node
+  linkType: hard
+
+"postman-url-encoder@npm:1.0.1":
+  version: 1.0.1
+  resolution: "postman-url-encoder@npm:1.0.1"
+  checksum: d076227d87fdb5528078a211d5e88b6ba8f2e59db8f2578b6ae1bb543be868d9beee306b76d03f7c4682f66b4313c0f80d6d531c26374d017ebbe7d2797227a4
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -32347,6 +32420,7 @@ __metadata:
     ng-packagr: 16.2.3
     ngx-logger: 5.0.12
     ngx-markdown: 16.0.0
+    node-vault: ^0.10.2
     nx: 16.10.0
     nx-cloud: 18.0.0
     openai: 3.3.0
@@ -33468,6 +33542,15 @@ __metadata:
   dependencies:
     stubs: ^3.0.0
   checksum: 969ce82e34bfbef5734629cc06f9d7f3705a9ceb8fcd6a526332f9159f1f8bbfdb1a453f3ced0b728083454f7706adbbe8428bceb788a0287ca48ba2642dc3fc
+  languageName: node
+  linkType: hard
+
+"stream-length@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "stream-length@npm:1.0.2"
+  dependencies:
+    bluebird: ^2.6.2
+  checksum: 604334be8f534dfc0f245edaf0347311b36b71897ff083485308ccf449f6563b4e15c6f7b3f9e4a4c5f6e633d2d29491afac4baf50084a351f73e3a8a5883bef
   languageName: node
   linkType: hard
 
@@ -34714,6 +34797,13 @@ __metadata:
   dependencies:
     safe-buffer: ^5.0.1
   checksum: 05f6510358f8afc62a057b8b692f05d70c1782b70db86d6a1e0d5e28a32389e52fa6e7707b6c5ecccacc031462e4bc35af85ecfe4bbc341767917b7cf6965711
+  languageName: node
+  linkType: hard
+
+"tv4@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "tv4@npm:1.3.0"
+  checksum: 075096cf3bc2db5727650e16717a343954625c5fde6b2bb5553c86a9a5ca7b9fd287c0f5ab7ac03094f39e982fe9288dc715c7223a90e1684fd2263460a74bbd
   languageName: node
   linkType: hard
 

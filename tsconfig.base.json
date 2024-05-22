@@ -132,6 +132,7 @@
       ],
       "@rxap/nest-testing": ["packages/nest/testing/src/index.ts"],
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
+      "@rxap/nest-vault": ["packages/nest/vault/src/index.ts"],
       "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
       "@rxap/ngx-changelog": ["packages/angular/changelog/src/index.ts"],
       "@rxap/ngx-error": ["packages/angular/error/src/index.ts"],
