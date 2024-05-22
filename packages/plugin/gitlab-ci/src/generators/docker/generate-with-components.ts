@@ -15,6 +15,8 @@ import {
   CoerceInputs,
   IncludeComponentInput,
 } from '../init/coerce-inputs';
+import { buildDockerMatrix } from './generate-docker-gitlab-ci-file-content';
+import { buildServiceE2eMatrix } from './generate-service-e2e-gitlab-ci-file-content';
 import { buildStartupMatrix } from './generate-startup-gitlab-ci-file-content';
 import { DockerGeneratorSchema } from './schema';
 
@@ -34,9 +36,12 @@ export function generateWithComponents(tree: Tree, options: DockerGeneratorSchem
 
   // the project uses the nx-workspace component
   const inputs: IncludeComponentInput = {
-    startup_matrix: buildStartupMatrix(tree, options, rootDocker)
+    startup_matrix: buildStartupMatrix(tree, options, rootDocker),
+    docker_matrix: buildDockerMatrix(tree, options, rootDocker),
+    service_e2e_matrix: buildServiceE2eMatrix(tree, options, rootDocker),
   };
 
+  include.inputs ??= {};
   CoerceInputs(include.inputs, inputs);
 
   tree.write('.gitlab-ci.yml', stringify(gitlabCi));
