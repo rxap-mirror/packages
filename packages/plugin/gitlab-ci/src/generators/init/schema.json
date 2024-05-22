@@ -13,6 +13,12 @@
         "type": "string"
       }
     },
+    "components": {
+      "type": "boolean",
+      "x-prompt": "Should gitlab ci/cd components be used",
+      "default": true,
+      "description": "If true, the gitlab ci will be initialized with components"
+    },
     "release": {
       "type": "string",
       "enum": ["none", "release-it", "schematic-release"],
