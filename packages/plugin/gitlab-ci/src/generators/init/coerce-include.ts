@@ -4,18 +4,43 @@ import {
   Rule,
 } from './coerce-rule';
 
-export interface Include {
-  local: string;
+export type Include = LocalInclude | ComponentInclude;
+
+export interface BaseInclude {
   rules?: Rule[];
 }
 
-export function CoerceInclude(includeList: Include[], local: string, rules?: Rule[]) {
-  CoerceArrayItems(includeList, [
-    { local: local }
-  ], (a, b) => a.local === b.local);
-  const include = includeList.find((include: Include) => include.local === local);
-  if (rules?.length) {
+export interface LocalInclude extends BaseInclude {
+  local: string;
+}
+
+export function IsLocalInclude(include: Include): include is LocalInclude {
+  return (include as LocalInclude).local !== undefined;
+}
+
+export interface ComponentInclude extends BaseInclude {
+  component: string;
+}
+
+export function IsComponentInclude(include: Include): include is ComponentInclude {
+  return (include as ComponentInclude).component !== undefined;
+}
+
+function compareInclude(a: Include, b: Include) {
+  if (IsLocalInclude(a) && IsLocalInclude(b)) {
+    return a.local === b.local;
+  }
+  if (IsComponentInclude(a) && IsComponentInclude(b)) {
+    return a.component === b.component;
+  }
+  return false;
+}
+
+export function CoerceInclude(includeList: Include[], coerceInclude: Include) {
+  CoerceArrayItems(includeList, [coerceInclude], compareInclude);
+  const include = includeList.find((include: Include) => compareInclude(include, coerceInclude));
+  if (coerceInclude.rules?.length) {
     include.rules ??= [];
-    rules.forEach(rule => CoerceRule(include.rules, rule));
+    coerceInclude.rules.forEach(rule => CoerceRule(include.rules, rule));
   }
 }

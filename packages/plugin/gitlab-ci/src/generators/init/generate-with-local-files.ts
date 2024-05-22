@@ -98,7 +98,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
   buildYaml.include ??= [];
   let buildYamlChanged = false;
 
-  CoerceInclude(gitlabCi.include, '.gitlab/ci/utilities/base.yaml');
+  CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/utilities/base.yaml' });
 
   if (options.onlyPackages) {
     buildYamlChanged = true;
@@ -106,12 +106,12 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
   }
 
   if (options.helmChart) {
-    CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/update-helm-chart-version.yaml');
+    CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/pipelines/update-helm-chart-version.yaml' });
   }
 
   if (options.angular) {
-    CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/angular.yaml');
-    CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/build.yaml', [
+    CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/pipelines/angular.yaml' });
+    CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/pipelines/build.yaml', rules: [
       {
         if: '$DEPLOYMENT_TRIGGER == "true"',
         when: RuleWhen.NEVER
@@ -136,14 +136,14 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
         if: '$CI_COMMIT_MESSAGE =~ /\\[(image)\\]/',
         when: RuleWhen.NEVER
       }
-    ]);
+    ]});
   }
 
   if (options.release === 'release-it') {
-    CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/release-it.yaml');
-    CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/build.yaml', [
+    CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/pipelines/release-it.yaml' });
+    CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/pipelines/build.yaml', rules: [
       { if: '$RELEASE_IT == \'true\'', when: RuleWhen.NEVER }
-    ]);
+    ]});
   }
 
   if (options.release === 'semantic-release') {
@@ -159,7 +159,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
           when: RuleWhen.NEVER
         }
       ]);
-      CoerceInclude(buildYaml.include, '.gitlab/ci/jobs/setup.yaml', [
+      CoerceInclude(buildYaml.include, { local: '.gitlab/ci/jobs/setup.yaml', rules: [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
           when: RuleWhen.NEVER
@@ -167,42 +167,42 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
         {
           when: RuleWhen.ALWAYS
         }
-      ]);
-      CoerceInclude(buildYaml.include, '.gitlab/ci/jobs/pages.yaml', [
+      ]});
+      CoerceInclude(buildYaml.include, { local: '.gitlab/ci/jobs/pages.yaml', rules: [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
           when: RuleWhen.NEVER
         }
-      ]);
-      CoerceInclude(buildYaml.include, '.gitlab/ci/jobs/coverage-report.yaml', [
+      ]});
+      CoerceInclude(buildYaml.include, { local: '.gitlab/ci/jobs/coverage-report.yaml', rules: [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
           when: RuleWhen.NEVER
         }
-      ]);
-      CoerceInclude(buildYaml.include, '.gitlab/ci/review.yaml', [
+      ]});
+      CoerceInclude(buildYaml.include, { local: '.gitlab/ci/review.yaml', rules: [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
           when: RuleWhen.NEVER
         }
-      ]);
-      CoerceInclude(buildYaml.include, '.gitlab/ci/branch.yaml', [
+      ]});
+      CoerceInclude(buildYaml.include, { local: '.gitlab/ci/branch.yaml', rules: [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/',
           when: RuleWhen.NEVER
         }
-      ]);
-      CoerceInclude(buildYaml.include, '.gitlab/ci/channel.yaml', [
+      ]});
+      CoerceInclude(buildYaml.include, { local: '.gitlab/ci/channel.yaml', rules: [
         {
           if: '$CI_COMMIT_BRANCH =~ /^(release|release-candidate|preview|[0-9]+\\.[0-9]+\\.x|[0-9]+\\.x)$/'
         }
-      ]);
+      ]});
     }
   }
 
-  CoerceInclude(gitlabCi.include, '.gitlab/ci/pipelines/build.yaml', [
+  CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/pipelines/build.yaml', rules: [
     { if: '$CI_PIPELINE_SOURCE =~ /^(push|web|merge_request_event)$/' }
-  ]);
+  ]});
 
   if (Object.keys(gitlabCi.variables).length === 0) {
     delete gitlabCi.variables;
