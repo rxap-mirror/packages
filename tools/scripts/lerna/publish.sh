@@ -108,6 +108,8 @@ if [[ -z "$GL_TOKEN" ]]; then
   exit 1
 fi
 
+set -e
+
 if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
 
   if [[ -z "$LERNA_PRE_ID" ]]; then

@@ -62,7 +62,7 @@ done
 
 project_list=${cached_changed_projects//,/ }
 for project in $project_list; do
-  project_root=$(nx show project "$project" | jq '.root')
+  project_root=$(nx show project "$project" | jq -r '.root')
   file="dist/$project_root/package.json"
   gitHead=$(jq -r '.gitHead // "invalid"' "$file")
   if [ "$gitHead" == "invalid" ]; then
