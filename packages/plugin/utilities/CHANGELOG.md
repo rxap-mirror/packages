@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.4.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.4.0-dev.0...@rxap/plugin-utilities@16.4.0-dev.1) (2024-05-27)
+
+### Bug Fixes
+
+- **plugin-utilities:** change cache variables to nullable in project-package-name-mapping.ts ([5b1d168](https://gitlab.com/rxap/packages/commit/5b1d16837debeb7ba26eaa0d7a5533c05c6e3abd))
+
 # [16.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.3.0...@rxap/plugin-utilities@16.4.0-dev.0) (2024-05-04)
 
 ### Features

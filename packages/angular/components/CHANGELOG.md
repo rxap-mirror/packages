@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.2-dev.0...@rxap/components@16.0.2-dev.1) (2024-05-27)
+
+**Note:** Version bump only for package @rxap/components
+
 ## [16.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.1...@rxap/components@16.0.2-dev.0) (2024-04-30)
 
 ### Bug Fixes

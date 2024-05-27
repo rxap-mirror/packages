@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.1...@rxap/generator-utilities@1.1.2-dev.0) (2024-05-27)
+
+**Note:** Version bump only for package @rxap/generator-utilities
+
 ## [1.1.1](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.1-dev.2...@rxap/generator-utilities@1.1.1) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/generator-utilities

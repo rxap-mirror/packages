@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1",
+  "version": "16.0.2-dev.0",
   "name": "@rxap/table-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -12,8 +12,8 @@
     "@angular/core": "^16.2.12",
     "@angular/forms": "^16.2.12",
     "@angular/material": "^16.2.14",
-    "@rxap/data-source": "^16.2.0-dev.0",
-    "@rxap/material-table-system": "^16.2.0-dev.0",
+    "@rxap/data-source": "^16.2.0-dev.1",
+    "@rxap/material-table-system": "^16.2.0-dev.1",
     "@rxap/utilities": "^16.2.0-dev.1",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
@@ -68,43 +68,43 @@
       },
       {
         "package": "@rxap/components",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2-dev.1"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.2.0-dev.0"
+        "version": "16.2.0-dev.1"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.1"
+        "version": "1.1.2-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.1.0"
+        "version": "16.1.1-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.2.0-dev.0"
+        "version": "16.2.0-dev.1"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.2.0-dev.0"
+        "version": "16.2.0-dev.1"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "16.1.1"
+        "version": "16.1.2-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -116,19 +116,19 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.0-dev.0"
+        "version": "16.4.0-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.2"
+        "version": "1.0.3-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.1"
+        "version": "1.1.2-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -140,11 +140,11 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0-dev.1"
+        "version": "16.3.0-dev.2"
       }
     ]
   },

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.2-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.2-dev.5...@rxap/tree@16.0.2-dev.6) (2024-05-27)
+
+**Note:** Version bump only for package @rxap/tree
+
 ## [16.0.2-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.2-dev.4...@rxap/tree@16.0.2-dev.5) (2024-05-02)
 
 ### Bug Fixes

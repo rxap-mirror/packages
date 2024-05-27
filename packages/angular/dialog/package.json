@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1",
+  "version": "16.0.2-dev.0",
   "name": "@rxap/dialog",
   "description": "A collection of angular material dialog components",
   "license": "GPL-3.0-or-later",
@@ -11,7 +11,7 @@
     "@angular/common": "^16.2.12",
     "@angular/core": "^16.2.12",
     "@angular/material": "^16.2.14",
-    "@rxap/pipes": "^16.0.1",
+    "@rxap/pipes": "^16.0.2-dev.0",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -57,11 +57,11 @@
       },
       {
         "package": "@rxap/pipes",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.0-dev.0"
+        "version": "16.4.0-dev.1"
       },
       {
         "package": "@rxap/utilities",
@@ -69,7 +69,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0-dev.1"
+        "version": "16.3.0-dev.2"
       }
     ]
   },

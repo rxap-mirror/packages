@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1",
+  "version": "16.0.2-dev.0",
   "name": "@rxap/open-api",
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "license": "GPL-3.0-or-later",
@@ -11,12 +11,12 @@
   "peerDependencies": {
     "@angular/common": "^16.2.12",
     "@angular/core": "^16.2.12",
-    "@rxap/config": "^16.0.1",
-    "@rxap/data-source": "^16.2.0-dev.0",
-    "@rxap/environment": "^16.1.0",
-    "@rxap/mixin": "^16.0.1",
-    "@rxap/remote-method": "^16.0.1",
-    "@rxap/rxjs": "^1.1.1",
+    "@rxap/config": "^16.0.2-dev.0",
+    "@rxap/data-source": "^16.2.0-dev.1",
+    "@rxap/environment": "^16.1.1-dev.0",
+    "@rxap/mixin": "^16.0.2-dev.0",
+    "@rxap/remote-method": "^16.0.2-dev.0",
+    "@rxap/rxjs": "^1.1.2-dev.0",
     "@rxap/utilities": "^16.2.0-dev.1",
     "rxjs": "^7.8.1"
   },
@@ -50,27 +50,27 @@
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.2.0-dev.0"
+        "version": "16.2.0-dev.1"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.1"
+        "version": "1.1.2-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.1.0"
+        "version": "16.1.1-dev.0"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -82,19 +82,19 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.0-dev.0"
+        "version": "16.4.0-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.2"
+        "version": "1.0.3-dev.0"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.1"
+        "version": "16.0.2-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.1"
+        "version": "1.1.2-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -102,7 +102,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0-dev.1"
+        "version": "16.3.0-dev.2"
       }
     ]
   },

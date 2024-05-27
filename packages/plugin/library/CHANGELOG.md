@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0...@rxap/plugin-library@16.2.0-dev.0) (2024-05-27)
+
+### Features
+
+- **plugin-library:** enhance update-package-group executor functionality ([38f76c6](https://gitlab.com/rxap/packages/commit/38f76c6e3c628711a7617484925d024a445b840d))
+
 # [16.1.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0-dev.12...@rxap/plugin-library@16.1.0) (2024-04-17)
 
 **Note:** Version bump only for package @rxap/plugin-library
