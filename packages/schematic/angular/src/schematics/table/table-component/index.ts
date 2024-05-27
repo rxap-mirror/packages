@@ -9,13 +9,15 @@ import {
   buildOperationId,
   CoerceComponentRule,
   CoerceGetPageOperation,
-  CoerceImports,
   CoerceMethodClass,
   OperationIdToClassImportPath,
   OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
 import { AddPackageJsonDependencyRule } from '@rxap/schematics-utilities';
-import { TypeImportToImportStructure } from '@rxap/ts-morph';
+import {
+  CoerceImports,
+  TypeImportToImportStructure,
+} from '@rxap/ts-morph';
 import {
   classify,
   Normalized,
