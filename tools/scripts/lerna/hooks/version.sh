@@ -46,6 +46,9 @@ fi
 if [[ "$PUBLISH_MODE" == "auto" ]]; then
 
   echo -e "${BLUE}Run the update-dependencies and update-package-group targets${NC}"
+
+  yarn nx reset
+
   yarn nx run-many \
     --projects="${changed_projects}" \
     --parallel 8 \

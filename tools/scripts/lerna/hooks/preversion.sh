@@ -50,6 +50,9 @@ fi
 if [[ "$PUBLISH_MODE" == "auto" ]]; then
 
   echo -e "${BLUE}Run the fix-dependencies target${NC}"
+
+  yarn nx reset
+
   yarn nx run-many \
     --projects="${changed_projects}" \
     --parallel 8 \
@@ -65,6 +68,9 @@ else
 fi
 
 echo -e "${BLUE}Run build, test and lint targets${NC}"
+
+yarn nx reset
+
 yarn nx run-many \
   --projects="${changed_projects}" \
   --target="build,test,lint"

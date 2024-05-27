@@ -32,6 +32,8 @@ else
 
   cat "${BASE_DIR}/packages/rxap/package.json" > "${BASE_DIR}/dist/rxap-package.json"
 
+  yarn nx reset
+
   yarn nx run-many \
     --target="build" \
     --configuration="production" \
