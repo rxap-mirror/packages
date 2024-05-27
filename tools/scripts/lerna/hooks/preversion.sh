@@ -18,6 +18,12 @@ project_list=${changed_projects//,/ }
 
 echo "changed projects:"
 
+# check if there are no changed projects
+if [[ -z "$changed_projects" ]]; then
+  echo "No changed projects found"
+  exit 1
+fi
+
 # Print each project on a new line with a dash in front
 for project in $project_list; do
   echo "- $project"

@@ -17,6 +17,12 @@ cd "$BASE_DIR" || exit 1
 source "${BASE_DIR}/tools/scripts/lerna/get-changed-nx-projects.sh"
 changed_projects=$(getChangedNxProjects)
 
+# check if there are no changed projects
+if [[ -z "$changed_projects" ]]; then
+  echo "No changed projects found"
+  exit 1
+fi
+
 if [[ ! -f "${BASE_DIR}/dist/changed-projects.txt" ]]; then
   echo "The list of changed projects has not been cached. Ensure the perversion hook has been run."
   exit 1
