@@ -4,8 +4,8 @@ import {
   readFileSync,
 } from 'fs';
 
-const PACKAGE_NAME_TO_PROJECT_NAME_CACHE: Record<string, string> = {};
-const PROJECT_NAME_TO_PACKAGE_NAME_CACHE: Record<string, string> = {};
+let PACKAGE_NAME_TO_PROJECT_NAME_CACHE: Record<string, string> | null = null;
+let PROJECT_NAME_TO_PACKAGE_NAME_CACHE: Record<string, string> | null = null;
 
 export function LoadProjectToPackageMapping(context: ExecutorContext) {
 
@@ -16,6 +16,8 @@ export function LoadProjectToPackageMapping(context: ExecutorContext) {
   }
 
   const projectNames = Object.keys(projectGraph.nodes);
+  PACKAGE_NAME_TO_PROJECT_NAME_CACHE = {};
+  PROJECT_NAME_TO_PACKAGE_NAME_CACHE = {};
   for (const projectName of projectNames) {
     const project = projectGraph.nodes[projectName];
     if (project.type !== 'lib') {
