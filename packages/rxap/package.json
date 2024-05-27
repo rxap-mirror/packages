@@ -1,5 +1,5 @@
 {
-  "version": "16.0.2-dev.3",
+  "version": "16.0.2",
   "name": "rxap",
   "license": "MIT",
   "peerDependencies": {
@@ -474,7 +474,7 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.3.0-dev.0"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -518,7 +518,7 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "16.3.2-dev.4"
+        "version": "16.3.2"
       },
       {
         "package": "@rxap/schematic-composer",
