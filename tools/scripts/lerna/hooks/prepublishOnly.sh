@@ -57,15 +57,22 @@ do
         hasError=true
         echo "publishConfig.access is not set or not equal to public in file: $file" >> dist/publishConfigErrors.txt
     fi
-    gitHead=$(jq -r '.gitHead // "invalid"' $file)
-    if [ "$gitHead" == "invalid" ]; then
-        hasError=true
-        echo "gitHead is not set in file: $file" >> dist/gitHeadErrors.txt
-    fi
-    if [ "$gitHead" != "$current_git_head" ]; then
-        hasError=true
-        echo "gitHead is not equal to the current git head in file: $file" >> dist/gitHeadErrors.txt
-    fi
+
+done
+
+project_list=${cached_changed_projects//,/ }
+for project in $project_list; do
+  project_root=$(nx show project "$project" | jq '.root')
+  file="dist/$project_root/package.json"
+  gitHead=$(jq -r '.gitHead // "invalid"' "$file")
+  if [ "$gitHead" == "invalid" ]; then
+    hasError=true
+    echo "gitHead is not set in file: $file" >> dist/gitHeadErrors.txt
+  fi
+  if [ "$gitHead" != "$current_git_head" ]; then
+    hasError=true
+    echo "gitHead is not equal to the current git head in file: $file" >> dist/gitHeadErrors.txt
+  fi
 done
 
 if [ "$hasError" = true ] ; then
