@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.2.0-dev.0...@rxap/plugin-library@16.2.0-dev.1) (2024-05-27)
+
+### Bug Fixes
+
+- skip version check in migration branches ([7a0047f](https://gitlab.com/rxap/packages/commit/7a0047f627461179102e19b1ef2c53fa2eb6c8a6))
+
 # [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.1.0...@rxap/plugin-library@16.2.0-dev.0) (2024-05-27)
 
 ### Features
