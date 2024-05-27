@@ -19,6 +19,13 @@ else
   echo -e "${GREEN}Local branch is up-to-date with remote branch.${NC}"
 fi
 
+if git diff --quiet && git diff --cached --quiet; then
+  echo "No changes detected."
+else
+  echo "Changes detected."
+  exit 1
+fi
+
 if [[ -f "./dist/publish-mode.txt"  ]]; then
   rm ./dist/publish-mode.txt || true
 fi
@@ -136,33 +143,33 @@ if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
 
 fi
 
-#if [[ "$PUBLISH_MODE" == "auto" ]]; then
-#  bash "${BASE_DIR}/tools/scripts/lerna/update-rxap-package-group.sh"
-#
-#  if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
-#
-#    echo "Executing lerna publish for pre-release..."
-#
-#    yarn lerna publish \
-#    --create-release gitlab \
-#    --conventional-prerelease \
-#    --dist-tag "$LERNA_DIST_TAG" \
-#    --registry "$PUBLISH_REGISTRY" \
-#    --preid "$LERNA_PRE_ID" \
-#    --no-push
-#
-#  fi
-#
-#  if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
-#
-#    echo "Executing lerna publish for release..."
-#
-#    yarn lerna publish \
-#    --create-release gitlab \
-#    --conventional-graduate \
-#    --registry "$PUBLISH_REGISTRY" \
-#    --dist-tag "$LERNA_DIST_TAG"
-#
-#  fi
-#
-#fi
+if [[ "$PUBLISH_MODE" == "auto" ]]; then
+  bash "${BASE_DIR}/tools/scripts/lerna/update-rxap-package-group.sh"
+
+  if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
+
+    echo "Executing lerna publish for pre-release..."
+
+    yarn lerna publish \
+    --create-release gitlab \
+    --conventional-prerelease \
+    --dist-tag "$LERNA_DIST_TAG" \
+    --registry "$PUBLISH_REGISTRY" \
+    --preid "$LERNA_PRE_ID" \
+    --no-push
+
+  fi
+
+  if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
+
+    echo "Executing lerna publish for release..."
+
+    yarn lerna publish \
+    --create-release gitlab \
+    --conventional-graduate \
+    --registry "$PUBLISH_REGISTRY" \
+    --dist-tag "$LERNA_DIST_TAG"
+
+  fi
+
+fi
