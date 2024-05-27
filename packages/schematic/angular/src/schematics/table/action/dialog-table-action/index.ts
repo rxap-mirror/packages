@@ -8,9 +8,9 @@ import {
   CoerceDialogTableActionComponentRule,
   CoerceDialogTableActionRule,
   CoerceDtoClass,
-  CoerceImports,
   CoerceOperation,
 } from '@rxap/schematics-ts-morph';
+import { CoerceImports } from '@rxap/ts-morph';
 import {
   joinWithDash,
   Normalized,
