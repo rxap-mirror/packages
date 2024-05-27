@@ -1,5 +1,5 @@
 {
-  "version": "16.0.2-dev.0",
+  "version": "16.0.2",
   "name": "@rxap/ngx-material-authentication",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -12,13 +12,13 @@
     "@angular/forms": "^16.2.12",
     "@angular/material": "^16.2.14",
     "@angular/router": "^16.2.12",
-    "@rxap/authentication": "^16.0.2-dev.0",
-    "@rxap/config": "^16.0.2-dev.0",
-    "@rxap/forms": "^16.0.2-dev.0",
-    "@rxap/material-form-system": "^16.0.2-dev.0",
+    "@rxap/authentication": "^16.0.2",
+    "@rxap/config": "^16.0.2",
+    "@rxap/forms": "^16.0.2",
+    "@rxap/material-form-system": "^16.0.2",
     "@rxap/pattern": "^1.1.1",
-    "@rxap/rxjs": "^1.1.2-dev.0",
-    "@rxap/utilities": "^16.2.0-dev.1",
+    "@rxap/rxjs": "^1.1.2",
+    "@rxap/utilities": "^16.2.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -66,47 +66,47 @@
       },
       {
         "package": "@rxap/authentication",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.2-dev.0"
+        "version": "1.1.2"
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/form-system",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/node-utilities",
@@ -114,7 +114,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/pattern",
@@ -122,27 +122,27 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.0-dev.1"
+        "version": "16.4.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.3-dev.0"
+        "version": "1.0.3"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.2-dev.0"
+        "version": "1.1.2"
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/validator",
@@ -150,7 +150,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0-dev.2"
+        "version": "16.3.0"
       }
     ]
   },

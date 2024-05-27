@@ -1,13 +1,13 @@
 {
-  "version": "16.1.1-dev.0",
+  "version": "16.1.1",
   "name": "@rxap/workspace-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/ts-morph": "^1.2.0-dev.0",
-    "@rxap/workspace-utilities": "^16.3.0-dev.2",
+    "@rxap/ts-morph": "^1.2.0",
+    "@rxap/workspace-utilities": "^16.3.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
@@ -36,15 +36,15 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.2.0-dev.0"
+        "version": "1.2.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0-dev.2"
+        "version": "16.3.0"
       }
     ]
   },

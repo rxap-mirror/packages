@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://gitlab.com/rxap/packages/compare/@rxap/browser-utilities@1.1.0-dev.0...@rxap/browser-utilities@1.1.0) (2024-05-27)
+
+**Note:** Version bump only for package @rxap/browser-utilities
+
 # [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/browser-utilities@1.0.2...@rxap/browser-utilities@1.1.0-dev.0) (2024-04-28)
 
 ### Features

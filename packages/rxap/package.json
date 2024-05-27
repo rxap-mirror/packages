@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.0",
+  "version": "16.0.1",
   "name": "rxap",
   "license": "MIT",
   "peerDependencies": {
@@ -18,11 +18,11 @@
     "packageGroup": [
       {
         "package": "@rxap/authentication",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/authorization",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/browser-tailwind",
@@ -30,119 +30,119 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.0-dev.0"
+        "version": "1.1.0"
       },
       {
         "package": "@rxap/components",
-        "version": "16.0.2-dev.1"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/contenteditable",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/data-grid",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.2-dev.0"
+        "version": "1.1.2"
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/dialog",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/firebase",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/form-system",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/form-window-system",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.3-dev.0"
+        "version": "1.0.3"
       },
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.2-dev.0"
+        "version": "1.1.2"
       },
       {
         "package": "@rxap/handlebars",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/icon",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/keycloak",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/layout",
-        "version": "16.0.2-dev.2"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/life-cycle",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/material-table-window-system",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/nest-dto",
-        "version": "10.2.1-dev.0"
+        "version": "10.2.1"
       },
       {
         "package": "@rxap/nest-firebase",
@@ -162,7 +162,7 @@
       },
       {
         "package": "@rxap/nest-open-api",
-        "version": "10.2.1-dev.0"
+        "version": "10.2.1"
       },
       {
         "package": "@rxap/nest-sentry",
@@ -170,7 +170,7 @@
       },
       {
         "package": "@rxap/nest-server",
-        "version": "10.3.0-dev.0"
+        "version": "10.3.0"
       },
       {
         "package": "@rxap/nest-socket-io-client",
@@ -186,11 +186,11 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.2.1-dev.0"
+        "version": "10.2.1"
       },
       {
         "package": "@rxap/nest-vault",
-        "version": "0.0.2-dev.0"
+        "version": "0.0.2"
       },
       {
         "package": "@rxap/nest-web3-storage",
@@ -198,59 +198,59 @@
       },
       {
         "package": "@rxap/ngx-bootstrap",
-        "version": "16.2.1-dev.0"
+        "version": "16.2.1"
       },
       {
         "package": "@rxap/ngx-changelog",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/ngx-error",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/ngx-localize",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/ngx-material-authentication",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/ngx-material-localize",
-        "version": "16.0.3-dev.0"
+        "version": "16.0.3"
       },
       {
         "package": "@rxap/ngx-material-table-select",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "16.0.3-dev.0"
+        "version": "16.0.3"
       },
       {
         "package": "@rxap/ngx-sentry",
-        "version": "16.0.3-dev.0"
+        "version": "16.0.3"
       },
       {
         "package": "@rxap/ngx-status-check",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/ngx-theme",
-        "version": "16.1.2-dev.1"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/ngx-timeago",
-        "version": "16.0.3-dev.0"
+        "version": "16.0.3"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/node-local-storage",
@@ -262,11 +262,11 @@
       },
       {
         "package": "@rxap/oauth",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/pattern",
@@ -274,115 +274,115 @@
       },
       {
         "package": "@rxap/pipes",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.3.0-dev.2"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "16.3.0-dev.3"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/plugin-compodoc",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "16.1.1-dev.1"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/plugin-gitlab-ci",
-        "version": "16.3.0-dev.12"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/plugin-gpt",
-        "version": "16.0.3-dev.0"
+        "version": "16.0.3"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.2.0-dev.0"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/plugin-localazy",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.3.0-dev.2"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "16.3.0-dev.2"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/plugin-storybook",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.0-dev.1"
+        "version": "16.4.0"
       },
       {
         "package": "@rxap/plugin-web3-storage",
-        "version": "16.0.3-dev.0"
+        "version": "16.0.3"
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "16.2.2-dev.6"
+        "version": "16.2.2"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.3-dev.0"
+        "version": "1.0.3"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.2-dev.0"
+        "version": "1.1.2"
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "16.3.1-dev.2"
+        "version": "16.3.1"
       },
       {
         "package": "@rxap/schematic-composer",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/schematic-nestjs",
-        "version": "16.0.3-dev.0"
+        "version": "16.0.3"
       },
       {
         "package": "@rxap/schematics-open-api",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.2.1-dev.1"
+        "version": "16.2.1"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/schematics-xml-parser",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/service-worker",
-        "version": "16.1.0-dev.2"
+        "version": "16.1.0"
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/slugify",
@@ -390,27 +390,27 @@
       },
       {
         "package": "@rxap/socket-io",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/table-system",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/tree",
-        "version": "16.0.2-dev.6"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.2.0-dev.0"
+        "version": "1.2.0"
       },
       {
         "package": "@rxap/upload",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.0-dev.1"
+        "version": "16.2.0"
       },
       {
         "package": "@rxap/validator",
@@ -418,7 +418,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       },
       {
         "package": "@rxap/workspace-cypress",
@@ -426,19 +426,19 @@
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "16.1.0-dev.1"
+        "version": "16.1.0"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "16.1.1-dev.0"
+        "version": "16.1.1"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0-dev.2"
+        "version": "16.3.0"
       },
       {
         "package": "@rxap/xml-parser",
-        "version": "16.0.2-dev.0"
+        "version": "16.0.2"
       }
     ]
   },
