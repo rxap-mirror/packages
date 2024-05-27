@@ -23,14 +23,18 @@ if [[ -f "./dist/publish-mode.txt"  ]]; then
   rm ./dist/publish-mode.txt || true
 fi
 
+PUBLISH_MODE="auto"
+
 for arg in "$@"; do
   if [[ $arg == "from-package" ]]; then
     echo -e "${BLUE}Script was called with from-package${NC}"
-    echo "from-package" > ./dist/publish-mode.txt
+    PUBLISH_MODE="from-package"
+    echo "$PUBLISH_MODE" > ./dist/publish-mode.txt
   fi
   if [[ $arg == "from-git" ]]; then
   echo -e "${BLUE}Script was called with from-git${NC}"
-  echo "from-git" >./dist/publish-mode.txt
+  PUBLISH_MODE="from-git"
+  echo "$PUBLISH_MODE" >./dist/publish-mode.txt
 fi
 done
 
@@ -129,5 +133,36 @@ if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
   --conventional-graduate \
   --registry "$PUBLISH_REGISTRY" \
   --dist-tag "$LERNA_DIST_TAG" "$@"
+
+fi
+
+if [[ "$PUBLISH_MODE" == "auto" ]]; then
+  bash "${BASE_DIR}/tools/scripts/lerna/update-rxap-package-group.sh"
+
+  if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
+
+    echo "Executing lerna publish for pre-release..."
+
+    yarn lerna publish \
+    --create-release gitlab \
+    --conventional-prerelease \
+    --dist-tag "$LERNA_DIST_TAG" \
+    --registry "$PUBLISH_REGISTRY" \
+    --preid "$LERNA_PRE_ID" \
+    --no-push
+
+  fi
+
+  if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
+
+    echo "Executing lerna publish for release..."
+
+    yarn lerna publish \
+    --create-release gitlab \
+    --conventional-graduate \
+    --registry "$PUBLISH_REGISTRY" \
+    --dist-tag "$LERNA_DIST_TAG"
+
+  fi
 
 fi
