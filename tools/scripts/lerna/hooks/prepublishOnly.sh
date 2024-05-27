@@ -20,7 +20,7 @@ rm -fr "${BASE_DIR}/dist/packages"
 
 if [ -z "$cached_changed_projects" ]; then
   echo "No changed projects found"
-  echo "yarn nx run-many --target=build --configuration=production"
+#  echo "yarn nx run-many --target=build --configuration=production"
 
 #  yarn nx run-many \
 #    --target="build" \
@@ -28,13 +28,12 @@ if [ -z "$cached_changed_projects" ]; then
   exit 1
 else
   echo "Building changed projects: $cached_changed_projects"
-  echo "yarn nx run-many --target=build --configuration=production --projects=$cached_changed_projects --skip-nx-cache"
+  echo "yarn nx run-many --target=build --configuration=production --projects=$cached_changed_projects"
 
   yarn nx run-many \
     --target="build" \
     --configuration="production" \
-    --projects="$cached_changed_projects" \
-    --skip-nx-cache
+    --projects="$cached_changed_projects"
 fi
 
 # exit with error if some package.json files are missing the publishConfig
@@ -43,6 +42,10 @@ fi
 files=$(find dist/packages -name "node_modules" -prune -o -name "package.json" -print)
 
 hasError=false
+echo "publishConfig errors:" > dist/publishConfigErrors.txt
+echo "gitHead errors:" > dist/gitHeadErrors.txt
+
+current_git_head=$(git rev-parse HEAD)
 
 for file in $files
 do
@@ -50,7 +53,16 @@ do
     access=$(jq -r '.publishConfig.access // "invalid"' $file)
     if [ "$access" != "public" ]; then
         hasError=true
-        echo "publishConfig.access is not set or not equal to public in file: $file"
+        echo "publishConfig.access is not set or not equal to public in file: $file" >> dist/publishConfigErrors.txt
+    fi
+    gitHead=$(jq -r '.gitHead // "invalid"' $file)
+    if [ "$gitHead" == "invalid" ]; then
+        hasError=true
+        echo "gitHead is not set in file: $file" >> dist/gitHeadErrors.txt
+    fi
+    if [ "$gitHead" != "$current_git_head" ]; then
+        hasError=true
+        echo "gitHead is not equal to the current git head in file: $file" >> dist/gitHeadErrors.txt
     fi
 done
 
