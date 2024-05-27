@@ -1,1 +1,4 @@
-export interface UpdatePackageGroupExecutorSchema {} // eslint-disable-line
+export interface UpdatePackageGroupExecutorSchema {
+  packageGroupRegex: string[];
+  merge?: boolean;
+}

@@ -4,6 +4,24 @@
   "title": "UpdatePackageGroup executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "packageGroupRegex": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "@rxap\/",
+        "@angular\/",
+        "@nx\/"
+      ],
+      "description": "List of regexes to match package name that should be added to the package group"
+    },
+    "merge": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, the package group will be merged with the existing package group. If false, the package group will be replaced."
+    }
+  },
   "required": []
 }
