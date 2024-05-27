@@ -22,9 +22,10 @@ if [ -z "$cached_changed_projects" ]; then
   echo "No changed projects found"
   echo "yarn nx run-many --target=build --configuration=production"
 
-  yarn nx run-many \
-    --target="build" \
-    --configuration="production"
+#  yarn nx run-many \
+#    --target="build" \
+#    --configuration="production"
+  exit 1
 else
   echo "Building changed projects: $cached_changed_projects"
   echo "yarn nx run-many --target=build --configuration=production --projects=$cached_changed_projects --skip-nx-cache"
