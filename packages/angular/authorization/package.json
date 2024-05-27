@@ -9,7 +9,7 @@
     "@angular/core": "^16.2.12",
     "@angular/forms": "^16.2.12",
     "@angular/material": "^16.2.14",
-    "@rxap/utilities": "^16.1.0",
+    "@rxap/utilities": "^16.2.0-dev.1",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -34,16 +34,32 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/pattern",
-        "version": "1.0.1-dev.10"
+        "package": "@angular/core",
+        "version": "16.2.12"
       },
       {
-        "package": "@rxap/remote-method",
-        "version": "16.0.0-dev.15"
+        "package": "@angular/forms",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/material",
+        "version": "16.2.14"
+      },
+      {
+        "package": "@rxap/node-utilities",
+        "version": "1.2.0"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.4.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0"
+        "version": "16.2.0-dev.1"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "16.3.0-dev.1"
       }
     ]
   },

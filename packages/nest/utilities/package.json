@@ -33,18 +33,6 @@
     "scope:utilities",
     "utilities"
   ],
-  "nx-migrations": {
-    "packageGroup": [
-      {
-        "package": "@rxap/nest-sentry",
-        "version": "10.1.0-dev.1"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.21"
-      }
-    ]
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/utilities"

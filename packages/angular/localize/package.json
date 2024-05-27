@@ -32,12 +32,84 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@angular/common",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/core",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@rxap/authentication",
+        "version": "16.0.1"
+      },
+      {
         "package": "@rxap/config",
         "version": "16.0.1"
       },
       {
+        "package": "@rxap/data-source",
+        "version": "16.2.0-dev.0"
+      },
+      {
+        "package": "@rxap/data-structure-tree",
+        "version": "1.1.1"
+      },
+      {
+        "package": "@rxap/definition",
+        "version": "16.0.1"
+      },
+      {
+        "package": "@rxap/environment",
+        "version": "16.1.0"
+      },
+      {
+        "package": "@rxap/mixin",
+        "version": "16.0.1"
+      },
+      {
+        "package": "@rxap/ngx-pub-sub",
+        "version": "16.0.2"
+      },
+      {
         "package": "@rxap/ngx-user",
         "version": "16.1.1"
+      },
+      {
+        "package": "@rxap/node-utilities",
+        "version": "1.2.0"
+      },
+      {
+        "package": "@rxap/open-api",
+        "version": "16.0.1"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.1.1"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.4.0-dev.0"
+      },
+      {
+        "package": "@rxap/reflect-metadata",
+        "version": "1.0.2"
+      },
+      {
+        "package": "@rxap/remote-method",
+        "version": "16.0.1"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.1.1"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.2.0-dev.1"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "16.3.0-dev.1"
       }
     ]
   },

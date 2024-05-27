@@ -29,6 +29,18 @@
     "rxap",
     "scope:integration"
   ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@angular/core",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/material",
+        "version": "16.2.14"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../../dist/packages/angular/material/localize"

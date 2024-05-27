@@ -36,20 +36,40 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/components",
-        "version": "16.0.0-dev.13"
+        "package": "@angular/cdk",
+        "version": "16.2.14"
       },
       {
-        "package": "@rxap/data-grid",
-        "version": "16.0.0-dev.13"
+        "package": "@angular/common",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/core",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/material",
+        "version": "16.2.14"
+      },
+      {
+        "package": "@rxap/node-utilities",
+        "version": "1.2.0"
       },
       {
         "package": "@rxap/pipes",
         "version": "16.0.1"
       },
       {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.4.0-dev.0"
+      },
+      {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.2.0-dev.1"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "16.3.0-dev.1"
       }
     ]
   },

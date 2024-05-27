@@ -32,6 +32,22 @@
     "rxap",
     "scope:integration"
   ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@angular/common",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/core",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/router",
+        "version": "16.2.12"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/angular/keycloak"

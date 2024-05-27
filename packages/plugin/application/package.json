@@ -37,24 +37,12 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/generator-utilities",
-        "version": "1.1.1-dev.1"
+        "package": "@nx/devkit",
+        "version": "16.10.0"
       },
       {
-        "package": "@rxap/plugin-angular",
-        "version": "16.1.1-dev.1"
-      },
-      {
-        "package": "@rxap/plugin-docker",
-        "version": "16.1.0-dev.12"
-      },
-      {
-        "package": "@rxap/plugin-gitlab-ci",
-        "version": "16.3.0-dev.8"
-      },
-      {
-        "package": "@rxap/plugin-nestjs",
-        "version": "16.2.0-dev.0"
+        "package": "@rxap/node-utilities",
+        "version": "1.2.0"
       },
       {
         "package": "@rxap/plugin-utilities",

@@ -9,7 +9,7 @@
   },
   "peerDependencies": {
     "@apidevtools/json-schema-ref-parser": "9.0.9",
-    "@rxap/utilities": "^16.1.0",
+    "@rxap/utilities": "^16.2.0-dev.1",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
@@ -33,7 +33,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.1.0"
+        "version": "16.2.0-dev.1"
       }
     ]
   },

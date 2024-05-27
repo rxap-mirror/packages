@@ -6,8 +6,8 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/ts-morph": "^1.1.0",
-    "@rxap/workspace-utilities": "^16.2.0",
+    "@rxap/ts-morph": "^1.2.0-dev.0",
+    "@rxap/workspace-utilities": "^16.3.0-dev.1",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
@@ -31,16 +31,20 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@rxap/node-utilities",
+        "version": "1.2.0"
+      },
+      {
         "package": "@rxap/ts-morph",
-        "version": "1.1.0"
+        "version": "1.2.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0"
+        "version": "16.2.0-dev.1"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.2.0"
+        "version": "16.3.0-dev.1"
       }
     ]
   },

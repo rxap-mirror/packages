@@ -25,14 +25,6 @@
     "scope:utilities",
     "utilities"
   ],
-  "nx-migrations": {
-    "packageGroup": [
-      {
-        "package": "@rxap/workspace-utilities",
-        "version": "16.1.0-dev.1"
-      }
-    ]
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/generator/utilities"

@@ -13,7 +13,7 @@
     "@angular/material": "^16.2.14",
     "@angular/router": "^16.2.12",
     "@rxap/rxjs": "^1.1.1",
-    "@rxap/utilities": "^16.1.0",
+    "@rxap/utilities": "^16.2.0-dev.1",
     "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
@@ -38,20 +38,44 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/directives",
-        "version": "16.0.0-dev.16"
+        "package": "@angular/cdk",
+        "version": "16.2.14"
+      },
+      {
+        "package": "@angular/common",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/core",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/material",
+        "version": "16.2.14"
+      },
+      {
+        "package": "@angular/router",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@rxap/node-utilities",
+        "version": "1.2.0"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.4.0-dev.0"
       },
       {
         "package": "@rxap/rxjs",
         "version": "1.1.1"
       },
       {
-        "package": "@rxap/services",
-        "version": "16.0.0-dev.17"
+        "package": "@rxap/utilities",
+        "version": "16.2.0-dev.1"
       },
       {
-        "package": "@rxap/utilities",
-        "version": "16.1.0"
+        "package": "@rxap/workspace-utilities",
+        "version": "16.3.0-dev.1"
       }
     ]
   },

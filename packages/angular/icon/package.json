@@ -10,7 +10,7 @@
     "@angular/core": "^16.2.12",
     "@angular/material": "^16.2.14",
     "@angular/platform-browser": "^16.2.12",
-    "@rxap/utilities": "^16.1.0",
+    "@rxap/utilities": "^16.2.0-dev.1",
     "tslib": "2.6.2"
   },
   "author": {
@@ -34,8 +34,24 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@angular/common",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/core",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/material",
+        "version": "16.2.14"
+      },
+      {
+        "package": "@angular/platform-browser",
+        "version": "16.2.12"
+      },
+      {
         "package": "@rxap/utilities",
-        "version": "16.1.0"
+        "version": "16.2.0-dev.1"
       }
     ]
   },
