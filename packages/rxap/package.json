@@ -1,5 +1,5 @@
 {
-  "version": "16.0.2-dev.1",
+  "version": "16.0.2-dev.2",
   "name": "rxap",
   "license": "MIT",
   "peerDependencies": {
@@ -518,7 +518,7 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "16.3.2-dev.1"
+        "version": "16.3.2-dev.2"
       },
       {
         "package": "@rxap/schematic-composer",
