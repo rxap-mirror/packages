@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.2.0...@rxap/plugin-library@16.3.0-dev.0) (2024-05-27)
+
+### Features
+
+- add include option ([ad5ad54](https://gitlab.com/rxap/packages/commit/ad5ad5406bb2797f9bcfb9d742b1a7c53f7c349a))
+
 # [16.2.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.2.0-dev.1...@rxap/plugin-library@16.2.0) (2024-05-27)
 
 **Note:** Version bump only for package @rxap/plugin-library
