@@ -193,7 +193,7 @@ function tableInterfaceFromPropertyListRule(normalizedOptions: NormalizedMinimum
         extends: [ 'Record<string, unknown>', 'TableRowMetadata' ],
         properties: tablePropertyListToPropertiesStructure(propertyList),
       });
-      CoerceImports(sourceFile, tablePropertyListToImportStructure(propertyList));
+      CoerceImports(sourceFile, tablePropertyListToImportStructure(propertyList) as any[]);
       CoerceImports(sourceFile, {
         moduleSpecifier: '@rxap/material-table-system',
         namedImports: [ 'TableRowMetadata' ],
