@@ -10089,7 +10089,7 @@ __metadata:
     "@angular/core": ^16.2.12
     "@angular/forms": ^16.2.12
     "@angular/material": ^16.2.14
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10129,7 +10129,7 @@ __metadata:
     "@angular/material": ^16.2.14
     "@angular/router": ^16.2.12
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10144,7 +10144,7 @@ __metadata:
     "@angular/common": ^16.2.12
     "@angular/core": ^16.2.12
     "@rxap/environment": ^16.1.0
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10158,7 +10158,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.2.12
     "@rxap/pattern": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10177,7 +10177,7 @@ __metadata:
     "@rxap/pattern": ^1.1.1
     "@rxap/pipes": ^16.0.1
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10198,7 +10198,7 @@ __metadata:
     "@rxap/environment": ^16.1.0
     "@rxap/pattern": ^1.1.1
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10211,7 +10211,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10224,7 +10224,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.2.12
     "@rxap/reflect-metadata": ^1.0.2
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10256,7 +10256,7 @@ __metadata:
     "@rxap/pattern": ^1.1.1
     "@rxap/rxjs": ^1.1.1
     "@rxap/services": ^16.0.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10285,7 +10285,7 @@ __metadata:
     "@angular/fire": ^7.5.0
     "@rxap/config": ^16.0.1
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     firebase: ^9.23.0
     rxjs: ^7.8.1
     tslib: 2.6.2
@@ -10302,7 +10302,7 @@ __metadata:
     "@angular/forms": ^16.2.12
     "@angular/material": ^16.2.14
     "@angular/router": ^16.2.12
-    "@rxap/data-source": ^16.1.0
+    "@rxap/data-source": ^16.2.0-dev.0
     "@rxap/definition": ^16.0.1
     "@rxap/forms": ^16.0.1
     "@rxap/mixin": ^16.0.1
@@ -10310,7 +10310,7 @@ __metadata:
     "@rxap/pattern": ^1.1.1
     "@rxap/reflect-metadata": ^1.0.2
     "@rxap/remote-method": ^16.0.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10330,7 +10330,7 @@ __metadata:
     "@rxap/pattern": ^1.1.1
     "@rxap/reflect-metadata": ^1.0.2
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/window-system": ^16.0.1
     rxjs: ^7.8.1
     tslib: 2.6.2
@@ -10352,7 +10352,7 @@ __metadata:
     "@rxap/reflect-metadata": ^1.0.2
     "@rxap/rxjs": ^1.1.1
     "@rxap/services": ^16.0.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/validator": ^3.0.1
     rxjs: ^7.8.1
     tslib: 2.6.2
@@ -10402,7 +10402,7 @@ __metadata:
     "@angular/core": ^16.2.12
     "@angular/material": ^16.2.14
     "@angular/platform-browser": ^16.2.12
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10415,7 +10415,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@apidevtools/json-schema-ref-parser": 9.0.9
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -10464,7 +10464,7 @@ __metadata:
     "@rxap/ngx-theme": ^16.1.2-dev.0
     "@rxap/ngx-user": ^16.1.1
     "@rxap/services": ^16.0.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10478,7 +10478,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.2.12
     "@angular/router": ^16.2.12
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10495,7 +10495,7 @@ __metadata:
     "@rxap/browser-utilities": ^1.1.0-dev.0
     "@rxap/ngx-memory": ^16.1.1
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10517,7 +10517,7 @@ __metadata:
     "@rxap/forms": ^16.0.1
     "@rxap/mixin": ^16.0.1
     "@rxap/reflect-metadata": ^1.0.2
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -10536,7 +10536,7 @@ __metadata:
     "@angular/forms": ^16.2.12
     "@angular/material": ^16.2.14
     "@angular/router": ^16.2.12
-    "@rxap/components": ^16.0.1
+    "@rxap/components": ^16.0.2-dev.0
     "@rxap/data-source": ^16.2.0-dev.0
     "@rxap/directives": ^16.0.1
     "@rxap/forms": ^16.0.1
@@ -10544,7 +10544,7 @@ __metadata:
     "@rxap/pattern": ^1.1.1
     "@rxap/reflect-metadata": ^1.0.2
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/window-system": ^16.0.1
     rxjs: ^7.8.1
     tslib: 2.6.2
@@ -10560,13 +10560,13 @@ __metadata:
     "@angular/cdk": ^16.2.14
     "@angular/core": ^16.2.12
     "@angular/material": ^16.2.14
-    "@rxap/data-source": ^16.1.0
+    "@rxap/data-source": ^16.2.0-dev.0
     "@rxap/form-system": ^16.1.0
     "@rxap/forms": ^16.0.1
-    "@rxap/material-table-system": ^16.1.0
+    "@rxap/material-table-system": ^16.2.0-dev.0
     "@rxap/mixin": ^16.0.1
     "@rxap/pattern": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/window-system": ^16.0.1
     rxjs: ^7.8.1
     tslib: 2.6.2
@@ -10580,7 +10580,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@rxap/reflect-metadata": ^1.0.2
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     reflect-metadata: ^0.1.13
     tslib: 2.6.2
   languageName: unknown
@@ -10666,7 +10666,7 @@ __metadata:
     "@nestjs/terminus": ^10.0.1
     "@rxap/nest-utilities": ^10.2.0
     "@rxap/node-utilities": ^1.2.0
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@sentry/core": ^7.56.0
     class-transformer: ^0.5.1
     class-validator: ^0.14.0
@@ -10833,7 +10833,7 @@ __metadata:
     "@angular/cdk": ^16.2.14
     "@angular/common": ^16.2.12
     "@angular/core": ^16.2.12
-    "@rxap/components": ^16.0.1
+    "@rxap/components": ^16.0.2-dev.0
     "@rxap/config": ^16.0.1
     "@rxap/data-grid": ^16.0.1
     "@rxap/environment": ^16.1.0
@@ -10875,7 +10875,7 @@ __metadata:
     "@rxap/material-form-system": ^16.0.1
     "@rxap/pattern": ^1.1.1
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10904,19 +10904,19 @@ __metadata:
     "@angular/core": ^16.2.12
     "@angular/forms": ^16.2.12
     "@angular/material": ^16.2.14
-    "@rxap/data-source": ^16.1.0
+    "@rxap/data-source": ^16.2.0-dev.0
     "@rxap/form-system": ^16.1.0
     "@rxap/forms": ^16.0.1
-    "@rxap/material-directives": ^16.1.0
+    "@rxap/material-directives": ^16.2.0-dev.0
     "@rxap/material-form-system": ^16.0.1
-    "@rxap/material-table-system": ^16.1.0
+    "@rxap/material-table-system": ^16.2.0-dev.0
     "@rxap/material-table-window-system": ^16.0.1
     "@rxap/mixin": ^16.0.1
     "@rxap/pattern": ^1.1.1
     "@rxap/pipes": ^16.0.1
     "@rxap/reflect-metadata": ^1.0.2
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/window-system": ^16.0.1
     rxjs: ^7.8.1
     tslib: 2.6.2
@@ -10999,7 +10999,7 @@ __metadata:
     tslib: ^2.3.0
   peerDependencies:
     "@angular/core": ^16.2.12
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: ^2.3.0
   languageName: unknown
@@ -11013,10 +11013,10 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.2.12
     "@rxap/authentication": ^16.0.1
-    "@rxap/data-source": ^16.1.0
+    "@rxap/data-source": ^16.2.0-dev.0
     "@rxap/ngx-pub-sub": ^16.0.2
     "@rxap/open-api": ^16.0.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: ^2.3.0
   languageName: unknown
@@ -11069,12 +11069,12 @@ __metadata:
     "@angular/common": ^16.2.12
     "@angular/core": ^16.2.12
     "@rxap/config": ^16.0.1
-    "@rxap/data-source": ^16.1.0
+    "@rxap/data-source": ^16.2.0-dev.0
     "@rxap/environment": ^16.1.0
     "@rxap/mixin": ^16.0.1
     "@rxap/remote-method": ^16.0.1
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -11099,7 +11099,7 @@ __metadata:
     "@angular/common": ^16.2.12
     "@angular/core": ^16.2.12
     "@angular/platform-browser": ^16.2.12
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11118,7 +11118,7 @@ __metadata:
     "@rxap/plugin-library": ^16.1.0
     "@rxap/plugin-localazy": ^16.1.1
     "@rxap/plugin-utilities": ^16.4.0-dev.0
-    "@rxap/ts-morph": ^1.1.0
+    "@rxap/ts-morph": ^1.2.0-dev.0
     "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/workspace-ts-morph": ^16.1.0
     "@rxap/workspace-utilities": ^16.3.0-dev.1
@@ -11151,9 +11151,9 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nx/devkit": ^16.10.0
-    "@rxap/plugin-utilities": ^16.3.0
-    "@rxap/utilities": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/plugin-utilities": ^16.4.0-dev.0
+    "@rxap/utilities": ^16.2.0-dev.1
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
   languageName: unknown
   linkType: soft
 
@@ -11165,8 +11165,8 @@ __metadata:
     tslib: ^2.3.0
   peerDependencies:
     "@nx/angular": ^16.10.0
-    "@rxap/plugin-angular": ^16.2.1
-    "@rxap/ts-morph": ^1.1.0
+    "@rxap/plugin-angular": ^16.3.0-dev.1
+    "@rxap/ts-morph": ^1.2.0-dev.0
     "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/workspace-ts-morph": ^16.1.0
     "@rxap/workspace-utilities": ^16.3.0-dev.1
@@ -11181,9 +11181,9 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.10.0
     "@rxap/node-utilities": ^1.2.0
-    "@rxap/plugin-gitlab-ci": ^16.2.1
-    "@rxap/plugin-utilities": ^16.3.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/plugin-gitlab-ci": ^16.3.0-dev.11
+    "@rxap/plugin-utilities": ^16.4.0-dev.0
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11211,8 +11211,8 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.10.0
     "@rxap/generator-ts-morph": ^1.0.2
-    "@rxap/ts-morph": ^1.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/ts-morph": ^1.2.0-dev.0
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     gpt-3-encoder: ^1.1.4
     openai: ^3.3.0
     ts-morph: ^18.0.0
@@ -11233,10 +11233,10 @@ __metadata:
     "@nx/devkit": ^16.10.0
     "@rxap/generator-ts-morph": ^1.0.2
     "@rxap/node-utilities": ^1.2.0
-    "@rxap/plugin-utilities": ^16.3.0
-    "@rxap/ts-morph": ^1.1.0
-    "@rxap/utilities": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/plugin-utilities": ^16.4.0-dev.0
+    "@rxap/ts-morph": ^1.2.0-dev.0
+    "@rxap/utilities": ^16.2.0-dev.1
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     nx: ^16.10.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -11251,8 +11251,8 @@ __metadata:
     yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.10.0
-    "@rxap/plugin-utilities": ^16.3.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/plugin-utilities": ^16.4.0-dev.0
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11271,7 +11271,7 @@ __metadata:
     "@rxap/plugin-application": ^16.3.0-dev.2
     "@rxap/plugin-library": ^16.1.0
     "@rxap/plugin-utilities": ^16.4.0-dev.0
-    "@rxap/ts-morph": ^1.1.0
+    "@rxap/ts-morph": ^1.2.0-dev.0
     "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/workspace-ts-morph": ^16.1.0
     "@rxap/workspace-utilities": ^16.3.0-dev.1
@@ -11291,11 +11291,11 @@ __metadata:
     "@nx/devkit": ^16.10.0
     "@rxap/node-utilities": ^1.2.0
     "@rxap/plugin-library": ^16.1.0
-    "@rxap/plugin-utilities": ^16.3.0
-    "@rxap/utilities": ^16.1.0
+    "@rxap/plugin-utilities": ^16.4.0-dev.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/workspace-open-api": ^16.1.0-dev.0
     "@rxap/workspace-ts-morph": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11309,10 +11309,10 @@ __metadata:
     "@nx/angular": ^16.10.0
     "@nx/devkit": ^16.10.0
     "@nx/linter": ^16.10.0
-    "@rxap/ts-morph": ^1.1.0
-    "@rxap/utilities": ^16.1.0
+    "@rxap/ts-morph": ^1.2.0-dev.0
+    "@rxap/utilities": ^16.2.0-dev.1
     "@rxap/workspace-ts-morph": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     colors: ^1.4.0
     ts-morph: ^18.0.0
   languageName: unknown
@@ -11326,7 +11326,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.10.0
     "@rxap/node-utilities": ^1.2.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11338,7 +11338,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nx/devkit": ^16.10.0
-    "@rxap/plugin-utilities": ^16.3.0
+    "@rxap/plugin-utilities": ^16.4.0-dev.0
     files-from-path: ^1.0.0
     web3.storage: ^4.5.5
   languageName: unknown
@@ -11367,7 +11367,7 @@ __metadata:
   dependencies:
     tslib: 2.6.2
   peerDependencies:
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     reflect-metadata: ^0.1.13
     tslib: 2.6.2
   languageName: unknown
@@ -11383,7 +11383,7 @@ __metadata:
     "@angular/core": ^16.2.12
     "@rxap/definition": ^16.0.1
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -11395,7 +11395,7 @@ __metadata:
   dependencies:
     tslib: 2.6.2
   peerDependencies:
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -11430,10 +11430,10 @@ __metadata:
     yaml: 2.3.1
   peerDependencies:
     "@angular-devkit/schematics": ^16.2.13
-    "@rxap/schematics-ts-morph": ^16.2.0
+    "@rxap/schematics-ts-morph": ^16.2.1-dev.0
     "@rxap/schematics-utilities": ^16.1.0
-    "@rxap/utilities": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/utilities": ^16.2.0-dev.1
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11447,11 +11447,11 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.2.13
     "@angular-devkit/schematics": ^16.2.13
-    "@rxap/schematics-ts-morph": ^16.2.0
+    "@rxap/schematics-ts-morph": ^16.2.1-dev.0
     "@rxap/schematics-utilities": ^16.1.0
-    "@rxap/ts-morph": ^1.1.0
-    "@rxap/utilities": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/ts-morph": ^1.2.0-dev.0
+    "@rxap/utilities": ^16.2.0-dev.1
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -11467,10 +11467,10 @@ __metadata:
     "@angular-devkit/core": ^16.2.13
     "@angular-devkit/schematics": ^16.2.13
     "@rxap/json-schema-to-typescript": ^16.0.1
-    "@rxap/schematics-ts-morph": ^16.2.0
+    "@rxap/schematics-ts-morph": ^16.2.1-dev.0
     "@rxap/schematics-utilities": ^16.1.0
-    "@rxap/ts-morph": ^1.1.0
-    "@rxap/utilities": ^16.1.0
+    "@rxap/ts-morph": ^1.2.0-dev.0
+    "@rxap/utilities": ^16.2.0-dev.1
     openapi-types: 10.0.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -11505,8 +11505,8 @@ __metadata:
   peerDependencies:
     "@angular-devkit/schematics": ^16.2.13
     "@nx/devkit": ^16.10.0
-    "@rxap/utilities": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/utilities": ^16.2.0-dev.1
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11519,7 +11519,7 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.2.13
     "@angular-devkit/schematics": ^16.2.13
-    "@rxap/schematics-ts-morph": ^16.2.0
+    "@rxap/schematics-ts-morph": ^16.2.1-dev.0
     "@rxap/schematics-utilities": ^16.1.0
     "@rxap/xml-parser": ^16.0.1
     ts-morph: ^18.0.0
@@ -11553,7 +11553,7 @@ __metadata:
     "@angular/common": ^16.2.12
     "@angular/core": ^16.2.12
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -11582,6 +11582,171 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/source@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@rxap/source@workspace:."
+  dependencies:
+    "@angular-devkit/build-angular": 16.2.13
+    "@angular-devkit/core": 16.2.13
+    "@angular-devkit/schematics": 16.2.13
+    "@angular-eslint/eslint-plugin": 16.0.3
+    "@angular-eslint/eslint-plugin-template": 16.0.3
+    "@angular-eslint/template-parser": 16.0.3
+    "@angular/animations": 16.2.12
+    "@angular/cdk": 16.2.14
+    "@angular/cli": ~16.2.0
+    "@angular/common": 16.2.12
+    "@angular/compiler": 16.2.12
+    "@angular/compiler-cli": 16.2.12
+    "@angular/core": 16.2.12
+    "@angular/fire": 7.5.0
+    "@angular/forms": 16.2.12
+    "@angular/language-service": 16.2.12
+    "@angular/localize": 16.2.12
+    "@angular/material": 16.2.14
+    "@angular/platform-browser": 16.2.12
+    "@angular/platform-browser-dynamic": 16.2.12
+    "@angular/router": 16.2.12
+    "@angular/service-worker": 16.2.12
+    "@commitlint/cli": 17.6.6
+    "@commitlint/config-conventional": 17.6.6
+    "@compodoc/compodoc": 1.1.21
+    "@ctrl/tinycolor": 4.0.2
+    "@cypress/code-coverage": 3.12.21
+    "@cypress/webpack-dev-server": 2.5.0
+    "@enio.ai/typedoc": 1.0.8
+    "@faker-js/faker": 8.0.2
+    "@jsdevtools/coverage-istanbul-loader": 3.0.5
+    "@kvs/storage": 2.1.4
+    "@localazy/cli": 1.7.3
+    "@mdi/angular-material": 7.2.96
+    "@nestjs/axios": 3.0.0
+    "@nestjs/cache-manager": 2.1.0
+    "@nestjs/common": 10.0.5
+    "@nestjs/config": 3.0.0
+    "@nestjs/core": 10.0.5
+    "@nestjs/jwt": 10.1.0
+    "@nestjs/microservices": 10.0.5
+    "@nestjs/platform-express": 10.0.5
+    "@nestjs/schematics": 10.0.1
+    "@nestjs/serve-static": 4.0.0
+    "@nestjs/swagger": 7.1.2
+    "@nestjs/terminus": 10.0.1
+    "@nestjs/testing": 10.0.5
+    "@nestjs/throttler": 5.0.0
+    "@nx/angular": 16.10.0
+    "@nx/cypress": 16.10.0
+    "@nx/devkit": 16.10.0
+    "@nx/eslint-plugin": 16.10.0
+    "@nx/jest": 16.10.0
+    "@nx/js": 16.10.0
+    "@nx/linter": 16.10.0
+    "@nx/nest": 16.10.0
+    "@nx/node": 16.10.0
+    "@nx/plugin": 16.10.0
+    "@nx/storybook": 16.10.0
+    "@nx/webpack": 16.10.0
+    "@schematics/angular": 16.2.13
+    "@sentry/angular-ivy": 7.60.1
+    "@sentry/browser": 7.60.1
+    "@sentry/core": 7.56.0
+    "@sentry/hub": 7.60.0
+    "@sentry/integrations": 7.60.1
+    "@sentry/node": 7.56.0
+    "@sentry/tracing": 7.60.1
+    "@sentry/types": 7.56.0
+    "@storybook/addon-essentials": 7.6.17
+    "@storybook/angular": 7.6.17
+    "@storybook/core-common": 7.4.4
+    "@storybook/core-server": 7.6.17
+    "@supabase/supabase-js": 2.38.0
+    "@swc-node/register": 1.6.8
+    "@swc/cli": 0.1.62
+    "@swc/core": 1.3.107
+    "@swc/helpers": 0.5.8
+    "@tailwindcss/typography": 0.5.10
+    "@types/cookie-parser": 1.4.3
+    "@types/csurf": 1.11.2
+    "@types/fs-extra": 11.0.1
+    "@types/jest": 29.5.2
+    "@types/marked": 4.3.1
+    "@types/mock-fs": 4.13.2
+    "@types/node": 18.7.1
+    "@types/supertest": 2.0.11
+    "@types/xmldom": 0.1.32
+    "@typescript-eslint/eslint-plugin": 5.62.0
+    "@typescript-eslint/parser": 5.62.0
+    alias-quokka-plugin: 0.1.0
+    angular-oauth2-oidc: 15.0.1
+    angular-oauth2-oidc-jwks: 15.0.1
+    angular-quokka-plugin: 1.0.1
+    autoprefixer: 10.4.14
+    cache-manager: 5.2.3
+    class-transformer: 0.5.1
+    class-validator: 0.14.0
+    colors: 1.4.0
+    cookie-parser: 1.4.6
+    cypress: ^13.0.0
+    cypress-file-upload: 5.0.8
+    env-cmd: 10.1.0
+    eslint: 8.46.0
+    eslint-config-prettier: 8.1.0
+    eslint-plugin-cypress: 2.15.1
+    files-from-path: 1.0.0
+    firebase: 9.23.0
+    firebase-admin: 10.3.0
+    glob: 10.3.10
+    gpt-3-encoder: 1.1.4
+    helmet: 7.0.0
+    html-webpack-plugin: 5.5.3
+    husky: 8.0.3
+    ignore: 5.2.4
+    jest: 29.5.0
+    jest-environment-jsdom: 29.5.0
+    jest-environment-node: 29.5.0
+    jest-preset-angular: 13.1.1
+    joi: 17.9.2
+    jsonc-eslint-parser: 2.3.0
+    keycloak-js: 23.0.7
+    lerna: 6.6.2
+    marked: 4.3.0
+    minio: 7.1.1
+    mock-fs: 5.2.0
+    ng-mocks: 14.11.0
+    ng-packagr: 16.2.3
+    ngx-logger: 5.0.12
+    ngx-markdown: 16.0.0
+    node-vault: ^0.10.2
+    nx: 16.10.0
+    nx-cloud: 18.0.0
+    openai: 3.3.0
+    postcss: 8.4.24
+    postcss-import: 14.1.0
+    postcss-preset-env: 7.5.0
+    postcss-url: 10.1.3
+    prettier: 2.8.8
+    react: 18.2.0
+    react-dom: 18.2.0
+    reflect-metadata: 0.1.13
+    rxjs: 7.8.1
+    semver: 7.5.3
+    socket.io-client: 4.6.2
+    supertest: 6.2.2
+    swagger-ui-express: 5.0.0
+    tailwindcss: 3.3.2
+    ts-jest: 29.1.0
+    ts-node: 10.9.1
+    tslib: 2.6.0
+    typedoc: 0.23.28
+    typedoc-plugin-rename-defaults: 0.6.5
+    typedoc-theme-hierarchy: 3.2.1
+    typescript: 5.1.6
+    verdaccio: 5.21.2
+    web3.storage: 4.5.5
+    zone.js: 0.13.1
+  languageName: unknown
+  linkType: soft
+
 "@rxap/table-system@workspace:packages/angular/table-system":
   version: 0.0.0-use.local
   resolution: "@rxap/table-system@workspace:packages/angular/table-system"
@@ -11594,9 +11759,9 @@ __metadata:
     "@angular/core": ^16.2.12
     "@angular/forms": ^16.2.12
     "@angular/material": ^16.2.14
-    "@rxap/data-source": ^16.1.0
-    "@rxap/material-table-system": ^16.1.0
-    "@rxap/utilities": ^16.1.0
+    "@rxap/data-source": ^16.2.0-dev.0
+    "@rxap/material-table-system": ^16.2.0-dev.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -11619,7 +11784,7 @@ __metadata:
     "@rxap/material-directives": ^16.2.0-dev.0
     "@rxap/pattern": ^1.1.1
     "@rxap/rxjs": ^1.1.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -11687,10 +11852,10 @@ __metadata:
     "@angular/core": ^16.2.12
     "@angular/material": ^16.2.14
     "@rxap/directives": ^16.0.1
-    "@rxap/material-directives": ^16.1.0
+    "@rxap/material-directives": ^16.2.0-dev.0
     "@rxap/rxjs": ^1.1.1
     "@rxap/services": ^16.0.1
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
@@ -11714,8 +11879,8 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.2.13
     "@rxap/json-schema-to-typescript": ^16.0.1
-    "@rxap/utilities": ^16.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/utilities": ^16.2.0-dev.1
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     openapi-types: 10.0.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -11728,8 +11893,8 @@ __metadata:
   dependencies:
     tslib: 2.6.2
   peerDependencies:
-    "@rxap/ts-morph": ^1.1.0
-    "@rxap/workspace-utilities": ^16.2.0
+    "@rxap/ts-morph": ^1.2.0-dev.0
+    "@rxap/workspace-utilities": ^16.3.0-dev.1
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -11760,7 +11925,7 @@ __metadata:
   peerDependencies:
     "@rxap/mixin": ^16.0.1
     "@rxap/reflect-metadata": ^1.0.2
-    "@rxap/utilities": ^16.1.0
+    "@rxap/utilities": ^16.2.0-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -32287,168 +32452,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxap@workspace:.":
+"rxap@workspace:packages/rxap":
   version: 0.0.0-use.local
-  resolution: "rxap@workspace:."
-  dependencies:
-    "@angular-devkit/build-angular": 16.2.13
-    "@angular-devkit/core": 16.2.13
-    "@angular-devkit/schematics": 16.2.13
-    "@angular-eslint/eslint-plugin": 16.0.3
-    "@angular-eslint/eslint-plugin-template": 16.0.3
-    "@angular-eslint/template-parser": 16.0.3
-    "@angular/animations": 16.2.12
-    "@angular/cdk": 16.2.14
-    "@angular/cli": ~16.2.0
-    "@angular/common": 16.2.12
-    "@angular/compiler": 16.2.12
-    "@angular/compiler-cli": 16.2.12
-    "@angular/core": 16.2.12
-    "@angular/fire": 7.5.0
-    "@angular/forms": 16.2.12
-    "@angular/language-service": 16.2.12
-    "@angular/localize": 16.2.12
-    "@angular/material": 16.2.14
-    "@angular/platform-browser": 16.2.12
-    "@angular/platform-browser-dynamic": 16.2.12
-    "@angular/router": 16.2.12
-    "@angular/service-worker": 16.2.12
-    "@commitlint/cli": 17.6.6
-    "@commitlint/config-conventional": 17.6.6
-    "@compodoc/compodoc": 1.1.21
-    "@ctrl/tinycolor": 4.0.2
-    "@cypress/code-coverage": 3.12.21
-    "@cypress/webpack-dev-server": 2.5.0
-    "@enio.ai/typedoc": 1.0.8
-    "@faker-js/faker": 8.0.2
-    "@jsdevtools/coverage-istanbul-loader": 3.0.5
-    "@kvs/storage": 2.1.4
-    "@localazy/cli": 1.7.3
-    "@mdi/angular-material": 7.2.96
-    "@nestjs/axios": 3.0.0
-    "@nestjs/cache-manager": 2.1.0
-    "@nestjs/common": 10.0.5
-    "@nestjs/config": 3.0.0
-    "@nestjs/core": 10.0.5
-    "@nestjs/jwt": 10.1.0
-    "@nestjs/microservices": 10.0.5
-    "@nestjs/platform-express": 10.0.5
-    "@nestjs/schematics": 10.0.1
-    "@nestjs/serve-static": 4.0.0
-    "@nestjs/swagger": 7.1.2
-    "@nestjs/terminus": 10.0.1
-    "@nestjs/testing": 10.0.5
-    "@nestjs/throttler": 5.0.0
-    "@nx/angular": 16.10.0
-    "@nx/cypress": 16.10.0
-    "@nx/devkit": 16.10.0
-    "@nx/eslint-plugin": 16.10.0
-    "@nx/jest": 16.10.0
-    "@nx/js": 16.10.0
-    "@nx/linter": 16.10.0
-    "@nx/nest": 16.10.0
-    "@nx/node": 16.10.0
-    "@nx/plugin": 16.10.0
-    "@nx/storybook": 16.10.0
-    "@nx/webpack": 16.10.0
-    "@schematics/angular": 16.2.13
-    "@sentry/angular-ivy": 7.60.1
-    "@sentry/browser": 7.60.1
-    "@sentry/core": 7.56.0
-    "@sentry/hub": 7.60.0
-    "@sentry/integrations": 7.60.1
-    "@sentry/node": 7.56.0
-    "@sentry/tracing": 7.60.1
-    "@sentry/types": 7.56.0
-    "@storybook/addon-essentials": 7.6.17
-    "@storybook/angular": 7.6.17
-    "@storybook/core-common": 7.4.4
-    "@storybook/core-server": 7.6.17
-    "@supabase/supabase-js": 2.38.0
-    "@swc-node/register": 1.6.8
-    "@swc/cli": 0.1.62
-    "@swc/core": 1.3.107
-    "@swc/helpers": 0.5.8
-    "@tailwindcss/typography": 0.5.10
-    "@types/cookie-parser": 1.4.3
-    "@types/csurf": 1.11.2
-    "@types/fs-extra": 11.0.1
-    "@types/jest": 29.5.2
-    "@types/marked": 4.3.1
-    "@types/mock-fs": 4.13.2
-    "@types/node": 18.7.1
-    "@types/supertest": 2.0.11
-    "@types/xmldom": 0.1.32
-    "@typescript-eslint/eslint-plugin": 5.62.0
-    "@typescript-eslint/parser": 5.62.0
-    alias-quokka-plugin: 0.1.0
-    angular-oauth2-oidc: 15.0.1
-    angular-oauth2-oidc-jwks: 15.0.1
-    angular-quokka-plugin: 1.0.1
-    autoprefixer: 10.4.14
-    cache-manager: 5.2.3
-    class-transformer: 0.5.1
-    class-validator: 0.14.0
-    colors: 1.4.0
-    cookie-parser: 1.4.6
-    cypress: ^13.0.0
-    cypress-file-upload: 5.0.8
-    env-cmd: 10.1.0
-    eslint: 8.46.0
-    eslint-config-prettier: 8.1.0
-    eslint-plugin-cypress: 2.15.1
-    files-from-path: 1.0.0
-    firebase: 9.23.0
-    firebase-admin: 10.3.0
-    glob: 10.3.10
-    gpt-3-encoder: 1.1.4
-    helmet: 7.0.0
-    html-webpack-plugin: 5.5.3
-    husky: 8.0.3
-    ignore: 5.2.4
-    jest: 29.5.0
-    jest-environment-jsdom: 29.5.0
-    jest-environment-node: 29.5.0
-    jest-preset-angular: 13.1.1
-    joi: 17.9.2
-    jsonc-eslint-parser: 2.3.0
-    keycloak-js: 23.0.7
-    lerna: 6.6.2
-    marked: 4.3.0
-    minio: 7.1.1
-    mock-fs: 5.2.0
-    ng-mocks: 14.11.0
-    ng-packagr: 16.2.3
-    ngx-logger: 5.0.12
-    ngx-markdown: 16.0.0
-    node-vault: ^0.10.2
-    nx: 16.10.0
-    nx-cloud: 18.0.0
-    openai: 3.3.0
-    postcss: 8.4.24
-    postcss-import: 14.1.0
-    postcss-preset-env: 7.5.0
-    postcss-url: 10.1.3
-    prettier: 2.8.8
-    react: 18.2.0
-    react-dom: 18.2.0
-    reflect-metadata: 0.1.13
-    rxjs: 7.8.1
-    semver: 7.5.3
-    socket.io-client: 4.6.2
-    supertest: 6.2.2
-    swagger-ui-express: 5.0.0
-    tailwindcss: 3.3.2
-    ts-jest: 29.1.0
-    ts-node: 10.9.1
-    tslib: 2.6.0
-    typedoc: 0.23.28
-    typedoc-plugin-rename-defaults: 0.6.5
-    typedoc-theme-hierarchy: 3.2.1
-    typescript: 5.1.6
-    verdaccio: 5.21.2
-    web3.storage: 4.5.5
-    zone.js: 0.13.1
+  resolution: "rxap@workspace:packages/rxap"
+  peerDependencies:
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 

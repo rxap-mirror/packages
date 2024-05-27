@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "name": "rxap",
+  "name": "@rxap/source",
   "description": "Reactive Application Platform, or RxAP for short, is a collection of software modules and tools. With the help of RxAP, the development effort of web and cloud applications can be significantly reduced.",
   "license": "GPL-3.0-or-later",
   "scripts": {
