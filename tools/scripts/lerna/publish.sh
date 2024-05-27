@@ -80,6 +80,8 @@ echo "GIT_DEFAULT_BRANCH=${GIT_DEFAULT_BRANCH}"
 echo "LERNA_PRE_ID=${LERNA_PRE_ID}"
 echo "PUBLISH_REGISTRY=${PUBLISH_REGISTRY}"
 
+export LERNA_PRE_RELEASE
+
 if [[ "$YES" != "true" ]]; then
 
   read -r -p "Are you sure? [y/N] " response

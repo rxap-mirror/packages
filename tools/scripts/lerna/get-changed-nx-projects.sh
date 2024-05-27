@@ -3,7 +3,14 @@
 getChangedNxProjects() {
 
   # Get the list of changed projects using lerna changed command
-  changed_projects=$(yarn lerna changed --json | jq -r '.[] | .location')
+  if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
+    changed_projects=$(yarn lerna changed --json | jq -r '.[] | .location')
+  elif [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
+    changed_projects=$(yarn lerna changed --conventional-graduate --json | jq -r '.[] | .location')
+  else
+    echo "LERNA_PRE_RELEASE is not set"
+    exit 1
+  fi
 
   # Initialize an empty array to store the nx project names
   declare -a nx_project_names
