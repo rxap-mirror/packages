@@ -1,8 +1,6 @@
 variables:
-  HUSKY: "0"
-  GIT_STRATEGY: "fetch"
-  GIT_DEPTH: "3"
   ADDITIONAL_TARGET_OPTIONS: "--exclude angular"
 
 include:
-  - local: .gitlab/ci/pipelines/build.yaml
+  - component: gitlab.com/rxap/gitlab-ci/base@~latest
+  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@~latest

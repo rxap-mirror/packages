@@ -1,8 +1,0 @@
-include:
-  - local: .gitlab/ci/jobs/run.yaml
-
-stages:
-  - run
-
-variables:
-  ENVIRONMENT_NAME: $CI_COMMIT_REF_NAME
