@@ -30,6 +30,8 @@ else
   echo "Building changed projects: $cached_changed_projects"
   echo "yarn nx run-many --target=build --configuration=production --projects=$cached_changed_projects"
 
+  cat "${BASE_DIR}/packages/rxap/package.json" > "${BASE_DIR}/dist/rxap-package.json"
+
   yarn nx run-many \
     --target="build" \
     --configuration="production" \
