@@ -8,7 +8,6 @@ import {
   BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
-  CoerceImports,
   CoerceInterface,
   CoerceTypeAlias,
   OperationIdToResponseClassImportPath,
@@ -21,6 +20,7 @@ import {
 } from '@rxap/schematics-utilities';
 import {
   CoerceComponentInput,
+  CoerceImports,
   NormalizedDataProperty,
   RequiresTypeImport,
   TypeImportToImportStructure,
