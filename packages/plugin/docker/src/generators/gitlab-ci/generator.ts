@@ -6,7 +6,7 @@ export async function gitlabCiGenerator(
   tree: Tree,
   options: GitlabCiGeneratorSchema,
 ) {
-  await DockerGitlabCiGenerator(tree, options);
+  await DockerGitlabCiGenerator(tree, { ...options, components: false });
   console.log('deprecated use @rxap/plugin-gitlab-ci:docker');
 }
 
