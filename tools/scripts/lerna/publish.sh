@@ -104,7 +104,7 @@ if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
 
   echo "Executing lerna publish for pre-release..."
 
-  echo "yarn lerna publish --create-release gitlab --conventional-prerelease --dist-tag $LERNA_DIST_TAG --registry $PUBLISH_REGISTRY --preid $LERNA_PRE_ID $@"
+  echo "yarn lerna publish --create-release gitlab --conventional-prerelease --dist-tag $LERNA_DIST_TAG --registry $PUBLISH_REGISTRY --preid $LERNA_PRE_ID --no-push $@"
 
   yarn lerna publish \
   --create-release gitlab \
@@ -126,7 +126,6 @@ if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
   --create-release gitlab \
   --conventional-graduate \
   --registry "$PUBLISH_REGISTRY" \
-  --dist-tag "$LERNA_DIST_TAG" \
-  --no-push "$@"
+  --dist-tag "$LERNA_DIST_TAG" "$@"
 
 fi
