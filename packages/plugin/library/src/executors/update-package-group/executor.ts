@@ -5,11 +5,13 @@ import {
   readPackageJsonForProject,
   writePackageJsonFormProject,
 } from '@rxap/plugin-utilities';
+import { readFileSync } from 'fs';
 import {
   ArrayPackageGroup,
   normalizePackageGroup,
   PackageGroup,
 } from 'nx/src/utils/package-json';
+import { join } from 'path';
 import { UpdatePackageGroupExecutorSchema } from './schema';
 
 function normalizePackageVersion(version: string): string {
@@ -35,8 +37,38 @@ function getPackageGroupFromPeerDependencies(context: ExecutorContext, packageGr
   return convertToPackageGroup(peerDependencies, packageGroupRegex);
 }
 
-function getPackageGroup(context: ExecutorContext, packageGroupRegex: RegExp[]): ArrayPackageGroup {
-  return mergePackageGroup(getPackageGroupFromPeerDependencies(context, packageGroupRegex), getPackageGroupFromDependencies(context, packageGroupRegex));
+function getPackageGroupFromRootDependencies(context: ExecutorContext, include: string[]): ArrayPackageGroup {
+  if (include.length === 0) {
+    console.log('No packages to include from the root package.json');
+    return [];
+  }
+  console.log('Include the following packages:', include.join(', '), 'from the root package.json');
+  const {
+    dependencies = {},
+    devDependencies = {},
+  } = JSON.parse(readFileSync(join(context.root, 'package.json'), 'utf-8'));
+  const includeDependencies = Object.entries(dependencies).filter(
+    ([ packageName ]) => include.includes(packageName)).reduce((acc, [ packageName, version ]) => (
+    {
+      ...acc,
+      [packageName]: version,
+    }
+  ), {});
+  const includePeerDependencies = Object.entries(devDependencies).filter(
+    ([ packageName ]) => include.includes(packageName)).reduce((acc, [ packageName, version ]) => (
+    {
+      ...acc,
+      [packageName]: version,
+    }
+  ), {});
+  const includes = { ...includeDependencies, ...includePeerDependencies };
+  return convertToPackageGroup(includes, [ /.*/ ]);
+}
+
+function getPackageGroup(context: ExecutorContext, packageGroupRegex: RegExp[], include: string[] = []): ArrayPackageGroup {
+  return mergePackageGroup(mergePackageGroup(getPackageGroupFromPeerDependencies(context, packageGroupRegex),
+    getPackageGroupFromDependencies(context, packageGroupRegex),
+  ), getPackageGroupFromRootDependencies(context, include));
 }
 
 function mergePackageGroup(original: PackageGroup, updated: ArrayPackageGroup): ArrayPackageGroup {
@@ -50,6 +82,7 @@ export default async function runExecutor(
   options: UpdatePackageGroupExecutorSchema,
   context: ExecutorContext,
 ) {
+  console.log('Executor ran for update-package-group', options);
 
 
   const packageJson = readPackageJsonForProject(context);
@@ -75,7 +108,7 @@ export default async function runExecutor(
 
   LoadProjectToPackageMapping(context);
 
-  let packageGroup = getPackageGroup(context, packageGroupRegex);
+  let packageGroup = getPackageGroup(context, packageGroupRegex, options.include);
   nxMigrations.packageGroup ??= [];
 
   if (options.merge) {
@@ -84,7 +117,7 @@ export default async function runExecutor(
   }
 
   console.log('set the package group', JSON.stringify(packageGroup, undefined, 2));
-  nxMigrations.packageGroup = packageGroup;
+  nxMigrations.packageGroup = packageGroup.sort((a, b) => a.package.localeCompare(b.package));
 
   writePackageJsonFormProject(context, packageJson);
 
