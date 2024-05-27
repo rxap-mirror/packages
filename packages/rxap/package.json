@@ -17,6 +17,174 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@angular/animations",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/cdk",
+        "version": "16.2.14"
+      },
+      {
+        "package": "@angular/cli",
+        "version": "16.2.0"
+      },
+      {
+        "package": "@angular/common",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/compiler",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/compiler-cli",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/core",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/fire",
+        "version": "7.5.0"
+      },
+      {
+        "package": "@angular/forms",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/language-service",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/localize",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/material",
+        "version": "16.2.14"
+      },
+      {
+        "package": "@angular/platform-browser",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/platform-browser-dynamic",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/router",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@angular/service-worker",
+        "version": "16.2.12"
+      },
+      {
+        "package": "@nestjs/axios",
+        "version": "3.0.0"
+      },
+      {
+        "package": "@nestjs/cache-manager",
+        "version": "2.1.0"
+      },
+      {
+        "package": "@nestjs/common",
+        "version": "10.0.5"
+      },
+      {
+        "package": "@nestjs/config",
+        "version": "3.0.0"
+      },
+      {
+        "package": "@nestjs/core",
+        "version": "10.0.5"
+      },
+      {
+        "package": "@nestjs/jwt",
+        "version": "10.1.0"
+      },
+      {
+        "package": "@nestjs/microservices",
+        "version": "10.0.5"
+      },
+      {
+        "package": "@nestjs/platform-express",
+        "version": "10.0.5"
+      },
+      {
+        "package": "@nestjs/schematics",
+        "version": "10.0.1"
+      },
+      {
+        "package": "@nestjs/serve-static",
+        "version": "4.0.0"
+      },
+      {
+        "package": "@nestjs/swagger",
+        "version": "7.1.2"
+      },
+      {
+        "package": "@nestjs/terminus",
+        "version": "10.0.1"
+      },
+      {
+        "package": "@nestjs/testing",
+        "version": "10.0.5"
+      },
+      {
+        "package": "@nestjs/throttler",
+        "version": "5.0.0"
+      },
+      {
+        "package": "@nx/angular",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/cypress",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/devkit",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/eslint-plugin",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/jest",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/js",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/linter",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/nest",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/node",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/plugin",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/storybook",
+        "version": "16.10.0"
+      },
+      {
+        "package": "@nx/webpack",
+        "version": "16.10.0"
+      },
+      {
         "package": "@rxap/authentication",
         "version": "16.0.2"
       },
@@ -439,6 +607,10 @@
       {
         "package": "@rxap/xml-parser",
         "version": "16.0.2"
+      },
+      {
+        "package": "nx",
+        "version": "16.10.0"
       }
     ]
   },
