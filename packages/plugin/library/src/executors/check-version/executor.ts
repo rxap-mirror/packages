@@ -56,6 +56,10 @@ export default async function runExecutor(
       console.warn('Detecting workspace upgrade mode');
       return { success: true };
     }
+    if (process.env.CI_COMMIT_REF_NAME?.match(/^migrate\//)) {
+      console.warn('Detecting migration branch');
+      return { success: true };
+    }
     return {
       success: false,
     };
