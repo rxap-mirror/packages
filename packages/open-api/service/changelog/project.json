@@ -5,18 +5,12 @@
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/open-api/service/changelog/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/open-api/service/changelog/**/*.ts"]
       }
     }
   },
-  "tags": [
-    "open-api"
-  ]
+  "tags": ["open-api"]
 }

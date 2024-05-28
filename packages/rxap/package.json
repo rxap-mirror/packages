@@ -161,7 +161,7 @@
         "version": "16.10.0"
       },
       {
-        "package": "@nx/linter",
+        "package": "@nx/eslint",
         "version": "16.10.0"
       },
       {

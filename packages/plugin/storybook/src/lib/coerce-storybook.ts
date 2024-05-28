@@ -5,17 +5,20 @@ import {
   readProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { Linter } from '@nx/linter';
+import { Linter } from '@nx/eslint';
 import 'colors';
 import { CoerceTarget } from '@rxap/workspace-utilities';
 
 export async function coerceStorybook(
-  tree: Tree, projectName: string, project: ProjectConfiguration,
-  options: Omit<StorybookConfigurationOptions, 'name'> & { overwrite?: boolean },
+  tree: Tree,
+  projectName: string,
+  project: ProjectConfiguration,
+  options: Omit<StorybookConfigurationOptions, 'name'> & { overwrite?: boolean }
 ) {
-
   if (project.targets?.storybook) {
-    console.log(`storybook target already exists for project: ${ projectName }`.yellow);
+    console.log(
+      `storybook target already exists for project: ${projectName}`.yellow
+    );
     return;
   }
 
@@ -39,5 +42,4 @@ export async function coerceStorybook(
   for (const [name, target] of Object.entries(targets)) {
     CoerceTarget(project, name, target);
   }
-
 }
