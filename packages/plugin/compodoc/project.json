@@ -42,15 +42,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "packages/plugin/compodoc/**/*.ts",
-          "packages/plugin/compodoc/package.json",
-          "packages/plugin/compodoc/generators.json",
-          "packages/plugin/compodoc/executors.json"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",

@@ -33,13 +33,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "packages/angular/theme/**/*.ts",
-          "packages/angular/theme/**/*.html"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "update-dependencies": {
       "executor": "@rxap/plugin-library:update-dependencies"

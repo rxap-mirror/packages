@@ -32,13 +32,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "packages/angular/material/authentication/**/*.ts",
-          "packages/angular/material/authentication/**/*.html"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "check-version": {
       "executor": "@rxap/plugin-library:check-version",
