@@ -3,7 +3,7 @@ variables:
 
 include:
   - component: gitlab.com/rxap/gitlab-ci/base@~latest
-  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.2.0-edge.9
+  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.2.0-edge.10
     inputs:
       dte: true
       parallel: 5
