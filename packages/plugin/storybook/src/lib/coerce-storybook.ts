@@ -13,7 +13,7 @@ export async function coerceStorybook(
   tree: Tree,
   projectName: string,
   project: ProjectConfiguration,
-  options: Omit<StorybookConfigurationOptions, 'name'> & { overwrite?: boolean }
+  options: Omit<StorybookConfigurationOptions, 'project'> & { overwrite?: boolean }
 ) {
   if (project.targets?.storybook) {
     console.log(
@@ -24,7 +24,7 @@ export async function coerceStorybook(
 
   const storybookOptions: StorybookConfigurationOptions = {
     ...options,
-    name: projectName,
+    project: projectName,
   };
 
   storybookOptions.configureCypress ??= false;
