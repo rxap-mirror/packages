@@ -1,10 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ComplexAccordionDataSource } from './complex-accordion.data-source';
 import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
-import { CommonModule } from '@angular/common';
+import { CommonModule, AsyncPipe, NgIf } from '@angular/common';
 
 import { DataGridDemoPanelComponent } from './data-grid-demo-panel/data-grid-demo-panel.component';
 
@@ -31,11 +28,10 @@ import { ComplexAccordionMethod } from './complex-accordion.method';
 @Component({
   selector: 'rxap-complex-accordion',
   templateUrl: './complex-accordion.component.html',
-  styleUrls: [ './complex-accordion.component.scss' ],
+  styleUrls: ['./complex-accordion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-
     DataGridDemoPanelComponent,
 
     DataGridCollectionDemoPanelComponent,
@@ -57,6 +53,8 @@ import { ComplexAccordionMethod } from './complex-accordion.method';
     PersistentAccordionDirective,
     CommonModule,
     AccordionHeaderComponent,
+    AsyncPipe,
+    NgIf,
   ],
   providers: [
     ComplexAccordionDataSource,
@@ -69,10 +67,7 @@ import { ComplexAccordionMethod } from './complex-accordion.method';
 })
 export class ComplexAccordionComponent {
 
-  constructor(
-    public readonly accordionDataSource: ComplexAccordionDataSource,
-  ) {}
-
+  public readonly accordionDataSource = inject(ComplexAccordionDataSource);
 }
 
 export default ComplexAccordionComponent;

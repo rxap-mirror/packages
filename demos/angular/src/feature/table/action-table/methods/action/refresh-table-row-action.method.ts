@@ -14,7 +14,9 @@ import { IActionTable } from '../../action-table';
   priority: 0,
   tooltip: $localize`Refresh`,
 })
-export class RefreshTableRowActionMethod implements Method, TableRowActionTypeMethod<IActionTable> {
+export class RefreshTableRowActionMethod
+  implements Method, TableRowActionTypeMethod<IActionTable>
+{
   async call(parameters: IActionTable): Promise<unknown> {
     console.log(`action row type: refresh`, parameters);
     return parameters;

@@ -14,9 +14,9 @@ import { Validators } from '@angular/forms';
 export class TableHeaderButtonForm implements FormType<ITableHeaderButtonForm> {
   public readonly rxapFormGroup!: RxapFormGroup<ITableHeaderButtonForm>;
   @UseFormControl()
-  public readonly name!: RxapFormControl<unknown>;
+  public readonly name!: RxapFormControl<string>;
 }
 
 export interface ITableHeaderButtonForm {
-  name: unknown;
+  name: string;
 }

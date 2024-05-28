@@ -1,9 +1,5 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
+import { CommonModule, AsyncPipe, NgIf, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -45,13 +41,14 @@ import { GetPageAdapterFactory } from '@rxap/open-api/remote-method';
 import { GetFromObjectPipe } from '@rxap/pipes';
 import { MinimumTableControllerGetPageRemoteMethod } from 'open-api-service-app-angular-table/remote-methods/minimum-table-controller-get-page.remote-method';
 import { Observable } from 'rxjs';
+import { GetPageAdapterFactory } from '@rxap/table-system';
 
 @Component({
   selector: 'rxap-open-api-table',
   templateUrl: './open-api-table.component.html',
-  styleUrls: [ './open-api-table.component.scss' ],
+  styleUrls: ['./open-api-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [ RowAnimation ],
+  animations: [RowAnimation],
   standalone: true,
   imports: [
     CommonModule,
@@ -66,7 +63,6 @@ import { Observable } from 'rxjs';
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-
 
     TableColumnMenuModule,
     DateCellComponent,
@@ -90,6 +86,9 @@ import { Observable } from 'rxjs';
     BooleanCellComponent,
     DataSourceErrorComponent,
     MatSnackBarModule,
+    AsyncPipe,
+    NgIf,
+    NgClass,
   ],
   providers: [
     {
@@ -103,10 +102,8 @@ import { Observable } from 'rxjs';
   ],
 })
 export class OpenApiTableComponent {
-
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
-
 }
 
 export default OpenApiTableComponent;

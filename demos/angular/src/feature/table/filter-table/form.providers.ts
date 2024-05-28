@@ -1,9 +1,4 @@
-import {
-  INJECTOR,
-  Injector,
-  Optional,
-  Provider,
-} from '@angular/core';
+import { INJECTOR, Injector, Optional, Provider } from '@angular/core';
 import {
   FilterTableFilterForm,
   IFilterTableFilterForm,
@@ -14,27 +9,42 @@ import {
   RXAP_FORM_INITIAL_STATE,
   RxapFormBuilder,
 } from '@rxap/forms';
+import { IsActiveOptionsDataSource } from './data-sources/is-active-options.data-source';
 
-export const FormProviders: Provider[] = [ FilterTableFilterForm ];
+export const FormProviders: Provider[] = [
+  FilterTableFilterForm,
+  IsActiveOptionsDataSource,
+];
 export const FormComponentProviders: Provider[] = [
   {
     provide: RXAP_FORM_DEFINITION,
     useFactory: FormFactory,
-    deps: [ INJECTOR, [ new Optional(), RXAP_FORM_INITIAL_STATE ] ],
+    deps: [INJECTOR, [new Optional(), RXAP_FORM_INITIAL_STATE]],
   },
 ];
 export const FormBuilderProviders: Provider[] = [
   {
     provide: RXAP_FORM_DEFINITION_BUILDER,
     useFactory: FormBuilderFactory,
-    deps: [ INJECTOR ],
+    deps: [INJECTOR],
   },
 ];
 
-export function FormFactory(injector: Injector, state: IFilterTableFilterForm | null): FilterTableFilterForm {
-  return new RxapFormBuilder<IFilterTableFilterForm>(FilterTableFilterForm, injector).build(state ?? {});
+export function FormFactory(
+  injector: Injector,
+  state: IFilterTableFilterForm | null
+): FilterTableFilterForm {
+  return new RxapFormBuilder<IFilterTableFilterForm>(
+    FilterTableFilterForm,
+    injector
+  ).build(state ?? {});
 }
 
-function FormBuilderFactory(injector: Injector): RxapFormBuilder<IFilterTableFilterForm> {
-  return new RxapFormBuilder<IFilterTableFilterForm>(FilterTableFilterForm, injector);
+function FormBuilderFactory(
+  injector: Injector
+): RxapFormBuilder<IFilterTableFilterForm> {
+  return new RxapFormBuilder<IFilterTableFilterForm>(
+    FilterTableFilterForm,
+    injector
+  );
 }

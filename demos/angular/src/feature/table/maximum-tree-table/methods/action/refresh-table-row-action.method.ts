@@ -14,7 +14,9 @@ import { IMaximumTreeTable } from '../../maximum-tree-table';
   priority: 0,
   tooltip: $localize`Refresh`,
 })
-export class RefreshTableRowActionMethod implements Method, TableRowActionTypeMethod<IMaximumTreeTable> {
+export class RefreshTableRowActionMethod
+  implements Method, TableRowActionTypeMethod<IMaximumTreeTable>
+{
   async call(parameters: IMaximumTreeTable): Promise<unknown> {
     console.log(`action row type: refresh`, parameters);
     return parameters;

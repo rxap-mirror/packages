@@ -14,7 +14,9 @@ import { IActionTable } from '../../action-table';
   priority: 0,
   tooltip: $localize`Callout`,
 })
-export class CalloutTableRowActionMethod implements Method, TableRowActionTypeMethod<IActionTable> {
+export class CalloutTableRowActionMethod
+  implements Method, TableRowActionTypeMethod<IActionTable>
+{
   async call(parameters: IActionTable): Promise<unknown> {
     console.log(`action row type: callout`, parameters);
     return parameters;

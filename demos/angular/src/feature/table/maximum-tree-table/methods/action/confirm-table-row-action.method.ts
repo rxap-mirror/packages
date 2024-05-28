@@ -15,7 +15,9 @@ import { IMaximumTreeTable } from '../../maximum-tree-table';
   tooltip: $localize`Confirm`,
   successMessage: 'Success',
 })
-export class ConfirmTableRowActionMethod implements Method, TableRowActionTypeMethod<IMaximumTreeTable> {
+export class ConfirmTableRowActionMethod
+  implements Method, TableRowActionTypeMethod<IMaximumTreeTable>
+{
   async call(parameters: IMaximumTreeTable): Promise<unknown> {
     console.log(`action row type: confirm`, parameters);
     return parameters;

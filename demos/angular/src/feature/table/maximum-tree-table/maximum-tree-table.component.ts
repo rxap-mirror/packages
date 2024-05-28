@@ -1,9 +1,5 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
+import { CommonModule, AsyncPipe, NgIf, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -42,18 +38,23 @@ import {
   TableRowActionsModule,
   TableShowArchivedSlideComponent,
   TreeControlCellComponent,
+  TableHeaderButtonDirective,
+  TABLE_HEADER_BUTTON_METHOD,
 } from '@rxap/material-table-system';
 import { GetFromObjectPipe } from '@rxap/pipes';
 import { Observable } from 'rxjs';
 import { TABLE_ROW_ACTION_METHODS } from './methods/action';
 import { TableHeaderButtonMethod } from './methods/table-header-button.method';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HeaderButtonMethod } from './methods/header-button.method';
+import { OpenMaximumTreeFormWindowMethod } from './maximum-tree-form/open-maximum-tree-form-window.method';
 
 @Component({
   selector: 'rxap-maximum-tree-table',
   templateUrl: './maximum-tree-table.component.html',
-  styleUrls: [ './maximum-tree-table.component.scss' ],
+  styleUrls: ['./maximum-tree-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [ RowAnimation ],
+  animations: [RowAnimation],
   standalone: true,
   imports: [
     CommonModule,
@@ -68,7 +69,6 @@ import { TableHeaderButtonMethod } from './methods/table-header-button.method';
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-
 
     TableColumnMenuModule,
     DateCellComponent,
@@ -93,6 +93,11 @@ import { TableHeaderButtonMethod } from './methods/table-header-button.method';
     DataSourceErrorComponent,
     MatSnackBarModule,
     TreeControlCellComponent,
+    AsyncPipe,
+    NgIf,
+    NgClass,
+    MatProgressSpinnerModule,
+    TableHeaderButtonDirective,
   ],
   providers: [
     {
@@ -104,13 +109,16 @@ import { TableHeaderButtonMethod } from './methods/table-header-button.method';
       provide: TABLE_CREATE_REMOTE_METHOD,
       useClass: TableHeaderButtonMethod,
     },
+    {
+      provide: TABLE_HEADER_BUTTON_METHOD,
+      useClass: HeaderButtonMethod,
+    },
+    OpenMaximumTreeFormWindowMethod,
   ],
 })
 export class MaximumTreeTableComponent {
-
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
-
 }
 
 export default MaximumTreeTableComponent;

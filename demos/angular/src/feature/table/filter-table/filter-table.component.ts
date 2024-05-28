@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, AsyncPipe, NgIf, NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +22,7 @@ import { HasPermissionModule } from '@rxap/authorization';
 
 import { ConfirmModule } from '@rxap/components';
 import { DataSourceErrorComponent } from '@rxap/data-source';
-import { RxapFormsModule } from '@rxap/forms';
+import { RxapFormsModule, ParentControlContainerDirective } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
@@ -46,17 +46,16 @@ import {
 import { GetFromObjectPipe } from '@rxap/pipes';
 import { Observable } from 'rxjs';
 import { DummyTableMethod } from '../dummy-table.method';
-import {
-  FormFactory,
-  FormProviders,
-} from './form.providers';
+import { FormFactory, FormProviders } from './form.providers';
+import { MatSelectModule } from '@angular/material/select';
+import { InputSelectOptionsDirective } from '@rxap/form-system';
 
 @Component({
   selector: 'rxap-filter-table',
   templateUrl: './filter-table.component.html',
-  styleUrls: [ './filter-table.component.scss' ],
+  styleUrls: ['./filter-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [ RowAnimation ],
+  animations: [RowAnimation],
   standalone: true,
   imports: [
     CommonModule,
@@ -71,7 +70,6 @@ import {
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-
 
     TableColumnMenuModule,
     DateCellComponent,
@@ -95,6 +93,12 @@ import {
     BooleanCellComponent,
     DataSourceErrorComponent,
     MatSnackBarModule,
+    AsyncPipe,
+    NgIf,
+    NgClass,
+    ParentControlContainerDirective,
+    MatSelectModule,
+    InputSelectOptionsDirective,
   ],
   providers: [
     {
@@ -106,15 +110,13 @@ import {
     {
       provide: RXAP_TABLE_FILTER_FORM_DEFINITION,
       useFactory: FormFactory,
-      deps: [ INJECTOR ],
+      deps: [INJECTOR],
     },
   ],
 })
 export class FilterTableComponent {
-
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
-
 }
 
 export default FilterTableComponent;

@@ -15,7 +15,9 @@ import { IActionTable } from '../../action-table';
   tooltip: $localize`Confirm`,
   successMessage: 'Success',
 })
-export class ConfirmTableRowActionMethod implements Method, TableRowActionTypeMethod<IActionTable> {
+export class ConfirmTableRowActionMethod
+  implements Method, TableRowActionTypeMethod<IActionTable>
+{
   async call(parameters: IActionTable): Promise<unknown> {
     console.log(`action row type: confirm`, parameters);
     return parameters;

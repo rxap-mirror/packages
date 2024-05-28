@@ -1,10 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SimpleAccordionDataSource } from './simple-accordion.data-source';
 import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
-import { CommonModule } from '@angular/common';
+import { CommonModule, AsyncPipe, NgIf } from '@angular/common';
 
 import { FirstPanelComponent } from './first-panel/first-panel.component';
 
@@ -25,11 +22,10 @@ import { SimpleAccordionMethod } from './simple-accordion.method';
 @Component({
   selector: 'rxap-simple-accordion',
   templateUrl: './simple-accordion.component.html',
-  styleUrls: [ './simple-accordion.component.scss' ],
+  styleUrls: ['./simple-accordion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-
     FirstPanelComponent,
 
     SecondPanelComponent,
@@ -45,6 +41,8 @@ import { SimpleAccordionMethod } from './simple-accordion.method';
     PersistentAccordionDirective,
     CommonModule,
     AccordionHeaderComponent,
+    AsyncPipe,
+    NgIf,
   ],
   providers: [
     SimpleAccordionDataSource,
@@ -57,10 +55,7 @@ import { SimpleAccordionMethod } from './simple-accordion.method';
 })
 export class SimpleAccordionComponent {
 
-  constructor(
-    public readonly accordionDataSource: SimpleAccordionDataSource,
-  ) {}
-
+  public readonly accordionDataSource = inject(SimpleAccordionDataSource);
 }
 
 export default SimpleAccordionComponent;

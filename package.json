@@ -19,7 +19,10 @@
     "generate:tls": "env-cmd bash ./docker/traefik/tls/generate.sh",
     "setup:local-deploy": "env-cmd bash ./docker/traefik/setup.sh",
     "webpack-bundle-analyzer": "webpack-bundle-analyzer",
-    "init:env": "bash tools/scripts/setup-env-file.sh"
+    "init:env": "bash tools/scripts/setup-env-file.sh",
+    "rxap:update": "npx npm-check-updates --filter /@rxap/ --target newest -u && yarn",
+    "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
+    "rxap:compose": "nx g @rxap/schematic-composer:compose"
   },
   "dependencies": {
     "@angular/animations": "16.2.12",

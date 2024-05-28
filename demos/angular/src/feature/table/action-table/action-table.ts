@@ -1,7 +1,9 @@
 import { TableRowMetadata } from '@rxap/material-table-system';
 
-export interface IActionTable extends Record<string, unknown>, TableRowMetadata {
-  name: unknown;
+export interface IActionTable
+  extends Record<string, unknown>,
+    TableRowMetadata {
+  name: string;
   age: number;
   isActive: boolean;
   email: unknown;

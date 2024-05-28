@@ -1,0 +1,8 @@
+<form rxapForm class="flex flex-col gap-2">
+  <ng-template rxapFormWindowFooter let-windowRef>
+    <rxap-form-controls
+      (close)="windowRef.complete()"
+      (submitted)="windowRef.next($event)"
+    ></rxap-form-controls>
+  </ng-template>
+</form>

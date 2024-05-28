@@ -14,7 +14,9 @@ import { IMaximumTreeTable } from '../../maximum-tree-table';
   priority: 0,
   tooltip: $localize`Callout`,
 })
-export class CalloutTableRowActionMethod implements Method, TableRowActionTypeMethod<IMaximumTreeTable> {
+export class CalloutTableRowActionMethod
+  implements Method, TableRowActionTypeMethod<IMaximumTreeTable>
+{
   async call(parameters: IMaximumTreeTable): Promise<unknown> {
     console.log(`action row type: callout`, parameters);
     return parameters;

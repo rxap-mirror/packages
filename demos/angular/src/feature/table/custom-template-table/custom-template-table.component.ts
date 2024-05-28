@@ -1,9 +1,5 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
+import { CommonModule, AsyncPipe, NgIf, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -47,13 +43,11 @@ import { DummyTableMethod } from '../dummy-table.method';
 @Component({
   selector: 'rxap-custom-template-table',
   templateUrl: './custom-template-table.component.html',
-  styleUrls: [ './custom-template-table.component.scss' ],
+  styleUrls: ['./custom-template-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [ RowAnimation ],
+  animations: [RowAnimation],
   standalone: true,
   imports: [
-
-
     CommonModule,
     MatCardModule,
     MatProgressBarModule,
@@ -89,6 +83,9 @@ import { DummyTableMethod } from '../dummy-table.method';
     BooleanCellComponent,
     DataSourceErrorComponent,
     MatSnackBarModule,
+    AsyncPipe,
+    NgIf,
+    NgClass,
   ],
   providers: [
     {
@@ -98,10 +95,8 @@ import { DummyTableMethod } from '../dummy-table.method';
   ],
 })
 export class CustomTemplateTableComponent {
-
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
-
 }
 
-
+export default CustomTemplateTableComponent;

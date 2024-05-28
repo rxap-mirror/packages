@@ -15,7 +15,9 @@ import { IActionTable } from '../../action-table';
   tooltip: $localize`Fail`,
   errorMessage: 'Failure',
 })
-export class FailTableRowActionMethod implements Method, TableRowActionTypeMethod<IActionTable> {
+export class FailTableRowActionMethod
+  implements Method, TableRowActionTypeMethod<IActionTable>
+{
   async call(parameters: IActionTable): Promise<unknown> {
     console.log(`action row type: fail`, parameters);
     throw new Error('Failure');

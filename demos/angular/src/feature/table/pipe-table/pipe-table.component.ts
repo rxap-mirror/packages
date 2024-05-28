@@ -1,12 +1,11 @@
 import {
   CommonModule,
   JsonPipe,
+  AsyncPipe,
+  NgIf,
+  NgClass,
 } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -47,23 +46,19 @@ import { GetFromObjectPipe } from '@rxap/pipes';
 import { Observable } from 'rxjs';
 import { DummyTableMethod } from '../dummy-table.method';
 
-
 import { ToUppercasePipe } from './to-uppercase.pipe';
 
 @Component({
   selector: 'rxap-pipe-table',
   templateUrl: './pipe-table.component.html',
-  styleUrls: [ './pipe-table.component.scss' ],
+  styleUrls: ['./pipe-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [ RowAnimation ],
+  animations: [RowAnimation],
   standalone: true,
   imports: [
-
-
     ToUppercasePipe,
 
     JsonPipe,
-
 
     CommonModule,
     MatCardModule,
@@ -100,6 +95,9 @@ import { ToUppercasePipe } from './to-uppercase.pipe';
     BooleanCellComponent,
     DataSourceErrorComponent,
     MatSnackBarModule,
+    AsyncPipe,
+    NgIf,
+    NgClass,
   ],
   providers: [
     {
@@ -109,10 +107,8 @@ import { ToUppercasePipe } from './to-uppercase.pipe';
   ],
 })
 export class PipeTableComponent {
-
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
-
 }
 
-
+export default PipeTableComponent;

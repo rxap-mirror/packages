@@ -3,6 +3,11 @@
   options:
     onlyPackages: true
     dte: true
+    components: true
+    release: none
+    angular: false
+    nest: false
+    parallel: 3
 - package: "@rxap/plugin-workspace"
   name: init
   options:

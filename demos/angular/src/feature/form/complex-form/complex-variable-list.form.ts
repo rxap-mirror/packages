@@ -9,15 +9,17 @@ import {
 
 @RxapForm('complex-variable-list')
 @Injectable()
-export class ComplexVariableListForm implements FormType<IComplexVariableListForm> {
+export class ComplexVariableListForm
+  implements FormType<IComplexVariableListForm>
+{
   public readonly rxapFormGroup!: RxapFormGroup<IComplexVariableListForm>;
   @UseFormControl()
   public readonly name!: RxapFormControl<string>;
   @UseFormControl()
-  public readonly required!: RxapFormControl<unknown>;
+  public readonly required!: RxapFormControl<boolean>;
 }
 
 export interface IComplexVariableListForm {
   name: string;
-  required: unknown;
+  required: boolean;
 }

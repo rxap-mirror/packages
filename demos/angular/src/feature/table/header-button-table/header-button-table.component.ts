@@ -1,9 +1,5 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
+import { CommonModule, AsyncPipe, NgIf, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -46,13 +42,15 @@ import { Observable } from 'rxjs';
 import { DummyTableMethod } from '../dummy-table.method';
 import { TableHeaderButtonFormMethod } from './methods/table-header-button-form.method';
 import { OpenTableHeaderButtonFormWindowMethod } from './table-header-button-form/open-table-header-button-form-window.method';
+import { HeaderButtonMethod } from './methods/header-button.method';
+import { OpenHeaderButtonFormWindowMethod } from './header-button-form/open-header-button-form-window.method';
 
 @Component({
   selector: 'rxap-header-button-table',
   templateUrl: './header-button-table.component.html',
-  styleUrls: [ './header-button-table.component.scss' ],
+  styleUrls: ['./header-button-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [ RowAnimation ],
+  animations: [RowAnimation],
   standalone: true,
   imports: [
     CommonModule,
@@ -67,7 +65,6 @@ import { OpenTableHeaderButtonFormWindowMethod } from './table-header-button-for
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-
 
     TableColumnMenuModule,
     DateCellComponent,
@@ -91,6 +88,9 @@ import { OpenTableHeaderButtonFormWindowMethod } from './table-header-button-for
     BooleanCellComponent,
     DataSourceErrorComponent,
     MatSnackBarModule,
+    AsyncPipe,
+    NgIf,
+    NgClass,
   ],
   providers: [
     {
@@ -102,13 +102,12 @@ import { OpenTableHeaderButtonFormWindowMethod } from './table-header-button-for
       useClass: TableHeaderButtonFormMethod,
     },
     OpenTableHeaderButtonFormWindowMethod,
-  ]
+    OpenHeaderButtonFormWindowMethod,
+  ],
 })
 export class HeaderButtonTableComponent {
-
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
-
 }
 
 export default HeaderButtonTableComponent;

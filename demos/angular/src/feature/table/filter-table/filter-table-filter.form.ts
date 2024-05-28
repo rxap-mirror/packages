@@ -8,6 +8,9 @@ import {
 } from '@rxap/forms';
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { IsActiveOptionsDataSource } from './data-sources/is-active-options.data-source';
+import { UseOptionsDataSource } from '@rxap/form-system';
+import { IFilterTable } from './filter-table';
 
 @RxapForm('filter-table-filter')
 @Injectable()
@@ -15,6 +18,8 @@ export class FilterTableFilterForm implements FormType<IFilterTableFilterForm> {
   public readonly rxapFormGroup!: RxapFormGroup<IFilterTableFilterForm>;
   @UseFormControl()
   public readonly age!: RxapFormControl<number>;
+
+  @UseOptionsDataSource(IsActiveOptionsDataSource)
   @UseFormControl()
   public readonly isActive!: RxapFormControl<boolean>;
   @UseFormControl()
@@ -22,13 +27,10 @@ export class FilterTableFilterForm implements FormType<IFilterTableFilterForm> {
   @UseFormControl()
   public readonly rating!: RxapFormControl<number>;
   @UseFormControl()
-  public readonly name!: RxapFormControl<unknown>;
+  public readonly name!: RxapFormControl<string>;
 }
 
-export interface IFilterTableFilterForm {
-  age: number;
-  isActive: boolean;
-  email: unknown;
-  rating: number;
-  name: unknown;
-}
+export type IFilterTableFilterForm = Pick<
+  IFilterTable,
+  'name' | 'age' | 'isActive' | 'email' | 'rating'
+>;

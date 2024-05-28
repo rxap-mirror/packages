@@ -1,10 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MultipleAccordionDataSource } from './multiple-accordion.data-source';
 import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
-import { CommonModule } from '@angular/common';
+import { CommonModule, AsyncPipe, NgIf } from '@angular/common';
 
 import { FirstPanelComponent } from './first-panel/first-panel.component';
 
@@ -25,11 +22,10 @@ import { MultipleAccordionMethod } from './multiple-accordion.method';
 @Component({
   selector: 'rxap-multiple-accordion',
   templateUrl: './multiple-accordion.component.html',
-  styleUrls: [ './multiple-accordion.component.scss' ],
+  styleUrls: ['./multiple-accordion.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-
     FirstPanelComponent,
 
     SecondPanelComponent,
@@ -45,6 +41,8 @@ import { MultipleAccordionMethod } from './multiple-accordion.method';
     PersistentAccordionDirective,
     CommonModule,
     AccordionHeaderComponent,
+    AsyncPipe,
+    NgIf,
   ],
   providers: [
     MultipleAccordionDataSource,
@@ -57,10 +55,7 @@ import { MultipleAccordionMethod } from './multiple-accordion.method';
 })
 export class MultipleAccordionComponent {
 
-  constructor(
-    public readonly accordionDataSource: MultipleAccordionDataSource,
-  ) {}
-
+  public readonly accordionDataSource = inject(MultipleAccordionDataSource);
 }
 
 export default MultipleAccordionComponent;

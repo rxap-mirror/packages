@@ -15,7 +15,9 @@ import { IMaximumTreeTable } from '../../maximum-tree-table';
   tooltip: $localize`Fail`,
   errorMessage: 'Failure',
 })
-export class FailTableRowActionMethod implements Method, TableRowActionTypeMethod<IMaximumTreeTable> {
+export class FailTableRowActionMethod
+  implements Method, TableRowActionTypeMethod<IMaximumTreeTable>
+{
   async call(parameters: IMaximumTreeTable): Promise<unknown> {
     console.log(`action row type: fail`, parameters);
     return parameters;

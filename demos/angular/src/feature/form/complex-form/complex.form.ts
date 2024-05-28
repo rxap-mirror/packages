@@ -24,9 +24,11 @@ export class ComplexForm implements FormType<IComplexForm> {
   public readonly rxapFormGroup!: RxapFormGroup<IComplexForm>;
   @UseFormControl()
   public readonly name!: RxapFormControl<string>;
-  @UseFormArrayGroup(ComplexVariableListForm, )
+  @UseFormArrayGroup(ComplexVariableListForm, {
+    state: [],
+  })
   public readonly variableList!: FormDefinitionArray<ComplexVariableListForm>;
-  @UseFormGroup(ComplexCompanyForm, )
+  @UseFormGroup(ComplexCompanyForm)
   public readonly company!: ComplexCompanyForm;
 }
 

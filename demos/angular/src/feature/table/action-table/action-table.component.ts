@@ -1,9 +1,5 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
+import { CommonModule, AsyncPipe, NgIf, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -51,9 +47,9 @@ import { TABLE_ROW_ACTION_METHODS } from './methods/action';
 @Component({
   selector: 'rxap-action-table',
   templateUrl: './action-table.component.html',
-  styleUrls: [ './action-table.component.scss' ],
+  styleUrls: ['./action-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [ RowAnimation ],
+  animations: [RowAnimation],
   standalone: true,
   imports: [
     CommonModule,
@@ -68,7 +64,6 @@ import { TABLE_ROW_ACTION_METHODS } from './methods/action';
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-
 
     TableColumnMenuModule,
     DateCellComponent,
@@ -93,6 +88,9 @@ import { TABLE_ROW_ACTION_METHODS } from './methods/action';
     DataSourceErrorComponent,
     MatSnackBarModule,
     SelectRowModule,
+    AsyncPipe,
+    NgIf,
+    NgClass,
   ],
   providers: [
     {
@@ -110,10 +108,8 @@ import { TABLE_ROW_ACTION_METHODS } from './methods/action';
   ],
 })
 export class ActionTableComponent {
-
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
-
 }
 
 export default ActionTableComponent;
