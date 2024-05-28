@@ -7,7 +7,7 @@ export * from './lib/table-select-window/window-test-wrapper';
 export * from './lib/table-select-input/table-select-input.component';
 // endregion
 
-// region
+// region 
 export * from './lib/create-filter-form-provider';
 export * from './lib/decorators';
 export * from './lib/extract-table-select-column-map.mixin';
