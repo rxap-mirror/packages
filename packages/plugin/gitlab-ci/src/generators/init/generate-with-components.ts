@@ -8,6 +8,7 @@ import {
   CoerceInclude,
   Include,
 } from './coerce-include';
+import { Rule } from './coerce-rule';
 import { InitGeneratorSchema } from './schema';
 
 export function generateWithComponents(tree: Tree, options: InitGeneratorSchema) {
@@ -35,17 +36,19 @@ export function generateWithComponents(tree: Tree, options: InitGeneratorSchema)
   const inputs: Record<string, unknown> = {};
 
   if (options.dte) {
-    inputs.dte = 'true';
+    inputs.dte = true;
     inputs.parallel = options.parallel;
+  }
+
+  const rules: Rule[] = [];
+
+  if (options.release === 'release-it') {
+    rules.push({ if: '$RELEASE_IT != "true"' });
   }
 
   CoerceInclude(gitlabCi.include, {
     component: 'gitlab.com/rxap/gitlab-ci/nx-workspace@~latest',
-    rules: [
-      {
-        if: '$RELEASE_IT != "true"'
-      }
-    ],
+    rules,
     inputs,
   });
 

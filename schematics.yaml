@@ -7,7 +7,7 @@
     release: none
     angular: false
     nest: false
-    parallel: 3
+    parallel: 5
 - package: "@rxap/plugin-workspace"
   name: init
   options:

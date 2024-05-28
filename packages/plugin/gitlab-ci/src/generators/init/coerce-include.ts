@@ -36,7 +36,9 @@ function compareInclude(a: Include, b: Include) {
     return a.local === b.local;
   }
   if (IsComponentInclude(a) && IsComponentInclude(b)) {
-    return a.component === b.component;
+    const [nameA] = a.component.split('@');
+    const [nameB] = b.component.split('@');
+    return nameA === nameB;
   }
   return false;
 }
