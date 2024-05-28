@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.4](https://gitlab.com/rxap/packages/compare/rxap@16.0.3...rxap@16.0.4) (2024-05-28)
+
+### Bug Fixes
+
+- set correct tslib version ([6bf89b5](https://gitlab.com/rxap/packages/commit/6bf89b5c1cdf82e478b27a58893fd5e5b70c7de1))
+
 ## [16.0.3](https://gitlab.com/rxap/packages/compare/rxap@16.0.3-dev.4...rxap@16.0.3) (2024-05-28)
 
 **Note:** Version bump only for package rxap
