@@ -7,51 +7,32 @@
     "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nest/testing",
         "tsConfig": "packages/nest/testing/tsconfig.lib.json",
         "packageJson": "packages/nest/testing/package.json",
         "main": "packages/nest/testing/src/index.ts",
-        "assets": [
-          "packages/nest/testing/*.md"
-        ],
+        "assets": ["packages/nest/testing/*.md"],
         "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-testing {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/nest/testing/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/nest/testing/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/nest/testing/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "packages/nest/testing/jest.config.ts"
       }
     },
     "update-dependencies": {
@@ -65,9 +46,7 @@
     },
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:run-generator",
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/package.json"
-      ],
+      "outputs": ["{workspaceRoot}/{projectRoot}/package.json"],
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
@@ -83,8 +62,5 @@
     },
     "linking": {}
   },
-  "tags": [
-    "nest",
-    "packages"
-  ]
+  "tags": ["nest", "packages"]
 }

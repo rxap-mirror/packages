@@ -37,9 +37,6 @@
     ]
   },
   "targetDefaults": {
-    "build-info": {
-      "executor": "@rxap/plugin-application:build-info"
-    },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
@@ -104,18 +101,6 @@
       "dependsOn": ["^generate-open-api"],
       "executor": "@rxap/plugin-open-api:copy-client-sdk",
       "outputs": ["{projectRoot}/src/lib/openapi"],
-      "cache": true
-    },
-    "swagger-build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "transformers": ["@nestjs/swagger/plugin"],
-        "compiler": "tsc",
-        "target": "node"
-      },
-      "inputs": ["build", "^build"],
-      "dependsOn": ["^build"],
       "cache": true
     },
     "linking": {
@@ -268,16 +253,6 @@
       },
       "cache": true
     },
-    "swagger-generate": {
-      "executor": "@rxap/plugin-nestjs:swagger-generate",
-      "outputs": ["{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"],
-      "inputs": [
-        "{workspaceRoot}/dist/swagger/{projectRoot}/main.js",
-        "{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map"
-      ],
-      "dependsOn": ["^build"],
-      "cache": true
-    },
     "check-version": {
       "executor": "@rxap/plugin-library:check-version",
       "inputs": ["{projectRoot}/package.json", "{workspaceRoot}/package.json"],
@@ -310,27 +285,6 @@
     "config": {
       "executor": "@rxap/plugin-application:config"
     },
-    "generate-package-json": {
-      "executor": "@rxap/plugin-nestjs:package-json",
-      "outputs": ["{projectRoot}/package.json"],
-      "inputs": ["production", "^production"],
-      "cache": true
-    },
-    "generate-open-api": {
-      "dependsOn": ["swagger-generate"],
-      "executor": "@rxap/plugin-library:run-generator",
-      "options": {
-        "generator": "@rxap/plugin-open-api:generate",
-        "options": {
-          "project": "open-api-{projectName}",
-          "path": "dist/swagger/{projectRoot}/openapi.json",
-          "serverId": "{projectName}"
-        }
-      },
-      "inputs": ["{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"],
-      "outputs": ["{workspaceRoot}/packages/open-api/{projectRoot}/src"],
-      "cache": true
-    },
     "index-export": {
       "executor": "@rxap/plugin-library:run-generator",
       "outputs": ["{workspaceRoot}/{projectRoot}/src/index.ts"],
@@ -343,15 +297,6 @@
     "localazy-upload": {
       "dependsOn": ["extract-i18n"],
       "inputs": ["{projectRoot}/src/i18n/messages.xlf"],
-      "cache": true
-    },
-    "build-storybook": {
-      "inputs": [
-        "default",
-        "^production",
-        "{projectRoot}/.storybook/**/*",
-        "{projectRoot}/tsconfig.storybook.json"
-      ],
       "cache": true
     },
     "deploy": {
@@ -381,17 +326,41 @@
       },
       "cache": true
     },
-    "e2e": {
-      "cache": true
-    },
     "typedoc": {
       "cache": true
     },
     "ci-info": {
       "cache": true
     },
-    "copy-client-sdk": {
-      "cache": true
+    "@nx/jest:jest": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}",
+        "{workspaceRoot}/junit/{projectRoot}",
+        "{workspaceRoot}/{projectRoot}/coverage"
+      ],
+      "inputs": [
+        "test",
+        "^test",
+        "{workspaceRoot}/jest.preset.js",
+        "{workspaceRoot}/jest.preset.ts",
+        {
+          "env": "JEST_JUNIT_OUTPUT_DIR"
+        }
+      ],
+      "options": {
+        "passWithNoTests": true,
+        "silent": true,
+        "coverageReporters": ["json"],
+        "codeCoverage": true
+      },
+      "cache": true,
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
     }
   },
   "affected": {

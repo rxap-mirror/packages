@@ -3,18 +3,11 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/changelog/src",
   "prefix": "rxap",
-  "tags": [
-    "angular",
-    "ngx",
-    "packages",
-    "scope:compose"
-  ],
+  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "projectType": "library",
   "targets": {
     "copy-open-api-sdk": {
-      "inputs": [
-        "{workspaceRoot}/packages/open-api/service/changelog/src/lib"
-      ],
+      "inputs": ["{workspaceRoot}/packages/open-api/service/changelog/src/lib"],
       "options": {
         "clientSdkProject": "open-api-service-changelog",
         "angular": true,
@@ -25,9 +18,7 @@
     "index-export": {},
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/changelog/ng-package.json",
         "tailwindConfig": "packages/angular/changelog/tailwind.config.js",
@@ -45,25 +36,14 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/angular/changelog/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "packages/angular/changelog/jest.config.ts"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "packages/angular/changelog/**/*.ts",
@@ -82,9 +62,7 @@
     },
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:run-generator",
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/package.json"
-      ],
+      "outputs": ["{workspaceRoot}/{projectRoot}/package.json"],
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
@@ -126,7 +104,5 @@
     },
     "linking": {}
   },
-  "implicitDependencies": [
-    "angular-changelog"
-  ]
+  "implicitDependencies": ["angular-changelog"]
 }
