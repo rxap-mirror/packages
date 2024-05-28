@@ -46,17 +46,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/demos/angular",
         "index": "demos/angular/src/index.html",
         "main": "demos/angular/src/main.ts",
-        "polyfills": [
-          "zone.js",
-          "@angular/localize/init"
-        ],
+        "polyfills": ["zone.js", "@angular/localize/init"],
         "tsConfig": "demos/angular/tsconfig.app.json",
         "assets": [
           "demos/angular/src/favicon.ico",
@@ -73,12 +68,8 @@
             "output": "."
           }
         ],
-        "styles": [
-          "demos/angular/src/styles.scss"
-        ],
-        "scripts": [
-          "node_modules/marked/marked.min.js"
-        ],
+        "styles": ["demos/angular/src/styles.scss"],
+        "scripts": ["node_modules/marked/marked.min.js"],
         "sourceMap": true
       },
       "configurations": {
@@ -104,9 +95,7 @@
               "with": "demos/angular/src/environments/environment.prod.ts"
             }
           ],
-          "localize": [
-            "en"
-          ]
+          "localize": ["en"]
         },
         "development": {
           "buildOptimizer": false,
@@ -135,17 +124,14 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "angular:build",
         "format": "xliff2",
-        "outputPath": "demos/angular/src/i18n"
+        "outputPath": "demos/angular/src/i18n",
+        "buildTarget": "angular:build"
       }
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "demos/angular/**/*.ts",
-          "demos/angular/**/*.html"
-        ]
+        "lintFilePatterns": ["demos/angular/**/*.ts", "demos/angular/**/*.html"]
       }
     },
     "serve": {
@@ -155,10 +141,10 @@
       },
       "configurations": {
         "production": {
-          "browserTarget": "angular:build:production"
+          "buildTarget": "angular:build:production"
         },
         "development": {
-          "browserTarget": "angular:build:development"
+          "buildTarget": "angular:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -193,9 +179,7 @@
     },
     "deploy": {
       "executor": "@rxap/plugin-web3-storage:deploy",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}/ipfs-cid.txt"
-      ]
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}/ipfs-cid.txt"]
     },
     "i18n-index-html": {}
   },
