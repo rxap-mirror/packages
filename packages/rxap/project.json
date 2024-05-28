@@ -123,6 +123,9 @@
         "readme",
         "check-version"
       ],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
       "executor": "nx:run-commands",
       "options": {
         "commands": [
