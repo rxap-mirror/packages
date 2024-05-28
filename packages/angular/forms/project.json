@@ -68,6 +68,7 @@
         "devServerTarget": "angular:build:development"
       }
     },
-    "linking": {}
+    "linking": {},
+    "index-export": {}
   }
 }

@@ -61,6 +61,7 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "index-export": {}
   }
 }

@@ -44,7 +44,8 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "index-export": {}
   },
   "tags": ["packages", "data-structure", "scope:utilities"]
 }

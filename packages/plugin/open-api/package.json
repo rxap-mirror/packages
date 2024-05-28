@@ -92,5 +92,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/open-api"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }
