@@ -102,7 +102,7 @@
     },
     "update-package-group": {
       "executor": "@rxap/plugin-library:update-package-group",
-      "dependsOn": ["update-dependencies"],
+      "dependsOn": ["update-dependencies", "^update-dependencies"],
       "inputs": ["production", "{projectRoot}/package.json"],
       "outputs": ["{projectRoot}/package.json"]
     },
