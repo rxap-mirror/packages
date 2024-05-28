@@ -371,6 +371,18 @@
         "{workspaceRoot}/.eslintignore"
       ],
       "cache": true
+    },
+    "swagger-build": {
+      "cache": true
+    },
+    "swagger-generate": {
+      "cache": true
+    },
+    "generate-package-json": {
+      "cache": true
+    },
+    "generate-open-api": {
+      "cache": true
     }
   },
   "affected": {
