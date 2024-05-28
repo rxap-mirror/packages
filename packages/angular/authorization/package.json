@@ -1,5 +1,5 @@
 {
-  "version": "16.0.2",
+  "version": "16.0.3-dev.0",
   "name": "@rxap/authorization",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@angular/core": "^16.2.12",
     "@angular/forms": "^16.2.12",
     "@angular/material": "^16.2.14",
-    "@rxap/utilities": "^16.2.0",
+    "@rxap/utilities": "^16.2.1-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -46,19 +46,19 @@
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.0"
+        "version": "1.2.1-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.0"
+        "version": "16.4.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.0"
+        "version": "16.2.1-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0"
+        "version": "16.3.1-dev.0"
       }
     ]
   },

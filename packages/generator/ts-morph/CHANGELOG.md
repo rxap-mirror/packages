@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/generator-ts-morph@1.0.3...@rxap/generator-ts-morph@1.0.4-dev.0) (2024-05-28)
+
+**Note:** Version bump only for package @rxap/generator-ts-morph
+
 ## [1.0.3](https://gitlab.com/rxap/packages/compare/@rxap/generator-ts-morph@1.0.3-dev.0...@rxap/generator-ts-morph@1.0.3) (2024-05-27)
 
 **Note:** Version bump only for package @rxap/generator-ts-morph
