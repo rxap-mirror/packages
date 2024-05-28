@@ -34,8 +34,7 @@
           "docker",
           "deploy",
           "i18n-index-html"
-        ],
-        "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
+        ]
       }
     }
   },
