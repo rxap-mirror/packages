@@ -16,6 +16,18 @@
     },
     {
       "files": [
+        "*.mixin.ts",
+        "*.directive.ts",
+        "*.remote-method.ts",
+        "*.data-source.ts",
+        "*.mixin.spec.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/no-unsafe-declaration-merging": "off"
+      }
+    },
+    {
+      "files": [
         "*.ts"
       ],
       "rules": {

@@ -13,7 +13,9 @@
         "*.js",
         "*.jsx"
       ],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-unsafe-declaration-merging": "off"
+      }
     },
     {
       "files": [

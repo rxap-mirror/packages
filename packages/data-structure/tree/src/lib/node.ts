@@ -62,7 +62,7 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
     public type: string | null = null,
     public onSelect: ExpandNodeFunction<T> | null = null,
     public onDeselect: ExpandNodeFunction<T> | null = null,
-    public hasDetails: boolean = true,
+    public hasDetails = true,
     public style: Record<string, string> = {},
     /**
      * Custom parameters passed to all child mode to transport non-standard
@@ -70,7 +70,7 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
      */
     private _parameters: CustomParameters | null = null,
     // TODO : move property before _parameters (refactor)
-    public hidden: boolean = false,
+    public hidden = false,
   ) {
     this.setChildren(children);
     const identifier = getIdentifierPropertyValue(this.item);
