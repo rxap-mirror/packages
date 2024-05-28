@@ -13,7 +13,8 @@
       "default": [
         "@rxap\/",
         "@angular\/",
-        "@nx\/"
+        "@nx\/",
+        "@nestjs\/"
       ],
       "description": "List of regexes to match package name that should be added to the package group"
     },
