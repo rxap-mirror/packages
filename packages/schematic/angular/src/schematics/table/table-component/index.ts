@@ -66,7 +66,7 @@ export interface NormalizedTableComponentOptions
 export function NormalizeTableComponentOptions(
   options: Readonly<TableComponentOptions>,
 ): NormalizedTableComponentOptions {
-  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options, IsTableModifiers);
+  const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options, IsTableModifiers, '-table');
   AssertAngularOptionsNameProperty(normalizedMinimumTableComponentOptions);
   const {
     name,

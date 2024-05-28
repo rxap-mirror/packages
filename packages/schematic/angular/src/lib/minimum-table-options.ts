@@ -89,7 +89,7 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   options: Readonly<MinimumTableOptions>,
   name: string,
   isModifier: (value: string) => value is MODIFIER,
-  suffix = '-table',
+  suffix: string,
 ): NormalizedMinimumTableOptions<MODIFIER> {
   const componentName = options.componentName ?? CoerceSuffix(name, suffix);
   const actionList = NormalizeTableActionList(options.actionList);

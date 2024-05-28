@@ -69,7 +69,7 @@ export interface NormalizedMinimumTableComponentOptions
 export function NormalizeMinimumTableComponentOptions<MODIFIER extends string = string>(
   options: Readonly<MinimumTableComponentOptions>,
   isModifier: (value: string) => value is MODIFIER,
-  suffix = '-table',
+  suffix: string,
 ): NormalizedMinimumTableComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
@@ -602,7 +602,6 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
 export function headerButtonRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
   const {
     headerButton,
-    name,
     project,
     feature,
     backend,
@@ -611,11 +610,14 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
     context,
     nestModule,
     controllerName,
+    componentName,
   } = normalizedOptions;
   if (headerButton) {
     const options = {
       ...headerButton.options ?? {},
-      tableName: name,
+      // it is required to use the componentName. The componentName has already the proper suffix '-tree-table'
+      // if the name property is used then the wrong suffix '-table' will be used
+      tableName: componentName,
       project,
       feature,
       backend,

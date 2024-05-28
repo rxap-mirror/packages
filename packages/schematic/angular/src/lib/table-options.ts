@@ -71,7 +71,7 @@ export function NormalizeTableOptions(options: Readonly<TableOptions>, name: str
     ...options,
     columnList,
     propertyList,
-  }, name, IsTableModifiers);
+  }, name, IsTableModifiers, '-table');
   const { actionList } = normalizedOptions;
   const selectColumn = (options.selectColumn ?? false) || actionList.some(action => action.inHeader);
   const tableMethod = NormalizeExistingMethod(options.tableMethod);
