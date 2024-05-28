@@ -119,7 +119,10 @@
   ],
   "targets": {
     "build": {
-      "dependsOn": ["readme", "check-version"],
+      "dependsOn": [
+        "readme",
+        "check-version"
+      ],
       "executor": "nx:run-commands",
       "options": {
         "commands": [
@@ -141,18 +144,27 @@
     "update-implicit-dependencies": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["bash ./packages/rxap/update-implicit-dependencies.sh"]
+        "commands": [
+          "bash ./packages/rxap/update-implicit-dependencies.sh"
+        ]
       }
     },
     "update-include-packages": {
-      "dependsOn": ["update-implicit-dependencies"],
+      "dependsOn": [
+        "update-implicit-dependencies"
+      ],
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["bash ./packages/rxap/update-include-packages.sh"]
+        "commands": [
+          "bash ./packages/rxap/update-include-packages.sh"
+        ]
       }
     },
     "update-package-group": {
-      "dependsOn": ["update-include-packages", "update-implicit-dependencies"],
+      "dependsOn": [
+        "update-include-packages",
+        "update-implicit-dependencies"
+      ],
       "options": {
         "include": [
           "@angular/animations",
@@ -188,10 +200,10 @@
           "@nx/angular",
           "@nx/cypress",
           "@nx/devkit",
+          "@nx/eslint",
           "@nx/eslint-plugin",
           "@nx/jest",
           "@nx/js",
-          "@nx/eslint",
           "@nx/nest",
           "@nx/node",
           "@nx/plugin",
@@ -202,5 +214,7 @@
       }
     }
   },
-  "tags": ["standalone"]
+  "tags": [
+    "standalone"
+  ]
 }

@@ -129,6 +129,7 @@
     "@nx/angular": "17.3.2",
     "@nx/cypress": "17.3.2",
     "@nx/devkit": "17.3.2",
+    "@nx/eslint": "17.3.2",
     "@nx/eslint-plugin": "17.3.2",
     "@nx/jest": "17.3.2",
     "@nx/js": "17.3.2",
@@ -191,8 +192,7 @@
     "typedoc-plugin-rename-defaults": "0.6.5",
     "typedoc-theme-hierarchy": "3.2.1",
     "typescript": "5.3.3",
-    "verdaccio": "5.21.2",
-    "@nx/eslint": "17.3.2"
+    "verdaccio": "5.21.2"
   },
   "engines": {
     "yarn": "1.22 || 3.6",

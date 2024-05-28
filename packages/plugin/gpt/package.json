@@ -1,12 +1,12 @@
 {
-  "version": "16.0.4",
+  "version": "17.0.0",
   "name": "@rxap/plugin-gpt",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.10.0",
+    "@nx/devkit": "^17.3.2",
     "@rxap/generator-ts-morph": "^1.0.4",
     "@rxap/ts-morph": "^1.2.1",
     "@rxap/workspace-utilities": "^16.3.1",
@@ -38,7 +38,7 @@
     "packageGroup": [
       {
         "package": "@nx/devkit",
-        "version": "16.10.0"
+        "version": "17.3.2"
       },
       {
         "package": "@rxap/generator-ts-morph",

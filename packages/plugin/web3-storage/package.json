@@ -1,13 +1,13 @@
 {
-  "version": "16.0.3",
+  "version": "17.0.0",
   "name": "@rxap/plugin-web3-storage",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.10.0",
-    "@rxap/plugin-utilities": "^16.4.1",
+    "@nx/devkit": "^17.3.2",
+    "@rxap/plugin-utilities": "^17.0.0",
     "files-from-path": "^1.0.0",
     "web3.storage": "^4.5.5"
   },
@@ -36,23 +36,23 @@
     "packageGroup": [
       {
         "package": "@nx/devkit",
-        "version": "16.10.0"
+        "version": "17.3.2"
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.0"
+        "version": "1.2.1"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.0"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.0"
+        "version": "16.2.1"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0"
+        "version": "16.3.1"
       }
     ]
   },

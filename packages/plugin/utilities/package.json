@@ -1,12 +1,12 @@
 {
-  "version": "16.4.1",
+  "version": "17.0.0",
   "name": "@rxap/plugin-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.10.0",
+    "@nx/devkit": "^17.3.2",
     "@rxap/node-utilities": "^1.2.1",
     "@rxap/workspace-utilities": "^16.3.1"
   },
@@ -31,7 +31,7 @@
     "packageGroup": [
       {
         "package": "@nx/devkit",
-        "version": "16.10.0"
+        "version": "17.3.2"
       },
       {
         "package": "@rxap/node-utilities",

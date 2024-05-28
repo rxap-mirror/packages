@@ -1,13 +1,13 @@
 {
-  "version": "16.1.1",
+  "version": "17.0.0",
   "name": "@rxap/plugin-compodoc",
   "license": "MIT",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.10.0",
-    "@rxap/plugin-utilities": "^16.4.1",
+    "@nx/devkit": "^17.3.2",
+    "@rxap/plugin-utilities": "^17.0.0",
     "@rxap/utilities": "^16.2.1",
     "@rxap/workspace-utilities": "^16.3.1"
   },
@@ -34,23 +34,23 @@
     "packageGroup": [
       {
         "package": "@nx/devkit",
-        "version": "16.10.0"
+        "version": "17.3.2"
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.0"
+        "version": "1.2.1"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.0"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.0"
+        "version": "16.2.1"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.0"
+        "version": "16.3.1"
       }
     ]
   },

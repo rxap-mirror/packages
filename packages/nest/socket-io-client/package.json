@@ -1,5 +1,5 @@
 {
-  "version": "10.0.3",
+  "version": "10.0.0",
   "name": "@rxap/nest-socket-io-client",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -29,6 +29,22 @@
     "scope:integration",
     "socket-io-client"
   ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@nestjs/common",
+        "version": "10.0.5"
+      },
+      {
+        "package": "@nestjs/config",
+        "version": "3.0.0"
+      },
+      {
+        "package": "@nestjs/microservices",
+        "version": "10.0.5"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/socket-io-client"

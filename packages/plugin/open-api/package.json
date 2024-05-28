@@ -1,5 +1,5 @@
 {
-  "version": "16.3.1",
+  "version": "17.0.0",
   "name": "@rxap/plugin-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,10 +7,10 @@
     "yaml": "^2.3.1"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.10.0",
+    "@nx/devkit": "^17.3.2",
     "@rxap/node-utilities": "^1.2.1",
-    "@rxap/plugin-library": "^16.3.1",
-    "@rxap/plugin-utilities": "^16.4.1",
+    "@rxap/plugin-library": "^17.0.0",
+    "@rxap/plugin-utilities": "^17.0.0",
     "@rxap/utilities": "^16.2.1",
     "@rxap/workspace-open-api": "^16.1.1",
     "@rxap/workspace-ts-morph": "^16.1.2",
@@ -39,7 +39,7 @@
     "packageGroup": [
       {
         "package": "@nx/devkit",
-        "version": "16.10.0"
+        "version": "17.3.2"
       },
       {
         "package": "@rxap/generator-ts-morph",
@@ -55,11 +55,11 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.3.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.4.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/ts-morph",

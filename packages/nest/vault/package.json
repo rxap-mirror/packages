@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "10.0.0",
   "name": "@rxap/nest-vault",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -26,6 +26,18 @@
     "rxap"
   ],
   "main": "./src/index.js",
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@nestjs/common",
+        "version": "10.0.5"
+      },
+      {
+        "package": "@nestjs/config",
+        "version": "3.0.0"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/vault"

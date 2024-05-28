@@ -3,5 +3,6 @@
   "private": true,
   "workspaces": [
     "./"
-  ]
+  ],
+  "version": "17.0.0"
 }

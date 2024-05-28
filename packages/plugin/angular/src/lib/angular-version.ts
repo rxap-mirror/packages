@@ -1,1 +1,1 @@
-export const ANGULAR_VERSION = '~16.2.0';
+export const ANGULAR_VERSION = '~17.1.3';
