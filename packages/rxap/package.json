@@ -2,7 +2,7 @@
   "version": "16.0.3",
   "name": "rxap",
   "license": "MIT",
-  "peerDependencies": {
+  "dependencies": {
     "tslib": "2.6.2"
   },
   "author": {
