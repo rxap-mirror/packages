@@ -502,7 +502,7 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "16.2.2"
+        "version": "16.3.0-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
