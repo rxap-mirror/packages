@@ -9,7 +9,7 @@
     "@nestjs/common": "^10.0.5",
     "@nestjs/config": "^3.0.0",
     "@rxap/nest-logger": "^10.1.1",
-    "@rxap/nest-utilities": "^10.2.0",
+    "@rxap/nest-utilities": "^10.2.1",
     "@sentry/core": "^7.56.0",
     "@sentry/node": "^7.56.0",
     "@sentry/types": "^7.56.0",
@@ -40,7 +40,7 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.2.0"
+        "version": "10.2.1"
       }
     ]
   },
