@@ -119,6 +119,7 @@
   ],
   "targets": {
     "build": {
+      "dependsOn": [],
       "executor": "nx:run-commands",
       "options": {
         "commands": [
