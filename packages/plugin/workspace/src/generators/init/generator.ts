@@ -31,6 +31,7 @@ import { join } from 'path';
 import { coerceDevContainerConfig } from './coerce-dev-container-config';
 import { coerceToolsProject } from './coerce-tools-project';
 import { coerceWorkspaceProject } from './coerce-workspace-project';
+import { determineRepositoryUrl } from './determine-repository-url';
 import { InitGeneratorSchema } from './schema';
 
 const gitIgnore = [
@@ -409,6 +410,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     '/developer-tools.xml'
   ]);
 
+  const repositoryUrl = await determineRepositoryUrl(tree, options);
+
   UpdatePackageJson(tree, packageJson => {
     packageJson.engines ??= {};
     packageJson.engines.node = '>=18 <21';
@@ -416,19 +419,10 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     packageJson.os ??= [];
     packageJson.packageManager = 'yarn@3.6.0';
     CoerceArrayItems(packageJson.os, ['!win32']);
-    if (options.repositoryUrl) {
-      let repositoryUrl = options.repositoryUrl;
-      if (!repositoryUrl.startsWith('http')) {
-        repositoryUrl = `https://gitlab.com/${ repositoryUrl }`;
-      }
-      if (repositoryUrl.includes('{workspaceName}')) {
-        repositoryUrl = repositoryUrl.replace('{workspaceName}', GetWorkspaceName(tree));
-      }
-      packageJson.repository = {
-        type: 'git',
-        url: CoerceSuffix(repositoryUrl, '.git'),
-      };
-    }
+    packageJson.repository = {
+      type: 'git',
+      url: CoerceSuffix(repositoryUrl, '.git'),
+    };
     packageJson.scripts ??= {};
     packageJson.scripts['rxap:update'] = 'npx npm-check-updates --filter /@rxap/ --target newest -u && yarn';
     packageJson.scripts['rxap:migrate'] = 'yarn rxap:update && yarn rxap:compose';

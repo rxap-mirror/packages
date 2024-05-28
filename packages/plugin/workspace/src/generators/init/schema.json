@@ -45,8 +45,7 @@
     },
     "repositoryUrl": {
       "type": "string",
-      "description": "The URL of the repository",
-      "x-prompt": "What is the URL of the repository?"
+      "description": "The URL of the repository"
     },
     "prefix": {
       "type": "string",
