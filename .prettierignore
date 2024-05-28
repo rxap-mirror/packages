@@ -11,3 +11,5 @@ tmp.*
 
 .nx
 .nyc_output
+
+/.nx/cache
