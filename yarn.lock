@@ -11357,6 +11357,7 @@ __metadata:
     "@rxap/plugin-utilities": ^16.4.0
     "@rxap/utilities": ^16.2.0
     "@rxap/workspace-utilities": ^16.3.0
+    env-cmd: ^10.1.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
