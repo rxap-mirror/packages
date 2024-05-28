@@ -1,6 +1,6 @@
 import { Tree } from '@nx/devkit';
 import { GetWorkspaceName } from '@rxap/workspace-utilities';
-import { spawn } from 'env-cmd/dist/spawn';
+import { spawn } from 'child_process';
 
 /**
  * Executes a git command with the provided arguments.
