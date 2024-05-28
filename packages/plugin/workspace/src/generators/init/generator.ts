@@ -22,6 +22,7 @@ import {
   CoerceTarget,
   GenerateSerializedSchematicFile,
   GetWorkspaceName,
+  IsRxapRepository,
   RemoveIgnorePattern,
   Strategy,
   UpdateJsonFile,
@@ -426,7 +427,11 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     packageJson.scripts ??= {};
     packageJson.scripts['rxap:update'] = 'npx npm-check-updates --filter /@rxap/ --target newest -u && yarn';
     packageJson.scripts['rxap:migrate'] = 'yarn rxap:update && yarn rxap:compose';
-    packageJson.scripts['rxap:compose'] = 'nx g @rxap/schematic-composer:compose';
+    if (IsRxapRepository(tree)) {
+      packageJson.scripts['rxap:compose'] = 'yarn schematic @rxap/schematic-composer:compose';
+    } else {
+      packageJson.scripts['rxap:compose'] = 'nx g @rxap/schematic-composer:compose';
+    }
   });
 
   coerceWorkspaceProject(tree, options);

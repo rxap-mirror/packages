@@ -22,7 +22,7 @@
     "init:env": "bash tools/scripts/setup-env-file.sh",
     "rxap:update": "npx npm-check-updates --filter /@rxap/ --target newest -u && yarn",
     "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
-    "rxap:compose": "nx g @rxap/schematic-composer:compose",
+    "rxap:compose": "yarn schematic @rxap/schematic-composer:compose",
     "post-migrate": "bash tools/scripts/post-migrate.sh"
   },
   "dependencies": {
