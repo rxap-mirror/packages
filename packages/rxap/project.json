@@ -119,7 +119,10 @@
   ],
   "targets": {
     "build": {
-      "dependsOn": [],
+      "dependsOn": [
+        "readme",
+        "check-version"
+      ],
       "executor": "nx:run-commands",
       "options": {
         "commands": [
