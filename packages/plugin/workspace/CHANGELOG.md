@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.3.0-dev.0...@rxap/plugin-workspace@16.3.0-dev.1) (2024-05-28)
+
+### Bug Fixes
+
+- use the correct package ([25f44b4](https://gitlab.com/rxap/packages/commit/25f44b4ec4070cf39a961203c6809992f22fa0a8))
+
 # [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.2.2...@rxap/plugin-workspace@16.3.0-dev.0) (2024-05-28)
 
 ### Features
