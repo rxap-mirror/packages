@@ -338,7 +338,7 @@ function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
       ],
       "codeCoverage": true
     },
-  }, Strategy.REPLACE);
+  }, Strategy.OVERWRITE);
 
   nxJson.cli ??= {};
   nxJson.cli.packageManager ??= 'yarn';
