@@ -66,3 +66,6 @@ echo "Updating nestjs cache manager version in $nestjs_version_file to ~${CURREN
 sed -i "s/NESTJS_CACHE_MANAGER_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_CACHE_MANAGER_VERSION = '~${CURRENT_NESTJS_CACHE_MANAGER_VERSION}/g" "$nestjs_version_file"
 echo "Updating nestjs config version in $nestjs_version_file to ~${CURRENT_NESTJS_CONFIG_VERSION}"
 sed -i "s/NESTJS_CONFIG_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_CONFIG_VERSION = '~${CURRENT_NESTJS_CONFIG_VERSION}/g" "$nestjs_version_file"
+
+yarn nx run-many -t fix-dependencies --skip-nx-cache
+yarn nx run-many -t update-package-group --skip-nx-cache
