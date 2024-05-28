@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/validator",
         "main": "packages/validator/src/index.ts",
         "tsConfig": "packages/validator/tsconfig.lib.json",
-        "assets": [
-          "packages/validator/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/validator/*.md"]
       }
     },
     "fix-dependencies": {
@@ -28,16 +23,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/validator/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/validator/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs validator {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -55,9 +46,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "standalone",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "standalone", "scope:utilities"]
 }

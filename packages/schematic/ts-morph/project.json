@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/schematic/ts-morph",
         "main": "packages/schematic/ts-morph/src/index.ts",
         "tsConfig": "packages/schematic/ts-morph/tsconfig.lib.json",
-        "assets": [
-          "packages/schematic/ts-morph/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/schematic/ts-morph/*.md"]
       }
     },
     "fix-dependencies": {
@@ -29,16 +24,12 @@
     "index-export": {},
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/schematic/ts-morph/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/schematic/ts-morph/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs schematic-ts-morph {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -56,9 +47,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "schematic",
-    "packages",
-    "scope:utilities"
-  ]
+  "tags": ["schematic", "packages", "scope:utilities"]
 }

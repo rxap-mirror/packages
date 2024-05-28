@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/workspace/utilities",
         "main": "packages/workspace/utilities/src/index.ts",
         "tsConfig": "packages/workspace/utilities/tsconfig.lib.json",
-        "assets": [
-          "packages/workspace/utilities/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/workspace/utilities/*.md"]
       }
     },
     "fix-dependencies": {
@@ -29,16 +24,12 @@
     "index-export": {},
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/workspace/utilities/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/workspace/utilities/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs workspace-utilities {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -56,9 +47,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "workspace",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "workspace", "scope:utilities"]
 }

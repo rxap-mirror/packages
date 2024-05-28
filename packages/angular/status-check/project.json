@@ -3,18 +3,11 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/status-check/src",
   "prefix": "rxap",
-  "tags": [
-    "angular",
-    "ngx",
-    "packages",
-    "scope:compose"
-  ],
+  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "projectType": "library",
   "targets": {
     "copy-open-api-sdk": {
-      "inputs": [
-        "{workspaceRoot}/packages/open-api/service/status/src/lib"
-      ],
+      "inputs": ["{workspaceRoot}/packages/open-api/service/status/src/lib"],
       "options": {
         "clientSdkProject": "open-api-service-status",
         "angular": true,
@@ -24,13 +17,10 @@
     },
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/status-check/ng-package.json",
-        "tailwindConfig": "packages/angular/status-check/tailwind.config.js",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tailwindConfig": "packages/angular/status-check/tailwind.config.js"
       },
       "configurations": {
         "production": {

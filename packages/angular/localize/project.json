@@ -12,8 +12,7 @@
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/localize/ng-package.json",
-        "tailwindConfig": "packages/angular/localize/tailwind.config.js",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tailwindConfig": "packages/angular/localize/tailwind.config.js"
       },
       "configurations": {
         "production": {

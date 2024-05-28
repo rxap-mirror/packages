@@ -3,23 +3,15 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/sentry/src",
   "prefix": "rxap",
-  "tags": [
-    "angular",
-    "ngx",
-    "packages",
-    "scope:integration"
-  ],
+  "tags": ["angular", "ngx", "packages", "scope:integration"],
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/sentry/ng-package.json",
-        "tailwindConfig": "packages/angular/sentry/tailwind.config.js",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tailwindConfig": "packages/angular/sentry/tailwind.config.js"
       },
       "configurations": {
         "production": {

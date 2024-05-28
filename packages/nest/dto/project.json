@@ -13,8 +13,7 @@
         "tsConfig": "packages/nest/dto/tsconfig.lib.json",
         "packageJson": "packages/nest/dto/package.json",
         "main": "packages/nest/dto/src/index.ts",
-        "assets": ["packages/nest/dto/*.md"],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/nest/dto/*.md"]
       }
     },
     "publish": {

@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/json-schema-to-typescript",
         "main": "packages/json-schema-to-typescript/src/index.ts",
         "tsConfig": "packages/json-schema-to-typescript/tsconfig.lib.json",
-        "assets": [
-          "packages/json-schema-to-typescript/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/json-schema-to-typescript/*.md"]
       }
     },
     "fix-dependencies": {
@@ -28,16 +23,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/json-schema-to-typescript/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/json-schema-to-typescript/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs json-schema-to-typescript {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -55,9 +46,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "standalone",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "standalone", "scope:utilities"]
 }

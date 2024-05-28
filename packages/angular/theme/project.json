@@ -12,8 +12,7 @@
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/theme/ng-package.json",
-        "tailwindConfig": "packages/angular/theme/tailwind.config.js",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tailwindConfig": "packages/angular/theme/tailwind.config.js"
       },
       "configurations": {
         "production": {

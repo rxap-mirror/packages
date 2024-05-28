@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/plugin/library",
         "main": "packages/plugin/library/src/index.ts",
@@ -35,8 +33,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "check-version": {
@@ -83,8 +80,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "plugin"
-  ]
+  "tags": ["packages", "plugin"]
 }

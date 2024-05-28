@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/generator/utilities",
         "main": "packages/generator/utilities/src/index.ts",
         "tsConfig": "packages/generator/utilities/tsconfig.lib.json",
-        "assets": [
-          "packages/generator/utilities/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/generator/utilities/*.md"]
       }
     },
     "fix-dependencies": {
@@ -28,16 +23,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/generator/utilities/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/generator/utilities/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs generator-utilities {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -53,9 +44,7 @@
     },
     "typedoc": {
       "executor": "@enio.ai/typedoc:typedoc",
-      "outputs": [
-        "{workspaceRoot}/docs/packages/generator/utilities"
-      ],
+      "outputs": ["{workspaceRoot}/docs/packages/generator/utilities"],
       "options": {
         "options": "typedoc.json"
       }
@@ -64,9 +53,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "generator",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "generator", "scope:utilities"]
 }

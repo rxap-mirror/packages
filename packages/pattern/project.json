@@ -7,17 +7,12 @@
     "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/pattern",
         "main": "packages/pattern/src/index.ts",
         "tsConfig": "packages/pattern/tsconfig.lib.json",
-        "assets": [
-          "packages/pattern/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/pattern/*.md"]
       }
     },
     "fix-dependencies": {
@@ -29,16 +24,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/pattern/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/pattern/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs pattern {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -56,9 +47,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "standalone",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "standalone", "scope:utilities"]
 }

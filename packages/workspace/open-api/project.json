@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/workspace/open-api",
         "main": "packages/workspace/open-api/src/index.ts",
         "tsConfig": "packages/workspace/open-api/tsconfig.lib.json",
-        "assets": [
-          "packages/workspace/open-api/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/workspace/open-api/*.md"]
       }
     },
     "fix-dependencies": {
@@ -29,16 +24,12 @@
     "index-export": {},
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/workspace/open-api/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/workspace/open-api/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs workspace-open-api {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -56,9 +47,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "workspace",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "workspace", "scope:utilities"]
 }

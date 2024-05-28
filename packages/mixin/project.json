@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/mixin",
         "main": "packages/mixin/src/index.ts",
         "tsConfig": "packages/mixin/tsconfig.lib.json",
-        "assets": [
-          "packages/mixin/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/mixin/*.md"]
       }
     },
     "fix-dependencies": {
@@ -28,16 +23,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/mixin/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/mixin/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs mixin {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -55,9 +46,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "standalone",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "standalone", "scope:utilities"]
 }

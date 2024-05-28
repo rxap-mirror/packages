@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/slugify",
         "main": "packages/slugify/src/index.ts",
         "tsConfig": "packages/slugify/tsconfig.lib.json",
-        "assets": [
-          "packages/slugify/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/slugify/*.md"]
       }
     },
     "fix-dependencies": {
@@ -28,16 +23,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/slugify/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/slugify/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs slugify {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -55,9 +46,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "standalone",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "standalone", "scope:utilities"]
 }

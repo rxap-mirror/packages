@@ -3,16 +3,11 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/schematic/nestjs/src",
   "projectType": "library",
-  "implicitDependencies": [
-    "plugin-nestjs",
-    "plugin-application"
-  ],
+  "implicitDependencies": ["plugin-nestjs", "plugin-application"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/schematic/nestjs",
         "main": "packages/schematic/nestjs/src/index.ts",
@@ -34,8 +29,7 @@
             "glob": "collection.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "fix-dependencies": {
@@ -47,16 +41,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/schematic/nestjs/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/schematic/nestjs/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs schematic-nestjs {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -74,8 +64,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "schematic"
-  ]
+  "tags": ["packages", "schematic"]
 }

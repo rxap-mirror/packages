@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/plugin/gpt",
         "main": "packages/plugin/gpt/src/index.ts",
@@ -35,8 +33,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "check-version": {
@@ -68,9 +65,7 @@
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs plugin-gpt {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -88,11 +83,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "plugin",
-    "nx",
-    "nx-plugin",
-    "openai",
-    "packages"
-  ]
+  "tags": ["plugin", "nx", "nx-plugin", "openai", "packages"]
 }

@@ -7,17 +7,12 @@
     "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/plugin/utilities",
         "main": "packages/plugin/utilities/src/index.ts",
         "tsConfig": "packages/plugin/utilities/tsconfig.lib.json",
-        "assets": [
-          "packages/plugin/utilities/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/plugin/utilities/*.md"]
       }
     },
     "check-version": {
@@ -34,16 +29,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/plugin/utilities/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/plugin/utilities/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs plugin-utilities {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -59,9 +50,7 @@
     },
     "typedoc": {
       "executor": "@enio.ai/typedoc:typedoc",
-      "outputs": [
-        "{workspaceRoot}/docs/packages/plugin/utilities"
-      ],
+      "outputs": ["{workspaceRoot}/docs/packages/plugin/utilities"],
       "options": {
         "options": "typedoc.json"
       }
@@ -70,9 +59,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "plugin",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "plugin", "scope:utilities"]
 }

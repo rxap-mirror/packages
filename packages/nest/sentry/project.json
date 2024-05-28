@@ -7,18 +7,13 @@
     "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nest/sentry",
         "tsConfig": "packages/nest/sentry/tsconfig.lib.json",
         "packageJson": "packages/nest/sentry/package.json",
         "main": "packages/nest/sentry/src/index.ts",
-        "assets": [
-          "packages/nest/sentry/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/nest/sentry/*.md"]
       }
     },
     "check-version": {
@@ -35,16 +30,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/nest/sentry/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/nest/sentry/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-sentry {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -62,9 +53,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "nest",
-    "packages",
-    "scope:integration"
-  ]
+  "tags": ["nest", "packages", "scope:integration"]
 }

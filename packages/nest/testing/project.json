@@ -13,8 +13,7 @@
         "tsConfig": "packages/nest/testing/tsconfig.lib.json",
         "packageJson": "packages/nest/testing/package.json",
         "main": "packages/nest/testing/src/index.ts",
-        "assets": ["packages/nest/testing/*.md"],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/nest/testing/*.md"]
       }
     },
     "publish": {

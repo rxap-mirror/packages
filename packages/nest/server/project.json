@@ -6,18 +6,13 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nest/server",
         "tsConfig": "packages/nest/server/tsconfig.lib.json",
         "packageJson": "packages/nest/server/package.json",
         "main": "packages/nest/server/src/index.ts",
-        "assets": [
-          "packages/nest/server/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/nest/server/*.md"]
       }
     },
     "check-version": {
@@ -35,16 +30,12 @@
     "index-export": {},
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/nest/server/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/nest/server/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-server {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -62,9 +53,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "nest",
-    "packages",
-    "scope:core"
-  ]
+  "tags": ["nest", "packages", "scope:core"]
 }

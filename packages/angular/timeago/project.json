@@ -12,8 +12,7 @@
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/timeago/ng-package.json",
-        "tailwindConfig": "packages/angular/timeago/tailwind.config.js",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tailwindConfig": "packages/angular/timeago/tailwind.config.js"
       },
       "configurations": {
         "production": {

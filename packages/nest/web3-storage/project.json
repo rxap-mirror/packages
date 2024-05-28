@@ -12,8 +12,7 @@
         "tsConfig": "packages/nest/web3-storage/tsconfig.lib.json",
         "packageJson": "packages/nest/web3-storage/package.json",
         "main": "packages/nest/web3-storage/src/index.ts",
-        "assets": ["packages/nest/web3-storage/*.md"],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/nest/web3-storage/*.md"]
       }
     },
     "publish": {

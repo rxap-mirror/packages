@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/generator/ts-morph",
         "main": "packages/generator/ts-morph/src/index.ts",
         "tsConfig": "packages/generator/ts-morph/tsconfig.lib.json",
-        "assets": [
-          "packages/generator/ts-morph/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/generator/ts-morph/*.md"]
       }
     },
     "fix-dependencies": {
@@ -28,16 +23,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/generator/ts-morph/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/generator/ts-morph/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs generator-ts-morph {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -55,9 +46,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "generator",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "generator", "scope:utilities"]
 }

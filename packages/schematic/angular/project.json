@@ -8,9 +8,7 @@
     "bundle-json-schema": {},
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/schematic/angular",
         "main": "packages/schematic/angular/src/index.ts",
@@ -32,8 +30,7 @@
             "glob": "collection.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "fix-dependencies": {
@@ -45,16 +42,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/schematic/angular/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/schematic/angular/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs schematic-angular {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -72,8 +65,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "schematic"
-  ]
+  "tags": ["packages", "schematic"]
 }

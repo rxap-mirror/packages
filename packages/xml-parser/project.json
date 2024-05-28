@@ -7,17 +7,12 @@
     "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/xml-parser",
         "main": "packages/xml-parser/src/index.ts",
         "tsConfig": "packages/xml-parser/tsconfig.lib.json",
-        "assets": [
-          "packages/xml-parser/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/xml-parser/*.md"]
       }
     },
     "fix-dependencies": {
@@ -29,16 +24,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/xml-parser/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/xml-parser/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs xml-parser {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -56,9 +47,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "scope:utilities",
-    "standalone"
-  ]
+  "tags": ["packages", "scope:utilities", "standalone"]
 }

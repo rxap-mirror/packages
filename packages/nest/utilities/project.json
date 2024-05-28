@@ -6,18 +6,13 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nest/utilities",
         "tsConfig": "packages/nest/utilities/tsconfig.lib.json",
         "packageJson": "packages/nest/utilities/package.json",
         "main": "packages/nest/utilities/src/index.ts",
-        "assets": [
-          "packages/nest/utilities/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/nest/utilities/*.md"]
       }
     },
     "check-version": {
@@ -35,16 +30,12 @@
     "index-export": {},
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/nest/utilities/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/nest/utilities/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-utilities {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -62,9 +53,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "nest",
-    "packages",
-    "scope:utilities"
-  ]
+  "tags": ["nest", "packages", "scope:utilities"]
 }

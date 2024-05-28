@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/plugin/workspace",
         "main": "packages/plugin/workspace/src/index.ts",
@@ -35,8 +33,7 @@
             "glob": "executors.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "check-version": {
@@ -68,9 +65,7 @@
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs plugin-workspace {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -88,10 +83,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "plugin",
-    "nx",
-    "nx-plugin",
-    "packages"
-  ]
+  "tags": ["plugin", "nx", "nx-plugin", "packages"]
 }

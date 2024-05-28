@@ -3,23 +3,15 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/window-system/src",
   "prefix": "rxap",
-  "tags": [
-    "angular",
-    "ngx",
-    "packages",
-    "scope:core"
-  ],
+  "tags": ["angular", "ngx", "packages", "scope:core"],
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/window-system/ng-package.json",
-        "tailwindConfig": "packages/angular/window-system/tailwind.config.js",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tailwindConfig": "packages/angular/window-system/tailwind.config.js"
       },
       "configurations": {
         "production": {

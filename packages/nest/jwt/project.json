@@ -7,18 +7,13 @@
     "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nest/jwt",
         "tsConfig": "packages/nest/jwt/tsconfig.lib.json",
         "packageJson": "packages/nest/jwt/package.json",
         "main": "packages/nest/jwt/src/index.ts",
-        "assets": [
-          "packages/nest/jwt/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/nest/jwt/*.md"]
       }
     },
     "check-version": {
@@ -35,16 +30,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/nest/jwt/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/nest/jwt/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-jwt {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -62,9 +53,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "nest",
-    "packages",
-    "scope:integration"
-  ]
+  "tags": ["nest", "packages", "scope:integration"]
 }

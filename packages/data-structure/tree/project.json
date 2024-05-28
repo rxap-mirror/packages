@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/data-structure/tree",
         "main": "packages/data-structure/tree/src/index.ts",
         "tsConfig": "packages/data-structure/tree/tsconfig.lib.json",
-        "assets": [
-          "packages/data-structure/tree/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/data-structure/tree/*.md"]
       }
     },
     "fix-dependencies": {
@@ -28,16 +23,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/data-structure/tree/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/data-structure/tree/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs data-structure-tree {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -55,9 +46,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "data-structure",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "data-structure", "scope:utilities"]
 }

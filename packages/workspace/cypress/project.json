@@ -11,8 +11,7 @@
         "outputPath": "dist/packages/workspace/cypress",
         "main": "packages/workspace/cypress/src/index.ts",
         "tsConfig": "packages/workspace/cypress/tsconfig.lib.json",
-        "assets": ["packages/workspace/cypress/*.md"],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/workspace/cypress/*.md"]
       }
     },
     "publish": {

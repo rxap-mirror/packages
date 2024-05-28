@@ -14,13 +14,10 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/handlebars/ng-package.json",
-        "tailwindConfig": "packages/angular/handlebars/tailwind.config.js",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tailwindConfig": "packages/angular/handlebars/tailwind.config.js"
       },
       "configurations": {
         "production": {

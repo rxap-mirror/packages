@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/schematic/open-api",
         "main": "packages/schematic/open-api/src/index.ts",
@@ -30,8 +28,7 @@
             "glob": "collection.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "fix-dependencies": {
@@ -43,16 +40,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/schematic/open-api/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/schematic/open-api/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs schematic-open-api {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -70,8 +63,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "schematic"
-  ]
+  "tags": ["packages", "schematic"]
 }

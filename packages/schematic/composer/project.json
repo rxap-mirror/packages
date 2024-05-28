@@ -28,9 +28,7 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/schematic/composer",
         "main": "packages/schematic/composer/src/index.ts",
@@ -52,8 +50,7 @@
             "glob": "collection.json",
             "output": "."
           }
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        ]
       }
     },
     "fix-dependencies": {
@@ -65,16 +62,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/schematic/composer/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/schematic/composer/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs schematic-composer {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {
@@ -92,8 +85,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "schematic"
-  ]
+  "tags": ["packages", "schematic"]
 }

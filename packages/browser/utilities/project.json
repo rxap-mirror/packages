@@ -6,17 +6,12 @@
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/browser/utilities",
         "main": "packages/browser/utilities/src/index.ts",
         "tsConfig": "packages/browser/utilities/tsconfig.lib.json",
-        "assets": [
-          "packages/browser/utilities/*.md"
-        ],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/browser/utilities/*.md"]
       }
     },
     "fix-dependencies": {
@@ -28,16 +23,12 @@
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/browser/utilities/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/browser/utilities/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs browser-utilities {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "index-export": {},
     "readme": {},
@@ -56,9 +47,5 @@
     "update-package-group": {},
     "linking": {}
   },
-  "tags": [
-    "packages",
-    "browser",
-    "scope:utilities"
-  ]
+  "tags": ["packages", "browser", "scope:utilities"]
 }
