@@ -176,7 +176,7 @@ const PACKAGE_ADD_BLACK_LIST = [
   'axios',
 ];
 
-
+const PACKAGE_PEER_DEPENDENCIES_BLACK_LIST = [ 'tslib' ];
 
 function addDependedProjects(
   projectGraph: ProjectGraph,
@@ -575,7 +575,13 @@ export async function fixDependenciesGenerator(
       packageJson.devDependencies ??= {};
       packageJson.optionalDependencies ??= {};
 
-      if (!packageJson.dependencies['tslib'] && latestTsLibVersion) {
+      for (const [name] of Object.entries(packageJson.dependencies)) {
+        if (packageJson.peerDependencies[name]) {
+          delete packageJson.dependencies[name];
+        }
+      }
+
+      if (latestTsLibVersion) {
         packageJson.dependencies['tslib'] = latestTsLibVersion;
       }
 
@@ -584,6 +590,12 @@ export async function fixDependenciesGenerator(
       const peerReport = fixPeerDependenciesWithTsMorphProject(projectGraph, tree, projectRoot, packageJson);
 
       removeSelfReferenceFromDependencies(projectName, packageJson);
+
+      for (const banned of PACKAGE_PEER_DEPENDENCIES_BLACK_LIST) {
+        if (packageJson.peerDependencies[banned]) {
+          delete packageJson.peerDependencies[banned];
+        }
+      }
 
       console.log(`====================  Report for project ${ projectName }`);
       console.log('========== Peer dependencies:');

@@ -5,9 +5,6 @@
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "peerDependencies": {
-    "tslib": "2.6.2"
-  },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"

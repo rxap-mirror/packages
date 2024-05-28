@@ -11,8 +11,7 @@
     "@rxap/schematics-ts-morph": "^16.2.1",
     "@rxap/schematics-utilities": "^16.1.1",
     "@rxap/xml-parser": "^16.0.2",
-    "ts-morph": "^18.0.0",
-    "tslib": "2.6.2"
+    "ts-morph": "^18.0.0"
   },
   "author": {
     "name": "Merzough Münker",

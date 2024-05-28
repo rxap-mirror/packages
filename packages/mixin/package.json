@@ -8,8 +8,7 @@
   "peerDependencies": {
     "@rxap/reflect-metadata": "^1.0.3",
     "@rxap/utilities": "^16.2.0",
-    "reflect-metadata": "^0.1.13",
-    "tslib": "2.6.2"
+    "reflect-metadata": "^0.1.13"
   },
   "author": {
     "name": "Merzough Münker",

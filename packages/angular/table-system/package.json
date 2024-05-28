@@ -15,8 +15,7 @@
     "@rxap/data-source": "^16.2.0",
     "@rxap/material-table-system": "^16.2.0",
     "@rxap/utilities": "^16.2.0",
-    "rxjs": "^7.8.1",
-    "tslib": "2.6.2"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

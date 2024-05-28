@@ -7,8 +7,7 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^16.2.12",
-    "tslib": "2.6.2"
+    "@angular/core": "^16.2.12"
   },
   "author": {
     "name": "Merzough Münker",

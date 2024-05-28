@@ -14,8 +14,7 @@
     "@angular/router": "^16.2.12",
     "@rxap/rxjs": "^1.1.2",
     "@rxap/utilities": "^16.2.0",
-    "rxjs": "^7.8.1",
-    "tslib": "2.6.2"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

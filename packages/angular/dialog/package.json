@@ -12,8 +12,7 @@
     "@angular/core": "^16.2.12",
     "@angular/material": "^16.2.14",
     "@rxap/pipes": "^16.0.2",
-    "rxjs": "^7.8.1",
-    "tslib": "2.6.2"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

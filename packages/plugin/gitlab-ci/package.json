@@ -3,7 +3,6 @@
   "name": "@rxap/plugin-gitlab-ci",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "16.10.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },

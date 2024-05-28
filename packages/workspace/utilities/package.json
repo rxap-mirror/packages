@@ -11,8 +11,7 @@
   "peerDependencies": {
     "@nx/devkit": "^16.10.0",
     "@rxap/node-utilities": "^1.2.0",
-    "@rxap/utilities": "^16.2.0",
-    "tslib": "2.6.2"
+    "@rxap/utilities": "^16.2.0"
   },
   "author": {
     "name": "Merzough Münker",

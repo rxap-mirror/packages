@@ -11,8 +11,7 @@
     "@nx/devkit": "^16.10.0",
     "@rxap/plugin-utilities": "^16.4.0",
     "@rxap/utilities": "^16.2.0",
-    "@rxap/workspace-utilities": "^16.3.0",
-    "tslib": "2.6.2"
+    "@rxap/workspace-utilities": "^16.3.0"
   },
   "author": {
     "name": "Merzough Münker",

@@ -9,8 +9,7 @@
     "@nestjs/common": "^10.0.5",
     "@nestjs/config": "^3.0.0",
     "@nestjs/terminus": "^10.0.1",
-    "minio": "^7.1.1",
-    "tslib": "2.6.2"
+    "minio": "^7.1.1"
   },
   "author": {
     "name": "Merzough Münker",
