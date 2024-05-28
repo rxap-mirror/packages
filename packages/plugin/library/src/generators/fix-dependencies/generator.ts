@@ -355,7 +355,28 @@ function fixDevDependenciesWithTsMorphProject(
 
 const PACKAGE_VERSION_MAP: Record<string, Record<string, string>> = {};
 
-function loadAvailablePackageVersion(tree: Tree, projectRoot: string) {
+async function parseJsonFile<T = Record<string, unknown>>(tree: Tree, path: string, retries = 3, sleep = 3000): Promise<T> {
+  if (!tree.exists(path)) {
+    throw new Error(`Cannot parse json object. File ${ path } not found`);
+  }
+  let retryCount = 0;
+  let lastError: Error | undefined;
+  do {
+    try {
+      const content = tree.read(path)!.toString('utf-8');
+      return JSON.parse(content);
+    } catch (e: any) {
+      lastError = e;
+      retryCount++;
+      if (retryCount < retries) {
+        await new Promise(resolve => setTimeout(resolve, sleep * retryCount));
+      }
+    }
+  } while (retryCount < retries);
+  throw new Error(`Failed to parse json file ${ path }: ${ lastError?.message }`);
+}
+
+async function loadAvailablePackageVersion(tree: Tree, projectRoot: string) {
   PACKAGE_VERSION_MAP[projectRoot] = {};
 
   function updateMap(dependencies: Record<string, string> | undefined): void {
@@ -383,8 +404,7 @@ function loadAvailablePackageVersion(tree: Tree, projectRoot: string) {
   let lastWorkingDirectory = '';
   do {
     if (tree.exists(join(workingDirectory, 'package.json'))) {
-      const packageJson: ProjectPackageJson = JSON.parse(tree.read(join(workingDirectory, 'package.json'))!.toString(
-        'utf-8'));
+      const packageJson: ProjectPackageJson = await parseJsonFile(tree, join(workingDirectory, 'package.json'));
       updateMap(packageJson.dependencies);
       updateMap(packageJson.peerDependencies);
       updateMap(packageJson.devDependencies);
@@ -462,7 +482,7 @@ export async function resolveLatestPackageVersion(packageName: string) {
 export async function replaceLatestPackageVersionForProject(tree: Tree, projectName: string) {
   console.log(`Replace latest package version for project ${ projectName }`);
   const projectRoot = GetProjectRoot(tree, projectName);
-  const packageJson: ProjectPackageJson = JSON.parse(tree.read(join(projectRoot, 'package.json'))!.toString('utf-8'));
+  const packageJson = await parseJsonFile<ProjectPackageJson>(tree, join(projectRoot, 'package.json'));
   const dependencies = packageJson.dependencies;
   const peerDependencies = packageJson.peerDependencies;
   const devDependencies = packageJson.devDependencies;
@@ -542,7 +562,7 @@ export async function fixDependenciesGenerator(
       if (skipProject(tree, options, project, projectName)) {
         continue;
       }
-      const packageJson = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
+      const packageJson = await parseJsonFile(tree, `${ projectRoot }/package.json`);
       if (options.resetAll) {
         packageJson.dependencies = {};
       }
@@ -568,6 +588,8 @@ export async function fixDependenciesGenerator(
 
     console.log(`Fix dependencies for project ${ projectName }`);
 
+    await loadAvailablePackageVersion(tree, projectRoot);
+
     await UpdatePackageJson(tree, packageJson => {
 
       packageJson.dependencies ??= {};
@@ -584,8 +606,6 @@ export async function fixDependenciesGenerator(
       if (latestTsLibVersion) {
         packageJson.dependencies['tslib'] = latestTsLibVersion;
       }
-
-      loadAvailablePackageVersion(tree, projectRoot);
 
       const peerReport = fixPeerDependenciesWithTsMorphProject(projectGraph, tree, projectRoot, packageJson);
 
