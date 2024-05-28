@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.3.2...@rxap/schematic-angular@16.3.3-dev.0) (2024-05-28)
+
+### Bug Fixes
+
+- require the table suffix ([9622d90](https://gitlab.com/rxap/packages/commit/9622d90ba15eb67aabea92efef732b66ee2e3ac8))
+
 ## [16.3.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.3.2-dev.4...@rxap/schematic-angular@16.3.2) (2024-05-27)
 
 **Note:** Version bump only for package @rxap/schematic-angular
