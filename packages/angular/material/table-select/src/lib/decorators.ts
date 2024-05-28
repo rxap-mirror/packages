@@ -10,10 +10,10 @@ import { setMetadataMap } from '@rxap/reflect-metadata';
 import { Constructor } from '@rxap/utilities';
 import { TableSelectColumn } from './open-table-select-window.method';
 
-export const TABLE_SELECT_COLUMN_MAP = 'TABLE_SELECT_COLUMN_MAP';
-export const TABLE_SELECT_TO_DISPLAY = 'TABLE_SELECT_TO_DISPLAY';
-export const TABLE_SELECT_TO_VALUE = 'TABLE_SELECT_TO_VALUE';
-export const TABLE_SELECT_METHOD = 'TABLE_SELECT_TO_VALUE';
+export const TABLE_SELECT_COLUMN_MAP  = 'TABLE_SELECT_COLUMN_MAP';
+export const TABLE_SELECT_TO_DISPLAY  = 'TABLE_SELECT_TO_DISPLAY';
+export const TABLE_SELECT_TO_VALUE    = 'TABLE_SELECT_TO_VALUE';
+export const TABLE_SELECT_METHOD      = 'TABLE_SELECT_TO_VALUE';
 export const TABLE_SELECT_DATA_SOURCE = 'TABLE_SELECT_DATA_SOURCE';
 
 export function UseTableSelectColumns(columnMap: Map<string, TableSelectColumn> | Record<string, TableSelectColumn>) {

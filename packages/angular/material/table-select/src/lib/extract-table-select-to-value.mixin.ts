@@ -5,7 +5,7 @@ import {
 } from '@rxap/form-system';
 import { Mixin } from '@rxap/mixin';
 import { getMetadata } from '@rxap/reflect-metadata';
-import { TABLE_SELECT_TO_VALUE } from './derectives';
+import { TABLE_SELECT_TO_VALUE } from './decorators';
 
 export interface ExtractTableSelectToValueMixin<Data = unknown, Value = unknown> extends ExtractControlMixin,
   ExtractFormDefinitionMixin {

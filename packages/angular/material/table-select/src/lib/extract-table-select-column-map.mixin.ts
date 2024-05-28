@@ -5,7 +5,7 @@ import {
 } from '@rxap/form-system';
 import { Mixin } from '@rxap/mixin';
 import { getMetadata } from '@rxap/reflect-metadata';
-import { TABLE_SELECT_COLUMN_MAP } from './derectives';
+import { TABLE_SELECT_COLUMN_MAP } from './decorators';
 import { TableSelectColumn } from './open-table-select-window.method';
 
 export interface ExtractTableSelectColumnMapMixin extends ExtractControlMixin, ExtractFormDefinitionMixin {

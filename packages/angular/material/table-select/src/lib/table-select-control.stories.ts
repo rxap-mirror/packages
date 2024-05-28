@@ -40,7 +40,7 @@ import {
   UseTableSelectColumns,
   UseTableSelectDataSource,
   UseTableSelectToDisplay,
-} from './derectives';
+} from './decorators';
 import { TableSelectControlModule } from './table-select-control.module';
 
 @RxapStaticDataSource({
