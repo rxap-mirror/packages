@@ -3,8 +3,9 @@ name: table-component
 options:
   name: custom-template
   tableMethod:
-    className: DummyTableMethod
-    importPath: "../dummy-table.method"
+    name: DummyTableMethod
+    moduleSpecifier: "../dummy-table.method"
   columnList:
     - name: name
-      template: "custom _ {{element.name}}"
+      kind: custom
+      html: "custom _ {{element.name}}"

@@ -27,10 +27,6 @@ const ROUTES: Route[] = [
         loadComponent: () => import('./complex-accordion/complex-accordion.component'),
       },
       {
-        path: 'dashboard/:uuid',
-        loadComponent: () => import('./dashboard-accordion/dashboard-accordion.component'),
-      },
-      {
         path: 'complex',
         redirectTo: 'complex/' + faker.string.uuid(),
       },

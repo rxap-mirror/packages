@@ -4,7 +4,10 @@
     "name": "table-component",
     "options": {
       "name": "minimum",
-      "backend": "nestjs",
+      "tableMethod": {
+        "name": "DummyTableMethod",
+        "moduleSpecifier": "../dummy-table.method"
+      },
       "columnList": [
         {
           "name": "name"

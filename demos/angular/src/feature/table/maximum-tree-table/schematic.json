@@ -3,14 +3,14 @@
     "package": "@rxap/schematic-angular",
     "name": "tree-table-component",
     "options": {
-      "name": "maximum-tree",
+      "name": "maximum",
       "headerButton": {
         "role": "form",
         "icon": "add"
       },
       "tableMethod": {
-        "className": "DummyTreeTableMethod",
-        "importPath": "../dummy-tree-table.method"
+        "name": "DummyTreeTableMethod",
+        "moduleSpecifier": "../dummy-tree-table.method"
       },
       "columnList": [
         {

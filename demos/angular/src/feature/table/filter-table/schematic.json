@@ -5,8 +5,8 @@
     "options": {
       "name": "filter",
       "tableMethod": {
-        "className": "DummyTableMethod",
-        "importPath": "../dummy-table.method"
+        "name": "DummyTableMethod",
+        "moduleSpecifier": "../dummy-table.method"
       },
       "columnList": [
         {

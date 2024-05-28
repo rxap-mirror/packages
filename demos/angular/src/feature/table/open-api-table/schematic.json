@@ -8,8 +8,8 @@
       "openApi": {
         "operationId": "MinimumTableController_getPage@service-app-angular-table",
         "adapter": {
-          "className": "GetPageAdapterFactory",
-          "importPath": "@rxap/table-system"
+          "name": "GetPageAdapterFactory",
+          "moduleSpecifier": "@rxap/table-system"
         }
       },
       "columnList": [
