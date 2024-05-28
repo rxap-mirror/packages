@@ -158,7 +158,8 @@ if [[ "$PUBLISH_MODE" == "auto" ]]; then
     --dist-tag "$LERNA_DIST_TAG" \
     --registry "$PUBLISH_REGISTRY" \
     --preid "$LERNA_PRE_ID" \
-    --no-push
+    --no-push \
+    --yes
 
   fi
 
@@ -170,7 +171,8 @@ if [[ "$PUBLISH_MODE" == "auto" ]]; then
     --create-release gitlab \
     --conventional-graduate \
     --registry "$PUBLISH_REGISTRY" \
-    --dist-tag "$LERNA_DIST_TAG"
+    --dist-tag "$LERNA_DIST_TAG" \
+    --yes
 
   fi
 
