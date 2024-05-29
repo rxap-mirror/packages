@@ -56,15 +56,13 @@ fi
 # exit with error if some package.json files are missing the publishConfig
 
 hasError=false
-echo "publishConfig errors:" > dist/publishConfigErrors.txt
-echo "gitHead errors:" > dist/gitHeadErrors.txt
 
 current_git_head=$(git rev-parse HEAD)
 
 PUBLISH_MODE="auto"
 
-if [[ -f "./dist/publish-mode.txt"  ]]; then
-  PUBLISH_MODE=$(cat "./dist/publish-mode.txt")
+if [[ -f "${BASE_DIR}/dist/lerna/publish-mode.txt"  ]]; then
+  PUBLISH_MODE=$(cat "${BASE_DIR}/dist/lerna/publish-mode.txt")
 fi
 
 project_list=${cached_changed_projects//,/ }
@@ -75,16 +73,16 @@ for project in $project_list; do
   if [ "$gitHead" == "invalid" ]; then
     if [ "$PUBLISH_MODE" == "auto" ]; then
       hasError=true
-      echo "gitHead is not set in file: $file" >> dist/gitHeadErrors.txt
+      echo "gitHead is not set in file: $file" | tee -a "${BASE_DIR}/dist/lerna/missing-gitHead.error"
     fi
   elif [ "$gitHead" != "$current_git_head" ]; then
     hasError=true
-    echo "gitHead is not equal to the current git head in file: $file" >> dist/gitHeadErrors.txt
+    echo "gitHead is not equal to the current git head in file: $file" | tee -a "${BASE_DIR}/dist/lerna/gitHead-mismatch.error"
   fi
   access=$(jq -r '.publishConfig.access // "invalid"' $file)
   if [ "$access" != "public" ]; then
       hasError=true
-      echo "publishConfig.access is not set or not equal to public in file: $file" >> dist/publishConfigErrors.txt
+      echo "publishConfig.access is not set or not equal to public in file: $file" | tee -a "${BASE_DIR}/dist/lerna/publish-config.error"
   fi
 done
 
