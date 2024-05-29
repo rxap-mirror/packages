@@ -1,8 +1,11 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
   GetAllPackageDependenciesForProject,
+  GetAllPackageDependenciesForProjectWihRetry,
   LoadProjectToPackageMapping,
+  LoadProjectToPackageMappingWithRetry,
   readPackageJsonForProject,
+  readPackageJsonForProjectWithRetry,
   writePackageJsonFormProject,
 } from '@rxap/plugin-utilities';
 import { readFileSync } from 'fs';
@@ -27,13 +30,13 @@ function convertToPackageGroup(input: Record<string, string>, packageGroupRegex:
     }));
 }
 
-function getPackageGroupFromDependencies(context: ExecutorContext, packageGroupRegex: RegExp[]): ArrayPackageGroup {
-  const directPackageDependencies = GetAllPackageDependenciesForProject(context);
+async function getPackageGroupFromDependencies(context: ExecutorContext, packageGroupRegex: RegExp[]): Promise<ArrayPackageGroup> {
+  const directPackageDependencies = await GetAllPackageDependenciesForProjectWihRetry(context);
   return convertToPackageGroup(directPackageDependencies, packageGroupRegex);
 }
 
-function getPackageGroupFromPeerDependencies(context: ExecutorContext, packageGroupRegex: RegExp[]): ArrayPackageGroup {
-  const peerDependencies = readPackageJsonForProject(context).peerDependencies ?? {};
+async function getPackageGroupFromPeerDependencies(context: ExecutorContext, packageGroupRegex: RegExp[]): Promise<ArrayPackageGroup> {
+  const peerDependencies = (await readPackageJsonForProjectWithRetry(context)).peerDependencies ?? {};
   return convertToPackageGroup(peerDependencies, packageGroupRegex);
 }
 
@@ -65,9 +68,9 @@ function getPackageGroupFromRootDependencies(context: ExecutorContext, include: 
   return convertToPackageGroup(includes, [ /.*/ ]);
 }
 
-function getPackageGroup(context: ExecutorContext, packageGroupRegex: RegExp[], include: string[] = []): ArrayPackageGroup {
-  return mergePackageGroup(mergePackageGroup(getPackageGroupFromPeerDependencies(context, packageGroupRegex),
-    getPackageGroupFromDependencies(context, packageGroupRegex),
+async function getPackageGroup(context: ExecutorContext, packageGroupRegex: RegExp[], include: string[] = []): Promise<ArrayPackageGroup> {
+  return mergePackageGroup(mergePackageGroup(await getPackageGroupFromPeerDependencies(context, packageGroupRegex),
+    await getPackageGroupFromDependencies(context, packageGroupRegex),
   ), getPackageGroupFromRootDependencies(context, include));
 }
 
@@ -85,7 +88,7 @@ export default async function runExecutor(
   console.log('Executor ran for update-package-group', options);
 
 
-  const packageJson = readPackageJsonForProject(context);
+  const packageJson = await readPackageJsonForProjectWithRetry(context);
 
   // ensure the property "ng-migrations" exists
   packageJson['nx-migrations'] ??= {};
@@ -106,9 +109,9 @@ export default async function runExecutor(
 
   console.log(`Update package group for project ${ context.projectName } with the following package group regex:`, packageGroupRegex.map(regex => regex.toString()));
 
-  LoadProjectToPackageMapping(context);
+  await LoadProjectToPackageMappingWithRetry(context);
 
-  let packageGroup = getPackageGroup(context, packageGroupRegex, options.include);
+  let packageGroup = await getPackageGroup(context, packageGroupRegex, options.include);
   nxMigrations.packageGroup ??= [];
 
   if (options.merge) {

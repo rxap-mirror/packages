@@ -1,9 +1,10 @@
 import { ExecutorContext } from '@nx/devkit';
-import { jsonFile } from '@rxap/node-utilities';
+import { jsonFileWithRetry } from '@rxap/node-utilities';
 import {
   GetAllPackageDependenciesForProject,
   GetProjectRoot,
   LoadProjectToPackageMapping,
+  LoadProjectToPackageMappingWithRetry,
 } from '@rxap/plugin-utilities';
 import { PackageJson } from '@rxap/workspace-utilities';
 import { writeFileSync } from 'fs';
@@ -16,7 +17,7 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for PackageJson', options);
 
-  LoadProjectToPackageMapping(context);
+  await LoadProjectToPackageMappingWithRetry(context);
 
   const dependencies = GetAllPackageDependenciesForProject(context);
 
@@ -24,7 +25,7 @@ export default async function runExecutor(
 
   if (options.dependencies) {
     console.log('adding dependencies from options', options.dependencies.join(', '));
-    const rootPackageJson: PackageJson = jsonFile(join(context.root, 'package.json'));
+    const rootPackageJson: PackageJson = await jsonFileWithRetry(join(context.root, 'package.json'));
     for (const dependency of options.dependencies) {
       dependencies[dependency] = rootPackageJson.dependencies?.[dependency] ??
                                  rootPackageJson.devDependencies?.[dependency] ?? 'latest';

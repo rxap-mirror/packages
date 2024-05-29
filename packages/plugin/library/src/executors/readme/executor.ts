@@ -7,6 +7,7 @@ import {
   GetProjectRoot,
   readFileFromProjectRoot,
   readPackageJsonForProject,
+  readPackageJsonForProjectWithRetry,
   writeFileToProjectRoot,
 } from '@rxap/plugin-utilities';
 import {
@@ -97,7 +98,7 @@ async function normalizeSchema(
 }
 
 async function getSchematics(context: ExecutorContext): Promise<Generator[]> {
-  const { schematics } = readPackageJsonForProject(context);
+  const { schematics } = await readPackageJsonForProjectWithRetry(context);
   if (!schematics) {
     return [];
   }
@@ -120,7 +121,7 @@ async function getSchematics(context: ExecutorContext): Promise<Generator[]> {
 }
 
 async function getGenerators(context: ExecutorContext) {
-  const { generators } = readPackageJsonForProject(context);
+  const { generators } = await readPackageJsonForProjectWithRetry(context);
   if (!generators) {
     return [];
   }
@@ -144,7 +145,7 @@ async function getGenerators(context: ExecutorContext) {
 }
 
 async function getBuilders(context: ExecutorContext): Promise<Executor[]> {
-  const { builders } = readPackageJsonForProject(context);
+  const { builders } = await readPackageJsonForProjectWithRetry(context);
   if (!builders) {
     return [];
   }
@@ -167,7 +168,7 @@ async function getBuilders(context: ExecutorContext): Promise<Executor[]> {
 }
 
 async function getExecutors(context: ExecutorContext) {
-  const { executors } = readPackageJsonForProject(context);
+  const { executors } = await readPackageJsonForProjectWithRetry(context);
   if (!executors) {
     return [];
   }
@@ -190,8 +191,8 @@ async function getExecutors(context: ExecutorContext) {
   return [ ...executorList, ...builderList ];
 }
 
-function getPeerDependencyList(context: ExecutorContext): Array<{ name: string, version: string }> {
-  const packageJson = readPackageJsonForProject(context);
+async function getPeerDependencyList(context: ExecutorContext): Promise<Array<{ name: string, version: string }>> {
+  const packageJson = await readPackageJsonForProjectWithRetry(context);
   const peerDependencyList: Array<{ name: string, version: string }> = [];
 
   for (const [ packageName, version ] of Object.entries(
@@ -218,11 +219,11 @@ export default async function runExecutor(
 
   const getStartedContent = readGetStartedFile(context);
   const guidesContent = readGetGuidsFile(context);
-  const packageJson = readPackageJsonForProject(context);
+  const packageJson = await readPackageJsonForProjectWithRetry(context);
   const template = getTemplate(context);
   const generatorList = await getGenerators(context);
   const executorsList = await getExecutors(context);
-  const peerDependencyList = getPeerDependencyList(context);
+  const peerDependencyList = await getPeerDependencyList(context);
 
   console.log('Input for README.md template ready');
 

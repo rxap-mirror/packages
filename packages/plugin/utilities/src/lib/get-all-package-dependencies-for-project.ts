@@ -1,5 +1,8 @@
 import { ExecutorContext } from '@nx/devkit';
-import { getDirectPackageDependenciesForProject } from './get-direct-package-dependencies-for-project';
+import {
+  getDirectPackageDependenciesForProject,
+  getDirectPackageDependenciesForProjectWihRetry,
+} from './get-direct-package-dependencies-for-project';
 import { PackageNameToProjectName } from './project-package-name-mapping';
 
 /**
@@ -39,6 +42,44 @@ export function GetAllPackageDependenciesForProject(
     const project = PackageNameToProjectName(packageName);
 
     const dependencies = GetAllPackageDependenciesForProject(context, project, directDependencies);
+
+    Object.assign(allDependencies, dependencies);
+
+  }
+
+  return allDependencies;
+
+}
+
+export async function GetAllPackageDependenciesForProjectWihRetry(
+  context: ExecutorContext,
+  projectName = context.projectName,
+  resolvedDependencies: Record<string, string> = {},
+  retries = 3, sleep = 3000
+): Promise<Record<string, string>> {
+  const { projectGraph } = context;
+
+  if (!projectGraph) {
+    throw new Error('The projectGraph is undefined. Ensure the projectGraph is passed into the executor context.');
+  }
+
+  if (!projectName) {
+    throw new Error('The projectName is undefined. Ensure the projectName is passed into the executor context.');
+  }
+
+  const directDependencies = await getDirectPackageDependenciesForProjectWihRetry(context, projectName, retries, sleep);
+
+  const allDependencies = { ...directDependencies };
+
+  for (const packageName of Object.keys(directDependencies)) {
+
+    if (resolvedDependencies[packageName]) {
+      continue;
+    }
+
+    const project = PackageNameToProjectName(packageName);
+
+    const dependencies = await GetAllPackageDependenciesForProjectWihRetry(context, project, directDependencies, retries, sleep);
 
     Object.assign(allDependencies, dependencies);
 

@@ -1,6 +1,7 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
   jsonFile,
+  jsonFileWithRetry,
   writeJsonFile,
 } from '@rxap/node-utilities';
 import {
@@ -20,6 +21,15 @@ export function readPackageJsonForProject(
 ): ProjectPackageJson {
   const packageJsonPath = join(context.root, GetProjectRoot(context, projectName), 'package.json');
   return jsonFile(packageJsonPath);
+}
+
+export function readPackageJsonForProjectWithRetry(
+  context: ExecutorContext,
+  projectName = context.projectName,
+  retries = 3, sleep = 3000
+): Promise<ProjectPackageJson> {
+  const packageJsonPath = join(context.root, GetProjectRoot(context, projectName), 'package.json');
+  return jsonFileWithRetry(packageJsonPath, retries, sleep);
 }
 
 export function writePackageJsonFormProject<T extends ProjectPackageJson = ProjectPackageJson>(

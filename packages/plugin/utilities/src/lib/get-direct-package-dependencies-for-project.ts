@@ -2,7 +2,10 @@ import { ExecutorContext } from '@nx/devkit';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { GetProjectRoot } from './project';
-import { readPackageJsonForProject } from './project-package-json';
+import {
+  readPackageJsonForProject,
+  readPackageJsonForProjectWithRetry,
+} from './project-package-json';
 
 /**
  * Get the direct package dependencies for the project.
@@ -35,6 +38,46 @@ export function getDirectPackageDependenciesForProject(
     .map(dependency => dependency.target)
     .filter(name => existsSync(join(context.root, GetProjectRoot(context, name), 'package.json')))
     .map(projectName => readPackageJsonForProject(context, projectName) as any)
+    .filter(packageJson => !!packageJson.name && packageJson.version)
+    .reduce((
+      acc,
+      {
+        name,
+        version,
+      }: { name: string, version: string },
+    ) => ({
+      ...acc,
+      [name]: version,
+    }), {});
+}
+
+export async function getDirectPackageDependenciesForProjectWihRetry(
+  context: ExecutorContext,
+  projectName = context.projectName,
+  retries = 3, sleep = 3000
+): Promise<Record<string, string>> {
+  const { projectGraph } = context;
+
+  if (!projectGraph) {
+    throw new Error('The projectGraph is undefined. Ensure the projectGraph is passed into the executor context.');
+  }
+
+  if (!projectName) {
+    throw new Error('The projectName is undefined. Ensure the projectName is passed into the executor context.');
+  }
+
+  if (!projectGraph.dependencies[projectName]) {
+    throw new Error(`The project ${ projectName } does not exist in the projectGraph.`);
+  }
+
+  const dependenciesWithPackageJson = projectGraph.dependencies[projectName]
+    .filter(dependency => !dependency.target.startsWith('npm:'))
+    .map(dependency => dependency.target)
+    .filter(name => existsSync(join(context.root, GetProjectRoot(context, name), 'package.json')));
+
+  const withPackageJson = await Promise.all(dependenciesWithPackageJson.map(projectName => readPackageJsonForProjectWithRetry(context, projectName, retries, sleep) as any));
+
+  return withPackageJson
     .filter(packageJson => !!packageJson.name && packageJson.version)
     .reduce((
       acc,

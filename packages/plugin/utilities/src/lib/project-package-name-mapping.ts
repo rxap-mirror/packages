@@ -1,4 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
+import { jsonFileWithRetry } from '@rxap/node-utilities';
 import {
   existsSync,
   readFileSync,
@@ -28,6 +29,32 @@ export function LoadProjectToPackageMapping(context: ExecutorContext) {
       continue;
     }
     const packageJSON = JSON.parse(readFileSync(`${ projectRoot }/package.json`)!.toString('utf-8'));
+    PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageJSON.name] = projectName;
+    PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName] = packageJSON.name;
+  }
+}
+
+export async function LoadProjectToPackageMappingWithRetry(context: ExecutorContext, retries = 3, sleep = 3000) {
+
+  const { projectGraph } = context;
+
+  if (!projectGraph) {
+    throw new Error('The projectGraph is undefined. Ensure the projectGraph is passed into the executor context.');
+  }
+
+  const projectNames = Object.keys(projectGraph.nodes);
+  PACKAGE_NAME_TO_PROJECT_NAME_CACHE = {};
+  PROJECT_NAME_TO_PACKAGE_NAME_CACHE = {};
+  for (const projectName of projectNames) {
+    const project = projectGraph.nodes[projectName];
+    if (project.type !== 'lib') {
+      continue;
+    }
+    const projectRoot = project.data.root;
+    if (!existsSync(`${ projectRoot }/package.json`)) {
+      continue;
+    }
+    const packageJSON: any =  await jsonFileWithRetry(`${ projectRoot }/package.json`, retries, sleep);
     PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageJSON.name] = projectName;
     PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName] = packageJSON.name;
   }

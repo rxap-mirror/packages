@@ -2,17 +2,19 @@ import { UpdateDependenciesExecutorSchema } from './schema';
 import type { ExecutorContext } from '@nx/devkit';
 import {
   getDirectPackageDependenciesForProject,
+  getDirectPackageDependenciesForProjectWihRetry,
   readPackageJsonForProject,
+  readPackageJsonForProjectWithRetry,
   writePackageJsonFormProject,
 } from '@rxap/plugin-utilities';
 
 
-function replaceVersionWithCurrentVersion(
+async function replaceVersionWithCurrentVersion(
   dependencies: Record<string, string> = {},
   context: ExecutorContext,
 ) {
 
-  const directPackageDependencies = getDirectPackageDependenciesForProject(context);
+  const directPackageDependencies = await getDirectPackageDependenciesForProjectWihRetry(context);
 
   for (const [ packageName ] of Object.entries(dependencies)) {
     console.log(`Check if ${ packageName } is a direct dependency`);
@@ -30,7 +32,7 @@ export default async function runExecutor(
   options: UpdateDependenciesExecutorSchema,
   context: ExecutorContext,
 ) {
-  const packageJson = readPackageJsonForProject(context);
+  const packageJson = await readPackageJsonForProjectWithRetry(context);
 
   const {
     dependencies,
@@ -38,9 +40,9 @@ export default async function runExecutor(
     optionalDependencies,
   } = packageJson;
 
-  replaceVersionWithCurrentVersion(dependencies, context);
-  replaceVersionWithCurrentVersion(peerDependencies, context);
-  replaceVersionWithCurrentVersion(optionalDependencies, context);
+  await replaceVersionWithCurrentVersion(dependencies, context);
+  await replaceVersionWithCurrentVersion(peerDependencies, context);
+  await replaceVersionWithCurrentVersion(optionalDependencies, context);
 
   writePackageJsonFormProject(context, packageJson);
 
