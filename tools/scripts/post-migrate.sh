@@ -52,6 +52,7 @@ setNewVersion "${CURRENT_ANGULAR_MAJOR_VERSION}.0.0" "packages/schematic"
 setNewVersion "${CURRENT_NESTJS_MAJOR_VERSION}.0.0" "packages/nest"
 setNewVersion "${CURRENT_NX_MAJOR_VERSION}.0.0" "packages/plugin"
 setNewVersion "${CURRENT_NX_MAJOR_VERSION}.0.0" "packages/rxap"
+setNewVersion "${CURRENT_NX_MAJOR_VERSION}.0.0" "packages/workspace"
 
 # File Content
 # export const ANGULAR_VERSION = '~16.2.0';
