@@ -18,10 +18,10 @@
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background: mat.get-color-from-palette($accent, 100);
+      background: mat.m2-get-color-from-palette($accent, 100);
 
       &:hover {
-        background: mat.get-color-from-palette($accent, 300);
+        background: mat.m2-get-color-from-palette($accent, 300);
       }
     }
 
@@ -32,10 +32,10 @@
 
     .table-scroll-container {
       &::-webkit-scrollbar-thumb {
-        background: mat.get-color-from-palette($accent, 900) !important;
+        background: mat.m2-get-color-from-palette($accent, 900) !important;
 
         &:hover {
-          background: mat.get-color-from-palette($accent, 700) !important;
+          background: mat.m2-get-color-from-palette($accent, 700) !important;
         }
       }
     }
