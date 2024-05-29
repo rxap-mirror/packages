@@ -47,16 +47,23 @@ echo "gitHead errors:" > dist/gitHeadErrors.txt
 
 current_git_head=$(git rev-parse HEAD)
 
+PUBLISH_MODE="auto"
+
+if [[ -f "./dist/publish-mode.txt"  ]]; then
+  PUBLISH_MODE=$(cat "./dist/publish-mode.txt")
+fi
+
 project_list=${cached_changed_projects//,/ }
 for project in $project_list; do
   project_root=$(yarn nx show project "$project" | jq -r '.root')
   file="dist/$project_root/package.json"
   gitHead=$(jq -r '.gitHead // "invalid"' "$file")
   if [ "$gitHead" == "invalid" ]; then
-    hasError=true
-    echo "gitHead is not set in file: $file" >> dist/gitHeadErrors.txt
-  fi
-  if [ "$gitHead" != "$current_git_head" ]; then
+    if [ "$PUBLISH_MODE" == "auto" ]; then
+      hasError=true
+      echo "gitHead is not set in file: $file" >> dist/gitHeadErrors.txt
+    fi
+  elif [ "$gitHead" != "$current_git_head" ]; then
     hasError=true
     echo "gitHead is not equal to the current git head in file: $file" >> dist/gitHeadErrors.txt
   fi

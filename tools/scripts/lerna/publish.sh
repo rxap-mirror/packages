@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
@@ -27,6 +29,7 @@ else
 fi
 
 rm -fr "${BASE_DIR}/dist/lerna"
+mkdir -p "${BASE_DIR}/dist/lerna"
 
 PUBLISH_MODE="auto"
 
