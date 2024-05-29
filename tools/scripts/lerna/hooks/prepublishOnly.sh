@@ -34,33 +34,22 @@ else
 
   yarn nx reset
 
+  mkdir -p "${BASE_DIR}/dist/lerna"
+  rm -fr "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
+
   yarn nx run-many \
     --target="build" \
     --configuration="production" \
-    --projects="$cached_changed_projects"
+    --projects="$cached_changed_projects" | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
 fi
 
 # exit with error if some package.json files are missing the publishConfig
-
-# Finds all package.json files starting from the current directory and excluding those in node_modules directories.
-files=$(find dist/packages -name "node_modules" -prune -o -name "package.json" -print)
 
 hasError=false
 echo "publishConfig errors:" > dist/publishConfigErrors.txt
 echo "gitHead errors:" > dist/gitHeadErrors.txt
 
 current_git_head=$(git rev-parse HEAD)
-
-for file in $files
-do
-    # Checks if publishConfig or publishConfig.access is not properly set.
-    access=$(jq -r '.publishConfig.access // "invalid"' $file)
-    if [ "$access" != "public" ]; then
-        hasError=true
-        echo "publishConfig.access is not set or not equal to public in file: $file" >> dist/publishConfigErrors.txt
-    fi
-
-done
 
 project_list=${cached_changed_projects//,/ }
 for project in $project_list; do
@@ -74,6 +63,11 @@ for project in $project_list; do
   if [ "$gitHead" != "$current_git_head" ]; then
     hasError=true
     echo "gitHead is not equal to the current git head in file: $file" >> dist/gitHeadErrors.txt
+  fi
+  access=$(jq -r '.publishConfig.access // "invalid"' $file)
+  if [ "$access" != "public" ]; then
+      hasError=true
+      echo "publishConfig.access is not set or not equal to public in file: $file" >> dist/publishConfigErrors.txt
   fi
 done
 
