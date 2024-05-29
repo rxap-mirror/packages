@@ -7,4 +7,4 @@ include:
   - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.2.0-edge.16
     inputs:
       dte: true
-      parallel: 5
+      parallel: 3
