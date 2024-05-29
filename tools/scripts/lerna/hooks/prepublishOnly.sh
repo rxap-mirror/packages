@@ -42,6 +42,7 @@ if [ -z "$cached_changed_projects" ]; then
 
   yarn nx run-many \
     --target="build" \
+    --exclude="angular" \
     --configuration="production" \
     --skip-nx-cache 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
   exit_code=${PIPESTATUS[0]}
