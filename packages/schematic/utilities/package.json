@@ -1,5 +1,5 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.1-dev.0",
   "name": "@rxap/schematics-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@angular-devkit/schematics": "^17.3.8",
     "@nx/devkit": "^18.3.5",
     "@rxap/utilities": "^16.2.2",
-    "@rxap/workspace-utilities": "^18.0.0"
+    "@rxap/workspace-utilities": "^18.0.1-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -44,7 +44,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       }
     ]
   },

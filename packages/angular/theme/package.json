@@ -1,5 +1,5 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.1-dev.0",
   "name": "@rxap/ngx-theme",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,8 +9,8 @@
     "@angular/cdk": "^17.3.10",
     "@angular/core": "^17.3.10",
     "@ctrl/tinycolor": "^4.0.2",
-    "@rxap/config": "^17.0.0",
-    "@rxap/ngx-pub-sub": "^17.0.0",
+    "@rxap/config": "^17.0.1-dev.0",
+    "@rxap/ngx-pub-sub": "^17.0.1-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -42,15 +42,15 @@
       },
       {
         "package": "@rxap/config",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -58,7 +58,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -66,7 +66,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       }
     ]
   },

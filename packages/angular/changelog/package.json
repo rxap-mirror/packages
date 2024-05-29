@@ -1,5 +1,5 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.1-dev.0",
   "name": "@rxap/ngx-changelog",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,9 +9,9 @@
     "@angular/common": "^17.3.10",
     "@angular/core": "^17.3.10",
     "@angular/forms": "^17.3.10",
-    "@rxap/directives": "^17.0.0",
-    "@rxap/environment": "^17.0.0",
-    "@rxap/open-api": "^17.0.0",
+    "@rxap/directives": "^17.0.1-dev.0",
+    "@rxap/environment": "^17.0.1-dev.0",
+    "@rxap/open-api": "^17.0.1-dev.0",
     "ngx-markdown": "^16.0.0",
     "rxjs": "^7.8.1"
   },
@@ -48,11 +48,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -60,15 +60,15 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/mixin",
@@ -80,7 +80,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -88,7 +88,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -96,7 +96,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -104,7 +104,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -112,7 +112,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       }
     ]
   },

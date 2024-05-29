@@ -1,5 +1,5 @@
 {
-  "version": "18.0.0",
+  "version": "18.0.1-dev.0",
   "name": "@rxap/plugin-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,12 +9,12 @@
   "peerDependencies": {
     "@nx/devkit": "^18.3.5",
     "@rxap/node-utilities": "^1.2.2",
-    "@rxap/plugin-library": "^18.0.0",
-    "@rxap/plugin-utilities": "^18.0.0",
+    "@rxap/plugin-library": "^18.0.1-dev.0",
+    "@rxap/plugin-utilities": "^18.0.1-dev.0",
     "@rxap/utilities": "^16.2.2",
-    "@rxap/workspace-open-api": "^18.0.0",
-    "@rxap/workspace-ts-morph": "^18.0.0",
-    "@rxap/workspace-utilities": "^18.0.0"
+    "@rxap/workspace-open-api": "^18.0.1-dev.0",
+    "@rxap/workspace-ts-morph": "^18.0.1-dev.0",
+    "@rxap/workspace-utilities": "^18.0.1-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.5"
+        "version": "1.0.6-dev.0"
       },
       {
         "package": "@rxap/json-schema-to-typescript",
@@ -55,11 +55,11 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/ts-morph",
@@ -71,15 +71,15 @@
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       }
     ]
   },

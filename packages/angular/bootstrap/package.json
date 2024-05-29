@@ -1,5 +1,5 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.1-dev.0",
   "name": "@rxap/ngx-bootstrap",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,8 +10,8 @@
     "@angular/platform-browser": "^17.3.10",
     "@angular/platform-browser-dynamic": "^17.3.10",
     "@nx/angular": "^18.3.5",
-    "@rxap/config": "^17.0.0",
-    "@rxap/environment": "^17.0.0",
+    "@rxap/config": "^17.0.1-dev.0",
+    "@rxap/environment": "^17.0.1-dev.0",
     "ngx-logger": "^5.0.12"
   },
   "author": {
@@ -52,11 +52,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -64,7 +64,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -72,7 +72,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       }
     ]
   },

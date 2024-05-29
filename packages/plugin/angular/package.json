@@ -1,5 +1,5 @@
 {
-  "version": "18.0.0",
+  "version": "18.0.1-dev.0",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,14 +9,14 @@
   "peerDependencies": {
     "@nx/angular": "^18.3.5",
     "@nx/devkit": "^18.3.5",
-    "@rxap/plugin-application": "^18.0.0",
-    "@rxap/plugin-library": "^18.0.0",
-    "@rxap/plugin-localazy": "^18.0.0",
-    "@rxap/plugin-utilities": "^18.0.0",
+    "@rxap/plugin-application": "^18.0.1-dev.0",
+    "@rxap/plugin-library": "^18.0.1-dev.0",
+    "@rxap/plugin-localazy": "^18.0.1-dev.0",
+    "@rxap/plugin-utilities": "^18.0.1-dev.0",
     "@rxap/ts-morph": "^1.2.2",
     "@rxap/utilities": "^16.2.2",
-    "@rxap/workspace-ts-morph": "^18.0.0",
-    "@rxap/workspace-utilities": "^18.0.0",
+    "@rxap/workspace-ts-morph": "^18.0.1-dev.0",
+    "@rxap/workspace-utilities": "^18.0.1-dev.0",
     "nx": "^18.3.5",
     "ts-morph": "^18.0.0"
   },
@@ -52,7 +52,7 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.5"
+        "version": "1.0.6-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -60,19 +60,19 @@
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-localazy",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/ts-morph",
@@ -84,11 +84,11 @@
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       }
     ]
   },

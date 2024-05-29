@@ -1,5 +1,5 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.1-dev.0",
   "name": "@rxap/upload",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,7 +11,7 @@
     "@angular/core": "^17.3.10",
     "@angular/forms": "^17.3.10",
     "@angular/material": "^17.3.10",
-    "@rxap/directives": "^17.0.0",
+    "@rxap/directives": "^17.0.1-dev.0",
     "@rxap/pattern": "^1.1.3",
     "rxjs": "^7.8.1"
   },
@@ -57,11 +57,11 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/icon",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -73,7 +73,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -81,7 +81,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -89,7 +89,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       }
     ]
   },

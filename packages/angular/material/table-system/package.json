@@ -1,5 +1,5 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.1-dev.0",
   "name": "@rxap/material-table-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -13,16 +13,16 @@
     "@angular/forms": "^17.3.10",
     "@angular/material": "^17.3.10",
     "@angular/router": "^17.3.10",
-    "@rxap/components": "^17.0.0",
-    "@rxap/data-source": "^17.0.0",
-    "@rxap/directives": "^17.0.0",
-    "@rxap/forms": "^17.0.0",
-    "@rxap/material-directives": "^17.0.0",
+    "@rxap/components": "^17.0.1-dev.0",
+    "@rxap/data-source": "^17.0.1-dev.0",
+    "@rxap/directives": "^17.0.1-dev.0",
+    "@rxap/forms": "^17.0.1-dev.0",
+    "@rxap/material-directives": "^17.0.1-dev.0",
     "@rxap/pattern": "^1.1.3",
     "@rxap/reflect-metadata": "^1.0.5",
     "@rxap/rxjs": "^1.1.4",
     "@rxap/utilities": "^16.2.2",
-    "@rxap/window-system": "^17.0.0",
+    "@rxap/window-system": "^17.0.1-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -80,11 +80,11 @@
       },
       {
         "package": "@rxap/components",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -92,27 +92,27 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -124,7 +124,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -136,7 +136,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -148,11 +148,11 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       }
     ]
   },
