@@ -40,7 +40,8 @@ else
   yarn nx run-many \
     --target="build" \
     --configuration="production" \
-    --projects="$cached_changed_projects" | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
+    --projects="$cached_changed_projects" \
+    --skip-nx-cache | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
 fi
 
 # exit with error if some package.json files are missing the publishConfig
