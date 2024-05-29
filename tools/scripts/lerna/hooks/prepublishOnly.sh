@@ -14,30 +14,44 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
-cached_changed_projects=$(cat "${BASE_DIR}/dist/lerna/changed-projects.txt")
+if [ -f "${BASE_DIR}/dist/lerna/changed-projects.txt" ]; then
+  cached_changed_projects=$(cat "${BASE_DIR}/dist/lerna/changed-projects.txt")
+fi
 
 rm -fr "${BASE_DIR}/dist/packages"
 
+yarn nx reset
+
 if [ -z "$cached_changed_projects" ]; then
   echo "No changed projects found"
-#  echo "yarn nx run-many --target=build --configuration=production"
+  echo "yarn nx run-many --target=build --configuration=production"
 
-#  yarn nx run-many \
-#    --target="build" \
-#    --configuration="production"
-  exit 1
+  yarn nx run-many \
+    --target="build" \
+    --configuration="production" \
+    --skip-nx-cache 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
+  exit_code=${PIPESTATUS[0]}
+  if [ $exit_code -ne 0 ]; then
+    exit $exit_code
+  fi
+
 else
   echo "Building changed projects: $cached_changed_projects"
   echo "yarn nx run-many --target=build --configuration=production --projects=$cached_changed_projects"
-
-  yarn nx reset
 
   yarn nx run-many \
     --target="build" \
     --configuration="production" \
     --projects="$cached_changed_projects" \
-    --skip-nx-cache | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
+    --skip-nx-cache 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
+  exit_code=${PIPESTATUS[0]}
+  if [ $exit_code -ne 0 ]; then
+    exit $exit_code
+  fi
+
 fi
+
+
 
 # exit with error if some package.json files are missing the publishConfig
 
