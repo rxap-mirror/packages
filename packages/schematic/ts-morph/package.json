@@ -13,8 +13,8 @@
     "@rxap/schematics-utilities": "^17.0.0",
     "@rxap/ts-morph": "^1.2.2",
     "@rxap/utilities": "^16.2.2",
-    "@rxap/workspace-ts-morph": "^16.1.3",
-    "@rxap/workspace-utilities": "^16.3.2",
+    "@rxap/workspace-ts-morph": "^18.0.0",
+    "@rxap/workspace-utilities": "^18.0.0",
     "ts-morph": "^18.0.0"
   },
   "author": {
@@ -54,11 +54,11 @@
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "16.1.3"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.2"
+        "version": "18.0.0"
       }
     ]
   },

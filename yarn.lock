@@ -11169,7 +11169,7 @@ __metadata:
   dependencies:
     tslib: 2.6.2
   peerDependencies:
-    "@rxap/workspace-ts-morph": ^16.1.3
+    "@rxap/workspace-ts-morph": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -11886,8 +11886,8 @@ __metadata:
     "@rxap/plugin-utilities": ^18.0.0
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-ts-morph": ^16.1.3
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-ts-morph": ^18.0.0
+    "@rxap/workspace-utilities": ^18.0.0
     nx: ^18.3.5
     ts-morph: ^18.0.0
   languageName: unknown
@@ -11904,7 +11904,7 @@ __metadata:
     "@nx/devkit": ^18.3.5
     "@rxap/plugin-utilities": ^18.0.0
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -11917,7 +11917,7 @@ __metadata:
     "@nx/devkit": ^18.3.5
     "@rxap/plugin-utilities": ^18.0.0
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -11932,8 +11932,8 @@ __metadata:
     "@rxap/plugin-angular": ^18.0.0
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-ts-morph": ^16.1.3
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-ts-morph": ^18.0.0
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -11947,7 +11947,7 @@ __metadata:
     "@rxap/node-utilities": ^1.2.2
     "@rxap/plugin-gitlab-ci": ^18.0.0
     "@rxap/plugin-utilities": ^18.0.0
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -11961,7 +11961,7 @@ __metadata:
     "@nx/devkit": ^18.3.5
     "@rxap/plugin-utilities": ^18.0.0
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -11974,7 +11974,7 @@ __metadata:
     "@nx/devkit": ^18.3.5
     "@rxap/generator-ts-morph": ^1.0.5
     "@rxap/ts-morph": ^1.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
     gpt-3-encoder: ^1.1.4
     openai: ^3.3.0
     ts-morph: ^18.0.0
@@ -11997,7 +11997,7 @@ __metadata:
     "@rxap/plugin-utilities": ^18.0.0
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
     nx: ^18.3.5
     ts-morph: ^18.0.0
   languageName: unknown
@@ -12012,7 +12012,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^18.3.5
     "@rxap/plugin-utilities": ^18.0.0
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -12032,8 +12032,8 @@ __metadata:
     "@rxap/plugin-utilities": ^18.0.0
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-ts-morph": ^16.1.3
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-ts-morph": ^18.0.0
+    "@rxap/workspace-utilities": ^18.0.0
     colors: ^1.4.0
     ts-morph: ^18.0.0
   languageName: unknown
@@ -12051,9 +12051,9 @@ __metadata:
     "@rxap/plugin-library": ^18.0.0
     "@rxap/plugin-utilities": ^18.0.0
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-open-api": ^16.1.2
-    "@rxap/workspace-ts-morph": ^16.1.3
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-open-api": ^18.0.0
+    "@rxap/workspace-ts-morph": ^18.0.0
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -12068,8 +12068,8 @@ __metadata:
     "@nx/eslint": ^18.3.5
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-ts-morph": ^16.1.3
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-ts-morph": ^18.0.0
+    "@rxap/workspace-utilities": ^18.0.0
     colors: ^1.4.0
     ts-morph: ^18.0.0
   languageName: unknown
@@ -12083,7 +12083,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^18.3.5
     "@rxap/node-utilities": ^1.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -12112,7 +12112,7 @@ __metadata:
     "@nx/js": ^18.3.5
     "@rxap/plugin-utilities": ^18.0.0
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -12167,7 +12167,7 @@ __metadata:
     "@rxap/schematics-utilities": ^17.0.0
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
@@ -12184,7 +12184,7 @@ __metadata:
     "@rxap/schematics-ts-morph": ^17.0.0
     "@rxap/schematics-utilities": ^17.0.0
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -12201,7 +12201,7 @@ __metadata:
     "@rxap/schematics-utilities": ^17.0.0
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
@@ -12237,8 +12237,8 @@ __metadata:
     "@rxap/schematics-utilities": ^17.0.0
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-ts-morph": ^16.1.3
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-ts-morph": ^18.0.0
+    "@rxap/workspace-utilities": ^18.0.0
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
@@ -12252,7 +12252,7 @@ __metadata:
     "@angular-devkit/schematics": ^17.3.8
     "@nx/devkit": ^18.3.5
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -12609,7 +12609,7 @@ __metadata:
     "@angular-devkit/core": ^17.3.8
     "@rxap/json-schema-to-typescript": ^16.0.4
     "@rxap/utilities": ^16.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
@@ -12621,7 +12621,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@rxap/ts-morph": ^1.2.2
-    "@rxap/workspace-utilities": ^16.3.2
+    "@rxap/workspace-utilities": ^18.0.0
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
