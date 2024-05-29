@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.2.2-dev.0...@rxap/node-utilities@1.2.2) (2024-05-29)
+
+### Bug Fixes
+
+- support async package json reading ([6b8a163](https://gitlab.com/rxap/packages/commit/6b8a16323b25108a81291ccf976ee7c2aaedacc3))
+
 ## [1.2.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.2.1...@rxap/node-utilities@1.2.2-dev.0) (2024-05-29)
 
 **Note:** Version bump only for package @rxap/node-utilities

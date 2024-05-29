@@ -1,5 +1,5 @@
 {
-  "version": "17.0.1-dev.0",
+  "version": "17.0.1",
   "name": "@rxap/plugin-application",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,9 +9,9 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^17.3.2",
-    "@rxap/plugin-utilities": "^17.0.1-dev.0",
-    "@rxap/utilities": "^16.2.2-dev.0",
-    "@rxap/workspace-utilities": "^16.3.2-dev.0"
+    "@rxap/plugin-utilities": "^17.0.1",
+    "@rxap/utilities": "^16.2.2",
+    "@rxap/workspace-utilities": "^16.3.2"
   },
   "author": {
     "name": "Merzough Münker",
@@ -41,19 +41,19 @@
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.2-dev.0"
+        "version": "1.2.2"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.2-dev.0"
+        "version": "16.2.2"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.2-dev.0"
+        "version": "16.3.2"
       }
     ]
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@17.0.1-dev.0...@rxap/plugin-library@17.0.1) (2024-05-29)
+
+### Bug Fixes
+
+- support async package json reading ([6b8a163](https://gitlab.com/rxap/packages/commit/6b8a16323b25108a81291ccf976ee7c2aaedacc3))
+
 ## [17.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.3.1...@rxap/plugin-library@17.0.1-dev.0) (2024-05-29)
 
 ### Bug Fixes

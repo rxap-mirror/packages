@@ -1,5 +1,5 @@
 {
-  "version": "17.0.1-dev.0",
+  "version": "17.0.1",
   "name": "@rxap/plugin-storybook",
   "license": "MIT",
   "dependencies": {
@@ -9,10 +9,10 @@
     "@nx/angular": "^17.3.2",
     "@nx/devkit": "^17.3.2",
     "@nx/eslint": "^17.3.2",
-    "@rxap/ts-morph": "^1.2.2-dev.0",
-    "@rxap/utilities": "^16.2.2-dev.0",
-    "@rxap/workspace-ts-morph": "^16.1.3-dev.0",
-    "@rxap/workspace-utilities": "^16.3.2-dev.0",
+    "@rxap/ts-morph": "^1.2.2",
+    "@rxap/utilities": "^16.2.2",
+    "@rxap/workspace-ts-morph": "^16.1.3",
+    "@rxap/workspace-utilities": "^16.3.2",
     "colors": "^1.4.0",
     "ts-morph": "^18.0.0"
   },
@@ -50,23 +50,23 @@
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.2-dev.0"
+        "version": "1.2.2"
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.2.2-dev.0"
+        "version": "1.2.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.2-dev.0"
+        "version": "16.2.2"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "16.1.3-dev.0"
+        "version": "16.1.3"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.2-dev.0"
+        "version": "16.3.2"
       }
     ]
   },

@@ -1,5 +1,5 @@
 {
-  "version": "17.0.1-dev.0",
+  "version": "17.0.1",
   "name": "@rxap/life-cycle",
   "description": "A utility package to execute logic after the angular app is ready",
   "license": "GPL-3.0-or-later",
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@angular/core": "^17.1.3",
     "@angular/router": "^17.1.3",
-    "@rxap/utilities": "^16.2.2-dev.0",
+    "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -42,7 +42,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.2-dev.0"
+        "version": "16.2.2"
       }
     ]
   },

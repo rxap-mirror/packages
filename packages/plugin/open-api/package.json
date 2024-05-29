@@ -1,5 +1,5 @@
 {
-  "version": "17.0.1-dev.0",
+  "version": "17.0.1",
   "name": "@rxap/plugin-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,13 +8,13 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^17.3.2",
-    "@rxap/node-utilities": "^1.2.2-dev.0",
-    "@rxap/plugin-library": "^17.0.1-dev.0",
-    "@rxap/plugin-utilities": "^17.0.1-dev.0",
-    "@rxap/utilities": "^16.2.2-dev.0",
-    "@rxap/workspace-open-api": "^16.1.2-dev.0",
-    "@rxap/workspace-ts-morph": "^16.1.3-dev.0",
-    "@rxap/workspace-utilities": "^16.3.2-dev.0"
+    "@rxap/node-utilities": "^1.2.2",
+    "@rxap/plugin-library": "^17.0.1",
+    "@rxap/plugin-utilities": "^17.0.1",
+    "@rxap/utilities": "^16.2.2",
+    "@rxap/workspace-open-api": "^16.1.2",
+    "@rxap/workspace-ts-morph": "^16.1.3",
+    "@rxap/workspace-utilities": "^16.3.2"
   },
   "author": {
     "name": "Merzough Münker",
@@ -43,43 +43,43 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.5-dev.0"
+        "version": "1.0.5"
       },
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.4-dev.0"
+        "version": "16.0.4"
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.2-dev.0"
+        "version": "1.2.2"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.2.2-dev.0"
+        "version": "1.2.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.2-dev.0"
+        "version": "16.2.2"
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "16.1.2-dev.0"
+        "version": "16.1.2"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "16.1.3-dev.0"
+        "version": "16.1.3"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.2-dev.0"
+        "version": "16.3.2"
       }
     ]
   },

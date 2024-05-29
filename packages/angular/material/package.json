@@ -4,5 +4,5 @@
   "workspaces": [
     "./"
   ],
-  "version": "17.1.0-dev.0"
+  "version": "17.1.0"
 }
