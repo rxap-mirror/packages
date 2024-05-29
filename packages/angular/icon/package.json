@@ -1,15 +1,15 @@
 {
-  "version": "17.0.1",
+  "version": "18.0.0",
   "name": "@rxap/icon",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^17.3.10",
-    "@angular/core": "^17.3.10",
-    "@angular/material": "^17.3.10",
-    "@angular/platform-browser": "^17.3.10",
+    "@angular/common": "^18.0.1",
+    "@angular/core": "^18.0.1",
+    "@angular/material": "^18.0.0",
+    "@angular/platform-browser": "^18.0.1",
     "@rxap/utilities": "^16.2.2"
   },
   "author": {
@@ -34,19 +34,19 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/core",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/material",
-        "version": "17.3.10"
+        "version": "18.0.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/utilities",

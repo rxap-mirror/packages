@@ -1,18 +1,18 @@
 {
-  "version": "17.0.1",
+  "version": "18.0.0",
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^17.3.10",
-    "@angular/common": "^17.3.10",
-    "@angular/core": "^17.3.10",
-    "@rxap/components": "^17.0.1",
-    "@rxap/config": "^17.0.1",
-    "@rxap/data-grid": "^17.0.1",
-    "@rxap/environment": "^17.0.1",
+    "@angular/cdk": "^18.0.0",
+    "@angular/common": "^18.0.1",
+    "@angular/core": "^18.0.1",
+    "@rxap/components": "^18.0.0",
+    "@rxap/config": "^18.0.0",
+    "@rxap/data-grid": "^18.0.0",
+    "@rxap/environment": "^18.0.0",
     "@sentry/angular-ivy": "^7.60.1",
     "rxjs": "^7.8.1"
   },
@@ -37,31 +37,31 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "17.3.10"
+        "version": "18.0.0"
       },
       {
         "package": "@angular/common",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/core",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/components",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/config",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/data-grid",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -69,27 +69,27 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -101,7 +101,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -109,11 +109,11 @@
       },
       {
         "package": "@rxap/pipes",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.1"
+        "version": "19.0.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -121,7 +121,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -129,7 +129,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/utilities",
@@ -141,7 +141,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.1"
+        "version": "19.0.0"
       }
     ]
   },

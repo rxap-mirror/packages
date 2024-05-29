@@ -1,5 +1,5 @@
 {
-  "version": "17.0.1",
+  "version": "18.0.0",
   "name": "@rxap/services",
   "description": "A collection of utility angular services used in RxAP.",
   "license": "GPL-3.0-or-later",
@@ -7,9 +7,9 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^17.3.10",
-    "@angular/common": "^17.3.10",
-    "@angular/core": "^17.3.10",
+    "@angular/cdk": "^18.0.0",
+    "@angular/common": "^18.0.1",
+    "@angular/core": "^18.0.1",
     "@rxap/rxjs": "^1.1.4",
     "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
@@ -36,15 +36,15 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "17.3.10"
+        "version": "18.0.0"
       },
       {
         "package": "@angular/common",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/core",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/rxjs",

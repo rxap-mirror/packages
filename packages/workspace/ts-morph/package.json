@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "19.0.0",
   "name": "@rxap/workspace-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,7 +7,7 @@
   },
   "peerDependencies": {
     "@rxap/ts-morph": "^1.2.2",
-    "@rxap/workspace-utilities": "^18.0.1",
+    "@rxap/workspace-utilities": "^19.0.0",
     "ts-morph": "^18.0.0"
   },
   "author": {
@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.1"
+        "version": "19.0.0"
       }
     ]
   },

@@ -1,19 +1,19 @@
 {
-  "version": "17.0.1",
+  "version": "18.0.0",
   "name": "@rxap/window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^17.3.10",
-    "@angular/common": "^17.3.10",
-    "@angular/core": "^17.3.10",
-    "@angular/material": "^17.3.10",
-    "@rxap/directives": "^17.0.1",
-    "@rxap/material-directives": "^17.0.1",
+    "@angular/cdk": "^18.0.0",
+    "@angular/common": "^18.0.1",
+    "@angular/core": "^18.0.1",
+    "@angular/material": "^18.0.0",
+    "@rxap/directives": "^18.0.0",
+    "@rxap/material-directives": "^18.0.0",
     "@rxap/rxjs": "^1.1.4",
-    "@rxap/services": "^17.0.1",
+    "@rxap/services": "^18.0.0",
     "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
   },
@@ -39,19 +39,19 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "17.3.10"
+        "version": "18.0.0"
       },
       {
         "package": "@angular/common",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/core",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/material",
-        "version": "17.3.10"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/browser-utilities",
@@ -59,15 +59,15 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.1"
+        "version": "19.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -87,7 +87,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/utilities",
@@ -95,7 +95,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.1"
+        "version": "19.0.0"
       }
     ]
   },

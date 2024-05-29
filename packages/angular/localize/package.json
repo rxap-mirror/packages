@@ -1,15 +1,15 @@
 {
-  "version": "17.0.1",
+  "version": "18.0.0",
   "name": "@rxap/ngx-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^17.3.10",
-    "@angular/core": "^17.3.10",
-    "@rxap/config": "^17.0.1",
-    "@rxap/ngx-user": "^17.0.1",
+    "@angular/common": "^18.0.1",
+    "@angular/core": "^18.0.1",
+    "@rxap/config": "^18.0.0",
+    "@rxap/ngx-user": "^18.0.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -33,23 +33,23 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/core",
-        "version": "17.3.10"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/authentication",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/config",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -57,11 +57,11 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -69,11 +69,11 @@
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -81,7 +81,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -89,7 +89,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.1"
+        "version": "19.0.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -97,7 +97,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -109,7 +109,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.1"
+        "version": "19.0.0"
       }
     ]
   },
