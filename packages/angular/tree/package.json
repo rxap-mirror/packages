@@ -1,5 +1,5 @@
 {
-  "version": "17.0.1-dev.0",
+  "version": "17.0.1",
   "name": "@rxap/tree",
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "license": "GPL-3.0-or-later",
@@ -11,11 +11,11 @@
     "@angular/common": "^17.3.10",
     "@angular/core": "^17.3.10",
     "@angular/material": "^17.3.10",
-    "@rxap/contenteditable": "^17.0.1-dev.0",
-    "@rxap/data-source": "^17.0.1-dev.0",
+    "@rxap/contenteditable": "^17.0.1",
+    "@rxap/data-source": "^17.0.1",
     "@rxap/data-structure-tree": "^1.1.4",
-    "@rxap/forms": "^17.0.1-dev.0",
-    "@rxap/material-directives": "^17.0.1-dev.0",
+    "@rxap/forms": "^17.0.1",
+    "@rxap/material-directives": "^17.0.1",
     "@rxap/pattern": "^1.1.3",
     "@rxap/rxjs": "^1.1.4",
     "@rxap/utilities": "^16.2.2",
@@ -63,15 +63,15 @@
       },
       {
         "package": "@rxap/config",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/contenteditable",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/data-source",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -79,27 +79,27 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/directives",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/forms",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/node-utilities",
@@ -111,7 +111,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -123,7 +123,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "17.0.1-dev.0"
+        "version": "17.0.1"
       },
       {
         "package": "@rxap/utilities",
@@ -135,7 +135,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       }
     ]
   },

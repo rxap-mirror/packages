@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1-dev.0",
+  "version": "18.0.1",
   "name": "@rxap/plugin-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@nx/devkit": "^18.3.5",
     "@rxap/node-utilities": "^1.2.2",
-    "@rxap/workspace-utilities": "^18.0.1-dev.0"
+    "@rxap/workspace-utilities": "^18.0.1"
   },
   "author": {
     "name": "Merzough Münker",
@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       }
     ]
   },
