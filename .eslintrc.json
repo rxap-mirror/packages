@@ -1,19 +1,10 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
-  "plugins": [
-    "@nx"
-  ],
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -24,42 +15,27 @@
             "depConstraints": [
               {
                 "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
+                "onlyDependOnLibsWithTags": ["*"]
               },
               {
                 "sourceTag": "schematic",
-                "notDependOnLibsWithTags": [
-                  "generator"
-                ]
+                "notDependOnLibsWithTags": ["generator"]
               },
               {
                 "sourceTag": "generator",
-                "notDependOnLibsWithTags": [
-                  "schematic"
-                ]
+                "notDependOnLibsWithTags": ["schematic"]
               },
               {
                 "sourceTag": "browser",
-                "notDependOnLibsWithTags": [
-                  "node",
-                  "angular",
-                  "nest"
-                ]
+                "notDependOnLibsWithTags": ["node", "angular", "nest"]
               },
               {
                 "sourceTag": "workspace",
-                "notDependOnLibsWithTags": [
-                  "schematic",
-                  "generator"
-                ]
+                "notDependOnLibsWithTags": ["schematic", "generator"]
               },
               {
                 "sourceTag": "plugin",
-                "notDependOnLibsWithTags": [
-                  "schematic"
-                ],
+                "notDependOnLibsWithTags": ["schematic"],
                 "bannedExternalImports": [
                   "@angular-devkit/architect",
                   "@angular-devkit/core",
@@ -68,22 +44,12 @@
                 ]
               },
               {
-                "allSourceTags": [
-                  "nest",
-                  "packages"
-                ],
-                "notDependOnLibsWithTags": [
-                  "angular"
-                ]
+                "allSourceTags": ["nest", "packages"],
+                "notDependOnLibsWithTags": ["angular"]
               },
               {
-                "allSourceTags": [
-                  "angular",
-                  "packages"
-                ],
-                "notDependOnLibsWithTags": [
-                  "nest"
-                ]
+                "allSourceTags": ["angular", "packages"],
+                "notDependOnLibsWithTags": ["nest"]
               },
               {
                 "allSourceTags": [
@@ -91,12 +57,8 @@
                   "packages",
                   "/^(?!.*\\bmaterial\\b).*$/s"
                 ],
-                "notDependOnLibsWithTags": [
-                  "material"
-                ],
-                "bannedExternalImports": [
-                  "@angular/material"
-                ]
+                "notDependOnLibsWithTags": ["material"],
+                "bannedExternalImports": ["@angular/material"]
               },
               {
                 "sourceTag": "angular:standalone",
@@ -109,9 +71,7 @@
                   "nest",
                   "browser"
                 ],
-                "onlyDependOnLibsWithTags": [
-                  "scope:utilities"
-                ]
+                "onlyDependOnLibsWithTags": ["scope:utilities"]
               },
               {
                 "sourceTag": "standalone",
@@ -124,9 +84,7 @@
                   "nest",
                   "browser"
                 ],
-                "onlyDependOnLibsWithTags": [
-                  "scope:utilities"
-                ],
+                "onlyDependOnLibsWithTags": ["scope:utilities"],
                 "bannedExternalImports": [
                   "@angular-devkit/schematics",
                   "@angular/core",
@@ -135,15 +93,11 @@
               },
               {
                 "sourceTag": "scope:core",
-                "onlyDependOnLibsWithTags": [
-                  "scope:utilities"
-                ]
+                "onlyDependOnLibsWithTags": ["scope:utilities"]
               },
               {
                 "sourceTag": "scope:utilities",
-                "onlyDependOnLibsWithTags": [
-                  "scope:utilities"
-                ]
+                "onlyDependOnLibsWithTags": ["scope:utilities"]
               },
               {
                 "sourceTag": "scope:compose",
@@ -156,10 +110,7 @@
               },
               {
                 "sourceTag": "scope:integration",
-                "onlyDependOnLibsWithTags": [
-                  "scope:utilities",
-                  "scope:core"
-                ]
+                "onlyDependOnLibsWithTags": ["scope:utilities", "scope:core"]
               },
               {
                 "sourceTag": "angular",
@@ -171,9 +122,7 @@
               },
               {
                 "sourceTag": "nest",
-                "bannedExternalImports": [
-                  "@angular/core"
-                ]
+                "bannedExternalImports": ["@angular/core"]
               }
             ]
           }
@@ -181,11 +130,7 @@
       }
     },
     {
-      "files": [
-        "*.spec.ts",
-        "*.cy.ts",
-        "*.stories.ts"
-      ],
+      "files": ["*.spec.ts", "*.cy.ts", "*.stories.ts"],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -199,41 +144,29 @@
       }
     },
     {
-      "files": [
-        "cypress.config.ts",
-        "cypress/**"
-      ],
+      "files": ["cypress.config.ts", "cypress/**"],
       "rules": {
         "@nx/enforce-module-boundaries": "off"
       }
     },
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nx/typescript"
-      ],
-      "rules": {}
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nx/javascript"
-      ],
-      "rules": {}
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
       "env": {
         "jest": true
       },
