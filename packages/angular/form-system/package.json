@@ -1,23 +1,23 @@
 {
-  "version": "17.0.1",
+  "version": "17.0.0",
   "name": "@rxap/form-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^17.1.3",
-    "@angular/forms": "^17.1.3",
-    "@angular/material": "^17.1.2",
-    "@angular/router": "^17.1.3",
-    "@rxap/data-source": "^17.0.1",
-    "@rxap/definition": "^17.0.1",
-    "@rxap/forms": "^17.0.1",
+    "@angular/core": "^17.3.10",
+    "@angular/forms": "^17.3.10",
+    "@angular/material": "^17.3.10",
+    "@angular/router": "^17.3.10",
+    "@rxap/data-source": "^17.0.0",
+    "@rxap/definition": "^17.0.0",
+    "@rxap/forms": "^17.0.0",
     "@rxap/mixin": "^16.0.4",
-    "@rxap/open-api": "^17.0.1",
+    "@rxap/open-api": "^17.0.0",
     "@rxap/pattern": "^1.1.3",
     "@rxap/reflect-metadata": "^1.0.5",
-    "@rxap/remote-method": "^17.0.1",
+    "@rxap/remote-method": "^17.0.0",
     "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
   },
@@ -43,27 +43,27 @@
     "packageGroup": [
       {
         "package": "@angular/core",
-        "version": "17.1.3"
+        "version": "17.3.10"
       },
       {
         "package": "@angular/forms",
-        "version": "17.1.3"
+        "version": "17.3.10"
       },
       {
         "package": "@angular/material",
-        "version": "17.1.2"
+        "version": "17.3.10"
       },
       {
         "package": "@angular/router",
-        "version": "17.1.3"
+        "version": "17.3.10"
       },
       {
         "package": "@rxap/config",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -71,19 +71,19 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -95,7 +95,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -103,7 +103,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -111,7 +111,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -119,7 +119,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/utilities",

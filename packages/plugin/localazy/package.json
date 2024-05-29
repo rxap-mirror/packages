@@ -1,5 +1,5 @@
 {
-  "version": "17.0.1",
+  "version": "18.0.0",
   "name": "@rxap/plugin-localazy",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,8 +7,8 @@
     "yaml": "2.3.1"
   },
   "peerDependencies": {
-    "@nx/devkit": "^17.3.2",
-    "@rxap/plugin-utilities": "^17.0.1",
+    "@nx/devkit": "^18.3.5",
+    "@rxap/plugin-utilities": "^18.0.0",
     "@rxap/workspace-utilities": "^16.3.2"
   },
   "author": {
@@ -35,7 +35,7 @@
     "packageGroup": [
       {
         "package": "@nx/devkit",
-        "version": "17.3.2"
+        "version": "18.3.5"
       },
       {
         "package": "@rxap/node-utilities",
@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/utilities",

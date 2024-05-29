@@ -1,22 +1,22 @@
 {
-  "version": "17.0.1",
+  "version": "17.0.0",
   "name": "@rxap/material-table-window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^17.1.2",
-    "@angular/core": "^17.1.3",
-    "@angular/material": "^17.1.2",
-    "@rxap/data-source": "^17.0.1",
-    "@rxap/form-system": "^17.0.1",
-    "@rxap/forms": "^17.0.1",
-    "@rxap/material-table-system": "^17.0.1",
+    "@angular/cdk": "^17.3.10",
+    "@angular/core": "^17.3.10",
+    "@angular/material": "^17.3.10",
+    "@rxap/data-source": "^17.0.0",
+    "@rxap/form-system": "^17.0.0",
+    "@rxap/forms": "^17.0.0",
+    "@rxap/material-table-system": "^17.0.0",
     "@rxap/mixin": "^16.0.4",
     "@rxap/pattern": "^1.1.3",
     "@rxap/utilities": "^16.2.2",
-    "@rxap/window-system": "^17.0.1",
+    "@rxap/window-system": "^17.0.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -42,15 +42,15 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "17.1.2"
+        "version": "17.3.10"
       },
       {
         "package": "@angular/core",
-        "version": "17.1.3"
+        "version": "17.3.10"
       },
       {
         "package": "@angular/material",
-        "version": "17.1.2"
+        "version": "17.3.10"
       },
       {
         "package": "@rxap/browser-utilities",
@@ -58,15 +58,15 @@
       },
       {
         "package": "@rxap/components",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/config",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -74,31 +74,31 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -106,7 +106,7 @@
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -114,7 +114,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -122,7 +122,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "17.0.1"
+        "version": "18.0.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -130,7 +130,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -138,7 +138,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/utilities",
@@ -150,7 +150,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "17.0.1"
+        "version": "17.0.0"
       },
       {
         "package": "@rxap/workspace-utilities",
