@@ -30,6 +30,8 @@ if [ "$PUBLISH_MODE" != "auto" ]; then
   rm "${BASE_DIR}/dist/lerna/prepublishOnly-build.log" || true
 fi
 
+rm "${BASE_DIR}/dist/lerna/prepublishOnly.error" || true
+
 rm -fr "${BASE_DIR}/dist/packages"
 
 yarn nx reset
@@ -94,6 +96,7 @@ done
 
 if [ "$hasError" = true ] ; then
     echo -e "${RED}ERROR! prepublishOnly.sh${NC}"
+    echo "failed" > "${BASE_DIR}/dist/lerna/prepublishOnly.error"
     exit 1
 fi
 echo -e "${GREEN}DONE! prepublishOnly.sh${NC}"

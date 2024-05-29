@@ -14,6 +14,11 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
+if [ -f "${BASE_DIR}/dist/lerna/prepublishOnly.error" ]; then
+  echo -e "${RED}Error in prepublishOnly.sh${NC}"
+  exit 1
+fi
+
 # Add theme entry point to package.json if a theme.css file exists in the same directory
 echo -e "${BLUE}Adding theme entry point to package.json${NC}"
 bash "${BASE_DIR}/tools/scripts/add-theme-entry-point-to-package-json.sh"
