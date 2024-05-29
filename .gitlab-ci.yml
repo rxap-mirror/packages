@@ -1,10 +1,10 @@
 variables:
-  ADDITIONAL_TARGET_OPTIONS: --exclude angular --skip-nx-cache
+  ADDITIONAL_TARGET_OPTIONS: --exclude angular
   NX_MIGRATE_POST_SCRIPT: post-migrate
   RXAP_COMPOSE_COMMAND: schematic
 include:
   - component: gitlab.com/rxap/gitlab-ci/base@~latest
-  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.2.0-edge.16
+  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.2.0-edge.18
     inputs:
       dte: true
       parallel: 3
