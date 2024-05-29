@@ -1,7 +1,4 @@
-import {
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
 import { HttpRemoteMethodParameter } from '@rxap/remote-method/http';
 import {

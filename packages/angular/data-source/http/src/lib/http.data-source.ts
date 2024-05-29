@@ -1,12 +1,4 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpEventType,
-  HttpHeaderResponse,
-  HttpProgressEvent,
-  HttpResponse,
-  HttpSentEvent,
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpEventType, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpSentEvent } from '@angular/common/http';
 import {
   Constructor,
   deepMerge,

@@ -12,12 +12,7 @@ import {
   RXAP_OPEN_API_STRICT_VALIDATOR,
   SchemaValidationMixin,
 } from '@rxap/open-api';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpEventType,
-  HttpResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
 import {
   deepMerge,
   KeyValue,

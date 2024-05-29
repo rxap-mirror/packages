@@ -1,8 +1,5 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {
   OpenApiRemoteMethod,
   RxapOpenApiRemoteMethod,
@@ -33,10 +30,9 @@ describe('@rxap/open-api/remote-method', () => {
     beforeEach(() => {
 
       TestBed.configureTestingModule({
-        imports: [
-          HttpClientTestingModule,
-        ],
-      });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
       http = TestBed.inject(HttpClient);
       httpMock = TestBed.inject(HttpTestingController);

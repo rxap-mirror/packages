@@ -2,14 +2,8 @@ import {
   fakeAsync,
   TestBed,
 } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import {
-  HttpClient,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, HttpHeaders, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpDataSource } from './http.data-source';
 import { Subject } from 'rxjs';
 
@@ -25,10 +19,9 @@ describe('@rxap/data-source', () => {
     beforeEach(() => {
 
       TestBed.configureTestingModule({
-        imports: [
-          HttpClientTestingModule,
-        ],
-      });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
       http = TestBed.get(HttpClient);
       httpMock = TestBed.get(HttpTestingController);

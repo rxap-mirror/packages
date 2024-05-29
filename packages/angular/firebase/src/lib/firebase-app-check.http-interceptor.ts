@@ -4,13 +4,7 @@ import {
   Optional,
   Provider,
 } from '@angular/core';
-import {
-  HTTP_INTERCEPTORS,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { coerceArray } from '@rxap/utilities';
 import {
   map,

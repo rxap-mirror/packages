@@ -1,10 +1,7 @@
 import { OpenApiDataSource } from './open-api.data-source';
 import { RxapDataSource } from '@rxap/data-source';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { OpenApiConfigService } from '@rxap/open-api';
 
@@ -30,10 +27,9 @@ xdescribe('@rxap/open-api/data-source', () => {
     beforeEach(() => {
 
       TestBed.configureTestingModule({
-        imports: [
-          HttpClientTestingModule,
-        ],
-      });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
       http = TestBed.inject(HttpClient);
       httpMock = TestBed.inject(HttpTestingController);

@@ -1,8 +1,4 @@
-import {
-  HttpEvent,
-  HttpHandlerFn,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import {
   inject,
   LOCALE_ID,

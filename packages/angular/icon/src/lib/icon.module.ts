@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {
   ModuleWithProviders,
   NgModule,
@@ -12,9 +12,7 @@ import {
 /**
  * @deprecated use the ProvideIconAssetPath function in the app.config.ts file
  */
-@NgModule({
-  imports: [ HttpClientModule ],
-})
+@NgModule({ imports: [], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class IconModule {
 
   constructor(

@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpParams,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpParams, HttpRequest } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AvatarImageService {

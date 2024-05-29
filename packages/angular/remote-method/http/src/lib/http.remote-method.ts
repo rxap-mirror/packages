@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpEventType,
-  HttpHeaderResponse,
-  HttpProgressEvent,
-  HttpResponse,
-  HttpSentEvent,
-} from '@angular/common/http';
+import { HttpEventType, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpSentEvent } from '@angular/common/http';
 import {
   filter,
   map,

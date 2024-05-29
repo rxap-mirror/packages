@@ -1,9 +1,6 @@
 import { KeyValue } from '@rxap/utilities';
 import { BaseDataSourceMetadata } from '@rxap/data-source';
-import {
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 export interface HttpDataSourceMetadata<PathParams = KeyValue, Body = any | null> extends BaseDataSourceMetadata {
   url: string | (() => string);

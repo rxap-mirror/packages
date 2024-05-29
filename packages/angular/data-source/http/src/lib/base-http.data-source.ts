@@ -13,10 +13,7 @@ import {
   Subject,
   Subscription,
 } from 'rxjs';
-import {
-  HttpClient,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import {
   deepMerge,
   hasIndexSignature,
