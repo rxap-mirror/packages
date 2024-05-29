@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/vault/src",
   "projectType": "library",
+  "tags": ["nest", "packages"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -51,6 +52,5 @@
       }
     },
     "linking": {}
-  },
-  "tags": ["nest", "packages"]
+  }
 }

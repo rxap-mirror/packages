@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/plugin/gitlab-ci/src",
   "projectType": "library",
+  "tags": ["plugin", "nx", "nx-plugin", "packages"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -83,6 +84,5 @@
       }
     },
     "linking": {}
-  },
-  "tags": ["plugin", "nx", "nx-plugin", "packages"]
+  }
 }

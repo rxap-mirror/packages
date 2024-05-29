@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/handlebars/src",
   "prefix": "rxap",
+  "projectType": "library",
   "tags": [
     "angular",
     "ngx",
@@ -10,7 +11,6 @@
     "angular:standalone",
     "scope:integration"
   ],
-  "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",

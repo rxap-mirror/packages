@@ -3,8 +3,9 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/error/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "scope:compose"],
+  "implicitDependencies": ["angular-error"],
   "targets": {
     "index-export": {},
     "build": {
@@ -78,6 +79,5 @@
     },
     "check-ng-package": {},
     "linking": {}
-  },
-  "implicitDependencies": ["angular-error"]
+  }
 }

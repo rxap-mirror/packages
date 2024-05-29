@@ -4,7 +4,6 @@ variables:
   RXAP_COMPOSE_COMMAND: schematic
 include:
   - component: gitlab.com/rxap/gitlab-ci/base@~latest
-  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.2.0-edge.18
+  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.2.0-edge.19
     inputs:
-      dte: true
-      parallel: 3
+      run_many_tags: [ run-many-mega ]

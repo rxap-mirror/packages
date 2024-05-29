@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/plugin/compodoc/src",
   "projectType": "library",
+  "tags": ["plugin", "nx", "nx-plugin", "packages"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -83,6 +84,5 @@
         "generator": "@rxap/plugin-library:expose-as-schematic"
       }
     }
-  },
-  "tags": ["plugin", "nx", "nx-plugin", "packages"]
+  }
 }

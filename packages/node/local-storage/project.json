@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/node/local-storage/src",
   "projectType": "library",
+  "tags": ["packages", "node", "scope:utilities", "standalone"],
   "targets": {
     "index-export": {},
     "build": {
@@ -50,6 +51,5 @@
       }
     },
     "linking": {}
-  },
-  "tags": ["packages", "node", "scope:utilities", "standalone"]
+  }
 }

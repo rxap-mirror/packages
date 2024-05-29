@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/testing/src",
   "projectType": "library",
+  "tags": ["nest", "packages"],
   "targets": {
     "index-export": {},
     "build": {
@@ -57,6 +58,5 @@
       }
     },
     "linking": {}
-  },
-  "tags": ["nest", "packages"]
+  }
 }

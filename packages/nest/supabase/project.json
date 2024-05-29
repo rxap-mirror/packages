@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/supabase/src",
   "projectType": "library",
+  "tags": ["nest", "libs", "packages"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -57,6 +58,5 @@
       }
     },
     "linking": {}
-  },
-  "tags": ["nest", "libs", "packages"]
+  }
 }

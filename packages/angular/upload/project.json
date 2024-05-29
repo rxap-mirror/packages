@@ -3,8 +3,8 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/upload/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "targets": {
     "index-export": {},
     "build": {

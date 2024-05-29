@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/socket-io-client/src",
   "projectType": "library",
+  "tags": ["nest", "packages", "scope:integration"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -52,6 +53,5 @@
     "update-package-group": {},
     "linking": {},
     "index-export": {}
-  },
-  "tags": ["nest", "packages", "scope:integration"]
+  }
 }

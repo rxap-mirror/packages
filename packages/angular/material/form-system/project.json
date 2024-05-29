@@ -3,8 +3,8 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/material/form-system/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "material", "scope:compose"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "material", "scope:compose"],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",

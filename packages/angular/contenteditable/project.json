@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/contenteditable/src",
   "prefix": "rxap",
+  "projectType": "library",
   "tags": [
     "angular",
     "ngx",
@@ -10,7 +11,6 @@
     "angular:standalone",
     "scope:utilities"
   ],
-  "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",

@@ -3,8 +3,8 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/config/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "scope:utilities"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "scope:utilities"],
   "targets": {
     "index-export": {},
     "build": {

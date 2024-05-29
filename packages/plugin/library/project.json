@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/plugin/library/src",
   "projectType": "library",
+  "tags": ["packages", "plugin"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -79,6 +80,5 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {}
-  },
-  "tags": ["packages", "plugin"]
+  }
 }

@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/schematic/composer/src",
   "projectType": "library",
+  "tags": ["packages", "schematic"],
   "implicitDependencies": [
     "schematic-angular",
     "schematic-nestjs",
@@ -84,6 +85,5 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {}
-  },
-  "tags": ["packages", "schematic"]
+  }
 }

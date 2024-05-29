@@ -3,8 +3,9 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/timeago/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "angular:standalone"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "angular:standalone"],
+  "implicitDependencies": ["angular-timeago"],
   "targets": {
     "index-export": {},
     "build": {
@@ -87,6 +88,5 @@
       "executor": "@rxap/plugin-angular:check-ng-package"
     },
     "linking": {}
-  },
-  "implicitDependencies": ["angular-timeago"]
+  }
 }

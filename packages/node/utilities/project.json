@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/node/utilities/src",
   "projectType": "library",
+  "tags": ["node", "packages", "scope:utilities"],
   "targets": {
     "index-export": {},
     "build": {
@@ -53,6 +54,5 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {}
-  },
-  "tags": ["node", "packages", "scope:utilities"]
+  }
 }

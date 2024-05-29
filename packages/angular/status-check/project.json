@@ -3,8 +3,8 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/status-check/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "targets": {
     "copy-open-api-sdk": {
       "inputs": ["{workspaceRoot}/packages/open-api/service/status/src/lib"],

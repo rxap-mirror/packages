@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/browser/utilities/src",
   "projectType": "library",
+  "tags": ["packages", "browser", "scope:utilities"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -46,6 +47,5 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {}
-  },
-  "tags": ["packages", "browser", "scope:utilities"]
+  }
 }

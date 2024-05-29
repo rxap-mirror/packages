@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/schematic/angular/src",
   "projectType": "library",
+  "tags": ["packages", "schematic"],
   "targets": {
     "index-json-schema": {},
     "bundle-json-schema": {},
@@ -64,6 +65,5 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {}
-  },
-  "tags": ["packages", "schematic"]
+  }
 }

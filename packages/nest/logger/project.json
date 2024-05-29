@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/logger/src",
   "projectType": "library",
+  "tags": ["nest", "packages", "scope:utilities"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -52,6 +53,5 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {}
-  },
-  "tags": ["nest", "packages", "scope:utilities"]
+  }
 }

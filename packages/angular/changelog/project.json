@@ -3,8 +3,9 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/changelog/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "scope:compose"],
+  "implicitDependencies": ["angular-changelog"],
   "targets": {
     "copy-open-api-sdk": {
       "inputs": ["{workspaceRoot}/packages/open-api/service/changelog/src/lib"],
@@ -96,6 +97,5 @@
       "executor": "@rxap/plugin-angular:check-ng-package"
     },
     "linking": {}
-  },
-  "implicitDependencies": ["angular-changelog"]
+  }
 }

@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/workspace/ts-morph/src",
   "projectType": "library",
+  "tags": ["packages", "workspace", "scope:utilities"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -46,6 +47,5 @@
     "update-package-group": {},
     "linking": {},
     "index-export": {}
-  },
-  "tags": ["packages", "workspace", "scope:utilities"]
+  }
 }

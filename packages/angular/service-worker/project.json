@@ -3,8 +3,8 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/service-worker/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "scope:integration"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "scope:integration"],
   "targets": {
     "index-export": {},
     "build": {

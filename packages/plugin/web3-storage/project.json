@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/plugin/web3-storage/src",
   "projectType": "library",
+  "tags": ["plugin", "nx", "nx-plugin", "packages"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -77,6 +78,5 @@
       }
     },
     "linking": {}
-  },
-  "tags": ["plugin", "nx", "nx-plugin", "packages"]
+  }
 }

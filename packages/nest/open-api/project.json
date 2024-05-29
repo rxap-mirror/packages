@@ -3,6 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/open-api/src",
   "projectType": "library",
+  "tags": ["nest", "packages", "scope:integration"],
   "targets": {
     "index-export": {},
     "build": {
@@ -52,6 +53,5 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {}
-  },
-  "tags": ["nest", "packages", "scope:integration"]
+  }
 }

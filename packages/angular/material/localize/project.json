@@ -3,8 +3,8 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular/material/localize/src",
   "prefix": "rxap",
-  "tags": ["angular", "ngx", "packages", "material", "scope:integration"],
   "projectType": "library",
+  "tags": ["angular", "ngx", "packages", "material", "scope:integration"],
   "targets": {
     "index-export": {},
     "build": {
