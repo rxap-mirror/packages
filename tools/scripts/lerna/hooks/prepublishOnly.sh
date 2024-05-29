@@ -18,6 +18,18 @@ if [ -f "${BASE_DIR}/dist/lerna/changed-projects.txt" ]; then
   cached_changed_projects=$(cat "${BASE_DIR}/dist/lerna/changed-projects.txt")
 fi
 
+PUBLISH_MODE="auto"
+
+if [[ -f "${BASE_DIR}/dist/lerna/publish-mode.txt"  ]]; then
+  PUBLISH_MODE=$(cat "${BASE_DIR}/dist/lerna/publish-mode.txt")
+fi
+
+if [ "$PUBLISH_MODE" != "auto" ]; then
+  mkdir -p "${BASE_DIR}/dist/lerna"
+  rm -fr "${BASE_DIR}/dist/lerna/*.error" || true
+  rm "${BASE_DIR}/dist/lerna/prepublishOnly-build.log" || true
+fi
+
 rm -fr "${BASE_DIR}/dist/packages"
 
 yarn nx reset
@@ -58,12 +70,6 @@ fi
 hasError=false
 
 current_git_head=$(git rev-parse HEAD)
-
-PUBLISH_MODE="auto"
-
-if [[ -f "${BASE_DIR}/dist/lerna/publish-mode.txt"  ]]; then
-  PUBLISH_MODE=$(cat "${BASE_DIR}/dist/lerna/publish-mode.txt")
-fi
 
 project_list=${cached_changed_projects//,/ }
 for project in $project_list; do
