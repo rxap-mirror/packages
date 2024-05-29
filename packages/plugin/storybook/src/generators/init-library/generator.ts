@@ -1,7 +1,6 @@
 import {
   formatFiles,
   getProjects,
-  ProjectConfiguration,
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
@@ -12,31 +11,11 @@ import {
 import {
   GenerateSerializedSchematicFile,
   GetProjectRoot,
-  SkipNonAngularProject,
-  SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitLibraryGeneratorSchema } from './schema';
-
-function skipProject(
-  tree: Tree,
-  options: InitLibraryGeneratorSchema,
-  project: ProjectConfiguration,
-  projectName: string,
-): boolean {
-
-  if (SkipNonLibraryProject(tree, options, project, projectName)) {
-    return true;
-  }
-
-  if (SkipNonAngularProject(tree, options, project, projectName)) {
-    return true;
-  }
-
-  return false;
-
-}
+import { skipProject } from './skip-project';
 
 export async function initLibraryGenerator(
   tree: Tree,
