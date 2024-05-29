@@ -1,5 +1,11 @@
 #!/bin/bash
 
+BASE_DIR=$(git rev-parse --show-toplevel)
+
+cd "$BASE_DIR" || exit 1
+
+set -e
+
 CURRENT_ANGULAR_VERSION=$(jq -r '.dependencies["@angular/core"]' package.json)
 CURRENT_ANGULAR_MAJOR_VERSION=$(echo "$CURRENT_ANGULAR_VERSION" | cut -d. -f1)
 
@@ -30,8 +36,13 @@ setNewVersion() {
   fi
 
   find "$dir" -name "package.json" -type f | while read -r file; do
-    jq ".version = \"$new_version\"" "$file" >tmp.$$.json && mv tmp.$$.json "$file"
+    # check if the package.json has a version field
+    if ! grep -q '"version":' "$file"; then
+      echo "No version field found in $file"
+      continue
+    fi
     echo "Updated version in $file to $new_version"
+    jq ".version = \"$new_version\"" "$file" >tmp.$$.json && mv tmp.$$.json "$file"
   done
 
 }
