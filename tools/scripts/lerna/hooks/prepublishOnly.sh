@@ -14,7 +14,7 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
-cached_changed_projects=$(cat "${BASE_DIR}/dist/changed-projects.txt")
+cached_changed_projects=$(cat "${BASE_DIR}/dist/lerna/changed-projects.txt")
 
 rm -fr "${BASE_DIR}/dist/packages"
 
@@ -30,12 +30,7 @@ else
   echo "Building changed projects: $cached_changed_projects"
   echo "yarn nx run-many --target=build --configuration=production --projects=$cached_changed_projects"
 
-  cat "${BASE_DIR}/packages/rxap/package.json" > "${BASE_DIR}/dist/rxap-package.json"
-
   yarn nx reset
-
-  mkdir -p "${BASE_DIR}/dist/lerna"
-  rm -fr "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
 
   yarn nx run-many \
     --target="build" \

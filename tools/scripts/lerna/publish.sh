@@ -26,9 +26,7 @@ else
   exit 1
 fi
 
-if [[ -f "./dist/publish-mode.txt"  ]]; then
-  rm ./dist/publish-mode.txt || true
-fi
+rm -fr "${BASE_DIR}/dist/lerna"
 
 PUBLISH_MODE="auto"
 
@@ -36,14 +34,15 @@ for arg in "$@"; do
   if [[ $arg == "from-package" ]]; then
     echo -e "${BLUE}Script was called with from-package${NC}"
     PUBLISH_MODE="from-package"
-    echo "$PUBLISH_MODE" > ./dist/publish-mode.txt
   fi
   if [[ $arg == "from-git" ]]; then
-  echo -e "${BLUE}Script was called with from-git${NC}"
-  PUBLISH_MODE="from-git"
-  echo "$PUBLISH_MODE" >./dist/publish-mode.txt
-fi
+    echo -e "${BLUE}Script was called with from-git${NC}"
+    PUBLISH_MODE="from-git"
+  fi
 done
+
+echo "$PUBLISH_MODE" > "${BASE_DIR}/dist/lerna/publish-mode.txt"
+export PUBLISH_MODE
 
 GIT_BRANCH=${GIT_BRANCH:-$(git branch --show-current)}
 GIT_DEFAULT_BRANCH=${GIT_DEFAULT_BRANCH:-$(git remote show origin | grep 'HEAD' | cut -d':' -f2 | sed -e 's/^ *//g' -e 's/ *$//g')}

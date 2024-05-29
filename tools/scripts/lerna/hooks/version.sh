@@ -23,12 +23,12 @@ if [[ -z "$changed_projects" ]]; then
   exit 1
 fi
 
-if [[ ! -f "${BASE_DIR}/dist/changed-projects.txt" ]]; then
+if [[ ! -f "${BASE_DIR}/dist/lerna/changed-projects.txt" ]]; then
   echo "The list of changed projects has not been cached. Ensure the perversion hook has been run."
   exit 1
 fi
 
-cached_changed_projects=$(cat "${BASE_DIR}/dist/changed-projects.txt")
+cached_changed_projects=$(cat "${BASE_DIR}/dist/lerna/changed-projects.txt")
 
 if [[ "$changed_projects" != "$cached_changed_projects" ]]; then
   echo "The list of changed projects has changed since the perversion hook"
@@ -39,8 +39,8 @@ fi
 
 PUBLISH_MODE="auto"
 
-if [[ -f "./dist/publish-mode.txt"  ]]; then
-  PUBLISH_MODE=$(cat "./dist/publish-mode.txt")
+if [[ -f "${BASE_DIR}/dist/lerna/publish-mode.txt"  ]]; then
+  PUBLISH_MODE=$(cat "${BASE_DIR}/dist/lerna/publish-mode.txt")
 fi
 
 if [[ "$PUBLISH_MODE" == "auto" ]]; then

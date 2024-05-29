@@ -16,7 +16,7 @@ cd "$BASE_DIR" || exit 1
 
 # Add theme entry point to package.json if a theme.css file exists in the same directory
 echo -e "${BLUE}Adding theme entry point to package.json${NC}"
-bash tools/scripts/add-theme-entry-point-to-package-json.sh
+bash "${BASE_DIR}/tools/scripts/add-theme-entry-point-to-package-json.sh"
 echo -e "${BLUE}Removing blacklisted package dependencies${NC}"
-bash tools/scripts/remove-blacklisted-package-dependenceis.sh
+bash "${BASE_DIR}/tools/scripts/remove-blacklisted-package-dependenceis.sh"
 echo -e "${GREEN}DONE! prepack.sh${NC}"

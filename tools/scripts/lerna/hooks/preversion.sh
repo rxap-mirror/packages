@@ -39,12 +39,12 @@ if [[ "$YES" != "true" ]]; then
 
 fi
 
-echo "${changed_projects}" > "${BASE_DIR}/dist/changed-projects.txt"
+echo "${changed_projects}" > "${BASE_DIR}/dist/lerna/changed-projects.txt"
 
 PUBLISH_MODE="auto"
 
-if [[ -f "./dist/publish-mode.txt"  ]]; then
-  PUBLISH_MODE=$(cat "./dist/publish-mode.txt")
+if [[ -f "${BASE_DIR}/dist/lerna/publish-mode.txt"  ]]; then
+  PUBLISH_MODE=$(cat "${BASE_DIR}/dist/lerna/publish-mode.txt")
 fi
 
 if [[ "$PUBLISH_MODE" == "auto" ]]; then
