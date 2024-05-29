@@ -1,17 +1,19 @@
-export { isDefined } from './lib/operators/is-defined';
-export { isEqual } from './lib/operators/is-equal';
-export {
-  isDeepEqual,
-  isNotDeepEqual,
-} from './lib/operators/is-deep-equal';
-export { hasProperty } from './lib/operators/has-property';
-export { log } from './lib/operators/log';
-export { toBoolean } from './lib/operators/to-boolean';
-export { throwIfEmpty } from './lib/operators/throw-if-empty';
-export * from './lib/request-in-progress.subject';
-export * from './lib/toggle-subject';
-export * from './lib/is-teardown-logic';
-export * from './lib/subscription-handler';
-export * from './lib/counter.subject';
+// region operators
+export * from './lib/operators/has-property';
+export * from './lib/operators/is-deep-equal';
+export * from './lib/operators/is-defined';
+export * from './lib/operators/is-equal';
+export * from './lib/operators/log';
+export * from './lib/operators/throw-if-empty';
+export * from './lib/operators/to-boolean';
+// endregion
+
+// region 
 export * from './lib/button.definition';
 export * from './lib/clone-observable';
+export * from './lib/counter.subject';
+export * from './lib/is-teardown-logic';
+export * from './lib/request-in-progress.subject';
+export * from './lib/subscription-handler';
+export * from './lib/toggle-subject';
+// endregion

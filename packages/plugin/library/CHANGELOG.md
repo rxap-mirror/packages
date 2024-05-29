@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.3.1...@rxap/plugin-library@17.0.1-dev.0) (2024-05-29)
+
+### Bug Fixes
+
+- add [@nestjs](https://gitlab.com/nestjs) to default package groups ([17da65d](https://gitlab.com/rxap/packages/commit/17da65dcb8e51004b30320e448daf146fba47101))
+- wait for json file to be ready ([496a316](https://gitlab.com/rxap/packages/commit/496a31651dcc923a51684b33d5c4599de37ccd7b))
+
 ## [16.3.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.3.1-dev.1...@rxap/plugin-library@16.3.1) (2024-05-28)
 
 **Note:** Version bump only for package @rxap/plugin-library

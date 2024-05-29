@@ -1,12 +1,12 @@
 {
-  "version": "1.2.1",
+  "version": "1.2.2-dev.0",
   "name": "@rxap/ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/utilities": "^16.2.1",
+    "@rxap/utilities": "^16.2.2-dev.0",
     "colors": "^1.4.0",
     "ts-morph": "^18.0.0"
   },
@@ -30,7 +30,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.2.1"
+        "version": "16.2.2-dev.0"
       }
     ]
   },

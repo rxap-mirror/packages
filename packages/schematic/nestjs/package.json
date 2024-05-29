@@ -1,5 +1,5 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.1-dev.0",
   "name": "@rxap/schematic-nestjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,11 +9,11 @@
   "peerDependencies": {
     "@angular-devkit/core": "^17.1.4",
     "@angular-devkit/schematics": "^17.1.4",
-    "@rxap/schematics-ts-morph": "^17.0.0",
-    "@rxap/schematics-utilities": "^17.0.0",
-    "@rxap/ts-morph": "^1.2.1",
-    "@rxap/utilities": "^16.2.1",
-    "@rxap/workspace-utilities": "^16.3.1",
+    "@rxap/schematics-ts-morph": "^17.0.1-dev.0",
+    "@rxap/schematics-utilities": "^17.0.1-dev.0",
+    "@rxap/ts-morph": "^1.2.2-dev.0",
+    "@rxap/utilities": "^16.2.2-dev.0",
+    "@rxap/workspace-utilities": "^16.3.2-dev.0",
     "ts-morph": "^18.0.0"
   },
   "author": {
@@ -36,51 +36,51 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.4"
+        "version": "1.0.5-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.1"
+        "version": "1.2.2-dev.0"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "17.0.0"
+        "version": "17.0.1-dev.0"
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.2.1"
+        "version": "1.2.2-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.1"
+        "version": "16.2.2-dev.0"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "16.1.2"
+        "version": "16.1.3-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.1"
+        "version": "16.3.2-dev.0"
       }
     ]
   },

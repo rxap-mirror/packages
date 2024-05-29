@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-authentication@16.0.3...@rxap/ngx-material-authentication@17.0.1-dev.0) (2024-05-29)
+
+**Note:** Version bump only for package @rxap/ngx-material-authentication
+
 ## [16.0.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-authentication@16.0.3-dev.0...@rxap/ngx-material-authentication@16.0.3) (2024-05-28)
 
 **Note:** Version bump only for package @rxap/ngx-material-authentication

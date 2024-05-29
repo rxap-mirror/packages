@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.1.2...@rxap/ngx-material-table-select@17.0.1-dev.0) (2024-05-29)
+
+**Note:** Version bump only for package @rxap/ngx-material-table-select
+
 ## [16.1.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.1.2-dev.0...@rxap/ngx-material-table-select@16.1.2) (2024-05-28)
 
 **Note:** Version bump only for package @rxap/ngx-material-table-select

@@ -1,5 +1,5 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.1-dev.0",
   "name": "@rxap/plugin-gpt",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,9 +7,9 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^17.3.2",
-    "@rxap/generator-ts-morph": "^1.0.4",
-    "@rxap/ts-morph": "^1.2.1",
-    "@rxap/workspace-utilities": "^16.3.1",
+    "@rxap/generator-ts-morph": "^1.0.5-dev.0",
+    "@rxap/ts-morph": "^1.2.2-dev.0",
+    "@rxap/workspace-utilities": "^16.3.2-dev.0",
     "gpt-3-encoder": "^1.1.4",
     "openai": "^3.3.0",
     "ts-morph": "^18.0.0"
@@ -42,27 +42,27 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.4"
+        "version": "1.0.5-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.2.1"
+        "version": "1.2.2-dev.0"
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.2.1"
+        "version": "1.2.2-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.1"
+        "version": "16.2.2-dev.0"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "16.1.2"
+        "version": "16.1.3-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "16.3.1"
+        "version": "16.3.2-dev.0"
       }
     ]
   },
