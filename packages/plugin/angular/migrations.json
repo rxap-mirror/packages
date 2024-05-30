@@ -1,0 +1,10 @@
+{
+  "generators": {
+    "update-19-0-0-add-m2-prefix-to-material-scss-functions": {
+      "cli": "nx",
+      "version": "19.0.0",
+      "description": "Add m2 prefix to material scss functions",
+      "implementation": "./src/migrations/update-19-0-0/add-m2-prefix-to-material-scss-functions"
+    }
+  }
+}

@@ -33,6 +33,11 @@
             "input": "./packages/plugin/angular",
             "glob": "executors.json",
             "output": "."
+          },
+          {
+            "input": "./packages/plugin/angular",
+            "glob": "migrations.json",
+            "output": "."
           }
         ]
       }
