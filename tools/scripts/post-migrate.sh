@@ -41,6 +41,13 @@ setNewVersion() {
       echo "No version field found in $file"
       continue
     fi
+    # check if the current major version is the same as the new major version
+    current_version=$(jq -r '.version' "$file")
+    current_major_version=$(echo "$current_version" | cut -d. -f1)
+    if [[ "$current_major_version" != "$new_version" ]]; then
+      echo "Skipping $file. Current major version is $current_major_version, new major version is $new_version"
+      continue
+    fi
     echo "Updated version in $file to $new_version"
     jq ".version = \"$new_version\"" "$file" >tmp.$$.json && mv tmp.$$.json "$file"
   done
