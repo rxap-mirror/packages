@@ -6,7 +6,9 @@ import { TreeLike } from './tree';
 export function CoerceLernaJson(tree: TreeLike, baseDir = '') {
   UpdateJsonFile(tree, (lerna: any) => {
     lerna.$schema ??= 'https://json.schemastore.org/lerna';
-    lerna.useWorkspaces ??= true;
+    if (lerna.useWorkspaces !== undefined) {
+      delete lerna.useWorkspaces;
+    }
     lerna.version ??= 'independent';
     lerna.npmClient ??= 'yarn';
     lerna.command ??= {};
