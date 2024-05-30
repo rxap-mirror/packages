@@ -2889,9 +2889,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/code-coverage@npm:3.12.21":
-  version: 3.12.21
-  resolution: "@cypress/code-coverage@npm:3.12.21"
+"@cypress/code-coverage@npm:3.12.39":
+  version: 3.12.39
+  resolution: "@cypress/code-coverage@npm:3.12.39"
   dependencies:
     "@cypress/webpack-preprocessor": ^6.0.0
     chalk: 4.1.2
@@ -2908,7 +2908,7 @@ __metadata:
     babel-loader: ^8.3 || ^9
     cypress: "*"
     webpack: ^4 || ^5
-  checksum: 343f640ebf366548a96549784327c33f8ebf6298f8a5b05dce62e8a9ee644405be636d9ba9bc29a728051e4ff794dbd101ae31568284ae7909c0085a1f619e6d
+  checksum: 535475f7430fbe1c3d2a63c82713707a9359ab5b3757103e84f159ac796cdb7f729df2baa16aeabbfd7dfec00ea1007ae86658de3f60c0445361b7d66a3b8463
   languageName: node
   linkType: hard
 
@@ -9141,7 +9141,7 @@ __metadata:
     "@commitlint/config-conventional": 17.6.6
     "@compodoc/compodoc": 1.1.25
     "@ctrl/tinycolor": 4.0.2
-    "@cypress/code-coverage": 3.12.21
+    "@cypress/code-coverage": 3.12.39
     "@cypress/webpack-dev-server": 3.8.0
     "@enio.ai/typedoc": 1.0.8
     "@faker-js/faker": 8.0.2

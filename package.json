@@ -117,7 +117,7 @@
     "@commitlint/cli": "17.6.6",
     "@commitlint/config-conventional": "17.6.6",
     "@compodoc/compodoc": "1.1.25",
-    "@cypress/code-coverage": "3.12.21",
+    "@cypress/code-coverage": "3.12.39",
     "@cypress/webpack-dev-server": "3.8.0",
     "@enio.ai/typedoc": "1.0.8",
     "@jsdevtools/coverage-istanbul-loader": "3.0.5",
