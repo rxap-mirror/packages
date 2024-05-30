@@ -3,8 +3,8 @@ import {
   DebugElement,
 } from '@angular/core';
 import {
-  async,
   ComponentFixture,
+  fakeAsync,
   TestBed,
 } from '@angular/core/testing';
 import { HttpRemoteMethodDirective } from './http-remote-method.directive';
@@ -55,7 +55,7 @@ describe('@rxap/remote-method/directive/button', () => {
 
     });
 
-    it('should call execute on button click', async(() => {
+    it('should call execute on button click', fakeAsync(() => {
 
       const executeSpy = jest.spyOn(directive, 'execute');
 
