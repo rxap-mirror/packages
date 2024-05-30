@@ -4,6 +4,9 @@ import {
   IsUUID,
 } from 'class-validator';
 
+/** Represents a UUID object data transfer object.
+ * @class
+ */
 export class UuidObjectDto {
   @Expose()
   @IsUUID()

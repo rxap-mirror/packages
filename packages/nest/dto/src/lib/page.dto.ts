@@ -12,6 +12,10 @@ import {
 } from 'class-validator';
 import { FilterQueryDto } from './filter-query.dto';
 
+/**
+ * Represents a paginated list of data.
+ * @template RowType The type of the rows in the page.
+ */
 export abstract class PageDto<RowType> {
 
   @Expose()

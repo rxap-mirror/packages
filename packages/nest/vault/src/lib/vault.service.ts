@@ -180,6 +180,14 @@ export class VaultService {
     return this.client.tokenLookupSelf();
   }
 
+  /**
+   * Renews a lease with the specified lease_id and increment.
+   *
+   * @param {object} params - The parameters for renewing the lease.
+   * @param {string} params.lease_id - The ID of the lease to renew.
+   * @param {string|number} params.increment - The increment for renewing the lease.
+   * @returns {Promise<VaultResponse>} - A Promise that resolves to a VaultResponse object.
+   */
   public async renewLease({
     lease_id,
     increment

@@ -4,6 +4,9 @@ import {
   IsString,
 } from 'class-validator';
 
+/**
+ * Represents an IconDto object used for storing icon details.
+ */
 export class IconDto {
 
   @Expose()

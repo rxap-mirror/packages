@@ -8,6 +8,13 @@ import { GenericSchema } from '@supabase/supabase-js/dist/main/lib/types';
 import { SupabaseModuleOptions } from './supabase.module';
 import { SUPABASE_OPTIONS } from './tokens';
 
+/**
+ * Represents a service for interacting with the Supabase database.
+ * This service extends the SupabaseClient class.
+ * @typeparam Database - The type of the Supabase database.
+ * @typeparam SchemaName - The type of the schema name. It should be a string that is a keyof the Database type.
+ * @typeparam Schema - The type of the schema. It should be either the value of the Database[SchemaName] or any.
+ */
 @Injectable()
 export class SupabaseService<
   Database = any,

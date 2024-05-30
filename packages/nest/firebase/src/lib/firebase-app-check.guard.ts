@@ -12,6 +12,10 @@ import { RequestWithDecodedIdToken } from './firebase-auth.guard';
 import * as admin from 'firebase-admin';
 import { DEACTIVATE_APP_CHECK_GUARD } from './tokens';
 
+/**
+ * FirebaseAppCheckGuard class is an implementation of CanActivate interface
+ * that checks whether the incoming request is allowed based on Firebase App Check authentication.
+ */
 @Injectable()
 export class FirebaseAppCheckGuard implements CanActivate {
 
@@ -22,6 +26,14 @@ export class FirebaseAppCheckGuard implements CanActivate {
   @Inject(DEACTIVATE_APP_CHECK_GUARD)
   private readonly deactivated: boolean = false;
 
+  /**
+   * Checks whether the incoming request is allowed based on Firebase App Check authentication.
+   *
+   * @param {ExecutionContext} context - The execution context of the incoming request.
+   * @returns {Promise<boolean>} - A Promise that resolves to a boolean indicating if the request is allowed.
+   * @throws {BadRequestException} - If the app check header is missing in the request.
+   * @throws {ForbiddenException} - If the app check claim is not valid.
+   */
   public async canActivate(context: ExecutionContext): Promise<boolean> {
 
     if (this.deactivated) {

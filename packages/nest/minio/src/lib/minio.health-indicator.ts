@@ -11,6 +11,11 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { MinioService } from './minio.service';
 
+/**
+ * Class representing a MinioHealthIndicator.
+ * @class
+ * @inheritDoc
+ */
 @Injectable()
 export class MinioHealthIndicator extends HealthIndicator {
 

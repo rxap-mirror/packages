@@ -5,6 +5,11 @@ import {
 import { Socket } from 'socket.io-client';
 import { Logger } from '@nestjs/common';
 
+/**
+ * SocketIoClientStrategy is a custom transport strategy that allows
+ * a Socket.IO client to communicate with the server. It extends the Server class
+ * and implements the CustomTransportStrategy interface.
+ */
 export class SocketIoClientStrategy
   extends Server
   implements CustomTransportStrategy {

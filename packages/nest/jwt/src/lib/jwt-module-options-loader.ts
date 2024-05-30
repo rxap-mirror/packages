@@ -8,6 +8,10 @@ import {
   JwtOptionsFactory,
 } from '@nestjs/jwt';
 
+/**
+ * Injectable class that implements `JwtOptionsFactory`.
+ * It is responsible for creating JWT module options by getting the secret from the `ConfigService`.
+ */
 @Injectable()
 export class JwtModuleOptionsLoader implements JwtOptionsFactory {
 

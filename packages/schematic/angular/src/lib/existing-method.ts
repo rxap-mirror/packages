@@ -17,6 +17,12 @@ export interface ExistingMethod extends TypeImport {
 
 export type NormalizedExistingMethod = NormalizedTypeImport;
 
+/**
+ * Normalizes an existing method.
+ *
+ * @param existingMethod - The existing method to normalize.
+ * @returns The normalized existing method, or `null` if the existing method is invalid.
+ */
 export function NormalizeExistingMethod(existingMethod?: ExistingMethod): NormalizedExistingMethod | null {
   if (existingMethod) {
     existingMethod.name ??= existingMethod.className;

@@ -1,6 +1,9 @@
 import { Expose } from 'class-transformer';
 import { IsString } from 'class-validator';
 
+/**
+ * Represents a filter query DTO.
+ */
 export class FilterQueryDto {
 
   @Expose()

@@ -19,6 +19,9 @@ import {
   RequestWithJwt,
 } from './types';
 
+/**
+ * JwtGuard is a class that implements the CanActivate interface to determine if a request can be authenticated using a JWT token.
+ */
 @Injectable()
 export class JwtGuard implements CanActivate {
 
@@ -35,6 +38,13 @@ export class JwtGuard implements CanActivate {
     return this.config.get<string>('JWT_AUTH_HEADER', 'Authorization');
   }
 
+  /**
+   * Checks if the request can be authenticated.
+   *
+   * @param {ExecutionContext} context - The execution context object.
+   * @return {boolean | Promise<boolean> | Observable<boolean>} - Returns a boolean, a promise resolving to a boolean, or an observable emitting a boolean.
+   * @throws {BadRequestException} - Throws a BadRequestException if the authentication header is not set or the JWT token is missing the "sub" claim.
+   */
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {

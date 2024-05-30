@@ -5,6 +5,9 @@ import {
   IsString,
 } from 'class-validator';
 
+/**
+ * Represents a value DTO.
+ */
 export class ValueDto {
 
   @Expose()
@@ -12,6 +15,11 @@ export class ValueDto {
 
 }
 
+/**
+ * Represents a DTO for a number value.
+ * @class
+ * @extends ValueDto
+ */
 export class NumberValueDto extends ValueDto {
 
   @Expose()
@@ -20,6 +28,10 @@ export class NumberValueDto extends ValueDto {
 
 }
 
+/**
+ * Represents a string value DTO.
+ * @extends ValueDto
+ */
 export class StringValueDto extends ValueDto {
 
   @Expose()
@@ -28,6 +40,9 @@ export class StringValueDto extends ValueDto {
 
 }
 
+/**
+ * Represents a boolean value data transfer object.
+ */
 export class BooleanValueDto extends ValueDto {
 
   @Expose()

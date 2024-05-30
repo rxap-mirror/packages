@@ -15,6 +15,11 @@ import {
 } from '@nestjs/common/utils/shared.utils';
 import { RxapLogger } from '@rxap/nest-logger';
 
+/**
+ * SentryLogger represents a logger that captures and sends log messages to Sentry.
+ *
+ * @injectable
+ */
 @Injectable()
 export class SentryLogger extends RxapLogger {
 

@@ -18,10 +18,23 @@ import {
 import { FirebaseUser } from './types';
 
 
+/**
+ * Represents a request with a decoded ID token.
+ *
+ * @interface RequestWithDecodedIdToken
+ * @extends Request
+ */
 export interface RequestWithDecodedIdToken extends Request {
   user: FirebaseUser;
 }
 
+/**
+ * Injectable class implementing CanActivate interface.
+ *
+ * This class is responsible for checking if the user is authorized to access a specific route.
+ *
+ * @constructor
+ */
 @Injectable()
 export class FirebaseAuthGuard implements CanActivate {
 
@@ -40,6 +53,16 @@ export class FirebaseAuthGuard implements CanActivate {
   @Inject(DEACTIVATE_FIREBASE_AUTH_GUARD)
   private readonly deactivated: boolean = false;
 
+  /**
+   * Checks if the user is authorized to access a specific route.
+   *
+   * @async
+   * @param {ExecutionContext} context - The execution context containing the current request.
+   * @returns {Promise<boolean>} - Returns a Promise that resolves to a boolean indicating whether the user is authorized.
+   * @throws {BadRequestException} - Throws a BadRequestException if the idToken header is missing or provided multiple times.
+   * @throws {InternalServerErrorException} - Throws an InternalServerErrorException if the idToken validation fails without an expected error.
+   * @throws {UnauthorizedException} - Throws an UnauthorizedException if the idToken is not valid.
+   */
   public async canActivate(context: ExecutionContext): Promise<boolean> {
 
     if (this.deactivated) {
@@ -79,6 +102,14 @@ export class FirebaseAuthGuard implements CanActivate {
 
   }
 
+  /**
+   * Validates the given ID token using Firebase Authentication.
+   *
+   * @param {string} idToken - The ID token to be validated.
+   *
+   * @return {Promise<FirebaseUser | null>} A promise that resolves to a FirebaseUser object if the ID token is valid,
+   * or null if the ID token is not valid.
+   */
   public validateIdToken(idToken: string): Promise<FirebaseUser | null> {
     return admin
       .auth()

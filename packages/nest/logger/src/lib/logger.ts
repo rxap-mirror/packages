@@ -4,6 +4,10 @@ import {
   LogLevel,
 } from '@nestjs/common';
 
+/**
+ * A custom logger class that extends the ConsoleLogger class.
+ * This class provides additional methods for logging at different log levels and supports the interpolation of optional parameters.
+ */
 @Injectable()
 export class RxapLogger extends ConsoleLogger {
 

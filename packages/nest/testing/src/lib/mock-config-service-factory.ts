@@ -4,6 +4,12 @@ export interface MockConfigService {
   set: (key: string, value: any) => void;
 }
 
+/**
+ * Factory function that creates a mock config service with specified config.
+ *
+ * @param {Record<string, unknown>} config - The configuration object to initialize the mock config service with. Defaults to an empty object if not provided.
+ * @returns {MockConfigService} - The created mock config service.
+ */
 export function MockConfigServiceFactory(config: Record<string, unknown> = {}): MockConfigService {
   return {
     get: <T = unknown>(key: string): T => config[key] as T,
