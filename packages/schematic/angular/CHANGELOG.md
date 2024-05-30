@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.0.1...@rxap/schematic-angular@18.0.2-dev.0) (2024-05-30)
+
+### Bug Fixes
+
+- add a typescript import instead of the component import ([fb1ec84](https://gitlab.com/rxap/packages/commit/fb1ec84c4402a21d516d0b285c6afd6b484e889f))
+
 ## [18.0.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.0.1-dev.0...@rxap/schematic-angular@18.0.1) (2024-05-30)
 
 **Note:** Version bump only for package @rxap/schematic-angular

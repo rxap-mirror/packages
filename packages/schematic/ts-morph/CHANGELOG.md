@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@18.0.1...@rxap/schematics-ts-morph@18.0.2-dev.0) (2024-05-30)
+
+### Bug Fixes
+
+- correctly generate the tree methods ([4a07331](https://gitlab.com/rxap/packages/commit/4a07331e0c486284b18449a8bc9c729285ab749e))
+
 ## [18.0.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@18.0.1-dev.0...@rxap/schematics-ts-morph@18.0.1) (2024-05-30)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph

@@ -1,5 +1,5 @@
 {
-  "version": "10.0.1",
+  "version": "10.0.2-dev.0",
   "name": "@rxap/nest-jwt",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,7 +10,7 @@
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.3.8",
     "@nestjs/jwt": "^10.2.0",
-    "@rxap/nest-utilities": "^10.0.1",
+    "@rxap/nest-utilities": "^10.0.2-dev.0",
     "@rxap/pattern": "^1.1.3",
     "rxjs": "^7.8.1"
   },
@@ -51,7 +51,7 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.0.1"
+        "version": "10.0.2-dev.0"
       },
       {
         "package": "@rxap/pattern",
