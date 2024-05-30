@@ -4941,9 +4941,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@localazy/cli@npm:1.7.3":
-  version: 1.7.3
-  resolution: "@localazy/cli@npm:1.7.3"
+"@localazy/cli@npm:1.7.10":
+  version: 1.7.10
+  resolution: "@localazy/cli@npm:1.7.10"
   dependencies:
     abort-controller: 3.0.0
     node-fetch: 2.6.7
@@ -4951,7 +4951,7 @@ __metadata:
     ws: 6.2.2
   bin:
     localazy: index.js
-  checksum: dd8466e7ee1eff978a414a2af27845d4de9d412dd932132d8e3b1b804be7e06a2a77397f0fd0af90d0b7ada63f8e182b3273ab4c6b4486dcee38aa17ba92ed85
+  checksum: 3c8554fdb05110604f4750995bdbbd57413dd0970bff95e63bfc072d5a45d68634229591f24601f5aeb11d2d4bcdee88e2ffb861f9ba45f0edc573f7b3ddc8ae
   languageName: node
   linkType: hard
 
@@ -9147,7 +9147,7 @@ __metadata:
     "@faker-js/faker": 8.0.2
     "@jsdevtools/coverage-istanbul-loader": 3.0.5
     "@kvs/storage": 2.1.4
-    "@localazy/cli": 1.7.3
+    "@localazy/cli": 1.7.10
     "@mdi/angular-material": 7.2.96
     "@nestjs/axios": 3.0.2
     "@nestjs/cache-manager": 2.2.2
