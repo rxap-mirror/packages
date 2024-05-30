@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1-dev.0",
+  "version": "18.0.1",
   "name": "@rxap/window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,10 +10,10 @@
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
-    "@rxap/directives": "^18.0.1-dev.0",
-    "@rxap/material-directives": "^18.0.1-dev.0",
+    "@rxap/directives": "^18.0.1",
+    "@rxap/material-directives": "^18.0.1",
     "@rxap/rxjs": "^1.1.4",
-    "@rxap/services": "^18.0.1-dev.0",
+    "@rxap/services": "^18.0.1",
     "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
   },
@@ -59,15 +59,15 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/node-utilities",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.1-dev.0"
+        "version": "19.0.1"
       },
       {
         "package": "@rxap/rxjs",
@@ -87,7 +87,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/utilities",
@@ -95,7 +95,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.1-dev.0"
+        "version": "19.0.1"
       }
     ]
   },

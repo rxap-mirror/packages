@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.1](https://gitlab.com/rxap/packages/compare/@rxap/life-cycle@18.0.1-dev.0...@rxap/life-cycle@18.0.1) (2024-05-30)
+
+**Note:** Version bump only for package @rxap/life-cycle
+
 ## [18.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/life-cycle@17.0.1...@rxap/life-cycle@18.0.1-dev.0) (2024-05-30)
 
 **Note:** Version bump only for package @rxap/life-cycle

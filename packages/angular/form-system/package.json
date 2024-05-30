@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1-dev.0",
+  "version": "18.0.1",
   "name": "@rxap/form-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,14 +10,14 @@
     "@angular/forms": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
-    "@rxap/data-source": "^18.0.1-dev.0",
-    "@rxap/definition": "^18.0.1-dev.0",
-    "@rxap/forms": "^18.0.1-dev.0",
+    "@rxap/data-source": "^18.0.1",
+    "@rxap/definition": "^18.0.1",
+    "@rxap/forms": "^18.0.1",
     "@rxap/mixin": "^16.0.4",
-    "@rxap/open-api": "^18.0.1-dev.0",
+    "@rxap/open-api": "^18.0.1",
     "@rxap/pattern": "^1.1.3",
     "@rxap/reflect-metadata": "^1.0.5",
-    "@rxap/remote-method": "^18.0.1-dev.0",
+    "@rxap/remote-method": "^18.0.1",
     "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
   },
@@ -59,11 +59,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -71,19 +71,19 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/forms",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/mixin",
@@ -95,7 +95,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/pattern",
@@ -103,7 +103,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.1-dev.0"
+        "version": "19.0.1"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -111,7 +111,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/rxjs",
@@ -119,7 +119,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/utilities",
@@ -131,7 +131,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.1-dev.0"
+        "version": "19.0.1"
       }
     ]
   },

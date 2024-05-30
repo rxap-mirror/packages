@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1-dev.0",
+  "version": "18.0.1",
   "name": "@rxap/ngx-status-check",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,8 +10,8 @@
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
-    "@rxap/config": "^18.0.1-dev.0",
-    "@rxap/open-api": "^18.0.1-dev.0",
+    "@rxap/config": "^18.0.1",
+    "@rxap/open-api": "^18.0.1",
     "@sentry/angular-ivy": "^7.60.1",
     "rxjs": "^7.8.1"
   },
@@ -52,11 +52,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -64,11 +64,11 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/mixin",
@@ -80,7 +80,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/pattern",
@@ -88,7 +88,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.1-dev.0"
+        "version": "19.0.1"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -96,7 +96,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "18.0.1-dev.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/rxjs",
@@ -108,7 +108,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.1-dev.0"
+        "version": "19.0.1"
       }
     ]
   },
