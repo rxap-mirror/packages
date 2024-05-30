@@ -11,11 +11,11 @@
   .rxap-boolean-cell {
 
     .truthy {
-      color: mat.get-color-from-palette($primary);
+      color: mat.m2-get-color-from-palette($primary);
     }
 
     .falsy {
-      color: mat.get-color-from-palette($warn);
+      color: mat.m2-get-color-from-palette($warn);
     }
 
   }
