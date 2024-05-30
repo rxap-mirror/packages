@@ -1,41 +1,6 @@
 import { Tree } from '@nx/devkit';
-import { join } from 'path';
+import { VisitTree } from '@rxap/workspace-utilities';
 import { migrateM2ThemingApiUsages } from './migration';
-
-export type VisitTreeItem = { path: string, isFile: boolean };
-
-/**
- * Visit all files in a tree.
- *
- * usage example:
- *
- * for (const {path, isFile} of VisitTree(tree, projectRoot)) {
- *   if (isFile && path.endsWith('.component.ts')) {
- *      return true;
- *   }
- * }
- *
- * @param tree nx Tree instance
- * @param dir directory to start the visits default to the root of the tree
- * @param ignoreFolders folders to ignore
- */
-export function* VisitTree(tree: Tree, dir: string, ignoreFolders = ['node_modules', '.nx', 'dist', '.angular', 'tmp', 'coverage', /^\..+/]): Generator<VisitTreeItem, void, void> {
-  const treeAdapter = tree;
-  for (const name of treeAdapter.children(dir)) {
-    const path = join(dir, name);
-    if (treeAdapter.isFile(path)) {
-      yield {
-        path,
-        isFile: true,
-      };
-    } else {
-      if (ignoreFolders.some((ignore) => typeof ignore === 'string' ? name === ignore : ignore.test(name))) {
-        continue;
-      }
-      yield* VisitTree(tree, path);
-    }
-  }
-}
 
 export default async function (tree: Tree) {
 
