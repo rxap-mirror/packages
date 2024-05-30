@@ -118,7 +118,7 @@
     "@angular/language-service": "18.0.1",
     "@commitlint/cli": "17.6.6",
     "@commitlint/config-conventional": "17.6.6",
-    "@compodoc/compodoc": "1.1.21",
+    "@compodoc/compodoc": "1.1.25",
     "@cypress/code-coverage": "3.12.21",
     "@cypress/webpack-dev-server": "3.8.0",
     "@enio.ai/typedoc": "1.0.8",
