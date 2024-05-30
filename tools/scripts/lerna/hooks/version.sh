@@ -52,6 +52,7 @@ if [[ "$PUBLISH_MODE" == "auto" ]]; then
   yarn nx run-many \
     --projects="${changed_projects}" \
     --parallel 8 \
+    --exclude="rxap" \
     --target="update-dependencies,update-package-group"
 
   echo -e "${BLUE}Run the workspace:readme${NC}"
