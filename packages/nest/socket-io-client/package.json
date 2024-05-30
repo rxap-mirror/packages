@@ -6,9 +6,9 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5",
-    "@nestjs/config": "^3.0.0",
-    "@nestjs/microservices": "^10.0.5",
+    "@nestjs/common": "^10.3.8",
+    "@nestjs/config": "^3.2.2",
+    "@nestjs/microservices": "^10.3.8",
     "rxjs": "^7.8.1",
     "socket.io-client": "^4.6.2"
   },
@@ -33,15 +33,15 @@
     "packageGroup": [
       {
         "package": "@nestjs/common",
-        "version": "10.0.5"
+        "version": "10.3.8"
       },
       {
         "package": "@nestjs/config",
-        "version": "3.0.0"
+        "version": "3.2.2"
       },
       {
         "package": "@nestjs/microservices",
-        "version": "10.0.5"
+        "version": "10.3.8"
       }
     ]
   },

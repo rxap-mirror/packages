@@ -6,8 +6,8 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5",
-    "@nestjs/config": "^3.0.0",
+    "@nestjs/common": "^10.3.8",
+    "@nestjs/config": "^3.2.2",
     "web3.storage": "^4.5.5"
   },
   "author": {
@@ -30,11 +30,11 @@
     "packageGroup": [
       {
         "package": "@nestjs/common",
-        "version": "10.0.5"
+        "version": "10.3.8"
       },
       {
         "package": "@nestjs/config",
-        "version": "3.0.0"
+        "version": "3.2.2"
       }
     ]
   },

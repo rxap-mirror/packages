@@ -81,6 +81,8 @@ sed -i "s/NESTJS_CONFIG_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_CONFIG_VERSION
 
 yarn
 
+sh ./tools/scripts/update-nestjs-packages.sh
+
 yarn nx run-many -t fix-dependencies --skip-nx-cache
 yarn
 

@@ -6,10 +6,10 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5",
-    "@nestjs/config": "^3.0.0",
-    "@nestjs/core": "^10.0.5",
-    "@nestjs/jwt": "^10.1.0",
+    "@nestjs/common": "^10.3.8",
+    "@nestjs/config": "^3.2.2",
+    "@nestjs/core": "^10.3.8",
+    "@nestjs/jwt": "^10.2.0",
     "@rxap/nest-utilities": "^10.0.1",
     "@rxap/pattern": "^1.1.3",
     "rxjs": "^7.8.1"
@@ -35,19 +35,19 @@
     "packageGroup": [
       {
         "package": "@nestjs/common",
-        "version": "10.0.5"
+        "version": "10.3.8"
       },
       {
         "package": "@nestjs/config",
-        "version": "3.0.0"
+        "version": "3.2.2"
       },
       {
         "package": "@nestjs/core",
-        "version": "10.0.5"
+        "version": "10.3.8"
       },
       {
         "package": "@nestjs/jwt",
-        "version": "10.1.0"
+        "version": "10.2.0"
       },
       {
         "package": "@rxap/nest-utilities",
