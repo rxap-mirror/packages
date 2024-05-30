@@ -58,7 +58,10 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       });
       if (options.table.backend === BackendTypes.DATA_SOURCE) {
         CoerceComponentInput(classDeclaration, 'dataSource', 'AbstractTableDataSource');
-        CoerceComponentImport(classDeclaration, { name: 'AbstractTableDataSource', moduleSpecifier: '@rxap/data-source/table' });
+        CoerceImports(sourceFile, {
+          moduleSpecifier: '@rxap/data-source/table',
+          namedImports: ['AbstractTableDataSource'],
+        });
       }
       // endregion
 
