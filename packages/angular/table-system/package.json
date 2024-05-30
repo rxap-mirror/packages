@@ -1,5 +1,5 @@
 {
-  "version": "18.0.0",
+  "version": "18.0.1-dev.0",
   "name": "@rxap/table-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -12,8 +12,8 @@
     "@angular/core": "^18.0.1",
     "@angular/forms": "^18.0.1",
     "@angular/material": "^18.0.0",
-    "@rxap/data-source": "^18.0.0",
-    "@rxap/material-table-system": "^18.0.0",
+    "@rxap/data-source": "^18.0.1-dev.0",
+    "@rxap/material-table-system": "^18.0.1-dev.0",
     "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
   },
@@ -67,11 +67,11 @@
       },
       {
         "package": "@rxap/components",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -79,31 +79,31 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -115,7 +115,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -127,7 +127,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -139,11 +139,11 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       }
     ]
   },

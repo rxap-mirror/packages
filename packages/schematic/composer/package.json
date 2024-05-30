@@ -1,5 +1,5 @@
 {
-  "version": "18.0.0",
+  "version": "18.0.1-dev.0",
   "name": "@rxap/schematic-composer",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,10 +9,10 @@
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^18.0.2",
-    "@rxap/schematics-ts-morph": "^18.0.0",
-    "@rxap/schematics-utilities": "^18.0.0",
+    "@rxap/schematics-ts-morph": "^18.0.1-dev.0",
+    "@rxap/schematics-utilities": "^18.0.1-dev.0",
     "@rxap/utilities": "^16.2.2",
-    "@rxap/workspace-utilities": "^19.0.0"
+    "@rxap/workspace-utilities": "^19.0.1-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -34,7 +34,7 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.6"
+        "version": "1.0.7-dev.0"
       },
       {
         "package": "@rxap/json-schema-to-typescript",
@@ -50,59 +50,59 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-compodoc",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-gitlab-ci",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-gpt",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-localazy",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-storybook",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-web3-storage",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -110,27 +110,27 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/schematic-nestjs",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/schematics-open-api",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/schematics-xml-parser",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/ts-morph",
@@ -142,15 +142,15 @@
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/xml-parser",

@@ -1,5 +1,5 @@
 {
-  "version": "19.0.0",
+  "version": "19.0.1-dev.0",
   "name": "@rxap/plugin-library",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,12 +11,12 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^19.1.1",
-    "@rxap/generator-ts-morph": "^1.0.6",
+    "@rxap/generator-ts-morph": "^1.0.7-dev.0",
     "@rxap/node-utilities": "^1.2.2",
-    "@rxap/plugin-utilities": "^19.0.0",
+    "@rxap/plugin-utilities": "^19.0.1-dev.0",
     "@rxap/ts-morph": "^1.2.2",
     "@rxap/utilities": "^16.2.2",
-    "@rxap/workspace-utilities": "^19.0.0",
+    "@rxap/workspace-utilities": "^19.0.1-dev.0",
     "nx": "^19.1.1",
     "ts-morph": "^18.0.0"
   },
@@ -46,7 +46,7 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.6"
+        "version": "1.0.7-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -54,7 +54,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/ts-morph",
@@ -66,11 +66,11 @@
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       }
     ]
   },

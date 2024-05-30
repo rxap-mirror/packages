@@ -1,5 +1,5 @@
 {
-  "version": "18.0.0",
+  "version": "18.0.1-dev.0",
   "name": "@rxap/material-directives",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@rxap/browser-utilities": "^1.1.2",
-    "@rxap/ngx-memory": "^18.0.0",
+    "@rxap/ngx-memory": "^18.0.1-dev.0",
     "@rxap/rxjs": "^1.1.4",
     "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
@@ -49,7 +49,7 @@
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "18.0.0"
+        "version": "18.0.1-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -57,7 +57,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -69,7 +69,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       }
     ]
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@18.0.1...@rxap/workspace-utilities@19.0.1-dev.0) (2024-05-30)
+
+### Bug Fixes
+
+- exclude ignored folder from tree visit ([773732c](https://gitlab.com/rxap/packages/commit/773732caa461a41d6114af5abc0f9d230d33ebe5))
+
 ## [18.0.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@18.0.1-dev.0...@rxap/workspace-utilities@18.0.1) (2024-05-29)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

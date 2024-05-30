@@ -1,5 +1,5 @@
 {
-  "version": "18.0.0",
+  "version": "18.0.1-dev.0",
   "name": "@rxap/ngx-timeago",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -39,7 +39,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -47,7 +47,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       }
     ]
   },
