@@ -110,7 +110,7 @@
       },
       {
         "package": "@nestjs/platform-express",
-        "version": "10.0.5"
+        "version": "10.3.6"
       },
       {
         "package": "@nestjs/schematics",
