@@ -3,6 +3,7 @@ import {
   ClassDeclaration,
   Project,
   SourceFile,
+  Writers,
 } from 'ts-morph';
 import {
   OperationIdToClassImportPath,
@@ -31,7 +32,7 @@ export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTre
   return CoerceProxyRemoteMethodClass({
     ...options,
     name: 'tree-table-children',
-    sourceType: 'Node<unknown>',
+    sourceType: Writers.object({ node: 'Node<unknown>' }),
     targetType: `OpenApiRemoteMethodParameter<${ OperationIdToParameterClassName(getChildrenOperationId) }>`,
     proxyMethod: OperationIdToClassName(getChildrenOperationId),
     tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {

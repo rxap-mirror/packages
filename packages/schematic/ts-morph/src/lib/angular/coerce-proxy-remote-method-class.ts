@@ -83,6 +83,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
     });
     classDeclaration.setExtends(w => {
       w.write('ProxyRemoteMethod<');
+      w.write('any,');
       if (typeof sourceType === 'string') {
         w.write(sourceType);
       } else {
