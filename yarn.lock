@@ -8171,7 +8171,7 @@ __metadata:
   dependencies:
     tslib: 2.6.2
   peerDependencies:
-    "@rxap/nest-utilities": ^10.0.2-dev.1
+    "@rxap/nest-utilities": ^10.3.0
     class-transformer: ^0.5.1
     class-validator: ^0.14.1
   languageName: unknown
@@ -8198,7 +8198,7 @@ __metadata:
     "@nestjs/config": ^3.2.2
     "@nestjs/core": ^10.3.8
     "@nestjs/jwt": ^10.2.0
-    "@rxap/nest-utilities": ^10.0.2-dev.1
+    "@rxap/nest-utilities": ^10.3.0
     "@rxap/pattern": ^1.1.3
     rxjs: ^7.8.1
   languageName: unknown
@@ -8239,7 +8239,7 @@ __metadata:
     "@nestjs/core": ^10.3.8
     "@nestjs/swagger": ^7.3.1
     "@nestjs/terminus": ^10.2.3
-    "@rxap/nest-utilities": ^10.0.2-dev.1
+    "@rxap/nest-utilities": ^10.3.0
     "@rxap/node-utilities": ^1.2.2
     "@rxap/utilities": ^16.2.2
     "@sentry/core": ^7.56.0
@@ -8258,8 +8258,8 @@ __metadata:
   peerDependencies:
     "@nestjs/common": ^10.3.8
     "@nestjs/config": ^3.2.2
-    "@rxap/nest-logger": ^10.0.2-dev.1
-    "@rxap/nest-utilities": ^10.0.2-dev.1
+    "@rxap/nest-logger": ^10.2.0
+    "@rxap/nest-utilities": ^10.3.0
     "@sentry/core": ^7.56.0
     "@sentry/node": ^7.56.0
     "@sentry/types": ^7.56.0
@@ -8278,7 +8278,7 @@ __metadata:
     "@nestjs/core": ^10.3.8
     "@nestjs/microservices": ^10.3.8
     "@nestjs/swagger": ^7.3.1
-    "@rxap/nest-utilities": ^10.0.2-dev.1
+    "@rxap/nest-utilities": ^10.3.0
     "@rxap/utilities": ^16.2.2
     cookie-parser: ^1.4.6
     helmet: ^7.1.0
@@ -8953,7 +8953,7 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^18.0.2
     "@angular-devkit/schematics": ^18.0.2
-    "@rxap/schematics-ts-morph": ^18.0.2-dev.1
+    "@rxap/schematics-ts-morph": ^18.0.2
     "@rxap/schematics-utilities": ^18.0.1
     "@rxap/ts-morph": ^1.2.2
     "@rxap/utilities": ^16.2.2

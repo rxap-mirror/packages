@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2-dev.0",
+  "version": "19.0.2",
   "name": "rxap",
   "license": "MIT",
   "dependencies": {
@@ -310,59 +310,59 @@
       },
       {
         "package": "@rxap/nest-dto",
-        "version": "10.0.2-dev.0"
+        "version": "10.3.0"
       },
       {
         "package": "@rxap/nest-firebase",
-        "version": "10.0.2-dev.0"
+        "version": "10.1.0"
       },
       {
         "package": "@rxap/nest-jwt",
-        "version": "10.0.2-dev.0"
+        "version": "10.2.0"
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.0.2-dev.0"
+        "version": "10.2.0"
       },
       {
         "package": "@rxap/nest-minio",
-        "version": "10.0.2-dev.0"
+        "version": "10.1.0"
       },
       {
         "package": "@rxap/nest-open-api",
-        "version": "10.0.2-dev.0"
+        "version": "10.3.0"
       },
       {
         "package": "@rxap/nest-sentry",
-        "version": "10.0.2-dev.0"
+        "version": "10.2.0"
       },
       {
         "package": "@rxap/nest-server",
-        "version": "10.0.2-dev.0"
+        "version": "10.4.0"
       },
       {
         "package": "@rxap/nest-socket-io-client",
-        "version": "10.0.2-dev.0"
+        "version": "10.1.0"
       },
       {
         "package": "@rxap/nest-supabase",
-        "version": "10.0.2-dev.0"
+        "version": "10.0.2"
       },
       {
         "package": "@rxap/nest-testing",
-        "version": "10.0.1"
+        "version": "10.0.2"
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.0.2-dev.0"
+        "version": "10.3.0"
       },
       {
         "package": "@rxap/nest-vault",
-        "version": "10.0.2-dev.0"
+        "version": "10.0.2"
       },
       {
         "package": "@rxap/nest-web3-storage",
-        "version": "10.0.2-dev.0"
+        "version": "10.0.2"
       },
       {
         "package": "@rxap/ngx-bootstrap",
@@ -482,7 +482,7 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.0.2-dev.0"
+        "version": "19.0.2"
       },
       {
         "package": "@rxap/plugin-open-api",
@@ -518,7 +518,7 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.0.2-dev.0"
+        "version": "18.0.2"
       },
       {
         "package": "@rxap/schematic-composer",
@@ -534,7 +534,7 @@
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.0.2-dev.0"
+        "version": "18.0.2"
       },
       {
         "package": "@rxap/schematics-utilities",
