@@ -5,6 +5,7 @@ import {
 } from '@angular/core/testing';
 import { ApplicationRef } from '@angular/core';
 import {
+  EMPTY,
   of,
   Subject,
 } from 'rxjs';
@@ -23,7 +24,7 @@ describe('LifeCycle', () => {
         providers: [
           {
             provide: ApplicationRef,
-            useValue: { isStable },
+            useValue: { isStable, afterTick: EMPTY },
           },
         ],
       });
