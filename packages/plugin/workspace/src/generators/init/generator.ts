@@ -395,6 +395,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   }
 
   await AddPackageJsonDevDependency(tree, 'husky', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, 'nx-cloud', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@commitlint/cli', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@commitlint/config-conventional', 'latest', { soft: true });
 
