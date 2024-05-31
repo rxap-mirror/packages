@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@19.0.1...@rxap/plugin-utilities@19.0.2-dev.0) (2024-05-31)
+
+### Bug Fixes
+
+- support new angular build output path property type ([01eea7c](https://gitlab.com/rxap/packages/commit/01eea7c49f6b62c207868d79208a08abd222e27d))
+
 ## [19.0.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@19.0.1-dev.0...@rxap/plugin-utilities@19.0.1) (2024-05-30)
 
 **Note:** Version bump only for package @rxap/plugin-utilities
