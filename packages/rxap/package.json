@@ -494,7 +494,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.1"
+        "version": "19.0.2-dev.0"
       },
       {
         "package": "@rxap/plugin-web3-storage",
@@ -502,7 +502,7 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.0.1"
+        "version": "19.0.2-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
