@@ -63,6 +63,7 @@ import {
 import {
   NESTJS_CACHE_MANAGER_VERSION,
   NESTJS_CONFIG_VERSION,
+  NESTJS_TERMINUS_VERSION,
   NESTJS_THROTTLE_VERSION,
   NESTJS_VERSION,
 } from '../../lib/nestjs-version';
@@ -604,7 +605,7 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/nest-utilities', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-logger', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/utilities', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@nestjs/terminus', NESTJS_VERSION, { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/terminus', NESTJS_TERMINUS_VERSION, { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/config', NESTJS_CONFIG_VERSION, { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/cache-manager', NESTJS_CACHE_MANAGER_VERSION, { soft: true });
   await AddPackageJsonDependency(tree, 'cache-manager', 'latest', { soft: true });
