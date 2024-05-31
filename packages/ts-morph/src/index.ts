@@ -24,9 +24,11 @@ export * from './lib/nest/find-nest-module-source-file';
 export * from './lib/nest/get-controller-class';
 export * from './lib/nest/get-nest-module-metadata';
 export * from './lib/nest/has-nest-module-class';
+export * from './lib/nest/has-nest-module-import';
 export * from './lib/nest/is-nest-module-class';
 export * from './lib/nest/nest-provider-object';
 export * from './lib/nest/operation-id-utilities';
+export * from './lib/nest/remove-nest-module-import';
 export * from './lib/nest/remove-nest-module-provider';
 export * from './lib/nest/remove-nest-provider-to-array';
 // endregion

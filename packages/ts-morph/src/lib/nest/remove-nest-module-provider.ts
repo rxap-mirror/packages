@@ -1,19 +1,32 @@
-import { SourceFile } from 'ts-morph';
+import {
+  ImportDeclarationStructure,
+  OptionalKind,
+  SourceFile,
+} from 'ts-morph';
+import { CoerceImports } from '../coerce-imports';
 import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
+import { CoerceNestProviderToArray } from './coerce-nest-provider-to-array';
 import { GetNestModuleMetadata } from './get-nest-module-metadata';
 import { NestProviderObject } from './nest-provider-object';
 import { RemoveNestProviderToArray } from './remove-nest-provider-to-array';
 
+export interface RemoveNestModuleProviderOptions {
+  providerObject: NestProviderObject | string,
+}
+
 export function RemoveNestModuleProvider(
   sourceFile: SourceFile,
-  providerObject: NestProviderObject | string,
+  options: RemoveNestModuleProviderOptions,
 ) {
 
+  const {
+    providerObject,
+  } = options;
 
   const metadata = GetNestModuleMetadata(sourceFile);
 
   const providerArray = GetCoerceArrayLiteralFromObjectLiteral(metadata, 'providers');
 
-  RemoveNestProviderToArray(providerObject, providerArray);
+  RemoveNestProviderToArray(providerObject, providerArray, true);
 
 }
