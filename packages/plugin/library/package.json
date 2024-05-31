@@ -4,6 +4,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "9.0.9",
+    "@nx/devkit": "19.1.1",
     "colors": "^1.4.0",
     "handlebars": "^4.7.7",
     "semver": "^7.5.3",

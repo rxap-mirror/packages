@@ -49,6 +49,11 @@
       "factory": "./src/generators/init-with-migrations/generator",
       "schema": "./src/generators/init-with-migrations/schema.json",
       "description": "init-with-migrations generator"
+    },
+    "add-migration": {
+      "factory": "./src/generators/add-migration/generator",
+      "schema": "./src/generators/add-migration/schema.json",
+      "description": "add-migration generator"
     }
   },
   "schematics": {

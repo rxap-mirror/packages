@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "AddMigration",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Name of the project",
+      "x-prompt": "For which project should the migration be created?"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the migration",
+      "x-prompt": "What name would you like to use?"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the migration",
+      "x-prompt": "What description would you like to use?"
+    },
+    "packageVersion": {
+      "type": "string",
+      "description": "Version to use for the migration.",
+      "x-prompt": "What version would you like to use for the migration?",
+      "x-priority": "important"
+    },
+    "packageJsonUpdates": {
+      "type": "boolean",
+      "description": "Whether or not to include `package.json` updates.",
+      "default": false
+    }
+  },
+  "required": [
+    "project",
+    "name",
+    "packageVersion"
+  ]
+}
