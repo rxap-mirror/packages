@@ -82,6 +82,10 @@ export abstract class Server<O extends object, T extends INestApplicationContext
       throw new Error('Could not inject a Logger instance');
     }
 
+    this.logger.debug(`Logger instance name: ${ this.logger.constructor.name }`, 'Bootstrap');
+
+    this.app.useLogger(this.logger);
+
     this.config = this.app.get(ConfigService);
 
     if (!this.config) {
