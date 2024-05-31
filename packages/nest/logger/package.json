@@ -3,6 +3,7 @@
   "name": "@rxap/nest-logger",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.1.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -25,6 +26,9 @@
     "rxap",
     "scope:utilities"
   ],
+  "ng-update": {
+    "migrations": "./migrations.json"
+  },
   "nx-migrations": {
     "packageGroup": [
       {
