@@ -7,6 +7,7 @@ import {
 } from '@rxap/ts-morph';
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import { AddPackageJsonDependency } from '@rxap/workspace-utilities';
+import { NESTJS_TERMINUS_VERSION } from '../../lib/nestjs-version';
 import { HealthIndicatorInitGeneratorSchema } from './schema';
 
 export async function healthIndicatorInitGenerator(
@@ -33,7 +34,7 @@ export async function healthIndicatorInitGenerator(
     '/app/health/health.module.ts?',
     '/app/health/health.controller.ts?',
   ]);
-  await AddPackageJsonDependency(tree, '@nestjs/terminus', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/terminus', NESTJS_TERMINUS_VERSION, { soft: true });
 }
 
 export default healthIndicatorInitGenerator;

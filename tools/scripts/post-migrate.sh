@@ -76,12 +76,15 @@ sed -i "s/.[0-9]*\.[0-9]*\.[0-9]*/~${CURRENT_ANGULAR_VERSION}/g" "$angular_versi
 # export const NESTJS_CONFIG_VERSION = '^3.2.2';
 nestjs_version_file="packages/plugin/nestjs/src/lib/nestjs-version.ts"
 CURRENT_NESTJS_THROTTLE_VERSION=$(jq -r '.dependencies["@nestjs/throttler"]' package.json)
+CURRENT_NESTJS_TERMINUS_VERSION=$(jq -r '.dependencies["@nestjs/terminus"]' package.json)
 CURRENT_NESTJS_CACHE_MANAGER_VERSION=$(jq -r '.dependencies["@nestjs/cache-manager"]' package.json)
 CURRENT_NESTJS_CONFIG_VERSION=$(jq -r '.dependencies["@nestjs/config"]' package.json)
 echo "Updating nestjs version in $nestjs_version_file to ~${CURRENT_NESTJS_VERSION}"
 sed -i "s/NESTJS_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_VERSION = '~${CURRENT_NESTJS_VERSION}/g" "$nestjs_version_file"
 echo "Updating nestjs throttle version in $nestjs_version_file to ~${CURRENT_NESTJS_THROTTLE_VERSION}"
 sed -i "s/NESTJS_THROTTLE_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_THROTTLE_VERSION = '~${CURRENT_NESTJS_THROTTLE_VERSION}/g" "$nestjs_version_file"
+echo "Updating nestjs terminus version in $nestjs_version_file to ~${CURRENT_NESTJS_TERMINUS_VERSION}"
+sed -i "s/NESTJS_TERMINUS_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_TERMINUS_VERSION = '~${CURRENT_NESTJS_TERMINUS_VERSION}/g" "$nestjs_version_file"
 echo "Updating nestjs cache manager version in $nestjs_version_file to ~${CURRENT_NESTJS_CACHE_MANAGER_VERSION}"
 sed -i "s/NESTJS_CACHE_MANAGER_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_CACHE_MANAGER_VERSION = '~${CURRENT_NESTJS_CACHE_MANAGER_VERSION}/g" "$nestjs_version_file"
 echo "Updating nestjs config version in $nestjs_version_file to ~${CURRENT_NESTJS_CONFIG_VERSION}"
