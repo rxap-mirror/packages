@@ -9202,7 +9202,7 @@ __metadata:
     "@types/mock-fs": 4.13.4
     "@types/node": ^18.16.9
     "@types/supertest": 2.0.16
-    "@types/xmldom": 0.1.32
+    "@types/xmldom": 0.1.34
     "@typescript-eslint/eslint-plugin": 7.11.0
     "@typescript-eslint/parser": 7.11.0
     alias-quokka-plugin: 0.1.0
@@ -11637,10 +11637,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/xmldom@npm:0.1.32":
-  version: 0.1.32
-  resolution: "@types/xmldom@npm:0.1.32"
-  checksum: ad16d25dbfe1b604322bf0c92dede16b237b16a2fb0e30704d6c27d15e76a94ae90c653edba2dc1f18fb9d84d17d809c2a026b5f8a10341ae568e178271b6335
+"@types/xmldom@npm:0.1.34":
+  version: 0.1.34
+  resolution: "@types/xmldom@npm:0.1.34"
+  checksum: 601ef9156acf51c945cbaec443ab894a2ce3e1727f6bcfbfb589359d2f7af205eddc2931ae7797d3de28e259b18049a338e6f733d39cc1a0133355cc096d0ad0
   languageName: node
   linkType: hard
 
