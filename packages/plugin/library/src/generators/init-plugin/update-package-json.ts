@@ -7,8 +7,8 @@ import {
   UpdateProjectPackageJson,
 } from '@rxap/workspace-utilities';
 
-export async function updatePackageJson(tree: Tree, projectName: string, project: ProjectConfiguration) {
-  await UpdateProjectPackageJson(tree, packageJson => {
+export function updatePackageJson(tree: Tree, projectName: string, project: ProjectConfiguration) {
+  UpdateProjectPackageJson(tree, packageJson => {
 
     if (packageJson.version === '0.0.1') {
       const nxVersion = GetNxVersion(tree);

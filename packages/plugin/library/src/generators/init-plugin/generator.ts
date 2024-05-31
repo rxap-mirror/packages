@@ -54,7 +54,7 @@ export async function initPluginGenerator(
         continue;
       }
 
-      await initProject(tree, projectName, project, options);
+      initProject(tree, projectName, project, options);
 
       updateProjectConfiguration(tree, projectName, project);
 
