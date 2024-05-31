@@ -3,17 +3,35 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/logger/src",
   "projectType": "library",
-  "tags": ["nest", "packages", "scope:utilities"],
+  "tags": [
+    "nest",
+    "packages",
+    "scope:utilities"
+  ],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/nest/logger",
         "tsConfig": "packages/nest/logger/tsconfig.lib.json",
         "packageJson": "packages/nest/logger/package.json",
         "main": "packages/nest/logger/src/index.ts",
-        "assets": ["packages/nest/logger/*.md"]
+        "assets": [
+          "packages/nest/logger/*.md",
+          {
+            "input": "./packages/nest/logger",
+            "glob": "migrations.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/logger/src/migrations",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/migrations"
+          }
+        ]
       }
     },
     "check-version": {
@@ -31,12 +49,16 @@
     "index-export": {},
     "lint": {
       "options": {
-        "lintFilePatterns": ["packages/nest/logger/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/nest/logger/**/*.ts"
+        ]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-logger {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     },
     "readme": {},
     "test": {

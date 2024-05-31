@@ -3,6 +3,7 @@
   "name": "@rxap/nest-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.1.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -32,6 +33,9 @@
     "scope:integration",
     "sentry"
   ],
+  "ng-update": {
+    "migrations": "./migrations.json"
+  },
   "nx-migrations": {
     "packageGroup": [
       {
