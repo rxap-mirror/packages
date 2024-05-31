@@ -1,11 +1,13 @@
 import {
   ProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nx/devkit';
 import {
   Assets,
   CoerceAssets,
   GetProjectRoot,
+  GetTarget,
   GetTargetOptions,
 } from '@rxap/workspace-utilities';
 
@@ -13,7 +15,8 @@ export function updateProjectTargets(tree: Tree, projectName: string, project: P
 
   const projectRoot = GetProjectRoot(tree, projectName);
 
-  const buildTargetOptions: { assets?: Assets } = GetTargetOptions(project, 'build');
+  const buildTarget = GetTarget(project, 'build');
+  const buildTargetOptions: { assets?: Assets } = GetTargetOptions(buildTarget);
   buildTargetOptions.assets ??= [];
   CoerceAssets(buildTargetOptions.assets, [
     {
@@ -27,5 +30,6 @@ export function updateProjectTargets(tree: Tree, projectName: string, project: P
       output: "./src/migrations"
     }
   ]);
+  updateProjectConfiguration(tree, projectName, project);
 
 }
