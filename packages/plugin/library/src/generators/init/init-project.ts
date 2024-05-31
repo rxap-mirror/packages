@@ -3,6 +3,7 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
+  HasMigrations,
   IsBuildable,
   IsPluginProject,
   IsPublishable,
@@ -10,6 +11,7 @@ import {
 import { initProject as initBuildableProject } from '../init-buildable/init-project';
 import { initProject as initPluginProject } from '../init-plugin/init-project';
 import { initProject as initPublishableProject } from '../init-publishable/init-project';
+import { initProject as initWithMigrationProject } from '../init-with-migrations/init-project';
 import { InitGeneratorSchema } from './schema';
 import { updateProjectTags } from './update-project-tags';
 import { updateProjectTargets } from './update-project-targets';
@@ -30,7 +32,11 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   }
 
   if (IsPluginProject(project)) {
-    await initPluginProject(tree, projectName, project, options);
+    initPluginProject(tree, projectName, project, options);
+  }
+
+  if (HasMigrations(tree, { name: projectName })) {
+    initWithMigrationProject(tree, projectName, project, options);
   }
 
 }
