@@ -1,3 +1,4 @@
+import { outputAst } from '@angular/compiler';
 import {
   ExecutorContext,
   TargetConfiguration,
@@ -67,6 +68,14 @@ export function GuessOutputPathFromTargetString(
   return GuessOutputPathFromContext(context, projectName, configurationName, targetName);
 }
 
+interface AngularBuildOutputPath {
+  base: string;
+}
+
+function isAngularBuildOutputPath(outputPath: any): outputPath is AngularBuildOutputPath {
+  return outputPath && typeof outputPath === 'object' && 'base' in outputPath;
+}
+
 export function GuessOutputPath(projectName: string, projectRoot: string, buildTarget: TargetConfiguration, configurationName?: string) {
 
   let outputPath = GetTargetOptions(buildTarget, configurationName)['outputPath'];
@@ -81,6 +90,16 @@ export function GuessOutputPath(projectName: string, projectRoot: string, buildT
       }
     } else {
       outputPath = join('dist', projectRoot);
+    }
+  }
+
+  if (!outputPath) {
+    throw new Error(`The outputPath is undefined. Ensure the outputPath is passed into the target options.`);
+  }
+
+  if (typeof outputPath === 'object') {
+    if (isAngularBuildOutputPath(outputPath)) {
+      return outputPath.base;
     }
   }
 
