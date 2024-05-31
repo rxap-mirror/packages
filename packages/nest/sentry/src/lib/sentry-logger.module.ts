@@ -3,6 +3,8 @@ import {
   Logger,
   Module,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { RxapLogger } from '@rxap/nest-logger';
 import { SentryLogger } from '@rxap/nest-sentry';
 
 @Global()
@@ -10,8 +12,17 @@ import { SentryLogger } from '@rxap/nest-sentry';
   providers: [
     {
       provide: Logger,
-      useClass: SentryLogger,
+      useFactory: (config: ConfigService, sentry: SentryLogger, rxap: RxapLogger) => {
+        if (config.get('SENTRY_ENABLED')) {
+          return sentry;
+        } else {
+          return rxap;
+        }
+      },
+      inject: [ ConfigService, SentryLogger, RxapLogger ]
     },
+    SentryLogger,
+    RxapLogger,
   ],
   exports: [ Logger ],
 })
