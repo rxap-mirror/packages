@@ -44,6 +44,11 @@
       "factory": "./src/generators/index-json-schema/generator",
       "schema": "./src/generators/index-json-schema/schema.json",
       "description": "index-json-schema generator"
+    },
+    "init-with-migrations": {
+      "factory": "./src/generators/init-with-migrations/generator",
+      "schema": "./src/generators/init-with-migrations/schema.json",
+      "description": "init-with-migrations generator"
     }
   },
   "schematics": {
