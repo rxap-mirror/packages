@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.2.2...@rxap/ts-morph@1.3.0-dev.0) (2024-05-31)
+
+### Features
+
+- add utility functions ([ebf10f1](https://gitlab.com/rxap/packages/commit/ebf10f1ada378f6bafa4ed5fb41d7ab07203f964))
+
 ## [1.2.2](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.2.2-dev.0...@rxap/ts-morph@1.2.2) (2024-05-29)
 
 **Note:** Version bump only for package @rxap/ts-morph

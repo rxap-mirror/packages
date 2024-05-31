@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.0.1...@rxap/workspace-utilities@19.1.0-dev.0) (2024-05-31)
+
+### Features
+
+- add HasMigration function ([4ba111b](https://gitlab.com/rxap/packages/commit/4ba111b4cdc9729fcfb423e415f0b836cd4bcfca))
+
 ## [19.0.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.0.1-dev.0...@rxap/workspace-utilities@19.0.1) (2024-05-30)
 
 **Note:** Version bump only for package @rxap/workspace-utilities
