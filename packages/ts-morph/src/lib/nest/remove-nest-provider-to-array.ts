@@ -13,9 +13,9 @@ export function RemoveNestProviderToArray(
 
   if (typeof providerObject === 'string') {
 
-    const element = providerArray.getElements().find(element => element.getText().trim() === providerObject);
-    if (element) {
-      providerArray.removeElement(element.getChildIndex());
+    const index = providerArray.getElements().findIndex(element => element.getText().trim() === providerObject);
+    if (index !== -1) {
+      providerArray.removeElement(index);
     }
 
   } else {
