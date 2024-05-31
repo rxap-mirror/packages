@@ -16,12 +16,17 @@ export interface RemoveNestModuleProviderOptions {
 
 export function RemoveNestModuleProvider(
   sourceFile: SourceFile,
-  options: RemoveNestModuleProviderOptions,
+  options: RemoveNestModuleProviderOptions | NestProviderObject | string,
 ) {
 
-  const {
-    providerObject,
-  } = options;
+  let providerObject: NestProviderObject | string;
+  if (typeof options === 'string') {
+    providerObject = options;
+  } else if ('providerObject' in options) {
+    providerObject = options.providerObject;
+  } else {
+    providerObject = options;
+  }
 
   const metadata = GetNestModuleMetadata(sourceFile);
 

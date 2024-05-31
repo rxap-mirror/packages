@@ -101,6 +101,16 @@
       "factory": "./src/generators/index-json-schema/index",
       "schema": "./src/generators/index-json-schema/schema.json",
       "description": "index-json-schema generator"
+    },
+    "init-with-migrations": {
+      "factory": "./src/generators/init-with-migrations/index",
+      "schema": "./src/generators/init-with-migrations/schema.json",
+      "description": "init-with-migrations generator"
+    },
+    "add-migration": {
+      "factory": "./src/generators/add-migration/index",
+      "schema": "./src/generators/add-migration/schema.json",
+      "description": "add-migration generator"
     }
   }
 }

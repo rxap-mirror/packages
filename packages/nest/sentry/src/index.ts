@@ -1,4 +1,5 @@
 // region 
+export * from './lib/sentry-logger.module';
 export * from './lib/sentry-options.factory';
 export * from './lib/sentry.interceptor';
 export * from './lib/sentry.interfaces';
