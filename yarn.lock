@@ -9199,7 +9199,7 @@ __metadata:
     "@types/fs-extra": 11.0.4
     "@types/jest": 29.5.2
     "@types/marked": 4.3.2
-    "@types/mock-fs": 4.13.2
+    "@types/mock-fs": 4.13.4
     "@types/node": ^18.16.9
     "@types/supertest": 2.0.11
     "@types/xmldom": 0.1.32
@@ -11310,12 +11310,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mock-fs@npm:4.13.2":
-  version: 4.13.2
-  resolution: "@types/mock-fs@npm:4.13.2"
+"@types/mock-fs@npm:4.13.4":
+  version: 4.13.4
+  resolution: "@types/mock-fs@npm:4.13.4"
   dependencies:
     "@types/node": "*"
-  checksum: 726975ae51f7b4068bb059c633ae28a1d85595d3036c235d3f9c9dc3a9c519dc6b811713af1b686807e80a484a6ec47a742a11b4ada32a6e74eee6538a9f4658
+  checksum: 9f886d67186da2e5cdabc32835c49ede9749146768e22c7f0f2548587e5201235d3726adef917fa6efbb9b73ad51278858a5d34e7cdc0a4b413c8396b37c350d
   languageName: node
   linkType: hard
 
