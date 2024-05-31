@@ -3,10 +3,16 @@ import {
   Logger,
   Module,
 } from '@nestjs/common';
+import { RxapLogger } from './logger';
 
 @Global()
 @Module({
-  providers: [ Logger ],
+  providers: [
+    {
+      provide: Logger,
+      useClass: RxapLogger,
+    },
+  ],
   exports: [ Logger ],
 })
 export class LoggerModule {}
