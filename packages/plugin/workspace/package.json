@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1",
+  "version": "19.0.2-dev.0",
   "name": "@rxap/plugin-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@nx/devkit": "^19.1.1",
     "@nx/js": "^19.1.1",
-    "@rxap/plugin-utilities": "^19.0.1",
+    "@rxap/plugin-utilities": "^19.0.2-dev.0",
     "@rxap/utilities": "^16.2.2",
     "@rxap/workspace-utilities": "^19.0.1"
   },
@@ -50,7 +50,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.1"
+        "version": "19.0.2-dev.0"
       },
       {
         "package": "@rxap/utilities",

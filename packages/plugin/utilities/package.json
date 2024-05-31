@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1",
+  "version": "19.0.2-dev.0",
   "name": "@rxap/plugin-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -30,6 +30,10 @@
   ],
   "nx-migrations": {
     "packageGroup": [
+      {
+        "package": "@angular/compiler",
+        "version": "18.0.1"
+      },
       {
         "package": "@nx/devkit",
         "version": "19.1.1"
