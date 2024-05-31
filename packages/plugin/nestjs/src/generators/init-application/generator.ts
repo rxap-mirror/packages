@@ -603,6 +603,8 @@ export async function initApplicationGenerator(
 
   await AddPackageJsonDependency(tree, '@rxap/nest-server', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-utilities', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'class-validator', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'class-transformer', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-logger', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/utilities', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/terminus', NESTJS_TERMINUS_VERSION, { soft: true });
