@@ -9193,7 +9193,7 @@ __metadata:
     "@swc/cli": 0.3.12
     "@swc/core": 1.3.107
     "@swc/helpers": 0.5.8
-    "@tailwindcss/typography": 0.5.10
+    "@tailwindcss/typography": 0.5.13
     "@types/cookie-parser": 1.4.7
     "@types/csurf": 1.11.5
     "@types/fs-extra": 11.0.4
@@ -10775,9 +10775,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/typography@npm:0.5.10":
-  version: 0.5.10
-  resolution: "@tailwindcss/typography@npm:0.5.10"
+"@tailwindcss/typography@npm:0.5.13":
+  version: 0.5.13
+  resolution: "@tailwindcss/typography@npm:0.5.13"
   dependencies:
     lodash.castarray: ^4.4.0
     lodash.isplainobject: ^4.0.6
@@ -10785,7 +10785,7 @@ __metadata:
     postcss-selector-parser: 6.0.10
   peerDependencies:
     tailwindcss: "*"
-  checksum: 9e7cbef6611e64542c658b651805594febb22d0f17b4bf435a67cc901f4972a9483d49420e070b19e46193b336264a058b771a0a7931ab03610a9aaa06078c0b
+  checksum: 44ee7417de2aa1facd3e5a85dfc509d94f8bfec1fe422a75f141cb6bf5f19e1da31c060fc7aa1b8f880bd98c1fc6210cf5b5124a20335b1a3cd6b3e1a2476c25
   languageName: node
   linkType: hard
 

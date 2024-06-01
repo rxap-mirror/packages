@@ -64,7 +64,7 @@
     "@sentry/tracing": "7.60.1",
     "@sentry/types": "7.56.0",
     "@supabase/supabase-js": "2.38.0",
-    "@tailwindcss/typography": "0.5.10",
+    "@tailwindcss/typography": "0.5.13",
     "angular-oauth2-oidc": "15.0.1",
     "angular-oauth2-oidc-jwks": "15.0.1",
     "cache-manager": "5.5.3",
