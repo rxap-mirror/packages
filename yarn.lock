@@ -9189,7 +9189,7 @@ __metadata:
     "@storybook/core-common": 8.1.5
     "@storybook/core-server": 8.1.5
     "@supabase/supabase-js": 2.38.0
-    "@swc-node/register": 1.8.0
+    "@swc-node/register": 1.9.1
     "@swc/cli": 0.3.12
     "@swc/core": 1.3.107
     "@swc/helpers": 0.5.8
@@ -10561,7 +10561,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc-node/core@npm:^1.12.0":
+"@swc-node/core@npm:^1.13.1":
   version: 1.13.1
   resolution: "@swc-node/core@npm:1.13.1"
   peerDependencies:
@@ -10571,30 +10571,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc-node/register@npm:1.8.0":
-  version: 1.8.0
-  resolution: "@swc-node/register@npm:1.8.0"
+"@swc-node/register@npm:1.9.1":
+  version: 1.9.1
+  resolution: "@swc-node/register@npm:1.9.1"
   dependencies:
-    "@swc-node/core": ^1.12.0
-    "@swc-node/sourcemap-support": ^0.4.0
+    "@swc-node/core": ^1.13.1
+    "@swc-node/sourcemap-support": ^0.5.0
     colorette: ^2.0.20
     debug: ^4.3.4
     pirates: ^4.0.6
     tslib: ^2.6.2
   peerDependencies:
-    "@swc/core": ">= 1.3"
+    "@swc/core": ">= 1.4.13"
     typescript: ">= 4.3"
-  checksum: e94cdfaaf41e3bc67caae0f03f7d2e8e4ebe241eb4c9498761d1a1e214acf3997d8229a701cb0fba4288355e29fe70dec4ddf89d4b3703bb5d900c3529e05a4f
+  checksum: 2e35e78cdde7684fc8e05b092d12c62b056e0c3a7eea1caa3a1e7f3fd80f818864388ef83e183ca66effb9ca566fa7309e2b7382b8d18dab65a1b2e1419d7546
   languageName: node
   linkType: hard
 
-"@swc-node/sourcemap-support@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@swc-node/sourcemap-support@npm:0.4.0"
+"@swc-node/sourcemap-support@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@swc-node/sourcemap-support@npm:0.5.0"
   dependencies:
     source-map-support: ^0.5.21
     tslib: ^2.6.2
-  checksum: a56f43e9e075c89e1d05948a1d86e73707d8655a2093a5ee98f6c52b6dc41cae4cc058cd660c0a094ed4d24fe148d9e3bbda1fc6505fe8b183fcc3014339c5fa
+  checksum: 2163f2ae337dafa07f62492a78d1e7b272207c91f1f7b5a9ab95ba929b7dfa93a4db1188dbafde117dae7219805ba9aac9693fd2066563992dba2239295181ee
   languageName: node
   linkType: hard
 
