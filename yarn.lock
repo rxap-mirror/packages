@@ -9221,7 +9221,7 @@ __metadata:
     eslint: 8.57.0
     eslint-config-prettier: 9.1.0
     eslint-plugin-cypress: 2.15.2
-    files-from-path: 1.0.0
+    files-from-path: 1.0.4
     firebase: 9.23.0
     firebase-admin: 10.3.0
     glob: 10.3.10
@@ -18154,12 +18154,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"files-from-path@npm:1.0.0":
-  version: 1.0.0
-  resolution: "files-from-path@npm:1.0.0"
+"files-from-path@npm:1.0.4":
+  version: 1.0.4
+  resolution: "files-from-path@npm:1.0.4"
   dependencies:
     graceful-fs: ^4.2.10
-  checksum: 434ee82d01c8615306628ea1181ec9b3fab971be0fc98b4d84fb5d510e447c42b104a920adedac796d6ef6da99dd467ed8516b042e4acbfb493fc2fffbd7d60f
+  checksum: 30f1baa3dc2778a5c77e8c4caa2de36654bf2419cd25bda1809cbe10334230b3436b995829197b8bf7aa4ab90bb67d0f6a80ca23cb506ac08f4ad6dac76a5ad5
   languageName: node
   linkType: hard
 
