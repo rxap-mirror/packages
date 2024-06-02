@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.4.0...@rxap/nest-server@10.4.1-dev.1) (2024-06-02)
+
+### Bug Fixes
+
+- ensure the provided logger instance is used in the bootstrap process ([2539d62](https://gitlab.com/rxap/packages/commit/2539d628f1d8b2fb3e1016949ccdf7f01d63d4bf))
+
 ## [10.4.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.4.0...@rxap/nest-server@10.4.1-dev.0) (2024-05-31)
 
 ### Bug Fixes

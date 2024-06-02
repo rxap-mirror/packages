@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.0.1...@rxap/plugin-library@19.1.0-dev.1) (2024-06-02)
+
+### Features
+
+- add generator to add a migration to a library ([2f34670](https://gitlab.com/rxap/packages/commit/2f346707a9ff924189fe494e581e4e4914035518))
+- add generator to init a library with migrations ([13be015](https://gitlab.com/rxap/packages/commit/13be015dd671c7b2d68776eef3257e35c5d97a52))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.0.1...@rxap/plugin-library@19.1.0-dev.0) (2024-05-31)
 
 ### Features
