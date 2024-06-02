@@ -7,12 +7,14 @@
     "packages": {
       "type": "boolean",
       "description": "If true, the workspace will be initialized for package development",
-      "x-prompt": "Has this workspace publishable packages?"
+      "x-prompt": "Has this workspace publishable packages?",
+      "default": false
     },
     "standalone": {
       "type": "boolean",
       "description": "If true, the workspace will be initialized for standalone development",
-      "x-prompt": "Is this a standalone workspace?"
+      "x-prompt": "Is this a standalone workspace?",
+      "default": false
     },
     "overwrite": {
       "type": "boolean",
