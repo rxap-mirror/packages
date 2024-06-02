@@ -1,5 +1,5 @@
 {
-  "version": "19.0.0",
+  "version": "19.0.1-dev.0",
   "name": "@rxap/preset-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -32,6 +32,30 @@
     "rxap"
   ],
   "main": "./src/index.js",
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/node-utilities",
+        "version": "1.2.2"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "19.0.3-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-workspace",
+        "version": "19.1.0-dev.1"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.2.2"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "19.2.0-dev.0"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/preset/workspace"
