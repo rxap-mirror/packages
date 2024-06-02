@@ -383,6 +383,11 @@
     },
     "generate-open-api": {
       "cache": true
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "generators": {
@@ -480,5 +485,10 @@
   },
   "parallel": 8,
   "useInferencePlugins": false,
-  "defaultBase": "development"
+  "defaultBase": "development",
+  "release": {
+    "version": {
+      "preVersionCommand": "yarn dlx nx run-many -t build"
+    }
+  }
 }
