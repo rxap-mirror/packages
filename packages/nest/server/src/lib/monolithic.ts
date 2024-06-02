@@ -3,7 +3,7 @@ import {
   Logger,
   NestApplicationOptions,
 } from '@nestjs/common';
-import { GlobalPrefixOptions } from '@nestjs/common/interfaces';
+import type { GlobalPrefixOptions } from '@nestjs/common/interfaces';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DetermineVersion } from '@rxap/nest-utilities';

@@ -1,8 +1,9 @@
 import { INestApplication } from '@nestjs/common';
-import {
+import type {
   CorsOptions,
   CorsOptionsDelegate,
 } from '@nestjs/common/interfaces/external/cors-options.interface';
+
 
 export interface SetupCorsOptions {
   corsOptions?: CorsOptions | CorsOptionsDelegate<any>;

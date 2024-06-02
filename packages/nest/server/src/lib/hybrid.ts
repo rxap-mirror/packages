@@ -3,7 +3,7 @@ import {
   Logger,
   NestApplicationOptions,
 } from '@nestjs/common';
-import { NestHybridApplicationOptions } from '@nestjs/common/interfaces';
+import type { NestHybridApplicationOptions } from '@nestjs/common/interfaces';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { Environment } from '@rxap/nest-utilities';
 import { coerceArray } from '@rxap/utilities';

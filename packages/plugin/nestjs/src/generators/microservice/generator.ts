@@ -42,7 +42,6 @@ export async function microserviceGenerator(
     validator: true,
     platform: 'express',
     overwrite: true,
-    statusRegister: true,
     ...options,
     projects: [ projectName ],
   });

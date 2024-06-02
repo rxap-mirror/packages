@@ -471,14 +471,6 @@ function updateMainFile(
       statements.push('server.after(SetupSwagger());');
     }
 
-    if (options.statusRegister) {
-      importDeclarations.push({
-        moduleSpecifier: '@rxap/nest-server',
-        namedImports: [ 'RegisterToStatusService' ],
-      });
-      statements.push('server.ready(RegisterToStatusService());');
-    }
-
     CoerceImports(sourceFile, importDeclarations);
 
     for (let i = 0; i < statements.length; i++) {
@@ -588,7 +580,6 @@ export async function initApplicationGenerator(
   options.overwrite ??= false;
   options.openApi ??= false;
   options.jwt ??= false;
-  options.statusRegister ??= true;
   options.apiConfigurationFile ??= options.standalone ? undefined : 'shared/service/configuration/latest/config.api.json';
   options.project ??= undefined;
   options.projects ??= [];
@@ -780,23 +771,6 @@ export async function initApplicationGenerator(
             if (!itemList.find(i => i.name === item.name)) {
               itemList.push(item);
             }
-          }
-          if (options.statusRegister && projectName !== 'service-status') {
-            CoerceArrayItems(itemList, [
-              {
-                name: 'STATUS_SERVICE_BASE_URL',
-                defaultValue: `environment.production ? 'http://rxap-service-status:3000' : 'http://localhost:5300'`,
-              },
-              {
-                name: 'DISABLE_REGISTER_TO_STATUS_SERVICE',
-                type: 'boolean',
-                defaultValue: 'false'
-              },
-            ], (a, b) => a.name === b.name);
-            CoerceImports(configSourceFile, {
-              namedImports: ['environment'],
-              moduleSpecifier: '../environments/environment',
-            });
           }
           CoerceNestAppConfig(configSourceFile, {
             itemList,
