@@ -95,6 +95,7 @@ export * from './lib/package-json-file';
 export * from './lib/project-package-name-mapping';
 export * from './lib/project-utilities';
 export * from './lib/remove-ignore-pattern';
+export * from './lib/remove-target';
 export * from './lib/search-file';
 export * from './lib/serialized-schematic';
 export * from './lib/skip-non-generators-project';
