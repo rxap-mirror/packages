@@ -98,6 +98,7 @@
     "plugin-utilities",
     "plugin-web3-storage",
     "plugin-workspace",
+    "preset-workspace",
     "reflect-metadata",
     "rxjs",
     "schematic-angular",

@@ -474,7 +474,7 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -494,7 +494,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-web3-storage",
@@ -502,7 +502,7 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -602,7 +602,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/xml-parser",
