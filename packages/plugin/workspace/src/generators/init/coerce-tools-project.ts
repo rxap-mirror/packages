@@ -24,14 +24,11 @@ export async function coerceToolsProject(tree: Tree) {
     });
     // throw new Error('The workspace-tools project was created. Please run the generator again.');
     if (tree.exists('tools/src/lib/workspace-tools.ts')) {
-      console.log('delete tools/src/lib/workspace-tools.ts');
       tree.delete('tools/src/lib/workspace-tools.ts');
     }
     if (tree.exists('tools/src/lib/workspace-tools.spec.ts')) {
-      console.log('delete tools/src/lib/workspace-tools.spec.ts');
       tree.delete('tools/src/lib/workspace-tools.spec.ts');
     }
-    console.log('create tools/src/index.ts');
     tree.write('tools/src/index.ts', 'export {};');
   }
 
