@@ -322,7 +322,7 @@
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.2.1-dev.1"
+        "version": "10.2.1"
       },
       {
         "package": "@rxap/nest-minio",
@@ -334,11 +334,11 @@
       },
       {
         "package": "@rxap/nest-sentry",
-        "version": "10.3.0-dev.1"
+        "version": "10.3.0"
       },
       {
         "package": "@rxap/nest-server",
-        "version": "10.4.1-dev.1"
+        "version": "10.4.1"
       },
       {
         "package": "@rxap/nest-socket-io-client",
@@ -450,7 +450,7 @@
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "19.0.2-dev.0"
+        "version": "19.0.2"
       },
       {
         "package": "@rxap/plugin-compodoc",
@@ -474,7 +474,7 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.1.0-dev.1"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -482,7 +482,7 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.0.3-dev.1"
+        "version": "19.0.3"
       },
       {
         "package": "@rxap/plugin-open-api",
@@ -494,7 +494,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.2-dev.1"
+        "version": "19.0.2"
       },
       {
         "package": "@rxap/plugin-web3-storage",
@@ -502,7 +502,7 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.0.2-dev.1"
+        "version": "19.0.2"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -570,7 +570,7 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.3.0-dev.2"
+        "version": "1.3.0"
       },
       {
         "package": "@rxap/upload",
@@ -598,11 +598,11 @@
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "19.0.2-dev.0"
+        "version": "19.0.2"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.1.0-dev.1"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/xml-parser",
