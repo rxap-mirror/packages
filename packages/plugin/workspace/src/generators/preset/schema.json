@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "Preset",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "packages": {
+      "type": "boolean",
+      "description": "If true, the workspace will be initialized for package development",
+      "x-prompt": "Has this workspace publishable packages?"
+    },
+    "standalone": {
+      "type": "boolean",
+      "description": "If true, the workspace will be initialized for standalone development",
+      "x-prompt": "Is this a standalone workspace?"
+    },
+    "license": {
+      "type": "string",
+      "default": "gpl",
+      "enum": [
+        "none",
+        "mit",
+        "gpl"
+      ],
+      "x-prompt": "Which license does this project has?"
+    },
+    "repositoryUrl": {
+      "type": "string",
+      "description": "The URL of the repository"
+    },
+    "prefix": {
+      "type": "string",
+      "description": "The prefix for the angular components"
+    }
+  },
+  "required": []
+}
