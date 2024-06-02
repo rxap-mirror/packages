@@ -2983,9 +2983,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/webpack-dev-server@npm:3.8.0":
-  version: 3.8.0
-  resolution: "@cypress/webpack-dev-server@npm:3.8.0"
+"@cypress/webpack-dev-server@npm:3.9.0":
+  version: 3.9.0
+  resolution: "@cypress/webpack-dev-server@npm:3.9.0"
   dependencies:
     find-up: 6.3.0
     fs-extra: 9.1.0
@@ -2997,7 +2997,7 @@ __metadata:
     tslib: ^2.3.1
     webpack-dev-server: ^4.7.4
     webpack-merge: ^5.4.0
-  checksum: a2452659f6256ca2319e1947a69646edd2ee5b0ec661623155f75f0deeda96b806527dad31c1bae00154673c9f32e02d395c9b35451fb8911e5874fa17afc83e
+  checksum: 5c500e495c6acbd1a417a4bd963233b3c8f02a33db0b99bbe239c1c1dfca7cb60ee24b0add0a70ea215571a5722de69932389f7d66fda06745d62440a1b0915b
   languageName: node
   linkType: hard
 
@@ -9209,7 +9209,7 @@ __metadata:
     "@compodoc/compodoc": 1.1.25
     "@ctrl/tinycolor": 4.0.2
     "@cypress/code-coverage": 3.12.39
-    "@cypress/webpack-dev-server": 3.8.0
+    "@cypress/webpack-dev-server": 3.9.0
     "@enio.ai/typedoc": 1.0.8
     "@faker-js/faker": 8.0.2
     "@jsdevtools/coverage-istanbul-loader": 3.0.5
