@@ -1,9 +1,8 @@
 {
-  "version": "19.0.2",
+  "version": "19.1.0-dev.0",
   "name": "@rxap/plugin-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.1.1",
     "colors": "^1.4.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
