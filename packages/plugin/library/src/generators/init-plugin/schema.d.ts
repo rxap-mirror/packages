@@ -4,4 +4,7 @@ export interface InitPluginGeneratorSchema {
   overwrite?: boolean;
   skipProjects?: boolean;
   skipFormat?: boolean;
+  targets?: {
+    fixDependencies?: boolean;
+  }
 }

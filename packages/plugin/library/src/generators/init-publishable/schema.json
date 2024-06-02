@@ -26,6 +26,16 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
+    },
+    "targets": {
+      "type": "object",
+      "properties": {
+        "fixDependencies": {
+          "type": "boolean",
+          "default": true,
+          "description": "If set to false the target fix-dependencies will not be added to the project"
+        }
+      }
     }
   },
   "required": []

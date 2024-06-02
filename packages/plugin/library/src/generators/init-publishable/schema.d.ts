@@ -4,4 +4,7 @@ export interface InitPublishableGeneratorSchema {
   overwrite?: boolean;
   skipProjects?: boolean;
   skipFormat?: boolean;
+  targets?: {
+    fixDependencies?: boolean;
+  }
 }

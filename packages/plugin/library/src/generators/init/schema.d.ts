@@ -5,4 +5,7 @@ export interface InitGeneratorSchema {
   skipProjects?: boolean;
   indexExport?: boolean;
   skipFormat?: boolean;
+  targets?: {
+    fixDependencies?: boolean;
+  }
 }

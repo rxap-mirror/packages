@@ -19,7 +19,7 @@ export function initProject(tree: Tree, projectName: string, project: ProjectCon
 
   const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
 
-  updateProjectTargets(project);
+  updateProjectTargets(project, options);
   updateProjectPackageJson(tree, project, projectName, rootPackageJson);
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files'),
