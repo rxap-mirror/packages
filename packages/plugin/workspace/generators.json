@@ -24,6 +24,12 @@
       "factory": "./src/generators/rename/generator",
       "schema": "./src/generators/rename/schema.json",
       "description": "rename generator"
+    },
+    "preset": {
+      "factory": "./src/generators/preset/generator",
+      "schema": "./src/generators/preset/schema.json",
+      "description": "preset generator",
+      "x-use-standalone-layout": true
     }
   },
   "schematics": {
