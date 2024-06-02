@@ -57,6 +57,11 @@
       "factory": "./src/generators/rename/index",
       "schema": "./src/generators/rename/schema.json",
       "description": "rename generator"
+    },
+    "preset": {
+      "factory": "./src/generators/preset/index",
+      "schema": "./src/generators/preset/schema.json",
+      "description": "preset generator"
     }
   }
 }
