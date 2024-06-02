@@ -2,3 +2,5 @@ package: "@rxap/plugin-library"
 name: init
 options:
   indexExport: true
+  targets:
+    fixDependencies: false
