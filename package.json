@@ -228,6 +228,7 @@
     "packages/angular/material/*",
     "packages/browser/*",
     "packages/plugin/*",
+    "packages/preset/*",
     "packages/schematic/*",
     "packages/generator/*",
     "packages/data-structure/*",
