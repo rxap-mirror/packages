@@ -1,0 +1,14 @@
+import { Tree } from '@nx/devkit';
+import { UpdatePackageJson } from '@rxap/workspace-utilities';
+
+export async function coerceRootPackageJsonScripts(tree: Tree) {
+  await UpdatePackageJson(tree, (json) => {
+    json.scripts ??= {};
+    json.scripts['prepare'] ??= 'husky install';
+    json.scripts['schematic'] ??= 'bash tools/scripts/schematic.sh';
+    json.scripts['server'] ??= 'bash tools/scripts/start-local-dev-services.sh';
+    json.scripts['server:status'] ??= 'bash tools/scripts/get-local-dev-services-status.sh';
+    json.scripts['server:stop'] ??= 'bash tools/scripts/stop-local-dev-services.sh';
+    json.scripts['init:env'] ??= 'bash tools/scripts/setup-env-file.sh';
+  });
+}
