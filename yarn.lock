@@ -9332,7 +9332,7 @@ __metadata:
     ts-node: 10.9.2
     tslib: 2.6.2
     typedoc: 0.25.13
-    typedoc-plugin-rename-defaults: 0.6.5
+    typedoc-plugin-rename-defaults: 0.7.0
     typedoc-theme-hierarchy: 3.2.1
     typescript: 5.4.5
     verdaccio: 5.21.2
@@ -14126,6 +14126,13 @@ __metadata:
   version: 6.3.0
   resolution: "camelcase@npm:6.3.0"
   checksum: 8c96818a9076434998511251dcb2761a94817ea17dbdc37f47ac080bd088fc62c7369429a19e2178b993497132c8cbcf5cc1f44ba963e76782ba469c0474938d
+  languageName: node
+  linkType: hard
+
+"camelcase@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "camelcase@npm:8.0.0"
+  checksum: 6da7abe997af29e80052f17aa21628c7cce14af364cef9f07a2a44d59614dd6f361d405f121938e673424d673697a8c53ad17be8c4b03b0a727307c4db8b5b5e
   languageName: node
   linkType: hard
 
@@ -30899,12 +30906,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-rename-defaults@npm:0.6.5":
-  version: 0.6.5
-  resolution: "typedoc-plugin-rename-defaults@npm:0.6.5"
+"typedoc-plugin-rename-defaults@npm:0.7.0":
+  version: 0.7.0
+  resolution: "typedoc-plugin-rename-defaults@npm:0.7.0"
+  dependencies:
+    camelcase: ^8.0.0
   peerDependencies:
-    typedoc: 0.22.x || 0.23.x || 0.24.x
-  checksum: b5bd3b9030b007175ac5c00e166a813c711ab041c543a6d68bde17c725ba4ff9ca8ea2a29a13728b01d3369203087e44e8cd0eec0f2da9524e1dfe6bc8da1050
+    typedoc: 0.22.x || 0.23.x || 0.24.x || 0.25.x
+  checksum: d5e3e0cdaeb0a0f1f23cd7855def550e1624d5a526801c4ea0cb0eee37d6d6d07f44eb9b4101351beaf019720524a7387c0b374d4e7f8ba43c8f2966647715e0
   languageName: node
   linkType: hard
 
