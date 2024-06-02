@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@19.0.2...@rxap/plugin-utilities@19.0.3-dev.0) (2024-06-02)
+
+**Note:** Version bump only for package @rxap/plugin-utilities
+
 ## [19.0.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@19.0.2-dev.1...@rxap/plugin-utilities@19.0.2) (2024-06-02)
 
 **Note:** Version bump only for package @rxap/plugin-utilities

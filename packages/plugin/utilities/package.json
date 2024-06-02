@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2",
+  "version": "19.0.3-dev.0",
   "name": "@rxap/plugin-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@nx/devkit": "^19.1.1",
     "@rxap/node-utilities": "^1.2.2",
-    "@rxap/workspace-utilities": "^19.1.0"
+    "@rxap/workspace-utilities": "^19.2.0-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -30,10 +30,6 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@angular/compiler",
-        "version": "18.0.1"
-      },
-      {
         "package": "@nx/devkit",
         "version": "19.1.1"
       },
@@ -47,7 +43,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       }
     ]
   },
