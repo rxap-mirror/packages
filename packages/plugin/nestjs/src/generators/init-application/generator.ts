@@ -233,6 +233,7 @@ function setGeneralTargetDefaults(tree: Tree, options: InitApplicationGeneratorS
       },
     });
     CoerceTargetDefaultsDependency(nxJson, 'generate-open-api', 'swagger-generate');
+    CoerceTargetDefaultsDependency(nxJson, 'test', '^generate-open-api');
   }
 
   updateNxJson(tree, nxJson);
