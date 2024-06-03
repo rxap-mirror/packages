@@ -3,11 +3,18 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/plugin/nestjs/src",
   "projectType": "library",
-  "tags": ["plugin", "nx", "nx-plugin", "packages"],
+  "tags": [
+    "plugin",
+    "nx",
+    "nx-plugin",
+    "packages"
+  ],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/plugin/nestjs",
         "main": "packages/plugin/nestjs/src/index.ts",
@@ -33,6 +40,16 @@
             "input": "./packages/plugin/nestjs",
             "glob": "executors.json",
             "output": "."
+          },
+          {
+            "input": "./packages/plugin/nestjs",
+            "glob": "migrations.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/nestjs/src/migrations",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/migrations"
           }
         ]
       }
@@ -67,7 +84,9 @@
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs plugin-nestjs {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     },
     "readme": {},
     "test": {

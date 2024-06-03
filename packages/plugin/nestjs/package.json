@@ -3,6 +3,7 @@
   "name": "@rxap/plugin-nestjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.1.1",
     "semver": "^7.3.5",
     "tslib": "2.6.2"
   },
@@ -41,6 +42,9 @@
     "plugin-nestjs",
     "rxap"
   ],
+  "ng-update": {
+    "migrations": "./migrations.json"
+  },
   "nx-migrations": {
     "packageGroup": [
       {

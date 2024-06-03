@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "replace-base-server-docker-image": {
+      "version": "19.0.4-dev.0",
+      "description": "",
+      "implementation": "./src/migrations/19.0.0/replace-base-server-docker-image/replace-base-server-docker-image"
+    }
+  }
+}
