@@ -1,7 +1,7 @@
 import { Tree } from '@angular-devkit/schematics';
 import { GetProjectSourceRoot } from '@rxap/schematics-utilities';
+import { buildNestProjectName } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import { buildNestProjectName } from './project-utilities';
 
 export interface BuildNestBasePathOptions {
   project: string;

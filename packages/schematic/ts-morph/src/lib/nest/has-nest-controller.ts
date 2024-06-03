@@ -6,7 +6,7 @@ import {
   GetProjectSourceRoot,
   HasProject,
 } from '@rxap/schematics-utilities';
-import { buildNestProjectName } from './project-utilities';
+import { buildNestProjectName } from '@rxap/workspace-utilities';
 
 export interface HasNestControllerOptions {
   project: string;

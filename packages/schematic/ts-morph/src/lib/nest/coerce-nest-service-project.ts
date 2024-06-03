@@ -1,9 +1,9 @@
 import { Rule } from '@angular-devkit/schematics';
+import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import {
   buildNestProjectName,
   HasNestServiceProject,
-} from './project-utilities';
-import { ExecuteSchematic } from '@rxap/schematics-utilities';
+} from '@rxap/workspace-utilities';
 
 export interface CoerceNestServiceProjectOptions {
   project: string;

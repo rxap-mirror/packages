@@ -59,7 +59,6 @@ export * from './lib/nest/has-nest-module';
 export * from './lib/nest/is-nest-module-class';
 export * from './lib/nest/nest-provider-object';
 export * from './lib/nest/operation-id-utilities';
-export * from './lib/nest/project-utilities';
 export * from './lib/nest/remove-nest-module-provider';
 export * from './lib/nest/remove-nest-provider-to-array';
 export * from './lib/nest/table-query-list';
@@ -131,7 +130,7 @@ export * from './lib/angular/has-table-component';
 export * from './lib/angular/index';
 // endregion
 
-// region 
+// region
 export * from './lib/add-class-method';
 export * from './lib/add-dir';
 export * from './lib/add-fake-provider';

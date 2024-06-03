@@ -2,7 +2,7 @@ import {
   classify,
   dasherize,
 } from '@rxap/schematics-utilities';
-import { buildNestProjectName } from './project-utilities';
+import { buildNestProjectName } from '@rxap/workspace-utilities';
 
 /**
  * @deprecated import from @rxap/ts-morph instead
