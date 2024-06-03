@@ -35,7 +35,10 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
+import {
+  AngularOptions,
+  PrintAngularOptions,
+} from '../../../../lib/angular-options';
 import {
   NormalizedTableSelectColumn,
   NormalizedTableSelectFormControl,
@@ -47,7 +50,7 @@ import {
 } from '../../form-control';
 import { TableSelectFormControlOptions } from './schema';
 
-export type NormalizedTableSelectFormControlOptions = NonNullableSelected<Readonly<Normalized<Omit<TableSelectFormControlOptions, 'columnList' | 'propertyList'>>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl, 'controllerName'>
+export type NormalizedTableSelectFormControlOptions = NonNullableSelected<Readonly<Normalized<Omit<TableSelectFormControlOptions, keyof AngularOptions | 'columnList' | 'propertyList'>>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl, 'controllerName'>
 
 export function NormalizeTableSelectFormControlOptions(
   options: TableSelectFormControlOptions,

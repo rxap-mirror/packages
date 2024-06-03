@@ -5,22 +5,26 @@ import { Normalized } from '@rxap/utilities';
 import {
   NormalizedTableAccordionItem,
   NormalizeTableAccordionItem,
+  TableAccordionItem,
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
-import { NormalizedAngularOptions } from '../../../../lib/angular-options';
+import {
+  AngularOptions,
+  NormalizedAngularOptions,
+} from '../../../../lib/angular-options';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TableModifiers } from '../../../../lib/table-options';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
-  NormalizedAccordionItemStandaloneComponentOptions,
+  NormalizedAccordionItemComponentOptions,
   printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
+import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
 import { AccordionItemTableComponentOptions } from './schema';
 
-export interface NormalizedAccordionItemTableComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList' | 'propertyList'>, Omit<NormalizedTableAccordionItem, 'kind'> {
-}
+export type NormalizedAccordionItemTableComponentOptions = Readonly<Normalized<Omit<AccordionItemTableComponentOptions, keyof AngularOptions | keyof TableAccordionItem | keyof AccordionItemComponentOptions>> & NormalizedAngularOptions & NormalizedTableAccordionItem & NormalizedAccordionItemComponentOptions>
+
 
 export function NormalizeAccordionItemTableComponentOptions(
   options: Readonly<AccordionItemTableComponentOptions>,

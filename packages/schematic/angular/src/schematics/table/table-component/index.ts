@@ -29,6 +29,7 @@ import {
   Writers,
 } from 'ts-morph';
 import {
+  AngularOptions,
   AssertAngularOptionsNameProperty,
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -58,7 +59,7 @@ import { TableFilterColumnRule } from '../../../lib/table/table-filter-column-ru
 import { TableComponentOptions } from './schema';
 
 export interface NormalizedTableComponentOptions
-  extends Readonly<Normalized<Omit<TableComponentOptions, keyof NormalizedTableOptions>> & NormalizedTableOptions & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<TableComponentOptions, keyof NormalizedTableOptions | keyof AngularOptions>> & NormalizedTableOptions & NormalizedAngularOptions> {
   readonly name: string;
   readonly controllerName: string;
 }
@@ -74,7 +75,7 @@ export function NormalizeTableComponentOptions(
   } = normalizedMinimumTableComponentOptions;
   const normalizedTableOptions = NormalizeTableOptions(options, name);
   const { openApi } = normalizedTableOptions;
-  if (backend === BackendTypes.OPEN_API) {
+  if (backend.kind === BackendTypes.OPEN_API) {
     if (!openApi) {
       throw new Error('openApi options must be provided. If backend is open-api');
     }
@@ -417,7 +418,7 @@ function backendRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
   const {
     backend,
   } = normalizedOptions;
-  switch (backend) {
+  switch (backend.kind) {
     case BackendTypes.NESTJS:
       return nestjsBackendRule(normalizedOptions);
     case BackendTypes.LOCAL:

@@ -69,6 +69,7 @@ import {
 } from '../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../lib/accordion-itme-kinds';
 import {
+  AngularOptions,
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
@@ -84,7 +85,7 @@ import {
 import { AccordionComponentOptions } from './schema';
 
 export interface NormalizedAccordionComponentOptions
-  extends Readonly<Normalized<Omit<AccordionComponentOptions, 'itemList' | 'persistent' | 'identifier'>> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<AccordionComponentOptions, keyof AngularOptions | 'itemList' | 'persistent' | 'identifier'>> & NormalizedAngularOptions> {
   name: string;
   itemList: ReadonlyArray<NormalizedBaseAccordionItem>;
   persistent: NormalizedPersistent | null;
@@ -580,7 +581,7 @@ function backendRule(normalizedOptions: NormalizedAccordionComponentOptions) {
     backend,
   } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return nestjsBackendRule(normalizedOptions);

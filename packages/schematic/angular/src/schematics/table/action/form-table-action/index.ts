@@ -46,10 +46,11 @@ import {
   NormalizedOperationTableActionOptions,
   NormalizeOperationTableActionOptions,
 } from '../operation-table-action';
+import { OperationTableActionOptions } from '../operation-table-action/schema';
 import { FormTableActionOptions } from './schema';
 
 export interface NormalizedFormTableActionOptions
-  extends Omit<Readonly<Normalized<FormTableActionOptions> & NormalizedOperationTableActionOptions>, 'formOptions'> {
+  extends Omit<Readonly<Normalized<Omit<FormTableActionOptions, keyof OperationTableActionOptions>> & NormalizedOperationTableActionOptions>, 'formOptions'> {
   formComponent: string;
   formOptions: {
     // TODO : create custom interface and normalization function for the formOptions property (also used in form-table-header-button)
@@ -241,7 +242,7 @@ function backendRule(normalizedOptions: NormalizedFormTableActionOptions) {
 
   const { backend } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return nestjsBackendRule(normalizedOptions);
@@ -272,7 +273,7 @@ function buildLoadFormOptions(normalizedOptions: NormalizedFormTableActionOption
   const { backend } = normalizedOptions;
 
   let loadFrom: LoadFromTableActionOptions | undefined = undefined;
-  if (backend === BackendTypes.NESTJS) {
+  if (backend.kind === BackendTypes.NESTJS) {
     loadFrom = {
       operationId: buildGetOperationId(normalizedOptions),
       body: false,

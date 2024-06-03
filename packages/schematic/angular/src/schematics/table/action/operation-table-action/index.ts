@@ -15,6 +15,7 @@ import {
 } from '@rxap/utilities';
 import { join } from 'path';
 import {
+  AngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
@@ -24,7 +25,7 @@ import { NormalizeTableActionOptions } from '../../table-action';
 import { OperationTableActionOptions } from './schema';
 
 export interface NormalizedOperationTableActionOptions
-  extends Readonly<Normalized<OperationTableActionOptions> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<OperationTableActionOptions, keyof AngularOptions>> & NormalizedAngularOptions> {
   controllerName: string;
 }
 
@@ -117,7 +118,7 @@ function backendRule(normalizedOptions: NormalizedOperationTableActionOptions) {
     backend,
   } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return openApiOperationRule(normalizedOptions);

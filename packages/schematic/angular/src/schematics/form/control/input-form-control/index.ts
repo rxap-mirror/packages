@@ -2,6 +2,7 @@ import { chain } from '@angular-devkit/schematics';
 import { Normalized } from '@rxap/utilities';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
 import {
+  InputFormControl,
   NormalizedInputFormControl,
   NormalizeInputFormControl,
 } from '../../../../lib/form/control/input-form-control';
@@ -9,9 +10,10 @@ import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,
 } from '../../form-control';
+import { FormControlOptions } from '../../form-control/schema';
 import { InputFormControlOptions } from './schema';
 
-export type NormalizedInputFormControlOptions = Readonly<Normalized<InputFormControlOptions>> & NormalizedFormControlOptions & NormalizedInputFormControl
+export type NormalizedInputFormControlOptions = Readonly<Normalized<Omit<InputFormControlOptions, keyof FormControlOptions | keyof InputFormControl>>> & NormalizedFormControlOptions & NormalizedInputFormControl;
 
 
 export function NormalizeInputFormControlOptions(

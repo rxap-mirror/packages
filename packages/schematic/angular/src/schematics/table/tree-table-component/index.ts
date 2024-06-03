@@ -25,6 +25,7 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
+  AngularOptions,
   AssertAngularOptionsNameProperty,
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -54,7 +55,7 @@ import {
 import { TreeTableComponentOptions } from './schema';
 
 export interface NormalizedTreeTableComponentOptions
-  extends Readonly<Normalized<Omit<TreeTableComponentOptions, keyof NormalizedTreeTableOptions>> & NormalizedTreeTableOptions & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<TreeTableComponentOptions, keyof NormalizedTreeTableOptions | keyof AngularOptions>> & NormalizedTreeTableOptions & NormalizedAngularOptions> {
   name: string;
   controllerName: string;
 }
@@ -411,7 +412,7 @@ function backendRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
     backend,
   } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return nestjsBackendRule(normalizedOptions);

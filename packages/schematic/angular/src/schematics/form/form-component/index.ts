@@ -33,6 +33,7 @@ import {
   NormalizedAccordionIdentifier,
 } from '../../../lib/accordion-identifier';
 import {
+  AngularOptions,
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
@@ -52,7 +53,7 @@ import {
 import { FormComponentOptions } from './schema';
 
 export interface NormalizedFormComponentOptions
-  extends Omit<Readonly<Normalized<FormComponentOptions> & NormalizedAngularOptions>, 'controlList' | 'name' | 'matFormFieldDefaultOptions'> {
+  extends Readonly<Normalized<Omit<FormComponentOptions, keyof AngularOptions | 'controlList' | 'name' | 'matFormFieldDefaultOptions'>> & NormalizedAngularOptions> {
   componentName: string;
   controllerName: string;
   controlList: ReadonlyArray<NormalizedControl>;
@@ -206,7 +207,7 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
     identifier,
   } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return chain([
@@ -237,7 +238,7 @@ function formSubmitRule(normalizedOptions: NormalizedFormComponentOptions): Rule
     nestModule,
   } = normalizedOptions;
 
-  if ([ BackendTypes.NESTJS ].includes(backend)) {
+  if ([ BackendTypes.NESTJS ].includes(backend.kind)) {
     return chain([
       formSubmitBackendRule(normalizedOptions),
       formSubmitProviderRule(normalizedOptions),

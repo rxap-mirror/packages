@@ -43,6 +43,7 @@ import {
   Writers,
 } from 'ts-morph';
 import {
+  AngularOptions,
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
@@ -50,6 +51,7 @@ import {
 } from '../../lib/angular-options';
 import { BackendTypes } from '../../lib/backend-types';
 import {
+  DataGridOptions,
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
 } from '../../lib/data-grid-options';
@@ -64,7 +66,7 @@ import {
 import { DataGridComponentOptions } from './schema';
 
 export interface NormalizedDataGridComponentOptions
-  extends Readonly<Normalized<Omit<DataGridComponentOptions, 'itemList' | 'propertyList'>> & NormalizedAngularOptions & NormalizedDataGridOptions> {
+  extends Readonly<Normalized<Omit<DataGridComponentOptions, keyof AngularOptions | keyof DataGridOptions | 'itemList' | 'propertyList'>> & NormalizedAngularOptions & NormalizedDataGridOptions> {
   dataSourceClassName: string;
   dataSourceFileName: string;
   componentName: string;
@@ -452,7 +454,7 @@ function backendRule(normalizedOptions: NormalizedDataGridComponentOptions) {
 
   const { backend } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return nestjsBackendRule(normalizedOptions);

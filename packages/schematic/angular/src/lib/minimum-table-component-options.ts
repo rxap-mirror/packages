@@ -58,10 +58,7 @@ import { TableColumnModifier } from './table/table-column-modifier';
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 
 export interface NormalizedMinimumTableComponentOptions
-  extends Omit<Readonly<Normalized<MinimumTableComponentOptions> & NormalizedMinimumTableOptions & NormalizedAngularOptions>, 'columnList' | 'actionList' | 'propertyList'> {
-  columnList: ReadonlyArray<NormalizedTableColumn>;
-  actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: ReadonlyArray<NormalizedDataProperty>;
+  extends Readonly<Normalized<Omit<MinimumTableComponentOptions, keyof AngularOptions | keyof MinimumTableOptions>> & NormalizedMinimumTableOptions & NormalizedAngularOptions> {
   componentName: string;
   controllerName: string;
 }
@@ -101,7 +98,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
     componentName,
   } = normalizedOptions;
   const { operationName = 'get-page', typePath = `['rows'][number]` } = options;
-  if (![ BackendTypes.NESTJS ].includes(backend)) {
+  if (![ BackendTypes.NESTJS ].includes(backend.kind)) {
     throw new SchematicsException(`Invalid backend type: ${ backend } - expected nestjs`);
   }
   const operationId = buildOperationId(
@@ -216,7 +213,7 @@ export interface TableInterfaceRuleOptions {
 
 export function tableInterfaceRule(normalizedOptions: NormalizedMinimumTableComponentOptions, options: TableInterfaceRuleOptions = {}): Rule {
   const { backend } = normalizedOptions;
-  switch (backend) {
+  switch (backend.kind) {
     case BackendTypes.NESTJS:
       return tableInterfaceFromOpenApiRule(normalizedOptions, options);
     // TODO : add support for the open-api backend type - this will require some why to define how to get the row type from the operation response type

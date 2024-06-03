@@ -11,12 +11,13 @@ import {
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import { BackendTypes } from './backend-types';
+import { NormalizedBackendOptions } from './backend/backend-options';
 import { LoadMatFormFieldHandlebarsTemplate } from './load-handlebars-template';
 import { NormalizedMinimumTableOptions } from './minimum-table-options';
 import { TableModifiers } from './table-options';
 
 export interface CoerceMinimumTableComponentOptions extends CoerceComponentOptions {
-  table: NormalizedMinimumTableOptions & { backend?: BackendTypes };
+  table: NormalizedMinimumTableOptions & { backend?: NormalizedBackendOptions };
 }
 
 export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumTableComponentOptions>) {
@@ -56,7 +57,7 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
         moduleSpecifier: 'rxjs',
         namedImports: ['Observable'],
       });
-      if (options.table.backend === BackendTypes.DATA_SOURCE) {
+      if (options.table.backend?.kind === BackendTypes.DATA_SOURCE) {
         CoerceComponentInput(classDeclaration, 'dataSource', 'AbstractTableDataSource');
         CoerceImports(sourceFile, {
           moduleSpecifier: '@rxap/data-source/table',

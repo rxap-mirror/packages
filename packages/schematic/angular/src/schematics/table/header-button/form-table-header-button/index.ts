@@ -26,6 +26,7 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
+  AngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
@@ -34,12 +35,15 @@ import {
   NormalizeControlList,
   NormalizedControl,
 } from '../../../../lib/form/control';
-import { NormalizedTableHeaderButton } from '../../../../lib/table-header-button';
+import {
+  NormalizedTableHeaderButton,
+  TableHeaderButton,
+} from '../../../../lib/table-header-button';
 import { NormalizeTableHeaderButtonOptions } from '../../table-header-button/index';
 import { FormTableHeaderButtonOptions } from './schema';
 
 export interface NormalizedFormTableHeaderButtonOptions
-  extends Omit<Readonly<Normalized<FormTableHeaderButtonOptions> & NormalizedAngularOptions & NormalizedTableHeaderButton>, 'formOptions'> {
+  extends Readonly<Normalized<Omit<FormTableHeaderButtonOptions, keyof AngularOptions | keyof TableHeaderButton | 'formOptions'>> & NormalizedAngularOptions & NormalizedTableHeaderButton> {
   options: Record<string, any>;
   controllerName: string;
   formComponent: string;

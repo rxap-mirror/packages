@@ -10,6 +10,10 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import { BackendTypes } from './backend-types';
+import {
+  NormalizeBackendOptions,
+  NormalizedBackendOptions,
+} from './backend/backend-options';
 
 export interface AngularOptions extends GlobalOptions {
   componentName?: string;
@@ -25,7 +29,9 @@ export interface AngularOptions extends GlobalOptions {
   openApi?: any;
 }
 
-export type NormalizedAngularOptions = Readonly<NonNullableSelected<Normalized<AngularOptions>, 'backend'>> & NormalizedGlobalOptions;
+export interface NormalizedAngularOptions extends Readonly<Normalized<Omit<AngularOptions, keyof GlobalOptions | 'backend'>> & NormalizedGlobalOptions> {
+  backend: NormalizedBackendOptions;
+}
 
 export function NormalizeAngularOptions(options: AngularOptions): NormalizedAngularOptions {
   let shared = options.shared ?? false;
@@ -44,7 +50,7 @@ export function NormalizeAngularOptions(options: AngularOptions): NormalizedAngu
     context: options.context ? dasherize(options.context) : null,
     nestModule: options.nestModule ? dasherize(options.nestModule) : null,
     controllerName: options.controllerName ? dasherize(options.controllerName) : null,
-    backend: options.backend ?? BackendTypes.NONE,
+    backend: NormalizeBackendOptions(options.backend ?? BackendTypes.NONE, Object.freeze(options)),
     directory: options.directory ?? null,
     shared,
     prefix: options.prefix ?? null,
@@ -88,7 +94,7 @@ export function PrintAngularOptions(schematicName: string, options: NormalizedAn
   } else {
     console.log(`\x1b[34m===== Context: \x1b[31mNONE\x1b[0m`);
   }
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       console.log(`\x1b[31m===== Backend: NESTJS\x1b[0m`);
@@ -117,7 +123,7 @@ export function PrintAngularOptions(schematicName: string, options: NormalizedAn
       break;
 
     default:
-      console.log(`\x1b[31m===== Backend: ${ backend.toUpperCase() }\x1b[0m`);
+      console.log(`\x1b[31m===== Backend: ${ backend.kind.toUpperCase() }\x1b[0m`);
       break;
 
   }

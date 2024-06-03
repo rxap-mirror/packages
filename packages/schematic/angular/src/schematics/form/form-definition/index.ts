@@ -6,6 +6,7 @@ import {
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 import {
+  AngularOptions,
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
@@ -19,7 +20,7 @@ import {
 import { FormDefinitionOptions } from './schema';
 
 export interface NormalizedFormDefinitionOptions
-  extends Readonly<Normalized<Omit<FormDefinitionOptions, 'controlList'>> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<FormDefinitionOptions, keyof AngularOptions | 'controlList'>> & NormalizedAngularOptions> {
   name: string;
   controlList: ReadonlyArray<NormalizedControl>;
 }

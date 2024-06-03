@@ -34,23 +34,27 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
+  DataGridAccordionItem,
   NormalizeDataGridAccordionItem,
   NormalizedDataGridAccordionItem,
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
-import { NormalizedAngularOptions } from '../../../../lib/angular-options';
+import {
+  AngularOptions,
+  NormalizedAngularOptions,
+} from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import {
+  AccordionItemStandaloneComponentOptions,
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
   NormalizedAccordionItemStandaloneComponentOptions,
   printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
+import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
 import { AccordionItemDataGridComponentOptions } from './schema';
 
-export interface NormalizedAccordionItemDataGridComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemDataGridComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'dataGrid' | 'importList' | 'propertyList'>, Omit<NormalizedDataGridAccordionItem, 'kind'> {
-}
+export type NormalizedAccordionItemDataGridComponentOptions = Readonly<Normalized<Omit<AccordionItemDataGridComponentOptions, keyof AngularOptions | keyof AccordionItemStandaloneComponentOptions | keyof DataGridAccordionItem | keyof AccordionItemComponentOptions>> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions> & Omit<NormalizedDataGridAccordionItem, 'kind'>
 
 export function NormalizeAccordionItemDataGridComponentOptions(
   options: Readonly<AccordionItemDataGridComponentOptions>,
@@ -256,7 +260,7 @@ function backendRule(normalizedOptions: NormalizedAccordionItemDataGridComponent
 
   const { backend } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return nestjsBackendRule(normalizedOptions);

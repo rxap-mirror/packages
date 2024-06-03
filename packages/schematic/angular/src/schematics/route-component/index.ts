@@ -18,6 +18,7 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import {
+  AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -29,7 +30,7 @@ import {
 } from '../../lib/route-component';
 import { RouteComponentOptions } from './schema';
 
-export type NormalizedRouteComponentOptions = Readonly<Normalized<Omit<RouteComponentOptions, keyof RouteComponent>> & NormalizedAngularOptions & NormalizedRouteComponent>;
+export type NormalizedRouteComponentOptions = Readonly<Normalized<Omit<RouteComponentOptions, keyof RouteComponent | keyof AngularOptions>> & NormalizedAngularOptions & NormalizedRouteComponent>;
 
 export function NormalizeRouteComponentOptions(options: RouteComponentOptions): NormalizedRouteComponentOptions {
   return {

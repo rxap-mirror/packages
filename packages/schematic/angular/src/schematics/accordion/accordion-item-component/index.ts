@@ -52,6 +52,7 @@ import {
   IsAccordionItemKind,
 } from '../../../lib/accordion-itme-kinds';
 import {
+  AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -62,7 +63,7 @@ import { AccordionItemComponentOptions } from './schema';
 export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'kind'>;
 
 export interface NormalizedAccordionItemStandaloneComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemStandaloneComponentOptions> & NormalizedAngularOptions>, 'importList' | 'name' | 'identifier' | 'upstream' | 'propertyList'>, NormalizedBaseAccordionItem {
+  extends Readonly<Normalized<Omit<AccordionItemStandaloneComponentOptions, keyof AngularOptions | 'importList' | 'name' | 'identifier' | 'upstream' | 'propertyList'>> & NormalizedAngularOptions & NormalizedBaseAccordionItem> {
   componentName: string;
   controllerName: string;
 }
@@ -359,7 +360,7 @@ function panelItemBackendRule(normalizedOptions: NormalizedAccordionItemComponen
     backend,
   } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return panelItemOpenApiDataSourceRule(normalizedOptions);

@@ -27,10 +27,11 @@ import {
   NormalizedOperationTableActionOptions,
   NormalizeOperationTableActionOptions,
 } from '../operation-table-action';
+import { OperationTableActionOptions } from '../operation-table-action/schema';
 import { DialogTableActionOptions } from './schema';
 
 export interface NormalizedDialogTableActionOptions
-  extends Readonly<Normalized<Omit<DialogTableActionOptions, 'actionList'>> & NormalizedOperationTableActionOptions> {
+  extends Readonly<Normalized<Omit<DialogTableActionOptions, keyof OperationTableActionOptions | 'actionList'>> & NormalizedOperationTableActionOptions> {
   title: string;
   actionList: ReadonlyArray<NormalizedDialogAction>;
 }

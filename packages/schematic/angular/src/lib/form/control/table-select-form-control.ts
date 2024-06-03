@@ -19,6 +19,10 @@ import {
 } from '../../accordion-identifier';
 import { BackendTypes } from '../../backend-types';
 import {
+  NormalizeBackendOptions,
+  NormalizedBackendOptions,
+} from '../../backend/backend-options';
+import {
   GuessColumnTypeType,
   TableColumnNameToPropertyPath,
   TableColumnNameToTitle,
@@ -100,10 +104,10 @@ export interface TableSelectFormControl extends FormFieldFormControl {
 }
 
 export interface NormalizedTableSelectFormControl
-  extends Readonly<Normalized<Omit<TableSelectFormControl, keyof NormalizedFormFieldFormControl | 'columnList' | 'propertyList' | 'formField' | 'role'>>>,
+  extends Readonly<Normalized<Omit<TableSelectFormControl, keyof NormalizedFormFieldFormControl | 'columnList' | 'propertyList' | 'formField' | 'role' | 'backend'>>>,
           NormalizedFormFieldFormControl {
   kind: FormControlKinds.TABLE_SELECT;
-  backend: BackendTypes;
+  backend: NormalizedBackendOptions;
   columnList: NormalizedTableSelectColumn[];
   propertyList: Array<NormalizedDataProperty>;
   toDisplay: NormalizedTableSelectToFunction;
@@ -160,7 +164,7 @@ export function NormalizeTableSelectFormControl(
     identifier,
     resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
     kind: FormControlKinds.TABLE_SELECT,
-    backend: control.backend ?? BackendTypes.NONE,
+    backend: NormalizeBackendOptions(control.backend ?? BackendTypes.NONE),
     title: control.title ?? null,
     columnList,
     toDisplay,

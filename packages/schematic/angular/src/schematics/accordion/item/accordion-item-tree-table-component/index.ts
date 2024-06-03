@@ -16,7 +16,10 @@ import {
   NormalizeTreeTableAccordionItem,
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
-import { NormalizedAngularOptions } from '../../../../lib/angular-options';
+import {
+  AngularOptions,
+  NormalizedAngularOptions,
+} from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TreeTableModifiers } from '../../../../lib/tree-table-options';
@@ -32,9 +35,7 @@ import {
 } from '../../accordion-item-component';
 import { AccordionItemTreeTableComponentOptions } from './schema';
 
-export interface NormalizedAccordionItemTreeTableComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemTreeTableComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'table' | 'importList' | 'propertyList'>, Omit<NormalizedTreeTableAccordionItem, 'kind'> {
-}
+export type NormalizedAccordionItemTreeTableComponentOptions = Readonly<Normalized<Omit<AccordionItemTreeTableComponentOptions, keyof AngularOptions | 'table' | 'importList' | 'propertyList'>> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions> & Omit<NormalizedTreeTableAccordionItem, 'kind'>
 
 export function NormalizeAccordionItemTreeTableComponentOptions(
   options: Readonly<AccordionItemTreeTableComponentOptions>,
@@ -199,7 +200,7 @@ function backendRule(normalizedOptions: NormalizedAccordionItemTreeTableComponen
 
   const { backend } = normalizedOptions;
 
-  switch (backend) {
+  switch (backend.kind) {
 
     case BackendTypes.NESTJS:
       return nestjsBackendRule(normalizedOptions);

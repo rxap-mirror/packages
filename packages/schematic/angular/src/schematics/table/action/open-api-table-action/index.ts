@@ -6,6 +6,7 @@ import { CoerceOpenApiTableActionRule } from '@rxap/schematics-ts-morph';
 import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
 import {
+  AngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
@@ -14,7 +15,7 @@ import { NormalizeTableActionOptions } from '../../table-action';
 import { OpenApiTableActionOptions } from './schema';
 
 export interface NormalizedOpenApiTableActionOptions
-  extends Readonly<Normalized<OpenApiTableActionOptions> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<OpenApiTableActionOptions, keyof AngularOptions>> & NormalizedAngularOptions> {
   body: boolean | Record<string, string>;
   parameters: boolean | Record<string, string>;
 }

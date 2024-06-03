@@ -9,6 +9,10 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import { BackendTypes } from '../../backend-types';
+import {
+  NormalizeBackendOptions,
+  NormalizedBackendOptions,
+} from '../../backend/backend-options';
 import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
@@ -28,11 +32,11 @@ export interface SelectFormControl extends FormFieldFormControl {
 }
 
 export interface NormalizedSelectFormControl
-  extends Readonly<Normalized<Omit<SelectFormControl, keyof NormalizedFormFieldFormControl | 'optionList'>>>,
+  extends Readonly<Normalized<Omit<SelectFormControl, keyof NormalizedFormFieldFormControl | 'optionList' | 'backend'>>>,
           NormalizedFormFieldFormControl {
   kind: FormControlKinds.SELECT;
   optionList: ReadonlyArray<ControlOption> | null;
-  backend: BackendTypes;
+  backend: NormalizedBackendOptions;
   upstream: NormalizedUpstreamOptions | null;
 }
 
@@ -75,7 +79,7 @@ export function NormalizeSelectFormControl(
     ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, multiple),
     kind: FormControlKinds.SELECT,
     optionList,
-    backend: control.backend ?? BackendTypes.NONE,
+    backend: NormalizeBackendOptions(control.backend ?? BackendTypes.NONE),
     multiple,
     upstream: NormalizeUpstreamOptions(control.upstream),
   });

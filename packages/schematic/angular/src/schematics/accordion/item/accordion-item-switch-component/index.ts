@@ -11,19 +11,22 @@ import {
   NormalizedBaseAccordionItem,
   NormalizedSwitchAccordionItem,
   NormalizeSwitchAccordionItem,
+  SwitchAccordionItem,
 } from '../../../../lib/accordion-item';
 import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
-import { NormalizedAngularOptions } from '../../../../lib/angular-options';
+import {
+  AngularOptions,
+  NormalizedAngularOptions,
+} from '../../../../lib/angular-options';
 import {
   NormalizeAccordionItemStandaloneComponentOptions,
-  NormalizedAccordionItemStandaloneComponentOptions,
+  NormalizedAccordionItemComponentOptions,
   printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
+import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
 import { AccordionItemSwitchComponentOptions } from './schema';
 
-export interface NormalizedAccordionItemSwitchComponentOptions
-  extends Omit<Readonly<Normalized<AccordionItemSwitchComponentOptions> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions>, 'switch' | 'importList' | 'propertyList'>, Omit<NormalizedSwitchAccordionItem, 'kind'> {
-}
+export type NormalizedAccordionItemSwitchComponentOptions = Readonly<Normalized<Omit<AccordionItemSwitchComponentOptions, keyof AngularOptions | keyof SwitchAccordionItem | keyof AccordionItemComponentOptions>> & NormalizedAngularOptions & NormalizedSwitchAccordionItem & NormalizedAccordionItemComponentOptions>
 
 export function NormalizeAccordionItemSwitchComponentOptions(
   options: Readonly<AccordionItemSwitchComponentOptions>,

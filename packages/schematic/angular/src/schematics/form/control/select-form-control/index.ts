@@ -28,19 +28,24 @@ import {
   ClassDeclaration,
   SourceFile,
 } from 'ts-morph';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
+import {
+  AngularOptions,
+  PrintAngularOptions,
+} from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import {
   NormalizedSelectFormControl,
   NormalizeSelectFormControl,
+  SelectFormControl,
 } from '../../../../lib/form/control/select-form-control';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,
 } from '../../form-control';
+import { FormControlOptions } from '../../form-control/schema';
 import { SelectFormControlOptions } from './schema';
 
-export type NormalizedSelectFormControlOptions = Readonly<Normalized<Omit<SelectFormControlOptions, 'optionList'>>>
+export type NormalizedSelectFormControlOptions = Readonly<Normalized<Omit<SelectFormControlOptions, keyof SelectFormControl | keyof FormControlOptions>>>
   & NormalizedFormControlOptions & NormalizedSelectFormControl;
 
 export function NormalizeSelectFormControlOptions(
@@ -249,7 +254,7 @@ function openApiBackendOptionsRule(normalizedOptions: NormalizedSelectFormContro
 
 function optionsRule(normalizedOptions: NormalizedSelectFormControlOptions): Rule {
   const { backend } = normalizedOptions;
-  switch (backend) {
+  switch (backend.kind) {
     case BackendTypes.LOCAL:
     case BackendTypes.NONE:
       return noneBackendOptionsRule(normalizedOptions);

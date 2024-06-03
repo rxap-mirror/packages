@@ -11,9 +11,10 @@ import {
   NormalizedOperationTableActionOptions,
   NormalizeOperationTableActionOptions,
 } from '../operation-table-action';
+import { OperationTableActionOptions } from '../operation-table-action/schema';
 import { NavigationTableActionOptions } from './schema';
 
-export type NormalizedNavigationTableActionOptions = Readonly<Normalized<NavigationTableActionOptions>>
+export type NormalizedNavigationTableActionOptions = Readonly<Normalized<Omit<NavigationTableActionOptions, keyof OperationTableActionOptions>>>
   & NormalizedOperationTableActionOptions;
 
 export function NormalizeNavigationTableActionOptions(

@@ -13,6 +13,7 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import {
+  AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -25,7 +26,7 @@ import { FormControlKinds } from '../../../lib/form/control/form-control-kind';
 import { FormControlOptions } from './schema';
 import 'colors';
 
-export type NormalizedFormControlOptions = Readonly<Normalized<Pick<FormControlOptions, 'formName'>>> & NonNullableSelected<NormalizedAngularOptions, 'controllerName'> & NormalizedFormControl;
+export type NormalizedFormControlOptions = NonNullableSelected<Readonly<Normalized<Omit<FormControlOptions, keyof AngularOptions>>> & NormalizedAngularOptions & NormalizedFormControl, 'controllerName'>;
 
 export function NormalizeFormControlOptions(
   options: Readonly<FormControlOptions>,

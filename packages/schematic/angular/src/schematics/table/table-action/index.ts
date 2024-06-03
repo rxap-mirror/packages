@@ -10,6 +10,7 @@ import {
 import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
 import {
+  AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -18,7 +19,7 @@ import { AssertTableComponentExists } from '../../../lib/assert-table-component-
 import { NormalizeTableRowAction } from '../../../lib/table-row-action';
 import { TableActionOptions } from './schema';
 
-export type NormalizedTableActionOptions = Readonly<Normalized<TableActionOptions>> & NormalizedAngularOptions;
+export type NormalizedTableActionOptions = Readonly<Normalized<Omit<TableActionOptions, keyof AngularOptions>>> & NormalizedAngularOptions;
 
 export function NormalizeTableActionOptions(
   options: Readonly<TableActionOptions>,

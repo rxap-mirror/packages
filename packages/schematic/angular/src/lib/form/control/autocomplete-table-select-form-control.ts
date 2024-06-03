@@ -5,6 +5,7 @@ import {
 import { CoerceArrayItems } from '@rxap/utilities';
 import { NormalizeAccordionIdentifier } from '../../accordion-identifier';
 import { BackendTypes } from '../../backend-types';
+import { NormalizeBackendOptions } from '../../backend/backend-options';
 import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
@@ -19,7 +20,7 @@ import {
 
 export type AutocompleteTableSelectFormControl = TableSelectFormControl
 
-export interface NormalizedAutocompleteTableSelectFormControl extends Omit<NormalizedTableSelectFormControl, 'kind'> {
+export interface NormalizedAutocompleteTableSelectFormControl extends Omit<Readonly<Omit<NormalizedTableSelectFormControl, keyof TableSelectFormControl> & NormalizedTableSelectFormControl>, 'kind'> {
   kind: FormControlKinds.AUTOCOMPLETE_TABLE_SELECT;
 }
 
@@ -70,7 +71,7 @@ export function NormalizeAutocompleteTableSelectFormControl(
     identifier,
     resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
     kind: FormControlKinds.AUTOCOMPLETE_TABLE_SELECT,
-    backend: control.backend ?? BackendTypes.NONE,
+    backend: NormalizeBackendOptions(control.backend ?? BackendTypes.NONE),
     title: control.title ?? null,
     columnList,
     toDisplay,

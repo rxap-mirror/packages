@@ -44,14 +44,16 @@ import {
   NormalizedTableSelectColumn,
   NormalizedTableSelectFormControl,
   NormalizeTableSelectFormControl,
+  TableSelectFormControl,
 } from '../../../../lib/form/control/table-select-form-control';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,
 } from '../../form-control';
+import { FormControlOptions } from '../../form-control/schema';
 import { AutocompleteTableSelectFormControlOptions } from './schema';
 
-export type NormalizedTableSelectFormControlOptions = NonNullableSelected<Readonly<Normalized<Omit<AutocompleteTableSelectFormControlOptions, 'columnList' | 'propertyList'>>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl, 'controllerName'>
+export type NormalizedTableSelectFormControlOptions = NonNullableSelected<Readonly<Normalized<Omit<AutocompleteTableSelectFormControlOptions, keyof FormControlOptions | keyof TableSelectFormControl>>> & NormalizedFormControlOptions & NormalizedTableSelectFormControl, 'controllerName'>
 
 export function NormalizeTableSelectFormControlOptions(
   options: AutocompleteTableSelectFormControlOptions,

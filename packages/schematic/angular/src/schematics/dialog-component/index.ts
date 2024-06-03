@@ -7,6 +7,7 @@ import {
 import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
 import {
+  AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
@@ -19,7 +20,7 @@ import { ToTitle } from '../../lib/to-title';
 import { DialogComponentOptions } from './schema';
 
 interface NormalizedDialogComponentOptions
-  extends Omit<Readonly<Normalized<DialogComponentOptions> & NormalizedAngularOptions>, 'actionList'> {
+  extends Readonly<Normalized<Omit<DialogComponentOptions, keyof AngularOptions | 'actionList'>> & NormalizedAngularOptions> {
   actionList: ReadonlyArray<NormalizedDialogAction>;
 }
 

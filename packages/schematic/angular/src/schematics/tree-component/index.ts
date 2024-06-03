@@ -6,6 +6,7 @@ import {
 } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 import {
+  AngularOptions,
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
@@ -13,7 +14,7 @@ import {
 import { TreeComponentOptions } from './schema';
 
 export interface NormalizedTreeComponentOptions
-  extends Readonly<Normalized<TreeComponentOptions> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<TreeComponentOptions, keyof AngularOptions>> & NormalizedAngularOptions> {
   name: string;
   controllerName: string;
   componentName: string;
