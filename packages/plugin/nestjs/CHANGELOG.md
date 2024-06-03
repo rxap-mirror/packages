@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.0.3...@rxap/plugin-nestjs@19.0.4-dev.0) (2024-06-03)
+
+### Bug Fixes
+
+- add bas docker file migration ([89be207](https://gitlab.com/rxap/packages/commit/89be2072351192992ddd3ae8cd793438b4625ba8))
+- add generate-open-api as dep for test ([02671da](https://gitlab.com/rxap/packages/commit/02671da8a6e8f82c2329710a693eca5e9d63e99f))
+
 ## [19.0.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.0.3-dev.1...@rxap/plugin-nestjs@19.0.3) (2024-06-02)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs
