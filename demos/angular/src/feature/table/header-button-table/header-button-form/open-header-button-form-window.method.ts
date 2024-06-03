@@ -1,10 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Injector,
-  INJECTOR,
-  Optional,
-} from '@angular/core';
+import { Inject, Injectable, Injector, INJECTOR, Optional } from '@angular/core';
 import {
   FormWindowOptions,
   FormWindowService,
@@ -19,17 +13,17 @@ export class OpenHeaderButtonFormWindowMethod extends OpenFormWindowMethod<IHead
   constructor(
     @Inject(FormWindowService) formWindowService: FormWindowService,
     @Inject(INJECTOR)
-    injector: Injector,
+      injector: Injector,
     @Optional()
     @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS)
-    defaultOptions: FormWindowOptions<IHeaderButtonForm> | null = null
+      defaultOptions: FormWindowOptions<IHeaderButtonForm> | null = null,
   ) {
     super(
       formWindowService,
       HeaderButtonForm,
       injector,
       HeaderButtonFormComponent,
-      defaultOptions
+      defaultOptions,
     );
   }
 }

@@ -17,8 +17,8 @@ export class ComplexCompanyForm implements FormType<IComplexCompanyForm> {
   @UseFormControl()
   public readonly name!: RxapFormControl<string>;
   @UseFormControl({
-    validators: [RxapValidators.IsUrl()],
-  })
+      validators: [RxapValidators.IsUrl()]
+    })
   public readonly link!: RxapFormControl<string>;
 
   @UseOptionsDataSource(CompanyTypeOptionsDataSource)

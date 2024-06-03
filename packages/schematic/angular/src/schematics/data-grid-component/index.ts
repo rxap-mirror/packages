@@ -107,7 +107,6 @@ function componentRule(normalizedOptions: NormalizedDataGridComponentOptions) {
     project,
     feature,
     directory,
-    mode,
     componentName,
     overwrite,
     collection,

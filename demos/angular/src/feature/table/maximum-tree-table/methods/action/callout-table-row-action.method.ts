@@ -8,12 +8,12 @@ import { IMaximumTreeTable } from '../../maximum-tree-table';
 
 @Injectable()
 @TableActionMethod({
-  type: 'callout',
-  refresh: false,
-  confirm: false,
-  priority: 0,
-  tooltip: $localize`Callout`,
-})
+      type: 'callout',
+      refresh: false,
+      confirm: false,
+      priority: 0,
+      tooltip: $localize`Callout`
+    })
 export class CalloutTableRowActionMethod
   implements Method, TableRowActionTypeMethod<IMaximumTreeTable>
 {

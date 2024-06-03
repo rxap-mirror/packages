@@ -1,10 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Injector,
-  INJECTOR,
-  Optional,
-} from '@angular/core';
+import { Inject, Injectable, Injector, INJECTOR, Optional } from '@angular/core';
 import {
   FormWindowOptions,
   FormWindowService,
@@ -19,17 +13,17 @@ export class OpenMaximumTreeFormWindowMethod extends OpenFormWindowMethod<IMaxim
   constructor(
     @Inject(FormWindowService) formWindowService: FormWindowService,
     @Inject(INJECTOR)
-    injector: Injector,
+      injector: Injector,
     @Optional()
     @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS)
-    defaultOptions: FormWindowOptions<IMaximumTreeForm> | null = null
+      defaultOptions: FormWindowOptions<IMaximumTreeForm> | null = null,
   ) {
     super(
       formWindowService,
       MaximumTreeForm,
       injector,
       MaximumTreeFormComponent,
-      defaultOptions
+      defaultOptions,
     );
   }
 }

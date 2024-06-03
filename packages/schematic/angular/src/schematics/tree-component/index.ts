@@ -48,6 +48,8 @@ export default function (options: TreeComponentOptions) {
   } =
     normalizedOptions;
 
+
+
   return () => {
     return chain([
       CoerceTreeOperationRule({

@@ -8,12 +8,12 @@ import { IMaximumTreeTable } from '../../maximum-tree-table';
 
 @Injectable()
 @TableActionMethod({
-  type: 'refresh',
-  refresh: true,
-  confirm: false,
-  priority: 0,
-  tooltip: $localize`Refresh`,
-})
+      type: 'refresh',
+      refresh: true,
+      confirm: false,
+      priority: 0,
+      tooltip: $localize`Refresh`
+    })
 export class RefreshTableRowActionMethod
   implements Method, TableRowActionTypeMethod<IMaximumTreeTable>
 {

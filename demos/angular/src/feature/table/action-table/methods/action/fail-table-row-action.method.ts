@@ -8,13 +8,13 @@ import { IActionTable } from '../../action-table';
 
 @Injectable()
 @TableActionMethod({
-  type: 'fail',
-  refresh: false,
-  confirm: false,
-  priority: 0,
-  tooltip: $localize`Fail`,
-  errorMessage: 'Failure',
-})
+      type: 'fail',
+      refresh: false,
+      confirm: false,
+      priority: 0,
+      tooltip: $localize`Fail`,
+      errorMessage: 'Failure'
+    })
 export class FailTableRowActionMethod
   implements Method, TableRowActionTypeMethod<IActionTable>
 {

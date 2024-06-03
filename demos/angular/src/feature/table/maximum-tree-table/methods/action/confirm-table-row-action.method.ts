@@ -8,13 +8,13 @@ import { IMaximumTreeTable } from '../../maximum-tree-table';
 
 @Injectable()
 @TableActionMethod({
-  type: 'confirm',
-  refresh: false,
-  confirm: true,
-  priority: 0,
-  tooltip: $localize`Confirm`,
-  successMessage: 'Success',
-})
+      type: 'confirm',
+      refresh: false,
+      confirm: true,
+      priority: 0,
+      tooltip: $localize`Confirm`,
+      successMessage: 'Success'
+    })
 export class ConfirmTableRowActionMethod
   implements Method, TableRowActionTypeMethod<IMaximumTreeTable>
 {
