@@ -191,7 +191,7 @@
     "typedoc-plugin-rename-defaults": "0.7.0",
     "typedoc-theme-hierarchy": "3.2.1",
     "typescript": "5.4.5",
-    "verdaccio": "5.21.2"
+    "verdaccio": "5.31.0"
   },
   "engines": {
     "yarn": "1.22 || 3.6",
