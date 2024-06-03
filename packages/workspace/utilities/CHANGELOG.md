@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.2.0-dev.0...@rxap/workspace-utilities@19.2.0-dev.1) (2024-06-03)
+
+**Note:** Version bump only for package @rxap/workspace-utilities
+
 # [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.1.0...@rxap/workspace-utilities@19.2.0-dev.0) (2024-06-02)
 
 ### Features
