@@ -506,7 +506,7 @@
       },
       {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.1-dev.0"
+        "version": "19.0.1-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -522,7 +522,7 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.0.2"
+        "version": "18.0.3-dev.0"
       },
       {
         "package": "@rxap/schematic-composer",
@@ -538,7 +538,7 @@
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.0.2"
+        "version": "18.0.3-dev.0"
       },
       {
         "package": "@rxap/schematics-utilities",
@@ -606,7 +606,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.0"
+        "version": "19.2.0-dev.1"
       },
       {
         "package": "@rxap/xml-parser",
