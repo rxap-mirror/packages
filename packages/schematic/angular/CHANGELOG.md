@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.0.3-dev.0...@rxap/schematic-angular@18.0.3-dev.1) (2024-06-04)
+
+### Bug Fixes
+
+- sort operation parameters ([22e54c5](https://gitlab.com/rxap/packages/commit/22e54c59ec67d6c657f26f7284143f36e5fc0928))
+
 ## [18.0.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.0.2...@rxap/schematic-angular@18.0.3-dev.0) (2024-06-03)
 
 **Note:** Version bump only for package @rxap/schematic-angular

@@ -6,7 +6,7 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/workspace-ts-morph": "^19.0.2"
+    "@rxap/workspace-ts-morph": "^19.1.0-dev.0"
   },
   "author": {
     "name": "Merzough Münker",

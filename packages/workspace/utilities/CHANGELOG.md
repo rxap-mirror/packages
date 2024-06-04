@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.2.0-dev.1...@rxap/workspace-utilities@19.2.0-dev.2) (2024-06-04)
+
+### Features
+
+- add GetLibraryPathAliasName ([6587bec](https://gitlab.com/rxap/packages/commit/6587bec16c1766d67ebece7af735468ac94027e6))
+
 # [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.2.0-dev.0...@rxap/workspace-utilities@19.2.0-dev.1) (2024-06-03)
 
 **Note:** Version bump only for package @rxap/workspace-utilities
