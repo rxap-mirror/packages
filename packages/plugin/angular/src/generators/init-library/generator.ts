@@ -1,3 +1,4 @@
+import { de } from '@faker-js/faker';
 import {
   formatFiles,
   getProjects,
@@ -57,6 +58,11 @@ export async function initLibraryGenerator(
   options.projects ??= [];
   if (options.project) {
     CoerceArrayItems(options.projects, [options.project]);
+  }
+  if (options.indexExport !== undefined) {
+    options.targets ??= {};
+    options.targets.indexExport = options.indexExport;
+    delete options.indexExport;
   }
   console.log('angular library init generator:', options);
 

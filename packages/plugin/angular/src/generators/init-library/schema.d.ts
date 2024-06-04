@@ -5,7 +5,13 @@ export interface InitLibraryGeneratorSchema {
   projects?: string[];
   overwrite?: boolean;
   skipProjects?: boolean;
+  /**
+   * @deprecated use `targets.indexExport` instead
+   */
   indexExport?: boolean;
   coerce?: boolean | Omit<AngularLibraryGeneratorSchema, 'name'>;
   skipFormat?: boolean;
+  targets?: {
+    indexExport?: boolean;
+  }
 }

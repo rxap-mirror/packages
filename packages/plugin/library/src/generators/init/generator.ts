@@ -41,6 +41,11 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   if (options.project) {
     CoerceArrayItems(options.projects, [ options.project ]);
   }
+  if (options.indexExport !== undefined) {
+    options.targets ??= {};
+    options.targets.indexExport = options.indexExport;
+    delete options.indexExport;
+  }
   console.log('library init generator:', options);
 
   initWorkspace(tree, options);

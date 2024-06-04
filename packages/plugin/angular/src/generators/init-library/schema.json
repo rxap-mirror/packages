@@ -29,6 +29,7 @@
     },
     "indexExport": {
       "type": "boolean",
+      "deprecated": true,
       "default": true,
       "description": "Whether to add the index-export target to the library"
     },
@@ -221,6 +222,19 @@
           }
         }
       ]
+    },
+    "targets": {
+      "type": "object",
+      "properties": {
+        "fixDependencies": {
+          "type": "boolean",
+          "description": "If set to false the target fix-dependencies will not be added to the project"
+        },
+        "indexExport": {
+          "type": "boolean",
+          "description": "If set to false the target index-export will not be added to the project"
+        }
+      }
     }
   },
   "required": []

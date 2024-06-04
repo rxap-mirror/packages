@@ -29,7 +29,6 @@
     },
     "indexExport": {
       "type": "boolean",
-      "default": true,
       "description": "Whether to add the index-export target to the library"
     },
     "targets": {
@@ -37,8 +36,11 @@
       "properties": {
         "fixDependencies": {
           "type": "boolean",
-          "default": true,
           "description": "If set to false the target fix-dependencies will not be added to the project"
+        },
+        "indexExport": {
+          "type": "boolean",
+          "description": "If set to false the target index-export will not be added to the project"
         }
       }
     }
