@@ -73,17 +73,19 @@ export function CoerceDataSourceClass(sourceFile: SourceFile, options: CoerceDat
     name,
     coerceDecorator = CoerceRxapDataSourceDecorator,
     coerceExtends = CoerceExtendsBaseDataSource,
-    decorator = {
-      name: 'RxapDataSource',
-      moduleSpecifier: '@rxap/data-source',
-    },
   } = options;
 
+  // the option object will be used in hooks. so it is required to modify the object directly to keep the reference
+  // intact instead of using the object destruction
   options.extends ??= {
     name: 'BaseDataSource',
     moduleSpecifier: '@rxap/data-source',
   };
-  decorator.argument ??= w => w.quote(options.name);
+  options.decorator ??= {
+    name: 'RxapDataSource',
+    moduleSpecifier: '@rxap/data-source',
+  };
+  options.decorator.argument ??= w => w.quote(options.name);
 
   const className = classify(CoerceSuffix(
     name,
