@@ -446,7 +446,7 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.0.1"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/plugin-application",
@@ -458,7 +458,7 @@
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.1"
+        "version": "19.0.2-dev.0"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -474,7 +474,7 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.2.0-dev.0"
+        "version": "19.2.0-dev.1"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -490,7 +490,7 @@
       },
       {
         "package": "@rxap/plugin-storybook",
-        "version": "19.0.1"
+        "version": "19.0.2-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
@@ -506,7 +506,7 @@
       },
       {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.1-dev.1"
+        "version": "19.0.1-dev.2"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -522,7 +522,7 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/schematic-composer",
@@ -538,7 +538,7 @@
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/schematics-utilities",
@@ -574,7 +574,7 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.3.0"
+        "version": "1.3.1-dev.0"
       },
       {
         "package": "@rxap/upload",
@@ -602,11 +602,11 @@
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "19.0.2"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.1"
+        "version": "19.2.0-dev.2"
       },
       {
         "package": "@rxap/xml-parser",
