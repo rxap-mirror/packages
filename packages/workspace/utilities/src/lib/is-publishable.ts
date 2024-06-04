@@ -9,5 +9,8 @@ import {
 
 export function IsPublishable(tree: TreeLike, project: ProjectConfiguration) {
   const treeAdapter = new TreeAdapter(tree);
-  return IsBuildable(project) && treeAdapter.exists(join(project.root, 'package.json')) && treeAdapter.readJson<PackageJson>(join(project.root, 'package.json'))!.private !== true;
+  if (!IsBuildable(project) || !treeAdapter.exists(join(project.root, 'package.json'))) {
+    return false;
+  }
+  return !treeAdapter.readJson<PackageJson>(join(project.root, 'package.json'))!.private;
 }

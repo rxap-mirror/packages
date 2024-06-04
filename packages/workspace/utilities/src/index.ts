@@ -75,6 +75,7 @@ export * from './lib/delete-target';
 export * from './lib/generators';
 export * from './lib/get-build-output-for-project';
 export * from './lib/get-default-generator-options';
+export * from './lib/get-library-path-alias-name';
 export * from './lib/get-nx-version';
 export * from './lib/get-project';
 export * from './lib/get-root-docker-options';
