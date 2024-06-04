@@ -104,6 +104,16 @@ function executeSchematicCommandFile(
   const ruleList: Rule[] = [];
 
   for (const command of schematicCommandList) {
+    if (!command.package) {
+      throw new SchematicsException('The package name is required in the schematic command file!');
+    }
+    if (!command.name) {
+      throw new SchematicsException('The name is required in the schematic command file!');
+    }
+    command.options ??= {};
+    if (typeof command.options !== 'object') {
+      throw new SchematicsException('The options must be an object!');
+    }
     console.log(`Prepare schematic execution '${ command.package }:${ command.name }'`.grey);
     const options: { feature?: string, directory?: string, project?: string, overwrite?: boolean | string[] } & Record<string, any> = {
       ...globalOptions,
