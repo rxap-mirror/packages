@@ -17,13 +17,13 @@ export interface NestJsBackendOptions extends BaseBackendOptions {
 export interface NormalizedNestJsBackendOptions
   extends Readonly<Normalized<Omit<NestJsBackendOptions, keyof BaseBackendOptions>> & NormalizedBaseBackendOptions> {
   kind: BackendTypes.NESTJS;
-  project: string;
+  project: string | null;
 }
 
 export function NormalizeNestJsBackendOptions(options: NestJsBackendOptions, backendContext?: BackendContext): NormalizedNestJsBackendOptions {
   return {
     ...NormalizeBaseBackendOptions(options, backendContext),
     kind: BackendTypes.NESTJS,
-    project: options.project ?? 'shared',
+    project: options.project ?? null,
   };
 }

@@ -568,7 +568,7 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
     operationName: options.operationName,
     path: options.path ?? null,
     returnType: options.returnType ?? 'void',
-    isAsync: options.isAsync ?? false,
+    isAsync: options.isAsync ?? true,
     method: options.method ?? 'get',
     body: options.body ?? null,
     statements: options.statements ?? null,
@@ -709,12 +709,28 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
   ], (a, b) => a.name === b.name);
 
   methodDeclaration.getParameters().forEach(p => p.remove());
-  for (const parameter of existingParameters.sort((a, b) => {
-    if (a.hasQuestionToken && b.hasQuestionToken) {
-      return 0;
+
+  function sortByName(a: OptionalKind<ParameterDeclarationStructure>, b: OptionalKind<ParameterDeclarationStructure>) {
+    if (a.name < b.name) {
+      return -1;
     }
-    return a.hasQuestionToken ? 1 : -1;
-  })) {
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function sortByOptional(a: OptionalKind<ParameterDeclarationStructure>, b: OptionalKind<ParameterDeclarationStructure>) {
+    if (a.hasQuestionToken && !b.hasQuestionToken) {
+      return 1;
+    }
+    if (!a.hasQuestionToken && b.hasQuestionToken) {
+      return -1;
+    }
+    return 0;
+  }
+
+  for (const parameter of existingParameters.sort(sortByName).sort(sortByOptional)) {
     methodDeclaration.addParameter(parameter);
   }
   // endregion
