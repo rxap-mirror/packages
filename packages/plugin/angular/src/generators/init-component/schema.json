@@ -77,7 +77,7 @@
     "style": {
       "description": "The file extension or preprocessor to use for style files, or `none` to skip generating the style file.",
       "type": "string",
-      "default": "css",
+      "default": "scss",
       "enum": ["css", "scss", "sass", "less", "none"]
     },
     "skipTests": {

@@ -94,7 +94,7 @@ export async function initComponentGenerator(
   }
 
   if (!tree.exists(join(path, componentFileName + '.cy.ts')) && HasTarget(tree, options.project, 'component-test')) {
-    componentTestGenerator(tree, {
+    await componentTestGenerator(tree, {
       project: options.project,
       componentName,
       componentDir: componentPath,
