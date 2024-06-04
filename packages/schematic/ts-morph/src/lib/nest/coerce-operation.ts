@@ -3,29 +3,32 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import {
-  classify,
-  OverwriteOptions,
-} from '@rxap/schematics-utilities';
-import {
   CoerceImports,
   CoerceNestModuleImport,
   CoerceNestModuleProvider,
+  CoerceNestOperation,
   CoerceOperationParamList,
   CoercePropertyDeclaration,
   IsNormalizedOpenApiUpstreamOptions,
   NormalizedUpstreamOptions,
   OperationIdToCommandClassImportPath,
   OperationIdToCommandClassName,
+  CoerceOperationOptions as NEW_CoerceOperationOptions,
+  OperationParameter,
 } from '@rxap/ts-morph';
 import {
   camelize,
+  classify,
   coerceArray,
   CoercePrefix,
   CoerceSuffix,
   dasherize,
   noop,
 } from '@rxap/utilities';
-import { TsMorphNestProjectTransformOptions } from '@rxap/workspace-ts-morph';
+import {
+  OverwriteOptions,
+  TsMorphNestProjectTransformOptions,
+} from '@rxap/workspace-ts-morph';
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -36,11 +39,6 @@ import {
   Writers,
 } from 'ts-morph';
 import { TsMorphNestProjectTransformRule } from '../ts-morph-transform';
-import {
-  AddOperationToController,
-  OperationOptions,
-  OperationParameter,
-} from './add-operation-to-controller';
 import { BuildNestControllerName } from './build-nest-controller-name';
 import {
   CoerceDtoClass,
@@ -63,7 +61,7 @@ export interface CoerceOperationOptions<Options = Record<string, any>> extends T
     controllerName: string,
     moduleSourceFile: SourceFile,
     dto: CoerceDtoClassOutput | null,
-  ) => Partial<OperationOptions>,
+  ) => Partial<NEW_CoerceOperationOptions>,
   operationName: string,
   path?: string,
   controllerPath?: string,
@@ -210,7 +208,7 @@ export function CoerceOperationDtoClass(
   return dto;
 }
 
-export type TransformOperation<T = void> = (operationOptions: OperationOptions) => T;
+export type TransformOperation<T = void> = (operationOptions: NEW_CoerceOperationOptions) => T;
 
 export function BuiltDtoDataMapperImplementation(
   classDeclaration: ClassDeclaration,
@@ -250,7 +248,7 @@ export function BuildDtoReturnImplementation(
   dto: CoerceDtoClassOutput | null,
   options: Readonly<CoerceOperationOptions>,
 ): TransformOperation {
-  return (operationOptions: OperationOptions) => {
+  return (operationOptions: NEW_CoerceOperationOptions) => {
     const {
       isArray,
       isReturnVoid = !dto,
@@ -328,7 +326,7 @@ export function CoerceUpstreamDefaultOperationImplementation(
   dto: CoerceDtoClassOutput | null,
   options: Readonly<CoerceOperationOptions>,
 ): TransformOperation {
-  return (operationOptions: OperationOptions) => {
+  return (operationOptions: NEW_CoerceOperationOptions) => {
     const {
       upstream,
       buildDtoReturnImplementation = BuildDtoReturnImplementation,
@@ -439,7 +437,7 @@ export function CoerceOperation<Options = Record<string, any>>(options: CoerceOp
         });
       }
 
-      let operationOptions: OperationOptions = {};
+      let operationOptions: NEW_CoerceOperationOptions = { operationName };
 
       coerceUpstreamOperationImplementation(classDeclaration, moduleSourceFile, dto, options as any)(operationOptions);
 
@@ -466,10 +464,8 @@ export function CoerceOperation<Options = Record<string, any>>(options: CoerceOp
 
       CoerceOperationParamList(paramList, classDeclaration);
 
-      AddOperationToController(
+      CoerceNestOperation(
         controllerSourceFile,
-        classDeclaration,
-        operationName,
         {
           isAsync: true,
           paramList,

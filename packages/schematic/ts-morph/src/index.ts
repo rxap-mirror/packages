@@ -24,7 +24,6 @@ export * from './lib/nest/add-nest-module-import';
 export * from './lib/nest/add-nest-module-provider';
 export * from './lib/nest/add-nest-module-to-app-module';
 export * from './lib/nest/add-nest-provider-to-array';
-export * from './lib/nest/add-operation-to-controller';
 export * from './lib/nest/assert-nest-project';
 export * from './lib/nest/build-nest-base-path';
 export * from './lib/nest/build-nest-controller-name';

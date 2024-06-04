@@ -11,6 +11,7 @@ import {
   OperationIdToResponseClassName,
   OperationParameter,
   TypeImport,
+  CoerceOperationOptions as NEW_CoerceOperationOptions,
 } from '@rxap/ts-morph';
 import {
   coerceArray,
@@ -27,7 +28,6 @@ import {
 } from 'ts-morph';
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
 import { WriteType } from '../ts-morph/write-type';
-import { OperationOptions } from './add-operation-to-controller';
 import { CoerceDtoClassOutput } from './coerce-dto-class';
 import {
   BuildOperationDtoClassName,
@@ -57,7 +57,7 @@ export interface CoerceGetPageOperationOptions
     moduleSourceFile: SourceFile,
     pageClassName: string,
     rowClassName: string,
-  ) => Partial<OperationOptions>;
+  ) => Partial<NEW_CoerceOperationOptions>;
   /**
    * the name of the property used as row id value. defaults to the value 'uuid'. If null the __rowId property will be
    * set to the absolute row index absolute row index = page * pageSize + rowIndex

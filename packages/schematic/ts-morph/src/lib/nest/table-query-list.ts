@@ -1,4 +1,4 @@
-import { OperationParameter } from './add-operation-to-controller';
+import { OperationParameter } from '@rxap/ts-morph';
 
 export const TABLE_QUERY_LIST: OperationParameter[] = [
   {

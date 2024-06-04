@@ -1,6 +1,7 @@
 import {
   camelize,
   capitalize,
+  CoerceArrayItems,
 } from '@rxap/utilities';
 import {
   ClassDeclaration,
@@ -22,6 +23,7 @@ import { CoerceDecorator } from '../coerce-decorator';
 import { CoerceImports } from '../coerce-imports';
 import { CoerceStatements } from '../coerce-statements';
 import { DataProperty } from '../data-property';
+import { OverwriteOptions } from '../overwrite-options';
 import { TypeImport } from '../type-import';
 import { WriteType } from '../write-type';
 import { GetControllerClass } from './get-controller-class';
@@ -69,19 +71,20 @@ export interface CoerceOperationOptions {
   body?: string | WriterFunction,
   statements?: (string | WriterFunction | StatementStructures)[] | string | WriterFunction;
   decorators?: OptionalKind<DecoratorStructure>[];
+  overwrite?: OverwriteOptions;
 }
 
-function buildMethodQueryParameters(
+export function BuildMethodQueryParameters(
   queryList: OperationParameter[],
   sourceFile: SourceFile,
 ): Array<OptionalKind<ParameterDeclarationStructure>> {
   if (queryList.length) {
     return queryList.map(query => {
       if (query.defaultValue ===
-        undefined) {
+          undefined) {
         return query;
       }
-      CoerceImports(sourceFile, {
+      CoerceImports(sourceFile,{
         namedImports: [ 'DefaultValuePipe' ],
         moduleSpecifier: '@nestjs/common',
       });
@@ -109,7 +112,7 @@ function buildMethodQueryParameters(
       required,
       defaultValue,
       pipeList = [],
-      isArray,
+      isArray
     }) => ({
       name: alias ?? name,
       type: WriteType({ type: type ?? 'unknown', isArray: isArray }, sourceFile),
@@ -138,19 +141,21 @@ function buildMethodQueryParameters(
   return [];
 }
 
-function buildMethodParamParameters(
+export function BuildMethodParamParameters(
   paramList: OperationParameter[],
   sourceFile: SourceFile,
 ): Array<OptionalKind<ParameterDeclarationStructure>> {
   if (paramList.length) {
-    return paramList.map(param => ({
-      name: param.alias ??
-        param.name,
-      type: WriteType({ type: param.type ?? 'unknown', isArray: param.isArray }, sourceFile),
+    return paramList.map(({ alias, name, type }) => ({
+      name: alias ?? name,
+      type: type ? WriteType({
+        type: type,
+        isArray: false
+      }, sourceFile) : undefined,
       decorators: [
         {
           name: 'Param',
-          arguments: [ w => w.quote(param.name) ],
+          arguments: [ w => w.quote(name) ],
         },
       ],
     }));
@@ -158,7 +163,7 @@ function buildMethodParamParameters(
   return [];
 }
 
-function buildMethodBodyParameters(body: string | WriterFunction | undefined): Array<OptionalKind<ParameterDeclarationStructure>> {
+export function BuildMethodBodyParameters(body: string | WriterFunction | undefined): Array<OptionalKind<ParameterDeclarationStructure>> {
   if (body) {
     return [
       {
@@ -176,7 +181,7 @@ function buildMethodBodyParameters(body: string | WriterFunction | undefined): A
   return [];
 }
 
-function coerceApiQueryDecorators(queryList: OperationParameter[], methodDeclaration: MethodDeclaration) {
+export function CoerceApiQueryDecorators(queryList: OperationParameter[], methodDeclaration: MethodDeclaration) {
 
   for (const query of queryList) {
 
@@ -326,18 +331,28 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
     {
       scope: Scope.Public,
       isAsync,
-      parameters: [
-        ...buildMethodQueryParameters(queryList, sourceFile),
-        ...buildMethodParamParameters(paramList, sourceFile),
-        ...buildMethodBodyParameters(body),
-      ].sort((a, b) => {
-        if (a.hasQuestionToken && b.hasQuestionToken) {
-          return 0;
-        }
-        return a.hasQuestionToken ? 1 : -1;
-      }),
     },
   );
+
+  // region coerce parameters
+  const existingParameters: OptionalKind<ParameterDeclarationStructure>[] = methodDeclaration.getParameters().map(p => p.getStructure());
+
+  CoerceArrayItems(existingParameters, [
+    ...BuildMethodQueryParameters(queryList, sourceFile),
+    ...BuildMethodParamParameters(paramList, sourceFile),
+    ...BuildMethodBodyParameters(body),
+  ], (a, b) => a.name === b.name);
+
+  methodDeclaration.getParameters().forEach(p => p.remove());
+  for (const parameter of existingParameters.sort((a, b) => {
+    if (a.hasQuestionToken && b.hasQuestionToken) {
+      return 0;
+    }
+    return a.hasQuestionToken ? 1 : -1;
+  })) {
+    methodDeclaration.addParameter(parameter);
+  }
+  // endregion
 
   if (returnType) {
     if (isAsync) {
@@ -361,12 +376,15 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
     CoerceDecorator(methodDeclaration, decorator.name, decorator);
   });
 
-  CoerceDecorator(methodDeclaration, method, { arguments: path ? [ w => w.quote(path!) ] : [] })
-    .set({ arguments: path ? [ w => w.quote(path!) ] : [] });
-  coerceApiQueryDecorators(queryList, methodDeclaration);
+  const methodDecorator = CoerceDecorator(methodDeclaration, method, { arguments: path ? [ w => w.quote(path!) ] : [] });
+  if (options.overwrite) {
+    methodDecorator.set({ arguments: path ? [ w => w.quote(path!) ] : [] });
+  }
+  CoerceApiQueryDecorators(queryList, methodDeclaration);
   CoerceStatements(
     methodDeclaration,
     statements,
+    Array.isArray(options.overwrite) ? options.overwrite.includes('statements') : options.overwrite ?? false,
   );
 
   CoerceImports(sourceFile, importStructures);
