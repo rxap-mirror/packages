@@ -1,4 +1,9 @@
-import { TypeNames } from '@rxap/ts-morph';
+import {
+  CoerceDtoClassOutput,
+  CoerceOperationOptions as NEW_CoerceOperationOptions,
+  TransformOperation,
+  TypeNames,
+} from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
   noop,
@@ -8,15 +13,10 @@ import {
   SourceFile,
   WriterFunction,
 } from 'ts-morph';
-import { CoerceDtoClassOutput } from './coerce-dto-class';
 import {
   CoerceGetByIdControllerOptions,
   CoerceGetByIdOperation,
 } from './coerce-get-by-id-operation';
-import {
-  CoerceOperationOptions,
-  TransformOperation,
-} from './coerce-operation';
 import { TABLE_QUERY_LIST } from './table-query-list';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -27,7 +27,7 @@ export function BuildGetRootDtoDataMapperImplementation(
   classDeclaration: ClassDeclaration,
   moduleSourceFile: SourceFile,
   dto: CoerceDtoClassOutput | null,
-  options: Readonly<CoerceOperationOptions>,
+  options: Readonly<NEW_CoerceOperationOptions>,
 ): TransformOperation<string | WriterFunction> {
   const {
     isArray,
@@ -79,7 +79,7 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
 
       return {
         queryList: TABLE_QUERY_LIST,
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile, dto),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile, dto, options),
       };
     },
   });

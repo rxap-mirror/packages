@@ -9,7 +9,7 @@ import {
   BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
-  CoerceDtoClass,
+
   CoerceFormSubmitOperation,
   CoerceFormTableActionRule,
   CoerceImports,
@@ -48,6 +48,7 @@ import {
 } from '../operation-table-action';
 import { OperationTableActionOptions } from '../operation-table-action/schema';
 import { FormTableActionOptions } from './schema';
+import { CoerceDtoClass } from '@rxap/ts-morph';
 
 export interface NormalizedFormTableActionOptions
   extends Omit<Readonly<Normalized<Omit<FormTableActionOptions, keyof OperationTableActionOptions>> & NormalizedOperationTableActionOptions>, 'formOptions'> {

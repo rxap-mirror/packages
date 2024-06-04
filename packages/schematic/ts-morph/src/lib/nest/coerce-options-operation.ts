@@ -15,11 +15,11 @@ import {
   WriterFunction,
 } from 'ts-morph';
 import { AbstractControl } from '../types/abstract-control';
-import { CoerceDtoClassOutput } from './coerce-dto-class';
+import { CoerceOperationOptions as NEW_CoerceOperationOptions, TransformOperation, CoerceDtoClassOutput } from '@rxap/ts-morph';
 import {
   CoerceOperation,
   CoerceOperationOptions,
-  TransformOperation,
+
 } from './coerce-operation';
 
 export interface CoerceOptionsOperationRuleOptions extends CoerceOperationOptions {
@@ -31,7 +31,7 @@ export function BuildOptionsDtoDataMapperImplementation(
   classDeclaration: ClassDeclaration,
   moduleSourceFile: SourceFile,
   dto: CoerceDtoClassOutput | null,
-  options: Readonly<CoerceOperationOptions>,
+  options: Readonly<NEW_CoerceOperationOptions>,
 ): TransformOperation<string | WriterFunction> {
   const {
     isArray,

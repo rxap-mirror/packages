@@ -11,7 +11,6 @@ import {
   OperationIdToResponseClassName,
   OperationParameter,
   TypeImport,
-  CoerceOperationOptions as NEW_CoerceOperationOptions,
 } from '@rxap/ts-morph';
 import {
   coerceArray,
@@ -28,13 +27,13 @@ import {
 } from 'ts-morph';
 import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
 import { WriteType } from '../ts-morph/write-type';
-import { CoerceDtoClassOutput } from './coerce-dto-class';
+import { CoerceOperationOptions as NEW_CoerceOperationOptions, BuildOperationDtoClassName, CoerceDtoClassOutput, CoerceUpstreamBasicOperationImplementation,
+  TransformOperation, } from '@rxap/ts-morph';
 import {
-  BuildOperationDtoClassName,
+
   CoerceOperation,
   CoerceOperationOptions,
-  CoerceUpstreamBasicOperationImplementation,
-  TransformOperation,
+
 } from './coerce-operation';
 import {
   BuildPageDtoClassName,
@@ -44,7 +43,7 @@ import {
   BuildRowDtoClassName,
   CoerceRowDtoClass,
 } from './coerce-row-dto-class';
-import { DtoClassProperty } from './dto-class-property';
+import { DtoClassProperty } from '@rxap/ts-morph';
 import { TABLE_QUERY_LIST } from './table-query-list';
 
 export interface CoerceGetPageOperationOptions
@@ -477,7 +476,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
 
   }
 
-  return CoerceOperation<CoerceGetPageOperationOptions>({
+  return CoerceOperation({
     ...options,
     propertyList,
     paramList,

@@ -47,7 +47,7 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
       return {
         body: dto.className,
         method: 'post',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile, dto),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, moduleSourceFile, dto, options),
       };
 
     },

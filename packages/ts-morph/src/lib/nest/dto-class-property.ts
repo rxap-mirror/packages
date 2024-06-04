@@ -1,9 +1,9 @@
+import { TypeNames } from '@rxap/ts-morph';
 import {
   DataProperty,
   NormalizeDataProperty,
   NormalizedDataProperty,
-  TypeNames,
-} from '@rxap/ts-morph';
+} from '../data-property';
 import { Normalized } from '@rxap/utilities';
 
 export interface DtoClassProperty extends DataProperty {

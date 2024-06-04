@@ -1,4 +1,4 @@
-import { DtoClassProperty } from '@rxap/schematics-ts-morph';
+import { DtoClassProperty } from '@rxap/ts-morph';
 import {
   AbstractControl,
   AbstractControlRolls,

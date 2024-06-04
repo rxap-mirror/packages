@@ -7,13 +7,13 @@ export interface CoerceGetControllerOptions extends Omit<CoerceOperationOptions,
   operationName?: string,
 }
 
-export function CoerceGetOperation<Options = Record<string, any>>(options: CoerceGetControllerOptions) {
+export function CoerceGetOperation(options: CoerceGetControllerOptions) {
   const {
     operationName = 'get',
     isReturnVoid = false
   } = options;
 
-  return CoerceOperation<Options>({
+  return CoerceOperation({
     ...options,
     operationName,
     isReturnVoid,

@@ -3,18 +3,8 @@ import {
   classify,
   CoerceSuffix,
   dasherize,
-} from '@rxap/schematics-utilities';
-import {
-  CoerceClass,
-  CoerceDecorator,
-  CoerceImports,
-  CoercePropertyDeclaration,
-  CoerceSourceFile,
-  NormalizedTypeImport,
-  TypeNames,
-  WriteType,
-} from '@rxap/ts-morph';
-import { noop } from '@rxap/utilities';
+  noop,
+} from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -29,6 +19,16 @@ import {
   NormalizeDataClassProperty,
 } from './dto-class-property';
 import 'colors';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
+import {
+  NormalizedTypeImport,
+  TypeNames,
+} from '../type-import';
+import { CoercePropertyDeclaration } from '../coerce-property-declaration';
+import { WriteType } from '../write-type';
+import { CoerceDecorator } from '../coerce-decorator';
+import { CoerceImports } from '../coerce-imports';
 
 export interface CoerceDtoClassOutput {
   className: string;

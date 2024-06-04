@@ -7,7 +7,7 @@ import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceDtoClass,
   CoerceDtoClassOptions,
-} from './coerce-dto-class';
+} from '@rxap/ts-morph';
 
 export interface CoerceRowDtoClassOptions extends CoerceDtoClassOptions {
   /**

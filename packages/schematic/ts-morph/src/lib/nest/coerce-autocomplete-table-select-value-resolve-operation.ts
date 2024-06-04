@@ -33,7 +33,7 @@ export function CoerceAutocompleteTableSelectValueResolveOperationRule(options: 
     },
   ], { compareTo: (a, b) => a.name === b.name, unshift: true });
 
-  return CoerceOperation<CoerceAutocompleteTableSelectValueResolveOperationOptions>({
+  return CoerceOperation({
     ...options,
     buildUpstreamGetParametersImplementation,
   });

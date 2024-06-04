@@ -10,11 +10,10 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { CoerceDtoClassOutput } from './coerce-dto-class';
+import { CoerceDtoClassOutput, TransformOperation } from '@rxap/ts-morph';
 import {
   CoerceOperation,
   CoerceOperationOptions,
-  TransformOperation,
 } from './coerce-operation';
 
 export interface CoerceAutocompleteOptionsOperationRuleOptions extends CoerceOperationOptions {
@@ -98,7 +97,7 @@ export function CoerceAutocompleteOptionsOperationRule(options: Readonly<CoerceA
       source: options.toDisplayProperty.name,
     },
   ], (a, b) => a.name === b.name);
-  return CoerceOperation<CoerceAutocompleteOptionsOperationRuleOptions>({
+  return CoerceOperation({
     ...options,
     propertyList,
     isArray,

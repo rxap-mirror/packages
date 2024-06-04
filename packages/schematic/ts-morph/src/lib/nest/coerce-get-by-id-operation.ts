@@ -1,4 +1,8 @@
-import { OperationParameter } from '@rxap/ts-morph';
+import {
+  DtoClassProperty,
+  NormalizeDataClassProperty,
+  OperationParameter,
+} from '@rxap/ts-morph';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
   ClassDeclaration,
@@ -6,16 +10,12 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { CoerceDtoClassOutput } from './coerce-dto-class';
+import { CoerceDtoClassOutput } from '@rxap/ts-morph';
 import {
   CoerceGetControllerOptions,
   CoerceGetOperation,
 } from './coerce-get-operation';
-import { TransformOperation } from './coerce-operation';
-import {
-  DtoClassProperty,
-  NormalizeDataClassProperty,
-} from './dto-class-property';
+import { TransformOperation } from '@rxap/ts-morph';
 
 export interface CoerceGetByIdControllerOptions extends CoerceGetControllerOptions {
   idProperty?: OperationParameter | null,

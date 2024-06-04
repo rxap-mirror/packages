@@ -8,7 +8,7 @@ import { basename } from 'path';
 import {
   CoerceDtoClass,
   CoerceDtoClassOptions,
-} from './coerce-dto-class';
+} from '@rxap/ts-morph';
 
 export interface CoercePageDtoClassOptions extends CoerceDtoClassOptions {
   rowClassName: string,

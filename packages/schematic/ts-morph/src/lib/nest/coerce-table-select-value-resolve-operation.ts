@@ -11,11 +11,11 @@ import {
   SourceFile,
   WriterFunction,
 } from 'ts-morph';
-import { CoerceDtoClassOutput } from './coerce-dto-class';
+import { TransformOperation, CoerceDtoClassOutput } from '@rxap/ts-morph';
 import {
   CoerceOperation,
   CoerceOperationOptions,
-  TransformOperation,
+
 } from './coerce-operation';
 
 export interface CoerceTableSelectValueResolveOperationOptions
@@ -79,7 +79,7 @@ export function CoerceTableSelectValueResolveOperationRule(options: CoerceTableS
     }, 'number')
   ], { compareTo: (a, b) => a.name === b.name, unshift: true });
 
-  return CoerceOperation<CoerceTableSelectValueResolveOperationOptions>({
+  return CoerceOperation({
     ...options,
     buildUpstreamGetParametersImplementation,
   });

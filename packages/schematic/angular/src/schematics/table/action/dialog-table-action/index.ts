@@ -7,10 +7,10 @@ import {
   buildOperationId,
   CoerceDialogTableActionComponentRule,
   CoerceDialogTableActionRule,
-  CoerceDtoClass,
+
   CoerceOperation,
 } from '@rxap/schematics-ts-morph';
-import { CoerceImports } from '@rxap/ts-morph';
+import { CoerceDtoClass, CoerceImports } from '@rxap/ts-morph';
 import {
   joinWithDash,
   Normalized,
