@@ -23,9 +23,11 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       project.targets['component-test'] = updateProject.targets['component-test']!;
     }
   }
+  if (HasTarget(tree, projectName, 'component-test')) {
+    coerceComponentTestTarget(tree, projectName, project);
+  }
 
   coerceImplicitDependency(tree, projectName);
-  coerceComponentTestTarget(tree, projectName, project);
   coerceCypressImports(tree, projectName);
   coerceCypressConfig(tree, projectName);
   cleanup(tree, projectName);

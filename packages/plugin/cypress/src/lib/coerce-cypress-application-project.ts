@@ -15,6 +15,8 @@ export async function coerceCypressApplicationProject(tree: Tree) {
     await AngularInitApplicationGenerator(tree, {
       project: 'cypress',
       coerce: {
+        unitTestRunner: 'none' as any,
+        e2eTestRunner: 'none' as any,
         directory: 'angular/cypress',
       },
       skipDocker: true,
