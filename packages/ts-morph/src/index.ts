@@ -44,6 +44,7 @@ export * from './lib/angular/coerce-app-routes';
 export * from './lib/angular/coerce-component-import';
 export * from './lib/angular/coerce-component-input';
 export * from './lib/angular/coerce-component';
+export * from './lib/angular/coerce-data-source-class';
 export * from './lib/angular/coerce-layout-routes';
 export * from './lib/angular/coerce-route-guard';
 export * from './lib/angular/coerce-routes';

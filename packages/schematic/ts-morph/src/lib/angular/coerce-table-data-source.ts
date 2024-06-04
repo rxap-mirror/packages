@@ -1,16 +1,18 @@
 import { CoerceSuffix } from '@rxap/schematics-utilities';
 import {
+  CoerceClassConstructor,
+  CoerceImports,
+} from '@rxap/ts-morph';
+import {
   ClassDeclaration,
   Project,
   SourceFile,
 } from 'ts-morph';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
 } from '../nest/operation-id-utilities';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
   CoerceDataSourceClass,
@@ -38,7 +40,6 @@ export function CoerceTableDataSourceRule(options: Readonly<CoerceTableDataSourc
     coerceExtends: (
       sourceFile: SourceFile,
       classDeclaration: ClassDeclaration,
-      options: CoerceDataSourceClassOptions,
     ) => {
       classDeclaration.setExtends('DynamicTableDataSource');
       CoerceImports(sourceFile, {
