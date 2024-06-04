@@ -30,6 +30,11 @@
       "schema": "./src/generators/init-feature/schema.json",
       "description": "init-feature generator"
     },
+    "init-feature-library": {
+      "factory": "./src/generators/init-feature-library/generator",
+      "schema": "./src/generators/init-feature-library/schema.json",
+      "description": "init-feature-library generator"
+    },
     "init-component": {
       "factory": "./src/generators/init-component/generator",
       "schema": "./src/generators/init-component/schema.json",
@@ -71,6 +76,11 @@
       "factory": "./src/generators/init-component/index",
       "schema": "./src/generators/init-component/schema.json",
       "description": "init-component generator"
+    },
+    "init-feature-library": {
+      "factory": "./src/generators/init-feature-library/index",
+      "schema": "./src/generators/init-feature-library/schema.json",
+      "description": "init-feature-library generator"
     }
   }
 }

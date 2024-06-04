@@ -5,6 +5,9 @@ export interface InitFeatureLibraryGeneratorSchema {
   projects?: string[];
   overwrite?: boolean;
   skipProjects?: boolean;
-  coerce?: boolean | Omit<AngularLibraryGeneratorSchema, 'name'>;
   skipFormat?: boolean;
+  routes?: boolean;
+  targets?: {
+    indexExport?: boolean;
+  }
 }
