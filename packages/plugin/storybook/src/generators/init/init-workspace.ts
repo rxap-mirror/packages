@@ -9,5 +9,6 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   await AddPackageJsonDevDependency(tree, '@storybook/addon-themes', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@storybook/addon-interactions', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@storybook/addon-themes', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@storybook/icons', 'latest', { soft: true });
 
 }
