@@ -1,8 +1,19 @@
+import { TestBed } from '@angular/core/testing';
 import { AuthorizationService } from './authorization.service';
 
 describe('@rxap/authorization', () => {
 
   describe('AuthorizationService', () => {
+
+    let authorization: AuthorizationService;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        providers: [AuthorizationService]
+      });
+
+      authorization = TestBed.inject(AuthorizationService);
+    });
 
     describe('checkPermissions', () => {
 
@@ -14,14 +25,6 @@ describe('@rxap/authorization', () => {
       ];
 
       const scope = 'feature.machine';
-
-      let authorization: AuthorizationService;
-
-      beforeEach(() => {
-
-        authorization = new AuthorizationService();
-
-      });
 
       it('permission: *', () => {
 
