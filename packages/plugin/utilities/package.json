@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.0"
+        "version": "19.2.0-dev.2"
       }
     ]
   },

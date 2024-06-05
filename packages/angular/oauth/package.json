@@ -52,7 +52,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.1"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -64,7 +64,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.0.1"
+        "version": "19.2.0-dev.2"
       }
     ]
   },
