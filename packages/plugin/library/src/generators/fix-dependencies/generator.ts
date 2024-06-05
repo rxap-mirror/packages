@@ -603,7 +603,7 @@ export async function fixDependenciesGenerator(
         }
       }
 
-      if (latestTsLibVersion) {
+      if (latestTsLibVersion && !packageJson.dependencies['tslib']) {
         packageJson.dependencies['tslib'] = latestTsLibVersion;
       }
 
