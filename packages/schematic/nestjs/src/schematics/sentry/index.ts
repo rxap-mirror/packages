@@ -129,6 +129,7 @@ function UpdateAppModule(options: SentrySchema) {
   return TsMorphNestProjectTransformRule(
     {
       project: options.project,
+      backend: undefined,
     },
     (project, [ sourceFile ]) => {
 

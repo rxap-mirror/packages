@@ -16,6 +16,7 @@ export default function (options: JwtSchematicSchema) {
   return () => {
     return chain([
       CoerceNestModule({
+        backend: undefined,
         project: options.project,
         name: 'app',
         tsMorphTransform: (_, sourceFile) => {

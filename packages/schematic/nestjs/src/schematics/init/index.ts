@@ -205,6 +205,7 @@ function UpdateAppModule(options: InitSchema): Rule {
   return TsMorphNestProjectTransformRule(
     {
       project: options.project,
+      backend: undefined,
     },
     (project, [ sourceFile ]) => {
 
@@ -304,6 +305,7 @@ function RemoveAppService(options: { project: string }): Rule {
       }
     },
     CoerceNestModule({
+      backend: undefined,
       project: options.project,
       name: 'app',
       tsMorphTransform: (_, sourceFile) => {
@@ -398,6 +400,7 @@ function CoerceAppModule(options: { project: string }) {
 
   return chain([
     CoerceNestModule({
+      backend: undefined,
       project: options.project,
       name: 'app',
     }),
@@ -411,6 +414,7 @@ function CoerceEnvironmentFiles(options: { project: string, sentry: boolean }) {
     TsMorphNestProjectTransformRule(
       {
         project: options.project,
+        backend: undefined,
       },
       (project, [ sourceFile, prodSourceFile ]) => {
 

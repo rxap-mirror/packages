@@ -20,6 +20,7 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
     tree,
     {
       project: options.project,
+      backend: undefined,
     },
     (project, [ sourceFile ]) => {
 
@@ -60,6 +61,7 @@ function UpdateAppConfig(tree: Tree, options: OpenApiGeneratorSchema) {
     tree,
     {
       project: options.project,
+      backend: undefined,
     },
     (project, [ sourceFile ]) => {
 

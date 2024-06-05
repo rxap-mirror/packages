@@ -286,12 +286,14 @@ function getSubmitOperationId(normalizedOptions: NormalizedFormComponentOptions)
     shared,
     controllerName,
     identifier,
+    backend,
   } = normalizedOptions;
   return buildOperationId(
     {
       project,
       feature,
       shared,
+      backend,
     },
     identifier ? 'submitById' : 'submit',
     controllerName,

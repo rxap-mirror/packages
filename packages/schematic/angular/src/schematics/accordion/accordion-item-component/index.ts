@@ -257,6 +257,7 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
     shared,
     componentName,
     overwrite,
+    backend,
   } = normalizedOptions;
 
   return chain([
@@ -266,6 +267,7 @@ function panelItemLocalDataSourceRule(normalizedOptions: NormalizedAccordionItem
       feature,
       shared,
       directory,
+      backend,
       name: componentName,
       structure: {
         isExported: true,

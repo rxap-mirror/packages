@@ -146,6 +146,7 @@ export interface TsMorphNestProjectTransformOptions extends TsMorphTransformOpti
   shared?: boolean;
   directory?: string | null;
   projectOptions?: Partial<ProjectOptions>;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 export function TsMorphNestProjectTransform(

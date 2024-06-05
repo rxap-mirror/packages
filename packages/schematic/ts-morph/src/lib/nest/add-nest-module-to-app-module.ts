@@ -19,7 +19,7 @@ export interface AddNestModuleToAppModuleOptions extends TsMorphNestProjectTrans
 const DEFAULT_APP_MODULE_PATH = '/app/app.module.ts';
 
 export function AddNestModuleToAppModule(options: AddNestModuleToAppModuleOptions): Rule {
-  const { project, feature, shared, name, directory } = options;
+  const { project, feature, shared, name, directory, backend } = options;
   let { appModulePath } = options;
   appModulePath ??= DEFAULT_APP_MODULE_PATH;
   return TsMorphNestProjectTransformRule(
@@ -27,6 +27,7 @@ export function AddNestModuleToAppModule(options: AddNestModuleToAppModuleOption
       project,
       feature,
       shared,
+      backend,
     },
     (project, [ sourceFile ]) => {
 

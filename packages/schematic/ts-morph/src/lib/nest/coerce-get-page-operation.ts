@@ -114,7 +114,7 @@ export function CoerceToRowDtoMethod(
   if (rowId?.name) {
     rowIdSource = `item.${ rowId.name }`;
   } else {
-    rowIdSource = '(pageIndex * pageSize + index).toFixed(0)';
+    rowIdSource = `(pageIndex * pageSize + index)${rowId?.type ?? 'number' === 'number' ? '' : '.toFixed(0)'}`;
   }
   CoerceClassMethod(classDeclaration, 'toRowDto', {
     scope: Scope.Private,

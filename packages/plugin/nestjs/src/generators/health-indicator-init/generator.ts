@@ -16,6 +16,7 @@ export async function healthIndicatorInitGenerator(
 ) {
   TsMorphNestProjectTransform(tree, {
     project: options.project,
+    backend: undefined,
   }, (project, [ appModuleSourceFile, moduleSourceFile, controllerSourceFile ]) => {
     CoerceHealthModule(moduleSourceFile);
     // import HealthModule into AppModule

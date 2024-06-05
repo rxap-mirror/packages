@@ -9,6 +9,7 @@ export interface CoerceNestServiceProjectOptions {
   project: string;
   feature?: string | null;
   shared?: boolean;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 /**

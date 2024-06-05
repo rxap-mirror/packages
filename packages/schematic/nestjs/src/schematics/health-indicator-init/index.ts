@@ -18,6 +18,7 @@ export default function (options: HealthIndicatorInitSchema): Rule {
     return chain([
       TsMorphNestProjectTransformRule({
         project: options.project,
+        backend: undefined,
       }, project => {
         CoerceHealthModule(project);
         CoerceHealthController(project);

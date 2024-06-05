@@ -86,6 +86,7 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: 
     tree,
     {
       project: options.project,
+      backend: undefined,
     },
     (project, [ sourceFile, prodSourceFile ]) => {
 
@@ -434,6 +435,7 @@ function updateMainFile(
 
   TsMorphNestProjectTransform(tree, {
     project: projectName,
+    backend: undefined,
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
   }, (project, [ sourceFile ]) => {
 
@@ -735,7 +737,7 @@ export async function initApplicationGenerator(
       );
       TsMorphNestProjectTransform(
         tree,
-        { project: projectName },
+        { project: projectName, backend: undefined, },
         (project: Project, [ moduleSourceFile, controllerSourceFile, configSourceFile ]) => {
           CoerceNestAppModule(moduleSourceFile);
           CoerceNestAppController(controllerSourceFile);

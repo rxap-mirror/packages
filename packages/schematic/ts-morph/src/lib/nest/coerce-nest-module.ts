@@ -24,6 +24,7 @@ import { AssertNestProject } from './assert-nest-project';
 export interface CoerceNestModuleOptions extends TsMorphNestProjectTransformOptions {
   name: string;
   tsMorphTransform?: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
@@ -33,6 +34,7 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
     feature,
     shared,
     directory,
+    backend,
   } = options;
   let { tsMorphTransform } = options;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -42,6 +44,7 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
       project,
       feature,
       shared,
+      backend,
     }),
     TsMorphNestProjectTransformRule(
       {
@@ -49,6 +52,7 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
         feature,
         shared,
         directory,
+        backend,
       },
       (project, [ sourceFile ]) => {
         const classDeclaration = CoerceClass(sourceFile, classify(name) + 'Module', {
@@ -77,6 +81,7 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
       shared,
       name,
       directory,
+      backend,
     }) : noop(),
   ]);
 }

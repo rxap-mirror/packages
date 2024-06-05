@@ -8,6 +8,7 @@ export interface BuildNestBasePathOptions {
   feature?: string | null;
   directory?: string | null;
   shared?: boolean;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 export function BuildNestBasePath<Tree extends TreeLike>(tree: Tree, options: BuildNestBasePathOptions): string {

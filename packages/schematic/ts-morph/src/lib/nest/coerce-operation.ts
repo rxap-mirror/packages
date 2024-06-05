@@ -99,6 +99,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
       // must be set to false are some specializations of this function need to access more files then only the
       // controller and module source file
       filter: false,
+      backend,
     }, (project, [controllerSourceFile, moduleSourceFile]) => {
 
       CoerceNestOperation(controllerSourceFile, options, moduleSourceFile);

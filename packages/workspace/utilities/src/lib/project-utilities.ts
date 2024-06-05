@@ -7,7 +7,7 @@ export interface BuildNestProjectNameOptions {
   project: string;
   feature?: string | null;
   shared?: boolean;
-  backend?: { project?: string | null } & Record<string, unknown>;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 export function buildNestProjectName(options: BuildNestProjectNameOptions) {
@@ -60,6 +60,7 @@ export interface HasNestServiceProjectOptions {
   project: string;
   feature?: string | null;
   shared?: boolean;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 export function HasNestServiceProject<Tree extends TreeLike>(tree: Tree, options: HasNestServiceProjectOptions) {

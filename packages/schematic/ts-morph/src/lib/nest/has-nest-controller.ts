@@ -14,6 +14,7 @@ export interface HasNestControllerOptions {
   shared?: boolean;
   name: string;
   nestModule: string;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 export function HasNestController(host: Tree, options: HasNestControllerOptions) {

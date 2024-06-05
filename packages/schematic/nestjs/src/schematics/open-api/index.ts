@@ -15,6 +15,7 @@ export default function (options: OpenApiSchematicSchema) {
   return () => {
     return chain([
       CoerceNestModule({
+        backend: undefined,
         project: options.project,
         name: 'app',
         tsMorphTransform: (_, sourceFile) => {

@@ -13,13 +13,13 @@ export interface AssertNestProjectOptions {
   project: string;
   feature?: string | null;
   shared?: boolean;
-  backend?: { project?: string | null } & Record<string, unknown>;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 export function AssertNestProject(options: AssertNestProjectOptions): Rule {
   const { project, feature, shared, backend } = options;
   return tree => {
-    if (!HasNestServiceProject(tree, { project, feature, shared })) {
+    if (!HasNestServiceProject(tree, { project, feature, shared, backend })) {
 
       // TODO : run the commands on the fly instead of throwing an error
 

@@ -72,6 +72,7 @@ export function CoerceNestController(
       shared,
       name: nestModule!,
       directory,
+      backend,
     }) : noop(),
     TsMorphNestProjectTransformRule(
       {
@@ -79,6 +80,7 @@ export function CoerceNestController(
         feature,
         shared,
         directory,
+        backend,
       },
       (project, [ controllerSourceFile, moduleSourceFile ]) => {
         const controllerDecoratorArguments: WriterFunction[] = controllerPrefix ?

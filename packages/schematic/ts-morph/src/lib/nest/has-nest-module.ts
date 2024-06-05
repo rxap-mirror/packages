@@ -15,6 +15,7 @@ export interface HasNestModuleOptions {
   feature?: string | null;
   shared?: boolean;
   name: string;
+  backend: { project?: string | null, kind?: any } | undefined;
 }
 
 export function HasNestModule(host: Tree, options: HasNestModuleOptions) {

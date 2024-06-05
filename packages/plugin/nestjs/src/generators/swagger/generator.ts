@@ -37,6 +37,7 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, overwrit
     tree,
     {
       project: options.project,
+      backend: undefined,
     },
     (project, [ sourceFile ]) => {
 
@@ -154,7 +155,7 @@ function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
     dependsOn: [
       '^build',
     ],
-  }, Strategy.REPLACE);
+  }, Strategy.OVERWRITE);
 
   updateNxJson(tree, nxJson);
 }

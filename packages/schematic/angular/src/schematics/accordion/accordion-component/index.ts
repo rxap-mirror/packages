@@ -333,6 +333,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
     directory,
     shared,
     overwrite,
+    backend,
   } = normalizedOptions;
 
   return chain([
@@ -340,6 +341,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
     CoerceInterfaceRule({
       project,
       feature,
+      backend,
       shared,
       directory,
       name,
