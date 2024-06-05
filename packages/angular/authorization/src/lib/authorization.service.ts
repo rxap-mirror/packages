@@ -1,4 +1,5 @@
 import {
+  inject,
   Injectable,
   isDevMode,
 } from '@angular/core';
@@ -11,11 +12,14 @@ import {
   distinctUntilChanged,
   map,
 } from 'rxjs/operators';
+import { RXAP_DISABLE_AUTHORIZATION } from './tokens';
 
 @Injectable({ providedIn: 'root' })
 export class AuthorizationService {
 
   protected readonly permissions$ = new BehaviorSubject<string[]>([]);
+
+  public readonly disabled = inject(RXAP_DISABLE_AUTHORIZATION, { optional: true }) ?? false;
 
   public setPermissions(permissions: string[]): void {
     this.permissions$.next(permissions);
@@ -26,6 +30,11 @@ export class AuthorizationService {
     permissions: string[],
     scope?: string | null,
   ): boolean {
+
+    if (this.disabled) {
+      console.warn('Authorization is disabled! Granting all permissions!');
+      return true;
+    }
 
     identifier = coerceArray(identifier);
 
