@@ -223,7 +223,7 @@ function openApiBackendRule(normalizedOptions: NormalizedTableComponentOptions):
           sourceFile,
           {
             provide: 'RXAP_TABLE_METHOD',
-            useClass: OperationIdToClassName(openApi.operationId),
+            useExisting: OperationIdToClassName(openApi.operationId),
           },
           [
             {
@@ -320,7 +320,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
           sourceFile,
           {
             provide: 'RXAP_TABLE_METHOD',
-            useClass: OperationIdToClassName(operationId),
+            useExisting: OperationIdToClassName(operationId),
           },
           [
             {
