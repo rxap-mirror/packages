@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { HasProject } from './get-project';
 import { TreeLike } from './tree';
 
@@ -27,7 +28,19 @@ export function buildNestProjectName(options: BuildNestProjectNameOptions) {
 
 export function buildNestProjectDirectoryPath(options: BuildNestProjectNameOptions) {
   if (options.backend?.project) {
-    throw new Error(`The backend project is explicitly specified. Ensure the project '${options.backend.project}' does exists`);
+    const projectName = options.backend.project;
+    if (projectName.startsWith('service-')) {
+      const prefix = ['service'];
+      let directory = projectName.replace(/^service-/, '');
+      if (directory.startsWith('feature-')) {
+        prefix.push('feature');
+        directory = directory.replace(/^feature-/ , '');
+      }
+      return join(...prefix, directory);
+    } else {
+      throw new Error(
+        `The backend project is explicitly specified. Ensure the project '${ options.backend.project }' does exists`);
+    }
   }
   const project = options.project.replace(/user-interface-/, '');
   const fragments = [ 'service' ];
