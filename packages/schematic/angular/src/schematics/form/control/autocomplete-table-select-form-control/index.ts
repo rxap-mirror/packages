@@ -146,6 +146,7 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
     isOptional,
     overwrite,
     identifier,
+    backend,
     source,
   } = normalizedOptions;
   const { upstream } = resolver ?? {};
@@ -180,6 +181,7 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
       path: resolveValueOperationPath,
       dtoClassNameSuffix: joinWithDash([ context, dasherize(name), 'control', 'options' ]),
       context,
+      backend,
     }),
     CoerceFormDefinitionControl({
       role,
@@ -259,6 +261,7 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
     identifier,
     overwrite,
     source,
+    backend,
   } = normalizedOptions;
 
   const optionsOperationName = [ 'get', dasherize(name), 'control', 'options' ].join(
@@ -291,6 +294,7 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
       path: optionsOperationPath,
       dtoClassNameSuffix: joinWithDash([ context, dasherize(name), 'control', 'options' ]),
       context,
+      backend,
     }),
     CoerceFormDefinitionControl({
       role,
@@ -371,6 +375,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
     identifier,
     overwrite,
     source,
+    backend,
   } = normalizedOptions;
 
   const optionsOperationName = buildOptionsOperationName(normalizedOptions);
@@ -401,7 +406,8 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       idProperty: identifier.property,
       rowId: toValue.property,
       context,
-      upstream
+      upstream,
+      backend,
     }),
     CoerceFormProviderRule({
       project,

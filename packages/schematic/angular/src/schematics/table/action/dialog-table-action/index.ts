@@ -72,6 +72,7 @@ export default function (options: DialogTableActionOptions) {
     context,
     controllerName,
     scope,
+    backend,
   } = normalizedOptions;
 
   printOptions(normalizedOptions);
@@ -131,6 +132,7 @@ export default function (options: DialogTableActionOptions) {
           shared,
           overwriteControllerPath: true,
           operationName: `${ type }-action`,
+          backend,
           tsMorphTransform: (
             project,
             sourceFile,

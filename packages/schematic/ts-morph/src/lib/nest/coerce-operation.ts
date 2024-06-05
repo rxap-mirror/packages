@@ -18,6 +18,7 @@ export interface CoerceOperationOptions extends TsMorphNestProjectTransformOptio
   shared?: boolean;
   nestModule?: string | null;
   skipCoerce?: boolean;
+  backend: { project?: string | null, kind: any } | undefined;
 }
 
 export function CoerceOperation(options: CoerceOperationOptions): Rule {
@@ -29,6 +30,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
     shared,
     operationName,
     skipCoerce,
+    backend,
   } = options;
   let { nestModule, directory, path } = options;
 
@@ -83,6 +85,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
       project,
       feature,
       shared,
+      backend,
       directory,
       coerceModule: !skipCoerce,
       name: nestController,

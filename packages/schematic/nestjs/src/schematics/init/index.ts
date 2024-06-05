@@ -365,6 +365,7 @@ function CoerceAppController(options: { project: string, overwrite: boolean }) {
         }
         sourceFile.getImportDeclaration('./app.service')?.remove();
       },
+      backend: undefined,
     }),
     CoerceOperation({
       project: options.project,
@@ -372,6 +373,7 @@ function CoerceAppController(options: { project: string, overwrite: boolean }) {
       controllerName: 'app',
       nestModule: 'app',
       operationName: 'environment',
+      backend: undefined,
       tsMorphTransform: (_, sourceFile) => {
         CoerceImports(sourceFile, [
           {

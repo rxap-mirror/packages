@@ -141,6 +141,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
     identifier,
     controllerName,
     overwrite,
+    backend,
   } = normalizedOptions;
   const {
     hasSharedModifier,
@@ -160,6 +161,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       shared: hasSharedModifier,
       idProperty: identifier?.property,
       skipCoerce: true,
+      backend,
     }),
     () => console.log(`Modify the get children operation ...`),
     CoerceGetChildrenOperation({
@@ -171,6 +173,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTreeTableCo
       shared: hasSharedModifier,
       idProperty: identifier?.property,
       skipCoerce: true,
+      backend,
     }),
     () => console.log(`Modify the get root proxy method ...`),
     CoerceTreeTableRootProxyRemoteMethodClass({

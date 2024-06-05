@@ -136,6 +136,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
     context,
     controllerName,
     scope,
+    backend,
     overwrite,
   } = normalizedOptions;
 
@@ -161,6 +162,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
       overwrite,
       operationName: `get`,
       controllerPath,
+      backend,
       tsMorphTransform: (
         project,
         sourceFile,
@@ -199,6 +201,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
       shared,
       nestModule,
       context,
+      backend,
       controllerPath,
       overwrite,
       paramList: [

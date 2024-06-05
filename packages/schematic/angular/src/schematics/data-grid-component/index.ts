@@ -218,6 +218,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
     overwrite,
     identifier,
     controllerName,
+    backend,
   } = normalizedOptions;
 
   const submitOperationId = buildSubmitOperationId(normalizedOptions);
@@ -318,6 +319,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
         .map(control => AbstractControlToDataProperty(control)),
       skipCoerce: true,
       collection,
+      backend,
     }),
   ]);
 
@@ -351,6 +353,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
     identifier,
     overwrite,
     controllerName,
+    backend,
   } = normalizedOptions;
 
   const getOperationId = buildGetOperationId(normalizedOptions);
@@ -368,6 +371,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
       upstream,
       propertyList,
       idProperty: identifier?.property,
+      backend,
     }),
     () => console.log('Coerce data grid data source class'),
     CoerceDataSourceClass({

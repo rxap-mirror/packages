@@ -37,6 +37,7 @@ export interface CoerceNestControllerOptions extends TsMorphNestProjectTransform
   ) => void;
   skipModuleImport?: boolean;
   overwrite?: boolean;
+  backend: { project?: string | null } | undefined;
 }
 
 export function CoerceNestController(
@@ -50,6 +51,7 @@ export function CoerceNestController(
     coerceModule,
     skipModuleImport,
     overwrite,
+    backend,
   } = options;
   let {
     name,
@@ -63,7 +65,7 @@ export function CoerceNestController(
   nestModule ??= name;
   controllerPrefix ??= name;
   return chain([
-    AssertNestProject({ project, feature, shared }),
+    AssertNestProject({ project, feature, shared, backend }),
     coerceModule ? CoerceNestModule({
       project,
       feature,

@@ -7,7 +7,7 @@ export interface BuildNestProjectNameOptions {
   project: string;
   feature?: string | null;
   shared?: boolean;
-  backend?: { project?: string } & Record<string, unknown>;
+  backend?: { project?: string | null } & Record<string, unknown>;
 }
 
 export function buildNestProjectName(options: BuildNestProjectNameOptions) {

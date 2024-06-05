@@ -180,6 +180,7 @@ function nestjsBackendRule(
     controllerName,
     overwrite,
     nestModule,
+    backend,
   } = normalizedOptions;
   const {
     hasSharedModifier,
@@ -248,6 +249,7 @@ function nestjsBackendRule(
         paramList,
         idProperty: identifier?.property,
         skipCoerce: true,
+        backend,
       }),
     );
   }

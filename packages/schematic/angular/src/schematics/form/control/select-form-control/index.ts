@@ -173,6 +173,7 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
     isOptional,
     source,
     upstream,
+    backend,
   } = normalizedOptions;
   const optionsOperationPath = [ 'control', dasherize(name), 'options' ].join('/');
   const optionsOperationName = [ 'get', dasherize(name), 'control', 'options' ].join('-');
@@ -196,6 +197,7 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
       control: normalizedOptions,
       context,
       upstream,
+      backend,
     }),
     CoerceFormDefinitionControl({
       role,

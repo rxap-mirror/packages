@@ -158,6 +158,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
     nestModule,
     overwrite,
     propertyList,
+    backend,
   } = normalizedOptions;
 
   const operationId = buildGetOperationId(normalizedOptions);
@@ -176,7 +177,8 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         upstream,
         overwrite,
         nestModule,
-        propertyList
+        propertyList,
+        backend
       }),
     );
   } else {
@@ -190,7 +192,8 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         shared,
         upstream,
         nestModule,
-        propertyList
+        propertyList,
+        backend
       }),
     );
   }

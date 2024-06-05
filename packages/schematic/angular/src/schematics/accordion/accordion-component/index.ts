@@ -530,6 +530,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
     overwrite,
     nestModule,
     upstream,
+    backend,
   } = normalizedOptions;
 
   const operationId = buildGetOperationId(normalizedOptions);
@@ -551,6 +552,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
         propertyList: buildPropertyList(normalizedOptions),
         idProperty: identifier.property,
         upstream,
+        backend,
       }),
     );
   } else {
@@ -565,6 +567,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
         shared: false,
         propertyList: buildPropertyList(normalizedOptions),
         upstream,
+        backend,
       }),
     );
   }

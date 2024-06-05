@@ -220,6 +220,7 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
           idProperty: identifier?.property,
           propertyList: controlList.map(ControlToDtoClassProperty),
           bodyDtoName: controllerName,
+          backend,
         }),
       ]);
   }

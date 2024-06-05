@@ -144,6 +144,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
     source,
     overwrite,
     identifier,
+    backend,
   } = normalizedOptions;
   const { upstream } = resolver ?? {};
 
@@ -184,6 +185,7 @@ function tableSelectResolveRule(normalizedOptions: NormalizedTableSelectFormCont
       path: resolveValueOperationPath,
       dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
       context,
+      backend,
     }),
     CoerceFormProviderRule({
       project,
@@ -283,6 +285,7 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
     overwrite,
     identifier,
     source,
+    backend,
   } = normalizedOptions;
 
   const optionsOperationName = buildOptionsOperationName(normalizedOptions);
@@ -313,7 +316,8 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
       idProperty: identifier.property,
       rowId: toValue.property,
       context,
-      upstream
+      upstream,
+      backend,
     }),
     CoerceFormProviderRule({
       project,

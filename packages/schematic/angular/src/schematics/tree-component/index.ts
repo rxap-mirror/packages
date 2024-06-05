@@ -45,6 +45,7 @@ export default function (options: TreeComponentOptions) {
     shared,
     controllerName,
     overwrite,
+    backend,
   } =
     normalizedOptions;
 
@@ -56,6 +57,7 @@ export default function (options: TreeComponentOptions) {
         project,
         feature,
         shared,
+        backend,
         controllerName,
         fullTree,
         overwrite,

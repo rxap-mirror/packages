@@ -149,6 +149,7 @@ export default function (options: MicroserviceOptions) {
       CoerceNestController({
         name,
         project: projectName,
+        backend: undefined,
       }),
       CleanUp({ project: projectName }),
     ]);

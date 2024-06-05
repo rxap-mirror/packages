@@ -186,6 +186,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
     propertyList,
     identifier,
     upstream,
+    backend,
   } = normalizedOptions;
 
   const getRootOperationId = BuildTreeTableGetRootOperationId(normalizedOptions);
@@ -198,6 +199,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
       nestModule,
       project,
       feature,
+      backend,
       shared,
       propertyList,
       upstream,
@@ -209,6 +211,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
       nestModule,
       project,
       feature,
+      backend,
       shared,
       skipCoerce: true,
       propertyList,

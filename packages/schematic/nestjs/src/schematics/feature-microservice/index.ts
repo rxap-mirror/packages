@@ -83,6 +83,7 @@ export default function (options: FeatureMicroserviceOptions) {
       CoerceNestController({
         name: options.feature,
         project: projectName,
+        backend: undefined,
       }),
       CleanUp({ project: projectName }),
     ]);
