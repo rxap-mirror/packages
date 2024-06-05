@@ -10,6 +10,13 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
   const { controllerNameSuffix, nestModule } = options;
   let { controllerName } = options;
 
+  if (!controllerName) {
+    if (!nestModule) {
+      throw new Error('Could not determine the controller name. No controller name and no nest module provided.');
+    }
+    controllerName = nestModule;
+  }
+
   if (nestModule && nestModule !== controllerName) {
     controllerName = [ nestModule, controllerName ].join('-');
   }
@@ -20,6 +27,11 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
 
   if (!controllerName) {
     throw new Error('Could not determine the controller name');
+  }
+
+  if (controllerName.endsWith('-')) {
+    console.log(JSON.stringify(options));
+    throw new Error(`The controller name should not end with a dash`);
   }
 
   return controllerName;

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "operation-table-action",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseTableAction"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "operation",
+          "default": "operation"
+        }
+      },
+      "required": ["kind"]
+    }
+  ],
+  "definitions": {
+    "baseTableAction": {
+      "$ref": "./base-table-action.schema.json"
+    }
+  }
+
+}

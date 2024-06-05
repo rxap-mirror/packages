@@ -1,5 +1,6 @@
 import {
   chain,
+  Rule,
   Tree,
 } from '@angular-devkit/schematics';
 import {
@@ -7,52 +8,40 @@ import {
   buildOperationId,
   CoerceDialogTableActionComponentRule,
   CoerceDialogTableActionRule,
-
   CoerceOperation,
 } from '@rxap/schematics-ts-morph';
-import { CoerceDtoClass, CoerceImports } from '@rxap/ts-morph';
+import {
+  CoerceDtoClass,
+  CoerceImports,
+} from '@rxap/ts-morph';
 import {
   joinWithDash,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
+import {
+  AngularOptions,
+  NormalizeAngularOptions,
+  NormalizedAngularOptions,
+  PrintAngularOptions,
+} from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import {
-  NormalizedDialogAction,
-  NormalizeDialogActionList,
-} from '../../../../lib/dialog-action';
-import { ToTitle } from '../../../../lib/to-title';
-import {
-  NormalizedOperationTableActionOptions,
-  NormalizeOperationTableActionOptions,
-} from '../operation-table-action';
-import { OperationTableActionOptions } from '../operation-table-action/schema';
+  DialogTableAction,
+  NormalizedDialogTableAction,
+  NormalizeDialogTableAction,
+} from '../../../../lib/table/action/dialog-table-action';
 import { DialogTableActionOptions } from './schema';
 
-export interface NormalizedDialogTableActionOptions
-  extends Readonly<Normalized<Omit<DialogTableActionOptions, keyof OperationTableActionOptions | 'actionList'>> & NormalizedOperationTableActionOptions> {
-  title: string;
-  actionList: ReadonlyArray<NormalizedDialogAction>;
-}
+export type NormalizedDialogTableActionOptions = Readonly<Normalized<Omit<DialogTableActionOptions, keyof DialogTableAction | keyof AngularOptions>> & NormalizedDialogTableAction & NormalizedAngularOptions>
 
 export function NormalizeDialogTableActionOptions(
   options: DialogTableActionOptions,
 ): NormalizedDialogTableActionOptions {
-  const actionList = options.actionList?.slice() ?? [];
-  if (actionList.length === 0) {
-    actionList.push({
-      role: 'close',
-      label: 'Cancel',
-    });
-    actionList.push({ role: 'submit' });
-  }
   return Object.freeze({
-    ...NormalizeOperationTableActionOptions(options),
-    withoutBody: options.withoutBody ?? false,
-    actionList: NormalizeDialogActionList(actionList),
-    title: options.title ?? ToTitle(options.type),
-    overwrite: options.overwrite ?? false as any,
+    ...NormalizeAngularOptions(options),
+    ...NormalizeDialogTableAction(options),
+    tableName: options.tableName,
   });
 }
 
@@ -91,7 +80,7 @@ export default function (options: DialogTableActionOptions) {
 
     AssertTableComponentExists(host, normalizedOptions);
 
-    return chain([
+    const ruleList: Rule[] = [
       () => console.group('\x1b[32m[@rxap/schematics-angular:dialog-table-action]\x1b[0m'),
       () => console.log('Coerce table action method class ...'),
       CoerceDialogTableActionRule({
@@ -128,46 +117,52 @@ export default function (options: DialogTableActionOptions) {
         title,
         overwrite,
       }),
-      () => console.log('Coerce table action dialog operation ...'),
-      CoerceOperation({
-        nestModule,
-        controllerName,
-        project,
-        feature,
-        overwrite,
-        shared,
-        overwriteControllerPath: true,
-        operationName: `${ type }-action`,
-        tsMorphTransform: (
-          project,
-          sourceFile,
-          classDeclaration,
+    ];
+
+    if (controllerName) {
+      ruleList.push(
+        () => console.log('Coerce table action dialog operation ...'),
+        CoerceOperation({
+          nestModule,
           controllerName,
-        ) => {
-          let body: string | undefined = undefined;
-          if (!withoutBody) {
-            const {
-              className,
-              filePath,
-            } = CoerceDtoClass({
-              project,
-              name: joinWithDash([ context, `${ type }-action-body` ]),
-            });
-            body = className;
-            CoerceImports(sourceFile, {
-              moduleSpecifier: filePath,
-              namedImports: [ className ],
-            });
-          }
-          return {
-            body,
-            method: 'put',
-            path: `action/:rowId/${ type }`,
-            paramList: [ { name: 'rowId' } ],
-          };
-        },
-      }),
-      () => console.groupEnd(),
-    ]);
+          project,
+          feature,
+          overwrite,
+          shared,
+          overwriteControllerPath: true,
+          operationName: `${ type }-action`,
+          tsMorphTransform: (
+            project,
+            sourceFile,
+          ) => {
+            let body: string | undefined = undefined;
+            if (!withoutBody) {
+              const {
+                className,
+                filePath,
+              } = CoerceDtoClass({
+                project,
+                name: joinWithDash([ context, `${ type }-action-body` ]),
+              });
+              body = className;
+              CoerceImports(sourceFile, {
+                moduleSpecifier: filePath,
+                namedImports: [ className ],
+              });
+            }
+            return {
+              body,
+              method: 'put',
+              path: `action/:rowId/${ type }`,
+              paramList: [ { name: 'rowId' } ],
+            };
+          },
+        }),
+      );
+    }
+
+    ruleList.push(() => console.groupEnd());
+
+    return chain(ruleList);
   };
 }

@@ -8,19 +8,26 @@ import {
 
 
 export interface NavigationTableAction extends BaseTableAction {
-
+  route?: string;
+  relativeTo?: boolean;
 }
 
 export interface NormalizedNavigationTableAction
   extends Readonly<Normalized<Omit<NavigationTableAction, keyof BaseTableAction>> & NormalizedBaseTableAction> {
-  kind: TableActionKind.DIALOG;
+  kind: TableActionKind.NAVIGATION;
+  route: string;
 }
 
 export function NormalizeNavigationTableAction(
   tableAction: Readonly<NavigationTableAction>,
 ): NormalizedNavigationTableAction {
+  if (!tableAction.route) {
+    throw new Error('The route property is required for a navigation table action');
+  }
   return Object.freeze({
     ...NormalizeBaseTableAction(tableAction),
-    kind: TableActionKind.DIALOG,
+    kind: TableActionKind.NAVIGATION,
+    route: tableAction.route,
+    relativeTo: tableAction.relativeTo ?? false,
   });
 }

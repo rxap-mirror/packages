@@ -6,23 +6,15 @@
       "$ref": "#/definitions/tableActionSchematic"
     },
     {
-      "type": "object",
-      "properties": {
-        "route": {
-          "type": "string",
-          "description": "The route for the table action"
-        },
-        "relativeTo": {
-          "type": "boolean",
-          "description": "Use the current ActivatedRoute to resolve the route or not",
-          "default": false
-        }
-      }
+      "$ref": "#/definitions/navigationTableAction"
     }
   ],
   "definitions": {
     "tableActionSchematic": {
       "$ref": "../../table-action/template.schema.json"
+    },
+    "navigationTableAction": {
+      "$ref": "../../../navigation-table-action.schema.json"
     }
   }
 }

@@ -4,7 +4,6 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import {
-  BuildNestControllerName,
   buildOperationId,
   CoerceOperation,
   CoerceOperationTableActionRule,
@@ -13,36 +12,41 @@ import {
   dasherize,
   Normalized,
 } from '@rxap/utilities';
+import { BuildNestControllerName } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   AngularOptions,
+  NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import { BackendTypes } from '../../../../lib/backend-types';
-import { NormalizeTableActionOptions } from '../../table-action';
+import {
+  NormalizedOperationTableAction,
+  NormalizeOperationTableAction,
+  OperationTableAction,
+} from '../../../../lib/table/action/operation-table-action';
 import { OperationTableActionOptions } from './schema';
 
-export interface NormalizedOperationTableActionOptions
-  extends Readonly<Normalized<Omit<OperationTableActionOptions, keyof AngularOptions>> & NormalizedAngularOptions> {
+export interface NormalizedOperationTableActionOptions extends Readonly<Normalized<Omit<OperationTableActionOptions, keyof OperationTableAction | keyof AngularOptions>> & NormalizedOperationTableAction & NormalizedAngularOptions> {
   controllerName: string;
 }
 
 export function NormalizeOperationTableActionOptions(
   options: OperationTableActionOptions,
 ): NormalizedOperationTableActionOptions {
-  const normalizedOptions = NormalizeTableActionOptions(options);
-  const nestModule = options.nestModule ?? normalizedOptions.tableName;
+  const normalizedOptions = NormalizeAngularOptions(options);
+  const nestModule = options.nestModule ?? options.tableName;
   const context = options.context ? dasherize(options.context) : null;
   return Object.freeze({
     ...normalizedOptions,
-    nestModule,
+    ...NormalizeOperationTableAction(options),
     controllerName: BuildNestControllerName({
       controllerName: context,
       nestModule,
     }),
-    context,
+    tableName: options.tableName,
   });
 }
 

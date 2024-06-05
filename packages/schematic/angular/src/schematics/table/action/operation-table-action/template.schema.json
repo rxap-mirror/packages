@@ -4,11 +4,17 @@
   "allOf": [
     {
       "$ref": "#/definitions/tableActionSchematic"
+    },
+    {
+      "$ref": "#/definitions/operationTableAction"
     }
   ],
   "definitions": {
     "tableActionSchematic": {
       "$ref": "../../table-action/template.schema.json"
+    },
+    "operationTableAction": {
+      "$ref": "../../../operation-table-action.schema.json"
     }
   }
 }

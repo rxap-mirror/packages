@@ -47,19 +47,21 @@ import {
   NormalizedControl,
 } from '../../../lib/form/control';
 import {
+  FormComponent,
+  NormalizedFormComponent,
+  NormalizeFormComponent,
+} from '../../../lib/form/form-component';
+import {
   NormalizedMatFormFieldDefaultOptions,
   NormalizeMatFormFieldDefaultOptions,
 } from '../../../lib/mat-form-field-default-options';
 import { FormComponentOptions } from './schema';
 
 export interface NormalizedFormComponentOptions
-  extends Readonly<Normalized<Omit<FormComponentOptions, keyof AngularOptions | 'controlList' | 'name' | 'matFormFieldDefaultOptions'>> & NormalizedAngularOptions> {
+  extends Readonly<Normalized<Omit<FormComponentOptions, keyof AngularOptions | keyof FormComponent>> & NormalizedAngularOptions & NormalizedFormComponent> {
   componentName: string;
   controllerName: string;
-  controlList: ReadonlyArray<NormalizedControl>;
   name: string;
-  matFormFieldDefaultOptions: NormalizedMatFormFieldDefaultOptions | null;
-  identifier: NormalizedAccordionIdentifier | null;
 }
 
 
@@ -79,15 +81,11 @@ export function NormalizeFormComponentOptions(
   });
   return Object.freeze({
     ...normalizedAngularOptions,
-    window: options.window ?? false,
+    ...NormalizeFormComponent(options),
     directory: join(options.directory ?? '', componentName),
-    role: options.role ?? null,
     componentName,
     controllerName,
-    controlList: NormalizeControlList(options.controlList),
     context: options.context ? dasherize(options.context) : null,
-    matFormFieldDefaultOptions: NormalizeMatFormFieldDefaultOptions(options.matFormFieldDefaultOptions),
-    identifier: NormalizeAccordionIdentifier(options.identifier),
   });
 }
 

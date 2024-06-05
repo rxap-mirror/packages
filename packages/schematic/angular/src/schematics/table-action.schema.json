@@ -2,64 +2,58 @@
   "$schema": "http://json-schema.org/schema",
   "$id": "table-action",
   "type": "object",
-  "properties": {
-    "type": {
-      "type": "string"
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "#/definitions/baseTableAction"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "default",
+              "default": "default"
+            }
+          }
+        }
+      ]
     },
-    "refresh": {
-      "type": "boolean"
+    {
+      "$ref": "#/definitions/dialogTableAction"
     },
-    "confirm": {
-      "type": "boolean"
+    {
+      "$ref": "#/definitions/formTableAction"
     },
-    "tooltip": {
-      "type": "string"
+    {
+      "$ref": "#/definitions/navigationTableAction"
     },
-    "errorMessage": {
-      "type": "string"
+    {
+      "$ref": "#/definitions/openApiTableAction"
     },
-    "successMessage": {
-      "type": "string"
-    },
-    "priority": {
-      "type": "number"
-    },
-    "checkFunction": {
-      "type": "string"
-    },
-    "inHeader": {
-      "type": "boolean"
-    },
-    "role": {
-      "type": "string"
-    },
-    "icon": {
-      "type": "string"
-    },
-    "svgIcon": {
-      "type": "string"
-    },
-    "permission": {
-      "type": "string"
-    },
-    "color": {
-      "type": "string",
-      "description": "Value for the color input of the mat-button / mat-icon component"
-    },
-    "cssClass": {
-      "$ref": "#/definitions/cssClass"
-    },
-    "options": {
-      "type": "object",
-      "additionalProperties": true
+    {
+      "$ref": "#/definitions/operationTableAction"
     }
-  },
-  "required": [
-    "type"
   ],
   "definitions": {
-    "cssClass": {
-      "$ref": "./css-class.schema.json"
+    "baseTableAction": {
+      "$ref": "./base-table-column.schema.json"
+    },
+    "dialogTableAction": {
+      "$ref": "./dialog-table-action.schema.json"
+    },
+    "formTableAction": {
+      "$ref": "./form-table-action.schema.json"
+    },
+    "navigationTableAction": {
+      "$ref": "./navigation-table-action.schema.json"
+    },
+    "openApiTableAction": {
+      "$ref": "./open-api-table-action.schema.json"
+    },
+    "operationTableAction": {
+      "$ref": "./operation-table-action.schema.json"
     }
   }
 }

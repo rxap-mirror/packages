@@ -7,29 +7,28 @@ import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
 import {
   AngularOptions,
+  NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
-import { NormalizeTableActionOptions } from '../../table-action';
+import {
+  NormalizedOpenApiTableAction,
+  NormalizeOpenApiTableAction,
+  OpenApiTableAction,
+} from '../../../../lib/table/action/open-api-table-action';
 import { OpenApiTableActionOptions } from './schema';
 
-export interface NormalizedOpenApiTableActionOptions
-  extends Readonly<Normalized<Omit<OpenApiTableActionOptions, keyof AngularOptions>> & NormalizedAngularOptions> {
-  body: boolean | Record<string, string>;
-  parameters: boolean | Record<string, string>;
-}
+export type NormalizedOpenApiTableActionOptions = Readonly<Normalized<Omit<OpenApiTableActionOptions, keyof OpenApiTableAction | keyof AngularOptions>> & NormalizedOpenApiTableAction & NormalizedAngularOptions>
+
 
 export function NormalizeOpenApiTableActionOptions(
   options: Readonly<OpenApiTableActionOptions>,
 ): NormalizedOpenApiTableActionOptions {
-  const normalizedOptions = NormalizeTableActionOptions(options);
   return Object.freeze({
-    ...normalizedOptions,
-    operationId: options.operationId,
-    body: options.body ?? false,
-    parameters: options.parameters ?? false,
-    scope: options.scope ?? null,
+    ...NormalizeAngularOptions(options),
+    ...NormalizeOpenApiTableAction(options),
+    tableName: options.tableName,
   });
 }
 

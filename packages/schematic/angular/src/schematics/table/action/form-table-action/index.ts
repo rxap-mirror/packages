@@ -9,7 +9,6 @@ import {
   BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
-
   CoerceFormSubmitOperation,
   CoerceFormTableActionRule,
   CoerceImports,
@@ -21,6 +20,7 @@ import {
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
+import { CoerceDtoClass } from '@rxap/ts-morph';
 import {
   classify,
   CoerceSuffix,
@@ -34,61 +34,40 @@ import {
   SourceFile,
   TypeAliasDeclarationStructure,
 } from 'ts-morph';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
+import {
+  AngularOptions,
+  NormalizeAngularOptions,
+  NormalizedAngularOptions,
+  PrintAngularOptions,
+} from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import { BackendTypes } from '../../../../lib/backend-types';
+import { ControlToDtoClassProperty } from '../../../../lib/form/control';
 import {
-  ControlToDtoClassProperty,
-  NormalizeControlList,
-  NormalizedControl,
-} from '../../../../lib/form/control';
-import {
-  NormalizedOperationTableActionOptions,
-  NormalizeOperationTableActionOptions,
-} from '../operation-table-action';
-import { OperationTableActionOptions } from '../operation-table-action/schema';
+  FormTableAction,
+  NormalizedFormTableAction,
+  NormalizeFormTableAction,
+} from '../../../../lib/table/action/form-table-action';
 import { FormTableActionOptions } from './schema';
-import { CoerceDtoClass } from '@rxap/ts-morph';
 
-export interface NormalizedFormTableActionOptions
-  extends Omit<Readonly<Normalized<Omit<FormTableActionOptions, keyof OperationTableActionOptions>> & NormalizedOperationTableActionOptions>, 'formOptions'> {
-  formComponent: string;
-  formOptions: {
-    // TODO : create custom interface and normalization function for the formOptions property (also used in form-table-header-button)
-    controlList: ReadonlyArray<NormalizedControl>;
-    role: string | null;
-    window: boolean;
-  };
-}
+export type NormalizedFormTableActionOptions = Readonly<Normalized<Omit<FormTableActionOptions, keyof FormTableAction | keyof AngularOptions>> & NormalizedFormTableAction & NormalizedAngularOptions>
+
 
 export function NormalizeFormTableActionOptions(
   options: Readonly<FormTableActionOptions>,
 ): NormalizedFormTableActionOptions {
-  const normalizedOptions = NormalizeOperationTableActionOptions(options);
-  const {
-    controllerName,
-    type,
-    nestModule,
-    tableName,
-  } = normalizedOptions;
-  const loadFrom = options.loadFrom ?? null;
-  const formInitial = options.formInitial ?? null;
-  const formOptions = options.formOptions ?? {};
+  const normalizedOptions = NormalizeAngularOptions(options);
+  const tableActionOptions = NormalizeFormTableAction(options);
+  const { nestModule, } = normalizedOptions;
+  const { type } = tableActionOptions;
   return {
     ...normalizedOptions,
+    ...tableActionOptions,
+    tableName: options.tableName,
     controllerName: BuildNestControllerName({
       nestModule,
       controllerName: [ type, 'action' ].join('-'),
     }),
-    formComponent: CoerceSuffix(dasherize(options.formComponent ?? type), '-form'),
-    loadFrom: Object.keys(loadFrom ?? {}).length ? loadFrom : null,
-    formInitial: Object.keys(formInitial ?? {}).length ? formInitial : null,
-    customComponent: options.customComponent ?? false,
-    formOptions: {
-      window: formOptions.window ?? true,
-      role: formOptions.role ?? type,
-      controlList: NormalizeControlList(formOptions.controlList),
-    },
   };
 }
 
@@ -164,6 +143,10 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
     throw new Error('The nest module is required');
   }
 
+  if (!controllerName) {
+    throw new Error('The controller name is required');
+  }
+
   const controllerPath = `${ dasherize(nestModule) }/action/:rowId/${ type }`;
 
   return chain([
@@ -188,7 +171,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
         } = CoerceDtoClass({
           project,
           name: controllerName,
-          propertyList: normalizedOptions.formOptions?.controlList.map(
+          propertyList: normalizedOptions.form?.controlList.map(
             control => ControlToDtoClassProperty(control)) ?? [],
         });
 
@@ -262,6 +245,9 @@ function buildGetOperationId(normalizedOptions: NormalizedFormTableActionOptions
   const {
     controllerName,
   } = normalizedOptions;
+  if (!controllerName) {
+    throw new Error('The controller name is required');
+  }
   return buildOperationId(
     normalizedOptions,
     `get`,
@@ -315,7 +301,7 @@ export default function (options: FormTableActionOptions) {
     formInitial,
     formComponent,
     customComponent,
-    formOptions,
+    form,
   } = normalizedOptions;
 
   printOptions(normalizedOptions);
@@ -376,7 +362,7 @@ export default function (options: FormTableActionOptions) {
       ruleList.push(
         () => console.info(`Generating form component...`),
         ExecuteSchematic('form-component', {
-          ...formOptions ?? {},
+          ...form ?? {},
           project,
           name: formComponent.replace(/-form$/, ''),
           feature,

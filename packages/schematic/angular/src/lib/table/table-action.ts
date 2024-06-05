@@ -37,29 +37,30 @@ export type NormalizedTableAction = NormalizedBaseTableAction | NormalizedDialog
   | NormalizedNavigationTableAction | NormalizedOpenApiTableAction | NormalizedOperationTableAction;
 
 export function NormalizeTableAction(
-  column: Readonly<TableAction>,
+  action: Readonly<TableAction>,
+  defaultKind: TableActionKind = TableActionKind.DEFAULT,
 ): NormalizedTableAction {
-  switch (column.kind) {
+  switch (action.kind ?? defaultKind) {
     case TableActionKind.DIALOG:
-      return NormalizeDialogTableAction(column);
+      return NormalizeDialogTableAction(action);
     case TableActionKind.FORM:
-      return NormalizeFormTableAction(column);
+      return NormalizeFormTableAction(action);
     case TableActionKind.NAVIGATION:
-      return NormalizeNavigationTableAction(column);
+      return NormalizeNavigationTableAction(action);
     case TableActionKind.OPEN_API:
-      return NormalizeOpenApiTableAction(column);
+      return NormalizeOpenApiTableAction(action);
     case TableActionKind.OPERATION:
-      return NormalizeOperationTableAction(column);
+      return NormalizeOperationTableAction(action);
     case TableActionKind.DEFAULT:
     default:
-      return NormalizeBaseTableAction(column);
+      return NormalizeBaseTableAction(action);
   }
 }
 
 export function NormalizeTableActionList(
-  columnList?: ReadonlyArray<Readonly<TableAction>>,
+  actionList?: ReadonlyArray<Readonly<TableAction>>,
 ): ReadonlyArray<NormalizedTableAction> {
   return Object.freeze((
-    columnList?.map(NormalizeTableAction) ?? []
+    actionList?.map(action => NormalizeTableAction(action)) ?? []
   ));
 }

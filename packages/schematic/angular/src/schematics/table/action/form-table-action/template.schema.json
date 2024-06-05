@@ -6,70 +6,15 @@
       "$ref": "#/definitions/tableActionSchematic"
     },
     {
-      "type": "object",
-      "properties": {
-        "formInitial": {
-          "type": "object",
-          "description": "The mapping from the row object to the form initial object"
-        },
-        "formComponent": {
-          "type": "string"
-        },
-        "customComponent": {
-          "type": "boolean",
-          "default": false,
-          "description": "If true the schematic will not coerce the form component"
-        },
-        "loadFrom": {
-          "type": "object",
-          "properties": {
-            "operationId": {
-              "type": "string"
-            },
-            "scope": {
-              "type": "string",
-              "description": "The scope of package for the openapi classes"
-            },
-            "body": {
-              "oneOf": [
-                {
-                  "type": "boolean",
-                  "description": "Pass the full row as body for the operation request"
-                },
-                {
-                  "type": "object",
-                  "description": "Mapping of table columns to body properties - [request property]: [table column]",
-                  "additionalProperties": true
-                }
-              ]
-            },
-            "parameters": {
-              "oneOf": [
-                {
-                  "type": "boolean",
-                  "description": "Pass the full row as parameters for the operation request"
-                },
-                {
-                  "type": "object",
-                  "description": "Mapping of table columns to parameters properties - [request property]: [table column]",
-                  "additionalProperties": true
-                }
-              ]
-            }
-          }
-        },
-        "formOptions": {
-          "$ref": "#/definitions/formComponent"
-        }
-      }
+      "$ref": "#/definitions/formTableAction"
     }
   ],
   "definitions": {
-    "formComponent": {
-      "$ref": "../../../form-component.schema.json"
-    },
     "tableActionSchematic": {
       "$ref": "../../table-action/template.schema.json"
+    },
+    "formTableAction": {
+      "$ref": "../../../form-table-action.schema.json"
     }
   }
 }

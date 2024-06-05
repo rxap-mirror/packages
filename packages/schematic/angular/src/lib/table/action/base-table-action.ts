@@ -22,6 +22,9 @@ export interface BaseTableAction {
   inHeader?: boolean;
   color?: string;
   cssClass?: CssClass;
+  icon?: string;
+  svgIcon?: string;
+  permission?: string;
 }
 
 export interface NormalizedBaseTableAction
@@ -33,6 +36,9 @@ export interface NormalizedBaseTableAction
 export function NormalizeBaseTableAction(
   tableAction: Readonly<BaseTableAction>,
 ): NormalizedBaseTableAction {
+  if (!tableAction.type) {
+    throw new Error('The type property is required for a table action');
+  }
   return Object.freeze({
     kind: tableAction.kind ?? TableActionKind.DEFAULT,
     type: dasherize(tableAction.type),
@@ -46,5 +52,8 @@ export function NormalizeBaseTableAction(
     confirm: tableAction.confirm ?? false,
     priority: tableAction.priority ?? 0,
     inHeader: tableAction.inHeader ?? false,
+    icon: tableAction.icon ?? null,
+    svgIcon: tableAction.svgIcon ?? null,
+    permission: tableAction.permission ?? null,
   });
 }

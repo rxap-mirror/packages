@@ -16,16 +16,21 @@ import {
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../lib/assert-table-component-exists';
-import { NormalizeTableRowAction } from '../../../lib/table-row-action';
+import {
+  NormalizedTableAction,
+  NormalizeTableAction,
+  TableAction,
+} from '../../../lib/table/table-action';
 import { TableActionOptions } from './schema';
 
-export type NormalizedTableActionOptions = Readonly<Normalized<Omit<TableActionOptions, keyof AngularOptions>>> & NormalizedAngularOptions;
+export type NormalizedTableActionOptions = Readonly<Normalized<Omit<TableActionOptions, keyof AngularOptions | keyof TableAction>>> & NormalizedAngularOptions & NormalizedTableAction;
 
 export function NormalizeTableActionOptions(
   options: Readonly<TableActionOptions>,
 ): NormalizedTableActionOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableRowAction = NormalizeTableRowAction(options);
+  // TODO: Fix this type assertion
+  const normalizedTableRowAction = NormalizeTableAction(options as any);
   const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
   return Object.freeze({
     ...normalizedTableRowAction,

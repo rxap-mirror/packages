@@ -1,9 +1,16 @@
+export enum MatFormFieldAppearance {
+  Legacy = 'legacy',
+  Standard = 'standard',
+  Fill = 'fill',
+  Outline = 'outline',
+}
+
 export interface MatFormFieldDefaultOptions {
-  appearance?: 'legacy' | 'standard' | 'fill' | 'outline';
+  appearance?: MatFormFieldAppearance;
 }
 
 export interface NormalizedMatFormFieldDefaultOptions {
-  appearance: 'legacy' | 'standard' | 'fill' | 'outline' | undefined;
+  appearance: MatFormFieldAppearance | undefined;
 }
 
 export function NormalizeMatFormFieldDefaultOptions(

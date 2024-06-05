@@ -7,13 +7,11 @@ import {
 } from './base-table-action';
 
 
-export interface OperationTableAction extends BaseTableAction {
-
-}
+export type OperationTableAction = BaseTableAction
 
 export interface NormalizedOperationTableAction
   extends Readonly<Normalized<Omit<OperationTableAction, keyof BaseTableAction>> & NormalizedBaseTableAction> {
-  kind: TableActionKind.DIALOG;
+  kind: TableActionKind.OPERATION;
 }
 
 export function NormalizeOperationTableAction(
@@ -21,6 +19,6 @@ export function NormalizeOperationTableAction(
 ): NormalizedOperationTableAction {
   return Object.freeze({
     ...NormalizeBaseTableAction(tableAction),
-    kind: TableActionKind.DIALOG,
+    kind: TableActionKind.OPERATION,
   });
 }

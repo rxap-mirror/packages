@@ -11,7 +11,10 @@ import {
   OperationIdToResponseClassName,
   ToMappingObjectOptions,
 } from '@rxap/ts-morph';
-import { dasherize } from '@rxap/utilities';
+import {
+  dasherize,
+  noop,
+} from '@rxap/utilities';
 import {
   Scope,
   StatementStructures,
@@ -21,7 +24,7 @@ import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
 } from '../nest/operation-id-utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceImports } from '@rxap/ts-morph';
 import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
@@ -36,7 +39,7 @@ export interface LoadFromTableActionOptions {
 
 export interface CoerceFormTableActionOptions extends CoerceTableActionOptions {
   loadFrom?: LoadFromTableActionOptions | null;
-  formInitial?: Record<string, any> | null;
+  formInitial?: Record<string, any> | boolean;
   scope?: string | null;
   formComponent: string;
 }
@@ -51,16 +54,15 @@ const toMappingObjectOptions: ToMappingObjectOptions = {
 };
 
 export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions) {
-  let {
+  const {
     type,
     loadFrom,
     tableName,
-    tsMorphTransform,
+    tsMorphTransform = noop,
     scope,
     formInitial,
     formComponent,
   } = options;
-  tsMorphTransform ??= () => ({});
 
   return CoerceTableActionRule({
     ...options,
@@ -165,10 +167,14 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
           statements.push(`const initial = parameters;`);
         }
       } else {
-        statements.push(`const initial = parameters;`);
+        if (formInitial) {
+          statements.push(`const initial = parameters;`);
+        } else {
+          statements.push(`const initial = {};`);
+        }
       }
       statements.push(`this.cdr.markForCheck();`);
-      if (formInitial) {
+      if (typeof formInitial === 'object') {
         CoerceMappingClassMethod(sourceFile, classDeclaration, {
           name: 'toInitial',
           parameterType: loadFrom?.operationId ? OperationIdToResponseClassName(loadFrom.operationId) :
@@ -190,7 +196,7 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
         isAsync: true,
         scope: Scope.Public,
         returnType: 'Promise<any>',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration),
+        ...(tsMorphTransform(project, sourceFile, classDeclaration) ?? {}),
       };
     },
   });

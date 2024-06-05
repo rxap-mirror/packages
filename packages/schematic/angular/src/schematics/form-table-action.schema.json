@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "form-table-action",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseTableAction"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "form",
+          "default": "form"
+        },
+        "formInitial": {
+          "oneOf": [
+            {
+              "type": "object",
+              "description": "The mapping from the row object to the form initial object"
+            },
+            {
+              "type": "boolean",
+              "description": "If true the row object will be used as form initial object. If false the form initial object will be empty. Default is false.",
+              "default": false
+            }
+          ]
+        },
+        "formComponent": {
+          "type": "string"
+        },
+        "customComponent": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true the schematic will not coerce the form component"
+        },
+        "loadFrom": {
+          "type": "object",
+          "properties": {
+            "operationId": {
+              "type": "string"
+            },
+            "scope": {
+              "type": "string",
+              "description": "The scope of package for the openapi classes"
+            },
+            "body": {
+              "oneOf": [
+                {
+                  "type": "boolean",
+                  "description": "Pass the full row as body for the operation request"
+                },
+                {
+                  "type": "object",
+                  "description": "Mapping of table columns to body properties - [request property]: [table column]",
+                  "additionalProperties": true
+                }
+              ]
+            },
+            "parameters": {
+              "oneOf": [
+                {
+                  "type": "boolean",
+                  "description": "Pass the full row as parameters for the operation request"
+                },
+                {
+                  "type": "object",
+                  "description": "Mapping of table columns to parameters properties - [request property]: [table column]",
+                  "additionalProperties": true
+                }
+              ]
+            }
+          }
+        },
+        "form": {
+          "alias": "formOptions",
+          "$ref": "#/definitions/formComponent"
+        }
+      },
+      "required": ["kind"]
+    }
+  ],
+  "definitions": {
+    "baseTableAction": {
+      "$ref": "./base-table-action.schema.json"
+    },
+    "formComponent": {
+      "$ref": "./form-component.schema.json"
+    }
+  }
+
+}

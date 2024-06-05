@@ -1,9 +1,7 @@
-import { TableActionOptions } from '../../table-action/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
+import { OpenApiTableAction } from '../../../../lib/table/action/open-api-table-action';
 
 
-export interface OpenApiTableActionOptions extends TableActionOptions {
-  operationId: string;
-  body?: boolean | Record<string, string>;
-  parameters?: boolean | Record<string, string>;
-  scope?: string;
+export interface OpenApiTableActionOptions  extends OpenApiTableAction, AngularOptions {
+  tableName: string;
 }

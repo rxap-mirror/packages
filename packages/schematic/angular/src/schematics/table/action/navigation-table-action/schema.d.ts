@@ -1,6 +1,6 @@
-import { OperationTableActionOptions } from '../operation-table-action/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
+import { NavigationTableAction } from '../../../../lib/table/action/navigation-table-action';
 
-export interface NavigationTableActionOptions extends OperationTableActionOptions {
-  route?: string;
-  relativeTo: boolean;
+export interface NavigationTableActionOptions extends NavigationTableAction, AngularOptions {
+  tableName: string;
 }

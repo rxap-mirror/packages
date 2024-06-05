@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "base-table-action",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "refresh": {
+      "type": "boolean"
+    },
+    "confirm": {
+      "type": "boolean"
+    },
+    "tooltip": {
+      "type": "string"
+    },
+    "errorMessage": {
+      "type": "string"
+    },
+    "successMessage": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "number"
+    },
+    "checkFunction": {
+      "type": "string"
+    },
+    "inHeader": {
+      "type": "boolean"
+    },
+    "kind": {
+      "alias": "role",
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "svgIcon": {
+      "type": "string"
+    },
+    "permission": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string",
+      "description": "Value for the color input of the mat-button / mat-icon component"
+    },
+    "cssClass": {
+      "$ref": "#/definitions/cssClass"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "definitions": {
+    "cssClass": {
+      "$ref": "./css-class.schema.json"
+    }
+  }
+}

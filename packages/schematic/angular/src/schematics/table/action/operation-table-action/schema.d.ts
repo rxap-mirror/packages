@@ -1,4 +1,6 @@
-import { TableActionOptions } from '../../table-action/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
+import { OperationTableAction } from '../../../../lib/table/action/operation-table-action';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface OperationTableActionOptions extends TableActionOptions {}
+export interface OperationTableActionOptions extends OperationTableAction, AngularOptions {
+  tableName: string;
+}

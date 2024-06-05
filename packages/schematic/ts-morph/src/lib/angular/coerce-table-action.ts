@@ -19,7 +19,7 @@ import { CoerceTableActionIndexRule } from './coerce-table-action-index';
 import { CoerceTableActionIndexProviderRule } from './coerce-table-action-index-provider';
 import { CoerceTableActionProviderRule } from './coerce-table-action-provider';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceImports } from '@rxap/ts-morph';
 
 export interface CoerceTableActionOptions extends Omit<CoerceMethodClassOptions, 'name'> {
   type: string;

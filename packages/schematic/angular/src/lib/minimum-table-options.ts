@@ -23,11 +23,6 @@ import {
   NormalizedCssClass,
 } from './css-class';
 import {
-  NormalizedTableAction,
-  NormalizeTableActionList,
-  TableAction,
-} from './table-action';
-import {
   NormalizeTableHeaderButton,
   TableHeaderButton,
 } from './table-header-button';
@@ -36,6 +31,11 @@ import {
   NormalizeSortable,
   Sortable,
 } from './table/sortable';
+import {
+  NormalizedTableAction,
+  NormalizeTableActionList,
+  TableAction,
+} from './table/table-action';
 import {
   NormalizedTableColumn,
   NormalizeTableColumnList,
@@ -57,7 +57,7 @@ export function IsMinimumTableModifiers(value: string): value is MinimumTableMod
 export interface MinimumTableOptions {
   headerButton?: string | TableHeaderButton;
   columnList: Array<TableColumn>;
-  actionList: Array<string | TableAction>;
+  actionList: Array<TableAction>;
   propertyList: Array<string | DataProperty>;
   modifiers?: string[];
   title?: string;

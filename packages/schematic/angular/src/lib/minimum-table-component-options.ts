@@ -50,8 +50,8 @@ import {
   NormalizedMinimumTableOptions,
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
-import { NormalizedTableAction } from './table-action';
-import { NormalizedTableColumn } from './table/table-column';
+import { NormalizedTableAction } from './table/table-action';
+import { TableActionKind } from './table/table-action-kind';
 import { TableColumnKind } from './table/table-column-kind';
 import { TableColumnModifier } from './table/table-column-modifier';
 
@@ -232,9 +232,7 @@ function operationActionRule(
 ): Rule {
 
   const {
-    type,
-    role,
-    options: additionalOptions,
+    kind
   } = action;
   const {
     overwrite,
@@ -249,15 +247,14 @@ function operationActionRule(
     context,
   } = normalizedOptions;
 
-  if (role !== 'operation') {
-    throw new SchematicsException(`Invalid action role: ${ role } - expected operation`);
+  if (kind !== TableActionKind.OPERATION) {
+    throw new SchematicsException(`Invalid action role: ${ kind } - expected operation`);
   }
 
   return chain([
     () =>
       console.log(`Coerce operation table action '${ action.type }'`),
     ExecuteSchematic('operation-table-action', {
-      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -282,9 +279,7 @@ function formActionRule(
 ): Rule {
 
   const {
-    type,
-    role,
-    options: additionalOptions,
+    kind
   } = action;
   const {
     overwrite,
@@ -299,14 +294,13 @@ function formActionRule(
     context,
   } = normalizedOptions;
 
-  if (role !== 'form') {
-    throw new SchematicsException(`Invalid action role: ${ role } - expected form`);
+  if (kind !== TableActionKind.FORM) {
+    throw new SchematicsException(`Invalid action role: ${ kind } - expected form`);
   }
 
   return chain([
     () => console.log(`Coerce form table action '${ action.type }'`),
     ExecuteSchematic('form-table-action', {
-      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -331,9 +325,7 @@ function navigateActionRule(
 ): Rule {
 
   const {
-    type,
-    role,
-    options: additionalOptions,
+    kind
   } = action;
   const {
     overwrite,
@@ -345,15 +337,14 @@ function navigateActionRule(
     directory,
   } = normalizedOptions;
 
-  if (![ 'link', 'navigate', 'navigation' ].includes(role ?? '')) {
-    throw new SchematicsException(`Invalid action role: ${ role } - expected navigation`);
+  if (kind !== TableActionKind.NAVIGATION) {
+    throw new SchematicsException(`Invalid action role: ${ kind } - expected navigation`);
   }
 
   return chain([
     () =>
       console.log(`Coerce navigate table action '${ action.type }'`),
     ExecuteSchematic('navigation-table-action', {
-      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -373,9 +364,7 @@ function dialogActionRule(
 ): Rule {
 
   const {
-    options: additionalOptions,
-    type,
-    role,
+    kind,
   } = action;
   const {
     overwrite,
@@ -390,15 +379,14 @@ function dialogActionRule(
     context,
   } = normalizedOptions;
 
-  if (role !== 'dialog') {
-    throw new SchematicsException(`Invalid action role: ${ role } - expected dialog`);
+  if (kind !== TableActionKind.DIALOG) {
+    throw new SchematicsException(`Invalid action role: ${ kind } - expected dialog`);
   }
 
   return chain([
     () =>
       console.log(`Coerce dialog table action '${ action.type }'`),
     ExecuteSchematic('dialog-table-action', {
-      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -432,12 +420,9 @@ function defaultActionRule(
     directory,
   } = normalizedOptions;
 
-  const { options: additionalOptions } = action;
-
   return chain([
     () => console.log(`Coerce table action '${ action.type }'`),
     ExecuteSchematic('table-action', {
-      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -457,9 +442,7 @@ function openApiActionRule(
 ): Rule {
 
   const {
-    options: additionalOptions,
-    type,
-    role,
+    kind,
   } = action;
   const {
     overwrite,
@@ -471,14 +454,13 @@ function openApiActionRule(
     directory,
   } = normalizedOptions;
 
-  if (role !== 'open-api') {
-    throw new SchematicsException(`Invalid action role: ${ role } - expected open-api`);
+  if (kind !== TableActionKind.OPEN_API) {
+    throw new SchematicsException(`Invalid action role: ${ kind } - expected open-api`);
   }
 
   return chain([
     () => console.log(`Coerce open api table action '${ action.type }'`),
     ExecuteSchematic('open-api-table-action', {
-      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -496,34 +478,25 @@ function actionRule(action: NormalizedTableAction, normalizedOptions: Normalized
 
   const rules: Rule[] = [];
 
-  switch (action.role) {
+  switch (action.kind) {
 
-    case 'operation':
+    case TableActionKind.OPERATION:
       rules.push(operationActionRule(action, normalizedOptions));
       break;
 
-    case 'form':
+    case TableActionKind.FORM:
       rules.push(formActionRule(action, normalizedOptions));
       break;
 
-    case 'link':
-      console.warn('Deprecated action type: link - use navigate instead');
+    case TableActionKind.NAVIGATION:
       rules.push(navigateActionRule(action, normalizedOptions));
       break;
 
-    case 'navigate':
-      rules.push(navigateActionRule(action, normalizedOptions));
-      break;
-
-    case 'navigation':
-      rules.push(navigateActionRule(action, normalizedOptions));
-      break;
-
-    case 'dialog':
+    case TableActionKind.DIALOG:
       rules.push(dialogActionRule(action, normalizedOptions));
       break;
 
-    case 'open-api':
+    case TableActionKind.OPEN_API:
       rules.push(openApiActionRule(action, normalizedOptions));
       break;
 

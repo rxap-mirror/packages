@@ -13,12 +13,12 @@ import {
   NormalizedMinimumTableOptions,
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
-import { NormalizedTableAction } from './table-action';
 import {
   NormalizedTableOpenApiOptions,
   NormalizeTableOpenApiOptions,
   TableOpenApiOptions,
 } from './table-open-api-options';
+import { NormalizedTableAction } from './table/table-action';
 import { NormalizedTableColumn } from './table/table-column';
 import { TableColumnKind } from './table/table-column-kind';
 import { TableColumnSticky } from './table/table-column-sticky';

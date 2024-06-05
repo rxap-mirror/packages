@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "navigation-table-action",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseTableAction"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "navigation",
+          "default": "navigation"
+        },
+        "route": {
+          "type": "string",
+          "description": "The route for the table action"
+        },
+        "relativeTo": {
+          "type": "boolean",
+          "description": "Use the current ActivatedRoute to resolve the route or not",
+          "default": false
+        }
+      },
+      "required": ["kind", "route"]
+    }
+  ],
+  "definitions": {
+    "baseTableAction": {
+      "$ref": "./base-table-action.schema.json"
+    }
+  }
+
+}
