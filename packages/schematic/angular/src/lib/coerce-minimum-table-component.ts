@@ -92,6 +92,13 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
       CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
       CoerceComponentImport(classDeclaration, { name: 'NgClass', moduleSpecifier: '@angular/common' });
+      // region filter
+      for (const filter of filterList) {
+        for (const componentImport of filter.importList) {
+          CoerceComponentImport(classDeclaration, componentImport);
+        }
+      }
+      // endregion
       // region from column
       for (const column of columnList) {
         for (const componentImport of column.importList) {
