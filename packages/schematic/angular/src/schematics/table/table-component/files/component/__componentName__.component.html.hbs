@@ -225,7 +225,11 @@
           {{#if hasCustomFilter}}
           <ng-container matColumnDef="custom_filter">
             <th *matHeaderCellDef [colSpan]="rxapTableColumns.displayColumns.length" mat-header-cell>
-              CUSTOM FILTER HEADER
+              <div class="flex flex-row gap-6">
+              {{#each filterList}}
+                {{ indent (compile this.handlebars control=this prefix=../prefix) 16 }}
+              {{/each}}
+              </div>
             </th>
           </ng-container>
           {{/if}}
@@ -257,15 +261,18 @@
           {{/each}}
 
           <!-- endregion -->
+          {{/if}}
+
+          {{#if hasCustomFilter}}
+          <tr *matHeaderRowDef="['custom_filter']" mat-header-row></tr>
+          {{/if}}
+
+          {{#if hasColumnWithFilter}}
           <tr
             class="rxap-filter-header"
             mat-header-row
             *matHeaderRowDef="rxapTableColumns.displayColumns | toFilterColumnNames"
           ></tr>
-          {{/if}}
-
-          {{#if hasCustomFilter}}
-          <tr *matHeaderRowDef="['custom_filter']" mat-header-row></tr>
           {{/if}}
 
           {{#if withHeader}}
