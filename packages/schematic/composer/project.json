@@ -19,6 +19,7 @@
     "plugin-library",
     "plugin-localazy",
     "plugin-nestjs",
+    "plugin-cypress",
     "plugin-open-api",
     "plugin-utilities",
     "plugin-web3-storage",

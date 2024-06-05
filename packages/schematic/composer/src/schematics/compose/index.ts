@@ -42,6 +42,9 @@ function detectedFeature(schematicCommandFilePath: string): string | undefined {
   const fragments = schematicCommandFilePath.split('/').reverse();
   let last = fragments.pop();
   for (const fragment of fragments) {
+    if (['lib', 'app', 'src'].includes(fragment)) {
+      return undefined;
+    }
     if (fragment === 'feature') {
       return last;
     }
