@@ -186,15 +186,15 @@
       },
       {
         "package": "@rxap/authentication",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/authorization",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/browser-tailwind",
-        "version": "1.0.3"
+        "version": "1.0.4-dev.0"
       },
       {
         "package": "@rxap/browser-utilities",
@@ -202,11 +202,11 @@
       },
       {
         "package": "@rxap/components",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/config",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/contenteditable",
@@ -214,11 +214,11 @@
       },
       {
         "package": "@rxap/data-grid",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -230,7 +230,7 @@
       },
       {
         "package": "@rxap/dialog",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/directives",
@@ -238,19 +238,19 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/firebase",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/form-window-system",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/forms",
@@ -258,7 +258,7 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.7"
+        "version": "1.0.8-dev.0"
       },
       {
         "package": "@rxap/generator-utilities",
@@ -282,7 +282,7 @@
       },
       {
         "package": "@rxap/layout",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/life-cycle",
@@ -290,19 +290,19 @@
       },
       {
         "package": "@rxap/material-directives",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/material-table-window-system",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/mixin",
@@ -322,11 +322,11 @@
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.2.1"
+        "version": "10.2.2-dev.0"
       },
       {
         "package": "@rxap/nest-minio",
-        "version": "10.1.0"
+        "version": "10.1.1-dev.0"
       },
       {
         "package": "@rxap/nest-open-api",
@@ -334,7 +334,7 @@
       },
       {
         "package": "@rxap/nest-sentry",
-        "version": "10.3.0"
+        "version": "10.3.1-dev.0"
       },
       {
         "package": "@rxap/nest-server",
@@ -366,23 +366,23 @@
       },
       {
         "package": "@rxap/ngx-bootstrap",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-changelog",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-error",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-localize",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-material-authentication",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-material-localize",
@@ -390,7 +390,7 @@
       },
       {
         "package": "@rxap/ngx-material-table-select",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
@@ -402,23 +402,23 @@
       },
       {
         "package": "@rxap/ngx-sentry",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-status-check",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-theme",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-timeago",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/node-local-storage",
@@ -430,11 +430,11 @@
       },
       {
         "package": "@rxap/oauth",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -446,67 +446,67 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.1.0-dev.0"
-      },
-      {
-        "package": "@rxap/plugin-application",
-        "version": "19.0.2"
-      },
-      {
-        "package": "@rxap/plugin-compodoc",
-        "version": "19.0.1"
-      },
-      {
-        "package": "@rxap/plugin-cypress",
-        "version": "19.0.2-dev.0"
-      },
-      {
-        "package": "@rxap/plugin-docker",
-        "version": "19.0.1"
-      },
-      {
-        "package": "@rxap/plugin-gitlab-ci",
-        "version": "19.0.1"
-      },
-      {
-        "package": "@rxap/plugin-gpt",
-        "version": "19.0.1"
-      },
-      {
-        "package": "@rxap/plugin-library",
-        "version": "19.2.0-dev.1"
-      },
-      {
-        "package": "@rxap/plugin-localazy",
-        "version": "19.0.1"
-      },
-      {
-        "package": "@rxap/plugin-nestjs",
-        "version": "19.0.4-dev.0"
-      },
-      {
-        "package": "@rxap/plugin-open-api",
-        "version": "19.0.1"
-      },
-      {
-        "package": "@rxap/plugin-storybook",
-        "version": "19.0.2-dev.0"
-      },
-      {
-        "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.0"
-      },
-      {
-        "package": "@rxap/plugin-web3-storage",
-        "version": "19.0.1"
-      },
-      {
-        "package": "@rxap/plugin-workspace",
         "version": "19.1.0-dev.1"
       },
       {
+        "package": "@rxap/plugin-application",
+        "version": "19.0.3-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-compodoc",
+        "version": "19.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-cypress",
+        "version": "19.0.2-dev.1"
+      },
+      {
+        "package": "@rxap/plugin-docker",
+        "version": "19.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-gitlab-ci",
+        "version": "19.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-gpt",
+        "version": "19.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-library",
+        "version": "19.2.0-dev.2"
+      },
+      {
+        "package": "@rxap/plugin-localazy",
+        "version": "19.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-nestjs",
+        "version": "19.0.4-dev.1"
+      },
+      {
+        "package": "@rxap/plugin-open-api",
+        "version": "19.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-storybook",
+        "version": "19.0.2-dev.1"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "19.0.3-dev.1"
+      },
+      {
+        "package": "@rxap/plugin-web3-storage",
+        "version": "19.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-workspace",
+        "version": "19.1.0-dev.2"
+      },
+      {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.1-dev.2"
+        "version": "19.0.1-dev.3"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -522,35 +522,35 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.0.3-dev.1"
+        "version": "18.1.0-dev.0"
       },
       {
         "package": "@rxap/schematic-composer",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/schematic-nestjs",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/schematics-open-api",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.0.3-dev.2"
+        "version": "18.1.0-dev.0"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/schematics-xml-parser",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/service-worker",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/services",
@@ -566,19 +566,19 @@
       },
       {
         "package": "@rxap/table-system",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/tree",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.3.1-dev.2"
+        "version": "1.3.1-dev.3"
       },
       {
         "package": "@rxap/upload",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -590,7 +590,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/workspace-cypress",
@@ -598,15 +598,15 @@
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "19.0.1"
+        "version": "19.0.2-dev.0"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0-dev.1"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       },
       {
         "package": "@rxap/xml-parser",
