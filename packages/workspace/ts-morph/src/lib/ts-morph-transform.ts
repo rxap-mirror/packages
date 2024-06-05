@@ -1,4 +1,5 @@
 import { CreateProject } from '@rxap/ts-morph';
+import { coerceArray } from '@rxap/utilities';
 import {
   BuildAngularBasePath,
   BuildAngularBasePathOptions,
@@ -77,6 +78,8 @@ export function TsMorphTransform(
   }
 
   const project = CreateProject(projectOptions);
+
+  console.log(`TsMorphTransform for sourceRoot '${sourceRoot}' with fileList: [ ${coerceArray(filePathFilter).join(', ')} ]`.grey);
 
   if (!replace) {
     AddDir(

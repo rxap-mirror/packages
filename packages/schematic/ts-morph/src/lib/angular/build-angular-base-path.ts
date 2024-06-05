@@ -23,9 +23,17 @@ export function BuildAngularBasePath(host: Tree, options: Readonly<BuildAngularB
   project = shared ? 'shared' : project;
   const projectSourceRoot = GetProjectSourceRoot(host, project);
   const type = GetProjectType(host, project);
-  if (feature) {
-    return join(projectSourceRoot, type === 'library' ? 'lib' : '', 'feature', feature, directory);
-  } else {
-    return join(projectSourceRoot, type === 'library' ? 'lib' : '', 'app', directory);
+  let infix = '';
+  if (type === 'library') {
+    if (!directory.startsWith('lib/')) {
+      infix = 'lib';
+    }
   }
+  let basePath: string;
+  if (feature) {
+    basePath = join(projectSourceRoot, infix, 'feature', feature, directory);
+  } else {
+    basePath = join(projectSourceRoot, infix, directory);
+  }
+  return basePath;
 }

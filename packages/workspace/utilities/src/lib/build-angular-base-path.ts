@@ -23,6 +23,12 @@ export function BuildAngularBasePath<Tree extends TreeLike>(
   directory ??= '';
   project = shared ? 'shared' : project;
   const type = GetProjectType(tree, project);
+  let infix = '';
+  if (type === 'library') {
+    if (!directory.startsWith('lib/')) {
+      infix = 'lib';
+    }
+  }
   if (entrypoint) {
     if (feature) {
       throw new Error('The feature option is not supported with the entrypoint option');
@@ -31,12 +37,12 @@ export function BuildAngularBasePath<Tree extends TreeLike>(
       throw new Error('The entrypoint option is only supported for library project');
     }
     const projectRoot = GetProjectRoot(tree, project);
-    return join(projectRoot, entrypoint, 'src', 'lib', directory);
+    return join(projectRoot, entrypoint, 'src', infix, directory);
   }
   const projectSourceRoot = GetProjectSourceRoot(tree, project);
   if (feature) {
-    return join(projectSourceRoot, type === 'library' ? 'lib' : '', 'feature', feature, directory);
+    return join(projectSourceRoot, infix, 'feature', feature, directory);
   } else {
-    return join(projectSourceRoot, type === 'library' ? 'lib' : '', directory);
+    return join(projectSourceRoot, infix, directory);
   }
 }

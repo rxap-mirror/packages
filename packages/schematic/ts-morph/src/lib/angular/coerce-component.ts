@@ -202,6 +202,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
         CoerceFile(tree, join(basePath, componentPath, `${ name }.component.html`), '');
         CoerceFile(tree, join(basePath, componentPath, `${ name }.component.scss`), '');
       });
+      rules.push(() => console.log(`Component is create in folder: ${join(basePath, componentPath)}`.blue));
     }
 
     if (template && (
