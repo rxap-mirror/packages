@@ -40,15 +40,14 @@ export function CoerceHealthController(sourceFile: SourceFile): SourceFile {
     },
   ]);
 
-  CoerceNestOperation(sourceFile, {
+  const methodDeclaration = CoerceNestOperation(sourceFile, {
     method: 'get',
     returnType: 'Promise<HealthCheckResult>',
     statements: [ 'return this.health.check([]);' ],
     operationName: 'healthCheck',
-    tsMorphTransform: (_, __, methodDeclaration) => {
-      CoerceDecorator(methodDeclaration, 'HealthCheck', { arguments: [] });
-    },
   });
+
+  CoerceDecorator(methodDeclaration, 'HealthCheck', { arguments: [] });
 
   CoerceImports(sourceFile, [
     {
