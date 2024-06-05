@@ -23,6 +23,12 @@ import {
   NormalizedCssClass,
 } from './css-class';
 import {
+  FormControl,
+  NormalizedFormControl,
+  NormalizeFormControl,
+  NormalizeFormControlList,
+} from './form/control/form-control';
+import {
   NormalizeTableHeaderButton,
   TableHeaderButton,
 } from './table-header-button';
@@ -58,6 +64,7 @@ export interface MinimumTableOptions {
   headerButton?: string | TableHeaderButton;
   columnList: Array<TableColumn>;
   actionList: Array<TableAction>;
+  filterList: Array<FormControl>;
   propertyList: Array<string | DataProperty>;
   modifiers?: string[];
   title?: string;
@@ -71,10 +78,11 @@ export interface MinimumTableOptions {
 }
 
 export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
-  extends Readonly<Omit<Normalized<MinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList' | 'modifiers'>> {
+  extends Readonly<Omit<Normalized<MinimumTableOptions>, 'columnList' | 'actionList' | 'propertyList' | 'modifiers' | 'filterList'>> {
   componentName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
   actionList: ReadonlyArray<NormalizedTableAction>;
+  filterList: ReadonlyArray<NormalizedFormControl>;
   propertyList: Array<NormalizedDataProperty>;
   modifiers: Array<MODIFIER>;
   cssClass: NormalizedCssClass;
@@ -97,6 +105,7 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   for (const column of options.columnList) {
     column.sortable ??= sortable.enabled;
   }
+  const filterList = NormalizeFormControlList(options.filterList);
   const columnList = NormalizeTableColumnList(options.columnList);
   if (!sortable.enabled && columnList.some(column => column.sortable)) {
     sortable.enabled = true;
@@ -124,6 +133,7 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name);
   }
   return Object.freeze({
+    filterList,
     componentName,
     actionList,
     columnList,

@@ -102,7 +102,7 @@
           {{#if hasPaginator}}
           [paginator]="paginator"
           {{/if}}
-          {{#if hasColumnWithFilter}}
+          {{#if hasFilter}}
           rxap-filter-header-row
           {{/if}}
           {{#if sortable.enabled}}
@@ -222,6 +222,13 @@
           {{/each}}
 
           <!-- endregion -->
+          {{#if hasCustomFilter}}
+          <ng-container matColumnDef="custom_filter">
+            <th *matHeaderCellDef [colSpan]="rxapTableColumns.displayColumns.length" mat-header-cell>
+              CUSTOM FILTER HEADER
+            </th>
+          </ng-container>
+          {{/if}}
           {{#if hasColumnWithFilter}}
           <!-- region filter columns -->
           {{#if selectColumn}}
@@ -255,6 +262,10 @@
             mat-header-row
             *matHeaderRowDef="rxapTableColumns.displayColumns | toFilterColumnNames"
           ></tr>
+          {{/if}}
+
+          {{#if hasCustomFilter}}
+          <tr *matHeaderRowDef="['custom_filter']" mat-header-row></tr>
           {{/if}}
 
           {{#if withHeader}}

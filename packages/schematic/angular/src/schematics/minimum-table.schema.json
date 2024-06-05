@@ -16,6 +16,14 @@
     "rowId": {
       "$ref": "#/definitions/property"
     },
+    "filterList": {
+      "alias": "filter",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/formControl"
+      },
+      "description": "List of table filter controls"
+    },
     "columnList": {
       "alias": "column",
       "type": "array",
@@ -103,6 +111,9 @@
     },
     "accordionIdentifier": {
       "$ref": "./accordion-identifier.schema.json"
+    },
+    "formControl": {
+      "$ref": "./form-control.schema.json"
     }
   }
 }

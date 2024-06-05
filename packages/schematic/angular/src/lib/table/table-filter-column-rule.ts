@@ -38,9 +38,10 @@ export function TableFilterColumnRule(normalizedOptions: NormalizedMinimumTableO
     componentName,
     controllerName,
     nestModule,
+    filterList,
     name,
   } = normalizedOptions;
-  if (columnList.some((c) => c.hasFilter)) {
+  if (columnList.some((c) => c.hasFilter) || filterList.length) {
     return chain([
       () => console.log(`Coerce the filter form definition`),
       ExecuteSchematic('form-definition', {
@@ -53,9 +54,12 @@ export function TableFilterColumnRule(normalizedOptions: NormalizedMinimumTableO
         nestModule,
         backend,
         overwrite,
-        controlList: columnList
+        controlList: [
+          ...columnList
           .filter((column) => column.filterControl)
           .map(column => column.filterControl),
+          ...filterList,
+        ],
       }),
       CoerceComponentRule({
         project,
@@ -119,6 +123,7 @@ export function TableFilterColumnRule(normalizedOptions: NormalizedMinimumTableO
         project,
         shared,
         directory,
+        filterList,
         suffix,
         formName: CoerceSuffix(componentName, '-filter'),
       }),

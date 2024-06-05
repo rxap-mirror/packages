@@ -98,12 +98,15 @@ function componentRule(normalizedOptions: NormalizedTreeTableComponentOptions) {
     overwrite,
     modifiers,
     columnList,
+    filterList,
   } = normalizedOptions;
 
   const templateOptions = {
     ...normalizedOptions,
     hasNavigationBackHeader: modifiers.includes(TreeTableModifiers.NAVIGATION_BACK_HEADER),
     hasWithoutTitle: modifiers.includes(TreeTableModifiers.WITHOUT_TITLE),
+    hasFilter: filterList.length > 0 || columnList.some((c) => c.hasFilter),
+    hasCustomFilter: filterList.length > 0,
     hasColumnWithFilter: columnList.some((c) => c.hasFilter),
     exportDefault: !!feature && !directory,
   };

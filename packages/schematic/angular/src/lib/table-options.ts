@@ -1,11 +1,10 @@
-import { NormalizedDataProperty } from '@rxap/ts-morph';
+import { NormalizedTypeImport } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
 import {
   ExistingMethod,
-  NormalizedExistingMethod,
   NormalizeExistingMethod,
 } from './existing-method';
 import {
@@ -18,8 +17,6 @@ import {
   NormalizeTableOpenApiOptions,
   TableOpenApiOptions,
 } from './table-open-api-options';
-import { NormalizedTableAction } from './table/table-action';
-import { NormalizedTableColumn } from './table/table-column';
 import { TableColumnKind } from './table/table-column-kind';
 import { TableColumnSticky } from './table/table-column-sticky';
 
@@ -42,12 +39,10 @@ export interface TableOptions extends MinimumTableOptions {
 }
 
 export interface NormalizedTableOptions
-  extends Omit<Readonly<Normalized<TableOptions> & NormalizedMinimumTableOptions<TableModifiers>>, 'columnList' | 'actionList' | 'propertyList' | 'tableMethod' | 'openApi'> {
+  extends Readonly<Normalized<Omit<TableOptions, keyof MinimumTableOptions | 'openApi' | 'tableMethod'>> & NormalizedMinimumTableOptions<TableModifiers>> {
   componentName: string;
-  columnList: ReadonlyArray<NormalizedTableColumn>;
-  actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: Array<NormalizedDataProperty>;
-  tableMethod: NormalizedExistingMethod | null;
+  selectColumn: boolean;
+  tableMethod: NormalizedTypeImport | null;
   openApi: NormalizedTableOpenApiOptions | null;
 }
 

@@ -27,6 +27,7 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
     table: {
       columnList,
       actionList,
+      filterList,
       headerButton,
       modifiers,
       sortable,
@@ -100,7 +101,7 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
           CoerceComponentImport(classDeclaration, pipe);
         }
       }
-      if (columnList.some(column => column.hasFilter)) {
+      if (filterList.length || columnList.some(column => column.hasFilter)) {
         CoerceComponentImport(classDeclaration, { name: 'TableFilterModule', moduleSpecifier: '@rxap/material-table-system' });
       }
       if (columnList.some(column => column.source?.includes('.'))) {

@@ -2,6 +2,7 @@ import {
   NormalizeDataProperty,
   NormalizeDataPropertyList,
   NormalizedDataProperty,
+  NormalizedTypeImport,
 } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
@@ -17,6 +18,10 @@ import {
   NormalizedMinimumTableOptions,
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
+import {
+  TableModifiers,
+  TableOptions,
+} from './table-options';
 import { NormalizedTableAction } from './table/table-action';
 import { NormalizedTableColumn } from './table/table-column';
 import { TableColumnKind } from './table/table-column-kind';
@@ -39,13 +44,10 @@ export interface TreeTableOptions extends MinimumTableOptions {
 }
 
 export interface NormalizedTreeTableOptions
-  extends Omit<Readonly<Normalized<TreeTableOptions> & NormalizedMinimumTableOptions<TreeTableModifiers>>, 'columnList' | 'actionList' | 'propertyList' | 'tableRootMethod' | 'tableChildMethod'> {
+  extends Readonly<Normalized<Omit<TreeTableOptions, keyof MinimumTableOptions | 'tableRootMethod' | 'tableChildMethod'>> & NormalizedMinimumTableOptions<TreeTableModifiers>> {
   componentName: string;
-  columnList: ReadonlyArray<NormalizedTableColumn>;
-  actionList: ReadonlyArray<NormalizedTableAction>;
-  propertyList: Array<NormalizedDataProperty>;
-  tableRootMethod: NormalizedExistingMethod | null;
-  tableChildMethod: NormalizedExistingMethod | null;
+  tableRootMethod: NormalizedTypeImport | null;
+  tableChildMethod: NormalizedTypeImport | null;
 }
 
 export function NormalizeTreeTableOptions(

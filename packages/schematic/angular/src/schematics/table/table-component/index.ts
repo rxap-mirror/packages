@@ -111,6 +111,7 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
     modifiers,
     columnList,
     tableMethod,
+    filterList,
     componentName,
   } = normalizedOptions;
 
@@ -118,6 +119,8 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
     ...normalizedOptions,
     hasNavigationBackHeader: modifiers.includes(TableModifiers.NAVIGATION_BACK_HEADER),
     hasWithoutTitle: modifiers.includes(TableModifiers.WITHOUT_TITLE),
+    hasFilter: filterList.length > 0 || columnList.some((c) => c.hasFilter),
+    hasCustomFilter: filterList.length > 0,
     hasColumnWithFilter: columnList.some((c) => c.hasFilter),
     hasShowArchivedSlide: modifiers.includes(TableModifiers.SHOW_ARCHIVED_SLIDE),
     exportDefault: !!feature && !directory,

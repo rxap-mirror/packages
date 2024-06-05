@@ -75,3 +75,7 @@ export function NormalizeFormControl(control: FormControl): NormalizedFormContro
       return NormalizeBaseFormControl(control);
   }
 }
+
+export function NormalizeFormControlList(controls?: ReadonlyArray<FormControl>): ReadonlyArray<NormalizedFormControl> {
+  return controls?.map(NormalizeFormControl) ?? [];
+}

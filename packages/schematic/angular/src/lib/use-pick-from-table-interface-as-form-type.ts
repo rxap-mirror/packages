@@ -1,16 +1,21 @@
 import { Rule } from '@angular-devkit/schematics';
 import {
-  CoerceImports,
-  TsMorphAngularProjectTransformOptions,
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoerceImports } from '@rxap/ts-morph';
 import {
   camelize,
   classify,
   dasherize,
 } from '@rxap/utilities';
+import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
+import {
+  WriterFunction,
+  Writers,
+} from 'ts-morph';
 import { CoerceTypeAlias } from '../schematics/table/action/form-table-action';
+import { NormalizedFormControl } from './form/control/form-control';
 import { NormalizedTableColumn } from './table/table-column';
 
 export interface UsePickFromTableInterfaceAsFormTypeRuleOptions
@@ -18,6 +23,7 @@ export interface UsePickFromTableInterfaceAsFormTypeRuleOptions
   name: string;
   formName: string;
   columnList: ReadonlyArray<NormalizedTableColumn>;
+  filterList: ReadonlyArray<NormalizedFormControl>;
   suffix?: string;
 }
 
@@ -29,6 +35,7 @@ export function UsePickFromTableInterfaceAsFormTypeRule(
     columnList,
     formName,
     suffix = 'table',
+    filterList,
   } = options;
 
   const className = CoerceSuffix(classify(formName), 'Form');
@@ -42,9 +49,21 @@ export function UsePickFromTableInterfaceAsFormTypeRule(
       interfaceDeclaration.remove();
     }
 
-    const type = `Pick<${ tableInterfaceName }, ${ columnList.filter(c => c.hasFilter)
-      .map(c => `'${ camelize(c.name) }'`)
-      .join(' | ') }>`;
+    const type: WriterFunction = w => {
+      if (columnList.some(c => c.hasFilter)) {
+        w.write(`Pick<${ tableInterfaceName }, ${ columnList.filter(c => c.hasFilter)
+          .map(c => `'${ camelize(c.name) }'`)
+          .join(' | ') }>`);
+      }
+      if (filterList.length && columnList.some(c => c.hasFilter)) {
+        w.write(' & ');
+      }
+      if (filterList.length) {
+        Writers.objectType({
+          properties: filterList.map(control => ({ name: camelize(control.name), type: control.type.name })),
+        })(w);
+      }
+    };
 
     CoerceTypeAlias(sourceFile, interfaceName, {
       type,
