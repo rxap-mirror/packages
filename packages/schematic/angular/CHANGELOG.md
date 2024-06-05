@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.0.3-dev.1...@rxap/schematic-angular@18.1.0-dev.0) (2024-06-05)
+
+### Bug Fixes
+
+- add missing imports ([a954fec](https://gitlab.com/rxap/packages/commit/a954fecbd22aeb55eb79c7a627b916f2e5887947))
+- generate custom filters ([e5773a1](https://gitlab.com/rxap/packages/commit/e5773a153267870684f132dc3773195210f963ad))
+- pass backend option ([d8fb481](https://gitlab.com/rxap/packages/commit/d8fb481cf2f1f8baea2aee52ab438cf9d43211dd))
+- use existing token for remote methods ([d9bbec7](https://gitlab.com/rxap/packages/commit/d9bbec7c8ce8a61f9c07327bb05d975236f13b03))
+- use the correct property ([d79a2d9](https://gitlab.com/rxap/packages/commit/d79a2d94ba5d1882556f59dc2d3f93500f668b26))
+
+### Features
+
+- add custom filter to tables ([683d0ae](https://gitlab.com/rxap/packages/commit/683d0aee9b76bf9ce2d1af86f43727155384a9a8))
+- improve table action processing ([22ef86f](https://gitlab.com/rxap/packages/commit/22ef86f6d10fd8b9160fab64f31479055b56a69a))
+- improve table action processing ([1c53a68](https://gitlab.com/rxap/packages/commit/1c53a685c9a59c0b91b1ad9034fb3c8e6cf377cc))
+
 ## [18.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.0.3-dev.0...@rxap/schematic-angular@18.0.3-dev.1) (2024-06-04)
 
 ### Bug Fixes

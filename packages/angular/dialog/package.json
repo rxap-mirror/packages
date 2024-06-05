@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/dialog",
   "description": "A collection of angular material dialog components",
   "license": "GPL-3.0-or-later",
@@ -60,7 +60,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.0"
+        "version": "19.0.3-dev.1"
       },
       {
         "package": "@rxap/utilities",
@@ -68,7 +68,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       }
     ]
   },

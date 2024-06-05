@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@18.0.1...@rxap/authorization@18.0.2-dev.0) (2024-06-05)
+
+### Bug Fixes
+
+- add RXAP_DISABLE_AUTHORIZATION token ([da72a20](https://gitlab.com/rxap/packages/commit/da72a2042c63e8cbfc6189398a859b1f5b66b98c))
+
 ## [18.0.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@18.0.1-dev.0...@rxap/authorization@18.0.1) (2024-05-30)
 
 **Note:** Version bump only for package @rxap/authorization

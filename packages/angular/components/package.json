@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/components",
   "description": "A collection of utility angular components used in RxAP.",
   "license": "GPL-3.0-or-later",
@@ -62,7 +62,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.0"
+        "version": "19.0.3-dev.1"
       },
       {
         "package": "@rxap/rxjs",
@@ -74,7 +74,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       }
     ]
   },

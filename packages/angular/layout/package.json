@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -13,20 +13,20 @@
     "@angular/forms": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
-    "@rxap/authentication": "^18.0.1",
-    "@rxap/authorization": "^18.0.1",
+    "@rxap/authentication": "^18.0.2-dev.0",
+    "@rxap/authorization": "^18.0.2-dev.0",
     "@rxap/browser-utilities": "^1.1.2",
-    "@rxap/config": "^18.0.1",
-    "@rxap/data-source": "^18.0.1",
+    "@rxap/config": "^18.0.2-dev.0",
+    "@rxap/data-source": "^18.0.2-dev.0",
     "@rxap/directives": "^18.0.1",
-    "@rxap/environment": "^18.0.1",
+    "@rxap/environment": "^18.0.2-dev.0",
     "@rxap/icon": "^18.0.1",
-    "@rxap/material-directives": "^18.0.1",
-    "@rxap/ngx-changelog": "^18.0.1",
-    "@rxap/ngx-localize": "^18.0.1",
-    "@rxap/ngx-status-check": "^18.0.1",
-    "@rxap/ngx-theme": "^18.0.1",
-    "@rxap/ngx-user": "^18.0.1",
+    "@rxap/material-directives": "^18.0.2-dev.0",
+    "@rxap/ngx-changelog": "^18.0.2-dev.0",
+    "@rxap/ngx-localize": "^18.0.2-dev.0",
+    "@rxap/ngx-status-check": "^18.0.2-dev.0",
+    "@rxap/ngx-theme": "^18.0.2-dev.0",
+    "@rxap/ngx-user": "^18.0.2-dev.0",
     "@rxap/services": "^18.0.1",
     "@rxap/utilities": "^16.2.2",
     "rxjs": "^7.8.1"
@@ -81,11 +81,11 @@
       },
       {
         "package": "@rxap/authentication",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/authorization",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/browser-utilities",
@@ -93,11 +93,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -113,7 +113,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/icon",
@@ -121,7 +121,7 @@
       },
       {
         "package": "@rxap/material-directives",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/mixin",
@@ -129,11 +129,11 @@
       },
       {
         "package": "@rxap/ngx-changelog",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-localize",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
@@ -145,15 +145,15 @@
       },
       {
         "package": "@rxap/ngx-status-check",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-theme",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -161,7 +161,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -169,7 +169,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.0"
+        "version": "19.0.3-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -193,7 +193,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       }
     ]
   },

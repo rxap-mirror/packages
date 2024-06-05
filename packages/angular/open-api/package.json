@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/open-api",
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "license": "GPL-3.0-or-later",
@@ -11,9 +11,9 @@
   "peerDependencies": {
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
-    "@rxap/config": "^18.0.1",
-    "@rxap/data-source": "^18.0.1",
-    "@rxap/environment": "^18.0.1",
+    "@rxap/config": "^18.0.2-dev.0",
+    "@rxap/data-source": "^18.0.2-dev.0",
+    "@rxap/environment": "^18.0.2-dev.0",
     "@rxap/mixin": "^16.0.4",
     "@rxap/remote-method": "^18.0.1",
     "@rxap/rxjs": "^1.1.4",
@@ -50,11 +50,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -66,7 +66,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/mixin",
@@ -82,7 +82,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.0"
+        "version": "19.0.3-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -102,7 +102,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       }
     ]
   },

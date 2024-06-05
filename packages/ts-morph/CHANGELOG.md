@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.3.1-dev.2...@rxap/ts-morph@1.3.1-dev.3) (2024-06-05)
+
+### Bug Fixes
+
+- use the correct property ([b2050d2](https://gitlab.com/rxap/packages/commit/b2050d2e8c71b3ec34d53d2dc042f09ffe520ea6))
+
 ## [1.3.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.3.1-dev.1...@rxap/ts-morph@1.3.1-dev.2) (2024-06-04)
 
 ### Bug Fixes

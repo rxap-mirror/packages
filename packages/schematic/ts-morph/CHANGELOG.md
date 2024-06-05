@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@18.0.3-dev.2...@rxap/schematics-ts-morph@18.1.0-dev.0) (2024-06-05)
+
+### Bug Fixes
+
+- base path creation ([64ae570](https://gitlab.com/rxap/packages/commit/64ae57053062ad41db117c94152b2911e5809bb8))
+- pass backend option ([d8fb481](https://gitlab.com/rxap/packages/commit/d8fb481cf2f1f8baea2aee52ab438cf9d43211dd))
+- use the correct property ([d79a2d9](https://gitlab.com/rxap/packages/commit/d79a2d94ba5d1882556f59dc2d3f93500f668b26))
+
+### Features
+
+- improve table action processing ([22ef86f](https://gitlab.com/rxap/packages/commit/22ef86f6d10fd8b9160fab64f31479055b56a69a))
+
 ## [18.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@18.0.3-dev.1...@rxap/schematics-ts-morph@18.0.3-dev.2) (2024-06-04)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph

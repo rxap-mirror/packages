@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,7 +11,7 @@
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@rxap/directives": "^18.0.1",
-    "@rxap/material-directives": "^18.0.1",
+    "@rxap/material-directives": "^18.0.2-dev.0",
     "@rxap/rxjs": "^1.1.4",
     "@rxap/services": "^18.0.1",
     "@rxap/utilities": "^16.2.2",
@@ -63,7 +63,7 @@
       },
       {
         "package": "@rxap/material-directives",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.0"
+        "version": "19.0.3-dev.1"
       },
       {
         "package": "@rxap/rxjs",
@@ -95,7 +95,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       }
     ]
   },

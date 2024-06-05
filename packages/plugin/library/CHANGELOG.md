@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.0-dev.1...@rxap/plugin-library@19.2.0-dev.2) (2024-06-05)
+
+### Bug Fixes
+
+- only set the tslib version initial ([964b896](https://gitlab.com/rxap/packages/commit/964b896375d547c9fd98752faeb3052a5ef0b2de))
+
 # [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.0-dev.0...@rxap/plugin-library@19.2.0-dev.1) (2024-06-04)
 
 ### Features

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.2.0-dev.2...@rxap/workspace-utilities@19.2.0-dev.3) (2024-06-05)
+
+### Bug Fixes
+
+- base path creation ([64ae570](https://gitlab.com/rxap/packages/commit/64ae57053062ad41db117c94152b2911e5809bb8))
+- pass backend option ([d8fb481](https://gitlab.com/rxap/packages/commit/d8fb481cf2f1f8baea2aee52ab438cf9d43211dd))
+- propose dynamic service url ([3d2440c](https://gitlab.com/rxap/packages/commit/3d2440ca3a0ca1d1a20dd1daeb469bd3babe6c1e))
+- use the correct property ([d79a2d9](https://gitlab.com/rxap/packages/commit/d79a2d94ba5d1882556f59dc2d3f93500f668b26))
+
+### Features
+
+- improve table action processing ([22ef86f](https://gitlab.com/rxap/packages/commit/22ef86f6d10fd8b9160fab64f31479055b56a69a))
+
 # [19.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.2.0-dev.1...@rxap/workspace-utilities@19.2.0-dev.2) (2024-06-04)
 
 ### Features

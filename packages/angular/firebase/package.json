@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/firebase",
   "description": "A collection of utility angular services to interact with firebase.",
   "license": "GPL-3.0-or-later",
@@ -10,7 +10,7 @@
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
     "@angular/fire": "^7.5.0",
-    "@rxap/config": "^18.0.1",
+    "@rxap/config": "^18.0.2-dev.0",
     "@rxap/rxjs": "^1.1.4",
     "@rxap/utilities": "^16.2.2",
     "firebase": "^9.23.0",
@@ -50,11 +50,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.1"
+        "version": "18.0.2-dev.0"
       },
       {
         "package": "@rxap/node-utilities",
@@ -62,7 +62,7 @@
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.0"
+        "version": "19.0.3-dev.1"
       },
       {
         "package": "@rxap/rxjs",
@@ -74,7 +74,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       }
     ]
   },

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@18.0.1...@rxap/schematic-composer@18.0.2-dev.0) (2024-06-05)
+
+### Bug Fixes
+
+- check schematic input file ([ccfb427](https://gitlab.com/rxap/packages/commit/ccfb42774950af2795457cf5da2812c1aca246cf))
+- validate input objects ([aae4139](https://gitlab.com/rxap/packages/commit/aae413949c03b6442f9590c83a5e3b0909eac2d5))
+
 ## [18.0.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@18.0.1-dev.0...@rxap/schematic-composer@18.0.1) (2024-05-30)
 
 **Note:** Version bump only for package @rxap/schematic-composer

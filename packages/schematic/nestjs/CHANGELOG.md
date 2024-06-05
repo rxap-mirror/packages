@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@18.0.1...@rxap/schematic-nestjs@18.0.2-dev.0) (2024-06-05)
+
+### Bug Fixes
+
+- pass backend option ([d8fb481](https://gitlab.com/rxap/packages/commit/d8fb481cf2f1f8baea2aee52ab438cf9d43211dd))
+- use the correct property ([d79a2d9](https://gitlab.com/rxap/packages/commit/d79a2d94ba5d1882556f59dc2d3f93500f668b26))
+
 ## [18.0.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@18.0.1-dev.0...@rxap/schematic-nestjs@18.0.1) (2024-05-30)
 
 **Note:** Version bump only for package @rxap/schematic-nestjs
