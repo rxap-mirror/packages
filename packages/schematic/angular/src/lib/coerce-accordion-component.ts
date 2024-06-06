@@ -63,11 +63,12 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
       if (persistent) {
         CoerceComponentImport(classDeclaration, { name: 'PersistentAccordionDirective', moduleSpecifier: '@rxap/material-directives/expansion' });
       }
-      // for (const item of itemList) {
-      //   for (const angularImport of item.importList) {
-      //     CoerceComponentImport(classDeclaration, angularImport);
-      //   }
-      // }
+      for (const item of itemList) {
+        CoerceComponentImport(classDeclaration, {
+          name: `${classify(item.name)}PanelComponent`,
+          moduleSpecifier: `./${dasherize(item.name)}-panel/${dasherize(item.name)}-panel.component`
+        });
+      }
       // endregion
 
       const accordionDataSourceName = `${classify(componentName!)}DataSource`;

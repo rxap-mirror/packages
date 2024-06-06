@@ -76,10 +76,6 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
   description = item.description ?? description;
   permission = item.permission ?? permission;
   const importList: TypeImport[] = item.importList ?? [];
-  CoerceArrayItems(importList, [{
-    name: `${classify(item.name)}PanelComponent`,
-    moduleSpecifier: `./${dasherize(item.name)}-panel/${dasherize(item.name)}-panel.component`
-  }], (a, b) => a.name === b.name);
   title ??= dasherize(name).split('-').map(fragment => capitalize(fragment)).join(' ');
   if (!IsAccordionItemKind(kind)) {
     throw new SchematicsException(
