@@ -42,7 +42,7 @@ function generateIndexFile(tree: Tree, sourceRoot: string) {
 
   filePathList = filePathList.filter(path => {
     const content = tree.read(path, 'utf-8');
-    return content && !content.split('\n')[0].match(/rxap-no-index-export/);
+    return content && !content.split('\n').some(line => line.match(/rxap-no-index-export/));
   });
 
   filePathList = filePathList.map(path => path.replace(new RegExp(`^${ libRoot }/`), ''));
