@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.1.0-dev.0...@rxap/schematic-angular@18.1.0-dev.1) (2024-06-06)
+
+### Features
+
+- add ifTruthy property ([efd64f9](https://gitlab.com/rxap/packages/commit/efd64f935da34e22e4b91b72248ee62f7ccaa93d))
+
 # [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.0.3-dev.1...@rxap/schematic-angular@18.1.0-dev.0) (2024-06-05)
 
 ### Bug Fixes
