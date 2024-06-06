@@ -43,14 +43,15 @@ import {
   Scope,
   SourceFile,
 } from 'ts-morph';
-import {
-  NormalizeAccordionItem,
-  NormalizedBaseAccordionItem,
-} from '../../../lib/accordion-item';
+import { NormalizeAccordionItem } from '../../../lib/accordion/accordion-item';
 import {
   AccordionItemKinds,
   IsAccordionItemKind,
-} from '../../../lib/accordion-itme-kinds';
+} from '../../../lib/accordion/accordion-item-kind';
+import {
+  BaseAccordionItem,
+  NormalizedBaseAccordionItem,
+} from '../../../lib/accordion/item/base-accordion-item';
 import {
   AngularOptions,
   NormalizeAngularOptions,
@@ -63,7 +64,7 @@ import { AccordionItemComponentOptions } from './schema';
 export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'kind'>;
 
 export interface NormalizedAccordionItemStandaloneComponentOptions
-  extends Readonly<Normalized<Omit<AccordionItemStandaloneComponentOptions, keyof AngularOptions | 'importList' | 'name' | 'identifier' | 'upstream' | 'propertyList'>> & NormalizedAngularOptions & NormalizedBaseAccordionItem> {
+  extends Readonly<Normalized<Omit<AccordionItemStandaloneComponentOptions, keyof AngularOptions | keyof BaseAccordionItem>> & NormalizedAngularOptions & NormalizedBaseAccordionItem> {
   componentName: string;
   controllerName: string;
 }

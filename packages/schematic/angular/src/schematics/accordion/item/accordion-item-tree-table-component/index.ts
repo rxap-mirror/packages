@@ -14,8 +14,8 @@ import { Normalized } from '@rxap/utilities';
 import {
   NormalizedTreeTableAccordionItem,
   NormalizeTreeTableAccordionItem,
-} from '../../../../lib/accordion-item';
-import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
+} from '../../../../lib/accordion/item/tree-table-accordion-item';
+import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
 import {
   AngularOptions,
   NormalizedAngularOptions,

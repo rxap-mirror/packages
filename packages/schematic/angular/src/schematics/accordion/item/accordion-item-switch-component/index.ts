@@ -7,13 +7,13 @@ import {
   DeleteEmptyProperties,
   Normalized,
 } from '@rxap/utilities';
+import { NormalizedAccordionItem } from '../../../../lib/accordion/accordion-item';
 import {
-  NormalizedBaseAccordionItem,
   NormalizedSwitchAccordionItem,
   NormalizeSwitchAccordionItem,
   SwitchAccordionItem,
-} from '../../../../lib/accordion-item';
-import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
+} from '../../../../lib/accordion/item/switch-accordion-item';
+import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
 import {
   AngularOptions,
   NormalizedAngularOptions,
@@ -47,7 +47,7 @@ function printOptions(options: NormalizedAccordionItemSwitchComponentOptions) {
 
 function caseRule(
   normalizedOptions: NormalizedAccordionItemSwitchComponentOptions,
-  item: NormalizedBaseAccordionItem
+  item: NormalizedAccordionItem
 ) {
 
   const {

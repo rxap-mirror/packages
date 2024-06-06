@@ -63,11 +63,8 @@ import {
   NormalizeAccordionIdentifier,
   NormalizedAccordionIdentifier,
 } from '../../../lib/accordion-identifier';
-import {
-  NormalizeAccordionItemList,
-  NormalizedBaseAccordionItem,
-} from '../../../lib/accordion-item';
-import { AccordionItemKinds } from '../../../lib/accordion-itme-kinds';
+import { NormalizedAccordionItem, NormalizeAccordionItemList } from '../../../lib/accordion/accordion-item';
+import { AccordionItemKinds } from '../../../lib/accordion/accordion-item-kind';
 import {
   AngularOptions,
   AssertAngularOptionsNameProperty,
@@ -87,7 +84,7 @@ import { AccordionComponentOptions } from './schema';
 export interface NormalizedAccordionComponentOptions
   extends Readonly<Normalized<Omit<AccordionComponentOptions, keyof AngularOptions | 'itemList' | 'persistent' | 'identifier'>> & NormalizedAngularOptions> {
   name: string;
-  itemList: ReadonlyArray<NormalizedBaseAccordionItem>;
+  itemList: ReadonlyArray<NormalizedAccordionItem>;
   persistent: NormalizedPersistent | null;
   withPermission: boolean;
   header: NormalizedAccordionHeader | null;
@@ -97,13 +94,13 @@ export interface NormalizedAccordionComponentOptions
   upstream: NormalizedUpstreamOptions | null;
 }
 
-function hasItemWithPermission(itemList: ReadonlyArray<NormalizedBaseAccordionItem>): boolean {
+function hasItemWithPermission(itemList: ReadonlyArray<NormalizedAccordionItem>): boolean {
   return itemList.some((item) => {
     if (item.permission) {
       return true;
     }
     if (item.kind === AccordionItemKinds.Switch) {
-      return hasItemWithPermission((item as any).switch.case?.flatMap((item: { itemList: NormalizedBaseAccordionItem[] }) => item.itemList) ?? []) ||
+      return hasItemWithPermission((item as any).switch.case?.flatMap((item: { itemList: NormalizedAccordionItem[] }) => item.itemList) ?? []) ||
              hasItemWithPermission((item as any).switch.defaultCase?.itemList ?? []);
     }
     return false;
@@ -428,7 +425,7 @@ function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions
 
 }
 
-function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOptions, item: NormalizedBaseAccordionItem) {
+function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOptions, item: NormalizedAccordionItem) {
 
   const {
     project,

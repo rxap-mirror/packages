@@ -6,8 +6,8 @@ import {
   NormalizedTableAccordionItem,
   NormalizeTableAccordionItem,
   TableAccordionItem,
-} from '../../../../lib/accordion-item';
-import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
+} from '../../../../lib/accordion/item/table-accordion-item';
+import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
 import {
   AngularOptions,
   NormalizedAngularOptions,

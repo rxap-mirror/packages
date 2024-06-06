@@ -33,12 +33,8 @@ import {
   Scope,
   SourceFile,
 } from 'ts-morph';
-import {
-  DataGridAccordionItem,
-  NormalizeDataGridAccordionItem,
-  NormalizedDataGridAccordionItem,
-} from '../../../../lib/accordion-item';
-import { AccordionItemKinds } from '../../../../lib/accordion-itme-kinds';
+import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
+import { DataGridAccordionItem, NormalizeDataGridAccordionItem, NormalizedDataGridAccordionItem } from '../../../../lib/accordion/item/data-grid-accordion-item';
 import {
   AngularOptions,
   NormalizedAngularOptions,
