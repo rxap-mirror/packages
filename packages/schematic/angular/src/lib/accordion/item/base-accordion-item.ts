@@ -29,6 +29,11 @@ import {
 } from '../../accordion-identifier';
 import { LoadHandlebarsTemplate } from '../../load-handlebars-template';
 import {
+  IfTruthy,
+  NormalizedIfTruthy,
+  NormalizeIfTruthy,
+} from '../../utilities/if-truthy';
+import {
   AccordionItemKinds,
   IsAccordionItemKind,
 } from '../accordion-item-kind';
@@ -45,6 +50,7 @@ export interface BaseAccordionItem {
   identifier?: AccordionIdentifier;
   upstream?: UpstreamOptions;
   propertyList?: DataProperty[];
+  ifTruthy?: IfTruthy;
 }
 
 export interface NormalizedBaseAccordionItem extends Readonly<NonNullableSelected<Normalized<Omit<BaseAccordionItem, 'propertyList'>>, 'kind'>> {
@@ -53,6 +59,7 @@ export interface NormalizedBaseAccordionItem extends Readonly<NonNullableSelecte
   identifier: NormalizedAccordionIdentifier | null;
   upstream: NormalizedUpstreamOptions | null;
   propertyList: Array<NormalizedDataProperty>;
+  ifTruthy: NormalizedIfTruthy | null;
 }
 
 export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedBaseAccordionItem {
@@ -79,12 +86,18 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
       `The item type '${ kind }' for item '${ name }' is not supported`,
     );
   }
+  const ifTruthy = NormalizeIfTruthy(item.ifTruthy);
   const propertyList = item.propertyList ?? [];
+  if (ifTruthy) {
+    CoerceArrayItems(propertyList, [ifTruthy.property], (a, b) => a.name === b.name, true);
+    CoerceArrayItems(importList, [{ name: 'NgIf', moduleSpecifier: '@angular/common' }], (a, b) => a.name === b.name);
+  }
   const identifier = NormalizeAccordionIdentifier(item.identifier);
   if (identifier) {
     CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name, true);
   }
   return Object.freeze({
+    ifTruthy,
     propertyList: NormalizeDataPropertyList(propertyList),
     upstream: NormalizeUpstreamOptions(item.upstream),
     identifier,
@@ -96,6 +109,6 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
     permission,
     importList: NormalizeTypeImportList(importList),
     template,
-    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', 'schematics', 'accordion', 'templates')),
+    handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', '..', '..', 'schematics', 'accordion', 'templates')),
   });
 }

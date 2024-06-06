@@ -3,11 +3,17 @@
   {{#each item.switch.case}}
   <ng-template [ngSwitchCase]="{{propertyValue this.test}}">
   {{#each this.itemList}}
+  {{#if this.ifTruthy}}
+  <ng-template [ngIf]="data.{{this.ifTruthy.property.name}}">
+  {{/if}}
   {{#if this.permission}}
   <ng-template rxapIfHasPermission="{{item.permission}}">
   {{/if}}
   {{ indent (compile this.handlebars item=this prefix=../../prefix) 2 }}
   {{#if this.permission}}
+  </ng-template>
+  {{/if}}
+  {{#if this.ifTruthy}}
   </ng-template>
   {{/if}}
   {{/each}}
@@ -16,11 +22,17 @@
   {{#if item.switch.defaultCase}}
   <ng-template ngSwitchDefault>
   {{#each item.switch.defaultCase.itemList}}
+  {{#if this.ifTruthy}}
+  <ng-template ngIf="data.{{this.ifTruthy.property.name}}">
+  {{/if}}
   {{#if this.permission}}
   <ng-template rxapIfHasPermission="{{item.permission}}">
   {{/if}}
   {{ indent (compile this.handlebars item=this prefix=../prefix) 2 }}
   {{#if this.permission}}
+  </ng-template>
+  {{/if}}
+  {{#if this.ifTruthy}}
   </ng-template>
   {{/if}}
   {{/each}}

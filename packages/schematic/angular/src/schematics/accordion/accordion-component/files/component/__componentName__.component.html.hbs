@@ -22,11 +22,17 @@
     {{/if}}
     >
     {{#each itemList}}
+    {{#if this.ifTruthy}}
+    <ng-template [ngIf]="data.{{this.ifTruthy.property.name}}">
+    {{/if}}
     {{#if this.permission}}
     <ng-template rxapIfHasPermission="{{this.permission}}">
     {{/if}}
     {{ indent (compile this.handlebars item=this prefix=../prefix) 4 }}
     {{#if this.permission}}
+    </ng-template>
+    {{/if}}
+    {{#if this.ifTruthy}}
     </ng-template>
     {{/if}}
     {{/each}}
