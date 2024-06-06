@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.7-dev.10](https://gitlab.com/rxap/packages/compare/rxap@19.0.7-dev.9...rxap@19.0.7-dev.10) (2024-06-06)
+
+### Bug Fixes
+
+- update package groups ([02684fc](https://gitlab.com/rxap/packages/commit/02684fc3c891e92f655b8a49742fc5a9e419908a))
+
 ## [19.0.7-dev.9](https://gitlab.com/rxap/packages/compare/rxap@19.0.7-dev.8...rxap@19.0.7-dev.9) (2024-06-05)
 
 ### Bug Fixes
