@@ -1,5 +1,6 @@
 import {
   DataProperty,
+  TypeImport,
   UpstreamOptions,
 } from '@rxap/ts-morph';
 import { AccordionIdentifier } from '../../../lib/accordion-identifier';
@@ -16,4 +17,5 @@ export interface AccordionComponentOptions extends AngularOptions {
   identifier?: AccordionIdentifier;
   upstream?: UpstreamOptions;
   propertyList?: DataProperty[];
+  importList?: TypeImport[];
 }

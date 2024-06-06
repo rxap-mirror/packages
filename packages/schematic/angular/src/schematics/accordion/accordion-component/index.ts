@@ -36,7 +36,9 @@ import {
   NormalizeDataProperty,
   NormalizeDataPropertyList,
   NormalizedDataProperty,
+  NormalizedTypeImport,
   NormalizedUpstreamOptions,
+  NormalizeTypeImportList,
   NormalizeUpstreamOptions,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
@@ -92,6 +94,7 @@ export interface NormalizedAccordionComponentOptions
   controllerName: string;
   propertyList: NormalizedDataProperty[];
   upstream: NormalizedUpstreamOptions | null;
+  importList: NormalizedTypeImport[];
 }
 
 function hasItemWithPermission(itemList: ReadonlyArray<NormalizedAccordionItem>): boolean {
@@ -121,9 +124,17 @@ function NormalizeOptions(
     nestModule,
   });
   const propertyList = options.propertyList ?? [];
+  const importList = options.importList ?? [];
   const header = NormalizeAccordionHeader(options.header);
   if (header) {
     CoerceArrayItems(propertyList, header.propertyList, (a, b) => a.name === b.name, true);
+    CoerceArrayItems(importList, header.importList, (a, b) => a.name === b.name);
+  }
+  for (const item of itemList) {
+    if (item.ifTruthy) {
+      CoerceArrayItems(propertyList, [item.ifTruthy.property], (a, b) => a.name === b.name, true);
+      CoerceArrayItems(importList, [{ name: 'NgIf', moduleSpecifier: '@angular/common' }], (a, b) => a.name === b.name);
+    }
   }
   const identifier = NormalizeAccordionIdentifier(options.identifier);
   if (identifier) {
@@ -131,6 +142,7 @@ function NormalizeOptions(
   }
   return Object.freeze({
     ...normalizedAngularOptions,
+    importList: NormalizeTypeImportList(importList),
     controllerName,
     componentName,
     directory: componentName,

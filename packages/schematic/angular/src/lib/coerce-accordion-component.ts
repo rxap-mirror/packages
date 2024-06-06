@@ -30,6 +30,7 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
       persistent,
       withPermission,
       header,
+      importList,
     },
     handlebars: { partials = {} } = {},
     tsMorphTransform = noop,
@@ -46,7 +47,9 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
       CoerceComponentImport(classDeclaration, { name: 'MatExpansionModule', moduleSpecifier: '@angular/material/expansion' });
       CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
       CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
-
+      for (const angularImport of importList) {
+        CoerceComponentImport(classDeclaration, angularImport);
+      }
       if (header) {
         CoerceComponentImport(classDeclaration, { name: 'MatDividerModule', moduleSpecifier: '@angular/material/divider' });
         CoerceComponentImport(classDeclaration, { name: 'MatDividerModule', moduleSpecifier: '@angular/material/divider' });
@@ -60,11 +63,11 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
       if (persistent) {
         CoerceComponentImport(classDeclaration, { name: 'PersistentAccordionDirective', moduleSpecifier: '@rxap/material-directives/expansion' });
       }
-      for (const item of itemList) {
-        for (const angularImport of item.importList) {
-          CoerceComponentImport(classDeclaration, angularImport);
-        }
-      }
+      // for (const item of itemList) {
+      //   for (const angularImport of item.importList) {
+      //     CoerceComponentImport(classDeclaration, angularImport);
+      //   }
+      // }
       // endregion
 
       const accordionDataSourceName = `${classify(componentName!)}DataSource`;

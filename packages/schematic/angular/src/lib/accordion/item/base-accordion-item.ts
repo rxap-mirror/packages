@@ -88,10 +88,6 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
   }
   const ifTruthy = NormalizeIfTruthy(item.ifTruthy);
   const propertyList = item.propertyList ?? [];
-  if (ifTruthy) {
-    CoerceArrayItems(propertyList, [ifTruthy.property], (a, b) => a.name === b.name, true);
-    CoerceArrayItems(importList, [{ name: 'NgIf', moduleSpecifier: '@angular/common' }], (a, b) => a.name === b.name);
-  }
   const identifier = NormalizeAccordionIdentifier(item.identifier);
   if (identifier) {
     CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name, true);
