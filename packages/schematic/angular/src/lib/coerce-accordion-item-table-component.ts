@@ -6,6 +6,7 @@ import {
   CoerceComponentImport,
   CoerceImports,
   CoercePropertyDeclaration,
+  NormalizedTypeImport,
 } from '@rxap/ts-morph';
 import {
   classify,
@@ -16,14 +17,14 @@ import { Scope } from 'ts-morph';
 import { NormalizedAngularOptions } from './angular-options';
 
 export interface CoerceAccordionItemTableComponentOptions extends CoerceComponentOptions {
-  accordionItem: NormalizedAngularOptions;
+  accordionItem: NormalizedAngularOptions & { importList: NormalizedTypeImport[] };
   tableComponentSuffix?: string;
 }
 
 export function CoerceAccordionItemTableComponentRule(options: CoerceAccordionItemTableComponentOptions) {
 
   const {
-    accordionItem: { name },
+    accordionItem: { name, importList },
     tsMorphTransform = noop,
     tableComponentSuffix = 'table',
   } = options;
@@ -34,6 +35,10 @@ export function CoerceAccordionItemTableComponentRule(options: CoerceAccordionIt
 
       const tableComponentName = `${classify(name!)}${classify(tableComponentSuffix)}Component`;
       const tableComponentImportPath = `./${dasherize(name!)}-${dasherize(tableComponentSuffix)}/${dasherize(name!)}-${dasherize(tableComponentSuffix)}.component`;
+
+      for (const angularImport of importList) {
+        CoerceComponentImport(classDeclaration, angularImport);
+      }
 
       CoerceComponentImport(classDeclaration, { name: tableComponentName, moduleSpecifier: tableComponentImportPath });
 

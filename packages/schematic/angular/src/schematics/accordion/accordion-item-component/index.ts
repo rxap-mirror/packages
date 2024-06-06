@@ -388,6 +388,7 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
     feature,
     shared,
     componentName,
+    importList
   } = normalizedOptions;
 
   const templateOptions = {
@@ -412,6 +413,7 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
         CoerceComponentImport(classDeclaration, { name: 'DataSourceErrorComponent', moduleSpecifier: '@rxap/data-source' });
         CoerceComponentImport(classDeclaration, { name: 'AsyncPipe', moduleSpecifier: '@angular/common' });
         CoerceComponentImport(classDeclaration, { name: 'JsonPipe', moduleSpecifier: '@angular/common' });
+        CoerceComponentImport(classDeclaration, { name: 'NgIf', moduleSpecifier: '@angular/common' });
 
         const pipeDataSourceName = `${ classify(name) }PanelDataSource`;
 
@@ -429,6 +431,9 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
           initializer: `inject(${pipeDataSourceName})`,
           scope: Scope.Public,
         });
+        for (const angularImport of importList) {
+          CoerceComponentImport(classDeclaration, angularImport);
+        }
       }
     }),
     panelItemBackendRule(normalizedOptions),

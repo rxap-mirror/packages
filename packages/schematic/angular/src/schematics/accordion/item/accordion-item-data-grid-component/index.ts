@@ -90,6 +90,7 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
     controllerName,
     upstream,
     identifier,
+    importList,
   } = normalizedOptions;
   const {
     hasSharedModifier,
@@ -133,6 +134,9 @@ function componentRule(normalizedOptions: NormalizedAccordionItemDataGridCompone
       },
       tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
         CoerceComponentImport(classDeclaration, { name: `${classify(name)}DataGridComponent`, moduleSpecifier: `./${dasherize(name)}-data-grid/${dasherize(name)}-data-grid.component` });
+        for (const angularImport of importList) {
+          CoerceComponentImport(classDeclaration, angularImport);
+        }
         if (hasCollectionModifier) {
           CoerceComponentImport(classDeclaration, { name: 'DataSourceDirective', moduleSpecifier: '@rxap/data-source/directive' });
           CoerceComponentImport(classDeclaration, { name: 'DataSourceErrorComponent', moduleSpecifier: '@rxap/data-source' });
