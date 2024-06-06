@@ -481,6 +481,9 @@ function itemRule(normalizedOptions: NormalizedAccordionItemComponentOptions): R
     case AccordionItemKinds.Switch:
       rules.push(ExecuteSchematic('accordion-item-switch-component', normalizedOptions));
       break;
+    case AccordionItemKinds.Nested:
+      rules.push(ExecuteSchematic('accordion-item-nested-component', normalizedOptions));
+      break;
     default:
       throw new SchematicsException(`Invalid accordion item type '${ kind }'!`);
 

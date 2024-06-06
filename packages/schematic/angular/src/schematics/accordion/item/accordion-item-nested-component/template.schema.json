@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-item-nested-component-schematic",
+  "allOf": [
+    {
+      "$ref": "#/definitions/angular"
+    },
+    {
+      "$ref": "#/definitions/nestedAccordionItem"
+    }
+  ],
+  "definitions": {
+    "angular": {
+      "$ref": "../../../angular.schema.json"
+    },
+    "nestedAccordionItem": {
+      "$ref": "../../../nested-accordion-item.schema.json"
+    }
+  }
+}
