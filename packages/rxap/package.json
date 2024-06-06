@@ -474,7 +474,7 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -522,7 +522,7 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.1.0-dev.0"
+        "version": "18.1.0-dev.1"
       },
       {
         "package": "@rxap/schematic-composer",
