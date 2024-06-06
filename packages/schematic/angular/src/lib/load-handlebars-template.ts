@@ -9,6 +9,9 @@ export function LoadHandlebarsTemplate(
   template: string,
   basePath: string
 ): Handlebars.TemplateDelegate {
+  if (!template.endsWith('.hbs') && !template.endsWith('.handlebars')) {
+    return Handlebars.compile(template);
+  }
   let fullPath = template;
   if (!fullPath.startsWith('/')) {
     fullPath = join(basePath, template);

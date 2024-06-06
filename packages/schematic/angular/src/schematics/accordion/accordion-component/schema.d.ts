@@ -2,8 +2,8 @@ import {
   DataProperty,
   UpstreamOptions,
 } from '@rxap/ts-morph';
-import { AccordionHeader } from '../../../lib/accordion-header';
 import { AccordionIdentifier } from '../../../lib/accordion-identifier';
+import { AccordionHeader } from '../../../lib/accordion/accordion-header';
 import { AccordionItem } from '../../../lib/accordion/accordion-item';
 import { AngularOptions } from '../../../lib/angular-options';
 import { Persistent } from '../../../lib/persistent';

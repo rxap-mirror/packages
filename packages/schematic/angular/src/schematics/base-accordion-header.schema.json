@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "base-accordion-header",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "template": {
+      "type": "string"
+    },
+    "importList": {
+      "alias": "import",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/type"
+      }
+    },
+    "propertyList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/property"
+      }
+    }
+  },
+  "required": [],
+  "definitions": {
+    "type": {
+      "$ref": "./type.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
+    }
+  }
+}

@@ -40,26 +40,7 @@
           "$ref": "#/definitions/accordionIdentifier"
         },
         "header": {
-          "oneOf": [
-            {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "type": "string"
-                }
-              },
-              "required": ["title"]
-            },
-            {
-              "type": "object",
-              "properties": {
-                "property": {
-                  "$ref": "#/definitions/property"
-                }
-              },
-              "required": ["property"]
-            }
-          ]
+          "$ref": "#/definitions/accordionHeader"
         },
         "itemList": {
           "alias": "item",
@@ -97,6 +78,9 @@
     },
     "accordionIdentifier": {
       "$ref": "../../accordion-identifier.schema.json"
+    },
+    "accordionHeader": {
+      "$ref": "../../accordion-header.schema.json"
     },
     "upstream": {
       "$ref": "../../upstream.schema.json"

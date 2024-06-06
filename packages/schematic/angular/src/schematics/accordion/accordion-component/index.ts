@@ -55,16 +55,16 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
-  IsNormalizedPropertyAccordionHeader,
   NormalizeAccordionHeader,
   NormalizedAccordionHeader,
-} from '../../../lib/accordion-header';
+} from '../../../lib/accordion/accordion-header';
 import {
   NormalizeAccordionIdentifier,
   NormalizedAccordionIdentifier,
 } from '../../../lib/accordion-identifier';
 import { NormalizedAccordionItem, NormalizeAccordionItemList } from '../../../lib/accordion/accordion-item';
 import { AccordionItemKinds } from '../../../lib/accordion/accordion-item-kind';
+import { IsNormalizedPropertyAccordionHeader } from '../../../lib/accordion/header/property-accordion-header';
 import {
   AngularOptions,
   AssertAngularOptionsNameProperty,
@@ -121,6 +121,10 @@ function NormalizeOptions(
     nestModule,
   });
   const propertyList = options.propertyList ?? [];
+  const header = NormalizeAccordionHeader(options.header);
+  if (header) {
+    CoerceArrayItems(propertyList, header.propertyList, (a, b) => a.name === b.name, true);
+  }
   const identifier = NormalizeAccordionIdentifier(options.identifier);
   if (identifier) {
     CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name, true);
@@ -135,7 +139,7 @@ function NormalizeOptions(
     multiple: options.multiple ?? false,
     persistent: options.persistent ? NormalizePersistent(options.persistent) : null,
     withPermission: hasItemWithPermission(itemList),
-    header: NormalizeAccordionHeader(options.header),
+    header,
     identifier,
     upstream: NormalizeUpstreamOptions(options.upstream),
     propertyList: NormalizeDataPropertyList(propertyList),

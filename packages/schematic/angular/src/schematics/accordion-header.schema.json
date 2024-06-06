@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-header",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "#/definitions/baseAccordionHeader"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "default",
+              "default": "default"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$ref": "#/definitions/staticAccordionHeader"
+    },
+    {
+      "$ref": "#/definitions/propertyAccordionHeader"
+    }
+  ],
+  "definitions": {
+    "baseAccordionHeader": {
+      "$ref": "./base-accordion-header.schema.json"
+    },
+    "staticAccordionHeader": {
+      "$ref": "./static-accordion-header.schema.json"
+    },
+    "propertyAccordionHeader": {
+      "$ref": "./property-accordion-header.schema.json"
+    }
+  }
+}

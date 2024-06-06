@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "static-accordion-header",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseAccordionHeader"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "static",
+          "default": "static"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the accordion header"
+        }
+      },
+      "required": ["title"]
+    }
+  ],
+  "definitions": {
+    "baseAccordionHeader": {
+      "$ref": "./base-accordion-header.schema.json"
+    }
+  }
+}

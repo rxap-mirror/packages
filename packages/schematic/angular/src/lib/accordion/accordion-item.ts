@@ -29,7 +29,7 @@ export type AccordionItem = BaseAccordionItem | DataGridAccordionItem | SwitchAc
 
 export type NormalizedAccordionItem = NormalizedBaseAccordionItem | NormalizedDataGridAccordionItem | NormalizedSwitchAccordionItem | NormalizedTableAccordionItem | NormalizedTreeTableAccordionItem;
 
-export function NormalizeAccordionItem(item: BaseAccordionItem): NormalizedBaseAccordionItem {
+export function NormalizeAccordionItem(item: AccordionItem): NormalizedBaseAccordionItem {
   switch (item.kind) {
     case AccordionItemKinds.DataGrid:
       return NormalizeDataGridAccordionItem(item as DataGridAccordionItem);
