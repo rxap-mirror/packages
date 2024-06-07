@@ -3,6 +3,7 @@ import {
   Control,
   NormalizedControl,
 } from '../control';
+import { NormalizeAutocompleteFormControl } from './autocomplete-form-control';
 import { NormalizeAutocompleteTableSelectFormControl } from './autocomplete-table-select-form-control';
 import {
   BaseFormControl,
@@ -70,6 +71,8 @@ export function NormalizeFormControl(control: FormControl): NormalizedFormContro
       return NormalizeAutocompleteTableSelectFormControl(control);
     case FormControlKinds.TEXTAREA:
       return NormalizeTextareaFormControl(control);
+    case FormControlKinds.AUTOCOMPLETE:
+      return NormalizeAutocompleteFormControl(control);
     case FormControlKinds.DEFAULT:
     default:
       return NormalizeBaseFormControl(control);

@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "autocomplete-form-control",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseFormControl"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "formField": {
+          "$ref": "#/definitions/formField"
+        },
+        "kind": {
+          "type": "string",
+          "const": "autocomplete"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "toDisplay": {
+          "type": "object",
+          "properties": {
+            "property": {
+              "$ref": "#/definitions/property"
+            }
+          }
+        },
+        "toValue": {
+          "type": "object",
+          "properties": {
+            "property": {
+              "$ref": "#/definitions/property"
+            }
+          }
+        },
+        "upstream": {
+          "$ref": "#/definitions/upstream"
+        },
+        "resolver": {
+          "type": "object",
+          "properties": {
+            "upstream": {
+              "$ref": "#/definitions/upstream"
+            }
+          }
+        }
+      },
+      "required": ["kind"]
+    }
+  ],
+  "definitions": {
+    "property": {
+      "$ref": "./property.schema.json"
+    },
+    "upstream": {
+      "$ref": "./upstream.schema.json"
+    },
+    "formField": {
+      "$ref": "./form-field.schema.json"
+    },
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
+    }
+  }
+}

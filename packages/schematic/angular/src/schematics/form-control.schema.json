@@ -51,6 +51,9 @@
         },
         {
           "$ref": "#/definitions/autocompleteTableSelectFormControl"
+        },
+        {
+          "$ref": "#/definitions/autocompleteFormControl"
         }
       ]
     }
@@ -76,6 +79,9 @@
     },
     "autocompleteTableSelectFormControl": {
       "$ref": "./autocomplete-table-select-form-control.schema.json"
+    },
+    "autocompleteFormControl": {
+      "$ref": "./autocomplete-form-control.schema.json"
     },
     "slideToggleFormControl": {
       "$ref": "./slide-toggle-form-control.schema.json"

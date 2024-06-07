@@ -97,7 +97,7 @@ export function TableColumnListToTableSelectColumnMap(
 }
 
 function printOptions(options: NormalizedTableSelectFormControlOptions) {
-  PrintAngularOptions('table-select-form-control', options);
+  PrintAngularOptions('autocomplete-table-select-form-control', options);
 }
 
 function buildOptionsOperationName({ name }: { name: string }) {

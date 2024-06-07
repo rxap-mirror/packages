@@ -32,6 +32,11 @@ import {
   TableColumn,
 } from '../../table/table-column';
 import { TableColumnKind } from '../../table/table-column-kind';
+import {
+  NormalizedToFunction,
+  NormalizeToFunction,
+  ToFunction,
+} from '../../utilities/to-function';
 import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
@@ -67,28 +72,17 @@ export function NormalizeTableSelectColumn(
   });
 }
 
-// region ToFunction
-export interface TableSelectToFunction {
-  property: DataProperty;
-}
-
-export interface NormalizedTableSelectToFunction extends Readonly<Normalized<TableSelectToFunction>> {
-  property: NormalizedDataProperty;
-}
-
 export function NormalizeTableSelectToFunction(
-  toFunction: TableSelectToFunction | null | undefined,
+  toFunction: ToFunction | null | undefined,
   columnList: TableSelectColumn[],
   defaultType = 'unknown',
-): NormalizedTableSelectToFunction {
+): NormalizedToFunction {
   if (!toFunction || Object.keys(toFunction).length === 0) {
-    return Object.freeze({
-      property: NormalizeDataProperty(columnList[0].name, defaultType),
-    });
+    return NormalizeToFunction({
+      property: NormalizeDataProperty(columnList[0].name, defaultType)
+    }, defaultType)!;
   }
-  return Object.freeze({
-    property: NormalizeDataProperty(toFunction.property, defaultType),
-  });
+  return NormalizeToFunction(toFunction, defaultType)!;
 }
 
 export interface TableSelectFormControl extends FormFieldFormControl {
@@ -96,8 +90,8 @@ export interface TableSelectFormControl extends FormFieldFormControl {
   title?: string;
   propertyList?: DataProperty[];
   columnList?: TableSelectColumn[];
-  toDisplay?: TableSelectToFunction;
-  toValue?: TableSelectToFunction;
+  toDisplay?: ToFunction;
+  toValue?: ToFunction;
   upstream?: UpstreamOptions;
   resolver?: { upstream?: UpstreamOptions };
   identifier?: AccordionIdentifier;
@@ -110,8 +104,8 @@ export interface NormalizedTableSelectFormControl
   backend: NormalizedBackendOptions;
   columnList: NormalizedTableSelectColumn[];
   propertyList: Array<NormalizedDataProperty>;
-  toDisplay: NormalizedTableSelectToFunction;
-  toValue: NormalizedTableSelectToFunction;
+  toDisplay: NormalizedToFunction;
+  toValue: NormalizedToFunction;
   upstream: NormalizedUpstreamOptions | null;
   resolver: { upstream: NormalizedUpstreamOptions | null } | null;
   identifier: NormalizedAccordionIdentifier;
