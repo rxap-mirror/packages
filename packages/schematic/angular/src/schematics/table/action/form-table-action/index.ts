@@ -58,16 +58,19 @@ export function NormalizeFormTableActionOptions(
 ): NormalizedFormTableActionOptions {
   const normalizedOptions = NormalizeAngularOptions(options);
   const tableActionOptions = NormalizeFormTableAction(options);
-  const { nestModule, } = normalizedOptions;
   const { type } = tableActionOptions;
+  let { controllerName, nestModule } = normalizedOptions;
+  const { tableName } = options;
+  nestModule ??= tableName;
+  controllerName ??= BuildNestControllerName({
+    controllerName: CoerceSuffix(type, '-action'),
+    nestModule,
+  });
   return {
     ...normalizedOptions,
     ...tableActionOptions,
-    tableName: options.tableName,
-    controllerName: BuildNestControllerName({
-      nestModule,
-      controllerName: [ type, 'action' ].join('-'),
-    }),
+    tableName,
+    controllerName,
   };
 }
 

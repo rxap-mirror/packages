@@ -271,6 +271,12 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
     }),
   );
 
+  console.log({ controllerName, nestModule, wtf: BuildNestControllerName({
+      controllerName,
+      nestModule
+    }) });
+  console.log('WTF', operationId);
+
   return chain([
     () => console.log(`Coerce the getPage operation for the table`),
     CoerceGetPageOperation({

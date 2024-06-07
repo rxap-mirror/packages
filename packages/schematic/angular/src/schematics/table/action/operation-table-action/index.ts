@@ -9,7 +9,7 @@ import {
   CoerceOperationTableActionRule,
 } from '@rxap/schematics-ts-morph';
 import {
-  dasherize,
+  CoerceSuffix,
   Normalized,
 } from '@rxap/utilities';
 import { BuildNestControllerName } from '@rxap/workspace-utilities';
@@ -37,16 +37,20 @@ export function NormalizeOperationTableActionOptions(
   options: OperationTableActionOptions,
 ): NormalizedOperationTableActionOptions {
   const normalizedOptions = NormalizeAngularOptions(options);
-  const nestModule = options.nestModule ?? options.tableName;
-  const context = options.context ? dasherize(options.context) : null;
+  const tableActionOptions = NormalizeOperationTableAction(options);
+  const { type } = tableActionOptions;
+  let { controllerName, nestModule } = normalizedOptions;
+  const { tableName } = options;
+  nestModule ??= tableName;
+  controllerName ??= BuildNestControllerName({
+    controllerName: CoerceSuffix(type, '-action'),
+    nestModule,
+  });
   return Object.freeze({
     ...normalizedOptions,
-    ...NormalizeOperationTableAction(options),
-    controllerName: BuildNestControllerName({
-      controllerName: context,
-      nestModule,
-    }),
-    tableName: options.tableName,
+    ...tableActionOptions,
+    controllerName,
+    tableName,
   });
 }
 

@@ -1,46 +1,16 @@
-import { SchematicsException } from '@angular-devkit/schematics';
-import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { CoercePrefix } from '@rxap/utilities';
+import {
+  BuildNestControllerName as NEW_BuildNestControllerName,
+  BuildNestControllerNameOptions as NEW_BuildNestControllerNameOptions
+} from '@rxap/workspace-utilities';
 
-export interface BuildNestControllerNameOptions {
-  controllerName?: string | null;
-  nestModule?: string | null;
-  controllerNameSuffix?: string | null;
-}
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
+export type BuildNestControllerNameOptions = NEW_BuildNestControllerNameOptions;
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function BuildNestControllerName(options: BuildNestControllerNameOptions): string {
-  let {
-    controllerName,
-    controllerNameSuffix,
-    nestModule,
-  } = options;
-
-  if (nestModule && nestModule !== controllerName) {
-    console.log('The nest module name is different from the controller name');
-    if (controllerName) {
-      console.log('controllerName', controllerName);
-      if (!controllerName.startsWith(nestModule)) {
-        console.log('The controller name is not prefixed with the nest module name');
-        controllerName = [ nestModule, controllerName ].join('-');
-      } else {
-        console.warn('The controller name is already prefixed with the nest module name');
-      }
-    } else {
-      console.warn('The controller name is not defined');
-      controllerName = nestModule;
-    }
-  } else {
-    console.log('The nest module name is the same as the controller name');
-  }
-
-  if (!controllerName) {
-    throw new SchematicsException('Could not determine the controller name');
-  }
-
-  if (controllerNameSuffix) {
-    controllerName = CoerceSuffix(controllerName, CoercePrefix(controllerNameSuffix, '-'));
-  }
-
-  return controllerName;
-
+  return NEW_BuildNestControllerName(options);
 }

@@ -1,4 +1,8 @@
-import { CoerceSuffix } from '@rxap/utilities';
+import { SchematicsException } from '@angular-devkit/schematics';
+import {
+  CoercePrefix,
+  CoerceSuffix,
+} from '@rxap/utilities';
 
 export interface BuildNestControllerNameOptions {
   controllerName?: string | null;
@@ -10,23 +14,30 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
   const { controllerNameSuffix, nestModule } = options;
   let { controllerName } = options;
 
-  if (!controllerName) {
-    if (!nestModule) {
-      throw new Error('Could not determine the controller name. No controller name and no nest module provided.');
+  if (nestModule && nestModule !== controllerName) {
+    console.log('The nest module name is different from the controller name');
+    if (controllerName) {
+      console.log('controllerName', controllerName);
+      if (!controllerName.startsWith(nestModule)) {
+        console.log(`The controller name is not prefixed with the nest module name (${nestModule})-(${controllerName})`);
+        controllerName = [ nestModule, controllerName ].join('-');
+      } else {
+        console.warn('The controller name is already prefixed with the nest module name');
+      }
+    } else {
+      console.warn('The controller name is not defined');
+      controllerName = nestModule;
     }
-    controllerName = nestModule;
+  } else {
+    console.log('The nest module name is the same as the controller name');
   }
 
-  if (nestModule && nestModule !== controllerName) {
-    controllerName = [ nestModule, controllerName ].join('-');
+  if (!controllerName) {
+    throw new SchematicsException('Could not determine the controller name');
   }
 
   if (controllerNameSuffix) {
-    controllerName = CoerceSuffix(controllerName!, '-' + controllerNameSuffix);
-  }
-
-  if (!controllerName) {
-    throw new Error('Could not determine the controller name');
+    controllerName = CoerceSuffix(controllerName, CoercePrefix(controllerNameSuffix, '-'));
   }
 
   if (controllerName.endsWith('-')) {
@@ -34,6 +45,6 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
     throw new Error(`The controller name should not end with a dash`);
   }
 
-  return controllerName;
+    return controllerName;
 
 }

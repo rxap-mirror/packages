@@ -263,11 +263,13 @@ function operationActionRule(
       backend,
       tableName: componentName,
       directory,
-      nestModule:
-        (
-          shared ? undefined : nestModule
-        ) ?? controllerName,
+      nestModule,
       context,
+      controllerName: BuildNestControllerName({
+        controllerName,
+        nestModule,
+        controllerNameSuffix: CoerceSuffix(action.type, '-action'),
+      })
     }),
   ]);
 
@@ -290,8 +292,8 @@ function formActionRule(
     componentName,
     directory,
     nestModule,
-    controllerName,
     context,
+    controllerName,
   } = normalizedOptions;
 
   if (kind !== TableActionKind.FORM) {
@@ -299,7 +301,7 @@ function formActionRule(
   }
 
   return chain([
-    () => console.log(`Coerce form table action '${ action.type }'`),
+    () => console.log(`Coerce form table action '${ action.type }' - '${ controllerName }'`),
     ExecuteSchematic('form-table-action', {
       ...action,
       overwrite,
@@ -309,10 +311,8 @@ function formActionRule(
       backend,
       tableName: componentName,
       directory,
-      nestModule:
-        (
-          shared ? undefined : nestModule
-        ) ?? controllerName,
+      nestModule,
+      controllerName,
       context,
     }),
   ]);
@@ -335,6 +335,9 @@ function navigateActionRule(
     backend,
     componentName,
     directory,
+    nestModule,
+    controllerName,
+    context,
   } = normalizedOptions;
 
   if (kind !== TableActionKind.NAVIGATION) {
@@ -353,6 +356,9 @@ function navigateActionRule(
       backend,
       tableName: componentName,
       directory,
+      nestModule,
+      controllerName,
+      context,
     }),
   ]);
 
@@ -395,10 +401,8 @@ function dialogActionRule(
       backend,
       tableName: componentName,
       directory,
-      nestModule:
-        (
-          shared ? undefined : nestModule
-        ) ?? controllerName,
+      nestModule,
+      controllerName,
       context,
     }),
   ]);
@@ -418,6 +422,9 @@ function defaultActionRule(
     backend,
     componentName,
     directory,
+    nestModule,
+    controllerName,
+    context,
   } = normalizedOptions;
 
   return chain([
@@ -431,6 +438,9 @@ function defaultActionRule(
       backend,
       tableName: componentName,
       directory,
+      nestModule,
+      controllerName,
+      context,
     }),
   ]);
 
@@ -452,6 +462,9 @@ function openApiActionRule(
     backend,
     componentName,
     directory,
+    nestModule,
+    controllerName,
+    context,
   } = normalizedOptions;
 
   if (kind !== TableActionKind.OPEN_API) {
@@ -469,6 +482,9 @@ function openApiActionRule(
       backend,
       tableName: componentName,
       directory,
+      nestModule,
+      controllerName,
+      context,
     }),
   ]);
 
@@ -478,30 +494,39 @@ function actionRule(action: NormalizedTableAction, normalizedOptions: Normalized
 
   const rules: Rule[] = [];
 
+  const { nestModule } = normalizedOptions;
+  let { controllerName } = normalizedOptions;
+
+  controllerName = BuildNestControllerName({
+    controllerName: controllerName,
+    nestModule,
+    controllerNameSuffix: CoerceSuffix(action.type, '-action'),
+  });
+
   switch (action.kind) {
 
     case TableActionKind.OPERATION:
-      rules.push(operationActionRule(action, normalizedOptions));
+      rules.push(operationActionRule(action, { ...normalizedOptions, controllerName }));
       break;
 
     case TableActionKind.FORM:
-      rules.push(formActionRule(action, normalizedOptions));
+      rules.push(formActionRule(action, { ...normalizedOptions, controllerName }));
       break;
 
     case TableActionKind.NAVIGATION:
-      rules.push(navigateActionRule(action, normalizedOptions));
+      rules.push(navigateActionRule(action, { ...normalizedOptions, controllerName }));
       break;
 
     case TableActionKind.DIALOG:
-      rules.push(dialogActionRule(action, normalizedOptions));
+      rules.push(dialogActionRule(action, { ...normalizedOptions, controllerName }));
       break;
 
     case TableActionKind.OPEN_API:
-      rules.push(openApiActionRule(action, normalizedOptions));
+      rules.push(openApiActionRule(action, { ...normalizedOptions, controllerName }));
       break;
 
     default:
-      rules.push(defaultActionRule(action, normalizedOptions));
+      rules.push(defaultActionRule(action, { ...normalizedOptions, controllerName }));
 
   }
 
