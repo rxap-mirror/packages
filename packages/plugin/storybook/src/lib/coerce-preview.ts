@@ -44,7 +44,7 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
           light: w => w.quote(''),
           dark: w => w.quote('dark'),
         }),
-        defaultTheme: w => w.quote('dark'),
+        defaultTheme: w => w.quote('light'),
       })(w);
       w.write(')');
     }, e => e.getText().startsWith('withThemeByClassName'));
@@ -59,6 +59,7 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
           w.write(',');
           w.quote('custom.svg');
           w.writeLine(']),');
+          w.writeLine('provideNoopAnimations(),');
           w.writeLine('],');
         }
       })(w);
@@ -72,6 +73,10 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
       {
         namedImports: [ 'importProvidersFrom' ],
         moduleSpecifier: '@angular/core',
+      },
+      {
+        namedImports: [ 'provideNoopAnimations' ],
+        moduleSpecifier: '@angular/platform-browser/animations',
       },
       {
         namedImports: [ 'ProvideIconAssetPath' ],
