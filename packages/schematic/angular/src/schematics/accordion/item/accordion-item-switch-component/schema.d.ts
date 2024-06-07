@@ -1,4 +1,6 @@
 import { SwitchAccordionItem } from '../../../../lib/accordion/item/switch-accordion-item';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
 
-export type AccordionItemSwitchComponentOptions = Omit<SwitchAccordionItem & AccordionItemComponentOptions, 'kind'>
+export interface AccordionItemSwitchComponentOptions extends SwitchAccordionItem, AngularOptions {
+  accordionName: string;
+}

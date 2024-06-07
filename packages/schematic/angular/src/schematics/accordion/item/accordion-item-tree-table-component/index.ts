@@ -14,8 +14,8 @@ import { Normalized } from '@rxap/utilities';
 import {
   NormalizedTreeTableAccordionItem,
   NormalizeTreeTableAccordionItem,
+  TreeTableAccordionItem,
 } from '../../../../lib/accordion/item/tree-table-accordion-item';
-import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
 import {
   AngularOptions,
   NormalizedAngularOptions,
@@ -30,23 +30,24 @@ import {
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
-  NormalizedAccordionItemStandaloneComponentOptions,
   printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
 import { AccordionItemTreeTableComponentOptions } from './schema';
 
-export type NormalizedAccordionItemTreeTableComponentOptions = Readonly<Normalized<Omit<AccordionItemTreeTableComponentOptions, keyof AngularOptions | 'table' | 'importList' | 'propertyList'>> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions> & Omit<NormalizedTreeTableAccordionItem, 'kind'>
+export interface NormalizedAccordionItemTreeTableComponentOptions
+  extends Readonly<Normalized<Omit<AccordionItemTreeTableComponentOptions, keyof AngularOptions | keyof TreeTableAccordionItem>> & NormalizedAngularOptions & NormalizedTreeTableAccordionItem> {
+  controllerName: string;
+  componentName: string;
+  directory: string;
+  nestModule: string;
+}
 
 export function NormalizeAccordionItemTreeTableComponentOptions(
   options: Readonly<AccordionItemTreeTableComponentOptions>,
 ): Readonly<NormalizedAccordionItemTreeTableComponentOptions> {
-  const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
   return Object.freeze({
-    ...normalizedAccordionItemComponentOptions,
-    ...NormalizeTreeTableAccordionItem({
-      ...options,
-      kind: AccordionItemKinds.TreeTable,
-    }),
+    ...NormalizeAccordionItemStandaloneComponentOptions(options),
+    ...NormalizeTreeTableAccordionItem(options),
   });
 }
 

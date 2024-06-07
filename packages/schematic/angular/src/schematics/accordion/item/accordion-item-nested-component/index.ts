@@ -1,43 +1,38 @@
-import {
-  chain,
-  noop,
-} from '@angular-devkit/schematics';
+import { chain } from '@angular-devkit/schematics';
+import { BuildNestControllerName } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import {
-  DeleteEmptyProperties,
+  CoerceSuffix,
   Normalized,
 } from '@rxap/utilities';
-import { NormalizedAccordionItem } from '../../../../lib/accordion/accordion-item';
 import {
+  NestedAccordionItem,
   NormalizedNestedAccordionItem,
   NormalizeNestedAccordionItem,
-  NestedAccordionItem,
 } from '../../../../lib/accordion/item/nested-accordion-item';
-import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
 import {
   AngularOptions,
   NormalizedAngularOptions,
 } from '../../../../lib/angular-options';
 import {
   NormalizeAccordionItemStandaloneComponentOptions,
-  NormalizedAccordionItemComponentOptions,
   printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
 import { AccordionItemNestedComponentOptions } from './schema';
 
-export type NormalizedAccordionItemNestedComponentOptions = Readonly<Normalized<Omit<AccordionItemNestedComponentOptions, keyof AngularOptions | keyof NestedAccordionItem | keyof AccordionItemComponentOptions>> & NormalizedAngularOptions & NormalizedNestedAccordionItem & NormalizedAccordionItemComponentOptions>
+export interface NormalizedAccordionItemNestedComponentOptions extends Readonly<Normalized<Omit<AccordionItemNestedComponentOptions, keyof AngularOptions | keyof NestedAccordionItem>> & NormalizedAngularOptions & NormalizedNestedAccordionItem> {
+  controllerName: string;
+  componentName: string;
+  directory: string;
+  nestModule: string;
+}
 
 export function NormalizeAccordionItemNestedComponentOptions(
   options: Readonly<AccordionItemNestedComponentOptions>,
 ): Readonly<NormalizedAccordionItemNestedComponentOptions> {
-  const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
   return Object.freeze({
-    ...normalizedAccordionItemComponentOptions,
-    ...NormalizeNestedAccordionItem({
-      ...options,
-      kind: AccordionItemKinds.Nested,
-    }),
+    ...NormalizeAccordionItemStandaloneComponentOptions(options),
+    ...NormalizeNestedAccordionItem(options),
   });
 }
 
@@ -48,15 +43,34 @@ function printOptions(options: NormalizedAccordionItemNestedComponentOptions) {
 function accordionComponentRule(normalizedOptions: NormalizedAccordionItemNestedComponentOptions) {
 
   const {
-    itemList,
-    name,
     backend,
+    directory,
+    accordion,
+    nestModule,
+    name,
+    project,
+    feature,
+    context,
+    overwrite,
+    replace,
+    controllerName,
   } = normalizedOptions;
 
   return ExecuteSchematic('accordion-component', {
-    name,
-    itemList,
     backend,
+    ...accordion,
+    directory: directory?.replace(/\/(\w+)-panel/, '/' + CoerceSuffix(name, '-accordion')),
+    nestModule,
+    project,
+    feature,
+    context,
+    overwrite,
+    replace,
+    controllerName: BuildNestControllerName({
+      controllerName,
+      nestModule,
+      controllerNameSuffix: name,
+    }),
   });
 }
 

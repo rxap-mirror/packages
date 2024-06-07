@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "nested-accordion-item",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseAccordionItem"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "nested"
+        },
+        "accordion": {
+          "$ref": "#/definitions/accordion"
+        }
+      },
+      "required": ["kind", "accordion"]
+    }
+  ],
+  "definitions": {
+    "baseAccordionItem": {
+      "$ref": "./base-accordion-item.schema.json"
+    },
+    "accordion": {
+      "$ref": "./accordion.schema.json"
+    }
+  }
+}

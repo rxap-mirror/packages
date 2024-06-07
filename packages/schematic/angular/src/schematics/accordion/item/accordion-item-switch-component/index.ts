@@ -13,31 +13,30 @@ import {
   NormalizeSwitchAccordionItem,
   SwitchAccordionItem,
 } from '../../../../lib/accordion/item/switch-accordion-item';
-import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
 import {
   AngularOptions,
   NormalizedAngularOptions,
 } from '../../../../lib/angular-options';
 import {
   NormalizeAccordionItemStandaloneComponentOptions,
-  NormalizedAccordionItemComponentOptions,
   printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
 import { AccordionItemSwitchComponentOptions } from './schema';
 
-export type NormalizedAccordionItemSwitchComponentOptions = Readonly<Normalized<Omit<AccordionItemSwitchComponentOptions, keyof AngularOptions | keyof SwitchAccordionItem | keyof AccordionItemComponentOptions>> & NormalizedAngularOptions & NormalizedSwitchAccordionItem & NormalizedAccordionItemComponentOptions>
+export interface NormalizedAccordionItemSwitchComponentOptions
+  extends Readonly<Normalized<Omit<AccordionItemSwitchComponentOptions, keyof AngularOptions | keyof SwitchAccordionItem>> & NormalizedAngularOptions & NormalizedSwitchAccordionItem> {
+  controllerName: string;
+  componentName: string;
+  directory: string;
+  nestModule: string;
+}
 
 export function NormalizeAccordionItemSwitchComponentOptions(
   options: Readonly<AccordionItemSwitchComponentOptions>,
 ): Readonly<NormalizedAccordionItemSwitchComponentOptions> {
-  const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
   return Object.freeze({
-    ...normalizedAccordionItemComponentOptions,
-    ...NormalizeSwitchAccordionItem({
-      ...options,
-      kind: AccordionItemKinds.Switch,
-    }),
+    ...NormalizeAccordionItemStandaloneComponentOptions(options),
+    ...NormalizeSwitchAccordionItem(options),
   });
 }
 

@@ -1,4 +1,6 @@
 import { TableAccordionItem } from '../../../../lib/accordion/item/table-accordion-item';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
 
-export type AccordionItemTableComponentOptions = Omit<TableAccordionItem & AccordionItemComponentOptions, 'kind'>;
+export interface AccordionItemTableComponentOptions extends TableAccordionItem, AngularOptions {
+  accordionName: string;
+}

@@ -1,4 +1,6 @@
 import { TreeTableAccordionItem } from '../../../../lib/accordion/item/tree-table-accordion-item';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
 
-export type AccordionItemTreeTableComponentOptions = Omit<TreeTableAccordionItem & AccordionItemComponentOptions, 'kind'>
+export interface AccordionItemTreeTableComponentOptions extends TreeTableAccordionItem, AngularOptions {
+  accordionName: string;
+}

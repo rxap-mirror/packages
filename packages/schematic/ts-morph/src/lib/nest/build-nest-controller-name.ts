@@ -1,5 +1,6 @@
 import { SchematicsException } from '@angular-devkit/schematics';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoercePrefix } from '@rxap/utilities';
 
 export interface BuildNestControllerNameOptions {
   controllerName?: string | null;
@@ -32,12 +33,12 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
     console.log('The nest module name is the same as the controller name');
   }
 
-  if (controllerNameSuffix) {
-    controllerName = CoerceSuffix(controllerName!, '-' + controllerNameSuffix);
-  }
-
   if (!controllerName) {
     throw new SchematicsException('Could not determine the controller name');
+  }
+
+  if (controllerNameSuffix) {
+    controllerName = CoerceSuffix(controllerName, CoercePrefix(controllerNameSuffix, '-'));
   }
 
   return controllerName;

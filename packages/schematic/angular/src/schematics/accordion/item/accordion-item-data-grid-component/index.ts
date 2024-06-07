@@ -33,35 +33,37 @@ import {
   Scope,
   SourceFile,
 } from 'ts-morph';
-import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
-import { DataGridAccordionItem, NormalizeDataGridAccordionItem, NormalizedDataGridAccordionItem } from '../../../../lib/accordion/item/data-grid-accordion-item';
+import {
+  DataGridAccordionItem,
+  NormalizeDataGridAccordionItem,
+  NormalizedDataGridAccordionItem,
+} from '../../../../lib/accordion/item/data-grid-accordion-item';
 import {
   AngularOptions,
   NormalizedAngularOptions,
 } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend-types';
 import {
-  AccordionItemStandaloneComponentOptions,
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
-  NormalizedAccordionItemStandaloneComponentOptions,
   printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
 import { AccordionItemDataGridComponentOptions } from './schema';
 
-export type NormalizedAccordionItemDataGridComponentOptions = Readonly<Normalized<Omit<AccordionItemDataGridComponentOptions, keyof AngularOptions | keyof AccordionItemStandaloneComponentOptions | keyof DataGridAccordionItem | keyof AccordionItemComponentOptions>> & NormalizedAngularOptions & NormalizedAccordionItemStandaloneComponentOptions> & Omit<NormalizedDataGridAccordionItem, 'kind'>
+export interface NormalizedAccordionItemDataGridComponentOptions
+  extends Readonly<Normalized<Omit<AccordionItemDataGridComponentOptions, keyof AngularOptions | keyof DataGridAccordionItem>> & NormalizedAngularOptions & NormalizedDataGridAccordionItem> {
+  controllerName: string;
+  componentName: string;
+  directory: string;
+  nestModule: string;
+}
 
 export function NormalizeAccordionItemDataGridComponentOptions(
   options: Readonly<AccordionItemDataGridComponentOptions>,
 ): Readonly<NormalizedAccordionItemDataGridComponentOptions> {
-  const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
   return Object.freeze({
-    ...normalizedAccordionItemComponentOptions,
-    ...NormalizeDataGridAccordionItem({
-      ...options,
-      kind: AccordionItemKinds.DataGrid,
-    }),
+    ...NormalizeAccordionItemStandaloneComponentOptions(options),
+    ...NormalizeDataGridAccordionItem(options),
   });
 }
 

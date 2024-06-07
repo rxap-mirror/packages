@@ -16,6 +16,7 @@ import {
 } from '@rxap/utilities';
 import { Scope } from 'ts-morph';
 import { NormalizedAccordionComponentOptions } from '../schematics/accordion/accordion-component';
+import { AccordionItemKinds } from './accordion/accordion-item-kind';
 
 export interface CoerceAccordionComponentOptions extends CoerceComponentOptions {
   accordion: NormalizedAccordionComponentOptions;
@@ -64,10 +65,17 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
         CoerceComponentImport(classDeclaration, { name: 'PersistentAccordionDirective', moduleSpecifier: '@rxap/material-directives/expansion' });
       }
       for (const item of itemList) {
-        CoerceComponentImport(classDeclaration, {
-          name: `${classify(item.name)}PanelComponent`,
-          moduleSpecifier: `./${dasherize(item.name)}-panel/${dasherize(item.name)}-panel.component`
-        });
+        if (item.kind === AccordionItemKinds.Nested) {
+          CoerceComponentImport(classDeclaration, {
+            name: `${classify(item.name)}AccordionComponent`,
+            moduleSpecifier: `./${dasherize(item.name)}-accordion/${dasherize(item.name)}-accordion.component`
+          });
+        } else {
+          CoerceComponentImport(classDeclaration, {
+            name: `${classify(item.name)}PanelComponent`,
+            moduleSpecifier: `./${dasherize(item.name)}-panel/${dasherize(item.name)}-panel.component`
+          });
+        }
       }
       // endregion
 

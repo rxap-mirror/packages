@@ -7,7 +7,6 @@ import {
   NormalizeTableAccordionItem,
   TableAccordionItem,
 } from '../../../../lib/accordion/item/table-accordion-item';
-import { AccordionItemKinds } from '../../../../lib/accordion/accordion-item-kind';
 import {
   AngularOptions,
   NormalizedAngularOptions,
@@ -17,25 +16,24 @@ import { TableModifiers } from '../../../../lib/table-options';
 import {
   GetItemOptions,
   NormalizeAccordionItemStandaloneComponentOptions,
-  NormalizedAccordionItemComponentOptions,
   printAccordionItemComponentOptions,
 } from '../../accordion-item-component';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
 import { AccordionItemTableComponentOptions } from './schema';
 
-export type NormalizedAccordionItemTableComponentOptions = Readonly<Normalized<Omit<AccordionItemTableComponentOptions, keyof AngularOptions | keyof TableAccordionItem | keyof AccordionItemComponentOptions>> & NormalizedAngularOptions & NormalizedTableAccordionItem & NormalizedAccordionItemComponentOptions>
-
+export interface NormalizedAccordionItemTableComponentOptions
+  extends Readonly<Normalized<Omit<AccordionItemTableComponentOptions, keyof AngularOptions | keyof TableAccordionItem>> & NormalizedAngularOptions & NormalizedTableAccordionItem> {
+  controllerName: string;
+  componentName: string;
+  directory: string;
+  nestModule: string;
+}
 
 export function NormalizeAccordionItemTableComponentOptions(
   options: Readonly<AccordionItemTableComponentOptions>,
 ): Readonly<NormalizedAccordionItemTableComponentOptions> {
-  const normalizedAccordionItemComponentOptions = NormalizeAccordionItemStandaloneComponentOptions(options);
   return Object.freeze({
-    ...normalizedAccordionItemComponentOptions,
-    ...NormalizeTableAccordionItem({
-      ...options,
-      kind: AccordionItemKinds.Table,
-    }),
+    ...NormalizeAccordionItemStandaloneComponentOptions(options),
+    ...NormalizeTableAccordionItem(options),
   });
 }
 

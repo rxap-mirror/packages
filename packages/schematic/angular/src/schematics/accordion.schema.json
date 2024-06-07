@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the accordion component"
+    },
+    "importList": {
+      "alias": "import",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/type"
+      },
+      "description": "The list of imports"
+    },
+    "multiple": {
+      "type": "boolean",
+      "description": "Whether the accordion should allow multiple panels to be expanded at the same time",
+      "default": false,
+      "alias": "multi"
+    },
+    "persistent": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string"
+            }
+          },
+          "required": ["key"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "property": {
+              "$ref": "#/definitions/property"
+            }
+          },
+          "required": ["property"]
+        }
+      ]
+    },
+    "identifier": {
+      "$ref": "#/definitions/accordionIdentifier"
+    },
+    "header": {
+      "$ref": "#/definitions/accordionHeader"
+    },
+    "itemList": {
+      "alias": "item",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/accordionItem"
+      },
+      "description": "The list of accordion expansion panels"
+    },
+    "upstream": {
+      "$ref": "#/definitions/upstream"
+    },
+    "propertyList": {
+      "alias": "property",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/property"
+      }
+    }
+  },
+  "definitions": {
+    "accordionItem": {
+      "$ref": "./accordion-item.schema.json"
+    },
+    "property": {
+      "$ref": "./property.schema.json"
+    },
+    "accordionIdentifier": {
+      "$ref": "./accordion-identifier.schema.json"
+    },
+    "accordionHeader": {
+      "$ref": "./accordion-header.schema.json"
+    },
+    "upstream": {
+      "$ref": "./upstream.schema.json"
+    },
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
+}

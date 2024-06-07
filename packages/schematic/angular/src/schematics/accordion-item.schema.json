@@ -30,6 +30,9 @@
     },
     {
       "$ref": "#/definitions/treeTableAccordionItem"
+    },
+    {
+      "$ref": "#/definitions/nestedAccordionItem"
     }
   ],
   "definitions": {
@@ -47,6 +50,9 @@
     },
     "treeTableAccordionItem": {
       "$ref": "./tree-table-accordion-item.schema.json"
+    },
+    "nestedAccordionItem": {
+      "$ref": "./nested-accordion-item.schema.json"
     }
   }
 }

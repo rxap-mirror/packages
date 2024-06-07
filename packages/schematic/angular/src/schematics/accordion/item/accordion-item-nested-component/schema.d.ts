@@ -1,4 +1,6 @@
 import { NestedAccordionItem } from '../../../../lib/accordion/item/nested-accordion-item';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
 
-export type AccordionItemNestedComponentOptions = Omit<NestedAccordionItem & AccordionItemComponentOptions, 'kind'>
+export interface AccordionItemNestedComponentOptions extends NestedAccordionItem, AngularOptions {
+  accordionName: string;
+}

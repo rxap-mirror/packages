@@ -1,5 +1,9 @@
 import { Normalized } from '@rxap/utilities';
-import { NormalizeAccordionItemList } from '../accordion-item';
+import {
+  Accordion,
+  NormalizeAccordion,
+  NormalizedAccordion,
+} from '../accordion';
 import { AccordionItemKinds } from '../accordion-item-kind';
 import {
   BaseAccordionItem,
@@ -8,16 +12,16 @@ import {
 } from './base-accordion-item';
 
 export interface NestedAccordionItem extends BaseAccordionItem {
-  itemList: Array<BaseAccordionItem & Partial<BaseAccordionItem>>
+  accordion: Partial<Accordion>;
 }
 
 export function IsNestedAccordionItem(item: BaseAccordionItem): item is NestedAccordionItem {
   return item.kind === AccordionItemKinds.Nested;
 }
 
-export interface NormalizedNestedAccordionItem extends Readonly<Normalized<Omit<NestedAccordionItem, keyof BaseAccordionItem | 'itemList'>> & NormalizedBaseAccordionItem> {
+export interface NormalizedNestedAccordionItem extends Readonly<Normalized<Omit<NestedAccordionItem, keyof BaseAccordionItem | 'accordion'>> & NormalizedBaseAccordionItem> {
   kind: AccordionItemKinds.Nested;
-  itemList: ReadonlyArray<NormalizedBaseAccordionItem>
+  accordion: NormalizedAccordion
 }
 
 export function IsNormalizedNestedAccordionItem(item: NormalizedBaseAccordionItem): item is NormalizedNestedAccordionItem {
@@ -28,6 +32,11 @@ export function NormalizeNestedAccordionItem(item: Readonly<NestedAccordionItem>
   return Object.freeze({
     ...NormalizeBaseAccordionItem(item),
     kind: AccordionItemKinds.Nested,
-    itemList: NormalizeAccordionItemList(item.itemList),
+    accordion: NormalizeAccordion({
+      name: item.name,
+      identifier: item.identifier,
+      upstream: item.upstream,
+      ...item.accordion,
+    }),
   });
 }

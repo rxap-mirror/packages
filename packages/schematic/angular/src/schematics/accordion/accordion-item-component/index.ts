@@ -43,15 +43,15 @@ import {
   Scope,
   SourceFile,
 } from 'ts-morph';
-import { NormalizeAccordionItem } from '../../../lib/accordion/accordion-item';
+import {
+  AccordionItem,
+  NormalizeAccordionItem,
+  NormalizedAccordionItem,
+} from '../../../lib/accordion/accordion-item';
 import {
   AccordionItemKinds,
   IsAccordionItemKind,
 } from '../../../lib/accordion/accordion-item-kind';
-import {
-  BaseAccordionItem,
-  NormalizedBaseAccordionItem,
-} from '../../../lib/accordion/item/base-accordion-item';
 import {
   AngularOptions,
   NormalizeAngularOptions,
@@ -61,44 +61,50 @@ import {
 import { BackendTypes } from '../../../lib/backend-types';
 import { AccordionItemComponentOptions } from './schema';
 
-export type AccordionItemStandaloneComponentOptions = Omit<AccordionItemComponentOptions, 'kind'>;
-
-export interface NormalizedAccordionItemStandaloneComponentOptions
-  extends Readonly<Normalized<Omit<AccordionItemStandaloneComponentOptions, keyof AngularOptions | keyof BaseAccordionItem>> & NormalizedAngularOptions & NormalizedBaseAccordionItem> {
-  componentName: string;
-  controllerName: string;
-}
+export type NormalizedAccordionItemStandaloneComponentOptions =
+  Readonly<Normalized<Omit<AccordionItemComponentOptions, keyof AngularOptions | keyof AccordionItem>>>
+  & NormalizedAngularOptions & NormalizedAccordionItem
+  & Readonly<NonNullable<Pick<AngularOptions, 'controllerName' | 'componentName' | 'directory' | 'nestModule'>>>
 
 export function NormalizeAccordionItemStandaloneComponentOptions(
-  options: Readonly<AccordionItemStandaloneComponentOptions>,
+  options: Readonly<AccordionItemComponentOptions>,
 ): NormalizedAccordionItemStandaloneComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const { feature, controllerName, shared } = normalizedAngularOptions;
-  const name = dasherize(options.name);
-
-  const componentName = CoerceSuffix(name, '-panel');
-  let accordionName = options.accordionName ?? feature;
+  const { name } = normalizedAngularOptions;
+  let {
+    directory,
+    controllerName,
+    componentName,
+  } = normalizedAngularOptions;
+  let {
+    accordionName,
+    nestModule,
+  } = options;
+  if (!name) {
+    throw new Error('The name is required!');
+  }
+  if (!accordionName) {
+    throw new Error('The accordion name is required!');
+  }
   accordionName = CoerceSuffix(dasherize(accordionName), '-accordion');
-  const nestModule = options.nestModule ?? accordionName;
-  const normalizedAccordionItem = NormalizeAccordionItem({
-    kind: AccordionItemKinds.Default,
-    ...options,
+  componentName ??= CoerceSuffix(name, '-panel');
+  directory ??= join(accordionName, componentName);
+  if (!directory.endsWith(componentName)) {
+    directory = join(directory, componentName);
+  }
+  nestModule ??= accordionName;
+  controllerName ??= BuildNestControllerName({
+    controllerName: name,
+    nestModule,
   });
-  const { modifiers } = normalizedAccordionItem;
-  const { hasSharedModifier } = GetItemOptions({ modifiers, shared });
   return Object.freeze({
     ...normalizedAngularOptions,
-    ...normalizedAccordionItem,
-    controllerName: controllerName ?? BuildNestControllerName({
-      controllerName: name,
-      // nestModule: hasSharedModifier ? undefined : nestModule,
-    }),
-    name,
+    ...NormalizeAccordionItem(options),
+    controllerName,
     nestModule,
-    modifiers: options.modifiers ?? [],
-    accordionName: accordionName,
-    directory: join(accordionName, componentName),
+    directory,
     componentName,
+    accordionName,
   });
 }
 
@@ -119,7 +125,7 @@ export function NormalizeAccordionItemComponentOptions(
   });
 }
 
-export function printAccordionItemComponentOptions(options: NormalizedAccordionItemComponentOptions, schematicName = 'accordion-item-component') {
+export function printAccordionItemComponentOptions(options: NormalizedAngularOptions & Pick<NormalizedAccordionItem, 'kind' | 'identifier'>, schematicName = 'accordion-item-component') {
   PrintAngularOptions(schematicName, options);
   console.log('===== Kind:'.blue, options.kind);
   console.log('===== Identifier:'.blue, options.identifier?.property?.name ?? 'NONE'.red);

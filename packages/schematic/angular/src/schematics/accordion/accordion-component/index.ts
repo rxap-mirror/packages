@@ -34,12 +34,7 @@ import {
   CoerceImports,
   CoerceStatements,
   NormalizeDataProperty,
-  NormalizeDataPropertyList,
   NormalizedDataProperty,
-  NormalizedTypeImport,
-  NormalizedUpstreamOptions,
-  NormalizeTypeImportList,
-  NormalizeUpstreamOptions,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
   OperationIdToResponseClassImportPath,
@@ -47,9 +42,9 @@ import {
 } from '@rxap/ts-morph';
 import {
   classify,
-  CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
+import { join } from 'path';
 import {
   ClassDeclaration,
   Project,
@@ -57,14 +52,11 @@ import {
   SourceFile,
 } from 'ts-morph';
 import {
-  NormalizeAccordionHeader,
-  NormalizedAccordionHeader,
-} from '../../../lib/accordion/accordion-header';
-import {
-  NormalizeAccordionIdentifier,
-  NormalizedAccordionIdentifier,
-} from '../../../lib/accordion-identifier';
-import { NormalizedAccordionItem, NormalizeAccordionItemList } from '../../../lib/accordion/accordion-item';
+  Accordion,
+  NormalizeAccordion,
+  NormalizedAccordion,
+} from '../../../lib/accordion/accordion';
+import { NormalizedAccordionItem } from '../../../lib/accordion/accordion-item';
 import { AccordionItemKinds } from '../../../lib/accordion/accordion-item-kind';
 import { IsNormalizedPropertyAccordionHeader } from '../../../lib/accordion/header/property-accordion-header';
 import {
@@ -76,85 +68,38 @@ import {
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend-types';
 import { CoerceAccordionComponentRule } from '../../../lib/coerce-accordion-component';
-import {
-  IsNormalizedPropertyPersistent,
-  NormalizedPersistent,
-  NormalizePersistent,
-} from '../../../lib/persistent';
+import { IsNormalizedPropertyPersistent } from '../../../lib/persistent';
 import { AccordionComponentOptions } from './schema';
 
 export interface NormalizedAccordionComponentOptions
-  extends Readonly<Normalized<Omit<AccordionComponentOptions, keyof AngularOptions | 'itemList' | 'persistent' | 'identifier'>> & NormalizedAngularOptions> {
-  name: string;
-  itemList: ReadonlyArray<NormalizedAccordionItem>;
-  persistent: NormalizedPersistent | null;
-  withPermission: boolean;
-  header: NormalizedAccordionHeader | null;
-  identifier: NormalizedAccordionIdentifier | null;
+  extends Readonly<Normalized<Omit<AccordionComponentOptions, keyof AngularOptions | keyof Accordion>> & NormalizedAngularOptions & NormalizedAccordion> {
   controllerName: string;
-  propertyList: NormalizedDataProperty[];
-  upstream: NormalizedUpstreamOptions | null;
-  importList: NormalizedTypeImport[];
-}
-
-function hasItemWithPermission(itemList: ReadonlyArray<NormalizedAccordionItem>): boolean {
-  return itemList.some((item) => {
-    if (item.permission) {
-      return true;
-    }
-    if (item.kind === AccordionItemKinds.Switch) {
-      return hasItemWithPermission((item as any).switch.case?.flatMap((item: { itemList: NormalizedAccordionItem[] }) => item.itemList) ?? []) ||
-             hasItemWithPermission((item as any).switch.defaultCase?.itemList ?? []);
-    }
-    return false;
-  });
 }
 
 function NormalizeOptions(
   options: Readonly<AccordionComponentOptions>,
 ): Readonly<NormalizedAccordionComponentOptions> {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
+  const normalizedAccordionOptions = NormalizeAccordion(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const { name, nestModule } = normalizedAngularOptions;
-  let {  componentName, controllerName } = normalizedAngularOptions;
-  const itemList = NormalizeAccordionItemList(options.itemList);
+  let {  componentName, controllerName, directory } = normalizedAngularOptions;
   componentName ??= CoerceSuffix(dasherize(name), '-accordion');
   controllerName ??= BuildNestControllerName({
     controllerName: componentName,
     nestModule,
   });
-  const propertyList = options.propertyList ?? [];
-  const importList = options.importList ?? [];
-  const header = NormalizeAccordionHeader(options.header);
-  if (header) {
-    CoerceArrayItems(propertyList, header.propertyList, (a, b) => a.name === b.name, true);
-    CoerceArrayItems(importList, header.importList, (a, b) => a.name === b.name);
-  }
-  for (const item of itemList) {
-    if (item.ifTruthy) {
-      CoerceArrayItems(propertyList, [item.ifTruthy.property], (a, b) => a.name === b.name, true);
-      CoerceArrayItems(importList, [{ name: 'NgIf', moduleSpecifier: '@angular/common' }], (a, b) => a.name === b.name);
-    }
-  }
-  const identifier = NormalizeAccordionIdentifier(options.identifier);
-  if (identifier) {
-    CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name, true);
+  directory ??= componentName;
+  if (!directory.endsWith(componentName)) {
+    directory = join(directory, componentName);
   }
   return Object.freeze({
     ...normalizedAngularOptions,
-    importList: NormalizeTypeImportList(importList),
+    ...normalizedAccordionOptions,
     controllerName,
     componentName,
-    directory: componentName,
-    itemList,
+    directory,
     name,
-    multiple: options.multiple ?? false,
-    persistent: options.persistent ? NormalizePersistent(options.persistent) : null,
-    withPermission: hasItemWithPermission(itemList),
-    header,
-    identifier,
-    upstream: NormalizeUpstreamOptions(options.upstream),
-    propertyList: NormalizeDataPropertyList(propertyList),
   });
 }
 
@@ -452,12 +397,20 @@ function itemComponentRule(normalizedOptions: NormalizedAccordionComponentOption
     identifier,
     nestModule,
     upstream,
+    directory,
+    controllerName,
   } = normalizedOptions;
 
   return chain([
     () => console.log(`Create accordion item component '${ item.name }' ...`),
     ExecuteSchematic('accordion-item-component', {
       ...item,
+      controllerName: BuildNestControllerName({
+        controllerName,
+        nestModule,
+        controllerNameSuffix: item.name,
+      }),
+      directory,
       nestModule,
       name: item.name,
       kind: item.kind,

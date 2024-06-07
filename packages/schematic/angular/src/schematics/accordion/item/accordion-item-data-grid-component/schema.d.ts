@@ -1,4 +1,6 @@
 import { DataGridAccordionItem } from '../../../../lib/accordion/item/data-grid-accordion-item';
-import { AccordionItemComponentOptions } from '../../accordion-item-component/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
 
-export type AccordionItemDataGridComponentOptions = Omit<DataGridAccordionItem & AccordionItemComponentOptions, 'kind'>
+export interface AccordionItemDataGridComponentOptions extends DataGridAccordionItem, AngularOptions {
+  accordionName: string;
+}
