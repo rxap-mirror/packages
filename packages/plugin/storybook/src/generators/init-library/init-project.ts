@@ -26,7 +26,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     overwrite: options.overwrite,
   });
 
-  await coerceMain(tree, projectName, options);
+  await coerceMain(tree, projectName, project, options);
   await coercePreview(tree, projectName, options);
   await coerceProjectTarget(tree, projectName, project, options);
   await coerceProjectTarget(tree, projectName, project, options);

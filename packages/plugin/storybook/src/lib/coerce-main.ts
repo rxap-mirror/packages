@@ -1,10 +1,17 @@
-import { Tree } from '@nx/devkit';
 import {
+  ProjectConfiguration,
+  Tree,
+} from '@nx/devkit';
+import {
+  AddProviderToArray,
   CoerceArrayElement,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
 import { TsMorphProjectTransform } from '@rxap/workspace-ts-morph';
-import { GetProjectRoot } from '@rxap/workspace-utilities';
+import {
+  GetProjectRoot,
+  IsApplicationProject,
+} from '@rxap/workspace-utilities';
 import {
   join,
   relative,
@@ -37,16 +44,22 @@ function CoerceObjectLiteralExpressionPropertyAssignment(
 
 }
 
-export async function coerceMain(tree: Tree, projectName: string, options: InitLibraryGeneratorSchema) {
+export async function coerceMain(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
 
   TsMorphProjectTransform(tree, {
     project: projectName,
-  }, (project, sourceFile) => {
+  }, (_, sourceFile) => {
 
     const config = CoerceVariableDeclaration(sourceFile, 'config', { initializer: '{}' });
     const objectLiteralExpression = config.getInitializerIfKind(SyntaxKind.ObjectLiteralExpression);
     // region staticDirs
     const projectRoot = GetProjectRoot(tree, projectName);
+    if (IsApplicationProject(project)) {
+      const storiesPA = CoerceObjectLiteralExpressionPropertyAssignment(objectLiteralExpression, 'stories', { initializer: '[]' });
+      const storiesArrayLiteralExpression = storiesPA.getInitializerIfKind(SyntaxKind.ArrayLiteralExpression);
+      CoerceArrayElement(
+        storiesArrayLiteralExpression, `'../src/feature/**/*.stories.@(js|jsx|ts|tsx|mdx)'`);
+    }
     CoerceObjectLiteralExpressionPropertyAssignment(objectLiteralExpression, 'staticDirs', {
       initializer: w => {
         w.writeLine('[');
