@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { BaseDataSource } from '@rxap/data-source';
 import { Method } from '@rxap/pattern';
 import { ToggleSubject } from '@rxap/rxjs';
@@ -27,6 +28,9 @@ export abstract class AccordionDataSource<
 
   public override _data$ = new ReplaySubject<Data>(1);
   public override readonly loading$ = new ToggleSubject(true);
+
+  public override readonly loading = toSignal(this.loading$, { initialValue: false });
+  public override readonly hasError = toSignal(this.hasError$, { initialValue: false });
 
   protected parameters: Parameters | null = null;
 

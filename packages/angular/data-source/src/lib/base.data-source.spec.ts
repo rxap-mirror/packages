@@ -1,4 +1,15 @@
-import { fakeAsync } from '@angular/core/testing';
+import {
+  Injectable,
+  InjectionToken,
+  INJECTOR,
+  Injector,
+  runInInjectionContext,
+} from '@angular/core';
+import {
+  fakeAsync,
+  TestBed,
+} from '@angular/core/testing';
+import { run } from 'jest';
 import { Subject } from 'rxjs';
 import {
   BaseDataSource,
@@ -13,19 +24,24 @@ describe('@rxap/data-source', () => {
 
     it('connect and disconnect', () => {
 
-      const dataSource = new BaseDataSource<any>({
-        id: 'test',
+      TestBed.configureTestingModule({});
+      const injector = TestBed.inject(INJECTOR);
+
+      runInInjectionContext(injector,() => {
+        const dataSource = new BaseDataSource<any>({
+          id: 'test',
+        });
+
+        const viewer: BaseDataSourceViewer = { id: 'test' };
+
+        const connection = dataSource.connect(viewer);
+
+        expect(dataSource.isConnected(viewer)).toBeTruthy();
+
+        dataSource.disconnect(viewer);
+
+        expect(dataSource.isConnected(viewer)).toBeFalsy();
       });
-
-      const viewer: BaseDataSourceViewer = { id: 'test' };
-
-      const connection = dataSource.connect(viewer);
-
-      expect(dataSource.isConnected(viewer)).toBeTruthy();
-
-      dataSource.disconnect(viewer);
-
-      expect(dataSource.isConnected(viewer)).toBeFalsy();
 
     });
 
@@ -35,6 +51,7 @@ describe('@rxap/data-source', () => {
         id: 'test',
         restore: true,
       })
+      @Injectable()
       class TestDataSource extends BaseDataSource {
 
         protected override _data$ = new Subject();
@@ -46,9 +63,21 @@ describe('@rxap/data-source', () => {
       }
 
       let dataSource: TestDataSource;
+      let dataSourceB: TestDataSource;
 
       beforeEach(() => {
-        dataSource = new TestDataSource();
+        const token = new InjectionToken<TestDataSource>('dataSourceB');
+        TestBed.configureTestingModule({
+          providers: [
+            TestDataSource,
+            {
+              provide: token,
+              useClass: TestDataSource,
+            }
+          ]
+        });
+        dataSource = TestBed.inject(TestDataSource);
+        dataSourceB = TestBed.inject(token);
         localStorage.getItem('rxap_data-source_test');
       });
 
@@ -103,7 +132,6 @@ describe('@rxap/data-source', () => {
         expect(spyA).toBeCalledWith(data);
         expect(localStorage.getItem('rxap_data-source_TestDataSource_test')).toBe(JSON.stringify(data));
 
-        const dataSourceB = new TestDataSource();
         const spyB = jest.fn();
         dataSourceB.connect({ id: 'test' }).subscribe(spyB);
         expect(spyB).toBeCalledWith(data);
@@ -120,7 +148,6 @@ describe('@rxap/data-source', () => {
         expect(spyA).toBeCalledWith(data);
         expect(localStorage.getItem('rxap_data-source_TestDataSource_test')).toBeNull();
 
-        const dataSourceB = new TestDataSource();
         const spyB = jest.fn();
         dataSourceB.connect({ id: 'test' }).subscribe(spyB);
         expect(spyB).not.toBeCalled();
@@ -137,13 +164,16 @@ describe('@rxap/data-source', () => {
     let dataSource: StaticDataSource<string>;
 
     beforeEach(() => {
-      dataSource = new StaticDataSource<string>(
-        staticData,
-        {
-          id: 'test',
-          deps: [],
-        },
-      );
+      TestBed.configureTestingModule({});
+      runInInjectionContext(TestBed.inject(INJECTOR), () => {
+        dataSource = new StaticDataSource<string>(
+          staticData,
+          {
+            id: 'test',
+            deps: [],
+          },
+        );
+      });
     });
 
     it('should emit static data on subscribe', fakeAsync(() => {
@@ -206,12 +236,24 @@ describe('@rxap/data-source', () => {
     };
 
     @RxapDataSource(metadata)
+    @Injectable()
     class DataSource extends BaseDataSource<any> {
     }
 
+    let injector: Injector;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        providers: [DataSource]
+      });
+      injector = TestBed.inject(INJECTOR);
+    });
+
     it('should add meta data to base data source', () => {
 
-      expect(new DataSource().metadata).toEqual(metadata);
+      runInInjectionContext(injector, () => {
+        expect(new DataSource().metadata).toEqual(metadata);
+      });
 
     });
 
@@ -221,8 +263,9 @@ describe('@rxap/data-source', () => {
         id: 'custom',
         deps: [],
       };
-
-      expect(new DataSource(customMetadata).metadata).toEqual(customMetadata);
+      runInInjectionContext(injector, () => {
+        expect(new DataSource(customMetadata).metadata).toEqual(customMetadata);
+      });
 
     });
 

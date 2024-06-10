@@ -89,9 +89,9 @@ export class BaseDataSource<
   protected _viewerIds = new Map<Viewer, string>();
   protected _retry$ = new Subject<void>();
 
-  public readonly loading: Signal<boolean>;
+  public loading?: Signal<boolean>;
 
-  public readonly hasError: Signal<boolean>;
+  public hasError?: Signal<boolean>;
 
   constructor(
     @Optional()
@@ -99,9 +99,6 @@ export class BaseDataSource<
       metadata: Metadata | null = null,
   ) {
     super(metadata);
-    // manuel initialize the members to ensure that all parent class properties are already set
-    this.loading = toSignal(this.loading$, { initialValue: false });
-    this.hasError = toSignal(this.hasError$, { initialValue: false });
   }
 
   protected _data?: Data;
