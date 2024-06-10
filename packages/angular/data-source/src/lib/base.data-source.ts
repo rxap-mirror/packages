@@ -3,7 +3,9 @@ import {
   Injectable,
   isDevMode,
   Optional,
+  Signal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   BaseDefinition,
   BaseDefinitionMetadata,
@@ -87,12 +89,19 @@ export class BaseDataSource<
   protected _viewerIds = new Map<Viewer, string>();
   protected _retry$ = new Subject<void>();
 
+  public readonly loading: Signal<boolean>;
+
+  public readonly hasError: Signal<boolean>;
+
   constructor(
     @Optional()
     @Inject(RXAP_DEFINITION_METADATA)
       metadata: Metadata | null = null,
   ) {
     super(metadata);
+    // manuel initialize the members to ensure that all parent class properties are already set
+    this.loading = toSignal(this.loading$, { initialValue: false });
+    this.hasError = toSignal(this.hasError$, { initialValue: false });
   }
 
   protected _data?: Data;
