@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@19.0.2-dev.1...@rxap/plugin-storybook@19.0.2-dev.2) (2024-06-10)
+
+### Bug Fixes
+
+- add missing deps ([8fd7c02](https://gitlab.com/rxap/packages/commit/8fd7c02d1d1d7cfd9b72c45928cb54e035261ea9))
+- ensure feature stories are included ([7132ec6](https://gitlab.com/rxap/packages/commit/7132ec6cb614b1531e5ebe180a46660870d5478f))
+- ensure noop animation is added ([e0ca175](https://gitlab.com/rxap/packages/commit/e0ca175b0cb0ed776aa7840f372df1797c100c2b))
+
 ## [19.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@19.0.2-dev.0...@rxap/plugin-storybook@19.0.2-dev.1) (2024-06-05)
 
 **Note:** Version bump only for package @rxap/plugin-storybook

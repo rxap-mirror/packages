@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@18.0.2-dev.0...@rxap/data-source@18.1.0-dev.0) (2024-06-10)
+
+### Features
+
+- add loading and hasError signal outputs ([2ff6285](https://gitlab.com/rxap/packages/commit/2ff6285cd71de1de8b99ae08747d1aa6153aa82e))
+- add loading and hasError signal outputs ([fc69e4d](https://gitlab.com/rxap/packages/commit/fc69e4da90c116834e4907192382a7f38f389054))
+
 ## [18.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@18.0.1...@rxap/data-source@18.0.2-dev.0) (2024-06-05)
 
 **Note:** Version bump only for package @rxap/data-source

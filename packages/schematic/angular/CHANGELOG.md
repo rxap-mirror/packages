@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.1.0-dev.1...@rxap/schematic-angular@18.1.0-dev.2) (2024-06-10)
+
+### Bug Fixes
+
+- ensure all component imports are added ([11bad7c](https://gitlab.com/rxap/packages/commit/11bad7cd18cc4e00db0a4fe766baf6b73c33f129))
+
+### Features
+
+- add nested accordion item ([ecb2925](https://gitlab.com/rxap/packages/commit/ecb29254099a98b08af7ade52371a7c340de3333))
+- support autocomplete controls ([d5acd93](https://gitlab.com/rxap/packages/commit/d5acd93b543c33ed35387ba2b7a9ae43408e2f07))
+
 # [18.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.1.0-dev.0...@rxap/schematic-angular@18.1.0-dev.1) (2024-06-06)
 
 ### Features

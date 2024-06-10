@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.3.1-dev.3...@rxap/ts-morph@1.4.0-dev.0) (2024-06-10)
+
+### Features
+
+- add CoerceTokenExport ([14d13da](https://gitlab.com/rxap/packages/commit/14d13da7164b03559ba24c07a932408951dbabca))
+
 ## [1.3.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.3.1-dev.2...@rxap/ts-morph@1.3.1-dev.3) (2024-06-05)
 
 ### Bug Fixes
