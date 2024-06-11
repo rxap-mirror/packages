@@ -8307,7 +8307,7 @@ __metadata:
   peerDependencies:
     "@nestjs/common": ^10.3.8
     "@nestjs/config": ^3.2.2
-    "@rxap/nest-logger": ^10.2.2-dev.0
+    "@rxap/nest-logger": ^10.2.2-dev.1
     "@rxap/nest-utilities": ^10.3.0
     "@rxap/ts-morph": ^1.4.0-dev.0
     "@rxap/workspace-utilities": ^19.2.0-dev.4

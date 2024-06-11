@@ -1,5 +1,5 @@
 {
-  "version": "10.2.2-dev.0",
+  "version": "10.2.2-dev.1",
   "name": "@rxap/nest-logger",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.3.1-dev.3"
+        "version": "1.4.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -51,7 +51,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.3"
+        "version": "19.2.0-dev.4"
       }
     ]
   },
