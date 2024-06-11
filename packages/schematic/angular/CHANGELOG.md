@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.1.0-dev.2...@rxap/schematic-angular@18.1.0-dev.3) (2024-06-11)
+
+### Bug Fixes
+
+- add debug classes ([e996ee9](https://gitlab.com/rxap/packages/commit/e996ee9c568f20ff6498ed4811e69cb33c2c429b))
+- remove comments ([7976044](https://gitlab.com/rxap/packages/commit/7976044def47ffbb530bd07f7c038a8db9c76783))
+- use signals ([96cae88](https://gitlab.com/rxap/packages/commit/96cae888a7c767f3329afc3d7b0d6aa5eac1393d))
+
+### Features
+
+- add storybook templates ([de50fed](https://gitlab.com/rxap/packages/commit/de50fed68a0443fa00fe614d61fd8cb2f944418b))
+
 # [18.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.1.0-dev.1...@rxap/schematic-angular@18.1.0-dev.2) (2024-06-10)
 
 ### Bug Fixes
