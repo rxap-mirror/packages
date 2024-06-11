@@ -13,7 +13,6 @@ import {
   CoerceDataSourceClass,
   CoerceGetByIdOperation,
   CoerceGetOperation,
-  CoerceImports,
   CoerceInterfaceRule,
   CoerceMethodClass,
   OperationIdToClassImportPath,
@@ -30,6 +29,7 @@ import {
 import {
   CoerceClassProperty,
   CoerceComponentImport,
+  CoerceImports,
   CoercePropertyDeclaration,
   OperationIdToClassRemoteMethodImportPath,
   OperationIdToRemoteMethodClassName,
@@ -451,12 +451,27 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
           namedImports: [ pipeDataSourceName ],
         });
         CoerceImports(sourceFile, {
-          namedImports: ['inject'],
+          namedImports: ['inject', 'signal', 'computed', 'toSignal'],
           moduleSpecifier: '@angular/core'
         });
         CoercePropertyDeclaration(classDeclaration, 'panelDataSource', {
           isReadonly: true,
           initializer: `inject(${pipeDataSourceName})`,
+          scope: Scope.Public,
+        });
+        CoercePropertyDeclaration(classDeclaration, 'updating', {
+          isReadonly: true,
+          initializer: `signal(false)`,
+          scope: Scope.Public,
+        });
+        CoercePropertyDeclaration(classDeclaration, 'loading', {
+          isReadonly: true,
+          initializer: `computed(() => this.updating() || this.panelDataSource.loading())`,
+          scope: Scope.Public,
+        });
+        CoercePropertyDeclaration(classDeclaration, 'data', {
+          isReadonly: true,
+          initializer: `toSignal(this.panelDataSource.connect({id: 'to-signal-${name}-panel'}))`,
           scope: Scope.Public,
         });
         for (const angularImport of importList) {
