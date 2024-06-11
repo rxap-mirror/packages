@@ -32,7 +32,7 @@ export default function update(tree: Tree) {
         if (content.includes('@nestjs/common') && content.includes('@Module')) {
           const project = CreateProject();
           const sourceFile = project.createSourceFile('app.module.ts', content);
-          if (!HasNestModuleImport(sourceFile, { moduleName: 'SentryLoggerModule' })) {
+          if (!HasNestModuleImport(sourceFile, { moduleName: 'SentryModule' })) {
             CoerceNestModuleImport(sourceFile, {
               moduleName: 'LoggerModule',
               moduleSpecifier: '@rxap/nest-logger'

@@ -35,7 +35,8 @@ export default function update(tree: Tree) {
           const project = CreateProject();
           const sourceFile = project.createSourceFile('app.module.ts', content);
           CoerceNestModuleImport(sourceFile, {
-            moduleName: 'SentryLoggerModule',
+            moduleName: 'SentryModule',
+            importWriter: w => w.write('SentryModule.register()'),
             moduleSpecifier: '@rxap/nest-sentry'
           });
           RemoveNestModuleImport(sourceFile, { moduleName: 'LoggerModule' });

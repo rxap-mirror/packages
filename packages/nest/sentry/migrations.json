@@ -2,7 +2,7 @@
   "generators": {
     "replace-setup-function-with-module-import": {
       "version": "10.3.0-dev.0",
-      "description": "Replace the SetupSentryLogger function with an SentryLoggerModule import",
+      "description": "Replace the SetupSentryLogger function with an SentryModule import",
       "implementation": "./src/migrations/10.0.0/replace-setup-function-with-module-import/replace-setup-function-with-module-import"
     }
   }

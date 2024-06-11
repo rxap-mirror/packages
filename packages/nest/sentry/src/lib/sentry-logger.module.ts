@@ -7,6 +7,9 @@ import { ConfigService } from '@nestjs/config';
 import { RxapLogger } from '@rxap/nest-logger';
 import { SentryLogger } from './sentry.logger';
 
+/**
+ * @deprecated removed use the SentryModule instead
+ */
 @Global()
 @Module({
   providers: [

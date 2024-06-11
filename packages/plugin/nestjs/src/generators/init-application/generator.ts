@@ -727,12 +727,7 @@ export async function initApplicationGenerator(
         { project: projectName, backend: undefined, },
         (project: Project, [ moduleSourceFile, controllerSourceFile, configSourceFile ]) => {
           CoerceNestAppModule(moduleSourceFile);
-          if (options.sentry) {
-            CoerceNestModuleImport(moduleSourceFile, {
-              moduleName: 'SentryLoggerModule',
-              moduleSpecifier: '@rxap/nest-sentry'
-            });
-          } else {
+          if (!options.sentry) {
             CoerceNestModuleImport(moduleSourceFile, {
               moduleName: 'LoggerModule',
               moduleSpecifier: '@rxap/nest-logger'
