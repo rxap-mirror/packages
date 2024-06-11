@@ -451,8 +451,12 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
           namedImports: [ pipeDataSourceName ],
         });
         CoerceImports(sourceFile, {
-          namedImports: ['inject', 'signal', 'computed', 'toSignal'],
+          namedImports: ['inject', 'signal', 'computed'],
           moduleSpecifier: '@angular/core'
+        });
+        CoerceImports(sourceFile, {
+          namedImports: ['toSignal'],
+          moduleSpecifier: '@angular/core/rxjs-interop'
         });
         CoercePropertyDeclaration(classDeclaration, 'panelDataSource', {
           isReadonly: true,
