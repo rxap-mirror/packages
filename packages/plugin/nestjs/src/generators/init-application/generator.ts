@@ -22,6 +22,7 @@ import {
   CoerceNestConfigModuleImport,
   CoerceNestEnvironmentProvider,
   CoerceNestLoggerProvider,
+  CoerceNestModuleImport,
   CoerceNestThrottlerModuleImport,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
@@ -444,20 +445,6 @@ function updateMainFile(
     const importDeclarations = [];
     const statements: string[] = [];
 
-    if (options.sentry) {
-      importDeclarations.push({
-        moduleSpecifier: '@rxap/nest-sentry',
-        namedImports: [ 'SetupSentryLogger' ],
-      });
-      statements.push('server.after(SetupSentryLogger());');
-    } else {
-      importDeclarations.push({
-        moduleSpecifier: '@rxap/nest-logger',
-        namedImports: [ 'RxapLogger' ],
-      });
-      statements.push('server.after(app => app.useLogger(new RxapLogger()));');
-    }
-
     if (options.validator) {
       importDeclarations.push({
         moduleSpecifier: '@rxap/nest-server',
@@ -740,6 +727,17 @@ export async function initApplicationGenerator(
         { project: projectName, backend: undefined, },
         (project: Project, [ moduleSourceFile, controllerSourceFile, configSourceFile ]) => {
           CoerceNestAppModule(moduleSourceFile);
+          if (options.sentry) {
+            CoerceNestModuleImport(moduleSourceFile, {
+              moduleName: 'SentryLoggerModule',
+              moduleSpecifier: '@rxap/nest-sentry'
+            });
+          } else {
+            CoerceNestModuleImport(moduleSourceFile, {
+              moduleName: 'LoggerModule',
+              moduleSpecifier: '@rxap/nest-logger'
+            });
+          }
           CoerceNestAppController(controllerSourceFile);
           CoerceNestThrottlerModuleImport(moduleSourceFile, { overwrite: options.overwrite });
           CoerceNestConfigModuleImport(moduleSourceFile, { overwrite: options.overwrite });
