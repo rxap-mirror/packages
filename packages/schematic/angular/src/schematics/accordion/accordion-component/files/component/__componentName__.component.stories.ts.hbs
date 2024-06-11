@@ -1,0 +1,34 @@
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { faker } from '@faker-js/faker';
+import { ProvideActivatedRoutes, ProvideMethodMock } from 'angular-testing';
+{{#if method }}
+import { {{ method.name }} } from '{{ method.moduleSpecifier }}';
+{{/if}}
+import { {{ classify componentName }}Component } from './{{ name }}-accordion.component';
+
+
+const meta: Meta<{{ classify componentName }}Component> = {
+  component: {{ classify componentName }}Component,
+  title: '{{ classify feature }} / {{ classify componentName }}',
+  decorators: [
+    moduleMetadata({
+      providers: [
+        ProvideActivatedRoutes({params: {uuid: faker.datatype.uuid()}}),
+        {{#if method }}
+        ProvideMethodMock(
+          {{ method.name }},
+          () => ({
+            uuid: faker.datatype.uuid(),
+          }),
+        ),
+        {{/if}}
+      ],
+    }),
+  ],
+};
+export default meta;
+type Story = StoryObj<{{ classify componentName }}Component>;
+
+export const Primary: Story = {
+  args: {},
+};

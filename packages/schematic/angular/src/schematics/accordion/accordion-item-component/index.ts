@@ -31,6 +31,8 @@ import {
   CoerceClassProperty,
   CoerceComponentImport,
   CoercePropertyDeclaration,
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
 } from '@rxap/ts-morph';
 import {
   classify,
@@ -394,12 +396,32 @@ function panelItemRule(normalizedOptions: NormalizedAccordionItemComponentOption
     feature,
     shared,
     componentName,
-    importList
+    importList,
+    backend
   } = normalizedOptions;
+
+  let methodName: string | null = null;
+  let methodModuleSpecifier: string | null = null;
+  let methodResponse: string | null = null;
+  let methodResponseModuleSpecifier: string | null = null;
+
+  if (backend.kind === BackendTypes.NESTJS) {
+    const operationId = buildGetOperationId(normalizedOptions);
+    methodName = OperationIdToRemoteMethodClassName(operationId);
+    methodModuleSpecifier = OperationIdToClassRemoteMethodImportPath(operationId, normalizedOptions.scope);
+    methodResponse = OperationIdToResponseClassName(operationId);
+    methodResponseModuleSpecifier = OperationIdToResponseClassImportPath(operationId, normalizedOptions.scope);
+  }
 
   const templateOptions = {
     ...strings,
     ...normalizedOptions,
+    method: backend.kind === BackendTypes.NESTJS ? {
+      name: methodName,
+      moduleSpecifier: methodModuleSpecifier,
+      response: methodResponse,
+      responseModuleSpecifier: methodResponseModuleSpecifier,
+    } : null,
   };
 
   return chain([

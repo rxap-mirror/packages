@@ -35,8 +35,10 @@ import {
   CoerceStatements,
   NormalizeDataProperty,
   NormalizedDataProperty,
+  OperationIdToClassRemoteMethodImportPath,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
+  OperationIdToRemoteMethodClassName,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
@@ -152,10 +154,20 @@ function componentRule(normalizedOptions: NormalizedAccordionComponentOptions, h
     itemList,
     name,
     componentName,
+    backend,
   } = normalizedOptions;
 
   if (!componentName) {
     throw new SchematicsException('The component name is required! Ensure the normalizedOptions contain the componentName property!');
+  }
+
+  let methodName: string | null = null;
+  let methodModuleSpecifier: string | null = null;
+
+  if (backend.kind === BackendTypes.NESTJS) {
+    const operationId = buildGetOperationId(normalizedOptions);
+    methodName = OperationIdToRemoteMethodClassName(operationId);
+    methodModuleSpecifier = OperationIdToClassRemoteMethodImportPath(operationId, normalizedOptions.scope);
   }
 
   const templateOptions = {
@@ -164,6 +176,10 @@ function componentRule(normalizedOptions: NormalizedAccordionComponentOptions, h
     accordionName: name,
     itemList,
     exportDefault: !!feature && !directory,
+    method: backend.kind === BackendTypes.NESTJS ? {
+      name: methodName,
+      moduleSpecifier: methodModuleSpecifier,
+    } : null,
   };
 
   return chain([

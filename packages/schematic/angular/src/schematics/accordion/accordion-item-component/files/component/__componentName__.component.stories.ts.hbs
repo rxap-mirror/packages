@@ -1,0 +1,40 @@
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
+import { {{ classify accordionName }}DataSource } from '../{{ accordionName }}.data-source';
+import { faker } from '@faker-js/faker';
+import { {{ classify componentName }}Component } from './{{ name }}-panel.component';
+{{#if method }}
+import { {{ method.name }} } from '{{ method.moduleSpecifier }}';
+import { {{ method.response }} } from '{{ method.responseModuleSpecifier }}';
+{{/if}}
+import { ProvideActivatedRoutes, ProvideMethodMock } from 'angular-testing';
+{{#if method }}
+const data: {{ method.response }} = {
+  uuid: faker.datatype.uuid(),
+};
+{{/if}}
+
+const meta: Meta<{{ classify componentName }}Component> = {
+  component: {{ classify componentName }}Component,
+  title: '{{ classify feature }} / {{ classify accordionName }} / {{ classify componentName }}',
+  decorators: [
+    moduleMetadata({
+      providers: [
+        {
+          provide: ACCORDION_DATA_SOURCE,
+          useClass: {{ classify accordionName }}DataSource,
+        },
+        ProvideActivatedRoutes({params: {uuid: faker.datatype.uuid()}}),
+        {{#if method }}
+        ProvideMethodMock({{ method.name }}, () => structuredClone(data)),
+        {{/if}}
+      ],
+    }),
+  ],
+};
+export default meta;
+type Story = StoryObj<{{ classify componentName }}Component>;
+
+export const Primary: Story = {
+  args: {},
+};
