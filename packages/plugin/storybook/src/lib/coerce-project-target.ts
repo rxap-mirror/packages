@@ -6,6 +6,7 @@ import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceTarget,
   GetProjectRoot,
+  IsApplicationProject,
   IsLibraryProject,
   Strategy,
 } from '@rxap/workspace-utilities';
@@ -41,6 +42,10 @@ export async function coerceProjectTarget(
   if (IsLibraryProject(project)) {
     project.targets['build-storybook'].options.styles ??= [];
     CoerceArrayItems(project.targets['build-storybook'].options.styles, ['shared/angular/styles/_index.scss']);
+  }
+  if (IsApplicationProject(project)) {
+    project.targets['build-storybook'].options.browserTarget = `${projectName}:build`;
+    project.targets['storybook'].options.browserTarget = `${projectName}:build`;
   }
 
 }
