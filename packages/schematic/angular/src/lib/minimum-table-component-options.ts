@@ -71,9 +71,10 @@ export function NormalizeMinimumTableComponentOptions<MODIFIER extends string = 
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const { name, controllerName } = normalizedAngularOptions;
+  let { nestModule } = normalizedAngularOptions;
   const normalizedTableOptions = NormalizeMinimumTableOptions(options, name, isModifier, suffix);
   const { componentName } = normalizedTableOptions;
-  const nestModule = options.nestModule ?? null;
+  nestModule ??= componentName;
   return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedTableOptions,
@@ -506,27 +507,27 @@ function actionRule(action: NormalizedTableAction, normalizedOptions: Normalized
   switch (action.kind) {
 
     case TableActionKind.OPERATION:
-      rules.push(operationActionRule(action, { ...normalizedOptions, controllerName }));
+      rules.push(operationActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
       break;
 
     case TableActionKind.FORM:
-      rules.push(formActionRule(action, { ...normalizedOptions, controllerName }));
+      rules.push(formActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
       break;
 
     case TableActionKind.NAVIGATION:
-      rules.push(navigateActionRule(action, { ...normalizedOptions, controllerName }));
+      rules.push(navigateActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
       break;
 
     case TableActionKind.DIALOG:
-      rules.push(dialogActionRule(action, { ...normalizedOptions, controllerName }));
+      rules.push(dialogActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
       break;
 
     case TableActionKind.OPEN_API:
-      rules.push(openApiActionRule(action, { ...normalizedOptions, controllerName }));
+      rules.push(openApiActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
       break;
 
     default:
-      rules.push(defaultActionRule(action, { ...normalizedOptions, controllerName }));
+      rules.push(defaultActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
 
   }
 

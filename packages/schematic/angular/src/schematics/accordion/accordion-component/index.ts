@@ -82,9 +82,10 @@ function NormalizeOptions(
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   const normalizedAccordionOptions = NormalizeAccordion(options);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
-  const { name, nestModule } = normalizedAngularOptions;
-  let {  componentName, controllerName, directory } = normalizedAngularOptions;
+  const { name } = normalizedAngularOptions;
+  let {  componentName, controllerName, nestModule, directory } = normalizedAngularOptions;
   componentName ??= CoerceSuffix(dasherize(name), '-accordion');
+  nestModule ??= componentName;
   controllerName ??= BuildNestControllerName({
     controllerName: componentName,
     nestModule,
@@ -96,6 +97,7 @@ function NormalizeOptions(
   return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedAccordionOptions,
+    nestModule,
     controllerName,
     componentName,
     directory,
