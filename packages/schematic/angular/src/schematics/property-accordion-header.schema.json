@@ -10,8 +10,8 @@
       "properties": {
         "kind": {
           "type": "string",
-          "const": "static",
-          "default": "static"
+          "const": "property",
+          "default": "property"
         },
         "property": {
           "$ref": "#/definitions/property"

@@ -39,7 +39,7 @@ function coerceBaseAccordionHeaderImportList(header: BaseAccordionHeader): TypeI
 
 export function NormalizeBaseAccordionHeader(header: BaseAccordionHeader, _propertyList?: DataProperty[]): NormalizedBaseAccordionHeader {
   const kind = header.kind ?? AccordionHeaderKinds.Default;
-  const template = header.template ?? kind + '-accordion-item.hbs';
+  const template = header.template ?? kind + '-accordion-header.hbs';
   const propertyList = header.propertyList ?? [];
   CoerceArrayItems(propertyList, _propertyList ?? [], (a, b) => a.name === b.name);
   return Object.freeze({
