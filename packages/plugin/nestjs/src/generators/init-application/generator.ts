@@ -510,7 +510,7 @@ function updateMainFile(
 
 }
 
-function updateTags(project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+function updateTags(projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
   const tags = [ 'backend', 'nest', 'service' ];
 
   if (options.sentry) {
@@ -539,6 +539,11 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
 
   if (options.platform) {
     tags.push(options.platform);
+  }
+
+  const match = projectName.match(/service-feature-(.*)/);
+  if (match) {
+    tags.push(`feature:${ match[1] }`);
   }
 
   CoerceProjectTags(project, tags);
@@ -703,7 +708,7 @@ export async function initApplicationGenerator(
 
       updateProjectTargets(tree, projectName, project, options);
       updateGitIgnore(tree, project, options);
-      updateTags(project, options);
+      updateTags(projectName, project, options);
       if (!options.standalone) {
         updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
         if (options.swagger) {
