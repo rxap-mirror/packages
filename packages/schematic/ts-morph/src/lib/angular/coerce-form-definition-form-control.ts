@@ -8,8 +8,10 @@ import {
 } from '@rxap/ts-morph';
 import {
   ClassDeclaration,
+  Node,
   Scope,
   SourceFile,
+  SyntaxKind,
   WriterFunction,
   Writers,
 } from 'ts-morph';
@@ -55,24 +57,43 @@ export function CoerceFormControl(
     scope: Scope.Public,
     isReadonly: true,
   });
-  const decoratorDeclaration = CoerceDecorator(propertyDeclaration, 'UseFormControl').set({
-    arguments: [
-      w => {
-        const items: Record<string, string | WriterFunction> = {};
-        if (control.validatorList?.length || control.isRequired) {
-          items['validators'] = FormControlValidatorCodeBlockWriter(sourceFile, control);
+  const decoratorDeclaration = CoerceDecorator(propertyDeclaration, 'UseFormControl', { arguments: [] });
+
+  const items: Record<string, string | WriterFunction> = {};
+  if (control.validatorList?.length || control.isRequired) {
+    items['validators'] = FormControlValidatorCodeBlockWriter(sourceFile, control);
+  }
+  if (control.state) {
+    items['state'] = FormControlStateCodeBlockWriter(sourceFile, control);
+  } else if (control.isArray) {
+    items['state'] = '[]';
+  }
+
+  if (Object.keys(items).length) {
+    const [ firstArgument ] = decoratorDeclaration.getArguments();
+    if (!firstArgument) {
+      decoratorDeclaration.set({ arguments: [Writers.object(items)] });
+    } else {
+      const argument = firstArgument.asKindOrThrow(SyntaxKind.ObjectLiteralExpression);
+      if (items['validators']) {
+        const validators = argument.getProperty('validators');
+        if (validators) {
+          // TODO : merge validators
+          console.log('validators already exists');
+        } else {
+          argument.addPropertyAssignment({ name: 'validators', initializer: items['validators'] });
         }
-        if (control.state) {
-          items['state'] = FormControlStateCodeBlockWriter(sourceFile, control);
-        } else if (control.isArray) {
-          items['state'] = '[]';
+      }
+      if (items['state']) {
+        const state = argument.getProperty('state');
+        if (state) {
+          state.asKindOrThrow(SyntaxKind.PropertyAssignment).setInitializer(items['state']);
+        } else {
+          argument.addPropertyAssignment({ name: 'state', initializer: items['state'] });
         }
-        if (Object.keys(items).length) {
-          Writers.object(items)(w);
-        }
-      },
-    ],
-  });
+      }
+    }
+  }
   CoerceImports(sourceFile, {
     namedImports: [ 'RxapFormControl', 'UseFormControl' ],
     moduleSpecifier: '@rxap/forms',
