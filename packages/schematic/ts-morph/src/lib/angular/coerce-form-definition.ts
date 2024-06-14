@@ -2,7 +2,11 @@ import {
   chain,
   Rule,
 } from '@angular-devkit/schematics';
-import { CoercePropertyDeclaration } from '@rxap/ts-morph';
+import {
+  CoerceDecorator,
+  CoerceImports,
+  CoercePropertyDeclaration,
+} from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import {
   ClassDeclaration,
@@ -13,8 +17,6 @@ import {
   TsMorphAngularProjectTransformOptions,
   TsMorphAngularProjectTransformRule,
 } from '../ts-morph-transform';
-import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import { AbstractControl } from '../types/abstract-control';
 import { CoerceFormArray } from './coerce-form-definition-array';
 import { CoerceFormControl } from './coerce-form-definition-form-control';
@@ -105,13 +107,13 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
       coerceFormControls!(sourceFile, classDeclaration, interfaceName, options);
 
       // region add class decorators
-      CoerceDecorator(classDeclaration, 'RxapForm').set({ arguments: [ w => w.quote(name) ] });
+      CoerceDecorator(classDeclaration, 'RxapForm', { arguments: [ w => w.quote(name) ] });
       CoerceImports(sourceFile, {
         namedImports: [ 'RxapForm' ],
         moduleSpecifier: '@rxap/forms',
       });
 
-      CoerceDecorator(classDeclaration, 'Injectable').set({ arguments: [] });
+      CoerceDecorator(classDeclaration, 'Injectable', { arguments: [] });
       CoerceImports(sourceFile, {
         namedImports: [ 'Injectable' ],
         moduleSpecifier: '@angular/core',
