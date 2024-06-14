@@ -13,6 +13,7 @@ export interface CoerceTokenExportOptions {
   name: string;
   description?: string;
   type?: TypeImport;
+  overwrite?: boolean;
 }
 
 export function CoerceTokenExport(sourceFile: SourceFile, options: CoerceTokenExportOptions) {
@@ -21,12 +22,16 @@ export function CoerceTokenExport(sourceFile: SourceFile, options: CoerceTokenEx
     name,
     description = name,
     type,
+    overwrite = false,
   } = options;
   const initializer = `new InjectionToken<${ type?.name ?? 'any' }>('${ description }')`;
-  CoerceVariableDeclaration(sourceFile, name, { initializer }, {
+  const variableDeclaration = CoerceVariableDeclaration(sourceFile, name, { initializer }, {
     isExported: true,
     declarationKind: VariableDeclarationKind.Const,
-  }).setInitializer(initializer);
+  });
+  if (overwrite) {
+    variableDeclaration.setInitializer(initializer);
+  }
   CoerceImports(sourceFile, {
     namedImports: [ 'InjectionToken' ],
     moduleSpecifier: '@angular/core',
@@ -34,5 +39,5 @@ export function CoerceTokenExport(sourceFile: SourceFile, options: CoerceTokenEx
   if (type) {
     CoerceImports(sourceFile, TypeImportToImportStructure(type));
   }
-
+  return variableDeclaration;
 }
