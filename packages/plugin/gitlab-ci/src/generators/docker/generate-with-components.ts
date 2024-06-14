@@ -10,6 +10,7 @@ import {
 import {
   Include,
   IsComponentInclude,
+  IsLocalInclude,
 } from '../init/coerce-include';
 import {
   CoerceInputs,
@@ -28,9 +29,12 @@ export function generateWithComponents(tree: Tree, options: DockerGeneratorSchem
 
   gitlabCi.include ??= [];
 
-  const include: Include | undefined = gitlabCi.include.find(include => IsComponentInclude(include) && include.component.startsWith('gitlab.com/rxap/gitlab-ci/nx-workspace@'));
+  const include: Include | undefined = gitlabCi.include.find(include =>
+    (IsComponentInclude(include) && include.component.startsWith('gitlab.com/rxap/gitlab-ci/nx-workspace@')) ||
+    (IsLocalInclude(include) && include.local === 'templates/nx-workspace.yml')
+  );
 
-  if (!include || !IsComponentInclude(include)) {
+  if (!include || (!IsComponentInclude(include) && !IsLocalInclude(include))) {
     throw new Error('The project does not use the nx-workspace component');
   }
 

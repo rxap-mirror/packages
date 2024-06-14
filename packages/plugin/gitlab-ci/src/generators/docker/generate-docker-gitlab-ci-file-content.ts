@@ -142,8 +142,12 @@ export function buildDockerMatrix(
       for (const buildArg of buildArgList.sort()) {
         if (buildArg.includes('=')) {
           const [ env, value ] = buildArg.split('=');
-          matrixItem[env] = value;
-        } else {
+          if (env === 'PATH_PREFIX') {
+            matrixItem[env] = CoercePrefix(value, '/');
+          } else {
+            matrixItem[env] = value;
+          }
+          } else {
           console.warn(`Build arg value for '${ buildArg }' is not defined`);
         }
       }
