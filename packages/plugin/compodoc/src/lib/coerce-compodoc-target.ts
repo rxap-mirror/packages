@@ -12,7 +12,7 @@ import { join } from 'path';
 export function CoerceCompodocTarget(tree: Tree, projectName: string, project: ProjectConfiguration) {
   const projectRoot = GetProjectRoot(tree, projectName);
 
-  const outputPath = projectRoot === '' ? projectName : projectRoot;
+  const outputPath = projectRoot === '/' ? projectName : projectRoot;
 
   CoerceTarget(project, 'compodoc', {
     options: {
