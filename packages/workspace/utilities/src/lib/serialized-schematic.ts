@@ -41,11 +41,17 @@ export function WriteSerializedSchematicFile(
   data: SerializedSchematic,
 ): void {
   const treeAdapter = new TreeAdapter(tree);
-  DeleteSerializedSchematicFile(tree, path);
+  const current = GetSerializedSchematicFromFile(tree, path);
+  const currentContent = current ? stringify(current) : null;
+  let newContent: string;
   if (Array.isArray(data)) {
-    treeAdapter.write(join(path, 'schematics.yaml'), stringify(data.filter(item => Object.keys(item).length > 0)));
+    newContent = stringify(data.filter(item => Object.keys(item).length > 0));
   } else {
-    treeAdapter.write(join(path, 'schematic.yaml'), stringify(data));
+    newContent = stringify(data);
+  }
+  if (currentContent !== newContent) {
+    DeleteSerializedSchematicFile(tree, path);
+    treeAdapter.write(join(path, 'schematic.yaml'), newContent);
   }
   if (!HasSerializedSchematicFile(tree, path)) {
     throw new Error(`Failed to write serialized schematic file in directory '${path}'`);
