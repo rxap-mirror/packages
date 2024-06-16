@@ -13,6 +13,11 @@ import {
   NormalizeBackendOptions,
   NormalizedBackendOptions,
 } from '../../backend/backend-options';
+import {
+  DataSourceOptions,
+  NormalizeDataSourceOptions,
+  NormalizedDataSourceOptions,
+} from '../../data-source/data-source-options';
 import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
@@ -29,6 +34,7 @@ export interface SelectFormControl extends FormFieldFormControl {
   multiple?: boolean;
   formField?: FormField;
   upstream?: UpstreamOptions;
+  dataSource?: DataSourceOptions;
 }
 
 export interface NormalizedSelectFormControl
@@ -38,6 +44,7 @@ export interface NormalizedSelectFormControl
   optionList: ReadonlyArray<ControlOption> | null;
   backend: NormalizedBackendOptions;
   upstream: NormalizedUpstreamOptions | null;
+  dataSource: NormalizedDataSourceOptions | null;
 }
 
 export function IsSelectFormControl(template: FormFieldFormControl): template is SelectFormControl {
@@ -77,6 +84,7 @@ export function NormalizeSelectFormControl(
   const multiple = control.multiple ?? false;
   return Object.freeze({
     ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, multiple),
+    dataSource: NormalizeDataSourceOptions(control.dataSource),
     kind: FormControlKinds.SELECT,
     optionList,
     backend: NormalizeBackendOptions(control.backend ?? BackendTypes.NONE),
