@@ -13,7 +13,6 @@ export * from './lib/nest/coerce-nest-cache-module-import';
 export * from './lib/nest/coerce-nest-config-module-import';
 export * from './lib/nest/coerce-nest-controller';
 export * from './lib/nest/coerce-nest-environment-provider';
-export * from './lib/nest/coerce-nest-logger-provider';
 export * from './lib/nest/coerce-nest-module-controller';
 export * from './lib/nest/coerce-nest-module-import';
 export * from './lib/nest/coerce-nest-module-provider';
@@ -56,7 +55,7 @@ export * from './lib/angular/remove-component-import';
 export * from './lib/angular/remove-route';
 // endregion
 
-// region 
+// region
 export * from './lib/add-provider-to-array';
 export * from './lib/coerce-accessor-declaration';
 export * from './lib/coerce-array-element';

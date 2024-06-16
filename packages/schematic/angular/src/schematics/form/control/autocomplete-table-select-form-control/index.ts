@@ -266,7 +266,7 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
         } =
           CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
-        CoerceDecorator(propertyDeclaration, 'UseAutocompleteResolveMethod').set({
+        CoerceDecorator(propertyDeclaration, 'UseResolveMethod', {
           arguments: [
             autocompleteResolveMethod,
           ],
@@ -277,9 +277,9 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
         });
         CoerceImports(sourceFile, {
           namedImports: [
-            'UseAutocompleteResolveMethod',
+            'UseResolveMethod',
           ],
-          moduleSpecifier: 'autocomplete-table-select',
+          moduleSpecifier: '@rxap/form-system',
         });
 
         return {
@@ -433,7 +433,7 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
         } =
           CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
-        CoerceDecorator(propertyDeclaration, 'UseAutocompleteOptionsMethod').set({
+        CoerceDecorator(propertyDeclaration, 'UseAutocompleteOptionsMethod', {
           arguments: [
             autocompleteOptionsMethod,
           ],
@@ -610,10 +610,10 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
         } =
           CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
-        CoerceDecorator(propertyDeclaration, 'UseTableSelectDataSource').set({
+        CoerceDecorator(propertyDeclaration, 'UseTableSelectDataSource', {
           arguments: [ tableDataSourceName ],
         });
-        CoerceDecorator(propertyDeclaration, 'UseTableSelectColumns').set({
+        CoerceDecorator(propertyDeclaration, 'UseTableSelectColumns', {
           arguments: [ TableColumnListToTableSelectColumnMap(columnList) ],
         });
         CoerceImports(sourceFile, {

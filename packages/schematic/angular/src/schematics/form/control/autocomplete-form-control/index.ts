@@ -103,7 +103,7 @@ function CoerceUseAutocompleteResolveMethod(
       } =
         CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
-      CoerceDecorator(propertyDeclaration, 'UseAutocompleteResolveMethod').set({
+      CoerceDecorator(propertyDeclaration, 'UseResolveMethod').set({
         arguments: [
           injectionToken,
         ],
@@ -111,9 +111,9 @@ function CoerceUseAutocompleteResolveMethod(
       hook?.(classDeclaration);
       CoerceImports(sourceFile, {
         namedImports: [
-          'UseAutocompleteResolveMethod',
+          'UseResolveMethod',
         ],
-        moduleSpecifier: 'autocomplete-table-select',
+        moduleSpecifier: '@rxap/form-system',
       });
 
       return {

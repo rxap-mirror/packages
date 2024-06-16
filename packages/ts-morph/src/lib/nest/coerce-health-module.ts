@@ -20,16 +20,6 @@ export function CoerceHealthModule(sourceFile: SourceFile) {
     ],
   });
 
-  CoerceNestModuleProvider(sourceFile, {
-    providerObject: 'Logger',
-    structures: [
-      {
-        moduleSpecifier: '@nestjs/common',
-        namedImports: [ 'Logger' ],
-      },
-    ],
-  });
-
   CoerceImports(sourceFile, {
     moduleSpecifier: '@nestjs/common',
     namedImports: [ 'Module' ],

@@ -170,14 +170,23 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
         project,
         sourceFile,
       ) => {
+
+        const getDtoPropertyList = normalizedOptions.form?.controlList.map(
+          control => ControlToDtoClassProperty(control)) ?? [];
+
+        // set all properties to optional, as it is possible that a property is required for submitting
+        // but not for getting the initial form data
+        getDtoPropertyList.forEach(property => {
+          property.isOptional = true;
+        });
+
         const {
           className,
           filePath,
         } = CoerceDtoClass({
           project,
           name: controllerName,
-          propertyList: normalizedOptions.form?.controlList.map(
-            control => ControlToDtoClassProperty(control)) ?? [],
+          propertyList: getDtoPropertyList,
         });
 
         CoerceImports(sourceFile, {

@@ -21,7 +21,6 @@ import {
   CoerceNestCacheModuleImport,
   CoerceNestConfigModuleImport,
   CoerceNestEnvironmentProvider,
-  CoerceNestLoggerProvider,
   CoerceNestModuleImport,
   CoerceNestThrottlerModuleImport,
   CoerceVariableDeclaration,
@@ -744,7 +743,6 @@ export async function initApplicationGenerator(
           CoerceNestCacheModuleImport(moduleSourceFile, { overwrite: options.overwrite });
           CoerceAppGuardProvider(moduleSourceFile);
           CoerceNestEnvironmentProvider(moduleSourceFile);
-          CoerceNestLoggerProvider(moduleSourceFile);
           const itemList = ExtractExistingConfigValidation(moduleSourceFile);
           for (const item of [
             {

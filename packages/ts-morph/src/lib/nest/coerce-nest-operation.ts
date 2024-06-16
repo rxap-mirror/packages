@@ -175,10 +175,6 @@ export function CoerceUpstreamBasicOperationImplementation(
       moduleSpecifier: '@nestjs/axios',
     });
     CoerceNestModuleProvider(moduleSourceFile, {
-      providerObject: 'Logger',
-      moduleSpecifier: '@nestjs/common',
-    });
-    CoerceNestModuleProvider(moduleSourceFile, {
       providerObject: commandClassName,
       moduleSpecifier: OperationIdToCommandClassImportPath(upstream.operationId, upstream.scope, upstream.isService),
     });
