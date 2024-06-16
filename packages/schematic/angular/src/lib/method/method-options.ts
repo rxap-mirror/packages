@@ -36,3 +36,23 @@ export function NormalizeMethodOptions(options?: MethodOptions): NormalizedMetho
 
   }
 }
+
+export function IsNormalizedOpenApiMethodOptions(options?: NormalizedMethodOptions | null): options is NormalizedOpenApiMethodOptions {
+  return !!options && options.kind === MethodKinds.OPEN_API;
+}
+
+export function IsNormalizedImportMethodOptions(options?: NormalizedMethodOptions | null): options is NormalizedImportMethodOptions {
+  return !!options && options.kind === MethodKinds.IMPORT;
+}
+
+export function AssertIsNormalizedOpenApiMethodOptions(options: NormalizedMethodOptions): asserts options is NormalizedOpenApiMethodOptions {
+  if (!IsNormalizedOpenApiMethodOptions(options)) {
+    throw new Error('The options are not a normalized open api method options');
+  }
+}
+
+export function AssertIsNormalizedImportMethodOptions(options: NormalizedMethodOptions): asserts options is NormalizedImportMethodOptions {
+  if (!IsNormalizedImportMethodOptions(options)) {
+    throw new Error('The options are not a normalized import method options');
+  }
+}

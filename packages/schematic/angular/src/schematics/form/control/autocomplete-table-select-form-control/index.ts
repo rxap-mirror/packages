@@ -1,4 +1,7 @@
-import { chain } from '@angular-devkit/schematics';
+import {
+  chain,
+  Rule,
+} from '@angular-devkit/schematics';
 import {
   AbstractControl,
   BuildNestControllerName,
@@ -11,8 +14,6 @@ import {
   CoerceTableDataSourceRule,
   CoerceTableSelectOperationRule,
   EnforceUseFormControlOrderRule,
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
 import {
   capitalize,
@@ -24,8 +25,6 @@ import {
   CoerceImports,
   OperationIdToClassRemoteMethodImportPath,
   OperationIdToRemoteMethodClassName,
-  OperationIdToResponseClassImportPath,
-  OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
 import {
   joinWithDash,
@@ -40,12 +39,20 @@ import {
   Writers,
 } from 'ts-morph';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
+import { BackendTypes } from '../../../../lib/backend-types';
+import { DataSourceKinds } from '../../../../lib/data-source/data-source-kinds';
+import { AssertIsNormalizedImportDataSourceOptions } from '../../../../lib/data-source/data-source-options';
 import {
   NormalizedTableSelectColumn,
   NormalizedTableSelectFormControl,
   NormalizeTableSelectFormControl,
   TableSelectFormControl,
 } from '../../../../lib/form/control/table-select-form-control';
+import { MethodKinds } from '../../../../lib/method/method-kinds';
+import {
+  AssertIsNormalizedImportMethodOptions,
+  AssertIsNormalizedOpenApiMethodOptions,
+} from '../../../../lib/method/method-options';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,
@@ -149,40 +156,90 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
     backend,
     source,
   } = normalizedOptions;
-  const { upstream } = resolver ?? {};
+  const { upstream, method } = resolver ?? {};
 
-  const resolveValueOperationName = [ 'resolve', dasherize(name), 'control', 'value' ].join(
-    '-',
-  );
-  const resolveValueOperationPath = [ 'control', dasherize(name), 'resolve', ':value' ].join(
-    '/',
-  );
-  const resolveValueOperationId = buildOperationId(
-    normalizedOptions,
-    resolveValueOperationName,
-    BuildNestControllerName({
-      controllerName,
-      nestModule,
-    }),
-  );
+  const rules: Rule[] = [];
 
-  return chain([
-    CoerceAutocompleteTableSelectValueResolveOperationRule({
-      project,
-      feature,
-      nestModule,
-      controllerName,
-      upstream,
-      overwrite,
-      propertyList: propertyList.slice(),
-      rowValueProperty: toValue.property,
-      rowDisplayProperty: toDisplay.property,
-      operationName: resolveValueOperationName,
-      path: resolveValueOperationPath,
-      dtoClassNameSuffix: joinWithDash([ context, dasherize(name), 'control', 'options' ]),
-      context,
-      backend,
-    }),
+  let autocompleteResolveMethod: string | null = null;
+  let autocompleteResolveMethodModuleSpecifier: string | null = null;
+
+  if (method) {
+    switch (method.kind) {
+      case MethodKinds.OPEN_API:
+        AssertIsNormalizedOpenApiMethodOptions(method);
+        autocompleteResolveMethod = OperationIdToRemoteMethodClassName(method.operationId);
+        autocompleteResolveMethodModuleSpecifier = OperationIdToClassRemoteMethodImportPath(method.operationId, scope);
+        break;
+      case MethodKinds.IMPORT:
+        AssertIsNormalizedImportMethodOptions(method);
+        autocompleteResolveMethod = method.import.name;
+        autocompleteResolveMethodModuleSpecifier = method.import.moduleSpecifier;
+        if (!autocompleteResolveMethodModuleSpecifier) {
+          throw new Error('The import module specifier is required for a autocomplete table select control resolver!');
+        }
+        rules.push(CoerceFormProviderRule({
+          project,
+          feature,
+          directory,
+          providerObject: autocompleteResolveMethod,
+          importStructures: [
+            {
+              namedImports: [ autocompleteResolveMethod ],
+              moduleSpecifier: autocompleteResolveMethodModuleSpecifier,
+            },
+          ],
+        }));
+        break;
+      default:
+        throw new Error(`The method kind ${ method.kind } is not supported for a autocomplete table select control resolver!`);
+    }
+  } else {
+    switch (backend.kind) {
+      case BackendTypes.NESTJS:
+        // eslint-disable-next-line no-case-declarations
+        const resolveValueOperationName = [ 'resolve', dasherize(name), 'control', 'value' ].join(
+          '-',
+        );
+        // eslint-disable-next-line no-case-declarations
+        const resolveValueOperationId = buildOperationId(
+          normalizedOptions,
+          resolveValueOperationName,
+          BuildNestControllerName({
+            controllerName,
+            nestModule,
+          }),
+        );
+        autocompleteResolveMethod = OperationIdToRemoteMethodClassName(resolveValueOperationId);
+        autocompleteResolveMethodModuleSpecifier = OperationIdToClassRemoteMethodImportPath(resolveValueOperationId, scope);
+        rules.push(
+          CoerceAutocompleteTableSelectValueResolveOperationRule({
+            project,
+            feature,
+            nestModule,
+            controllerName,
+            upstream,
+            overwrite,
+            propertyList: propertyList.slice(),
+            rowValueProperty: toValue.property,
+            rowDisplayProperty: toDisplay.property,
+            operationName: resolveValueOperationName,
+            path: [ 'control', dasherize(name), 'resolve', ':value' ].join('/'),
+            dtoClassNameSuffix: joinWithDash([ context, dasherize(name), 'control', 'options' ]),
+            context,
+            backend,
+          }),
+        );
+        break;
+      default:
+        throw new Error(`The backend kind ${ backend.kind } is not supported for a autocomplete table select control resolver!`);
+    }
+  }
+
+  if (!autocompleteResolveMethod || !autocompleteResolveMethodModuleSpecifier) {
+    throw new Error('The backend kind is not nestjs and a resolver method is not provided!');
+  }
+
+  rules.push(
     CoerceFormDefinitionControl({
       role,
       isOptional,
@@ -211,12 +268,12 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
 
         CoerceDecorator(propertyDeclaration, 'UseAutocompleteResolveMethod').set({
           arguments: [
-            OperationIdToRemoteMethodClassName(resolveValueOperationId),
+            autocompleteResolveMethod,
           ],
         });
         CoerceImports(sourceFile, {
-          namedImports: [ OperationIdToRemoteMethodClassName(resolveValueOperationId) ],
-          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(resolveValueOperationId, scope)
+          namedImports: [ autocompleteResolveMethod ],
+          moduleSpecifier: autocompleteResolveMethodModuleSpecifier
         });
         CoerceImports(sourceFile, {
           namedImports: [
@@ -231,7 +288,9 @@ function autocompleteTableSelectResolveRule(normalizedOptions: NormalizedTableSe
         };
       },
     }),
-  ]);
+  );
+
+  return chain(rules);
 }
 
 function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
@@ -262,40 +321,92 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
     overwrite,
     source,
     backend,
+    options,
   } = normalizedOptions;
+  const { method } = options ?? {};
 
-  const optionsOperationName = [ 'get', dasherize(name), 'control', 'options' ].join(
-    '-',
-  );
-  const optionsOperationPath = [ 'control', dasherize(name), 'options' ].join(
-    '/',
-  );
-  const optionsOperationId = buildOperationId(
-    normalizedOptions,
-    optionsOperationName,
-    BuildNestControllerName({
-      controllerName,
-      nestModule,
-    }),
-  );
+  const rules: Rule[] = [];
 
-  return chain([
-    CoerceAutocompleteOptionsOperationRule({
-      project,
-      feature,
-      nestModule,
-      controllerName,
-      upstream,
-      overwrite,
-      propertyList: propertyList.slice(),
-      toValueProperty: toValue.property,
-      toDisplayProperty: toDisplay.property,
-      operationName: optionsOperationName,
-      path: optionsOperationPath,
-      dtoClassNameSuffix: joinWithDash([ context, dasherize(name), 'control', 'options' ]),
-      context,
-      backend,
-    }),
+  let autocompleteOptionsMethod: string | null = null;
+  let autocompleteOptionsMethodModuleSpecifier: string | null = null;
+
+  if (method) {
+    switch (method.kind) {
+      case MethodKinds.OPEN_API:
+        AssertIsNormalizedOpenApiMethodOptions(method);
+        autocompleteOptionsMethod = OperationIdToRemoteMethodClassName(method.operationId);
+        autocompleteOptionsMethodModuleSpecifier = OperationIdToClassRemoteMethodImportPath(method.operationId, scope);
+        break;
+      case MethodKinds.IMPORT:
+        AssertIsNormalizedImportMethodOptions(method);
+        autocompleteOptionsMethod = method.import.name;
+        autocompleteOptionsMethodModuleSpecifier = method.import.moduleSpecifier;
+        if (!autocompleteOptionsMethodModuleSpecifier) {
+          throw new Error('The import module specifier is required for a autocomplete table select control resolver!');
+        }
+        rules.push(CoerceFormProviderRule({
+          project,
+          feature,
+          directory,
+          providerObject: autocompleteOptionsMethod,
+          importStructures: [
+            {
+              namedImports: [ autocompleteOptionsMethod ],
+              moduleSpecifier: autocompleteOptionsMethodModuleSpecifier,
+            },
+          ],
+        }));
+        break;
+      default:
+        throw new Error(`The method kind ${ method.kind } is not supported for a autocomplete table select control options!`);
+    }
+  } else {
+    switch (backend.kind) {
+      case BackendTypes.NESTJS:
+        // eslint-disable-next-line no-case-declarations
+        const optionsOperationName = [ 'get', dasherize(name), 'control', 'options' ].join(
+          '-',
+        );
+        // eslint-disable-next-line no-case-declarations
+        const optionsOperationId = buildOperationId(
+          normalizedOptions,
+          optionsOperationName,
+          BuildNestControllerName({
+            controllerName,
+            nestModule,
+          }),
+        );
+        autocompleteOptionsMethod = OperationIdToRemoteMethodClassName(optionsOperationId);
+        autocompleteOptionsMethodModuleSpecifier = OperationIdToClassRemoteMethodImportPath(optionsOperationId, scope);
+        rules.push(
+          CoerceAutocompleteOptionsOperationRule({
+            project,
+            feature,
+            nestModule,
+            controllerName,
+            upstream,
+            overwrite,
+            propertyList: propertyList.slice(),
+            toValueProperty: toValue.property,
+            toDisplayProperty: toDisplay.property,
+            operationName: optionsOperationName,
+            path: [ 'control', dasherize(name), 'options' ].join('/'),
+            dtoClassNameSuffix: joinWithDash([ context, dasherize(name), 'control', 'options' ]),
+            context,
+            backend,
+          }),
+        );
+        break;
+      default:
+        throw new Error(`The backend kind ${ backend.kind } is not supported for a autocomplete table select control options!`);
+    }
+  }
+
+  if (!autocompleteOptionsMethod || !autocompleteOptionsMethodModuleSpecifier) {
+    throw new Error('The backend kind is not nestjs and a options method is not provided!');
+  }
+
+  rules.push(
     CoerceFormDefinitionControl({
       role,
       isOptional,
@@ -324,12 +435,12 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
 
         CoerceDecorator(propertyDeclaration, 'UseAutocompleteOptionsMethod').set({
           arguments: [
-            OperationIdToClassName(optionsOperationId),
+            autocompleteOptionsMethod,
           ],
         });
         CoerceImports(sourceFile, {
-          namedImports: [ OperationIdToClassName(optionsOperationId) ],
-          moduleSpecifier: OperationIdToClassImportPath(optionsOperationId, scope),
+          namedImports: [ autocompleteOptionsMethod ],
+          moduleSpecifier: autocompleteOptionsMethodModuleSpecifier,
         });
         CoerceImports(sourceFile, {
           namedImports: [
@@ -344,7 +455,10 @@ function autocompleteTableSelectOptionsRule(normalizedOptions: NormalizedTableSe
         };
       },
     }),
-  ]);
+  );
+
+
+  return chain(rules);
 }
 
 function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormControlOptions) {
@@ -376,60 +490,100 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
     overwrite,
     source,
     backend,
+    dataSource,
   } = normalizedOptions;
 
-  const optionsOperationName = buildOptionsOperationName(normalizedOptions);
-  const optionsOperationPath = buildOptionsOperationPath(normalizedOptions);
-  const optionsOperationId = buildOptionsOperationId(normalizedOptions);
+  const rules: Rule[] = [];
 
-  const tableDataSourceName = classify(
-    [ dasherize(name), 'select-table', 'data-source' ].join('-'),
-  );
-  const tableDataSourceImportPath = `./data-sources/${ dasherize(
-    name,
-  ) }-select-table.data-source`;
-  const tableDataSourceDirectory = join(directory ?? '', 'data-sources');
+  let tableDataSourceName: string | null = null;
+  let tableDataSourceImportPath: string | null = null;
 
-  return chain([
-    CoerceTableSelectOperationRule({
-      project,
-      feature,
-      nestModule,
-      controllerName,
-      overwrite,
-      propertyList: propertyList.slice(),
-      operationName: optionsOperationName,
-      path: optionsOperationPath,
-      dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
-      rowValueProperty: toValue.property,
-      rowDisplayProperty: toDisplay.property,
-      idProperty: identifier.property,
-      rowId: toValue.property,
-      context,
-      upstream,
-      backend,
-    }),
-    CoerceFormProviderRule({
-      project,
-      feature,
-      directory,
-      providerObject: tableDataSourceName,
-      importStructures: [
-        {
-          namedImports: [ tableDataSourceName ],
-          moduleSpecifier: tableDataSourceImportPath,
-        },
-      ],
-    }),
-    CoerceTableDataSourceRule({
-      scope,
-      project,
-      feature,
-      directory: tableDataSourceDirectory,
-      shared,
-      name: [ dasherize(name), 'select-table' ].join('-'),
-      operationId: optionsOperationId,
-    }),
+  if (dataSource) {
+    switch (dataSource.kind) {
+      case DataSourceKinds.IMPORT:
+        AssertIsNormalizedImportDataSourceOptions(dataSource);
+        tableDataSourceName = dataSource.import.name;
+        tableDataSourceImportPath = dataSource.import.moduleSpecifier;
+        if (!tableDataSourceImportPath) {
+          throw new Error('The import module specifier is required for a autocomplete table select control resolver!');
+        }
+        rules.push(CoerceFormProviderRule({
+          project,
+          feature,
+          directory,
+          providerObject: tableDataSourceName,
+          importStructures: [
+            {
+              namedImports: [ tableDataSourceName ],
+              moduleSpecifier: tableDataSourceImportPath,
+            },
+          ],
+        }));
+        break;
+      default:
+        throw new Error(`The data source kind ${ dataSource.kind } is not supported for a autocomplete table select control data source!`);
+    }
+  } else {
+    switch (backend.kind) {
+      case BackendTypes.NESTJS:
+        tableDataSourceName = classify(
+          [ dasherize(name), 'select-table', 'data-source' ].join('-'),
+        );
+        tableDataSourceImportPath = `./data-sources/${ dasherize(
+          name,
+        ) }-select-table.data-source`;
+        rules.push(
+          CoerceTableSelectOperationRule({
+            project,
+            feature,
+            nestModule,
+            controllerName,
+            overwrite,
+            propertyList: propertyList.slice(),
+            operationName: buildOptionsOperationName(normalizedOptions),
+            path: buildOptionsOperationPath(normalizedOptions),
+            dtoClassNameSuffix: buildDtoSuffix(normalizedOptions),
+            rowValueProperty: toValue.property,
+            rowDisplayProperty: toDisplay.property,
+            idProperty: identifier.property,
+            rowId: toValue.property,
+            context,
+            upstream,
+            backend,
+          }),
+          CoerceFormProviderRule({
+            project,
+            feature,
+            directory,
+            providerObject: tableDataSourceName,
+            importStructures: [
+              {
+                namedImports: [ tableDataSourceName ],
+                moduleSpecifier: tableDataSourceImportPath,
+              },
+            ],
+          }),
+          CoerceTableDataSourceRule({
+            scope,
+            project,
+            feature,
+            directory: join(directory ?? '', 'data-sources'),
+            shared,
+            name: [ dasherize(name), 'select-table' ].join('-'),
+            operationId: buildOptionsOperationId(normalizedOptions),
+          }),
+        );
+        break;
+      default:
+        throw new Error(`The backend kind ${ backend.kind } is not supported for a autocomplete table select control data source!`);
+    }
+  }
+
+  if (!tableDataSourceName || !tableDataSourceImportPath) {
+    throw new Error('The backend kind is not nestjs and a data source is not provided!');
+  }
+
+  rules.push(
     CoerceFormDefinitionControl({
       role,
       isOptional,
@@ -455,13 +609,6 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
           decoratorDeclaration,
         } =
           CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
-
-        const tableSelectOperationResponseClassName = OperationIdToResponseClassName(optionsOperationId);
-
-        CoerceImports(sourceFile, {
-          namedImports: [ tableSelectOperationResponseClassName ],
-          moduleSpecifier: OperationIdToResponseClassImportPath(optionsOperationId),
-        });
 
         CoerceDecorator(propertyDeclaration, 'UseTableSelectDataSource').set({
           arguments: [ tableDataSourceName ],
@@ -489,7 +636,9 @@ function tableSelectDataSourceRule(normalizedOptions: NormalizedTableSelectFormC
         };
       },
     }),
-  ]);
+  );
+
+  return chain(rules);
 
 }
 

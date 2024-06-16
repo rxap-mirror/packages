@@ -28,3 +28,14 @@ export function NormalizeDataSourceOptions(options?: DataSourceOptions): Normali
 
   }
 }
+
+
+export function IsNormalizedImportDataSourceOptions(options?: NormalizedDataSourceOptions | null): options is NormalizedImportDataSourceOptions {
+  return !!options && options.kind === DataSourceKinds.IMPORT;
+}
+
+export function AssertIsNormalizedImportDataSourceOptions(options: NormalizedDataSourceOptions): asserts options is NormalizedImportDataSourceOptions {
+  if (!IsNormalizedImportDataSourceOptions(options)) {
+    throw new Error('The options are not a normalized import data source options');
+  }
+}
