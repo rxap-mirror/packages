@@ -96,8 +96,20 @@ export async function initLibraryGenerator(
 
 
   // region cleanup
-  DeleteRecursive(tree, join(projectSourceRoot, 'lib'));
-  CoerceFile(tree, join(projectSourceRoot, 'index.ts'), 'export {};', true);
+  if (tree.exists(join(projectSourceRoot, 'lib', `${ options.project }.ts`))) {
+    tree.delete(join(projectSourceRoot, 'lib', `${ options.project }.ts`));
+  }
+  if (tree.exists(join(projectSourceRoot, 'lib', `${ options.project }.spec.ts`))) {
+    tree.delete(join(projectSourceRoot, 'lib', `${ options.project }.spec.ts`));
+  }
+  if (tree.exists(join(projectSourceRoot, 'index.ts'))) {
+    let indexFileContent = tree.read(join(projectSourceRoot, 'index.ts'), 'utf-8');
+    if (indexFileContent) {
+      indexFileContent = indexFileContent.replace(
+        new RegExp(`export \\* from './lib/${options.project}';\n`, 'g'), '');
+      CoerceFile(tree, join(projectSourceRoot, 'index.ts'), indexFileContent, true);
+    }
+  }
   // endregion
 
   // region align the tsconfig.base.json
