@@ -1,5 +1,6 @@
 import {
   ClassDeclaration,
+  ObjectLiteralExpression,
   SourceFile,
 } from 'ts-morph';
 import { CoerceArrayElement } from '../coerce-array-element';
@@ -22,20 +23,26 @@ import { GetComponentDecoratorObject } from './get-component-decorator-object';
  * @returns - The updated imports array after coercing the import.
  */
 export function CoerceComponentImport(
-  sourceFileOrClassDeclaration: SourceFile | ClassDeclaration,
+  sourceFileOrClassDeclaration: SourceFile | ClassDeclaration | ObjectLiteralExpression,
   componentImport: string | TypeImport,
 ) {
 
-  const classDeclaration = sourceFileOrClassDeclaration instanceof ClassDeclaration ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
   const sourceFile = sourceFileOrClassDeclaration instanceof SourceFile ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
+
+  let componentDecoratorObject: ObjectLiteralExpression;
+  if (sourceFileOrClassDeclaration instanceof ObjectLiteralExpression) {
+    componentDecoratorObject = sourceFileOrClassDeclaration;
+  } else if (sourceFileOrClassDeclaration instanceof ClassDeclaration) {
+    componentDecoratorObject = GetComponentDecoratorObject(sourceFileOrClassDeclaration);
+  } else {
+    componentDecoratorObject = GetComponentDecoratorObject(GetComponentClass(sourceFileOrClassDeclaration));
+  }
 
   const importName = typeof componentImport === 'string' ? componentImport : componentImport.namedImport ?? componentImport.name;
 
   if (IsTypeImport(componentImport)) {
     CoerceImports(sourceFile, TypeImportToImportStructure(componentImport));
   }
-
-  const componentDecoratorObject = GetComponentDecoratorObject(classDeclaration);
 
   const importsArray = GetCoerceArrayLiteralFromObjectLiteral(componentDecoratorObject, 'imports');
 

@@ -45,8 +45,10 @@ export * from './lib/angular/coerce-component-input';
 export * from './lib/angular/coerce-component';
 export * from './lib/angular/coerce-data-source-class';
 export * from './lib/angular/coerce-layout-routes';
+export * from './lib/angular/coerce-module-provider';
 export * from './lib/angular/coerce-route-guard';
 export * from './lib/angular/coerce-routes';
+export * from './lib/angular/coerce-stories';
 export * from './lib/angular/coerce-token-export';
 export * from './lib/angular/find-parent-route';
 export * from './lib/angular/get-component-class';
@@ -55,7 +57,7 @@ export * from './lib/angular/remove-component-import';
 export * from './lib/angular/remove-route';
 // endregion
 
-// region
+// region 
 export * from './lib/add-provider-to-array';
 export * from './lib/coerce-accessor-declaration';
 export * from './lib/coerce-array-element';
@@ -69,6 +71,7 @@ export * from './lib/coerce-default-export';
 export * from './lib/coerce-dependency-injection';
 export * from './lib/coerce-imports';
 export * from './lib/coerce-mapping-class-method';
+export * from './lib/coerce-property-assignment';
 export * from './lib/coerce-property-declaration';
 export * from './lib/coerce-source-file';
 export * from './lib/coerce-statements';

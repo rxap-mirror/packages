@@ -11,6 +11,7 @@ import {
   buildOperationId,
   CoerceComponentRule,
   CoerceDataSourceClass,
+  CoerceFormProvider,
   CoerceGetByIdOperation,
   CoerceGetOperation,
   CoerceInterfaceRule,
@@ -32,7 +33,9 @@ import {
   CoerceClassMethod,
   CoerceClassProperty,
   CoerceImports,
+  CoerceModuleProvider,
   CoerceStatements,
+  CoerceStories,
   NormalizeDataProperty,
   NormalizedDataProperty,
   OperationIdToClassRemoteMethodImportPath,
@@ -76,6 +79,7 @@ import { AccordionComponentOptions } from './schema';
 export interface NormalizedAccordionComponentOptions
   extends Readonly<Normalized<Omit<AccordionComponentOptions, keyof AngularOptions | keyof Accordion>> & NormalizedAngularOptions & NormalizedAccordion> {
   controllerName: string;
+  componentName: string;
 }
 
 function NormalizeOptions(
@@ -142,6 +146,64 @@ function printOptions(options: NormalizedAccordionComponentOptions) {
   } else {
     console.log('=== items: \x1b[31mempty\x1b[0m');
   }
+}
+
+function storiesRule(normalizedOptions: NormalizedAccordionComponentOptions) {
+
+    const {
+      project,
+      feature,
+      directory,
+      componentName,
+      shared,
+      backend,
+    } = normalizedOptions;
+
+    return chain([
+      () => console.log('Create accordion component stories ...'),
+      TsMorphAngularProjectTransformRule({
+        project,
+        feature,
+        directory,
+        shared,
+      }, (_, [sourceFile]) => {
+        CoerceStories(sourceFile, {
+          componentName,
+          feature,
+          moduleMetadata: (moduleDecoratorObject) => {
+            CoerceImports(sourceFile, [
+              {
+                moduleSpecifier: '@faker-js/faker',
+                namedImports: [ 'faker' ],
+              },
+              {
+                moduleSpecifier: 'angular-testing',
+                namedImports: [ 'ProvideActivatedRoutes' ],
+              }
+            ]);
+            CoerceModuleProvider(moduleDecoratorObject, 'ProvideActivatedRoutes({params: {uuid: faker.datatype.uuid()}})');
+            if (backend.kind === BackendTypes.NESTJS) {
+              const operationId = buildGetOperationId(normalizedOptions);
+              const methodName = OperationIdToRemoteMethodClassName(operationId);
+              const methodModuleSpecifier = OperationIdToClassRemoteMethodImportPath(operationId, normalizedOptions.scope);
+              CoerceImports(sourceFile, [
+                {
+                namedImports: [ methodName ],
+                moduleSpecifier: methodModuleSpecifier,
+              },
+                {
+                  moduleSpecifier: 'angular-testing',
+                  namedImports: [ 'ProvideMethodMock' ],
+                }
+              ]);
+              CoerceModuleProvider(moduleDecoratorObject, `ProvideMethodMock(${methodName}, () => ({ uuid: faker.datatype.uuid() }))`);
+            }
+          },
+        });
+      }, [`${dasherize(componentName)}.component.stories.ts?`]),
+    ]);
+
+
 }
 
 function componentRule(normalizedOptions: NormalizedAccordionComponentOptions, hasMissingPanelComponents: boolean) {
@@ -596,6 +658,7 @@ export default function (options: AccordionComponentOptions) {
     );
     return chain([
       componentRule(normalizedOptions, hasMissingPanelComponents),
+      storiesRule(normalizedOptions),
       backendRule(normalizedOptions),
       itemListRule(normalizedOptions),
     ]);
