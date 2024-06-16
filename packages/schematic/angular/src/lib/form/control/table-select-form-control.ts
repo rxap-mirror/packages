@@ -17,7 +17,7 @@ import {
   NormalizeAccordionIdentifier,
   NormalizedAccordionIdentifier,
 } from '../../accordion-identifier';
-import { BackendTypes } from '../../backend-types';
+import { BackendTypes } from '../../backend/backend-types';
 import {
   NormalizeBackendOptions,
   NormalizedBackendOptions,

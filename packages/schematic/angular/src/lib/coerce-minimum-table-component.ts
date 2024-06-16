@@ -10,7 +10,7 @@ import {
   CoerceImports,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
-import { BackendTypes } from './backend-types';
+import { BackendTypes } from './backend/backend-types';
 import { NormalizedBackendOptions } from './backend/backend-options';
 import { LoadMatFormFieldHandlebarsTemplate } from './load-handlebars-template';
 import { NormalizedMinimumTableOptions } from './minimum-table-options';

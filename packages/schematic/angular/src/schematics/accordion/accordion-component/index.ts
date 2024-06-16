@@ -68,7 +68,7 @@ import {
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
-import { BackendTypes } from '../../../lib/backend-types';
+import { BackendTypes } from '../../../lib/backend/backend-types';
 import { CoerceAccordionComponentRule } from '../../../lib/coerce-accordion-component';
 import { IsNormalizedPropertyPersistent } from '../../../lib/persistent';
 import { AccordionComponentOptions } from './schema';

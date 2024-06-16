@@ -20,7 +20,7 @@ import {
   AngularOptions,
   NormalizedAngularOptions,
 } from '../../../../lib/angular-options';
-import { BackendTypes } from '../../../../lib/backend-types';
+import { BackendTypes } from '../../../../lib/backend/backend-types';
 import { CoerceAccordionItemTableComponentRule } from '../../../../lib/coerce-accordion-item-table-component';
 import { TreeTableModifiers } from '../../../../lib/tree-table-options';
 import {

@@ -4,7 +4,7 @@ import {
 } from '@rxap/ts-morph';
 import { CoerceArrayItems } from '@rxap/utilities';
 import { NormalizeAccordionIdentifier } from '../../accordion-identifier';
-import { BackendTypes } from '../../backend-types';
+import { BackendTypes } from '../../backend/backend-types';
 import { NormalizeBackendOptions } from '../../backend/backend-options';
 import { NormalizeDataSourceOptions } from '../../data-source/data-source-options';
 import { NormalizedBaseFormControl } from './base-form-control';

@@ -34,7 +34,7 @@ import {
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
-import { BackendTypes } from '../../../lib/backend-types';
+import { BackendTypes } from '../../../lib/backend/backend-types';
 import { CoerceMinimumTableComponentRule } from '../../../lib/coerce-minimum-table-component';
 import {
   LoadCssClassHandlebarsTemplate,

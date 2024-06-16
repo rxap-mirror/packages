@@ -1,5 +1,5 @@
 import { Normalized } from '@rxap/utilities';
-import { BackendTypes } from '../backend-types';
+import { BackendTypes } from './backend-types';
 import { BackendContext } from './backend-options';
 
 export interface BaseBackendOptions {

@@ -21,7 +21,7 @@ import {
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
-import { BackendTypes } from '../../../../lib/backend-types';
+import { BackendTypes } from '../../../../lib/backend/backend-types';
 import {
   NormalizedOperationTableAction,
   NormalizeOperationTableAction,

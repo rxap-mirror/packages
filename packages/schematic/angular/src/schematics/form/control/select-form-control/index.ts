@@ -29,7 +29,7 @@ import {
   SourceFile,
 } from 'ts-morph';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
-import { BackendTypes } from '../../../../lib/backend-types';
+import { BackendTypes } from '../../../../lib/backend/backend-types';
 import { IsNormalizedImportDataSourceOptions } from '../../../../lib/data-source/data-source-options';
 import {
   NormalizedSelectFormControl,

@@ -1,5 +1,5 @@
 import { AngularOptions } from '../angular-options';
-import { BackendTypes } from '../backend-types';
+import { BackendTypes } from './backend-types';
 import {
   BaseBackendOptions,
   NormalizeBaseBackendOptions,

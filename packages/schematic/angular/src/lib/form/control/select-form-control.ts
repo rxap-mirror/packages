@@ -8,7 +8,7 @@ import {
   ControlOption,
   Normalized,
 } from '@rxap/utilities';
-import { BackendTypes } from '../../backend-types';
+import { BackendTypes } from '../../backend/backend-types';
 import {
   NormalizeBackendOptions,
   NormalizedBackendOptions,

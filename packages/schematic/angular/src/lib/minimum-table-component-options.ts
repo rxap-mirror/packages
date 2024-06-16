@@ -44,7 +44,7 @@ import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
 } from './angular-options';
-import { BackendTypes } from './backend-types';
+import { BackendTypes } from './backend/backend-types';
 import {
   MinimumTableOptions,
   NormalizedMinimumTableOptions,
