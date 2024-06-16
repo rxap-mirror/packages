@@ -46,6 +46,10 @@ export interface BaseAccordionItem {
   description?: string;
   permission?: string;
   importList?: TypeImport[];
+  /**
+   * use by the component generator to add all required imports to the accordion component
+   */
+  accordionImportList?: TypeImport[];
   template?: string;
   identifier?: AccordionIdentifier;
   upstream?: UpstreamOptions;
@@ -55,6 +59,7 @@ export interface BaseAccordionItem {
 
 export interface NormalizedBaseAccordionItem extends Readonly<NonNullableSelected<Normalized<Omit<BaseAccordionItem, 'propertyList'>>, 'kind'>> {
   importList: NormalizedTypeImport[];
+  accordionImportList: NormalizedTypeImport[];
   handlebars: Handlebars.TemplateDelegate<{ item: NormalizedBaseAccordionItem }>,
   identifier: NormalizedAccordionIdentifier | null;
   upstream: NormalizedUpstreamOptions | null;
@@ -88,7 +93,13 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
   if (identifier) {
     CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name, true);
   }
+  const accordionImportList = item.accordionImportList ?? [];
+  CoerceArrayItems(accordionImportList, [{
+    name: `${classify(item.name)}PanelComponent`,
+    moduleSpecifier: `./${dasherize(item.name)}-panel/${dasherize(item.name)}-panel.component`
+  }], (a, b) => a.name === b.name);
   return Object.freeze({
+    accordionImportList: NormalizeTypeImportList(accordionImportList),
     ifTruthy,
     propertyList: NormalizeDataPropertyList(propertyList),
     upstream: NormalizeUpstreamOptions(item.upstream),

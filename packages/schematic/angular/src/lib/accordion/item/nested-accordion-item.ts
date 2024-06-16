@@ -1,4 +1,10 @@
-import { Normalized } from '@rxap/utilities';
+import { dasherize } from '@rxap/schematics-utilities';
+import { NormalizeTypeImportList } from '@rxap/ts-morph';
+import {
+  classify,
+  CoerceArrayItems,
+  Normalized,
+} from '@rxap/utilities';
 import {
   Accordion,
   NormalizeAccordion,
@@ -29,8 +35,14 @@ export function IsNormalizedNestedAccordionItem(item: NormalizedBaseAccordionIte
 }
 
 export function NormalizeNestedAccordionItem(item: Readonly<NestedAccordionItem>): NormalizedNestedAccordionItem {
+  const accordionImportList = item.accordionImportList ?? [];
+  CoerceArrayItems(accordionImportList, [{
+    name: `${classify(item.name)}AccordionComponent`,
+    moduleSpecifier: `./${dasherize(item.name)}-accordion/${dasherize(item.name)}-accordion.component`
+  }], (a, b) => a.name === b.name);
   return Object.freeze({
     ...NormalizeBaseAccordionItem(item),
+    accordionImportList: NormalizeTypeImportList(accordionImportList),
     kind: AccordionItemKinds.Nested,
     accordion: NormalizeAccordion({
       name: item.name,

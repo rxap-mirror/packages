@@ -118,28 +118,31 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
     );
   }
   const importList: TypeImport[] = item.importList ?? [];
+  const accordionImportList = item.accordionImportList ?? [];
   const itemList = flattenItemListFromSwitch(normalizeSwitch);
   for (const innerItem of itemList) {
     CoerceArrayItems(importList, innerItem.importList, (a, b) => a.name === b.name);
+    CoerceArrayItems(accordionImportList, innerItem.accordionImportList, (a, b) => a.name === b.name);
   }
-  CoerceArrayItems(importList, [{
+  CoerceArrayItems(accordionImportList, [{
     name: 'NgSwitch',
     moduleSpecifier: '@angular/common',
   }], (a, b) => a.name === b.name);
   if (normalizeSwitch.defaultCase) {
-    CoerceArrayItems(importList, [{
+    CoerceArrayItems(accordionImportList, [{
       name: 'NgSwitchDefault',
       moduleSpecifier: '@angular/common',
     }], (a, b) => a.name === b.name);
   }
   if (normalizeSwitch.case.length) {
-    CoerceArrayItems(importList, [{
+    CoerceArrayItems(accordionImportList, [{
       name: 'NgSwitchCase',
       moduleSpecifier: '@angular/common',
     }], (a, b) => a.name === b.name);
   }
   return Object.freeze({
     ...base,
+    accordionImportList: NormalizeTypeImportList(accordionImportList),
     importList: NormalizeTypeImportList(importList),
     kind: AccordionItemKinds.Switch,
     switch: normalizeSwitch,

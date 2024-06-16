@@ -266,11 +266,7 @@ function operationActionRule(
       directory,
       nestModule,
       context,
-      controllerName: BuildNestControllerName({
-        controllerName,
-        nestModule,
-        controllerNameSuffix: CoerceSuffix(action.type, '-action'),
-      })
+      controllerName,
     }),
   ]);
 
@@ -294,8 +290,15 @@ function formActionRule(
     directory,
     nestModule,
     context,
-    controllerName,
   } = normalizedOptions;
+
+  let { controllerName } = normalizedOptions;
+
+  controllerName = BuildNestControllerName({
+    controllerName: controllerName,
+    nestModule,
+    controllerNameSuffix: CoerceSuffix(action.type, '-action'),
+  });
 
   if (kind !== TableActionKind.FORM) {
     throw new SchematicsException(`Invalid action role: ${ kind } - expected form`);
@@ -495,39 +498,30 @@ function actionRule(action: NormalizedTableAction, normalizedOptions: Normalized
 
   const rules: Rule[] = [];
 
-  const { nestModule } = normalizedOptions;
-  let { controllerName } = normalizedOptions;
-
-  controllerName = BuildNestControllerName({
-    controllerName: controllerName,
-    nestModule,
-    controllerNameSuffix: CoerceSuffix(action.type, '-action'),
-  });
-
   switch (action.kind) {
 
     case TableActionKind.OPERATION:
-      rules.push(operationActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
+      rules.push(operationActionRule(action, normalizedOptions));
       break;
 
     case TableActionKind.FORM:
-      rules.push(formActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
+      rules.push(formActionRule(action, normalizedOptions));
       break;
 
     case TableActionKind.NAVIGATION:
-      rules.push(navigateActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
+      rules.push(navigateActionRule(action, normalizedOptions));
       break;
 
     case TableActionKind.DIALOG:
-      rules.push(dialogActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
+      rules.push(dialogActionRule(action, normalizedOptions));
       break;
 
     case TableActionKind.OPEN_API:
-      rules.push(openApiActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
+      rules.push(openApiActionRule(action, normalizedOptions));
       break;
 
     default:
-      rules.push(defaultActionRule(action, { ...normalizedOptions, controllerName, nestModule, }));
+      rules.push(defaultActionRule(action, normalizedOptions));
 
   }
 

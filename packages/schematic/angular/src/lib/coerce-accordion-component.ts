@@ -11,6 +11,7 @@ import {
 } from '@rxap/ts-morph';
 import {
   classify,
+  CoerceArrayItems,
   dasherize,
   noop,
 } from '@rxap/utilities';
@@ -65,16 +66,8 @@ export function CoerceAccordionComponentRule(options: CoerceAccordionComponentOp
         CoerceComponentImport(classDeclaration, { name: 'PersistentAccordionDirective', moduleSpecifier: '@rxap/material-directives/expansion' });
       }
       for (const item of itemList) {
-        if (item.kind === AccordionItemKinds.Nested) {
-          CoerceComponentImport(classDeclaration, {
-            name: `${classify(item.name)}AccordionComponent`,
-            moduleSpecifier: `./${dasherize(item.name)}-accordion/${dasherize(item.name)}-accordion.component`
-          });
-        } else {
-          CoerceComponentImport(classDeclaration, {
-            name: `${classify(item.name)}PanelComponent`,
-            moduleSpecifier: `./${dasherize(item.name)}-panel/${dasherize(item.name)}-panel.component`
-          });
+        for (const importItem of item.accordionImportList) {
+          CoerceComponentImport(classDeclaration, importItem);
         }
       }
       // endregion
