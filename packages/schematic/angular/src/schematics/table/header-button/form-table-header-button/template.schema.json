@@ -6,28 +6,15 @@
       "$ref": "#/definitions/tableHeaderButtonSchematic"
     },
     {
-      "type": "object",
-      "properties": {
-        "formComponent": {
-          "type": "string"
-        },
-        "customComponent": {
-          "type": "boolean",
-          "default": false,
-          "description": "If true the schematic will not coerce the form component"
-        },
-        "formOptions": {
-          "$ref": "#/definitions/formComponent"
-        }
-      }
+      "$ref": "#/definitions/formHeaderButton"
     }
   ],
   "definitions": {
     "tableHeaderButtonSchematic": {
       "$ref": "../../table-header-button/template.schema.json"
     },
-    "formComponent": {
-      "$ref": "../../../form-component.schema.json"
+    "formHeaderButton": {
+      "$ref": "../../../form-header-button.schema.json"
     }
   }
 }

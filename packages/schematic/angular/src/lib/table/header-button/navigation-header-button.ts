@@ -36,7 +36,5 @@ export function NormalizeNavigationHeaderButton(options: NavigationHeaderButton,
     kind: HeaderButtonKind.FORM,
     relativeTo: options.relativeTo ?? false,
     route: options.route,
-    icon: options.icon ?? !options.svgIcon ? 'add' : null,
-    label: options.label ?? `Create ${ label }` ?? null,
   });
 }

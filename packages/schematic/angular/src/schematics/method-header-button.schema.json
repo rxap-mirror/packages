@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "form-header-button",
+  "$id": "method-header-button",
   "allOf": [
     {
       "$ref": "#/definitions/baseHeaderButton"
@@ -10,22 +10,22 @@
       "properties": {
         "kind": {
           "type": "string",
-          "const": "form",
-          "default": "form"
+          "const": "method",
+          "default": "method"
         },
-        "form": {
-          "$ref": "#/definitions/formComponent"
+        "method": {
+          "$ref": "#/definitions/method"
         }
       },
-      "required": ["form"]
+      "required": ["method"]
     }
   ],
   "definitions": {
     "baseHeaderButton": {
       "$ref": "./base-header-button.schema.json"
     },
-    "formComponent": {
-      "$ref": "./form-component.schema.json"
+    "method": {
+      "$ref": "./method.schema.json"
     }
   }
 }

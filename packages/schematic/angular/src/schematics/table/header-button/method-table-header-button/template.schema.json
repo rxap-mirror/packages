@@ -1,20 +1,20 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "navigation-table-header-button-schematic",
+  "$id": "method-table-header-button-schematic",
   "allOf": [
     {
       "$ref": "#/definitions/tableHeaderButtonSchematic"
     },
     {
-      "$ref": "#/definitions/navigationHeaderButton"
+      "$ref": "#/definitions/methodHeaderButton"
     }
   ],
   "definitions": {
     "tableHeaderButtonSchematic": {
       "$ref": "../../table-header-button/template.schema.json"
     },
-    "navigationHeaderButton": {
-      "$ref": "../../../navigation-header-button.schema.json"
+    "methodHeaderButton": {
+      "$ref": "../../../method-header-button.schema.json"
     }
   }
 }

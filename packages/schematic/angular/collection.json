@@ -40,6 +40,11 @@
       "schema": "./src/schematics/table/header-button/form-table-header-button/schema.json",
       "description": "Generates a table form header-button."
     },
+    "method-table-header-button": {
+      "factory": "./src/schematics/table/header-button/method-table-header-button/index",
+      "schema": "./src/schematics/table/header-button/method-table-header-button/schema.json",
+      "description": "Generates a table method header-button."
+    },
     "navigation-table-header-button": {
       "factory": "./src/schematics/table/header-button/navigation-table-header-button/index",
       "schema": "./src/schematics/table/header-button/navigation-table-header-button/schema.json",

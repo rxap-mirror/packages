@@ -10,14 +10,19 @@ import {
   NormalizeFormHeaderButton,
 } from './header-button/form-header-button';
 import {
+  MethodHeaderButton,
+  NormalizedMethodHeaderButton,
+  NormalizeMethodHeaderButton,
+} from './header-button/method-header-button';
+import {
   NavigationHeaderButton,
   NormalizedNavigationHeaderButton,
   NormalizeNavigationHeaderButton,
 } from './header-button/navigation-header-button';
 
-export type HeaderButton = BaseHeaderButton | FormHeaderButton | NavigationHeaderButton
+export type HeaderButton = BaseHeaderButton | FormHeaderButton | NavigationHeaderButton | MethodHeaderButton;
 
-export type NormalizedHeaderButton = NormalizedBaseHeaderButton | NormalizedFormHeaderButton | NormalizedNavigationHeaderButton;
+export type NormalizedHeaderButton = NormalizedBaseHeaderButton | NormalizedFormHeaderButton | NormalizedNavigationHeaderButton | NormalizedMethodHeaderButton
 
 export function NormalizeHeaderButton(item?: HeaderButton, label?: string): NormalizedBaseHeaderButton | null {
   if (!item || Object.keys(item).length === 0) {
@@ -28,6 +33,8 @@ export function NormalizeHeaderButton(item?: HeaderButton, label?: string): Norm
       return NormalizeFormHeaderButton(item, label);
     case HeaderButtonKind.NAVIGATION:
       return NormalizeNavigationHeaderButton(item, label);
+    case HeaderButtonKind.METHOD:
+      return NormalizeMethodHeaderButton(item, label);
     default:
       return NormalizeBaseHeaderButton(item, label);
   }

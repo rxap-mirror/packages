@@ -24,6 +24,9 @@
     },
     {
       "$ref": "#/definitions/navigationHeaderButton"
+    },
+    {
+      "$ref": "#/definitions/methodHeaderButton"
     }
   ],
   "definitions": {
@@ -35,6 +38,9 @@
     },
     "navigationHeaderButton": {
       "$ref": "./navigation-header-button.schema.json"
+    },
+    "methodHeaderButton": {
+      "$ref": "./method-header-button.schema.json"
     }
   }
 }

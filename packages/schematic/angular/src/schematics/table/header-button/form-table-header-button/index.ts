@@ -40,8 +40,6 @@ import {
 import { FormTableHeaderButtonOptions } from './schema';
 
 export type NormalizedFormTableHeaderButtonOptions = Readonly<Normalized<Omit<FormTableHeaderButtonOptions, keyof AngularOptions | keyof FormHeaderButton>> & NormalizedAngularOptions & NormalizedFormHeaderButton> & {
-  formComponent: string;
-  customComponent: boolean;
   controllerName: string;
 }
 
@@ -64,9 +62,6 @@ export function NormalizeFormTableHeaderButtonOptions(
       controllerName,
       controllerNameSuffix: 'header-button',
     }),
-    formComponent: CoerceSuffix(
-      dasherize(options.formComponent ?? tableName.replace(/-table$/, '')), '-form'),
-    customComponent: options.customComponent ?? false,
   });
 }
 
@@ -93,8 +88,6 @@ export default function (options: FormTableHeaderButtonOptions) {
     backend,
     nestModule,
     controllerName,
-    formComponent,
-    customComponent,
   } = normalizedOptions;
 
   printOptions(normalizedOptions);
@@ -103,29 +96,29 @@ export default function (options: FormTableHeaderButtonOptions) {
 
     AssertTableComponentExists(host, normalizedOptions);
 
+    const formComponent = CoerceSuffix(dasherize(tableName.replace(/-table$/, '')), '-form');
+
     const ruleList: Rule[] = [
       () => console.group('\x1b[32m[@rxap/schematics-angular:form-table-header-button]\x1b[0m'),
     ];
 
-    if (!customComponent) {
-      ruleList.push(
-        () => console.log('Coerce table header button form ...'),
-        ExecuteSchematic('form-component', {
-          ...form,
-          project,
-          name: formComponent.replace(/-form$/, ''),
-          feature,
-          directory,
-          shared,
-          window: true,
-          nestModule,
-          controllerName,
-          context,
-          backend,
-          overwrite,
-        }),
-      );
-    }
+    ruleList.push(
+      () => console.log('Coerce table header button form ...'),
+      ExecuteSchematic('form-component', {
+        ...form,
+        project,
+        name: formComponent.replace(/-form$/, ''),
+        feature,
+        directory,
+        shared,
+        window: true,
+        nestModule,
+        controllerName,
+        context,
+        backend,
+        overwrite,
+      }),
+    );
 
     ruleList.push(
       () => console.log('Coerce table header button method ...'),

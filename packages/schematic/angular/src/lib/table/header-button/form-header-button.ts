@@ -1,4 +1,7 @@
-import { Normalized } from '@rxap/utilities';
+import {
+  capitalize,
+  Normalized,
+} from '@rxap/utilities';
 import {
   FormComponent,
   NormalizedFormComponent,
@@ -36,7 +39,5 @@ export function NormalizeFormHeaderButton(options: FormHeaderButton, label?: str
     ...NormalizeBaseHeaderButton(options),
     kind: HeaderButtonKind.FORM,
     form: NormalizeFormComponent(options.form),
-    icon: options.icon ?? !options.svgIcon ? 'add' : null,
-    label: options.label ?? `Create ${ label }` ?? null,
   });
 }

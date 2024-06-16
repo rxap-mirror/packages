@@ -3,6 +3,4 @@ import { FormHeaderButton } from '../../../../lib/table/header-button/form-heade
 
 export type FormTableHeaderButtonOptions = AngularOptions & FormHeaderButton & {
   tableName: string;
-  formComponent?: string;
-  customComponent: boolean;
 }
