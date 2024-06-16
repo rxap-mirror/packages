@@ -15,6 +15,10 @@
     "skipFormat": {
       "type": "boolean",
       "default": false
+    },
+    "persistent": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["project"]

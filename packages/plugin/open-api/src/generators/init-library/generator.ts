@@ -18,6 +18,7 @@ import {
   GetProjectSourceRoot,
   GetWorkspaceScope,
   HasProject,
+  RemoveIgnorePattern,
   Strategy,
   UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
@@ -52,7 +53,11 @@ export async function initLibraryGenerator(
 
   const projectConfiguration = GetProject(tree, options.project);
 
-  CoerceIgnorePattern(tree, join(projectRoot, '.gitignore'), ['src/lib']);
+  if (options.persistent) {
+    RemoveIgnorePattern(tree, join(projectRoot, '.gitignore'), [ 'src/lib' ]);
+  } else {
+    CoerceIgnorePattern(tree, join(projectRoot, '.gitignore'), [ 'src/lib' ]);
+  }
 
   if (options.external) {
     CoerceTarget(projectConfiguration, 'generate-open-api', {
