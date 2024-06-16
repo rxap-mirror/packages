@@ -9,19 +9,22 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { HasProjectFeature } from '@rxap/schematics-ts-morph';
 import {
   AddPackageJsonDevDependencyRule,
-  GetProjectSourceRoot,
   GlobalOptions,
   HasProjectSourceRoot,
 } from '@rxap/schematics-utilities';
 import {
   coerceArray,
   dasherize,
+  DeleteUndefinedProperties,
   equals,
   Normalized,
 } from '@rxap/utilities';
 import {
+  GetProject,
   GetProjectRoot,
+  GetProjectSourceRoot,
   GetRootPackageJson,
+  IsLibraryProject,
 } from '@rxap/workspace-utilities';
 import {
   dirname,
@@ -135,8 +138,15 @@ function executeSchematicCommandFile(
 
     if (options.project && HasProjectSourceRoot(host, options.project)) {
       const projectSourceRoot = GetProjectSourceRoot(host, options.project);
-      const directoryParts = relative(projectSourceRoot, dirname(schematicCommandFilePath).replace(/^\//, '')).split(
+      const schematicCommandFolder = dirname(schematicCommandFilePath.replace(/^\//, ''));
+      const directoryParts = relative(projectSourceRoot, schematicCommandFolder).split(
         '/');
+      if (IsLibraryProject(GetProject(host, options.project))) {
+        // if the project is a library project the lib directory is not part of the directory
+        if (directoryParts[0] === 'lib') {
+          directoryParts.shift();
+        }
+      }
       if (options.feature) {
         if (directoryParts[0] === 'feature') {
           directoryParts.shift();
@@ -163,7 +173,7 @@ function executeSchematicCommandFile(
       // },
       () => {
         try {
-          return externalSchematic(command.package, command.name, options);
+          return externalSchematic(command.package, command.name, DeleteUndefinedProperties(options));
         } catch (e) {
           console.error(`Error while executing schematic '${ command.package }:${ command.name }'`.red);
           console.log('Retry with this schematic with the command:'.grey);
