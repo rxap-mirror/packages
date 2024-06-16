@@ -28,6 +28,9 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
       console.warn('The controller name is not defined');
       controllerName = nestModule;
     }
+  } else if(!controllerName && nestModule) {
+    console.log('The controller name is not defined, using the nest module name as controller name');
+    controllerName = nestModule;
   } else {
     console.log('The nest module name is the same as the controller name');
   }

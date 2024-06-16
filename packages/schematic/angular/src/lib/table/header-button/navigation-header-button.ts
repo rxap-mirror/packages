@@ -14,17 +14,17 @@ export interface NavigationHeaderButton extends BaseHeaderButton {
 }
 
 export interface NormalizedNavigationHeaderButton extends Readonly<Normalized<Omit<NavigationHeaderButton, keyof BaseHeaderButton | 'form'>> & NormalizedBaseHeaderButton> {
-  kind: HeaderButtonKind.FORM;
+  kind: HeaderButtonKind.NAVIGATION;
   relativeTo: boolean;
   route: string;
 }
 
 export function IsNavigationHeaderButton(header: BaseHeaderButton): header is NavigationHeaderButton {
-  return header.kind === HeaderButtonKind.FORM;
+  return header.kind === HeaderButtonKind.NAVIGATION;
 }
 
 export function IsNormalizedNavigationHeaderButton(header: NormalizedBaseHeaderButton): header is NormalizedNavigationHeaderButton {
-  return header.kind === HeaderButtonKind.FORM;
+  return header.kind === HeaderButtonKind.NAVIGATION;
 }
 
 export function NormalizeNavigationHeaderButton(options: NavigationHeaderButton, label?: string): NormalizedNavigationHeaderButton {
@@ -33,7 +33,7 @@ export function NormalizeNavigationHeaderButton(options: NavigationHeaderButton,
   }
   return Object.freeze({
     ...NormalizeBaseHeaderButton(options),
-    kind: HeaderButtonKind.FORM,
+    kind: HeaderButtonKind.NAVIGATION,
     relativeTo: options.relativeTo ?? false,
     route: options.route,
   });

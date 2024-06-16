@@ -617,18 +617,31 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
     };
     switch (headerButton.kind) {
       case HeaderButtonKind.FORM:
-        return ExecuteSchematic('form-table-header-button', {
+        return chain([
+          () => console.log(`Coerce form table header button`),
+          ExecuteSchematic('form-table-header-button', {
           ...options,
           context,
           // if the nest module is not defined, then use the controller name as the nest module name
           nestModule: nestModule ?? controllerName,
-        });
+        })]);
 
       case HeaderButtonKind.NAVIGATION:
-        return ExecuteSchematic('navigation-table-header-button', options);
+        return chain([
+          () => console.log(`Coerce navigation table header button`),
+          ExecuteSchematic('navigation-table-header-button', options)
+        ]);
+
+      case HeaderButtonKind.METHOD:
+        return chain([
+          () => console.log(`Coerce method table header button`),
+          ExecuteSchematic('method-table-header-button', options)
+        ]);
 
       default:
-        return ExecuteSchematic('table-header-button', options);
+        return chain([
+          () => console.log('Coerce default table header button'),
+          ExecuteSchematic('table-header-button', options)]);
     }
   }
   return noop();

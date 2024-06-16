@@ -5,19 +5,24 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentProvider,
-  BuildNestControllerName,
-  CoerceComponentOptions,
-  CoerceComponentRule,
+  CoerceParameterDeclaration,
+  CoerceTableHeaderButtonMethodRule,
 } from '@rxap/schematics-ts-morph';
 import {
-  classify,
+  CoerceClassConstructor,
+  CoerceDependencyInjection,
+  CoerceImports,
+  Module,
+} from '@rxap/ts-morph';
+import {
   CoerceSuffix,
   dasherize,
   Normalized,
 } from '@rxap/utilities';
+import { join } from 'path';
 import {
-  ClassDeclaration,
   Project,
+  Scope,
   SourceFile,
 } from 'ts-morph';
 import {
@@ -36,11 +41,9 @@ import {
 } from '../../../../lib/table/header-button/method-header-button';
 import { MethodTableHeaderButtonOptions } from './schema';
 
-export type NormalizedFormTableHeaderButtonOptions = Readonly<Normalized<Omit<MethodTableHeaderButtonOptions, keyof AngularOptions | keyof MethodHeaderButton>> & NormalizedAngularOptions & NormalizedMethodHeaderButton> & {
-  controllerName: string;
-}
+export type NormalizedFormTableHeaderButtonOptions = Readonly<Normalized<Omit<MethodTableHeaderButtonOptions, keyof AngularOptions | keyof MethodHeaderButton>> & NormalizedAngularOptions & NormalizedMethodHeaderButton>;
 
-export function NormalizeFormTableHeaderButtonOptions(
+export function NormalizeMethodTableHeaderButtonOptions(
   options: Readonly<MethodTableHeaderButtonOptions>,
 ): NormalizedFormTableHeaderButtonOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
@@ -48,17 +51,11 @@ export function NormalizeFormTableHeaderButtonOptions(
   if (!normalizedTableHeaderButton) {
     throw new Error('FATAL: should never happen');
   }
-  const { nestModule, controllerName } = normalizedAngularOptions;
   const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
   return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedTableHeaderButton,
     tableName,
-    controllerName: controllerName ?? BuildNestControllerName({
-      nestModule,
-      controllerName,
-      controllerNameSuffix: 'header-button',
-    }),
   });
 }
 
@@ -67,7 +64,7 @@ function printOptions(options: NormalizedFormTableHeaderButtonOptions) {
 }
 
 export default function (options: MethodTableHeaderButtonOptions) {
-  const normalizedOptions = NormalizeFormTableHeaderButtonOptions(options);
+  const normalizedOptions = NormalizeMethodTableHeaderButtonOptions(options);
   const {
     refresh,
     confirm,
@@ -119,36 +116,38 @@ export default function (options: MethodTableHeaderButtonOptions) {
 
     ruleList.push(
       () => console.log('Coerce table header button method ...'),
-      CoerceComponentRule({
+      CoerceTableHeaderButtonMethodRule({
         project,
         feature,
         shared,
-        name: tableName,
         directory,
         overwrite,
-        tsMorphTransform: (
+        tableName,
+        refresh,
+        confirm,
+        tooltip,
+        errorMessage,
+        successMessage,
+        tsMorphTransform: (_, sourceFile) => {
+          CoerceDependencyInjection(sourceFile, {
+            injectionToken: methodName,
+            parameterName: 'method',
+            module: Module.ANGULAR,
+          });
+          CoerceImports(sourceFile, [
+            {
+              moduleSpecifier: methodModuleSpecifier.startsWith('.') ? join('..', methodModuleSpecifier) : methodModuleSpecifier,
+              namedImports: [ methodName ],
+            },
+          ]);
+          return {
+            statements: [ 'return this.method.call(parameters).toPromise();' ],
+          };
+        },
+        tsMorphTransformComponent: (
           project: Project,
           [ sourceFile ]: [ SourceFile ],
-          [ componentClass ]: [ ClassDeclaration ],
-          options: CoerceComponentOptions,
         ) => {
-          AddComponentProvider(
-            sourceFile,
-            {
-              provide: 'TABLE_HEADER_BUTTON_METHOD',
-              useExisting: methodName,
-            },
-            [
-              {
-                moduleSpecifier: '@rxap/material-table-system',
-                namedImports: [ 'TABLE_HEADER_BUTTON_METHOD' ],
-              },
-              {
-                moduleSpecifier: methodModuleSpecifier,
-                namedImports: [ methodName ],
-              },
-            ],
-          );
           AddComponentProvider(
             sourceFile,
             methodName,
