@@ -19,6 +19,11 @@
       "default": true,
       "description": "If true, the gitlab ci will be initialized with components"
     },
+    "componentsSource": {
+      "type": "string",
+      "enum": [ "component", "local" ],
+      "default": "component",
+    },
     "release": {
       "type": "string",
       "enum": ["none", "release-it", "schematic-release"],

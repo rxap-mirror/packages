@@ -11,6 +11,20 @@ import {
 import { Rule } from './coerce-rule';
 import { InitGeneratorSchema } from './schema';
 
+function buildIncludeForComponent(name: string, version: string, source: 'component' | 'local') {
+  switch (source) {
+    default:
+    case 'component':
+      return {
+        component: `gitlab.com/rxap/gitlab-ci/${name}@${version}`,
+      };
+    case 'local':
+      return {
+        local: `templates/${name}.yml`,
+      };
+  }
+}
+
 export function generateWithComponents(tree: Tree, options: InitGeneratorSchema) {
 
   const gitlabCiContent = CoerceFile(tree, '.gitlab-ci.yml', '', options.overwrite);
@@ -19,13 +33,13 @@ export function generateWithComponents(tree: Tree, options: InitGeneratorSchema)
 
   gitlabCi.include ??= [];
 
-  CoerceInclude(gitlabCi.include, { component: 'gitlab.com/rxap/gitlab-ci/base@~latest' });
+  CoerceInclude(gitlabCi.include, buildIncludeForComponent('base', '~latest', options.componentsSource));
 
   switch (options.release) {
     case 'semantic-release':
       throw new Error('The release type semantic-release is not supported with gitlab ci components.');
     case 'release-it':
-      CoerceInclude(gitlabCi.include, { component: 'gitlab.com/rxap/gitlab-ci/release-it@~latest' });
+      CoerceInclude(gitlabCi.include, buildIncludeForComponent('release-it', '~latest', options.componentsSource));
       break;
   }
 
@@ -47,7 +61,7 @@ export function generateWithComponents(tree: Tree, options: InitGeneratorSchema)
   }
 
   CoerceInclude(gitlabCi.include, {
-    component: 'gitlab.com/rxap/gitlab-ci/nx-workspace@~latest',
+    ...buildIncludeForComponent('nx-workspace', '~latest', options.componentsSource),
     rules,
     inputs,
   });

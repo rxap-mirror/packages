@@ -11,4 +11,5 @@ export interface InitGeneratorSchema {
   helmChart?: string;
   components: boolean;
   parallel: number;
+  componentsSource?: 'component' | 'local';
 }
