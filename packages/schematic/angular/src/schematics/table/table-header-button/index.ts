@@ -9,24 +9,26 @@ import {
 } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 import {
+  AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../lib/assert-table-component-exists';
 import {
-  NormalizedTableHeaderButton,
-  NormalizeTableHeaderButton,
-} from '../../../lib/table-header-button';
+  HeaderButton,
+  NormalizedHeaderButton,
+  NormalizeHeaderButton,
+} from '../../../lib/table/table-header-button';
 import { TableHeaderButtonOptions } from './schema';
 
-export type NormalizedTableHeaderButtonOptions<Options extends Record<string, any> = Record<string, any>> = Readonly<Normalized<TableHeaderButtonOptions<Options>> & NormalizedAngularOptions & NormalizedTableHeaderButton>
+export type NormalizedTableHeaderButtonOptions = Readonly<Normalized<Omit<TableHeaderButtonOptions, keyof AngularOptions | keyof HeaderButton>> & NormalizedAngularOptions & NormalizedHeaderButton>
 
-export function NormalizeTableHeaderButtonOptions<Options extends Record<string, any> = Record<string, any>>(
-  options: Readonly<TableHeaderButtonOptions<Options>>,
-): NormalizedTableHeaderButtonOptions<Options> {
+export function NormalizeTableHeaderButtonOptions(
+  options: Readonly<TableHeaderButtonOptions>,
+): NormalizedTableHeaderButtonOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableHeaderButton = NormalizeTableHeaderButton<Options>(options, options.tableName) as any;
+  const normalizedTableHeaderButton = NormalizeHeaderButton(options, options.tableName);
   if (!normalizedTableHeaderButton) {
     throw new Error('FATAL: should never happen');
   }

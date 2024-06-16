@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "form-header-button",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseHeaderButton"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "form",
+          "default": "form"
+        }
+      }
+    },
+    {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "form": {
+              "$ref": "#/definitions/formComponent"
+            }
+          },
+          "required": ["form"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "formComponent": {
+              "type": "string"
+            },
+            "customComponent": {
+              "type": "boolean"
+            }
+          },
+          "required": ["formComponent", "customComponent"]
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "baseHeaderButton": {
+      "$ref": "./base-header-button.schema.json"
+    },
+    "formComponent": {
+      "$ref": "./form-component.schema.json"
+    }
+  }
+}

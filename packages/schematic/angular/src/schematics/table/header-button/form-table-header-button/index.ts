@@ -27,57 +27,46 @@ import {
 } from 'ts-morph';
 import {
   AngularOptions,
+  NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import {
-  NormalizeControlList,
-  NormalizedControl,
-} from '../../../../lib/form/control';
-import {
-  NormalizedTableHeaderButton,
-  TableHeaderButton,
-} from '../../../../lib/table-header-button';
-import { NormalizeTableHeaderButtonOptions } from '../../table-header-button/index';
+  FormHeaderButton,
+  NormalizedFormHeaderButton,
+  NormalizeFormHeaderButton,
+} from '../../../../lib/table/header-button/form-header-button';
 import { FormTableHeaderButtonOptions } from './schema';
 
-export interface NormalizedFormTableHeaderButtonOptions
-  extends Readonly<Normalized<Omit<FormTableHeaderButtonOptions, keyof AngularOptions | keyof TableHeaderButton | 'formOptions'>> & NormalizedAngularOptions & NormalizedTableHeaderButton> {
-  options: Record<string, any>;
-  controllerName: string;
+export type NormalizedFormTableHeaderButtonOptions = Readonly<Normalized<Omit<FormTableHeaderButtonOptions, keyof AngularOptions | keyof FormHeaderButton>> & NormalizedAngularOptions & NormalizedFormHeaderButton> & {
   formComponent: string;
-  // TODO : create custom interface and normalization function for the formOptions property (also used in form-table-action)
-  formOptions: {
-    controlList: ReadonlyArray<NormalizedControl>;
-    role: string | null;
-    window: boolean;
-  };
+  customComponent: boolean;
+  controllerName: string;
 }
 
 export function NormalizeFormTableHeaderButtonOptions(
   options: Readonly<FormTableHeaderButtonOptions>,
 ): NormalizedFormTableHeaderButtonOptions {
-  const normalizedTableHeaderButtonOptions = NormalizeTableHeaderButtonOptions(options);
-  const nestModule = options.nestModule;
-  const formOptions = options.formOptions ?? {};
-  const { tableName } = normalizedTableHeaderButtonOptions;
+  const normalizedAngularOptions = NormalizeAngularOptions(options);
+  const normalizedTableHeaderButton = NormalizeFormHeaderButton(options, options.tableName);
+  if (!normalizedTableHeaderButton) {
+    throw new Error('FATAL: should never happen');
+  }
+  const { nestModule, controllerName } = normalizedAngularOptions;
+  const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
   return Object.freeze({
-    ...normalizedTableHeaderButtonOptions,
-    context: options.context,
-    nestModule,
-    controllerName: BuildNestControllerName({
+    ...normalizedAngularOptions,
+    ...normalizedTableHeaderButton,
+    tableName,
+    controllerName: controllerName ?? BuildNestControllerName({
       nestModule,
-      controllerName: 'header-button',
+      controllerName,
+      controllerNameSuffix: 'header-button',
     }),
     formComponent: CoerceSuffix(
       dasherize(options.formComponent ?? tableName.replace(/-table$/, '')), '-form'),
     customComponent: options.customComponent ?? false,
-    formOptions: {
-      window: formOptions.window ?? true,
-      role: formOptions.role ?? null,
-      controlList: NormalizeControlList(formOptions.controlList),
-    },
   });
 }
 
@@ -99,7 +88,7 @@ export default function (options: FormTableHeaderButtonOptions) {
     shared,
     directory,
     overwrite,
-    formOptions,
+    form,
     context,
     backend,
     nestModule,
@@ -122,7 +111,7 @@ export default function (options: FormTableHeaderButtonOptions) {
       ruleList.push(
         () => console.log('Coerce table header button form ...'),
         ExecuteSchematic('form-component', {
-          ...formOptions,
+          ...form,
           project,
           name: formComponent.replace(/-form$/, ''),
           feature,

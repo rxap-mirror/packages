@@ -50,6 +50,7 @@ import {
   NormalizedMinimumTableOptions,
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
+import { HeaderButtonKind } from './table/header-button-kind';
 import { NormalizedTableAction } from './table/table-action';
 import { TableActionKind } from './table/table-action-kind';
 import { TableColumnKind } from './table/table-column-kind';
@@ -604,7 +605,6 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
   } = normalizedOptions;
   if (headerButton) {
     const options = {
-      ...headerButton.options ?? {},
       // it is required to use the componentName. The componentName has already the proper suffix '-tree-table'
       // if the name property is used then the wrong suffix '-table' will be used
       tableName: componentName,
@@ -615,8 +615,8 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
       directory,
       ...headerButton,
     };
-    switch (headerButton.role) {
-      case 'form':
+    switch (headerButton.kind) {
+      case HeaderButtonKind.FORM:
         return ExecuteSchematic('form-table-header-button', {
           ...options,
           context,
@@ -624,8 +624,7 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
           nestModule: nestModule ?? controllerName,
         });
 
-      case 'navigation':
-      case 'link':
+      case HeaderButtonKind.NAVIGATION:
         return ExecuteSchematic('navigation-table-header-button', options);
 
       default:

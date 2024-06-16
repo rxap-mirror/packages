@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "navigation-header-button",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseHeaderButton"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "navigation",
+          "default": "navigation"
+        },
+        "route": {
+          "type": "string"
+        },
+        "relativeTo": {
+          "type": "boolean"
+        }
+      },
+      "required": ["route"]
+    }
+  ],
+  "definitions": {
+    "baseHeaderButton": {
+      "$ref": "./base-header-button.schema.json"
+    }
+  }
+}

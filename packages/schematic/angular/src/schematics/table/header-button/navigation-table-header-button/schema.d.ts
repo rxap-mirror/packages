@@ -1,7 +1,7 @@
-import { TableHeaderButtonOptions } from '../../table-header-button/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
+import { NavigationHeaderButton } from '../../../../lib/table/header-button/navigation-header-button';
 
 
-export interface NavigationTableHeaderButtonOptions extends TableHeaderButtonOptions {
-  route: string;
-  relativeTo: boolean;
+export type NavigationTableHeaderButtonOptions = AngularOptions & NavigationHeaderButton & {
+  tableName: string;
 }

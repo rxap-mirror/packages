@@ -1,15 +1,8 @@
-import { Control } from '../../../../lib/form/control';
-import { TableHeaderButtonOptions } from '../../table-header-button/schema';
+import { AngularOptions } from '../../../../lib/angular-options';
+import { FormHeaderButton } from '../../../../lib/table/header-button/form-header-button';
 
-
-export interface FormTableHeaderButtonOptions extends TableHeaderButtonOptions {
-  nestModule: string;
-  context: string;
+export type FormTableHeaderButtonOptions = AngularOptions & FormHeaderButton & {
+  tableName: string;
   formComponent?: string;
   customComponent: boolean;
-  formOptions?: {
-    controlList?: Array<Control>;
-    role?: string;
-    window?: boolean;
-  };
 }

@@ -29,9 +29,9 @@ import {
   NormalizeFormControlList,
 } from './form/control/form-control';
 import {
-  NormalizeTableHeaderButton,
-  TableHeaderButton,
-} from './table-header-button';
+  NormalizeHeaderButton,
+  HeaderButton,
+} from './table/table-header-button';
 import {
   NormalizedSortable,
   NormalizeSortable,
@@ -61,7 +61,7 @@ export function IsMinimumTableModifiers(value: string): value is MinimumTableMod
 }
 
 export interface MinimumTableOptions {
-  headerButton?: string | TableHeaderButton;
+  headerButton?: HeaderButton;
   columnList: Array<TableColumn>;
   actionList: Array<TableAction>;
   filterList: Array<FormControl>;
@@ -111,7 +111,7 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     sortable.enabled = true;
   }
   const propertyList = NormalizeDataPropertyList(options.propertyList);
-  const headerButton = NormalizeTableHeaderButton(options.headerButton, name);
+  const headerButton = NormalizeHeaderButton(options.headerButton, name);
   const modifiers = options.modifiers ?? [];
   if (columnList.some(column => !column.filterControl)) {
     CoerceArrayItems(modifiers, [MinimumTableModifiers.WITH_HEADER]);
