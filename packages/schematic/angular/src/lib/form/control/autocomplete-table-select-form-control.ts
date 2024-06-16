@@ -6,6 +6,7 @@ import { CoerceArrayItems } from '@rxap/utilities';
 import { NormalizeAccordionIdentifier } from '../../accordion-identifier';
 import { BackendTypes } from '../../backend-types';
 import { NormalizeBackendOptions } from '../../backend/backend-options';
+import { NormalizeDataSourceOptions } from '../../data-source/data-source-options';
 import { NormalizedBaseFormControl } from './base-form-control';
 
 import { FormControlKinds } from './form-control-kind';
@@ -13,6 +14,8 @@ import { NormalizeFormFieldFormControl } from './form-field-form-control';
 import {
   NormalizedTableSelectFormControl,
   NormalizeTableSelectColumn,
+  NormalizeTableSelectFormControlOptions,
+  NormalizeTableSelectFormControlResolver,
   NormalizeTableSelectToFunction,
   TableSelectFormControl,
 } from './table-select-form-control';
@@ -69,7 +72,9 @@ export function NormalizeAutocompleteTableSelectFormControl(
   return Object.freeze({
     ...NormalizeFormFieldFormControl(control, importList),
     identifier,
-    resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
+    dataSource: NormalizeDataSourceOptions(control.dataSource),
+    resolver: NormalizeTableSelectFormControlResolver(control.resolver),
+    options: NormalizeTableSelectFormControlOptions(control.options),
     kind: FormControlKinds.AUTOCOMPLETE_TABLE_SELECT,
     backend: NormalizeBackendOptions(control.backend ?? BackendTypes.NONE),
     title: control.title ?? null,

@@ -19,7 +19,10 @@ export type MethodOptions = BaseMethodOptions | ImportMethodOptions | OpenApiMet
 
 export type NormalizedMethodOptions = NormalizedBaseMethodOptions | NormalizedImportMethodOptions | NormalizedOpenApiMethodOptions;
 
-export function NormalizeMethodOptions(options: MethodOptions): NormalizedMethodOptions {
+export function NormalizeMethodOptions(options?: MethodOptions): NormalizedMethodOptions | null {
+  if (!options || Object.keys(options).length === 0) {
+    return null;
+  }
   switch (options.kind) {
 
     case MethodKinds.IMPORT:

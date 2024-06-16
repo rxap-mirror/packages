@@ -15,6 +15,17 @@
           "type": "string",
           "const": "autocomplete-table-select"
         },
+        "dataSource": {
+          "$ref": "#/definitions/dataSource"
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "$ref": "#/definitions/method"
+            }
+          }
+        },
         "placeholder": {
           "type": "string"
         },
@@ -73,6 +84,9 @@
           "properties": {
             "upstream": {
               "$ref": "#/definitions/upstream"
+            },
+            "method": {
+              "$ref": "#/definitions/method"
             }
           }
         }
@@ -81,6 +95,12 @@
     }
   ],
   "definitions": {
+    "dataSource": {
+      "$ref": "./data-source.schema.json"
+    },
+    "method": {
+      "$ref": "./method.schema.json"
+    },
     "property": {
       "$ref": "./property.schema.json"
     },

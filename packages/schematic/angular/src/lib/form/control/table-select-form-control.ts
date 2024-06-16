@@ -23,6 +23,16 @@ import {
   NormalizedBackendOptions,
 } from '../../backend/backend-options';
 import {
+  DataSourceOptions,
+  NormalizeDataSourceOptions,
+  NormalizedDataSourceOptions,
+} from '../../data-source/data-source-options';
+import {
+  MethodOptions,
+  NormalizedMethodOptions,
+  NormalizeMethodOptions,
+} from '../../method/method-options';
+import {
   GuessColumnTypeType,
   TableColumnNameToPropertyPath,
   TableColumnNameToTitle,
@@ -93,7 +103,9 @@ export interface TableSelectFormControl extends FormFieldFormControl {
   toDisplay?: ToFunction;
   toValue?: ToFunction;
   upstream?: UpstreamOptions;
-  resolver?: { upstream?: UpstreamOptions };
+  dataSource?: DataSourceOptions;
+  resolver?: { upstream?: UpstreamOptions, method?: MethodOptions };
+  options?: { method?: MethodOptions }
   identifier?: AccordionIdentifier;
 }
 
@@ -107,12 +119,33 @@ export interface NormalizedTableSelectFormControl
   toDisplay: NormalizedToFunction;
   toValue: NormalizedToFunction;
   upstream: NormalizedUpstreamOptions | null;
-  resolver: { upstream: NormalizedUpstreamOptions | null } | null;
+  resolver: { upstream: NormalizedUpstreamOptions | null, method: NormalizedMethodOptions | null } | null;
+  options: { method: NormalizedMethodOptions | null } | null;
   identifier: NormalizedAccordionIdentifier;
+  dataSource: NormalizedDataSourceOptions | null;
 }
 
 export function IsNormalizedTableSelectFormControl(template: NormalizedBaseFormControl): template is NormalizedTableSelectFormControl {
   return template.kind === FormControlKinds.TABLE_SELECT;
+}
+
+export function NormalizeTableSelectFormControlResolver(resolver: TableSelectFormControl['resolver']): NormalizedTableSelectFormControl['resolver'] {
+  if (!resolver || Object.keys(resolver).length === 0) {
+    return null;
+  }
+  return {
+    upstream: NormalizeUpstreamOptions(resolver.upstream),
+    method: NormalizeMethodOptions(resolver.method),
+  };
+}
+
+export function NormalizeTableSelectFormControlOptions(options: TableSelectFormControl['options']): NormalizedTableSelectFormControl['options'] {
+  if (!options || Object.keys(options).length === 0) {
+    return null;
+  }
+  return {
+    method: NormalizeMethodOptions(options.method),
+  };
 }
 
 export function NormalizeTableSelectFormControl(
@@ -156,7 +189,9 @@ export function NormalizeTableSelectFormControl(
       ],
     }),
     identifier,
-    resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
+    dataSource: NormalizeDataSourceOptions(control.dataSource),
+    resolver: NormalizeTableSelectFormControlResolver(control.resolver),
+    options: NormalizeTableSelectFormControlOptions(control.options),
     kind: FormControlKinds.TABLE_SELECT,
     backend: NormalizeBackendOptions(control.backend ?? BackendTypes.NONE),
     title: control.title ?? null,

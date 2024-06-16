@@ -14,7 +14,10 @@ export type DataSourceOptions = BaseDataSourceOptions | ImportDataSourceOptions;
 
 export type NormalizedDataSourceOptions = NormalizedBaseDataSourceOptions | NormalizedImportDataSourceOptions;
 
-export function NormalizeDataSourceOptions(options: DataSourceOptions): NormalizedDataSourceOptions {
+export function NormalizeDataSourceOptions(options?: DataSourceOptions): NormalizedDataSourceOptions | null {
+  if (!options || Object.keys(options).length === 0) {
+    return null;
+  }
   switch (options.kind) {
 
     case DataSourceKinds.IMPORT:
