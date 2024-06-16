@@ -3,7 +3,10 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { CoerceArrayItems } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  unique,
+} from '@rxap/utilities';
 import {
   CoerceFile,
   CoerceIgnorePattern,
@@ -82,6 +85,7 @@ export async function initLibraryGenerator(
     // region add the implicit dependency to the api project
     projectConfiguration.implicitDependencies ??= [];
     projectConfiguration.implicitDependencies.push(apiProjectName);
+    projectConfiguration.implicitDependencies = projectConfiguration.implicitDependencies.filter(unique());
     // endregion
   }
 

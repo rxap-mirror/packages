@@ -2,7 +2,10 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { SearchFile } from '@rxap/workspace-utilities';
+import {
+  CoerceFile,
+  SearchFile,
+} from '@rxap/workspace-utilities';
 import {
   dirname,
   join,
@@ -38,9 +41,9 @@ export function checkIfSecondaryEntrypointIncludeInTheTsConfig(tree: Tree, proje
     }
   }
   if (libTsConfig) {
-    tree.write(libTsConfigPath, JSON.stringify(libTsConfig, null, 2) + '\n');
+    CoerceFile(tree, libTsConfigPath, JSON.stringify(libTsConfig, null, 2), true);
   }
   if (specTsConfig) {
-    tree.write(specTsConfigPath, JSON.stringify(specTsConfig, null, 2) + '\n');
+    CoerceFile(tree, specTsConfigPath, JSON.stringify(specTsConfig, null, 2), true);
   }
 }

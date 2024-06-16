@@ -1,12 +1,14 @@
 import { Tree } from '@nx/devkit';
-import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
+import {
+  CoerceFile,
+  GetProjectSourceRoot,
+} from '@rxap/workspace-utilities';
 
 export function coerceTestSetup(tree: Tree, projectName: string) {
   const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
 
   const testSetupPath = `${projectSourceRoot}/test-setup.ts`;
-  if (!tree.exists(testSetupPath)) {
-    tree.write(testSetupPath, `// @ts-expect-error https://thymikee.github.io/jest-preset-angular/docs/getting-started/test-environment
+  CoerceFile(tree, testSetupPath, `// @ts-expect-error https://thymikee.github.io/jest-preset-angular/docs/getting-started/test-environment
 globalThis.ngJest = {
   testEnvironmentOptions: {
     errorOnUnknownElements: true,
@@ -15,7 +17,6 @@ globalThis.ngJest = {
 };
 import 'jest-preset-angular/setup-jest';
 `);
-  }
 
   let content = tree.read(testSetupPath, 'utf-8')!;
   if (!content.match(/import\s+\{.+}\s+from\s+'util';/)) {
@@ -36,6 +37,6 @@ jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
 `;
   }
 
-  tree.write(testSetupPath, content);
+  CoerceFile(tree, testSetupPath, content, true);
 
 }

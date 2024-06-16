@@ -5,6 +5,7 @@ import {
   getProjects,
   Tree,
 } from '@nx/devkit';
+import { CoerceFile } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { ComponentTestGeneratorSchema } from './schema';
 import { stringify } from 'yaml';
@@ -76,7 +77,7 @@ export async function componentTestGenerator(
       tree.delete(ciFilePath);
     }
   } else {
-    tree.write(ciFilePath, stringify(gitlabCiConfig));
+    CoerceFile(tree, ciFilePath, stringify(gitlabCiConfig), true);
   }
 
 }

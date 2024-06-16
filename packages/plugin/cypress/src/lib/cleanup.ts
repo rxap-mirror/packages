@@ -1,5 +1,8 @@
 import { Tree } from '@nx/devkit';
-import { GetProjectRoot } from '@rxap/workspace-utilities';
+import {
+  CoerceFile,
+  GetProjectRoot,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 
 export function cleanup(tree: Tree, projectName: string) {
@@ -14,7 +17,7 @@ export function cleanup(tree: Tree, projectName: string) {
     content = content.replace(/^ +console.log\('Custom command example: Login', email, password\);/, '//   console.log(\'Custom command example: Login\', email, password);');
     content = content.replace(/^}\);/, '// });');
     content = content.replace(/^\/\/ eslint-disable-next-line @typescript-eslint\/no-unused-vars/, '// eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-interface');
-    tree.write(commandsFile, content);
+    CoerceFile(tree, commandsFile, content, true);
   }
 
 }

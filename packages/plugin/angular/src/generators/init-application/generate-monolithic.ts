@@ -8,6 +8,7 @@ import {
   CoerceLayoutRoutes,
 } from '@rxap/ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
+import { CoerceFile } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitApplicationGeneratorSchema } from './schema';
 
@@ -19,7 +20,7 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
 
   if (!tree.exists(join(project.sourceRoot, 'assets', 'logo.png'))) {
     if (tree.exists('logo.png')) {
-      tree.write(join(project.sourceRoot, 'assets', 'logo.png'), tree.read('logo.png')!);
+      CoerceFile(tree, join(project.sourceRoot, 'assets', 'logo.png'), tree.read('logo.png')!, true);
     }
   }
 

@@ -31,7 +31,7 @@ export function extendAngularSpecificEslint(tree: Tree, project: ProjectConfigur
   const eslintConfig = JSON.parse(tree.read(eslintConfigFilaPath)!.toString('utf-8'));
 
   if (eslintConfig.extends[0] !== extendsPath) {
-    tree.write(eslintConfigFilaPath, JSON.stringify(defaultEslintConfig, null, 2));
+    CoerceFile(tree, eslintConfigFilaPath, JSON.stringify(defaultEslintConfig, null, 2), true);
   }
 
 }

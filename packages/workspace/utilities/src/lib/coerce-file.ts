@@ -3,7 +3,7 @@ import {
   TreeLike,
 } from './tree';
 
-export function CoerceFile<Tree extends TreeLike>(
+export function CoerceFile(
   tree: TreeLike,
   filePath: string,
   content: string | Buffer = '',
@@ -12,7 +12,8 @@ export function CoerceFile<Tree extends TreeLike>(
 ): string {
   const treeAdapter = new TreeAdapter(tree);
   if (tree.exists(filePath)) {
-    if (overwrite) {
+    const currentContent = treeAdapter.read(filePath, encoding);
+    if (currentContent !== content && overwrite) {
       treeAdapter.overwrite(filePath, content);
     }
   } else {

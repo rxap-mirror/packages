@@ -2,6 +2,7 @@ import { Tree } from '@nx/devkit';
 import { libraryGenerator } from '@nx/js';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
+  CoerceFile,
   GetDefaultGeneratorOptions,
   HasProject,
 } from '@rxap/workspace-utilities';
@@ -29,7 +30,7 @@ export async function coerceToolsProject(tree: Tree) {
     if (tree.exists('tools/src/lib/workspace-tools.spec.ts')) {
       tree.delete('tools/src/lib/workspace-tools.spec.ts');
     }
-    tree.write('tools/src/index.ts', 'export {};');
+    CoerceFile(tree, 'tools/src/index.ts', 'export {};', true);
   }
 
 }

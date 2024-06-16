@@ -4,6 +4,7 @@ import {
   isPromise,
 } from '@rxap/utilities';
 import {
+  CoerceFile,
   TreeAdapter,
   TreeLike,
 } from '@rxap/workspace-utilities';
@@ -40,7 +41,6 @@ export function WriteSerializedSchematicFile(
   path: string,
   data: SerializedSchematic,
 ): void {
-  const treeAdapter = new TreeAdapter(tree);
   const current = GetSerializedSchematicFromFile(tree, path);
   const currentContent = current ? stringify(current) : null;
   let newContent: string;
@@ -51,7 +51,7 @@ export function WriteSerializedSchematicFile(
   }
   if (currentContent !== newContent) {
     DeleteSerializedSchematicFile(tree, path);
-    treeAdapter.write(join(path, 'schematic.yaml'), newContent);
+    CoerceFile(tree, join(path, Array.isArray(data) ? 'schematics.yaml' : 'schematic.yaml'), newContent, true);
   }
   if (!HasSerializedSchematicFile(tree, path)) {
     throw new Error(`Failed to write serialized schematic file in directory '${path}'`);

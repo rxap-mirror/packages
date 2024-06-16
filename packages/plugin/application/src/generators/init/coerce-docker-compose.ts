@@ -3,6 +3,7 @@ import {
   deepMerge,
   equals,
 } from '@rxap/utilities';
+import { CoerceFile } from '@rxap/workspace-utilities';
 import {
   parse,
   stringify,
@@ -114,7 +115,7 @@ export function coerceDockerCompose(tree: Tree) {
   });
 
   if (!originalDockerCompose || !equals(originalDockerCompose, dockerCompose)) {
-    tree.write('docker-compose.yml', stringify(dockerCompose));
+    CoerceFile(tree, 'docker-compose.yml', stringify(dockerCompose), true);
   }
 
 }

@@ -83,7 +83,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
     const pipelineFile = tree.read('.gitlab/ci/pipelines/update-helm-chart-version.yaml', 'utf-8')!;
     const pipeline = parse(pipelineFile);
     pipeline['trigger-update-helm-chart-version'].trigger.project = options.helmChart;
-    tree.write('.gitlab/ci/pipelines/update-helm-chart-version.yaml', stringify(pipeline));
+    CoerceFile(tree, '.gitlab/ci/pipelines/update-helm-chart-version.yaml', stringify(pipeline), true);
   }
 
   const gitlabCiContent = CoerceFile(tree, '.gitlab-ci.yml', '');
@@ -210,7 +210,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
   if (gitlabCi.include.length === 0) {
     delete gitlabCi.include;
   }
-  tree.write('.gitlab-ci.yml', stringify(gitlabCi));
+  CoerceFile(tree, '.gitlab-ci.yml', stringify(gitlabCi), true);
 
   if (buildYamlChanged) {
     if (buildYaml.workflow.rules.length === 0) {
@@ -222,6 +222,6 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
     if (buildYaml.include.length === 0) {
       delete buildYaml.include;
     }
-    tree.write('.gitlab/ci/pipelines/build.yaml', stringify(buildYaml));
+    CoerceFile(tree, '.gitlab/ci/pipelines/build.yaml', stringify(buildYaml), true);
   }
 }

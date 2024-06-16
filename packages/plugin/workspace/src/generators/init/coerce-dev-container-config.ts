@@ -1,4 +1,5 @@
 import { Tree } from '@nx/devkit';
+import { CoerceFile } from '@rxap/workspace-utilities';
 
 const devContainer = {
   "name": "RxAP Workspace",
@@ -43,10 +44,6 @@ const devContainer = {
 
 export function coerceDevContainerConfig(tree: Tree) {
 
-  if (tree.exists('.devcontainer/devcontainer.json')) {
-    return;
-  }
-
-  tree.write('.devcontainer/devcontainer.json', JSON.stringify(devContainer, null, 2));
+  CoerceFile(tree, '.devcontainer/devcontainer.json', JSON.stringify(devContainer, null, 2));
 
 }

@@ -7,6 +7,7 @@ import {
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
+  CoerceFile,
   GetProjectSourceRoot,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -100,9 +101,7 @@ export async function openApiGenerator(
   if (!projectSourceRoot) {
     throw new Error(`Could not find the source root of the project: ${ options.project }`);
   }
-  if (!tree.exists(join(projectSourceRoot, 'assets', 'open-api-server-config.json'))) {
-    tree.write(join(projectSourceRoot, 'assets', 'open-api-server-config.json'), '[]');
-  }
+  CoerceFile(tree, join(projectSourceRoot, 'assets', 'open-api-server-config.json'), '[]');
   UpdateAppConfig(tree, options);
   await AddPackageJsonDependency(tree, '@rxap/nest-open-api', 'latest', { soft: true });
 }

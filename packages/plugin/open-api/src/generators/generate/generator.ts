@@ -17,6 +17,7 @@ import {
 } from '@rxap/workspace-open-api';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
+  CoerceFile,
   DeleteRecursive,
   GetProject,
   GetProjectPackageJson,
@@ -109,7 +110,7 @@ export async function generateGenerator(
   if (options.export) {
     await LibraryIndexExportGenerator(tree, { projects: [ options.project ] });
   } else {
-    tree.write(join(GetProjectSourceRoot(tree, projectName), 'index.ts'), 'export {};');
+    CoerceFile(tree, join(GetProjectSourceRoot(tree, projectName), 'index.ts'), 'export {};', true);
   }
 
   if (!options.skipFormat) {

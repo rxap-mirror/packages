@@ -523,8 +523,6 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOption
 
   const rules: Rule[] = [];
 
-  console.log('Create Get Operation ...', { nestModule, controllerName });
-
   if (identifier) {
     rules.push(
       () => console.log('Create GetById Operation ...'),

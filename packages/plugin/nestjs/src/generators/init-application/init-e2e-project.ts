@@ -4,6 +4,7 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
+  CoerceFile,
   CoerceFilesStructure,
   GetProjectRoot,
 } from '@rxap/workspace-utilities';
@@ -36,7 +37,7 @@ export function initE2eProject(tree: Tree, projectName: string, project: Project
   if (tree.exists(testSetupFilePath)) {
     let testSetupContent = tree.read(testSetupFilePath, 'utf-8')!;
     testSetupContent = testSetupContent.replace(/process.env.PORT \?\? '\d+';/, `process.env.PORT ?? '${port}';`);
-    tree.write(testSetupFilePath, testSetupContent);
+    CoerceFile(tree, testSetupFilePath, testSetupContent, true);
   }
 
 }

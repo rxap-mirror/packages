@@ -4,6 +4,7 @@ import {
   CoerceArrayItems,
 } from '@rxap/utilities';
 import {
+  CoerceFile,
   GetGenerators,
   GetPackageJson,
   GetProjectRoot,
@@ -129,8 +130,8 @@ export async function indexJsonSchemaGenerator(
   options: IndexJsonSchemaGeneratorSchema
 ) {
   const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
-  tree.write(join(projectSourceRoot, 'schematic-input.schema.json'), JSON.stringify(generateSchematicInputSchema(tree, options), null, 2));
-  tree.write(join(projectSourceRoot, 'template.schema.json'), JSON.stringify(generateTemplateSchema(tree, options), null, 2));
+  CoerceFile(tree, join(projectSourceRoot, 'schematic-input.schema.json'), JSON.stringify(generateSchematicInputSchema(tree, options), null, 2), true);
+  CoerceFile(tree, join(projectSourceRoot, 'template.schema.json'), JSON.stringify(generateTemplateSchema(tree, options), null, 2), true);
 }
 
 export default indexJsonSchemaGenerator;

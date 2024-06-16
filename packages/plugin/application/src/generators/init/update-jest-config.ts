@@ -2,6 +2,7 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
+import { CoerceFile } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
 export function updateJestConfig(
@@ -36,7 +37,7 @@ export function updateJestConfig(
   ],`);
     }
     // endregion
-    tree.write(jestConfigFilePath, content);
+    CoerceFile(tree, jestConfigFilePath, content, true);
   }
 
 }

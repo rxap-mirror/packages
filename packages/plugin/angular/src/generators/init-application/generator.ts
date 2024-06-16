@@ -39,6 +39,7 @@ import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
   CoerceAssets,
+  CoerceFile,
   CoerceFilesStructure,
   CoerceIgnorePattern,
   CoerceNxJsonCacheableOperation,
@@ -490,7 +491,7 @@ function cleanup(tree: Tree, projectName: string, options: InitApplicationGenera
     const content = tree.read(join(sourceRoot, 'app/app.component.html'), 'utf-8')!
       .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '')
       .replace(/<ul class="remote-menu">[\s\S]*<\/ul>/, '');
-    tree.write(join(sourceRoot, 'app/app.component.html'), content);
+    CoerceFile(tree, join(sourceRoot, 'app/app.component.html'), content, true);
   }
 
   if (options.moduleFederation !== 'remote') {
@@ -515,7 +516,7 @@ function cleanup(tree: Tree, projectName: string, options: InitApplicationGenera
     const projectRoot = GetProjectRoot(tree, projectName);
     let content = tree.read(join(projectRoot, 'module-federation.config.js'), 'utf-8')!;
     content = content.replace('./Routes', './routes');
-    tree.write(join(projectRoot, 'module-federation.config.js'), content);
+    CoerceFile(tree, join(projectRoot, 'module-federation.config.js'), content, true);
     // endregion
 
     // region tsconfig.base.json
@@ -780,22 +781,20 @@ function coerceEnvironmentFiles(tree: Tree, options: InitApplicationGeneratorSch
 function coerceLocalazyConfigFile(tree: Tree, project: ProjectConfiguration) {
   const projectRoot = project.root;
   const localazyConfigPath = join(projectRoot, 'localazy.json');
-  if (!tree.exists(localazyConfigPath)) {
-    tree.write(localazyConfigPath, JSON.stringify({
-      upload: {
-        type: 'xliff',
-        deprecate: 'file',
-        features: [
-          'use_defined_lang_for_source',
-          'dont_parse_target',
-        ],
-        files: 'src/i18n/messages.xlf',
-      },
-      download: {
-        files: 'src/i18n/${languageCode}.xlf',
-      },
-    }, null, 2));
-  }
+  CoerceFile(tree, localazyConfigPath, JSON.stringify({
+    upload: {
+      type: 'xliff',
+      deprecate: 'file',
+      features: [
+        'use_defined_lang_for_source',
+        'dont_parse_target',
+      ],
+      files: 'src/i18n/messages.xlf',
+    },
+    download: {
+      files: 'src/i18n/${languageCode}.xlf',
+    },
+  }, null, 2));
 }
 
 function updateTsConfig(tree: Tree, projectName: string) {
@@ -998,14 +997,12 @@ export async function initApplicationGenerator(
     overwrite: options.overwrite,
   });
 
-  if (!tree.exists('shared/angular/assets/custom.svg')) {
-    tree.write('shared/angular/assets/custom.svg', '<svg></svg>');
-  }
+  CoerceFile(tree, 'shared/angular/assets/custom.svg', '<svg></svg>');
 
   if (options.i18n && !options.skipDocker) {
     let dockerfileContent = tree.read('shared/angular/Dockerfile', 'utf-8')!;
     dockerfileContent = dockerfileContent.replace('registry.gitlab.com/rxap/docker/nginx:', 'registry.gitlab.com/rxap/docker/i18n-nginx:');
-    tree.write('shared/angular/Dockerfile', dockerfileContent);
+    CoerceFile(tree, 'shared/angular/Dockerfile', dockerfileContent, true);
   }
 
   CoerceFilesStructure(tree, {

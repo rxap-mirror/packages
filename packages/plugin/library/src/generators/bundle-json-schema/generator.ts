@@ -6,6 +6,7 @@ import {
   RemoveFromObject,
 } from '@rxap/utilities';
 import {
+  CoerceFile,
   GetProjectSourceRoot,
   SearchFile,
 } from '@rxap/workspace-utilities';
@@ -115,7 +116,7 @@ export async function bundleJsonSchemaGenerator(
       }
       bundledSchema['definitions'] ??= {};
       bundledSchema['definitions'] = Object.entries(bundledSchema['definitions']).sort(([a], [b]) => a.localeCompare(b)).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
-      tree.write(file.path.replace('template.schema.json', 'schema.json'), JSON.stringify(bundledSchema, null, 2));
+      CoerceFile(tree, file.path.replace('template.schema.json', 'schema.json'), JSON.stringify(bundledSchema, null, 2), true);
     }
   }
 }

@@ -1,5 +1,8 @@
 import { Tree } from '@nx/devkit';
-import { GetProjectRoot } from '@rxap/workspace-utilities';
+import {
+  CoerceFile,
+  GetProjectRoot,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 
 export function coerceCypressConfig(tree: Tree, projectName: string) {
@@ -16,13 +19,13 @@ export function coerceCypressConfig(tree: Tree, projectName: string) {
   }
 
   if (replace) {
-    tree.write(cypressConfigPath, `import { defineConfig } from 'cypress';
+    CoerceFile(tree, cypressConfigPath, `import { defineConfig } from 'cypress';
 import { componentTestingPreset } from 'workspace/cypress/config';
 
 export default defineConfig({
   component: componentTestingPreset(__filename),
 });
-`);
+`, true);
   }
 
 }

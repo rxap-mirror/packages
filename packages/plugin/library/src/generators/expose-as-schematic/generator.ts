@@ -4,6 +4,7 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
+  CoerceFile,
   SkipNonGeneratorsProject,
   UpdateGenerators,
   UpdateProjectPackageJson,
@@ -48,9 +49,11 @@ export async function exposeAsSchematicGenerator(
       generators.schematics ??= {};
 
       for (const [ name, generator ] of Object.entries(generators.generators)) {
-        tree.write(
+        CoerceFile(
+          tree,
           join(project.root, dirname(generator.schema), 'index.ts'),
           `import { convertNxGenerator } from '@nx/devkit';\nimport generator from './generator';\n\nconst schematic = convertNxGenerator(generator);\nexport default schematic;\n`,
+          true,
         );
         generators.schematics[name] = {
           factory: `${ dirname(generator.schema) }/index`,

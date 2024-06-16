@@ -4,6 +4,7 @@ import {
 } from '@nx/devkit';
 import { classify } from '@rxap/utilities';
 import {
+  CoerceFile,
   CoerceFilesStructure,
   CoerceLernaJson,
   GenerateSerializedSchematicFile,
@@ -69,7 +70,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   const readMeContent = tree.read('README.md', 'utf-8');
   if (readMeContent?.includes('href="https://nx.dev"')) {
     const title = classify(GetWorkspaceName(tree));
-    tree.write('README.md', `${title}\n${'='.repeat(title.length)}\n`);
+    CoerceFile(tree, 'README.md', `${title}\n${'='.repeat(title.length)}\n`, true);
   }
 
   GenerateSerializedSchematicFile(

@@ -7,6 +7,7 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
+  CoerceFile,
   IsAngularProject,
   IsApplicationProject,
   IsRxapRepository,
@@ -73,8 +74,7 @@ export async function CoerceCypressComponentTesting(tree: Tree, project: Project
       _project,
     );
     if (IsRxapRepository(tree)) {
-      tree.write(
-        join(
+      CoerceFile(tree, join(
           project.root,
           'cypress.config.ts',
         ),
@@ -83,8 +83,7 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   component: componentTestingPreset(__filename),
-});`,
-      );
+});`, true);
     }
   }
 

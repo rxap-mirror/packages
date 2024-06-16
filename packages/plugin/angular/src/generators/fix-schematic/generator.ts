@@ -1,5 +1,6 @@
 import { Tree } from '@nx/devkit';
 import {
+  CoerceFile,
   GetProjectPackageJson,
   GetProjectRoot,
   GetProjectSourceRoot,
@@ -95,7 +96,7 @@ export async function fixSchematicGenerator(
   }
 
   console.log('Update collection file');
-  tree.write(collectionFile, JSON.stringify(collection, null, 2));
+  CoerceFile(tree, collectionFile, JSON.stringify(collection, null, 2), true);
 
 }
 

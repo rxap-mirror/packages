@@ -1,5 +1,8 @@
 import { Tree } from '@nx/devkit';
-import { GetWorkspaceName } from '@rxap/workspace-utilities';
+import {
+  CoerceFile,
+  GetWorkspaceName,
+} from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
 function randomNumber(min: number, max: number) {
@@ -45,6 +48,6 @@ export function generateGitlabCiSetupScript(tree: Tree, options: InitGeneratorSc
     bashScript += generateReleaseItSetup(workspaceName);
   }
 
-  tree.write('gitlab-ci-setup.sh', bashScript);
+  CoerceFile(tree, 'gitlab-ci-setup.sh', bashScript, true);
 
 }

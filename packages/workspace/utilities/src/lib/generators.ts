@@ -1,5 +1,6 @@
 import { ProjectConfiguration } from '@nx/devkit';
 import { join } from 'path';
+import { CoerceFile } from './coerce-file';
 import { GetProject } from './get-project';
 import { PackageJson } from './package-json';
 import { GetPackageJson } from './package-json-file';
@@ -101,7 +102,6 @@ export function UpdateGenerators(
   projectRootOrNameOrConfiguration: string | ProjectConfiguration,
   update: (generators: GeneratorFile) => GeneratorFile,
 ) {
-  const treeAdapter = new TreeAdapter(tree);
   const projectRoot = ProjectRootOrNameOrConfigurationToProjectRoot(tree, projectRootOrNameOrConfiguration);
 
   const packageJson = GetPackageJson(tree, projectRoot);
@@ -116,7 +116,7 @@ export function UpdateGenerators(
 
   const generators = GetGeneratorFile(tree, projectRoot, packageJson);
 
-  treeAdapter.write(GetGeneratorFilePath(projectRoot, packageJson), JSON.stringify(update(generators), null, 2) + '\n');
+  CoerceFile(tree, GetGeneratorFilePath(projectRoot, packageJson), JSON.stringify(update(generators), null, 2) + '\n', true);
 
 }
 

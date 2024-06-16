@@ -10,6 +10,7 @@ import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import { CreateProject } from '@rxap/ts-morph';
 import {
+  CoerceFile,
   Dependency,
   GetProjectRoot,
   HasProjectWithPackageName,
@@ -505,7 +506,7 @@ export async function replaceLatestPackageVersionForProject(tree: Tree, projectN
   await replaceLatestPackageVersion(devDependencies);
   await replaceLatestPackageVersion(optionalDependencies);
 
-  tree.write(join(projectRoot, 'package.json'), JSON.stringify(packageJson, null, 2) + '\n');
+  CoerceFile(tree, join(projectRoot, 'package.json'), JSON.stringify(packageJson, null, 2) + '\n', true);
 }
 
 export function removePackageFromDependencies(packageName: string, dependencies: Dependency | undefined) {
@@ -569,7 +570,7 @@ export async function fixDependenciesGenerator(
       packageJson.peerDependencies = {};
       packageJson.devDependencies = {};
       packageJson.optionalDependencies = {};
-      tree.write(`${ projectRoot }/package.json`, JSON.stringify(packageJson, null, 2) + '\n');
+      CoerceFile(tree, `${ projectRoot }/package.json`, JSON.stringify(packageJson, null, 2) + '\n', true);
     }
   }
 

@@ -48,6 +48,6 @@ export function generateWithComponents(tree: Tree, options: DockerGeneratorSchem
   include.inputs ??= {};
   CoerceInputs(include.inputs, inputs);
 
-  tree.write('.gitlab-ci.yml', stringify(gitlabCi));
+  CoerceFile(tree,'.gitlab-ci.yml', stringify(gitlabCi), true);
 
 }

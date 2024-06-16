@@ -5,7 +5,10 @@ import {
 } from '@nx/devkit';
 import { AddDir } from '@rxap/generator-ts-morph';
 import { CreateProject } from '@rxap/ts-morph';
-import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
+import {
+  CoerceFile,
+  GetProjectSourceRoot,
+} from '@rxap/workspace-utilities';
 import {
   existsSync,
   readFileSync,
@@ -253,7 +256,7 @@ async function processProject(options: DocumentationGeneratorSchema, projectName
     try {
       const changed = await processSourceFile(options, project, sourceFile);
       if (changed) {
-        tree.write(join(projectSourceRoot, sourceFile.getFilePath()), sourceFile.getFullText());
+        CoerceFile(tree, join(projectSourceRoot, sourceFile.getFilePath()), sourceFile.getFullText(), true);
       }
     } catch (e: any) {
       console.error(`\x1b[31mError processing file: \x1b[0m${ sourceFile.getFilePath() }`);
