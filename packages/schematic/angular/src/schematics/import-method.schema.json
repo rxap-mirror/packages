@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "import-method",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseMethod"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "import",
+          "default": "import"
+        },
+        "import": {
+          "$ref": "#/definitions/type"
+        }
+      },
+      "required": ["import"]
+    }
+  ],
+  "definitions": {
+    "baseMethod": {
+      "$ref": "./base-method.schema.json"
+    },
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
+}

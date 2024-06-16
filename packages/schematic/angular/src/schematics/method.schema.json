@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "method",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "#/definitions/baseMethod"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "default",
+              "default": "default"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$ref": "#/definitions/importMethod"
+    },
+    {
+      "$ref": "#/definitions/openApiMethod"
+    }
+  ],
+  "definitions": {
+    "baseMethod": {
+      "$ref": "./base-method.schema.json"
+    },
+    "importMethod": {
+      "$ref": "./import-method.schema.json"
+    },
+    "openApiMethod": {
+      "$ref": "./open-api-method.schema.json"
+    }
+  }
+}

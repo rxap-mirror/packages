@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "open-api-method",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseMethod"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "open-api",
+          "default": "open-api"
+        },
+        "operationId": {
+          "type": "string"
+        }
+      },
+      "required": ["operationId"]
+    }
+  ],
+  "definitions": {
+    "baseMethod": {
+      "$ref": "./base-method.schema.json"
+    }
+  }
+}

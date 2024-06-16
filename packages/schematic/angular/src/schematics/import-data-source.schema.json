@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "import-data-source",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseDataSource"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "import",
+          "default": "import"
+        },
+        "import": {
+          "$ref": "#/definitions/type"
+        }
+      },
+      "required": ["import"]
+    }
+  ],
+  "definitions": {
+    "baseDataSource": {
+      "$ref": "./base-data-source.schema.json"
+    },
+    "type": {
+      "$ref": "./type.schema.json"
+    }
+  }
+}
