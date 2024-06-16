@@ -23,6 +23,7 @@ import {
   relative,
 } from 'path';
 import { InitComponentGeneratorSchema } from './schema';
+import 'colors';
 
 export async function initComponentGenerator(
   tree: Tree,
@@ -69,6 +70,7 @@ export async function initComponentGenerator(
   }
 
   if (!tree.exists(join(path, componentFileName + '.stories.ts')) && HasTarget(tree, options.project, 'storybook')) {
+    console.log('Generate component story'.blue);
     await componentStoryGenerator(tree, {
       projectPath: projectRoot,
       interactionTests: componentOptions.interactionTests,
@@ -79,6 +81,7 @@ export async function initComponentGenerator(
     });
 
     if (options.cypressProject || HasTarget(tree, options.project, 'e2e')) {
+      console.log('Generate component cypress spec'.blue);
       await componentCypressSpecGenerator(tree, {
         projectName: options.project,
         projectPath: projectRoot,
@@ -94,6 +97,7 @@ export async function initComponentGenerator(
   }
 
   if (!tree.exists(join(path, componentFileName + '.cy.ts')) && HasTarget(tree, options.project, 'component-test')) {
+    console.log('Generate component test'.blue);
     await componentTestGenerator(tree, {
       project: options.project,
       componentName,
