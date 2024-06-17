@@ -21,12 +21,10 @@ import { updateTsConfig } from './update-ts-config';
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
   console.log(`init angular library project: ${ projectName }`);
 
-  const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
-
   await LibraryInitProject(tree, projectName, project, options);
 
   cleanup(tree, project, projectName);
-  updatePackageJson(tree, project, rootPackageJson);
+  updatePackageJson(tree, projectName, project);
 
   checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
 

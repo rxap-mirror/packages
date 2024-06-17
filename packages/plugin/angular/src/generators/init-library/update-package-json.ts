@@ -1,29 +1,26 @@
 import {
   ProjectConfiguration,
-  readJson,
   Tree,
-  writeJson,
 } from '@nx/devkit';
-import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { IsPublishable } from '@rxap/workspace-utilities';
-import { join } from 'path';
+import {
+  GetMajorAngularVersion,
+  IsPublishable,
+  UpdateProjectPackageJson,
+} from '@rxap/workspace-utilities';
 import { gte } from 'semver';
-import { getAngularMajorVersion } from './get-angular-major-version';
 
 export function updatePackageJson(
   tree: Tree,
+  projectName: string,
   project: ProjectConfiguration,
-  rootPackageJson: ProjectPackageJson,
 ) {
-  if (IsPublishable(tree, project) && tree.exists(join(project.root, 'package.json'))) {
-    const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
-    const version = getAngularMajorVersion(rootPackageJson) ?? packageJson.version;
-    if (!version) {
-      throw new Error('Unable to determine the angular major version from the root package.json');
-    }
-    if (!packageJson.version || gte(version, packageJson.version)) {
-      packageJson.version = version;
-    }
-    writeJson(tree, join(project.root, 'package.json'), packageJson);
+  if (IsPublishable(tree, project)) {
+    UpdateProjectPackageJson(tree, packageJson => {
+      const majorAngularVersion = GetMajorAngularVersion(tree);
+      const version = `${ majorAngularVersion }.0.0`;
+      if (!packageJson.version || gte(version, packageJson.version)) {
+        packageJson.version = version;
+      }
+    }, { projectName });
   }
 }
