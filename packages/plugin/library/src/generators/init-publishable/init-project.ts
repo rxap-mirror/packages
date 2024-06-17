@@ -4,10 +4,13 @@ import {
   Tree,
 } from '@nx/devkit';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
+import { unique } from '@rxap/utilities';
 import {
   CoerceFile,
   CoerceFilesStructure,
   CoerceIgnorePattern,
+  GetProject,
+  IsRxapRepository,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitPublishableGeneratorSchema } from './schema';
@@ -36,5 +39,12 @@ export function initProject(tree: Tree, projectName: string, project: ProjectCon
     console.warn('no LICENSE file found in the workspace root');
   }
   CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'README.md' ]);
+
+  if (IsRxapRepository(tree)) {
+    const rxapProject = GetProject(tree, 'rxap');
+    rxapProject.implicitDependencies ??= [];
+    rxapProject.implicitDependencies.push(projectName);
+    rxapProject.implicitDependencies = rxapProject.implicitDependencies.filter(unique());
+  }
 
 }
