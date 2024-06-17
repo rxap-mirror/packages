@@ -59,6 +59,11 @@
       "factory": "./src/generators/init-preset/generator",
       "schema": "./src/generators/init-preset/schema.json",
       "description": "init-preset generator"
+    },
+    "init-schematic": {
+      "factory": "./src/generators/init-schematic/generator",
+      "schema": "./src/generators/init-schematic/schema.json",
+      "description": "init-schematic generator"
     }
   },
   "schematics": {
@@ -116,6 +121,16 @@
       "factory": "./src/generators/add-migration/index",
       "schema": "./src/generators/add-migration/schema.json",
       "description": "add-migration generator"
+    },
+    "init-preset": {
+      "factory": "./src/generators/init-preset/index",
+      "schema": "./src/generators/init-preset/schema.json",
+      "description": "init-preset generator"
+    },
+    "init-schematic": {
+      "factory": "./src/generators/init-schematic/index",
+      "schema": "./src/generators/init-schematic/schema.json",
+      "description": "init-schematic generator"
     }
   }
 }

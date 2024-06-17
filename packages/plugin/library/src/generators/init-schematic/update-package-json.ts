@@ -3,15 +3,15 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
-  GetMajorNxVersion,
+  GetMajorAngularSchematicDevkitVersion,
   UpdateProjectPackageJson,
 } from '@rxap/workspace-utilities';
 import { gte } from 'semver';
 
 export function updatePackageJson(tree: Tree, projectName: string, project: ProjectConfiguration) {
   UpdateProjectPackageJson(tree, packageJson => {
-    const majorNxVersion = GetMajorNxVersion(tree);
-    const version = `${ majorNxVersion }.0.0`;
+    const majorAngularVersion = GetMajorAngularSchematicDevkitVersion(tree);
+    const version = `${ majorAngularVersion }.0.0`;
     if (!packageJson.version || gte(version, packageJson.version)) {
       packageJson.version = version;
     }

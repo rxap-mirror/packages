@@ -8,9 +8,11 @@ import {
   IsPluginProject,
   IsPresetProject,
   IsPublishable,
+  IsSchematicProject,
 } from '@rxap/workspace-utilities';
 import { initProject as initBuildableProject } from '../init-buildable/init-project';
 import { initProject as initPluginProject } from '../init-plugin/init-project';
+import { initProject as initSchematicProject } from '../init-schematic/init-project';
 import { initProject as initPresetProject } from '../init-preset/init-project';
 import { initProject as initPublishableProject } from '../init-publishable/init-project';
 import { initProject as initWithMigrationProject } from '../init-with-migrations/init-project';
@@ -39,6 +41,10 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   if (IsPresetProject(project)) {
     initPresetProject(tree, projectName, project, options);
+  }
+
+  if (IsSchematicProject(project)) {
+    initSchematicProject(tree, projectName, project, options);
   }
 
   if (HasMigrations(tree, { name: projectName })) {
