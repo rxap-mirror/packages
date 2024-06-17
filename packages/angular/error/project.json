@@ -50,13 +50,15 @@
     "update-package-group": {},
     "readme": {},
     "fix-dependencies": {
-      "outputs": [],
+      "outputs": ["{projectRoot}/package.json"],
       "options": {
         "options": {
           "strict": true,
           "onlyDependencies": false
-        }
-      }
+        },
+        "generator": "@rxap/plugin-library:fix-dependencies"
+      },
+      "executor": "@rxap/plugin-library:run-generator"
     },
     "component-test": {
       "options": {

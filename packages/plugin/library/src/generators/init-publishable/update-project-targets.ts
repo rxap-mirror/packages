@@ -2,6 +2,7 @@ import { ProjectConfiguration } from '@nx/devkit';
 import {
   CoerceTarget,
   RemoveTarget,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { InitPublishableGeneratorSchema } from './schema';
 
@@ -15,7 +16,7 @@ export function updateProjectTargets(project: ProjectConfiguration, options: Ini
     CoerceTarget(project, 'fix-dependencies', {
       executor: '@rxap/plugin-library:run-generator',
       outputs: [
-        '{workspaceRoot}/{projectRoot}/package.json',
+        '{projectRoot}/package.json',
       ],
       options: {
         generator: '@rxap/plugin-library:fix-dependencies',
@@ -24,7 +25,7 @@ export function updateProjectTargets(project: ProjectConfiguration, options: Ini
           onlyDependencies: true,
         }
       },
-    });
+    }, Strategy.OVERWRITE);
   }
   CoerceTarget(project, 'linking', {});
 }

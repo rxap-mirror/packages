@@ -3,10 +3,8 @@
   "name": "@rxap/generator-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@rxap/workspace-ts-morph": "^19.1.0-dev.2",
     "tslib": "2.6.2"
-  },
-  "peerDependencies": {
-    "@rxap/workspace-ts-morph": "^19.1.0-dev.2"
   },
   "author": {
     "name": "Merzough Münker",

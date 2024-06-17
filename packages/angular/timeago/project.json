@@ -47,7 +47,7 @@
     },
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{workspaceRoot}/{projectRoot}/package.json"],
+      "outputs": ["{projectRoot}/package.json"],
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {

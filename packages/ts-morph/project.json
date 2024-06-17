@@ -18,9 +18,13 @@
     "fix-dependencies": {
       "options": {
         "options": {
-          "strict": true
-        }
-      }
+          "strict": true,
+          "onlyDependencies": true
+        },
+        "generator": "@rxap/plugin-library:fix-dependencies"
+      },
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": ["{projectRoot}/package.json"]
     },
     "index-export": {},
     "lint": {

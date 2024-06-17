@@ -3,12 +3,10 @@
   "name": "@rxap/ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "tslib": "2.6.2"
-  },
-  "peerDependencies": {
     "@rxap/utilities": "^16.2.3-dev.0",
-    "colors": "^1.4.0",
-    "ts-morph": "^18.0.0"
+    "colors": "1.4.0",
+    "ts-morph": "18.0.0",
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",

@@ -53,8 +53,11 @@
         "options": {
           "strict": true,
           "onlyDependencies": true
-        }
-      }
+        },
+        "generator": "@rxap/plugin-library:fix-dependencies"
+      },
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": ["{projectRoot}/package.json"]
     },
     "lint": {
       "options": {

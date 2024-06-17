@@ -7795,10 +7795,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/browser-tailwind@workspace:packages/browser/tailwind"
   dependencies:
+    "@tailwindcss/typography": 0.5.13
+    tailwindcss: 3.4.3
     tslib: 2.6.2
-  peerDependencies:
-    "@tailwindcss/typography": ^0.5.13
-    tailwindcss: ^3.4.3
   languageName: unknown
   linkType: soft
 
@@ -7806,9 +7805,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/browser-utilities@workspace:packages/browser/utilities"
   dependencies:
+    rxjs: 7.8.1
     tslib: 2.6.2
-  peerDependencies:
-    rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
 
@@ -7898,10 +7896,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/data-structure-tree@workspace:packages/data-structure/tree"
   dependencies:
-    tslib: 2.6.2
-  peerDependencies:
     "@rxap/rxjs": ^1.1.5-dev.0
     "@rxap/utilities": ^16.2.3-dev.0
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -8044,9 +8041,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/generator-ts-morph@workspace:packages/generator/ts-morph"
   dependencies:
-    tslib: 2.6.2
-  peerDependencies:
     "@rxap/workspace-ts-morph": ^19.1.0-dev.2
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -8088,10 +8084,9 @@ __metadata:
   resolution: "@rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript"
   dependencies:
     "@apidevtools/json-schema-ref-parser": 9.0.9
-    tslib: 2.6.2
-  peerDependencies:
     "@rxap/utilities": ^16.2.3-dev.0
-    ts-morph: ^18.0.0
+    ts-morph: 18.0.0
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -8240,15 +8235,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/mixin@workspace:packages/mixin":
+"@rxap/mixin@^16.0.5-dev.0, @rxap/mixin@workspace:packages/mixin":
   version: 0.0.0-use.local
   resolution: "@rxap/mixin@workspace:packages/mixin"
   dependencies:
-    tslib: 2.6.2
-  peerDependencies:
     "@rxap/reflect-metadata": ^1.0.6-dev.0
     "@rxap/utilities": ^16.2.3-dev.0
-    reflect-metadata: ^0.1.13
+    reflect-metadata: 0.1.13
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -8735,9 +8729,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/pattern@workspace:packages/pattern"
   dependencies:
+    rxjs: 7.8.1
     tslib: 2.6.2
-  peerDependencies:
-    rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
 
@@ -9008,14 +9001,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/reflect-metadata@workspace:packages/reflect-metadata":
+"@rxap/reflect-metadata@^1.0.6-dev.0, @rxap/reflect-metadata@workspace:packages/reflect-metadata":
   version: 0.0.0-use.local
   resolution: "@rxap/reflect-metadata@workspace:packages/reflect-metadata"
   dependencies:
-    tslib: 2.6.2
-  peerDependencies:
     "@rxap/utilities": ^16.2.3-dev.0
-    reflect-metadata: ^0.1.13
+    reflect-metadata: 0.1.13
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -9034,14 +9026,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/rxjs@workspace:packages/rxjs":
+"@rxap/rxjs@^1.1.5-dev.0, @rxap/rxjs@workspace:packages/rxjs":
   version: 0.0.0-use.local
   resolution: "@rxap/rxjs@workspace:packages/rxjs"
   dependencies:
-    tslib: 2.6.2
-  peerDependencies:
     "@rxap/utilities": ^16.2.3-dev.0
-    rxjs: ^7.8.1
+    rxjs: 7.8.1
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -9418,11 +9409,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ts-morph@workspace:packages/ts-morph"
   dependencies:
-    tslib: 2.6.2
-  peerDependencies:
     "@rxap/utilities": ^16.2.3-dev.0
-    colors: ^1.4.0
-    ts-morph: ^18.0.0
+    colors: 1.4.0
+    ts-morph: 18.0.0
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -9490,15 +9480,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
   dependencies:
-    openapi-types: 10.0.0
-    tslib: 2.6.2
-    yaml: 2.3.1
-  peerDependencies:
-    "@angular-devkit/core": ^18.0.2
+    "@angular-devkit/core": 18.0.2
     "@rxap/json-schema-to-typescript": ^16.0.5-dev.0
     "@rxap/utilities": ^16.2.3-dev.0
     "@rxap/workspace-utilities": ^19.2.0-dev.6
-    ts-morph: ^18.0.0
+    openapi-types: 10.0.0
+    ts-morph: 18.0.0
+    tslib: 2.6.2
+    yaml: 2.3.1
   languageName: unknown
   linkType: soft
 
@@ -9506,12 +9495,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph"
   dependencies:
-    tslib: 2.6.2
-  peerDependencies:
     "@rxap/ts-morph": ^1.4.0-dev.2
     "@rxap/utilities": ^16.2.3-dev.0
     "@rxap/workspace-utilities": ^19.2.0-dev.6
-    ts-morph: ^18.0.0
+    ts-morph: 18.0.0
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -9519,15 +9507,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-utilities@workspace:packages/workspace/utilities"
   dependencies:
+    "@angular-devkit/schematics": 18.0.2
+    "@nx/devkit": 19.1.1
+    "@rxap/node-utilities": ^1.2.3-dev.0
+    "@rxap/utilities": ^16.2.3-dev.0
     colors: 1.4.0
     semver: 7.5.3
     tslib: 2.6.2
     yaml: 2.3.1
-  peerDependencies:
-    "@angular-devkit/schematics": ^18.0.2
-    "@nx/devkit": ^19.1.1
-    "@rxap/node-utilities": ^1.2.3-dev.0
-    "@rxap/utilities": ^16.2.3-dev.0
   languageName: unknown
   linkType: soft
 
@@ -9535,12 +9522,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/xml-parser@workspace:packages/xml-parser"
   dependencies:
-    tslib: 2.6.2
-    xmldom: ^0.6.0
-  peerDependencies:
     "@rxap/mixin": ^16.0.5-dev.0
     "@rxap/reflect-metadata": ^1.0.6-dev.0
     "@rxap/utilities": ^16.2.3-dev.0
+    tslib: 2.6.2
+    xmldom: ^0.6.0
   languageName: unknown
   linkType: soft
 
