@@ -1,13 +1,12 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
-  GetAllPackageDependenciesForProject,
-  GetAllPackageDependenciesForProjectWihRetry,
-  LoadProjectToPackageMapping,
+  HasProjectWithPackageName,
   LoadProjectToPackageMappingWithRetry,
-  readPackageJsonForProject,
+  PackageNameToProjectName,
   readPackageJsonForProjectWithRetry,
   writePackageJsonFormProject,
 } from '@rxap/plugin-utilities';
+import { PackageJson } from '@rxap/workspace-utilities';
 import { readFileSync } from 'fs';
 import {
   ArrayPackageGroup,
@@ -30,13 +29,80 @@ function convertToPackageGroup(input: Record<string, string>, packageGroupRegex:
     }));
 }
 
-async function getPackageGroupFromDependencies(context: ExecutorContext, packageGroupRegex: RegExp[]): Promise<ArrayPackageGroup> {
-  const directPackageDependencies = await GetAllPackageDependenciesForProjectWihRetry(context);
-  return convertToPackageGroup(directPackageDependencies, packageGroupRegex);
+function loadPackageJsonForPackage(packageName: string): PackageJson | null {
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const packageJsonPath = require.resolve(`${packageName}/package.json`);
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    return require(packageJsonPath);
+  } catch (e) {
+    console.error(`Could not load package.json for package ${ packageName }`, e);
+  }
+
+  return null;
+
 }
 
-async function getPackageGroupFromPeerDependencies(context: ExecutorContext, packageGroupRegex: RegExp[]): Promise<ArrayPackageGroup> {
-  const peerDependencies = (await readPackageJsonForProjectWithRetry(context)).peerDependencies ?? {};
+function getAllPeerDependenciesForPackage(packageName: string, resolvedPeerDependencies: string[] = []) {
+  const packageJson = loadPackageJsonForPackage(packageName);
+  if (!packageJson) {
+    return {};
+  }
+  const peerDependencies = packageJson.peerDependencies ?? {};
+  console.log(`Package ${ packageName } has the following peer dependencies:`, Object.keys(peerDependencies).join(', '));
+  for (const peerDependency of Object.keys(peerDependencies)) {
+    if (resolvedPeerDependencies.includes(peerDependency)) {
+      continue;
+    }
+    const deps = getAllPeerDependenciesForPackage(peerDependency, [ ...resolvedPeerDependencies ]);
+    resolvedPeerDependencies.push(peerDependency);
+    resolvedPeerDependencies.push(...Object.keys(deps));
+    Object.assign(peerDependencies, deps);
+  }
+  return { ...peerDependencies };
+}
+
+async function getAllPeerDependenciesForProject(
+  context: ExecutorContext,
+  projectName = context.projectName,
+  resolvedPeerDependencies: string[] = []
+) {
+  const { peerDependencies = {} } = await readPackageJsonForProjectWithRetry(context, projectName);
+  console.log(`Project ${ projectName } has the following peer dependencies:`, Object.keys(peerDependencies).join(', '));
+  for (const peerDependency of Object.keys(peerDependencies)) {
+    if (resolvedPeerDependencies.includes(peerDependency)) {
+      continue;
+    }
+    if (HasProjectWithPackageName(peerDependency)) {
+      console.log(`Peer dependency ${ peerDependency } is a project`);
+      const deps = await getAllPeerDependenciesForProject(
+        context,
+        PackageNameToProjectName(peerDependency),
+        [ ...resolvedPeerDependencies ],
+      );
+      Object.assign(peerDependencies, deps);
+      resolvedPeerDependencies.push(peerDependency);
+      resolvedPeerDependencies.push(...Object.keys(deps));
+    } else {
+      console.log(`Peer dependency ${ peerDependency } is a package`);
+      const deps = getAllPeerDependenciesForPackage(
+        peerDependency,
+        [ ...resolvedPeerDependencies ],
+      );
+      Object.assign(peerDependencies, deps);
+      resolvedPeerDependencies.push(peerDependency);
+      resolvedPeerDependencies.push(...Object.keys(deps));
+    }
+  }
+  return { ...peerDependencies };
+}
+
+async function getPackageGroupFromPeerDependencies(
+  context: ExecutorContext, packageGroupRegex: RegExp[],
+): Promise<ArrayPackageGroup> {
+  const peerDependencies = await getAllPeerDependenciesForProject(context);
+  console.log('Include the following packages from the peer dependencies:', Object.keys(peerDependencies).join(', '));
   return convertToPackageGroup(peerDependencies, packageGroupRegex);
 }
 
@@ -68,10 +134,14 @@ function getPackageGroupFromRootDependencies(context: ExecutorContext, include: 
   return convertToPackageGroup(includes, [ /.*/ ]);
 }
 
-async function getPackageGroup(context: ExecutorContext, packageGroupRegex: RegExp[], include: string[] = []): Promise<ArrayPackageGroup> {
-  return mergePackageGroup(mergePackageGroup(await getPackageGroupFromPeerDependencies(context, packageGroupRegex),
-    await getPackageGroupFromDependencies(context, packageGroupRegex),
-  ), getPackageGroupFromRootDependencies(context, include));
+async function getPackageGroup(
+  context: ExecutorContext, packageGroupRegex: RegExp[], include: string[] = []): Promise<ArrayPackageGroup> {
+  return mergePackageGroup(
+    // load package defined as peer dependencies
+    await getPackageGroupFromPeerDependencies(context, packageGroupRegex),
+    // load package defined by the include option from the root package.json
+    getPackageGroupFromRootDependencies(context, include),
+  );
 }
 
 function mergePackageGroup(original: PackageGroup, updated: ArrayPackageGroup): ArrayPackageGroup {
