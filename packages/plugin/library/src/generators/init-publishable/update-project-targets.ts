@@ -12,6 +12,12 @@ export function updateProjectTargets(project: ProjectConfiguration, options: Ini
   if (options.targets?.fixDependencies === false) {
     RemoveTarget(project, 'fix-dependencies');
   } else {
+    const options: Record<string, unknown> = {
+      strict: true,
+    };
+    if (project.tags?.includes('standalone')) {
+      options.onlyDependencies = true;
+    }
     CoerceTarget(project, 'fix-dependencies', {
       executor: '@rxap/plugin-library:run-generator',
       outputs: [
@@ -19,9 +25,7 @@ export function updateProjectTargets(project: ProjectConfiguration, options: Ini
       ],
       options: {
         generator: '@rxap/plugin-library:fix-dependencies',
-        options: {
-          strict: true,
-        },
+        options,
       },
     });
   }
