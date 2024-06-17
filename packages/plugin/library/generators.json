@@ -54,6 +54,11 @@
       "factory": "./src/generators/add-migration/generator",
       "schema": "./src/generators/add-migration/schema.json",
       "description": "add-migration generator"
+    },
+    "init-preset": {
+      "factory": "./src/generators/init-preset/generator",
+      "schema": "./src/generators/init-preset/schema.json",
+      "description": "init-preset generator"
     }
   },
   "schematics": {
