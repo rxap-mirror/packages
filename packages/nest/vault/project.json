@@ -47,10 +47,17 @@
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": false
         }
       }
     },
-    "linking": {}
+    "linking": {},
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
+      "options": {
+        "packageName": "@nestjs/core"
+      }
+    }
   }
 }

@@ -4,11 +4,5 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "assets": [
-    "README.md",
-    "CHANGELOG.md",
-    "LICENSE",
-    "LICENSE.md",
-    "theme.css"
-  ]
+  "assets": ["README.md", "CHANGELOG.md", "LICENSE", "LICENSE.md", "theme.css"]
 }

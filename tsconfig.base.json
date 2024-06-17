@@ -130,9 +130,11 @@
       "@rxap/nest-socket-io-client": [
         "packages/nest/socket-io-client/src/index.ts"
       ],
+      "@rxap/nest-supabase": ["packages/nest/supabase/src/index.ts"],
       "@rxap/nest-testing": ["packages/nest/testing/src/index.ts"],
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
       "@rxap/nest-vault": ["packages/nest/vault/src/index.ts"],
+      "@rxap/nest-web3-storage": ["packages/nest/web3-storage/src/index.ts"],
       "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
       "@rxap/ngx-changelog": ["packages/angular/changelog/src/index.ts"],
       "@rxap/ngx-error": ["packages/angular/error/src/index.ts"],

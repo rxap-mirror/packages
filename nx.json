@@ -388,6 +388,9 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "copy-client-sdk": {
+      "cache": true
     }
   },
   "generators": {

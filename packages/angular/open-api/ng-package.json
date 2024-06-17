@@ -4,15 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": [
-    "openapi-types",
-    "ajv"
-  ],
-  "assets": [
-    "README.md",
-    "CHANGELOG.md",
-    "LICENSE",
-    "theme.css",
-    "LICENSE.md"
-  ]
+  "allowedNonPeerDependencies": ["openapi-types", "ajv"],
+  "assets": ["README.md", "CHANGELOG.md", "LICENSE", "theme.css", "LICENSE.md"]
 }

@@ -3,17 +3,11 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/logger/src",
   "projectType": "library",
-  "tags": [
-    "nest",
-    "packages",
-    "scope:utilities"
-  ],
+  "tags": ["nest", "packages", "scope:utilities"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nest/logger",
         "tsConfig": "packages/nest/logger/tsconfig.lib.json",
@@ -42,23 +36,20 @@
     "fix-dependencies": {
       "options": {
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": false
         }
       }
     },
     "index-export": {},
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/nest/logger/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/nest/logger/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-logger {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {

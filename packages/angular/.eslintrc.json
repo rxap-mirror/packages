@@ -73,6 +73,14 @@
         "plugin:@nx/angular-template"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "test-setup.ts"
+      ],
+      "rules": {
+        "@nx/enforce-module-boundaries": "off"
+      }
     }
   ]
 }

@@ -3,18 +3,12 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/sentry/src",
   "projectType": "library",
-  "tags": [
-    "nest",
-    "packages",
-    "scope:integration"
-  ],
+  "tags": ["nest", "packages", "scope:integration"],
   "targets": {
     "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nest/sentry",
         "tsConfig": "packages/nest/sentry/tsconfig.lib.json",
@@ -43,22 +37,19 @@
     "fix-dependencies": {
       "options": {
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": false
         }
       }
     },
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/nest/sentry/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/nest/sentry/**/*.ts"]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-sentry {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "readme": {},
     "test": {

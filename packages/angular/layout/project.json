@@ -35,7 +35,13 @@
         "cypressConfig": "packages/angular/layout/cypress.config.ts"
       }
     },
-    "fix-dependencies": {},
+    "fix-dependencies": {
+      "options": {
+        "options": {
+          "onlyDependencies": false
+        }
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

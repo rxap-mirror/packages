@@ -53,7 +53,8 @@
       "outputs": [],
       "options": {
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": false
         }
       }
     },

@@ -4,14 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": [
-    "handlebars"
-  ],
-  "assets": [
-    "README.md",
-    "CHANGELOG.md",
-    "LICENSE",
-    "theme.css",
-    "LICENSE.md"
-  ]
+  "allowedNonPeerDependencies": ["handlebars"],
+  "assets": ["README.md", "CHANGELOG.md", "LICENSE", "theme.css", "LICENSE.md"]
 }
