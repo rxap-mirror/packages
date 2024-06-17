@@ -14,10 +14,8 @@ export function updateProjectTargets(project: ProjectConfiguration, options: Ini
   } else {
     const options: Record<string, unknown> = {
       strict: true,
+      onlyDependencies: true,
     };
-    if (project.tags?.includes('standalone')) {
-      options.onlyDependencies = true;
-    }
     CoerceTarget(project, 'fix-dependencies', {
       executor: '@rxap/plugin-library:run-generator',
       outputs: [
