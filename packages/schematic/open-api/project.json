@@ -35,7 +35,8 @@
     "fix-dependencies": {
       "options": {
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": true
         }
       }
     },
@@ -62,6 +63,12 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
+      "options": {
+        "packageName": "@angular-devkit/schematics"
+      }
+    }
   }
 }
