@@ -17,6 +17,7 @@
     "@rxap/utilities": "^16.2.2",
     "@rxap/workspace-ts-morph": "^19.1.0-dev.1",
     "@rxap/workspace-utilities": "^19.2.0-dev.3",
+    "colors": "^1.4.0",
     "nx": "^19.1.1",
     "ts-morph": "^18.0.0"
   },

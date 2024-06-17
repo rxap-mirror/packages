@@ -14,5 +14,5 @@ export function CoerceIgnorePattern(tree: TreeLike, filePath: string, patternLis
     content += '\n';
   }
 
-  CoerceFile(tree, filePath, content);
+  CoerceFile(tree, filePath, content, true);
 }
