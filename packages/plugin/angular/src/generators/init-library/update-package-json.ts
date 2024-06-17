@@ -17,7 +17,7 @@ export function updatePackageJson(
   if (IsPublishable(tree, project)) {
     UpdateProjectPackageJson(tree, packageJson => {
       const majorAngularVersion = GetMajorAngularVersion(tree);
-      const version = `${ majorAngularVersion }.0.0`;
+      const version = `${ majorAngularVersion }.0.0-dev.0`;
       if (!packageJson.version || gte(version, packageJson.version)) {
         packageJson.version = version;
       }
