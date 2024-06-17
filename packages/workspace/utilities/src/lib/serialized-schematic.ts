@@ -143,6 +143,15 @@ export function GenerateSerializedSchematicFile(
     options: DeleteUndefinedProperties(DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects', 'coerce', 'replace', 'feature', 'skipFormat', 'cleanup' ])),
   };
 
+  for (const key of Object.keys(newData.options)) {
+    if (newData.options[key] && typeof newData.options[key] === 'object') {
+      newData.options[key] = DeleteUndefinedProperties(newData.options[key]);
+      if (Object.keys(newData.options[key]).length === 0) {
+        delete newData.options[key];
+      }
+    }
+  }
+
   function isEqual(data: Record<string, unknown>) {
     return data['package'] === packageName && data['name'] === schematicName;
   }
