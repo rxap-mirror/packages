@@ -4,4 +4,8 @@ export interface InitLibraryGeneratorSchema {
   overwrite?: boolean;
   skipProjects?: boolean;
   skipFormat?: boolean;
+  targets?: {
+    indexExport?: boolean;
+    fixDependencies?: boolean;
+  }
 }

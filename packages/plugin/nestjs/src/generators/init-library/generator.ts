@@ -26,6 +26,7 @@ import {
   GetProjectRoot,
   IsPublishable,
   SkipNonLibraryProject,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
@@ -33,11 +34,11 @@ import {
   parse,
 } from 'semver';
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
-import { InitApplicationGeneratorSchema } from '../init-application/schema';
+import { InitLibraryGeneratorSchema } from './schema';
 
 function skipProject(
   tree: Tree,
-  options: InitApplicationGeneratorSchema,
+  options: InitLibraryGeneratorSchema,
   project: ProjectConfiguration,
   projectName: string,
 ) {
@@ -68,7 +69,7 @@ function setGeneralTargetDefaults(tree: Tree) {
   updateNxJson(tree, nxJson);
 }
 
-function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
+function updateProjectTargets(tree: Tree, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
 
   if (IsPublishable(tree, project)) {
     CoerceTarget(project, 'check-version', {
@@ -77,6 +78,16 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
         packageName: '@nestjs/core',
       },
     });
+  }
+
+  if (options.targets?.fixDependencies !== false) {
+    CoerceTarget(project, 'fix-dependencies', {
+      options: {
+        options: {
+          onlyDependencies: false,
+        },
+      },
+    }, Strategy.OVERWRITE);
   }
 
 }
@@ -120,7 +131,7 @@ function updatePackageJson(
 
 export async function initLibraryGenerator(
   tree: Tree,
-  options: InitApplicationGeneratorSchema,
+  options: InitLibraryGeneratorSchema,
 ) {
   options.project ??= undefined;
   options.projects ??= [];
@@ -155,7 +166,7 @@ export async function initLibraryGenerator(
 
       await LibraryInitProject(tree, projectName, project, options);
 
-      updateProjectTargets(tree, project);
+      updateProjectTargets(tree, project, options);
       updatePackageJson(tree, project, rootPackageJson);
 
 

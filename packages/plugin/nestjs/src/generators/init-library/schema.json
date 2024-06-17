@@ -26,6 +26,19 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
+    },
+    "targets": {
+      "type": "object",
+      "properties": {
+        "fixDependencies": {
+          "type": "boolean",
+          "description": "If set to false the target fix-dependencies will not be added to the project"
+        },
+        "indexExport": {
+          "type": "boolean",
+          "description": "If set to false the target index-export will not be added to the project"
+        }
+      }
     }
   },
   "required": []

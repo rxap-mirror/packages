@@ -33,7 +33,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     coerceTailwindThemeScss(tree, project);
   }
   extendAngularSpecificEslint(tree, project);
-  updateProjectTargets(tree, project);
+  updateProjectTargets(tree, project, options);
   updateTsConfig(tree, projectName);
   coerceTestSetup(tree, projectName);
 

@@ -13,5 +13,6 @@ export interface InitLibraryGeneratorSchema {
   skipFormat?: boolean;
   targets?: {
     indexExport?: boolean;
+    fixDependencies?: boolean;
   }
 }

@@ -5,11 +5,14 @@ import {
 import {
   CoerceTarget,
   IsPublishable,
+  RemoveTarget,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { hasTailwindConfig } from './has-tailwind-config';
 import { isNgPackagrProject } from './is-ng-packagr-project';
+import { InitLibraryGeneratorSchema } from './schema';
 
-export function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
+export function updateProjectTargets(tree: Tree, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
 
   if (IsPublishable(tree, project)) {
 
@@ -36,6 +39,16 @@ export function updateProjectTargets(tree: Tree, project: ProjectConfiguration) 
     if (project.targets?.['build-tailwind']) {
       delete project.targets['build-tailwind'];
     }
+  }
+
+  if (options.targets?.fixDependencies !== false) {
+    CoerceTarget(project, 'fix-dependencies', {
+      options: {
+        options: {
+          onlyDependencies: false,
+        },
+      },
+    }, Strategy.OVERWRITE);
   }
 
   if (isNgPackagrProject(tree, project)) {
