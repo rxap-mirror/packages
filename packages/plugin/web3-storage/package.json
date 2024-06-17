@@ -1,10 +1,10 @@
 {
-  "version": "19.0.2-dev.1",
+  "version": "19.0.2-dev.2",
   "name": "@rxap/plugin-web3-storage",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.1.1",
-    "@rxap/plugin-utilities": "^19.0.3-dev.2",
+    "@rxap/plugin-utilities": "^19.0.3-dev.3",
     "files-from-path": "1.0.4",
     "tslib": "2.6.2",
     "web3.storage": "4.5.5"

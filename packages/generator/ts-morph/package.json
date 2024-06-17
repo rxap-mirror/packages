@@ -1,9 +1,9 @@
 {
-  "version": "1.0.8-dev.1",
+  "version": "1.0.8-dev.2",
   "name": "@rxap/generator-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@rxap/workspace-ts-morph": "^19.1.0-dev.2",
+    "@rxap/workspace-ts-morph": "^19.1.0-dev.3",
     "tslib": "2.6.2"
   },
   "author": {
@@ -23,34 +23,6 @@
     "scope:utilities",
     "ts-morph"
   ],
-  "nx-migrations": {
-    "packageGroup": [
-      {
-        "package": "@nx/devkit",
-        "version": "19.1.1"
-      },
-      {
-        "package": "@rxap/node-utilities",
-        "version": "1.2.3-dev.0"
-      },
-      {
-        "package": "@rxap/ts-morph",
-        "version": "1.4.0-dev.2"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.2.3-dev.0"
-      },
-      {
-        "package": "@rxap/workspace-ts-morph",
-        "version": "19.1.0-dev.2"
-      },
-      {
-        "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.6"
-      }
-    ]
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/generator/ts-morph"

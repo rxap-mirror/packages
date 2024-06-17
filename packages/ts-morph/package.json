@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0-dev.2",
+  "version": "1.4.0-dev.3",
   "name": "@rxap/ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -24,14 +24,6 @@
     "standalone",
     "ts-morph"
   ],
-  "nx-migrations": {
-    "packageGroup": [
-      {
-        "package": "@rxap/utilities",
-        "version": "16.2.3-dev.0"
-      }
-    ]
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/ts-morph"

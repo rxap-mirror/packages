@@ -1,5 +1,5 @@
 {
-  "version": "19.2.0-dev.6",
+  "version": "19.2.0-dev.7",
   "name": "@rxap/workspace-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -29,22 +29,6 @@
     "workspace",
     "workspace-utilities"
   ],
-  "nx-migrations": {
-    "packageGroup": [
-      {
-        "package": "@nx/devkit",
-        "version": "19.1.1"
-      },
-      {
-        "package": "@rxap/node-utilities",
-        "version": "1.2.3-dev.0"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.2.3-dev.0"
-      }
-    ]
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/workspace/utilities"

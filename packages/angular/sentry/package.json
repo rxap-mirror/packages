@@ -1,13 +1,13 @@
 {
-  "version": "18.0.2-dev.1",
+  "version": "18.0.2-dev.2",
   "name": "@rxap/ngx-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/config": "^18.0.2-dev.1",
-    "@rxap/environment": "^18.0.2-dev.1",
+    "@rxap/config": "^18.0.2-dev.2",
+    "@rxap/environment": "^18.0.2-dev.2",
     "@sentry/angular-ivy": "^7.60.1",
     "@sentry/browser": "^7.60.1",
     "@sentry/integrations": "^7.60.1"
@@ -46,11 +46,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.0.2-dev.1"
+        "version": "18.0.2-dev.2"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.2-dev.1"
+        "version": "18.0.2-dev.2"
       },
       {
         "package": "@rxap/utilities",

@@ -1,5 +1,5 @@
 {
-  "version": "16.0.5-dev.0",
+  "version": "16.0.5-dev.1",
   "name": "@rxap/json-schema-to-typescript",
   "description": "Generates typescript interfaces from json schema definition.",
   "license": "GPL-3.0-or-later",
@@ -25,14 +25,6 @@
     "scope:utilities",
     "standalone"
   ],
-  "nx-migrations": {
-    "packageGroup": [
-      {
-        "package": "@rxap/utilities",
-        "version": "16.2.3-dev.0"
-      }
-    ]
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/json-schema-to-typescript"
