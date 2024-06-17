@@ -44,23 +44,13 @@ function loadPackageJsonForPackage(packageName: string): PackageJson | null {
 
 }
 
-function getAllPeerDependenciesForPackage(packageName: string, resolvedPeerDependencies: string[] = []) {
+function getPeerDependenciesForPackage(packageName: string) {
   const packageJson = loadPackageJsonForPackage(packageName);
   if (!packageJson) {
     return {};
   }
-  const peerDependencies = packageJson.peerDependencies ?? {};
-  console.log(`Package ${ packageName } has the following peer dependencies:`, Object.keys(peerDependencies).join(', '));
-  for (const peerDependency of Object.keys(peerDependencies)) {
-    if (resolvedPeerDependencies.includes(peerDependency)) {
-      continue;
-    }
-    const deps = getAllPeerDependenciesForPackage(peerDependency, [ ...resolvedPeerDependencies ]);
-    resolvedPeerDependencies.push(peerDependency);
-    resolvedPeerDependencies.push(...Object.keys(deps));
-    Object.assign(peerDependencies, deps);
-  }
-  return { ...peerDependencies };
+  console.log(`Package ${ packageName } has the following peer dependencies:`, Object.keys(packageJson.peerDependencies ?? {}).join(', '));
+  return packageJson.peerDependencies ?? {};
 }
 
 async function getAllPeerDependenciesForProject(
@@ -68,7 +58,7 @@ async function getAllPeerDependenciesForProject(
   projectName = context.projectName,
   resolvedPeerDependencies: string[] = []
 ) {
-  const { peerDependencies = {} } = await readPackageJsonForProjectWithRetry(context, projectName);
+  let { peerDependencies = {} } = await readPackageJsonForProjectWithRetry(context, projectName);
   console.log(`Project ${ projectName } has the following peer dependencies:`, Object.keys(peerDependencies).join(', '));
   for (const peerDependency of Object.keys(peerDependencies)) {
     if (resolvedPeerDependencies.includes(peerDependency)) {
@@ -81,16 +71,19 @@ async function getAllPeerDependenciesForProject(
         PackageNameToProjectName(peerDependency),
         [ ...resolvedPeerDependencies ],
       );
-      Object.assign(peerDependencies, deps);
+      peerDependencies = {
+        ...deps,
+        ...peerDependencies,
+      };
       resolvedPeerDependencies.push(peerDependency);
       resolvedPeerDependencies.push(...Object.keys(deps));
     } else {
       console.log(`Peer dependency ${ peerDependency } is a package`);
-      const deps = getAllPeerDependenciesForPackage(
-        peerDependency,
-        [ ...resolvedPeerDependencies ],
-      );
-      Object.assign(peerDependencies, deps);
+      const deps = getPeerDependenciesForPackage(peerDependency);
+      peerDependencies = {
+        ...deps,
+        ...peerDependencies,
+      };
       resolvedPeerDependencies.push(peerDependency);
       resolvedPeerDependencies.push(...Object.keys(deps));
     }
