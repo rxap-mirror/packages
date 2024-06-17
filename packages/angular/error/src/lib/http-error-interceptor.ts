@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
-import * as Sentry from '@sentry/angular-ivy';
+import * as Sentry from '@sentry/angular';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AnyHttpErrorService } from './any-http-error/any-http-error.service';

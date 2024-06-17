@@ -10,6 +10,7 @@ import {
 } from '@rxap/utilities';
 import {
   CoerceFile,
+  CoerceIgnorePattern,
   GetProjectSourceRoot,
   GetRootDockerOptions,
   IsApplicationProject,
@@ -489,6 +490,18 @@ export async function dockerComposeGenerator(
   }
   CoerceFile(tree, traefikConfigPath, traefikConfig, true);
 
+  CoerceIgnorePattern(tree, 'docker/traefik/.gitignore', [
+    'traefik.yml',
+    'dynamic/local-services.yml',
+  ]);
+  CoerceIgnorePattern(tree, 'docker/traefik/tls/.gitignore', [
+    '*.crt',
+    '*.key',
+    '*.srl',
+    '*.csr',
+    'ext.cnf',
+    'ext.cnf.template',
+  ]);
   coerceCertDirectory(tree);
   coerceCaCert(rootDomain, tree);
   createDefaultCerts(rootDomain, tree);

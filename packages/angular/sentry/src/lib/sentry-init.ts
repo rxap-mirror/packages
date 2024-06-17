@@ -1,8 +1,6 @@
 import { ConfigService } from '@rxap/config';
 import { Environment } from '@rxap/environment';
-import * as Sentry from '@sentry/angular-ivy';
-import { BrowserTracing } from '@sentry/browser';
-import { HttpClient as HttpClientIntegration } from '@sentry/integrations';
+import * as Sentry from '@sentry/angular';
 import { DetermineSentryEnvironment } from './determine-sentry-environment';
 import { DetermineSentryRelease } from './determine-sentry-release';
 
@@ -33,14 +31,11 @@ export function SentryInit(environment: Environment) {
     autoSessionTracking: ConfigService.Get('sentry.autoSessionTracking', true, ConfigService.Config),
     maxValueLength: ConfigService.Get('sentry.maxValueLength', Number.MAX_SAFE_INTEGER, ConfigService.Config),
     integrations: [
-      new HttpClientIntegration({
+      Sentry.httpClientIntegration({
         failedRequestTargets: environment.sentry?.integrations?.httpClient?.failedRequestTargets,
       }),
-      new BrowserTracing({
-        routingInstrumentation: Sentry.routingInstrumentation,
-        tracePropagationTargets: environment.sentry?.integrations?.BrowserTracing?.tracePropagationTargets,
-      }),
-      new Sentry.Replay({
+      Sentry.browserTracingIntegration({}),
+      Sentry.replayIntegration({
         // Additional SDK configuration goes in here, for example:
         maskAllText: true,
         blockAllMedia: true,

@@ -14,7 +14,7 @@ import {
   IsNotReleaseVersion,
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
-import * as Sentry from '@sentry/angular-ivy';
+import * as Sentry from '@sentry/angular';
 import { AngularErrorDialogData } from './error/angular-error-dialog-data';
 import { AngularErrorService } from './error/angular-error.service';
 import {

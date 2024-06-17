@@ -921,8 +921,8 @@ export async function initApplicationGenerator(
   // must always be added as some rxap components use the i18n tag
   await AddPackageJsonDependency(tree, '@angular/localize', ANGULAR_VERSION, { soft: true });
   // must always be added as some rxap components use interfaces from the package
-  // TODO : refactor the @rxap/ngx-error and @rxap/ngx-status-check to be independent from the @sentry/angular-ivy package
-  await AddPackageJsonDependency(tree, '@sentry/angular-ivy', 'latest', { soft: true });
+  // TODO : refactor the @rxap/ngx-error and @rxap/ngx-status-check to be independent from the @sentry/angular package
+  await AddPackageJsonDependency(tree, '@sentry/angular', 'latest', { soft: true });
 
   if (options.oauth) {
     await AddPackageJsonDependency(tree, 'angular-oauth2-oidc', 'latest', { soft: true });
@@ -965,8 +965,6 @@ export async function initApplicationGenerator(
 
   if (options.sentry) {
     await AddPackageJsonDependency(tree, '@rxap/ngx-sentry', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@sentry/browser', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@sentry/integrations', 'latest', { soft: true });
   }
 
   if (options.i18n) {

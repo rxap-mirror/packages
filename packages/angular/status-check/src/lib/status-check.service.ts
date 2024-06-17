@@ -4,7 +4,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { OpenApiHttpResponseError } from '@rxap/open-api';
-import * as Sentry from '@sentry/angular-ivy';
+import * as Sentry from '@sentry/angular';
 import {
   from,
   Observable,

@@ -8,9 +8,7 @@
   "peerDependencies": {
     "@rxap/config": "^18.0.2-dev.2",
     "@rxap/environment": "^18.0.2-dev.2",
-    "@sentry/angular-ivy": "^7.60.1",
-    "@sentry/browser": "^7.60.1",
-    "@sentry/integrations": "^7.60.1"
+    "@sentry/angular": "^8.9.2"
   },
   "author": {
     "name": "Merzough Münker",
