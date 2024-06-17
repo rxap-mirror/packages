@@ -21,9 +21,23 @@ export interface NxJsonOrProjectConfiguration extends Record<string, any> {
 }
 
 export enum Strategy {
+  /**
+   * Only add the target if it does not exist
+   */
   DEFAULT = 'default',
+  /**
+   * Deep merge the target with the existing target. With a deep right merge.
+   * Existing property values are overwritten.
+   */
   OVERWRITE = 'overwrite',
+  /**
+   * Deep merge the target with the existing target. With a deep left merge.
+   * Existing property values are not overwritten.
+   */
   MERGE = 'merge',
+  /**
+   * Replace the existing target with the new target
+   */
   REPLACE = 'replace',
 }
 
