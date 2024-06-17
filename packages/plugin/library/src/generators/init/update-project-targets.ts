@@ -4,18 +4,17 @@ import {
   DeleteTarget,
   IsGeneratorProject,
   IsPluginProject,
+  IsPresetProject,
   IsSchematicProject,
 } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
 export function updateProjectTargets(project: ProjectConfiguration, options: InitGeneratorSchema) {
 
-  if (options.targets?.indexExport !== false && !IsPluginProject(project) && !IsGeneratorProject(project) && !IsSchematicProject(project)) {
-    CoerceTarget(project, 'index-export', {});
-  } else if (options.targets?.indexExport === false) {
+  if (options.targets?.indexExport === false|| IsPresetProject(project) || IsPluginProject(project) || IsGeneratorProject(project) || IsSchematicProject(project)) {
     DeleteTarget(project, 'index-export');
   } else {
-    console.log('skip index-export target for plugin, generator or schematic project'.yellow);
+    CoerceTarget(project, 'index-export', {});
   }
 
 }
