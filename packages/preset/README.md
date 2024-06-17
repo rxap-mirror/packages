@@ -22,10 +22,12 @@ Run the init generator to initialize the project:
 nx g @rxap/plugin-library:init --project=preset-$NAME
 ```
 
-Add implicit dependencies to project used by the preset generator:
+Create a new generator with the following command:
 
-```json
-{
-  "implicitDependencies": [ "plugin-$NAME" ]
-}
+```bash
+nx g @nx/plugin:generator \
+  --name=preset \
+  --project=preset-$NAME \
+  --nameAndDirectoryFormat=as-provided \
+  --directory=packages/preset/$NAME/src/generators/preset
 ```

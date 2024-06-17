@@ -1,0 +1,43 @@
+{
+  "version": "19.0.0-dev.0",
+  "name": "@rxap/preset-angular",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@nx/devkit": "19.1.1",
+    "@rxap/plugin-angular": "^19.1.0-dev.2",
+    "@rxap/plugin-workspace": "^19.1.0-dev.3",
+    "@rxap/workspace-utilities": "^19.2.0-dev.5",
+    "tslib": "^2.3.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/preset/angular",
+  "keywords": [
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "preset",
+    "preset-angular",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/preset/angular"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/preset/angular"
+  },
+  "type": "commonjs",
+  "typings": "./src/index.d.ts"
+}

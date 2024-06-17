@@ -29,8 +29,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       directory: 'angular',
       addTailwind: true,
       buildable: true,
-    },
-    indexExport: false,
+    }
   });
 
   await initLibraryGenerator(tree, {
@@ -47,9 +46,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       'http-interceptors',
     ],
     coerce: {
-      directory: 'angular'
-    },
-    indexExport: false,
+      directory: 'angular',
+      buildable: true,
+    }
   });
 
   if (!options.skipFormat) {

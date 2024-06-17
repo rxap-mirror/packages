@@ -194,6 +194,7 @@
         "packages/plugin/web3-storage/src/index.ts"
       ],
       "@rxap/plugin-workspace": ["packages/plugin/workspace/src/index.ts"],
+      "@rxap/preset-angular": ["packages/preset/angular/src/index.ts"],
       "@rxap/preset-workspace": ["packages/preset/workspace/src/index.ts"],
       "@rxap/reflect-metadata": ["packages/reflect-metadata/src/index.ts"],
       "@rxap/remote-method": ["packages/angular/remote-method/src/index.ts"],
