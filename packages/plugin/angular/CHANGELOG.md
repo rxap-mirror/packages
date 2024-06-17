@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0-dev.7...@rxap/plugin-angular@19.1.0-dev.8) (2024-06-17)
+
+### Bug Fixes
+
+- add nx packages to workspace ([18c54bb](https://gitlab.com/rxap/packages/commit/18c54bbf7fe4cbe994fafa35e9eb5356b74c61e2))
+
 # [19.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0-dev.6...@rxap/plugin-angular@19.1.0-dev.7) (2024-06-17)
 
 ### Bug Fixes

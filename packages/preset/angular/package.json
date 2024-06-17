@@ -1,10 +1,10 @@
 {
-  "version": "19.0.0-dev.7",
+  "version": "19.0.0-dev.8",
   "name": "@rxap/preset-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.1.1",
-    "@rxap/plugin-angular": "^19.1.0-dev.7",
+    "@rxap/plugin-angular": "^19.1.0-dev.8",
     "@rxap/plugin-workspace": "^19.1.0-dev.7",
     "tslib": "2.6.2"
   },
