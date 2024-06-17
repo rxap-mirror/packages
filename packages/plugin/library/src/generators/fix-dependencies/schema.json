@@ -25,6 +25,11 @@
       "type": "boolean",
       "default": false,
       "description": "If true, will fail if any dependency is not found"
+    },
+    "onlyDependencies": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, will move all peer dependencies to dependencies"
     }
   },
   "required": []

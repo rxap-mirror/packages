@@ -5,4 +5,5 @@ export interface FixDependenciesGeneratorSchema {
   verbose?: boolean;
   resolve?: boolean;
   strict?: boolean;
+  onlyDependencies?: boolean;
 }

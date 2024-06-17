@@ -591,7 +591,7 @@ export async function fixDependenciesGenerator(
 
     await loadAvailablePackageVersion(tree, projectRoot);
 
-    await UpdatePackageJson(tree, packageJson => {
+    UpdatePackageJson(tree, packageJson => {
 
       packageJson.dependencies ??= {};
       packageJson.peerDependencies ??= {};
@@ -616,6 +616,14 @@ export async function fixDependenciesGenerator(
         if (packageJson.peerDependencies[banned]) {
           delete packageJson.peerDependencies[banned];
         }
+      }
+
+      if (options.onlyDependencies) {
+        packageJson.dependencies = {
+          ...packageJson.dependencies,
+          ...packageJson.peerDependencies,
+        };
+        packageJson.peerDependencies = {};
       }
 
       console.log(`====================  Report for project ${ projectName }`);
