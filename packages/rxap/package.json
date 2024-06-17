@@ -502,15 +502,15 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.1.0-dev.5"
+        "version": "19.1.0-dev.6"
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.0-dev.5"
+        "version": "19.0.0-dev.6"
       },
       {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.1-dev.7"
+        "version": "19.0.1-dev.8"
       },
       {
         "package": "@rxap/reflect-metadata",
