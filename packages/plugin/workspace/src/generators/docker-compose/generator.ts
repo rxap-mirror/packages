@@ -469,7 +469,7 @@ export async function dockerComposeGenerator(
   const localServiceTraefikConfig = createDevServiceTraefikConfig(serviceApplications, tree, options);
   let traefikConfig = createTraefikConfig(rootDomain, frontendApplications, tree);
   const traefikConfigPath = 'docker/traefik/traefik.yml';
-  if (!tree.exists(traefikConfigPath)) {
+  if (tree.exists(traefikConfigPath)) {
     traefikConfig = mergeTraefikConfig(tree, traefikConfig);
   }
   CoerceFile(tree, 'docker-compose.services.yml', serviceDockerCompose, true);
