@@ -9,7 +9,9 @@ import {
   DeleteProperties,
 } from '@rxap/utilities';
 import {
+  AddPackageJsonDevDependency,
   GenerateSerializedSchematicFile,
+  GetNxVersion,
   IsApplicationProject,
   IsLibraryProject,
 } from '@rxap/workspace-utilities';
@@ -43,6 +45,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'init',
     DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
   );
+
+  await AddPackageJsonDevDependency(tree, '@nx/nest', GetNxVersion(tree), { soft: true });
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 

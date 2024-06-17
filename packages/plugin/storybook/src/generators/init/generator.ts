@@ -6,7 +6,11 @@ import {
   CoerceArrayItems,
   DeleteProperties,
 } from '@rxap/utilities';
-import { GenerateSerializedSchematicFile } from '@rxap/workspace-utilities';
+import {
+  AddPackageJsonDevDependency,
+  GenerateSerializedSchematicFile,
+  GetNxVersion,
+} from '@rxap/workspace-utilities';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
 
@@ -17,6 +21,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     CoerceArrayItems(options.projects, [options.project]);
   }
   console.log('storybook init generator:', options);
+
+  await AddPackageJsonDevDependency(tree, '@nx/storybook', GetNxVersion(tree), { soft: true });
 
   await initWorkspace(tree, options);
 

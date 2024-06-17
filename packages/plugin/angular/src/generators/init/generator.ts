@@ -3,7 +3,11 @@ import {
   Tree,
 } from '@nx/devkit';
 import { DeleteProperties } from '@rxap/utilities';
-import { GenerateSerializedSchematicFile } from '@rxap/workspace-utilities';
+import {
+  AddPackageJsonDevDependency,
+  GenerateSerializedSchematicFile,
+  GetNxVersion,
+} from '@rxap/workspace-utilities';
 import initLibraryGenerator from '../init-library/generator';
 import { InitGeneratorSchema } from './schema';
 
@@ -17,6 +21,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'init',
     DeleteProperties(options, [ 'projects', 'overwrite', 'skipProjects' ]),
   );
+
+  await AddPackageJsonDevDependency(tree, '@nx/angular', GetNxVersion(tree), { soft: true });
 
   await initLibraryGenerator(tree, {
     projects: [
