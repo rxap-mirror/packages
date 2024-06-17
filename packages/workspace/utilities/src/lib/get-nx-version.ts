@@ -1,3 +1,4 @@
+import { parse } from 'semver';
 import { GetRootPackageJson } from './package-json-file';
 import {
   IsJsonObject,
@@ -23,4 +24,15 @@ export function GetNxVersion(tree?: TreeLike) {
 
   return devDependencies['nx'];
 
+}
+
+export function GetMajorNxVersion(tree?: TreeLike) {
+  let nxVersion = GetNxVersion(tree);
+  nxVersion = nxVersion.replace(/^[~^]/, '');
+  const version = parse(nxVersion);
+
+  if (!version) {
+    throw new Error(`Unable to parse the version ${ nxVersion }`);
+  }
+  return version.major;
 }
