@@ -79,7 +79,8 @@
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": true
         }
       }
     },

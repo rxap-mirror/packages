@@ -38,6 +38,11 @@
             "input": "./packages/plugin/angular",
             "glob": "migrations.json",
             "output": "."
+          },
+          {
+            "input": "./packages/plugin/angular/src/migrations",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/migrations"
           }
         ]
       }
@@ -56,7 +61,8 @@
     "fix-dependencies": {
       "options": {
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": true
         }
       }
     },

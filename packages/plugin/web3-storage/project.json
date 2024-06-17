@@ -67,7 +67,8 @@
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": true
         }
       }
     },
@@ -77,6 +78,12 @@
         "packageName": "nx"
       }
     },
-    "linking": {}
+    "linking": {},
+    "expose-as-schematic": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-library:expose-as-schematic"
+      }
+    }
   }
 }

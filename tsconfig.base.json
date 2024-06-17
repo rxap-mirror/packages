@@ -190,6 +190,9 @@
       ],
       "@rxap/plugin-storybook": ["packages/plugin/storybook/src/index.ts"],
       "@rxap/plugin-utilities": ["packages/plugin/utilities/src/index.ts"],
+      "@rxap/plugin-web3-storage": [
+        "packages/plugin/web3-storage/src/index.ts"
+      ],
       "@rxap/plugin-workspace": ["packages/plugin/workspace/src/index.ts"],
       "@rxap/preset-workspace": ["packages/preset/workspace/src/index.ts"],
       "@rxap/reflect-metadata": ["packages/reflect-metadata/src/index.ts"],

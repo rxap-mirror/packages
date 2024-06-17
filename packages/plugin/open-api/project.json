@@ -45,7 +45,8 @@
     "fix-dependencies": {
       "options": {
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": true
         }
       }
     },

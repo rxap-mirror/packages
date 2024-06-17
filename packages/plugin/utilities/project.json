@@ -24,7 +24,8 @@
     "fix-dependencies": {
       "options": {
         "options": {
-          "strict": true
+          "strict": true,
+          "onlyDependencies": true
         }
       }
     },
@@ -58,6 +59,12 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "expose-as-schematic": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-library:expose-as-schematic"
+      }
+    }
   }
 }
