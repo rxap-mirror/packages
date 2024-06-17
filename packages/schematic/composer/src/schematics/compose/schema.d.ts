@@ -4,4 +4,5 @@ export interface ComposeSchematicSchema {
   replace?: boolean;
   overwrite?: boolean | string[] | string;
   filter?: string;
+  directory?: string;
 }

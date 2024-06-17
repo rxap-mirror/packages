@@ -34,6 +34,10 @@
     "filter": {
       "description": "Filter by the folder name of the schematic file",
       "type": "string"
+    },
+    "directory": {
+      "description": "The starting directory where schematic files should be searched for",
+      "type": "string"
     }
   },
   "required": []

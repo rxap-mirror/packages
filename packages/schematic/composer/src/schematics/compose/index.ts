@@ -14,6 +14,7 @@ import {
 } from '@rxap/schematics-utilities';
 import {
   coerceArray,
+  CoercePrefix,
   dasherize,
   DeleteUndefinedProperties,
   equals,
@@ -324,10 +325,14 @@ function forProject(host: Tree, projectName: string, globalOptions: Partial<Glob
 
 }
 
-function forWorkspace(host: Tree, globalOptions: Partial<GlobalOptions>, filter: string | null) {
-
-  console.log('Use workspace source root');
-  return executeSchematicCommand(host, '/', globalOptions, filter);
+function forWorkspace(host: Tree, globalOptions: Partial<GlobalOptions>, filter: string | null, directory: string | null) {
+  directory ??= '/';
+  if (directory !== '/') {
+    console.log(`Use directory: ${ directory } relative to workspace source root`);
+  } else {
+    console.log('Use workspace source root');
+  }
+  return executeSchematicCommand(host, CoercePrefix(directory, '/'), globalOptions, filter);
 
 }
 
@@ -349,6 +354,7 @@ function NormalizeComposeOptions(options: ComposeSchematicSchema): NormalizedCom
     filter: options.filter ?? null,
     overwrite: overwrite,
     replace: options.replace ?? false,
+    directory: options.directory ?? null,
   });
 }
 
@@ -360,6 +366,7 @@ export default function (options: ComposeSchematicSchema) {
     filter,
     overwrite,
     replace,
+    directory,
   } = normalizedOptions;
 
   const globalOptions: Partial<GlobalOptions> = {
@@ -383,7 +390,7 @@ export default function (options: ComposeSchematicSchema) {
         rule = forProject(host, project, globalOptions, filter);
       }
     } else {
-      rule = forWorkspace(host, globalOptions, filter);
+      rule = forWorkspace(host, globalOptions, filter, directory);
     }
 
     return chain([
