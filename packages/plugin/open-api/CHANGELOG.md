@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.0.2-dev.0...@rxap/plugin-open-api@19.1.0-dev.0) (2024-06-17)
+
+### Bug Fixes
+
+- dont delete generate files ([f8711b6](https://gitlab.com/rxap/packages/commit/f8711b6291a3bb61524a3577514d012dc3be43f4))
+- use coerce file function ([822c33c](https://gitlab.com/rxap/packages/commit/822c33c0021276844114e859d53c79cad6feb51a))
+
+### Features
+
+- add persistent property ([500495f](https://gitlab.com/rxap/packages/commit/500495f49c69070a51a93c9e964dad3c1ca4babc))
+
 ## [19.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.0.1...@rxap/plugin-open-api@19.0.2-dev.0) (2024-06-05)
 
 **Note:** Version bump only for package @rxap/plugin-open-api

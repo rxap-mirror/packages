@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.0-dev.3...@rxap/plugin-library@19.2.0-dev.4) (2024-06-17)
+
+### Bug Fixes
+
+- delete target ([2a08aa2](https://gitlab.com/rxap/packages/commit/2a08aa23b8a7fdb4fc6fe7d72a5fd51b1d98672a))
+- use coerce file function ([822c33c](https://gitlab.com/rxap/packages/commit/822c33c0021276844114e859d53c79cad6feb51a))
+
 # [19.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.0-dev.2...@rxap/plugin-library@19.2.0-dev.3) (2024-06-06)
 
 ### Bug Fixes

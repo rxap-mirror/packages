@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@19.0.2-dev.0...@rxap/plugin-gitlab-ci@19.0.2-dev.1) (2024-06-17)
+
+### Bug Fixes
+
+- support local components ([36be7e8](https://gitlab.com/rxap/packages/commit/36be7e83d4026db7ccbfdf24ef0a4983c8a4dc5c))
+- support local components ([322af03](https://gitlab.com/rxap/packages/commit/322af036e58ce81ad549190e0b147c0622cc3295))
+- use coerce file function ([822c33c](https://gitlab.com/rxap/packages/commit/822c33c0021276844114e859d53c79cad6feb51a))
+
 ## [19.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@19.0.1...@rxap/plugin-gitlab-ci@19.0.2-dev.0) (2024-06-05)
 
 **Note:** Version bump only for package @rxap/plugin-gitlab-ci

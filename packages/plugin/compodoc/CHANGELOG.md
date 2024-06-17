@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@19.0.2-dev.1...@rxap/plugin-compodoc@19.0.2-dev.2) (2024-06-17)
+
+### Bug Fixes
+
+- check for root path ([416f613](https://gitlab.com/rxap/packages/commit/416f613510c4bfead5d4dc725ef86698006f7c4c))
+
 ## [19.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@19.0.2-dev.0...@rxap/plugin-compodoc@19.0.2-dev.1) (2024-06-11)
 
 ### Bug Fixes

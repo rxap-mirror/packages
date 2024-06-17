@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.0-dev.0...@rxap/ts-morph@1.4.0-dev.1) (2024-06-17)
+
+### Bug Fixes
+
+- only overwrite if defined ([21e3f6a](https://gitlab.com/rxap/packages/commit/21e3f6ab62b28c899bb8bbc4f58b0f7a65974ec6))
+- resolve small issues ([ee67c98](https://gitlab.com/rxap/packages/commit/ee67c987b5ea08a1818e882309d42d1056bfe64c))
+- support custom stories ([baa29f9](https://gitlab.com/rxap/packages/commit/baa29f98a099f6cca52b639a6046ff397489c4be))
+
 # [1.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.3.1-dev.3...@rxap/ts-morph@1.4.0-dev.0) (2024-06-10)
 
 ### Features

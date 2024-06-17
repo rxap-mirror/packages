@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@18.1.0-dev.1...@rxap/schematics-ts-morph@18.1.0-dev.2) (2024-06-17)
+
+### Bug Fixes
+
+- dont overwrite form definition decorators ([82e9162](https://gitlab.com/rxap/packages/commit/82e916206fc8e31add674c8a8f9011d8d7dfff12))
+- dont overwrite UseFormControl props ([eed3be8](https://gitlab.com/rxap/packages/commit/eed3be8fd71885a98e704c14915871d64ab683d5))
+
 # [18.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@18.1.0-dev.0...@rxap/schematics-ts-morph@18.1.0-dev.1) (2024-06-10)
 
 ### Features

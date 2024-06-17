@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.1.0-dev.4...@rxap/schematic-angular@18.1.0-dev.5) (2024-06-17)
+
+### Bug Fixes
+
+- add method header button ([976e435](https://gitlab.com/rxap/packages/commit/976e435cbcddd431bd3a1ca2fd48e4d8c7e9eb1b))
+- resolve issues ([375ac2c](https://gitlab.com/rxap/packages/commit/375ac2c61edfbb87d8474e39a45be83d7a7062a0))
+- resolve small issues ([b561b2e](https://gitlab.com/rxap/packages/commit/b561b2eef6e9b3b769319a3b68369d2c7f706375))
+- resolve small issues ([ee67c98](https://gitlab.com/rxap/packages/commit/ee67c987b5ea08a1818e882309d42d1056bfe64c))
+- support custom stories ([baa29f9](https://gitlab.com/rxap/packages/commit/baa29f98a099f6cca52b639a6046ff397489c4be))
+- use coerce file function ([822c33c](https://gitlab.com/rxap/packages/commit/822c33c0021276844114e859d53c79cad6feb51a))
+
 # [18.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.1.0-dev.3...@rxap/schematic-angular@18.1.0-dev.4) (2024-06-11)
 
 ### Bug Fixes
