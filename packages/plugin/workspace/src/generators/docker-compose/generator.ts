@@ -452,6 +452,14 @@ function mergeTraefikConfig(tree: Tree, newTraefikConfig: string): string {
   return stringify(merged);
 }
 
+function coerceCertDirectory(tree: Tree) {
+  const command = 'mkdir -p docker/traefik/tls';
+  console.log('RUN:', command);
+  return execSync(command, {
+    cwd: tree.root,
+  }).toString();
+}
+
 export async function dockerComposeGenerator(
   tree: Tree,
   options: DockerComposeGeneratorSchema,
@@ -481,6 +489,7 @@ export async function dockerComposeGenerator(
   }
   CoerceFile(tree, traefikConfigPath, traefikConfig, true);
 
+  coerceCertDirectory(tree);
   coerceCaCert(rootDomain, tree);
   createDefaultCerts(rootDomain, tree);
   signDefaultCerts(rootDomain, frontendApplications, tree);
