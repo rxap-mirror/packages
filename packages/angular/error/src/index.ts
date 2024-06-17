@@ -8,6 +8,12 @@ export * from './lib/message-http-error/message-http-error.service';
 export * from './lib/error-dialog/error-dialog.component';
 // endregion
 
+// region error
+export * from './lib/error/angular-error-dialog-data';
+export * from './lib/error/angular-error.component';
+export * from './lib/error/angular-error.service';
+// endregion
+
 // region code-http-error
 export * from './lib/code-http-error/code-http-error-dialog-data';
 export * from './lib/code-http-error/code-http-error.component';
@@ -18,12 +24,6 @@ export * from './lib/code-http-error/code-http-error.service';
 export * from './lib/any-http-error/any-http-error-dialog-data';
 export * from './lib/any-http-error/any-http-error.component';
 export * from './lib/any-http-error/any-http-error.service';
-// endregion
-
-// region angular-error
-export * from './lib/angular-error/angular-error-dialog-data';
-export * from './lib/angular-error/angular-error.component';
-export * from './lib/angular-error/angular-error.service';
 // endregion
 
 // region 

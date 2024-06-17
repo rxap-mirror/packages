@@ -15,8 +15,8 @@ import {
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
 import * as Sentry from '@sentry/angular-ivy';
-import { AngularErrorDialogData } from './angular-error/angular-error-dialog-data';
-import { AngularErrorService } from './angular-error/angular-error.service';
+import { AngularErrorDialogData } from './error/angular-error-dialog-data';
+import { AngularErrorService } from './error/angular-error.service';
 import {
   ExtractContextFromError,
   ExtractError,
