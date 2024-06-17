@@ -5,7 +5,6 @@
   "projectType": "library",
   "tags": ["packages", "plugin", "scope:utilities"],
   "targets": {
-    "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

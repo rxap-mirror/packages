@@ -3,9 +3,6 @@
   "name": "@rxap/plugin-storybook",
   "license": "MIT",
   "dependencies": {
-    "tslib": "2.6.2"
-  },
-  "peerDependencies": {
     "@nx/angular": "^19.1.1",
     "@nx/devkit": "^19.1.1",
     "@nx/eslint": "^19.1.1",
@@ -14,7 +11,8 @@
     "@rxap/workspace-ts-morph": "^19.1.0-dev.1",
     "@rxap/workspace-utilities": "^19.2.0-dev.5",
     "colors": "^1.4.0",
-    "ts-morph": "^18.0.0"
+    "ts-morph": "^18.0.0",
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
@@ -34,42 +32,6 @@
     "plugin-storybook",
     "rxap"
   ],
-  "nx-migrations": {
-    "packageGroup": [
-      {
-        "package": "@nx/angular",
-        "version": "19.1.1"
-      },
-      {
-        "package": "@nx/devkit",
-        "version": "19.1.1"
-      },
-      {
-        "package": "@nx/eslint",
-        "version": "19.1.1"
-      },
-      {
-        "package": "@rxap/node-utilities",
-        "version": "1.2.2"
-      },
-      {
-        "package": "@rxap/ts-morph",
-        "version": "1.4.0-dev.0"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.2.2"
-      },
-      {
-        "package": "@rxap/workspace-ts-morph",
-        "version": "19.1.0-dev.1"
-      },
-      {
-        "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.4"
-      }
-    ]
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/plugin/storybook"
