@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/ngx-material-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -31,12 +31,32 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@angular/animations",
+        "version": "18.0.0 || 19.0.0"
+      },
+      {
+        "package": "@angular/cdk",
+        "version": "18.0.0"
+      },
+      {
+        "package": "@angular/common",
+        "version": "18.0.0 || 19.0.0"
+      },
+      {
         "package": "@angular/core",
         "version": "18.0.1"
       },
       {
+        "package": "@angular/forms",
+        "version": "18.0.0 || 19.0.0"
+      },
+      {
         "package": "@angular/material",
         "version": "18.0.0"
+      },
+      {
+        "package": "@angular/platform-browser",
+        "version": "18.0.0 || 19.0.0"
       }
     ]
   },

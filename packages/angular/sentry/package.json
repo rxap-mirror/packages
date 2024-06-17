@@ -1,13 +1,13 @@
 {
-  "version": "18.0.2-dev.0",
+  "version": "18.0.2-dev.1",
   "name": "@rxap/ngx-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/config": "^18.0.2-dev.0",
-    "@rxap/environment": "^18.0.2-dev.0",
+    "@rxap/config": "^18.0.2-dev.1",
+    "@rxap/environment": "^18.0.2-dev.1",
     "@sentry/angular-ivy": "^7.60.1",
     "@sentry/browser": "^7.60.1",
     "@sentry/integrations": "^7.60.1"
@@ -33,28 +33,28 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@angular/common",
+        "version": "18.0.1"
+      },
+      {
+        "package": "@angular/core",
+        "version": "18.0.1"
+      },
+      {
+        "package": "@angular/router",
+        "version": " 12.x  16.x"
+      },
+      {
         "package": "@rxap/config",
-        "version": "18.0.2-dev.0"
+        "version": "18.0.2-dev.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.2-dev.0"
-      },
-      {
-        "package": "@rxap/node-utilities",
-        "version": "1.2.2"
-      },
-      {
-        "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.1"
+        "version": "18.0.2-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.2"
-      },
-      {
-        "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.3"
+        "version": "16.2.3-dev.0"
       }
     ]
   },

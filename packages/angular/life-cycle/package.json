@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/life-cycle",
   "description": "A utility package to execute logic after the angular app is ready",
   "license": "GPL-3.0-or-later",
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@angular/core": "^18.0.1",
     "@angular/router": "^18.0.1",
-    "@rxap/utilities": "^16.2.2",
+    "@rxap/utilities": "^16.2.3-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -33,7 +33,15 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@angular/common",
+        "version": "18.0.1"
+      },
+      {
         "package": "@angular/core",
+        "version": "18.0.1"
+      },
+      {
+        "package": "@angular/platform-browser",
         "version": "18.0.1"
       },
       {
@@ -42,7 +50,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.2"
+        "version": "16.2.3-dev.0"
       }
     ]
   },

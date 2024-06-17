@@ -1,5 +1,5 @@
 {
-  "version": "10.1.1-dev.0",
+  "version": "10.1.1-dev.1",
   "name": "@rxap/nest-minio",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -31,6 +31,10 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@nestjs/axios",
+        "version": "1.0.0 || 2.0.0 || 3.0.0"
+      },
+      {
         "package": "@nestjs/common",
         "version": "10.3.8"
       },
@@ -39,8 +43,28 @@
         "version": "3.2.2"
       },
       {
+        "package": "@nestjs/core",
+        "version": "9.0.0 || 10.0.0"
+      },
+      {
+        "package": "@nestjs/microservices",
+        "version": "9.0.0 || 10.0.0"
+      },
+      {
+        "package": "@nestjs/mongoose",
+        "version": "9.0.0 || 10.0.0"
+      },
+      {
+        "package": "@nestjs/sequelize",
+        "version": "9.0.0 || 10.0.0"
+      },
+      {
         "package": "@nestjs/terminus",
         "version": "10.2.3"
+      },
+      {
+        "package": "@nestjs/typeorm",
+        "version": "9.0.0 || 10.0.0"
       }
     ]
   },

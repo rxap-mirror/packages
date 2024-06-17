@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.2.0-dev.5...@rxap/workspace-utilities@19.2.0-dev.6) (2024-06-17)
+
+### Bug Fixes
+
+- cleanup object properties ([750629a](https://gitlab.com/rxap/packages/commit/750629aa1ef97398573982fdabc44252675cdba5))
+
+### Features
+
+- add get major version functions ([dfb514a](https://gitlab.com/rxap/packages/commit/dfb514ae53c9b603cfd57b425f6d32d9e8f12ead))
+- add IsPresetProject function ([ef2976a](https://gitlab.com/rxap/packages/commit/ef2976a55085a7cfd56faf17fe8e28d0857ae7e3))
+
 # [19.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.2.0-dev.4...@rxap/workspace-utilities@19.2.0-dev.5) (2024-06-17)
 
 ### Bug Fixes

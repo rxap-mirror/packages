@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.0-dev.4...@rxap/plugin-library@19.2.0-dev.5) (2024-06-17)
+
+### Bug Fixes
+
+- always add the expose-as-schematic target to plugin projects ([fb8e9f0](https://gitlab.com/rxap/packages/commit/fb8e9f0771dcb4cfdc25334775ddcedba0a3e4bc))
+- ensure standalone packages only have dependencies ([877a4ca](https://gitlab.com/rxap/packages/commit/877a4ca54a2cb211089a1bdec05246b36873fbc4))
+- only add dependencies to preset and plugin projects ([6e779b4](https://gitlab.com/rxap/packages/commit/6e779b46a34b329e4721af7bac529f1f801bb17a))
+- only include direct package peer dependencies ([dd0e600](https://gitlab.com/rxap/packages/commit/dd0e60025c26e6ce26637b1e10ec8d09fccc03f3))
+- resolve package group based on peer dependencies ([6f76b16](https://gitlab.com/rxap/packages/commit/6f76b163d1ae3f2a9ec4949401cdff2f23fcd7a1))
+- simplify index-export target adding ([8241689](https://gitlab.com/rxap/packages/commit/824168987779b6c260d16c950895ef1b3514b44f))
+
+### Features
+
+- add init preset generator ([1ebe1f8](https://gitlab.com/rxap/packages/commit/1ebe1f839a4b0620efcb0d5b46b09182d07d7893))
+- add init schematic generator ([121026d](https://gitlab.com/rxap/packages/commit/121026db02845c41b95c3ba405f897c02c7cca9c))
+- add onlyDependencies option ([459144b](https://gitlab.com/rxap/packages/commit/459144b1b66a1744994e97e42929874dc1c33415))
+
 # [19.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.0-dev.3...@rxap/plugin-library@19.2.0-dev.4) (2024-06-17)
 
 ### Bug Fixes

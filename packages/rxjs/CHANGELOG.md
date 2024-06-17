@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/rxjs@1.1.4...@rxap/rxjs@1.1.5-dev.0) (2024-06-17)
+
+**Note:** Version bump only for package @rxap/rxjs
+
 ## [1.1.4](https://gitlab.com/rxap/packages/compare/@rxap/rxjs@1.1.4-dev.0...@rxap/rxjs@1.1.4) (2024-05-29)
 
 **Note:** Version bump only for package @rxap/rxjs

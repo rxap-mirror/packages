@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@18.0.2-dev.1...@rxap/schematic-composer@18.0.2-dev.2) (2024-06-17)
+
+### Bug Fixes
+
+- support directory parameters ([cb6bf35](https://gitlab.com/rxap/packages/commit/cb6bf358d399923903942de9c86274278c448327))
+
 ## [18.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@18.0.2-dev.0...@rxap/schematic-composer@18.0.2-dev.1) (2024-06-17)
 
 ### Bug Fixes

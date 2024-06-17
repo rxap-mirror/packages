@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1",
+  "version": "18.0.2-dev.0",
   "name": "@rxap/keycloak",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -39,6 +39,10 @@
       },
       {
         "package": "@angular/core",
+        "version": "18.0.1"
+      },
+      {
+        "package": "@angular/platform-browser",
         "version": "18.0.1"
       },
       {

@@ -1,12 +1,12 @@
 {
-  "version": "10.3.0",
+  "version": "10.3.1-dev.0",
   "name": "@rxap/nest-dto",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/nest-utilities": "^10.3.0",
+    "@rxap/nest-utilities": "^10.3.1-dev.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1"
   },
@@ -28,8 +28,28 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@nestjs/cache-manager",
+        "version": "2.2.2"
+      },
+      {
+        "package": "@nestjs/common",
+        "version": "10.3.8"
+      },
+      {
+        "package": "@nestjs/config",
+        "version": "3.2.2"
+      },
+      {
+        "package": "@nestjs/core",
+        "version": "10.3.8"
+      },
+      {
+        "package": "@nestjs/throttler",
+        "version": "5.1.2"
+      },
+      {
         "package": "@rxap/nest-utilities",
-        "version": "10.3.0"
+        "version": "10.3.1-dev.0"
       }
     ]
   },

@@ -1,5 +1,5 @@
 {
-  "version": "18.0.2-dev.0",
+  "version": "18.0.2-dev.1",
   "name": "@rxap/authentication",
   "description": "A collection of components and services to simplify the authentication process implementation.",
   "license": "GPL-3.0-or-later",
@@ -41,24 +41,12 @@
         "version": "18.0.1"
       },
       {
-        "package": "@angular/router",
+        "package": "@angular/platform-browser",
         "version": "18.0.1"
       },
       {
-        "package": "@rxap/node-utilities",
-        "version": "1.2.2"
-      },
-      {
-        "package": "@rxap/plugin-utilities",
-        "version": "19.0.3-dev.1"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.2.2"
-      },
-      {
-        "package": "@rxap/workspace-utilities",
-        "version": "19.2.0-dev.3"
+        "package": "@angular/router",
+        "version": "18.0.1"
       }
     ]
   },
