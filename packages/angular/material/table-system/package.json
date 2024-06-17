@@ -14,7 +14,7 @@
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
     "@rxap/components": "^18.0.2-dev.0",
-    "@rxap/data-source": "^18.0.2-dev.0",
+    "@rxap/data-source": "^18.1.0-dev.0",
     "@rxap/directives": "^18.0.1",
     "@rxap/forms": "^18.0.1",
     "@rxap/material-directives": "^18.0.2-dev.0",

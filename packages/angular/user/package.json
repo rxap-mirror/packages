@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@angular/core": "^18.0.1",
     "@rxap/authentication": "^18.0.2-dev.0",
-    "@rxap/data-source": "^18.0.2-dev.0",
+    "@rxap/data-source": "^18.1.0-dev.0",
     "@rxap/ngx-pub-sub": "^18.0.1",
     "@rxap/open-api": "^18.0.2-dev.0",
     "@rxap/utilities": "^16.2.2",
