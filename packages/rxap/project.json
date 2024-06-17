@@ -171,6 +171,7 @@
         "update-implicit-dependencies"
       ],
       "options": {
+        "includeDependencies": true,
         "include": [
           "@angular/animations",
           "@angular/cdk",

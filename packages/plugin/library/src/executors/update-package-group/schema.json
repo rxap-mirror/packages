@@ -29,6 +29,11 @@
         "type": "string"
       },
       "description": "List of package names that should be added to the package group"
+    },
+    "includeDependencies": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, the dependencies of the included packages will be added to the package group"
     }
   },
   "required": []

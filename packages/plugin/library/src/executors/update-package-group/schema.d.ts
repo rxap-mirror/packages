@@ -2,4 +2,5 @@ export interface UpdatePackageGroupExecutorSchema {
   packageGroupRegex: string[];
   merge?: boolean;
   include?: string[];
+  includeDependencies?: boolean;
 }

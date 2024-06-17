@@ -1,5 +1,6 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
+  GetAllPackageDependenciesForProjectWihRetry,
   HasProjectWithPackageName,
   LoadProjectToPackageMappingWithRetry,
   PackageNameToProjectName,
@@ -27,6 +28,11 @@ function convertToPackageGroup(input: Record<string, string>, packageGroupRegex:
       package: packageName,
       version: normalizePackageVersion(version),
     }));
+}
+
+async function getPackageGroupFromDependencies(context: ExecutorContext, packageGroupRegex: RegExp[]): Promise<ArrayPackageGroup> {
+  const directPackageDependencies = await GetAllPackageDependenciesForProjectWihRetry(context);
+  return convertToPackageGroup(directPackageDependencies, packageGroupRegex);
 }
 
 function loadPackageJsonForPackage(packageName: string): PackageJson | null {
@@ -128,13 +134,20 @@ function getPackageGroupFromRootDependencies(context: ExecutorContext, include: 
 }
 
 async function getPackageGroup(
-  context: ExecutorContext, packageGroupRegex: RegExp[], include: string[] = []): Promise<ArrayPackageGroup> {
-  return mergePackageGroup(
+  context: ExecutorContext, packageGroupRegex: RegExp[], include: string[], includeDependnecies: boolean): Promise<ArrayPackageGroup> {
+  let packageGroupArray: ArrayPackageGroup = mergePackageGroup(
     // load package defined as peer dependencies
     await getPackageGroupFromPeerDependencies(context, packageGroupRegex),
     // load package defined by the include option from the root package.json
     getPackageGroupFromRootDependencies(context, include),
   );
+  if (includeDependnecies) {
+    packageGroupArray = mergePackageGroup(
+      packageGroupArray,
+      await getPackageGroupFromDependencies(context, packageGroupRegex),
+    );
+  }
+  return packageGroupArray;
 }
 
 function mergePackageGroup(original: PackageGroup, updated: ArrayPackageGroup): ArrayPackageGroup {
@@ -174,7 +187,7 @@ export default async function runExecutor(
 
   await LoadProjectToPackageMappingWithRetry(context);
 
-  let packageGroup = await getPackageGroup(context, packageGroupRegex, options.include);
+  let packageGroup = await getPackageGroup(context, packageGroupRegex, options.include ?? [], options.includeDependencies ?? false);
   nxMigrations.packageGroup ??= [];
 
   if (options.merge) {
