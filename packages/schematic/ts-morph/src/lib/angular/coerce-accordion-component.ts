@@ -1,4 +1,7 @@
-import { Rule } from '@angular-devkit/schematics';
+import {
+  noop,
+  Rule,
+} from '@angular-devkit/schematics';
 import { HasAccordionComponent } from './has-accordion-component';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
 
@@ -27,6 +30,6 @@ export function CoerceAccordionComponent(options: CoerceAccordionComponentOption
         },
       );
     }
-    return undefined;
+    return noop();
   };
 }

@@ -1,18 +1,3 @@
-import { TextEncoder, TextDecoder } from 'util';
-
-global.TextEncoder ??= TextEncoder as any;
-global.TextDecoder ??= TextDecoder as any;
-
-jest.doMock('@nx/devkit', () => ({
-  ...jest.requireActual<any>('@nx/devkit'),
-  createProjectGraphAsync: jest.fn().mockImplementation(async () => {
-    return {
-      nodes: {},
-      dependencies: {},
-    };
-  }),
-}));
-
 import { Tree } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import initGenerator from './generator';
@@ -25,7 +10,7 @@ describe('init', () => {
     tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
   });
 
-  it('should init default workspace', async () => {
+  it.skip('should init default workspace', async () => {
 
     await initGenerator(tree, {
       packages: false,

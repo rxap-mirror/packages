@@ -1,4 +1,7 @@
-import { Rule } from '@angular-devkit/schematics';
+import {
+  noop,
+  Rule,
+} from '@angular-devkit/schematics';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import {
   buildNestProjectName,
@@ -50,6 +53,6 @@ export function CoerceNestServiceProject(options: CoerceNestServiceProjectOption
         );
       }
     }
-    return undefined;
+    return noop();
   };
 }
