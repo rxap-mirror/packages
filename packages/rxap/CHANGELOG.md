@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/rxap@19.0.7-dev.16...rxap@19.1.0-dev.0) (2024-06-17)
+
+### Features
+
+- add include dependencies option ([c5fcf7c](https://gitlab.com/rxap/packages/commit/c5fcf7cf8ed4d3f72c6e45496b9cd849208fa5ba))
+
 ## [19.0.7-dev.16](https://gitlab.com/rxap/packages/compare/rxap@19.0.7-dev.15...rxap@19.0.7-dev.16) (2024-06-17)
 
 ### Bug Fixes

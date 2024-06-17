@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.0-dev.6...@rxap/plugin-library@19.2.0-dev.7) (2024-06-17)
+
+### Bug Fixes
+
+- ensure all new publishable libraries are added to the rxap project ([ee25608](https://gitlab.com/rxap/packages/commit/ee25608ffbd869a187739ac31b31a216308e5e91))
+
+### Features
+
+- add include dependencies option ([c5fcf7c](https://gitlab.com/rxap/packages/commit/c5fcf7cf8ed4d3f72c6e45496b9cd849208fa5ba))
+
 # [19.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.0-dev.5...@rxap/plugin-library@19.2.0-dev.6) (2024-06-17)
 
 ### Bug Fixes
