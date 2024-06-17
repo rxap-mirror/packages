@@ -14,6 +14,10 @@ export function IsPluginProject(project: { tags?: string[] }): boolean {
   return !!project.tags?.includes('plugin');
 }
 
+export function IsPresetProject(project: { tags?: string[] }): boolean {
+  return !!project.tags?.includes('preset');
+}
+
 export function IsSchematicProject(project: { tags?: string[] }): boolean {
   return !!project.tags?.includes('schematic');
 }
