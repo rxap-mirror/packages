@@ -180,6 +180,8 @@ const PACKAGE_ADD_BLACK_LIST = [
 
 const PACKAGE_PEER_DEPENDENCIES_BLACK_LIST = [ 'tslib' ];
 
+const PACKAGE_FORCED_PEER_DEPENDENCIES: Array<string | RegExp> = [ 'rxjs', /@angular\//, /@nestjs\//, /@storybook\//, /@types\// ];
+
 function addDependedProjects(
   projectGraph: ProjectGraph,
   tree: Tree,
@@ -631,6 +633,15 @@ export async function fixDependenciesGenerator(
 
       for (const [packageName, version] of Object.entries(packageJson.dependencies)) {
         packageJson.dependencies[packageName] = rootPackageJson.dependencies?.[packageName] ?? rootPackageJson.devDependencies?.[packageName] ?? version;
+      }
+
+      for (const forcedPeerDependency of PACKAGE_FORCED_PEER_DEPENDENCIES) {
+        for (const [packageName, version] of Object.entries(packageJson.dependencies)) {
+          if (forcedPeerDependency instanceof RegExp ? forcedPeerDependency.test(packageName) : forcedPeerDependency === packageName) {
+            packageJson.peerDependencies[packageName] = version;
+            delete packageJson.dependencies[packageName];
+          }
+        }
       }
 
       console.log(`====================  Report for project ${ projectName }`);
