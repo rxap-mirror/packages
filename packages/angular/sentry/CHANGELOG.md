@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.2-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-sentry@18.0.2-dev.2...@rxap/ngx-sentry@18.0.2-dev.3) (2024-06-17)
+
+### Bug Fixes
+
+- update to latest sentry version ([9caf6ce](https://gitlab.com/rxap/packages/commit/9caf6ce42f72b053d1ea779a457fe73dd46dea8b))
+
 ## [18.0.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-sentry@18.0.2-dev.1...@rxap/ngx-sentry@18.0.2-dev.2) (2024-06-17)
 
 **Note:** Version bump only for package @rxap/ngx-sentry

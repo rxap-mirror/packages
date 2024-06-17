@@ -1,5 +1,5 @@
 {
-  "version": "18.0.2-dev.2",
+  "version": "18.0.2-dev.3",
   "name": "@rxap/ngx-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -40,7 +40,7 @@
       },
       {
         "package": "@angular/router",
-        "version": " 12.x  16.x"
+        "version": " 14.x  18.x"
       },
       {
         "package": "@rxap/config",

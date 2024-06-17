@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0-dev.6...@rxap/plugin-angular@19.1.0-dev.7) (2024-06-17)
+
+### Bug Fixes
+
+- remove include dualization ([b69a3e5](https://gitlab.com/rxap/packages/commit/b69a3e537d7fcd979530270c850be08c2b85d1b5))
+- update to latest sentry version ([9caf6ce](https://gitlab.com/rxap/packages/commit/9caf6ce42f72b053d1ea779a457fe73dd46dea8b))
+
 # [19.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0-dev.5...@rxap/plugin-angular@19.1.0-dev.6) (2024-06-17)
 
 ### Bug Fixes

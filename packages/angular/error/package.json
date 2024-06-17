@@ -1,5 +1,5 @@
 {
-  "version": "18.0.2-dev.3",
+  "version": "18.0.2-dev.4",
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@rxap/config": "^18.0.2-dev.2",
     "@rxap/data-grid": "^18.0.2-dev.2",
     "@rxap/environment": "^18.0.2-dev.2",
-    "@sentry/angular-ivy": "^7.60.1",
+    "@sentry/angular": "^8.9.2",
     "rxjs": "^7.8.1"
   },
   "author": {

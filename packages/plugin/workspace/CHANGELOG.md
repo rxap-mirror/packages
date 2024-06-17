@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0-dev.6...@rxap/plugin-workspace@19.1.0-dev.7) (2024-06-17)
+
+### Bug Fixes
+
+- ensure the cert directory exists ([3aebf3c](https://gitlab.com/rxap/packages/commit/3aebf3c510a8fa0acc82e45811f54c9de16d5527))
+- update to latest sentry version ([9caf6ce](https://gitlab.com/rxap/packages/commit/9caf6ce42f72b053d1ea779a457fe73dd46dea8b))
+
 # [19.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0-dev.5...@rxap/plugin-workspace@19.1.0-dev.6) (2024-06-17)
 
 ### Bug Fixes
