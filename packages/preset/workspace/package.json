@@ -3,9 +3,9 @@
   "name": "@rxap/preset-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "^19.1.1",
+    "@nx/devkit": "19.1.1",
     "@rxap/plugin-workspace": "^19.1.0-dev.3",
-    "tslib": "^2.3.0"
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",

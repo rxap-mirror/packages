@@ -3,7 +3,7 @@
   "name": "@rxap/node-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "ignore": "^5.2.4",
+    "ignore": "5.2.4",
     "tslib": "2.6.2"
   },
   "author": {

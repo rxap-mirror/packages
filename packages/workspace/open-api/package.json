@@ -5,7 +5,7 @@
   "dependencies": {
     "openapi-types": "10.0.0",
     "tslib": "2.6.2",
-    "yaml": "^2.3.1"
+    "yaml": "2.3.1"
   },
   "peerDependencies": {
     "@angular-devkit/core": "^18.0.2",

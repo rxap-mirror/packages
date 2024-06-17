@@ -13,6 +13,7 @@ import {
   CoerceFile,
   Dependency,
   GetProjectRoot,
+  GetRootPackageJson,
   HasProjectWithPackageName,
   LoadProjectToPackageMapping,
   PackageNameToProjectName,
@@ -574,6 +575,8 @@ export async function fixDependenciesGenerator(
     }
   }
 
+  const rootPackageJson = GetRootPackageJson(tree);
+
   const projectGraph = await createProjectGraphAsync();
   LoadProjectToPackageMapping(tree, projectGraph);
 
@@ -624,6 +627,10 @@ export async function fixDependenciesGenerator(
           ...packageJson.peerDependencies,
         };
         packageJson.peerDependencies = {};
+      }
+
+      for (const [packageName, version] of Object.entries(packageJson.dependencies)) {
+        packageJson.dependencies[packageName] = rootPackageJson.dependencies?.[packageName] ?? rootPackageJson.devDependencies?.[packageName] ?? version;
       }
 
       console.log(`====================  Report for project ${ projectName }`);
