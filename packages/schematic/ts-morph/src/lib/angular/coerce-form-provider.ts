@@ -4,6 +4,7 @@ import {
   ImportDeclarationStructure,
   OptionalKind,
   SourceFile,
+  SyntaxKind,
 } from 'ts-morph';
 import { AddProviderToArray } from '../add-provider-to-array';
 import { CoerceSourceFile } from '../coerce-source-file';
@@ -27,7 +28,7 @@ export function CoerceFormProvider(sourceFile: SourceFile, providerObject: Provi
 
   const formProviderArray = formProviders.getInitializer();
 
-  if (!(formProviderArray instanceof ArrayLiteralExpression)) {
+  if (!(formProviderArray?.isKind(SyntaxKind.ArrayLiteralExpression))) {
     throw new Error('FormProviders initializer is not an array literal expression');
   }
 

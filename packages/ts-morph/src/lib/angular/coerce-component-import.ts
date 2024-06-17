@@ -2,6 +2,7 @@ import {
   ClassDeclaration,
   ObjectLiteralExpression,
   SourceFile,
+  SyntaxKind,
 } from 'ts-morph';
 import { CoerceArrayElement } from '../coerce-array-element';
 import { CoerceImports } from '../coerce-imports';
@@ -27,12 +28,12 @@ export function CoerceComponentImport(
   componentImport: string | TypeImport,
 ) {
 
-  const sourceFile = sourceFileOrClassDeclaration instanceof SourceFile ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
+  const sourceFile = sourceFileOrClassDeclaration.isKind(SyntaxKind.SourceFile) ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
 
   let componentDecoratorObject: ObjectLiteralExpression;
-  if (sourceFileOrClassDeclaration instanceof ObjectLiteralExpression) {
+  if (sourceFileOrClassDeclaration.isKind(SyntaxKind.ObjectLiteralExpression)) {
     componentDecoratorObject = sourceFileOrClassDeclaration;
-  } else if (sourceFileOrClassDeclaration instanceof ClassDeclaration) {
+  } else if (sourceFileOrClassDeclaration.isKind(SyntaxKind.ClassDeclaration)) {
     componentDecoratorObject = GetComponentDecoratorObject(sourceFileOrClassDeclaration);
   } else {
     componentDecoratorObject = GetComponentDecoratorObject(GetComponentClass(sourceFileOrClassDeclaration));

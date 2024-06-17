@@ -2,6 +2,7 @@ import {
   ArrayLiteralExpression,
   ObjectLiteralExpression,
   PropertyAssignment,
+  SyntaxKind,
 } from 'ts-morph';
 
 export function DefaultAddControlValidatorCompare(a: string, b: string): boolean {
@@ -23,13 +24,13 @@ export function AddControlValidator(
     });
   }
 
-  if (!(validatorPropertyAssignment instanceof PropertyAssignment)) {
+  if (!(validatorPropertyAssignment.isKind(SyntaxKind.PropertyAssignment))) {
     throw new Error('The validator property is not a assignment type!');
   }
 
   const validatorProperty = validatorPropertyAssignment.getInitializer();
 
-  if (validatorProperty instanceof ArrayLiteralExpression) {
+  if (validatorProperty?.isKind(SyntaxKind.ArrayLiteralExpression)) {
     const index = validatorProperty
       .getElements()
       .findIndex(element => compareFn(element.getFullText(), validator));

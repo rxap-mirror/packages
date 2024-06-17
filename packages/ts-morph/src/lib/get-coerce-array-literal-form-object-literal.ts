@@ -2,6 +2,7 @@ import {
   ArrayLiteralExpression,
   ObjectLiteralExpression,
   PropertyAssignment,
+  SyntaxKind,
 } from 'ts-morph';
 
 export function GetArrayLiteralFromObjectLiteral(
@@ -15,7 +16,7 @@ export function GetArrayLiteralFromObjectLiteral(
     return null;
   }
 
-  if (!(arrayLiteralAssignment instanceof PropertyAssignment)) {
+  if (!(arrayLiteralAssignment.isKind(SyntaxKind.PropertyAssignment))) {
     throw new Error('The imports property is not type of Property Assignment!');
   }
 
@@ -25,7 +26,7 @@ export function GetArrayLiteralFromObjectLiteral(
     throw new Error('The imports property a not a initializer');
   }
 
-  if (!(arrayLiteral instanceof ArrayLiteralExpression)) {
+  if (!(arrayLiteral.isKind(SyntaxKind.ArrayLiteralExpression))) {
     throw new Error('The imports property initializer is not an array');
   }
 
@@ -47,7 +48,7 @@ export function GetCoerceArrayLiteralFromObjectLiteral(
     });
   }
 
-  if (!(arrayLiteralAssignment instanceof PropertyAssignment)) {
+  if (!(arrayLiteralAssignment.isKind(SyntaxKind.PropertyAssignment))) {
     throw new Error('The imports property is not type of Property Assignment!');
   }
 
@@ -57,7 +58,7 @@ export function GetCoerceArrayLiteralFromObjectLiteral(
     throw new Error('The imports property a not a initializer');
   }
 
-  if (!(arrayLiteral instanceof ArrayLiteralExpression)) {
+  if (!(arrayLiteral.isKind(SyntaxKind.ArrayLiteralExpression))) {
     throw new Error('The imports property initializer is not an array');
   }
 

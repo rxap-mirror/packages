@@ -9,9 +9,9 @@ import {
 
 export function FindArrayElementByObjectProperty(property: string, value: string) {
   return (e: Expression) => {
-    if (e instanceof ObjectLiteralExpression) {
+    if (e.isKind(SyntaxKind.ObjectLiteralExpression)) {
       const p = e.getProperty(property);
-      if (p && p instanceof PropertyAssignment) {
+      if (p && p.isKind(SyntaxKind.PropertyAssignment)) {
         const i = p.getInitializerIfKind(SyntaxKind.StringLiteral);
         if (i) {
           return i.getLiteralText() === value;

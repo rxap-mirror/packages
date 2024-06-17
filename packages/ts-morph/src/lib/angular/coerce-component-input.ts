@@ -8,6 +8,7 @@ import {
   Scope,
   SetAccessorDeclaration,
   SourceFile,
+  SyntaxKind,
   WriterFunction,
   Writers,
 } from 'ts-morph';
@@ -77,8 +78,8 @@ export function CoerceComponentInput(
   { initializer, alias, isRequired, asSetAccessor }: ComponentInputDefinition = {},
 ): PropertyNamedNode & DecoratableNode {
 
-  const classDeclaration = sourceFileOrClassDeclaration instanceof ClassDeclaration ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
-  const sourceFile = sourceFileOrClassDeclaration instanceof SourceFile ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
+  const classDeclaration = sourceFileOrClassDeclaration.isKind(SyntaxKind.ClassDeclaration) ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
+  const sourceFile = sourceFileOrClassDeclaration.isKind(SyntaxKind.SourceFile) ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
 
   if (HasConstructorParameter(classDeclaration, name, true)) {
     throw new Error(`The component '${classDeclaration.getName() }' already has a constructor parameter that is a class member with the name '${ name }'. Cannot add an input with the same name!`);

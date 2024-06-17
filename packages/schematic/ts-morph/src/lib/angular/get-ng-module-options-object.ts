@@ -1,6 +1,7 @@
 import {
   ObjectLiteralExpression,
   SourceFile,
+  SyntaxKind,
   Writers,
 } from 'ts-morph';
 
@@ -20,7 +21,7 @@ export function GetNgModuleOptionsObject(sourceFile: SourceFile): ObjectLiteralE
     ngModuleOptions = ngModuleDecorator.addArgument(Writers.object({}));
   }
 
-  if (!(ngModuleOptions instanceof ObjectLiteralExpression)) {
+  if (!(ngModuleOptions.isKind(SyntaxKind.ObjectLiteralExpression))) {
     throw new Error('The NgModule options is not an object literal expression');
   }
 

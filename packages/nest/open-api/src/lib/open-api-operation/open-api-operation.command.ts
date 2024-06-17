@@ -91,7 +91,7 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
             }
           },
           error: (error: any) => {
-            if (error instanceof AxiosError) {
+            if (error.isAxiosError) {
               if (error.config) {
                 this.logger.log(`[${ requestId }] ${ error.config.method?.toUpperCase() } ${ error.status ??
                 error.response?.status } ${ error.config.url }${ HttpParams.ToHttpQueryString(error.config.params) } +${ Date.now() -
@@ -135,7 +135,7 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
 
     } catch (e: any) {
 
-      if (e.isAxiosError && e instanceof AxiosError) {
+      if (e.isAxiosError) {
 
         if (e.response) {
           const message = e.response.data?.message ?? e.message;

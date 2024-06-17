@@ -2,6 +2,7 @@ import {
   ClassDeclaration,
   ObjectLiteralExpression,
   SourceFile,
+  SyntaxKind,
 } from 'ts-morph';
 import { AddProviderToArray } from '../add-provider-to-array';
 import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
@@ -15,9 +16,9 @@ export function CoerceModuleProvider(
 ) {
 
   let componentDecoratorObject: ObjectLiteralExpression;
-  if (sourceFileOrClassDeclaration instanceof ObjectLiteralExpression) {
+  if (sourceFileOrClassDeclaration.isKind(SyntaxKind.ObjectLiteralExpression)) {
     componentDecoratorObject = sourceFileOrClassDeclaration;
-  } else if (sourceFileOrClassDeclaration instanceof ClassDeclaration) {
+  } else if (sourceFileOrClassDeclaration.isKind(SyntaxKind.ClassDeclaration)) {
     componentDecoratorObject = GetComponentDecoratorObject(sourceFileOrClassDeclaration);
   } else {
     componentDecoratorObject = GetComponentDecoratorObject(GetComponentClass(sourceFileOrClassDeclaration));

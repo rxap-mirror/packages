@@ -1,10 +1,11 @@
 import {
   ArrayLiteralExpression,
   Expression,
+  SyntaxKind,
 } from 'ts-morph';
 
 export function IsArrayLiteralExpression(expression?: Expression): expression is ArrayLiteralExpression {
-  return expression instanceof ArrayLiteralExpression;
+  return !!expression?.isKind(SyntaxKind.ArrayLiteralExpression);
 }
 
 export function AssertArrayLiteralExpression(

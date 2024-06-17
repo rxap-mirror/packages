@@ -1,6 +1,7 @@
 import {
   ArrayLiteralExpression,
   SourceFile,
+  SyntaxKind,
 } from 'ts-morph';
 import { CoerceVariableDeclaration } from './coerce-variable-declaration';
 
@@ -31,7 +32,7 @@ export function AddToArray(
     },
   ).getInitializer();
 
-  if (providerArray instanceof ArrayLiteralExpression) {
+  if (providerArray?.isKind(SyntaxKind.ArrayLiteralExpression)) {
 
     let index = providerArray.getElements().findIndex(element => element.getText().trim() === value);
 

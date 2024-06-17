@@ -1,6 +1,7 @@
 import {
   ObjectLiteralExpression,
   SourceFile,
+  SyntaxKind,
   Writers,
 } from 'ts-morph';
 
@@ -20,7 +21,7 @@ export function GetComponentOptionsObject(sourceFile: SourceFile): ObjectLiteral
     componentOptions = componentDecorator.addArgument(Writers.object({}));
   }
 
-  if (!(componentOptions instanceof ObjectLiteralExpression)) {
+  if (!(componentOptions.isKind(SyntaxKind.ObjectLiteralExpression))) {
     throw new Error('The Component options is not an object literal expression');
   }
 

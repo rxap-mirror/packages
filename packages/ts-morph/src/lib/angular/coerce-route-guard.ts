@@ -23,7 +23,7 @@ export function CoerceRouteGuard(sourceFile: SourceFile, path: string[], guard: 
         name: type,
         initializer: '[]',
       });
-      if (guardArray instanceof PropertyAssignment) {
+      if (guardArray.isKind(SyntaxKind.PropertyAssignment)) {
         const guardArrayInitializer = guardArray.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
         CoerceArrayElement(guardArrayInitializer, guard);
       } else {

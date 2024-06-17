@@ -12,6 +12,7 @@ import {
   Project,
   PropertyDeclaration,
   SourceFile,
+  SyntaxKind,
   Writers,
 } from 'ts-morph';
 import {
@@ -333,7 +334,7 @@ function cleanupUnknownApiPropertyDecorator(propertyDeclaration: PropertyDeclara
   const apiProperty = propertyDeclaration.getDecorators().find(d => d.getName() === 'ApiProperty');
   if (apiProperty) {
     const args = apiProperty.getArguments()[0];
-    if (args instanceof ObjectLiteralExpression) {
+    if (args.isKind(SyntaxKind.ObjectLiteralExpression)) {
       if (args.getProperty('type')?.getText().includes('unknown')) {
         apiProperty.remove();
       }

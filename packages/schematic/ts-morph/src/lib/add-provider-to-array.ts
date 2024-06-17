@@ -4,6 +4,7 @@ import {
   Expression,
   ObjectLiteralExpression,
   PropertyAssignment,
+  SyntaxKind,
   Writers,
 } from 'ts-morph';
 import { ProviderObject } from './provider-object';
@@ -18,7 +19,7 @@ export function AddProviderToArray(
   compare: (ole: ObjectLiteralExpression, po: ProviderObject) => boolean = (ole, po) => {
     const provideProperty = ole.getProperty('provide');
 
-    if (provideProperty instanceof PropertyAssignment) {
+    if (provideProperty?.isKind(SyntaxKind.PropertyAssignment)) {
 
       return provideProperty.getInitializer()?.getText().trim() === po.provide;
 
@@ -55,7 +56,7 @@ export function AddProviderToArray(
 
     let index = providerArray.getElements().findIndex(element => {
 
-      if (element instanceof ObjectLiteralExpression) {
+      if (element.isKind(SyntaxKind.ObjectLiteralExpression)) {
         return compare(element, providerObject);
       }
 

@@ -21,6 +21,7 @@ import {
   Scope,
   SourceFile,
   StatementStructures,
+  SyntaxKind,
   WriterFunction,
   Writers,
 } from 'ts-morph';
@@ -500,9 +501,9 @@ export function CoerceApiQueryDecorators(queryList: OperationParameter[], method
       () => decorator => {
         if (decorator.getArguments().length) {
           const [ objectLiteralExpression ] = decorator.getArguments();
-          if (objectLiteralExpression instanceof ObjectLiteralExpression) {
+          if (objectLiteralExpression.isKind(SyntaxKind.ObjectLiteralExpression)) {
             const namePropertyElement = objectLiteralExpression.getProperty('name');
-            if (namePropertyElement instanceof PropertyAssignment) {
+            if (namePropertyElement?.isKind(SyntaxKind.PropertyAssignment)) {
               const name = namePropertyElement.getInitializer()?.getText().trim().replace(/^'/, '').replace(/'$/, '');
               return name === query.name;
             }

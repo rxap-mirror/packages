@@ -3,6 +3,7 @@ import {
   MethodDeclaration,
   Scope,
   SourceFile,
+  SyntaxKind,
 } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { CoerceClassMethod } from '@rxap/schematics-ts-morph';
@@ -62,7 +63,7 @@ export function AddToGlobalHealthEndpoint(
 
   const array = statement?.getChildAtIndex(1)?.getChildAtIndex(2)?.getFirstChild();
 
-  if (array instanceof ArrayLiteralExpression) {
+  if (array?.isKind(SyntaxKind.ArrayLiteralExpression)) {
     array.addElement(w => {
       w.write(`async () => this.${ camelize(healthIndicatorClass) }.isHealthy()`);
     });

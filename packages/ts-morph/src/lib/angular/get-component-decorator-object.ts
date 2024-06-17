@@ -2,6 +2,7 @@ import {
   ClassDeclaration,
   ObjectLiteralExpression,
   SourceFile,
+  SyntaxKind,
   Writers,
 } from 'ts-morph';
 import { GetComponentClass } from './get-component-class';
@@ -10,7 +11,7 @@ export function GetComponentDecoratorObject(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration
 ): ObjectLiteralExpression {
 
-  const classDeclaration = sourceFileOrClassDeclaration instanceof ClassDeclaration ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
+  const classDeclaration = sourceFileOrClassDeclaration.isKind(SyntaxKind.ClassDeclaration) ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
 
 
   const componentDecorator = classDeclaration.getDecorator('Component')!;
@@ -20,7 +21,7 @@ export function GetComponentDecoratorObject(
     componentOptions = componentDecorator.addArgument(Writers.object({}));
   }
 
-  if (!(componentOptions instanceof ObjectLiteralExpression)) {
+  if (!(componentOptions.isKind(SyntaxKind.ObjectLiteralExpression))) {
     throw new Error('The Component options is not an object literal expression');
   }
 

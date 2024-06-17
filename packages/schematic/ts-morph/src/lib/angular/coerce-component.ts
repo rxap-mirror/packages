@@ -38,6 +38,7 @@ import {
   ClassDeclaration,
   Project,
   SourceFile,
+  SyntaxKind,
 } from 'ts-morph';
 import {
   TsMorphAngularProjectTransformOptions,

@@ -8,6 +8,7 @@ import {
   ObjectLiteralExpression,
   OptionalKind,
   SourceFile,
+  SyntaxKind,
   Writers,
 } from 'ts-morph';
 
@@ -27,7 +28,7 @@ export function GetModuleOptionsObject(sourceFile: SourceFile): ObjectLiteralExp
     moduleOptions = moduleDecorator.addArgument(Writers.object({}));
   }
 
-  if (!(moduleOptions instanceof ObjectLiteralExpression)) {
+  if (!(moduleOptions.isKind(SyntaxKind.ObjectLiteralExpression))) {
     throw new Error('The Module options is not an object literal expression');
   }
 

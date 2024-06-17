@@ -3,6 +3,7 @@ import {
   ImportDeclarationStructure,
   OptionalKind,
   SourceFile,
+  SyntaxKind,
 } from 'ts-morph';
 import { AddProviderToArray } from './add-provider-to-array';
 import { ProviderObject } from './provider-object';
@@ -35,7 +36,7 @@ export function AddVariableProvider(
 
   const providerArray = variableDeclaration.getInitializer();
 
-  if (!(providerArray instanceof ArrayLiteralExpression)) {
+  if (!(providerArray?.isKind(SyntaxKind.ArrayLiteralExpression))) {
     throw new Error(`The variable '${ variableName }' initializer is not an array literal expression`);
   }
 

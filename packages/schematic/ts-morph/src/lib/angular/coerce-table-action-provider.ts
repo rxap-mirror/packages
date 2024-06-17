@@ -3,8 +3,8 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import {
-  ArrayLiteralExpression,
   PropertyAssignment,
+  SyntaxKind,
 } from 'ts-morph';
 import { AddProviderToArray } from '../add-provider-to-array';
 import { CoerceSourceFile } from '../coerce-source-file';
@@ -36,8 +36,7 @@ export function CoerceTableActionProviderRule(options: CoerceTableActionProvider
 
     const formProviderArray = variableDeclaration.getInitializer();
 
-    if (!(formProviderArray instanceof
-      ArrayLiteralExpression)) {
+    if (!(formProviderArray?.isKind(SyntaxKind.ArrayLiteralExpression))) {
       throw new Error('FormProviders initializer is not an array literal expression');
     }
 
@@ -50,8 +49,7 @@ export function CoerceTableActionProviderRule(options: CoerceTableActionProvider
     }, formProviderArray, false, (ole, po) => {
       const provideProperty = ole.getProperty('useClass');
 
-      if (provideProperty instanceof
-        PropertyAssignment) {
+      if (provideProperty?.isKind(SyntaxKind.PropertyAssignment)) {
 
         return provideProperty.getInitializer()?.getText().trim() ===
           po.useClass;

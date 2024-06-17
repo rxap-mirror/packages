@@ -29,8 +29,8 @@ export class SocketIoClientStrategy
       this.logger.log('connection', 'SocketIoClientStrategy');
     });
     this.client.on('error', (error: unknown) => {
-      if (error instanceof Error) {
-        this.logger.error(error.message, 'SocketIoClientStrategy');
+      if (error && typeof error === 'object' && (error as any).message) {
+        this.logger.error((error as any).message, 'SocketIoClientStrategy');
       } else {
         this.logger.error(error);
       }

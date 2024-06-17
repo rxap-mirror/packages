@@ -8,6 +8,7 @@ import {
   ObjectLiteralExpression,
   OptionalKind,
   SourceFile,
+  SyntaxKind,
   WriterFunction,
   Writers,
 } from 'ts-morph';
@@ -130,7 +131,7 @@ export function CoerceComponent(
   if (!componentDecoratorObject) {
     throw new Error(`Could not find component decorator object for component '${ className }'`);
   }
-  if (!(componentDecoratorObject instanceof ObjectLiteralExpression)) {
+  if (!(componentDecoratorObject.isKind(SyntaxKind.ObjectLiteralExpression))) {
     throw new Error(`Component decorator object for component '${ className }' is not an object literal expression`);
   }
 

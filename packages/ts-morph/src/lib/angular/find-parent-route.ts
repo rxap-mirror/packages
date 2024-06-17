@@ -12,7 +12,7 @@ export function GetRouteChildrenArray(e: ObjectLiteralExpression): ArrayLiteralE
     initializer: '[]',
     kind: StructureKind.PropertyAssignment,
   });
-  if (childrenProperty instanceof PropertyAssignment) {
+  if (childrenProperty.isKind(SyntaxKind.PropertyAssignment)) {
     return childrenProperty.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
   }
   throw new Error('Children property is not a PropertyAssignment');

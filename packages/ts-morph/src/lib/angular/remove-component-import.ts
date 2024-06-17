@@ -8,6 +8,7 @@ import {
 import {
   ClassDeclaration,
   SourceFile,
+  SyntaxKind,
 } from 'ts-morph';
 
 export function RemoveComponentImport(
@@ -15,8 +16,8 @@ export function RemoveComponentImport(
   componentImport: string | TypeImport,
 ) {
 
-  const classDeclaration = sourceFileOrClassDeclaration instanceof ClassDeclaration ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
-  const sourceFile = sourceFileOrClassDeclaration instanceof SourceFile ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
+  const classDeclaration = sourceFileOrClassDeclaration.isKind(SyntaxKind.ClassDeclaration) ? sourceFileOrClassDeclaration : GetComponentClass(sourceFileOrClassDeclaration);
+  const sourceFile = sourceFileOrClassDeclaration.isKind(SyntaxKind.SourceFile) ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();
 
   const importName = typeof componentImport === 'string' ? componentImport : componentImport.namedImport ?? componentImport.name;
 

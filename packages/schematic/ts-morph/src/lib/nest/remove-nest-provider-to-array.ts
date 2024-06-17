@@ -2,6 +2,7 @@ import {
   ArrayLiteralExpression,
   ObjectLiteralExpression,
   PropertyAssignment,
+  SyntaxKind,
 } from 'ts-morph';
 import { NestProviderObject } from './nest-provider-object';
 
@@ -24,9 +25,9 @@ export function RemoveNestProviderToArray(
   } else {
 
     const index = providerArray.getElements().findIndex(element => {
-      if (element instanceof ObjectLiteralExpression) {
+      if (element.isKind(SyntaxKind.ObjectLiteralExpression)) {
         const provideProperty = element.getProperty('provide');
-        if (provideProperty instanceof PropertyAssignment) {
+        if (provideProperty?.isKind(SyntaxKind.PropertyAssignment)) {
           return provideProperty.getInitializer()?.getText().trim() === providerObject.provide;
         }
       }
