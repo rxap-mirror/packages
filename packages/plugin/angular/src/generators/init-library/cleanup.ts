@@ -17,6 +17,6 @@ export function cleanup(tree: Tree, project: ProjectConfiguration, projectName: 
 
   if (tree.exists(join(projectSourceRoot, 'lib', projectName))) {
     DeleteRecursive(tree, join(projectSourceRoot, 'lib', projectName));
-    CoerceFile(tree, join(projectSourceRoot, 'lib', 'index.ts'), 'export {};', true);
+    CoerceFile(tree, join(projectSourceRoot, 'index.ts'), 'export {};', true);
   }
 }

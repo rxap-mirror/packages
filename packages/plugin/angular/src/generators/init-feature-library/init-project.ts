@@ -5,6 +5,7 @@ import {
 import { CoerceRoutes } from '@rxap/ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
+  CoerceProjectTags,
   GetLibraryPathAliasName,
   GetProjectSourceRoot,
   UpdateProjectPackageJson,
@@ -32,6 +33,8 @@ function addRoutesImportPathToBaseTsConfig(tree: Tree, projectName: string) {
 
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitFeatureLibraryGeneratorSchema) {
   console.log(`init angular library project: ${ projectName }`);
+
+  CoerceProjectTags(project, ['feature', 'angular', 'ngx']);
 
   // It is required to ensure that private is set to true before calling the InitLibraryProject function
   // Is function this value will be used to determine if the library is publishable or not. And on default, a

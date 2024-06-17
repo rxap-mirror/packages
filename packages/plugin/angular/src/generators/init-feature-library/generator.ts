@@ -17,6 +17,10 @@ import { InitFeatureLibraryGeneratorSchema } from './schema';
 
 function skipProject(tree: Tree, options: InitFeatureLibraryGeneratorSchema, project: ProjectConfiguration, projectName: string) {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonAngularProject(tree, options, project, projectName)) {
     return true;
   }
