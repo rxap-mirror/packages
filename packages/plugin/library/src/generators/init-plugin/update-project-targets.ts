@@ -16,13 +16,11 @@ export function updateProjectTargets(tree: Tree, project: ProjectConfiguration) 
     },
   });
 
-  if (HasGenerators(tree, project)) {
-    CoerceTarget(project, 'expose-as-schematic', {
-      executor: '@rxap/plugin-library:run-generator',
-      options: {
-        generator: '@rxap/plugin-library:expose-as-schematic',
-      },
-    });
-  }
+  CoerceTarget(project, 'expose-as-schematic', {
+    executor: '@rxap/plugin-library:run-generator',
+    options: {
+      generator: '@rxap/plugin-library:expose-as-schematic',
+    },
+  });
 
 }
