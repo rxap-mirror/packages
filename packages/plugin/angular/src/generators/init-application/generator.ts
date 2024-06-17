@@ -1035,7 +1035,7 @@ export async function initApplicationGenerator(
         GetProjectRoot(tree, projectName),
         '@rxap/plugin-angular',
         'init-application',
-        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+        DeleteProperties(options, [ 'generateMain' ]),
       );
 
       console.log(`init angular application project: ${ projectName }`);

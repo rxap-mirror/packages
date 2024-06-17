@@ -44,30 +44,50 @@
       "enum": ["web3-storage"]
     },
     "sentry": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true,
+      "x-prompt": "Would you like to enable Sentry?"
     },
     "authentication": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to enable authentication",
+      "x-prompt": "Would you like to enable authentication?"
     },
     "openApi": {
       "alias": "open-api",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to enable OpenAPI",
+      "x-prompt": "Would you like to enable OpenAPI?"
     },
     "openApiLegacy": {
       "type": "boolean"
     },
     "config": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to enable configuration",
+      "x-prompt": "Would you like to enable configuration?"
     },
     "localazy": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to enable Localazy",
+      "x-prompt": "Would you like to enable Localazy?"
     },
     "i18n": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to enable i18n",
+      "x-prompt": "Would you like to enable i18n?"
     },
     "serviceWorker": {
       "alias": "sw",
-      "type": "boolean"
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to enable service worker",
+      "x-prompt": "Would you like to enable service worker?"
     },
     "languages": {
       "type": "array",
@@ -76,11 +96,15 @@
       }
     },
     "material": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to enable Angular Material",
+      "x-prompt": "Would you like to enable Angular Material?"
     },
     "generateMain": {
       "alias": "gm",
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Whether to generate the main file"
     },
     "overwrite": {
       "type": "boolean",
@@ -88,11 +112,14 @@
     },
     "cleanup": {
       "type": "boolean",
-      "description": "Whether to cleanup files"
+      "description": "Whether to cleanup files",
+      "default": true
     },
     "monolithic": {
       "type": "boolean",
-      "description": "Whether to generate a monolithic application"
+      "description": "Whether to generate a monolithic application",
+      "default": true,
+      "x-prompt": "Would you like to generate a monolithic application?"
     },
     "localazyReadKey": {
       "type": "string",
