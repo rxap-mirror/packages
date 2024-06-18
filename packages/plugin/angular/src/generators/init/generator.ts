@@ -2,7 +2,6 @@ import {
   formatFiles,
   Tree,
 } from '@nx/devkit';
-import { DeleteProperties } from '@rxap/utilities';
 import {
   AddPackageJsonDevDependency,
   GenerateSerializedSchematicFile,
@@ -20,7 +19,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     '/',
     '@rxap/plugin-angular',
     'init',
-    DeleteProperties(options, [ 'projects', 'overwrite', 'skipProjects' ]),
+    options,
   );
 
   await AddPackageJsonDevDependency(tree, '@nx/angular', GetNxVersion(tree), { soft: true });

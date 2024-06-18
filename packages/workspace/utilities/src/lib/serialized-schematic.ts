@@ -154,7 +154,7 @@ export function GenerateSerializedSchematicFile(
   };
 
   for (const key of Object.keys(newData.options)) {
-    if (newData.options[key] && typeof newData.options[key] === 'object') {
+    if (newData.options[key] && typeof newData.options[key] === 'object' && !Array.isArray(newData.options[key])) {
       newData.options[key] = DeleteUndefinedProperties(newData.options[key]);
       if (Object.keys(newData.options[key]).length === 0) {
         delete newData.options[key];
