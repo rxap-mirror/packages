@@ -49,7 +49,7 @@ export function coerceEnvironmentFiles(tree: Tree, options: InitApplicationGener
 
       if (options.moduleFederation === 'host') {
         baseEnvironment['moduleFederation'] = Writers.object({
-          manifest: w => w.quote('/assets/module-federation.manifest.json'),
+          manifest: w => w.quote('/module-federation.manifest.json'),
         });
       }
 
