@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@18.0.2-dev.2...@rxap/config@18.1.0-dev.0) (2024-06-18)
+
+### Bug Fixes
+
+- add provide config ([b796fa9](https://gitlab.com/rxap/packages/commit/b796fa94a3979d5689a9a8e0436c59f5ca30af57))
+
+### Features
+
+- add provide config ([a9db22f](https://gitlab.com/rxap/packages/commit/a9db22f01524e9365cf9b4a2ce18fe3e9b3f5b09))
+
 ## [18.0.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/config@18.0.2-dev.1...@rxap/config@18.0.2-dev.2) (2024-06-17)
 
 **Note:** Version bump only for package @rxap/config
