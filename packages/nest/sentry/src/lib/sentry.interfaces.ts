@@ -7,8 +7,8 @@ import {
   NodeOptions,
   SeverityLevel,
 } from '@sentry/node';
-import { AddRequestDataToEventOptions } from '@sentry/node/types/requestdata';
 import { Integration } from '@sentry/types';
+import { AddRequestDataToEventOptions } from '@sentry/utils/types/requestdata';
 
 export interface SentryCloseOptions {
   enabled: boolean;
