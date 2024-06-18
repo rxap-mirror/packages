@@ -19,7 +19,6 @@ exports[`init should init default workspace 1`] = `
   "LICENSE",
   ".gitignore",
   ".prettierignore",
-  ".idea",
   "project.json",
   ".eslintrc.json",
   ".eslintignore",
@@ -54,6 +53,7 @@ exports[`init should init default workspace 2`] = `
     "@nx/eslint-plugin": "19.1.1",
     "@nx/jest": "19.1.1",
     "@nx/js": "19.1.1",
+    "@rxap/schematic-composer": "18.0.2-dev.4",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
@@ -241,8 +241,6 @@ exports[`init should init default workspace 3`] = `
 
 exports[`init should init default workspace 4`] = `
 "
-.idea/JetClient
-cody_history.xml
 /migrations.json
 ~
 .angular
@@ -289,6 +287,16 @@ Thumbs.db
 !.yarn/versions
 documentation.json
 gitlab-ci-setup.sh
+.idea/copilot/chatSessions
+.idea/jsLibraryMappings.xml
+.idea/nx-angular-config.xml
+.idea/nx-console.xml
+.idea/cody_history.xml
+.idea/JetClient
+.idea/shelf/
+.idea/workspace.xml
+.idea/httpRequests/
+.idea/developer-tools.xml
 "
 `;
 
