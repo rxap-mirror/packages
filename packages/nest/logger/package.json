@@ -1,5 +1,5 @@
 {
-  "version": "10.2.2",
+  "version": "10.2.3-dev.0",
   "name": "@rxap/nest-logger",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
     "@rxap/ts-morph": "^1.4.0",
-    "@rxap/workspace-utilities": "^19.2.0"
+    "@rxap/workspace-utilities": "^19.2.1-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0"
+        "version": "19.2.1-dev.0"
       }
     ]
   },

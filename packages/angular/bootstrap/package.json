@@ -1,5 +1,5 @@
 {
-  "version": "18.0.2",
+  "version": "18.0.3-dev.0",
   "name": "@rxap/ngx-bootstrap",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -60,7 +60,7 @@
       },
       {
         "package": "@nx/angular",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@rxap/config",
