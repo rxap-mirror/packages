@@ -4,7 +4,6 @@ import {
   readFileSync,
   writeFileSync,
 } from 'fs';
-import * as process from 'node:process';
 import { tmpdir } from 'os';
 import {
   dirname,
