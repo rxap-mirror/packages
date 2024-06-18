@@ -20,8 +20,8 @@ export async function frontendMicroserviceGenerator(
     ...presetOptions,
     apiPrefix: [ 'api', 'app', options.frontend, options.feature ].join('/'),
     ...options,
-    name: options.feature,
-    directory: [ 'service', 'app', options.frontend ].join('/'),
+    name: [ 'service', 'app', options.frontend, options.feature ].join('-'),
+    directory: [ 'service', 'app', options.frontend, options.feature ].join('/'),
   });
 
 }

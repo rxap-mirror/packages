@@ -3,6 +3,8 @@ import {
   Tree,
 } from '@nx/devkit';
 import { applicationGenerator } from '@nx/nest';
+import { dasherize } from '@rxap/utilities';
+import { join } from 'path';
 import initApplicationGenerator from '../init-application/generator';
 import { MicroserviceGeneratorSchema } from './schema';
 
@@ -17,7 +19,10 @@ export async function microserviceGenerator(
   }
   const presetOptions = nxJson.generators?.['@nx/nest:application'] ?? {};
 
-  options.directory ??= 'service';
+  let { directory, name } = options;
+
+  name = dasherize(name);
+  directory ??= join('service', name);
 
   presetOptions.tags ??= '';
   if (!presetOptions.tags.includes('nest')) {
@@ -26,24 +31,22 @@ export async function microserviceGenerator(
                           ) + 'nest';
   }
 
+  console.log('Generate nest application'.cyan);
+  console.log('name: ' + name.magenta);
+  console.log('directory: ' + directory.magenta);
+
   await applicationGenerator(tree, {
     ...presetOptions,
-    name: options.name,
-    directory: options.directory,
+    projectNameAndRootFormat: 'as-provided',
+    name,
+    directory,
   });
 
-  const projectName = [ options.directory.replace(/\//g, '-'), options.name ].filter(Boolean).join('-');
+  const projectName = name;
 
   await initApplicationGenerator(tree, {
-    generateMain: true,
-    swagger: true,
-    healthIndicator: true,
-    sentry: true,
-    validator: true,
-    platform: 'express',
-    overwrite: true,
     ...options,
-    projects: [ projectName ],
+    project: projectName,
   });
 
   console.log(`run the application init generator: nx g @rxap/plugin-application:init --project ${ projectName }`);

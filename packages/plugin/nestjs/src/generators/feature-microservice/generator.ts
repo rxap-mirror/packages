@@ -20,8 +20,8 @@ export async function featureMicroserviceGenerator(
     ...presetOptions,
     apiPrefix: [ 'api', 'feature', options.feature ].join('/'),
     ...options,
-    name: options.feature,
-    directory: [ 'service', 'feature' ].join('/'),
+    name: [ 'service', 'feature', options.feature ].join('-'),
+    directory: [ 'service', 'feature', options.feature ].join('/'),
   });
 
 }
