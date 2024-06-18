@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0-dev.7...@rxap/plugin-workspace@19.1.0-dev.8) (2024-06-18)
+
+### Bug Fixes
+
+- ensure only valid options are stored ([c9bc9cd](https://gitlab.com/rxap/packages/commit/c9bc9cd0443fc4defc4c5c73cd4cabee63f22d2b))
+- ensure only valid options are stored ([c754404](https://gitlab.com/rxap/packages/commit/c75440438fe03e550dad208b46b378aee888a995))
+
 # [19.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0-dev.6...@rxap/plugin-workspace@19.1.0-dev.7) (2024-06-17)
 
 ### Bug Fixes

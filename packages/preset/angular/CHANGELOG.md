@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/preset-angular@19.0.0-dev.8...@rxap/preset-angular@19.0.0-dev.9) (2024-06-18)
+
+### Bug Fixes
+
+- ensure only valid options are stored ([c754404](https://gitlab.com/rxap/packages/commit/c75440438fe03e550dad208b46b378aee888a995))
+
 # [19.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/preset-angular@19.0.0-dev.7...@rxap/preset-angular@19.0.0-dev.8) (2024-06-17)
 
 **Note:** Version bump only for package @rxap/preset-angular
