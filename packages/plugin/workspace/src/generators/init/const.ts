@@ -1,6 +1,4 @@
 export const gitIgnore = [
-  '.idea/JetClient',
-  'cody_history.xml',
   // nx
   '/migrations.json',
   // chrome
@@ -60,6 +58,17 @@ export const gitIgnore = [
   // '!.yarn/cache',
   'documentation.json',
   'gitlab-ci-setup.sh',
+  // .idea
+  '.idea/copilot/chatSessions',
+  '.idea/jsLibraryMappings.xml',
+  '.idea/nx-angular-config.xml',
+  '.idea/nx-console.xml',
+  '.idea/cody_history.xml',
+  '.idea/JetClient',
+  '.idea/shelf/',
+  '.idea/workspace.xml',
+  '.idea/httpRequests/',
+  '.idea/developer-tools.xml',
 ];
 export const prettierIgnore = [
   'dist',
