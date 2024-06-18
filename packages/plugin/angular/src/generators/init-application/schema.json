@@ -50,9 +50,7 @@
     },
     "authentication": {
       "type": "boolean",
-      "default": false,
-      "description": "Whether to enable authentication",
-      "x-prompt": "Would you like to enable authentication?"
+      "description": "Whether to enable authentication"
     },
     "openApi": {
       "alias": "open-api",
