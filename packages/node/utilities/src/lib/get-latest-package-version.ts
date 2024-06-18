@@ -4,12 +4,15 @@ import {
   readFileSync,
   writeFileSync,
 } from 'fs';
+import * as process from 'node:process';
 import { tmpdir } from 'os';
 import {
   dirname,
   join,
 } from 'path';
 import { GetPackageInfo } from './get-package-info';
+import { jsonFile } from './json-file';
+import { PackageJson } from './package-json';
 
 const CACHE_FILE = join(tmpdir(), 'rxap', 'latest-package-versions.json');
 
@@ -26,23 +29,35 @@ function updateLastPackageVersionCache(packageName: string, version: string) {
   writeFileSync(CACHE_FILE, JSON.stringify(LATEST_PACKAGE_VERSIONS, null, 2));
 }
 
-function hasRxapPackage() {
-  try {
-    const packageJsonFilePath = require.resolve('rxap');
-    return true;
-  } catch (e: any) {
-    console.log('No rxap package found: ' + e.message);
+function getRxapPackageJsonFilePath(): string | null {
+
+  if (process.env['NX_WORKSPACE_ROOT']) {
+    const workspaceRoot = process.env['NX_WORKSPACE_ROOT'];
+    const packageJsonFilePath = join(workspaceRoot, 'node_modules', 'rxap', 'package.json');
+    if (existsSync(packageJsonFilePath)) {
+      return packageJsonFilePath;
+    }
   }
-  return false;
+
+  try {
+    return require.resolve('rxap');
+  } catch (e: any) {
+    console.log('Could not resolve the package rxap');
+  }
+
+  return null;
+}
+
+function hasRxapPackage() {
+  return !!getRxapPackageJsonFilePath();
 }
 
 function getRxapPackageJson() {
-  try {
-    const packageJsonFilePath = require.resolve('rxap/package.json');
-    return require(packageJsonFilePath);
-  } catch (e: any) {
-    throw new Error('No rxap package found: ' + e.message);
+  const packageJsonFilePath = getRxapPackageJsonFilePath();
+  if (!packageJsonFilePath) {
+    throw new Error('Could not find the package json file for the package rxap');
   }
+  return jsonFile<PackageJson>(packageJsonFilePath);
 }
 
 export async function GetLatestPackageVersion(packageName: string, skipCache?: boolean): Promise<string | null> {
