@@ -84,6 +84,7 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration, options
     CoerceTarget(project, 'fix-dependencies', {
       options: {
         options: {
+          strict: true,
           onlyDependencies: false,
         },
       },
