@@ -2,9 +2,7 @@ import {
   formatFiles,
   getProjects,
   ProjectConfiguration,
-  readNxJson,
   Tree,
-  updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
@@ -23,7 +21,6 @@ import {
   CoerceNestEnvironmentProvider,
   CoerceNestModuleImport,
   CoerceNestThrottlerModuleImport,
-  CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
 import {
   CoerceArrayItems,
@@ -33,33 +30,16 @@ import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
-  CoerceAssets,
   CoerceFilesStructure,
-  CoerceIgnorePattern,
-  CoerceNxJsonCacheableOperation,
-  CoerceProjectTags,
-  CoerceTarget,
-  CoerceTargetDefaultsDependency,
   GenerateSerializedSchematicFile,
   GetNestApiPrefix,
   GetProject,
   GetProjectRoot,
-  GetTarget,
-  GetWorkspaceName,
   HasProject,
-  IsStandaloneWorkspace,
   SkipNonApplicationProject,
-  Strategy,
-  UpdateJsonFile,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import {
-  Project,
-  SourceFile,
-  SyntaxKind,
-  WriterFunction,
-  Writers,
-} from 'ts-morph';
+import { Project } from 'ts-morph';
 import {
   NESTJS_CACHE_MANAGER_VERSION,
   NESTJS_CONFIG_VERSION,
@@ -75,125 +55,21 @@ import openApiGenerator from '../open-api/generator';
 import sentryGenerator from '../sentry/generator';
 import swaggerGenerator from '../swagger/generator';
 import validatorGenerator from '../validator/generator';
+import { assertOpenApiClientSdkLibrary } from './assert-open-api-client-sdk-library';
+import { coerceEnvironmentFiles } from './coerce-environment-files';
 import { ExtractExistingConfigValidation } from './extract-existing-config-validation';
+import { getPort } from './get-port';
 import { initE2eProject } from './init-e2e-project';
+import { removeAppControllerSpecFile } from './remove-app-controller-spec-file';
+import { removeAppServiceFile } from './remove-app-service-file';
 import { InitApplicationGeneratorSchema } from './schema';
 import 'colors';
-
-function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: boolean, overwrite: boolean }) {
-
-  TsMorphNestProjectTransform(
-    tree,
-    {
-      project: options.project,
-      backend: undefined,
-    },
-    (project, [ sourceFile, prodSourceFile ]) => {
-
-      CoerceImports(sourceFile, {
-        moduleSpecifier: '@rxap/nest-utilities',
-        namedImports: [ 'Environment' ],
-      });
-      CoerceImports(prodSourceFile, {
-        moduleSpecifier: '@rxap/nest-utilities',
-        namedImports: [ 'Environment' ],
-      });
-
-      let appName = options.project;
-      if (IsStandaloneWorkspace(tree)) {
-        appName = GetWorkspaceName(tree);
-      }
-
-      const baseEnvironment: Record<string, WriterFunction | string> = {
-        name: w => w.quote('development'),
-        production: 'false',
-        app: w => w.quote(appName),
-      };
-
-      if (options.sentry) {
-        baseEnvironment['sentry'] = Writers.object({
-          enabled: 'false',
-          debug: 'false',
-        });
-      }
-
-      const normal = CoerceVariableDeclaration(sourceFile, 'environment', {
-        type: 'Environment',
-        initializer: Writers.object(baseEnvironment),
-      });
-
-      if (options.overwrite) {
-        normal.set({ initializer: Writers.object(baseEnvironment) });
-      }
-
-      baseEnvironment['name'] = w => w.quote('production');
-      baseEnvironment['production'] = 'true';
-
-      if (options.sentry) {
-        baseEnvironment['sentry'] = Writers.object({
-          enabled: 'true',
-          debug: 'false',
-        });
-      }
-
-      const prod = CoerceVariableDeclaration(prodSourceFile, 'environment', {
-        type: 'Environment',
-        initializer: Writers.object(baseEnvironment),
-      });
-
-      if (options.overwrite) {
-        prod.set({ initializer: Writers.object(baseEnvironment) });
-      }
-
-    },
-    [
-      '/environments/environment.ts?',
-      '/environments/environment.prod.ts?',
-    ],
-  );
-
-}
-
-function removeAppServiceFile(tree: Tree, projectSourceRoot: string) {
-
-  const appServiceFilePath = join(projectSourceRoot, 'app', 'app.service.ts');
-  if (tree.exists(appServiceFilePath)) {
-    const content = tree.read(appServiceFilePath)?.toString('utf-8');
-    if (content) {
-      if (content.includes('{ message: \'Hello API\' }')) {
-        console.warn('Remove the app service file');
-        tree.delete(appServiceFilePath);
-        if (tree.exists(join(projectSourceRoot, 'app', 'app.service.spec.ts'))) {
-          console.warn('Remove the app service spec file');
-          tree.delete(join(projectSourceRoot, 'app', 'app.service.spec.ts'));
-        } else {
-          console.warn('The app service spec file does not exists');
-        }
-      } else {
-        console.warn('The app service file does not contains the default method', content);
-      }
-    } else {
-      console.warn('The app service file does not exists:', appServiceFilePath);
-    }
-  } else {
-    console.warn('The app service file does not exists');
-  }
-
-}
-
-function removeAppControllerSpecFile(tree: Tree, projectSourceRoot: string) {
-  const appControllerSpecFilePath = join(projectSourceRoot, 'app', 'app.controller.spec.ts');
-  if (tree.exists(appControllerSpecFilePath)) {
-    if (tree.read(appControllerSpecFilePath)?.toString('utf-8')?.includes('should return "Hello API"')) {
-      console.warn('Remove the app controller spec file');
-      tree.delete(appControllerSpecFilePath);
-    } else {
-      console.warn('The app controller spec file does not contains the default test');
-    }
-  } else {
-    console.warn('The app controller spec file does not exists');
-  }
-}
+import { setGeneralTargetDefaults } from './set-general-target-defaults';
+import { updateApiConfigurationFile } from './update-api-configuration-file';
+import { updateGitIgnore } from './update-git-ignore';
+import { updateMainFile } from './update-main-file';
+import { updateProjectTargets } from './update-project-targets';
+import { updateTags } from './update-tags';
 
 function skipProject(
   tree: Tree,
@@ -212,349 +88,6 @@ function skipProject(
 
   return false;
 
-}
-
-function setGeneralTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchema) {
-  console.log('updating default targets');
-
-  const nxJson = readNxJson(tree);
-
-  if (!nxJson) {
-    throw new Error('No nx.json found');
-  }
-
-  if (!options.standalone) {
-    CoerceTargetDefaultsDependency(nxJson, 'build', 'generate-package-json');
-    CoerceNxJsonCacheableOperation(
-      nxJson, 'generate-package-json', 'generate-open-api');
-    CoerceTarget(nxJson, 'generate-package-json', {
-      executor: '@rxap/plugin-nestjs:package-json',
-      configurations: {
-        production: {},
-      },
-    });
-    CoerceTargetDefaultsDependency(nxJson, 'generate-open-api', 'swagger-generate');
-    CoerceTargetDefaultsDependency(nxJson, 'test', '^generate-open-api');
-  }
-
-  updateNxJson(tree, nxJson);
-}
-
-function updateProjectTargets(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
-
-  if (!options.standalone) {
-    CoerceTarget(project, 'generate-package-json', {});
-  }
-
-  const outputPath = project.targets?.build?.options?.outputPath;
-
-  if (!outputPath) {
-    throw new Error(`No outputPath found for project ${ projectName }`);
-  }
-
-  if (options.swagger && !options.standalone) {
-    CoerceTarget(project, 'generate-open-api', {
-      executor: '@rxap/plugin-library:run-generator',
-      options: {
-        generator: '@rxap/plugin-open-api:generate',
-        options: {
-          project: `open-api-${ projectName }`,
-          path: `${ outputPath.replace('dist/', 'dist/swagger/') }/openapi.json`,
-          serverId: projectName,
-        },
-      },
-    });
-  }
-
-  CoerceTarget(project, 'build', {
-    options: {
-      generatePackageJson: true,
-    },
-    configurations: {
-      production: {
-        fileReplacements: [
-          {
-            replace: `${ project.sourceRoot }/environments/environment.ts`,
-            with: `${ project.sourceRoot }/environments/environment.prod.ts`,
-          },
-        ],
-      },
-      development: {
-        progress: true,
-      },
-    },
-  }, Strategy.OVERWRITE);
-
-  if (tree.exists('LICENSE')) {
-    const buildConfiguration = GetTarget(project, 'build');
-    buildConfiguration.options ??= {};
-    buildConfiguration.options.assets ??= [];
-    CoerceAssets(buildConfiguration.options.assets, [
-      {
-        "input": "",
-        "glob": "LICENSE",
-        "output": "/"
-      }
-    ]);
-    CoerceTarget(project, 'build', buildConfiguration, Strategy.REPLACE);
-  }
-
-  if (project.targets?.['docker']) {
-    project.targets['docker'].options ??= {};
-    project.targets['docker'].options.dockerfile ??= 'shared/nestjs/Dockerfile';
-    project.targets['docker'].options.buildArgList ??= [];
-    if (options.apiPrefix !== false && !project.targets['docker'].options.buildArgList.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {
-      project.targets['docker'].options.buildArgList.push(
-        'PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\[\'GLOBAL_API_PREFIX\'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*\'(.+)\',?\\s*\\);');
-    }
-  }
-
-}
-
-function updateGitIgnore(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
-  if (!options.standalone) {
-    CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'package.json' ]);
-  }
-}
-
-function assertOpenApiClientSdkLibrary(
-  tree: Tree,
-  projectName: string,
-) {
-
-  const openApiProjectName = `open-api-${ projectName }`;
-
-  if (!HasProject(tree, openApiProjectName)) {
-
-    // TODO : run the commands on the fly instead of throwing an error
-
-    console.log('Use the command: ' + `nx g @nx/js:library --name ${openApiProjectName} --directory open-api/${projectName} --importPath ${openApiProjectName} --projectNameAndRootFormat as-provided --linter none --minimal --unitTestRunner none --tags open-api --no-publishable --bundler none`.blue);
-    console.log('Use the command: ' + `nx g @rxap/plugin-open-api:init-library --project ${openApiProjectName}`.blue);
-    throw new Error(`Can't create open api client sdk library for project ${ projectName }`);
-
-  }
-
-}
-
-function getPort(tree: Tree, options: InitApplicationGeneratorSchema, projectSourceRoot: string) {
-  if (options.port && options.projects?.length === 1) {
-    return options.port;
-  }
-  if (tree.exists(join(projectSourceRoot, 'app', 'app.config.ts'))) {
-    const match = tree.read(join(projectSourceRoot, 'app', 'app.config.ts'))!
-      .toString()
-      .match(/validationSchema\['PORT'\] = Joi.number\(\).default\((\d+)\);/);
-    if (match) {
-      return parseInt(match[1]);
-    }
-  }
-  if (tree.exists(join(projectSourceRoot, 'app', 'app.module.ts'))) {
-    const match = tree.read(join(projectSourceRoot, 'app', 'app.module.ts'))!
-      .toString()
-      .match(/PORT: Joi.number\(\).default\((\d+)\)/);
-    if (match) {
-      return parseInt(match[1]);
-    }
-  }
-  return Math.floor(Math.random() * 1000) + 3000;
-}
-
-
-
-const MAIN_NEST_APP_OPTIONS_STATEMENT = 'const options: NestApplicationOptions = {};';
-const MAIN_BOOTSTRAP_OPTIONS_STATEMENT = 'const bootstrapOptions: Partial<MonolithicBootstrapOptions> = {};';
-const MAIN_SERVER_STATEMENT = 'const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);';
-const MAIN_BOOTSTRAP_STATEMENT = 'server.bootstrap().catch((e) => console.error(\'Server bootstrap failed: \' + e.message));';
-const MAIN_SETUP_HELMET_STATEMENT = 'server.after(SetupHelmet());';
-const MAIN_SETUP_COOKIE_STATEMENT = 'server.after(SetupCookieParser());';
-const MAIN_SETUP_CORS_STATEMENT = 'server.after(SetupCors());';
-
-function assertMainStatements(sourceFile: SourceFile) {
-  const statements: string[] = [];
-
-  statements.push('const options: NestApplicationOptions = {');
-  statements.push('const bootstrapOptions: Partial<MonolithicBootstrapOptions> = {');
-  statements.push(
-    'const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);');
-
-  const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
-  for (const statement of statements) {
-    if (!existingStatements.includes(statement)) {
-      console.error(`Missing statement from nestjs main.ts:  ${ statement }`);
-      sourceFile.set({
-        statements: [
-          MAIN_NEST_APP_OPTIONS_STATEMENT,
-          MAIN_BOOTSTRAP_OPTIONS_STATEMENT,
-          MAIN_SERVER_STATEMENT,
-          MAIN_SETUP_HELMET_STATEMENT,
-          MAIN_SETUP_COOKIE_STATEMENT,
-          MAIN_SETUP_CORS_STATEMENT,
-          MAIN_BOOTSTRAP_STATEMENT,
-        ],
-      });
-      CoerceImports(sourceFile, [
-        {
-          moduleSpecifier: '@nestjs/common',
-          namedImports: [ 'NestApplicationOptions' ],
-        },
-        {
-          moduleSpecifier: '@nestjs/platform-express',
-          namedImports: [ 'NestExpressApplication' ],
-        },
-        {
-          moduleSpecifier: '@rxap/nest-server',
-          namedImports: [
-            'MonolithicBootstrapOptions',
-            'Monolithic',
-            'SetupHelmet',
-            'SetupCookieParser',
-            'SetupCors',
-          ],
-        },
-        {
-          moduleSpecifier: './app/app.module',
-          namedImports: [ 'AppModule' ],
-        },
-        {
-          moduleSpecifier: './environments/environment',
-          namedImports: [ 'environment' ],
-        },
-      ]);
-      return;
-    }
-  }
-
-
-}
-
-function updateMainFile(
-  tree: Tree,
-  projectName: string,
-  options: InitApplicationGeneratorSchema,
-) {
-
-  TsMorphNestProjectTransform(tree, {
-    project: projectName,
-    backend: undefined,
-    // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
-  }, (project, [ sourceFile ]) => {
-
-    assertMainStatements(sourceFile);
-
-    const importDeclarations = [];
-    const statements: string[] = [];
-
-    if (options.validator) {
-      importDeclarations.push({
-        moduleSpecifier: '@rxap/nest-server',
-        namedImports: [ 'ValidationPipeSetup' ],
-      });
-      statements.push('server.after(ValidationPipeSetup());');
-    }
-
-    if (options.swaggerLive) {
-      importDeclarations.push({
-        moduleSpecifier: '@rxap/nest-server',
-        namedImports: [ 'SetupSwagger' ],
-      });
-      statements.push('server.after(SetupSwagger());');
-    }
-
-    CoerceImports(sourceFile, importDeclarations);
-
-    for (let i = 0; i < statements.length; i++) {
-      const statement = statements[i];
-      const lastStatement = i > 0 ? statements[i - 1] : null;
-      const nestStatement = i < statements.length - 1 ? statements[i + 1] : null;
-      const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
-      if (!existingStatements.includes(statement)) {
-        let index: number;
-        if (lastStatement) {
-          index = existingStatements.findIndex(s => s.includes(lastStatement)) + 1;
-        } else if (nestStatement) {
-          index = existingStatements.findIndex(s => s.includes(nestStatement));
-        } else {
-          index = existingStatements.findIndex(s => s.includes(MAIN_BOOTSTRAP_STATEMENT));
-        }
-        console.log(`insert statement: ${ statement } at index ${ index }`);
-        sourceFile.insertStatements(index, statement);
-      }
-    }
-
-    if (projectName === 'service-status') {
-      const variableDeclaration = CoerceVariableDeclaration(sourceFile, 'bootstrapOptions', { initializer: '{}' });
-      const objectLiteralExpression = variableDeclaration.getInitializerIfKindOrThrow(
-        SyntaxKind.ObjectLiteralExpression);
-      let objectLiteralElementLike = objectLiteralExpression.getProperty('globalPrefixOptions');
-      if (!objectLiteralElementLike) {
-        objectLiteralElementLike = objectLiteralExpression.addPropertyAssignment({
-          name: 'globalPrefixOptions',
-          initializer: '{}',
-        });
-      }
-      const gpoPropertyAssigment = objectLiteralElementLike.asKindOrThrow(SyntaxKind.PropertyAssignment);
-      const gpoObjectLiteralExpression = gpoPropertyAssigment.getInitializerIfKindOrThrow(
-        SyntaxKind.ObjectLiteralExpression);
-      let gpoElementLike = gpoObjectLiteralExpression.getProperty('exclude');
-      if (!gpoElementLike) {
-        gpoElementLike = gpoObjectLiteralExpression.addPropertyAssignment({
-          name: 'exclude',
-          initializer: `[ '/health(.*)', '/info', '/openapi', '/register' ]`,
-        });
-      }
-    }
-
-
-  }, [ 'main.ts' ]);
-
-}
-
-function updateTags(projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
-  const tags = [ 'backend', 'nest', 'service' ];
-
-  if (options.sentry) {
-    tags.push('sentry');
-  }
-
-  if (options.swagger) {
-    tags.push('swagger');
-  }
-
-  if (options.jwt) {
-    tags.push('jwt');
-  }
-
-  if (options.healthIndicator) {
-    tags.push('health-indicator');
-  }
-
-  if (options.openApi) {
-    tags.push('openapi');
-  }
-
-  if (options.standalone) {
-    tags.push('standalone');
-  }
-
-  if (options.platform) {
-    tags.push(options.platform);
-  }
-
-  const match = projectName.match(/service-feature-(.*)/);
-  if (match) {
-    tags.push(`feature:${ match[1] }`);
-  }
-
-  CoerceProjectTags(project, tags);
-}
-
-function updateApiConfigurationFile(
-  tree: Tree, projectName: string, apiPrefix: string, apiConfigurationFile?: string) {
-  if (apiConfigurationFile) {
-    UpdateJsonFile(tree, json => {
-      json[projectName] = { baseUrl: `/${ apiPrefix }` };
-    }, apiConfigurationFile, { create: true });
-  }
 }
 
 export async function initApplicationGenerator(
