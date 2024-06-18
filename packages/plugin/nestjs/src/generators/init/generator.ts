@@ -43,7 +43,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     '/',
     '@rxap/plugin-nestjs',
     'init',
-    DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+    options,
   );
 
   await AddPackageJsonDevDependency(tree, '@nx/nest', GetNxVersion(tree), { soft: true });

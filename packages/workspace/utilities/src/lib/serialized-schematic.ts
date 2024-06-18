@@ -140,7 +140,17 @@ export function GenerateSerializedSchematicFile(
   const newData = {
     package: packageName,
     name: schematicName,
-    options: DeleteUndefinedProperties(DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects', 'coerce', 'replace', 'feature', 'skipFormat', 'cleanup' ])),
+    options: DeleteUndefinedProperties(DeleteProperties(options, [
+      'project',
+      'projects',
+      'overwrite',
+      'skipProjects',
+      'coerce',
+      'replace',
+      'feature',
+      'skipFormat',
+      'cleanup',
+    ])),
   };
 
   for (const key of Object.keys(newData.options)) {
