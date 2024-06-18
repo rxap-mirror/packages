@@ -45,6 +45,7 @@ export async function microserviceGenerator(
   const projectName = name;
 
   await initApplicationGenerator(tree, {
+    generateMain: true,
     ...options,
     project: projectName,
   });

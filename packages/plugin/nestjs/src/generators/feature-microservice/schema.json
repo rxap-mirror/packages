@@ -2,22 +2,103 @@
   "$schema": "http://json-schema.org/schema",
   "$id": "FeatureMicroservice",
   "title": "",
-  "allOf": [
-    {
-      "type": "object",
-      "properties": {
-        "feature": {
-          "type": "string",
-          "description": "The feature of the frontend project",
-          "x-prompt": "For which feature of the frontend should the microservice be created?"
-        }
-      },
-      "required": [
-        "feature"
-      ]
+  "type": "object",
+  "properties": {
+    "feature": {
+      "type": "string",
+      "description": "The feature of the frontend project",
+      "x-prompt": "For which feature of the frontend should the microservice be created?"
     },
-    {
-      "$ref": "../init-application/schema.json"
+
+    "sentry": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this service should use sentry",
+      "x-prompt": "Should this service use sentry?"
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
+    "swagger": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this service should use swagger",
+      "x-prompt": "Should this service support open-api config generation?"
+    },
+    "swaggerLive": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this service should start a swagger live server"
+    },
+    "generateMain": {
+      "type": "boolean",
+      "description": "Whether the main file should be generated"
+    },
+    "healthIndicator": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this service should use a health indicator",
+      "x-prompt": "Should this service have a health indicator endpoint?"
+    },
+    "healthIndicatorList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of health indicators"
+    },
+    "validator": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this service use the ValidationPipe",
+      "x-prompt": "Should this service use the ValidationPipe?"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "express",
+        "fastify"
+      ],
+      "default": "express",
+      "x-prompt": "Whichever platform should be used?"
+    },
+    "port": {
+      "type": "number",
+      "description": "The default port where the server is listens"
+    },
+    "sentryDsn": {
+      "type": "string",
+      "description": "Default sentry dsn"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "jwt": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the application should use jwt",
+      "x-prompt": "Should this service use jwt?"
+    },
+    "openApi": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the application should use openApi as client",
+      "x-prompt": "Should this service use an open api client?"
+    },
+    "apiConfigurationFile": {
+      "type": "string",
+      "description": "The api configuration file to use"
+    },
+    "standalone": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the nest service should be standalone"
     }
+  },
+  "required": [
+    "feature"
   ]
 }

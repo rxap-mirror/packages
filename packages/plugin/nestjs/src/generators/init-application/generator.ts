@@ -55,7 +55,7 @@ import openApiGenerator from '../open-api/generator';
 import sentryGenerator from '../sentry/generator';
 import swaggerGenerator from '../swagger/generator';
 import validatorGenerator from '../validator/generator';
-import { assertOpenApiClientSdkLibrary } from './assert-open-api-client-sdk-library';
+import { coerceOpenApiClientSdkLibrary } from './coerce-open-api-client-sdk-library';
 import { coerceEnvironmentFiles } from './coerce-environment-files';
 import { ExtractExistingConfigValidation } from './extract-existing-config-validation';
 import { getPort } from './get-port';
@@ -244,7 +244,7 @@ export async function initApplicationGenerator(
       if (!options.standalone) {
         updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
         if (options.swagger) {
-          assertOpenApiClientSdkLibrary(tree, projectName);
+          await coerceOpenApiClientSdkLibrary(tree, projectName);
         }
       }
 
