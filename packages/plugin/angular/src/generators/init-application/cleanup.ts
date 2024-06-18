@@ -61,9 +61,9 @@ export function cleanup(tree: Tree, projectName: string, options: InitApplicatio
 
     // region module-federation config
     const projectRoot = GetProjectRoot(tree, projectName);
-    let content = tree.read(join(projectRoot, 'module-federation.config.js'), 'utf-8')!;
+    let content = tree.read(join(projectRoot, 'module-federation.config.ts'), 'utf-8')!;
     content = content.replace('./Routes', './routes');
-    CoerceFile(tree, join(projectRoot, 'module-federation.config.js'), content, true);
+    CoerceFile(tree, join(projectRoot, 'module-federation.config.ts'), content, true);
     // endregion
 
     // region tsconfig.base.json
