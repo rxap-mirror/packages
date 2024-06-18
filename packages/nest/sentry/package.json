@@ -13,9 +13,10 @@
     "@rxap/nest-utilities": "^10.3.1-dev.0",
     "@rxap/ts-morph": "^1.4.0-dev.2",
     "@rxap/workspace-utilities": "^19.2.0-dev.6",
-    "@sentry/core": "^7.56.0",
-    "@sentry/node": "^7.56.0",
-    "@sentry/types": "^7.56.0",
+    "@sentry/core": "^8.9.2",
+    "@sentry/node": "^8.9.2",
+    "@sentry/types": "^8.9.2",
+    "@sentry/utils": "^8.9.2",
     "rxjs": "^7.8.1"
   },
   "author": {
