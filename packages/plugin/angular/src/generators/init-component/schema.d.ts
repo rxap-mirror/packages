@@ -1,7 +1,9 @@
 export interface InitComponentGeneratorSchema {
   name: string;
   project: string;
-  path?: string;
+  directory?: string;
+  feature?: string;
+  defaultExport?: boolean;
   displayBlock?: boolean;
   inlineStyle?: boolean;
   inlineTemplate?: boolean;

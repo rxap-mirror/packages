@@ -4,11 +4,16 @@
   "title": "",
   "type": "object",
   "properties": {
-    "path": {
+    "directory": {
+      "alias": "path",
       "type": "string",
       "format": "path",
-      "description": "The path at which to create the component file, relative to the current workspace. Default is a folder with the same name as the component in the project root.",
+      "description": "The directory at which to create the component file, relative to the current workspace. Default is a folder with the same name as the component in the project root.",
       "visible": false
+    },
+    "feature": {
+      "type": "string",
+      "description": "The name of the feature."
     },
     "project": {
       "type": "string",
@@ -109,6 +114,11 @@
       "type": "string",
       "description": "Adds a developer-defined type to the filename, in the format `name.type.ts`.",
       "default": "component"
+    },
+    "defaultExport": {
+      "type": "boolean",
+      "description": "Specifies if the component should be the default export of file.",
+      "default": false
     },
     "export": {
       "type": "boolean",
