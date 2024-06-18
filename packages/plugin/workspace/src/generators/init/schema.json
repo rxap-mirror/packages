@@ -48,10 +48,6 @@
     "repositoryUrl": {
       "type": "string",
       "description": "The URL of the repository"
-    },
-    "prefix": {
-      "type": "string",
-      "description": "The prefix for the angular components"
     }
   },
   "required": []

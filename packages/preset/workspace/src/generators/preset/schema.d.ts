@@ -3,5 +3,4 @@ export interface PresetGeneratorSchema {
   standalone?: boolean;
   repositoryUrl?: string;
   license?: 'mit' | 'gpl' | 'none';
-  prefix?: string;
 }

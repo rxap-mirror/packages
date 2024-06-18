@@ -6,11 +6,18 @@ export async function presetGenerator(
   tree: Tree,
   options: PresetGeneratorSchema
 ) {
+  const {
+    packages,
+    standalone,
+    license,
+    repositoryUrl,
+  } = options;
   await WorkspaceInitGenerator(tree, {
-    ...options,
-    overwrite: false,
-    skipFormat: false,
-    skipProjects: false,
+    packages,
+    standalone,
+    license,
+    repositoryUrl,
+    overwrite: true,
   });
 }
 

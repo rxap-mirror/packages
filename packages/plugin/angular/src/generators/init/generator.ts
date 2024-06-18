@@ -9,6 +9,7 @@ import {
   GetNxVersion,
 } from '@rxap/workspace-utilities';
 import initLibraryGenerator from '../init-library/generator';
+import { coerceNxJson } from './coerce-nx-json';
 import { InitGeneratorSchema } from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
@@ -23,6 +24,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   );
 
   await AddPackageJsonDevDependency(tree, '@nx/angular', GetNxVersion(tree), { soft: true });
+
+  coerceNxJson(tree, options);
 
   await initLibraryGenerator(tree, {
     projects: [

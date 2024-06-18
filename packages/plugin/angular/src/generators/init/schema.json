@@ -24,6 +24,10 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
+    },
+    "prefix": {
+      "type": "string",
+      "description": "The prefix for the angular components"
     }
   },
   "required": []
