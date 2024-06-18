@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0-dev.8...@rxap/plugin-workspace@19.1.0-dev.9) (2024-06-18)
+
+### Bug Fixes
+
+- add the composer package ([49e1b58](https://gitlab.com/rxap/packages/commit/49e1b58fb7b843d8922fbb17e6b740c1b63bdd3a))
+- move idea ignores to root ignore ([27181d9](https://gitlab.com/rxap/packages/commit/27181d989998940c5c7800ca638be77c568adf9a))
+
 # [19.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0-dev.7...@rxap/plugin-workspace@19.1.0-dev.8) (2024-06-18)
 
 ### Bug Fixes

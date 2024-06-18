@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.0.4-dev.11...@rxap/plugin-nestjs@19.0.4-dev.12) (2024-06-18)
+
+### Bug Fixes
+
+- support new directory and name definition ([f9a44f5](https://gitlab.com/rxap/packages/commit/f9a44f5441020f4eb574598e03dbde7b3c77fc6c))
+
 ## [19.0.4-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.0.4-dev.10...@rxap/plugin-nestjs@19.0.4-dev.11) (2024-06-18)
 
 ### Bug Fixes

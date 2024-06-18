@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.3.0-dev.0...@rxap/node-utilities@1.3.0-dev.1) (2024-06-18)
+
+### Bug Fixes
+
+- use nx env to local the rxap package ([08d83ab](https://gitlab.com/rxap/packages/commit/08d83ab17a385ce14147df26d0983f49a9601779))
+- use nx env to local the rxap package ([06ca11c](https://gitlab.com/rxap/packages/commit/06ca11c3f2f2a431aef323861f012f7c26951cea))
+
 # [1.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.2.3-dev.0...@rxap/node-utilities@1.3.0-dev.0) (2024-06-18)
 
 ### Features

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0-dev.11...@rxap/plugin-angular@19.1.0-dev.12) (2024-06-18)
+
+### Bug Fixes
+
+- ensure the assets folder is copied ([6ce6341](https://gitlab.com/rxap/packages/commit/6ce63415943cb9da63217cf3df2b15c8cd70295d))
+- update default mfe config folder ([8503828](https://gitlab.com/rxap/packages/commit/8503828feea5b3d08d673c29949a323f7b5e04a7))
+
+### Features
+
+- support default export ([c1e69c0](https://gitlab.com/rxap/packages/commit/c1e69c0351419e71fb6aad11b182c68a0b2c6a41))
+
 # [19.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0-dev.10...@rxap/plugin-angular@19.1.0-dev.11) (2024-06-18)
 
 ### Bug Fixes
