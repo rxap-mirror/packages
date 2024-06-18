@@ -60,6 +60,7 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
           w.quote('custom.svg');
           w.writeLine(']),');
           w.writeLine('provideNoopAnimations(),');
+          w.writeLine('ProvideConfig(),');
           w.writeLine(`ProvideEnvironment({app: '${projectName}-storybook', production: false}),`);
           w.writeLine('],');
         }
@@ -82,6 +83,10 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
       {
         namedImports: [ 'ProvideIconAssetPath' ],
         moduleSpecifier: '@rxap/icon',
+      },
+      {
+        namedImports: [ 'ProvideConfig' ],
+        moduleSpecifier: '@rxap/config',
       },
       {
         namedImports: [ 'ProvideEnvironment' ],
