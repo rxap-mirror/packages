@@ -446,7 +446,7 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.1.0-dev.10"
+        "version": "19.1.0-dev.11"
       },
       {
         "package": "@rxap/plugin-application",
@@ -458,7 +458,7 @@
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.2-dev.10"
+        "version": "19.0.2-dev.11"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -482,7 +482,7 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.0.4-dev.10"
+        "version": "19.0.4-dev.11"
       },
       {
         "package": "@rxap/plugin-open-api",
@@ -506,7 +506,7 @@
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.0-dev.10"
+        "version": "19.0.0-dev.11"
       },
       {
         "package": "@rxap/preset-workspace",
