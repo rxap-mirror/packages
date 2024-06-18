@@ -10,7 +10,7 @@ describe('init', () => {
     tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
   });
 
-  it.skip('should init default workspace', async () => {
+  it('should init default workspace', async () => {
 
     await initGenerator(tree, {
       packages: false,
@@ -21,7 +21,6 @@ describe('init', () => {
       skipLicense: false,
       license: 'gpl',
       repositoryUrl: 'https://gitlab.com/rxap/packages/testing',
-      prefix: 'rxap'
     });
 
     expect(tree.children('')).toMatchSnapshot();
