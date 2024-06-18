@@ -1,4 +1,4 @@
-import { RXAP_CONFIG } from '@rxap/config';
+import { RXAP_CONFIG } from './tokens';
 
 export function ProvideConfig(config: Record<string, unknown> = {}) {
   return {
