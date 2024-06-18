@@ -9,7 +9,7 @@
     "@angular/core": "^18.0.1",
     "@angular/platform-browser": "^18.0.1",
     "@angular/platform-browser-dynamic": "^18.0.1",
-    "@nx/angular": "^19.1.1",
+    "@nx/angular": "^19.3.0",
     "@rxap/config": "^18.1.0",
     "@rxap/environment": "^18.0.2",
     "ngx-logger": "^5.0.12"

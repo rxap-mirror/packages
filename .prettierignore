@@ -13,3 +13,5 @@ tmp.*
 .nyc_output
 
 /.nx/cache
+
+/.nx/workspace-data
