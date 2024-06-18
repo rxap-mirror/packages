@@ -1,6 +1,9 @@
 import { ProjectConfiguration } from '@nx/devkit';
 import { DeleteEmptyProperties } from '@rxap/utilities';
-import { CoerceTarget } from '@rxap/workspace-utilities';
+import {
+  CoerceTarget,
+  Strategy,
+} from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
 export function updateProjectTargets(project: ProjectConfiguration, projectName: string, options: InitGeneratorSchema) {
@@ -12,7 +15,7 @@ export function updateProjectTargets(project: ProjectConfiguration, projectName:
         imageSuffix: options.dockerImageSuffix ?? options.standalone ? undefined : '/' + projectName,
         imageRegistry: options.dockerImageRegistry,
       }),
-    });
+    }, Strategy.MERGE);
     CoerceTarget(project, 'docker-save');
   }
 
@@ -43,6 +46,12 @@ export function updateProjectTargets(project: ProjectConfiguration, projectName:
       }
     }
 
+    const configurations = Object.keys(project.targets['build']?.configurations ?? {});
+    if (!options.skipDocker) {
+      CoerceTarget(project, 'docker', {
+        configurations: configurations.reduce((acc, configuration) => ({ ...acc, [configuration]: {} }), {})
+      }, Strategy.MERGE);
+    }
   } else {
     console.warn(`The project '${ project.name }' has no build target`);
   }
