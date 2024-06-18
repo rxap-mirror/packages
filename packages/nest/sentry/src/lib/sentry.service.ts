@@ -34,7 +34,7 @@ export class SentryService implements OnApplicationShutdown, OnApplicationBootst
     Sentry.init({
       ...sentryOptions,
       integrations: [
-        new Sentry.Integrations.OnUncaughtException({
+        Sentry.onUncaughtExceptionIntegration({
           onFatalError: async (err) => {
             // console.error('uncaughtException, not cool!')
             // console.error(err);
@@ -50,7 +50,7 @@ export class SentryService implements OnApplicationShutdown, OnApplicationBootst
             }
           },
         }),
-        new Sentry.Integrations.OnUnhandledRejection({ mode: 'warn' }),
+        Sentry.onUnhandledRejectionIntegration({ mode: 'warn' }),
         ...integrations,
       ],
     });
