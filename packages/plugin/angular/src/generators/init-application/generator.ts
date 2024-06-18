@@ -259,7 +259,7 @@ export async function initApplicationGenerator(
         });
       }
 
-      updateProjectTargets(projectName, project, options);
+      updateProjectTargets(tree, projectName, project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
       updateTsConfig(tree, projectName);

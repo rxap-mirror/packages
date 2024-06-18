@@ -1,4 +1,7 @@
-import { ProjectConfiguration } from '@nx/devkit';
+import {
+  ProjectConfiguration,
+  Tree,
+} from '@nx/devkit';
 import {
   DeleteEmptyProperties,
   unique,
@@ -6,6 +9,7 @@ import {
 import {
   CoerceAssets,
   CoerceTarget,
+  GetProjectSourceRoot,
   Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -37,10 +41,13 @@ function compareBudget(a: string, b: string): -1 | 0 | 1 {
 }
 
 export function updateProjectTargets(
+  tree: Tree,
   projectName: string,
   project: ProjectConfiguration & { i18n?: ProjectI18nConfiguration },
   options: InitApplicationGeneratorSchema,
 ) {
+  const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
+
   project.targets ??= {};
 
   if (!project.targets['build']) {
@@ -134,6 +141,7 @@ export function updateProjectTargets(
     }
   }
   CoerceAssets(project.targets['build'].options.assets, [
+    `${projectSourceRoot}/assets`,
     {
       glob: '*',
       input: 'shared/angular/assets/',
