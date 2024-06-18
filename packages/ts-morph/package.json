@@ -1,9 +1,9 @@
 {
-  "version": "1.4.0-dev.3",
+  "version": "1.4.0",
   "name": "@rxap/ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@rxap/utilities": "^16.2.3-dev.0",
+    "@rxap/utilities": "^16.2.3",
     "colors": "1.4.0",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2"

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@19.0.2-dev.9...@rxap/plugin-storybook@19.0.2) (2024-06-18)
+
+**Note:** Version bump only for package @rxap/plugin-storybook
+
 ## [19.0.2-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@19.0.2-dev.8...@rxap/plugin-storybook@19.0.2-dev.9) (2024-06-18)
 
 **Note:** Version bump only for package @rxap/plugin-storybook

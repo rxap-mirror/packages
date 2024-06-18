@@ -1,5 +1,5 @@
 {
-  "version": "18.0.2-dev.2",
+  "version": "18.0.2",
   "name": "@rxap/authorization",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@angular/core": "^18.0.1",
     "@angular/forms": "^18.0.1",
     "@angular/material": "^18.0.0",
-    "@rxap/utilities": "^16.2.3-dev.0",
+    "@rxap/utilities": "^16.2.3",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -62,7 +62,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.3-dev.0"
+        "version": "16.2.3"
       }
     ]
   },
