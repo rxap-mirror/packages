@@ -25,7 +25,8 @@ nx g @rxap/plugin-angular:init-application \
   --project user-interface-$NAME \
   --moduleFederation host \
   --cleanup \
-  --generateMain
+  --generateMain \
+  --overwrite
 ```
 
 ### Remote
@@ -51,5 +52,6 @@ nx g @rxap/plugin-angular:init-application \
   --project user-interface-remote-$NAME \
   --host user-interface-host \
   --cleanup \
-  --generateMain
+  --generateMain \
+  --overwrite
 ```

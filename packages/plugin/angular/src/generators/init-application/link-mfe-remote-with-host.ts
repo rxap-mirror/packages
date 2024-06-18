@@ -17,7 +17,10 @@ export function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: 
   const hostSourceRoot = GetProjectSourceRoot(tree, options.host);
   const isHostMonolithic = tree.exists(join(hostSourceRoot, 'app/layout.routes.ts'));
 
-  const path = projectName.replace('user-interface-', '').replace('feature-', '');
+  const path = projectName
+    .replace(/^user-interface-/, '')
+    .replace(/^remote-/, '')
+    .replace(/^feature-/, '');
 
   if (isHostMonolithic && !options.standaloneImport) {
     TsMorphAngularProjectTransform(tree, {

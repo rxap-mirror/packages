@@ -413,6 +413,7 @@ export async function initApplicationGenerator(
             relativePathToWorkspaceRoot: relative(sourceRoot, ''),
             name: projectName
               .replace(/^user-interface-/, '')
+              .replace(/^remote-/, '')
               .replace(/^feature-/, ''),
             classify,
             dasherize,
