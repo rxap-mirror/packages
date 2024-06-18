@@ -424,6 +424,13 @@ export async function initApplicationGenerator(
           linkMfeRemoteWithHost(tree, projectName, options);
         }
       }
+      if (options.moduleFederation) {
+        CoerceFilesStructure(tree, {
+          srcFolder: join(__dirname, 'files', 'mfe'),
+          target: '',
+          overwrite: options.overwrite,
+        });
+      }
       if (options.serviceWorker) {
         if (options.overwrite || !tree.exists(join(sourceRoot, 'manifest.webmanifest'))) {
           generateFiles(tree, join(__dirname, 'files', 'service-worker'), sourceRoot, {

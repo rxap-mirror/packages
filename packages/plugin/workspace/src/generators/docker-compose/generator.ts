@@ -134,12 +134,13 @@ function createFrontendDockerCompose(
       const labels: string[] = [];
       if (tags?.includes('module-federation')) {
         if (tags.includes('mfe:host')) {
-          labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`{host:.*}\`)`);
+          labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`^.+$\`)`);
         } else {
           labels.push(`traefik.http.routers.${ name }.rule=PathPrefix(\`/__mfe/latest/${ name }\`)`);
+          labels.push(`traefik.http.routers.user-interface-remote-stheno.middlewares=strip-mfe-prefix@file`);
         }
       } else {
-        labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`${host}{host:.*}\`)`);
+        labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`^${host}.+$\`)`);
       }
       if (options.middlewares?.length) {
         labels.push(`traefik.http.routers.${ name }.middlewares=${options.middlewares.join(',')}`);

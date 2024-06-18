@@ -1,0 +1,6 @@
+http:
+  middlewares:
+    strip-mfe-prefix:
+      stripPrefixRegex:
+        regex:
+          - "/__mfe/[^/]+/[^/]+"
