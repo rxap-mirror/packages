@@ -3,7 +3,11 @@ import {
   Tree,
   updateNxJson,
 } from '@nx/devkit';
-import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
+import {
+  CoerceTarget,
+  CoerceTargetDefaultsDependency,
+  Strategy,
+} from '@rxap/workspace-utilities';
 
 export function updateGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
@@ -13,6 +17,23 @@ export function updateGeneralTargetDefaults(tree: Tree) {
   }
 
   CoerceTargetDefaultsDependency(nxJson, 'build', '^build');
+
+  CoerceTarget(nxJson, 'fix-dependencies', {
+    executor: '@rxap/plugin-library:run-generator',
+    outputs: [
+      '{projectRoot}/package.json',
+    ],
+    options: {
+      generator: '@rxap/plugin-library:fix-dependencies',
+      options: {
+        strict: true,
+        onlyDependencies: true,
+      }
+    },
+  }, Strategy.OVERWRITE);
+
+  CoerceTarget(nxJson, 'update-dependencies', { executor: '@rxap/plugin-library:update-dependencies' });
+  CoerceTarget(nxJson, 'update-package-group', { executor: '@rxap/plugin-library:update-package-group' });
 
   updateNxJson(tree, nxJson);
 

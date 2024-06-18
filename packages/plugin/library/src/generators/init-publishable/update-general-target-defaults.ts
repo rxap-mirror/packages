@@ -37,6 +37,8 @@ export function updateGeneralTargetDefaults(tree: Tree) {
 
   CoerceNxJsonCacheableOperation(nxJson, 'readme');
 
+  CoerceTarget(nxJson, 'readme', { executor: '@rxap/plugin-library:readme' });
+
   CoerceTarget(nxJson, 'linking', {
     executor: '@rxap/plugin-library:node-modules-linking',
     dependsOn: [
