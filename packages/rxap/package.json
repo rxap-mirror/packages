@@ -206,7 +206,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.0.2-dev.2"
+        "version": "18.1.0-dev.0"
       },
       {
         "package": "@rxap/contenteditable",
@@ -490,7 +490,7 @@
       },
       {
         "package": "@rxap/plugin-storybook",
-        "version": "19.0.2-dev.7"
+        "version": "19.0.2-dev.8"
       },
       {
         "package": "@rxap/plugin-utilities",
