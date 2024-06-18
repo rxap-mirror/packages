@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0-dev.9...@rxap/plugin-workspace@19.1.0-dev.10) (2024-06-18)
+
+### Bug Fixes
+
+- mfe dev routing ([6d14920](https://gitlab.com/rxap/packages/commit/6d149204b5917badd15563c44cbce6125f8a8bf5))
+
 # [19.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0-dev.8...@rxap/plugin-workspace@19.1.0-dev.9) (2024-06-18)
 
 ### Bug Fixes

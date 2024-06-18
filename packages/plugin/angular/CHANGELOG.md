@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0-dev.12...@rxap/plugin-angular@19.1.0-dev.13) (2024-06-18)
+
+### Bug Fixes
+
+- mfe dev routing ([6d14920](https://gitlab.com/rxap/packages/commit/6d149204b5917badd15563c44cbce6125f8a8bf5))
+
 # [19.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0-dev.11...@rxap/plugin-angular@19.1.0-dev.12) (2024-06-18)
 
 ### Bug Fixes
