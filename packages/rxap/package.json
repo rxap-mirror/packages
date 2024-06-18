@@ -138,51 +138,51 @@
       },
       {
         "package": "@nx/angular",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/cypress",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/devkit",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/eslint",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/eslint-plugin",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/jest",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/js",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/nest",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/node",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/plugin",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/storybook",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@nx/webpack",
-        "version": "19.1.1"
+        "version": "19.3.0"
       },
       {
         "package": "@rxap/authentication",
@@ -258,7 +258,7 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.8"
+        "version": "1.0.9-dev.0"
       },
       {
         "package": "@rxap/generator-utilities",
@@ -322,7 +322,7 @@
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.2.2"
+        "version": "10.2.3-dev.0"
       },
       {
         "package": "@rxap/nest-minio",
@@ -334,7 +334,7 @@
       },
       {
         "package": "@rxap/nest-sentry",
-        "version": "10.3.1"
+        "version": "10.3.2-dev.0"
       },
       {
         "package": "@rxap/nest-server",
@@ -366,7 +366,7 @@
       },
       {
         "package": "@rxap/ngx-bootstrap",
-        "version": "18.0.2"
+        "version": "18.0.3-dev.0"
       },
       {
         "package": "@rxap/ngx-changelog",
@@ -446,71 +446,71 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.1.0"
+        "version": "19.1.1-dev.0"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/plugin-compodoc",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-gitlab-ci",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-gpt",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.2.0"
+        "version": "19.2.1-dev.0"
       },
       {
         "package": "@rxap/plugin-localazy",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.0.4"
+        "version": "19.0.5-dev.0"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.0"
+        "version": "19.1.1-dev.0"
       },
       {
         "package": "@rxap/plugin-storybook",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/plugin-web3-storage",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.1.0"
+        "version": "19.1.1-dev.0"
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.1"
+        "version": "19.0.2-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -526,31 +526,31 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.1.0"
+        "version": "18.1.1-dev.0"
       },
       {
         "package": "@rxap/schematic-composer",
-        "version": "18.0.2"
+        "version": "18.0.3-dev.0"
       },
       {
         "package": "@rxap/schematic-nestjs",
-        "version": "18.0.2"
+        "version": "18.0.3-dev.0"
       },
       {
         "package": "@rxap/schematics-open-api",
-        "version": "18.0.2"
+        "version": "18.0.3-dev.0"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.1.0"
+        "version": "18.1.1-dev.0"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "18.0.2"
+        "version": "18.0.3-dev.0"
       },
       {
         "package": "@rxap/schematics-xml-parser",
-        "version": "18.0.2"
+        "version": "18.0.3-dev.0"
       },
       {
         "package": "@rxap/service-worker",
@@ -602,15 +602,15 @@
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "19.1.0"
+        "version": "19.1.1-dev.0"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.2.0"
+        "version": "19.2.1-dev.0"
       },
       {
         "package": "@rxap/xml-parser",
@@ -618,7 +618,7 @@
       },
       {
         "package": "nx",
-        "version": "19.1.1"
+        "version": "19.3.0"
       }
     ]
   },
