@@ -2,24 +2,80 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
+  getProjects,
+  ProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nx/devkit';
+import { CoerceArrayItems } from '@rxap/utilities';
+import {
+  GenerateSerializedSchematicFile,
+  GetProjectRoot,
+  SkipNonLibraryProject,
+} from '@rxap/workspace-utilities';
 import * as path from 'path';
+import { initProject } from './init-project';
+import { initWorkspace } from './init-workspace';
 import { InitLibraryGeneratorSchema } from './schema';
+
+function skipProject(
+  tree: Tree,
+  options: InitLibraryGeneratorSchema,
+  project: ProjectConfiguration,
+  projectName: string,
+): boolean {
+
+  if (options.project === projectName) {
+    return false;
+  }
+
+  if (SkipNonLibraryProject(tree, options, project, projectName)) {
+    return true;
+  }
+
+  return false;
+
+}
 
 export async function initLibraryGenerator(
   tree: Tree,
   options: InitLibraryGeneratorSchema
 ) {
-  const projectRoot = `libs/${options.name}`;
-  addProjectConfiguration(tree, options.name, {
-    root: projectRoot,
-    projectType: 'library',
-    sourceRoot: `${projectRoot}/src`,
-    targets: {},
-  });
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
-  await formatFiles(tree);
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [ options.project ]);
+  }
+  console.log('typedoc library init generator:', options);
+
+  await initWorkspace(tree, options);
+
+  if (!options.skipProjects) {
+
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
+
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
+      await initProject(tree, projectName, project, options);
+
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-typedoc',
+        'init-library',
+        options,
+      );
+
+      updateProjectConfiguration(tree, projectName, project);
+    }
+
+  }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 }
 
 export default initLibraryGenerator;

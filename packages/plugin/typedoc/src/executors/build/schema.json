@@ -4,6 +4,19 @@
   "title": "Build executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "entryPoints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputPath": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
   "required": []
 }

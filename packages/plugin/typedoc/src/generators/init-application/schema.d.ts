@@ -1,3 +1,7 @@
 export interface InitApplicationGeneratorSchema {
-  name: string;
+  project?: string;
+  projects?: string[];
+  overwrite?: boolean;
+  skipProjects?: boolean;
+  skipFormat?: boolean;
 }

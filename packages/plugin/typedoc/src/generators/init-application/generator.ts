@@ -1,25 +1,79 @@
 import {
-  addProjectConfiguration,
   formatFiles,
-  generateFiles,
+  getProjects,
+  ProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nx/devkit';
-import * as path from 'path';
+import { CoerceArrayItems } from '@rxap/utilities';
+import {
+  GenerateSerializedSchematicFile,
+  GetProjectRoot,
+  SkipNonApplicationProject,
+} from '@rxap/workspace-utilities';
+import { initProject } from './init-project';
+import { initWorkspace } from './init-workspace';
 import { InitApplicationGeneratorSchema } from './schema';
+
+function skipProject(
+  tree: Tree,
+  options: InitApplicationGeneratorSchema,
+  project: ProjectConfiguration,
+  projectName: string,
+): boolean {
+
+  if (options.project === projectName) {
+    return false;
+  }
+
+  if (SkipNonApplicationProject(tree, options, project, projectName)) {
+    return true;
+  }
+
+  return false;
+
+}
+
 
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema
 ) {
-  const projectRoot = `libs/${options.name}`;
-  addProjectConfiguration(tree, options.name, {
-    root: projectRoot,
-    projectType: 'library',
-    sourceRoot: `${projectRoot}/src`,
-    targets: {},
-  });
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
-  await formatFiles(tree);
+  options.project ??= undefined;
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [ options.project ]);
+  }
+  console.log('typedoc application init generator:', options);
+
+  await initWorkspace(tree, options);
+
+  if (!options.skipProjects) {
+
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
+
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
+      await initProject(tree, projectName, project, options);
+
+      GenerateSerializedSchematicFile(
+        tree,
+        GetProjectRoot(tree, projectName),
+        '@rxap/plugin-typedoc',
+        'init-application',
+        options,
+      );
+
+      updateProjectConfiguration(tree, projectName, project);
+    }
+
+  }
+
+  if (!options.skipFormat) {
+    await formatFiles(tree);
+  }
 }
 
 export default initApplicationGenerator;
