@@ -23,6 +23,10 @@
     "openaiApiKey": {
       "type": "string",
       "description": "The openai api key"
+    },
+    "openaiOrganization": {
+      "type": "string",
+      "description": "The openai organization"
     }
   }
 }

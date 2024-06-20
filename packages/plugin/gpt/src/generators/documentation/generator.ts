@@ -31,18 +31,34 @@ import {
 import { DocumentationGeneratorSchema } from './schema';
 import { SimplePrompt } from './simple-prompt';
 
-function getOpenAi(param: Omit<ConfigurationParameters, 'apiKey'> = {}) {
+let OPENAPI_INSTANCE: OpenAIApi | null = null;
 
-  if (!process.env.OPENAI_API_KEY) {
-    throw new Error('Can not find OPENAI_API_KEY environment variable');
+async function createOpenApi(param: ConfigurationParameters) {
+
+  if (OPENAPI_INSTANCE) {
+    return OPENAPI_INSTANCE;
   }
 
-  const configuration = new Configuration({
-    ...param,
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-  return new OpenAIApi(configuration);
+  const configuration = new Configuration(param);
+  OPENAPI_INSTANCE = new OpenAIApi(configuration);
 
+  await OPENAPI_INSTANCE.listModels()
+    .catch(() => console.error('Error listing models'))
+    .then(models => {
+      if (models) {
+        console.log('Models:', models.data.data.map(model => model.id));
+      }
+  });
+
+  return OPENAPI_INSTANCE;
+
+}
+
+function getOpenAi() {
+  if (!OPENAPI_INSTANCE) {
+    throw new Error('OpenAI instance is not created');
+  }
+  return OPENAPI_INSTANCE;
 }
 
 function loadSystemPrompt(name: string) {
@@ -177,12 +193,19 @@ async function processFunction(
 
   console.log('Function text:');
   console.log(functionText);
-
-  const jsDoc = await prompt(
-    options,
-    FUNCTION_SYSTEM_PROMPT,
-    functionText,
-  );
+  let jsDoc: string;
+  try {
+    jsDoc = await prompt(
+      options,
+      FUNCTION_SYSTEM_PROMPT,
+      functionText,
+    );
+  } catch (e: any) {
+    console.error(`\x1b[31mError processing function: \x1b[0m${ functionDeclaration.getName() }`);
+    console.error(e.message);
+    console.error(e.stack);
+    return false;
+  }
 
   console.log('Function documentation:');
   console.log(jsDoc);
@@ -204,10 +227,10 @@ async function processSourceFile(options: DocumentationGeneratorSchema, project:
     changed = changed || hasChanged;
   }
 
-  for (const cd of sourceFile.getClasses()) {
-    const hasChanged = await processClass(options, project, sourceFile, cd);
-    changed = changed || hasChanged;
-  }
+  // for (const cd of sourceFile.getClasses()) {
+  //   const hasChanged = await processClass(options, project, sourceFile, cd);
+  //   changed = changed || hasChanged;
+  // }
 
   return changed;
 
@@ -289,15 +312,21 @@ export async function documentationGenerator(
   options: DocumentationGeneratorSchema,
 ) {
 
-  if (options.openaiApiKey) {
-    process.env.OPENAI_API_KEY = options.openaiApiKey;
-  }
+  const openaiApiKey = options.openaiApiKey ?? process.env.OPENAI_API_KEY;
+  const openaiOrganization = options.openaiOrganization ?? process.env.OPENAI_ORGANIZATION;
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!openaiApiKey) {
     throw new Error('Can not find OPENAI_API_KEY environment variable');
   }
 
-  console.log(`\x1b[33mOpenAI API key: \x1b[0m${ process.env.OPENAI_API_KEY }`);
+  if (!openaiOrganization) {
+    throw new Error('Can not find OPENAI_ORGANIZATION environment variable');
+  }
+
+  await createOpenApi({
+    apiKey: openaiApiKey,
+    organization: openaiOrganization,
+  });
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 

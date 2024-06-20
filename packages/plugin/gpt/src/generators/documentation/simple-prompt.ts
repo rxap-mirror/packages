@@ -2,33 +2,46 @@ import { OpenAIApi } from 'openai';
 import { encode } from 'gpt-3-encoder';
 
 const tokenLimits = {
+  'gpt-4-4o': 128_000,
+  'gpt-4-turbo': 128_000,
   'gpt-4': 8192,
   'gpt-3.5-turbo': 4096,
   'gpt-3.5-turbo-16k': 16384,
 };
 
-export interface SimplePromtOptions {
+export type Model = 'whisper-1' | 'dall-e-2' | 'gpt-3.5-turbo-16k' | 'tts-1-hd-1106' | 'tts-1-hd' | 'gpt-4-turbo-2024-04-09' | 'gpt-4-0125-preview' | 'gpt-4-turbo-preview' | 'gpt-4-turbo' | 'gpt-3.5-turbo-instruct-0914' | 'gpt-4o' | 'gpt-3.5-turbo-instruct' | 'text-embedding-3-small' | 'tts-1' | 'gpt-4' | 'text-embedding-3-large' | 'gpt-4-1106-preview' | 'babbage-002' | 'gpt-4-0613' | 'gpt-3.5-turbo-0125' | 'tts-1-1106' | 'dall-e-3' | 'text-embedding-ada-002' | 'davinci-002' | 'gpt-3.5-turbo' | 'gpt-3.5-turbo-1106' | 'gpt-4o-2024-05-13';
+
+export interface SimplePromptOptions {
   max_tokens?: number,
-  model?: 'gpt-4' | 'gpt-3.5-turbo' | 'gpt-3.5-turbo-16k',
+  model?: Model,
+}
+
+export function IsAllDefined(options: SimplePromptOptions): options is Required<SimplePromptOptions> {
+  return options.max_tokens !== undefined && options.model !== undefined;
+}
+
+export function AssertAllDefined(options: SimplePromptOptions): asserts options is Required<SimplePromptOptions> {
+  if (!IsAllDefined(options)) {
+    throw new Error(`\x1b[31mOptions are not all defined\x1b[0m`);
+  }
 }
 
 export async function SimplePrompt(
   systemPrompt: string,
   prompt: string,
   openai: OpenAIApi,
-  options: SimplePromtOptions = {
+  options: SimplePromptOptions = {
     max_tokens: 1024,
-    model: 'gpt-4',
+    model: 'gpt-4-turbo',
   },
 ) {
-
 
   const systemPromptLength = encode(systemPrompt).length;
   const promptLength = encode(prompt).length;
 
   const inputLength = Math.floor((systemPromptLength + promptLength) * 1.1);
 
-  options.model ??= 'gpt-4';
+  options.model ??= 'gpt-4o';
   options.max_tokens ??= 1024;
 
   if (!tokenLimits[options.model]) {
@@ -52,9 +65,11 @@ export async function SimplePrompt(
 
   let content: string | undefined;
 
+  AssertAllDefined(options);
+
   try {
     const response = await openai.createChatCompletion({
-      ...(options as any),
+      ...options,
       messages: [
         {
           'role': 'system',
