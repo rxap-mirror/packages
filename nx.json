@@ -90,7 +90,7 @@
       "options": {
         "passWithNoTests": true,
         "silent": true,
-        "coverageReporters": ["json"],
+        "coverageReporters": ["json", "html"],
         "codeCoverage": true
       },
       "cache": true
@@ -357,7 +357,7 @@
       "options": {
         "passWithNoTests": true,
         "silent": true,
-        "coverageReporters": ["json"],
+        "coverageReporters": ["json", "html"],
         "codeCoverage": true
       },
       "cache": true,

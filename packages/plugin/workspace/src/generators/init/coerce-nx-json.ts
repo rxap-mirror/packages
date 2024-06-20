@@ -101,6 +101,7 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
       'silent': true,
       'coverageReporters': [
         'json',
+        "html"
       ],
       'codeCoverage': true,
     },

@@ -18,7 +18,8 @@ export function initE2eProject(tree: Tree, projectName: string, project: Project
     "configurations": {
       "ci": {
         "coverageReporters": [
-          "json"
+          "json",
+          "html"
         ],
         "codeCoverage": true
       }

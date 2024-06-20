@@ -138,7 +138,7 @@ exports[`init should init default workspace 3`] = `
       "options": {
         "passWithNoTests": true,
         "silent": true,
-        "coverageReporters": ["json"],
+        "coverageReporters": ["json", "html"],
         "codeCoverage": true
       }
     },
