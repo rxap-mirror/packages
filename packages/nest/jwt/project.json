@@ -14,7 +14,7 @@
         "tsConfig": "packages/nest/jwt/tsconfig.lib.json",
         "packageJson": "packages/nest/jwt/package.json",
         "main": "packages/nest/jwt/src/index.ts",
-        "assets": ["packages/nest/jwt/*.md"]
+        "assets": ["packages/nest/jwt/*.md", "packages/nest/jwt/docs"]
       }
     },
     "check-version": {
@@ -56,6 +56,11 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": ["dist/docs/packages/nest/jwt", "packages/nest/jwt/docs"]
+      }
+    }
   }
 }

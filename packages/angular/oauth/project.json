@@ -80,6 +80,14 @@
           "packages/angular/oauth/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/oauth",
+          "packages/angular/oauth/docs"
+        ]
+      }
     }
   }
 }

@@ -41,7 +41,8 @@
             "input": "./packages/preset/workspace",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/preset/workspace/docs"
         ]
       }
     },
@@ -91,6 +92,14 @@
           "strict": true,
           "onlyDependencies": true
         }
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/preset/workspace",
+          "packages/preset/workspace/docs"
+        ]
       }
     }
   }

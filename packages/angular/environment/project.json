@@ -78,6 +78,14 @@
           "packages/angular/environment/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/environment",
+          "packages/angular/environment/docs"
+        ]
+      }
     }
   }
 }

@@ -73,6 +73,14 @@
           "packages/angular/directives/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/directives",
+          "packages/angular/directives/docs"
+        ]
+      }
     }
   }
 }

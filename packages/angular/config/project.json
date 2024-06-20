@@ -73,6 +73,14 @@
           "packages/angular/config/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/config",
+          "packages/angular/config/docs"
+        ]
+      }
     }
   }
 }

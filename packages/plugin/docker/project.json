@@ -33,7 +33,8 @@
             "input": "./packages/plugin/docker",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/plugin/docker/docs"
         ]
       }
     },
@@ -87,6 +88,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/plugin/docker",
+          "packages/plugin/docker/docs"
+        ]
+      }
+    }
   }
 }

@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/browser/utilities",
         "main": "packages/browser/utilities/src/index.ts",
         "tsConfig": "packages/browser/utilities/tsconfig.lib.json",
-        "assets": ["packages/browser/utilities/*.md"]
+        "assets": [
+          "packages/browser/utilities/*.md",
+          "packages/browser/utilities/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -50,6 +53,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/browser/utilities",
+          "packages/browser/utilities/docs"
+        ]
+      }
+    }
   }
 }

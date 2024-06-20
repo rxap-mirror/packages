@@ -78,6 +78,14 @@
           "packages/angular/data-grid/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/data-grid",
+          "packages/angular/data-grid/docs"
+        ]
+      }
     }
   }
 }

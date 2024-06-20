@@ -79,6 +79,14 @@
           "packages/angular/contenteditable/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/contenteditable",
+          "packages/angular/contenteditable/docs"
+        ]
+      }
     }
   }
 }

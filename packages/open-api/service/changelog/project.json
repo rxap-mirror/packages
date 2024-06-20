@@ -3,11 +3,19 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/open-api/service/changelog/src",
   "projectType": "library",
+  "tags": ["open-api"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/open-api/service/changelog",
+          "packages/open-api/service/changelog/docs"
+        ]
+      }
     }
-  },
-  "tags": ["open-api"]
+  }
 }

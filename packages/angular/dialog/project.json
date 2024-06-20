@@ -78,6 +78,14 @@
           "packages/angular/dialog/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/dialog",
+          "packages/angular/dialog/docs"
+        ]
+      }
     }
   }
 }

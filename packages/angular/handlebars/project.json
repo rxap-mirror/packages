@@ -79,6 +79,14 @@
           "packages/angular/handlebars/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/handlebars",
+          "packages/angular/handlebars/docs"
+        ]
+      }
     }
   }
 }

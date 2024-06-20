@@ -13,7 +13,10 @@
         "tsConfig": "packages/nest/utilities/tsconfig.lib.json",
         "packageJson": "packages/nest/utilities/package.json",
         "main": "packages/nest/utilities/src/index.ts",
-        "assets": ["packages/nest/utilities/*.md"]
+        "assets": [
+          "packages/nest/utilities/*.md",
+          "packages/nest/utilities/docs"
+        ]
       }
     },
     "check-version": {
@@ -56,6 +59,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/nest/utilities",
+          "packages/nest/utilities/docs"
+        ]
+      }
+    }
   }
 }

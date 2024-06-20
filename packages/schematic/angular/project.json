@@ -30,7 +30,8 @@
             "input": "./packages/schematic/angular",
             "glob": "collection.json",
             "output": "."
-          }
+          },
+          "packages/schematic/angular/docs"
         ]
       }
     },
@@ -73,6 +74,14 @@
       "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "@angular-devkit/schematics"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/schematic/angular",
+          "packages/schematic/angular/docs"
+        ]
       }
     }
   }

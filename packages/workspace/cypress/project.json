@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/workspace/cypress",
         "main": "packages/workspace/cypress/src/index.ts",
         "tsConfig": "packages/workspace/cypress/tsconfig.lib.json",
-        "assets": ["packages/workspace/cypress/*.md"]
+        "assets": [
+          "packages/workspace/cypress/*.md",
+          "packages/workspace/cypress/docs"
+        ]
       }
     },
     "publish": {
@@ -51,6 +54,14 @@
         }
       }
     },
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/workspace/cypress",
+          "packages/workspace/cypress/docs"
+        ]
+      }
+    }
   }
 }

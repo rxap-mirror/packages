@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/workspace/open-api",
         "main": "packages/workspace/open-api/src/index.ts",
         "tsConfig": "packages/workspace/open-api/tsconfig.lib.json",
-        "assets": ["packages/workspace/open-api/*.md"]
+        "assets": [
+          "packages/workspace/open-api/*.md",
+          "packages/workspace/open-api/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -50,6 +53,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/workspace/open-api",
+          "packages/workspace/open-api/docs"
+        ]
+      }
+    }
   }
 }

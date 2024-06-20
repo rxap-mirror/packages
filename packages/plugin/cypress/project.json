@@ -33,7 +33,8 @@
             "input": "./packages/plugin/cypress",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/plugin/cypress/docs"
         ]
       }
     },
@@ -83,6 +84,14 @@
       "executor": "@rxap/plugin-library:run-generator",
       "options": {
         "generator": "@rxap/plugin-library:expose-as-schematic"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/plugin/cypress",
+          "packages/plugin/cypress/docs"
+        ]
       }
     }
   }

@@ -14,7 +14,7 @@
         "tsConfig": "packages/nest/open-api/tsconfig.lib.json",
         "packageJson": "packages/nest/open-api/package.json",
         "main": "packages/nest/open-api/src/index.ts",
-        "assets": ["packages/nest/open-api/*.md"]
+        "assets": ["packages/nest/open-api/*.md", "packages/nest/open-api/docs"]
       }
     },
     "check-version": {
@@ -56,6 +56,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/nest/open-api",
+          "packages/nest/open-api/docs"
+        ]
+      }
+    }
   }
 }

@@ -33,7 +33,8 @@
             "input": "./packages/plugin/workspace",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/plugin/workspace/docs"
         ]
       }
     },
@@ -86,6 +87,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/plugin/workspace",
+          "packages/plugin/workspace/docs"
+        ]
+      }
+    }
   }
 }

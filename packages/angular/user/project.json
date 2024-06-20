@@ -91,6 +91,14 @@
           "packages/angular/user/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/user",
+          "packages/angular/user/docs"
+        ]
+      }
     }
   }
 }

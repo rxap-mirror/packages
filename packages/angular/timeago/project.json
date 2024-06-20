@@ -97,6 +97,14 @@
           "packages/angular/timeago/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/timeago",
+          "packages/angular/timeago/docs"
+        ]
+      }
     }
   }
 }

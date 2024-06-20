@@ -11,6 +11,7 @@
     "LICENSE.md",
     "theme.css",
     "src/restore-theme-settings.js",
-    "compodoc"
+    "compodoc",
+    "docs"
   ]
 }

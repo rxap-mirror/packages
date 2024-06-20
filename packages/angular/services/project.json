@@ -75,6 +75,14 @@
           "packages/angular/services/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/services",
+          "packages/angular/services/docs"
+        ]
+      }
     }
   }
 }

@@ -33,7 +33,8 @@
             "input": "./packages/plugin/gitlab-ci",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/plugin/gitlab-ci/docs"
         ]
       }
     },
@@ -84,6 +85,14 @@
         }
       }
     },
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/plugin/gitlab-ci",
+          "packages/plugin/gitlab-ci/docs"
+        ]
+      }
+    }
   }
 }

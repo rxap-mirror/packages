@@ -78,6 +78,14 @@
           "packages/angular/service-worker/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/service-worker",
+          "packages/angular/service-worker/docs"
+        ]
+      }
     }
   }
 }

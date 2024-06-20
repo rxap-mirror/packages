@@ -88,6 +88,14 @@
           "packages/angular/memory/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/memory",
+          "packages/angular/memory/docs"
+        ]
+      }
     }
   }
 }

@@ -13,7 +13,7 @@
         "tsConfig": "packages/nest/vault/tsconfig.lib.json",
         "packageJson": "packages/nest/vault/package.json",
         "main": "packages/nest/vault/src/index.ts",
-        "assets": ["packages/nest/vault/*.md"]
+        "assets": ["packages/nest/vault/*.md", "packages/nest/vault/docs"]
       }
     },
     "publish": {
@@ -57,6 +57,14 @@
       "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "@nestjs/core"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/nest/vault",
+          "packages/nest/vault/docs"
+        ]
       }
     }
   }

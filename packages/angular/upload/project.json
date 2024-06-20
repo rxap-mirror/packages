@@ -83,6 +83,14 @@
           "packages/angular/upload/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/upload",
+          "packages/angular/upload/docs"
+        ]
+      }
     }
   }
 }

@@ -78,6 +78,14 @@
           "packages/angular/layout/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/layout",
+          "packages/angular/layout/docs"
+        ]
+      }
     }
   }
 }

@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/generator/utilities",
         "main": "packages/generator/utilities/src/index.ts",
         "tsConfig": "packages/generator/utilities/tsconfig.lib.json",
-        "assets": ["packages/generator/utilities/*.md"]
+        "assets": [
+          "packages/generator/utilities/*.md",
+          "packages/generator/utilities/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -51,7 +54,11 @@
       "executor": "@enio.ai/typedoc:typedoc",
       "outputs": ["{workspaceRoot}/docs/packages/generator/utilities"],
       "options": {
-        "options": "typedoc.json"
+        "options": "typedoc.json",
+        "outputPath": [
+          "dist/docs/packages/generator/utilities",
+          "packages/generator/utilities/docs"
+        ]
       }
     },
     "update-dependencies": {},

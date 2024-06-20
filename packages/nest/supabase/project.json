@@ -13,7 +13,7 @@
         "tsConfig": "packages/nest/supabase/tsconfig.lib.json",
         "packageJson": "packages/nest/supabase/package.json",
         "main": "packages/nest/supabase/src/index.ts",
-        "assets": ["packages/nest/supabase/*.md"]
+        "assets": ["packages/nest/supabase/*.md", "packages/nest/supabase/docs"]
       }
     },
     "publish": {
@@ -58,6 +58,14 @@
         "packageName": "@nestjs/core"
       }
     },
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/nest/supabase",
+          "packages/nest/supabase/docs"
+        ]
+      }
+    }
   }
 }

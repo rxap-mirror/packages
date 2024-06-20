@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/data-structure/tree",
         "main": "packages/data-structure/tree/src/index.ts",
         "tsConfig": "packages/data-structure/tree/tsconfig.lib.json",
-        "assets": ["packages/data-structure/tree/*.md"]
+        "assets": [
+          "packages/data-structure/tree/*.md",
+          "packages/data-structure/tree/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -50,6 +53,14 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/data-structure/tree",
+          "packages/data-structure/tree/docs"
+        ]
+      }
+    }
   }
 }

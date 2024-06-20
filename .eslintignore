@@ -1,6 +1,10 @@
 node_modules
 compodoc
+docs
 coverage
 dist
 .nx
 .angular
+
+!packages/plugin/docs
+!packages/plugin/compodoc

@@ -13,7 +13,7 @@
         "outputPath": "dist/packages/utilities",
         "main": "packages/utilities/src/index.ts",
         "tsConfig": "packages/utilities/tsconfig.lib.json",
-        "assets": ["packages/utilities/*.md"]
+        "assets": ["packages/utilities/*.md", "packages/utilities/docs"]
       }
     },
     "fix-dependencies": {
@@ -50,6 +50,14 @@
       }
     },
     "update-dependencies": {},
-    "update-package-group": {}
+    "update-package-group": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/utilities",
+          "packages/utilities/docs"
+        ]
+      }
+    }
   }
 }

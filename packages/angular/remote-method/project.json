@@ -81,6 +81,14 @@
           "packages/angular/remote-method/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/remote-method",
+          "packages/angular/remote-method/docs"
+        ]
+      }
     }
   }
 }

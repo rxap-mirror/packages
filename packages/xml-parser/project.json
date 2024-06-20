@@ -13,7 +13,7 @@
         "outputPath": "dist/packages/xml-parser",
         "main": "packages/xml-parser/src/index.ts",
         "tsConfig": "packages/xml-parser/tsconfig.lib.json",
-        "assets": ["packages/xml-parser/*.md"]
+        "assets": ["packages/xml-parser/*.md", "packages/xml-parser/docs"]
       }
     },
     "fix-dependencies": {
@@ -50,6 +50,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/xml-parser",
+          "packages/xml-parser/docs"
+        ]
+      }
+    }
   }
 }

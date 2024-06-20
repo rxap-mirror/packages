@@ -75,6 +75,14 @@
           "packages/angular/pipes/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/pipes",
+          "packages/angular/pipes/docs"
+        ]
+      }
     }
   }
 }

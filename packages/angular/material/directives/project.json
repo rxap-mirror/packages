@@ -99,6 +99,14 @@
           "packages/angular/material/directives/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/material/directives",
+          "packages/angular/material/directives/docs"
+        ]
+      }
     }
   }
 }

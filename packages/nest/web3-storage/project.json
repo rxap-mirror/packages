@@ -13,7 +13,10 @@
         "tsConfig": "packages/nest/web3-storage/tsconfig.lib.json",
         "packageJson": "packages/nest/web3-storage/package.json",
         "main": "packages/nest/web3-storage/src/index.ts",
-        "assets": ["packages/nest/web3-storage/*.md"]
+        "assets": [
+          "packages/nest/web3-storage/*.md",
+          "packages/nest/web3-storage/docs"
+        ]
       }
     },
     "publish": {
@@ -58,6 +61,14 @@
         "packageName": "@nestjs/core"
       }
     },
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/nest/web3-storage",
+          "packages/nest/web3-storage/docs"
+        ]
+      }
+    }
   }
 }

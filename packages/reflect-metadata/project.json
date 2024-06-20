@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/reflect-metadata",
         "main": "packages/reflect-metadata/src/index.ts",
         "tsConfig": "packages/reflect-metadata/tsconfig.lib.json",
-        "assets": ["packages/reflect-metadata/*.md"]
+        "assets": [
+          "packages/reflect-metadata/*.md",
+          "packages/reflect-metadata/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -50,6 +53,14 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/reflect-metadata",
+          "packages/reflect-metadata/docs"
+        ]
+      }
+    }
   }
 }

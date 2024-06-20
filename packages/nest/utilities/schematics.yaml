@@ -1,0 +1,6 @@
+- package: "@rxap/plugin-nestjs"
+  name: init-library
+  options: {}
+- package: "@rxap/plugin-typedoc"
+  name: init-library
+  options: {}

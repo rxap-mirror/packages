@@ -51,7 +51,8 @@
             "input": "./packages/schematic/composer",
             "glob": "collection.json",
             "output": "."
-          }
+          },
+          "packages/schematic/composer/docs"
         ]
       }
     },
@@ -94,6 +95,14 @@
       "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "@angular-devkit/schematics"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/schematic/composer",
+          "packages/schematic/composer/docs"
+        ]
       }
     }
   }

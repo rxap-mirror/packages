@@ -13,7 +13,7 @@
         "tsConfig": "packages/nest/minio/tsconfig.lib.json",
         "packageJson": "packages/nest/minio/package.json",
         "main": "packages/nest/minio/src/index.ts",
-        "assets": ["packages/nest/minio/*.md"]
+        "assets": ["packages/nest/minio/*.md", "packages/nest/minio/docs"]
       }
     },
     "check-version": {
@@ -56,6 +56,14 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/nest/minio",
+          "packages/nest/minio/docs"
+        ]
+      }
+    }
   }
 }

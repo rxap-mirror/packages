@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/schematic/ts-morph",
         "main": "packages/schematic/ts-morph/src/index.ts",
         "tsConfig": "packages/schematic/ts-morph/tsconfig.lib.json",
-        "assets": ["packages/schematic/ts-morph/*.md"]
+        "assets": [
+          "packages/schematic/ts-morph/*.md",
+          "packages/schematic/ts-morph/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -54,6 +57,14 @@
       "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "@angular-devkit/schematics"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/schematic/ts-morph",
+          "packages/schematic/ts-morph/docs"
+        ]
       }
     }
   }

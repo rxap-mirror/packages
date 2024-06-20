@@ -13,7 +13,10 @@
         "tsConfig": "packages/nest/socket-io-client/tsconfig.lib.json",
         "packageJson": "packages/nest/socket-io-client/package.json",
         "main": "packages/nest/socket-io-client/src/index.ts",
-        "assets": ["packages/nest/socket-io-client/*.md"]
+        "assets": [
+          "packages/nest/socket-io-client/*.md",
+          "packages/nest/socket-io-client/docs"
+        ]
       }
     },
     "check-version": {
@@ -56,6 +59,14 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/nest/socket-io-client",
+          "packages/nest/socket-io-client/docs"
+        ]
+      }
+    }
   }
 }

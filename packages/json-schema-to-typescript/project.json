@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/json-schema-to-typescript",
         "main": "packages/json-schema-to-typescript/src/index.ts",
         "tsConfig": "packages/json-schema-to-typescript/tsconfig.lib.json",
-        "assets": ["packages/json-schema-to-typescript/*.md"]
+        "assets": [
+          "packages/json-schema-to-typescript/*.md",
+          "packages/json-schema-to-typescript/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -50,6 +53,14 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/json-schema-to-typescript",
+          "packages/json-schema-to-typescript/docs"
+        ]
+      }
+    }
   }
 }

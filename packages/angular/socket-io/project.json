@@ -73,6 +73,14 @@
           "packages/angular/socket-io/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/socket-io",
+          "packages/angular/socket-io/docs"
+        ]
+      }
     }
   }
 }

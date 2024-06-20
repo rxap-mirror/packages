@@ -79,6 +79,14 @@
           "packages/angular/keycloak/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/keycloak",
+          "packages/angular/keycloak/docs"
+        ]
+      }
     }
   }
 }

@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/schematic/xml-parser",
         "main": "packages/schematic/xml-parser/src/index.ts",
         "tsConfig": "packages/schematic/xml-parser/tsconfig.lib.json",
-        "assets": ["packages/schematic/xml-parser/*.md"]
+        "assets": [
+          "packages/schematic/xml-parser/*.md",
+          "packages/schematic/xml-parser/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -54,6 +57,14 @@
       "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "@angular-devkit/schematics"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/schematic/xml-parser",
+          "packages/schematic/xml-parser/docs"
+        ]
       }
     }
   }

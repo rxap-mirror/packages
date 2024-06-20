@@ -87,6 +87,14 @@
           "packages/angular/status-check/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/status-check",
+          "packages/angular/status-check/docs"
+        ]
+      }
     }
   }
 }

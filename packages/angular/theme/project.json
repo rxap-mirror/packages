@@ -82,6 +82,14 @@
           "packages/angular/theme/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/theme",
+          "packages/angular/theme/docs"
+        ]
+      }
     }
   }
 }

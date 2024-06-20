@@ -73,6 +73,14 @@
           "packages/angular/material/table-window-system/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/material/table-window-system",
+          "packages/angular/material/table-window-system/docs"
+        ]
+      }
     }
   }
 }

@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/browser/tailwind",
         "main": "packages/browser/tailwind/src/index.ts",
         "tsConfig": "packages/browser/tailwind/tsconfig.lib.json",
-        "assets": ["packages/browser/tailwind/*.md"]
+        "assets": [
+          "packages/browser/tailwind/*.md",
+          "packages/browser/tailwind/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -50,6 +53,14 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/browser/tailwind",
+          "packages/browser/tailwind/docs"
+        ]
+      }
+    }
   }
 }

@@ -13,7 +13,7 @@
         "outputPath": "dist/packages/pattern",
         "main": "packages/pattern/src/index.ts",
         "tsConfig": "packages/pattern/tsconfig.lib.json",
-        "assets": ["packages/pattern/*.md"]
+        "assets": ["packages/pattern/*.md", "packages/pattern/docs"]
       }
     },
     "fix-dependencies": {
@@ -50,6 +50,11 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": ["dist/docs/packages/pattern", "packages/pattern/docs"]
+      }
+    }
   }
 }

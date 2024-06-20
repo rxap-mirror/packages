@@ -28,7 +28,8 @@
             "input": "./packages/schematic/open-api",
             "glob": "collection.json",
             "output": "."
-          }
+          },
+          "packages/schematic/open-api/docs"
         ]
       }
     },
@@ -71,6 +72,14 @@
       "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "@angular-devkit/schematics"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/schematic/open-api",
+          "packages/schematic/open-api/docs"
+        ]
       }
     }
   }

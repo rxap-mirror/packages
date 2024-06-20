@@ -73,6 +73,14 @@
           "packages/angular/bootstrap/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/bootstrap",
+          "packages/angular/bootstrap/docs"
+        ]
+      }
     }
   }
 }

@@ -24,7 +24,8 @@
             "input": "./packages/nest/logger/src/migrations",
             "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/migrations"
-          }
+          },
+          "packages/nest/logger/docs"
         ]
       }
     },
@@ -68,6 +69,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/nest/logger",
+          "packages/nest/logger/docs"
+        ]
+      }
+    }
   }
 }

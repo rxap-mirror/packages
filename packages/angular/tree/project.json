@@ -78,6 +78,14 @@
           "packages/angular/tree/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/tree",
+          "packages/angular/tree/docs"
+        ]
+      }
     }
   }
 }

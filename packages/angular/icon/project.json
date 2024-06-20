@@ -73,6 +73,14 @@
           "packages/angular/icon/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/icon",
+          "packages/angular/icon/docs"
+        ]
+      }
     }
   }
 }

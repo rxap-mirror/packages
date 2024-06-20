@@ -12,7 +12,7 @@
         "outputPath": "dist/packages/slugify",
         "main": "packages/slugify/src/index.ts",
         "tsConfig": "packages/slugify/tsconfig.lib.json",
-        "assets": ["packages/slugify/*.md"]
+        "assets": ["packages/slugify/*.md", "packages/slugify/docs"]
       }
     },
     "fix-dependencies": {
@@ -50,6 +50,11 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": ["dist/docs/packages/slugify", "packages/slugify/docs"]
+      }
+    }
   }
 }

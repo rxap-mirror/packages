@@ -88,6 +88,14 @@
           "packages/angular/pub-sub/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/pub-sub",
+          "packages/angular/pub-sub/docs"
+        ]
+      }
     }
   }
 }

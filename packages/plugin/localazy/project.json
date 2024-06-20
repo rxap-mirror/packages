@@ -33,7 +33,8 @@
             "input": "./packages/plugin/localazy",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/plugin/localazy/docs"
         ]
       }
     },
@@ -87,6 +88,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/plugin/localazy",
+          "packages/plugin/localazy/docs"
+        ]
+      }
+    }
   }
 }

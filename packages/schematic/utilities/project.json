@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/schematic/utilities",
         "main": "packages/schematic/utilities/src/index.ts",
         "tsConfig": "packages/schematic/utilities/tsconfig.lib.json",
-        "assets": ["packages/schematic/utilities/*.md"]
+        "assets": [
+          "packages/schematic/utilities/*.md",
+          "packages/schematic/utilities/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -54,6 +57,14 @@
       "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "@angular-devkit/schematics"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/schematic/utilities",
+          "packages/schematic/utilities/docs"
+        ]
       }
     }
   }

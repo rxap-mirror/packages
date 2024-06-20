@@ -73,6 +73,14 @@
           "packages/angular/sentry/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/sentry",
+          "packages/angular/sentry/docs"
+        ]
+      }
     }
   }
 }

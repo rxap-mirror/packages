@@ -83,6 +83,14 @@
           "packages/angular/material/form-system/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/material/form-system",
+          "packages/angular/material/form-system/docs"
+        ]
+      }
     }
   }
 }

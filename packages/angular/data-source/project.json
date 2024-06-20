@@ -98,6 +98,14 @@
           "packages/angular/data-source/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/data-source",
+          "packages/angular/data-source/docs"
+        ]
+      }
     }
   }
 }

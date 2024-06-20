@@ -33,7 +33,8 @@
             "input": "./packages/plugin/application",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/plugin/application/docs"
         ]
       }
     },
@@ -87,6 +88,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/plugin/application",
+          "packages/plugin/application/docs"
+        ]
+      }
+    }
   }
 }

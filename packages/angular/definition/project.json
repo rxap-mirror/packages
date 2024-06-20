@@ -73,6 +73,14 @@
           "packages/angular/definition/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/definition",
+          "packages/angular/definition/docs"
+        ]
+      }
     }
   }
 }

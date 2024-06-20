@@ -146,6 +146,7 @@
         "^build",
         "readme",
         "compodoc",
+        "typedoc",
         "index-export",
         "check-version",
         "build-tailwind",
@@ -329,7 +330,10 @@
       "cache": true
     },
     "typedoc": {
-      "cache": true
+      "cache": true,
+      "executor": "@rxap/plugin-typedoc:build",
+      "outputs": ["{options.outputPath}"],
+      "inputs": ["production", "^production"]
     },
     "ci-info": {
       "cache": true

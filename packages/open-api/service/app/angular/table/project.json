@@ -3,6 +3,7 @@
   "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/open-api/service/app/angular/table/src",
   "projectType": "library",
+  "tags": ["open-api", "packages", "service", "app"],
   "targets": {
     "lint": {
       "options": {
@@ -10,12 +11,14 @@
           "packages/open-api/service/app/angular/table/**/*.ts"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/open-api/service/app/angular/table",
+          "packages/open-api/service/app/angular/table/docs"
+        ]
+      }
     }
-  },
-  "tags": [
-    "open-api",
-    "packages",
-    "service",
-    "app"
-  ]
+  }
 }

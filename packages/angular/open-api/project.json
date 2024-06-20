@@ -75,6 +75,14 @@
           "packages/angular/open-api/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/open-api",
+          "packages/angular/open-api/docs"
+        ]
+      }
     }
   }
 }

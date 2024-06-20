@@ -12,7 +12,7 @@
         "outputPath": "dist/packages/mixin",
         "main": "packages/mixin/src/index.ts",
         "tsConfig": "packages/mixin/tsconfig.lib.json",
-        "assets": ["packages/mixin/*.md"]
+        "assets": ["packages/mixin/*.md", "packages/mixin/docs"]
       }
     },
     "fix-dependencies": {
@@ -50,6 +50,11 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": ["dist/docs/packages/mixin", "packages/mixin/docs"]
+      }
+    }
   }
 }

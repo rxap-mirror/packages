@@ -41,7 +41,8 @@
             "input": "./packages/plugin/typedoc",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/plugin/typedoc/docs"
         ]
       }
     },
@@ -70,6 +71,14 @@
         "packageName": "nx"
       }
     },
-    "expose-as-schematic": {}
+    "expose-as-schematic": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/plugin/typedoc",
+          "packages/plugin/typedoc/docs"
+        ]
+      }
+    }
   }
 }

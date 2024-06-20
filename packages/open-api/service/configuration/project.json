@@ -3,18 +3,20 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/open-api/service/configuration/src",
   "projectType": "library",
+  "tags": ["open-api", "packages", "service"],
   "targets": {
     "lint": {
       "options": {
-        "lintFilePatterns": [
-          "packages/open-api/service/configuration/**/*.ts"
+        "lintFilePatterns": ["packages/open-api/service/configuration/**/*.ts"]
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/open-api/service/configuration",
+          "packages/open-api/service/configuration/docs"
         ]
       }
     }
-  },
-  "tags": [
-    "open-api",
-    "packages",
-    "service"
-  ]
+  }
 }

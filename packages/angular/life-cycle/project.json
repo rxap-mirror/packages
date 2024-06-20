@@ -73,6 +73,14 @@
           "packages/angular/life-cycle/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/life-cycle",
+          "packages/angular/life-cycle/docs"
+        ]
+      }
     }
   }
 }

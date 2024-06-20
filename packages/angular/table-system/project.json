@@ -78,6 +78,14 @@
           "packages/angular/table-system/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/table-system",
+          "packages/angular/table-system/docs"
+        ]
+      }
     }
   }
 }

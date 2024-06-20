@@ -7,7 +7,7 @@ import {
   GetProjectSourceRoot,
 } from '@rxap/plugin-utilities';
 import { coerceArray } from '@rxap/utilities';
-import { join } from 'path';
+import { join, relative } from 'path';
 import { Application } from 'typedoc';
 import { BuildExecutorSchema } from './schema';
 
@@ -29,19 +29,23 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
     outputPath.push(join('dist', 'docs', outputDir));
   }
 
+  console.log('entryPoints:', entryPoints);
+
+  console.debug('Creating Application');
   const app = await Application.bootstrapWithPlugins({
-    entryPoints,
+    entryPoints: entryPoints,//.map(entryPoint => relative(projectRoot, entryPoint)),
+    skipErrorChecking: true,
   });
 
+  console.debug('Converting');
   const project = await app.convert();
 
   if (!project) {
     return { success: false };
   }
-  // Project may not have converted correctly
-  const outputDir = "docs";
 
   for (const path of outputPath) {
+    console.log('Generating docs at:', path);
     // Rendered docs
     await app.generateDocs(project, path);
     // Alternatively, generate JSON output

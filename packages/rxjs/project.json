@@ -12,7 +12,7 @@
         "outputPath": "dist/packages/rxjs",
         "main": "packages/rxjs/src/index.ts",
         "tsConfig": "packages/rxjs/tsconfig.lib.json",
-        "assets": ["packages/rxjs/*.md"]
+        "assets": ["packages/rxjs/*.md", "packages/rxjs/docs"]
       }
     },
     "fix-dependencies": {
@@ -50,6 +50,11 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "typedoc": {
+      "options": {
+        "outputPath": ["dist/docs/packages/rxjs", "packages/rxjs/docs"]
+      }
+    }
   }
 }

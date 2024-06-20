@@ -78,6 +78,14 @@
           "packages/angular/material/table-select/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/material/table-select",
+          "packages/angular/material/table-select/docs"
+        ]
+      }
     }
   }
 }

@@ -82,6 +82,14 @@
           "packages/angular/material/localize/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/material/localize",
+          "packages/angular/material/localize/docs"
+        ]
+      }
     }
   }
 }

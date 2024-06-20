@@ -7,6 +7,7 @@ import {
   AddPackageJsonDevDependency,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
@@ -21,7 +22,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     executor: '@rxap/plugin-typedoc:build',
     outputs: [ '{options.outputPath}' ],
     inputs: [ 'production', '^production' ],
-  });
+  }, Strategy.OVERWRITE);
   CoerceNxJsonCacheableOperation(nxJson, 'typedoc');
 
   updateNxJson(tree, nxJson);

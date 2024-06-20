@@ -1,0 +1,3 @@
+package: "@rxap/plugin-typedoc"
+name: init-library
+options: {}

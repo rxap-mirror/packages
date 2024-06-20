@@ -75,6 +75,14 @@
           "packages/angular/firebase/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/firebase",
+          "packages/angular/firebase/docs"
+        ]
+      }
     }
   }
 }

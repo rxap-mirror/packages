@@ -12,7 +12,10 @@
         "outputPath": "dist/packages/workspace/utilities",
         "main": "packages/workspace/utilities/src/index.ts",
         "tsConfig": "packages/workspace/utilities/tsconfig.lib.json",
-        "assets": ["packages/workspace/utilities/*.md"]
+        "assets": [
+          "packages/workspace/utilities/*.md",
+          "packages/workspace/utilities/docs"
+        ]
       }
     },
     "fix-dependencies": {
@@ -50,6 +53,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/workspace/utilities",
+          "packages/workspace/utilities/docs"
+        ]
+      }
+    }
   }
 }

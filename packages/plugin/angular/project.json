@@ -43,7 +43,8 @@
             "input": "./packages/plugin/angular/src/migrations",
             "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/migrations"
-          }
+          },
+          "packages/plugin/angular/docs"
         ]
       }
     },
@@ -97,6 +98,14 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/plugin/angular",
+          "packages/plugin/angular/docs"
+        ]
+      }
+    }
   }
 }

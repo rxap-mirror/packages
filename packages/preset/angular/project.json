@@ -41,7 +41,8 @@
             "input": "./packages/preset/angular",
             "glob": "executors.json",
             "output": "."
-          }
+          },
+          "packages/preset/angular/docs"
         ]
       }
     },
@@ -91,6 +92,14 @@
       "executor": "@rxap/plugin-library:run-generator",
       "options": {
         "generator": "@rxap/plugin-library:expose-as-schematic"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/preset/angular",
+          "packages/preset/angular/docs"
+        ]
       }
     }
   }

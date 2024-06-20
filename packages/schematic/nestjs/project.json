@@ -29,7 +29,8 @@
             "input": "./packages/schematic/nestjs",
             "glob": "collection.json",
             "output": "."
-          }
+          },
+          "packages/schematic/nestjs/docs"
         ]
       }
     },
@@ -72,6 +73,14 @@
       "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "@angular-devkit/schematics"
+      }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/schematic/nestjs",
+          "packages/schematic/nestjs/docs"
+        ]
       }
     }
   }

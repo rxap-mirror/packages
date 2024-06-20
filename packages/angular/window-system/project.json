@@ -78,6 +78,14 @@
           "packages/angular/window-system/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/window-system",
+          "packages/angular/window-system/docs"
+        ]
+      }
     }
   }
 }

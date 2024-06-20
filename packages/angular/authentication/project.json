@@ -80,6 +80,14 @@
           "packages/angular/authentication/compodoc"
         ]
       }
+    },
+    "typedoc": {
+      "options": {
+        "outputPath": [
+          "dist/docs/packages/angular/authentication",
+          "packages/angular/authentication/docs"
+        ]
+      }
     }
   }
 }

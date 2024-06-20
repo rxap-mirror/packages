@@ -12,7 +12,7 @@
         "outputPath": "dist/packages/ts-morph",
         "main": "packages/ts-morph/src/index.ts",
         "tsConfig": "packages/ts-morph/tsconfig.lib.json",
-        "assets": ["packages/ts-morph/*.md"]
+        "assets": ["packages/ts-morph/*.md", "packages/ts-morph/docs"]
       }
     },
     "fix-dependencies": {
@@ -50,6 +50,11 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": ["dist/docs/packages/ts-morph", "packages/ts-morph/docs"]
+      }
+    }
   }
 }

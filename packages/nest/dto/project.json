@@ -14,7 +14,7 @@
         "tsConfig": "packages/nest/dto/tsconfig.lib.json",
         "packageJson": "packages/nest/dto/package.json",
         "main": "packages/nest/dto/src/index.ts",
-        "assets": ["packages/nest/dto/*.md"]
+        "assets": ["packages/nest/dto/*.md", "packages/nest/dto/docs"]
       }
     },
     "publish": {
@@ -58,6 +58,11 @@
         "packageName": "@nestjs/core"
       }
     },
-    "linking": {}
+    "linking": {},
+    "typedoc": {
+      "options": {
+        "outputPath": ["dist/docs/packages/nest/dto", "packages/nest/dto/docs"]
+      }
+    }
   }
 }
