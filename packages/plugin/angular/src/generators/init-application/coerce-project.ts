@@ -46,7 +46,11 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
   }
   directory += `/${ projectName.replace('user-interface-', '').replace('feature-', '') }`;
 
-  const formOptions: any = typeof options.coerce === 'object' ? options.coerce : {};
+  const formOptions: any = options.coerce && typeof options.coerce === 'object' ? options.coerce : {};
+
+  if (formOptions.directory && (options.projects?.length ?? 0) > 1) {
+    throw new Error('The directory option is not allowed when multiple projects are initialized!');
+  }
 
   if (options.moduleFederation) {
 

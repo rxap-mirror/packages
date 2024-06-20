@@ -7,6 +7,7 @@ import {
   GenerateSerializedSchematicFile,
   GetNxVersion,
 } from '@rxap/workspace-utilities';
+import { join } from 'path';
 import initLibraryGenerator from '../init-library/generator';
 import { coerceNxJson } from './coerce-nx-json';
 import { InitGeneratorSchema } from './schema';
@@ -26,38 +27,42 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   coerceNxJson(tree, options);
 
-  await initLibraryGenerator(tree, {
-    projects: [
-      'components',
-      'forms',
-      'controls',
-      'tables'
-    ],
-    coerce: {
-      directory: 'angular',
-      addTailwind: true,
-      buildable: true,
-    }
-  });
+  for (const projectName of [
+    'components',
+    'forms',
+    'controls',
+    'tables'
+  ]) {
+    await initLibraryGenerator(tree, {
+      project: 'angular-' + projectName,
+      coerce: {
+        directory: join('angular', projectName),
+        addTailwind: true,
+        buildable: true,
+      }
+    });
+  }
 
-  await initLibraryGenerator(tree, {
-    projects: [
-      'methods',
-      'data-sources',
-      'pipes',
-      'directives',
-      'guards',
-      'services',
-      'application-providers',
-      'testing',
-      'resolvers',
-      'http-interceptors',
-    ],
-    coerce: {
-      directory: 'angular',
-      buildable: true,
-    }
-  });
+  for (const projectName of [
+    'methods',
+    'data-sources',
+    'pipes',
+    'directives',
+    'guards',
+    'services',
+    'application-providers',
+    'testing',
+    'resolvers',
+    'http-interceptors',
+  ]) {
+    await initLibraryGenerator(tree, {
+      project: 'angular-' + projectName,
+      coerce: {
+        directory: join('angular', projectName),
+        buildable: true,
+      }
+    });
+  }
 
   if (!options.skipFormat) {
     await formatFiles(tree);
