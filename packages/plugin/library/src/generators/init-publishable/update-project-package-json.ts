@@ -27,7 +27,7 @@ export function updateProjectPackageJson(
   if (Object.keys(packageJson.scripts).length === 0) {
     delete packageJson.scripts;
   }
-  if (packageJson.name && !packageJson.name.startsWith('@')) {
+  if (packageJson.name && !packageJson.name.startsWith('@') && packageJson.name !== 'rxap') {
     const newName = `${ scope }/${ projectName }`;
     updatePathsAliasInBaseTsConfig(tree, project, packageJson.name, newName);
     packageJson.name = newName;
