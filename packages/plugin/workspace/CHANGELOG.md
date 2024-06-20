@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.1-dev.0...@rxap/plugin-workspace@19.1.1-dev.1) (2024-06-20)
+
+### Bug Fixes
+
+- add html code coverage reporters ([73da1d8](https://gitlab.com/rxap/packages/commit/73da1d85274686590952a97e202c713718988caa))
+
 ## [19.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.0...@rxap/plugin-workspace@19.1.1-dev.0) (2024-06-18)
 
 **Note:** Version bump only for package @rxap/plugin-workspace

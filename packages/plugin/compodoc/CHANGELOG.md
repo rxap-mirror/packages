@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@19.0.3-dev.0...@rxap/plugin-compodoc@19.1.0-dev.0) (2024-06-20)
+
+### Bug Fixes
+
+- handle root project correctly ([9cbedb8](https://gitlab.com/rxap/packages/commit/9cbedb8181ff34379e80e68900e851865032ad04))
+
+### Features
+
+- support multiple output paths ([b89c4d8](https://gitlab.com/rxap/packages/commit/b89c4d812a502c04f9b5d44e195efe2200326223))
+- support packaged compodoc ([82d0909](https://gitlab.com/rxap/packages/commit/82d0909a28fb3452ddef12da1b9ba4cf32a352ff))
+
 ## [19.0.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@19.0.2...@rxap/plugin-compodoc@19.0.3-dev.0) (2024-06-18)
 
 **Note:** Version bump only for package @rxap/plugin-compodoc

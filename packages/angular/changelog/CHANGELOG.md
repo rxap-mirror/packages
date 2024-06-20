@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@18.0.2...@rxap/ngx-changelog@18.0.3-dev.0) (2024-06-20)
+
+### Bug Fixes
+
+- support custom last version store ([1e5c99e](https://gitlab.com/rxap/packages/commit/1e5c99e6b45712326d740f2f521d9ee409a0c0f5))
+
 ## [18.0.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@18.0.2-dev.2...@rxap/ngx-changelog@18.0.2) (2024-06-18)
 
 **Note:** Version bump only for package @rxap/ngx-changelog

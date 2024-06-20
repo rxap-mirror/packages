@@ -1,11 +1,11 @@
 {
-  "version": "16.0.5",
+  "version": "16.0.6-dev.0",
   "name": "@rxap/json-schema-to-typescript",
   "description": "Generates typescript interfaces from json schema definition.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "9.0.9",
-    "@rxap/utilities": "^16.2.3",
+    "@rxap/utilities": "^16.2.4-dev.0",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2"
   },

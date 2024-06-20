@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.1.4...@rxap/pattern@1.1.5-dev.0) (2024-06-20)
+
+**Note:** Version bump only for package @rxap/pattern
+
 ## [1.1.4](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.1.4-dev.1...@rxap/pattern@1.1.4) (2024-06-18)
 
 **Note:** Version bump only for package @rxap/pattern

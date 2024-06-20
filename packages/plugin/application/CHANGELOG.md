@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.0.4-dev.0...@rxap/plugin-application@19.0.4-dev.1) (2024-06-20)
+
+### Bug Fixes
+
+- add html code coverage reporters ([73da1d8](https://gitlab.com/rxap/packages/commit/73da1d85274686590952a97e202c713718988caa))
+- ensure the docker target are all required configurations ([3d2f340](https://gitlab.com/rxap/packages/commit/3d2f340a98f3ecff9b7619f7afb9d0872dfec231))
+
 ## [19.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.0.3...@rxap/plugin-application@19.0.4-dev.0) (2024-06-18)
 
 **Note:** Version bump only for package @rxap/plugin-application

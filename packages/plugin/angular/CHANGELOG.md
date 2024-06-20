@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.1-dev.0...@rxap/plugin-angular@19.2.0-dev.0) (2024-06-20)
+
+### Bug Fixes
+
+- call the build function directly ([aa08883](https://gitlab.com/rxap/packages/commit/aa0888386cf62c63998658b702ae5c557eef5060))
+- change default angular utility project names ([4d3d638](https://gitlab.com/rxap/packages/commit/4d3d6387a28d822d5139fd6f2ea03e5c7c1b75ac))
+
+### Features
+
+- add ngPackageJson utilities ([3433419](https://gitlab.com/rxap/packages/commit/343341938f3b59b33bfcafbaea7ec2da3aaa78e9))
+
 ## [19.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.1.0...@rxap/plugin-angular@19.1.1-dev.0) (2024-06-18)
 
 **Note:** Version bump only for package @rxap/plugin-angular

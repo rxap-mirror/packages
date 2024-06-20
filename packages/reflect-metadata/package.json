@@ -1,9 +1,9 @@
 {
-  "version": "1.0.6",
+  "version": "1.0.7-dev.0",
   "name": "@rxap/reflect-metadata",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@rxap/utilities": "^16.2.3",
+    "@rxap/utilities": "^16.2.4-dev.0",
     "reflect-metadata": "0.1.13",
     "tslib": "2.6.2"
   },

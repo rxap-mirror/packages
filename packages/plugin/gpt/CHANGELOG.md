@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@19.0.3-dev.0...@rxap/plugin-gpt@19.0.3-dev.1) (2024-06-20)
+
+### Bug Fixes
+
+- add html code coverage reporters ([73da1d8](https://gitlab.com/rxap/packages/commit/73da1d85274686590952a97e202c713718988caa))
+- update openapi package ([d5afabe](https://gitlab.com/rxap/packages/commit/d5afabec58c65d3178129b826f016e1c593b8846))
+- update to new openai models ([882aab3](https://gitlab.com/rxap/packages/commit/882aab3575ba99c7e271969fa94e2f2bb9361b2c))
+
 ## [19.0.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@19.0.2...@rxap/plugin-gpt@19.0.3-dev.0) (2024-06-18)
 
 **Note:** Version bump only for package @rxap/plugin-gpt
