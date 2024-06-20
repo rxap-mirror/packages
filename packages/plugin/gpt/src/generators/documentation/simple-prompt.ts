@@ -1,5 +1,6 @@
-import { OpenAIApi } from 'openai';
 import { encode } from 'gpt-3-encoder';
+import { OpenAI } from 'openai';
+import { ChatCompletionCreateParamsBase } from 'openai/resources/chat/completions';
 
 const tokenLimits = {
   'gpt-4-4o': 128_000,
@@ -29,8 +30,8 @@ export function AssertAllDefined(options: SimplePromptOptions): asserts options 
 export async function SimplePrompt(
   systemPrompt: string,
   prompt: string,
-  openai: OpenAIApi,
-  options: SimplePromptOptions = {
+  openai: OpenAI,
+  options: Partial<ChatCompletionCreateParamsBase> = {
     max_tokens: 1024,
     model: 'gpt-4-turbo',
   },
@@ -65,11 +66,10 @@ export async function SimplePrompt(
 
   let content: string | undefined;
 
-  AssertAllDefined(options);
-
   try {
-    const response = await openai.createChatCompletion({
-      ...options,
+    const response = await openai.chat.completions.create({
+      max_tokens: options.max_tokens,
+      model: options.model,
       messages: [
         {
           'role': 'system',
@@ -86,7 +86,7 @@ export async function SimplePrompt(
       presence_penalty: 0,
     });
 
-    content = response.data.choices[0].message?.content;
+    content = response.choices[0].message?.content;
 
   } catch (e) {
     console.log(e.response?.data);
