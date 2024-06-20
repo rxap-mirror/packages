@@ -11,6 +11,25 @@ export interface BuildNestBasePathOptions {
   backend: { project?: string | null, kind?: any } | undefined;
 }
 
+/**
+ * Constructs a full path for a base directory within a NestJS project structure.
+ *
+ * This function generates a complete path by combining the project's source root with a specified directory.
+ * It is particularly useful in scenarios where a specific directory path within a NestJS project needs to be resolved
+ * programmatically during project scaffolding or configuration.
+ *
+ * @param {Tree} tree - An abstraction representing the file system structure (typically provided by a library or framework).
+ * @param {BuildNestBasePathOptions} options - Configuration options for building the path. Includes:
+ * - `directory`: A subdirectory path to append to the project's source root. Defaults to an empty string if not provided.
+ * @returns {string} The full path combining the project's source root with the specified directory.
+ *
+ * @template Tree - A generic type extending `TreeLike` which must provide methods for interacting with the file system.
+ *
+ * @example
+ * // Assuming `tree` is an instance of a class implementing `TreeLike` and `options` is properly configured:
+ * const basePath = BuildNestBasePath(tree, { directory: 'src/app' });
+ * console.log(basePath); // Outputs the full path to the 'src/app' directory within the NestJS project.
+ */
 export function BuildNestBasePath<Tree extends TreeLike>(tree: Tree, options: BuildNestBasePathOptions): string {
   let { directory } = options;
   directory ??= '';

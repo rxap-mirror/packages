@@ -12,10 +12,39 @@ export interface JsonObject {
 
 export type JsonValue = boolean | string | number | JsonArray | JsonObject | null;
 
+/**
+ * Determines if a given value is a valid JSON object.
+ *
+ * This function checks if the provided value is an object, ensuring it is neither `null` nor an array.
+ * It is useful for type-guarding purposes, allowing TypeScript to infer the correct type based on the check.
+ *
+ * @param value The `JsonValue` to be checked.
+ * @returns `true` if the value is a non-null object and not an array, otherwise `false`.
+ *
+ * @example
+ * IsJsonObject({ key: "value" }); // returns true
+ * IsJsonObject([1, 2, 3]); // returns false
+ * IsJsonObject("I am not an object"); // returns false
+ * IsJsonObject(null); // returns false
+ */
 export function IsJsonObject(value: JsonValue): value is JsonObject {
   return !!value && typeof value === 'object' && !Array.isArray(value);
 }
 
+/**
+ * Determines if the provided `JsonValue` is a `JsonArray`.
+ *
+ * This function checks if the given `value` is both truthy and an array. It utilizes the `Array.isArray` method
+ * to ensure that the `value` conforms to the `JsonArray` type, which is an array structure in JSON format.
+ *
+ * @param value - The `JsonValue` to be checked.
+ * @returns `true` if `value` is a non-null array, otherwise `false`.
+ *
+ * @example
+ * IsJsonArray([1, 2, 3]); // returns true
+ * IsJsonArray({ key: 'value' }); // returns false
+ * IsJsonArray(null); // returns false
+ */
 export function IsJsonArray(value: JsonValue): value is JsonArray {
   return !!value && Array.isArray(value);
 }
@@ -29,6 +58,18 @@ export interface TreeLike {
 
 }
 
+/**
+ * Checks if the provided object adheres to the `TreeLike` interface.
+ *
+ * A `TreeLike` object is expected to have the following methods:
+ * - `delete`: A function to remove an element from the tree.
+ * - `rename`: A function to rename an element in the tree.
+ * - `exists`: A function to check the existence of an element in the tree.
+ *
+ * @param tree - The object to be checked.
+ * @returns `true` if the object has all the required `TreeLike` methods, otherwise `false`.
+ * @template TreeLike - An interface or type that the `tree` parameter is expected to conform to.
+ */
 export function IsTreeLike(tree: any): tree is TreeLike {
   return typeof tree.delete === 'function'
     && typeof tree.rename === 'function'
@@ -99,6 +140,16 @@ export interface GeneratorTreeLike extends TreeLike {
   root: string;
 }
 
+/**
+ * Determines if a given `tree` object conforms to the `SchematicTreeLike` interface.
+ *
+ * This function checks if the `tree` object has all the necessary methods and properties
+ * defined in the `SchematicTreeLike` interface. It verifies the existence and correct type
+ * of several methods and properties that are essential for interacting with a schematic tree structure.
+ *
+ * @param tree - The tree object to check.
+ * @returns `true` if the `tree` object matches the `SchematicTreeLike` interface, otherwise `false`.
+ */
 export function IsSchematicTreeLike(tree: TreeLike): tree is SchematicTreeLike {
   return typeof (tree as SchematicTreeLike).overwrite === 'function'
     && typeof (tree as SchematicTreeLike).create === 'function'
@@ -114,6 +165,20 @@ export function IsSchematicTreeLike(tree: TreeLike): tree is SchematicTreeLike {
 
 }
 
+/**
+ * Checks if a given tree-like structure conforms to the `GeneratorTreeLike` interface.
+ *
+ * This function determines if the provided `tree` object is not a `SchematicTreeLike` and has a `root` property of type string, which are the characteristics of a `GeneratorTreeLike`.
+ *
+ * @param tree - The tree-like object to check.
+ * @returns `true` if the `tree` is a `GeneratorTreeLike`, otherwise `false`.
+ *
+ * @example
+ * ```typescript
+ * const tree = { root: 'rootNode', nodes: [] };
+ * console.log(IsGeneratorTreeLike(tree)); // Output: true or false based on the structure of `tree`
+ * ```
+ */
 export function IsGeneratorTreeLike(tree: TreeLike): tree is GeneratorTreeLike {
   return !IsSchematicTreeLike(tree) && typeof (tree as GeneratorTreeLike).root === 'string';
 }

@@ -10,6 +10,32 @@ export interface BuildNestControllerNameOptions {
   controllerNameSuffix?: string | null;
 }
 
+/**
+ * Constructs a controller name for a NestJS module based on provided options.
+ *
+ * This function generates a controller name by ensuring it appropriately includes the module name as a prefix
+ * and adheres to any specified naming conventions such as suffixes. The function also handles edge cases where
+ * the controller name or module name might be missing or already formatted.
+ *
+ * @param {BuildNestControllerNameOptions} options - The options for building the controller name, which include:
+ * - `controllerName`: initial or current name of the controller.
+ * - `nestModule`: the name of the NestJS module this controller belongs to.
+ * - `controllerNameSuffix`: optional suffix to append to the controller name.
+ * @returns {string} The fully constructed controller name.
+ * @throws {SchematicsException} Throws an error if the controller name cannot be determined.
+ * @throws {Error} Throws an error if the resulting controller name ends with a dash.
+ *
+ * ### Usage
+ * ```typescript
+ * const options = {
+ * controllerName: "User",
+ * nestModule: "Admin",
+ * controllerNameSuffix: "Controller"
+ * };
+ * const controllerName = BuildNestControllerName(options);
+ * // Returns "Admin-UserController"
+ * ```
+ */
 export function BuildNestControllerName(options: BuildNestControllerNameOptions): string {
   const { controllerNameSuffix, nestModule } = options;
   let { controllerName } = options;

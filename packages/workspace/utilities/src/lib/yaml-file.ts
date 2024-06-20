@@ -13,6 +13,26 @@ import {
   TreeLike,
 } from './tree';
 
+/**
+ * Checks if a specified file within a tree-like structure is a valid YAML file.
+ *
+ * This function determines whether a file at a given path exists within the provided tree structure
+ * and verifies if the content of the file is valid YAML. It utilizes a `TreeAdapter` to interact with
+ * the tree structure, allowing file operations like checking existence and reading content.
+ *
+ * @param tree - An object representing a tree-like structure where files and directories are organized.
+ * @param filePath - The path to the file within the tree structure to be checked.
+ * @returns `true` if the file exists and contains valid YAML content, otherwise `false`.
+ *
+ * @typeparam Tree - A generic type that extends `TreeLike`, representing the structure containing the file.
+ *
+ * @example
+ * ```typescript
+ * const fileTree = new FileTree();
+ * const result = HasYamlFile(fileTree, 'config/settings.yaml');
+ * console.log(result); // Outputs: true or false based on the file's validity as a YAML.
+ * ```
+ */
 export function HasYamlFile<Tree extends TreeLike>(tree: Tree, filePath: string): boolean {
 
   const treeAdapter = new TreeAdapter(tree);
@@ -84,6 +104,32 @@ export function UpdateYamlFile<T extends Record<string, any> = Record<string, an
   filePath: string,
   options?: UpdateYamlFileOptions,
 ): Promise<void>
+/**
+ * Updates a YAML file within a given tree-like structure, either by directly setting the YAML content or by applying an update function.
+ *
+ * This function can handle both synchronous and asynchronous updates. If the updater is a function, it can optionally return a promise, which allows for asynchronous operations before finalizing the update.
+ *
+ * @param tree - The tree-like structure containing the YAML file to be updated.
+ * @param updaterOrYamlFile - Either a direct YAML object or a function that takes a YAML object and optionally returns a void or a Promise. If a function is provided, it is used to modify the YAML file's content.
+ * @param filePath - The path to the YAML file within the tree.
+ * @param options - Optional. Configuration options for updating the YAML file. Available options include:
+ * - `coerce`: A boolean to determine whether type coercion should be applied when retrieving the YAML file.
+ * - `space`: The number of spaces to use for indentation in the resulting YAML string.
+ *
+ * @returns void or a Promise that resolves when the update is complete, particularly if the update operation is asynchronous.
+ *
+ * @throws Error - Throws an error if `updaterOrYamlFile` is expected to be a function but is not.
+ *
+ * @example
+ * // Synchronously update a YAML file by directly setting the YAML content
+ * UpdateYamlFile(tree, { key: 'value' }, '/path/to/file.yml');
+ *
+ * @example
+ * // Asynchronously update a YAML file using an update function
+ * UpdateYamlFile(tree, async (yaml) => {
+ * yaml.key = await fetchNewValue();
+ * }, '/path/to/file.yml');
+ */
 export function UpdateYamlFile<T extends Record<string, any> = Record<string, any>>(
   tree: TreeLike,
   updaterOrYamlFile: T | ((yamlFile: T) => void | Promise<void>),

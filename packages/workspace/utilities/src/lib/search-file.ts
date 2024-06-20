@@ -10,6 +10,31 @@ import {
 
 export function SearchFile<Tree extends TreeLike>(tree: Tree, path?: string): Generator<FileEntryLike>;
 export function SearchFile(dir: DirEntryLike): Generator<FileEntryLike>;
+/**
+ * Recursively searches through directories and trees to find and yield file entries.
+ * This generator function can handle different types of directory or tree structures,
+ * yielding each file entry that matches the specified path or the entire structure if no path is provided.
+ *
+ * @param {DirEntryLike | TreeLike} dirOrTree - The directory or tree-like structure to search within.
+ * This can be a simple directory structure or a more complex tree that may require specific handling.
+ * @param {string} [path] - Optional path to start the search from. If not provided, the search starts from the root.
+ *
+ * @yields {FileEntryLike} - Yields file entries that are found within the specified directory or tree.
+ * Each yielded file entry contains the path and content of the file.
+ *
+ * @throws {Error} Throws an error if an unknown tree type is encountered.
+ *
+ * @example
+ * // To use this function, you might pass in a directory-like object and an optional path:
+ * for (const file of SearchFile(directoryTree, 'src')) {
+ * console.log(file.path, file.content);
+ * }
+ *
+ * @remarks
+ * - The function skips over directories or paths that start with '.' or contain 'node_modules'.
+ * - This is designed to be used in environments where file systems or virtual file structures are represented
+ * in a tree-like format, such as in certain JavaScript/TypeScript projects or schematics.
+ */
 export function* SearchFile(dirOrTree: DirEntryLike | TreeLike, path?: string): Generator<FileEntryLike> {
 
   let dir: DirEntryLike;

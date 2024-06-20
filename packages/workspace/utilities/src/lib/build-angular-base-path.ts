@@ -14,6 +14,32 @@ export interface BuildAngularBasePathOptions {
   entrypoint?: string | null;
 }
 
+/**
+ * Constructs a base path for an Angular project within a given tree structure based on specified options.
+ *
+ * This function dynamically builds a path string for Angular projects, taking into account various options such as
+ * whether the project is a library or an application, if it's a shared module, and specific features or entry points.
+ * It validates the compatibility of options and throws errors if incompatible options are provided.
+ *
+ * @param {Tree} tree - The tree-like structure representing the project's files and directories.
+ * @param {Readonly<BuildAngularBasePathOptions>} options - An object containing options to define the base path construction:
+ * - `feature`: Optional. Specifies the feature module's name if the path is for a feature module.
+ * - `shared`: Optional. A boolean indicating whether the project is a shared module.
+ * - `entrypoint`: Optional. Specifies the entry point file if the path is specifically for a library's entry point.
+ * - `project`: The name of the project.
+ * - `directory`: Optional. Additional directory path to be appended. Defaults to an empty string if not provided.
+ *
+ * @returns {string} The constructed base path as a string.
+ *
+ * @throws {Error} If `feature` option is used with `entrypoint`, or if `entrypoint` is used but the project type is not a library.
+ *
+ * ### Usage
+ * ```typescript
+ * const tree = { ... };
+ * const options = { project: 'my-lib', entrypoint: 'index', shared: true };
+ * const basePath = BuildAngularBasePath(tree, options);
+ * ```
+ */
 export function BuildAngularBasePath<Tree extends TreeLike>(
   tree: Tree,
   options: Readonly<BuildAngularBasePathOptions>,
