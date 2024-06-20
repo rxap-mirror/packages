@@ -631,5 +631,9 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/rxap"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "keywords": [
+    "rxap",
+    "standalone"
+  ]
 }
