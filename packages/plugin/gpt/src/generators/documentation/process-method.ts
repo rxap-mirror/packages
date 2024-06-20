@@ -9,10 +9,8 @@ import { hasJsDoc } from './has-js-doc';
 import { prompt } from './prompt';
 import { DocumentationGeneratorSchema } from './schema';
 
-async function processMethod(
+export async function processMethod(
   options: DocumentationGeneratorSchema,
-  project: Project,
-  sourceFile: SourceFile,
   methodDeclaration: MethodDeclaration,
 ) {
 
@@ -20,26 +18,24 @@ async function processMethod(
 
   if (hasJsDoc(methodDeclaration)) {
     console.log(`\x1b[33mMethod has already a documentation\x1b[0m`);
-    return false;
+    return;
   }
 
   const methodText = methodDeclaration.getText();
 
-  console.log('Method text:');
-  console.log(methodText);
+  try {
+    const jsDoc = await prompt(
+      options,
+      METHOD_SYSTEM_PROMPT,
+      methodText,
+    );
 
-
-  const jsDoc = await prompt(
-    options,
-    METHOD_SYSTEM_PROMPT,
-    methodText,
-  );
-
-  console.log('Method documentation:');
-  console.log(jsDoc);
-
-  addJsDoc(options, methodDeclaration, jsDoc);
-
-  return true;
+    addJsDoc(options, methodDeclaration, jsDoc);
+  } catch (e: any) {
+    console.error(`\x1b[31mError processing method: \x1b[0m${ methodDeclaration.getName() }`);
+    console.error(e.message);
+    console.error(e.stack);
+    return;
+  }
 
 }

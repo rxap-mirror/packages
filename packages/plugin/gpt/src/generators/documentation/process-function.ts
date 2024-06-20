@@ -11,8 +11,6 @@ import { DocumentationGeneratorSchema } from './schema';
 
 export async function processFunction(
   options: DocumentationGeneratorSchema,
-  project: Project,
-  sourceFile: SourceFile,
   functionDeclaration: FunctionDeclaration,
 ) {
 
@@ -20,32 +18,23 @@ export async function processFunction(
 
   if (hasJsDoc(functionDeclaration)) {
     console.log(`\x1b[33mFunction has already a documentation\x1b[0m`);
-    return false;
+    return;
   }
 
   const functionText = functionDeclaration.getText();
 
-  console.log('Function text:');
-  console.log(functionText);
-  let jsDoc: string;
   try {
-    jsDoc = await prompt(
+    const jsDoc = await prompt(
       options,
       FUNCTION_SYSTEM_PROMPT,
       functionText,
     );
+    addJsDoc(options, functionDeclaration, jsDoc);
   } catch (e: any) {
     console.error(`\x1b[31mError processing function: \x1b[0m${ functionDeclaration.getName() }`);
     console.error(e.message);
     console.error(e.stack);
-    return false;
+    return;
   }
-
-  console.log('Function documentation:');
-  console.log(jsDoc);
-
-  addJsDoc(options, functionDeclaration, jsDoc);
-
-  return true;
 
 }

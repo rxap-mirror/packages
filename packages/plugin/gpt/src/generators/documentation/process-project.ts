@@ -1,5 +1,5 @@
 import { Tree } from '@nx/devkit';
-import { AddDir } from '@rxap/generator-ts-morph';
+import { AddDir } from '@rxap/workspace-ts-morph';
 import { CreateProject } from '@rxap/ts-morph';
 import {
   CoerceFile,
@@ -26,10 +26,8 @@ export async function processProject(options: DocumentationGeneratorSchema, proj
       continue;
     }
     try {
-      const changed = await processSourceFile(options, project, sourceFile);
-      if (changed) {
-        CoerceFile(tree, join(projectSourceRoot, sourceFile.getFilePath()), sourceFile.getFullText(), true);
-      }
+      await processSourceFile(options, sourceFile);
+      CoerceFile(tree, join(projectSourceRoot, sourceFile.getFilePath()), sourceFile.getFullText(), true);
     } catch (e: any) {
       console.error(`\x1b[31mError processing file: \x1b[0m${ sourceFile.getFilePath() }`);
       console.error(e.message);
