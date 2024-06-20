@@ -17,7 +17,11 @@ export function CoerceCompodocTarget(tree: Tree, projectName: string, project: P
   CoerceTarget(project, 'compodoc', {
     options: {
       tsConfig: join(projectRoot, 'tsconfig.compodoc.json'),
-      outputPath: join('dist', 'compodoc', outputPath),
+      outputPath: [
+        join('dist', 'compodoc', outputPath),
+        join(outputPath, 'compodoc'),
+      ],
     }
   }, Strategy.OVERWRITE);
+
 }

@@ -144,6 +144,7 @@
       "dependsOn": [
         "^build",
         "readme",
+        "compodoc",
         "index-export",
         "check-version",
         "build-tailwind",
