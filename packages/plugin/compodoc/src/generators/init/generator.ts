@@ -17,6 +17,7 @@ import {
 import { join } from 'path';
 import { CoerceCompodocTarget } from '../../lib/coerce-compodoc-target';
 import { CoerceCompodocTsConfig } from '../../lib/coerce-compodoc-ts-config';
+import { CoerceGitIgnore } from '../../lib/coerce-git-ignore';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
 
@@ -32,6 +33,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   const project = readProjectConfiguration(tree, 'workspace');
   CoerceCompodocTarget(tree, 'workspace', project);
+  CoerceGitIgnore(tree, 'workspace');
   updateProjectConfiguration(tree, 'workspace', project);
   const angularProjectIncludeList = Array.from(getProjects(tree))
     .filter(([projectName, project]) => !SkipNonAngularProject(tree, {}, project, projectName))
@@ -44,7 +46,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     '/',
     '@rxap/plugin-compodoc',
     'init',
-    DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+    options,
   );
 
   if (!options.skipFormat) {

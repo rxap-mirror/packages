@@ -15,14 +15,13 @@ import {
   SkipNonAngularProject,
   SkipNonApplicationProject,
 } from '@rxap/workspace-utilities';
-import { InitLibraryGeneratorSchema } from '../init-library/schema';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitApplicationGeneratorSchema } from './schema';
 
 function skipProject(
   tree: Tree,
-  options: InitLibraryGeneratorSchema,
+  options: InitApplicationGeneratorSchema,
   project: ProjectConfiguration,
   projectName: string,
 ): boolean {
