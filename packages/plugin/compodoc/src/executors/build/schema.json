@@ -11,7 +11,17 @@
     },
     "outputPath": {
       "description": "The output path of the generated files. (default: `dist/compodoc/<projectName>`)",
-      "type": "string"
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
     },
     "exportFormat": {
       "description": "Format of generated documentation: html, json (json implicitly enables Compodoc's `minimal` mode)",

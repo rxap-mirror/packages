@@ -1,6 +1,6 @@
 export interface BuildExecutorSchema extends Omit<CompodocOptions, 'tsconfig' | 'output' | 'minimal'> {
   tsConfig?: string;
-  outputPath?: string;
+  outputPath?: string | string[];
 
   /** @default false */
   debug: boolean;

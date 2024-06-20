@@ -4,6 +4,7 @@ import {
   joinPathFragments,
 } from '@nx/devkit';
 import { GetWorkspaceName } from '@rxap/plugin-utilities';
+import { coerceArray } from '@rxap/utilities';
 import {
   ChildProcess,
   spawn,
@@ -15,6 +16,7 @@ import {
   mkdtempSync,
   writeFileSync,
 } from 'fs';
+import { copySync } from 'fs-extra';
 import { tmpdir } from 'os';
 import {
   join,
@@ -38,9 +40,17 @@ function toCompodocOptions(
     throw new Error('outputPath option is required');
   }
 
+  const outputPathList = coerceArray(options.outputPath);
+
+  if (outputPathList.length === 0) {
+    throw new Error('outputPath option is required');
+  }
+
+  const firstOutputPath = outputPathList[0];
+
   return {
     tsconfig: toRelativePath(options.tsConfig, options, context),
-    output: toRelativePath(options.outputPath, options, context),
+    output: toRelativePath(firstOutputPath, options, context),
 
     exportFormat: options.exportFormat,
     minimal: options.exportFormat === 'json',
@@ -210,7 +220,7 @@ export default async function runExecutor(options: BuildExecutorSchema, context:
     createInitialCompodocJson(args);
   }
 
-  return new Promise<{ success: boolean }>((resolve) => {
+  const result = await new Promise<{ success: boolean }>((resolve) => {
     let childProcess: ChildProcess;
 
     if (options.watch && context.projectName === 'workspace') {
@@ -240,8 +250,8 @@ export default async function runExecutor(options: BuildExecutorSchema, context:
       childProcess = spawn(cmd, cmdArgs, cmdOpts);
     }
 
-    process.on('exit', () => childProcess.kill());
-    process.on('SIGTERM', () => childProcess.kill());
+    process.on('exit', () => resolve({ success: false }));
+    process.on('SIGTERM', () => resolve({ success: false }));
 
     childProcess.stdout.on('data', (data) => {
       console.log(data.toString());
@@ -254,5 +264,18 @@ export default async function runExecutor(options: BuildExecutorSchema, context:
       resolve({ success: code === 0 });
     });
   });
+
+  if (!result.success) {
+    return result;
+  }
+
+  const outputPaths = coerceArray(options.outputPath);
+  const firstOutputPath = outputPaths.shift();
+  for (const outputPath of outputPaths) {
+    mkdirSync(outputPath, { recursive: true });
+    copySync(firstOutputPath, outputPath);
+  }
+
+  return result;
 
 }
