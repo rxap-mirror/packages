@@ -37,25 +37,41 @@ export class ChangelogService {
         body.removeChild(div);
         div.remove();
         if (remember && this.version) {
-          localStorage.setItem(RXAP_CHANGELOG_LAST_VERSION, this.version);
+          this.lastVersion = this.version;
         }
       }),
     ).subscribe();
   }
 
+  public get isDisabled(): boolean {
+    return localStorage.getItem(RXAP_CHANGELOG_DISABLED) === 'true';
+  }
+
+  public get lastVersion(): string | null {
+    return localStorage.getItem(RXAP_CHANGELOG_LAST_VERSION);
+  }
+
+  public set lastVersion(version: string | null) {
+    if (version) {
+      localStorage.setItem(RXAP_CHANGELOG_LAST_VERSION, version);
+    } else {
+      localStorage.removeItem(RXAP_CHANGELOG_LAST_VERSION);
+    }
+  }
+
   public showChangelogDialogIfNewVersion() {
 
-    if (localStorage.getItem(RXAP_CHANGELOG_DISABLED) === 'true') {
+    if (this.isDisabled) {
       return;
     }
 
-    const lastVersion = localStorage.getItem(RXAP_CHANGELOG_LAST_VERSION);
+    const lastVersion = this.lastVersion;
 
     if (this.version && lastVersion && this.version !== lastVersion) {
-      localStorage.removeItem(RXAP_CHANGELOG_LAST_VERSION);
+      this.lastVersion = null;
     }
 
-    if (localStorage.getItem(RXAP_CHANGELOG_LAST_VERSION) === this.version) {
+    if (this.lastVersion === this.version) {
       return;
     }
 
