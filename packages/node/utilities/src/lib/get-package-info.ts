@@ -33,12 +33,35 @@ const PACKAGE_INFO_CACHE: Record<string, NpmPackageInfo> = (() => {
   return cache;
 })();
 
+/**
+ * Updates the local cache with the provided package information and writes it to a file.
+ *
+ * This function updates an in-memory cache and persists the package information to the filesystem.
+ * It ensures that the cache directory exists by creating it if necessary, and then writes the
+ * package information to a JSON file named after the package, with special characters in the
+ * package name replaced to ensure file system compatibility.
+ *
+ * @param packageName - The name of the package to update in the cache.
+ * @param content - The NpmPackageInfo object containing the metadata of the package.
+ */
 function updatePackageInfoCache(packageName: string, content: NpmPackageInfo) {
   PACKAGE_INFO_CACHE[packageName] = content;
   mkdirSync(CACHE_FOLDER, { recursive: true });
   writeFileSync(join(CACHE_FOLDER, `${packageName.replace(/\//g, '___')}.json`), JSON.stringify(content, null, 2));
 }
 
+/**
+ * Asynchronously retrieves information about a specified npm package.
+ *
+ * This function fetches package information from the npm registry. If caching is enabled and the package
+ * information is already cached, it returns the cached data to reduce network calls. If the package information
+ * is not cached or caching is skipped, it makes an HTTP request to the npm registry.
+ *
+ * @param packageName The name of the npm package for which information is required.
+ * @param skipCache Optional. If true, the function will bypass the cache and fetch data directly from the npm registry.
+ * @returns A Promise that resolves to an `NpmPackageInfo` object containing the package information, or null if an error occurs
+ * during the fetch operation or if the package does not exist.
+ */
 export async function GetPackageInfo(packageName: string, skipCache?: boolean): Promise<NpmPackageInfo | null> {
 
   if (!skipCache && PACKAGE_INFO_CACHE[packageName]) {
