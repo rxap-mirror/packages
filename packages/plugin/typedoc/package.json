@@ -4,7 +4,11 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.3.0",
-    "tslib": "^2.3.0"
+    "@rxap/plugin-utilities": "*",
+    "@rxap/utilities": "*",
+    "@rxap/workspace-utilities": "*",
+    "tslib": "2.6.2",
+    "typedoc": "^0.25.13"
   },
   "author": {
     "name": "Merzough Münker",
@@ -14,6 +18,8 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "executors": "./executors.json",
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/typedoc",
   "keywords": [
     "nx",
@@ -34,7 +40,5 @@
     "directory": "packages/plugin/typedoc"
   },
   "type": "commonjs",
-  "typings": "./src/index.d.ts",
-  "generators": "./generators.json",
-  "executors": "./executors.json"
+  "typings": "./src/index.d.ts"
 }

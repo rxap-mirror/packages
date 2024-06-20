@@ -9422,7 +9422,11 @@ __metadata:
   resolution: "@rxap/plugin-typedoc@workspace:packages/plugin/typedoc"
   dependencies:
     "@nx/devkit": 19.3.0
-    tslib: ^2.3.0
+    "@rxap/plugin-utilities": "*"
+    "@rxap/utilities": "*"
+    "@rxap/workspace-utilities": "*"
+    tslib: 2.6.2
+    typedoc: ^0.25.13
   languageName: unknown
   linkType: soft
 
@@ -9436,6 +9440,18 @@ __metadata:
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
+
+"@rxap/plugin-utilities@npm:*":
+  version: 19.0.3
+  resolution: "@rxap/plugin-utilities@npm:19.0.3"
+  dependencies:
+    "@nx/devkit": 19.1.1
+    "@rxap/node-utilities": ^1.3.0
+    "@rxap/workspace-utilities": ^19.2.0
+    tslib: 2.6.2
+  checksum: 9eef4cbe2ab78b14c78b1d65868ff030b09be6b1df85243f30327da8bd6e0a486097a3632fa6c8725f2fbc3b90c2c6e3c7d9f6e17bf0fdd1fc7ba513683452df
+  languageName: node
+  linkType: hard
 
 "@rxap/plugin-web3-storage@workspace:packages/plugin/web3-storage":
   version: 0.0.0-use.local
@@ -9918,7 +9934,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/utilities@^16.2.3, @rxap/utilities@workspace:packages/utilities":
+"@rxap/utilities@*, @rxap/utilities@^16.2.3, @rxap/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/utilities@workspace:packages/utilities"
   dependencies:
@@ -10002,6 +10018,22 @@ __metadata:
     yaml: 2.3.1
   languageName: unknown
   linkType: soft
+
+"@rxap/workspace-utilities@npm:*, @rxap/workspace-utilities@npm:^19.2.0":
+  version: 19.2.0
+  resolution: "@rxap/workspace-utilities@npm:19.2.0"
+  dependencies:
+    "@angular-devkit/schematics": 18.0.2
+    "@nx/devkit": 19.1.1
+    "@rxap/node-utilities": ^1.3.0
+    "@rxap/utilities": ^16.2.3
+    colors: 1.4.0
+    semver: 7.5.3
+    tslib: 2.6.2
+    yaml: 2.3.1
+  checksum: ca8847e21696a05f8a39acdac12e83f1f8da6832fba6dcca60329b6db20dad42c4e240c331d8492b0dc4786b2d78f7704a78d27822d45de02d244208c939c327
+  languageName: node
+  linkType: hard
 
 "@rxap/xml-parser@^16.0.5, @rxap/xml-parser@workspace:packages/xml-parser":
   version: 0.0.0-use.local

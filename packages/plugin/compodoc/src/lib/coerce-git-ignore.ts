@@ -13,4 +13,8 @@ export function CoerceGitIgnore(tree: Tree, projectName: string) {
     'compodoc',
   ]);
 
+  CoerceIgnorePattern(tree, '.eslintignore', [
+    'compodoc',
+  ]);
+
 }

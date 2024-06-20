@@ -2,7 +2,10 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { IsPublishable } from '@rxap/workspace-utilities';
+import {
+  IsAngularProject,
+  IsPublishable,
+} from '@rxap/workspace-utilities';
 import { CoerceTypedocTarget } from '../../lib/coerce-typedoc-target';
 import { CoerceGitIgnore } from '../../lib/coerce-git-ignore';
 import { InitLibraryGeneratorSchema } from './schema';
@@ -13,7 +16,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   CoerceTypedocTarget(tree, projectName, project);
 
-  if (IsPublishable(tree, project)) {
+  if (IsPublishable(tree, project) && IsAngularProject(project)) {
     updateProjectNgPackageConfiguration(tree, project);
   }
 

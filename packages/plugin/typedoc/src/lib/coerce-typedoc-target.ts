@@ -17,13 +17,13 @@ import { join } from 'path';
 export function CoerceTypedocTarget(tree: Tree, projectName: string, project: ProjectConfiguration) {
   const projectRoot = GetProjectRoot(tree, projectName);
 
-  const outputPath = projectRoot === '/' ? projectName : projectRoot;
+  const outputPath = ['/','','.'].some(item => item === projectRoot) ? projectName : projectRoot;
 
   CoerceTarget(project, 'typedoc', {
     options: {
       outputPath: [
         join('dist', 'docs', outputPath),
-        join(outputPath, 'docs'),
+        join(projectRoot, 'docs'),
       ],
     }
   }, Strategy.OVERWRITE);
