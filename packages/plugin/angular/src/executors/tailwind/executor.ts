@@ -1,6 +1,8 @@
 import { ExecutorContext } from '@nx/devkit';
 import { GetProjectRoot } from '@rxap/plugin-utilities';
-import run from 'nx/src/executors/run-commands/run-commands.impl';
+import { join } from 'path';
+// @ts-expect-error - Tailwindcss does not have types
+import { build } from 'tailwindcss/lib/cli/build';
 import { TailwindExecutorSchema } from './schema';
 
 export default async function runExecutor(options: TailwindExecutorSchema, context: ExecutorContext) {
@@ -8,25 +10,25 @@ export default async function runExecutor(options: TailwindExecutorSchema, conte
 
   const projectRoot = GetProjectRoot(context);
 
-  const args = [
-    [ 'config', options.config ],
-    [ 'input', options.input ],
-    [ 'output', options.output ],
-  ];
+  const args: Record<string, string | boolean | number> = {
+    '--config': join(projectRoot, options.config),
+    '--input': join(projectRoot, options.input),
+    '--output': join(projectRoot, options.output),
+  };
 
   if (options.minify) {
-    args.push([ 'minify' ]);
+    args['--minify'] = true;
   }
 
-  const argsString = args.map(([ key, value ]) => value ? `--${ key } ${ value }` : `--${ key }`).join(' ');
+  console.log('Running Tailwind with args', JSON.stringify(args, undefined, 2));
 
-  const command = `tailwindcss ${ argsString }`;
+  await build(args);
 
-  console.log('command: ', command);
+  return { success: true };
 
-  return run({
-    cwd: projectRoot,
-    command,
-    __unparsed__: [],
-  }, context);
+  // return run({
+  //   cwd: projectRoot,
+  //   command,
+  //   __unparsed__: [],
+  // }, context);
 }

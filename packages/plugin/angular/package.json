@@ -14,8 +14,8 @@
     "@rxap/workspace-ts-morph": "^19.1.1-dev.0",
     "@rxap/workspace-utilities": "^19.2.1-dev.0",
     "colors": "1.4.0",
-    "nx": "19.3.0",
     "semver": "7.5.3",
+    "tailwindcss": "^3.4.4",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2"
   },
