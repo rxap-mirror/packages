@@ -5,6 +5,8 @@ import {
 import {
   CoerceAssets,
   RemoveAssets,
+  ReadNgPackageJson,
+  WriteNgPackageJson,
 } from '@rxap/workspace-utilities';
 import { hasIndexScss } from './has-index-scss';
 import { hasTailwindConfig } from './has-tailwind-config';
@@ -14,7 +16,7 @@ import {
 } from './ng-package-json';
 
 export function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfiguration) {
-  const ngPackageJson = readNgPackageJson(tree, project);
+  const ngPackageJson = ReadNgPackageJson(tree, project);
 
   ngPackageJson.assets ??= [];
 
@@ -45,5 +47,5 @@ export function updateProjectNgPackageConfiguration(tree: Tree, project: Project
     RemoveAssets(ngPackageJson.assets, [ assetStyles ]);
   }
 
-  writeNgPackageJson(tree, project, ngPackageJson);
+  WriteNgPackageJson(tree, project, ngPackageJson);
 }

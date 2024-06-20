@@ -94,6 +94,7 @@ export * from './lib/is-publishable';
 export * from './lib/is-rxap-repository';
 export * from './lib/is-standalone-workspace';
 export * from './lib/json-file';
+export * from './lib/ng-package-json';
 export * from './lib/nx-json-file';
 export * from './lib/package-json-file';
 export * from './lib/project-package-name-mapping';
