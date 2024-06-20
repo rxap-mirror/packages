@@ -97,6 +97,44 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
 
 }
 
+/**
+ * Decorator factory that creates a decorator to parse and validate a child element of a specified type.
+ *
+ * This decorator can be applied to properties within a class to automatically handle the parsing
+ * and validation of child elements based on the specified `elementType`. It uses the `ElementChildParser`
+ * to configure the parsing process according to the provided options and any existing metadata associated
+ * with the property.
+ *
+ * @param elementType - The constructor of the child element type that this parser should target. This
+ * helps in ensuring that the parsed data conforms to the specified type.
+ * @param options - An optional `ElementChildOptions` object that provides additional configuration
+ * settings for the parser. These options are merged with any existing metadata options
+ * defined on the property.
+ * Default is an empty object.
+ *
+ * @returns A decorator function that takes a target object and a property key. The decorator function
+ * enhances the target object's property with parsing capabilities, ensuring that the property
+ * adheres to the defined child element type and options.
+ *
+ * Usage:
+ * - `elementType`: Pass the class (constructor function) that the property is expected to be an instance of.
+ * - `options`: Configuration options such as `required` which, if set to true, will enforce that the property
+ * must not be undefined or null after parsing.
+ *
+ * Example:
+ * ```typescript
+ * class MyComponent {
+ * @ElementChild(SomeChildElement, { required: true })
+ * child: SomeChildElement;
+ * }
+ * ```
+ *
+ * Note:
+ * - The decorator will automatically merge any runtime metadata options associated with the property,
+ * allowing for flexible and powerful configuration that can be adjusted without modifying the source code.
+ * - If the `required` option is set to true, the property will also be decorated with a `RequiredProperty`
+ * decorator to enforce its presence.
+ */
 export function ElementChild<Child extends ParsedElement>(
   elementType: ParsedElementType<Child>,
   options: ElementChildOptions = {},

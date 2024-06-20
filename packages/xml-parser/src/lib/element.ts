@@ -5,6 +5,17 @@ export interface RxapElementOptions {
   caseSensitive?: boolean;
 }
 
+/**
+ * Normalizes the provided node name based on the specified options.
+ *
+ * This function adjusts the `nodeName` according to the `options` provided. It can convert the node name to lowercase if `caseSensitive` is set to false. Additionally, it can remove the namespace prefix from the node name if `withNamespace` is set to false.
+ *
+ * @param {string} nodeName - The original node name to be normalized.
+ * @param {RxapElementOptions} options - Configuration options that determine how the node name should be normalized. The options include:
+ * - `caseSensitive`: A boolean that indicates whether the node name should be treated as case-sensitive. If false, the node name will be converted to lowercase.
+ * - `withNamespace`: A boolean that indicates whether the namespace prefix should be included in the node name. If false, any namespace prefix is removed.
+ * @returns {string} The normalized node name based on the provided options.
+ */
 export function normalizeNodeName(nodeName: string, options: RxapElementOptions): string {
   let name = nodeName;
   if (!options.caseSensitive) {

@@ -48,6 +48,24 @@ export class PropertyPathIterable implements Iterable<[ string, unknown ]> {
 
 }
 
+/**
+ * Creates an iterable that allows iteration over the property paths of a given object or array.
+ *
+ * This function returns an instance of `PropertyPathIterable` which can be used to iterate through
+ * the property paths of the provided object. A property path represents the sequence of properties
+ * that one would access to reach a particular nested property value within the object.
+ *
+ * @param {Record<string, unknown> | unknown[] | object} object - The object or array whose property paths are to be iterated.
+ * @param {boolean} [onlyLeaf=false] - If set to true, the iterable will only provide paths that lead to leaf nodes (i.e., nodes that do not have nested objects or arrays as values).
+ * @returns {PropertyPathIterable} An iterable that provides the property paths of the input object or array.
+ *
+ * @example
+ * // For an object { a: { b: { c: 1 } }, d: 2 }
+ * const iterable = IterateOverPropertyPaths(object, true);
+ * for (const path of iterable) {
+ * console.log(path); // Outputs "a.b.c" and "d"
+ * }
+ */
 export function IterateOverPropertyPaths(object: Record<string, unknown> | unknown[] | object, onlyLeaf = false) {
   return new PropertyPathIterable(object, onlyLeaf);
 }

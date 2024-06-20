@@ -176,6 +176,25 @@ export function MergeDeepLeft(lObj: any, rObj: any, mergeArrayFunction: MergeArr
   );
 }
 
+/**
+ * Merges two arrays deeply by applying a custom merge function to elements at corresponding indices.
+ *
+ * This function creates a new array where each element is the result of a deep merge operation between
+ * elements from two input arrays at the same index. The merging of elements at each index is handled by
+ * a user-provided merge function. If an element exists in the second array but not in the first, the element
+ * from the second array is taken as is. If an element exists in both arrays, the merge function is applied.
+ *
+ * @param {any[]} a - The first array to merge.
+ * @param {any[]} b - The second array to merge. Elements in this array can overwrite or be merged with elements in the first array.
+ * @param {MergeFunction} mergeDeepFunction - A function that defines how two elements should be merged deeply. It should take two values and return the merged result.
+ * @returns {any[]} A new array containing the deeply merged elements of the two input arrays.
+ *
+ * @example
+ * const array1 = [{ name: "Alice" }, { name: "Bob" }];
+ * const array2 = [{ age: 25 }, { age: 30 }];
+ * const mergedArray = MergeArrayDeep(array1, array2, (x, y) => ({ ...x, ...y }));
+ * // mergedArray would be [{ name: "Alice", age: 25 }, { name: "Bob", age: 30 }]
+ */
 export function MergeArrayDeep(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
   const clone: any[] = a.slice();
   for (let i = 0; i < Math.max(a.length, b.length); i++) {
@@ -190,10 +209,34 @@ export function MergeArrayDeep(a: any[], b: any[], mergeDeepFunction: MergeFunct
   return clone as any;
 }
 
+/**
+ * Returns a shallow copy of the first array passed to the function.
+ *
+ * This function ignores the second array and the merge function provided as parameters.
+ * It simply returns a new array that is a shallow copy of the first array, meaning that
+ * the elements of the new array are exactly the same as the elements of the input array `a`.
+ * Changes to the elements of the returned array will reflect on the corresponding elements
+ * of the original array if those elements are objects.
+ *
+ * @param a - The array to be copied.
+ * @param b - This parameter is not used in the function.
+ * @param mergeDeepFunction - This parameter is not used in the function.
+ * @returns A new array that is a shallow copy of array `a`.
+ */
 export function UseLeftArray(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
   return a.slice();
 }
 
+/**
+ * Returns a shallow copy of the second array provided.
+ *
+ * This function ignores the first array and the merge function provided, and simply returns a new array that is a shallow copy of the second array. This means that the new array will have the same elements as the second array, but will be a different object in memory.
+ *
+ * @param a - The first array, which is not used in this function.
+ * @param b - The second array, from which a shallow copy is created and returned.
+ * @param mergeDeepFunction - A function intended for merging, which is not utilized in this function.
+ * @returns A new array that is a shallow copy of array `b`.
+ */
 export function UseRightArray(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
   return b.slice();
 }

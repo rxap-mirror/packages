@@ -28,6 +28,21 @@ export abstract class BaseDefinitionElement implements ParsedElement {
 
 }
 
+/**
+ * Parses an XML element to update and populate properties of a BaseDefinitionElement object.
+ *
+ * This function takes an XML element and extracts relevant data to populate or update the properties
+ * of a given BaseDefinitionElement object. It specifically updates the 'id' and 'metadata' properties
+ * of the BaseDefinitionElement. If the XML element contains an 'id' attribute, it updates the 'id' of
+ * the BaseDefinitionElement. It also checks for a 'metadata' child node within the XML element, and if
+ * present, iterates over its child nodes to populate the 'metadata' dictionary of the BaseDefinitionElement
+ * with key-value pairs, where the key is the node name and the value is the text content of the node.
+ *
+ * @param {XmlParserService} parser - The XML parser service used to parse the XML document.
+ * @param {RxapElement} element - The XML element that contains data to be parsed and used for updating the BaseDefinitionElement.
+ * @param {BaseDefinitionElement} baseDefinitionElement - The BaseDefinitionElement object to be updated with data from the XML element.
+ * @returns {BaseDefinitionElement} The updated BaseDefinitionElement object.
+ */
 export function ParseBaseDefinitionElement(
   parser: XmlParserService,
   element: RxapElement,

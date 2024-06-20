@@ -6,6 +6,26 @@ import {
   TeardownLogic,
 } from 'rxjs';
 
+/**
+ * Creates an operator function that filters out `null` and `undefined` values from an Observable.
+ *
+ * This function is a higher-order function that returns an `OperatorFunction`. The returned operator function
+ * takes an Observable that emits values of type `T` and returns an Observable that emits only values of type `T`
+ * that are neither `null` nor `undefined`, effectively narrowing the type from `T` to `NonNullable<T>`.
+ *
+ * @template T - The type of items emitted by the source Observable.
+ * @returns An `OperatorFunction<T, NonNullable<T>>` that filters out `null` and `undefined` values from the source Observable.
+ *
+ * ### Example
+ * ```typescript
+ * import { of } from 'rxjs';
+ * import { isDefined } from './isDefined';
+ *
+ * const source$ = of(1, 2, null, 3, undefined, 4);
+ * const filtered$ = source$.pipe(isDefined());
+ * filtered$.subscribe(console.log); // Output: 1, 2, 3, 4
+ * ```
+ */
 export function isDefined<T>(): OperatorFunction<T, NonNullable<T>> {
   return function filterOperatorFunction(source: Observable<T>): Observable<NonNullable<T>> {
     return source.lift(new IsDefinedOperator());

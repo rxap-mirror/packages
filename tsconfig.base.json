@@ -191,6 +191,7 @@
         "packages/plugin/readme-generator/src/index.ts"
       ],
       "@rxap/plugin-storybook": ["packages/plugin/storybook/src/index.ts"],
+      "@rxap/plugin-typedoc": ["packages/plugin/typedoc/src/index.ts"],
       "@rxap/plugin-utilities": ["packages/plugin/utilities/src/index.ts"],
       "@rxap/plugin-web3-storage": [
         "packages/plugin/web3-storage/src/index.ts"

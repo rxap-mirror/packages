@@ -165,6 +165,27 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
 
 }
 
+/**
+ * Decorator factory that creates a decorator to parse children elements of a specified type from a parent element.
+ * This decorator can be applied to properties within a class to automatically handle the parsing of child elements
+ * based on the specified element type and options.
+ *
+ * @param elementTyp - The type of the child elements to parse. If null, it will parse children without type checking.
+ * @param options - Configuration options for parsing the children elements. Default is an empty object.
+ * Options can include custom parsing rules like filtering or transformations.
+ *
+ * @returns A decorator function that can be applied to a property within a class. This decorator will configure
+ * the property to automatically parse and assign children elements of the specified type.
+ *
+ * Example Usage:
+ * ```
+ * @ElementChildren(SomeChildElement, { required: true })
+ * public children: SomeChildElement[];
+ * ```
+ *
+ * The decorator modifies the target class's metadata to include a parser for the specified property. If the `required`
+ * option is set to true, it also ensures that the property is marked as required.
+ */
 export function ElementChildren<Child extends ParsedElement>(
   elementTyp: ParsedElementType<Child> | null = null,
   options: ElementChildrenOptions = {},

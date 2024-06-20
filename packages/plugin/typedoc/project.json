@@ -1,0 +1,75 @@
+{
+  "name": "plugin-typedoc",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/plugin/typedoc/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["plugin", "nx", "nx-plugin", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/plugin/typedoc",
+        "main": "packages/plugin/typedoc/src/index.ts",
+        "tsConfig": "packages/plugin/typedoc/tsconfig.lib.json",
+        "assets": [
+          "packages/plugin/typedoc/*.md",
+          {
+            "input": "./packages/plugin/typedoc/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/typedoc/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/typedoc",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/typedoc",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/plugin/typedoc/jest.config.ts"
+      }
+    },
+    "update-dependencies": {},
+    "update-package-group": {},
+    "fix-dependencies": {},
+    "readme": {},
+    "linking": {},
+    "check-version": {
+      "options": {
+        "packageName": "nx"
+      }
+    },
+    "expose-as-schematic": {}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "version": "19.0.0-dev.0",
+  "name": "@rxap/plugin-typedoc",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@nx/devkit": "19.3.0",
+    "tslib": "^2.3.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/typedoc",
+  "keywords": [
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-typedoc",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/typedoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/typedoc"
+  },
+  "type": "commonjs",
+  "typings": "./src/index.d.ts",
+  "generators": "./generators.json",
+  "executors": "./executors.json"
+}

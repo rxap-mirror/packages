@@ -76,6 +76,31 @@ export class ElementTextContentParser<T extends ParsedElement, Value> {
 
 }
 
+/**
+ * Decorator factory that creates a decorator to parse and inject text content from a DOM element into a class property.
+ *
+ * This decorator factory allows customization through `ElementTextContentOptions`. It merges user-provided options
+ * with metadata options (if any) associated with the property. The merged options are then used to create an instance
+ * of `ElementTextContentParser` which is responsible for the actual parsing and assignment of the text content to the
+ * class property.
+ *
+ * If the `required` option is set to true, the property is also decorated with a `RequiredProperty` decorator to enforce
+ * its presence.
+ *
+ * @param {ElementTextContentOptions<Value>} [options={}] - Optional configuration options for element text content parsing.
+ * @returns A class property decorator that configures text content parsing based on the provided options.
+ *
+ * @template Value - The expected type of the property's value.
+ *
+ * ### Usage
+ *
+ * ```typescript
+ * class MyComponent {
+ * @ElementTextContent({ selector: '#myElement', required: true })
+ * public textContent: string;
+ * }
+ * ```
+ */
 export function ElementTextContent<Value>(options: ElementTextContentOptions<Value> = {}) {
   return function (target: any, propertyKey: string) {
     options = deepMerge<ElementTextContentOptions<Value>>(

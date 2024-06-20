@@ -1,3 +1,18 @@
+/**
+ * Compares two strings using the locale-specific comparison to determine their relative order.
+ *
+ * This function is typically used as a comparator for sorting arrays of strings in the default
+ * lexicographical order according to the current locale settings.
+ *
+ * @param {string} a - The first string to compare.
+ * @param {string} b - The second string to compare.
+ * @returns {number} A negative number if `a` comes before `b`, zero if they are equivalent,
+ * or a positive number if `a` comes after `b`.
+ *
+ * @example
+ * const strings = ['banana', 'apple', 'cherry'];
+ * strings.sort(DefaultSortPropertiesCompareFn); // ['apple', 'banana', 'cherry']
+ */
 export function DefaultSortPropertiesCompareFn(a: string, b: string) {
   return a.localeCompare(b);
 }

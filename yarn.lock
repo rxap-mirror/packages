@@ -9417,6 +9417,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-typedoc@workspace:packages/plugin/typedoc":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-typedoc@workspace:packages/plugin/typedoc"
+  dependencies:
+    "@nx/devkit": 19.3.0
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-utilities@^19.0.4-dev.0, @rxap/plugin-utilities@workspace:packages/plugin/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-utilities@workspace:packages/plugin/utilities"
@@ -9829,7 +9838,7 @@ __metadata:
     ts-morph: 18.0.0
     ts-node: 10.9.2
     tslib: 2.6.2
-    typedoc: 0.25.13
+    typedoc: ^0.25.13
     typedoc-plugin-rename-defaults: 0.7.0
     typedoc-theme-hierarchy: 3.2.1
     typescript: 5.4.5
@@ -31882,7 +31891,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc@npm:0.25.13":
+"typedoc@npm:^0.25.13":
   version: 0.25.13
   resolution: "typedoc@npm:0.25.13"
   dependencies:
