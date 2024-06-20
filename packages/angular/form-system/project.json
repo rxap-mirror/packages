@@ -68,7 +68,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/form-system/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/form-system"
+        "outputPath": [
+          "dist/compodoc/packages/angular/form-system",
+          "packages/angular/form-system/compodoc"
+        ]
       }
     }
   }

@@ -93,7 +93,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/data-source/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/data-source"
+        "outputPath": [
+          "dist/compodoc/packages/angular/data-source",
+          "packages/angular/data-source/compodoc"
+        ]
       }
     }
   }

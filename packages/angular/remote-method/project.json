@@ -76,7 +76,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/remote-method/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/remote-method"
+        "outputPath": [
+          "dist/compodoc/packages/angular/remote-method",
+          "packages/angular/remote-method/compodoc"
+        ]
       }
     }
   }

@@ -74,7 +74,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/handlebars/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/handlebars"
+        "outputPath": [
+          "dist/compodoc/packages/angular/handlebars",
+          "packages/angular/handlebars/compodoc"
+        ]
       }
     }
   }

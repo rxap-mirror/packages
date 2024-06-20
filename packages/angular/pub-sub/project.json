@@ -83,7 +83,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/pub-sub/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/pub-sub"
+        "outputPath": [
+          "dist/compodoc/packages/angular/pub-sub",
+          "packages/angular/pub-sub/compodoc"
+        ]
       }
     }
   }

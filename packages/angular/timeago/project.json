@@ -92,7 +92,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/timeago/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/timeago"
+        "outputPath": [
+          "dist/compodoc/packages/angular/timeago",
+          "packages/angular/timeago/compodoc"
+        ]
       }
     }
   }

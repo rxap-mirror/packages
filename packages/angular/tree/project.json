@@ -73,7 +73,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/tree/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/tree"
+        "outputPath": [
+          "dist/compodoc/packages/angular/tree",
+          "packages/angular/tree/compodoc"
+        ]
       }
     }
   }

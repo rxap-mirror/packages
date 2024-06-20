@@ -70,7 +70,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/pipes/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/pipes"
+        "outputPath": [
+          "dist/compodoc/packages/angular/pipes",
+          "packages/angular/pipes/compodoc"
+        ]
       }
     }
   }

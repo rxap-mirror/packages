@@ -68,7 +68,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/bootstrap/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/bootstrap"
+        "outputPath": [
+          "dist/compodoc/packages/angular/bootstrap",
+          "packages/angular/bootstrap/compodoc"
+        ]
       }
     }
   }

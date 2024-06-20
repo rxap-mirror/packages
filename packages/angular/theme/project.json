@@ -77,7 +77,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/theme/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/theme"
+        "outputPath": [
+          "dist/compodoc/packages/angular/theme",
+          "packages/angular/theme/compodoc"
+        ]
       }
     }
   }

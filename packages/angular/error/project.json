@@ -85,7 +85,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/error/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/error"
+        "outputPath": [
+          "dist/compodoc/packages/angular/error",
+          "packages/angular/error/compodoc"
+        ]
       }
     }
   }

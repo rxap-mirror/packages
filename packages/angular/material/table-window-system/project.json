@@ -68,7 +68,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/material/table-window-system/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/material/table-window-system"
+        "outputPath": [
+          "dist/compodoc/packages/angular/material/table-window-system",
+          "packages/angular/material/table-window-system/compodoc"
+        ]
       }
     }
   }

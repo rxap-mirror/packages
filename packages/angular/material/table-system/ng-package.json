@@ -19,6 +19,7 @@
     },
     "LICENSE",
     "theme.css",
-    "LICENSE.md"
+    "LICENSE.md",
+    "compodoc"
   ]
 }

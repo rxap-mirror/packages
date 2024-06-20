@@ -73,7 +73,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/service-worker/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/service-worker"
+        "outputPath": [
+          "dist/compodoc/packages/angular/service-worker",
+          "packages/angular/service-worker/compodoc"
+        ]
       }
     }
   }

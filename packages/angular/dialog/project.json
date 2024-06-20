@@ -73,7 +73,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/dialog/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/dialog"
+        "outputPath": [
+          "dist/compodoc/packages/angular/dialog",
+          "packages/angular/dialog/compodoc"
+        ]
       }
     }
   }

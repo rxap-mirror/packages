@@ -83,7 +83,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/memory/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/memory"
+        "outputPath": [
+          "dist/compodoc/packages/angular/memory",
+          "packages/angular/memory/compodoc"
+        ]
       }
     }
   }

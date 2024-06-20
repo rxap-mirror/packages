@@ -70,7 +70,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/firebase/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/firebase"
+        "outputPath": [
+          "dist/compodoc/packages/angular/firebase",
+          "packages/angular/firebase/compodoc"
+        ]
       }
     }
   }

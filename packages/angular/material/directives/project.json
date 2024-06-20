@@ -94,7 +94,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/material/directives/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/material/directives"
+        "outputPath": [
+          "dist/compodoc/packages/angular/material/directives",
+          "packages/angular/material/directives/compodoc"
+        ]
       }
     }
   }

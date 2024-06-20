@@ -68,7 +68,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/socket-io/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/socket-io"
+        "outputPath": [
+          "dist/compodoc/packages/angular/socket-io",
+          "packages/angular/socket-io/compodoc"
+        ]
       }
     }
   }

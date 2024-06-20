@@ -73,7 +73,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/data-grid/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/data-grid"
+        "outputPath": [
+          "dist/compodoc/packages/angular/data-grid",
+          "packages/angular/data-grid/compodoc"
+        ]
       }
     }
   }

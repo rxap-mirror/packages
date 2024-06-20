@@ -74,7 +74,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/keycloak/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/keycloak"
+        "outputPath": [
+          "dist/compodoc/packages/angular/keycloak",
+          "packages/angular/keycloak/compodoc"
+        ]
       }
     }
   }

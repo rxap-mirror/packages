@@ -68,7 +68,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/life-cycle/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/life-cycle"
+        "outputPath": [
+          "dist/compodoc/packages/angular/life-cycle",
+          "packages/angular/life-cycle/compodoc"
+        ]
       }
     }
   }

@@ -82,7 +82,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/status-check/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/status-check"
+        "outputPath": [
+          "dist/compodoc/packages/angular/status-check",
+          "packages/angular/status-check/compodoc"
+        ]
       }
     }
   }

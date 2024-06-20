@@ -101,7 +101,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/changelog/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/changelog"
+        "outputPath": [
+          "dist/compodoc/packages/angular/changelog",
+          "packages/angular/changelog/compodoc"
+        ]
       }
     }
   }

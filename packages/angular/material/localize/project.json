@@ -77,7 +77,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/material/localize/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/material/localize"
+        "outputPath": [
+          "dist/compodoc/packages/angular/material/localize",
+          "packages/angular/material/localize/compodoc"
+        ]
       }
     }
   }

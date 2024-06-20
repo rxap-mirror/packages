@@ -70,7 +70,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/open-api/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/open-api"
+        "outputPath": [
+          "dist/compodoc/packages/angular/open-api",
+          "packages/angular/open-api/compodoc"
+        ]
       }
     }
   }

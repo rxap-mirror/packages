@@ -73,7 +73,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/window-system/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/window-system"
+        "outputPath": [
+          "dist/compodoc/packages/angular/window-system",
+          "packages/angular/window-system/compodoc"
+        ]
       }
     }
   }

@@ -74,7 +74,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/contenteditable/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/contenteditable"
+        "outputPath": [
+          "dist/compodoc/packages/angular/contenteditable",
+          "packages/angular/contenteditable/compodoc"
+        ]
       }
     }
   }

@@ -68,7 +68,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/sentry/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/sentry"
+        "outputPath": [
+          "dist/compodoc/packages/angular/sentry",
+          "packages/angular/sentry/compodoc"
+        ]
       }
     }
   }

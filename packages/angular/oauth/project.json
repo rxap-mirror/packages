@@ -75,7 +75,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/oauth/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/oauth"
+        "outputPath": [
+          "dist/compodoc/packages/angular/oauth",
+          "packages/angular/oauth/compodoc"
+        ]
       }
     }
   }

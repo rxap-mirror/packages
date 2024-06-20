@@ -1,3 +1,5 @@
 src/lib/openapi/*
 README.md
 theme.css
+
+compodoc

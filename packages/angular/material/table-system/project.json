@@ -73,7 +73,10 @@
     "compodoc": {
       "options": {
         "tsConfig": "packages/angular/material/table-system/tsconfig.compodoc.json",
-        "outputPath": "dist/compodoc/packages/angular/material/table-system"
+        "outputPath": [
+          "dist/compodoc/packages/angular/material/table-system",
+          "packages/angular/material/table-system/compodoc"
+        ]
       }
     }
   }
