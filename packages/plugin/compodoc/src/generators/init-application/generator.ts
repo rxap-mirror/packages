@@ -27,6 +27,10 @@ function skipProject(
   projectName: string,
 ): boolean {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonApplicationProject(tree, options, project, projectName)) {
     return true;
   }
@@ -67,7 +71,7 @@ export async function initApplicationGenerator(
         GetProjectRoot(tree, projectName),
         '@rxap/plugin-compodoc',
         'init-application',
-        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+        options,
       );
 
       updateProjectConfiguration(tree, projectName, project);

@@ -66,6 +66,12 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "compodoc": {
+      "options": {
+        "tsConfig": "packages/angular/open-api/tsconfig.compodoc.json",
+        "outputPath": "dist/compodoc/packages/angular/open-api"
+      }
+    }
   }
 }

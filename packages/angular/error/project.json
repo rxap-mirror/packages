@@ -81,6 +81,12 @@
       }
     },
     "check-ng-package": {},
-    "linking": {}
+    "linking": {},
+    "compodoc": {
+      "options": {
+        "tsConfig": "packages/angular/error/tsconfig.compodoc.json",
+        "outputPath": "dist/compodoc/packages/angular/error"
+      }
+    }
   }
 }

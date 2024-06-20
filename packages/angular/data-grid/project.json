@@ -69,6 +69,12 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "compodoc": {
+      "options": {
+        "tsConfig": "packages/angular/data-grid/tsconfig.compodoc.json",
+        "outputPath": "dist/compodoc/packages/angular/data-grid"
+      }
+    }
   }
 }

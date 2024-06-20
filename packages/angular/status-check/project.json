@@ -78,6 +78,12 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "compodoc": {
+      "options": {
+        "tsConfig": "packages/angular/status-check/tsconfig.compodoc.json",
+        "outputPath": "dist/compodoc/packages/angular/status-check"
+      }
+    }
   }
 }

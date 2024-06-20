@@ -110,8 +110,8 @@
     "compodoc": {
       "options": {
         "tsConfig": "tsconfig.compodoc.json",
-        "output": "dist/compodoc",
-        "outputPath": "dist/compodoc"
+        "output": "dist/compodoc/workspace",
+        "outputPath": "dist/compodoc/workspace"
       }
     }
   }

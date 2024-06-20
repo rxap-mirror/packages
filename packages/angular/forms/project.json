@@ -73,6 +73,12 @@
       }
     },
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "compodoc": {
+      "options": {
+        "tsConfig": "packages/angular/forms/tsconfig.compodoc.json",
+        "outputPath": "dist/compodoc/packages/angular/forms"
+      }
+    }
   }
 }

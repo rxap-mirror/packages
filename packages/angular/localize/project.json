@@ -73,6 +73,12 @@
     "check-ng-package": {
       "executor": "@rxap/plugin-angular:check-ng-package"
     },
-    "linking": {}
+    "linking": {},
+    "compodoc": {
+      "options": {
+        "tsConfig": "packages/angular/localize/tsconfig.compodoc.json",
+        "outputPath": "dist/compodoc/packages/angular/localize"
+      }
+    }
   }
 }

@@ -74,6 +74,12 @@
     "update-dependencies": {},
     "update-package-group": {},
     "linking": {},
-    "index-export": {}
+    "index-export": {},
+    "compodoc": {
+      "options": {
+        "tsConfig": "packages/angular/material/form-system/tsconfig.compodoc.json",
+        "outputPath": "dist/compodoc/packages/angular/material/form-system"
+      }
+    }
   }
 }

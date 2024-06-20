@@ -64,6 +64,12 @@
     },
     "update-dependencies": {},
     "update-package-group": {},
-    "linking": {}
+    "linking": {},
+    "compodoc": {
+      "options": {
+        "tsConfig": "packages/angular/form-system/tsconfig.compodoc.json",
+        "outputPath": "dist/compodoc/packages/angular/form-system"
+      }
+    }
   }
 }

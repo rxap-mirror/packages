@@ -18,6 +18,9 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./tsconfig.compodoc.json"
     }
   ],
   "extends": "../../../tsconfig.base.json",

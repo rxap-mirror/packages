@@ -26,6 +26,10 @@ function skipProject(
   projectName: string,
 ): boolean {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonLibraryProject(tree, options, project, projectName)) {
     return true;
   }
@@ -66,7 +70,7 @@ export async function initLibraryGenerator(
         GetProjectRoot(tree, projectName),
         '@rxap/plugin-compodoc',
         'init-library',
-        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+        options,
       );
 
       updateProjectConfiguration(tree, projectName, project);
