@@ -216,7 +216,7 @@ export function GetProjectPrefix<Tree extends TreeLike>(
  * - `ProjectJson | null`: Returns the project configuration as `ProjectJson` if found; otherwise, returns null.
  *
  * ### Example Usage
- * ```typescript
+ *
  * const projectConfig = GetProjectByPackageName(myTree, 'my-package-name');
  * if (projectConfig) {
  * console.log('Project found:', projectConfig);
@@ -398,7 +398,7 @@ export function HasProjectPackageJson<Tree extends TreeLike>(tree: Tree, project
  * @typeparam Tree - The generic type extending TreeLike that represents the structure containing the project data.
  *
  * @example
- * ```typescript
+ *
  * const result = IsProjectType(myProjectTree, 'myProject', 'library');
  * console.log(result); // Outputs: true or false based on the project type
  * ```
@@ -477,7 +477,7 @@ export interface UpdateProjectOptions extends Omit<UpdateJsonFileOptions, 'baseP
  * in the specified project's root directory.
  *
  * @example
- * ```typescript
+ *
  * const tree = new FileSystemTree('/path/to/projects');
  * const updater = (config, tree) => {
  * config.settings = { newSetting: 'value' };
@@ -522,7 +522,7 @@ export interface UpdateProjectPackageJsonOptions extends Omit<UpdatePackageJsonO
  * @template Tree - A generic type that extends `TreeLike`, representing the structure of the file system or project workspace.
  *
  * @example
- * ```typescript
+ *
  * UpdateProjectPackageJson(tree, (packageJson) => {
  * packageJson.version = '2.0.0';
  * }, { projectName: 'my-app' });

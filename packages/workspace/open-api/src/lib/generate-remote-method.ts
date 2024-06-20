@@ -27,6 +27,31 @@ const {
   classify,
 } = strings;
 
+/**
+ *
+ *
+ * Generates a TypeScript source file for a remote method based on the provided OpenAPI schema.
+ * This function constructs a class that extends `OpenApiRemoteMethod` and is decorated with `Injectable` and `RxapOpenApiRemoteMethod`.
+ * The generated class includes a `call` method that can be used to execute the remote method.
+ *
+ * @param parameter - An object containing options and metadata necessary for generating the remote method.
+ * The `parameter` object must include:
+ * - `operationId`: A unique identifier for the operation.
+ * - `project`: A project within which the source file will be created.
+ * - `options`: Additional options such as `serverId` and `packageName` for customizing the generated method.
+ *
+ * The function performs the following steps:
+ * 1. Constructs the file name from the `operationId` and predefined suffixes.
+ * 2. Creates a new TypeScript source file in the specified project.
+ * 3. Dynamically constructs import statements based on the response type, parameter type, and request body type.
+ * 4. Defines a class that extends `OpenApiRemoteMethod` with appropriate type parameters and decorators.
+ * 5. Adds a `call` method to the class, which overrides the base method to execute the remote operation.
+ * 6. Organizes imports and ensures proper formatting of the generated source file.
+ *
+ * The generated class is decorated with `@Injectable` to facilitate its usage within Angular's dependency injection system,
+ * and `@RxapOpenApiRemoteMethod` to configure it with metadata about the remote operation.
+ *
+ */
 export function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaBase>): void {
   const operationId = parameter.operationId;
 

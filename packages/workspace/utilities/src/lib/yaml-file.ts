@@ -27,7 +27,7 @@ import {
  * @typeparam Tree - A generic type that extends `TreeLike`, representing the structure containing the file.
  *
  * @example
- * ```typescript
+ *
  * const fileTree = new FileTree();
  * const result = HasYamlFile(fileTree, 'config/settings.yaml');
  * console.log(result); // Outputs: true or false based on the file's validity as a YAML.

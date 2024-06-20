@@ -26,7 +26,7 @@ export interface BuildNestControllerNameOptions {
  * @throws {Error} Throws an error if the resulting controller name ends with a dash.
  *
  * ### Usage
- * ```typescript
+ *
  * const options = {
  * controllerName: "User",
  * nestModule: "Admin",

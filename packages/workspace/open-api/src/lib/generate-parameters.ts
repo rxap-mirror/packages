@@ -8,6 +8,33 @@ import {
 import { AnySchemaObject } from './utilities/any-schema-object';
 import { IsReferenceObject } from './utilities/is-reference-object';
 
+/**
+ * Generates TypeScript interfaces for the parameters of a given OpenAPI operation object.
+ * This function processes the parameters of the operation, excluding those in the 'header',
+ * and generates TypeScript interfaces using the TypescriptInterfaceGenerator.
+ *
+ * @param operation - The OpenAPI operation object containing details about the API operation.
+ * @param project - The project context in which the interfaces are generated.
+ * @param components - The OpenAPI components object used for resolving any $ref references in the parameters.
+ *
+ * @remarks
+ * This function filters out header parameters and processes only path, query, and cookie parameters.
+ * It handles both direct parameter objects and referenced objects found in the components section of the OpenAPI spec.
+ * If a referenced object is encountered, it resolves the reference and includes the resolved object in the parameter list.
+ * The function throws errors if references are incorrectly formatted or unresolved.
+ *
+ * The function constructs a schema object that describes the structure of the parameters using the properties and required fields.
+ * This schema object is then used by the TypescriptInterfaceGenerator to generate the appropriate TypeScript interfaces.
+ *
+ * Errors during the generation process are logged to the console.
+ *
+ * @example
+ * // Assuming operation, project, and components are already defined:
+ * GenerateParameters(operation, project, components);
+ *
+ * @throws {Error} If the $ref is malformed or cannot be resolved within the components object.
+ * @throws {Error} If reference objects are still present after processing, indicating unresolved references.
+ */
 export function GenerateParameters(
   operation: OpenAPIV3.OperationObject,
   project: Project,

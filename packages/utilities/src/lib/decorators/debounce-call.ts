@@ -8,7 +8,7 @@
  * @returns {MethodDecorator} - A method decorator that can be applied to a method with the '@' syntax.
  *
  * @example
- * ```typescript
+ *
  * class MyClass {
  * @DebounceCall(500)
  * myMethod() {

@@ -43,7 +43,7 @@ export function jsonFile<T = Record<string, unknown>>(jsonFilePath: string): T {
  * @template T - The expected type of the JSON object to be returned. Defaults to `Record<string, unknown>` if not specified.
  *
  * @example
- * ```typescript
+ *
  * interface User {
  * id: number;
  * name: string;

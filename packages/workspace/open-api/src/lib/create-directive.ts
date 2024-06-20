@@ -14,6 +14,14 @@ import {
 import { REMOTE_METHOD_FILE_SUFFIX } from './const';
 import { CreateDirectiveOptions } from './options';
 
+/**
+ * Asserts that the given object is an array of `OptionalKind<ImportSpecifierStructure>`.
+ * This function is a type guard that narrows the type of `obj` from `any` to `Array<OptionalKind<ImportSpecifierStructure>>`
+ * by asserting the specific structure expected in the array elements.
+ *
+ * @param obj - The object to be checked.
+ * @throws {Error} Throws an error if `obj` is not an array or if it does not match the expected structure.
+ */
 function AssertImportSpecifierStructureArray(obj: any): asserts obj is Array<OptionalKind<ImportSpecifierStructure>> {
   if (!obj || !Array.isArray(obj)) {
     throw new Error('Should be a array of OptionalKind<ImportSpecifierStructure>');
@@ -25,6 +33,37 @@ const {
   camelize,
 } = strings;
 
+/**
+ *
+ *
+ * Dynamically creates and registers an Angular directive for a remote method invocation based on the provided options.
+ * The directive can optionally handle templates and collections, and is configured to be injectable with necessary services.
+ *
+ * @param {CreateDirectiveOptions} options - Configuration options for creating the directive, including:
+ * - `filePath`: The file path where the directive is to be added.
+ * - `sourceFile`: The TypeScript source file object to which the directive will be added.
+ * - `name`: The base name for the directive, used in naming and selector generation.
+ * - `prefix`: Optional prefix for the directive selector.
+ * - `parametersType`: The TypeScript type of the parameters that the directive accepts.
+ * - `returnType`: The TypeScript type of the value returned by the remote method.
+ * - `template`: Boolean indicating whether the directive uses a template.
+ * - `collection`: Boolean indicating whether the directive handles a collection of items.
+ * - `withoutParameters`: Boolean indicating if the directive operates without parameters.
+ *
+ * The function constructs the directive by defining its class, imports, selector, and injectable services based on the options.
+ * It checks for existing class declarations with the same name to avoid duplicates. If a duplicate is found, a warning is logged
+ * and the function exits early. Otherwise, it proceeds to set up the directive's metadata, constructor, and class properties.
+ *
+ * The directive's selector is built using the provided `name`, `prefix`, and other options. The class is decorated with `@Directive`
+ * and configured with properties and dependency injections as needed for operation.
+ *
+ * If `template` is true, additional configurations are applied to handle templates, including setting up input properties for
+ * parameters, error templates, and empty states. Depending on whether `collection` is true, the directive is extended from either
+ * `RemoteMethodTemplateDirective` or `RemoteMethodTemplateCollectionDirective`.
+ *
+ * Finally, the newly created directive class is added to the source file along with necessary Angular and custom imports.
+ *
+ */
 export function CreateDirective({
                                   filePath,
                                   sourceFile,

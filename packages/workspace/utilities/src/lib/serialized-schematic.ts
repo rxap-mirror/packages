@@ -181,7 +181,7 @@ export function UpdateSerializedSchematicFile(
  * @throws {Error} Throws an error if the serialized schematic file does not exist at the specified path and the `coerce` option is false.
  *
  * @example
- * ```typescript
+ *
  * UpdateSerializedSchematicFile(tree, '/path/to/file', data => ({ ...data, newProp: 123 }), { coerce: true });
  * ```
  */

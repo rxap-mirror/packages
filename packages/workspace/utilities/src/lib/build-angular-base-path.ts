@@ -34,7 +34,7 @@ export interface BuildAngularBasePathOptions {
  * @throws {Error} If `feature` option is used with `entrypoint`, or if `entrypoint` is used but the project type is not a library.
  *
  * ### Usage
- * ```typescript
+ *
  * const tree = { ... };
  * const options = { project: 'my-lib', entrypoint: 'index', shared: true };
  * const basePath = BuildAngularBasePath(tree, options);

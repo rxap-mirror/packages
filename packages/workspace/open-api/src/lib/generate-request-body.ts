@@ -13,6 +13,22 @@ import {
   IsRefSchemaObject,
 } from './utilities/ref-schema-object';
 
+/**
+ * Generates TypeScript interfaces or type aliases for the request body of an API operation defined in an OpenAPI specification.
+ *
+ * This function examines the `operation` object to determine the schema of the request body. Depending on the type of schema
+ * (reference, array of references, or a direct schema object), it either generates a type alias directly from the reference
+ * or invokes a TypeScript interface generator to create interfaces.
+ *
+ * If the schema is a reference or an array of references, the function will log a debug message and create a type alias
+ * in the specified project directory. If the schema is a direct object, it will use the `TypescriptInterfaceGenerator` to
+ * generate and build the interface synchronously, handling any errors that occur during the generation process.
+ *
+ * @param {OpenAPIV3.OperationObject} operation - The OpenAPI operation object containing the request body definition.
+ * @param {Project} project - The TypeScript project where the generated files will be added.
+ * @param {OpenAPIV3.ComponentsObject} components - The OpenAPI components object used for resolving `$ref` references within schemas.
+ *
+ */
 export function GenerateRequestBody(
   operation: OpenAPIV3.OperationObject,
   project: Project,

@@ -23,6 +23,29 @@ import { GetResponseType } from './utilities/get-response-type';
 import { IsCollectionResponse } from './utilities/is-collection-response';
 import { IsWithoutParameters } from './utilities/is-without-parameters';
 
+/**
+ * Generates TypeScript directive files for handling API operations defined in an OpenAPI specification.
+ * This function creates one or more directive files based on the provided operation details, handling
+ * different scenarios such as response collections and parameter requirements.
+ *
+ * @param parameter - An object of type `GenerateParameter<OpenApiSchemaBase>` containing all necessary
+ * information to generate the directive files. This includes the operation ID, project context, and
+ * additional options such as response and parameter types.
+ *
+ * The function performs the following steps:
+ * 1. Constructs the file name from the operation ID and predefined suffixes.
+ * 2. Initializes a new source file in the project for the directive.
+ * 3. Dynamically constructs import statements based on the operation's requirements, such as response
+ * types, parameter types, and request body types.
+ * 4. Determines if the operation's response is a collection and adjusts the directive accordingly.
+ * 5. Creates one or more directives in the source file to handle the API operation, considering whether
+ * the operation requires parameters and if it should be treated as a collection.
+ * 6. Organizes and adds all necessary import declarations to the source file.
+ * 7. Ensures proper formatting and organization of imports in the created source file.
+ *
+ * This function is designed to automate the boilerplate creation of TypeScript directives for API operations,
+ * facilitating easier and more maintainable API integration within projects using the OpenAPI specification.
+ */
 export function GenerateDirectives(parameter: GenerateParameter<OpenApiSchemaBase>): void {
   const operationId = parameter.operationId;
 

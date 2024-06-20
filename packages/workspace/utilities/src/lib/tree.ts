@@ -174,7 +174,7 @@ export function IsSchematicTreeLike(tree: TreeLike): tree is SchematicTreeLike {
  * @returns `true` if the `tree` is a `GeneratorTreeLike`, otherwise `false`.
  *
  * @example
- * ```typescript
+ *
  * const tree = { root: 'rootNode', nodes: [] };
  * console.log(IsGeneratorTreeLike(tree)); // Output: true or false based on the structure of `tree`
  * ```

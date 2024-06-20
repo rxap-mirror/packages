@@ -72,7 +72,7 @@ export function buildNestProjectName(options: BuildNestProjectNameOptions) {
  * - A string representing the constructed directory path based on the specified options.
  *
  * ### Example
- * ```typescript
+ *
  * const options = {
  * backend: { project: 'service-feature-payment' },
  * project: 'user-interface-main',
