@@ -24,9 +24,13 @@
       "type": "string",
       "description": "The openai api key"
     },
-    "openaiOrganization": {
+    "openaiOrgId": {
       "type": "string",
-      "description": "The openai organization"
+      "description": "The openai organization id"
+    },
+    "openaiProjectId": {
+      "type": "string",
+      "description": "The openai project id"
     }
   }
 }

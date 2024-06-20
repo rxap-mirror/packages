@@ -1,6 +1,7 @@
 export interface DocumentationGeneratorSchema {
   openaiApiKey?: string;
-  openaiOrganization?: string;
+  openaiOrgId?: string;
+  openaiProjectId?: string;
   projects: string[];
   offline: boolean;
   filter: string;
