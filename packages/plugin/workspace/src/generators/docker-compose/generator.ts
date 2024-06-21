@@ -137,7 +137,7 @@ function createFrontendDockerCompose(
           labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`^.+$\`)`);
         } else {
           labels.push(`traefik.http.routers.${ name }.rule=PathPrefix(\`/__mfe/latest/${ name }\`)`);
-          labels.push(`traefik.http.routers.user-interface-remote-stheno.middlewares=strip-mfe-prefix@file`);
+          labels.push(`traefik.http.routers.${name}.middlewares=strip-mfe-prefix@file`);
         }
       } else {
         labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`^${host}.+$\`)`);
