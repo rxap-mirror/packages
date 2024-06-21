@@ -1,3 +1,4 @@
+import { CoercePrefix } from '@rxap/utilities';
 import { Mode } from 'fs';
 import {
   dirname,
@@ -326,7 +327,7 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
       return this.wrapped.isFile(filePath);
     }
     if (IsSchematicTreeLike(this.wrapped)) {
-      const testString = `Path "/${ filePath }" is a directory.`;
+      const testString = `Path "${ CoercePrefix(filePath, '/') }" is a directory.`;
       try {
         this.wrapped.get(filePath);
         return true;

@@ -21,7 +21,10 @@ export type VisitTreeItem = { path: string, isFile: boolean };
  * @param dir directory to start the visits default to the root of the tree
  * @param ignoreFolders folders to ignore
  */
-export function* VisitTree(tree: TreeLike, dir: string, ignoreFolders = ['node_modules', '.nx', 'dist', '.angular', 'tmp', 'coverage', /^\..+/]): Generator<VisitTreeItem, void, void> {
+export function* VisitTree(tree: TreeLike, dir = '', ignoreFolders = ['node_modules', '.nx', 'dist', '.angular', 'tmp', 'coverage', /^\..+/]): Generator<VisitTreeItem, void, void> {
+  if (dir.startsWith('/')) {
+    dir = dir.slice(1);
+  }
   const treeAdapter = new TreeAdapter(tree);
   for (const name of treeAdapter.children(dir)) {
     const path = join(dir, name);
