@@ -26,6 +26,10 @@ function skipProject(
   projectName: string,
 ): boolean {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonLibraryProject(tree, options, project, projectName)) {
     return true;
   }

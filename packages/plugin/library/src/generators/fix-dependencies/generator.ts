@@ -463,6 +463,11 @@ function printReport(
 }
 
 function skipProject(tree: Tree, options: SkipProjectOptions, project: ProjectConfiguration, projectName: string) {
+
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonPublishableProject(tree, options, project, projectName)) {
     return true;
   }

@@ -19,6 +19,10 @@ function skipProject(
   projectName: string,
 ): boolean {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonPublishableProject(tree, options, project, projectName)) {
     return true;
   }

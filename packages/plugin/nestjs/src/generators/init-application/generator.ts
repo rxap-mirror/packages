@@ -78,6 +78,10 @@ function skipProject(
   projectName: string,
 ) {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonNestProject(tree, options, project, projectName)) {
     return true;
   }

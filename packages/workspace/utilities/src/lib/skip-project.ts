@@ -17,6 +17,7 @@ import { TreeLike } from './tree';
 
 export interface SkipProjectOptions {
   projects?: string[];
+  project?: string;
 }
 
 /**

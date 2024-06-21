@@ -10,6 +10,10 @@ import { DocumentationGeneratorSchema } from './schema';
 
 function skipProject(project: ProjectConfiguration, projectName: string, options: DocumentationGeneratorSchema) {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (options.projects?.length) {
     return !options.projects.includes(projectName);
   }

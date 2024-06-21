@@ -41,7 +41,6 @@ import {
 } from 'path';
 import { ANGULAR_VERSION } from '../../lib/angular-version';
 import { coerceTestSetup } from '../../lib/coerce-test-setup';
-import { InitGeneratorSchema } from '../init/schema';
 import { cleanup } from './cleanup';
 import { coerceEnvironmentFiles } from './coerce-environment-files';
 import { coerceLocalazyConfigFile } from './coerce-localazy-config-file';
@@ -57,7 +56,11 @@ import { updateTags } from './update-tags';
 import { updateTargetDefaults } from './update-target-defaults';
 import { updateTsConfig } from './update-ts-config';
 
-function skipProject(tree: Tree, options: InitGeneratorSchema, project: ProjectConfiguration, projectName: string) {
+function skipProject(tree: Tree, options: InitApplicationGeneratorSchema, project: ProjectConfiguration, projectName: string) {
+
+  if (options.project === projectName) {
+    return false;
+  }
 
   if (SkipNonAngularProject(tree, options, project, projectName)) {
     return true;

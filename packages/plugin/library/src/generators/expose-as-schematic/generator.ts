@@ -22,6 +22,10 @@ function skipProject(
   projectName: string,
 ) {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonGeneratorsProject(tree, options, project, projectName)) {
     return true;
   }

@@ -14,6 +14,10 @@ function skipProject(
   projectName: string,
 ): boolean {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   return false;
 
 }

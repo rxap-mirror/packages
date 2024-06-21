@@ -22,6 +22,10 @@ import { InitGeneratorSchema } from './schema';
 
 function skipProject(tree: Tree, options: InitGeneratorSchema, project: ProjectConfiguration, projectName: string) {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonNestProject(tree, options, project, projectName)) {
     return true;
   }

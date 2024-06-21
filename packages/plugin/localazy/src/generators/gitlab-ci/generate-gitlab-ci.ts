@@ -9,6 +9,10 @@ import { GitlabCiGeneratorSchema } from './schema';
 
 function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: ProjectConfiguration, projectName: string) {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (!IsApplicationProject(project)) {
     return true;
   }

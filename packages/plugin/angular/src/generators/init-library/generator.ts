@@ -11,12 +11,15 @@ import {
   SkipNonAngularProject,
   SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
-import { InitGeneratorSchema } from '../init/schema';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitLibraryGeneratorSchema } from './schema';
 
-function skipProject(tree: Tree, options: InitGeneratorSchema, project: ProjectConfiguration, projectName: string) {
+function skipProject(tree: Tree, options: InitLibraryGeneratorSchema, project: ProjectConfiguration, projectName: string) {
+
+  if (options.project === projectName) {
+    return false;
+  }
 
   if (SkipNonAngularProject(tree, options, project, projectName)) {
     return true;
