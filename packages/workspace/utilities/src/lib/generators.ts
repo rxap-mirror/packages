@@ -248,3 +248,15 @@ export function HasGenerators(tree: TreeLike, projectRootOrNameOrConfiguration: 
   return true;
 
 }
+
+export function HasGenerator(tree: TreeLike, projectRootOrNameOrConfiguration: string | ProjectConfiguration, generatorName: string) {
+
+  if (!HasGenerators(tree, projectRootOrNameOrConfiguration)) {
+    return false;
+  }
+
+  const generators = GetGenerators(tree, projectRootOrNameOrConfiguration);
+
+  return !!generators.generators?.[generatorName];
+
+}
