@@ -257,6 +257,6 @@ export function HasGenerator(tree: TreeLike, projectRootOrNameOrConfiguration: s
 
   const generators = GetGenerators(tree, projectRootOrNameOrConfiguration);
 
-  return !!generators.generators?.[generatorName];
+  return (!!generators.generators?.[generatorName] || !!generators.schematics?.[generatorName]);
 
 }
