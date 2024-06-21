@@ -1,5 +1,5 @@
 {
-  "version": "18.0.3-dev.0",
+  "version": "18.0.3-dev.1",
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,10 +10,10 @@
     "@angular/cdk": "^18.0.0",
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
-    "@rxap/components": "^18.0.3-dev.0",
-    "@rxap/config": "^18.1.1-dev.0",
-    "@rxap/data-grid": "^18.0.3-dev.0",
-    "@rxap/environment": "^18.0.3-dev.0",
+    "@rxap/components": "^18.0.3-dev.1",
+    "@rxap/config": "^18.1.1-dev.1",
+    "@rxap/data-grid": "^18.0.3-dev.1",
+    "@rxap/environment": "^18.0.3-dev.1",
     "@sentry/angular": "^8.9.2",
     "rxjs": "^7.8.1"
   },
@@ -71,59 +71,59 @@
       },
       {
         "package": "@rxap/components",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.0"
+        "version": "18.1.1-dev.1"
       },
       {
         "package": "@rxap/data-grid",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/definition",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/forms",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.5-dev.0"
+        "version": "1.1.5-dev.1"
       },
       {
         "package": "@rxap/pipes",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.7-dev.0"
+        "version": "1.0.7-dev.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.6-dev.0"
+        "version": "1.1.6-dev.1"
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.3-dev.0"
+        "version": "18.0.3-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.4-dev.0"
+        "version": "16.2.4-dev.1"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.5-dev.0"
+        "version": "3.0.5-dev.1"
       }
     ]
   },

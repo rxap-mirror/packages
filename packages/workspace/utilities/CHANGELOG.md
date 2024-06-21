@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.3.0-dev.0...@rxap/workspace-utilities@19.3.0-dev.1) (2024-06-21)
+
+### Bug Fixes
+
+- check if generators property is defined ([8ff4c36](https://gitlab.com/rxap/packages/commit/8ff4c366d957a93306c240eae7404f1625dbcc5b))
+- check if tree like is valid ([2a6a6a6](https://gitlab.com/rxap/packages/commit/2a6a6a699e88b3e761b061308550121050b5808d))
+- include the schematics property ([3d86ee1](https://gitlab.com/rxap/packages/commit/3d86ee11c3f39b0c853b1d92c77b7b79278dbaf8))
+- normalize paths ([2d92fe1](https://gitlab.com/rxap/packages/commit/2d92fe1207676fff7acc957a56f290157200d37e))
+
+### Features
+
+- add HasGenerator function ([200a944](https://gitlab.com/rxap/packages/commit/200a944ce3d34901d073411c6f7e92314b745907))
+- add run once guard ([92136b9](https://gitlab.com/rxap/packages/commit/92136b9a0bfac5f78ed5217a724576542d01b867))
+
+### Performance Improvements
+
+- improve project json file search ([0e6de0d](https://gitlab.com/rxap/packages/commit/0e6de0de54e2bad4d0dfca9c0ee7b9cb1f3ef6f6))
+
 # [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.2.1-dev.0...@rxap/workspace-utilities@19.3.0-dev.0) (2024-06-20)
 
 ### Features

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.1-dev.1...@rxap/plugin-library@19.3.0-dev.0) (2024-06-21)
+
+### Bug Fixes
+
+- add @nx/devkit as allowedNonPeerDependencies ([7d0aede](https://gitlab.com/rxap/packages/commit/7d0aede55c99ad770efd13ed49b2400762e7e635))
+- catch generator error ([adefd88](https://gitlab.com/rxap/packages/commit/adefd8873a2649c605625eb1415f65d5081267a6))
+- expose generator ([70eec21](https://gitlab.com/rxap/packages/commit/70eec215c1a8f6e670026b0532d5ef2ee6063eaa))
+- support secondary entry points ([c1463e6](https://gitlab.com/rxap/packages/commit/c1463e6c1daa61fa8d370e7be456ac4e490df376))
+- update root package json ([052235d](https://gitlab.com/rxap/packages/commit/052235d3ce0f35d96bc1d08d3e152475b4eb6435))
+
+### Features
+
+- add CoerceInitGenerator function ([573e842](https://gitlab.com/rxap/packages/commit/573e8423536042f210c401a687bffefc0678da44))
+- add CoerceInitGenerator function ([c3fd633](https://gitlab.com/rxap/packages/commit/c3fd6332fe0baf13038ac9e6a436f0c233699a1d))
+- add run once guard ([92136b9](https://gitlab.com/rxap/packages/commit/92136b9a0bfac5f78ed5217a724576542d01b867))
+
 ## [19.2.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.2.1-dev.0...@rxap/plugin-library@19.2.1-dev.1) (2024-06-20)
 
 **Note:** Version bump only for package @rxap/plugin-library

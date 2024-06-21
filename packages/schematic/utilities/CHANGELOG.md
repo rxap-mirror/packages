@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@18.0.3-dev.1...@rxap/schematics-utilities@18.0.3-dev.2) (2024-06-21)
+
+### Performance Improvements
+
+- improve project json file search ([d519c90](https://gitlab.com/rxap/packages/commit/d519c907bd8826bd8b6ed5bd1dab9c4f8d594d1b))
+- improve project json file search ([0e6de0d](https://gitlab.com/rxap/packages/commit/0e6de0de54e2bad4d0dfca9c0ee7b9cb1f3ef6f6))
+
 ## [18.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@18.0.3-dev.0...@rxap/schematics-utilities@18.0.3-dev.1) (2024-06-20)
 
 **Note:** Version bump only for package @rxap/schematics-utilities

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@18.0.3-dev.1...@rxap/schematic-composer@18.0.3-dev.2) (2024-06-21)
+
+### Performance Improvements
+
+- improve project json file search ([0e6de0d](https://gitlab.com/rxap/packages/commit/0e6de0de54e2bad4d0dfca9c0ee7b9cb1f3ef6f6))
+- use tree visit generator ([2dd66d1](https://gitlab.com/rxap/packages/commit/2dd66d103e06ff5cb830e1f9a88c1878240fc672))
+
 ## [18.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@18.0.3-dev.0...@rxap/schematic-composer@18.0.3-dev.1) (2024-06-20)
 
 **Note:** Version bump only for package @rxap/schematic-composer

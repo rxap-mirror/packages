@@ -1,12 +1,12 @@
 {
-  "version": "19.0.0-dev.1",
+  "version": "19.0.0-dev.2",
   "name": "@rxap/plugin-typedoc",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.3.0",
-    "@rxap/plugin-utilities": "^19.0.4-dev.1",
-    "@rxap/utilities": "^16.2.4-dev.0",
-    "@rxap/workspace-utilities": "^19.3.0-dev.0",
+    "@rxap/plugin-utilities": "^19.0.4-dev.2",
+    "@rxap/utilities": "^16.2.4-dev.1",
+    "@rxap/workspace-utilities": "^19.3.0-dev.1",
     "tslib": "2.6.2",
     "typedoc": "^0.25.13"
   },
