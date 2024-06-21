@@ -30,11 +30,13 @@ import {
   ExecuteExternalSchematic,
   ExecuteSchematic,
   GetPackageJson,
-  GetProjectRoot,
-  GetProjectSourceRoot,
   InstallNodePackages,
   UpdateProjectConfigurationRule,
 } from '@rxap/schematics-utilities';
+import {
+  GetProjectRoot,
+  GetProjectSourceRoot,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   SourceFile,

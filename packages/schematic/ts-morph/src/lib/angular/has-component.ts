@@ -5,7 +5,7 @@ import {
 import {
   GetProjectType,
   HasProject,
-} from '@rxap/schematics-utilities';
+} from '@rxap/workspace-utilities';
 import { HasProjectFeature } from './has-project-feature';
 import { join } from 'path';
 import { BuildAngularBasePath } from './build-angular-base-path';

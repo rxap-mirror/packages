@@ -1,6 +1,6 @@
 import { Tree } from '@angular-devkit/schematics';
+import { GetProjectRoot } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import { GetProjectRoot } from './get-project';
 import {
   GetProjectCollectionJson,
   HasProjectCollectionJsonFile,

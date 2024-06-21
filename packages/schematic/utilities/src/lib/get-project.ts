@@ -31,6 +31,9 @@ interface ProjectJson extends ProjectConfiguration, Record<string, any> {
   prefix?: string;
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function FindProject(host: Tree, projectName: string): ProjectJson | null {
   if (PROJECT_LOCATION_CACHE.has(projectName)) {
     const path = PROJECT_LOCATION_CACHE.get(projectName)!;
@@ -55,6 +58,9 @@ export function FindProject(host: Tree, projectName: string): ProjectJson | null
   return null;
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function GetProject(host: Tree, projectName: string): ProjectJson {
   const projectConfiguration: ProjectJson | null = FindProject(host, projectName);
 
@@ -65,10 +71,16 @@ export function GetProject(host: Tree, projectName: string): ProjectJson {
   return projectConfiguration;
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function HasProject(host: Tree, projectName: string): boolean {
   return FindProject(host, projectName) !== null;
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function GetProjectPrefix(host: Tree, projectName: string, defaultPrefix?: string): string {
 
   const project = GetProject(host, projectName);
@@ -114,6 +126,9 @@ export function GetDefaultPrefix(host: Tree): string | null {
   return GetDefaultProject(host)?.prefix ?? null;
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function GetProjectRoot(host: Tree, projectName: string): string {
 
   const project = GetProject(host, projectName);
@@ -127,6 +142,9 @@ export function GetProjectRoot(host: Tree, projectName: string): string {
 
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function GetProjectType(host: Tree, projectName: string): 'library' | 'application' {
 
   const project = GetProject(host, projectName);
@@ -151,6 +169,9 @@ export function HasProjectSourceRoot(host: Tree, projectName: string): boolean {
   return !!GetProject(host, projectName).sourceRoot;
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function GetProjectSourceRoot(host: Tree, projectName: string): string {
 
   const project = GetProject(host, projectName);
@@ -164,6 +185,9 @@ export function GetProjectSourceRoot(host: Tree, projectName: string): string {
 
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function GetRelativePathToProjectRoot(host: Tree, projectName: string): string {
 
   const projectRoot = GetProjectRoot(host, projectName);
@@ -172,6 +196,9 @@ export function GetRelativePathToProjectRoot(host: Tree, projectName: string): s
 
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function GetProjectPackageJson(host: Tree, projectName: string): PackageJson {
 
   const projectRoot = GetProjectRoot(host, projectName);
@@ -180,16 +207,25 @@ export function GetProjectPackageJson(host: Tree, projectName: string): PackageJ
 
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function IsProjectType(host: Tree, projectName: string, type: 'library' | 'application'): boolean {
   return GetProjectType(host, projectName) === type;
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function AssertProjectType(host: Tree, projectName: string, type: 'library' | 'application'): void {
   if (!IsProjectType(host, projectName, type)) {
     throw new SchematicsException(`The project '${ projectName }' has not the type '${ type }'.`);
   }
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function GetProjectPeerDependencies(host: Tree, projectName: string): Record<string, string> {
 
   const projectPackageJson = GetProjectPackageJson(host, projectName);

@@ -10,9 +10,9 @@ import {
 import {
   AddPackageJsonDependencyRule,
   GetPackageJson,
-  GetProjectRoot,
   InstallNodePackages,
 } from '@rxap/schematics-utilities';
+import { GetProjectRoot } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   SourceFile,

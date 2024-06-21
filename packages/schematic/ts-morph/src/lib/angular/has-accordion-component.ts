@@ -5,7 +5,7 @@ import {
 import {
   GetProjectSourceRoot,
   HasProject,
-} from '@rxap/schematics-utilities';
+} from '@rxap/workspace-utilities';
 import { HasProjectFeature } from './has-project-feature';
 import { join } from 'path';
 

@@ -3,12 +3,12 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import { BuildersJson } from '@rxap/workspace-utilities';
-import { join } from 'path';
 import {
+  BuildersJson,
   GetProjectPackageJson,
   GetProjectRoot,
-} from './get-project';
+} from '@rxap/workspace-utilities';
+import { join } from 'path';
 import {
   GetJsonFile,
   UpdateJsonFileOptions,

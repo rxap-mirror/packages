@@ -2,11 +2,11 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
+import { dasherize } from '@rxap/utilities';
 import {
-  dasherize,
   GetProjectSourceRoot,
   HasProject,
-} from '@rxap/schematics-utilities';
+} from '@rxap/workspace-utilities';
 import { buildNestProjectName } from '@rxap/workspace-utilities';
 import { join } from 'path';
 

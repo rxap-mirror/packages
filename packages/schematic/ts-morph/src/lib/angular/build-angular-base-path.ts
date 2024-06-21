@@ -2,7 +2,7 @@ import { Tree } from '@angular-devkit/schematics';
 import {
   GetProjectSourceRoot,
   GetProjectType,
-} from '@rxap/schematics-utilities';
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 
 export interface BuildAngularBasePathOptions {

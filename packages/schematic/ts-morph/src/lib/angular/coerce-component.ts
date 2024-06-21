@@ -17,21 +17,21 @@ import {
   when,
 } from '@angular-devkit/schematics';
 import {
-  classify,
-  CoerceFile,
-  GetProjectPrefix,
-} from '@rxap/schematics-utilities';
-import {
   CoerceComponent,
   CoerceComponentOptions as _CoerceComponentOptions,
 } from '@rxap/ts-morph';
 import {
   camelize,
   capitalize,
+  classify,
   dasherize,
   decamelize,
   underscore,
 } from '@rxap/utilities';
+import {
+  CoerceFile,
+  GetProjectPrefix,
+} from '@rxap/workspace-utilities';
 import Handlebars from 'handlebars';
 import { join } from 'path';
 import {

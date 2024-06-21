@@ -4,18 +4,11 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import { ApplyTsMorphProjectRule } from '@rxap/schematics-ts-morph';
-import {
-  dasherize,
-  GetProjectSourceRoot,
-} from '@rxap/schematics-utilities';
+import { dasherize } from '@rxap/schematics-utilities';
 import { CreateProject } from '@rxap/ts-morph';
+import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
 import { OpenAPIV3 } from 'openapi-types';
 import { join } from 'path';
-import {
-  IndentationText,
-  Project,
-  QuoteKind,
-} from 'ts-morph';
 import { ClearOperation } from '../../lib/clear-operation';
 import {
   COMPONENTS_BASE_PATH,
