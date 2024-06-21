@@ -11,6 +11,16 @@
     "theme.css",
     "LICENSE.md",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/authentication/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/authentication",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

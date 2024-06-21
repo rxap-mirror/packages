@@ -11,6 +11,16 @@
     "LICENSE.md",
     "theme.css",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/status-check/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/status-check",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

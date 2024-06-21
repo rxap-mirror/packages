@@ -21,6 +21,16 @@
     "theme.css",
     "LICENSE.md",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/material/directives/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/material/directives",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

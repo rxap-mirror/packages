@@ -11,6 +11,16 @@
     "theme.css",
     "LICENSE.md",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/pipes/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/pipes",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

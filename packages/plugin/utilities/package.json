@@ -34,5 +34,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/utilities"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "generators": "./generators.json"
 }

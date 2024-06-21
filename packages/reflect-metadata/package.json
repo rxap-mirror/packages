@@ -3,6 +3,7 @@
   "name": "@rxap/reflect-metadata",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "@rxap/utilities": "^16.2.4-dev.0",
     "reflect-metadata": "0.1.13",
     "tslib": "2.6.2"
@@ -32,5 +33,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/reflect-metadata"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "generators": "./generators.json"
 }

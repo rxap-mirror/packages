@@ -3,6 +3,7 @@
   "name": "@rxap/node-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "ignore": "5.2.4",
     "tslib": "2.6.2"
   },
@@ -32,5 +33,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/node/utilities"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "generators": "./generators.json"
 }

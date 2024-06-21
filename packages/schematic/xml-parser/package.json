@@ -3,6 +3,7 @@
   "name": "@rxap/schematics-xml-parser",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "@angular-devkit/core": "18.0.2",
     "@angular-devkit/schematics": "18.0.2",
     "@rxap/schematics-ts-morph": "^18.1.1-dev.1",
@@ -37,5 +38,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/schematic/xml-parser"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "generators": "./generators.json"
 }

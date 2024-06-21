@@ -4,6 +4,7 @@
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -148,5 +149,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/tree"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "generators": "./generators.json"
 }

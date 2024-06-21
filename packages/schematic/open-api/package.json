@@ -3,6 +3,7 @@
   "name": "@rxap/schematics-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "@angular-devkit/core": "18.0.2",
     "@angular-devkit/schematics": "18.0.2",
     "@rxap/json-schema-to-typescript": "^16.0.6-dev.0",

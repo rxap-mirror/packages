@@ -4,6 +4,7 @@
   "description": "A utility packages to convert xml files into class instances.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "@rxap/mixin": "^16.0.6-dev.0",
     "@rxap/reflect-metadata": "^1.0.7-dev.0",
     "@rxap/utilities": "^16.2.4-dev.0",
@@ -36,5 +37,6 @@
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/xml-parser"
-  }
+  },
+  "generators": "./generators.json"
 }

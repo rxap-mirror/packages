@@ -11,6 +11,16 @@
     "LICENSE.md",
     "theme.css",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/changelog/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/changelog",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

@@ -11,6 +11,16 @@
     "theme.css",
     "LICENSE.md",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/contenteditable/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/contenteditable",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

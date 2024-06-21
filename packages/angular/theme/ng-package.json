@@ -12,6 +12,16 @@
     "theme.css",
     "src/restore-theme-settings.js",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/theme/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/theme",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

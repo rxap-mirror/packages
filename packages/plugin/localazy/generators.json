@@ -9,6 +9,11 @@
       "factory": "./src/generators/gitlab-ci/generator",
       "schema": "./src/generators/gitlab-ci/schema.json",
       "description": "gitlab-ci generator"
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
     }
   },
   "schematics": {

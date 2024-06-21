@@ -4,6 +4,23 @@
       "factory": "./src/schematics/generate/index",
       "schema": "./src/schematics/generate/schema.json",
       "description": "Generates for each operation a remote method or data source"
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
+    }
+  },
+  "generators": {
+    "generate": {
+      "factory": "./src/schematics/generate/index",
+      "schema": "./src/schematics/generate/schema.json",
+      "description": "Generates for each operation a remote method or data source"
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
     }
   }
 }

@@ -11,6 +11,16 @@
     "LICENSE.md",
     "theme.css",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/pub-sub/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/pub-sub",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

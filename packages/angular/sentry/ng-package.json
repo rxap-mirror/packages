@@ -11,6 +11,16 @@
     "theme.css",
     "LICENSE.md",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "./packages/angular/sentry/src/generators",
+      "glob": "**/!(*.ts",
+      "output": "./src/generators"
+    },
+    {
+      "input": "./packages/angular/sentry",
+      "glob": "generators.json",
+      "output": "."
+    }
   ]
 }

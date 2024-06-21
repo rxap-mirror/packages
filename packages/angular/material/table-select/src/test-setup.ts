@@ -15,3 +15,10 @@ jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
   // Change this to fit your unit test needs.
   return args[0];
 });
+
+import '@angular/localize/init';
+jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
+  // This template tag function just returns the first argument with no transformations.
+  // Change this to fit your unit test needs.
+  return args[0];
+});

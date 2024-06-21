@@ -4,6 +4,7 @@
   "description": "Provides the FormSystem concept for RxAP.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -166,5 +167,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/form-window-system"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "generators": "./generators.json"
 }

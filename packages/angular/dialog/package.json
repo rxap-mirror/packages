@@ -4,6 +4,7 @@
   "description": "A collection of angular material dialog components",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -81,5 +82,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/dialog"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "generators": "./generators.json"
 }

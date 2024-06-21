@@ -3,6 +3,7 @@
   "name": "@rxap/rxjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "@rxap/utilities": "^16.2.4-dev.0",
     "tslib": "2.6.2"
   },
@@ -34,5 +35,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/rxjs"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "generators": "./generators.json"
 }

@@ -5,6 +5,11 @@
       "schema": "./src/generators/preset/schema.json",
       "description": "preset generator",
       "x-use-standalone-layout": true
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
     }
   }
 }

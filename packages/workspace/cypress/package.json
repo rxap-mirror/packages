@@ -3,6 +3,7 @@
   "name": "@rxap/workspace-cypress",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.3.0",
     "tslib": "2.6.2"
   },
   "author": {
@@ -29,5 +30,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/workspace/cypress"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "generators": "./generators.json"
 }

@@ -4,6 +4,23 @@
       "factory": "./src/schematics/compose/index",
       "schema": "./src/schematics/compose/schema.json",
       "description": "compose schematic"
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
+    }
+  },
+  "generators": {
+    "compose": {
+      "factory": "./src/schematics/compose/index",
+      "schema": "./src/schematics/compose/schema.json",
+      "description": "compose schematic"
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
     }
   }
 }
