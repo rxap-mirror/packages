@@ -32,7 +32,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   }
 
   if (IsPublishable(tree, project)) {
-    initPublishableProject(tree, projectName, project, options);
+    await initPublishableProject(tree, projectName, project, options);
   }
 
   if (IsPluginProject(project)) {

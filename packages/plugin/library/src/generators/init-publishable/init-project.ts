@@ -14,11 +14,12 @@ import {
   RemoveIgnorePattern,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
+import { CoerceInitGenerator } from './coerce-init-generator';
 import { InitPublishableGeneratorSchema } from './schema';
 import { updateProjectPackageJson } from './update-project-package-json';
 import { updateProjectTargets } from './update-project-targets';
 
-export function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitPublishableGeneratorSchema) {
+export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitPublishableGeneratorSchema) {
   console.log(`init publishable library project: ${ projectName }`);
 
   const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
@@ -53,5 +54,7 @@ export function initProject(tree: Tree, projectName: string, project: ProjectCon
     rxapProject.implicitDependencies.push(projectName);
     rxapProject.implicitDependencies = rxapProject.implicitDependencies.filter(unique());
   }
+
+  await CoerceInitGenerator(tree, projectName, project, options);
 
 }

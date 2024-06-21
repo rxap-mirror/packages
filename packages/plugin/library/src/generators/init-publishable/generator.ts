@@ -48,7 +48,7 @@ export async function initPublishableGenerator(
         continue;
       }
 
-      initProject(tree, projectName, project, options);
+      await initProject(tree, projectName, project, options);
 
       updateProjectConfiguration(tree, projectName, project);
 
