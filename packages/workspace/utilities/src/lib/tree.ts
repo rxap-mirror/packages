@@ -267,7 +267,14 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
     throw new Error('Invalid tree');
   }
 
-  constructor(public readonly wrapped: TreeLike) {}
+  constructor(public readonly wrapped: TreeLike) {
+    if (!wrapped) {
+      throw new Error('FATAL: wrapped tree is not defined');
+    }
+    if (!IsGeneratorTreeLike(wrapped) && !IsSchematicTreeLike(wrapped)) {
+      throw new Error('Invalid tree');
+    }
+  }
 
   // region generic
   delete(path: string): void {
