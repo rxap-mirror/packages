@@ -450,7 +450,7 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.2.0-dev.3"
+        "version": "19.2.0-dev.4"
       },
       {
         "package": "@rxap/plugin-application",
@@ -462,7 +462,7 @@
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.3-dev.4"
+        "version": "19.0.3-dev.5"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -514,7 +514,7 @@
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.1-dev.4"
+        "version": "19.0.1-dev.5"
       },
       {
         "package": "@rxap/preset-workspace",
