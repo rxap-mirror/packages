@@ -239,9 +239,9 @@ export function HasGenerators(tree: TreeLike, projectRootOrNameOrConfiguration: 
     return false;
   }
 
-  const generators = GetGeneratorFile(tree, projectRoot, packageJson);
+  const { generators = {} } = GetGeneratorFile(tree, projectRoot, packageJson);
 
-  if (!Object.keys(generators.generators).length) {
+  if (!Object.keys(generators).length) {
     return false;
   }
 
