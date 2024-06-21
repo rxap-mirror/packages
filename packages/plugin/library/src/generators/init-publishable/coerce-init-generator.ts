@@ -10,7 +10,6 @@ import {
   GetProjectRoot,
   GetProjectSourceRoot,
   GetTarget,
-  GetTargetOptions,
   HasGenerator,
   IsAngularProject,
   ReadNgPackageJson,
@@ -21,6 +20,14 @@ import { InitPublishableGeneratorSchema } from './schema';
 
 export async function CoerceInitGenerator(
   tree: Tree, projectName: string, project: ProjectConfiguration, options: InitPublishableGeneratorSchema) {
+
+  if (IsAngularProject(project)) {
+    const ngPackagr = ReadNgPackageJson(tree, project);
+    ngPackagr.allowedNonPeerDependencies ??= [];
+    ngPackagr.allowedNonPeerDependencies.push('@nx/devkit');
+    ngPackagr.allowedNonPeerDependencies = Array.from(new Set(ngPackagr.allowedNonPeerDependencies));
+    WriteNgPackageJson(tree, project, ngPackagr);
+  }
 
   if (HasGenerator(tree, projectName, 'init')) {
     return;
