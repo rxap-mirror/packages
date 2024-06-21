@@ -1,8 +1,10 @@
 import { libraryGenerator as angularLibraryGenerator } from '@nx/angular/generators';
 import { Schema as AngularLibraryGeneratorSchema } from '@nx/angular/src/generators/library/schema';
 import { Tree } from '@nx/devkit';
+import { FixDependencies } from '@rxap/plugin-library';
 import {
   GetDefaultGeneratorOptions,
+  GetProject,
   GetProjectSourceRoot,
   GetWorkspaceScope,
   HasProject,
@@ -10,6 +12,7 @@ import {
   UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
+import { cleanup } from './cleanup';
 import { InitLibraryGeneratorSchema } from './schema';
 
 export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
@@ -99,6 +102,12 @@ export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSc
         UpdateProjectPackageJson(tree, packageJson => {
           packageJson.private = true;
         }, { projectName });
+      }
+
+      cleanup(tree, GetProject(tree, projectName), projectName);
+
+      if (defaultOptions.buildable || defaultOptions.publishable) {
+        await FixDependencies(tree, { projects: [ projectName ] });
       }
 
     }
