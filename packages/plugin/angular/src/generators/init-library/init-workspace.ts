@@ -5,7 +5,6 @@ import {
   IsAlreadyExecuted,
 } from '@rxap/workspace-utilities';
 import { ANGULAR_VERSION } from '../../lib/angular-version';
-import { coerceProjects } from './coerce-projects';
 import { InitLibraryGeneratorSchema } from './schema';
 import { setGeneralTargetDefaults } from './set-general-target-defaults';
 
@@ -23,9 +22,5 @@ export async function initWorkspace(tree: Tree, options: InitLibraryGeneratorSch
   LibraryInitWorkspace(tree, options);
 
   setGeneralTargetDefaults(tree);
-
-  if (options.coerce) {
-    await coerceProjects(tree, options);
-  }
 
 }

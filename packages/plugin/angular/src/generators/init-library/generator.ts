@@ -11,6 +11,7 @@ import {
   SkipNonAngularProject,
   SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
+import { coerceProjects } from './coerce-projects';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitLibraryGeneratorSchema } from './schema';
@@ -51,6 +52,9 @@ export async function initLibraryGenerator(
 
   await initWorkspace(tree, options);
 
+  if (options.coerce) {
+    await coerceProjects(tree, options);
+  }
 
   if (!options.skipProjects) {
 
