@@ -19,6 +19,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/sentry",
   "keywords": [
     "angular",
@@ -41,7 +42,7 @@
       },
       {
         "package": "@angular/router",
-        "version": " 14.x  18.x"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/config",
@@ -66,6 +67,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/sentry"
   },
-  "sideEffects": false,
-  "generators": "./generators.json"
+  "sideEffects": false
 }

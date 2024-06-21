@@ -36,6 +36,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/table-select",
   "keywords": [
     "angular",
@@ -51,7 +52,7 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "18.0.0 || 19.0.0"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/cdk",
@@ -196,6 +197,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/material/table-select"
   },
-  "sideEffects": false,
-  "generators": "./generators.json"
+  "sideEffects": false
 }

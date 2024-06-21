@@ -497,6 +497,10 @@
         "version": "19.0.3-dev.1"
       },
       {
+        "package": "@rxap/plugin-typedoc",
+        "version": "19.0.0-dev.1"
+      },
+      {
         "package": "@rxap/plugin-utilities",
         "version": "19.0.4-dev.1"
       },

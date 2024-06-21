@@ -40,6 +40,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/layout",
   "keywords": [
     "angular",
@@ -199,6 +200,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/layout"
   },
-  "sideEffects": false,
-  "generators": "./generators.json"
+  "sideEffects": false
 }

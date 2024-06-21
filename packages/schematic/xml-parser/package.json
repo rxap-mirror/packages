@@ -3,9 +3,9 @@
   "name": "@rxap/schematics-xml-parser",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.0",
     "@angular-devkit/core": "18.0.2",
     "@angular-devkit/schematics": "18.0.2",
+    "@nx/devkit": "19.3.0",
     "@rxap/schematics-ts-morph": "^18.1.1-dev.1",
     "@rxap/schematics-utilities": "^18.0.3-dev.1",
     "@rxap/xml-parser": "^16.0.6-dev.0",
@@ -20,6 +20,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/xml-parser",
   "keywords": [
     "packages",
@@ -38,6 +39,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/schematic/xml-parser"
   },
-  "type": "commonjs",
-  "generators": "./generators.json"
+  "type": "commonjs"
 }

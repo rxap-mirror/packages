@@ -25,6 +25,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/components",
   "keywords": [
     "angular",
@@ -39,7 +40,7 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "18.0.0 || 19.0.0"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/cdk",
@@ -55,7 +56,7 @@
       },
       {
         "package": "@angular/forms",
-        "version": "18.0.0 || 19.0.0"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/material",
@@ -63,7 +64,7 @@
       },
       {
         "package": "@angular/platform-browser",
-        "version": "18.0.0 || 19.0.0"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/router",
@@ -88,6 +89,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/components"
   },
-  "sideEffects": false,
-  "generators": "./generators.json"
+  "sideEffects": false
 }

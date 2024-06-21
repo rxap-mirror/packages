@@ -19,6 +19,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/vault",
   "keywords": [
     "nest",
@@ -49,6 +50,5 @@
     "directory": "packages/nest/vault"
   },
   "type": "commonjs",
-  "typings": "./src/index.d.ts",
-  "generators": "./generators.json"
+  "typings": "./src/index.d.ts"
 }

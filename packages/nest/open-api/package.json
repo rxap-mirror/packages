@@ -30,6 +30,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/open-api",
   "keywords": [
     "nest",
@@ -63,7 +64,7 @@
       },
       {
         "package": "@nestjs/microservices",
-        "version": "10.0.0"
+        "version": "10.3.8"
       },
       {
         "package": "@nestjs/mongoose",
@@ -71,7 +72,7 @@
       },
       {
         "package": "@nestjs/platform-express",
-        "version": "10.0.0"
+        "version": "10.3.8"
       },
       {
         "package": "@nestjs/sequelize",
@@ -120,6 +121,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/open-api"
   },
-  "type": "commonjs",
-  "generators": "./generators.json"
+  "type": "commonjs"
 }

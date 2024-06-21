@@ -3,8 +3,8 @@
   "name": "@rxap/workspace-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.0",
     "@angular-devkit/schematics": "18.0.2",
+    "@nx/devkit": "19.3.0",
     "@rxap/node-utilities": "^1.3.1-dev.0",
     "@rxap/utilities": "^16.2.4-dev.0",
     "colors": "1.4.0",
@@ -20,6 +20,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/workspace/utilities",
   "keywords": [
     "packages",
@@ -38,6 +39,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/workspace/utilities"
   },
-  "type": "commonjs",
-  "generators": "./generators.json"
+  "type": "commonjs"
 }

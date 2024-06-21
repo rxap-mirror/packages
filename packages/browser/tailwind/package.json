@@ -16,6 +16,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/browser/tailwind",
   "keywords": [
     "browser",
@@ -34,6 +35,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/browser/tailwind"
   },
-  "type": "commonjs",
-  "generators": "./generators.json"
+  "type": "commonjs"
 }

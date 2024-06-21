@@ -25,6 +25,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/firebase",
   "keywords": [
     "angular",
@@ -51,11 +52,11 @@
       },
       {
         "package": "@angular/platform-browser",
-        "version": "12.0.0 || 13.0.0 || 14.0.0 || 15.0.0"
+        "version": "18.0.1"
       },
       {
         "package": "@angular/platform-browser-dynamic",
-        "version": "12.0.0 || 13.0.0 || 14.0.0 || 15.0.0"
+        "version": "18.0.1"
       },
       {
         "package": "@rxap/config",
@@ -84,6 +85,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/firebase"
   },
-  "sideEffects": false,
-  "generators": "./generators.json"
+  "sideEffects": false
 }

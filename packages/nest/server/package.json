@@ -25,6 +25,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/server",
   "keywords": [
     "nest",
@@ -58,7 +59,7 @@
       },
       {
         "package": "@nestjs/platform-express",
-        "version": "10.0.0"
+        "version": "10.3.8"
       },
       {
         "package": "@nestjs/swagger",
@@ -91,6 +92,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/server"
   },
-  "type": "commonjs",
-  "generators": "./generators.json"
+  "type": "commonjs"
 }

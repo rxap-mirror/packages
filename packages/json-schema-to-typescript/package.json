@@ -4,8 +4,8 @@
   "description": "Generates typescript interfaces from json schema definition.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.0",
     "@apidevtools/json-schema-ref-parser": "9.0.9",
+    "@nx/devkit": "19.3.0",
     "@rxap/utilities": "^16.2.4-dev.0",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2"
@@ -18,6 +18,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/json-schema-to-typescript",
   "keywords": [
     "json-schema-to-typescript",
@@ -35,6 +36,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/json-schema-to-typescript"
   },
-  "type": "commonjs",
-  "generators": "./generators.json"
+  "type": "commonjs"
 }

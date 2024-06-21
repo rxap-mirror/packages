@@ -21,6 +21,7 @@
   "devDependencies": {
     "xmldom": "^0.6.0"
   },
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/xml-parser",
   "keywords": [
     "packages",
@@ -37,6 +38,5 @@
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/xml-parser"
-  },
-  "generators": "./generators.json"
+  }
 }

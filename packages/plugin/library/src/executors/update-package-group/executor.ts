@@ -7,7 +7,10 @@ import {
   readPackageJsonForProjectWithRetry,
   writePackageJsonFormProject,
 } from '@rxap/plugin-utilities';
-import { PackageJson } from '@rxap/workspace-utilities';
+import {
+  GetRootPackageJson,
+  PackageJson,
+} from '@rxap/workspace-utilities';
 import { readFileSync } from 'fs';
 import {
   ArrayPackageGroup,
@@ -17,7 +20,18 @@ import {
 import { join } from 'path';
 import { UpdatePackageGroupExecutorSchema } from './schema';
 
-function normalizePackageVersion(version: string): string {
+let rootPackageJson: PackageJson | null = null;
+
+function normalizePackageVersion(packageName: string, version: string): string {
+  if (!rootPackageJson) {
+    rootPackageJson = GetRootPackageJson();
+  }
+  if (rootPackageJson?.dependencies?.[packageName]) {
+    version = rootPackageJson.dependencies[packageName];
+  }
+  if (rootPackageJson?.devDependencies?.[packageName]) {
+    version = rootPackageJson.devDependencies[packageName];
+  }
   return version.replace(/[\^~>=<]/g, '');
 }
 
@@ -26,7 +40,7 @@ function convertToPackageGroup(input: Record<string, string>, packageGroupRegex:
     .filter(([ packageName ]) => packageGroupRegex.some(regex => regex.test(packageName)))
     .map(([ packageName, version ]) => ({
       package: packageName,
-      version: normalizePackageVersion(version),
+      version: normalizePackageVersion(packageName, version),
     }));
 }
 

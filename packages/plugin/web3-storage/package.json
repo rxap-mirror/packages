@@ -18,6 +18,7 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "executors": "./executors.json",
+  "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/web3-storage",
   "keywords": [
     "ipfs",
@@ -39,6 +40,5 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/web3-storage"
   },
-  "type": "commonjs",
-  "generators": "./generators.json"
+  "type": "commonjs"
 }
