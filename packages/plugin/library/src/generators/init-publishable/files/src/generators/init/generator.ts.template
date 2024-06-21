@@ -35,12 +35,14 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     rootPackageJson.dependencies[packageName] = rootPackageJson.devDependencies[packageName];
     delete rootPackageJson.devDependencies[packageName];
     isDevDependency = false;
+    tree.write('package.json', JSON.stringify(rootPackageJson, null, 2));
   }
   if (!isDevDependency && [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/]) {
     rootPackageJson.devDependencies ??= {};
     rootPackageJson.devDependencies[packageName] = rootPackageJson.dependencies[packageName];
     delete rootPackageJson.dependencies[packageName];
     isDevDependency = true;
+    tree.write('package.json', JSON.stringify(rootPackageJson, null, 2));
   }
 
   const missingPeerDependencies = Object.entries(peerDependencies)
