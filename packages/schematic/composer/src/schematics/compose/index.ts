@@ -338,6 +338,7 @@ export default function (options: ComposeSchematicSchema) {
 
     const rootPackageJson = GetRootPackageJson(host);
 
+
     let rule: Rule;
 
     if (project) {

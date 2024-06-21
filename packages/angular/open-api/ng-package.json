@@ -4,7 +4,7 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": ["openapi-types", "ajv"],
+  "allowedNonPeerDependencies": ["openapi-types", "ajv", "@nx/devkit"],
   "assets": [
     "README.md",
     "CHANGELOG.md",

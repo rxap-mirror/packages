@@ -23,5 +23,6 @@
       "glob": "generators.json",
       "output": "."
     }
-  ]
+  ],
+  "allowedNonPeerDependencies": ["@nx/devkit"]
 }
