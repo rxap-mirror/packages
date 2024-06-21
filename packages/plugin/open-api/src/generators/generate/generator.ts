@@ -108,7 +108,7 @@ export async function generateGenerator(
   }, project => GenerateOperation(openapi, project, options, nestGeneratorFunctionList));
 
   if (options.export) {
-    await LibraryIndexExportGenerator(tree, { projects: [ options.project ] });
+    await LibraryIndexExportGenerator(tree, { project: options.project });
   } else {
     CoerceFile(tree, join(GetProjectSourceRoot(tree, projectName), 'index.ts'), 'export {};', true);
   }

@@ -1,5 +1,5 @@
 export interface IndexExportGeneratorSchema {
-  project: string;
+  project?: string;
   projects?: string[];
   generateRootExport?: boolean;
 }
