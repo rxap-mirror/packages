@@ -10,6 +10,14 @@
       "items": {
         "type": "string"
       }
+    },
+    "project": {
+      "type": "string"
+    },
+    "generateRootExport": {
+      "type": "boolean",
+      "default": true,
+      "description": "Generate index.ts in the source root of the project"
     }
   },
   "required": []

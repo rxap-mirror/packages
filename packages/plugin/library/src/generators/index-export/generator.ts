@@ -3,6 +3,7 @@ import {
   getProjects,
   Tree,
 } from '@nx/devkit';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceFile,
   GetProjectRoot,
@@ -17,9 +18,9 @@ import {
 } from 'path';
 import { IndexExportGeneratorSchema } from './schema';
 
-function generateIndexFile(tree: Tree, sourceRoot: string) {
+function generateIndexFile(tree: Tree, sourceRoot: string, libRootFolder = 'lib') {
 
-  const libRoot = join(sourceRoot, 'lib');
+  const libRoot = join(sourceRoot, libRootFolder);
 
   let filePathList: string[] = [];
 
@@ -67,11 +68,15 @@ function generateIndexFile(tree: Tree, sourceRoot: string) {
 
     if (map.has('index.ts')) {
       console.log('skip folder with index.ts file', basePath);
-      rootIndexFile += `export * from './lib/${ basePath }/index';\n`;
+      rootIndexFile += `export * from './${ join(libRootFolder, basePath) }/index';\n`;
     } else {
       for (const fileName of map.get(basePath)!) {
-        const fullPathToLibRoot = join('lib', basePath, fileName);
-        rootIndexFile += `export * from './${ fullPathToLibRoot.replace(/\.ts$/, '') }';\n`;
+        const fullPathToLibRoot = join(libRootFolder, basePath, fileName);
+        const importPath =  fullPathToLibRoot.replace(/\.ts$/, '');
+        if (importPath === 'index') {
+          continue;
+        }
+        rootIndexFile += `export * from './${importPath}';\n`;
       }
     }
 
@@ -89,6 +94,10 @@ function generateIndexFile(tree: Tree, sourceRoot: string) {
 
 function skipProject(tree: Tree, options: IndexExportGeneratorSchema, project: any, projectName: string) {
 
+  if (options.project === projectName) {
+    return false;
+  }
+
   if (SkipNonLibraryProject(tree, options, project, projectName)) {
     return true;
   }
@@ -97,6 +106,10 @@ function skipProject(tree: Tree, options: IndexExportGeneratorSchema, project: a
 }
 
 export async function indexExportGenerator(tree: Tree, options: IndexExportGeneratorSchema) {
+  options.projects ??= [];
+  if (options.project) {
+    CoerceArrayItems(options.projects, [options.project]);
+  }
   console.log('index export generator: ', options);
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
@@ -111,6 +124,14 @@ export async function indexExportGenerator(tree: Tree, options: IndexExportGener
       }
     }
 
+    if (Array.isArray(project.targets?.build?.options?.additionalEntryPoints)) {
+      for (const entryPoint of project.targets.build.options.additionalEntryPoints) {
+        if (entryPoint.endsWith('index.ts')) {
+          generateIndexFile(tree, dirname(entryPoint), '');
+        }
+      }
+    }
+
     const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
 
     if (!projectSourceRoot) {
@@ -118,7 +139,9 @@ export async function indexExportGenerator(tree: Tree, options: IndexExportGener
       continue;
     }
 
-    generateIndexFile(tree, projectSourceRoot);
+    if (options.generateRootExport) {
+      generateIndexFile(tree, projectSourceRoot);
+    }
 
   }
 
