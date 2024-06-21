@@ -9926,6 +9926,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/utilities@workspace:packages/utilities"
   dependencies:
+    "@nx/devkit": 19.3.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft

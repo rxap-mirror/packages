@@ -9,6 +9,7 @@ import {
   DeleteRecursive,
   GetProjectRoot,
   GetProjectSourceRoot,
+  GetTarget,
   GetTargetOptions,
   HasGenerator,
   IsAngularProject,
@@ -50,9 +51,10 @@ export async function CoerceInitGenerator(
     CoerceAssets(ngPackagr.assets, generatorsAssets);
     WriteNgPackageJson(tree, project, ngPackagr);
   } else {
-    const buildOptions = GetTargetOptions<{ assets?: Assets }>(project);
-    buildOptions.assets ??= [];
-    CoerceAssets(buildOptions.assets, generatorsAssets);
+    const buildTarget = GetTarget(project, 'build');
+    buildTarget.options ??= {};
+    buildTarget.options.assets ??= [];
+    CoerceAssets(buildTarget.options.assets, generatorsAssets);
   }
   // endregion
 
@@ -64,6 +66,6 @@ export async function CoerceInitGenerator(
     nameAndDirectoryFormat: 'as-provided'
   });
 
-  DeleteRecursive(tree, join(projectSourceRoot, 'generators', 'init', 'files'));
+  DeleteRecursive(tree, join(projectSourceRoot, 'generators', 'init'));
 
 }

@@ -26,16 +26,6 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   updateProjectTargets(project, options);
   updateProjectPackageJson(tree, project, projectName, rootPackageJson);
-  if (projectName !== 'rxap') {
-    CoerceFilesStructure(tree, {
-      srcFolder: join(__dirname, 'files'),
-      target: project.root,
-      overwrite: options.overwrite,
-    });
-    CoerceFile(tree, join(project.root, 'CHANGELOG.md'));
-    CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
-    CoerceFile(tree, join(project.root, 'GUIDES.md'));
-  }
   if (tree.exists('LICENSE')) {
     CoerceFile(tree, join(project.root, 'LICENSE.md'), tree.read('LICENSE')!);
     CoerceFile(tree, join(project.root, 'LICENSE'), tree.read('LICENSE')!);
@@ -56,5 +46,16 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   }
 
   await CoerceInitGenerator(tree, projectName, project, options);
+
+  if (projectName !== 'rxap') {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files'),
+      target: project.root,
+      overwrite: options.overwrite,
+    });
+    CoerceFile(tree, join(project.root, 'CHANGELOG.md'));
+    CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
+    CoerceFile(tree, join(project.root, 'GUIDES.md'));
+  }
 
 }
