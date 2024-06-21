@@ -84,7 +84,7 @@ export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSc
 
       await angularLibraryGenerator(tree, schema);
 
-      if (!options.indexExport) {
+      if (!options.indexExport || options.targets?.indexExport === false) {
         UpdateTsConfigJson(tree, tsConfig => {
           tsConfig.compilerOptions ??= {};
           tsConfig.compilerOptions.paths ??= {};
@@ -98,7 +98,7 @@ export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSc
         }, { infix: 'base' });
       }
 
-      if (defaultOptions.buildable && !defaultOptions.publishable) {
+      if (schema.buildable && !schema.publishable) {
         UpdateProjectPackageJson(tree, packageJson => {
           packageJson.private = true;
         }, { projectName });
@@ -106,10 +106,12 @@ export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSc
 
       cleanup(tree, GetProject(tree, projectName), projectName);
 
-      if (defaultOptions.buildable || defaultOptions.publishable) {
+      if (schema.buildable || schema.publishable) {
         await FixDependencies(tree, { projects: [ projectName ] });
       }
 
+    } else {
+      console.log(`project ${ projectName } already exists`.grey);
     }
 
   }
