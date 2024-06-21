@@ -88,6 +88,7 @@ export * from './lib/get-workspace-scope';
 export * from './lib/has-components';
 export * from './lib/has-project-feature';
 export * from './lib/has-target';
+export * from './lib/is-already-executed';
 export * from './lib/is-buildable';
 export * from './lib/is-project';
 export * from './lib/is-publishable';
