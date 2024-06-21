@@ -9285,7 +9285,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-angular@^19.2.0-dev.1, @rxap/plugin-angular@workspace:packages/plugin/angular":
+"@rxap/plugin-angular@^19.2.0-dev.2, @rxap/plugin-angular@workspace:packages/plugin/angular":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-angular@workspace:packages/plugin/angular"
   dependencies:
@@ -9339,7 +9339,7 @@ __metadata:
   dependencies:
     "@nx/angular": 19.3.0
     "@nx/devkit": 19.3.0
-    "@rxap/plugin-angular": ^19.2.0-dev.1
+    "@rxap/plugin-angular": ^19.2.0-dev.2
     "@rxap/ts-morph": ^1.4.1-dev.1
     "@rxap/utilities": ^16.2.4-dev.1
     "@rxap/workspace-ts-morph": ^19.1.1-dev.2
@@ -9536,7 +9536,7 @@ __metadata:
   resolution: "@rxap/preset-angular@workspace:packages/preset/angular"
   dependencies:
     "@nx/devkit": 19.3.0
-    "@rxap/plugin-angular": ^19.2.0-dev.1
+    "@rxap/plugin-angular": ^19.2.0-dev.2
     "@rxap/plugin-workspace": ^19.1.1-dev.2
     tslib: 2.6.2
   languageName: unknown
