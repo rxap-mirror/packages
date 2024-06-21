@@ -7,6 +7,7 @@ import {
   Optional,
   signal,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { RXAP_LAYOUT_APPS_GRID } from '../../tokens';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,6 +42,7 @@ import {
     MatButtonModule,
     MatIconModule,
     NgOptimizedImage,
+    RouterLink,
   ],
 })
 export class AppsButtonComponent implements OnInit, OnDestroy {

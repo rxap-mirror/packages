@@ -3,12 +3,24 @@
   <div *ngIf="isOpen" class="flex flex-row items-center gap-6">
 
     <div *ngFor="let app of appList()" class="h-10">
-      <a [href]="app.href" mat-stroked-button>
+      <a *ngIf="app.href" [href]="app.href" [target]="app.target ?? '_self'" mat-stroked-button>
         <span class="flex flex-row items-center gap-4">
           <img *ngIf="app.image" [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
           <span class="label grow-0">{{app.label}}</span>
         </span>
       </a>
+      <a *ngIf="app.routerLink" mat-stroked-button [routerLink]="app.routerLink">
+        <span class="flex flex-row items-center gap-4">
+          <img *ngIf="app.image" [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
+          <span class="label grow-0">{{app.label}}</span>
+        </span>
+      </a>
+      <button *ngIf="!app.routerLink && !app.href" mat-stroked-button [disabled]="true">
+        <span class="flex flex-row items-center gap-4">
+          <img *ngIf="app.image" [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
+          <span class="label grow-0">{{app.label}}</span>
+        </span>
+      </button>
     </div>
 
   </div>

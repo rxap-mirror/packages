@@ -15,9 +15,11 @@ import { JoinPath } from '@rxap/utilities';
 import { firstValueFrom } from 'rxjs';
 
 export interface ExternalApps {
+  target?: string;
   image?: string;
   label: string;
-  href: string;
+  href?: string;
+  routerLink?: string[];
   empty?: false;
   hidden?: boolean;
   id?: string;
@@ -48,12 +50,23 @@ export class AppUrlService {
 
     const app = this.getApp(appId);
 
-    if (app) {
-      return JoinPath(app.href, infix, path);
+    if (!app || !app.href) {
+      return null;
     }
 
-    return null;
+    return JoinPath(app.href, infix, path);
 
+  }
+
+  public getAppRouterLink(appId: string, path: string): string[] | null {
+
+    const app = this.getApp(appId);
+
+    if (!app || !app.routerLink) {
+      return null;
+    }
+
+    return [...app.routerLink, path];
   }
 
   public getAppUrlOrThrow(appId: string, path: string): string {
@@ -61,7 +74,15 @@ export class AppUrlService {
     if (url) {
       return url;
     }
-    throw new Error(`Could not find app with id "${ appId }"`);
+    throw new Error(`Could not find url for app with id "${ appId }"`);
+  }
+
+  public getAppRouterLinkOrThrow(appId: string, path: string): string[] {
+    const routerLink = this.getAppRouterLink(appId, path);
+    if (routerLink) {
+      return routerLink;
+    }
+    throw new Error(`Could not find router link for app with id "${ appId }"`);
   }
 
   public navigate(appId: string, path: string): void {
