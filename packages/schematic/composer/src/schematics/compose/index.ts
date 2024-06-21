@@ -10,7 +10,6 @@ import { HasProjectFeature } from '@rxap/schematics-ts-morph';
 import {
   AddPackageJsonDevDependencyRule,
   GlobalOptions,
-  HasProjectSourceRoot,
 } from '@rxap/schematics-utilities';
 import {
   coerceArray,
@@ -25,6 +24,7 @@ import {
   GetProjectRoot,
   GetProjectSourceRoot,
   GetRootPackageJson,
+  HasProjectSourceRoot,
   IsLibraryProject,
   VisitTree,
 } from '@rxap/workspace-utilities';

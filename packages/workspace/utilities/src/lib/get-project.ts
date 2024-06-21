@@ -25,6 +25,7 @@ import {
   TreeAdapter,
   TreeLike,
 } from './tree';
+import { VisitTree } from './visit-tree';
 
 export interface ProjectJson extends ProjectConfiguration, Record<string, any> {
   prefix?: string;
@@ -62,6 +63,19 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
     const projects = getProjects(tree);
     return projects.get(projectName) ?? null;
   }
+  if (PROJECT_LOCATION_CACHE.size === 0) {
+    console.log(`The project location cache is empty. Build cache.`.yellow);
+    const treeAdapter = new TreeAdapter(tree);
+    for (const { path, isFile } of VisitTree(tree)) {
+      if (isFile && path.endsWith('project.json')) {
+        console.log(`Found project.json file: ${ path }`.grey);
+        const project = treeAdapter.readJson(path) as ProjectJson;
+        if (project.name) {
+          PROJECT_LOCATION_CACHE.set(project.name, path);
+        }
+      }
+    }
+  }
   if (PROJECT_LOCATION_CACHE.has(projectName)) {
     const path = PROJECT_LOCATION_CACHE.get(projectName)!;
     const treeAdapter = new TreeAdapter(tree);
@@ -69,6 +83,7 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
     project.root ??= dirname(path).replace(/^\//, '');
     return project;
   }
+  console.log(`Not a nx generator tree. Fall back to search file. for project ${projectName}`.yellow);
   for (const fileEntry of SearchFile(tree)) {
     if (!fileEntry.path.endsWith('project.json')) {
       continue;
@@ -332,6 +347,10 @@ export function GetProjectSourceRoot<Tree extends TreeLike>(tree: Tree, projectN
 
   return sourceRoot;
 
+}
+
+export function HasProjectSourceRoot<Tree extends TreeLike>(tree: Tree, projectName: string): boolean {
+  return HasProject(tree, projectName) && !!GetProject(tree, projectName).sourceRoot;
 }
 
 /**

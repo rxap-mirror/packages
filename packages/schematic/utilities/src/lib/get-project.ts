@@ -144,6 +144,9 @@ export function GetProjectType(host: Tree, projectName: string): 'library' | 'ap
 
 }
 
+/**
+ * @deprecated import from @rxap/workspace-utilities
+ */
 export function HasProjectSourceRoot(host: Tree, projectName: string): boolean {
   return !!GetProject(host, projectName).sourceRoot;
 }
