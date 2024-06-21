@@ -13,7 +13,20 @@
         "outputPath": "dist/packages/utilities",
         "main": "packages/utilities/src/index.ts",
         "tsConfig": "packages/utilities/tsconfig.lib.json",
-        "assets": ["packages/utilities/*.md", "packages/utilities/docs"]
+        "assets": [
+          "packages/utilities/*.md",
+          "packages/utilities/docs",
+          {
+            "input": "./packages/utilities/src/generators",
+            "glob": "**/!(*.ts",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/utilities",
+            "glob": "generators.json",
+            "output": "."
+          }
+        ]
       }
     },
     "fix-dependencies": {
