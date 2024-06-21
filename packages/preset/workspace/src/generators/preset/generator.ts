@@ -1,4 +1,7 @@
-import { Tree } from '@nx/devkit';
+import {
+  installPackagesTask,
+  Tree,
+} from '@nx/devkit';
 import { WorkspaceInitGenerator } from '@rxap/plugin-workspace';
 import { PresetGeneratorSchema } from './schema';
 
@@ -19,6 +22,7 @@ export async function presetGenerator(
     repositoryUrl,
     overwrite: true,
   });
+  installPackagesTask(tree, true);
 }
 
 export default presetGenerator;
