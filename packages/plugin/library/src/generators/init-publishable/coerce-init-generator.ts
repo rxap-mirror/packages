@@ -58,15 +58,19 @@ export async function CoerceInitGenerator(
   }
   // endregion
 
-  await generatorGenerator(tree, {
-    // directory: join(projectSourceRoot, 'generators', 'init'),
-    name: 'init',
-    description: 'Initialize the package in the workspace',
-    unitTestRunner: 'none',
-    nameAndDirectoryFormat: 'derived',
-    project: projectName,
-  });
+  try {
+    await generatorGenerator(tree, {
+      // directory: join(projectSourceRoot, 'generators', 'init'),
+      name: 'init',
+      description: 'Initialize the package in the workspace',
+      unitTestRunner: 'none',
+      nameAndDirectoryFormat: 'derived',
+      project: projectName,
+    });
 
-  DeleteRecursive(tree, join(projectSourceRoot, 'generators', 'init'));
+    DeleteRecursive(tree, join(projectSourceRoot, 'generators', 'init'));
+  } catch (e: any) {
+    console.log(`Error while generating the init generator: ${e.message}`.red);
+  }
 
 }
