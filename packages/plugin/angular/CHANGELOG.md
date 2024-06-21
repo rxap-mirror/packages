@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.2.0-dev.3...@rxap/plugin-angular@19.2.0-dev.4) (2024-06-21)
+
+### Bug Fixes
+
+- coerce projects after workspace init ([cc5a060](https://gitlab.com/rxap/packages/commit/cc5a0604b4c9b1baa54b3677967ee1c8e4234899))
+
 # [19.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.2.0-dev.2...@rxap/plugin-angular@19.2.0-dev.3) (2024-06-21)
 
 ### Bug Fixes
