@@ -2,3 +2,4 @@ export { indexExportGenerator as LibraryIndexExportGenerator } from './generator
 export { initGenerator as LibraryInitGenerator } from './generators/init/generator';
 export { initProject as LibraryInitProject } from './generators/init/init-project';
 export { initWorkspace as LibraryInitWorkspace } from './generators/init/init-workspace';
+export { fixDependenciesGenerator as FixDependencies } from './generators/fix-dependencies/generator';
