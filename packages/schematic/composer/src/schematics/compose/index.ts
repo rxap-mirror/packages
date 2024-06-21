@@ -26,6 +26,7 @@ import {
   GetProjectSourceRoot,
   GetRootPackageJson,
   IsLibraryProject,
+  VisitTree,
 } from '@rxap/workspace-utilities';
 import {
   dirname,
@@ -192,56 +193,12 @@ function executeSchematicCommandFile(
 function getSchematicCommandList(host: Tree, sourceRoot: string) {
   const schematicCommandList: string[] = [];
 
-  function visitor(path: string, entry: any) {
-    if (entry?.path.endsWith('schematic.json')) {
-      schematicCommandList.push(path);
-    }
-    if (entry?.path.endsWith('schematic.yaml')) {
-      schematicCommandList.push(path);
-    }
-    if (entry?.path.endsWith('schematic.yml')) {
-      schematicCommandList.push(path);
-    }
-    if (entry?.path.endsWith('schematics.json')) {
-      schematicCommandList.push(path);
-    }
-    if (entry?.path.endsWith('schematics.yaml')) {
-      schematicCommandList.push(path);
-    }
-    if (entry?.path.endsWith('schematics.yml')) {
-      schematicCommandList.push(path);
-    }
-  }
-
-  if (sourceRoot === '/') {
-    const rootDirList = host.getDir(sourceRoot).subdirs;
-    if (host.exists(join(sourceRoot, 'schematics.yaml'))) {
-      schematicCommandList.push(join(sourceRoot, 'schematics.yaml'));
-    }
-    if (host.exists(join(sourceRoot, 'schematic.yaml'))) {
-      schematicCommandList.push(join(sourceRoot, 'schematic.yaml'));
-    }
-    if (host.exists(join(sourceRoot, 'schematics.yml'))) {
-      schematicCommandList.push(join(sourceRoot, 'schematics.yml'));
-    }
-    if (host.exists(join(sourceRoot, 'schematic.yml'))) {
-      schematicCommandList.push(join(sourceRoot, 'schematic.yml'));
-    }
-    if (host.exists(join(sourceRoot, 'schematics.json'))) {
-      schematicCommandList.push(join(sourceRoot, 'schematics.json'));
-    }
-    if (host.exists(join(sourceRoot, 'schematic.json'))) {
-      schematicCommandList.push(join(sourceRoot, 'schematic.json'));
-    }
-    for (const dir of rootDirList) {
-      if (['node_modules', 'dist', '.nx', '.angular', '.git', 'tmp', 'coverage', 'Writerside'].includes(dir)) {
-        console.log('Skip directory:', dir.yellow);
-        continue;
+  for (const {path, isFile} of VisitTree(host, sourceRoot)) {
+    if (isFile) {
+      if (path.match(/schematics?\.(json|yaml|yml)$/)) {
+        schematicCommandList.push(path);
       }
-      host.getDir(join(sourceRoot, dir)).visit(visitor);
     }
-  } else {
-    host.getDir(sourceRoot).visit(visitor);
   }
 
   return schematicCommandList;
