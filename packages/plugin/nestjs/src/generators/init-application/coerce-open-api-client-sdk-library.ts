@@ -23,8 +23,9 @@ export async function coerceOpenApiClientSdkLibrary(
       minimal: true,
       unitTestRunner: 'none',
       tags: 'open-api',
+      buildable: true,
       publishable: false,
-      bundler: 'none',
+      bundler: 'tsc',
     });
 
     console.log('Initialize open api client sdk library'.blue);

@@ -3,15 +3,11 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import {
-  CoerceArrayItems,
-  unique,
-} from '@rxap/utilities';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceFile,
   CoerceIgnorePattern,
   CoerceTarget,
-  DeleteRecursive,
   GenerateSerializedSchematicFile,
   GetProject,
   GetProjectRoot,
@@ -89,10 +85,30 @@ export async function initLibraryGenerator(
     }
     // region add the implicit dependency to the api project
     projectConfiguration.implicitDependencies ??= [];
-    projectConfiguration.implicitDependencies.push(apiProjectName);
-    projectConfiguration.implicitDependencies = projectConfiguration.implicitDependencies.filter(unique());
+    CoerceArrayItems(projectConfiguration.implicitDependencies, [ apiProjectName ]);
     // endregion
   }
+
+  CoerceTarget(projectConfiguration, 'build', {
+    executor: "@nx/js:tsc",
+    outputs: [ "{options.outputPath}"],
+    options: {
+      outputPath: `dist/${projectRoot}`,
+      main: `${projectSourceRoot}/index.ts`,
+      tsConfig: `${projectRoot}/tsconfig.lib.json`,
+      generateExportsField: true,
+      additionalEntryPoints: [
+        `${projectSourceRoot}/lib/commands/index.ts`,
+        `${projectSourceRoot}/lib/components/index.ts`,
+        `${projectSourceRoot}/lib/data-sources/index.ts`,
+        `${projectSourceRoot}/lib/directives/index.ts`,
+        `${projectSourceRoot}/lib/parameters/index.ts`,
+        `${projectSourceRoot}/lib/remote-method/index.ts`,
+        `${projectSourceRoot}/lib/request-bodies/index.ts`,
+        `${projectSourceRoot}/lib/responses/index.ts`,
+      ],
+    }
+  }, Strategy.OVERWRITE);
 
 
   // region cleanup
@@ -123,10 +139,15 @@ export async function initLibraryGenerator(
     if (tsConfig.compilerOptions.paths[options.project]) {
       delete tsConfig.compilerOptions.paths[options.project];
     }
-    const scope = GetWorkspaceScope(tree);
     tsConfig.compilerOptions.paths[`${options.project}/*`] = [ `${projectSourceRoot}/lib/*` ];
-    tsConfig.compilerOptions.paths[`${scope}/open-api/*`] ??= [];
-    CoerceArrayItems(tsConfig.compilerOptions.paths[`${scope}/open-api/*`], tsConfig.compilerOptions.paths[`${options.project}/*`]);
+    tsConfig.compilerOptions.paths[`${options.project}/commands`] = [ `${projectSourceRoot}/lib/components/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/components`] = [ `${projectSourceRoot}/lib/components/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/data-sources`] = [ `${projectSourceRoot}/lib/data-sources/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/directives`] = [ `${projectSourceRoot}/lib/directives/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/parameters`] = [ `${projectSourceRoot}/lib/parameters/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/remote-methods`] = [ `${projectSourceRoot}/lib/remote-method/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/request-bodies`] = [ `${projectSourceRoot}/lib/request-bodies/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/responses`] = [ `${projectSourceRoot}/lib/responses/index.ts` ];
   }, { infix: 'base' });
   // endregion
 
