@@ -8,7 +8,8 @@ import { Assets } from '@rxap/workspace-utilities';
 import { join } from 'path';
 
 export interface NgPackageJson {
-  assets: Assets;
+  assets?: Assets;
+  allowedNonPeerDependencies?: string[];
 }
 
 /**
