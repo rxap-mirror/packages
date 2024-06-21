@@ -3,7 +3,9 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/rxap",
   "projectType": "library",
-  "tags": ["standalone"],
+  "tags": [
+    "standalone"
+  ],
   "implicitDependencies": [
     "angular-authentication",
     "angular-authorization",
@@ -123,8 +125,13 @@
   ],
   "targets": {
     "build": {
-      "dependsOn": ["readme", "check-version"],
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "dependsOn": [
+        "readme",
+        "check-version"
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
       "executor": "nx:run-commands",
       "options": {
         "commands": [
@@ -146,18 +153,27 @@
     "update-implicit-dependencies": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["bash ./packages/rxap/update-implicit-dependencies.sh"]
+        "commands": [
+          "bash ./packages/rxap/update-implicit-dependencies.sh"
+        ]
       }
     },
     "update-include-packages": {
-      "dependsOn": ["update-implicit-dependencies"],
+      "dependsOn": [
+        "update-implicit-dependencies"
+      ],
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["bash ./packages/rxap/update-include-packages.sh"]
+        "commands": [
+          "bash ./packages/rxap/update-include-packages.sh"
+        ]
       }
     },
     "update-package-group": {
-      "dependsOn": ["update-include-packages", "update-implicit-dependencies"],
+      "dependsOn": [
+        "update-include-packages",
+        "update-implicit-dependencies"
+      ],
       "options": {
         "includeDependencies": true,
         "include": [
@@ -209,7 +225,10 @@
     },
     "typedoc": {
       "options": {
-        "outputPath": ["dist/docs/packages/rxap", "packages/rxap/docs"]
+        "outputPath": [
+          "dist/docs/packages/rxap",
+          "packages/rxap/docs"
+        ]
       }
     },
     "linking": {}
