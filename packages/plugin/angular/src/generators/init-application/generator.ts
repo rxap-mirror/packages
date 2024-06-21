@@ -143,6 +143,7 @@ export async function initApplicationGenerator(
 
   if (options.serviceWorker) {
     await AddPackageJsonDependency(tree, '@rxap/service-worker', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/life-cycle', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@angular/service-worker', ANGULAR_VERSION, { soft: true });
   }
 
