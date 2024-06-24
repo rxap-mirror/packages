@@ -27,7 +27,7 @@ export class LanguageSelectorService {
     effect(() => {
       const currentLanguage = this.i18nService.currentLanguage();
       this.selectedLanguage.set(currentLanguage);
-    });
+    }, { allowSignalWrites: true });
   }
 
   public async setLanguage(language: string) {

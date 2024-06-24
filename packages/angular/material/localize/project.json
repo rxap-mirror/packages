@@ -4,7 +4,7 @@
   "sourceRoot": "packages/angular/material/localize/src",
   "prefix": "rxap",
   "projectType": "library",
-  "tags": ["angular", "ngx", "packages", "material", "scope:integration"],
+  "tags": ["angular", "ngx", "packages", "material", "scope:compose"],
   "targets": {
     "index-export": {},
     "build": {
