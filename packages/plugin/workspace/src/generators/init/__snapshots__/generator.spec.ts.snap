@@ -53,7 +53,7 @@ exports[`init should init default workspace 2`] = `
     "@nx/eslint-plugin": "19.3.0",
     "@nx/jest": "19.3.0",
     "@nx/js": "19.3.0",
-    "@rxap/schematic-composer": "18.0.2",
+    "@rxap/schematic-composer": "18.0.3-dev.3",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
