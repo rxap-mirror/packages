@@ -8,7 +8,6 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^18.0.0",
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
     "@rxap/rxjs": "^1.1.6-dev.1",

@@ -1,4 +1,4 @@
-// region
+// region 
 export * from './lib/avatar-image.service';
 export * from './lib/image-loader.service';
 export * from './lib/loading-indicator.service';
