@@ -36,9 +36,10 @@
         </ul>
 
         <img
-          [src]="logoSrc"
+          [src]="logoSrc()"
           [routerLink]="['/']"
           [width]="logoWidth()"
+          [height]="logoHeight()"
           alt="logo"
           class="grow-0 mx-16"
         />

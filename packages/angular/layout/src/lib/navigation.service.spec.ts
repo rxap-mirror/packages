@@ -1,9 +1,9 @@
 import {
   NavigationItem,
   NavigationStatus,
-} from './navigation-item';
+} from './navigation/navigation-item';
 import { NavigationService } from './navigation.service';
-import { RXAP_NAVIGATION_CONFIG } from '../tokens';
+import { RXAP_NAVIGATION_CONFIG } from './tokens';
 import {
   Observable,
   of,

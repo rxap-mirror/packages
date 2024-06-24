@@ -1,4 +1,7 @@
-import type { Injector } from '@angular/core';
+import {
+  inject,
+  Injector,
+} from '@angular/core';
 import {
   Inject,
   Injectable,
@@ -20,11 +23,11 @@ import {
   NavigationDividerItem,
   NavigationItem,
   NavigationWithInserts,
-} from './navigation-item';
+} from './navigation/navigation-item';
 import {
   RXAP_NAVIGATION_CONFIG,
   RXAP_NAVIGATION_CONFIG_INSERTS,
-} from '../tokens';
+} from './tokens';
 import {
   catchError,
   map,
@@ -41,11 +44,11 @@ export class NavigationService {
 
   private readonly navigation$ = new ReplaySubject<Navigation>(1);
 
+  private readonly injector: Injector = inject(INJECTOR);
+
   constructor(
     @Inject(RXAP_NAVIGATION_CONFIG)
       navigation: any,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
     @Optional()
     @Inject(RXAP_NAVIGATION_CONFIG_INSERTS)
       inserts: any | null = null,

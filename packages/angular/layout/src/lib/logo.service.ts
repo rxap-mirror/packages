@@ -14,7 +14,7 @@ export class LogoService {
   public readonly logo = signal(
     inject(RXAP_LOGO_CONFIG, { optional: true }) ??
     this.config.get('logo', {
-      src: 'assets/logo.png',
+      src: 'logo.png',
       width: 192,
     }),
   );

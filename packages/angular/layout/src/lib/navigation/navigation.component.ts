@@ -26,7 +26,7 @@ import {
   NavigationItem,
 } from './navigation-item';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
-import { NavigationService } from './navigation.service';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

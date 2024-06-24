@@ -1,3 +1,4 @@
+import { NavigationService } from '@rxap/layout';
 import {
   Meta,
   moduleMetadata,
@@ -9,9 +10,13 @@ import { LayoutComponent } from './layout.component';
 const meta: Meta<LayoutComponent> = {
   component: LayoutComponent,
   title: 'LayoutComponent',
+  parameters: {
+    layout: 'fullscreen',
+  },
   decorators: [
     moduleMetadata({
-      imports: [
+      providers: [
+        NavigationService,
         ProvideNavigationConfig([
           {
             routerLink: [],

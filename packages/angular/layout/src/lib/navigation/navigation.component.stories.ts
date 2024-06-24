@@ -1,6 +1,7 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ProvideNavigationConfig } from '@rxap/layout';
+import {
+  NavigationService,
+  ProvideNavigationConfig,
+} from '@rxap/layout';
 import {
   Meta,
   moduleMetadata,
@@ -14,84 +15,8 @@ const meta: Meta<NavigationComponent> = {
   title: 'NavigationComponent',
   decorators: [
     moduleMetadata({
-      imports: [
-        BrowserAnimationsModule,
-        RouterTestingModule.withRoutes([
-          {
-            path: 'link-1',
-            children: [
-              {
-                path: 'sub-1',
-                children: [
-                  {
-                    path: 'sub-sub-1',
-                    children: [
-                      {
-                        path: 'sub-sub-sub-1',
-                        component: NavigationComponent,
-                      },
-                      {
-                        path: 'sub-sub-sub-2',
-                        component: NavigationComponent,
-                      },
-                      {
-                        path: 'sub-sub-sub-3',
-                        component: NavigationComponent,
-                      },
-                    ],
-                  },
-                  {
-                    path: 'sub-sub-2',
-                    component: NavigationComponent,
-                  },
-                  {
-                    path: 'sub-sub-3',
-                    component: NavigationComponent,
-                  },
-                ],
-              },
-              {
-                path: 'sub-2',
-                component: NavigationComponent,
-              },
-              {
-                path: 'sub-3',
-                component: NavigationComponent,
-              },
-            ],
-          },
-          {
-            path: 'link-2',
-            component: NavigationComponent,
-          },
-          {
-            path: 'link-3',
-            component: NavigationComponent,
-          },
-          {
-            path: 'link-4',
-            children: [
-              {
-                path: 'sub-1',
-                component: NavigationComponent,
-              },
-              {
-                path: 'sub-2',
-                component: NavigationComponent,
-              },
-              {
-                path: 'sub-3',
-                component: NavigationComponent,
-              },
-            ],
-          },
-          {
-            path: 'link-5',
-            component: NavigationComponent,
-          },
-        ]),
-      ],
       providers: [
+        NavigationService,
         ProvideNavigationConfig([
             {
               routerLink: [ '/', 'link-1' ],

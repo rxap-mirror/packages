@@ -16,9 +16,7 @@ export * from './lib/navigation/navigation-item/navigation-item.component';
 // region navigation
 export * from './lib/navigation/navigation-item';
 export * from './lib/navigation/navigation.component';
-export * from './lib/navigation/navigation.service';
-export * from './lib/navigation/replace-router-paths.pipe';
-export * from './lib/navigation/replace-router-paths.service';
+export * from './lib/navigation.service';
 // endregion
 
 // region layout

@@ -86,6 +86,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   public readonly collapsable: Signal<boolean> = computed(() => this.layoutService.collapsable());
   public readonly logoSrc: Signal<string> = computed(() => this.logoService.src());
   public readonly logoWidth: Signal<number> = computed(() => this.logoService.width());
+  public readonly logoHeight: Signal<number> = computed(() => this.logoService.height());
   public readonly release = DetermineReleaseName(this.environment);
   public readonly opened: Signal<boolean> = computed(() => this.layoutService.opened());
 
