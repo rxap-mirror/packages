@@ -6,7 +6,7 @@ import { expect } from '@storybook/jest';
 
 const meta: Meta<LanguageSelectorComponent> = {
   component: LanguageSelectorComponent,
-  title: 'HeaderComponent / LanguageSelectorComponent',
+  title: 'LanguageSelectorComponent',
 };
 export default meta;
 type Story = StoryObj<LanguageSelectorComponent>;

@@ -1,0 +1,13 @@
+@if (hasLanguages()) {
+  <mat-form-field appearance="outline" class="w-full" rxapStopPropagation>
+    <mat-label i18n>Select Language</mat-label>
+    <mat-select (ngModelChange)="selectLanguage($event)" [ngModel]="selectedLanguage()">
+      @for (item of languages() | keyvalue; track item.key) {
+        <mat-option [value]="item.key">{{ item.value }}</mat-option>
+      }
+    </mat-select>
+    <mat-hint i18n>Change the language</mat-hint>
+  </mat-form-field>
+} @else {
+  <span i18n>No languages available</span>
+}

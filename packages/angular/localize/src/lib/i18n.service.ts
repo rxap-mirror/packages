@@ -1,32 +1,32 @@
 import {
-  Inject,
+  inject,
   Injectable,
   isDevMode,
   LOCALE_ID,
+  signal,
+  Signal,
 } from '@angular/core';
 import { UserSettingsLanguageService } from '@rxap/ngx-user';
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {
 
-  public readonly currentLanguage: string;
+  private readonly localId: string = inject(LOCALE_ID);
+  private readonly userSettingsLanguageService = inject(UserSettingsLanguageService);
 
-  constructor(
-    @Inject(LOCALE_ID)
-    private readonly localId: string,
-    private readonly userSettingsLanguageService: UserSettingsLanguageService,
-  ) {
-    this.currentLanguage = this.localId.replace(/-[A-Z]+$/, '');
-  }
+  public readonly currentLanguage: Signal<string> = signal(this.localId.replace(/-[A-Z]+$/, ''));
 
   public async setLanguage(language: string) {
     await this.userSettingsLanguageService.setLanguage(language);
+    if (typeof (this.currentLanguage as any)['set'] === 'function') {
+      (this.currentLanguage as any).set(language);
+    }
     if (!isDevMode()) {
       this.redirect(language);
     }
   }
 
-  public redirect(next: string, current: string = this.currentLanguage) {
+  public redirect(next: string, current: string = this.currentLanguage()) {
     if (current === next) {
       console.warn('[I18nService] redirect not required - language unchanged');
       return;
