@@ -14,6 +14,7 @@ import {
   withDisabledAuthentication,
 } from '@rxap/authentication';
 import { ProvideEnvironment } from '@rxap/environment';
+import { ProvideIconAssetPath } from '@rxap/icon';
 import { ProvideChangelog } from '@rxap/ngx-changelog';
 import {
   HttpErrorInterceptor,
@@ -65,5 +66,6 @@ export const appConfig: ApplicationConfig = {
     ),
     ProvideServiceWorkerUpdater(withLogUpdater(), withDialogUpdater()),
     ProvidePubSub(),
+    ProvideIconAssetPath(),
   ],
 };

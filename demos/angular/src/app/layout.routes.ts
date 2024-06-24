@@ -30,6 +30,10 @@ const ROUTES: Route[] = [
         loadChildren: () => import('../feature/window/routes')
       },
       {
+        path: 'layout',
+        loadChildren: () => import('../feature/layout/routes')
+      },
+      {
         path: 'form',
         loadChildren: () => import('../feature/form/routes')
       },

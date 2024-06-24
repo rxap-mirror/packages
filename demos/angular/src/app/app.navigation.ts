@@ -19,6 +19,18 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [
     ]
   },
   {
+    routerLink: ['/', 'layout'],
+    icon: { svgIcon: 'page-layout-body' },
+    label: $localize`Layout`,
+    children: [
+      {
+        routerLink: ['/', 'layout', 'large-content'],
+        label: $localize`Large Content`,
+        icon: { svgIcon: 'size-l' },
+      }
+    ]
+  },
+  {
     routerLink: ['/', 'form'],
     icon: { icon: 'feed' },
     label: $localize`Form`,
