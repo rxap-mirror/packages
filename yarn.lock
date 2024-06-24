@@ -8890,24 +8890,16 @@ __metadata:
     "@angular/cdk": ^18.0.0
     "@angular/common": ^18.0.1
     "@angular/core": ^18.0.1
-    "@angular/forms": ^18.0.1
     "@angular/material": ^18.0.0
     "@angular/router": ^18.0.1
-    "@rxap/authentication": ^18.0.3-dev.1
-    "@rxap/authorization": ^18.0.3-dev.1
     "@rxap/browser-utilities": ^1.1.4-dev.1
     "@rxap/config": ^18.1.1-dev.1
-    "@rxap/data-source": ^18.1.1-dev.1
-    "@rxap/directives": ^18.0.3-dev.1
     "@rxap/environment": ^18.0.3-dev.1
-    "@rxap/icon": ^18.0.3-dev.1
     "@rxap/material-directives": ^18.0.3-dev.1
-    "@rxap/ngx-changelog": ^18.0.3-dev.1
-    "@rxap/ngx-localize": ^18.0.3-dev.1
-    "@rxap/ngx-status-check": ^18.0.3-dev.1
+    "@rxap/ngx-pub-sub": ^18.0.3-dev.1
     "@rxap/ngx-theme": ^18.0.3-dev.1
     "@rxap/ngx-user": ^18.0.3-dev.1
-    "@rxap/services": ^18.0.3-dev.1
+    "@rxap/pattern": ^1.1.5-dev.1
     "@rxap/utilities": ^16.2.4-dev.1
     rxjs: ^7.8.1
   languageName: unknown
@@ -9079,7 +9071,7 @@ __metadata:
   peerDependencies:
     "@nestjs/common": ^10.3.8
     "@rxap/ts-morph": ^1.4.1-dev.1
-    "@rxap/workspace-utilities": ^19.3.0-dev.1
+    "@rxap/workspace-utilities": ^19.3.0-dev.2
   languageName: unknown
   linkType: soft
 
@@ -9133,7 +9125,7 @@ __metadata:
     "@rxap/nest-logger": ^10.2.3-dev.2
     "@rxap/nest-utilities": ^10.3.2-dev.1
     "@rxap/ts-morph": ^1.4.1-dev.1
-    "@rxap/workspace-utilities": ^19.3.0-dev.1
+    "@rxap/workspace-utilities": ^19.3.0-dev.2
     "@sentry/core": ^8.9.2
     "@sentry/node": ^8.9.2
     "@sentry/types": ^8.9.2
@@ -9342,8 +9334,12 @@ __metadata:
     "@nx/devkit": 19.3.0
     tslib: 2.6.2
   peerDependencies:
+    "@angular/common": ^18.0.1
     "@angular/core": ^18.0.1
+    "@angular/forms": ^18.0.1
     "@angular/material": ^18.0.0
+    "@rxap/directives": ^18.0.3-dev.1
+    "@rxap/ngx-localize": ^18.0.3-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10009,7 +10005,6 @@ __metadata:
     "@nx/devkit": 19.3.0
     tslib: 2.6.2
   peerDependencies:
-    "@angular/cdk": ^18.0.0
     "@angular/common": ^18.0.1
     "@angular/core": ^18.0.1
     "@rxap/rxjs": ^1.1.6-dev.1
