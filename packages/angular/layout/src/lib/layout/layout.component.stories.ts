@@ -1,4 +1,3 @@
-import '@angular/localize/init';
 import {
   Meta,
   moduleMetadata,

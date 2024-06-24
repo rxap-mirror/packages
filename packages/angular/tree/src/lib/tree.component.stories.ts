@@ -6,7 +6,6 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ConfigService } from '@rxap/config';
-import '@angular/localize/init';
 import { TreeComponent } from './tree.component';
 import { TreeDataSource } from './tree.data-source';
 import {
