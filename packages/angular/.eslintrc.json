@@ -76,7 +76,8 @@
     },
     {
       "files": [
-        "test-setup.ts"
+        "test-setup.ts",
+        ".storybook/preview.ts"
       ],
       "rules": {
         "@nx/enforce-module-boundaries": "off"

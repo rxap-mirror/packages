@@ -1,5 +1,4 @@
 import '@angular/localize/init';
-import { ConfigService } from '@rxap/config';
 import {
   Meta,
   moduleMetadata,
@@ -7,12 +6,6 @@ import {
 } from '@storybook/angular';
 import { ProvideNavigationConfig } from '../provide';
 import { LayoutComponent } from './layout.component';
-
-ConfigService.Config = {
-  navigation: {
-    collapsed: true,
-  },
-};
 
 const meta: Meta<LayoutComponent> = {
   component: LayoutComponent,

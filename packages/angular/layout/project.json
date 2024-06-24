@@ -86,6 +86,58 @@
           "packages/angular/layout/docs"
         ]
       }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "packages/angular/layout/.storybook",
+        "browserTarget": "angular:build:development",
+        "compodoc": true,
+        "compodocArgs": ["-e", "json", "-d", "packages/angular/layout"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build:development-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/angular-layout",
+        "configDir": "packages/angular/layout/.storybook",
+        "browserTarget": "angular:build:development",
+        "compodoc": true,
+        "compodocArgs": ["-e", "json", "-d", "packages/angular/layout"],
+        "styles": ["shared/angular/styles/_index.scss"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "defaultConfiguration": "ci"
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c packages/angular/layout/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "angular:build:development",
+        "staticFilePath": "dist/storybook/angular-layout",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "angular:build:development"
+        }
+      }
     }
   }
 }

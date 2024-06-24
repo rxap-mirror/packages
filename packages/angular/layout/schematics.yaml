@@ -9,3 +9,12 @@
 - package: "@rxap/plugin-typedoc"
   name: init-library
   options: {}
+- package: "@rxap/plugin-storybook"
+  name: init-library
+  options:
+    interactionTests: true
+    generateStories: true
+    configureStaticServe: true
+    linter: eslint
+    tsConfiguration: true
+    compodoc: true
