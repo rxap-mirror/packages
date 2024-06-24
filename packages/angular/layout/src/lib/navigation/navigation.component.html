@@ -1,12 +1,15 @@
-<ng-template [ngForOf]="items" let-item ngFor>
+<ng-template [ngForOf]="navigationItems()" let-item ngFor>
   <ng-template [ngIf]="isNavigationDividerItem(item)">
     <mat-divider></mat-divider>
-    <div *ngIf="(sidenav.collapsed$ | async) === false" class="pl-5 h-6">
-      <span *ngIf="item.title">{{item.title}}</span>
+    <div *ngIf="!collapsed() && item.title" class="pl-5 h-6">
+      {{item.title}}
     </div>
   </ng-template>
   <ng-template [ngIf]="isNavigationItem(item)">
-    <li [item]="asNavigationItem(item)" [level]="level" class="dark:hover:text-white hover:text-black"
-        rxap-navigation-item></li>
+    <li [item]="asNavigationItem(item)"
+        [level]="level()"
+        class="dark:hover:text-white hover:text-black"
+        rxap-navigation-item>
+    </li>
   </ng-template>
 </ng-template>

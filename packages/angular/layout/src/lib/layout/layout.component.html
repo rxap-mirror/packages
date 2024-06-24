@@ -1,57 +1,22 @@
 <rxap-status-indicator class="fixed bottom-0 right-0 z-10"></rxap-status-indicator>
-<div class="flex flex-col h-screen justify-between">
+<div class="h-screen">
   <rxap-header class="z-10 w-full fixed top-0"></rxap-header>
-  <mat-sidenav-container [ngStyle]="{
-    'margin-top.px': fixedTopGap(),
-    'margin-bottom.px': fixedBottomGap(),
-  }" class="grow">
-    <mat-sidenav
-      [fixedBottomGap]="fixedBottomGap()"
-      [fixedInViewport]="fixedInViewport()"
-      [fixedTopGap]="fixedTopGap()"
-      [mode]="sidenavMode()"
-      [ngClass]="{ collapsable: collapsable() }"
-      [opened]="opened()"
-    >
-      <div (mouseleave)="collapsable() && !pinned() && closeSidenav()"
-           class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
-
-        <div (click)="togglePinned()" *ngIf="collapsable()"
-             class="pl-2 self-stretch grow-0 flex flex-row justify-between items-center">
-          <span class="text-lg" i18n>Navigation</span>
-          <div class="flex flex-row items-center justify-center" style="width: 64px">
-            <button mat-icon-button>
-              <mat-icon *ngIf="!pinned()">radio_button_unchecked</mat-icon>
-              <mat-icon *ngIf="pinned()">radio_button_checked</mat-icon>
-            </button>
-          </div>
-        </div>
-
-        <ul
-          (mouseenter)="collapsable() && !pinned() && openSidenav()"
-          class="grow self-stretch"
-          root
-          rxap-navigation
-        >
-        </ul>
-
-        <img
-          [src]="logoSrc()"
-          [routerLink]="['/']"
-          [width]="logoWidth()"
-          [height]="logoHeight()"
-          alt="logo"
-          class="grow-0 mx-16"
-        />
-        <div class="grow-0 px-16">
-          <span>{{release}}</span>
-        </div>
+  <rxap-sidenav class="h-full">
+    <router-outlet></router-outlet>
+    <ng-template rxapSidenavFooter>
+      <img
+        [src]="logoSrc()"
+        [routerLink]="['/']"
+        [width]="logoWidth()"
+        [height]="logoHeight()"
+        alt="logo"
+        class="grow-0 mx-16"
+      />
+      <div class="grow-0 px-16">
+        <rxap-release-info></rxap-release-info>
       </div>
-    </mat-sidenav>
-    <mat-sidenav-content [ngClass]="{ 'ml-16': collapsable() }" class="p-4">
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    </ng-template>
+  </rxap-sidenav>
   <rxap-footer class="z-10 w-full fixed bottom-0"></rxap-footer>
 </div>
 <!--<rxap-window-task-bar-container></rxap-window-task-bar-container>-->

@@ -13,24 +13,15 @@ import {
   OnDestroy,
   OnInit,
   Signal,
-  viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import {
-  MatDrawerMode,
-  MatSidenav,
-  MatSidenavModule,
-} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import {
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
-import {
-  DetermineReleaseName,
-  RXAP_ENVIRONMENT,
-} from '@rxap/environment';
 import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
 import { ThemeService } from '@rxap/ngx-theme';
 import {
@@ -40,9 +31,11 @@ import {
 } from '@rxap/ngx-user';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
-import { LayoutService } from '../layout.service';
 import { LogoService } from '../logo.service';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { ReleaseInfoComponent } from '../release-info/release-info.component';
+import { SidenavFooterDirective } from '../sidenav/sidenav-footer.directive';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 
 
 @Component({
@@ -67,6 +60,9 @@ import { NavigationComponent } from '../navigation/navigation.component';
     StatusIndicatorComponent,
     NgStyle,
     NgClass,
+    SidenavComponent,
+    ReleaseInfoComponent,
+    SidenavFooterDirective,
   ],
 })
 export class LayoutComponent implements OnInit, OnDestroy {
@@ -74,33 +70,10 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private readonly userSettingsThemeService = inject(UserSettingsThemeService);
   private readonly themeService = inject(ThemeService);
   private readonly logoService = inject(LogoService);
-  private readonly layoutService = inject(LayoutService);
-  private readonly environment = inject(RXAP_ENVIRONMENT);
-  private readonly sidenav = viewChild(MatSidenav);
-
-  public readonly sidenavMode: Signal<MatDrawerMode> = computed(() => this.layoutService.mode());
-  public readonly fixedBottomGap: Signal<number> = computed(() => this.layoutService.fixedBottomGap());
-  public readonly fixedTopGap: Signal<number> = computed(() => this.layoutService.fixedTopGap());
-  public readonly fixedInViewport: Signal<boolean> = computed(() => this.layoutService.fixedInViewport());
-  public readonly pinned: Signal<boolean> = computed(() => this.layoutService.pinned());
-  public readonly collapsable: Signal<boolean> = computed(() => this.layoutService.collapsable());
   public readonly logoSrc: Signal<string> = computed(() => this.logoService.src());
   public readonly logoWidth: Signal<number> = computed(() => this.logoService.width());
   public readonly logoHeight: Signal<number> = computed(() => this.logoService.height());
-  public readonly release = DetermineReleaseName(this.environment);
-  public readonly opened: Signal<boolean> = computed(() => this.layoutService.opened());
 
-  togglePinned() {
-    this.layoutService.togglePinned();
-  }
-
-  openSidenav() {
-    this.sidenav()?.open();
-  }
-
-  closeSidenav() {
-    this.sidenav()?.close();
-  }
 
   ngOnDestroy() {
     this.userSettingsThemeService.stopSync();

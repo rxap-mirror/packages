@@ -8,6 +8,7 @@ import {
   Component,
   computed,
   inject,
+  OnInit,
   signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,7 +31,7 @@ import { ExternalAppsService } from '../../external-apps.service';
     RouterLink,
   ],
 })
-export class AppsButtonComponent {
+export class AppsButtonComponent implements OnInit {
   /**
    * The signal that indicates if the app list is open
    */
@@ -41,6 +42,10 @@ export class AppsButtonComponent {
 
   public toggle(): void {
     this.isOpen.update(isOpen => !isOpen);
+  }
+
+  public ngOnInit(): void {
+    this.externalAppsService.getAppList();
   }
 
 }

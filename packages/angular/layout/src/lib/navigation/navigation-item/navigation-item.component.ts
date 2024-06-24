@@ -1,32 +1,39 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  forwardRef,
-  HostBinding,
-  Inject,
-  Input,
-  OnChanges,
-  OnDestroy,
-  Renderer2,
-  signal,
-  SimpleChanges,
-  ViewChild,
-  ViewContainerRef,
-  ViewEncapsulation,
-} from '@angular/core';
-import {
   animate,
   style,
   transition,
   trigger,
 } from '@angular/animations';
 import {
+  NgClass,
+  NgIf,
+} from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  forwardRef,
+  inject,
+  input,
+  OnChanges,
+  OnDestroy,
+  Renderer2,
+  signal,
+  SimpleChanges,
+  viewChild,
+  ViewEncapsulation,
+} from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import {
   NavigationEnd,
   Router,
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
+import { IconDirective } from '@rxap/material-directives/icon';
 import {
   debounceTime,
   Subscription,
@@ -36,22 +43,13 @@ import {
   startWith,
   tap,
 } from 'rxjs/operators';
-import { Overlay } from '@angular/cdk/overlay';
-import { SidenavComponentService } from '../../sidenav/sidenav.component.service';
-import { NavigationComponent } from '../navigation.component';
-import { MatDividerModule } from '@angular/material/divider';
-import { IconDirective } from '@rxap/material-directives/icon';
-import { MatIconModule } from '@angular/material/icon';
-import { MatRippleModule } from '@angular/material/core';
-import {
-  NgClass,
-  NgIf,
-} from '@angular/common';
+import { LayoutService } from '../../layout.service';
 import {
   Navigation,
   NavigationDividerItem,
   NavigationItem,
 } from '../navigation-item';
+import { NavigationComponent } from '../navigation.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -88,53 +86,35 @@ import {
     MatDividerModule,
     forwardRef(() => NavigationComponent),
     NgClass,
-  ],
+  ]
 })
 export class NavigationItemComponent
   implements OnChanges, OnDestroy {
 
-  @Input()
-  public level = 0;
-
-  private _isActive = false;
+  public readonly level = input(0);
 
   public children: Navigation | null = null;
 
-  @ViewChild(RouterLinkActive, { static: true })
-  public routerLinkActive!: RouterLinkActive;
+  public readonly item = input.required<NavigationItem>();
+  public readonly active = signal(false);
 
-  @Input({ required: true })
-  public item!: NavigationItem;
+  public readonly itemClasses = computed(() => {
+    let classes = `level-${ this.level() * 4 }`;
+    if (this.collapsed()) {
+      classes += ' invisible';
+    }
+    return classes;
+  });
 
-  public active = signal(false);
+  private readonly layoutService = inject(LayoutService);
 
-  @HostBinding('class.active')
-  get isActive(): boolean {
-    return this._isActive;
-  }
-
-  set isActive(value: boolean) {
-    this._isActive = value;
-    this.active.set(value);
-  }
+  public readonly collapsed = computed(() => this.layoutService.collapsed());
 
   private readonly _subscription = new Subscription();
 
-  constructor(
-    @Inject(Router)
-    private readonly router: Router,
-    @Inject(SidenavComponentService)
-    public readonly sidenav: SidenavComponentService,
-    @Inject(ElementRef)
-    private readonly elementRef: ElementRef,
-    @Inject(Renderer2)
-    private readonly renderer: Renderer2,
-    @Inject(Overlay)
-    private readonly overlay: Overlay,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-  ) {
-  }
+  private readonly router = inject(Router);
+  private readonly elementRef = inject(ElementRef);
+  private readonly renderer = inject(Renderer2);
 
   public ngOnChanges(changes: SimpleChanges) {
     if (changes['item']) {
@@ -157,13 +137,13 @@ export class NavigationItemComponent
               if (urlParts[0] === '') {
                 urlParts[0] = '/';
               }
-              for (let i = 0; i < this.item.routerLink.length; i++) {
-                if (urlParts[i] !== this.item.routerLink[i]) {
+              for (let i = 0; i < this.item().routerLink.length; i++) {
+                if (urlParts[i] !== this.item().routerLink[i]) {
                   isActive = false;
                   break;
                 }
               }
-              this.isActive = isActive;
+              this.active.set(isActive);
               if (isActive) {
                 this.renderer.addClass(this.elementRef.nativeElement, 'active');
               } else {

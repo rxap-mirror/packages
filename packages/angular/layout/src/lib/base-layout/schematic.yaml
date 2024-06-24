@@ -1,0 +1,18 @@
+package: "@rxap/plugin-angular"
+name: init-component
+options:
+  name: base-layout
+  displayBlock: false
+  inlineStyle: false
+  inlineTemplate: false
+  standalone: true
+  changeDetection: OnPush
+  style: scss
+  skipTests: false
+  flat: false
+  skipImport: false
+  skipSelector: false
+  type: component
+  defaultExport: false
+  export: false
+  interactionTests: true

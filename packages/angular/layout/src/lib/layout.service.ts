@@ -4,6 +4,7 @@ import {
   effect,
   inject,
   Injectable,
+  isDevMode,
   signal,
   Signal,
   WritableSignal,
@@ -30,6 +31,7 @@ export class LayoutService {
   public readonly currentThemeDensity = toSignal(ObserveCurrentThemeDensity());
   public readonly isMobile: Signal<boolean>;
   public readonly fixedInViewport: WritableSignal<boolean>;
+  public readonly collapsed: Signal<boolean>;
 
   public readonly footerComponentService = inject(FooterService);
   public readonly headerComponentService = inject(HeaderService);
@@ -51,11 +53,23 @@ export class LayoutService {
     const opened = this.config.get('navigation.opened', (!collapsable || pinned) && !this.isMobile());
     const fixedInViewport = this.config.get('navigation.fixedInViewport', true);
 
+    if (isDevMode()) {
+      console.log({
+        initialCollapsable,
+        collapsable,
+        pinned,
+        mode,
+        opened,
+        fixedInViewport,
+      });
+    }
+
     this.opened = signal(opened);
     this.mode = signal(mode);
     this.pinned = signal(pinned);
     this.collapsable = signal(collapsable);
     this.fixedInViewport = signal(fixedInViewport);
+    this.collapsed = computed(() => this.collapsable() && !this.opened() && !this.pinned());
 
     this.fixedBottomGap = computed(() => {
       const footerPortalCount = this.footerComponentService.portalCount();
@@ -90,11 +104,18 @@ export class LayoutService {
   }
 
   public toggleOpened() {
-    this.opened.set(!this.opened());
+    this.opened.update(opened => !opened);
   }
 
   public togglePinned() {
-    this.pinned.set(!this.pinned());
+    this.pinned.update(pinned => !pinned);
   }
 
+  openSidenav() {
+    this.opened.set(true);
+  }
+
+  closeSidenav() {
+    this.opened.set(false);
+  }
 }

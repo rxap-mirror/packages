@@ -1,0 +1,21 @@
+<div class="flex flex-col gap-2 w-full justify-center">
+  <button (click)="openEnvironmentInfo()" mat-button>{{ release }}</button>
+  @if (modules?.length) {
+    <table class="table-auto border-separate border-spacing-2 bg-white dark:bg-slate-800 text-sm shadow-sm">
+      <thead class="bg-slate-50 dark:bg-slate-700">
+      <th class="text-sm border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-200 border p-2">Module</th>
+      <th class="text-sm border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-200 border p-2">Version</th>
+      <th class="text-sm border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-200 border p-2">Hash</th>
+      </thead>
+      <tbody>
+        @for (module of modules; track module.name) {
+          <tr>
+            <th class="text-sm border border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 py-2 px-4">{{ module.name }}</th>
+            <td class="text-sm border border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 p-2">{{ module.version }}</td>
+            <td class="text-sm border border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 p-2">{{ module.hash }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

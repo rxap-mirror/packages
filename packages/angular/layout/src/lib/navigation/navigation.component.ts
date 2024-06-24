@@ -5,28 +5,26 @@ import {
 } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  computed,
   forwardRef,
-  HostBinding,
-  Inject,
-  Input,
-  OnDestroy,
+  inject,
+  INJECTOR,
+  input,
   OnInit,
+  runInInjectionContext,
   ViewEncapsulation,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDividerModule } from '@angular/material/divider';
-import { coerceBoolean } from '@rxap/utilities';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { SidenavComponentService } from '../sidenav/sidenav.component.service';
+import { LayoutService } from '../layout.service';
+import { NavigationService } from '../navigation.service';
 import {
   Navigation,
   NavigationDividerItem,
   NavigationItem,
 } from './navigation-item';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
-import { NavigationService } from '../navigation.service';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -48,48 +46,31 @@ import { NavigationService } from '../navigation.service';
     AsyncPipe,
   ],
 })
-export class NavigationComponent implements OnInit, OnDestroy {
-  @Input()
-  public items!: Navigation;
-  public subscription?: Subscription;
-  @Input()
-  public level = 0;
+export class NavigationComponent implements OnInit {
 
-  constructor(
-    @Inject(NavigationService)
-    private readonly navigationService: NavigationService,
-    @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef,
-    @Inject(SidenavComponentService)
-    public readonly sidenav: SidenavComponentService,
-  ) {
-  }
+  public items = input<Navigation>();
 
-  @HostBinding('class.rxap-root-navigation')
-  public _root = false;
+  public level = input(0);
 
-  @Input()
-  public set root(value: boolean | '') {
-    this._root = coerceBoolean(value);
-  }
+  private readonly navigationService = inject(NavigationService);
+
+  private readonly layoutService = inject(LayoutService);
+
+  public readonly collapsed = computed(() => this.layoutService.collapsed());
+
+  public navigationItems = computed(() => this.items() ?? []);
+
+  public readonly root = input(false);
+
+  private readonly injector = inject(INJECTOR);
 
   public ngOnInit(): void {
-    if (this._root) {
-      this.items = [];
-      this.subscription = this.navigationService.config$
-                              .pipe(
-                                tap((navigation) => (this.items = navigation)),
-                                tap(() => this.cdr.detectChanges()),
-                              )
-                              .subscribe();
+    if (this.root()) {
+      runInInjectionContext(this.injector, () => {
+        this.navigationItems = toSignal(this.navigationService.config$, { initialValue: [] });
+      });
     }
-    this.items ??= [];
   }
-
-  public ngOnDestroy() {
-    this.subscription?.unsubscribe();
-  }
-
   // region type save item property
 
   // required to check the type of the item property in the ngFor loop

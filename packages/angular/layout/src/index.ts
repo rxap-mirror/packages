@@ -1,11 +1,6 @@
-// region sidenav version
-export * from './lib/sidenav/version/version.component';
-// endregion
-
 // region sidenav
 export * from './lib/sidenav/sidenav-footer.directive';
 export * from './lib/sidenav/sidenav-header.directive';
-export * from './lib/sidenav/sidenav.component.service';
 export * from './lib/sidenav/sidenav.component';
 // endregion
 

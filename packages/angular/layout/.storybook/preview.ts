@@ -1,16 +1,17 @@
-import { provideRouter } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NavigationComponent } from '@rxap/layout';
-import docJson from '../documentation.json';
-import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { ProvideIconAssetPath } from '@rxap/icon';
+import { provideRouter } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { faker } from '@faker-js/faker';
 import { ProvideConfig } from '@rxap/config';
 import { ProvideEnvironment } from '@rxap/environment';
+import { ProvideIconAssetPath } from '@rxap/icon';
+import { NavigationComponent } from '@rxap/layout';
+import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { applicationConfig } from '@storybook/angular';
+import docJson from '../documentation.json';
 import '@angular/localize/init';
 
 setCompodocJson(docJson);
@@ -28,10 +29,26 @@ export const decorators = [
       importProvidersFrom(HttpClientModule, RouterTestingModule),
       ProvideIconAssetPath(['mdi.svg', 'custom.svg']),
       provideNoopAnimations(),
-      ProvideConfig(),
+      ProvideConfig({
+        navigation: {
+          apps: [
+            {
+              label: faker.company.name(),
+              routerLink: [ '/', 'link-1' ],
+            }
+          ]
+        }
+      }),
       ProvideEnvironment({
         app: 'angular-layout-storybook',
-        production: false,
+        name: 'production',
+        production: true,
+        serviceWorker: false,
+        release: 'v' + faker.system.semver(),
+        commit: faker.git.commitSha({ length: 7 }),
+        timestamp: faker.date.past().toISOString(),
+        branch: faker.git.branch(),
+        tier: 'production',
       }),
       provideRouter([
         {
