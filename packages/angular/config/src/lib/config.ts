@@ -10,14 +10,22 @@ export interface AppsNavigationConfig {
   permissions: string[];
 }
 
-export interface NavigationConfig {
-  apps?: AppsNavigationConfig[];
+export interface LogoConfig {
+  src?: string;
+  width?: number;
+  height?: number;
 }
 
-export interface Config {
-  navigation?: NavigationConfig;
+export interface NavigationConfig {
+  apps?: AppsNavigationConfig[];
   collapsable?: boolean;
   pinned?: boolean;
   mode?: 'side' | 'over';
   opened?: boolean;
+  fixedInViewport?: boolean;
+}
+
+export interface Config {
+  navigation?: NavigationConfig;
+  logo?: LogoConfig;
 }
