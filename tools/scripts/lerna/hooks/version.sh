@@ -14,28 +14,28 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
-source "${BASE_DIR}/tools/scripts/lerna/get-changed-nx-projects.sh"
-changed_projects=$(getChangedNxProjects)
+#source "${BASE_DIR}/tools/scripts/lerna/get-changed-nx-projects.sh"
+#changed_projects=$(getChangedNxProjects)
 
 # check if there are no changed projects
-if [[ -z "$changed_projects" ]]; then
-  echo "No changed projects found"
-  exit 1
-fi
+#if [[ -z "$changed_projects" ]]; then
+#  echo "No changed projects found"
+#  exit 1
+#fi
 
-if [[ ! -f "${BASE_DIR}/dist/lerna/changed-projects.txt" ]]; then
-  echo "The list of changed projects has not been cached. Ensure the perversion hook has been run."
-  exit 1
-fi
+#if [[ ! -f "${BASE_DIR}/dist/lerna/changed-projects.txt" ]]; then
+#  echo "The list of changed projects has not been cached. Ensure the perversion hook has been run."
+#  exit 1
+#fi
 
-cached_changed_projects=$(cat "${BASE_DIR}/dist/lerna/changed-projects.txt")
+#cached_changed_projects=$(cat "${BASE_DIR}/dist/lerna/changed-projects.txt")
 
-if [[ "$changed_projects" != "$cached_changed_projects" ]]; then
-  echo "The list of changed projects has changed since the perversion hook"
-  echo "preversion: ${cached_changed_projects}"
-  echo "version: ${changed_projects}"
-  exit 1
-fi
+#if [[ "$changed_projects" != "$cached_changed_projects" ]]; then
+#  echo "The list of changed projects has changed since the perversion hook"
+#  echo "preversion: ${cached_changed_projects}"
+#  echo "version: ${changed_projects}"
+#  exit 1
+#fi
 
 PUBLISH_MODE="auto"
 
@@ -49,9 +49,13 @@ if [[ "$PUBLISH_MODE" == "auto" ]]; then
 
   yarn nx reset
 
-  yarn nx run-many \
-    --projects="${changed_projects}" \
-    --parallel 8 \
+#  yarn nx run-many \
+#    --projects="${changed_projects}" \
+#    --parallel 8 \
+#    --exclude="rxap" \
+#    --target="update-dependencies,update-package-group"
+
+  yarn nx affected \
     --exclude="rxap" \
     --target="update-dependencies,update-package-group"
 
