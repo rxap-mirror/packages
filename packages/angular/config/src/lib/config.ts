@@ -25,7 +25,15 @@ export interface NavigationConfig {
   fixedInViewport?: boolean;
 }
 
+export type LanguagesConfig = Record<string, string>;
+
+export interface i18nConfig {
+  languages?: LanguagesConfig;
+  defaultLanguage?: string;
+}
+
 export interface Config {
   navigation?: NavigationConfig;
   logo?: LogoConfig;
+  i18n?: i18nConfig;
 }
