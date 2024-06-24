@@ -1,34 +1,19 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-  Optional,
-  signal,
-} from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { RXAP_LAYOUT_APPS_GRID } from '../../tokens';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import {
   NgFor,
   NgIf,
   NgOptimizedImage,
 } from '@angular/common';
 import {
-  ExternalAppsService,
-} from '../../external-apps.service';
-import { RxapAuthenticationService } from '@rxap/authentication';
-import {
-  Subscription,
-  switchMap,
-} from 'rxjs';
-import {
-  filter,
-  tap,
-} from 'rxjs/operators';
-import { ExternalApps } from '../../types';
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { ExternalAppsService } from '../../external-apps.service';
 
 @Component({
   selector: 'rxap-apps-button',
@@ -45,31 +30,17 @@ import { ExternalApps } from '../../types';
     RouterLink,
   ],
 })
-export class AppsButtonComponent implements OnInit, OnDestroy {
-  public isOpen = false;
+export class AppsButtonComponent {
+  /**
+   * The signal that indicates if the app list is open
+   */
+  public readonly isOpen = signal(false);
 
-  public readonly appList = signal<Array<ExternalApps>>([]);
+  private readonly externalAppsService = inject(ExternalAppsService);
+  public readonly appList = computed(() => this.externalAppsService.activeAppList());
 
-  private _subscription?: Subscription;
-
-  constructor(
-    @Optional()
-    @Inject(RXAP_LAYOUT_APPS_GRID)
-      grid: any,
-    private readonly appUrlService: ExternalAppsService,
-    private readonly authenticationService: RxapAuthenticationService,
-  ) {}
-
-  ngOnInit() {
-    this._subscription = this.authenticationService.isAuthenticated$.pipe(
-      filter(Boolean),
-      switchMap(() => this.appUrlService.getAppList()),
-      tap((apps) => this.appList.set(apps)),
-    ).subscribe();
-  }
-
-  ngOnDestroy() {
-    this._subscription?.unsubscribe();
+  public toggle(): void {
+    this.isOpen.update(isOpen => !isOpen);
   }
 
 }
