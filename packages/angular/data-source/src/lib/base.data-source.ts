@@ -121,7 +121,13 @@ export class BaseDataSource<
     return this._viewerIds.get(viewer)!;
   }
 
-  public connect(viewer: Viewer): Observable<Data> {
+  public connect(viewerOrString: Viewer | DataSourceViewerId): Observable<Data> {
+    let viewer: Viewer;
+    if (typeof viewerOrString === 'string') {
+      viewer = { id: viewerOrString } as Viewer;
+    } else {
+      viewer = viewerOrString;
+    }
     if (!viewer.id) {
       viewer.id = this.getViewerId(viewer);
     }
