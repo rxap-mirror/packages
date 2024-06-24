@@ -4,6 +4,10 @@ export * from './lib/sidenav/sidenav-header.directive';
 export * from './lib/sidenav/sidenav.component';
 // endregion
 
+// region release-info
+export * from './lib/release-info/release-info.component';
+// endregion
+
 // region navigation navigation-item
 export * from './lib/navigation/navigation-item/navigation-item.component';
 // endregion
@@ -11,11 +15,13 @@ export * from './lib/navigation/navigation-item/navigation-item.component';
 // region navigation
 export * from './lib/navigation/navigation-item';
 export * from './lib/navigation/navigation.component';
-export * from './lib/navigation.service';
+// endregion
+
+// region minimal-layout
+export * from './lib/minimal-layout/minimal-layout.component';
 // endregion
 
 // region layout
-export * from './lib/layout.service';
 export * from './lib/layout/layout.component';
 // endregion
 
@@ -55,9 +61,16 @@ export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
 // endregion
 
-// region
+// region base-layout
+export * from './lib/base-layout/base-layout.component';
+// endregion
+
+// region 
 export * from './lib/external-apps.service';
 export * from './lib/footer.directive';
+export * from './lib/layout.service';
+export * from './lib/logo.service';
+export * from './lib/navigation.service';
 export * from './lib/provide';
 export * from './lib/tokens';
 export * from './lib/types';

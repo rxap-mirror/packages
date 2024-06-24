@@ -3,7 +3,7 @@ export * from './lib/environment/environment.component';
 export * from './lib/environment/tokens';
 // endregion
 
-// region
+// region 
 export * from './lib/determine-production-environment-name';
 export * from './lib/determine-release-name';
 export * from './lib/environment';
