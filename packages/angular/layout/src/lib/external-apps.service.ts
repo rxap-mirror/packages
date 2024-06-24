@@ -2,6 +2,7 @@ import {
   inject,
   Injectable,
   LOCALE_ID,
+  signal,
 } from '@angular/core';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { ClickOnLink } from '@rxap/browser-utilities';
@@ -22,6 +23,11 @@ export class ExternalAppsService {
   protected readonly localeId = inject(LOCALE_ID);
   protected readonly environment = inject(RXAP_ENVIRONMENT);
   protected readonly apps: Array<ExternalApps> = this.config.get('navigation.apps', []);
+
+  /**
+   * The list of active apps that is processed by the getAppList method
+   */
+  public readonly activeAppList = signal<Array<ExternalApps>>([]);
 
   public hasApp(appId: string): boolean {
     return this.apps.some(app => app.id === appId);
@@ -103,7 +109,9 @@ export class ExternalAppsService {
       appList = await appFilter.call(structuredClone(appList));
     }
 
-    return structuredClone(appList);
+    appList = structuredClone(appList);
+    this.activeAppList.set(appList);
+    return appList;
   }
 
   protected getPathPrefix(): string {
