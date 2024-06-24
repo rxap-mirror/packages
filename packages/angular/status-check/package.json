@@ -11,7 +11,7 @@
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
-    "@rxap/config": "^18.1.1-dev.1",
+    "@rxap/config": "^18.1.1-dev.2",
     "@rxap/open-api": "^18.0.3-dev.1",
     "@sentry/angular": "^8.9.2",
     "rxjs": "^7.8.1"
@@ -70,11 +70,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -86,7 +86,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/mixin",

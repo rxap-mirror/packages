@@ -11,10 +11,10 @@
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
-    "@rxap/directives": "^18.0.3-dev.1",
+    "@rxap/directives": "^18.0.3-dev.2",
     "@rxap/material-directives": "^18.0.3-dev.1",
     "@rxap/rxjs": "^1.1.6-dev.1",
-    "@rxap/services": "^18.0.3-dev.1",
+    "@rxap/services": "^18.0.3-dev.2",
     "@rxap/utilities": "^16.2.4-dev.1",
     "rxjs": "^7.8.1"
   },
@@ -73,7 +73,7 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/material-directives",
@@ -93,7 +93,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/utilities",

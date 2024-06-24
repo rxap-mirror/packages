@@ -1,5 +1,5 @@
 {
-  "version": "18.1.1-dev.1",
+  "version": "18.1.1-dev.2",
   "name": "@rxap/data-source",
   "description": "Provides the DataSource concept for RxAP.",
   "license": "GPL-3.0-or-later",
@@ -14,7 +14,7 @@
     "@angular/material": "^18.0.0",
     "@rxap/data-structure-tree": "^1.1.6-dev.1",
     "@rxap/definition": "^18.0.3-dev.1",
-    "@rxap/environment": "^18.0.3-dev.1",
+    "@rxap/environment": "^18.0.3-dev.2",
     "@rxap/pattern": "^1.1.5-dev.1",
     "@rxap/rxjs": "^1.1.6-dev.1",
     "@rxap/utilities": "^16.2.4-dev.1",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/pattern",

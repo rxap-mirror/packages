@@ -1,5 +1,5 @@
 {
-  "version": "18.0.3-dev.1",
+  "version": "18.0.3-dev.2",
   "name": "@rxap/ngx-material-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,8 +11,8 @@
     "@angular/core": "^18.0.1",
     "@angular/forms": "^18.0.1",
     "@angular/material": "^18.0.0",
-    "@rxap/directives": "^18.0.3-dev.1",
-    "@rxap/ngx-localize": "^18.0.3-dev.1",
+    "@rxap/directives": "^18.0.3-dev.2",
+    "@rxap/ngx-localize": "^18.0.3-dev.2",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -74,11 +74,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -90,11 +90,11 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/mixin",
@@ -102,7 +102,7 @@
       },
       {
         "package": "@rxap/ngx-localize",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/ngx-pub-sub",
@@ -134,7 +134,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/utilities",

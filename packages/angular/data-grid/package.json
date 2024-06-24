@@ -11,7 +11,7 @@
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
-    "@rxap/forms": "^18.0.3-dev.1",
+    "@rxap/forms": "^18.0.3-dev.2",
     "@rxap/pattern": "^1.1.5-dev.1",
     "@rxap/pipes": "^18.0.3-dev.1",
     "@rxap/rxjs": "^1.1.6-dev.1",
@@ -77,11 +77,11 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/forms",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/pattern",
@@ -101,7 +101,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/utilities",

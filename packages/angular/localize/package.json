@@ -1,5 +1,5 @@
 {
-  "version": "18.0.3-dev.1",
+  "version": "18.0.3-dev.2",
   "name": "@rxap/ngx-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
-    "@rxap/config": "^18.1.1-dev.1",
+    "@rxap/config": "^18.1.1-dev.2",
     "@rxap/ngx-user": "^18.0.3-dev.1",
     "rxjs": "^7.8.1"
   },
@@ -71,11 +71,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -87,7 +87,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/mixin",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@18.0.3-dev.1...@rxap/ngx-localize@18.0.3-dev.2) (2024-06-24)
+
+### Bug Fixes
+
+- move language selector ([8cfbe0d](https://gitlab.com/rxap/packages/commit/8cfbe0ddc8417caa955dbe22dd5e85976149de51))
+
 ## [18.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@18.0.3-dev.0...@rxap/ngx-localize@18.0.3-dev.1) (2024-06-21)
 
 **Note:** Version bump only for package @rxap/ngx-localize

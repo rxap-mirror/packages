@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/config@18.1.1-dev.1...@rxap/config@18.1.1-dev.2) (2024-06-24)
+
+### Bug Fixes
+
+- add config interface ([b541bea](https://gitlab.com/rxap/packages/commit/b541bea31d5f9af51c8f43512417fe591e9e3266))
+- add config interface ([3208674](https://gitlab.com/rxap/packages/commit/320867427458f75a9cdade44f995c1bb5f1d2f1b))
+- add config interface ([4fbed69](https://gitlab.com/rxap/packages/commit/4fbed69d9f8838cebf44caddb23b63a2906de0fa))
+
 ## [18.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@18.1.1-dev.0...@rxap/config@18.1.1-dev.1) (2024-06-21)
 
 **Note:** Version bump only for package @rxap/config

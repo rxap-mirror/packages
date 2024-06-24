@@ -1,5 +1,5 @@
 {
-  "version": "18.0.3-dev.1",
+  "version": "18.1.0-dev.0",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -14,8 +14,8 @@
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
     "@rxap/browser-utilities": "^1.1.4-dev.1",
-    "@rxap/config": "^18.1.1-dev.1",
-    "@rxap/environment": "^18.0.3-dev.1",
+    "@rxap/config": "^18.1.1-dev.2",
+    "@rxap/environment": "^18.0.3-dev.2",
     "@rxap/material-directives": "^18.0.3-dev.1",
     "@rxap/ngx-pub-sub": "^18.0.3-dev.1",
     "@rxap/ngx-theme": "^18.0.3-dev.1",
@@ -87,11 +87,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -103,7 +103,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/material-directives",

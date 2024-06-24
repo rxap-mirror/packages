@@ -13,7 +13,7 @@
     "@angular/core": "^18.0.1",
     "@angular/forms": "^18.0.1",
     "@angular/material": "^18.0.0",
-    "@rxap/data-source": "^18.1.1-dev.1",
+    "@rxap/data-source": "^18.1.1-dev.2",
     "@rxap/material-table-system": "^18.0.3-dev.1",
     "@rxap/utilities": "^16.2.4-dev.1",
     "rxjs": "^7.8.1"
@@ -81,7 +81,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -93,15 +93,15 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/forms",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/material-directives",
@@ -129,7 +129,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/utilities",

@@ -10,9 +10,9 @@
   "peerDependencies": {
     "@angular/cdk": "^18.0.0",
     "@angular/core": "^18.0.1",
-    "@rxap/directives": "^18.0.3-dev.1",
+    "@rxap/directives": "^18.0.3-dev.2",
     "@rxap/form-system": "^18.0.3-dev.1",
-    "@rxap/forms": "^18.0.3-dev.1",
+    "@rxap/forms": "^18.0.3-dev.2",
     "@rxap/pattern": "^1.1.5-dev.1",
     "@rxap/reflect-metadata": "^1.0.7-dev.1",
     "@rxap/rxjs": "^1.1.6-dev.1",
@@ -79,11 +79,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.1-dev.1"
+        "version": "18.1.1-dev.2"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -95,11 +95,11 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/form-system",
@@ -107,7 +107,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/material-directives",
@@ -143,7 +143,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/utilities",

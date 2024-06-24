@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.1-dev.3...@rxap/plugin-workspace@19.1.1-dev.4) (2024-06-24)
+
+### Bug Fixes
+
+- use dynamic name ([4aa6ac0](https://gitlab.com/rxap/packages/commit/4aa6ac079856c6ecdb52397909ae8a369cf88b24))
+
 ## [19.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.1-dev.2...@rxap/plugin-workspace@19.1.1-dev.3) (2024-06-21)
 
 ### Bug Fixes

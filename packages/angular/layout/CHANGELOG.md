@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.0.3-dev.1...@rxap/layout@18.1.0-dev.0) (2024-06-24)
+
+### Bug Fixes
+
+- move language selector ([8cfbe0d](https://gitlab.com/rxap/packages/commit/8cfbe0ddc8417caa955dbe22dd5e85976149de51))
+
+### Features
+
+- add signal ([8f9e868](https://gitlab.com/rxap/packages/commit/8f9e8680e17e1a21a74a157516928b4b871561f9))
+- support custom settings components ([9349248](https://gitlab.com/rxap/packages/commit/9349248f0e64e314e4a1daffa4de835eb48c4d5c))
+- support router link for app buttons ([51b7502](https://gitlab.com/rxap/packages/commit/51b75025338d76cbdbfbc2f9654181b47fef122f))
+
 ## [18.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.0.3-dev.0...@rxap/layout@18.0.3-dev.1) (2024-06-21)
 
 **Note:** Version bump only for package @rxap/layout
