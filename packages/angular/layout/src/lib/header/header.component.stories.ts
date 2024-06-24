@@ -1,4 +1,7 @@
-import { provideLayout } from '@rxap/layout';
+import {
+  provideLayout,
+  widthDefaultHeaderComponent,
+} from '../provide';
 import {
   Meta,
   moduleMetadata,
@@ -15,7 +18,7 @@ const meta: Meta<HeaderComponent> = {
   decorators: [
     moduleMetadata({
       providers: [
-        provideLayout(),
+        provideLayout(widthDefaultHeaderComponent()),
       ]
     })
   ],

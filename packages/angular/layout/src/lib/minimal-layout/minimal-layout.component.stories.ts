@@ -1,4 +1,4 @@
-import { provideLayout } from '@rxap/layout';
+import { provideLayout } from '../provide';
 import {
   Meta,
   moduleMetadata,

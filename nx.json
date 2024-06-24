@@ -75,6 +75,7 @@
       "inputs": ["{workspaceRoot}/package.json", "{projectRoot}/package.json"]
     },
     "test": {
+      "cache": true,
       "executor": "@nx/jest:jest",
       "outputs": [
         "{workspaceRoot}/coverage/{projectRoot}",
@@ -95,8 +96,7 @@
         "silent": true,
         "coverageReporters": ["json", "html"],
         "codeCoverage": true
-      },
-      "cache": true
+      }
     },
     "serve": {
       "dependsOn": ["build-info", "^copy-open-api-sdk", "^generate-open-api"]

@@ -7,7 +7,7 @@ import { UserProfileIconComponent } from './user-profile-icon.component';
 
 const meta: Meta<UserProfileIconComponent> = {
   component: UserProfileIconComponent,
-  title: 'HeaderComponent / UserProfileIconComponent',
+  title: 'DefaultHeaderComponent / UserProfileIconComponent',
 };
 export default meta;
 type Story = StoryObj<UserProfileIconComponent>;

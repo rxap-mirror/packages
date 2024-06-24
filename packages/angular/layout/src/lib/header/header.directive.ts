@@ -7,16 +7,16 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { FooterService } from '../footer.service';
+import { HeaderService } from '../header.service';
 
 @Directive({
-  selector: '[rxapFooter]',
+  selector: '[rxapHeader]',
   standalone: true,
 })
-export class FooterDirective implements OnInit, OnDestroy {
+export class HeaderDirective implements OnInit, OnDestroy {
   private _portal?: TemplatePortal<void>;
 
-  private readonly footerService = inject(FooterService);
+  private readonly headerService = inject(HeaderService);
   private readonly template: TemplateRef<void> = inject(TemplateRef);
   private readonly viewContainerRef = inject(ViewContainerRef);
 
@@ -25,12 +25,12 @@ export class FooterDirective implements OnInit, OnDestroy {
       this.template,
       this.viewContainerRef,
     );
-    this.footerService.pushPortal(this._portal);
+    this.headerService.pushPortal(this._portal);
   }
 
   public ngOnDestroy() {
     if (this._portal) {
-      this.footerService.removePortal(this._portal);
+      this.headerService.removePortal(this._portal);
     }
   }
 }

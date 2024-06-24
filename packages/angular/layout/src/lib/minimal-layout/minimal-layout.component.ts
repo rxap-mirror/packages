@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BaseLayoutComponent } from '../base-layout/base-layout.component';
-import { NavigationProgressBarComponent } from '../header/navigation-progress-bar/navigation-progress-bar.component';
+import { NavigationProgressBarComponent } from '../navigation-progress-bar/navigation-progress-bar.component';
 
 @Component({
   selector: 'rxap-minimal-layout',

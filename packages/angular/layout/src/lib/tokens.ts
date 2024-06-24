@@ -1,3 +1,4 @@
+import { ComponentType } from '@angular/cdk/portal';
 import { InjectionToken } from '@angular/core';
 import { LogoConfig } from '@rxap/config';
 import { MethodWithParameters } from '@rxap/pattern';
@@ -15,8 +16,8 @@ export const RXAP_NAVIGATION_CONFIG = new InjectionToken<NavigationWithInserts |
 export const RXAP_NAVIGATION_CONFIG_INSERTS = new InjectionToken<Record<string, NavigationWithInserts>>(
   'rxap/layout/navigation-config-inserts');
 
-export const RXAP_FOOTER_COMPONENT = new InjectionToken('rxap/layout/footer-component');
-export const RXAP_HEADER_COMPONENT = new InjectionToken('rxap/layout/header-component');
+export const RXAP_FOOTER_COMPONENT = new InjectionToken<ComponentType<unknown>>('rxap/layout/footer-component');
+export const RXAP_HEADER_COMPONENT = new InjectionToken<ComponentType<unknown>>('rxap/layout/header-component');
 export const RXAP_LOGO_CONFIG = new InjectionToken<LogoConfig>('rxap/layout/logo-config');
 export const RXAP_LAYOUT_APPS_GRID = new InjectionToken('rxap/layout/apps-grid');
 

@@ -1,4 +1,4 @@
-import { provideLayout } from '@rxap/layout';
+import { provideLayout } from '../../provide';
 import {
   Meta,
   moduleMetadata,
@@ -8,7 +8,7 @@ import { AppsButtonComponent } from './apps-button.component';
 
 const meta: Meta<AppsButtonComponent> = {
   component: AppsButtonComponent,
-  title: 'HeaderComponent / AppsButtonComponent',
+  title: 'DefaultHeaderComponent / AppsButtonComponent',
   decorators: [
     moduleMetadata({
       providers: [

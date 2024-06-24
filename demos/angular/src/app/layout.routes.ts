@@ -4,6 +4,7 @@ import { EmptyRouterOutletComponent } from '@rxap/components';
 import {
   LayoutComponent,
   provideLayout,
+  widthDefaultHeaderComponent,
   withNavigationConfig,
   withSettingsMenuItems,
 } from '@rxap/layout';
@@ -78,6 +79,7 @@ const ROUTES: Route[] = [
     ],
     providers: [
       provideLayout(
+        widthDefaultHeaderComponent(),
         withNavigationConfig(APP_NAVIGATION),
         withSettingsMenuItems(
           {

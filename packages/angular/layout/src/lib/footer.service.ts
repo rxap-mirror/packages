@@ -1,20 +1,26 @@
-import { Portal } from '@angular/cdk/portal';
+import {
+  ComponentPortal,
+  Portal,
+} from '@angular/cdk/portal';
 import {
   computed,
+  inject,
   Injectable,
   isDevMode,
   signal,
 } from '@angular/core';
+import { RXAP_FOOTER_COMPONENT } from './tokens';
+import { coerceArray } from '@rxap/utilities';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class FooterService {
+
+  private readonly components = coerceArray(inject(RXAP_FOOTER_COMPONENT, { optional: true }));
 
   /**
    * Represents an array of `Portal` objects with unknown type.
-   *
-   * @typedef {Array<Portal<unknown>>} SignalPortals
    */
-  public readonly portals = signal<Array<Portal<unknown>>>([]);
+  public readonly portals = signal<Array<Portal<unknown>>>(this.components.map(component => new ComponentPortal(component)));
 
 
   /**

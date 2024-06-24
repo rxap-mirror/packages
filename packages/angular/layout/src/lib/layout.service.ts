@@ -13,11 +13,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { ConfigService } from '@rxap/config';
 import { ObserveCurrentThemeDensity } from '@rxap/ngx-theme';
-import {
-  FooterService,
-  HeaderService,
-} from '@rxap/services';
 import { Observable } from 'rxjs';
+import { FooterService } from './footer.service';
+import { HeaderService } from './header.service';
 
 @Injectable()
 export class LayoutService {
@@ -78,7 +76,7 @@ export class LayoutService {
     });
 
     this.fixedTopGap = computed(() => {
-      const headerPortalCount = this.headerService.componentCount();
+      const headerPortalCount = this.headerService.portalCount();
       const currentThemeDensity = this.currentThemeDensity() ?? 0;
       return headerPortalCount * (currentThemeDensity * 4 + 64);
     });

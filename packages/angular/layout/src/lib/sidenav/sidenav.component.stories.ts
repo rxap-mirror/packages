@@ -2,7 +2,7 @@ import {
   provideLayout,
   withNavigationConfig,
   withNavigationInserts,
-} from '@rxap/layout';
+} from '../provide';
 import {
   Meta,
   moduleMetadata,

@@ -1,11 +1,9 @@
-@if (portals(); as portals) {
-  @if (portals.length) {
-    <mat-toolbar class="mat-elevation-z1">
-      @for (portal of portals; track portal) {
-        <mat-toolbar-row>
-          <ng-template [cdkPortalOutlet]="portal"></ng-template>
-        </mat-toolbar-row>
-      }
-    </mat-toolbar>
-  }
+@if (hasPortals()) {
+  <mat-toolbar class="mat-elevation-z1">
+    @for (portal of portals(); track portal) {
+      <mat-toolbar-row>
+        <ng-template [cdkPortalOutlet]="portal"></ng-template>
+      </mat-toolbar-row>
+    }
+  </mat-toolbar>
 }

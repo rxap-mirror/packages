@@ -1,11 +1,16 @@
+import { ComponentType } from '@angular/cdk/portal';
 import { Provider } from '@angular/core';
-import { coerceArray } from '@rxap/utilities';
+import { DefaultHeaderComponent } from './default-header/default-header.component';
 import { ExternalAppsService } from './external-apps.service';
+import { FooterService } from './footer.service';
+import { HeaderService } from './header.service';
 import { LayoutService } from './layout.service';
 import { LogoService } from './logo.service';
 import { NavigationService } from './navigation.service';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
+  RXAP_FOOTER_COMPONENT,
+  RXAP_HEADER_COMPONENT,
   RXAP_NAVIGATION_CONFIG,
   RXAP_NAVIGATION_CONFIG_INSERTS,
   RXAP_RELEASE_INFO_MODULE,
@@ -24,6 +29,8 @@ export function provideLayout(...additionalProviders: Provider[]): Provider[] {
     LayoutService,
     LogoService,
     NavigationService,
+    HeaderService,
+    FooterService,
     ...additionalProviders,
   ];
 }
@@ -73,4 +80,29 @@ export function withReleaseInfoModules(...module: ReleaseInfoModule[]): Provider
       multi: true,
     }
   ));
+}
+
+export function withHeaderComponents(components: Array<ComponentType<unknown>>): Provider[] {
+  return components.map(component => (
+    {
+      provide: RXAP_HEADER_COMPONENT,
+      useValue: component,
+    }
+  ));
+}
+
+export function withFooterComponents(components: Array<ComponentType<unknown>>): Provider[] {
+  return components.map(component => (
+    {
+      provide: RXAP_FOOTER_COMPONENT,
+      useValue: component,
+    }
+  ));
+}
+
+export function widthDefaultHeaderComponent(): Provider {
+  return {
+    provide: RXAP_HEADER_COMPONENT,
+    useValue: DefaultHeaderComponent,
+  };
 }

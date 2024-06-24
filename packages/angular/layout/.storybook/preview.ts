@@ -49,6 +49,7 @@ export const decorators = [
         commit: faker.git.commitSha({ length: 7 }),
         timestamp: faker.date.past().toISOString(),
         branch: faker.git.branch(),
+        tag: 'v' + faker.system.semver(),
         tier: 'production',
       }),
       provideRouter([

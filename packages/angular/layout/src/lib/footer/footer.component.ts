@@ -6,7 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FooterService } from '@rxap/services';
+import { FooterService } from '../footer.service';
 
 @Component({
   selector: 'rxap-footer',
@@ -21,5 +21,6 @@ export class FooterComponent {
   private readonly footerService = inject(FooterService);
 
   public readonly portals = computed(() => this.footerService.portals());
+  public readonly hasPortals = computed(() => this.portals().length > 0);
 
 }

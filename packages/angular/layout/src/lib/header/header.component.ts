@@ -1,3 +1,4 @@
+import { CdkPortalOutlet } from '@angular/cdk/portal';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,16 +6,12 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { ThemePalette } from '@angular/material/core';
-import { MatToolbar } from '@angular/material/toolbar';
-import { UserProfileDataSource } from '@rxap/ngx-user';
-import { LayoutService } from '../layout.service';
-import { AppsButtonComponent } from './apps-button/apps-button.component';
-import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
-import { SettingsButtonComponent } from './settings-button/settings-button.component';
-import { SidenavToggleButtonComponent } from './sidenav-toggle-button/sidenav-toggle-button.component';
-import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
+import {
+  MatToolbar,
+  MatToolbarRow,
+} from '@angular/material/toolbar';
+import { HeaderService } from '../header.service';
 
 @Component({
   selector: 'rxap-header',
@@ -24,25 +21,17 @@ import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.
   standalone: true,
   imports: [
     MatToolbar,
-    SidenavToggleButtonComponent,
-    AppsButtonComponent,
-    SettingsButtonComponent,
-    UserProfileIconComponent,
-    NavigationProgressBarComponent,
+    MatToolbarRow,
+    CdkPortalOutlet,
   ],
 })
 export class HeaderComponent {
 
   public readonly color = input<ThemePalette>();
 
-  public readonly layoutComponentService = inject(LayoutService);
+  private readonly headerService = inject(HeaderService);
 
-  public readonly collapsable = computed(() => this.layoutComponentService.collapsable());
-  public readonly opened = computed(() => this.layoutComponentService.opened());
-
-  private readonly userProfileService: UserProfileDataSource = inject(UserProfileDataSource);
-  public readonly profile = toSignal(this.userProfileService.connect('user-profile'), { initialValue: null });
-
-  public readonly hasProfile = computed(() => !!this.profile());
+  public readonly portals = computed(() => this.headerService.portals());
+  public readonly hasPortals = computed(() => this.portals().length > 0);
 
 }
