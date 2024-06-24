@@ -74,8 +74,8 @@ export * from './lib/header/header.component';
 export * from './lib/footer/footer.component';
 // endregion
 
-// region 
-export * from './lib/app-url.service';
+// region
+export * from './lib/external-apps.service';
 export * from './lib/authentication.service.mock';
 export * from './lib/footer.directive';
 export * from './lib/tokens';

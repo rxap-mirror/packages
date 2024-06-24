@@ -1,49 +1,41 @@
 import {
-  Inject,
+  inject,
   Injectable,
   LOCALE_ID,
 } from '@angular/core';
-import { AuthorizationService } from '@rxap/authorization';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { ClickOnLink } from '@rxap/browser-utilities';
 import { ConfigService } from '@rxap/config';
+import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import {
-  Environment,
-  RXAP_ENVIRONMENT,
-} from '@rxap/environment';
-import { JoinPath } from '@rxap/utilities';
-import { firstValueFrom } from 'rxjs';
-
-export interface ExternalApps {
-  target?: string;
-  image?: string;
-  label: string;
-  href?: string;
-  routerLink?: string[];
-  empty?: false;
-  hidden?: boolean;
-  id?: string;
-  permissions: string[];
-}
+  coerceArray,
+  JoinPath,
+} from '@rxap/utilities';
+import { RXAP_EXTERNAL_APP_FILTER } from './tokens';
+import { ExternalApps } from './types';
 
 @Injectable({ providedIn: 'root' })
-export class AppUrlService {
+export class ExternalAppsService {
 
-  private _apps: Array<ExternalApps>;
+  protected readonly appFilterList = coerceArray(inject(RXAP_EXTERNAL_APP_FILTER, { optional: true}));
+  protected readonly config = inject(ConfigService);
+  protected readonly localeId = inject(LOCALE_ID);
+  protected readonly environment = inject(RXAP_ENVIRONMENT);
+  protected readonly apps: Array<ExternalApps> = this.config.get('navigation.apps', []);
 
-  constructor(
-    private readonly config: ConfigService,
-    @Inject(LOCALE_ID)
-    private readonly localeId: string,
-    private readonly authorizationService: AuthorizationService,
-    @Inject(RXAP_ENVIRONMENT)
-    private readonly environment: Environment,
-  ) {
-    this._apps = this.config.get('navigation.apps', []);
+  public hasApp(appId: string): boolean {
+    return this.apps.some(app => app.id === appId);
   }
 
   public getApp(appId: string): ExternalApps | null {
-    return this._apps.find(app => app.id === appId) ?? null;
+    if (!this.hasApp(appId)) {
+      return null;
+    }
+    const app = this.apps.find(app => app.id === appId);
+    if (!app) {
+      throw new Error(`FATAL: App with id "${ appId }" not found!`);
+    }
+    return structuredClone(app);
   }
 
   public getAppUrl(appId: string, path: string, infix: string | null = this.getPathPrefix()): string | null {
@@ -96,24 +88,25 @@ export class AppUrlService {
   }
 
   public async getAppList(): Promise<Array<ExternalApps>> {
-    const appList = this
-      ._apps
+    let appList: ExternalApps[] = this
+      .apps
       .filter(app => !app.hidden)
-      .map(app => ({
-        ...app,
-        href: JoinPath(app.href, this.getPathPrefix()),
-      }));
+      .map(app => structuredClone(app));
 
-    const filteredAppList: Array<ExternalApps> = [];
-    for (const app of appList) {
-      if (await firstValueFrom(this.authorizationService.hasPermission$(app.permissions))) {
-        filteredAppList.push(app);
+    appList.forEach(app => {
+      if (app.href) {
+        app.href = JoinPath(app.href, this.getPathPrefix());
       }
+    });
+
+    for (const appFilter of this.appFilterList) {
+      appList = await appFilter.call(structuredClone(appList));
     }
-    return filteredAppList;
+
+    return structuredClone(appList);
   }
 
-  private getPathPrefix(): string {
+  protected getPathPrefix(): string {
     if (this.environment.production && this.localeId) {
       return this.localeId.replace(/-.+$/, '');
     }

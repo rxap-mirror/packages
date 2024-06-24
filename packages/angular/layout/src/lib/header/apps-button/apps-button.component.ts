@@ -17,9 +17,8 @@ import {
   NgOptimizedImage,
 } from '@angular/common';
 import {
-  AppUrlService,
-  ExternalApps,
-} from '../../app-url.service';
+  ExternalAppsService,
+} from '../../external-apps.service';
 import { RxapAuthenticationService } from '@rxap/authentication';
 import {
   Subscription,
@@ -29,6 +28,7 @@ import {
   filter,
   tap,
 } from 'rxjs/operators';
+import { ExternalApps } from '../../types';
 
 @Component({
   selector: 'rxap-apps-button',
@@ -56,7 +56,7 @@ export class AppsButtonComponent implements OnInit, OnDestroy {
     @Optional()
     @Inject(RXAP_LAYOUT_APPS_GRID)
       grid: any,
-    private readonly appUrlService: AppUrlService,
+    private readonly appUrlService: ExternalAppsService,
     private readonly authenticationService: RxapAuthenticationService,
   ) {}
 

@@ -1,5 +1,9 @@
 import { InjectionToken } from '@angular/core';
-import { LogoConfig } from './types';
+import { MethodWithParameters } from '@rxap/pattern';
+import {
+  ExternalApps,
+  LogoConfig,
+} from './types';
 import { NavigationWithInserts } from './navigation/navigation-item';
 
 export const RXAP_NAVIGATION_CONFIG = new InjectionToken<NavigationWithInserts | (() => NavigationWithInserts)>(
@@ -11,3 +15,5 @@ export const RXAP_FOOTER_COMPONENT = new InjectionToken('rxap/layout/footer-comp
 export const RXAP_HEADER_COMPONENT = new InjectionToken('rxap/layout/header-component');
 export const RXAP_LOGO_CONFIG = new InjectionToken<LogoConfig>('rxap/layout/logo-config');
 export const RXAP_LAYOUT_APPS_GRID = new InjectionToken('rxap/layout/apps-grid');
+
+export const RXAP_EXTERNAL_APP_FILTER = new InjectionToken<MethodWithParameters<ExternalApps[], ExternalApps[]>>('rxap/layout/app-config-filter');
