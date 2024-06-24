@@ -22,7 +22,7 @@
 
     <ul [@sub-nav]
         [items]="children ?? []"
-        [level]="level + 1"
+        [level]="level() + 1"
         rxap-navigation
     >
     </ul>

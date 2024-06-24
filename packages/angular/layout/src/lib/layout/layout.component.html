@@ -1,22 +1,19 @@
 <rxap-status-indicator class="fixed bottom-0 right-0 z-10"></rxap-status-indicator>
-<div class="h-screen">
-  <rxap-header class="z-10 w-full fixed top-0"></rxap-header>
-  <rxap-sidenav class="h-full">
-    <router-outlet></router-outlet>
-    <ng-template rxapSidenavFooter>
-      <img
-        [src]="logoSrc()"
-        [routerLink]="['/']"
-        [width]="logoWidth()"
-        [height]="logoHeight()"
-        alt="logo"
-        class="grow-0 mx-16"
-      />
-      <div class="grow-0 px-16">
-        <rxap-release-info></rxap-release-info>
-      </div>
-    </ng-template>
-  </rxap-sidenav>
-  <rxap-footer class="z-10 w-full fixed bottom-0"></rxap-footer>
-</div>
-<!--<rxap-window-task-bar-container></rxap-window-task-bar-container>-->
+<rxap-header class="z-10 w-full fixed top-0"></rxap-header>
+<rxap-sidenav>
+  <router-outlet></router-outlet>
+  <ng-template rxapSidenavFooter>
+    <img
+      [src]="logoSrc()"
+      [routerLink]="['/']"
+      [width]="logoWidth()"
+      [height]="logoHeight()"
+      alt="logo"
+      class="grow-0 mx-16 cursor-pointer"
+    />
+    <div class="grow-0 px-16 mt-4">
+      <rxap-release-info></rxap-release-info>
+    </div>
+  </ng-template>
+</rxap-sidenav>
+<rxap-footer class="z-10 w-full fixed bottom-0"></rxap-footer>

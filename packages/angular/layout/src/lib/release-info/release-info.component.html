@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-2 w-full justify-center">
   <button (click)="openEnvironmentInfo()" mat-button>{{ release }}</button>
-  @if (modules?.length) {
+  @if (modules.length) {
     <table class="table-auto border-separate border-spacing-2 bg-white dark:bg-slate-800 text-sm shadow-sm">
       <thead class="bg-slate-50 dark:bg-slate-700">
       <th class="text-sm border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-200 border p-2">Module</th>
