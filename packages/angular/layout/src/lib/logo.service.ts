@@ -5,7 +5,7 @@ import {
   signal,
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
-import { RXAP_LOGO_CONFIG } from '@rxap/layout';
+import { RXAP_LOGO_CONFIG } from './tokens';
 
 @Injectable({ providedIn: 'root' })
 export class LogoService {

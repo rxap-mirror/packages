@@ -1,4 +1,7 @@
 <button (click)="toggle()" mat-icon-button>
-  <mat-icon *ngIf="!opened()">menu</mat-icon>
-  <mat-icon *ngIf="opened()">menu_open</mat-icon>
+  @if (opened()) {
+    <mat-icon>menu_open</mat-icon>
+  } @else {
+    <mat-icon>menu</mat-icon>
+  }
 </button>

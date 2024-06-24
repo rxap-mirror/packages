@@ -1,11 +1,10 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import {
   NavigationCancel,
   NavigationEnd,
@@ -24,8 +23,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgIf,
-    MatProgressBarModule,
+    MatProgressBar,
   ],
 })
 export class NavigationProgressBarComponent {

@@ -30,7 +30,6 @@ export * from './lib/header/user-profile-icon/user-profile-icon.component';
 // endregion
 
 // region header sign-out
-export * from './lib/header/sign-out/sign-out.component';
 // endregion
 
 // region header sidenav-toggle-button
@@ -46,7 +45,6 @@ export * from './lib/header/navigation-progress-bar/navigation-progress-bar.comp
 // endregion
 
 // region header language-selector
-export * from './lib/header/language-selector/language-selector.component';
 // endregion
 
 // region header apps-button
@@ -65,7 +63,7 @@ export * from './lib/footer/footer.component';
 export * from './lib/base-layout/base-layout.component';
 // endregion
 
-// region 
+// region
 export * from './lib/external-apps.service';
 export * from './lib/footer.directive';
 export * from './lib/layout.service';

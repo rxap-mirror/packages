@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { ProvideReleaseInfoModule } from '@rxap/layout';
+import { ProvideReleaseInfoModule } from '../provide';
 import {
   type Meta,
   moduleMetadata,

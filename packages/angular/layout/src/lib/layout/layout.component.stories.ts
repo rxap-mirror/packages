@@ -1,4 +1,4 @@
-import { NavigationService } from '@rxap/layout';
+import { NavigationService } from '../navigation.service';
 import {
   Meta,
   moduleMetadata,

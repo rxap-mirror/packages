@@ -1,7 +1,7 @@
+import { ProvideNavigationConfig } from '../provide';
 import {
   NavigationService,
-  ProvideNavigationConfig,
-} from '@rxap/layout';
+} from '../navigation.service';
 import {
   Meta,
   moduleMetadata,

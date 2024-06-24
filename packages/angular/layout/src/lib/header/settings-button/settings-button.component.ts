@@ -1,13 +1,8 @@
 import {
+  CdkPortalOutlet,
   ComponentPortal,
   ComponentType,
-  PortalModule,
 } from '@angular/cdk/portal';
-import {
-  CommonModule,
-  NgForOf,
-  NgIf,
-} from '@angular/common';
 import {
   Component,
   inject,
@@ -16,9 +11,13 @@ import {
   Signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import {
+  MatMenu,
+  MatMenuItem,
+  MatMenuTrigger,
+} from '@angular/material/menu';
 import {
   ActivatedRoute,
   Data,
@@ -29,22 +28,20 @@ import {
   ThemeService,
 } from '@rxap/ngx-theme';
 import { map } from 'rxjs/operators';
-import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
 
 @Component({
   selector: 'rxap-settings-button',
   standalone: true,
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    LanguageSelectorComponent,
-    MatMenuModule,
-    PortalModule,
-    NgIf,
-    NgForOf,
-  ],
   templateUrl: './settings-button.component.html',
   styleUrls: [ './settings-button.component.scss' ],
+  imports: [
+    MatIconButton,
+    MatIcon,
+    MatMenu,
+    MatMenuTrigger,
+    MatMenuItem,
+    CdkPortalOutlet,
+  ],
 })
 export class SettingsButtonComponent {
 

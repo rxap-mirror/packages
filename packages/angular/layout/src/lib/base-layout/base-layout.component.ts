@@ -2,10 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import { FooterComponent } from '../footer/footer.component';
 import {
-  FooterComponent,
   HeaderComponent,
-} from '@rxap/layout';
+} from '../header/header.component';
 import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
 
 @Component({
@@ -15,7 +15,6 @@ import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
     StatusIndicatorComponent,
     HeaderComponent,
     FooterComponent,
-
   ],
   templateUrl: './base-layout.component.html',
   styleUrl: './base-layout.component.scss',

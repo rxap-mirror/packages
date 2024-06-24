@@ -1,16 +1,17 @@
 <button [matMenuTriggerFor]="menu"
-        [disabled]="!username()"
         class="rounded-full cursor-pointer outline-none overflow-hidden h-8 w-8 bg-center bg-no-repeat bg-cover flex flex-row justify-center items-center">
   <mat-icon class="h-8 w-8 text-[32px]" svgIcon="account-circle"></mat-icon>
 </button>
 
 <mat-menu #menu="matMenu" [yPosition]="'below'" class="!max-w-none">
+  @if (this.username(); as username) {
   <button mat-menu-item>
     <span class="flex flex-row gap-2">
       <mat-icon svgIcon="account"></mat-icon>
-      <span>{{username()}}</span>
+      <span>{{username}}</span>
     </span>
   </button>
+  }
   <button (click)="logout()" mat-menu-item>
     <span class="flex flex-row gap-2">
       <mat-icon svgIcon="logout"></mat-icon>

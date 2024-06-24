@@ -1,10 +1,8 @@
 import {
   inject,
-  Injector,
-} from '@angular/core';
-import {
   Inject,
   Injectable,
+  Injector,
   INJECTOR,
   Optional,
 } from '@angular/core';
@@ -15,6 +13,11 @@ import {
   of,
   ReplaySubject,
 } from 'rxjs';
+import {
+  catchError,
+  map,
+  switchMap,
+} from 'rxjs/operators';
 import {
   IsNavigationDividerItem,
   IsNavigationInsertItem,
@@ -28,11 +31,6 @@ import {
   RXAP_NAVIGATION_CONFIG,
   RXAP_NAVIGATION_CONFIG_INSERTS,
 } from './tokens';
-import {
-  catchError,
-  map,
-  switchMap,
-} from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class NavigationService {
@@ -125,23 +123,23 @@ export class NavigationService {
     if (IsNavigationDividerItem(navigationItem) || !navigationItem.status) {
       return of(navigationItem);
     }
-    const isVisibleArray$: Array<Observable<boolean>> = navigationItem.status
-                                                                      .map((statusToken) => this.injector.get(
-                                                                        statusToken))
-                                                                      .map((status) => {
-                                                                        const isVisible = status.isVisible(
-                                                                          navigationItem);
-                                                                        if (typeof isVisible === 'boolean') {
-                                                                          return of(isVisible);
-                                                                        } else {
-                                                                          return from(isVisible);
-                                                                        }
-                                                                      })
-                                                                      .map(isVisible$ => isVisible$.pipe(catchError(e => {
-                                                                        console.error('isVisible method failed: ' +
-                                                                          e.message);
-                                                                        return of(false);
-                                                                      })));
+    const isVisibleArray$: Array<Observable<boolean>> = navigationItem
+      .status
+      .map((statusToken) => this.injector.get(
+        statusToken))
+      .map((status) => {
+        const isVisible = status.isVisible(
+          navigationItem);
+        if (typeof isVisible === 'boolean') {
+          return of(isVisible);
+        } else {
+          return from(isVisible);
+        }
+      })
+      .map(isVisible$ => isVisible$.pipe(catchError(e => {
+        console.error(`isVisible method failed: ${ e.message }`);
+        return of(false);
+      })));
     // TODO : dont wait for all status services to complete, but cancel waiting if one returns false
     return combineLatest(isVisibleArray$).pipe(
       map((isVisibleArray) =>

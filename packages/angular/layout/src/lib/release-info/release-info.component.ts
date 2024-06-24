@@ -10,7 +10,7 @@ import {
   EnvironmentComponent,
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
-import { RXAP_RELEASE_INFO_MODULE } from '@rxap/layout';
+import { RXAP_RELEASE_INFO_MODULE } from '../tokens';
 import { coerceArray } from '@rxap/utilities';
 
 @Component({

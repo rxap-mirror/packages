@@ -1,12 +1,16 @@
-<mat-toolbar [color]="color()" [ngClass]="{ open: opened() }" class="mat-elevation-z3 header">
+<mat-toolbar [color]="color()" class="mat-elevation-z3 header">
   <div class="w-full flex flex-row gap-x-4 justify-between items-center">
-    <rxap-sidenav-toggle-button *ngIf="!collapsable()"></rxap-sidenav-toggle-button>
+    @if (!collapsable()) {
+    <rxap-sidenav-toggle-button></rxap-sidenav-toggle-button>
+    }
     <div class="grow">
       <ng-content></ng-content>
     </div>
     <rxap-apps-button class="grow-0"></rxap-apps-button>
     <rxap-settings-button class="grow-0"></rxap-settings-button>
-    <rxap-user-profile-icon class="grow-0"></rxap-user-profile-icon>
+    @if (this.profile(); as profile) {
+    <rxap-user-profile-icon [profile]="profile" class="grow-0"></rxap-user-profile-icon>
+    }
   </div>
 </mat-toolbar>
 

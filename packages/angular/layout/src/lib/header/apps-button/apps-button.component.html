@@ -1,32 +1,46 @@
-<div *ngIf="appList()?.length" class="flex flex-row items-center gap-8">
+@if (hasApps()) {
+  <div class="flex flex-row items-center gap-8">
 
-  <div *ngIf="isOpen()" class="flex flex-row items-center gap-6">
+    @if (isOpen()) {
+      <div class="flex flex-row items-center gap-6 h-10">
 
-    <div *ngFor="let app of appList()" class="h-10">
-      <a *ngIf="app.href" [href]="app.href" [target]="app.target ?? '_self'" mat-stroked-button>
-        <span class="flex flex-row items-center gap-4">
-          <img *ngIf="app.image" [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
-          <span class="label grow-0">{{app.label}}</span>
-        </span>
-      </a>
-      <a *ngIf="app.routerLink" mat-stroked-button [routerLink]="app.routerLink">
-        <span class="flex flex-row items-center gap-4">
-          <img *ngIf="app.image" [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
-          <span class="label grow-0">{{app.label}}</span>
-        </span>
-      </a>
-      <button *ngIf="!app.routerLink && !app.href" mat-stroked-button [disabled]="true">
-        <span class="flex flex-row items-center gap-4">
-          <img *ngIf="app.image" [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
-          <span class="label grow-0">{{app.label}}</span>
-        </span>
-      </button>
-    </div>
+        @for (app of appList(); track app.label) {
+          @if (app.href) {
+            <a [href]="app.href" [target]="app.target ?? '_self'" mat-stroked-button>
+              <span class="flex flex-row items-center gap-4">
+                @if (app.image) {
+                  <img [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
+                }
+                <span class="label grow-0">{{ app.label }}</span>
+              </span>
+            </a>
+          } @else if (app.routerLink) {
+            <a mat-stroked-button [routerLink]="app.routerLink">
+              <span class="flex flex-row items-center gap-4">
+                @if (app.image) {
+                  <img [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
+                }
+                <span class="label grow-0">{{ app.label }}</span>
+              </span>
+            </a>
+          } @else {
+            <button mat-stroked-button [disabled]="true">
+              <span class="flex flex-row items-center gap-4">
+                @if (app.image) {
+                  <img [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
+                }
+                <span class="label grow-0">{{ app.label }}</span>
+              </span>
+            </button>
+          }
+        }
+
+      </div>
+    }
+
+    <button (click)="toggle()" mat-icon-button>
+      <mat-icon svgIcon="apps"></mat-icon>
+    </button>
 
   </div>
-
-  <button (click)="toggle()" mat-icon-button>
-    <mat-icon svgIcon="apps"></mat-icon>
-  </button>
-
-</div>
+}

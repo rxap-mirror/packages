@@ -4,22 +4,24 @@
 
 <mat-menu #menu="matMenu">
   <button (click)="theme.toggleDarkTheme()" mat-menu-item>
-    <mat-icon *ngIf="theme.darkMode()" svgIcon="brightness-2"></mat-icon>
-    <mat-icon *ngIf="!theme.darkMode()" svgIcon="brightness-5"></mat-icon>
+    @if (theme.darkMode()) {
+      <mat-icon svgIcon="brightness-2"></mat-icon>
+    } @else {
+      <mat-icon svgIcon="brightness-5"></mat-icon>
+    }
     <span i18n>Mode</span>
   </button>
   <button [matMenuTriggerFor]="themeMenu" mat-menu-item>
     <mat-icon svgIcon="compare"></mat-icon>
     <span i18n>Theme</span>
   </button>
-  <rxap-language-selector></rxap-language-selector>
   <button (click)="openChangelogDialog()" mat-menu-item>
     <mat-icon svgIcon="format-list-numbered"></mat-icon>
     <span i18n>What's new</span>
   </button>
-  <ng-container *ngFor="let item of items()">
+  @for (item of items(); track item) {
     <ng-template [cdkPortalOutlet]="item"></ng-template>
-  </ng-container>
+  }
 </mat-menu>
 
 <mat-menu #themeMenu="matMenu" xPosition="before">
@@ -27,14 +29,18 @@
     <mat-icon svgIcon="move-resize"></mat-icon>
     <span i18n>Density</span>
   </button>
-  <button *ngIf="availableTypographies?.length" [matMenuTriggerFor]="themeFontMenu" mat-menu-item>
-    <mat-icon svgIcon="format-font"></mat-icon>
-    <span i18n>Font</span>
-  </button>
-  <button *ngIf="availableThemes?.length" [matMenuTriggerFor]="themePresetMenu" mat-menu-item>
-    <mat-icon svgIcon="shape-outline"></mat-icon>
-    <span i18n>Preset</span>
-  </button>
+  @if (availableTypographies?.length) {
+    <button [matMenuTriggerFor]="themeFontMenu" mat-menu-item>
+      <mat-icon svgIcon="format-font"></mat-icon>
+      <span i18n>Font</span>
+    </button>
+  }
+  @if (availableThemes?.length) {
+    <button [matMenuTriggerFor]="themePresetMenu" mat-menu-item>
+      <mat-icon svgIcon="shape-outline"></mat-icon>
+      <span i18n>Preset</span>
+    </button>
+  }
 </mat-menu>
 
 <mat-menu #themeDensityMenu="matMenu" xPosition="before">
@@ -56,25 +62,23 @@
   </button>
 </mat-menu>
 <mat-menu #themeFontMenu="matMenu" xPosition="before">
-  <ng-template [ngIf]="availableTypographies?.length">
+  @for (typographyName of availableTypographies ?? []; track typographyName) {
     <button (click)="setTypography(typographyName)"
             (mouseenter)="previewTypography(typographyName)"
             (mouseleave)="restoreTypography()"
-            *ngFor="let typographyName of availableTypographies"
             mat-menu-item>
       {{ typographyName }}
     </button>
-  </ng-template>
+  }
 </mat-menu>
 
 <mat-menu #themePresetMenu="matMenu" xPosition="before">
-  <ng-template [ngIf]="availableThemes?.length">
+  @for (themeName of availableThemes ?? []; track themeName) {
     <button (click)="setTheme(themeName)"
             (mouseenter)="previewTheme(themeName)"
             (mouseleave)="restoreTheme()"
-            *ngFor="let themeName of availableThemes"
             mat-menu-item>
       {{ themeName }}
     </button>
-  </ng-template>
+  }
 </mat-menu>

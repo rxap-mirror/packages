@@ -1,13 +1,11 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   inject,
-  Signal,
 } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import { LayoutService } from '../../layout.service';
 
 @Component({
@@ -17,9 +15,8 @@ import { LayoutService } from '../../layout.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    MatButtonModule,
-    NgIf,
-    MatIconModule,
+    MatIcon,
+    MatIconButton,
   ],
 })
 export class SidenavToggleButtonComponent {

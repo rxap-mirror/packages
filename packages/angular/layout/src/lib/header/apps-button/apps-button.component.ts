@@ -1,8 +1,4 @@
-import {
-  NgFor,
-  NgIf,
-  NgOptimizedImage,
-} from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,8 +7,12 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import {
+  MatAnchor,
+  MatButton,
+  MatIconButton,
+} from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { ExternalAppsService } from '../../external-apps.service';
 
@@ -23,12 +23,12 @@ import { ExternalAppsService } from '../../external-apps.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgIf,
-    NgFor,
-    MatButtonModule,
-    MatIconModule,
     NgOptimizedImage,
+    MatButton,
     RouterLink,
+    MatAnchor,
+    MatIconButton,
+    MatIcon,
   ],
 })
 export class AppsButtonComponent implements OnInit {
@@ -39,6 +39,7 @@ export class AppsButtonComponent implements OnInit {
 
   private readonly externalAppsService = inject(ExternalAppsService);
   public readonly appList = computed(() => this.externalAppsService.activeAppList());
+  public readonly hasApps = computed(() => this.appList().length > 0);
 
   public toggle(): void {
     this.isOpen.update(isOpen => !isOpen);
