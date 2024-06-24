@@ -3,9 +3,9 @@ import { Route } from '@angular/router';
 import { EmptyRouterOutletComponent } from '@rxap/components';
 import {
   LayoutComponent,
-  ProvideNavigationConfig,
-  provideSettingsMenuItems,
-  withNavigationService,
+  provideLayout,
+  withNavigationConfig,
+  withSettingsMenuItems,
 } from '@rxap/layout';
 import { ChangelogService } from '@rxap/ngx-changelog';
 import { LanguageSelectorMenuItemComponent } from '@rxap/ngx-material-localize';
@@ -77,15 +77,17 @@ const ROUTES: Route[] = [
       },
     ],
     providers: [
-      ProvideNavigationConfig(APP_NAVIGATION, withNavigationService()),
-      provideSettingsMenuItems(
-        {
-          label: $localize`What's new`,
-          icon: { svgIcon: 'format-list-numbered' },
-          action: () => inject(ChangelogService).showChangelogDialog()
-        },
-        LanguageSelectorMenuItemComponent
-      )
+      provideLayout(
+        withNavigationConfig(APP_NAVIGATION),
+        withSettingsMenuItems(
+          {
+            label: $localize`What's new`,
+            icon: { svgIcon: 'format-list-numbered' },
+            action: () => inject(ChangelogService).showChangelogDialog()
+          },
+          LanguageSelectorMenuItemComponent
+        )
+      ),
     ],
   },
   {
