@@ -218,6 +218,7 @@
           "@nx/node",
           "@nx/plugin",
           "@nx/storybook",
+          "@nx/web",
           "@nx/webpack",
           "nx"
         ]
