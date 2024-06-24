@@ -2,11 +2,12 @@ import { Route } from '@angular/router';
 import { EmptyRouterOutletComponent } from '@rxap/components';
 import {
   LayoutComponent,
-  NavigationService,
+  ProvideNavigationConfig,
+  withNavigationService,
 } from '@rxap/layout';
 import { StatusCheckGuard } from '@rxap/ngx-status-check';
 import { AuthenticationGuard } from '@rxap/oauth';
-import { APP_NAVIGATION_PROVIDER } from './app.navigation';
+import { APP_NAVIGATION } from './app.navigation';
 import { CustomMenuItemComponent } from './layout/custom-menu-item/custom-menu-item.component';
 
 const ROUTES: Route[] = [
@@ -82,8 +83,7 @@ const ROUTES: Route[] = [
       },
     ],
     providers: [
-      APP_NAVIGATION_PROVIDER,
-      NavigationService,
+      ProvideNavigationConfig(APP_NAVIGATION, withNavigationService()),
     ],
   },
   {

@@ -1,0 +1,10 @@
+[
+  {
+    "label": "App 1",
+    "routerLink": ["/", "app-1"]
+  },
+  {
+    "label": "App 2",
+    "routerLink": ["/", "app-2"]
+  }
+]
