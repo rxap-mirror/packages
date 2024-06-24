@@ -1,42 +1,38 @@
-<button type="button" (click)="show = !show" class="collapse-button">
-  <span *ngIf="show; else hidden" i18n>Hide build info</span>
-  <ng-template #hidden>
-    <span i18n>Show build info</span>
-  </ng-template>
-</button>
-
-<table *ngIf="show">
-  <tr *ngIf="environment.name">
-    <th>Environment</th>
-    <td>{{environment.name}}</td>
-  </tr>
-  <tr>
-    <th>Production</th>
-    <td>{{environment.production}}</td>
-  </tr>
-  <tr *ngIf="environment.serviceWorker !== undefined">
-    <th>Service Worker</th>
-    <td>{{environment.serviceWorker}}</td>
-  </tr>
-  <tr *ngIf="environment.release">
-    <th>Release</th>
-    <td>{{environment.release}}</td>
-  </tr>
-  <tr *ngIf="environment.commit">
-    <th>Commit</th>
-    <td>{{environment.commit}}</td>
-  </tr>
-  <tr *ngIf="environment.timestamp">
-    <th>Timestamp</th>
-    <td>{{environment.timestamp | date:'HH:mm dd.MM.yy'}}</td>
-  </tr>
-  <tr *ngIf="environment.branch">
-    <th>Branch</th>
-    <td>{{environment.branch}}</td>
-  </tr>
-  <tr *ngIf="environment.tag">
-    <th>Tag</th>
-    <td>{{environment.tag}}</td>
-  </tr>
-  <ng-content></ng-content>
-</table>
+<div class="p-4">
+  <h2 class="text-xl font-bold pb-6">{{ environment.app }}</h2>
+  <table class="table-auto">
+    <tr *ngIf="environment.name">
+      <th>Environment</th>
+      <td>{{environment.name}}</td>
+    </tr>
+    <tr>
+      <th>Production</th>
+      <td>{{environment.production}}</td>
+    </tr>
+    <tr *ngIf="environment.serviceWorker !== undefined">
+      <th>Service Worker</th>
+      <td>{{environment.serviceWorker}}</td>
+    </tr>
+    <tr *ngIf="environment.release">
+      <th>Release</th>
+      <td>{{environment.release}}</td>
+    </tr>
+    <tr *ngIf="environment.commit">
+      <th>Commit</th>
+      <td>{{environment.commit}}</td>
+    </tr>
+    <tr *ngIf="environment.timestamp">
+      <th>Timestamp</th>
+      <td>{{environment.timestamp | date:'dd.MM.yy HH:mm:ss'}}</td>
+    </tr>
+    <tr *ngIf="environment.branch">
+      <th>Branch</th>
+      <td>{{environment.branch}}</td>
+    </tr>
+    <tr *ngIf="environment.tag">
+      <th>Tag</th>
+      <td>{{environment.tag}}</td>
+    </tr>
+    <ng-content></ng-content>
+  </table>
+</div>

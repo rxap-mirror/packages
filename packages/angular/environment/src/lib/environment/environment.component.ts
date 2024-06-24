@@ -1,14 +1,14 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-} from '@angular/core';
-import { RXAP_ENVIRONMENT } from './tokens';
-import { Environment } from '../environment';
-import {
   DatePipe,
   NgIf,
 } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
+import { Environment } from '../environment';
+import { RXAP_ENVIRONMENT } from './tokens';
 
 @Component({
   selector: 'rxap-environment',
@@ -22,12 +22,6 @@ import {
 })
 export class EnvironmentComponent {
 
-  public show = false;
-
-  constructor(
-    @Inject(RXAP_ENVIRONMENT)
-    public readonly environment: Environment,
-  ) {
-  }
+  public readonly environment: Environment = inject(RXAP_ENVIRONMENT);
 
 }
