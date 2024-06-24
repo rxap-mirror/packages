@@ -1,10 +1,10 @@
 import { InjectionToken } from '@angular/core';
+import { LogoConfig } from '@rxap/config';
 import { MethodWithParameters } from '@rxap/pattern';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
   ExternalApps,
   ExtractUsernameFromProfileFn,
-  LogoConfig,
 } from './types';
 
 export const RXAP_NAVIGATION_CONFIG = new InjectionToken<NavigationWithInserts | (() => NavigationWithInserts)>(

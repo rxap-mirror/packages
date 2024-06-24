@@ -17,15 +17,10 @@ import {
   HeaderService,
 } from '@rxap/services';
 import { Observable } from 'rxjs';
-import { RXAP_LOGO_CONFIG } from './tokens';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
 
-  public readonly logo =signal(inject(RXAP_LOGO_CONFIG, { optional: true }) ?? {
-    src: 'assets/logo.png',
-    width: 192,
-  });
   public readonly opened: WritableSignal<boolean>;
   public readonly mode: WritableSignal<MatDrawerMode>;
   public readonly pinned: WritableSignal<boolean>;
@@ -34,6 +29,7 @@ export class LayoutService {
   public readonly fixedTopGap: Signal<number>;
   public readonly currentThemeDensity = toSignal(ObserveCurrentThemeDensity());
   public readonly isMobile: Signal<boolean>;
+  public readonly fixedInViewport: WritableSignal<boolean>;
 
   public readonly footerComponentService = inject(FooterService);
   public readonly headerComponentService = inject(HeaderService);
@@ -53,11 +49,13 @@ export class LayoutService {
     const pinned = this.config.get('navigation.pinned', false);
     const mode = this.config.get('navigation.mode', pinned || !collapsable ? 'side' : 'over');
     const opened = this.config.get('navigation.opened', (!collapsable || pinned) && !this.isMobile());
+    const fixedInViewport = this.config.get('navigation.fixedInViewport', true);
 
     this.opened = signal(opened);
     this.mode = signal(mode);
     this.pinned = signal(pinned);
     this.collapsable = signal(collapsable);
+    this.fixedInViewport = signal(fixedInViewport);
 
     this.fixedBottomGap = computed(() => {
       const footerPortalCount = this.footerComponentService.portalCount();

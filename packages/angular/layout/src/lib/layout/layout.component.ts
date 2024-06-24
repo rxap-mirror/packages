@@ -14,6 +14,7 @@ import {
   OnDestroy,
   OnInit,
   Signal,
+  viewChild,
   ViewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,6 +44,7 @@ import {
 } from '@rxap/ngx-user';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
+import { LogoService } from '../logo.service';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { LayoutService } from '../layout.service';
 
@@ -73,37 +75,34 @@ import { LayoutService } from '../layout.service';
 })
 export class LayoutComponent implements OnInit, OnDestroy {
 
-  public readonly sidenavMode: Signal<MatDrawerMode>;
-  public readonly fixedBottomGap: Signal<number>;
-  public readonly fixedTopGap: Signal<number>;
-  public readonly pinned: Signal<boolean>;
-  public readonly collapsable: Signal<boolean>;
-  public readonly logoSrc: Signal<string>;
-  public readonly logoWidth: Signal<number>;
-  public readonly release: string;
-  public readonly opened: Signal<boolean>;
-
-  @ViewChild(MatSidenav, { static: true }) public sidenav!: MatSidenav;
-
   private readonly userSettingsThemeService = inject(UserSettingsThemeService);
   private readonly themeService = inject(ThemeService);
+  private readonly logoService = inject(LogoService);
+  private readonly layoutService = inject(LayoutService);
+  private readonly environment = inject(RXAP_ENVIRONMENT);
+  private readonly sidenav = viewChild(MatSidenav);
 
-  constructor(
-    public readonly layoutComponentService: LayoutService,
-    @Inject(RXAP_ENVIRONMENT)
-    private readonly environment: Environment,
-    iconLoaderService: IconLoaderService,
-  ) {
-    iconLoaderService.load();
-    this.fixedBottomGap = layoutComponentService.fixedBottomGap;
-    this.fixedTopGap = layoutComponentService.fixedTopGap;
-    this.pinned = layoutComponentService.pinned;
-    this.collapsable = layoutComponentService.collapsable;
-    this.opened = layoutComponentService.opened;
-    this.sidenavMode = layoutComponentService.mode;
-    this.logoSrc = computed(() => this.layoutComponentService.logo().src ?? 'https://via.placeholder.com/256x128px');
-    this.logoWidth = computed(() => this.layoutComponentService.logo().width ?? 256);
-    this.release = DetermineReleaseName(this.environment);
+  public readonly sidenavMode: Signal<MatDrawerMode> = computed(() => this.layoutService.mode());
+  public readonly fixedBottomGap: Signal<number> = computed(() => this.layoutService.fixedBottomGap());
+  public readonly fixedTopGap: Signal<number> = computed(() => this.layoutService.fixedTopGap());
+  public readonly fixedInViewport: Signal<boolean> = computed(() => this.layoutService.fixedInViewport());
+  public readonly pinned: Signal<boolean> = computed(() => this.layoutService.pinned());
+  public readonly collapsable: Signal<boolean> = computed(() => this.layoutService.collapsable());
+  public readonly logoSrc: Signal<string> = computed(() => this.logoService.src());
+  public readonly logoWidth: Signal<number> = computed(() => this.logoService.width());
+  public readonly release = DetermineReleaseName(this.environment);
+  public readonly opened: Signal<boolean> = computed(() => this.layoutService.opened());
+
+  togglePinned() {
+    this.layoutService.togglePinned();
+  }
+
+  openSidenav() {
+    this.sidenav()?.open();
+  }
+
+  closeSidenav() {
+    this.sidenav()?.close();
   }
 
   ngOnDestroy() {

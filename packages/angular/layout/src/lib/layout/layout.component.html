@@ -6,19 +6,17 @@
     'margin-bottom.px': fixedBottomGap(),
   }" class="grow">
     <mat-sidenav
-      #matSidenav="matSidenav"
       [fixedBottomGap]="fixedBottomGap()"
-      [fixedInViewport]="true"
+      [fixedInViewport]="fixedInViewport()"
       [fixedTopGap]="fixedTopGap()"
       [mode]="sidenavMode()"
       [ngClass]="{ collapsable: collapsable() }"
-      class="sidenav"
       [opened]="opened()"
     >
-      <div (mouseleave)="collapsable() && !pinned() && matSidenav.close()"
+      <div (mouseleave)="collapsable() && !pinned() && closeSidenav()"
            class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
 
-        <div (click)="layoutComponentService.togglePinned()" *ngIf="collapsable()"
+        <div (click)="togglePinned()" *ngIf="collapsable()"
              class="pl-2 self-stretch grow-0 flex flex-row justify-between items-center">
           <span class="text-lg" i18n>Navigation</span>
           <div class="flex flex-row items-center justify-center" style="width: 64px">
@@ -30,7 +28,7 @@
         </div>
 
         <ul
-          (mouseenter)="collapsable() && !pinned() && matSidenav.open()"
+          (mouseenter)="collapsable() && !pinned() && openSidenav()"
           class="grow self-stretch"
           root
           rxap-navigation
