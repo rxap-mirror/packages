@@ -2,11 +2,13 @@ import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  inject,
   Signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { LayoutComponentService } from '../../layout/layout.component.service';
+import { LayoutService } from '../../layout.service';
 
 @Component({
   selector: 'rxap-sidenav-toggle-button',
@@ -22,10 +24,12 @@ import { LayoutComponentService } from '../../layout/layout.component.service';
 })
 export class SidenavToggleButtonComponent {
 
-  public readonly opened: Signal<boolean>;
+  private readonly layoutComponentService = inject(LayoutService);
 
-  constructor(public readonly layoutComponentService: LayoutComponentService) {
-    this.opened = layoutComponentService.opened;
+  public readonly opened = computed(() => this.layoutComponentService.opened());
+
+  public toggle() {
+    this.layoutComponentService.toggleOpened();
   }
 
 }

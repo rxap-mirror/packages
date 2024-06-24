@@ -1,10 +1,11 @@
 import { InjectionToken } from '@angular/core';
 import { MethodWithParameters } from '@rxap/pattern';
+import { NavigationWithInserts } from './navigation/navigation-item';
 import {
   ExternalApps,
+  ExtractUsernameFromProfileFn,
   LogoConfig,
 } from './types';
-import { NavigationWithInserts } from './navigation/navigation-item';
 
 export const RXAP_NAVIGATION_CONFIG = new InjectionToken<NavigationWithInserts | (() => NavigationWithInserts)>(
   'rxap/layout/navigation-config');
@@ -17,3 +18,12 @@ export const RXAP_LOGO_CONFIG = new InjectionToken<LogoConfig>('rxap/layout/logo
 export const RXAP_LAYOUT_APPS_GRID = new InjectionToken('rxap/layout/apps-grid');
 
 export const RXAP_EXTERNAL_APP_FILTER = new InjectionToken<MethodWithParameters<ExternalApps[], ExternalApps[]>>('rxap/layout/app-config-filter');
+export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameFromProfileFn>(
+  'extract-username-from-profile',
+  {
+    providedIn: 'root',
+    factory: () => (profile: any) => (
+                                       profile ? profile.username ?? profile.email ?? profile.name : null
+                                     ) ?? null,
+  },
+);

@@ -8,6 +8,7 @@ import {
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   Inject,
   OnDestroy,
@@ -43,7 +44,7 @@ import {
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { NavigationComponent } from '../navigation/navigation.component';
-import { LayoutComponentService } from './layout.component.service';
+import { LayoutService } from '../layout.service';
 
 
 @Component({
@@ -77,8 +78,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
   public readonly fixedTopGap: Signal<number>;
   public readonly pinned: Signal<boolean>;
   public readonly collapsable: Signal<boolean>;
-  public readonly logoSrc: string;
-  public readonly logoWidth: number;
+  public readonly logoSrc: Signal<string>;
+  public readonly logoWidth: Signal<number>;
   public readonly release: string;
   public readonly opened: Signal<boolean>;
 
@@ -88,7 +89,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private readonly themeService = inject(ThemeService);
 
   constructor(
-    public readonly layoutComponentService: LayoutComponentService,
+    public readonly layoutComponentService: LayoutService,
     @Inject(RXAP_ENVIRONMENT)
     private readonly environment: Environment,
     iconLoaderService: IconLoaderService,
@@ -100,8 +101,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.collapsable = layoutComponentService.collapsable;
     this.opened = layoutComponentService.opened;
     this.sidenavMode = layoutComponentService.mode;
-    this.logoSrc = this.layoutComponentService.logo.src ?? 'https://via.placeholder.com/256x128px';
-    this.logoWidth = this.layoutComponentService.logo.width ?? 256;
+    this.logoSrc = computed(() => this.layoutComponentService.logo().src ?? 'https://via.placeholder.com/256x128px');
+    this.logoWidth = computed(() => this.layoutComponentService.logo().width ?? 256);
     this.release = DetermineReleaseName(this.environment);
   }
 
@@ -110,17 +111,18 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userSettingsThemeService.startSync();
-    this.userSettingsThemeService.get().then(theme => {
-      if (theme.preset && theme.preset !== 'default') {
-        this.themeService.setTheme(theme.preset, true);
-      }
-      if (theme.density && IsThemeDensity(theme.density) && theme.density !== ThemeDensity.Normal) {
-        this.themeService.setDensity(theme.density, true);
-      }
-      if (theme.typography && theme.typography !== 'default') {
-        this.themeService.setTypography(theme.typography, true);
-      }
+    this.userSettingsThemeService.startSync().then(() => {
+      this.userSettingsThemeService.get().then(theme => {
+        if (theme.preset && theme.preset !== 'default') {
+          this.themeService.setTheme(theme.preset, true);
+        }
+        if (theme.density && IsThemeDensity(theme.density) && theme.density !== ThemeDensity.Normal) {
+          this.themeService.setDensity(theme.density, true);
+        }
+        if (theme.typography && theme.typography !== 'default') {
+          this.themeService.setTypography(theme.typography, true);
+        }
+      });
     });
   }
 

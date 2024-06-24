@@ -1,11 +1,3 @@
-// region window-container-sidenav
-export * from './lib/window-container-sidenav/window-container-sidenav.component';
-// endregion
-
-// region toggle-window-sidenav-button
-export * from './lib/toggle-window-sidenav-button/toggle-window-sidenav-button.component';
-// endregion
-
 // region sidenav version
 export * from './lib/sidenav/version/version.component';
 // endregion
@@ -30,7 +22,7 @@ export * from './lib/navigation/replace-router-paths.service';
 // endregion
 
 // region layout
-export * from './lib/layout/layout.component.service';
+export * from './lib/layout.service';
 export * from './lib/layout/layout.component';
 // endregion
 
@@ -48,10 +40,6 @@ export * from './lib/header/sidenav-toggle-button/sidenav-toggle-button.componen
 
 // region header settings-button
 export * from './lib/header/settings-button/settings-button.component';
-// endregion
-
-// region header reset-button
-export * from './lib/header/reset-button/reset-button.component';
 // endregion
 
 // region header navigation-progress-bar
@@ -76,8 +64,8 @@ export * from './lib/footer/footer.component';
 
 // region
 export * from './lib/external-apps.service';
-export * from './lib/authentication.service.mock';
 export * from './lib/footer.directive';
+export * from './lib/provide';
 export * from './lib/tokens';
 export * from './lib/types';
 // endregion

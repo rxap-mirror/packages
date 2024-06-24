@@ -6,6 +6,7 @@ import {
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
@@ -32,7 +33,7 @@ import { LanguageSelectorService } from '@rxap/ngx-localize';
   ],
 })
 export class LanguageSelectorComponent {
-  constructor(public readonly language: LanguageSelectorService) {
-  }
+
+  public readonly language = inject(LanguageSelectorService);
 
 }

@@ -1,13 +1,13 @@
+import { TemplatePortal } from '@angular/cdk/portal';
 import {
   Directive,
-  Inject,
+  inject,
   OnDestroy,
   OnInit,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
 import { FooterService } from '@rxap/services';
-import { TemplatePortal } from '@angular/cdk/portal';
 
 @Directive({
   selector: '[rxapFooter]',
@@ -16,15 +16,9 @@ import { TemplatePortal } from '@angular/cdk/portal';
 export class FooterDirective implements OnInit, OnDestroy {
   private _portal?: TemplatePortal<void>;
 
-  constructor(
-    @Inject(FooterService)
-    private readonly footerService: FooterService,
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<void>,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-  ) {
-  }
+  private readonly footerService = inject(FooterService);
+  private readonly template: TemplateRef<void> = inject(TemplateRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
 
   public ngOnInit() {
     this._portal = new TemplatePortal<void>(

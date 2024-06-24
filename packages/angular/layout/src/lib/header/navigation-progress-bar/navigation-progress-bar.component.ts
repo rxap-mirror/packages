@@ -1,9 +1,11 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
+  inject,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {
   NavigationCancel,
   NavigationEnd,
@@ -14,11 +16,6 @@ import {
   filter,
   map,
 } from 'rxjs/operators';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {
-  AsyncPipe,
-  NgIf,
-} from '@angular/common';
 
 @Component({
   selector: 'rxap-navigation-progress-bar',
@@ -29,25 +26,20 @@ import {
   imports: [
     NgIf,
     MatProgressBarModule,
-    AsyncPipe,
   ],
 })
 export class NavigationProgressBarComponent {
 
-  public navigating$: Observable<boolean>;
+  public readonly router = inject(Router);
 
-  public constructor(
-    @Inject(Router) public readonly router: Router,
-  ) {
-    this.navigating$ = this.router.events.pipe(
-      filter(
-        event =>
-          event instanceof NavigationStart ||
-          event instanceof NavigationEnd ||
-          event instanceof NavigationCancel,
-      ),
-      map(event => event instanceof NavigationStart),
-    );
-  }
+  public readonly navigating = toSignal(this.router.events.pipe(
+    filter(
+      event =>
+        event instanceof NavigationStart ||
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel,
+    ),
+    map(event => event instanceof NavigationStart),
+  ), { initialValue: true });
 
 }

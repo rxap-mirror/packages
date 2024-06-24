@@ -1,7 +1,7 @@
 <button [matMenuTriggerFor]="menu"
         [disabled]="!username()"
-        class="profile-icon flex flex-row justify-center items-center">
-  <mat-icon class="avatar-icon" svgIcon="account-circle"></mat-icon>
+        class="rounded-full cursor-pointer outline-none overflow-hidden h-8 w-8 bg-center bg-no-repeat bg-cover flex flex-row justify-center items-center">
+  <mat-icon class="h-8 w-8 text-[32px]" svgIcon="account-circle"></mat-icon>
 </button>
 
 <mat-menu #menu="matMenu" [yPosition]="'below'" class="!max-w-none">

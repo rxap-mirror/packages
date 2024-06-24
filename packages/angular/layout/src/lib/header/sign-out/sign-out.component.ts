@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
 } from '@angular/core';
 import { RxapAuthenticationService } from '@rxap/authentication';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,10 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SignOutComponent {
 
-  constructor(
-    private readonly authenticationService: RxapAuthenticationService,
-  ) {
-  }
+  private readonly authenticationService = inject(RxapAuthenticationService);
 
   public async logout() {
     await this.authenticationService.signOut();

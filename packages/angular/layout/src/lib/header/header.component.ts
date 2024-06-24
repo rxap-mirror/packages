@@ -6,10 +6,9 @@ import {
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
-  Input,
-  Optional,
-  Signal,
+  computed,
+  inject,
+  input,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,9 +24,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
 import { StopPropagationDirective } from '@rxap/directives';
-import { HeaderService } from '@rxap/services';
-import { LayoutComponentService } from '../layout/layout.component.service';
-import { RXAP_HEADER_COMPONENT } from '../tokens';
+import { LayoutService } from '../layout.service';
 import { AppsButtonComponent } from './apps-button/apps-button.component';
 import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
 import { SettingsButtonComponent } from './settings-button/settings-button.component';
@@ -64,20 +61,11 @@ import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.
 })
 export class HeaderComponent {
 
-  @Input()
-  public color: ThemePalette = undefined;
+  public readonly color = input<ThemePalette>();
 
-  public readonly collapsable: Signal<boolean>;
-  public readonly opened: Signal<boolean>;
+  public readonly layoutComponentService = inject(LayoutService);
 
-  constructor(
-    @Inject(HeaderService)
-    public readonly headerComponentService: HeaderService,
-    public readonly layoutComponentService: LayoutComponentService,
-    @Optional() @Inject(RXAP_HEADER_COMPONENT) public headerComponent: any,
-  ) {
-    this.collapsable = layoutComponentService.collapsable;
-    this.opened = layoutComponentService.opened;
-  }
+  public readonly collapsable = computed(() => this.layoutComponentService.collapsable());
+  public readonly opened = computed(() => this.layoutComponentService.opened());
 
 }

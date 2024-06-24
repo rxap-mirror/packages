@@ -5,8 +5,7 @@ import {
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
-  InjectionToken,
+  inject,
   Signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -23,16 +22,8 @@ import {
   map,
   switchMap,
 } from 'rxjs/operators';
-
-export type ExtractUsernameFromProfileFn<T = unknown> = (profile: T) => string | null;
-
-export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameFromProfileFn>(
-  'extract-username-from-profile',
-  {
-    providedIn: 'root',
-    factory: () => (profile: any) => (profile ? profile.username ?? profile.email ?? profile.name : null) ?? null,
-  },
-);
+import { EXTRACT_USERNAME_FROM_PROFILE } from '../../tokens';
+import { ExtractUsernameFromProfileFn } from '../../types';
 
 @Component({
   selector: 'rxap-user-profile-icon',
@@ -43,33 +34,26 @@ export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameF
   imports: [
     MatMenuModule,
     MatIconModule,
-    NgIf,
-    AsyncPipe,
   ],
 })
 export class UserProfileIconComponent<T = unknown> {
 
-  public username: Signal<string | null>;
+  private readonly userProfileService: UserProfileDataSource<T> = inject(UserProfileDataSource);
+  private readonly authenticationService = inject(RxapAuthenticationService);
+  private readonly extractUsernameFromProfile: ExtractUsernameFromProfileFn<T> = inject(EXTRACT_USERNAME_FROM_PROFILE);
 
-  constructor(
-    private readonly userProfileService: UserProfileDataSource<T>,
-    private readonly authenticationService: RxapAuthenticationService,
-    @Inject(EXTRACT_USERNAME_FROM_PROFILE)
-      extractUsernameFromProfile: ExtractUsernameFromProfileFn<T>,
-  ) {
-    this.username = toSignal(this.authenticationService.isAuthenticated$.pipe(
-      filter(Boolean),
-      switchMap(() => this.userProfileService.connect({
-        viewChange: this.authenticationService.isAuthenticated$.pipe(
-          skip(1),
-          filter(Boolean),
-          distinctUntilChanged(),
-        ),
-      })),
-      filter(Boolean),
-      map(extractUsernameFromProfile),
-    ), { initialValue: null });
-  }
+  public username: Signal<string | null>  = toSignal(this.authenticationService.isAuthenticated$.pipe(
+    filter(Boolean),
+    switchMap(() => this.userProfileService.connect({
+      viewChange: this.authenticationService.isAuthenticated$.pipe(
+        skip(1),
+        filter(Boolean),
+        distinctUntilChanged(),
+      ),
+    })),
+    filter(Boolean),
+    map(profile => this.extractUsernameFromProfile(profile)),
+  ), { initialValue: null });
 
   public async logout() {
     await this.authenticationService.signOut();

@@ -3,43 +3,62 @@ import {
   ComponentType,
   PortalModule,
 } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
+import {
+  CommonModule,
+  NgForOf,
+  NgIf,
+} from '@angular/common';
 import {
   Component,
+  inject,
   Injector,
   isDevMode,
-  OnDestroy,
-  OnInit,
-  signal,
+  Signal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  Data,
+} from '@angular/router';
 import { ChangelogService } from '@rxap/ngx-changelog';
 import {
   ThemeDensity,
   ThemeService,
 } from '@rxap/ngx-theme';
-import { Subscription } from 'rxjs';
-import {
-  map,
-  tap,
-} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
 
 @Component({
   selector: 'rxap-settings-button',
   standalone: true,
-  imports: [ CommonModule, MatButtonModule, MatIconModule, LanguageSelectorComponent, MatMenuModule, PortalModule ],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    LanguageSelectorComponent,
+    MatMenuModule,
+    PortalModule,
+    NgIf,
+    NgForOf,
+  ],
   templateUrl: './settings-button.component.html',
   styleUrls: [ './settings-button.component.scss' ],
 })
-export class SettingsButtonComponent implements OnInit, OnDestroy {
+export class SettingsButtonComponent {
 
   public isDevMode = isDevMode();
-  items = signal<Array<ComponentPortal<unknown>>>([]);
-  private _subscription?: Subscription;
+
+  public readonly theme = inject(ThemeService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly injector = inject(Injector);
+  private readonly changelogService = inject(ChangelogService);
+
+  items: Signal<Array<ComponentPortal<unknown>>> = toSignal(this.route.data.pipe(
+    map(data => this.getCustomMenuItems(data)),
+    map(items => items.map(item => new ComponentPortal(item, undefined, this.injector))),
+  ), { initialValue: [] });
 
   private savePreviewDensityValue = false;
   private currentDensityValue: ThemeDensity | null = null;
@@ -47,37 +66,15 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
   private savePreviewTypographyValue = false;
   private currentTypographyValue: string | null = null;
 
-  public readonly availableTypographies: string[] | null;
+  public readonly availableTypographies = this.theme.getAvailableTypographies();
   private savePreviewThemeValue = false;
 
-  public readonly availableThemes: string[] | null;
+  public readonly availableThemes = this.theme.getAvailableThemes();
   private currentThemeValue: string | null = null;
 
-  constructor(
-    public readonly theme: ThemeService,
-    private readonly route: ActivatedRoute,
-    private readonly injector: Injector,
-    private readonly changelogService: ChangelogService,
-  ) {
-    this.availableThemes = this.theme.getAvailableThemes();
-    this.availableTypographies = this.theme.getAvailableTypographies();
-  }
-
-  ngOnDestroy() {
-    this._subscription?.unsubscribe();
-  }
-
-  ngOnInit() {
-    this._subscription = this.route.data.pipe(
-      map(data => this.getCustomMenuItems(data)),
-      map(items => items.map(item => new ComponentPortal(item, undefined, this.injector))),
-      tap(items => this.items.set(items)),
-    ).subscribe();
-  }
-
-  private getCustomMenuItems(data: any): Array<ComponentType<unknown>> {
-    if (data?.layout?.header?.menu?.items?.length) {
-      return data.layout.header.menu.items;
+  private getCustomMenuItems(data: Data): Array<ComponentType<unknown>> {
+    if (data?.['layout']?.header?.menu?.items?.length) {
+      return data['layout'].header.menu.items;
     }
     return [];
   }

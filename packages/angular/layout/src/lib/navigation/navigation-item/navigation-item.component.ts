@@ -15,7 +15,6 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { Required } from '@rxap/utilities';
 import {
   animate,
   style,
