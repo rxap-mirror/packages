@@ -1,28 +1,22 @@
+import { inject } from '@angular/core';
 import { Route } from '@angular/router';
 import { EmptyRouterOutletComponent } from '@rxap/components';
 import {
   LayoutComponent,
   ProvideNavigationConfig,
+  provideSettingsMenuItems,
   withNavigationService,
 } from '@rxap/layout';
+import { ChangelogService } from '@rxap/ngx-changelog';
+import { LanguageSelectorMenuItemComponent } from '@rxap/ngx-material-localize';
 import { StatusCheckGuard } from '@rxap/ngx-status-check';
 import { AuthenticationGuard } from '@rxap/oauth';
 import { APP_NAVIGATION } from './app.navigation';
-import { CustomMenuItemComponent } from './layout/custom-menu-item/custom-menu-item.component';
 
 const ROUTES: Route[] = [
   {
     path: '',
     component: LayoutComponent,
-    data: {
-      layout: {
-        header: {
-          menu: {
-            items: [ CustomMenuItemComponent ],
-          },
-        },
-      },
-    },
     canActivate: [ AuthenticationGuard ],
     canActivateChild: [ StatusCheckGuard ],
     children: [
@@ -84,6 +78,14 @@ const ROUTES: Route[] = [
     ],
     providers: [
       ProvideNavigationConfig(APP_NAVIGATION, withNavigationService()),
+      provideSettingsMenuItems(
+        {
+          label: $localize`What's new`,
+          icon: { svgIcon: 'format-list-numbered' },
+          action: () => inject(ChangelogService).showChangelogDialog()
+        },
+        LanguageSelectorMenuItemComponent
+      )
     ],
   },
   {

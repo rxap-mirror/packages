@@ -6,8 +6,14 @@ import {
   RXAP_NAVIGATION_CONFIG,
   RXAP_NAVIGATION_CONFIG_INSERTS,
   RXAP_RELEASE_INFO_MODULE,
+  RXAP_SETTINGS_MENU_ITEM,
+  RXAP_SETTINGS_MENU_ITEM_COMPONENT,
 } from './tokens';
-import { ReleaseInfoModule } from './types';
+import {
+  ReleaseInfoModule,
+  SettingsMenuItem,
+  SettingsMenuItemComponent,
+} from './types';
 
 
 export function ProvideNavigationConfig(
@@ -32,6 +38,25 @@ export function withNavigationInserts(inserts: NavigationWithInserts): Provider 
     provide: RXAP_NAVIGATION_CONFIG_INSERTS,
     useValue: inserts,
   };
+}
+
+export function provideSettingsMenuItems(...items: Array<SettingsMenuItemComponent | SettingsMenuItem>): Provider[] {
+  return [
+    ...items.filter((item): item is SettingsMenuItemComponent => typeof item === 'function').map(component => (
+      {
+        provide: RXAP_SETTINGS_MENU_ITEM_COMPONENT,
+        useValue: component,
+        multi: true,
+      }
+    )),
+    ...items.filter((item): item is SettingsMenuItem => typeof item !== 'function').map(item => (
+      {
+        provide: RXAP_SETTINGS_MENU_ITEM,
+        useValue: item,
+        multi: true,
+      }
+    )),
+  ];
 }
 
 export function ProvideReleaseInfoModule(module: ReleaseInfoModule | ReleaseInfoModule[]): Provider[] {

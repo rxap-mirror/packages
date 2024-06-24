@@ -6,6 +6,8 @@ import {
   ExternalApps,
   ExtractUsernameFromProfileFn,
   ReleaseInfoModule,
+  SettingsMenuItem,
+  SettingsMenuItemComponent,
 } from './types';
 
 export const RXAP_NAVIGATION_CONFIG = new InjectionToken<NavigationWithInserts | (() => NavigationWithInserts)>(
@@ -30,3 +32,7 @@ export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameF
 );
 
 export const RXAP_RELEASE_INFO_MODULE = new InjectionToken<ReleaseInfoModule>('rxap/layout/release-info-module');
+
+export const RXAP_SETTINGS_MENU_ITEM_COMPONENT = new InjectionToken<SettingsMenuItemComponent>('rxap/layout/settings-menu-item-component');
+
+export const RXAP_SETTINGS_MENU_ITEM = new InjectionToken<SettingsMenuItem>('rxap/layout/settings-menu-item');

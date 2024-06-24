@@ -3,16 +3,12 @@ import {
   Component,
 } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
-import {
-  HeaderComponent,
-} from '../header/header.component';
-import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'rxap-base-layout',
   standalone: true,
   imports: [
-    StatusIndicatorComponent,
     HeaderComponent,
     FooterComponent,
   ],

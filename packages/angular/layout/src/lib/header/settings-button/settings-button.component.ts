@@ -1,16 +1,15 @@
 import {
   CdkPortalOutlet,
   ComponentPortal,
-  ComponentType,
 } from '@angular/cdk/portal';
 import {
   Component,
   inject,
   Injector,
   isDevMode,
-  Signal,
+  runInInjectionContext,
+  signal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import {
@@ -18,16 +17,17 @@ import {
   MatMenuItem,
   MatMenuTrigger,
 } from '@angular/material/menu';
-import {
-  ActivatedRoute,
-  Data,
-} from '@angular/router';
-import { ChangelogService } from '@rxap/ngx-changelog';
+import { IconDirective } from '@rxap/material-directives/icon';
 import {
   ThemeDensity,
   ThemeService,
 } from '@rxap/ngx-theme';
-import { map } from 'rxjs/operators';
+import { coerceArray } from '@rxap/utilities';
+import {
+  RXAP_SETTINGS_MENU_ITEM,
+  RXAP_SETTINGS_MENU_ITEM_COMPONENT,
+} from '../../tokens';
+import { SettingsMenuItem } from '../../types';
 
 @Component({
   selector: 'rxap-settings-button',
@@ -41,6 +41,7 @@ import { map } from 'rxjs/operators';
     MatMenuTrigger,
     MatMenuItem,
     CdkPortalOutlet,
+    IconDirective,
   ],
 })
 export class SettingsButtonComponent {
@@ -48,14 +49,14 @@ export class SettingsButtonComponent {
   public isDevMode = isDevMode();
 
   public readonly theme = inject(ThemeService);
-  private readonly route = inject(ActivatedRoute);
   private readonly injector = inject(Injector);
-  private readonly changelogService = inject(ChangelogService);
 
-  items: Signal<Array<ComponentPortal<unknown>>> = toSignal(this.route.data.pipe(
-    map(data => this.getCustomMenuItems(data)),
-    map(items => items.map(item => new ComponentPortal(item, undefined, this.injector))),
-  ), { initialValue: [] });
+  customItemComponents = signal(
+    coerceArray(inject(RXAP_SETTINGS_MENU_ITEM_COMPONENT, { optional: true }))
+      .map(item => new ComponentPortal(item, null, this.injector)),
+  );
+
+  customItems = signal(coerceArray(inject(RXAP_SETTINGS_MENU_ITEM, { optional: true })));
 
   private savePreviewDensityValue = false;
   private currentDensityValue: ThemeDensity | null = null;
@@ -68,17 +69,6 @@ export class SettingsButtonComponent {
 
   public readonly availableThemes = this.theme.getAvailableThemes();
   private currentThemeValue: string | null = null;
-
-  private getCustomMenuItems(data: Data): Array<ComponentType<unknown>> {
-    if (data?.['layout']?.header?.menu?.items?.length) {
-      return data['layout'].header.menu.items;
-    }
-    return [];
-  }
-
-  openChangelogDialog() {
-    this.changelogService.showChangelogDialog();
-  }
 
   previewDensity(density: ThemeDensity) {
     this.theme.applyDensity(density);
@@ -116,4 +106,7 @@ export class SettingsButtonComponent {
     this.theme.setTheme(theme);
   }
 
+  clickItem(item: SettingsMenuItem) {
+    runInInjectionContext(this.injector, () => item.action());
+  }
 }

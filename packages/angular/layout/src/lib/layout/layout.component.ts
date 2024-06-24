@@ -22,7 +22,6 @@ import {
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
-import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
 import { ThemeService } from '@rxap/ngx-theme';
 import {
   IsThemeDensity,
@@ -57,7 +56,6 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
     NgOptimizedImage,
     NavigationComponent,
     RouterOutlet,
-    StatusIndicatorComponent,
     NgStyle,
     NgClass,
     SidenavComponent,

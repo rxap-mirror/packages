@@ -15,11 +15,13 @@
     <mat-icon svgIcon="compare"></mat-icon>
     <span i18n>Theme</span>
   </button>
-  <button (click)="openChangelogDialog()" mat-menu-item>
-    <mat-icon svgIcon="format-list-numbered"></mat-icon>
-    <span i18n>What's new</span>
-  </button>
-  @for (item of items(); track item) {
+  @for (item of customItems(); track item.label) {
+    <button (click)="clickItem(item)" mat-menu-item>
+      <mat-icon [rxapIcon]="item.icon"></mat-icon>
+      <span>{{ item.label }}</span>
+    </button>
+  }
+  @for (item of customItemComponents(); track item) {
     <ng-template [cdkPortalOutlet]="item"></ng-template>
   }
 </mat-menu>
