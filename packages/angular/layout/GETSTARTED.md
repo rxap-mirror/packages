@@ -3,13 +3,14 @@
 Create a new file `layout.routes.ts` in the `app` folder. This file will contain all child routes that should be loaded within the layout component.
 
 ```typescript
-import { LayoutComponent } from '@rxap/layout';
+import { LayoutComponent, provideLayout } from '@rxap/layout';
 
 const ROUTES: Route[] = [
   {
     path: '',
     component: LayoutComponent,
-    children: [ ]
+    children: [ ],
+    providers: [ provideLayout() ],
   },
 ];
 ```
@@ -53,7 +54,9 @@ const ROUTES: Route[] = [
     component: LayoutComponent,
     children: [ ],
     providers: [
-      ProvideNavigationConfig(APP_NAVIGATION, withNavigationService()),
+      provideLayout(
+        withNavigationConfig(APP_NAVIGATION),
+      ),
     ],
   },
 ];
@@ -170,9 +173,90 @@ property `href` is set, the link is opened in a new tab. If the property `router
 
 ### Settings Button Customization (WIP)
 
+It is possible to add custom items to the settings menu. This custom item can be a component or a configuration object.
+
+> 
+
+#### Configuration Object
+
+The action function is called when the item is clicked. It is possible to use the `inject` function to inject services.
+
+```typescript
+import {
+  LayoutComponent,
+  ProvideNavigationConfig,
+  withNavigationService,
+} from '@rxap/layout';
+import { APP_NAVIGATION } from './app.navigation';
+
+const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [ ],
+    providers: [
+      provideLayout(
+        withNavigationConfig(APP_NAVIGATION),
+        withSettingsMenuItems(
+          {
+            label: 'Custom Item',
+            icon: { icon: 'home' },
+            action: () => inject(MatDialog).open(MyCustomDialogComponent),
+          }
+        )
+      ),
+    ],
+  },
+];
+```
+
+#### Component
+
+If a component is provided ensure the component template uses the `mat-menu-item` component:
+
+```angular17html
+<button mat-menu-item>My Custom Item</button>
+```
+
+```typescript
+import {
+  LayoutComponent,
+  ProvideNavigationConfig,
+  withNavigationService,
+} from '@rxap/layout';
+import { APP_NAVIGATION } from './app.navigation';
+
+const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [ ],
+    providers: [
+      provideLayout(
+        withNavigationConfig(APP_NAVIGATION),
+        withSettingsMenuItems(
+          MyCustomMenuItemComponent
+        )
+      ),
+    ],
+  },
+];
+```
+
+### User Profile (WIP)
+
 ...
 
-### User Profile
+## Dynamic Footer
 
-The user profile icon is displaed
+With the directive `rxapFooter` it is possible to define a dynamic footer. When the directive is used on a `<ng-template>` in a component,
+that is rendered in the layout component, the template is rendered in the footer of the layout component.
 
+```angular17html
+<mat-card>
+  ...
+</mat-card>
+<ng-template rxapFooter>
+  <button mat-button>A button in the layout footer</button>
+</ng-template>
+```

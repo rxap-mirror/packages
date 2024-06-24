@@ -30,6 +30,7 @@ import {
 } from '@rxap/ngx-user';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
+import { NavigationProgressBarComponent } from '../header/navigation-progress-bar/navigation-progress-bar.component';
 import { LogoService } from '../logo.service';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { ReleaseInfoComponent } from '../release-info/release-info.component';
@@ -61,6 +62,7 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
     SidenavComponent,
     ReleaseInfoComponent,
     SidenavFooterDirective,
+    NavigationProgressBarComponent,
   ],
 })
 export class LayoutComponent implements OnInit, OnDestroy {

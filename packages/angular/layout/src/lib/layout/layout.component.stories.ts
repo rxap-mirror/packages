@@ -1,10 +1,12 @@
-import { NavigationService } from '../navigation.service';
 import {
   Meta,
   moduleMetadata,
   StoryObj,
 } from '@storybook/angular';
-import { ProvideNavigationConfig } from '../provide';
+import {
+  provideLayout,
+  withNavigationConfig,
+} from '../provide';
 import { LayoutComponent } from './layout.component';
 
 const meta: Meta<LayoutComponent> = {
@@ -16,8 +18,7 @@ const meta: Meta<LayoutComponent> = {
   decorators: [
     moduleMetadata({
       providers: [
-        NavigationService,
-        ProvideNavigationConfig([
+        provideLayout(withNavigationConfig([
           {
             routerLink: [],
             label: 'Link1',
@@ -111,7 +112,7 @@ const meta: Meta<LayoutComponent> = {
             label: 'Link4',
             icon: { icon: 'important_devices' },
           },
-        ]),
+        ])),
       ],
     })
   ]

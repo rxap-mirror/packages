@@ -15,7 +15,7 @@ import {
 import { RXAP_EXTERNAL_APP_FILTER } from './tokens';
 import { ExternalApps } from './types';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ExternalAppsService {
 
   protected readonly appFilterList = coerceArray(inject(RXAP_EXTERNAL_APP_FILTER, { optional: true}));

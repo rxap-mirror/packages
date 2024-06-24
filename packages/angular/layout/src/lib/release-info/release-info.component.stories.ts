@@ -1,10 +1,13 @@
 import { faker } from '@faker-js/faker';
-import { ProvideReleaseInfoModule } from '../provide';
 import {
   type Meta,
   moduleMetadata,
   type StoryObj,
 } from '@storybook/angular';
+import {
+  provideLayout,
+  withReleaseInfoModules,
+} from '../provide';
 import { ReleaseInfoComponent } from './release-info.component';
 
 
@@ -15,7 +18,7 @@ const meta: Meta<ReleaseInfoComponent> = {
     viewport: {
       defaultViewport: 'mobile2',
     },
-  }
+  },
 };
 export default meta;
 type Story = StoryObj<ReleaseInfoComponent>;
@@ -29,23 +32,25 @@ export const WithModules: Story = {
   decorators: [
     moduleMetadata({
       providers: [
-        ProvideReleaseInfoModule([
-          {
-            name: faker.commerce.productName(),
-            version: faker.system.semver(),
-            hash: faker.git.commitSha({ length: 7 }),
-          },
-          {
-            name: faker.commerce.productName(),
-            version: faker.system.semver(),
-          },
-          {
-            name: faker.commerce.productName(),
-            version: faker.system.semver(),
-            hash: faker.git.commitSha({ length: 7 }),
-          }
-        ])
-      ]
+        provideLayout(
+          withReleaseInfoModules(
+            {
+              name: faker.commerce.productName(),
+              version: faker.system.semver(),
+              hash: faker.git.commitSha({ length: 7 }),
+            },
+            {
+              name: faker.commerce.productName(),
+              version: faker.system.semver(),
+            },
+            {
+              name: faker.commerce.productName(),
+              version: faker.system.semver(),
+              hash: faker.git.commitSha({ length: 7 }),
+            },
+          ),
+        ),
+      ],
     }),
-  ]
+  ],
 };

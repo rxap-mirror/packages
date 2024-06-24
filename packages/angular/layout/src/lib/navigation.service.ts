@@ -32,7 +32,7 @@ import {
   RXAP_NAVIGATION_CONFIG_INSERTS,
 } from './tokens';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class NavigationService {
   public readonly config$: Observable<Navigation>;
 

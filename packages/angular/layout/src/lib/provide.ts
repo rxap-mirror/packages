@@ -1,5 +1,8 @@
 import { Provider } from '@angular/core';
 import { coerceArray } from '@rxap/utilities';
+import { ExternalAppsService } from './external-apps.service';
+import { LayoutService } from './layout.service';
+import { LogoService } from './logo.service';
 import { NavigationService } from './navigation.service';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
@@ -15,32 +18,35 @@ import {
   SettingsMenuItemComponent,
 } from './types';
 
+export function provideLayout(...additionalProviders: Provider[]): Provider[] {
+  return [
+    ExternalAppsService,
+    LayoutService,
+    LogoService,
+    NavigationService,
+    ...additionalProviders,
+  ];
+}
 
-export function ProvideNavigationConfig(
+export function withNavigationConfig(
   config: NavigationWithInserts | (() => NavigationWithInserts),
-  ...additionalProviders: Provider[]
 ): Provider[] {
   return [
     {
       provide: RXAP_NAVIGATION_CONFIG,
       useValue: config,
     },
-    ...additionalProviders,
   ];
 }
 
-export function withNavigationService(): Provider {
-  return NavigationService;
-}
-
-export function withNavigationInserts(inserts: NavigationWithInserts): Provider {
-  return {
+export function withNavigationInserts(inserts: Record<string, NavigationWithInserts>): Provider[] {
+  return [{
     provide: RXAP_NAVIGATION_CONFIG_INSERTS,
     useValue: inserts,
-  };
+  }];
 }
 
-export function provideSettingsMenuItems(...items: Array<SettingsMenuItemComponent | SettingsMenuItem>): Provider[] {
+export function withSettingsMenuItems(...items: Array<SettingsMenuItemComponent | SettingsMenuItem>): Provider[] {
   return [
     ...items.filter((item): item is SettingsMenuItemComponent => typeof item === 'function').map(component => (
       {
@@ -59,8 +65,7 @@ export function provideSettingsMenuItems(...items: Array<SettingsMenuItemCompone
   ];
 }
 
-export function ProvideReleaseInfoModule(module: ReleaseInfoModule | ReleaseInfoModule[]): Provider[] {
-  module = coerceArray(module);
+export function withReleaseInfoModules(...module: ReleaseInfoModule[]): Provider[] {
   return module.map(item => (
     {
       provide: RXAP_RELEASE_INFO_MODULE,

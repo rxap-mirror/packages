@@ -8,6 +8,7 @@ import { ProvideConfig } from '@rxap/config';
 import { ProvideEnvironment } from '@rxap/environment';
 import { ProvideIconAssetPath } from '@rxap/icon';
 import { NavigationComponent } from '@rxap/layout';
+import { ProvidePubSub } from '@rxap/ngx-pub-sub';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { applicationConfig } from '@storybook/angular';
@@ -124,6 +125,7 @@ export const decorators = [
           component: NavigationComponent,
         },
       ]),
+      ProvidePubSub(),
     ],
   }),
 ];

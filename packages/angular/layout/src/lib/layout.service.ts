@@ -19,7 +19,7 @@ import {
 } from '@rxap/services';
 import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class LayoutService {
 
   public readonly opened: WritableSignal<boolean>;
@@ -33,8 +33,8 @@ export class LayoutService {
   public readonly fixedInViewport: WritableSignal<boolean>;
   public readonly collapsed: Signal<boolean>;
 
-  public readonly footerComponentService = inject(FooterService);
-  public readonly headerComponentService = inject(HeaderService);
+  private readonly footerService = inject(FooterService);
+  private readonly headerService = inject(HeaderService);
   private readonly config = inject(ConfigService);
   private readonly mediaMatcher = inject(MediaMatcher);
 
@@ -72,13 +72,13 @@ export class LayoutService {
     this.collapsed = computed(() => this.collapsable() && !this.opened() && !this.pinned());
 
     this.fixedBottomGap = computed(() => {
-      const footerPortalCount = this.footerComponentService.portalCount();
+      const footerPortalCount = this.footerService.portalCount();
       const currentThemeDensity = this.currentThemeDensity() ?? 0;
       return footerPortalCount * (currentThemeDensity * 4 + 64);
     });
 
     this.fixedTopGap = computed(() => {
-      const headerPortalCount = this.headerComponentService.componentCount();
+      const headerPortalCount = this.headerService.componentCount();
       const currentThemeDensity = this.currentThemeDensity() ?? 0;
       return headerPortalCount * (currentThemeDensity * 4 + 64);
     });

@@ -65,7 +65,7 @@ export * from './lib/base-layout/base-layout.component';
 
 // region
 export * from './lib/external-apps.service';
-export * from './lib/footer.directive';
+export * from './lib/footer/footer.directive';
 export * from './lib/layout.service';
 export * from './lib/logo.service';
 export * from './lib/navigation.service';

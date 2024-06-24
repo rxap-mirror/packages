@@ -17,9 +17,6 @@ const config: StorybookConfig = {
       to: '/',
     },
   ],
-  docs: {
-    autodocs: true,
-  },
 };
 
 export default config;
