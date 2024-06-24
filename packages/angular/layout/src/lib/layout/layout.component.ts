@@ -10,12 +10,10 @@ import {
   Component,
   computed,
   inject,
-  Inject,
   OnDestroy,
   OnInit,
   Signal,
   viewChild,
-  ViewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,10 +29,8 @@ import {
 } from '@angular/router';
 import {
   DetermineReleaseName,
-  Environment,
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
-import { IconLoaderService } from '@rxap/icon';
 import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
 import { ThemeService } from '@rxap/ngx-theme';
 import {
@@ -44,9 +40,9 @@ import {
 } from '@rxap/ngx-user';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
+import { LayoutService } from '../layout.service';
 import { LogoService } from '../logo.service';
 import { NavigationComponent } from '../navigation/navigation.component';
-import { LayoutService } from '../layout.service';
 
 
 @Component({
