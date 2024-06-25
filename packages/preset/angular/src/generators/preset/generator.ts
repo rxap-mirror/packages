@@ -29,7 +29,9 @@ export async function presetGenerator(
     overwrite: true,
   });
 
-  installPackagesTask(tree, true);
+  if (!options.skipInstall) {
+    installPackagesTask(tree, true);
+  }
 }
 
 export default presetGenerator;
