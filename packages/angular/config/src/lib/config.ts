@@ -1,3 +1,5 @@
+import { IconConfig } from '@rxap/utilities';
+
 export interface AppsNavigationConfig {
   target?: string;
   image?: string;
@@ -8,6 +10,7 @@ export interface AppsNavigationConfig {
   hidden?: boolean;
   id?: string;
   permissions: string[];
+  icon?: IconConfig;
 }
 
 export interface LogoConfig {
