@@ -10,6 +10,7 @@ import {
   APP_FILTER,
   APP_INTERCEPTOR,
 } from '@nestjs/core';
+import { Constructor } from '@rxap/utilities';
 import { DefaultUpstreamInterceptor } from './default.upstream-interceptor';
 import { LoggingInterceptor } from './logging.interceptor';
 import { ValidatorInterceptor } from './validator.interceptor';
@@ -64,15 +65,15 @@ export const {
 })
 export class OpenApiModule extends ConfigurableModuleClass {
 
-  static register(options: typeof OPTIONS_TYPE): DynamicModule {
-    return this.updateProviders(super.register(options));
+  static register(options: typeof OPTIONS_TYPE, interceptors: Constructor<OpenApiUpstreamInterceptor>[] = []): DynamicModule {
+    return this.updateProviders(super.register(options), interceptors);
   }
 
-  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
-    return this.updateProviders(super.registerAsync(options));
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE, interceptors: Constructor<OpenApiUpstreamInterceptor>[] = []): DynamicModule {
+    return this.updateProviders(super.registerAsync(options), interceptors);
   }
 
-  private static updateProviders(module: DynamicModule) {
+  private static updateProviders(module: DynamicModule, interceptors: Constructor<OpenApiUpstreamInterceptor>[]) {
     module.providers ??= [];
     module.providers.push({
       provide: OPEN_API_SERVER_CONFIG,
@@ -83,7 +84,7 @@ export class OpenApiModule extends ConfigurableModuleClass {
       provide: OPEN_API_UPSTREAM_INTERCEPTOR,
       useFactory: OpenApiUpstreamInterceptorFactory,
       scope: Scope.REQUEST,
-      inject: [ MODULE_OPTIONS_TOKEN, DefaultUpstreamInterceptor ],
+      inject: [ MODULE_OPTIONS_TOKEN, DefaultUpstreamInterceptor, ...interceptors ],
     });
     return module;
   }
@@ -97,8 +98,10 @@ export function OpenApiServerConfigFactory(options: OpenApiModuleOptions) {
 export function OpenApiUpstreamInterceptorFactory(
   options: OpenApiModuleOptions,
   defaultInterceptor: DefaultUpstreamInterceptor,
+  ...additionalInterceptors: OpenApiUpstreamInterceptor[]
 ) {
   const interceptors = options.interceptors ?? [];
+  interceptors.push(...additionalInterceptors);
   if (!interceptors.some(interceptor => interceptor instanceof DefaultUpstreamInterceptor)) {
     interceptors.push(defaultInterceptor);
   }
