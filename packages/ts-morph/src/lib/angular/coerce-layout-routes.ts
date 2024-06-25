@@ -65,6 +65,11 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
     }
   };
 
+  CoerceImports(sourceFile, {
+    namedImports: [ 'provideLayout' ],
+    moduleSpecifier: '@rxap/layout'
+  });
+
   if (withStatusCheckGuard) {
     obj['canActivateChild'] = '[StatusCheckGuard]';
     CoerceImports(sourceFile, [
