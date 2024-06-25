@@ -57,11 +57,6 @@ export async function generateGenerator(
 
   const projectRoot = GetProjectRoot(tree, projectName);
 
-  if (tree.exists(join(projectRoot, 'package.json'))) {
-    const packageJson = GetProjectPackageJson(tree, projectName);
-    options.packageName = packageJson.name;
-  }
-
   const angularGeneratorFunctionList: GeneratorFunction<OpenApiSchema>[] = [];
   if (!options.skipRemoteMethod) {
     angularGeneratorFunctionList.push(GenerateRemoteMethod);
@@ -98,13 +93,11 @@ export async function generateGenerator(
   // generate the angular code
   TsMorphAngularProjectTransform(tree, {
     project: options.project,
-    entrypoint: options.packageName ? 'angular' : undefined,
   }, project => GenerateOperation(openapi, project, options, angularGeneratorFunctionList));
 
   // generate the nestjs code
   TsMorphAngularProjectTransform(tree, {
     project: options.project,
-    entrypoint: options.packageName ? 'nest' : undefined,
   }, project => GenerateOperation(openapi, project, options, nestGeneratorFunctionList));
 
   if (options.export) {

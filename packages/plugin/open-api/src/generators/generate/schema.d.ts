@@ -1,7 +1,6 @@
 export interface OpenApiSchemaBase {
   project: string;
   debug?: boolean;
-  packageName?: string;
   prefix: string;
   export?: boolean;
   serverId?: string;
