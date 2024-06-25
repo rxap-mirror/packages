@@ -366,7 +366,7 @@ export function CoerceUpstreamDefaultOperationImplementation(
       buildUpstreamGetDataImplementation = BuildUpstreamGetDataImplementation,
       buildGetDataImplementation = noop,
     } = options;
-    buildGetDataImplementation(classDeclaration, moduleSourceFile, dto, options)?.(operationOptions);
+    (buildGetDataImplementation(classDeclaration, moduleSourceFile, dto, options) as any)?.(operationOptions);
     if (upstream) {
       operationOptions.isAsync = true;
       buildUpstreamGetDataImplementation(classDeclaration, moduleSourceFile, dto, options)(operationOptions);
