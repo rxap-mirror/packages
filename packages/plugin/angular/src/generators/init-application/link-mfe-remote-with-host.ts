@@ -33,7 +33,7 @@ export function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: 
               path,
               loadRemoteModule: projectName,
             },
-            component: 'LayoutComponent',
+            component: 'MinimalLayoutComponent',
           },
         ],
       });
