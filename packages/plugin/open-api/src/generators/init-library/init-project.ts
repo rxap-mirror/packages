@@ -84,7 +84,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
         `${projectSourceRoot}/lib/data-sources/index.ts`,
         `${projectSourceRoot}/lib/directives/index.ts`,
         `${projectSourceRoot}/lib/parameters/index.ts`,
-        `${projectSourceRoot}/lib/remote-method/index.ts`,
+        `${projectSourceRoot}/lib/remote-methods/index.ts`,
         `${projectSourceRoot}/lib/request-bodies/index.ts`,
         `${projectSourceRoot}/lib/responses/index.ts`,
       ],
@@ -92,18 +92,18 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   }, Strategy.OVERWRITE);
 
   CoerceTarget(project, 'index-export', {
-    inputs: [
+    outputs: [
       `{projectRoot}/src/index.ts`,
       `{projectRoot}/src/lib/commands/index.ts`,
       `{projectRoot}/src/lib/components/index.ts`,
       `{projectRoot}/src/lib/data-sources/index.ts`,
       `{projectRoot}/src/lib/directives/index.ts`,
       `{projectRoot}/src/lib/parameters/index.ts`,
-      `{projectRoot}/src/lib/remote-method/index.ts`,
+      `{projectRoot}/src/lib/remote-methods/index.ts`,
       `{projectRoot}/src/lib/request-bodies/index.ts`,
       `{projectRoot}/src/lib/responses/index.ts`,
     ]
-  });
+  }, Strategy.OVERWRITE);
 
 
   // region cleanup
@@ -140,7 +140,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     tsConfig.compilerOptions.paths[`${options.project}/data-sources`] = [ `${projectSourceRoot}/lib/data-sources/index.ts` ];
     tsConfig.compilerOptions.paths[`${options.project}/directives`] = [ `${projectSourceRoot}/lib/directives/index.ts` ];
     tsConfig.compilerOptions.paths[`${options.project}/parameters`] = [ `${projectSourceRoot}/lib/parameters/index.ts` ];
-    tsConfig.compilerOptions.paths[`${options.project}/remote-methods`] = [ `${projectSourceRoot}/lib/remote-method/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/remote-methods`] = [ `${projectSourceRoot}/lib/remote-methods/index.ts` ];
     tsConfig.compilerOptions.paths[`${options.project}/request-bodies`] = [ `${projectSourceRoot}/lib/request-bodies/index.ts` ];
     tsConfig.compilerOptions.paths[`${options.project}/responses`] = [ `${projectSourceRoot}/lib/responses/index.ts` ];
   }, { infix: 'base' });
