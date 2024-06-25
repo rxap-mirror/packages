@@ -30,7 +30,6 @@ export function provideLayout(...additionalProviders: Provider[]): Provider[] {
     ExternalAppsService,
     LayoutService,
     LogoService,
-    NavigationService,
     HeaderService,
     FooterService,
     ...additionalProviders,
@@ -41,6 +40,7 @@ export function withNavigationConfig(
   config: NavigationWithInserts | (() => NavigationWithInserts),
 ): Provider[] {
   return [
+    NavigationService,
     {
       provide: RXAP_NAVIGATION_CONFIG,
       useValue: config,
