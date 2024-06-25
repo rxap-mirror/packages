@@ -10,7 +10,7 @@ describe('preset', () => {
     tree = createTreeWithEmptyWorkspace();
   });
 
-  it('should use angular preset', async () => {
+  it('should use workspace preset', async () => {
 
     await presetGenerator(tree, {
       packages: false,

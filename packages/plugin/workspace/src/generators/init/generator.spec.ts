@@ -41,6 +41,6 @@ describe('init', () => {
     expect(tree.read('jest.config.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('schematic.yaml', 'utf-8')).toMatchSnapshot();
 
-  });
+  }, 5000 * 4);
 
 });

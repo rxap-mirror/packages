@@ -1338,3 +1338,22 @@ export default async () => ({
 `;
 
 exports[`preset should use angular preset 17`] = `null`;
+
+exports[`preset should use angular preset 18`] = `
+[
+  "components",
+  "forms",
+  "controls",
+  "tables",
+  "methods",
+  "data-sources",
+  "pipes",
+  "directives",
+  "guards",
+  "services",
+  "application-providers",
+  "testing",
+  "resolvers",
+  "http-interceptors",
+]
+`;

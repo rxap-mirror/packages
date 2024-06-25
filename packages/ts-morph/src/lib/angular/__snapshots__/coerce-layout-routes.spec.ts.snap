@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoerceLayoutRouters should coerce layout routers 1`] = `
+"import { StatusCheckGuard } from '@rxap/ngx-status-check';
+import { APP_NAVIGATION } from './app.navigation';
+import { withNavigationConfig, widthDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';
+import { Route } from '@angular/router';
+
+export const ROUTES: Route[] = [
+    {
+      path: '',
+      component: LayoutComponent,
+      children: [
+        {
+          path: '**',
+          redirectTo: ''
+        }
+      ],
+      providers: [
+        provideLayout(
+          withNavigationConfig(APP_NAVIGATION),
+          widthDefaultHeaderComponent(),
+        )
+      ],
+      canActivateChild: [StatusCheckGuard]
+    },
+  {
+    path: '**',
+    redirectTo: ''
+  }
+  ];
+
+export default ROUTES;
+"
+`;

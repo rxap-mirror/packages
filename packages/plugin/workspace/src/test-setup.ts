@@ -13,3 +13,8 @@ jest.doMock('@nx/devkit', () => ({
     };
   }),
 }));
+
+jest.doMock('@rxap/node-utilities', () => ({
+  ...jest.requireActual<any>('@rxap/node-utilities'),
+  GetLatestPackageVersion: jest.fn().mockImplementation(async () => 'latest'),
+}));

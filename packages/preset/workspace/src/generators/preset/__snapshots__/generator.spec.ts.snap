@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`init should init default workspace 1`] = `
+exports[`preset should use workspace preset 1`] = `
 [
   ".prettierrc",
   "package.json",
@@ -26,7 +26,7 @@ exports[`init should init default workspace 1`] = `
 ]
 `;
 
-exports[`init should init default workspace 2`] = `
+exports[`preset should use workspace preset 2`] = `
 "{
   "name": "@proj/source",
   "license": "GPL-3.0-or-later",
@@ -45,13 +45,13 @@ exports[`init should init default workspace 2`] = `
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.3.0",
-    "@commitlint/config-conventional": "19.2.2",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
     "@nx/eslint": "19.3.0",
     "@nx/eslint-plugin": "19.3.0",
     "@nx/jest": "19.3.0",
     "@nx/js": "19.3.0",
-    "@rxap/schematic-composer": "18.0.2",
+    "@rxap/schematic-composer": "latest",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
@@ -61,12 +61,12 @@ exports[`init should init default workspace 2`] = `
     "@typescript-eslint/parser": "^7.3.0",
     "eslint": "~8.57.0",
     "eslint-config-prettier": "^9.0.0",
-    "husky": "9.0.11",
+    "husky": "latest",
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
-    "nx-cloud": "19.0.0",
+    "nx-cloud": "latest",
     "prettier": "^2.6.2",
-    "rxap": "19.1.1",
+    "rxap": "latest",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "~5.4.2"
@@ -87,7 +87,7 @@ exports[`init should init default workspace 2`] = `
 "
 `;
 
-exports[`init should init default workspace 3`] = `
+exports[`preset should use workspace preset 3`] = `
 "{
   "affected": {
     "defaultBase": "main"
@@ -237,7 +237,7 @@ exports[`init should init default workspace 3`] = `
 "
 `;
 
-exports[`init should init default workspace 4`] = `
+exports[`preset should use workspace preset 4`] = `
 "
 /migrations.json
 ~
@@ -298,7 +298,7 @@ gitlab-ci-setup.sh
 "
 `;
 
-exports[`init should init default workspace 5`] = `
+exports[`preset should use workspace preset 5`] = `
 "{
   "singleQuote": true,
   "overrides": [
@@ -313,7 +313,7 @@ exports[`init should init default workspace 5`] = `
 "
 `;
 
-exports[`init should init default workspace 6`] = `
+exports[`preset should use workspace preset 6`] = `
 "{
   "compilerOptions": {
     "paths": {
@@ -324,7 +324,7 @@ exports[`init should init default workspace 6`] = `
 "
 `;
 
-exports[`init should init default workspace 7`] = `
+exports[`preset should use workspace preset 7`] = `
 "module.exports = {
   extends: ['@commitlint/config-conventional'],
   ignores: [(message) => message.toLowerCase().startsWith('wip')],
@@ -332,19 +332,19 @@ exports[`init should init default workspace 7`] = `
 "
 `;
 
-exports[`init should init default workspace 8`] = `
+exports[`preset should use workspace preset 8`] = `
 "{
   "extends": ["gitlab>rxap/renovate-config"]
 }
 "
 `;
 
-exports[`init should init default workspace 9`] = `
+exports[`preset should use workspace preset 9`] = `
 "nodeLinker: node-modules
 "
 `;
 
-exports[`init should init default workspace 10`] = `
+exports[`preset should use workspace preset 10`] = `
 "                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
@@ -969,7 +969,7 @@ copy of the Program in return for a fee.
 "
 `;
 
-exports[`init should init default workspace 11`] = `
+exports[`preset should use workspace preset 11`] = `
 "
 dist
 coverage
@@ -984,7 +984,7 @@ tmp.*
 "
 `;
 
-exports[`init should init default workspace 12`] = `
+exports[`preset should use workspace preset 12`] = `
 "{
   "name": "workspace",
   "$schema": "node_modules/nx/schemas/project-schema.json",
@@ -1046,7 +1046,7 @@ exports[`init should init default workspace 12`] = `
 "
 `;
 
-exports[`init should init default workspace 13`] = `
+exports[`preset should use workspace preset 13`] = `
 "{
   "root": true,
   "ignorePatterns": ["**/*"],
@@ -1092,19 +1092,19 @@ exports[`init should init default workspace 13`] = `
 "
 `;
 
-exports[`init should init default workspace 14`] = `
+exports[`preset should use workspace preset 14`] = `
 "node_modules
 "
 `;
 
-exports[`init should init default workspace 15`] = `
+exports[`preset should use workspace preset 15`] = `
 "const nxPreset = require('@nx/jest/preset').default;
 
 module.exports = { ...nxPreset };
 "
 `;
 
-exports[`init should init default workspace 16`] = `
+exports[`preset should use workspace preset 16`] = `
 "import { getJestProjectsAsync } from '@nx/jest';
 
 export default async () => ({
@@ -1113,7 +1113,7 @@ export default async () => ({
 "
 `;
 
-exports[`init should init default workspace 17`] = `
+exports[`preset should use workspace preset 17`] = `
 "package: '@rxap/plugin-workspace'
 name: init
 options:
