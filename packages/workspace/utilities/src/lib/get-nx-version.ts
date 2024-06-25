@@ -4,6 +4,7 @@ import {
   IsJsonObject,
   TreeLike,
 } from './tree';
+import 'colors';
 
 /**
  * Retrieves the version of Nx specified in the `devDependencies` of the root `package.json`.
@@ -31,7 +32,8 @@ export function GetNxVersion(tree?: TreeLike) {
   const devDependencies = rootPackageJson['devDependencies'] as Record<string, string>;
 
   if (!devDependencies['nx']) {
-    throw new Error('The root package.json file does not contain a devDependencies "nx"');
+    console.log('The root package.json file does not contain a devDependencies "nx"'.red);
+    return 'latest';
   }
 
   return devDependencies['nx'];
