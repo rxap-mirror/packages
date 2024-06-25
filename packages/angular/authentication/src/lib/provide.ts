@@ -1,5 +1,5 @@
 import { Provider } from '@angular/core';
-import { RXAP_INITIAL_AUTHENTICATION_STATE } from '@rxap/authentication';
+import { RXAP_INITIAL_AUTHENTICATION_STATE } from './tokens';
 import {
   IAuthenticationService,
   RxapAuthenticationService,
@@ -8,7 +8,7 @@ import { Constructor } from '@rxap/utilities';
 
 export function provideAuthentication(
   service: Constructor<IAuthenticationService>,
-  ...additionalProviders: Provider[],
+  ...additionalProviders: Provider[]
 ): Provider[] {
   return [
     {
