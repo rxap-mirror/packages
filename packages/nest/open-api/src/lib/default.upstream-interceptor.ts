@@ -19,10 +19,10 @@ export class DefaultUpstreamInterceptor implements OpenApiUpstreamInterceptor {
   protected readonly config!: ConfigService;
 
   @Inject(REQUEST)
-  private readonly request!: Request;
+  protected readonly request!: Request;
 
   @Inject(Logger)
-  private readonly logger!: Logger;
+  protected readonly logger!: Logger;
 
   protected get authHeaderName(): string {
     return this.config.get<string>('JWT_AUTH_HEADER', 'Authorization');
