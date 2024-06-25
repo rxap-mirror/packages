@@ -18,18 +18,18 @@ export class DefaultUpstreamInterceptor implements OpenApiUpstreamInterceptor {
   @Inject(ConfigService)
   protected readonly config!: ConfigService;
 
+  @Inject(REQUEST)
+  private readonly request!: Request;
+
+  @Inject(Logger)
+  private readonly logger!: Logger;
+
   protected get authHeaderName(): string {
     return this.config.get<string>('JWT_AUTH_HEADER', 'Authorization');
   }
 
   protected get upstreamHeaderName(): string {
     return this.config.get<string>('UPSTREAM_JWT_AUTH_HEADER', this.authHeaderName);
-  }
-
-  constructor(
-    @Inject(REQUEST) private readonly request: Request,
-    private readonly logger: Logger,
-  ) {
   }
 
   intercept(config: AxiosRequestConfig): AxiosRequestConfig {
