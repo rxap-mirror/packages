@@ -12,7 +12,6 @@ export function updateProjectTargets(project: ProjectConfiguration, options: Ini
     });
   }
   CoerceTarget(project, 'update-dependencies', {});
-  CoerceTarget(project, 'update-package-group', {});
   if (options.targets?.fixDependencies === false) {
     RemoveTarget(project, 'fix-dependencies');
   } else {
