@@ -16,13 +16,13 @@ import { OpenApiUpstreamInterceptor } from './open-api-operation/types';
 export class DefaultUpstreamInterceptor implements OpenApiUpstreamInterceptor {
 
   @Inject(ConfigService)
-  private readonly config!: ConfigService;
+  protected readonly config!: ConfigService;
 
-  private get authHeaderName(): string {
+  protected get authHeaderName(): string {
     return this.config.get<string>('JWT_AUTH_HEADER', 'Authorization');
   }
 
-  private get upstreamHeaderName(): string {
+  protected get upstreamHeaderName(): string {
     return this.config.get<string>('UPSTREAM_JWT_AUTH_HEADER', this.authHeaderName);
   }
 
