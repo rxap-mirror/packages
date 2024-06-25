@@ -9,6 +9,7 @@ import { LogoService } from './logo.service';
 import { NavigationService } from './navigation.service';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
+  RXAP_EXTERNAL_APP,
   RXAP_FOOTER_COMPONENT,
   RXAP_HEADER_COMPONENT,
   RXAP_NAVIGATION_CONFIG,
@@ -18,6 +19,7 @@ import {
   RXAP_SETTINGS_MENU_ITEM_COMPONENT,
 } from './tokens';
 import {
+  ExternalApp,
   ReleaseInfoModule,
   SettingsMenuItem,
   SettingsMenuItemComponent,
@@ -44,6 +46,16 @@ export function withNavigationConfig(
       useValue: config,
     },
   ];
+}
+
+export function withExternalApps(...apps: ExternalApp[]): Provider[] {
+  return apps.map(app => (
+    {
+      provide: RXAP_EXTERNAL_APP,
+      useValue: app,
+      multi: true,
+    }
+  ));
 }
 
 export function withNavigationInserts(inserts: Record<string, NavigationWithInserts>): Provider[] {

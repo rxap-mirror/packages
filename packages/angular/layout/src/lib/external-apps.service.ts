@@ -12,28 +12,32 @@ import {
   coerceArray,
   JoinPath,
 } from '@rxap/utilities';
-import { RXAP_EXTERNAL_APP_FILTER } from './tokens';
-import { ExternalApps } from './types';
+import {
+  RXAP_EXTERNAL_APP,
+  RXAP_EXTERNAL_APP_FILTER,
+} from './tokens';
+import { ExternalApp } from './types';
 
 @Injectable()
 export class ExternalAppsService {
 
-  protected readonly appFilterList = coerceArray(inject(RXAP_EXTERNAL_APP_FILTER, { optional: true}));
+  protected readonly appFilterList = coerceArray(inject(RXAP_EXTERNAL_APP_FILTER, { optional: true }));
   protected readonly config = inject(ConfigService);
   protected readonly localeId = inject(LOCALE_ID);
   protected readonly environment = inject(RXAP_ENVIRONMENT);
-  protected readonly apps: Array<ExternalApps> = this.config.get('navigation.apps', []);
+  protected readonly apps: Array<ExternalApp> = this.config.get('navigation.apps', []);
+  protected readonly externalApps = coerceArray(inject(RXAP_EXTERNAL_APP, { optional: true }));
 
   /**
    * The list of active apps that is processed by the getAppList method
    */
-  public readonly activeAppList = signal<Array<ExternalApps>>([]);
+  public readonly activeAppList = signal<Array<ExternalApp>>([]);
 
   public hasApp(appId: string): boolean {
     return this.apps.some(app => app.id === appId);
   }
 
-  public getApp(appId: string): ExternalApps | null {
+  public getApp(appId: string): ExternalApp | null {
     if (!this.hasApp(appId)) {
       return null;
     }
@@ -64,7 +68,7 @@ export class ExternalAppsService {
       return null;
     }
 
-    return [...app.routerLink, path];
+    return [ ...app.routerLink, path ];
   }
 
   public getAppUrlOrThrow(appId: string, path: string): string {
@@ -93,10 +97,11 @@ export class ExternalAppsService {
 
   }
 
-  public async getAppList(): Promise<Array<ExternalApps>> {
-    let appList: ExternalApps[] = this
-      .apps
-      .filter(app => !app.hidden)
+  public async getAppList(): Promise<Array<ExternalApp>> {
+    let appList: ExternalApp[] = [
+      ...this.externalApps,
+      ...this.apps,
+    ].filter(app => !app.hidden)
       .map(app => structuredClone(app));
 
     appList.forEach(app => {

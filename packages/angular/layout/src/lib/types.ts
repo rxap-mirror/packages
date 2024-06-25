@@ -4,7 +4,7 @@ import { IconConfig } from '@rxap/utilities';
 
 
 
-export type ExternalApps = AppsNavigationConfig;
+export type ExternalApp = AppsNavigationConfig;
 export type ExtractUsernameFromProfileFn<T = unknown> = (profile: T) => string | null;
 export interface ReleaseInfoModule {
   name: string;

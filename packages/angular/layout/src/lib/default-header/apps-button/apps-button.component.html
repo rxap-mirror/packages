@@ -8,6 +8,9 @@
           @if (app.href) {
             <a [href]="app.href" [target]="app.target ?? '_self'" mat-stroked-button>
               <span class="flex flex-row items-center gap-4">
+                @if (app.icon) {
+                  <mat-icon [rxapIcon]="app.icon"></mat-icon>
+                }
                 @if (app.image) {
                   <img [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
                 }
@@ -17,6 +20,9 @@
           } @else if (app.routerLink) {
             <a mat-stroked-button [routerLink]="app.routerLink">
               <span class="flex flex-row items-center gap-4">
+                @if (app.icon) {
+                  <mat-icon [rxapIcon]="app.icon"></mat-icon>
+                }
                 @if (app.image) {
                   <img [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
                 }
@@ -26,6 +32,9 @@
           } @else {
             <button mat-stroked-button [disabled]="true">
               <span class="flex flex-row items-center gap-4">
+                @if (app.icon) {
+                  <mat-icon [rxapIcon]="app.icon"></mat-icon>
+                }
                 @if (app.image) {
                   <img [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
                 }

@@ -4,7 +4,7 @@ import { LogoConfig } from '@rxap/config';
 import { MethodWithParameters } from '@rxap/pattern';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
-  ExternalApps,
+  ExternalApp,
   ExtractUsernameFromProfileFn,
   ReleaseInfoModule,
   SettingsMenuItem,
@@ -21,7 +21,7 @@ export const RXAP_HEADER_COMPONENT = new InjectionToken<ComponentType<unknown>>(
 export const RXAP_LOGO_CONFIG = new InjectionToken<LogoConfig>('rxap/layout/logo-config');
 export const RXAP_LAYOUT_APPS_GRID = new InjectionToken('rxap/layout/apps-grid');
 
-export const RXAP_EXTERNAL_APP_FILTER = new InjectionToken<MethodWithParameters<ExternalApps[], ExternalApps[]>>('rxap/layout/app-config-filter');
+export const RXAP_EXTERNAL_APP_FILTER = new InjectionToken<MethodWithParameters<ExternalApp[], ExternalApp[]>>('rxap/layout/app-config-filter');
 export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameFromProfileFn>(
   'extract-username-from-profile',
   {
@@ -31,6 +31,8 @@ export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameF
                                      ) ?? null,
   },
 );
+
+export const RXAP_EXTERNAL_APP = new InjectionToken<ExternalApp>('rxap/layout/external-app');
 
 export const RXAP_RELEASE_INFO_MODULE = new InjectionToken<ReleaseInfoModule>('rxap/layout/release-info-module');
 

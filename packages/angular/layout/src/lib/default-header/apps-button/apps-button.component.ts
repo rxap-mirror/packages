@@ -14,6 +14,7 @@ import {
 } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { IconDirective } from '@rxap/material-directives/icon';
 import { ExternalAppsService } from '../../external-apps.service';
 
 @Component({
@@ -29,6 +30,7 @@ import { ExternalAppsService } from '../../external-apps.service';
     MatAnchor,
     MatIconButton,
     MatIcon,
+    IconDirective,
   ],
 })
 export class AppsButtonComponent implements OnInit {
