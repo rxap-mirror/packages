@@ -11,7 +11,7 @@
     "@nestjs/config": "^3.2.2",
     "@rxap/nest-logger": "^10.2.3-dev.3",
     "@rxap/nest-utilities": "^10.3.2-dev.1",
-    "@rxap/ts-morph": "^1.4.1-dev.3",
+    "@rxap/ts-morph": "^1.4.1-dev.4",
     "@rxap/workspace-utilities": "^19.3.0-dev.3",
     "@sentry/core": "^8.9.2",
     "@sentry/node": "^8.9.2",
@@ -72,7 +72,7 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.4.1-dev.3"
+        "version": "1.4.1-dev.4"
       },
       {
         "package": "@rxap/workspace-utilities",
