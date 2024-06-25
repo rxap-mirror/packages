@@ -7,6 +7,7 @@ import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  Strategy,
 } from '@rxap/workspace-utilities';
 
 export function updateDefaultProjectTargets(tree: Tree) {
@@ -17,17 +18,17 @@ export function updateDefaultProjectTargets(tree: Tree) {
   }
 
   CoerceTarget(nxJson, 'index-export', {
-    'executor': '@rxap/plugin-library:run-generator',
-    'outputs': [
+    executor: '@rxap/plugin-library:run-generator',
+    outputs: [
       '{workspaceRoot}/{projectRoot}/src/index.ts',
     ],
-    'options': {
+    options: {
       'generator': '@rxap/plugin-library:index-export',
     },
-    'inputs': [
+    inputs: [
       'production',
     ],
-  });
+  }, Strategy.OVERWRITE);
 
   CoerceNxJsonCacheableOperation(nxJson, 'index-export');
   CoerceTargetDefaultsDependency(nxJson, 'build', '^index-export');
