@@ -25,9 +25,9 @@ export default appRoutes;
 `;
 
 exports[`generateMonolithic() should generate a monolithic application configuration 3`] = `
-"import { StatusCheckGuard } from '@rxap/ngx-status-check';
+"import { provideLayout, withNavigationConfig, widthDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';
+import { StatusCheckGuard } from '@rxap/ngx-status-check';
 import { APP_NAVIGATION } from './app.navigation';
-import { withNavigationConfig, widthDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';
 import { Route } from '@angular/router';
 
 export const ROUTES: Route[] = [
@@ -94,8 +94,8 @@ export default appRoutes;
 `;
 
 exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 3`] = `
-"import { StatusCheckGuard } from '@rxap/ngx-status-check';
-import { widthDefaultHeaderComponent, MinimalLayoutComponent } from '@rxap/layout';
+"import { provideLayout, widthDefaultHeaderComponent, MinimalLayoutComponent } from '@rxap/layout';
+import { StatusCheckGuard } from '@rxap/ngx-status-check';
 import { Route } from '@angular/router';
 
 export const ROUTES: Route[] = [
