@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.2.0-dev.4...@rxap/plugin-angular@19.2.0-dev.5) (2024-06-25)
+
+### Features
+
+- use MinimalLayout for mfe hosts ([5a0b053](https://gitlab.com/rxap/packages/commit/5a0b05352ebf206c4987b6507be94616a11d90df))
+
 # [19.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.2.0-dev.3...@rxap/plugin-angular@19.2.0-dev.4) (2024-06-21)
 
 ### Bug Fixes
