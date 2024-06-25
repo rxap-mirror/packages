@@ -194,7 +194,7 @@
       },
       {
         "package": "@rxap/authentication",
-        "version": "18.0.3-dev.1"
+        "version": "18.1.0-dev.0"
       },
       {
         "package": "@rxap/authorization",
@@ -214,7 +214,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.2"
+        "version": "18.1.1-dev.3"
       },
       {
         "package": "@rxap/contenteditable",
@@ -266,7 +266,7 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.9-dev.4"
+        "version": "1.0.9-dev.5"
       },
       {
         "package": "@rxap/generator-utilities",
@@ -290,7 +290,7 @@
       },
       {
         "package": "@rxap/layout",
-        "version": "18.1.0-dev.0"
+        "version": "18.1.0-dev.1"
       },
       {
         "package": "@rxap/life-cycle",
@@ -426,7 +426,7 @@
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/node-local-storage",
@@ -454,7 +454,7 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.2.0-dev.5"
+        "version": "19.2.0-dev.6"
       },
       {
         "package": "@rxap/plugin-application",
@@ -466,7 +466,7 @@
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.3-dev.6"
+        "version": "19.0.3-dev.7"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -478,11 +478,11 @@
       },
       {
         "package": "@rxap/plugin-gpt",
-        "version": "19.0.3-dev.4"
+        "version": "19.0.3-dev.5"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.3.0-dev.2"
+        "version": "19.3.0-dev.3"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -490,15 +490,15 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.0.5-dev.5"
+        "version": "19.0.5-dev.6"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.1-dev.5"
+        "version": "19.1.1-dev.6"
       },
       {
         "package": "@rxap/plugin-storybook",
-        "version": "19.0.3-dev.4"
+        "version": "19.0.3-dev.5"
       },
       {
         "package": "@rxap/plugin-typedoc",
@@ -518,7 +518,7 @@
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.1-dev.7"
+        "version": "19.0.1-dev.8"
       },
       {
         "package": "@rxap/preset-workspace",
@@ -538,23 +538,23 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.1.1-dev.4"
+        "version": "18.1.1-dev.5"
       },
       {
         "package": "@rxap/schematic-composer",
-        "version": "18.0.3-dev.4"
+        "version": "18.0.3-dev.5"
       },
       {
         "package": "@rxap/schematic-nestjs",
-        "version": "18.0.3-dev.4"
+        "version": "18.0.3-dev.5"
       },
       {
         "package": "@rxap/schematics-open-api",
-        "version": "18.0.3-dev.4"
+        "version": "18.0.3-dev.5"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.1.1-dev.4"
+        "version": "18.1.1-dev.5"
       },
       {
         "package": "@rxap/schematics-utilities",
@@ -562,7 +562,7 @@
       },
       {
         "package": "@rxap/schematics-xml-parser",
-        "version": "18.0.3-dev.4"
+        "version": "18.0.3-dev.5"
       },
       {
         "package": "@rxap/service-worker",
@@ -590,7 +590,7 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.4.1-dev.2"
+        "version": "1.4.1-dev.3"
       },
       {
         "package": "@rxap/upload",
@@ -618,7 +618,7 @@
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "19.1.1-dev.4"
+        "version": "19.1.1-dev.5"
       },
       {
         "package": "@rxap/workspace-utilities",
