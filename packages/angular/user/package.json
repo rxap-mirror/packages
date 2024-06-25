@@ -1,5 +1,5 @@
 {
-  "version": "18.0.3-dev.1",
+  "version": "18.0.3-dev.2",
   "name": "@rxap/ngx-user",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -62,16 +62,8 @@
         "version": "18.0.1"
       },
       {
-        "package": "@angular/router",
-        "version": "18.0.1"
-      },
-      {
-        "package": "@rxap/authentication",
-        "version": "18.0.3-dev.1"
-      },
-      {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.2"
+        "version": "18.1.1-dev.3"
       },
       {
         "package": "@rxap/data-source",

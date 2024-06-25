@@ -1,5 +1,5 @@
 {
-  "version": "18.1.0-dev.0",
+  "version": "18.1.0-dev.1",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -14,12 +14,12 @@
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
     "@rxap/browser-utilities": "^1.1.4-dev.1",
-    "@rxap/config": "^18.1.1-dev.2",
+    "@rxap/config": "^18.1.1-dev.3",
     "@rxap/environment": "^18.0.3-dev.2",
     "@rxap/material-directives": "^18.0.3-dev.1",
     "@rxap/ngx-pub-sub": "^18.0.3-dev.1",
     "@rxap/ngx-theme": "^18.0.3-dev.1",
-    "@rxap/ngx-user": "^18.0.3-dev.1",
+    "@rxap/ngx-user": "^18.0.3-dev.2",
     "@rxap/pattern": "^1.1.5-dev.1",
     "@rxap/utilities": "^16.2.4-dev.1",
     "rxjs": "^7.8.1"
@@ -78,16 +78,12 @@
         "version": "18.0.1"
       },
       {
-        "package": "@rxap/authentication",
-        "version": "18.0.3-dev.1"
-      },
-      {
         "package": "@rxap/browser-utilities",
         "version": "1.1.4-dev.1"
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.2"
+        "version": "18.1.1-dev.3"
       },
       {
         "package": "@rxap/data-source",
@@ -127,7 +123,7 @@
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/open-api",

@@ -12,7 +12,7 @@
   "peerDependencies": {
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
-    "@rxap/config": "^18.1.1-dev.2",
+    "@rxap/config": "^18.1.1-dev.3",
     "@rxap/data-source": "^18.1.1-dev.2",
     "@rxap/environment": "^18.0.3-dev.2",
     "@rxap/mixin": "^16.0.6-dev.1",
@@ -72,7 +72,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.2"
+        "version": "18.1.1-dev.3"
       },
       {
         "package": "@rxap/data-source",

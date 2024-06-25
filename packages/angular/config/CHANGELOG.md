@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/config@18.1.1-dev.2...@rxap/config@18.1.1-dev.3) (2024-06-25)
+
+### Bug Fixes
+
+- add config property ([9d3517c](https://gitlab.com/rxap/packages/commit/9d3517c9a08fe61e0c3be27c6ba11dcfec9cd934))
+
 ## [18.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/config@18.1.1-dev.1...@rxap/config@18.1.1-dev.2) (2024-06-24)
 
 ### Bug Fixes

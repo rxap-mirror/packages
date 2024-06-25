@@ -9,8 +9,8 @@
   "peerDependencies": {
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
-    "@rxap/config": "^18.1.1-dev.2",
-    "@rxap/ngx-user": "^18.0.3-dev.1",
+    "@rxap/config": "^18.1.1-dev.3",
+    "@rxap/ngx-user": "^18.0.3-dev.2",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -62,16 +62,8 @@
         "version": "18.0.1"
       },
       {
-        "package": "@angular/router",
-        "version": "18.0.1"
-      },
-      {
-        "package": "@rxap/authentication",
-        "version": "18.0.3-dev.1"
-      },
-      {
         "package": "@rxap/config",
-        "version": "18.1.1-dev.2"
+        "version": "18.1.1-dev.3"
       },
       {
         "package": "@rxap/data-source",
@@ -99,7 +91,7 @@
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/open-api",

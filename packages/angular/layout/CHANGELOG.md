@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.1.0-dev.0...@rxap/layout@18.1.0-dev.1) (2024-06-25)
+
+### Features
+
+- support static external apps ([c005399](https://gitlab.com/rxap/packages/commit/c005399314a3d7131d4bee429fc9ce85f92d87d5))
+
 # [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.0.3-dev.1...@rxap/layout@18.1.0-dev.0) (2024-06-24)
 
 ### Bug Fixes

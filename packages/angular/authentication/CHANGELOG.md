@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/authentication@18.0.3-dev.1...@rxap/authentication@18.1.0-dev.0) (2024-06-25)
+
+### Features
+
+- add disabled authentication service ([ead1ec4](https://gitlab.com/rxap/packages/commit/ead1ec4f3150214357d9c33ad14f1174a3120c79))
+
 ## [18.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/authentication@18.0.3-dev.0...@rxap/authentication@18.0.3-dev.1) (2024-06-21)
 
 **Note:** Version bump only for package @rxap/authentication
