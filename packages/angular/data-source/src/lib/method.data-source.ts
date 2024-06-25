@@ -7,6 +7,7 @@ import { Method } from '@rxap/pattern';
 import { ToggleSubject } from '@rxap/rxjs';
 import {
   EMPTY,
+  firstValueFrom,
   from,
   Observable,
   OperatorFunction,
@@ -96,6 +97,9 @@ export class MethodDataSource<Data, Parameters = any>
         this.hasError$.enable();
         this.error$.next(error);
       },
+      finalize: () => {
+        this.loading$.disable();
+      }
     });
   }
 
@@ -106,15 +110,12 @@ export class MethodDataSource<Data, Parameters = any>
   protected async executeWithoutParameters(): Promise<void> {
     this.hasError$.disable();
     this.loading$.enable();
-    try {
-      const data = await this.method.call();
-      this._data$.next(data);
-    } catch (error: any) {
-      this.hasError$.enable();
-      this.error$.next(error);
-    } finally {
-      this.loading$.disable();
-    }
+    await firstValueFrom(from(this.execute()).pipe(
+      this.handelExecution(),
+      tap({
+        next: (data) => this._data$.next(data),
+      }),
+    ));
   }
 
 }
