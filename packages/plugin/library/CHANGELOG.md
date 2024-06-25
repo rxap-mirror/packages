@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.0-dev.4...@rxap/plugin-library@19.3.0-dev.5) (2024-06-25)
+
+### Bug Fixes
+
+- overwrite the index-export default configurations ([0da34ea](https://gitlab.com/rxap/packages/commit/0da34eadb9d916d624608a9c6bcc0fa528e456ec))
+
 # [19.3.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.0-dev.3...@rxap/plugin-library@19.3.0-dev.4) (2024-06-25)
 
 **Note:** Version bump only for package @rxap/plugin-library
