@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.2-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.3.2-dev.2...@rxap/nest-open-api@10.3.2-dev.3) (2024-06-25)
+
+### Bug Fixes
+
+- support custom interceptors ([00f2940](https://gitlab.com/rxap/packages/commit/00f2940731c68594cc5b046a7bd9ada6cf9904de))
+
 ## [10.3.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.3.2-dev.1...@rxap/nest-open-api@10.3.2-dev.2) (2024-06-25)
 
 ### Bug Fixes
