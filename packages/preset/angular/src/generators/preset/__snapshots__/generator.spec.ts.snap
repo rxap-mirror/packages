@@ -144,7 +144,13 @@ exports[`preset should use angular preset 3`] = `
       "cache": true
     },
     "index-export": {
-      "cache": true
+      "cache": true,
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": ["{workspaceRoot}/{projectRoot}/src/index.ts"],
+      "options": {
+        "generator": "@rxap/plugin-library:index-export"
+      },
+      "inputs": ["production"]
     },
     "swagger-build": {
       "cache": true
