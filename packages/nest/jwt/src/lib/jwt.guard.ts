@@ -26,15 +26,15 @@ import {
 export class JwtGuard implements CanActivate {
 
   @Inject(Reflector)
-  private readonly reflector!: Reflector;
+  protected readonly reflector!: Reflector;
 
   @Inject(JwtService)
-  private readonly jwtService!: JwtService;
+  protected readonly jwtService!: JwtService;
 
   @Inject(ConfigService)
-  private readonly config!: ConfigService;
+  protected readonly config!: ConfigService;
 
-  private get authHeaderName(): string {
+  protected get authHeaderName(): string {
     return this.config.get<string>('JWT_AUTH_HEADER', 'Authorization');
   }
 
