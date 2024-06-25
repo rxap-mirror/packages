@@ -8,8 +8,11 @@ import {
   CoerceTarget,
 } from '@rxap/workspace-utilities';
 import { InitLibraryGeneratorSchema } from './schema';
+import { LibraryInitWorkspace } from '@rxap/plugin-library';
 
 export function initWorkspace(tree: Tree, options: InitLibraryGeneratorSchema) {
+
+  LibraryInitWorkspace(tree, options);
 
   const nxJson = readNxJson(tree);
 
