@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.2-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.3.2-dev.4...@rxap/nest-open-api@10.3.2-dev.5) (2024-06-25)
+
+### Bug Fixes
+
+- make member protected ([6163f10](https://gitlab.com/rxap/packages/commit/6163f10aa9bd2694d5ed84d09055c69bf51cefdb))
+
 ## [10.3.2-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.3.2-dev.3...@rxap/nest-open-api@10.3.2-dev.4) (2024-06-25)
 
 ### Bug Fixes
