@@ -338,7 +338,7 @@
       },
       {
         "package": "@rxap/nest-open-api",
-        "version": "10.3.2-dev.3"
+        "version": "10.3.2-dev.4"
       },
       {
         "package": "@rxap/nest-sentry",
