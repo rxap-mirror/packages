@@ -22,7 +22,7 @@ export async function microserviceGenerator(
   let { directory, name } = options;
 
   name = dasherize(name);
-  directory ??= join('service', name);
+  directory ??= join('service', name.replace(/-service$/, ''));
 
   presetOptions.tags ??= '';
   if (!presetOptions.tags.includes('nest')) {
