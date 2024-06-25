@@ -1,6 +1,6 @@
 import {
   provideLayout,
-  widthDefaultHeaderComponent,
+  withDefaultHeaderComponent,
 } from '../provide';
 import {
   Meta,
@@ -18,7 +18,7 @@ const meta: Meta<HeaderComponent> = {
   decorators: [
     moduleMetadata({
       providers: [
-        provideLayout(widthDefaultHeaderComponent()),
+        provideLayout(withDefaultHeaderComponent()),
       ]
     })
   ],

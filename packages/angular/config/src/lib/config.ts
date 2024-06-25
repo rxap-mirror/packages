@@ -9,7 +9,7 @@ export interface AppsNavigationConfig {
   empty?: false;
   hidden?: boolean;
   id?: string;
-  permissions: string[];
+  permissions?: string[];
   icon?: IconConfig;
 }
 

@@ -52,7 +52,7 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
         if (withDefaultHeader) {
           w.newLine();
           w.indent(() => {
-            w.write('widthDefaultHeaderComponent()');
+            w.write('withDefaultHeaderComponent()');
             w.write(',');
           });
         }
@@ -95,7 +95,7 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
 
   if (withDefaultHeader) {
     CoerceImports(sourceFile, {
-      namedImports: [ 'widthDefaultHeaderComponent' ],
+      namedImports: [ 'withDefaultHeaderComponent' ],
       moduleSpecifier: '@rxap/layout'
     });
   }

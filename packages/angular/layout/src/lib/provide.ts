@@ -112,7 +112,7 @@ export function withFooterComponents(components: Array<ComponentType<unknown>>):
   ));
 }
 
-export function widthDefaultHeaderComponent(): Provider {
+export function withDefaultHeaderComponent(): Provider {
   return {
     provide: RXAP_HEADER_COMPONENT,
     useValue: DefaultHeaderComponent,
