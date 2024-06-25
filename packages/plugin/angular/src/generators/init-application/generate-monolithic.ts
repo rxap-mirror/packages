@@ -27,7 +27,10 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
   TsMorphAngularProjectTransform(tree, {
     project: projectName,
   }, (_, [ appSourceFile, layoutSourceFile, navigationSourceFile ]) => {
-    CoerceLayoutRoutes(layoutSourceFile);
+    CoerceLayoutRoutes(layoutSourceFile, {
+      component: options.moduleFederation === 'host' ? 'MinimalLayoutComponent' : 'LayoutComponent',
+      withNavigation: options.moduleFederation !== 'host',
+    });
     CoerceAppRoutes(appSourceFile, {
       itemList: [
         {
