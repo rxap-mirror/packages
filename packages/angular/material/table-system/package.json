@@ -15,7 +15,7 @@
     "@angular/material": "^18.0.0",
     "@angular/router": "^18.0.1",
     "@rxap/components": "^18.0.3-dev.1",
-    "@rxap/data-source": "^18.1.1-dev.2",
+    "@rxap/data-source": "^18.1.1-dev.3",
     "@rxap/directives": "^18.0.3-dev.2",
     "@rxap/forms": "^18.0.3-dev.2",
     "@rxap/material-directives": "^18.0.3-dev.1",
@@ -90,7 +90,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.1-dev.2"
+        "version": "18.1.1-dev.3"
       },
       {
         "package": "@rxap/data-structure-tree",

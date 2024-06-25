@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.1-dev.7...@rxap/plugin-open-api@19.1.1-dev.8) (2024-06-25)
+
+### Bug Fixes
+
+- remove package name concept ([9e02801](https://gitlab.com/rxap/packages/commit/9e0280128c3ae9ccef8dafa2aa6af90d7f99e267))
+
 ## [19.1.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.1-dev.6...@rxap/plugin-open-api@19.1.1-dev.7) (2024-06-25)
 
 **Note:** Version bump only for package @rxap/plugin-open-api

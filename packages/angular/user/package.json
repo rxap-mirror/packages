@@ -8,7 +8,7 @@
   },
   "peerDependencies": {
     "@angular/core": "^18.0.1",
-    "@rxap/data-source": "^18.1.1-dev.2",
+    "@rxap/data-source": "^18.1.1-dev.3",
     "@rxap/ngx-pub-sub": "^18.0.3-dev.1",
     "@rxap/open-api": "^18.0.3-dev.1",
     "rxjs": "^7.8.1"
@@ -67,7 +67,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.1-dev.2"
+        "version": "18.1.1-dev.3"
       },
       {
         "package": "@rxap/data-structure-tree",
