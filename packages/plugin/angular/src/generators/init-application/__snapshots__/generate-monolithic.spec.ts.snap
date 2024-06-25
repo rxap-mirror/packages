@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateMonolithic() should generate a monolithic application configuration 1`] = `
+[
+  "app.navigation.ts",
+  "app.routes.ts",
+  "layout.routes.ts",
+]
+`;
+
+exports[`generateMonolithic() should generate a monolithic application configuration 2`] = `
+"import { Route } from '@angular/router';
+import { STATUS_CHECK_ROUTE } from '@rxap/ngx-status-check';
+
+export const appRoutes: Route[] = [{
+    path: '',
+    loadChildren: () => import('./layout.routes')
+  }, STATUS_CHECK_ROUTE,{
+    path: '**',
+    redirectTo: ''
+  }];
+
+export default appRoutes;
+"
+`;
+
+exports[`generateMonolithic() should generate a monolithic application configuration 3`] = `
+"import { StatusCheckGuard } from '@rxap/ngx-status-check';
+import { APP_NAVIGATION } from './app.navigation';
+import { withNavigationConfig, widthDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';
+import { Route } from '@angular/router';
+
+export const ROUTES: Route[] = [
+    {
+      path: '',
+      component: LayoutComponent,
+      children: [
+        {
+          path: '**',
+          redirectTo: ''
+        }
+      ],
+      providers: [
+        provideLayout(
+          withNavigationConfig(APP_NAVIGATION),
+          widthDefaultHeaderComponent(),
+        )
+      ],
+      canActivateChild: [StatusCheckGuard]
+    },
+  {
+    path: '**',
+    redirectTo: ''
+  }
+  ];
+
+export default ROUTES;
+"
+`;
+
+exports[`generateMonolithic() should generate a monolithic application configuration 4`] = `
+"import { NavigationWithInserts, RXAP_NAVIGATION_CONFIG } from '@rxap/layout';
+
+export const APP_NAVIGATION: () => NavigationWithInserts = () => [];
+export const APP_NAVIGATION_PROVIDER = {
+    provide: RXAP_NAVIGATION_CONFIG,
+    useValue: APP_NAVIGATION
+  };
+"
+`;
+
+exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 1`] = `
+[
+  "app.navigation.ts",
+  "app.routes.ts",
+  "layout.routes.ts",
+]
+`;
+
+exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 2`] = `
+"import { Route } from '@angular/router';
+import { STATUS_CHECK_ROUTE } from '@rxap/ngx-status-check';
+
+export const appRoutes: Route[] = [{
+    path: '',
+    loadChildren: () => import('./layout.routes')
+  }, STATUS_CHECK_ROUTE,{
+    path: '**',
+    redirectTo: ''
+  }];
+
+export default appRoutes;
+"
+`;
+
+exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 3`] = `
+"import { StatusCheckGuard } from '@rxap/ngx-status-check';
+import { widthDefaultHeaderComponent, MinimalLayoutComponent } from '@rxap/layout';
+import { Route } from '@angular/router';
+
+export const ROUTES: Route[] = [
+    {
+      path: '',
+      component: MinimalLayoutComponent,
+      children: [
+        {
+          path: '**',
+          redirectTo: ''
+        }
+      ],
+      providers: [
+        provideLayout(
+          widthDefaultHeaderComponent(),
+        )
+      ],
+      canActivateChild: [StatusCheckGuard]
+    },
+  {
+    path: '**',
+    redirectTo: ''
+  }
+  ];
+
+export default ROUTES;
+"
+`;
+
+exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 4`] = `
+"import { NavigationWithInserts, RXAP_NAVIGATION_CONFIG } from '@rxap/layout';
+
+export const APP_NAVIGATION: () => NavigationWithInserts = () => [];
+export const APP_NAVIGATION_PROVIDER = {
+    provide: RXAP_NAVIGATION_CONFIG,
+    useValue: APP_NAVIGATION
+  };
+"
+`;
