@@ -15,6 +15,7 @@ import {
   NormalizeCheckboxFormControl,
   NormalizedCheckboxFormControl,
 } from './checkbox-form-control';
+import { NormalizeDateFormControl } from './date-form-control';
 import { FormControlKinds } from './form-control-kind';
 import {
   FormFieldFormControl,
@@ -73,6 +74,8 @@ export function NormalizeFormControl(control: FormControl): NormalizedFormContro
       return NormalizeTextareaFormControl(control);
     case FormControlKinds.AUTOCOMPLETE:
       return NormalizeAutocompleteFormControl(control);
+    case FormControlKinds.DATE:
+      return NormalizeDateFormControl(control);
     case FormControlKinds.DEFAULT:
     default:
       return NormalizeBaseFormControl(control);

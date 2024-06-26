@@ -90,6 +90,11 @@
       "factory": "./src/schematics/form/control/input-form-control/index",
       "description": "The input-form-control schematic"
     },
+    "date-form-control": {
+      "schema": "./src/schematics/form/control/date-form-control/schema.json",
+      "factory": "./src/schematics/form/control/date-form-control/index",
+      "description": "The date-form-control schematic"
+    },
     "select-form-control": {
       "schema": "./src/schematics/form/control/select-form-control/schema.json",
       "factory": "./src/schematics/form/control/select-form-control/index",

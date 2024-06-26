@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "date-form-control",
+  "allOf": [
+    {
+      "$ref": "#/definitions/baseFormControl"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "date"
+        },
+        "formField": {
+          "$ref": "#/definitions/formField"
+        },
+        "placeholder": {
+          "type": "string"
+        }
+      },
+      "required": ["kind"]
+    }
+  ],
+  "definitions": {
+    "formField": {
+      "$ref": "./form-field.schema.json"
+    },
+    "baseFormControl": {
+      "$ref": "./base-form-control.schema.json"
+    }
+  }
+}

@@ -8,4 +8,5 @@ export enum FormControlKinds {
   AUTOCOMPLETE_TABLE_SELECT = 'autocomplete-table-select',
   AUTOCOMPLETE = 'autocomplete',
   TEXTAREA = 'textarea',
+  DATE = 'date',
 }

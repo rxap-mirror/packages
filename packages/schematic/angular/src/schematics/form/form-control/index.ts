@@ -67,6 +67,9 @@ function formControlKind(normalizedOptions: NormalizedFormControlOptions): Rule 
     case FormControlKinds.AUTOCOMPLETE:
       return ExecuteSchematic('autocomplete-form-control', normalizedOptions);
 
+    case FormControlKinds.DATE:
+      return ExecuteSchematic('date-form-control', normalizedOptions);
+
     default:
       return () => console.log(`No schematic for form control kind: ${normalizedOptions.kind}`.yellow);
 

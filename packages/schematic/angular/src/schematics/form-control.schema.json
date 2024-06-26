@@ -54,6 +54,9 @@
         },
         {
           "$ref": "#/definitions/autocompleteFormControl"
+        },
+        {
+          "$ref": "#/definitions/dateFormControl"
         }
       ]
     }
@@ -85,6 +88,9 @@
     },
     "slideToggleFormControl": {
       "$ref": "./slide-toggle-form-control.schema.json"
+    },
+    "dateFormControl": {
+      "$ref": "./date-form-control.schema.json"
     }
   }
 }

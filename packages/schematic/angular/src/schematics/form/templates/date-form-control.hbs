@@ -1,0 +1,18 @@
+{{#> matFormField control=control}}
+  <input
+    matInput
+    formControlName="{{control.name}}"
+    [matDatepicker]="{{control.name}}Picker"
+    {{#if control.isRequired}}
+    rxapRequired
+    {{/if}}
+    {{#if parentControlContainer}}
+    parentControlContainer
+    {{/if}}
+    {{#if control.placeholder}}
+    i18n-placeholder placeholder="{{control.placeholder}}"
+    {{/if}}
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="{{control.name}}Picker"></mat-datepicker-toggle>
+  <mat-datepicker #{{control.name}}Picker></mat-datepicker>
+{{/matFormField}}
