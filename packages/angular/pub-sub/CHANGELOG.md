@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-pub-sub@18.0.3-dev.1...@rxap/ngx-pub-sub@18.0.3-dev.2) (2024-06-26)
+
+### Bug Fixes
+
+- auto init the garbage collation ([58f2da8](https://gitlab.com/rxap/packages/commit/58f2da80e4f5a5b9f163fa20847c4dc210fda38b))
+
 ## [18.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-pub-sub@18.0.3-dev.0...@rxap/ngx-pub-sub@18.0.3-dev.1) (2024-06-21)
 
 **Note:** Version bump only for package @rxap/ngx-pub-sub

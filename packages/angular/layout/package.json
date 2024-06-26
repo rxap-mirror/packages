@@ -17,7 +17,7 @@
     "@rxap/config": "^18.1.1-dev.4",
     "@rxap/environment": "^18.0.3-dev.2",
     "@rxap/material-directives": "^18.0.3-dev.1",
-    "@rxap/ngx-pub-sub": "^18.0.3-dev.1",
+    "@rxap/ngx-pub-sub": "^18.0.3-dev.2",
     "@rxap/ngx-theme": "^18.0.3-dev.1",
     "@rxap/ngx-user": "^18.0.3-dev.2",
     "@rxap/pattern": "^1.1.5-dev.1",
@@ -115,7 +115,7 @@
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/ngx-theme",
