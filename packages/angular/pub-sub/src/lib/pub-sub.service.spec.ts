@@ -24,7 +24,7 @@ describe('PubSubService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should throw if the garbage collector is not initialized', () => {
+  it('should not throw if the garbage collector is not initialized', () => {
     TestBed.configureTestingModule({
       providers: [
         PubSubService,
@@ -32,9 +32,9 @@ describe('PubSubService', () => {
     });
 
     service = TestBed.inject(PubSubService);
-    expect(() => service.publish('test')).toThrowError('Garbage collector is not initialized');
-    expect(() => service.subscribe('test')).toThrowError('Garbage collector is not initialized');
-    expect(() => service.getFromCache('test')).toThrowError('Garbage collector is not initialized');
+    expect(() => service.publish('test')).not.toThrowError('Garbage collector is not initialized');
+    expect(() => service.subscribe('test')).not.toThrowError('Garbage collector is not initialized');
+    expect(() => service.getFromCache('test')).not.toThrowError('Garbage collector is not initialized');
   });
 
   it('should not throw if the garbage collector is initialized', () => {

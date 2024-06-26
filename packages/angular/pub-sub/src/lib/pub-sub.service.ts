@@ -57,6 +57,10 @@ export class PubSubService implements OnDestroy {
 
   public startGarbageCollector() {
     this.garbageCollectorInitialized = true;
+    if (this.garbageCollectorInitialized) {
+      console.warn('Garbage collector is already initialized');
+      return;
+    }
     if (this.disableGarbageCollector || this.disableCache) {
       console.warn('Garbage collector is disabled');
       return;
@@ -139,8 +143,9 @@ export class PubSubService implements OnDestroy {
   public publish<T = unknown>(topic: string, data?: T, retention?: number): void {
 
     if (!this.garbageCollectorInitialized) {
-      throw new Error(
+      console.error(
         'Garbage collector is not initialized. Ensure the ProvidePubSub function is called in the app config object');
+      this.startGarbageCollector();
     }
 
     if (!topic.trim().length) {
@@ -172,8 +177,9 @@ export class PubSubService implements OnDestroy {
     }
 
     if (!this.garbageCollectorInitialized) {
-      throw new Error(
+      console.error(
         'Garbage collector is not initialized. Ensure the ProvidePubSub function is called in the app config object');
+      this.startGarbageCollector();
     }
 
     const fromCache = replayCount && replayCount > 0 ? this.getFromCache<T>(topic, replayCount ?? 0) : [];
@@ -193,8 +199,9 @@ export class PubSubService implements OnDestroy {
   public getFromCache<T = unknown>(topic: string, limit = 0): Array<MessageMetaData<T>> {
 
     if (!this.garbageCollectorInitialized) {
-      throw new Error(
+      console.error(
         'Garbage collector is not initialized. Ensure the ProvidePubSub function is called in the app config object');
+      this.startGarbageCollector();
     }
 
     const messages: Array<MessageMetaData<T>> = [];
