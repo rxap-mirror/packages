@@ -386,7 +386,7 @@
       },
       {
         "package": "@rxap/ngx-localize",
-        "version": "18.0.3-dev.2"
+        "version": "18.0.3-dev.3"
       },
       {
         "package": "@rxap/ngx-material-authentication",
@@ -398,7 +398,7 @@
       },
       {
         "package": "@rxap/ngx-material-table-select",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3-dev.2"
       },
       {
         "package": "@rxap/ngx-memory",
