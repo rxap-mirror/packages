@@ -9340,7 +9340,7 @@ __metadata:
     "@angular/forms": ^18.0.1
     "@angular/material": ^18.0.0
     "@rxap/directives": ^18.0.3-dev.2
-    "@rxap/ngx-localize": ^18.0.3-dev.2
+    "@rxap/ngx-localize": ^18.0.3-dev.3
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft

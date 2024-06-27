@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.3-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@18.0.3-dev.2...@rxap/ngx-localize@18.0.3-dev.3) (2024-06-27)
+
+### Bug Fixes
+
+- set the current language after the redirect is executed ([56b9caa](https://gitlab.com/rxap/packages/commit/56b9caa1004b5fc35dc985584399142a57f1f125))
+
 ## [18.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@18.0.3-dev.1...@rxap/ngx-localize@18.0.3-dev.2) (2024-06-24)
 
 ### Bug Fixes
