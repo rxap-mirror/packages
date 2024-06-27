@@ -18,11 +18,11 @@ export class I18nService {
 
   public async setLanguage(language: string) {
     await this.userSettingsLanguageService.setLanguage(language);
-    if (typeof (this.currentLanguage as any)['set'] === 'function') {
-      (this.currentLanguage as any).set(language);
-    }
     if (!isDevMode()) {
       this.redirect(language);
+    }
+    if (typeof (this.currentLanguage as any)['set'] === 'function') {
+      (this.currentLanguage as any).set(language);
     }
   }
 
