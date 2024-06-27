@@ -7,6 +7,7 @@ import {
   inject,
   INJECTOR,
   Injector,
+  input,
   Input,
   isDevMode,
   OnChanges,
@@ -68,6 +69,9 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
   public _internalId                    = GenerateRandomString();
   @Input()
   public compareWith?: (o1: Data, o2: Data) => boolean;
+
+  public readonly multiple              = input(false);
+
   @HostBinding('type')
   public type                           = 'button';
   public control?: RxapFormControl;
@@ -92,9 +96,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
   }
 
   @Input()
-  public toValue: (value: Data) => Value | Promise<Value> = (value: Data) => {
-    return value as any;
-  };
+  public toValue?: (value: Data) => Value | Promise<Value>;
 
   public ngOnChanges() {
     this.checkInputs();
@@ -135,6 +137,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       compareWith: this.compareWith,
       id: this.id ?? GenerateRandomString(10),
       parameters: this.parameters,
+      multiple: this.multiple(),
     });
     this.control?.enable();
     if (isDevMode()) {
@@ -144,7 +147,11 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     this._hasOpenWindow = false;
     this.selectedChange.emit(this.selected);
     if (this.selected.length) {
-      this.control?.setValue(this.toValue(this.selected[0]));
+      if (this.toValue) {
+        this.control?.setValue(this.toValue(this.selected[0]));
+      } else {
+        throw new Error('The toValue method is not defined');
+      }
     } else {
       this.control?.reset();
     }
@@ -159,11 +166,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       this.control ??= this.ngControl?.control as RxapFormControl ?? null;
       this.data ??= this.extractTableSelectDataSource();
       this.columns ??= this.extractTableSelectColumnMap();
-      try {
-        this.toValue = this.extractTableSelectToValue() ?? this.toValue;
-      } catch (e: any) {
-        console.log('HACKING WORKAROUND', e);
-      }
+      this.toValue ??= this.extractTableSelectToValue() ?? (value => value as any);
       if (this.control) {
         this.disabled = this.control.disabled;
         this.control.registerOnDisabledChange(isDisabled => {
