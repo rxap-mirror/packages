@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.1-dev.4...@rxap/ts-morph@1.4.1-dev.5) (2024-06-27)
+
+### Bug Fixes
+
+- soft fail if the class declaration does not exists ([932e19b](https://gitlab.com/rxap/packages/commit/932e19bc00cd8e9e28357de86570d2461941eca2))
+
 ## [1.4.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.1-dev.3...@rxap/ts-morph@1.4.1-dev.4) (2024-06-25)
 
 **Note:** Version bump only for package @rxap/ts-morph

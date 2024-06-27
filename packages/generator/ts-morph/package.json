@@ -1,10 +1,10 @@
 {
-  "version": "1.0.9-dev.6",
+  "version": "1.0.9-dev.7",
   "name": "@rxap/generator-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.3.0",
-    "@rxap/workspace-ts-morph": "^19.1.1-dev.6",
+    "@rxap/workspace-ts-morph": "^19.1.1-dev.7",
     "tslib": "2.6.2"
   },
   "author": {
