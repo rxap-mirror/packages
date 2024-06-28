@@ -1,38 +1,53 @@
 {
-  "name": "@rxap/nest-oauth2-proxy",
   "version": "10.0.0-dev.0",
+  "name": "@rxap/nest-oauth2-proxy",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.3.2",
-    "tslib": "^2.3.0",
-    "@nestjs/common": "10.3.8"
+    "tslib": "2.6.2"
   },
-  "type": "commonjs",
-  "main": "./src/index.js",
-  "typings": "./src/index.d.ts",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/oauth2-proxy"
-  },
-  "keywords": [
-    "rxap",
-    "nest",
-    "packages",
-    "nest-oauth2-proxy"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/oauth2-proxy",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/nest/oauth2-proxy"
+  "peerDependencies": {
+    "@nestjs/common": "^10.3.8",
+    "@rxap/utilities": "^16.2.4"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "generators": "./generators.json"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/oauth2-proxy",
+  "keywords": [
+    "nest",
+    "nest-oauth2-proxy",
+    "packages",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@nestjs/common",
+        "version": "10.3.8"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.2.4"
+      }
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/oauth2-proxy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/oauth2-proxy"
+  },
+  "type": "commonjs",
+  "typings": "./src/index.d.ts"
 }
