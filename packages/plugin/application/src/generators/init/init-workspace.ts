@@ -55,6 +55,19 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     });
   }
 
+  switch (options.authentication) {
+
+    case 'oauth2-proxy':
+      CoerceFilesStructure(tree, {
+        srcFolder: join(__dirname, 'files', 'oauth2-proxy'),
+        target: '',
+        overwrite: options.overwrite,
+        mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
+      });
+      break;
+
+  }
+
   if (options.minio) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'minio'),

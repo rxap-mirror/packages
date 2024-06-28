@@ -45,6 +45,10 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to initialize minio docker compose setup"
+    },
+    "authentication": {
+      "type": "string",
+      "enum": ["oauth2-proxy"]
     }
   },
   "required": []
