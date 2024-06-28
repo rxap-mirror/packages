@@ -4,7 +4,7 @@
   "sourceRoot": "packages/angular/oauth2-proxy/src",
   "prefix": "rxap",
   "projectType": "library",
-  "tags": ["angular", "ngx", "packages"],
+  "tags": ["angular", "ngx", "packages", "scope:integration"],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
