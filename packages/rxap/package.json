@@ -326,7 +326,7 @@
       },
       {
         "package": "@rxap/nest-jwt",
-        "version": "10.2.2"
+        "version": "10.2.3"
       },
       {
         "package": "@rxap/nest-logger",
