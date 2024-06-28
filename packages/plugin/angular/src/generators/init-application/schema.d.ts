@@ -22,7 +22,7 @@ export interface InitApplicationGeneratorSchema {
   authentik?: boolean;
   oauth?: boolean;
   skipProjects?: boolean;
-  authentication?: boolean;
+  authentication?: boolean | 'oauth2-proxy';
   deploy?: 'web3-storage';
   moduleFederation?: 'host' | 'remote';
   host?: string;

@@ -390,6 +390,15 @@ export async function initApplicationGenerator(
             },
           ]);
         }
+        switch (options.authentication) {
+          case 'oauth2-proxy':
+            providers.push('provideOauth2Proxy()');
+            CoerceImports(sourceFile, {
+              moduleSpecifier: '@rxap/ngx-oauth2-proxy',
+              namedImports: [ 'provideOauth2Proxy' ],
+            });
+            break;
+        }
         CoerceAppConfigProvider(sourceFile, {
           overwrite: options.overwrite,
           providers,

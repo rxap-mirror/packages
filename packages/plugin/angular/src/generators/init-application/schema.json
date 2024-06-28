@@ -49,8 +49,17 @@
       "x-prompt": "Would you like to enable Sentry?"
     },
     "authentication": {
-      "type": "boolean",
-      "description": "Whether to enable authentication"
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["oauth2-proxy"],
+          "description": "Authentication provider"
+        },
+        {
+          "type": "boolean",
+          "description": "Whether to enable authentication"
+        }
+      ]
     },
     "openApi": {
       "alias": "open-api",
