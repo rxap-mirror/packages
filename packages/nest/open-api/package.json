@@ -1,5 +1,5 @@
 {
-  "version": "10.3.2",
+  "version": "10.4.0",
   "name": "@rxap/nest-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
