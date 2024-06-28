@@ -1,0 +1,39 @@
+{
+  "version": "18.0.0-dev.0",
+  "name": "@rxap/ngx-oauth2-proxy",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@nx/devkit": "19.3.2"
+  },
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/oauth2-proxy",
+  "keywords": [
+    "angular",
+    "angular-oauth2-proxy",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/oauth2-proxy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/oauth2-proxy"
+  },
+  "sideEffects": false
+}

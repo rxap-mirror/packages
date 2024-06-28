@@ -1,0 +1,5 @@
+package: "@rxap/plugin-angular"
+name: init-library
+options:
+  targets:
+    indexExport: true
