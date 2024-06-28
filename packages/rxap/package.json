@@ -306,7 +306,7 @@
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "18.0.3"
+        "version": "18.0.4"
       },
       {
         "package": "@rxap/material-table-window-system",
@@ -398,7 +398,7 @@
       },
       {
         "package": "@rxap/ngx-material-table-select",
-        "version": "18.0.3"
+        "version": "18.0.4"
       },
       {
         "package": "@rxap/ngx-memory",
