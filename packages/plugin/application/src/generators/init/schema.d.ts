@@ -11,5 +11,5 @@ export interface InitGeneratorSchema {
   standalone?: boolean;
   skipFormat?: boolean;
   skipDocker?: boolean;
-  authentication?: 'oauth2-proxy';
+  authentication?: boolean | 'oauth2-proxy';
 }
