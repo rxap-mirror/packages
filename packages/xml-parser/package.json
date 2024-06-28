@@ -4,7 +4,7 @@
   "description": "A utility packages to convert xml files into class instances.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.0",
+    "@nx/devkit": "19.3.2",
     "@rxap/mixin": "^16.0.6",
     "@rxap/reflect-metadata": "^1.0.7",
     "@rxap/utilities": "^16.2.4",

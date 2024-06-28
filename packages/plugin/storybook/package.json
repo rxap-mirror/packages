@@ -3,9 +3,9 @@
   "name": "@rxap/plugin-storybook",
   "license": "MIT",
   "dependencies": {
-    "@nx/angular": "19.3.0",
-    "@nx/devkit": "19.3.0",
-    "@nx/eslint": "19.3.0",
+    "@nx/angular": "19.3.2",
+    "@nx/devkit": "19.3.2",
+    "@nx/eslint": "19.3.2",
     "@rxap/ts-morph": "^1.4.1",
     "@rxap/utilities": "^16.2.4",
     "@rxap/workspace-ts-morph": "^19.1.1",

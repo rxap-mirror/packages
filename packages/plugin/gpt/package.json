@@ -3,7 +3,7 @@
   "name": "@rxap/plugin-gpt",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.0",
+    "@nx/devkit": "19.3.2",
     "@rxap/ts-morph": "^1.4.1",
     "@rxap/workspace-ts-morph": "^19.1.1",
     "@rxap/workspace-utilities": "^19.3.0",

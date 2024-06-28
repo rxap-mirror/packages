@@ -3,7 +3,7 @@
   "name": "@rxap/nest-dto",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.0",
+    "@nx/devkit": "19.3.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
