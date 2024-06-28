@@ -3,14 +3,22 @@ import {
   ExecutionContext,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { RequestWithJwt } from './types';
+import {
+  IsJwtPayload,
+  IsRequestWithJwt,
+  RequestWithJwt,
+} from './types';
 
 export const UserSub = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest<RequestWithJwt>();
-    if (!request.jwt) {
+    if (!IsRequestWithJwt(request)) {
       throw new InternalServerErrorException('Missing jwt in request');
     }
-    return request.jwt.sub;
+    const jwt = request.jwt;
+    if (!IsJwtPayload(jwt)) {
+      throw new InternalServerErrorException('Invalid jwt payload');
+    }
+    return jwt.sub;
   },
 );

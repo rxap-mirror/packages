@@ -12,6 +12,10 @@ export interface RequestWithJwt extends Request {
   jwt: JwtPayload;
 }
 
+export function IsRequestWithJwt(request: Request): request is RequestWithJwt {
+  return 'jwt' in request;
+}
+
 export interface DefaultUser {
   id: string;
   username: string;
