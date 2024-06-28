@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.1.1](https://gitlab.com/rxap/packages/compare/@rxap/config@18.1.1-dev.4...@rxap/config@18.1.1) (2024-06-28)
+
+**Note:** Version bump only for package @rxap/config
+
 ## [18.1.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/config@18.1.1-dev.3...@rxap/config@18.1.1-dev.4) (2024-06-25)
 
 **Note:** Version bump only for package @rxap/config

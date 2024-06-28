@@ -1,5 +1,5 @@
 {
-  "version": "18.1.1-dev.3",
+  "version": "18.1.1",
   "name": "@rxap/data-source",
   "description": "Provides the DataSource concept for RxAP.",
   "license": "GPL-3.0-or-later",
@@ -12,12 +12,12 @@
     "@angular/common": "^18.0.1",
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
-    "@rxap/data-structure-tree": "^1.1.6-dev.1",
-    "@rxap/definition": "^18.0.3-dev.1",
-    "@rxap/environment": "^18.0.3-dev.2",
-    "@rxap/pattern": "^1.1.5-dev.1",
-    "@rxap/rxjs": "^1.1.6-dev.1",
-    "@rxap/utilities": "^16.2.4-dev.1",
+    "@rxap/data-structure-tree": "^1.1.6",
+    "@rxap/definition": "^18.0.3",
+    "@rxap/environment": "^18.0.3",
+    "@rxap/pattern": "^1.1.5",
+    "@rxap/rxjs": "^1.1.6",
+    "@rxap/utilities": "^16.2.4",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -71,31 +71,31 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.6-dev.1"
+        "version": "1.1.6"
       },
       {
         "package": "@rxap/definition",
-        "version": "18.0.3-dev.1"
+        "version": "18.0.3"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.3-dev.2"
+        "version": "18.0.3"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.5-dev.1"
+        "version": "1.1.5"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.7-dev.1"
+        "version": "1.0.7"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.6-dev.1"
+        "version": "1.1.6"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.2.4-dev.1"
+        "version": "16.2.4"
       }
     ]
   },

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.3](https://gitlab.com/rxap/packages/compare/@rxap/services@18.0.3-dev.2...@rxap/services@18.0.3) (2024-06-28)
+
+**Note:** Version bump only for package @rxap/services
+
 ## [18.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/services@18.0.3-dev.1...@rxap/services@18.0.3-dev.2) (2024-06-24)
 
 **Note:** Version bump only for package @rxap/services

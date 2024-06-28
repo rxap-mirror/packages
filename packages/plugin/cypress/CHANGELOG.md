@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-cypress@19.0.3-dev.12...@rxap/plugin-cypress@19.0.3) (2024-06-28)
+
+**Note:** Version bump only for package @rxap/plugin-cypress
+
 ## [19.0.3-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-cypress@19.0.3-dev.11...@rxap/plugin-cypress@19.0.3-dev.12) (2024-06-27)
 
 **Note:** Version bump only for package @rxap/plugin-cypress
