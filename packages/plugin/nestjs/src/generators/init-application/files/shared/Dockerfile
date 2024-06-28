@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/rxap/docker/nestjs-server/20.11-alpine:v0.0.1-nightly.1
+FROM registry.gitlab.com/rxap/docker/nestjs-server/20.11-alpine:v0.1.0-edge.1
 
 ARG PROJECT_NAME
 ARG PATH_PREFIX
