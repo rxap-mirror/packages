@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.2.2...@rxap/nest-jwt@10.2.3) (2024-06-28)
+
+### Bug Fixes
+
+- add utility functions ([35dd532](https://gitlab.com/rxap/packages/commit/35dd532337c24397d61e4489df3a659485b8ed37))
+
 ## [10.2.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.2.2-dev.2...@rxap/nest-jwt@10.2.2) (2024-06-28)
 
 **Note:** Version bump only for package @rxap/nest-jwt
