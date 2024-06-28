@@ -124,6 +124,7 @@
       "@rxap/nest-jwt": ["packages/nest/jwt/src/index.ts"],
       "@rxap/nest-logger": ["packages/nest/logger/src/index.ts"],
       "@rxap/nest-minio": ["packages/nest/minio/src/index.ts"],
+      "@rxap/nest-oauth2-proxy": ["packages/nest/oauth2-proxy/src/index.ts"],
       "@rxap/nest-open-api": ["packages/nest/open-api/src/index.ts"],
       "@rxap/nest-sentry": ["packages/nest/sentry/src/index.ts"],
       "@rxap/nest-server": ["packages/nest/server/src/index.ts"],

@@ -1,0 +1,74 @@
+{
+  "name": "nest-oauth2-proxy",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/oauth2-proxy/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["nest", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nest/oauth2-proxy",
+        "tsConfig": "packages/nest/oauth2-proxy/tsconfig.lib.json",
+        "packageJson": "packages/nest/oauth2-proxy/package.json",
+        "main": "packages/nest/oauth2-proxy/src/index.ts",
+        "assets": [
+          "packages/nest/oauth2-proxy/*.md",
+          {
+            "input": "./packages/nest/oauth2-proxy/src/generators",
+            "glob": "**/!(*.ts",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/nest/oauth2-proxy",
+            "glob": "generators.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/nest/oauth2-proxy/jest.config.ts"
+      }
+    },
+    "index-export": {},
+    "update-dependencies": {},
+    "fix-dependencies": {
+      "options": {
+        "options": {
+          "strict": true,
+          "onlyDependencies": false
+        }
+      }
+    },
+    "readme": {},
+    "linking": {},
+    "update-package-group": {},
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
+      "options": {
+        "packageName": "@nestjs/core"
+      }
+    }
+  }
+}
