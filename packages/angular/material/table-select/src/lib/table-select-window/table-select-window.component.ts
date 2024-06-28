@@ -56,7 +56,10 @@ import { OpenTableSelectWindowMethodParameters } from '../open-table-select-wind
   styleUrls: [ './table-select-window.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [ RowAnimation ],
-  providers: [ SelectRowService, TableFilterService ],
+  providers: [
+    SelectRowService,
+    TableFilterService,
+  ],
   standalone: true,
   imports: [
     NgIf,
@@ -115,6 +118,9 @@ export class TableSelectWindowComponent<Data = unknown> {
     this.hasNotSelected$ = this.selectRows.selectedRows$.pipe(
       map((selected) => selected.length === 0)
     );
+    if (this.data.selected?.length) {
+      this.selectRows.selectionModel.select(...this.data.selected as Data[]);
+    }
   }
 
   selectRow(element: Data) {

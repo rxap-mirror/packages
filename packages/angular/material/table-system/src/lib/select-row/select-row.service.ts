@@ -3,6 +3,10 @@ import {
   Injectable,
   Optional,
 } from '@angular/core';
+import {
+  getIdentifierPropertyValue,
+  hasIdentifierProperty,
+} from '@rxap/utilities';
 import type { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectRowOptions } from './select-row.options';
@@ -28,7 +32,7 @@ export class SelectRowService<Data = unknown> {
       options?.multiple,
       options?.selected,
       options?.emitChanges,
-      options?.compareWith,
+      options?.compareWith ?? this.compareWith,
     );
     this.selectedRows$ = this.selectionModel.changed.pipe(
       map(() => this.selectionModel.selected),
@@ -37,6 +41,16 @@ export class SelectRowService<Data = unknown> {
 
   clear() {
     this.selectionModel.clear();
+  }
+
+  compareWith(a: Data, b: Data): boolean {
+    if (a === b) {
+      return true;
+    }
+    if (hasIdentifierProperty(a) && hasIdentifierProperty(b)) {
+      return getIdentifierPropertyValue(a) === getIdentifierPropertyValue(b);
+    }
+    return false;
   }
 
 }
