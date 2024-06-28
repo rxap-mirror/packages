@@ -24,7 +24,7 @@ export class ExtractMethodMixin {
     }
     const {method: methodToken, config} = map.get(name)!;
     const method                        = this.injector.get(methodToken);
-    return ApplyUseMethodAdapters(method, config);
+    return ApplyUseMethodAdapters(this.injector, method, config);
   }
 
 }
