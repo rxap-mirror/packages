@@ -2,7 +2,6 @@ import {
   ConfigurableModuleBuilder,
   DynamicModule,
   Global,
-  Logger,
   Module,
   Scope,
 } from '@nestjs/common';
@@ -13,17 +12,17 @@ import {
 import { Constructor } from '@rxap/utilities';
 import { DefaultUpstreamInterceptor } from './default.upstream-interceptor';
 import { LoggingInterceptor } from './logging.interceptor';
-import { ValidatorInterceptor } from './validator.interceptor';
-import {
-  OpenApiServerConfig,
-  OpenApiUpstreamInterceptor,
-} from './open-api-operation/types';
+import { OpenApiConfigService } from './open-api-operation/open-api-config.service';
 import { OpenApiOperationCommandExceptionFilter } from './open-api-operation/open-api-operation-command-exception-filter';
 import {
   OPEN_API_SERVER_CONFIG,
   OPEN_API_UPSTREAM_INTERCEPTOR,
 } from './open-api-operation/tokens';
-import { OpenApiConfigService } from './open-api-operation/open-api-config.service';
+import {
+  OpenApiServerConfig,
+  OpenApiUpstreamInterceptor,
+} from './open-api-operation/types';
+import { ValidatorInterceptor } from './validator.interceptor';
 
 export interface OpenApiModuleOptions {
   serverConfig?: OpenApiServerConfig[];
@@ -59,22 +58,24 @@ export const {
     },
     DefaultUpstreamInterceptor,
     OpenApiConfigService,
-    Logger,
   ],
   exports: [ OpenApiConfigService ],
 })
 export class OpenApiModule extends ConfigurableModuleClass {
 
-  static register(options: typeof OPTIONS_TYPE, interceptors: Constructor<OpenApiUpstreamInterceptor>[] = []): DynamicModule {
+  static register(
+    options: typeof OPTIONS_TYPE, interceptors: Constructor<OpenApiUpstreamInterceptor>[] = []): DynamicModule {
     return this.updateProviders(super.register(options), interceptors);
   }
 
-  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE, interceptors: Constructor<OpenApiUpstreamInterceptor>[] = []): DynamicModule {
+  static registerAsync(
+    options: typeof ASYNC_OPTIONS_TYPE, interceptors: Constructor<OpenApiUpstreamInterceptor>[] = []): DynamicModule {
     return this.updateProviders(super.registerAsync(options), interceptors);
   }
 
   private static updateProviders(module: DynamicModule, interceptors: Constructor<OpenApiUpstreamInterceptor>[]) {
     module.providers ??= [];
+    module.providers.push(...interceptors);
     module.providers.push({
       provide: OPEN_API_SERVER_CONFIG,
       useFactory: OpenApiServerConfigFactory,
