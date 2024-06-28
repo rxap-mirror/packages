@@ -11,7 +11,7 @@
     "@angular/core": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@rxap/data-source": "^18.1.1",
-    "@rxap/form-system": "^18.0.3",
+    "@rxap/form-system": "^18.1.0",
     "@rxap/forms": "^18.0.3",
     "@rxap/material-table-system": "^18.0.3",
     "@rxap/mixin": "^16.0.6",
@@ -108,7 +108,7 @@
       },
       {
         "package": "@rxap/form-system",
-        "version": "18.0.3"
+        "version": "18.1.0"
       },
       {
         "package": "@rxap/forms",

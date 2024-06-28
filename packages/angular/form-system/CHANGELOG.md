@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.0.3...@rxap/form-system@18.1.0) (2024-06-28)
+
+### Features
+
+- support injection in adapter functions ([44acfdf](https://gitlab.com/rxap/packages/commit/44acfdfed21cef20abce3d6d2c4fa2d3aab26d33))
+
 ## [18.0.3](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.0.3-dev.1...@rxap/form-system@18.0.3) (2024-06-28)
 
 **Note:** Version bump only for package @rxap/form-system
