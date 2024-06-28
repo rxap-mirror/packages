@@ -1,5 +1,5 @@
 {
-  "version": "18.0.3",
+  "version": "18.0.4",
   "name": "@rxap/ngx-material-table-select",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -17,7 +17,7 @@
     "@rxap/forms": "^18.0.3",
     "@rxap/material-directives": "^18.0.3",
     "@rxap/material-form-system": "^18.0.3",
-    "@rxap/material-table-system": "^18.0.3",
+    "@rxap/material-table-system": "^18.0.4",
     "@rxap/material-table-window-system": "^18.0.3",
     "@rxap/mixin": "^16.0.6",
     "@rxap/pattern": "^1.1.5",
@@ -132,7 +132,7 @@
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "18.0.3"
+        "version": "18.0.4"
       },
       {
         "package": "@rxap/material-table-window-system",

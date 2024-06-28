@@ -14,7 +14,7 @@
     "@angular/forms": "^18.0.1",
     "@angular/material": "^18.0.0",
     "@rxap/data-source": "^18.1.1",
-    "@rxap/material-table-system": "^18.0.3",
+    "@rxap/material-table-system": "^18.0.4",
     "@rxap/utilities": "^16.2.4",
     "rxjs": "^7.8.1"
   },
@@ -109,7 +109,7 @@
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "18.0.3"
+        "version": "18.0.4"
       },
       {
         "package": "@rxap/ngx-memory",

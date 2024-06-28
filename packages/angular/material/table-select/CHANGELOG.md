@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@18.0.3...@rxap/ngx-material-table-select@18.0.4) (2024-06-28)
+
+### Bug Fixes
+
+- add default compare with function ([16e35ef](https://gitlab.com/rxap/packages/commit/16e35efbfdeaa58ce4524cd470525e3e52765aec))
+
 ## [18.0.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@18.0.3-dev.2...@rxap/ngx-material-table-select@18.0.3) (2024-06-28)
 
 **Note:** Version bump only for package @rxap/ngx-material-table-select

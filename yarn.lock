@@ -9000,7 +9000,7 @@ __metadata:
     "@rxap/data-source": ^18.1.1
     "@rxap/form-system": ^18.1.0
     "@rxap/forms": ^18.0.3
-    "@rxap/material-table-system": ^18.0.3
+    "@rxap/material-table-system": ^18.0.4
     "@rxap/mixin": ^16.0.6
     "@rxap/pattern": ^1.1.5
     "@rxap/utilities": ^16.2.4
@@ -9362,7 +9362,7 @@ __metadata:
     "@rxap/forms": ^18.0.3
     "@rxap/material-directives": ^18.0.3
     "@rxap/material-form-system": ^18.0.3
-    "@rxap/material-table-system": ^18.0.3
+    "@rxap/material-table-system": ^18.0.4
     "@rxap/material-table-window-system": ^18.0.3
     "@rxap/mixin": ^16.0.6
     "@rxap/pattern": ^1.1.5
@@ -10224,7 +10224,7 @@ __metadata:
     "@angular/forms": ^18.0.1
     "@angular/material": ^18.0.0
     "@rxap/data-source": ^18.1.1
-    "@rxap/material-table-system": ^18.0.3
+    "@rxap/material-table-system": ^18.0.4
     "@rxap/utilities": ^16.2.4
     rxjs: ^7.8.1
   languageName: unknown
