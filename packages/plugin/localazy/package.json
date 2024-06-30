@@ -1,11 +1,11 @@
 {
-  "version": "19.0.4-dev.0",
+  "version": "19.0.4",
   "name": "@rxap/plugin-localazy",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.3.2",
-    "@rxap/plugin-utilities": "^19.0.5-dev.0",
-    "@rxap/workspace-utilities": "^19.3.1-dev.0",
+    "@rxap/plugin-utilities": "^19.0.5",
+    "@rxap/workspace-utilities": "^19.3.1",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },
