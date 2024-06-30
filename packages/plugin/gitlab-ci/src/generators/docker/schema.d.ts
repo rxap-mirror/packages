@@ -7,4 +7,6 @@ export interface DockerGeneratorSchema {
   tags?: string[];
   skipFormat?: boolean;
   components: boolean;
+  skipStartup?: boolean;
+  skipE2eService?: boolean;
 }

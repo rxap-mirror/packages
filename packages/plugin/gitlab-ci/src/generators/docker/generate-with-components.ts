@@ -40,10 +40,16 @@ export function generateWithComponents(tree: Tree, options: DockerGeneratorSchem
 
   // the project uses the nx-workspace component
   const inputs: IncludeComponentInput = {
-    startup_matrix: buildStartupMatrix(tree, options, rootDocker),
     docker_matrix: buildDockerMatrix(tree, options, rootDocker),
-    service_e2e_matrix: buildServiceE2eMatrix(tree, options, rootDocker),
   };
+
+  if (!options.skipStartup) {
+    inputs.startup_matrix = buildStartupMatrix(tree, options, rootDocker);
+  }
+
+  if (!options.skipE2eService) {
+    inputs.service_e2e_matrix = buildServiceE2eMatrix(tree, options, rootDocker);
+  }
 
   include.inputs ??= {};
   CoerceInputs(include.inputs, inputs);

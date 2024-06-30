@@ -32,6 +32,12 @@
       "items": {
         "type": "string"
       }
+    },
+    "skipStartup": {
+      "type": "boolean"
+    },
+    "skipE2eService": {
+      "type": "boolean"
     }
   },
   "required": []
