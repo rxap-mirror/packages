@@ -19,7 +19,7 @@
               },
               {
                 "sourceTag": "schematic",
-                "notDependOnLibsWithTags": ["generator"]
+                "notDependOnLibsWithTags": ["generator", "plugin"]
               },
               {
                 "sourceTag": "generator",
@@ -35,7 +35,7 @@
               },
               {
                 "sourceTag": "plugin",
-                "notDependOnLibsWithTags": ["schematic"],
+                "notDependOnLibsWithTags": ["schematic", "angular", "nest"],
                 "bannedExternalImports": [
                   "@angular-devkit/architect",
                   "@angular-devkit/core",

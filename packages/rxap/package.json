@@ -337,6 +337,10 @@
         "version": "10.1.2"
       },
       {
+        "package": "@rxap/nest-oauth2-proxy",
+        "version": "10.0.0-dev.0"
+      },
+      {
         "package": "@rxap/nest-open-api",
         "version": "10.4.0"
       },
@@ -403,6 +407,10 @@
       {
         "package": "@rxap/ngx-memory",
         "version": "18.0.3"
+      },
+      {
+        "package": "@rxap/ngx-oauth2-proxy",
+        "version": "18.0.0-dev.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
