@@ -102,7 +102,12 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       `{projectRoot}/src/lib/remote-methods/index.ts`,
       `{projectRoot}/src/lib/request-bodies/index.ts`,
       `{projectRoot}/src/lib/responses/index.ts`,
-    ]
+    ],
+    options: {
+      options: {
+        generateRootExport: false
+      }
+    }
   }, Strategy.OVERWRITE);
 
 
