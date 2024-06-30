@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.2.1...@rxap/schematic-angular@18.2.2) (2024-06-30)
+
+### Bug Fixes
+
+- support custom table filter types ([5b7c14a](https://gitlab.com/rxap/packages/commit/5b7c14af7da3790b92aa25c0bfe2f4e59f5819bb))
+
 ## [18.2.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@18.2.1-dev.1...@rxap/schematic-angular@18.2.1) (2024-06-30)
 
 ### Bug Fixes
