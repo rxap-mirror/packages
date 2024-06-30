@@ -19,23 +19,24 @@ import {
   ControlContainer,
   FormGroupDirective,
 } from '@angular/forms';
-import {
-  RXAP_FORM_DEFINITION,
-  RXAP_FORM_DEFINITION_BUILDER,
-  RXAP_FORM_LOAD_FAILED_METHOD,
-  RXAP_FORM_LOAD_METHOD,
-  RXAP_FORM_LOAD_SUCCESSFUL_METHOD,
-  RXAP_FORM_SUBMIT_FAILED_METHOD,
-  RXAP_FORM_SUBMIT_METHOD,
-  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
-} from './tokens';
-import { RxapFormGroup } from '../form-group';
+import { ToggleSubject } from '@rxap/rxjs';
+import { LoadingIndicatorService } from '@rxap/services';
 import {
   clone,
   isObject,
   isPromise,
-  Required,
 } from '@rxap/utilities';
+import {
+  BehaviorSubject,
+  Subscription,
+} from 'rxjs';
+import {
+  debounceTime,
+  filter,
+  tap,
+} from 'rxjs/operators';
+import { RxapFormBuilder } from '../form-builder';
+import { RxapFormGroup } from '../form-group';
 import { FormDefinition } from '../model';
 import {
   FormLoadFailedMethod,
@@ -46,17 +47,15 @@ import {
   FormSubmitSuccessfulMethod,
 } from './models';
 import {
-  BehaviorSubject,
-  Subscription,
-} from 'rxjs';
-import { RxapFormBuilder } from '../form-builder';
-import { LoadingIndicatorService } from '@rxap/services';
-import {
-  debounceTime,
-  filter,
-  tap,
-} from 'rxjs/operators';
-import { ToggleSubject } from '@rxap/rxjs';
+  RXAP_FORM_DEFINITION,
+  RXAP_FORM_DEFINITION_BUILDER,
+  RXAP_FORM_LOAD_FAILED_METHOD,
+  RXAP_FORM_LOAD_METHOD,
+  RXAP_FORM_LOAD_SUCCESSFUL_METHOD,
+  RXAP_FORM_SUBMIT_FAILED_METHOD,
+  RXAP_FORM_SUBMIT_METHOD,
+  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
+} from './tokens';
 
 @Directive({
   selector: 'form[rxapForm]:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',

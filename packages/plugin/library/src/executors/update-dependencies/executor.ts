@@ -1,12 +1,10 @@
-import { UpdateDependenciesExecutorSchema } from './schema';
 import type { ExecutorContext } from '@nx/devkit';
 import {
-  getDirectPackageDependenciesForProject,
   getDirectPackageDependenciesForProjectWihRetry,
-  readPackageJsonForProject,
   readPackageJsonForProjectWithRetry,
   writePackageJsonFormProject,
 } from '@rxap/plugin-utilities';
+import { UpdateDependenciesExecutorSchema } from './schema';
 
 
 async function replaceVersionWithCurrentVersion(

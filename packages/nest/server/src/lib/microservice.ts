@@ -1,12 +1,12 @@
-import { Server } from './server';
-import { NestFactory } from '@nestjs/core';
 import {
   INestMicroservice,
   Logger,
 } from '@nestjs/common';
-import { MicroserviceOptions } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
+import { MicroserviceOptions } from '@nestjs/microservices';
 import { DetermineVersion } from '@rxap/nest-utilities';
+import { Server } from './server';
 
 export interface MicroserviceBootstrapOptions {
   version: string;

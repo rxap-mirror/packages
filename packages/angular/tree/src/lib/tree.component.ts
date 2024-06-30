@@ -1,6 +1,15 @@
-import { PortalModule, TemplatePortal } from '@angular/cdk/portal';
+import {
+  PortalModule,
+  TemplatePortal,
+} from '@angular/cdk/portal';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { AsyncPipe, NgClass, NgForOf, NgIf, NgStyle } from '@angular/common';
+import {
+  AsyncPipe,
+  NgClass,
+  NgForOf,
+  NgIf,
+  NgStyle,
+} from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -37,15 +46,23 @@ import {
   NodeHasDetailsFunction,
   NodeToDisplayFunction,
 } from '@rxap/data-structure-tree';
+import { RXAP_FORM_DEFINITION } from '@rxap/forms';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { Method } from '@rxap/pattern';
-import { DebounceCall, WithChildren, WithIdentifier } from '@rxap/utilities';
-import { map, startWith, tap } from 'rxjs/operators';
+import {
+  DebounceCall,
+  WithChildren,
+  WithIdentifier,
+} from '@rxap/utilities';
+import {
+  map,
+  startWith,
+  tap,
+} from 'rxjs/operators';
+import { SearchForm } from './search.form';
 import { RXAP_TREE_CONTENT_EDITABLE_METHOD } from './tokens';
 import { TreeContentDirective } from './tree-content.directive';
 import { TreeDataSource } from './tree.data-source';
-import { SearchForm } from './search.form';
-import { RXAP_FORM_DEFINITION } from '@rxap/forms';
 
 @Component({
   selector: 'rxap-tree',

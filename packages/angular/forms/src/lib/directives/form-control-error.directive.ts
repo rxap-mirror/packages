@@ -8,15 +8,14 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { ValidationErrors } from '../types';
 import { ControlContainer } from '@angular/forms';
-import { Required } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
 import {
   filter,
   startWith,
   tap,
 } from 'rxjs/operators';
+import { ValidationErrors } from '../types';
 
 /**
  * @deprecated removed use the rxapControlError or rxapControlErrors directive

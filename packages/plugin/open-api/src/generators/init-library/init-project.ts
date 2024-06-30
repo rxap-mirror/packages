@@ -2,6 +2,7 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
+import { LibraryInitProject } from '@rxap/plugin-library';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceFile,
@@ -20,7 +21,6 @@ import {
 } from 'path';
 import { stringify } from 'yaml';
 import { InitLibraryGeneratorSchema } from './schema';
-import { LibraryInitProject } from '@rxap/plugin-library';
 
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
 

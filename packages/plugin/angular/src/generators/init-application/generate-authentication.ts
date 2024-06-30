@@ -2,7 +2,6 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { oauth2ProxyGuard } from '@rxap/ngx-oauth2-proxy';
 import {
   CoerceAppRoutes,
   CoerceImports,

@@ -7,11 +7,11 @@ import {
   Logger,
   NestInterceptor,
 } from '@nestjs/common';
+import { validateSync } from 'class-validator';
 import {
   Observable,
   tap,
 } from 'rxjs';
-import { validateSync } from 'class-validator';
 import {
   ValidationErrorListToString,
   ValidationHttpException,

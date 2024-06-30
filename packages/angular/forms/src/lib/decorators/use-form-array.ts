@@ -1,7 +1,7 @@
-import { Constructor } from '@rxap/utilities';
-import { MetadataKeys } from './metadata-keys';
-import { RxapAbstractControlOptions } from '../model';
 import { setMetadataMap } from '@rxap/reflect-metadata';
+import { Constructor } from '@rxap/utilities';
+import { RxapAbstractControlOptions } from '../model';
+import { MetadataKeys } from './metadata-keys';
 
 export function UseFormArrayGroup(definition: Constructor, options: RxapAbstractControlOptions = {}) {
 

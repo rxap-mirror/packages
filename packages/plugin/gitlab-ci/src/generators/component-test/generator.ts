@@ -1,14 +1,10 @@
 import {
-  addProjectConfiguration,
-  formatFiles,
-  generateFiles,
   getProjects,
   Tree,
 } from '@nx/devkit';
 import { CoerceFile } from '@rxap/workspace-utilities';
-import * as path from 'path';
-import { ComponentTestGeneratorSchema } from './schema';
 import { stringify } from 'yaml';
+import { ComponentTestGeneratorSchema } from './schema';
 
 // gitlab ci job template - .component-test
 const jobTemplate = {

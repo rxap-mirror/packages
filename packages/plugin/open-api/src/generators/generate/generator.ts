@@ -20,7 +20,6 @@ import {
   CoerceFile,
   DeleteRecursive,
   GetProject,
-  GetProjectPackageJson,
   GetProjectRoot,
   GetProjectSourceRoot,
 } from '@rxap/workspace-utilities';

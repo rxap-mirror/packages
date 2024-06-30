@@ -7,7 +7,7 @@ import {
   GetProjectSourceRoot,
 } from '@rxap/plugin-utilities';
 import { coerceArray } from '@rxap/utilities';
-import { join, relative } from 'path';
+import { join } from 'path';
 import { Application } from 'typedoc';
 import { BuildExecutorSchema } from './schema';
 

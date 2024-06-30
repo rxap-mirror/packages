@@ -1,7 +1,4 @@
 import {
-  addProjectConfiguration,
-  formatFiles,
-  generateFiles,
   readProjectConfiguration,
   Tree,
 } from '@nx/devkit';
@@ -9,7 +6,6 @@ import { migrationGenerator } from '@nx/plugin/generators';
 import { dasherize } from '@rxap/utilities';
 import { GetProjectRoot } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import * as path from 'path';
 import { initProject } from '../init-with-migrations/init-project';
 import { initWorkspace } from '../init-with-migrations/init-workspace';
 import { AddMigrationGeneratorSchema } from './schema';

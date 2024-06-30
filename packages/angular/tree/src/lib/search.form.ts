@@ -1,4 +1,11 @@
-import { Injectable, INJECTOR, Injector, Optional, Provider, SkipSelf } from '@angular/core';
+import {
+  Injectable,
+  INJECTOR,
+  Injector,
+  Optional,
+  Provider,
+  SkipSelf,
+} from '@angular/core';
 import {
   FormType,
   RXAP_FORM_DEFINITION,

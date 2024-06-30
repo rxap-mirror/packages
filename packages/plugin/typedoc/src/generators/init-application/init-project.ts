@@ -2,8 +2,8 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { CoerceTypedocTarget } from '../../lib/coerce-typedoc-target';
 import { CoerceGitIgnore } from '../../lib/coerce-git-ignore';
+import { CoerceTypedocTarget } from '../../lib/coerce-typedoc-target';
 import { InitApplicationGeneratorSchema } from './schema';
 
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {

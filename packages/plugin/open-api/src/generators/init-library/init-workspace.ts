@@ -3,12 +3,12 @@ import {
   Tree,
   updateNxJson,
 } from '@nx/devkit';
+import { LibraryInitWorkspace } from '@rxap/plugin-library';
 import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
 } from '@rxap/workspace-utilities';
 import { InitLibraryGeneratorSchema } from './schema';
-import { LibraryInitWorkspace } from '@rxap/plugin-library';
 
 export function initWorkspace(tree: Tree, options: InitLibraryGeneratorSchema) {
 

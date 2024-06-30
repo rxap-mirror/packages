@@ -1,17 +1,3 @@
-import { FormDirective } from './form.directive';
-import {
-  FormDefinition,
-  FormType,
-} from '../model';
-import { RxapForm } from '../decorators/form';
-import { RxapFormGroup } from '../form-group';
-import { RxapFormControl } from '../form-control';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
 import {
   ChangeDetectorRef,
   DebugElement,
@@ -20,19 +6,33 @@ import {
   Provider,
 } from '@angular/core';
 import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import {
+  MockedComponent,
+  MockRender,
+} from 'ng-mocks';
+import { RxapForm } from '../decorators/form';
+import { UseFormControl } from '../decorators/use-form-control';
+import { RxapFormBuilder } from '../form-builder';
+import { RxapFormControl } from '../form-control';
+import { RxapFormGroup } from '../form-group';
+import {
+  FormDefinition,
+  FormType,
+} from '../model';
+import { FormDirective } from './form.directive';
+import { RxapFormsModule } from './forms.module';
+import {
   RXAP_FORM_DEFINITION,
   RXAP_FORM_DEFINITION_BUILDER,
   RXAP_FORM_LOAD_METHOD,
   RXAP_FORM_SUBMIT_METHOD,
 } from './tokens';
-import { UseFormControl } from '../decorators/use-form-control';
-import { RxapFormBuilder } from '../form-builder';
-import {
-  MockedComponent,
-  MockRender,
-} from 'ng-mocks';
-import { By } from '@angular/platform-browser';
-import { RxapFormsModule } from './forms.module';
 
 describe('@rxap/forms', () => {
   describe('directives', () => {

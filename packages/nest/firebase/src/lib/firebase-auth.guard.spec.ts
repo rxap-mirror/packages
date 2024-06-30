@@ -1,4 +1,3 @@
-import { Test } from '@nestjs/testing';
 import {
   Controller,
   Get,
@@ -6,16 +5,17 @@ import {
   Logger,
   Module,
 } from '@nestjs/common';
-import { TestingLogger } from '@nestjs/testing/services/testing-logger.service';
 import { APP_GUARD } from '@nestjs/core';
+import { Test } from '@nestjs/testing';
+import { TestingLogger } from '@nestjs/testing/services/testing-logger.service';
 import * as request from 'supertest';
-import { GetFirebaseUser } from './firebase-user.decorator';
-import { FirebaseUser } from './types';
 import { FirebaseAuthGuard } from './firebase-auth.guard';
+import { GetFirebaseUser } from './firebase-user.decorator';
 import {
   ALLOW_UNVERIFIED_EMAIL,
   FIREBASE_AUTH_HEADER,
 } from './tokens';
+import { FirebaseUser } from './types';
 
 describe('FirebaseAuthGuard', () => {
 

@@ -1,4 +1,9 @@
-import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandlerFn,
+  HttpRequest,
+} from '@angular/common/http';
 import { inject } from '@angular/core';
 import * as Sentry from '@sentry/angular';
 import { Observable } from 'rxjs';

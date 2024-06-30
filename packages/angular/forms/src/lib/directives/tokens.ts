@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { FormDefinition } from '../model';
 import { RxapFormBuilder } from '../form-builder';
+import { FormDefinition } from '../model';
 import {
   FormLoadMethod,
   FormSubmitMethod,

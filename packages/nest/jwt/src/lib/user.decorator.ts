@@ -1,9 +1,9 @@
-import { RequestWithUser } from './types';
 import {
   createParamDecorator,
   ExecutionContext,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { RequestWithUser } from './types';
 
 export const User = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {

@@ -4,8 +4,8 @@ import {
   FileLike,
   filesFromPaths,
 } from 'files-from-path';
-import { join } from 'path';
 import { writeFileSync } from 'fs';
+import { join } from 'path';
 import { Web3Storage } from 'web3.storage';
 import { DeployExecutorSchema } from './schema';
 

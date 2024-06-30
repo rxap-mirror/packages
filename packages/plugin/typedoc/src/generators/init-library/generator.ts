@@ -1,7 +1,5 @@
 import {
-  addProjectConfiguration,
   formatFiles,
-  generateFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -13,7 +11,6 @@ import {
   GetProjectRoot,
   SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
-import * as path from 'path';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';
 import { InitLibraryGeneratorSchema } from './schema';

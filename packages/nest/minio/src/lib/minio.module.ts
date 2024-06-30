@@ -2,8 +2,8 @@ import {
   Global,
   Module,
 } from '@nestjs/common';
-import { MinioService } from './minio.service';
 import { ConfigurableModuleClass } from './configurable-module-builder';
+import { MinioService } from './minio.service';
 
 
 @Global()

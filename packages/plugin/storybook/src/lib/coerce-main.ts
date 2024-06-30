@@ -3,7 +3,6 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
-  AddProviderToArray,
   CoerceArrayElement,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';

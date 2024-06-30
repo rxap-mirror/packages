@@ -7,7 +7,6 @@ import {
 } from '@nestjs/common';
 import { coerceArray } from '@rxap/utilities';
 import {
-  AxiosError,
   AxiosRequestConfig,
   AxiosResponse,
   RawAxiosRequestHeaders,

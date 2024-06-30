@@ -5,6 +5,8 @@ import {
   Module,
 } from '@nestjs/common';
 import * as admin from 'firebase-admin';
+import { FirebaseAppCheckGuard } from './firebase-app-check.guard';
+import { FirebaseAuthGuard } from './firebase-auth.guard';
 import {
   ALLOW_UNVERIFIED_EMAIL,
   DEACTIVATE_APP_CHECK_GUARD,
@@ -13,8 +15,6 @@ import {
   FIREBASE_TOKEN,
   FIRESTORE,
 } from './tokens';
-import { FirebaseAuthGuard } from './firebase-auth.guard';
-import { FirebaseAppCheckGuard } from './firebase-app-check.guard';
 
 export type FirebaseAppOptions = admin.AppOptions;
 

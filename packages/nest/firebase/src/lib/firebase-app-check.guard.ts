@@ -8,8 +8,8 @@ import {
   Logger,
   Optional,
 } from '@nestjs/common';
-import { RequestWithDecodedIdToken } from './firebase-auth.guard';
 import * as admin from 'firebase-admin';
+import { RequestWithDecodedIdToken } from './firebase-auth.guard';
 import { DEACTIVATE_APP_CHECK_GUARD } from './tokens';
 
 /**

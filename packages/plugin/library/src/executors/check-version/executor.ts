@@ -1,8 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
-import {
-  readPackageJsonForProject,
-  readPackageJsonForProjectWithRetry,
-} from '@rxap/plugin-utilities';
+import { readPackageJsonForProjectWithRetry } from '@rxap/plugin-utilities';
 import {
   parse,
   satisfies,

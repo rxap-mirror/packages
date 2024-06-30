@@ -1,9 +1,9 @@
+import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 import { Expose } from 'class-transformer';
 import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 
 export class OptionsDto<Key, Value> {
 

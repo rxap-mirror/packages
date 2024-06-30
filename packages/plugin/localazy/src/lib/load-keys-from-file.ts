@@ -1,4 +1,7 @@
-import { existsSync, readFileSync } from 'fs';
+import {
+  existsSync,
+  readFileSync,
+} from 'fs';
 
 export function LoadKeysFromFile(projectName: string): { read?: string | null, write?: string | null } {
 

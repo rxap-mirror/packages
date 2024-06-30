@@ -1,19 +1,19 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ConfigService } from '@rxap/config';
+import { Node } from '@rxap/data-structure-tree';
+import { ToMethod } from '@rxap/pattern';
+import {
+  GenerateRandomString,
+  WithChildren,
+} from '@rxap/utilities';
 import {
   componentWrapperDecorator,
   moduleMetadata,
   Story,
 } from '@storybook/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ConfigService } from '@rxap/config';
 import { TreeComponent } from './tree.component';
 import { TreeDataSource } from './tree.data-source';
-import {
-  GenerateRandomString,
-  WithChildren,
-} from '@rxap/utilities';
-import { Node } from '@rxap/data-structure-tree';
-import { ToMethod } from '@rxap/pattern';
 
 ConfigService.Config = {
   navigation: {

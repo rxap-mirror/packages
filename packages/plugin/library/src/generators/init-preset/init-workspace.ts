@@ -1,8 +1,6 @@
 import { Tree } from '@nx/devkit';
 import { IsAlreadyExecuted } from '@rxap/workspace-utilities';
-import {
-  InitPresetGeneratorSchema,
-} from './schema';
+import { InitPresetGeneratorSchema } from './schema';
 
 export function initWorkspace(tree: Tree, options: InitPresetGeneratorSchema) {
 

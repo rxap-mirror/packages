@@ -9,7 +9,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  Signal,
 } from '@angular/core';
 import {
   CopyToClipboardComponent,

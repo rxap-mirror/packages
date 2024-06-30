@@ -6,8 +6,8 @@ import {
   IsAngularProject,
   IsPublishable,
 } from '@rxap/workspace-utilities';
-import { CoerceTypedocTarget } from '../../lib/coerce-typedoc-target';
 import { CoerceGitIgnore } from '../../lib/coerce-git-ignore';
+import { CoerceTypedocTarget } from '../../lib/coerce-typedoc-target';
 import { InitLibraryGeneratorSchema } from './schema';
 import { updateProjectNgPackageConfiguration } from './update-project-ng-package-configuration';
 

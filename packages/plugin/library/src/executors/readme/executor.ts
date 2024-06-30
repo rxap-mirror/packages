@@ -6,7 +6,6 @@ import {
 import {
   GetProjectRoot,
   readFileFromProjectRoot,
-  readPackageJsonForProject,
   readPackageJsonForProjectWithRetry,
   writeFileToProjectRoot,
 } from '@rxap/plugin-utilities';

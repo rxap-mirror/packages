@@ -12,9 +12,9 @@ import {
 } from '@rxap/workspace-utilities';
 import { initProject as initBuildableProject } from '../init-buildable/init-project';
 import { initProject as initPluginProject } from '../init-plugin/init-project';
-import { initProject as initSchematicProject } from '../init-schematic/init-project';
 import { initProject as initPresetProject } from '../init-preset/init-project';
 import { initProject as initPublishableProject } from '../init-publishable/init-project';
+import { initProject as initSchematicProject } from '../init-schematic/init-project';
 import { initProject as initWithMigrationProject } from '../init-with-migrations/init-project';
 import { InitGeneratorSchema } from './schema';
 import { updateProjectTags } from './update-project-tags';

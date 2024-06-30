@@ -8,18 +8,18 @@ import {
   Optional,
   Output,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmClick } from '@rxap/directives';
 import {
   clone,
   coerceBoolean,
 } from '@rxap/utilities';
-import { FormDirective } from './form.directive';
+import { Subscription } from 'rxjs';
 import {
   take,
   tap,
 } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
-import { ConfirmClick } from '@rxap/directives';
+import { FormDirective } from './form.directive';
 
 @Directive({
   selector: '[rxapFormSubmit]',

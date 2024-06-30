@@ -5,10 +5,7 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import {
-  CoerceArrayItems,
-  DeleteProperties,
-} from '@rxap/utilities';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   GenerateSerializedSchematicFile,
   GetProjectSourceRoot,

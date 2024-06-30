@@ -6,12 +6,12 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { FormDirective } from './form.directive';
 import { Subscription } from 'rxjs';
 import {
   distinctUntilChanged,
   tap,
 } from 'rxjs/operators';
+import { FormDirective } from './form.directive';
 
 @Directive({
   selector: '[rxapFormSubmitting]',

@@ -3,12 +3,12 @@ import {
   Injectable,
   Logger,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import {
   HealthCheckError,
   HealthIndicator,
   HealthIndicatorResult,
 } from '@nestjs/terminus';
-import { ConfigService } from '@nestjs/config';
 import { MinioService } from './minio.service';
 
 /**

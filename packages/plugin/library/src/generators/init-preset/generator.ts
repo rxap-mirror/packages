@@ -1,7 +1,5 @@
 import {
-  addProjectConfiguration,
   formatFiles,
-  generateFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -12,7 +10,6 @@ import {
   IsPresetProject,
   SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
-import * as path from 'path';
 import { InitPluginGeneratorSchema } from '../init-plugin/schema';
 import { initProject } from './init-project';
 import { initWorkspace } from './init-workspace';

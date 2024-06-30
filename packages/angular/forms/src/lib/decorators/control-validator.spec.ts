@@ -1,21 +1,21 @@
-import { RxapForm } from './form';
 import {
   Injector,
   INJECTOR,
   Provider,
 } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import {
   RXAP_FORM_DEFINITION,
   RXAP_FORM_DEFINITION_BUILDER,
 } from '../directives/tokens';
-import { TestBed } from '@angular/core/testing';
 import { RxapFormBuilder } from '../form-builder';
-import { UseFormControl } from './use-form-control';
-import { FormType } from '../model';
-import { ControlValidator } from './control-validator';
-import { RxapFormGroup } from '../form-group';
 import { RxapFormControl } from '../form-control';
+import { RxapFormGroup } from '../form-group';
+import { FormType } from '../model';
 import { ValidationErrors } from '../types';
+import { ControlValidator } from './control-validator';
+import { RxapForm } from './form';
+import { UseFormControl } from './use-form-control';
 
 describe('@rxap/forms', () => {
 

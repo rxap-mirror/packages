@@ -8,6 +8,11 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import {
+  ValidationErrorListToString,
+  ValidationHttpException,
+} from '@rxap/nest-utilities';
+import { validateSync } from 'class-validator';
+import {
   Request,
   Response,
 } from 'express';
@@ -15,11 +20,6 @@ import {
   Observable,
   tap,
 } from 'rxjs';
-import { validateSync } from 'class-validator';
-import {
-  ValidationErrorListToString,
-  ValidationHttpException,
-} from '@rxap/nest-utilities';
 
 @Injectable()
 export class ValidatorInterceptor implements NestInterceptor {

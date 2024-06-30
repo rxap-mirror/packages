@@ -1,5 +1,5 @@
-import { FormDefinitionMetadata } from '../model';
 import { DefinitionMetadata } from '@rxap/definition';
+import { FormDefinitionMetadata } from '../model';
 
 export function RxapForm(
   optionsOrId: FormDefinitionMetadata | string,
