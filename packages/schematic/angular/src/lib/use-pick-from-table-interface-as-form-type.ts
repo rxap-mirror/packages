@@ -56,18 +56,18 @@ export function UsePickFromTableInterfaceAsFormTypeRule(
           .map(c => `'${ camelize(c.name) }'`)
           .join(' | ') }>`);
       }
-      if (columnList.some(c => c.hasFilter && !hasFilterWithAlternativeColumnType(c))) {
-        w.write(' & ');
-      }
       if (columnList.some(hasFilterWithAlternativeColumnType)) {
+        if (columnList.some(c => c.hasFilter && !hasFilterWithAlternativeColumnType(c))) {
+          w.write(' & ');
+        }
         Writers.objectType({
           properties: columnList.filter(hasFilterWithAlternativeColumnType).map(c => ({ name: camelize(c.name), type: c.filterControl?.type.name })),
         })(w);
       }
-      if (filterList.length && columnList.some(c => c.hasFilter)) {
-        w.write(' & ');
-      }
       if (filterList.length) {
+        if (columnList.some(c => c.hasFilter)) {
+          w.write(' & ');
+        }
         Writers.objectType({
           properties: filterList.map(control => ({ name: camelize(control.name), type: control.type.name })),
         })(w);
