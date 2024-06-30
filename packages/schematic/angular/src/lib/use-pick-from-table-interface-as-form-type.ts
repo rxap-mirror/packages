@@ -51,13 +51,15 @@ export function UsePickFromTableInterfaceAsFormTypeRule(
 
     const type: WriterFunction = w => {
       const hasFilterWithAlternativeColumnType = (c: NormalizedTableColumn) => c.hasFilter && c.filterControl?.type.name && c.filterControl?.type.name !== c.type.name;
-      if (columnList.some(c => c.hasFilter)) {
+      if (columnList.some(c => c.hasFilter && !hasFilterWithAlternativeColumnType(c))) {
         w.write(`Pick<${ tableInterfaceName }, ${ columnList.filter(c => c.hasFilter && !hasFilterWithAlternativeColumnType(c))
           .map(c => `'${ camelize(c.name) }'`)
           .join(' | ') }>`);
       }
-      if (columnList.some(hasFilterWithAlternativeColumnType)) {
+      if (columnList.some(c => c.hasFilter && !hasFilterWithAlternativeColumnType(c))) {
         w.write(' & ');
+      }
+      if (columnList.some(hasFilterWithAlternativeColumnType)) {
         Writers.objectType({
           properties: columnList.filter(hasFilterWithAlternativeColumnType).map(c => ({ name: camelize(c.name), type: c.filterControl?.type.name })),
         })(w);
