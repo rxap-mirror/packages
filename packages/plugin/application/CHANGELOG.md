@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.0.4...@rxap/plugin-application@19.1.0-dev.0) (2024-06-30)
+
+### Features
+
+- support oauth2-proxy authentication provider ([85c83a1](https://gitlab.com/rxap/packages/commit/85c83a174ae4ff51bfb32a1a866dcae8f707e75a))
+- support oauth2-proxy authentication provider ([c92b994](https://gitlab.com/rxap/packages/commit/c92b9946e0e8719b87b978bde61bbe87a799f35e))
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.0.4-dev.5...@rxap/plugin-application@19.0.4) (2024-06-28)
 
 **Note:** Version bump only for package @rxap/plugin-application

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.2.0...@rxap/plugin-angular@19.3.0-dev.0) (2024-06-30)
+
+### Features
+
+- support oauth2-proxy authentication provider ([85c83a1](https://gitlab.com/rxap/packages/commit/85c83a174ae4ff51bfb32a1a866dcae8f707e75a))
+- support oauth2-proxy authentication provider ([335b0c9](https://gitlab.com/rxap/packages/commit/335b0c9564e11c927244a891ba5706625e89550e))
+
 # [19.2.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.2.0-dev.11...@rxap/plugin-angular@19.2.0) (2024-06-28)
 
 **Note:** Version bump only for package @rxap/plugin-angular

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-cypress@19.0.3...@rxap/workspace-cypress@19.0.4-dev.0) (2024-06-30)
+
+**Note:** Version bump only for package @rxap/workspace-cypress
+
 ## [19.0.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-cypress@19.0.3-dev.1...@rxap/workspace-cypress@19.0.3) (2024-06-28)
 
 **Note:** Version bump only for package @rxap/workspace-cypress

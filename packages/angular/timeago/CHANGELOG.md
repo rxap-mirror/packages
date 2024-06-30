@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-timeago@18.0.3...@rxap/ngx-timeago@18.0.4-dev.0) (2024-06-30)
+
+**Note:** Version bump only for package @rxap/ngx-timeago
+
 ## [18.0.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-timeago@18.0.3-dev.1...@rxap/ngx-timeago@18.0.3) (2024-06-28)
 
 **Note:** Version bump only for package @rxap/ngx-timeago

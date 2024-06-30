@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.4.0...@rxap/nest-open-api@10.4.1-dev.0) (2024-06-30)
+
+**Note:** Version bump only for package @rxap/nest-open-api
+
 # [10.4.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.3.2...@rxap/nest-open-api@10.4.0) (2024-06-28)
 
 ### Features

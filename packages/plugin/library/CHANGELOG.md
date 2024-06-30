@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.0...@rxap/plugin-library@19.3.1-dev.0) (2024-06-30)
+
+**Note:** Version bump only for package @rxap/plugin-library
+
 # [19.3.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.0-dev.6...@rxap/plugin-library@19.3.0) (2024-06-28)
 
 **Note:** Version bump only for package @rxap/plugin-library
