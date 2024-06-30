@@ -7,7 +7,6 @@ import {
   AbstractControl,
   BuildNestControllerName,
   buildOperationId,
-  CoerceDecorator,
   CoerceFormControl,
   CoerceFormDefinitionControl,
   CoerceFormProviderRule,
@@ -21,7 +20,10 @@ import {
   classify,
   dasherize,
 } from '@rxap/schematics-utilities';
-import { CoerceImports } from '@rxap/ts-morph';
+import {
+  CoerceDecorator,
+  CoerceImports,
+} from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
 import {
@@ -315,7 +317,7 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
           decoratorDeclaration,
         } = CoerceFormControl(sourceFile, classDeclaration, formTypeName, control);
 
-        CoerceDecorator(propertyDeclaration, 'UseOptionsMethod').set({
+        CoerceDecorator(propertyDeclaration, 'UseOptionsMethod', {
           arguments: [
             OperationIdToClassName(optionsOperationId),
           ],
