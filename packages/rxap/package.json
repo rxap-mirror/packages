@@ -478,11 +478,11 @@
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4-dev.1"
       },
       {
         "package": "@rxap/plugin-gitlab-ci",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4-dev.1"
       },
       {
         "package": "@rxap/plugin-gpt",
@@ -546,7 +546,7 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.2.1-dev.0"
+        "version": "18.2.1-dev.1"
       },
       {
         "package": "@rxap/schematic-composer",
