@@ -26,7 +26,7 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
 
   TsMorphAngularProjectTransform(tree, {
     project: projectName,
-  }, (_, [ appSourceFile, layoutSourceFile, navigationSourceFile ]) => {
+  }, (_, [ appSourceFile, layoutSourceFile ]) => {
     CoerceLayoutRoutes(layoutSourceFile, {
       component: options.moduleFederation === 'host' ? 'MinimalLayoutComponent' : 'LayoutComponent',
       withNavigation: options.moduleFederation !== 'host',
@@ -42,7 +42,16 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
         }
       ]
     });
-    CoerceAppNavigation(navigationSourceFile, { overwrite: options.overwrite });
-  }, [ 'app/app.routes.ts?', 'app/layout.routes.ts?', 'app/app.navigation.ts?' ]);
+  }, [ 'app/app.routes.ts?', 'app/layout.routes.ts?' ]);
+
+  if (options.moduleFederation !== 'host') {
+
+    TsMorphAngularProjectTransform(tree, {
+      project: projectName,
+    }, (_, [ navigationSourceFile ]) => {
+      CoerceAppNavigation(navigationSourceFile, { overwrite: options.overwrite });
+    }, [ 'app/app.navigation.ts?' ]);
+
+  }
 
 }

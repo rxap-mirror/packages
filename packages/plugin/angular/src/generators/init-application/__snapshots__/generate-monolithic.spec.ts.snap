@@ -2,9 +2,9 @@
 
 exports[`generateMonolithic() should generate a monolithic application configuration 1`] = `
 [
-  "app.navigation.ts",
   "app.routes.ts",
   "layout.routes.ts",
+  "app.navigation.ts",
 ]
 `;
 
@@ -26,7 +26,6 @@ export default appRoutes;
 
 exports[`generateMonolithic() should generate a monolithic application configuration 3`] = `
 "import { provideLayout, withNavigationConfig, withDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';
-import { StatusCheckGuard } from '@rxap/ngx-status-check';
 import { APP_NAVIGATION } from './app.navigation';
 import { Route } from '@angular/router';
 
@@ -45,8 +44,7 @@ export const ROUTES: Route[] = [
           withNavigationConfig(APP_NAVIGATION),
           withDefaultHeaderComponent(),
         )
-      ],
-      canActivateChild: [StatusCheckGuard]
+      ]
     },
   {
     path: '**',
@@ -71,7 +69,6 @@ export const APP_NAVIGATION_PROVIDER = {
 
 exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 1`] = `
 [
-  "app.navigation.ts",
   "app.routes.ts",
   "layout.routes.ts",
 ]
@@ -95,7 +92,6 @@ export default appRoutes;
 
 exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 3`] = `
 "import { provideLayout, withDefaultHeaderComponent, MinimalLayoutComponent } from '@rxap/layout';
-import { StatusCheckGuard } from '@rxap/ngx-status-check';
 import { Route } from '@angular/router';
 
 export const ROUTES: Route[] = [
@@ -112,8 +108,7 @@ export const ROUTES: Route[] = [
         provideLayout(
           withDefaultHeaderComponent(),
         )
-      ],
-      canActivateChild: [StatusCheckGuard]
+      ]
     },
   {
     path: '**',
@@ -122,16 +117,5 @@ export const ROUTES: Route[] = [
   ];
 
 export default ROUTES;
-"
-`;
-
-exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 4`] = `
-"import { NavigationWithInserts, RXAP_NAVIGATION_CONFIG } from '@rxap/layout';
-
-export const APP_NAVIGATION: () => NavigationWithInserts = () => [];
-export const APP_NAVIGATION_PROVIDER = {
-    provide: RXAP_NAVIGATION_CONFIG,
-    useValue: APP_NAVIGATION
-  };
 "
 `;

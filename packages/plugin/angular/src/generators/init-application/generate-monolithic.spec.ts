@@ -38,7 +38,7 @@ describe('generateMonolithic()', () => {
     expect(tree.children('app/src/app')).toMatchSnapshot();
     expect(tree.read('app/src/app/app.routes.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('app/src/app/layout.routes.ts', 'utf-8')).toMatchSnapshot();
-    expect(tree.read('app/src/app/app.navigation.ts', 'utf-8')).toMatchSnapshot();
+    expect(tree.exists('app/src/app/app.navigation.ts')).toBeFalsy();
 
   });
 
