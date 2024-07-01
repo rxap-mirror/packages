@@ -8,8 +8,12 @@ import {
   CoerceRouteGuard,
 } from '@rxap/ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
-import { AddPackageJsonDependency } from '@rxap/workspace-utilities';
+import {
+  AddPackageJsonDependency,
+  UpdateJsonFile,
+} from '@rxap/workspace-utilities';
 import { InitApplicationGeneratorSchema } from './schema';
+import { parseDocument  } from 'yaml';
 
 async function defaultAuthentication(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
@@ -56,6 +60,27 @@ async function oauth2ProxyAuthentication(tree: Tree, projectName: string, projec
       moduleSpecifier: '@rxap/ngx-oauth2-proxy',
     });
   }, [ 'app/app.routes.ts?' ]);
+
+  if (tree.exists('docker-compose.yml')) {
+    const dockerComposeContent = tree.read('docker-compose.yml', 'utf-8')!;
+    const dockerCompose = parseDocument(dockerComposeContent);
+    if (dockerCompose.hasIn(['services', 'rxap-service-user'])) {
+      if (!dockerCompose.hasIn(['services', 'rxap-service-user', 'labels'])) {
+        dockerCompose.setIn(['services', 'rxap-service-user', 'labels'], [
+          'traefik.http.routers.user.middlewares=oauth-signin@docker,oauth-verify@docker'
+        ]);
+      }
+    }
+  }
+
+  if (tree.exists('shared/angular/proxy.conf.json')) {
+    UpdateJsonFile(tree, proxyConf => {
+      proxyConf['/oauth2'] ??= {
+        "target": "https://127-0-0-1.nip.io:8443",
+        "secure": false
+      };
+    }, 'shared/angular/proxy.conf.json');
+  }
 
 }
 
