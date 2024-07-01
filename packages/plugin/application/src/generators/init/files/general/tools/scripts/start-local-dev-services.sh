@@ -14,6 +14,7 @@ configuration="development"
 while [ "$1" != "" ]; do
   case $1 in
   --local) local_mode="true" ;;
+  --skip-build) skip_build="true" ;;
   --skip-generate) skip_generate="true" ;;
   --yes) always_yes="true" ;;
   --production) configuration="production" ;;
@@ -111,7 +112,9 @@ function build {
 
 if [[ $BUILD_LOCAL == "true" ]]; then
 
-  build
+  if [[ $skip_build != "true"  ]]; then
+    build
+  fi
 
 else
 
