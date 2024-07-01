@@ -42,6 +42,7 @@ import {
 import { ANGULAR_VERSION } from '../../lib/angular-version';
 import { coerceTestSetup } from '../../lib/coerce-test-setup';
 import { cleanup } from './cleanup';
+import { coerceAppConfig } from './coerce-app-config';
 import { coerceEnvironmentFiles } from './coerce-environment-files';
 import { coerceLocalazyConfigFile } from './coerce-localazy-config-file';
 import { CoerceProjects } from './coerce-project';
@@ -280,132 +281,7 @@ export async function initApplicationGenerator(
         },
       );
 
-      TsMorphAngularProjectTransform(tree, {
-        project: projectName,
-      }, (_, [ sourceFile ]) => {
-        const providers: Array<string | ProviderObject> = [
-          'provideRouter(appRoutes, withEnabledBlockingInitialNavigation())',
-          'provideAnimations()',
-          'ProvideErrorHandler()',
-          'ProvideEnvironment(environment)',
-        ];
-        const httpInterceptors = [
-          'HttpErrorInterceptor',
-        ];
-        const importProvidersFrom: string[] = [];
-        CoerceImports(sourceFile, [
-          {
-            moduleSpecifier: '@angular/platform-browser/animations',
-            namedImports: [ 'provideAnimations' ],
-          },
-          {
-            moduleSpecifier: '@angular/router',
-            namedImports: [ 'provideRouter', 'withEnabledBlockingInitialNavigation' ],
-          },
-          {
-            moduleSpecifier: './app.routes',
-            namedImports: [ 'appRoutes' ],
-          },
-          {
-            moduleSpecifier: '@rxap/ngx-error',
-            namedImports: [ 'ProvideErrorHandler', 'HttpErrorInterceptor' ],
-          },
-          {
-            moduleSpecifier: '@rxap/environment',
-            namedImports: [ 'ProvideEnvironment' ],
-          },
-          {
-            moduleSpecifier: '../environments/environment',
-            namedImports: [ 'environment' ],
-          },
-        ]);
-        if (options.monolithic) {
-          providers.push('ProvidePubSub()');
-          providers.push('ProvideChangelog()');
-          importProvidersFrom.push('MarkdownModule.forRoot()');
-          CoerceImports(sourceFile, [
-            {
-              moduleSpecifier: '@rxap/ngx-changelog',
-              namedImports: [ 'ProvideChangelog' ],
-            },
-            {
-              moduleSpecifier: 'ngx-markdown',
-              namedImports: [ 'MarkdownModule' ],
-            },
-            {
-              moduleSpecifier: '@rxap/ngx-pub-sub',
-              namedImports: [ 'ProvidePubSub' ],
-            },
-          ]);
-        }
-        if (options.oauth) {
-          providers.push('provideOAuthClient()');
-          providers.push('ProvideAuth()');
-          httpInterceptors.push('BearerTokenInterceptor');
-          CoerceImports(sourceFile, [
-            {
-              moduleSpecifier: 'angular-oauth2-oidc',
-              namedImports: [ 'provideOAuthClient' ],
-            },
-            {
-              moduleSpecifier: '@rxap/oauth',
-              namedImports: [ 'ProvideAuth' ],
-            },
-            {
-              moduleSpecifier: '@rxap/authentication',
-              namedImports: [ 'BearerTokenInterceptor' ],
-            },
-          ]);
-        }
-        if (options.i18n) {
-          httpInterceptors.push('LanguageInterceptor');
-          CoerceImports(sourceFile, [
-            {
-              moduleSpecifier: '@rxap/ngx-localize',
-              namedImports: [ 'LanguageInterceptor' ],
-            },
-          ]);
-        }
-        if (options.serviceWorker) {
-          providers.push(
-            `provideServiceWorker('ngsw-worker.js', { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' })`);
-          providers.push('ProvideServiceWorkerUpdater(withDialogUpdater())');
-          CoerceImports(sourceFile, [
-            {
-              moduleSpecifier: '@angular/service-worker',
-              namedImports: [ 'provideServiceWorker' ],
-            },
-            {
-              moduleSpecifier: '@rxap/service-worker',
-              namedImports: [ 'ProvideServiceWorkerUpdater', 'withDialogUpdater' ],
-            },
-          ]);
-        }
-        if (options.material) {
-          providers.push('ProvideIconAssetPath()');
-          CoerceImports(sourceFile, [
-            {
-              moduleSpecifier: '@rxap/icon',
-              namedImports: [ 'ProvideIconAssetPath' ],
-            },
-          ]);
-        }
-        switch (options.authentication) {
-          case 'oauth2-proxy':
-            providers.push('provideOauth2Proxy()');
-            CoerceImports(sourceFile, {
-              moduleSpecifier: '@rxap/ngx-oauth2-proxy',
-              namedImports: [ 'provideOauth2Proxy' ],
-            });
-            break;
-        }
-        CoerceAppConfigProvider(sourceFile, {
-          overwrite: options.overwrite,
-          providers,
-          httpInterceptors,
-          importProvidersFrom,
-        });
-      }, [ '/app/app.config.ts' ]);
+      coerceAppConfig(tree, projectName, options);
 
       if (options.generateMain) {
         updateMainFile(tree, projectName, project, options);
