@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Plugins" pattern="file[packages]:packages/plugin//*||file[packages]:packages/workspace//*||file[packages]:packages/ts-morph/*||file[packages]:packages/ts-morph//*||file[packages]:packages/utilities//*||file[packages]:packages/preset//*" />
+</component>

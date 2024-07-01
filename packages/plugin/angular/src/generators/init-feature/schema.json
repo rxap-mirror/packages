@@ -20,6 +20,10 @@
       "type": "boolean",
       "default": false
     },
+    "apiStatusCheck": {
+      "type": "boolean",
+      "default": false
+    },
     "navigation": {
       "type": "object",
       "properties":{

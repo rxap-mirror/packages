@@ -9,4 +9,5 @@ export interface InitFeatureGeneratorSchema {
     icon?: IconConfig;
   };
   skipFormat?: boolean;
+  apiStatusCheck?: boolean;
 }

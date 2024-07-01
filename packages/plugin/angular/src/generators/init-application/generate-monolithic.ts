@@ -30,6 +30,7 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
     CoerceLayoutRoutes(layoutSourceFile, {
       component: options.moduleFederation === 'host' ? 'MinimalLayoutComponent' : 'LayoutComponent',
       withNavigation: options.moduleFederation !== 'host',
+      withStatusCheckGuard: options.apiStatusCheck,
     });
     CoerceAppRoutes(appSourceFile, {
       itemList: [

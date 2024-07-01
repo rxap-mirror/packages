@@ -32,4 +32,5 @@ export interface InitApplicationGeneratorSchema {
   skipFormat?: boolean;
   skipDocker?: boolean;
   incrementalBuild?: boolean;
+  apiStatusCheck?: boolean;
 }

@@ -53,7 +53,8 @@ export async function initFeatureGenerator(
           },
           component: 'LayoutComponent'
         }
-      ]
+      ],
+      withStatusCheckGuard: options.apiStatusCheck,
     });
     if (options.navigation) {
       CoerceAppNavigation(navigationSourceFile, {

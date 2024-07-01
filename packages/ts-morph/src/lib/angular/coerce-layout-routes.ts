@@ -22,7 +22,7 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
     component = 'LayoutComponent',
     withNavigation = true,
     withDefaultHeader = true,
-    withStatusCheckGuard = true,
+    withStatusCheckGuard = false,
   } = options;
 
   const obj: Record<string, string | WriterFunction> = {

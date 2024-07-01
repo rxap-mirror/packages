@@ -48,6 +48,10 @@
       "default": true,
       "x-prompt": "Would you like to enable Sentry?"
     },
+    "apiStatusCheck": {
+      "type": "boolean",
+      "default": false
+    },
     "authentication": {
       "oneOf": [
         {
