@@ -408,7 +408,7 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
             continue;
           }
         }
-        if (peerDependencyVersion.match(/^(~|\^|>|<|<=|>=)?\d+\.\d+\.\d+(-[a-zA-Z]+)?$/)) {
+        if (peerDependencyVersion.match(/^(~|\^|>|<|<=|>=)?\d+\.\d+\.\d+(-[a-zA-Z]+\.\d+)?$/)) {
           console.log(`Add peer dependency \x1b[34m${ peerDependency }\x1b[0mto the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ peerDependencyVersion }\x1b[0m`.cyan);
           await AddPackageJsonDependency(tree, peerDependency, peerDependencyVersion, options, propertyPath);
         } else {
