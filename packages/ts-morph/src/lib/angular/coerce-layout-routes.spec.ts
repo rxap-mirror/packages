@@ -12,7 +12,7 @@ describe('CoerceLayoutRouters', () => {
 
   it('should coerce layout routers', () => {
     const sourceFile = project.createSourceFile('layout.routes.ts');
-    CoerceLayoutRoutes(sourceFile);
+    CoerceLayoutRoutes(sourceFile, { withNavigation: true, withStatusCheckGuard: true, withDefaultHeader: true });
     expect(sourceFile.getFullText()).toMatchSnapshot();
   });
 

@@ -51,6 +51,7 @@ exports[`preset should use workspace preset 2`] = `
     "@nx/eslint-plugin": "19.3.2",
     "@nx/jest": "19.3.2",
     "@nx/js": "19.3.2",
+    "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
