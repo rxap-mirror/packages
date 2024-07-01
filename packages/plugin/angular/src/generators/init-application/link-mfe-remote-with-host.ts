@@ -37,6 +37,7 @@ export function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: 
           },
         ],
         withStatusCheckGuard: options.apiStatusCheck,
+        withNavigation: true,
       });
     }, [ 'app/layout.routes.ts' ]);
   } else {

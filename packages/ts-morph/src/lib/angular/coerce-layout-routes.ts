@@ -20,7 +20,7 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
 
   const {
     component = 'LayoutComponent',
-    withNavigation = true,
+    withNavigation = false,
     withDefaultHeader = true,
     withStatusCheckGuard = false,
   } = options;
