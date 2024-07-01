@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.3.1...@rxap/workspace-utilities@19.3.2-dev.0) (2024-07-01)
+
+### Bug Fixes
+
+- correctly support pre release versions ([d97e9be](https://gitlab.com/rxap/packages/commit/d97e9becc88c8667443474600a7f2ead00f920ce))
+
 ## [19.3.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.3.1-dev.0...@rxap/workspace-utilities@19.3.1) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

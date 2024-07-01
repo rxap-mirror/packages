@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.2...@rxap/plugin-workspace@19.1.3-dev.0) (2024-07-01)
+
+### Bug Fixes
+
+- install the rxap cli tool ([415c70e](https://gitlab.com/rxap/packages/commit/415c70e7ef985f1014b81864362a70e34a16ac64))
+
 ## [19.1.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.2-dev.0...@rxap/plugin-workspace@19.1.2) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/plugin-workspace

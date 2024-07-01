@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.1.0...@rxap/plugin-application@19.1.1-dev.0) (2024-07-01)
+
+### Bug Fixes
+
+- add skip build flag ([895e32c](https://gitlab.com/rxap/packages/commit/895e32c8f48979e85c0bd4cef51e4c3637075808))
+
 # [19.1.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.1.0-dev.0...@rxap/plugin-application@19.1.0) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/plugin-application

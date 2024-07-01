@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@19.0.4...@rxap/plugin-localazy@19.0.5-dev.0) (2024-07-01)
+
+**Note:** Version bump only for package @rxap/plugin-localazy
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@19.0.4-dev.0...@rxap/plugin-localazy@19.0.4) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/plugin-localazy

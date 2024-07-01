@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.0...@rxap/plugin-angular@19.3.1-dev.0) (2024-07-01)
+
+### Bug Fixes
+
+- add the required configuration for oauth2 proxies ([29104cc](https://gitlab.com/rxap/packages/commit/29104cc8b8dbc187610337d9d72cc2be9c5db547))
+- disable navigation for mfe host applications ([9d30133](https://gitlab.com/rxap/packages/commit/9d30133fb82deed87fc6c300787047b0a5ad5d09))
+- disable status check by default ([4193c09](https://gitlab.com/rxap/packages/commit/4193c09ab1a8c07b87e12c92ee86f48cc7732641))
+- skip app.navigation creation for mfe host applications ([e941aef](https://gitlab.com/rxap/packages/commit/e941aefb6340d1a42097c0cc575d7c9d271b5649))
+
 # [19.3.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.0-dev.0...@rxap/plugin-angular@19.3.0) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/plugin-angular

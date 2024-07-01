@@ -8807,12 +8807,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/generator-ts-morph@^1.0.10, @rxap/generator-ts-morph@workspace:packages/generator/ts-morph":
+"@rxap/generator-ts-morph@^1.0.11-dev.0, @rxap/generator-ts-morph@workspace:packages/generator/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/generator-ts-morph@workspace:packages/generator/ts-morph"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/workspace-ts-morph": ^19.1.2
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9071,8 +9071,8 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
-    "@rxap/ts-morph": ^1.4.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/ts-morph": ^1.4.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
   languageName: unknown
   linkType: soft
 
@@ -9137,8 +9137,8 @@ __metadata:
     "@nestjs/config": ^3.2.2
     "@rxap/nest-logger": ^10.2.4
     "@rxap/nest-utilities": ^10.3.3
-    "@rxap/ts-morph": ^1.4.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/ts-morph": ^1.4.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     "@sentry/core": ^8.9.2
     "@sentry/node": ^8.9.2
     "@sentry/types": ^8.9.2
@@ -9583,36 +9583,37 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-angular@^19.3.0, @rxap/plugin-angular@workspace:packages/plugin/angular":
+"@rxap/plugin-angular@^19.3.1-dev.0, @rxap/plugin-angular@workspace:packages/plugin/angular":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-angular@workspace:packages/plugin/angular"
   dependencies:
     "@nx/angular": 19.3.2
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-application": ^19.1.0
-    "@rxap/plugin-library": ^19.3.1
-    "@rxap/plugin-localazy": ^19.0.4
-    "@rxap/plugin-utilities": ^19.0.5
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/plugin-application": ^19.1.1-dev.0
+    "@rxap/plugin-library": ^19.3.2-dev.0
+    "@rxap/plugin-localazy": ^19.0.5-dev.0
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-ts-morph": ^19.1.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     colors: 1.4.0
     semver: 7.5.3
     tailwindcss: ^3.4.4
     ts-morph: 18.0.0
     tslib: 2.6.2
+    yaml: 2.3.1
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-application@^19.1.0, @rxap/plugin-application@workspace:packages/plugin/application":
+"@rxap/plugin-application@^19.1.1-dev.0, @rxap/plugin-application@workspace:packages/plugin/application":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-application@workspace:packages/plugin/application"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-utilities": ^19.0.5
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     handlebars: 4.7.8
     tslib: 2.6.2
     yaml: 2.3.1
@@ -9624,9 +9625,9 @@ __metadata:
   resolution: "@rxap/plugin-compodoc@workspace:packages/plugin/compodoc"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-utilities": ^19.0.5
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9637,11 +9638,11 @@ __metadata:
   dependencies:
     "@nx/angular": 19.3.2
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-angular": ^19.3.0
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/plugin-angular": ^19.3.1-dev.0
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-ts-morph": ^19.1.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9652,21 +9653,21 @@ __metadata:
   dependencies:
     "@nx/devkit": 19.3.2
     "@rxap/node-utilities": ^1.3.2
-    "@rxap/plugin-gitlab-ci": ^19.0.4
-    "@rxap/plugin-utilities": ^19.0.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/plugin-gitlab-ci": ^19.0.5-dev.0
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-gitlab-ci@^19.0.4, @rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci":
+"@rxap/plugin-gitlab-ci@^19.0.5-dev.0, @rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-utilities": ^19.0.5
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -9677,9 +9678,9 @@ __metadata:
   resolution: "@rxap/plugin-gpt@workspace:packages/plugin/gpt"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/ts-morph": ^1.4.2
-    "@rxap/workspace-ts-morph": ^19.1.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/ts-morph": ^1.4.3-dev.0
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     gpt-3-encoder: ^1.1.4
     openai: ^4.52.0
     ts-morph: 18.0.0
@@ -9687,19 +9688,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-library@^19.3.1, @rxap/plugin-library@workspace:packages/plugin/library":
+"@rxap/plugin-library@^19.3.2-dev.0, @rxap/plugin-library@workspace:packages/plugin/library":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-library@workspace:packages/plugin/library"
   dependencies:
     "@apidevtools/json-schema-ref-parser": 9.0.9
     "@nx/devkit": 19.3.2
     "@nx/plugin": 19.3.2
-    "@rxap/generator-ts-morph": ^1.0.10
+    "@rxap/generator-ts-morph": ^1.0.11-dev.0
     "@rxap/node-utilities": ^1.3.2
-    "@rxap/plugin-utilities": ^19.0.5
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     colors: 1.4.0
     handlebars: 4.7.8
     nx: 19.3.2
@@ -9709,13 +9710,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-localazy@^19.0.4, @rxap/plugin-localazy@workspace:packages/plugin/localazy":
+"@rxap/plugin-localazy@^19.0.5-dev.0, @rxap/plugin-localazy@workspace:packages/plugin/localazy":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-localazy@workspace:packages/plugin/localazy"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-utilities": ^19.0.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -9729,14 +9730,14 @@ __metadata:
     "@nx/js": 19.3.2
     "@nx/nest": 19.3.2
     "@rxap/node-utilities": ^1.3.2
-    "@rxap/plugin-application": ^19.1.0
-    "@rxap/plugin-library": ^19.3.1
-    "@rxap/plugin-open-api": ^19.1.3
-    "@rxap/plugin-utilities": ^19.0.5
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/plugin-application": ^19.1.1-dev.0
+    "@rxap/plugin-library": ^19.3.2-dev.0
+    "@rxap/plugin-open-api": ^19.1.4-dev.0
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-ts-morph": ^19.1.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     colors: 1.4.0
     semver: 7.5.3
     ts-morph: 18.0.0
@@ -9744,18 +9745,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-open-api@^19.1.3, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
+"@rxap/plugin-open-api@^19.1.4-dev.0, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
   dependencies:
     "@nx/devkit": 19.3.2
     "@rxap/node-utilities": ^1.3.2
-    "@rxap/plugin-library": ^19.3.1
-    "@rxap/plugin-utilities": ^19.0.5
+    "@rxap/plugin-library": ^19.3.2-dev.0
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-open-api": ^19.0.4
-    "@rxap/workspace-ts-morph": ^19.1.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-open-api": ^19.0.5-dev.0
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -9768,10 +9769,10 @@ __metadata:
     "@nx/angular": 19.3.2
     "@nx/devkit": 19.3.2
     "@nx/eslint": 19.3.2
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-ts-morph": ^19.1.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     colors: 1.4.0
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -9783,21 +9784,21 @@ __metadata:
   resolution: "@rxap/plugin-typedoc@workspace:packages/plugin/typedoc"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-utilities": ^19.0.5
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
     typedoc: ^0.25.13
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-utilities@^19.0.5, @rxap/plugin-utilities@workspace:packages/plugin/utilities":
+"@rxap/plugin-utilities@^19.0.6-dev.0, @rxap/plugin-utilities@workspace:packages/plugin/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-utilities@workspace:packages/plugin/utilities"
   dependencies:
     "@nx/devkit": 19.3.2
     "@rxap/node-utilities": ^1.3.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9807,22 +9808,22 @@ __metadata:
   resolution: "@rxap/plugin-web3-storage@workspace:packages/plugin/web3-storage"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-utilities": ^19.0.5
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
     files-from-path: 1.0.4
     tslib: 2.6.2
     web3.storage: 4.5.5
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-workspace@^19.1.2, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
+"@rxap/plugin-workspace@^19.1.3-dev.0, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
   dependencies:
     "@nx/devkit": 19.3.2
     "@nx/js": 19.3.2
-    "@rxap/plugin-utilities": ^19.0.5
+    "@rxap/plugin-utilities": ^19.0.6-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     colors: 1.4.0
     tslib: 2.6.2
     yaml: 2.3.1
@@ -9834,8 +9835,8 @@ __metadata:
   resolution: "@rxap/preset-angular@workspace:packages/preset/angular"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-angular": ^19.3.0
-    "@rxap/plugin-workspace": ^19.1.2
+    "@rxap/plugin-angular": ^19.3.1-dev.0
+    "@rxap/plugin-workspace": ^19.1.3-dev.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9845,7 +9846,7 @@ __metadata:
   resolution: "@rxap/preset-workspace@workspace:packages/preset/workspace"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/plugin-workspace": ^19.1.2
+    "@rxap/plugin-workspace": ^19.1.3-dev.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9896,12 +9897,12 @@ __metadata:
     "@angular-devkit/core": 18.0.2
     "@angular-devkit/schematics": 18.0.2
     "@nx/devkit": 19.3.2
-    "@rxap/schematics-ts-morph": ^18.1.2
-    "@rxap/schematics-utilities": ^18.0.4
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/schematics-ts-morph": ^18.1.3-dev.0
+    "@rxap/schematics-utilities": ^18.0.5-dev.0
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-ts-morph": ^19.1.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     colors: 1.4.0
     handlebars: 4.7.8
     ts-morph: 18.0.0
@@ -9915,10 +9916,10 @@ __metadata:
   dependencies:
     "@angular-devkit/schematics": 18.0.2
     "@nx/devkit": 19.3.2
-    "@rxap/schematics-ts-morph": ^18.1.2
-    "@rxap/schematics-utilities": ^18.0.4
+    "@rxap/schematics-ts-morph": ^18.1.3-dev.0
+    "@rxap/schematics-utilities": ^18.0.5-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     colors: 1.4.0
     tslib: 2.6.2
     yaml: 2.3.1
@@ -9932,11 +9933,11 @@ __metadata:
     "@angular-devkit/core": 18.0.2
     "@angular-devkit/schematics": 18.0.2
     "@nx/devkit": 19.3.2
-    "@rxap/schematics-ts-morph": ^18.1.2
-    "@rxap/schematics-utilities": ^18.0.4
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/schematics-ts-morph": ^18.1.3-dev.0
+    "@rxap/schematics-utilities": ^18.0.5-dev.0
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     ts-morph: 18.0.0
     tslib: 2.6.2
     yaml: 2.3.1
@@ -9951,29 +9952,29 @@ __metadata:
     "@angular-devkit/schematics": 18.0.2
     "@nx/devkit": 19.3.2
     "@rxap/json-schema-to-typescript": ^16.0.7
-    "@rxap/schematics-ts-morph": ^18.1.2
-    "@rxap/schematics-utilities": ^18.0.4
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/schematics-ts-morph": ^18.1.3-dev.0
+    "@rxap/schematics-utilities": ^18.0.5-dev.0
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     openapi-types: 10.0.0
     ts-morph: 18.0.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
-"@rxap/schematics-ts-morph@^18.1.2, @rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph":
+"@rxap/schematics-ts-morph@^18.1.3-dev.0, @rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph"
   dependencies:
     "@angular-devkit/core": 18.0.2
     "@angular-devkit/schematics": 18.0.2
     "@nx/devkit": 19.3.2
-    "@rxap/schematics-utilities": ^18.0.4
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/schematics-utilities": ^18.0.5-dev.0
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-ts-morph": ^19.1.2
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-ts-morph": ^19.1.3-dev.0
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     colors: 1.4.0
     handlebars: 4.7.8
     ts-morph: 18.0.0
@@ -9981,14 +9982,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/schematics-utilities@^18.0.4, @rxap/schematics-utilities@workspace:packages/schematic/utilities":
+"@rxap/schematics-utilities@^18.0.5-dev.0, @rxap/schematics-utilities@workspace:packages/schematic/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/schematics-utilities@workspace:packages/schematic/utilities"
   dependencies:
     "@angular-devkit/schematics": 18.0.2
     "@nx/devkit": 19.3.2
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10000,8 +10001,8 @@ __metadata:
     "@angular-devkit/core": 18.0.2
     "@angular-devkit/schematics": 18.0.2
     "@nx/devkit": 19.3.2
-    "@rxap/schematics-ts-morph": ^18.1.2
-    "@rxap/schematics-utilities": ^18.0.4
+    "@rxap/schematics-ts-morph": ^18.1.3-dev.0
+    "@rxap/schematics-utilities": ^18.0.5-dev.0
     "@rxap/xml-parser": ^16.0.7
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -10280,7 +10281,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/ts-morph@^1.4.2, @rxap/ts-morph@workspace:packages/ts-morph":
+"@rxap/ts-morph@^1.4.3-dev.0, @rxap/ts-morph@workspace:packages/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/ts-morph@workspace:packages/ts-morph"
   dependencies:
@@ -10357,7 +10358,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-open-api@^19.0.4, @rxap/workspace-open-api@workspace:packages/workspace/open-api":
+"@rxap/workspace-open-api@^19.0.5-dev.0, @rxap/workspace-open-api@workspace:packages/workspace/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
   dependencies:
@@ -10365,7 +10366,7 @@ __metadata:
     "@nx/devkit": 19.3.2
     "@rxap/json-schema-to-typescript": ^16.0.7
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     openapi-types: 10.0.0
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -10373,20 +10374,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-ts-morph@^19.1.2, @rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph":
+"@rxap/workspace-ts-morph@^19.1.3-dev.0, @rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph"
   dependencies:
     "@nx/devkit": 19.3.2
-    "@rxap/ts-morph": ^1.4.2
+    "@rxap/ts-morph": ^1.4.3-dev.0
     "@rxap/utilities": ^16.2.5
-    "@rxap/workspace-utilities": ^19.3.1
+    "@rxap/workspace-utilities": ^19.3.2-dev.0
     ts-morph: 18.0.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-utilities@^19.3.1, @rxap/workspace-utilities@workspace:packages/workspace/utilities":
+"@rxap/workspace-utilities@^19.3.2-dev.0, @rxap/workspace-utilities@workspace:packages/workspace/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-utilities@workspace:packages/workspace/utilities"
   dependencies:

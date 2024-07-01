@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.2...@rxap/ts-morph@1.4.3-dev.0) (2024-07-01)
+
+### Bug Fixes
+
+- disable navigation for mfe host applications ([9d30133](https://gitlab.com/rxap/packages/commit/9d30133fb82deed87fc6c300787047b0a5ad5d09))
+- disable status check by default ([4193c09](https://gitlab.com/rxap/packages/commit/4193c09ab1a8c07b87e12c92ee86f48cc7732641))
+
 ## [1.4.2](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.2-dev.0...@rxap/ts-morph@1.4.2) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/ts-morph
