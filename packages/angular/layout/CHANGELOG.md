@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.1.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.1.1...@rxap/layout@18.1.2-dev.0) (2024-07-02)
+
+### Bug Fixes
+
+- improve support for router link types ([069f87e](https://gitlab.com/rxap/packages/commit/069f87e3a5b9615111cedca779f6a3c8ee0e13ea))
+
 ## [18.1.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.1.1-dev.0...@rxap/layout@18.1.1) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/layout

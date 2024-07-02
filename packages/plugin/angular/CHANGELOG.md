@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.1-dev.0...@rxap/plugin-angular@19.3.1-dev.1) (2024-07-02)
+
+### Bug Fixes
+
+- remove unused var dec ([fba82cb](https://gitlab.com/rxap/packages/commit/fba82cb77159b8471a9c8b35debeab39a5911513))
+- use utility function ([4a867e9](https://gitlab.com/rxap/packages/commit/4a867e93b404fd3466bf054be6bb099490c6f6f6))
+
 ## [19.3.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.0...@rxap/plugin-angular@19.3.1-dev.0) (2024-07-01)
 
 ### Bug Fixes

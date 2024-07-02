@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.2.5...@rxap/utilities@16.3.0-dev.0) (2024-07-02)
+
+### Features
+
+- support string icon config ([b00b33c](https://gitlab.com/rxap/packages/commit/b00b33c4b70d0ac442b2d2a8260e4e1ee704b3b9))
+
 ## [16.2.5](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.2.5-dev.0...@rxap/utilities@16.2.5) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/utilities

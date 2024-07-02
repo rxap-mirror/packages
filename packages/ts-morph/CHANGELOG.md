@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.3-dev.0...@rxap/ts-morph@1.4.3-dev.1) (2024-07-02)
+
+### Bug Fixes
+
+- remove unused var dec ([fba82cb](https://gitlab.com/rxap/packages/commit/fba82cb77159b8471a9c8b35debeab39a5911513))
+
 ## [1.4.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.2...@rxap/ts-morph@1.4.3-dev.0) (2024-07-01)
 
 ### Bug Fixes

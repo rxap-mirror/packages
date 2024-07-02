@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.3.2-dev.0...@rxap/workspace-utilities@19.4.0-dev.0) (2024-07-02)
+
+### Features
+
+- add ForEachSecondaryEntryPoint Generator ([f10f7dc](https://gitlab.com/rxap/packages/commit/f10f7dc9ba02e763b152e259a2b03527ed7af842))
+
 ## [19.3.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.3.1...@rxap/workspace-utilities@19.3.2-dev.0) (2024-07-01)
 
 ### Bug Fixes

@@ -8,8 +8,8 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
-    "@rxap/ts-morph": "^1.4.3-dev.0",
-    "@rxap/workspace-utilities": "^19.3.2-dev.0"
+    "@rxap/ts-morph": "^1.4.3-dev.1",
+    "@rxap/workspace-utilities": "^19.4.0-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -40,11 +40,11 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.4.3-dev.0"
+        "version": "1.4.3-dev.1"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.3.2-dev.0"
+        "version": "19.4.0-dev.0"
       }
     ]
   },

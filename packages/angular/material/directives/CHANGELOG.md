@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@18.0.4...@rxap/material-directives@18.1.0-dev.0) (2024-07-02)
+
+### Features
+
+- support string icon config ([ce6f23e](https://gitlab.com/rxap/packages/commit/ce6f23efac13dceefa388688371957884f9bb62d))
+
 ## [18.0.4](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@18.0.4-dev.0...@rxap/material-directives@18.0.4) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/material-directives
