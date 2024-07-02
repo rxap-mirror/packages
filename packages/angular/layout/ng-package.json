@@ -33,5 +33,10 @@
       "output": "./src/migrations"
     }
   ],
-  "allowedNonPeerDependencies": ["@nx/devkit"]
+  "allowedNonPeerDependencies": [
+    "@nx/devkit",
+    "@rxap/ts-morph",
+    "@rxap/workspace-ts-morph",
+    "@rxap/workspace-utilities"
+  ]
 }
