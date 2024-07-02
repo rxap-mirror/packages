@@ -4,7 +4,7 @@ import {
 } from '@nx/devkit';
 import {
   CoerceFile,
-  SearchFile,
+  ForEachSecondaryEntryPoint,
 } from '@rxap/workspace-utilities';
 import {
   dirname,
@@ -19,10 +19,7 @@ export function checkIfSecondaryEntrypointIncludeInTheTsConfig(tree: Tree, proje
   const libTsConfig = tree.exists(libTsConfigPath) ? JSON.parse(tree.read(libTsConfigPath)!.toString('utf-8')) : null;
   const specTsConfig = tree.exists(specTsConfigPath) ? JSON.parse(tree.read(specTsConfigPath)!.toString('utf-8')) :
                        null;
-  for (const { path } of SearchFile(tree, projectRoot)) {
-    if (!path.endsWith('ng-package.json')) {
-      continue;
-    }
+  for (const path of ForEachSecondaryEntryPoint(tree, projectRoot)) {
     const folder = dirname(path);
     const entryPoint = relative(projectRoot, folder);
     if (entryPoint) {
