@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add-user-theme-provider-to-app-config migration should run successfully 1`] = `
+"export const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [],
+    providers: []
+  }
+];
+
+export default ROUTES;"
+`;
+
+exports[`add-user-theme-provider-to-app-config migration should run successfully 2`] = `
+"import { provideUserTheme } from '@rxap/ngx-user';
+
+export const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [],
+    providers: [
+      provideUserTheme(), provideLayout()
+    ]
+  }
+];
+
+export default ROUTES;"
+`;
+
+exports[`add-user-theme-provider-to-app-config migration should run successfully 3`] = `
+"import { provideUserTheme } from '@rxap/ngx-user';
+
+export const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [],
+    providers: [
+      provideUserTheme(), provideLayout(
+        withNavigationConfig(APP_NAVIGATION),
+        withDefaultHeaderComponent()
+      )
+    ]
+  }
+];
+
+export default ROUTES;"
+`;

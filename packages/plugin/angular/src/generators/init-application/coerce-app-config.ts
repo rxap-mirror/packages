@@ -50,6 +50,7 @@ export function coerceAppConfig(tree: Tree, projectName: string, options: InitAp
     if (options.monolithic) {
       providers.push('ProvidePubSub()');
       providers.push('ProvideChangelog()');
+      providers.push('provideTheme()');
       importProvidersFrom.push('MarkdownModule.forRoot()');
       CoerceImports(sourceFile, [
         {
@@ -64,6 +65,10 @@ export function coerceAppConfig(tree: Tree, projectName: string, options: InitAp
           moduleSpecifier: '@rxap/ngx-pub-sub',
           namedImports: [ 'ProvidePubSub' ],
         },
+        {
+          moduleSpecifier: '@rxap/ngx-theme',
+          namedImports: [ 'provideTheme' ],
+        }
       ]);
     }
     if (options.oauth) {

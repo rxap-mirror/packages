@@ -1,6 +1,7 @@
 import {
   inject,
   Injectable,
+  isDevMode,
   OnDestroy,
 } from '@angular/core';
 import {
@@ -111,6 +112,9 @@ export class UserSettingsThemeService<T = unknown> implements OnDestroy {
   }
 
   async restore() {
+    if (isDevMode()) {
+      console.log('Restore theme settings from user settings.');
+    }
     const theme = await this.get();
     this.pubSub.publish(RXAP_TOPICS.theme.preset.restore, theme.preset);
     this.pubSub.publish(RXAP_TOPICS.theme.density.restore, theme.density);

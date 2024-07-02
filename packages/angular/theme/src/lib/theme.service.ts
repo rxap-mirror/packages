@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import {
   inject,
   Injectable,
+  isDevMode,
   signal,
   WritableSignal,
 } from '@angular/core';
@@ -68,6 +69,9 @@ export class ThemeService {
   }
 
   public restore() {
+    if (isDevMode()) {
+      console.log('Restore theme settings from local storage');
+    }
     // region restore dark mode
     let darkMode = this.restoreDarkMode();
     // if the dark/light mode is not restored from the local storage

@@ -14,6 +14,7 @@ export interface CoerceLayoutRoutesOptions extends CoerceRoutesOptions {
   withNavigation?: boolean;
   withDefaultHeader?: boolean;
   withStatusCheckGuard?: boolean;
+  withUserTheme?: boolean;
 }
 
 export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayoutRoutesOptions = {}) {
@@ -23,6 +24,7 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
     withNavigation = false,
     withDefaultHeader = true,
     withStatusCheckGuard = false,
+    withUserTheme = true,
   } = options;
 
   const obj: Record<string, string | WriterFunction> = {
@@ -41,6 +43,9 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
     providers: w => {
       w.write('[');
       w.indent(() => {
+        if (withUserTheme) {
+          w.write('provideUserTheme(),');
+        }
         w.write('provideLayout(');
         if (withNavigation) {
           w.newLine();
@@ -69,6 +74,13 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
     namedImports: [ 'provideLayout' ],
     moduleSpecifier: '@rxap/layout'
   });
+
+  if (withUserTheme) {
+    CoerceImports(sourceFile, {
+      namedImports: [ 'provideUserTheme' ],
+      moduleSpecifier: '@rxap/ngx-user',
+    });
+  }
 
   if (withStatusCheckGuard) {
     obj['canActivateChild'] = '[StatusCheckGuard]';
