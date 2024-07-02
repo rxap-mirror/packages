@@ -198,7 +198,7 @@ function addDependedProjects(
   for (const dependedProject of dependedProjectList) {
     const dependedPackageName = ProjectNameToPackageName(dependedProject);
     if (!dependencies[dependedPackageName]) {
-      dependencies[dependedPackageName] = findBasePackageVersion(tree, dependedPackageName, projectRoot);
+      dependencies[dependedPackageName] = findBasePackageVersion(dependedPackageName, projectRoot);
     }
   }
 }
@@ -245,6 +245,10 @@ function fixDependenciesWithTsMorphProject(
     }
     if (tree.exists(join(projectSourceRoot, 'schematics'))) {
       const packageList = getUsedPackagesFromSourceRoot(tree, join(projectSourceRoot, 'schematics'));
+      dependencyList = dependencyList.concat(packageList);
+    }
+    if (tree.exists(join(projectSourceRoot, 'executors'))) {
+      const packageList = getUsedPackagesFromSourceRoot(tree, join(projectSourceRoot, 'executors'));
       dependencyList = dependencyList.concat(packageList);
     }
   }
@@ -393,7 +397,7 @@ function fixDevDependenciesWithTsMorphProject(
       }
     } else {
       if (!peerDependencies?.[packageName] && !dependencies?.[packageName]) {
-        const version = findBasePackageVersion(tree, packageName, projectRoot);
+        const version = findBasePackageVersion(packageName, projectRoot);
         if (devDependencies?.[packageName]) {
           if (devDependencies[packageName] !== version) {
             changedPackageList.push(`${ packageName }@${ devDependencies[packageName] } -> ${ version }`);
