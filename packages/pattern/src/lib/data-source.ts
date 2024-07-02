@@ -13,6 +13,8 @@ export interface DataSource<Data = unknown, Viewer extends DataSourceViewer = Da
 
   connect(viewer: Viewer): Observable<Data>;
 
+  connect(viewerId: string): Observable<Data>;
+
   disconnect(viewer: Viewer): void;
 
   disconnect(viewerId: string): void;
