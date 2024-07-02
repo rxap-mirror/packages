@@ -401,7 +401,18 @@ export interface SvgIcon extends BaseIcon {
   fontIcon?: string;
 }
 
-export type IconConfig = MaterialIcon | SvgIcon;
+export type IconConfig = MaterialIcon | SvgIcon | string;
+
+export type NormalizedIconConfig = MaterialIcon | SvgIcon;
+
+export function NormalizeIconConfig(icon: IconConfig): NormalizedIconConfig {
+  if (typeof icon === 'string') {
+    return {
+      icon,
+    };
+  }
+  return icon;
+}
 
 /**
  * This function checks if the provided icon is of type SvgIcon.
@@ -427,7 +438,7 @@ export type IconConfig = MaterialIcon | SvgIcon;
  * @see {@link SvgIcon} for more information about the SvgIcon type.
  */
 export function IsSvgIcon(icon?: IconConfig): icon is SvgIcon {
-  return icon !== undefined && (icon as any)['svgIcon'] !== undefined;
+  return !!icon && typeof icon === 'object' && 'svgIcon' in icon;
 }
 
 /**
@@ -449,5 +460,5 @@ export function IsSvgIcon(icon?: IconConfig): icon is SvgIcon {
  * IsMaterialIcon({color: 'primary'}); // returns false
  */
 export function IsMaterialIcon(icon?: IconConfig): icon is MaterialIcon {
-  return icon !== undefined && (icon as any)['icon'] !== undefined;
+  return !!icon && typeof icon === 'object' && 'icon' in icon;
 }
