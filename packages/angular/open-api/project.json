@@ -34,7 +34,11 @@
       "options": {
         "options": {
           "strict": true,
-          "onlyDependencies": false
+          "onlyDependencies": false,
+          "dependencies": [
+            "ajv",
+            "openapi-types"
+          ]
         },
         "generator": "@rxap/plugin-library:fix-dependencies"
       },
