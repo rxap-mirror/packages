@@ -42,7 +42,7 @@ export interface NavigationStatus {
 }
 
 export interface NavigationItem<Children = Navigation> extends Record<string, unknown> {
-  routerLink: string[];
+  routerLink: string[] | string | null;
   label: string;
   children?: Children;
   icon?: IconConfig;
