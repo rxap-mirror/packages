@@ -30,6 +30,13 @@
       "type": "boolean",
       "default": false,
       "description": "If true, will move all peer dependencies to dependencies"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of packages that should always be added as dependencies"
     }
   },
   "required": []

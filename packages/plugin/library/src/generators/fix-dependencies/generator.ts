@@ -296,7 +296,7 @@ function fixDependenciesWithTsMorphProject(
     if (HasProjectWithPackageName(packageName)) {
       peerDependencies[packageName] = peerDependencies[packageName] ?? '*';
     } else {
-      const version = findBasePackageVersion(tree, packageName, projectRoot);
+      const version = findBasePackageVersion(packageName, projectRoot);
       if (peerDependencies[packageName]) {
         if (peerDependencies[packageName] !== version) {
           changedPackageList.push(`${ packageName }@${ peerDependencies[packageName] } -> ${ version }`);
@@ -317,7 +317,7 @@ function fixDependenciesWithTsMorphProject(
     if (HasProjectWithPackageName(packageName)) {
       dependencies[packageName] = dependencies[packageName] ?? '*';
     } else {
-      const version = findBasePackageVersion(tree, packageName, projectRoot);
+      const version = findBasePackageVersion(packageName, projectRoot);
       if (dependencies[packageName]) {
         if (dependencies[packageName] !== version) {
           changedPackageList.push(`${ packageName }@${ dependencies[packageName] } -> ${ version }`);
@@ -484,7 +484,7 @@ async function loadAvailablePackageVersion(tree: Tree, projectRoot: string) {
   pinVersionToMajorRelease(PACKAGE_VERSION_MAP[projectRoot]);
 }
 
-function findBasePackageVersion(tree: Tree, packageName: string, projectRoot: string): string {
+function findBasePackageVersion(packageName: string, projectRoot: string): string {
   if (!PACKAGE_VERSION_MAP[projectRoot]) {
     throw new Error('Package version map not loaded. Ensure the loadAvailablePackageVersion function is called before.');
   }
@@ -656,6 +656,26 @@ function forcePeerDependencies(packageJson: PackageJson) {
   }
 }
 
+function forcePackagesAsDependencies(packageJson: PackageJson, packages: string[], projectRoot: string) {
+  packageJson.dependencies ??= {};
+  packageJson.peerDependencies ??= {};
+  for (const packageName of Object.keys(packageJson.peerDependencies)) {
+    if (packages.includes(packageName)) {
+      packageJson.dependencies[packageName] = packageJson.peerDependencies[packageName];
+      delete packageJson.peerDependencies[packageName];
+    }
+  }
+  for (const packageName of packages) {
+    if (!packageJson.dependencies[packageName]) {
+      if (HasProjectWithPackageName(packageName)) {
+        packageJson.dependencies[packageName] = '*';
+      } else {
+        packageJson.dependencies[packageName] = findBasePackageVersion(packageName, projectRoot);
+      }
+    }
+  }
+}
+
 /**
  * This generator tries to fix the dependencies in the project.json of the project
  *
@@ -740,6 +760,10 @@ export async function fixDependenciesGenerator(
 
       if (options.onlyDependencies) {
         forceAllDependenciesAsDependencies(packageJson);
+      }
+
+      if (options.dependencies?.length) {
+        forcePackagesAsDependencies(packageJson, options.dependencies, projectRoot);
       }
 
       setDependencyVersionFromRootPackageJson(packageJson, rootPackageJson);

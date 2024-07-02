@@ -6,4 +6,5 @@ export interface FixDependenciesGeneratorSchema {
   resolve?: boolean;
   strict?: boolean;
   onlyDependencies?: boolean;
+  dependencies?: string[];
 }
