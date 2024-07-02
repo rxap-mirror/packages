@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add-theme-provider-to-app-config migration should run successfully 1`] = `
+"import { ApplicationConfig } from '@angular/core';
+import { provideTheme } from '@rxap/ngx-theme';
+
+export const appConfig: ApplicationConfig = { providers: [
+  provideTheme(),
+] };
+"
+`;
+
+exports[`add-theme-provider-to-app-config migration should run successfully 2`] = `
+"import { ApplicationConfig } from '@angular/core';
+import { provideTheme } from '@rxap/ngx-theme';
+
+export const appConfig = { providers: [provideTheme()] };"
+`;

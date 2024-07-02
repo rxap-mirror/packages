@@ -4,6 +4,11 @@
       "version": "18.2.0",
       "description": "Ensure the provideUserTheme function is called in the app config if the application uses the LayoutComponent",
       "implementation": "./src/migrations/18.0.0/add-user-theme-provider-to-app-config/add-user-theme-provider-to-app-config"
+    },
+    "add-theme-provider-to-app-config": {
+      "version": "18.2.0",
+      "description": "Ensure the provideTheme function is called in the app config if the application uses the LayoutComponent",
+      "implementation": "./src/migrations/18.0.0/add-theme-provider-to-app-config/add-theme-provider-to-app-config"
     }
   }
 }
