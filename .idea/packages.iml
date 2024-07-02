@@ -11,6 +11,14 @@
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/authentication/compodoc" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/authentication/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/authorization/compodoc" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/authorization/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/bootstrap/compodoc" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/bootstrap/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/changelog/compodoc" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/changelog/docs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
