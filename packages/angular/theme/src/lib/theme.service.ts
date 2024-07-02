@@ -7,17 +7,11 @@ import {
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
 import { PubSubService } from '@rxap/ngx-pub-sub';
+import { ThemeDensity } from '@rxap/utilities';
 import {
   ColorPalette,
   ComputeColorPalette,
 } from './compute-color-palette';
-
-export enum ThemeDensity {
-  Normal = 0,
-  Compact = -1,
-  Dense = -2,
-  VeryDense = -3,
-}
 
 export interface ColorPaletteConfigWithName extends ColorPaletteConfig {
   name?: string;
