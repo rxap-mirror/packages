@@ -8,21 +8,28 @@ import {
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import { CreateProject } from '@rxap/ts-morph';
-import { unique } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  unique,
+} from '@rxap/utilities';
 import { AddDir } from '@rxap/workspace-ts-morph';
 import {
+  CoerceAssets,
   CoerceFile,
   Dependency,
   ForEachSecondaryEntryPoint,
   GetProjectRoot,
   GetRootPackageJson,
   HasProjectWithPackageName,
+  IsAngularProject,
   LoadProjectToPackageMapping,
+  NgPackageJson,
   PackageJson,
   PackageNameToProjectName,
   ProjectNameToPackageName,
   SkipNonPublishableProject,
   SkipProjectOptions,
+  UpdateJsonFile,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
 import { join, dirname } from 'path';
@@ -220,7 +227,7 @@ function getUsedPackagesFromSourceRoot(tree: Tree, projectSourceRoot: string) {
 }
 
 function fixDependenciesWithTsMorphProject(
-  projectGraph: ProjectGraph,
+  project: ProjectConfiguration,
   tree: Tree,
   projectRoot: string,
   packageJson: ProjectPackageJson,
@@ -336,6 +343,16 @@ function fixDependenciesWithTsMorphProject(
       }
       dependencies[packageName] = version;
     }
+  }
+
+  if (IsAngularProject(project)) {
+    if (!tree.exists(join(projectRoot, 'ng-package.json'))) {
+      throw new Error('The project is an angular project but does not have a ng-package.json file');
+    }
+    UpdateJsonFile(tree, (ngPackageJson: NgPackageJson) => {
+      ngPackageJson.allowedNonPeerDependencies ??= [];
+      CoerceArrayItems(ngPackageJson.allowedNonPeerDependencies, dependencyList);
+    }, join(projectRoot, 'ng-package.json'));
   }
 
   return {
@@ -756,7 +773,7 @@ export async function fixDependenciesGenerator(
 
       coerceTsLib(latestTsLibVersion, packageJson);
 
-      const peerReport = fixDependenciesWithTsMorphProject(projectGraph, tree, projectRoot, packageJson);
+      const peerReport = fixDependenciesWithTsMorphProject(project, tree, projectRoot, packageJson);
 
       removeSelfReferenceFromDependencies(projectName, packageJson);
 
