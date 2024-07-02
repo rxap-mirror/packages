@@ -21,6 +21,16 @@
       "input": "./packages/angular/layout",
       "glob": "generators.json",
       "output": "."
+    },
+    {
+      "input": "./packages/angular/layout",
+      "glob": "migrations.json",
+      "output": "."
+    },
+    {
+      "input": "./packages/angular/layout/src/migrations",
+      "glob": "**/!(*.ts|*.js|*.json)",
+      "output": "./src/migrations"
     }
   ],
   "allowedNonPeerDependencies": ["@nx/devkit"]

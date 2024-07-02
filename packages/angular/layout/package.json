@@ -43,6 +43,9 @@
     "rxap",
     "scope:compose"
   ],
+  "ng-update": {
+    "migrations": "./migrations.json"
+  },
   "nx-migrations": {
     "packageGroup": [
       {
