@@ -6,8 +6,18 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
-import { PubSubService } from '@rxap/ngx-pub-sub';
+import {
+  PubSubService,
+  RXAP_TOPICS,
+} from '@rxap/ngx-pub-sub';
+import { isDefined } from '@rxap/rxjs';
 import { ThemeDensity } from '@rxap/utilities';
+import {
+  debounceTime,
+  map,
+  Subscription,
+  tap,
+} from 'rxjs';
 import {
   ColorPalette,
   ComputeColorPalette,
@@ -42,7 +52,9 @@ export class ThemeService {
   public readonly density: WritableSignal<ThemeDensity>;
   public readonly typography: WritableSignal<string>;
 
-  private readonly darkModeMediaQuery: MediaQueryList;
+  protected readonly darkModeMediaQuery: MediaQueryList;
+
+  protected syncSubscription?: Subscription;
 
   constructor(private readonly mediaMatcher: MediaMatcher) {
     this.darkModeMediaQuery = this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)');
@@ -53,7 +65,6 @@ export class ThemeService {
     this.darkModeMediaQuery.addEventListener('change', (event) => {
       this.setDarkTheme(event.matches, true);
     });
-    this.restore();
   }
 
   public restore() {
@@ -70,6 +81,39 @@ export class ThemeService {
     this.restoreThemeName();
     this.restoreDensity();
     this.restoreTypography();
+
+    this.restoreFromPubSub();
+  }
+
+  protected restoreFromPubSub() {
+    if (this.syncSubscription) {
+      return;
+    }
+    this.syncSubscription = new Subscription();
+    this.syncSubscription.add(this.pubSub.subscribe<ThemeDensity>(RXAP_TOPICS.theme.density.restore).pipe(
+      debounceTime(1000),
+      map(event => event.data),
+      isDefined(),
+      tap(data => this.setDensity(data, true))
+    ).subscribe());
+    this.syncSubscription.add(this.pubSub.subscribe<string>(RXAP_TOPICS.theme.preset.restore).pipe(
+      debounceTime(1000),
+      map(event => event.data),
+      isDefined(),
+      tap(data => this.setTheme(data, true))
+    ).subscribe());
+    this.syncSubscription.add(this.pubSub.subscribe<string>(RXAP_TOPICS.theme.typography.restore).pipe(
+      debounceTime(1000),
+      map(event => event.data),
+      isDefined(),
+      tap(data => this.setTypography(data, true))
+    ).subscribe());
+    this.syncSubscription.add(this.pubSub.subscribe<boolean>(RXAP_TOPICS.theme.darkMode.restore).pipe(
+      debounceTime(1000),
+      map(event => event.data),
+      isDefined(),
+      tap(data => this.setDarkTheme(data, true))
+    ).subscribe());
   }
 
   private get darkModeLocalStorageKey() {
@@ -155,7 +199,7 @@ export class ThemeService {
       this.darkMode.set(darkMode);
       if (!silent) {
         localStorage.setItem(this.darkModeLocalStorageKey, String(darkMode));
-        this.pubSub.publish('rxap.theme.darkMode.change', darkMode);
+        this.pubSub.publish(RXAP_TOPICS.theme.darkMode.changed, darkMode);
       }
     }
   }
@@ -166,7 +210,7 @@ export class ThemeService {
       this.density.set(density);
       if (!silent) {
         localStorage.setItem(this.densityLocalStorageKey, String(density));
-        this.pubSub.publish('rxap.theme.density.change', density);
+        this.pubSub.publish(RXAP_TOPICS.theme.density.changed, density);
       }
     }
   }
@@ -177,7 +221,7 @@ export class ThemeService {
       this.typography.set(typography);
       if (!silent) {
         localStorage.setItem(this.typographyLocalStorageKey, typography);
-        this.pubSub.publish('rxap.theme.typography.change', typography);
+        this.pubSub.publish(RXAP_TOPICS.theme.typography.changed, typography);
       }
     }
   }
@@ -190,7 +234,7 @@ export class ThemeService {
       this.themeName.set(themeName);
       if (!silent) {
         localStorage.setItem(this.themeNameLocalStorageKey, themeName);
-        this.pubSub.publish('rxap.theme.preset.change', themeName);
+        this.pubSub.publish(RXAP_TOPICS.theme.preset.changed, themeName);
       }
     }
   }
