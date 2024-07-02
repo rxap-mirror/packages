@@ -4,12 +4,12 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.3.2",
+    "@rxap/ts-morph": "^1.4.3-dev.1",
+    "@rxap/workspace-utilities": "^19.4.0-dev.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.3.8",
-    "@rxap/ts-morph": "^1.4.3-dev.1",
-    "@rxap/workspace-utilities": "^19.4.0-dev.0"
+    "@nestjs/common": "^10.3.8"
   },
   "author": {
     "name": "Merzough Münker",
@@ -37,14 +37,6 @@
       {
         "package": "@nestjs/common",
         "version": "10.3.8"
-      },
-      {
-        "package": "@rxap/ts-morph",
-        "version": "1.4.3-dev.1"
-      },
-      {
-        "package": "@rxap/workspace-utilities",
-        "version": "19.4.0-dev.0"
       }
     ]
   },

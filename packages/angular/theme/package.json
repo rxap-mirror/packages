@@ -12,6 +12,8 @@
     "@ctrl/tinycolor": "^4.0.2",
     "@rxap/config": "^18.1.2",
     "@rxap/ngx-pub-sub": "^18.0.4",
+    "@rxap/rxjs": "^1.1.8-dev.0",
+    "@rxap/utilities": "^16.3.0-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -57,6 +59,10 @@
       {
         "package": "@rxap/ngx-pub-sub",
         "version": "18.0.4"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.1.8-dev.0"
       },
       {
         "package": "@rxap/utilities",

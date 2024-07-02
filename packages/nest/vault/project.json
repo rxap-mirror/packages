@@ -48,7 +48,8 @@
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
           "strict": true,
-          "onlyDependencies": false
+          "onlyDependencies": false,
+          "dependencies": [ "node-vault" ]
         }
       }
     },

@@ -40,7 +40,10 @@
       "options": {
         "options": {
           "strict": true,
-          "onlyDependencies": false
+          "onlyDependencies": false,
+          "dependencies": [
+            "handlebars"
+          ]
         },
         "generator": "@rxap/plugin-library:fix-dependencies"
       },
