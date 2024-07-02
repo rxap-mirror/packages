@@ -4,6 +4,10 @@ import {
 } from '@angular/core';
 import { PubSubService } from '@rxap/ngx-pub-sub';
 import {
+  IsThemeDensity,
+  ThemeDensity,
+} from '@rxap/utilities';
+import {
   debounceTime,
   Subscription,
   tap,
@@ -16,17 +20,6 @@ import { ThemeControllerSetRemoteMethod } from './openapi/remote-methods/theme-c
 import { ThemeControllerSetRequestBody } from './openapi/request-bodies/theme-controller-set.request-body';
 import { ThemeControllerGetResponse } from './openapi/responses/theme-controller-get.response';
 import { UserSettingsThemeDataSource } from './user-settings-theme.data-source';
-
-export enum ThemeDensity {
-  Normal = 0,
-  Compact = -1,
-  Dense = -2,
-  VeryDense = -3,
-}
-
-export function IsThemeDensity(value: any): value is ThemeDensity {
-  return Object.values(ThemeDensity).includes(value);
-}
 
 @Injectable({ providedIn: 'root' })
 export class UserSettingsThemeService<T = unknown> {
