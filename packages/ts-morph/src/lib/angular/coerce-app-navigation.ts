@@ -2,6 +2,7 @@ import {
   IconConfig,
   IsMaterialIcon,
   IsSvgIcon,
+  NormalizeIconConfig,
 } from '@rxap/utilities';
 import {
   SourceFile,
@@ -66,16 +67,17 @@ export function CoerceAppNavigation(sourceFile: SourceFile, options: CoerceAppNa
     };
     let icon: WriterFunction | null = null;
     if (item.icon) {
+      const normalizedIcon = NormalizeIconConfig(item.icon);
       const iconObj: Record<string, string | WriterFunction> = {};
-      if (item.icon.color) {
-        iconObj['color'] = w => w.quote(item.icon!.color!);
+      if (normalizedIcon.color) {
+        iconObj['color'] = w => w.quote(normalizedIcon.color!);
       }
-      if (IsSvgIcon(item.icon)) {
-        const name = item.icon.svgIcon;
+      if (IsSvgIcon(normalizedIcon)) {
+        const name = normalizedIcon.svgIcon;
         iconObj['svgIcon'] = w => w.quote(name);
       }
-      if (IsMaterialIcon(item.icon)) {
-        const name = item.icon.icon;
+      if (IsMaterialIcon(normalizedIcon)) {
+        const name = normalizedIcon.icon;
         iconObj['icon'] = w => w.quote(name);
       }
       icon = Writers.object(iconObj);

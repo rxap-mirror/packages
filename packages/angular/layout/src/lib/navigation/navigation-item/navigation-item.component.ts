@@ -34,6 +34,7 @@ import {
   RouterLinkActive,
 } from '@angular/router';
 import { IconDirective } from '@rxap/material-directives/icon';
+import { coerceArray } from '@rxap/utilities';
 import {
   debounceTime,
   Subscription,
@@ -137,8 +138,12 @@ export class NavigationItemComponent
               if (urlParts[0] === '') {
                 urlParts[0] = '/';
               }
-              for (let i = 0; i < this.item().routerLink.length; i++) {
-                if (urlParts[i] !== this.item().routerLink[i]) {
+              const routerLink = coerceArray(this.item().routerLink).map(fragment => fragment.split('/')).flat();
+              if (routerLink[0] === '') {
+                routerLink[0] = '/';
+              }
+              for (let i = 0; i < routerLink.length; i++) {
+                if (urlParts[i] !== routerLink[i]) {
                   isActive = false;
                   break;
                 }

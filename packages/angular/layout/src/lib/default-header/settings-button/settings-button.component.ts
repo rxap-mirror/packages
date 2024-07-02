@@ -2,6 +2,7 @@ import {
   CdkPortalOutlet,
   ComponentPortal,
 } from '@angular/cdk/portal';
+import { NgIf } from '@angular/common';
 import {
   Component,
   inject,
@@ -42,6 +43,7 @@ import { SettingsMenuItem } from '../../types';
     MatMenuItem,
     CdkPortalOutlet,
     IconDirective,
+    NgIf,
   ],
 })
 export class SettingsButtonComponent {

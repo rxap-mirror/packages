@@ -17,7 +17,7 @@
   </button>
   @for (item of customItems(); track item.label) {
     <button (click)="clickItem(item)" mat-menu-item>
-      <mat-icon [rxapIcon]="item.icon"></mat-icon>
+      <mat-icon *ngIf="item.icon as icon" [rxapIcon]="icon"></mat-icon>
       <span>{{ item.label }}</span>
     </button>
   }
