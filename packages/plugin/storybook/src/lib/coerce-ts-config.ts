@@ -1,10 +1,15 @@
 import { Tree } from '@nx/devkit';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
+  ForEachSecondaryEntryPoint,
   GetProjectRoot,
   UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
-import { join } from 'path';
+import {
+  dirname,
+  join,
+  relative,
+} from 'path';
 import { InitLibraryGeneratorSchema } from '../generators/init-library/schema';
 
 export function coerceTsConfig(tree: Tree, projectName: string, options: InitLibraryGeneratorSchema) {
@@ -20,6 +25,14 @@ export function coerceTsConfig(tree: Tree, projectName: string, options: InitLib
     tsConfig.compilerOptions.types ??= [];
     if (options.compodoc) {
       CoerceArrayItems(tsConfig.include, [ '../src/**/*.component.ts' ]);
+    }
+    for (const path of ForEachSecondaryEntryPoint(tree, projectRoot)) {
+      const folder = dirname(path);
+      const entryPoint = relative(projectRoot, folder);
+      CoerceArrayItems(tsConfig.include, [ `../${ entryPoint }/**/*.stories.ts` ]);
+      if (options.compodoc) {
+        CoerceArrayItems(tsConfig.include, [ `../${ entryPoint }/**/*.component.ts` ]);
+      }
     }
     CoerceArrayItems(tsConfig.compilerOptions.types, [ '@angular/localize' ]);
   }, {
