@@ -94,25 +94,25 @@ export class ThemeService {
       debounceTime(1000),
       map(event => event.data),
       isDefined(),
-      tap(data => this.setDensity(data, true))
+      tap(data => this.setDensity(data, false, false))
     ).subscribe());
     this.syncSubscription.add(this.pubSub.subscribe<string>(RXAP_TOPICS.theme.preset.restore).pipe(
       debounceTime(1000),
       map(event => event.data),
       isDefined(),
-      tap(data => this.setTheme(data, true))
+      tap(data => this.setTheme(data, false, false))
     ).subscribe());
     this.syncSubscription.add(this.pubSub.subscribe<string>(RXAP_TOPICS.theme.typography.restore).pipe(
       debounceTime(1000),
       map(event => event.data),
       isDefined(),
-      tap(data => this.setTypography(data, true))
+      tap(data => this.setTypography(data, false, false))
     ).subscribe());
     this.syncSubscription.add(this.pubSub.subscribe<boolean>(RXAP_TOPICS.theme.darkMode.restore).pipe(
       debounceTime(1000),
       map(event => event.data),
       isDefined(),
-      tap(data => this.setDarkTheme(data, true))
+      tap(data => this.setDarkTheme(data, false, false))
     ).subscribe());
   }
 
@@ -193,40 +193,46 @@ export class ThemeService {
 
   // region set theme configuration state
 
-  public setDarkTheme(darkMode: boolean, silent?: boolean): void {
+  public setDarkTheme(darkMode: boolean, silent = false, publish = true): void {
     this.applyDarkMode(darkMode);
     if (this.darkMode() !== darkMode) {
       this.darkMode.set(darkMode);
       if (!silent) {
         localStorage.setItem(this.darkModeLocalStorageKey, String(darkMode));
-        this.pubSub.publish(RXAP_TOPICS.theme.darkMode.changed, darkMode);
+        if (publish) {
+          this.pubSub.publish(RXAP_TOPICS.theme.darkMode.changed, darkMode);
+        }
       }
     }
   }
 
-  public setDensity(density: ThemeDensity, silent = false): void {
+  public setDensity(density: ThemeDensity, silent = false, publish = true): void {
     this.applyDensity(density);
     if (this.density() !== density) {
       this.density.set(density);
       if (!silent) {
         localStorage.setItem(this.densityLocalStorageKey, String(density));
-        this.pubSub.publish(RXAP_TOPICS.theme.density.changed, density);
+        if (publish) {
+          this.pubSub.publish(RXAP_TOPICS.theme.density.changed, density);
+        }
       }
     }
   }
 
-  public setTypography(typography: string, silent = false): void {
+  public setTypography(typography: string, silent = false, publish = true): void {
     this.applyTypography(typography);
     if (this.typography() !== typography) {
       this.typography.set(typography);
       if (!silent) {
         localStorage.setItem(this.typographyLocalStorageKey, typography);
-        this.pubSub.publish(RXAP_TOPICS.theme.typography.changed, typography);
+        if (publish) {
+          this.pubSub.publish(RXAP_TOPICS.theme.typography.changed, typography);
+        }
       }
     }
   }
 
-  public setTheme(themeName: string, silent = false) {
+  public setTheme(themeName: string, silent = false, publish = true) {
     this.applyTheme(themeName);
     this.density.set(this.getDensity());
     this.typography.set(this.getTypography());
@@ -234,7 +240,9 @@ export class ThemeService {
       this.themeName.set(themeName);
       if (!silent) {
         localStorage.setItem(this.themeNameLocalStorageKey, themeName);
-        this.pubSub.publish(RXAP_TOPICS.theme.preset.changed, themeName);
+        if (publish) {
+          this.pubSub.publish(RXAP_TOPICS.theme.preset.changed, themeName);
+        }
       }
     }
   }
