@@ -26,6 +26,7 @@ export default appRoutes;
 
 exports[`generateMonolithic() should generate a monolithic application configuration 3`] = `
 "import { provideLayout, withNavigationConfig, withDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';
+import { provideUserTheme } from '@rxap/ngx-user';
 import { APP_NAVIGATION } from './app.navigation';
 import { Route } from '@angular/router';
 
@@ -40,6 +41,7 @@ export const ROUTES: Route[] = [
         }
       ],
       providers: [
+        provideUserTheme(),
         provideLayout(
           withNavigationConfig(APP_NAVIGATION),
           withDefaultHeaderComponent(),
@@ -88,6 +90,7 @@ export default appRoutes;
 
 exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 3`] = `
 "import { provideLayout, withDefaultHeaderComponent, MinimalLayoutComponent } from '@rxap/layout';
+import { provideUserTheme } from '@rxap/ngx-user';
 import { Route } from '@angular/router';
 
 export const ROUTES: Route[] = [
@@ -101,6 +104,7 @@ export const ROUTES: Route[] = [
         }
       ],
       providers: [
+        provideUserTheme(),
         provideLayout(
           withDefaultHeaderComponent(),
         )
