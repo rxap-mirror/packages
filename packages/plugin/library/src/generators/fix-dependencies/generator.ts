@@ -25,9 +25,10 @@ import {
   SkipProjectOptions,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
-import { join } from 'path';
+import { join, dirname } from 'path';
 import { Project } from 'ts-morph';
 import { FixDependenciesGeneratorSchema } from './schema';
+import 'colors';
 
 function resolveProjectDependencies(
   projectGraph: ProjectGraph,
@@ -248,7 +249,10 @@ function fixDependenciesWithTsMorphProject(
     }
   }
 
-  for (const path of ForEachSecondaryEntryPoint(tree, projectRoot)) {
+  console.log('Check secondary entry points'.cyan);
+  for (const ngPackageJsonFilePath of ForEachSecondaryEntryPoint(tree, projectRoot)) {
+    const path = dirname(ngPackageJsonFilePath);
+    console.log('Check secondary entry point: ' + path.blue);
     if (tree.exists(join(path, 'src'))) {
       const entryPointSourceRoot = join(path, 'src');
       if (tree.exists(join(entryPointSourceRoot, 'lib'))) {
