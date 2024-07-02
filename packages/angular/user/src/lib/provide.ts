@@ -2,7 +2,7 @@ import {
   APP_INITIALIZER,
   Provider,
 } from '@angular/core';
-import { UserSettingsThemeService } from '@rxap/ngx-user';
+import { UserSettingsThemeService } from './user-settings-theme.service';
 
 export function provideUserTheme(): Provider[] {
   return [
