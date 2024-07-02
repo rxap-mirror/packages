@@ -84,5 +84,6 @@ export * from './lib/range';
 export * from './lib/refreshable';
 export * from './lib/set-object-value';
 export * from './lib/strings';
+export * from './lib/theme-density';
 export * from './lib/try-log';
 // endregion
