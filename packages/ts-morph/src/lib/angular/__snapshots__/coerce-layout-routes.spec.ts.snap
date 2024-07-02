@@ -2,6 +2,7 @@
 
 exports[`CoerceLayoutRouters should coerce layout routers 1`] = `
 "import { provideLayout, withNavigationConfig, withDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';
+import { provideUserTheme } from '@rxap/ngx-user';
 import { StatusCheckGuard } from '@rxap/ngx-status-check';
 import { APP_NAVIGATION } from './app.navigation';
 import { Route } from '@angular/router';
@@ -17,6 +18,7 @@ export const ROUTES: Route[] = [
         }
       ],
       providers: [
+        provideUserTheme(),
         provideLayout(
           withNavigationConfig(APP_NAVIGATION),
           withDefaultHeaderComponent(),

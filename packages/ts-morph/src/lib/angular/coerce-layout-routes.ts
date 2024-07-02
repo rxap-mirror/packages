@@ -44,7 +44,7 @@ export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayout
       w.write('[');
       w.indent(() => {
         if (withUserTheme) {
-          w.write('provideUserTheme(),');
+          w.writeLine('provideUserTheme(),');
         }
         w.write('provideLayout(');
         if (withNavigation) {
