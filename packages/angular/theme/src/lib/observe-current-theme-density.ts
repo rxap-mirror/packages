@@ -1,5 +1,5 @@
+import { ThemeDensity } from '@rxap/utilities';
 import { Observable } from 'rxjs';
-import { ThemeDensity } from './theme.service';
 
 export function ObserveCurrentThemeDensity(): Observable<ThemeDensity> {
   return new Observable((subscriber) => {
