@@ -4,12 +4,13 @@ import {
 } from '@nx/devkit';
 import {
   GetProjectRoot,
+  IsAngularProject,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitWithMigrationsGeneratorSchema } from './schema';
 import { updatePackageJson } from './update-package-json';
-import { updateProjectTargets } from './update-project-targets';
+import { coerceAssetsConfiguration } from './coerce-assets-configuration';
 
 export function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitWithMigrationsGeneratorSchema) {
   console.log(`init library with migration project: ${ projectName }`);
@@ -21,7 +22,7 @@ export function initProject(tree: Tree, projectName: string, project: ProjectCon
     migrations.generators ??= {};
   }, join(projectRoot, 'migrations.json'), { create: true });
 
-  updateProjectTargets(tree, projectName, project);
+  coerceAssetsConfiguration(tree, projectName, project);
 
   updatePackageJson(tree, projectName, project);
 
