@@ -15,6 +15,18 @@
     "../src/**/*.stories.mdx",
     "*.js",
     "*.ts",
-    "../src/**/*.component.ts"
+    "../src/**/*.component.ts",
+    "../button/**/*.stories.ts",
+    "../button/**/*.component.ts",
+    "../card/**/*.stories.ts",
+    "../card/**/*.component.ts",
+    "../expansion/**/*.stories.ts",
+    "../expansion/**/*.component.ts",
+    "../form-field/**/*.stories.ts",
+    "../form-field/**/*.component.ts",
+    "../icon/**/*.stories.ts",
+    "../icon/**/*.component.ts",
+    "../tabs/**/*.stories.ts",
+    "../tabs/**/*.component.ts"
   ]
 }
