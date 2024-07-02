@@ -21,19 +21,7 @@
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "packages/angular/user/ng-package.json",
-        "tailwindConfig": "packages/angular/user/tailwind.config.js",
-        "assets": [
-          {
-            "input": "./packages/angular/user",
-            "glob": "migrations.json",
-            "output": "."
-          },
-          {
-            "input": "./packages/angular/user/src/migrations",
-            "glob": "**/!(*.ts|*.js|*.json)",
-            "output": "./src/migrations"
-          }
-        ]
+        "tailwindConfig": "packages/angular/user/tailwind.config.js"
       },
       "configurations": {
         "production": {
