@@ -30,12 +30,10 @@ import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.
 })
 export class DefaultHeaderComponent {
 
-  public readonly layoutComponentService = inject(LayoutService);
+  private readonly layoutComponentService = inject(LayoutService);
 
   public readonly collapsable = computed(() => this.layoutComponentService.collapsable());
   public readonly opened = computed(() => this.layoutComponentService.opened());
-
-  private readonly userProfileService: UserProfileDataSource = inject(UserProfileDataSource);
-  public readonly profile = toSignal(this.userProfileService.connect('user-profile'), { initialValue: null });
+  public readonly profile = toSignal(inject(UserProfileDataSource).connect('user-profile'), { initialValue: null });
 
 }
