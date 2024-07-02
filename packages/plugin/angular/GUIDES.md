@@ -1,5 +1,55 @@
 # Application
 
+## Standalone
+
+Use the nx generate to create a new application:
+
+```bash
+NAME=app
+nx g @nx/angular:application \
+  --name=user-interface-$NAME \
+  --addTailwind \
+  --directory user-interface/$NAME \
+  --projectNameAndRootFormat as-provided \
+  --style scss \
+  --tags angular
+```
+
+Initialize the application:
+
+```bash
+nx g @rxap/plugin-angular:init-application \
+  --project user-interface-$NAME \
+  --cleanup \
+  --generateMain \
+  --overwrite
+```
+
+## Feature Library
+
+Use the nx generate to create a new feature library:
+
+```bash
+NAME=feature
+nx g @nx/angular:library \
+  --name=user-interface-feature-$NAME \
+  --addTailwind \
+  --buildable \
+  --directory user-interface/feature/$NAME \
+  --projectNameAndRootFormat as-provided \
+  --style scss \
+  --tags angular
+``` 
+
+Initialize the feature library:
+
+```bash
+nx g @rxap/plugin-angular:init-feature-library \
+  --project user-interface-feature-$NAME \
+  --overwrite \
+  --routes
+```
+
 ## Module Federation
 
 ### Host
