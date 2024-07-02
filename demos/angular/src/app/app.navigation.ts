@@ -154,7 +154,3 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [
   }),
 ];
 
-export const APP_NAVIGATION_PROVIDER = {
-  provide: RXAP_NAVIGATION_CONFIG,
-  useValue: APP_NAVIGATION,
-};

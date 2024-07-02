@@ -31,13 +31,6 @@ export function CoerceAppNavigation(sourceFile: SourceFile, options: CoerceAppNa
     initializer: '() => []',
   });
 
-  CoerceVariableDeclaration(sourceFile, 'APP_NAVIGATION_PROVIDER', {
-    initializer: Writers.object({
-      provide: 'RXAP_NAVIGATION_CONFIG',
-      useValue: 'APP_NAVIGATION',
-    }),
-  });
-
   CoerceImports(sourceFile, [
     {
       namedImports: [ 'NavigationWithInserts', 'RXAP_NAVIGATION_CONFIG' ],

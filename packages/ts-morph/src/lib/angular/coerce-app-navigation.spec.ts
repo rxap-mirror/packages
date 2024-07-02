@@ -19,10 +19,6 @@ describe('CoerceAppNavigation', () => {
     expect(sourceFile.getText()).toEqual(`import { NavigationWithInserts, RXAP_NAVIGATION_CONFIG } from '@rxap/layout';
 
 export const APP_NAVIGATION: () => NavigationWithInserts = () => [];
-export const APP_NAVIGATION_PROVIDER = {
-    provide: RXAP_NAVIGATION_CONFIG,
-    useValue: APP_NAVIGATION
-  };
 `);
 
   });
@@ -38,10 +34,6 @@ export const APP_NAVIGATION_PROVIDER = {
     expect(sourceFile.getText()).toEqual(`import { NavigationWithInserts, RXAP_NAVIGATION_CONFIG } from '@rxap/layout';
 
 export const APP_NAVIGATION: () => NavigationWithInserts = () => [];
-export const APP_NAVIGATION_PROVIDER = {
-    provide: RXAP_NAVIGATION_CONFIG,
-    useValue: APP_NAVIGATION
-  };
 `);
 
   });
@@ -65,10 +57,6 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [{
     routerLink: ['home'],
     label: 'Home'
   }];
-export const APP_NAVIGATION_PROVIDER = {
-    provide: RXAP_NAVIGATION_CONFIG,
-    useValue: APP_NAVIGATION
-  };
 `);
 
   });
@@ -100,10 +88,6 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [{
     routerLink: ['home'],
     label: 'Home'
   }];
-export const APP_NAVIGATION_PROVIDER = {
-    provide: RXAP_NAVIGATION_CONFIG,
-    useValue: APP_NAVIGATION
-  };
 `);
 
   });
