@@ -1,5 +1,7 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Provider } from '@angular/core';
+import { DataSource } from '@rxap/pattern';
+import { Constructor } from '@rxap/utilities';
 import { DefaultHeaderComponent } from './default-header/default-header.component';
 import { ExternalAppsService } from './external-apps.service';
 import { FooterService } from './footer.service';
@@ -17,6 +19,7 @@ import {
   RXAP_RELEASE_INFO_MODULE,
   RXAP_SETTINGS_MENU_ITEM,
   RXAP_SETTINGS_MENU_ITEM_COMPONENT,
+  RXAP_USER_PROFILE_DATA_SOURCE,
 } from './tokens';
 import {
   ExternalApp,
@@ -117,4 +120,18 @@ export function withDefaultHeaderComponent(): Provider {
     provide: RXAP_HEADER_COMPONENT,
     useValue: DefaultHeaderComponent,
   };
+}
+
+export function withUserProfileDataSource(dataSource: Constructor<DataSource>, useClass = false): Provider {
+  if (useClass) {
+    return {
+      provide: RXAP_USER_PROFILE_DATA_SOURCE,
+      useClass: dataSource
+    };
+  } else {
+    return {
+      provide: RXAP_USER_PROFILE_DATA_SOURCE,
+      useExisting: dataSource
+    };
+  }
 }

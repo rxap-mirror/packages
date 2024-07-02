@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add-with-user-profile-provider migration should run successfully 1`] = `
+"export const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [],
+    providers: []
+  }
+];
+
+export default ROUTES;"
+`;
+
+exports[`add-with-user-profile-provider migration should run successfully 2`] = `
+"import { UserProfileDataSource } from '@rxap/ngx-user';
+import { withUserProfileDataSource } from '@rxap/layout';
+
+export const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [],
+    providers: [
+      provideLayout(withUserProfileDataSource(UserProfileDataSource),)
+    ]
+  }
+];
+
+export default ROUTES;"
+`;
+
+exports[`add-with-user-profile-provider migration should run successfully 3`] = `
+"import { UserProfileDataSource } from '@rxap/ngx-user';
+import { withUserProfileDataSource } from '@rxap/layout';
+
+export const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [],
+    providers: [
+      provideLayout(withUserProfileDataSource(UserProfileDataSource),
+        withNavigationConfig(APP_NAVIGATION),
+        withDefaultHeaderComponent()
+      )
+    ]
+  }
+];
+
+export default ROUTES;"
+`;

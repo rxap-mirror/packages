@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LayoutService } from '../layout.service';
-import { UserProfileDataSource } from '@rxap/ngx-user';
+import { RXAP_USER_PROFILE_DATA_SOURCE } from '../tokens';
 import { AppsButtonComponent } from './apps-button/apps-button.component';
 import { SettingsButtonComponent } from './settings-button/settings-button.component';
 import { SidenavToggleButtonComponent } from './sidenav-toggle-button/sidenav-toggle-button.component';
@@ -34,6 +34,6 @@ export class DefaultHeaderComponent {
 
   public readonly collapsable = computed(() => this.layoutComponentService.collapsable());
   public readonly opened = computed(() => this.layoutComponentService.opened());
-  public readonly profile = toSignal(inject(UserProfileDataSource).connect('user-profile'), { initialValue: null });
+  public readonly profile = toSignal(inject(RXAP_USER_PROFILE_DATA_SOURCE).connect('user-profile'), { initialValue: null });
 
 }

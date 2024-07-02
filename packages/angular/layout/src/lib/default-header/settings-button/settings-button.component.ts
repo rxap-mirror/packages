@@ -20,10 +20,12 @@ import {
 } from '@angular/material/menu';
 import { IconDirective } from '@rxap/material-directives/icon';
 import {
-  ThemeDensity,
   ThemeService,
 } from '@rxap/ngx-theme';
-import { coerceArray } from '@rxap/utilities';
+import {
+  coerceArray,
+  ThemeDensity,
+} from '@rxap/utilities';
 import {
   RXAP_SETTINGS_MENU_ITEM,
   RXAP_SETTINGS_MENU_ITEM_COMPONENT,

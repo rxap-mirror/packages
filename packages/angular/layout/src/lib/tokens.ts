@@ -1,7 +1,11 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { InjectionToken } from '@angular/core';
 import { LogoConfig } from '@rxap/config';
-import { MethodWithParameters } from '@rxap/pattern';
+import { staticDataSource } from '@rxap/data-source';
+import {
+  DataSource,
+  MethodWithParameters,
+} from '@rxap/pattern';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
   ExternalApp,
@@ -31,6 +35,11 @@ export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameF
                                      ) ?? null,
   },
 );
+
+export const RXAP_USER_PROFILE_DATA_SOURCE = new InjectionToken<DataSource>('rxap/layout/user-profile-data-source', {
+  providedIn: 'root',
+  factory: () => staticDataSource(null),
+});
 
 export const RXAP_EXTERNAL_APP = new InjectionToken<ExternalApp>('rxap/layout/external-app');
 
