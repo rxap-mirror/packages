@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@18.0.4...@rxap/forms@18.0.5-dev.0) (2024-07-03)
+
+### Bug Fixes
+
+- support input context ([5680909](https://gitlab.com/rxap/packages/commit/5680909cec2a4faea116af3b8e8931a4b02436a8))
+
 ## [18.0.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@18.0.4-dev.0...@rxap/forms@18.0.4) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/forms

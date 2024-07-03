@@ -14,7 +14,7 @@
     "@angular/material": "^18.0.0",
     "@rxap/data-source": "^18.1.2",
     "@rxap/form-system": "^18.1.1",
-    "@rxap/forms": "^18.0.4",
+    "@rxap/forms": "^18.0.5-dev.0",
     "@rxap/material-directives": "^18.1.0-dev.0",
     "@rxap/material-form-system": "^18.0.4",
     "@rxap/material-table-system": "^18.0.5",
@@ -120,7 +120,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "18.0.4"
+        "version": "18.0.5-dev.0"
       },
       {
         "package": "@rxap/material-directives",
