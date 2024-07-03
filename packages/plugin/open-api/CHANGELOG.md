@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.4-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.4-dev.6...@rxap/plugin-open-api@19.1.4-dev.7) (2024-07-03)
+
+### Bug Fixes
+
+- generate index files by default ([688c875](https://gitlab.com/rxap/packages/commit/688c87551a6f93d09e52e37adb779757697f47c0))
+
 ## [19.1.4-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.4-dev.5...@rxap/plugin-open-api@19.1.4-dev.6) (2024-07-03)
 
 **Note:** Version bump only for package @rxap/plugin-open-api
