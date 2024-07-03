@@ -1,4 +1,6 @@
 import { ProjectConfiguration } from '@nx/devkit';
+import { join } from 'path';
+import 'colors';
 
 /**
  * Retrieves the cleaned build output path for a given project configuration.
@@ -20,7 +22,8 @@ import { ProjectConfiguration } from '@nx/devkit';
 export function GetBuildOutputForProject(project: ProjectConfiguration) {
   project.targets ??= {};
   if (!project.targets['build']) {
-    throw new Error(`The project ${ project.name } has no build target. Can not determine the build output path.`);
+    console.log(`The project '${ project.name }' has no build target. Use project root with dist folder as output path.`.yellow);
+    return join('dist', project.root);
   }
   const outputs = project.targets['build'].outputs;
   if (!outputs || !outputs.length) {

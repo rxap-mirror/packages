@@ -9,6 +9,7 @@ import {
   Strategy,
 } from '@rxap/workspace-utilities';
 import { InitApplicationGeneratorSchema } from './schema';
+import { join } from 'path';
 
 export function updateProjectTargets(
   tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
@@ -17,11 +18,7 @@ export function updateProjectTargets(
     CoerceTarget(project, 'generate-package-json', {});
   }
 
-  const outputPath = project.targets?.build?.options?.outputPath;
-
-  if (!outputPath) {
-    throw new Error(`No outputPath found for project ${ projectName }`);
-  }
+  const outputPath = project.targets?.build?.options?.outputPath ?? join('dist', project.root);
 
   if (options.swagger && !options.standalone) {
     CoerceTarget(project, 'generate-open-api', {
