@@ -27,7 +27,8 @@ export function GetBuildOutputForProject(project: ProjectConfiguration) {
   }
   const outputs = project.targets['build'].outputs;
   if (!outputs || !outputs.length) {
-    throw new Error(`The project ${ project.name } has no build outputs. Can not determine the build output path.`);
+    console.log(`The project ${ project.name } has no build outputs. Can not determine the build output path.`.yellow);
+    return join('dist', project.root);
   }
   const [ output ] = outputs;
   const cleanOutput = output

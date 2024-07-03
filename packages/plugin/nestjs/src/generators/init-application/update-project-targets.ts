@@ -8,8 +8,8 @@ import {
   GetTarget,
   Strategy,
 } from '@rxap/workspace-utilities';
-import { InitApplicationGeneratorSchema } from './schema';
 import { join } from 'path';
+import { InitApplicationGeneratorSchema } from './schema';
 
 export function updateProjectTargets(
   tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
@@ -35,7 +35,18 @@ export function updateProjectTargets(
   }
 
   CoerceTarget(project, 'build', {
+    executor: '@nx/webpack:webpack',
+    outputs: [ '{options.outputPath}'],
+    defaultConfiguration: 'production',
     options: {
+      target: 'node',
+      compiler: 'tsc',
+      outputPath: join('dist', project.root),
+      main: join(project.root, 'src/main.ts'),
+      tsConfig: join(project.root, 'tsconfig.app.json'),
+      assets: [ join(project.root, 'src/assets') ],
+      isolatedConfig: true,
+      webpackConfig: join(project.root, 'webpack.config.js'),
       generatePackageJson: true,
     },
     configurations: {
