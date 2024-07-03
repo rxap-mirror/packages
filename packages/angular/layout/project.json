@@ -103,7 +103,7 @@
       }
     },
     "build-storybook": {
-      "executor": "@storybook/angular:build:development-storybook",
+      "executor": "@storybook/angular:build-storybook",
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/angular-layout",
