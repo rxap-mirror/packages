@@ -99,6 +99,7 @@ export * from './lib/json-file';
 export * from './lib/ng-package-json';
 export * from './lib/nx-json-file';
 export * from './lib/package-json-file';
+export * from './lib/process-build-args';
 export * from './lib/project-package-name-mapping';
 export * from './lib/project-utilities';
 export * from './lib/remove-ignore-pattern';

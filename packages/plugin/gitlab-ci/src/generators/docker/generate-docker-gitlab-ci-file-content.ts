@@ -10,10 +10,10 @@ import {
   GetWorkspaceName,
   IsNestJsProject,
   IsStandaloneWorkspace,
+  ProcessBuildArgs,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
 import { stringify } from 'yaml';
-import { processBuildArgs } from '../../lib/utilities';
 import { DockerGeneratorSchema } from './schema';
 import { skipProject } from './skip-project';
 
@@ -131,7 +131,7 @@ export function buildDockerMatrix(
     }
 
     if (Array.isArray(dockerTargetOptions.buildArgList)) {
-      const buildArgList = processBuildArgs(
+      const buildArgList = ProcessBuildArgs(
         dockerTargetOptions.buildArgList,
         matrixItem.PROJECT_NAME,
         project.sourceRoot,

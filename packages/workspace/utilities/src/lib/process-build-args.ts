@@ -4,13 +4,13 @@ import {
 } from 'fs';
 import { join } from 'path';
 
-export function processBuildArgs(
+export function ProcessBuildArgs(
   buildArgList: string[] = [],
   projectName: string,
   projectSourceRoot: string,
-  processEnv: Record<string, string> = process.env,
+  processEnv: Record<string, unknown> = process.env,
   existsFileFn: (path: string) => boolean = existsSync,
-  readFileSyncFn: (path: string, encoding: BufferEncoding) => string = readFileSync,
+  readFileSyncFn: (path: string, encoding: BufferEncoding) => string | null = readFileSync,
 ) {
   const processedBuildArgList: string[] = [];
   processedBuildArgList.push(`PROJECT_NAME=${ projectName }`);
@@ -28,7 +28,7 @@ export function processBuildArgs(
         if (!existsFileFn(join(projectSourceRoot, filePath))) {
           throw new Error(`File '${ filePath }' does not exist in project source root '${ projectSourceRoot }'`);
         }
-        const content = readFileSyncFn(join(projectSourceRoot, filePath), 'utf-8');
+        const content = readFileSyncFn(join(projectSourceRoot, filePath), 'utf-8')!;
         const match = content.match(new RegExp(regex));
         if (!match) {
           throw new Error(
