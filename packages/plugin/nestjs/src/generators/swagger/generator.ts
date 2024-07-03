@@ -7,6 +7,7 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
+import { GuessOutputPath } from '@rxap/plugin-utilities';
 import {
   CoerceImports,
   CoerceVariableDeclaration,
@@ -16,10 +17,12 @@ import {
   AddPackageJsonDependency,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
+  GetBuildOutputForProject,
   GetProjectRoot,
   GetTarget,
   GetTargetOptions,
   GetWorkspaceName,
+  HasTarget,
   IsStandaloneWorkspace,
   Strategy,
 } from '@rxap/workspace-utilities';
@@ -77,19 +80,16 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, overwrit
 
 function updateProjectTargets(project: ProjectConfiguration, options: SwaggerGeneratorSchema) {
 
-  const buildTarget = GetTarget(project, 'build');
-  const buildTargetOptions = GetTargetOptions(buildTarget);
-
-  if (!buildTargetOptions['outputPath']) {
-    throw new Error('The selected project has the build target without the option outputPath');
+  let tsConfig = join(project.root, 'tsconfig.app.json');
+  if ('build' in (project.targets ?? {})) {
+    const buildTarget = GetTarget(project, 'build');
+    const buildTargetOptions = GetTargetOptions(buildTarget);
+    if (buildTargetOptions['tsConfig']) {
+      tsConfig = buildTargetOptions['tsConfig'] as string;
+    }
   }
-  if (!buildTargetOptions['tsConfig']) {
-    throw new Error('The selected project has the build target without the option tsConfig');
-  }
 
-  const outputPath = (
-    buildTargetOptions['outputPath'] as string
-  ).replace('dist/', 'dist/swagger/');
+  const outputPath = GetBuildOutputForProject(project).replace('dist/', 'dist/swagger/');
 
   CoerceTarget(project, 'swagger-build', {
     options: {
@@ -99,7 +99,7 @@ function updateProjectTargets(project: ProjectConfiguration, options: SwaggerGen
       compiler: `tsc`,
       webpackConfig: `${ project.root }/webpack.config.js`,
       transformers: [ '@nestjs/swagger/plugin' ],
-      tsConfig: buildTargetOptions['tsConfig'] as string,
+      tsConfig,
       fileReplacements: [
         {
           replace: `${ project.sourceRoot }/environments/environment.ts`,
