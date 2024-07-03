@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.3-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.3-dev.3...@rxap/plugin-workspace@19.1.3-dev.4) (2024-07-03)
+
+### Bug Fixes
+
+- support getting service port from main.ts ([bad904a](https://gitlab.com/rxap/packages/commit/bad904a16d1f6d1ff1f1bbfa88e81ea360ce6179))
+
 ## [19.1.3-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.3-dev.2...@rxap/plugin-workspace@19.1.3-dev.3) (2024-07-03)
 
 ### Bug Fixes
