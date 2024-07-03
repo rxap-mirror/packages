@@ -25,16 +25,16 @@
           type="button">
     <mat-icon>preview</mat-icon>
   </button>
-  <button (click)="download()" *ngIf="allowDownload && value" class="grow-0" i18n-matTooltip mat-icon-button
+  <button (click)="download()" *ngIf="allowDownload() && value" class="grow-0" i18n-matTooltip mat-icon-button
           matTooltip="Download file" type="button">
     <mat-icon svgIcon="download"></mat-icon>
   </button>
 </div>
 
 <ng-template
-  (backdropClick)="isOpen = false"
+  (backdropClick)="isImageUploaded.set(false)"
   [cdkConnectedOverlayHasBackdrop]="true"
-  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayOpen]="isImageUploaded()"
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayPositions]="positions"
   cdkConnectedOverlay
@@ -44,4 +44,4 @@
   </div>
 </ng-template>
 
-<input #fileInput (change)="onFileInputChange($event)" [accept]="accept" [id]="id" class="hidden" type="file">
+<input #fileInput (change)="onFileInputChange($event)" [accept]="accept()" [id]="id" class="hidden" type="file">

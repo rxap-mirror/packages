@@ -16,9 +16,12 @@ import {
   EventEmitter,
   HostListener,
   inject,
+  input,
   Input,
   OnDestroy,
+  output,
   Output,
+  signal,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -69,14 +72,13 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
 
   static nextId = 0;
 
-  @Input()
-  public accept = '**/**';
+  public accept = input('**/**');
 
-  @Output()
-  public uploaded = new EventEmitter<File>();
-  @Input()
-  public disabled = false;
-  public isOpen = false;
+  public allowDownload = input(false);
+
+  public uploaded = output<File>();
+
+  public isImageUploaded = signal(false);
   public positions: ConnectedPosition[] = [
     {
       originY: 'bottom',
@@ -87,27 +89,46 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     },
   ];
   touched = false;
+
+  // region MatFormFieldControl
+  @Input()
+  public disabled = false;
   autofilled?: boolean | undefined;
   controlType?: string | undefined = 'rxap-upload-button';
   errorState = false;
   focused = false;
   @Input()
   public required = false;
-  @Input()
-  public allowDownload = false;
   shouldLabelFloat = true;
   public stateChanges = new Subject<void>();
   userAriaDescribedBy?: string | undefined;
   public value: File | null = null;
+  public readonly ngControl = inject(NgControl, {
+    optional: true,
+    self: true,
+  });
+  private _placeholder!: string;
+  get placeholder() {
+    return this._placeholder;
+  }
+  @Input()
+  set placeholder(plh) {
+    this._placeholder = plh;
+    this.stateChanges.next();
+  }
+  public get empty(): boolean {
+    return this.value === null;
+  }
+  public get id(): string {
+    return `rxap-upload-button-${ UploadButtonComponent.nextId++ }`;
+  }
+  // endregion
+
   private onChange?: (file: File) => any;
   private onTouched?: () => any;
 
   public readonly snackBar = inject(MatSnackBar);
 
-  public readonly ngControl = inject(NgControl, {
-    optional: true,
-    self: true,
-  });
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly _elementRef = inject(ElementRef);
   private readonly document = inject(DOCUMENT);
@@ -122,26 +143,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     return !!this.value?.type.match(/^image\//);
   }
 
-  private _placeholder!: string;
-
-  get placeholder() {
-    return this._placeholder;
-  }
-
-  @Input()
-  set placeholder(plh) {
-    this._placeholder = plh;
-    this.stateChanges.next();
-  }
-
-  public get empty(): boolean {
-    return this.value === null;
-  }
-
-  public get id(): string {
-    return `rxap-upload-button-${ UploadButtonComponent.nextId++ }`;
-  }
-
+  // region MatFormFieldControl
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   public onContainerClick(event: MouseEvent): void {
 
@@ -169,6 +171,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   public setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
   }
+  // endregion
 
   public writeValue(file: File): void {
     this.value = file;
@@ -176,11 +179,8 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   }
 
   public openOverlay() {
-    if (this.value) {
-      if (this.value.type.match(/^image\//)) {
-        this.isOpen = true;
-        this.cdr.detectChanges();
-      }
+    if (this.value?.type.match(/^image\//)) {
+      this.isImageUploaded.set(true);
     }
   }
 
