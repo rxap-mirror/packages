@@ -1,3 +1,4 @@
+import { CoercePrefix } from '@rxap/utilities';
 import {
   existsSync,
   readFileSync,
@@ -41,6 +42,19 @@ export function ProcessBuildArgs(
       processedBuildArgList.push(`${ buildArg }=${ processEnv[buildArg] }`);
     } else {
       console.warn(`Build arg value for '${ buildArg }' is not defined`);
+    }
+  }
+  const pathPrefixBuildArgIndex = processedBuildArgList.findIndex((arg) => arg.startsWith('PATH_PREFIX='));
+  if (pathPrefixBuildArgIndex !== -1) {
+    const pathPrefixBuildArg = processedBuildArgList[pathPrefixBuildArgIndex];
+    let pathPrefix = pathPrefixBuildArg.split('=')[1];
+    if (pathPrefix) {
+      pathPrefix = CoercePrefix(pathPrefix, '/');
+    }
+    if (!pathPrefix || pathPrefix === '/') {
+      processedBuildArgList.splice(pathPrefixBuildArgIndex, 1);
+    } else {
+      processedBuildArgList[pathPrefixBuildArgIndex] = `PATH_PREFIX=${ pathPrefix }`;
     }
   }
   return processedBuildArgList;

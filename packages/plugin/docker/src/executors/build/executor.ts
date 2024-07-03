@@ -3,6 +3,7 @@ import {
   GetProjectSourceRoot,
   GuessOutputPathFromContext,
 } from '@rxap/plugin-utilities';
+import { ProcessBuildArgs } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   dockerBuild,
@@ -10,7 +11,6 @@ import {
   getFallBackImageTag,
   getGitlabRegistryDestination,
   loginToRegistry,
-  processBuildArgs,
 } from '../../lib/utilities';
 import { BuildExecutorSchema } from './schema';
 
@@ -95,7 +95,7 @@ export default async function runExecutor(
     options.context,
     destinationList,
     options.dockerfile,
-    processBuildArgs(options.buildArgList, context.projectName, GetProjectSourceRoot(context)),
+    ProcessBuildArgs(options.buildArgList, context.projectName, GetProjectSourceRoot(context)),
   );
 
   if (Number(result)) {
