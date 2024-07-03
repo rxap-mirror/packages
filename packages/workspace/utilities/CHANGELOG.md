@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.4.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.4.0-dev.3...@rxap/workspace-utilities@19.4.0-dev.4) (2024-07-03)
+
+### Bug Fixes
+
+- support plugin based build targets ([d18058f](https://gitlab.com/rxap/packages/commit/d18058f9673cf3f61abe59ccad18e8370d79c636))
+
 # [19.4.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.4.0-dev.2...@rxap/workspace-utilities@19.4.0-dev.3) (2024-07-03)
 
 ### Bug Fixes
