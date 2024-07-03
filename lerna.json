@@ -28,7 +28,12 @@
         "gitlab-ci.yml",
         "**/project.json",
         "**/nx.json",
-        "**/.gitignore"
+        "**/.gitignore",
+        "**/coverage/**",
+        "**/docs/**",
+        "**/angular/**/compodoc/**",
+        "**/.storybook/**",
+        "**/cypress/**"
       ]
     }
   }
