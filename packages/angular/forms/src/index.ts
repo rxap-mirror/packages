@@ -62,4 +62,5 @@ export * from './lib/form-group';
 export * from './lib/model';
 export * from './lib/tokens';
 export * from './lib/types';
+export * from './lib/utilities';
 // endregion
