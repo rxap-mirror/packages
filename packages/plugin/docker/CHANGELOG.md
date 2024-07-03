@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@19.0.5-dev.3...@rxap/plugin-docker@19.0.5-dev.4) (2024-07-03)
+
+### Bug Fixes
+
+- ensure the path prefix has the correct prefix ([7245197](https://gitlab.com/rxap/packages/commit/7245197af9286e5ff573eac0e5dbad078e7f4f35))
+
 ## [19.0.5-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@19.0.5-dev.2...@rxap/plugin-docker@19.0.5-dev.3) (2024-07-03)
 
 **Note:** Version bump only for package @rxap/plugin-docker
