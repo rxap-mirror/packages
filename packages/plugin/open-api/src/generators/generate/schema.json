@@ -36,8 +36,8 @@
         },
         "export": {
           "type": "boolean",
-          "description": "If true the index.ts of the select project will replaced with export statement for each generate file",
-          "default": false
+          "description": "If true the index-export generator will be executed after the generation",
+          "default": true
         },
         "inline": {
           "type": "boolean",
@@ -101,8 +101,8 @@
         },
         "export": {
           "type": "boolean",
-          "description": "If true the index.ts of the select project will replaced with export statement for each generate file",
-          "default": false
+          "description": "If true the index-export generator will be executed after the generation",
+          "default": true
         },
         "skipCommand": {
           "type": "boolean",

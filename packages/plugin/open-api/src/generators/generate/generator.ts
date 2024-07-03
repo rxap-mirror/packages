@@ -30,7 +30,7 @@ export async function generateGenerator(
   tree: Tree,
   options: GenerateGeneratorSchema,
 ) {
-
+  options.export ??= true;
   console.log('loading openapi config');
   const openapi = await LoadOpenApiConfig(tree, options);
   // console.log('resolve all schema refs');
@@ -100,7 +100,7 @@ export async function generateGenerator(
   }, project => GenerateOperation(openapi, project, options, nestGeneratorFunctionList));
 
   if (options.export) {
-    await LibraryIndexExportGenerator(tree, { project: options.project });
+    await LibraryIndexExportGenerator(tree, { project: options.project, generateRootExport: false });
   } else {
     CoerceFile(tree, join(GetProjectSourceRoot(tree, projectName), 'index.ts'), 'export {};', true);
   }
