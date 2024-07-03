@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.3-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.3-dev.2...@rxap/plugin-workspace@19.1.3-dev.3) (2024-07-03)
+
+### Bug Fixes
+
+- extract api prefix from build args ([c89cd94](https://gitlab.com/rxap/packages/commit/c89cd945a20f7e2d784bba83c3865ec707e97515))
+
 ## [19.1.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.3-dev.1...@rxap/plugin-workspace@19.1.3-dev.2) (2024-07-03)
 
 **Note:** Version bump only for package @rxap/plugin-workspace
