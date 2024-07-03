@@ -4,6 +4,7 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
+  CoercePrefix,
   CoerceSuffix,
   deepMerge,
   IsRecord,
@@ -11,9 +12,11 @@ import {
 import {
   CoerceFile,
   CoerceIgnorePattern,
+  GetProject,
   GetProjectSourceRoot,
   GetRootDockerOptions,
   IsApplicationProject,
+  ProcessBuildArgs,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
 import { execSync } from 'child_process';
@@ -42,7 +45,7 @@ function getServiceApiPrefixFromDockerFile(name: string, host: Tree): string | n
     return null;
   }
   const globalApiPrefix = match[1];
-  return '/' + globalApiPrefix;
+  return CoercePrefix(globalApiPrefix, '/');
 }
 
 function getServiceApiPrefixFromAppConfig(name: string, host: Tree): string | null {
@@ -61,11 +64,32 @@ function getServiceApiPrefixFromAppConfig(name: string, host: Tree): string | nu
     return null;
   }
   const globalApiPrefix = match[1];
-  return '/' + globalApiPrefix;
+  return CoercePrefix(globalApiPrefix, '/');
+}
+
+function getServiceApiPrefixFromBuildArg(name: string, tree: Tree): string | null {
+  const project = GetProject(tree, name);
+  const projectSourceRoot = GetProjectSourceRoot(tree, name);
+  if (!Array.isArray(project.targets?.docker?.options?.buildArgList)) {
+    return null;
+  }
+  if (!project.targets.docker.options.buildArgList.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {
+    return null;
+  }
+  const buildArgList = ProcessBuildArgs(
+    project.targets.docker.options.buildArgList,
+    name,
+    projectSourceRoot,
+    { PROJECT_NAME: name },
+    path => tree.exists(path),
+    (path, encoding) => tree.read(path, encoding),
+  );
+  const pathPrefix = buildArgList.find((arg) => arg.startsWith('PATH_PREFIX='))!;
+  return CoercePrefix(pathPrefix.split('=')[1], '/');
 }
 
 function getServiceApiPrefix(name: string, host: Tree) {
-  const globalApiPrefix = getServiceApiPrefixFromAppConfig(name, host) ?? getServiceApiPrefixFromDockerFile(name, host);
+  const globalApiPrefix = getServiceApiPrefixFromAppConfig(name, host) ?? getServiceApiPrefixFromBuildArg(name, host) ?? getServiceApiPrefixFromDockerFile(name, host);
   if (!globalApiPrefix) {
     console.warn(`The service ${ name } has no app.config.ts or the app.config.ts has no GLOBAL_API_PREFIX validation schema!`);
   }
