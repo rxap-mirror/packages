@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@18.0.4...@rxap/ngx-theme@18.1.0-dev.0) (2024-07-03)
+
+### Bug Fixes
+
+- add publish option ([62559d6](https://gitlab.com/rxap/packages/commit/62559d613e53b9647e9ef849727067f72fcebe2e))
+
+### Features
+
+- use pubSub to update theme ([f400f0c](https://gitlab.com/rxap/packages/commit/f400f0c434c2c75e31f4bbb2d25e6f4c13e6704a))
+
 ## [18.0.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@18.0.4-dev.0...@rxap/ngx-theme@18.0.4) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/ngx-theme

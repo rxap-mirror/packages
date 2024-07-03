@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@18.0.4...@rxap/ngx-user@18.1.0-dev.0) (2024-07-03)
+
+### Features
+
+- use pubSub to update user settings theme ([9f111ff](https://gitlab.com/rxap/packages/commit/9f111ff54f7a776d64be05ea62cbc6841aaa6638))
+
 ## [18.0.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@18.0.4-dev.0...@rxap/ngx-user@18.0.4) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/ngx-user

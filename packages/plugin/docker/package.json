@@ -1,13 +1,13 @@
 {
-  "version": "19.0.5-dev.1",
+  "version": "19.0.5-dev.2",
   "name": "@rxap/plugin-docker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.3.2",
     "@rxap/node-utilities": "^1.3.2",
-    "@rxap/plugin-gitlab-ci": "^19.0.5-dev.1",
-    "@rxap/plugin-utilities": "^19.0.6-dev.1",
-    "@rxap/workspace-utilities": "^19.4.0-dev.0",
+    "@rxap/plugin-gitlab-ci": "^19.0.5-dev.2",
+    "@rxap/plugin-utilities": "^19.0.6-dev.2",
+    "@rxap/workspace-utilities": "^19.4.0-dev.1",
     "tslib": "2.6.2"
   },
   "author": {

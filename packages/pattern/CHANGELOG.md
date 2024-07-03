@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.1.6...@rxap/pattern@1.1.7-dev.0) (2024-07-03)
+
+### Bug Fixes
+
+- add connect with string viewer ([191d626](https://gitlab.com/rxap/packages/commit/191d6268ee24663b5dce6de4433c184a7ae74a21))
+
 ## [1.1.6](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.1.6-dev.0...@rxap/pattern@1.1.6) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/pattern

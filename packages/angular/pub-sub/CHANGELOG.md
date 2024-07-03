@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-pub-sub@18.0.4...@rxap/ngx-pub-sub@18.1.0-dev.0) (2024-07-03)
+
+### Features
+
+- add topics object ([97b9bed](https://gitlab.com/rxap/packages/commit/97b9bed76aadf6871a14b0d2ef5ac22329125283))
+
 ## [18.0.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-pub-sub@18.0.4-dev.0...@rxap/ngx-pub-sub@18.0.4) (2024-06-30)
 
 **Note:** Version bump only for package @rxap/ngx-pub-sub

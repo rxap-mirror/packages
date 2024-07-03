@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.2-dev.1...@rxap/plugin-library@19.3.2-dev.2) (2024-07-03)
+
+### Bug Fixes
+
+- add force dependencies options ([cc188c2](https://gitlab.com/rxap/packages/commit/cc188c2b549642007d31582e021a6cfee0d05a47))
+- allow non peer dependencies ([c67292c](https://gitlab.com/rxap/packages/commit/c67292c7f5d6839e3d587e9f98eddad597a307bd))
+- ensure the secondary entry point is checked ([722cbc3](https://gitlab.com/rxap/packages/commit/722cbc39e2ecc1c429ecbc7c7a426c07e5a33d73))
+- include executors ([a962d21](https://gitlab.com/rxap/packages/commit/a962d215411bbad404e5435ae11f64cba184b878))
+- support migrations and generators ([a52ba38](https://gitlab.com/rxap/packages/commit/a52ba3808eb926b02309ff5301548a457ac3802b))
+- update ng package json for angular projects ([a059bef](https://gitlab.com/rxap/packages/commit/a059bef26b1af1d5601ff41c63b16959bd940cdb))
+
 ## [19.3.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.2-dev.0...@rxap/plugin-library@19.3.2-dev.1) (2024-07-02)
 
 **Note:** Version bump only for package @rxap/plugin-library
