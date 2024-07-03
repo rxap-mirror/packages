@@ -96,6 +96,50 @@ function getServiceApiPrefix(name: string, host: Tree) {
   return CoerceSuffix(globalApiPrefix ?? '/api/' + name, '/', /\/$/);
 }
 
+function getServicePortFromMain(tree: Tree, projectName: string): string | null {
+  const sourceRoot = GetProjectSourceRoot(tree, projectName);
+  if (!sourceRoot) {
+    return null;
+  }
+  const mainFilePath = join(sourceRoot, 'main.ts');
+  if (!tree.exists(mainFilePath)) {
+    return null;
+  }
+  const main = tree.read(mainFilePath)!.toString('utf-8');
+  const portMatch = main.match(/process.env.PORT \?\? (\d+)/);
+  if (!portMatch) {
+    return null;
+  }
+  return portMatch[1];
+}
+
+function getServicePortFromAppConfig(tree: Tree, projectName: string): string | null {
+  const sourceRoot = GetProjectSourceRoot(tree, projectName);
+  if (!sourceRoot) {
+    return null;
+  }
+  const appModuleFilePath = join(sourceRoot, 'app', 'app.config.ts');
+  if (!tree.exists(appModuleFilePath)) {
+    return null;
+  }
+  const appModule = tree.read(appModuleFilePath)!.toString('utf-8');
+  const portMatch = appModule.match(
+    /validationSchema\['PORT']\s*=\s*Joi.number\(\).default\((\d+)\)/,
+  );
+  if (!portMatch) {
+    return null;
+  }
+  return portMatch[1];
+}
+
+function getServicePort(tree: Tree, projectName: string, defaultPort = '3000') {
+  const port = getServicePortFromMain(tree, projectName) ?? getServicePortFromAppConfig(tree, projectName);
+  if (!port) {
+    console.warn(`The service ${ projectName } has no PORT environment variable!`);
+  }
+  return port ?? defaultPort;
+}
+
 function buildImageName(docker: Record<string, string>, rootDocker: RootDockerOptions): string {
   const imageRegistry = `\${REGISTRY:-${ docker.imageRegistry ?? rootDocker.imageRegistry ?? 'registry.gitlab.com' }}`;
   const imageName = `${ docker.imageName ?? rootDocker.imageName ?? 'unknown' }${ docker.imageSuffix ?? '' }`;
@@ -199,22 +243,7 @@ function createDevServiceTraefikConfig(
         return routers;
       }, {} as Record<string, any>),
       services: services.reduce((services, { name }) => {
-        const sourceRoot = GetProjectSourceRoot(host, name);
-        if (!sourceRoot) {
-          throw new Error(`The project ${ name } has no source root!`);
-        }
-        const appModuleFilePath = join(sourceRoot, 'app', 'app.config.ts');
-        if (!host.exists(appModuleFilePath)) {
-          throw new Error(`The project ${ name } has no app.module.ts!`);
-        }
-        const appModule = host.read(appModuleFilePath)!.toString('utf-8');
-        const portMatch = appModule.match(
-          /validationSchema\['PORT']\s*=\s*Joi.number\(\).default\((\d+)\)/,
-        );
-        if (!portMatch) {
-          throw new Error(`The service ${ name } has no PORT environment variable!`);
-        }
-        const port = portMatch[1];
+        const port = getServicePort(host, name);
         services[name] = {
           failover: {
             service: name + '-local',
