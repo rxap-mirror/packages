@@ -5,6 +5,7 @@ import {
   forwardRef,
   HostBinding,
   Inject,
+  input,
   Input,
   isDevMode,
   OnChanges,
@@ -116,6 +117,8 @@ export class FormDirective<T = any>
 
   @Input()
   public initial?: T;
+
+  public readonly context = input<Record<string, unknown>>({});
 
   /**
    * Emits when the submit method is executed without errors. The result of the
@@ -471,7 +474,7 @@ export class FormDirective<T = any>
       this.submitting$.enable();
       this.submitError$.next(null);
       try {
-        const resultOrPromise = this.submitMethod.call(value);
+        const resultOrPromise = this.submitMethod.call(value, this.context());
         if (isPromise(resultOrPromise)) {
           resultOrPromise
             .then((result) => {
