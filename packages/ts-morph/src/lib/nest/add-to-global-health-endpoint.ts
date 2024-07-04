@@ -10,6 +10,7 @@ import {
   SyntaxKind,
 } from 'ts-morph';
 import { CoerceClassMethod } from '../coerce-class-method';
+import { CoerceImports } from '../coerce-imports';
 
 
 export function AddToGlobalHealthEndpoint(
@@ -17,11 +18,7 @@ export function AddToGlobalHealthEndpoint(
   name: string,
 ) {
 
-  const classDeclaration = sourceFile.getClass('HealthController');
-
-  if (!classDeclaration) {
-    throw new Error('FATAL: could not find the HealthController class!');
-  }
+  const classDeclaration = sourceFile.getClassOrThrow('HealthController');
 
   const healthIndicatorClass = `${ classify(name) }HealthIndicator`;
 
@@ -50,7 +47,7 @@ export function AddToGlobalHealthEndpoint(
     },
   );
 
-  sourceFile.addImportDeclarations([
+  CoerceImports(sourceFile,[
     {
       moduleSpecifier: '@nestjs/terminus',
       namedImports: [ 'HealthCheck', 'HealthCheckResult' ],
@@ -67,7 +64,7 @@ export function AddToGlobalHealthEndpoint(
 
   if (array?.isKind(SyntaxKind.ArrayLiteralExpression)) {
     array.addElement(w => {
-      w.write(`async () => this.${ camelize(healthIndicatorClass) }.isHealthy()`);
+      w.write(`() => this.${ camelize(healthIndicatorClass) }.isHealthy()`);
     });
   }
 

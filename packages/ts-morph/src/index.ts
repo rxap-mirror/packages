@@ -1,6 +1,6 @@
 // region nest
-export * from './lib/nest/add-health-endpoint';
-export * from './lib/nest/add-health-indicator';
+export * from './lib/nest/coerce-health-endpoint';
+export * from './lib/nest/coerce-health-indicator';
 export * from './lib/nest/add-to-global-health-endpoint';
 export * from './lib/nest/coerce-app-guard-provider';
 export * from './lib/nest/coerce-dto-class';
@@ -57,7 +57,7 @@ export * from './lib/angular/remove-component-import';
 export * from './lib/angular/remove-route';
 // endregion
 
-// region 
+// region
 export * from './lib/add-provider-to-array';
 export * from './lib/coerce-accessor-declaration';
 export * from './lib/coerce-array-element';

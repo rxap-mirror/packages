@@ -7,31 +7,28 @@ import {
   Scope,
   SourceFile,
 } from 'ts-morph';
+import { CoerceClassMethod } from '../coerce-class-method';
 import {
   CoerceDependencyInjection,
   Module,
 } from '../coerce-dependency-injection';
+import { CoerceImports } from '../coerce-imports';
 
-export function AddHealthEndpoint(
+export function CoerceHealthEndpoint(
   sourceFile: SourceFile,
   name: string,
 ) {
 
-  const classDeclaration = sourceFile.getClass('HealthController');
-
-  if (!classDeclaration) {
-    throw new Error('FATAL: could not find the HealthController class!');
-  }
+  const classDeclaration = sourceFile.getClassOrThrow('HealthController');
 
   const healthIndicatorClass = `${ classify(name) }HealthIndicator`;
 
-  classDeclaration.addMethod({
-    name: camelize(name),
+  CoerceClassMethod(classDeclaration, camelize(name), {
     returnType: 'Promise<HealthCheckResult>',
     statements: [
       w => {
         w.writeLine('return this.health.check([');
-        w.writeLine(`async () => this.${ camelize(healthIndicatorClass) }.isHealthy(),`);
+        w.writeLine(`() => this.${ camelize(healthIndicatorClass) }.isHealthy(),`);
         w.write(']);');
       },
     ],
@@ -48,7 +45,7 @@ export function AddHealthEndpoint(
     ],
   });
 
-  sourceFile.addImportDeclarations([
+  CoerceImports(sourceFile,[
     {
       moduleSpecifier: '@nestjs/terminus',
       namedImports: [ 'HealthCheck', 'HealthCheckResult' ],

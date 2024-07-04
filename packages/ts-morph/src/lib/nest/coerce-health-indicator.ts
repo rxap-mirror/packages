@@ -7,13 +7,14 @@ import {
   Scope,
   SourceFile,
 } from 'ts-morph';
+import { CoerceClass } from '../coerce-class';
+import { CoerceImports } from '../coerce-imports';
 
-export function AddHealthIndicator(indicatorSourceFile: SourceFile, name: string) {
+export function CoerceHealthIndicator(sourceFile: SourceFile, name: string) {
 
   const indicatorClassName = CoerceSuffix(classify(name), 'HealthIndicator');
 
-  indicatorSourceFile.addClass({
-    name: indicatorClassName,
+  CoerceClass(sourceFile, indicatorClassName, {
     isExported: true,
     decorators: [
       {
@@ -41,7 +42,7 @@ export function AddHealthIndicator(indicatorSourceFile: SourceFile, name: string
     ],
   });
 
-  indicatorSourceFile.addImportDeclarations([
+  CoerceImports(sourceFile,[
     {
       namedImports: [ 'Injectable' ],
       moduleSpecifier: '@nestjs/common',
