@@ -81,8 +81,8 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       additionalEntryPoints: [
         `${projectSourceRoot}/lib/commands/index.ts`,
         `${projectSourceRoot}/lib/components/index.ts`,
-        `${projectSourceRoot}/lib/data-sources/index.ts`,
-        `${projectSourceRoot}/lib/directives/index.ts`,
+        // `${projectSourceRoot}/lib/data-sources/index.ts`,
+        // `${projectSourceRoot}/lib/directives/index.ts`,
         `${projectSourceRoot}/lib/parameters/index.ts`,
         `${projectSourceRoot}/lib/remote-methods/index.ts`,
         `${projectSourceRoot}/lib/request-bodies/index.ts`,
@@ -96,8 +96,8 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       `{projectRoot}/src/index.ts`,
       `{projectRoot}/src/lib/commands/index.ts`,
       `{projectRoot}/src/lib/components/index.ts`,
-      `{projectRoot}/src/lib/data-sources/index.ts`,
-      `{projectRoot}/src/lib/directives/index.ts`,
+      // `{projectRoot}/src/lib/data-sources/index.ts`,
+      // `{projectRoot}/src/lib/directives/index.ts`,
       `{projectRoot}/src/lib/parameters/index.ts`,
       `{projectRoot}/src/lib/remote-methods/index.ts`,
       `{projectRoot}/src/lib/request-bodies/index.ts`,
@@ -140,14 +140,14 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       delete tsConfig.compilerOptions.paths[options.project];
     }
     // tsConfig.compilerOptions.paths[`${options.project}/*`] = [ `${projectSourceRoot}/lib/*` ];
-    tsConfig.compilerOptions.paths[`${options.project}/commands`] = [ `${projectSourceRoot}/lib/components/index.ts` ];
-    tsConfig.compilerOptions.paths[`${options.project}/components`] = [ `${projectSourceRoot}/lib/components/index.ts` ];
-    tsConfig.compilerOptions.paths[`${options.project}/data-sources`] = [ `${projectSourceRoot}/lib/data-sources/index.ts` ];
-    tsConfig.compilerOptions.paths[`${options.project}/directives`] = [ `${projectSourceRoot}/lib/directives/index.ts` ];
-    tsConfig.compilerOptions.paths[`${options.project}/parameters`] = [ `${projectSourceRoot}/lib/parameters/index.ts` ];
-    tsConfig.compilerOptions.paths[`${options.project}/remote-methods`] = [ `${projectSourceRoot}/lib/remote-methods/index.ts` ];
-    tsConfig.compilerOptions.paths[`${options.project}/request-bodies`] = [ `${projectSourceRoot}/lib/request-bodies/index.ts` ];
-    tsConfig.compilerOptions.paths[`${options.project}/responses`] = [ `${projectSourceRoot}/lib/responses/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/src/lib/commands`] = [ `${projectSourceRoot}/lib/commands/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/src/lib/components`] = [ `${projectSourceRoot}/lib/components/index.ts` ];
+    // tsConfig.compilerOptions.paths[`${options.project}/src/lib/data-sources`] = [ `${projectSourceRoot}/lib/data-sources/index.ts` ];
+    // tsConfig.compilerOptions.paths[`${options.project}/src/lib/directives`] = [ `${projectSourceRoot}/lib/directives/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/src/lib/parameters`] = [ `${projectSourceRoot}/lib/parameters/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/src/lib/remote-methods`] = [ `${projectSourceRoot}/lib/remote-methods/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/src/lib/request-bodies`] = [ `${projectSourceRoot}/lib/request-bodies/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/src/lib/responses`] = [ `${projectSourceRoot}/lib/responses/index.ts` ];
   }, { infix: 'base' });
   // endregion
 }

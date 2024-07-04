@@ -49,15 +49,15 @@
         },
         "skipDataSource": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "skipProvider": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "skipDirectives": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "skipCommand": {
           "type": "boolean",
@@ -110,7 +110,7 @@
         },
         "skipDataSource": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "inline": {
           "type": "boolean",
@@ -122,11 +122,11 @@
         },
         "skipProvider": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "skipDirectives": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "serverId": {
           "type": "string"
