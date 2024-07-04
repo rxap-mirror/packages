@@ -10,10 +10,12 @@ import {
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
+  CoerceTarget,
+  GetProject,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';
+import { parseDocument } from 'yaml';
 import { InitApplicationGeneratorSchema } from './schema';
-import { parseDocument  } from 'yaml';
 
 async function defaultAuthentication(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
@@ -80,6 +82,20 @@ async function oauth2ProxyAuthentication(tree: Tree, projectName: string, projec
         "secure": false
       };
     }, 'shared/angular/proxy.conf.json');
+  }
+
+  const workspaceProject = GetProject(tree, 'workspace');
+  if (workspaceProject.targets && 'docker-compose' in workspaceProject.targets) {
+    CoerceTarget(workspaceProject, 'docker-compose', {
+      options: {
+        options: {
+          middlewares: [
+            'oauth-signin@docker',
+            'oauth-verify@docker',
+          ],
+        },
+      },
+    });
   }
 
 }
