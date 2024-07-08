@@ -35,6 +35,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   ]) {
     await initLibraryGenerator(tree, {
       project: 'angular-' + projectName,
+      targets: {
+        indexExport: true,
+      },
       coerce: {
         directory: join('angular', projectName),
         addTailwind: true,
@@ -57,6 +60,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   ]) {
     await initLibraryGenerator(tree, {
       project: 'angular-' + projectName,
+      targets: {
+        indexExport: true,
+      },
       coerce: {
         directory: join('angular', projectName),
         buildable: true,

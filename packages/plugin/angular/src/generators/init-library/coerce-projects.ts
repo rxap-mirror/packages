@@ -84,7 +84,7 @@ export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSc
 
       await angularLibraryGenerator(tree, schema);
 
-      if (!options.indexExport || options.targets?.indexExport === false) {
+      if (options.targets?.indexExport === false) {
         UpdateTsConfigJson(tree, tsConfig => {
           tsConfig.compilerOptions ??= {};
           tsConfig.compilerOptions.paths ??= {};
