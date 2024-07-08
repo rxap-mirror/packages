@@ -15,6 +15,7 @@ import {
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
+  CoerceIgnorePattern,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   GetBuildOutputForProject,
@@ -89,7 +90,7 @@ function updateProjectTargets(project: ProjectConfiguration, options: SwaggerGen
     }
   }
 
-  const outputPath = GetBuildOutputForProject(project).replace('dist/', 'dist/swagger/');
+  const outputPath = GetBuildOutputForProject(project).replace('dist/', 'swagger/');
 
   CoerceTarget(project, 'swagger-build', {
     options: {
@@ -125,11 +126,11 @@ function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
   CoerceTarget(nxJson, 'swagger-generate', {
     executor: '@rxap/plugin-nestjs:swagger-generate',
     outputs: [
-      `{workspaceRoot}/dist/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/openapi.json`
+      `{workspaceRoot}/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/openapi.json`
     ],
     inputs: [
-      `{workspaceRoot}/dist/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/main.js`,
-      `{workspaceRoot}/dist/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/main.js.map`
+      `{workspaceRoot}/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/main.js`,
+      `{workspaceRoot}/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/main.js.map`
     ],
     'dependsOn': [
       '^build'
@@ -185,6 +186,9 @@ export async function swaggerGenerator(
     throw new Error('The selected project has no sourceRoot');
   }
   updateProjectConfiguration(tree, options.project, project);
+
+  CoerceIgnorePattern(tree, '.nxignore', [ '!/swagger/**' ]);
+  CoerceIgnorePattern(tree, '.gitignore', [ 'swagger/**' ]);
 
   await AddPackageJsonDependency(tree, 'swagger-ui-express', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });

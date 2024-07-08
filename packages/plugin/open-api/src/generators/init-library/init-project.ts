@@ -31,9 +31,11 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   const apiProjectName = basename(projectRoot);
 
   if (options.persistent) {
-    RemoveIgnorePattern(tree, join(projectRoot, '.gitignore'), [ 'src/lib' ]);
+    RemoveIgnorePattern(tree, join(projectRoot, '.gitignore'), [ 'src/lib/**' ]);
   } else {
-    CoerceIgnorePattern(tree, join(projectRoot, '.gitignore'), [ 'src/lib' ]);
+    RemoveIgnorePattern(tree, join(projectRoot, '.gitignore'), [ 'src/lib' ]);
+    CoerceIgnorePattern(tree, join(projectRoot, '.gitignore'), [ 'src/lib/**' ]);
+    CoerceIgnorePattern(tree, '.nxignore', [ '!/open-api/**/src/lib/**' ]);
   }
 
   if (options.external) {
