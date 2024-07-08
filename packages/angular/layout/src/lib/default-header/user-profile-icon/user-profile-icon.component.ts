@@ -7,7 +7,10 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { PubSubService } from '@rxap/ngx-pub-sub';
+import {
+  PubSubService,
+  RXAP_TOPICS,
+} from '@rxap/ngx-pub-sub';
 import { EXTRACT_USERNAME_FROM_PROFILE } from '../../tokens';
 import { ExtractUsernameFromProfileFn } from '../../types';
 
@@ -38,7 +41,7 @@ export class UserProfileIconComponent {
   });
 
   public logout() {
-    this.pubSubService.publish('authentication.logout');
+    this.pubSubService.publish(RXAP_TOPICS.authentication.logout);
   }
 
 

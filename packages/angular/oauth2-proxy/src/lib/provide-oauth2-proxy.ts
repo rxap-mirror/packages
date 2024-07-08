@@ -1,9 +1,12 @@
 import { APP_INITIALIZER } from '@angular/core';
-import { PubSubService } from '@rxap/ngx-pub-sub';
+import {
+  PubSubService,
+  RXAP_TOPICS,
+} from '@rxap/ngx-pub-sub';
 
 export function subscribeToLogoutEvent(pubSubService: PubSubService) {
   return () => {
-    pubSubService.subscribe('authentication.logout').subscribe(() => {
+    pubSubService.subscribe(RXAP_TOPICS.authentication.logout).subscribe(() => {
       location.replace(location.origin + '/oauth2/sign_out');
     });
   };

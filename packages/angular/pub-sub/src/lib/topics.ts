@@ -22,5 +22,9 @@ export const RXAP_TOPICS = {
       restore: 'rxap:theme:darkMode:restore',
       changed: 'rxap:theme:darkMode:changed',
     }
+  },
+  authentication: {
+    logout: 'authentication.logout',
+    login: 'rxap:authentication:login',
   }
 };
