@@ -22,31 +22,31 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/cdk",
-        "version": "18.0.0"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/cli",
-        "version": "18.0.3"
+        "version": "18.0.7"
       },
       {
         "package": "@angular/common",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/compiler",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/compiler-cli",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/core",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/fire",
@@ -54,35 +54,35 @@
       },
       {
         "package": "@angular/forms",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/language-service",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/localize",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/material",
-        "version": "18.0.0"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/platform-browser-dynamic",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/router",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/service-worker",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@nestjs/axios",
@@ -142,55 +142,55 @@
       },
       {
         "package": "@nx/angular",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/cypress",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/devkit",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/eslint",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/eslint-plugin",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/jest",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/js",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/nest",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/node",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/plugin",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/storybook",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/web",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@nx/webpack",
-        "version": "19.3.2"
+        "version": "19.4.2"
       },
       {
         "package": "@rxap/authentication",
@@ -638,7 +638,7 @@
       },
       {
         "package": "nx",
-        "version": "19.3.2"
+        "version": "19.4.2"
       }
     ]
   },

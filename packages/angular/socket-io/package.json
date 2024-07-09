@@ -3,11 +3,11 @@
   "name": "@rxap/socket-io",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.2",
+    "@nx/devkit": "19.4.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^18.0.1",
+    "@angular/core": "^18.0.6",
     "rxjs": "^7.8.1",
     "socket.io-client": "^4.6.2"
   },
@@ -34,7 +34,7 @@
     "packageGroup": [
       {
         "package": "@angular/core",
-        "version": "18.0.1"
+        "version": "18.0.6"
       }
     ]
   },

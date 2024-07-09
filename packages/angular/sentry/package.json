@@ -3,7 +3,7 @@
   "name": "@rxap/ngx-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.2",
+    "@nx/devkit": "19.4.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -34,15 +34,15 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/core",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/router",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@rxap/config",

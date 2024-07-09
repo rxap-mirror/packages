@@ -3,7 +3,7 @@
   "name": "@rxap/plugin-web3-storage",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.2",
+    "@nx/devkit": "19.4.2",
     "@rxap/plugin-utilities": "^19.0.6-dev.6",
     "files-from-path": "1.0.4",
     "tslib": "2.6.2",

@@ -3,12 +3,12 @@
   "name": "@rxap/ngx-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.2",
+    "@nx/devkit": "19.4.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.1",
-    "@angular/core": "^18.0.1",
+    "@angular/common": "^18.0.6",
+    "@angular/core": "^18.0.6",
     "@rxap/config": "^18.1.2",
     "@rxap/ngx-user": "^18.1.0-dev.0",
     "rxjs": "^7.8.1"
@@ -35,31 +35,31 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/cdk",
-        "version": "18.0.0"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/common",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/core",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/forms",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/material",
-        "version": "18.0.0"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@rxap/config",

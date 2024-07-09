@@ -3,12 +3,12 @@
   "name": "@rxap/oauth",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.3.2",
+    "@nx/devkit": "19.4.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^18.0.1",
-    "@angular/router": "^18.0.1",
+    "@angular/core": "^18.0.6",
+    "@angular/router": "^18.0.6",
     "@rxap/authentication": "^18.1.1",
     "@rxap/rxjs": "^1.1.8-dev.1",
     "angular-oauth2-oidc": "^15.0.1",
@@ -38,19 +38,19 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/core",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@angular/router",
-        "version": "18.0.1"
+        "version": "18.0.6"
       },
       {
         "package": "@rxap/authentication",
