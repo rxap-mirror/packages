@@ -6758,15 +6758,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/devkit@npm:19.3.2":
-  version: 19.3.2
-  resolution: "@nrwl/devkit@npm:19.3.2"
-  dependencies:
-    "@nx/devkit": 19.3.2
-  checksum: a080286aa57aac67bb31e7684cc27e5a8e375d01419fc4d4b5c81b97334d41942af91c5cf65ee8a4333f3b901c38fe94d901abb07fbcffbb64d56e855e62852c
-  languageName: node
-  linkType: hard
-
 "@nrwl/devkit@npm:19.4.2":
   version: 19.4.2
   resolution: "@nrwl/devkit@npm:19.4.2"
@@ -6985,25 +6976,6 @@ __metadata:
   peerDependencies:
     nx: ">= 17 <= 20"
   checksum: c8917b5ab933fa28a9cf3f6509c69e7b6e58ca98dbf5b02f70a5649af0359cf188d3bb5822868bf3ff8e330d4a1bf6a81227dc05b4e53c02d3a8012c73fedd8c
-  languageName: node
-  linkType: hard
-
-"@nx/devkit@npm:19.3.2":
-  version: 19.3.2
-  resolution: "@nx/devkit@npm:19.3.2"
-  dependencies:
-    "@nrwl/devkit": 19.3.2
-    ejs: ^3.1.7
-    enquirer: ~2.3.6
-    ignore: ^5.0.4
-    minimatch: 9.0.3
-    semver: ^7.5.3
-    tmp: ~0.2.1
-    tslib: ^2.3.0
-    yargs-parser: 21.1.1
-  peerDependencies:
-    nx: ">= 17 <= 20"
-  checksum: 661571280c7d8ee3897ebd2fd8236e433a96eb9fdb021bf2eb13a5e92104e1a0e06bc9a3b527a259a35871dc175639bb48fe7a86ac0ddba51d410e563014e979
   languageName: node
   linkType: hard
 
@@ -9916,8 +9888,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/schematic-composer@workspace:packages/schematic/composer"
   dependencies:
-    "@angular-devkit/schematics": 18.0.2
-    "@nx/devkit": 19.3.2
+    "@angular-devkit/schematics": 18.0.7
+    "@nx/devkit": 19.4.2
     "@rxap/schematics-ts-morph": ^18.1.3-dev.6
     "@rxap/schematics-utilities": ^18.0.5-dev.6
     "@rxap/utilities": ^16.3.0-dev.1
