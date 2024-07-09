@@ -8,6 +8,7 @@ import {
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
+  IsRxapRepository,
 } from '@rxap/workspace-utilities';
 
 export function setGeneralTargetDefaults(tree: Tree) {
@@ -18,12 +19,14 @@ export function setGeneralTargetDefaults(tree: Tree) {
   }
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version', 'build-tailwind', 'check-ng-package');
-  CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
-    target: 'build',
-    projects: [
-      'browser-tailwind',
-    ],
-  });
+  if (IsRxapRepository(tree)) {
+    CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
+      target: 'build',
+      projects: [
+        'browser-tailwind',
+      ],
+    });
+  }
   CoerceTargetDefaultsOutput(nxJson, 'build-tailwind', '{projectRoot}/theme.css');
   CoerceTargetDefaultsInput(
     nxJson,
