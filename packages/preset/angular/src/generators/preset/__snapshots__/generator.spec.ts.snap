@@ -69,10 +69,10 @@ exports[`preset should use angular preset 2`] = `
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@nx/angular": "latest",
-    "@nx/eslint": "19.3.2",
-    "@nx/eslint-plugin": "19.3.2",
-    "@nx/jest": "19.3.2",
-    "@nx/js": "19.3.2",
+    "@nx/eslint": "19.4.2",
+    "@nx/eslint-plugin": "19.4.2",
+    "@nx/jest": "19.4.2",
+    "@nx/js": "19.4.2",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
     "@schematics/angular": "~18.0.0",
@@ -270,12 +270,6 @@ exports[`preset should use angular preset 3`] = `
       "cache": true
     },
     "build-tailwind": {
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": ["browser-tailwind"]
-        }
-      ],
       "outputs": ["{projectRoot}/theme.css"],
       "inputs": [
         "{projectRoot}/**/*.html",
@@ -515,39 +509,22 @@ exports[`preset should use angular preset 6`] = `
       "@proj/angular-application-providers": [
         "angular/application-providers/src/index.ts"
       ],
-      "@proj/angular-application-providers/*": [
-        "angular/application-providers/src/lib/*"
-      ],
+      "@proj/angular-bootstrap-hooks": ["angular/bootstrap-hooks/src/index.ts"],
       "@proj/angular-components": ["angular/components/src/index.ts"],
-      "@proj/angular-components/*": ["angular/components/src/lib/*"],
       "@proj/angular-controls": ["angular/controls/src/index.ts"],
-      "@proj/angular-controls/*": ["angular/controls/src/lib/*"],
       "@proj/angular-data-sources": ["angular/data-sources/src/index.ts"],
-      "@proj/angular-data-sources/*": ["angular/data-sources/src/lib/*"],
       "@proj/angular-directives": ["angular/directives/src/index.ts"],
-      "@proj/angular-directives/*": ["angular/directives/src/lib/*"],
       "@proj/angular-forms": ["angular/forms/src/index.ts"],
-      "@proj/angular-forms/*": ["angular/forms/src/lib/*"],
       "@proj/angular-guards": ["angular/guards/src/index.ts"],
-      "@proj/angular-guards/*": ["angular/guards/src/lib/*"],
       "@proj/angular-http-interceptors": [
         "angular/http-interceptors/src/index.ts"
       ],
-      "@proj/angular-http-interceptors/*": [
-        "angular/http-interceptors/src/lib/*"
-      ],
       "@proj/angular-methods": ["angular/methods/src/index.ts"],
-      "@proj/angular-methods/*": ["angular/methods/src/lib/*"],
       "@proj/angular-pipes": ["angular/pipes/src/index.ts"],
-      "@proj/angular-pipes/*": ["angular/pipes/src/lib/*"],
       "@proj/angular-resolvers": ["angular/resolvers/src/index.ts"],
-      "@proj/angular-resolvers/*": ["angular/resolvers/src/lib/*"],
       "@proj/angular-services": ["angular/services/src/index.ts"],
-      "@proj/angular-services/*": ["angular/services/src/lib/*"],
       "@proj/angular-tables": ["angular/tables/src/index.ts"],
-      "@proj/angular-tables/*": ["angular/tables/src/lib/*"],
       "@proj/angular-testing": ["angular/testing/src/index.ts"],
-      "@proj/angular-testing/*": ["angular/testing/src/lib/*"],
       "workspace-tools": ["tools/src/index.ts"]
     }
   }
@@ -1362,5 +1339,6 @@ exports[`preset should use angular preset 18`] = `
   "testing",
   "resolvers",
   "http-interceptors",
+  "bootstrap-hooks",
 ]
 `;
