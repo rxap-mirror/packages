@@ -57,6 +57,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'testing',
     'resolvers',
     'http-interceptors',
+    'bootstrap-hooks'
   ]) {
     await initLibraryGenerator(tree, {
       project: 'angular-' + projectName,
