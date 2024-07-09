@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.1.2-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.1.2-dev.5...@rxap/layout@18.1.2-dev.6) (2024-07-09)
+
+### Bug Fixes
+
+- use static pub sub topics ([780d3f9](https://gitlab.com/rxap/packages/commit/780d3f9aae3b272713ad9946e7938f1f13dd91a4))
+
 ## [18.1.2-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.1.2-dev.4...@rxap/layout@18.1.2-dev.5) (2024-07-03)
 
 **Note:** Version bump only for package @rxap/layout

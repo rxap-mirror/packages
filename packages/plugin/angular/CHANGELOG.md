@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.1-dev.6...@rxap/plugin-angular@19.3.1-dev.7) (2024-07-09)
+
+### Bug Fixes
+
+- add bootstrap hooks project ([b1651db](https://gitlab.com/rxap/packages/commit/b1651dbfd2da3b8a09506149f62272dedb967b08))
+- ensure the middleware configuration is applied ([f11d36b](https://gitlab.com/rxap/packages/commit/f11d36bedac3ed99499aac7221fd6c35992fe9aa))
+- only add browser tailwind dependency for the rxap repo ([6c66732](https://gitlab.com/rxap/packages/commit/6c667328fc726bb2a8cfa78207e835ac1877b4d5))
+- set correct index export defaults ([43ce4d0](https://gitlab.com/rxap/packages/commit/43ce4d0f985ca775e4978c2da0f8cf2cef31ea89))
+- support new public folder concept ([7dd3b92](https://gitlab.com/rxap/packages/commit/7dd3b927569312ee0b63219a3b693badf34c595c))
+
 ## [19.3.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.1-dev.5...@rxap/plugin-angular@19.3.1-dev.6) (2024-07-03)
 
 **Note:** Version bump only for package @rxap/plugin-angular

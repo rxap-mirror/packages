@@ -1,13 +1,13 @@
 {
-  "version": "19.0.5-dev.6",
+  "version": "19.0.5-dev.7",
   "name": "@rxap/workspace-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@angular-devkit/core": "18.0.7",
     "@nx/devkit": "19.4.2",
-    "@rxap/json-schema-to-typescript": "^16.0.8-dev.1",
-    "@rxap/utilities": "^16.3.0-dev.1",
-    "@rxap/workspace-utilities": "^19.4.0-dev.5",
+    "@rxap/json-schema-to-typescript": "^16.0.8-dev.2",
+    "@rxap/utilities": "^16.3.0-dev.2",
+    "@rxap/workspace-utilities": "^19.4.0-dev.6",
     "openapi-types": "^10.0.0",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@18.0.5-dev.0...@rxap/forms@18.1.0-dev.0) (2024-07-09)
+
+### Features
+
+- add to method with injection context utility functions ([4d2dd81](https://gitlab.com/rxap/packages/commit/4d2dd818b646759d5f5571bb977eb3612057a3d9))
+
 ## [18.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@18.0.4...@rxap/forms@18.0.5-dev.0) (2024-07-03)
 
 ### Bug Fixes

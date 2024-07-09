@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.4-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.4-dev.7...@rxap/plugin-open-api@19.1.4-dev.8) (2024-07-09)
+
+### Bug Fixes
+
+- use /swagger as swagger build output ([4609b23](https://gitlab.com/rxap/packages/commit/4609b23fdfcec1cf2e9fe458d8648ac7ee40dc36))
+- use correct import alias ([8ec3262](https://gitlab.com/rxap/packages/commit/8ec3262025cf8e4cba3730060413e84a4dda76bd))
+
 ## [19.1.4-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.4-dev.6...@rxap/plugin-open-api@19.1.4-dev.7) (2024-07-03)
 
 ### Bug Fixes

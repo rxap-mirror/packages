@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-web3-storage@19.0.5-dev.6...@rxap/plugin-web3-storage@19.0.5-dev.7) (2024-07-09)
+
+**Note:** Version bump only for package @rxap/plugin-web3-storage
+
 ## [19.0.5-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-web3-storage@19.0.5-dev.5...@rxap/plugin-web3-storage@19.0.5-dev.6) (2024-07-03)
 
 **Note:** Version bump only for package @rxap/plugin-web3-storage
