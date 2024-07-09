@@ -264,6 +264,13 @@ export async function initApplicationGenerator(
         });
       }
 
+      if (options.overwrite) {
+        const publicDirectory = join(sourceRoot, 'public');
+        const usePublicDirectory = tree.exists(publicDirectory);
+        const baseDirectory = usePublicDirectory ? publicDirectory : sourceRoot;
+        generateFiles(tree, join(__dirname, 'files', 'public'), baseDirectory, {});
+      }
+
       updateProjectTargets(tree, projectName, project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
@@ -321,8 +328,11 @@ export async function initApplicationGenerator(
         });
       }
       if (options.serviceWorker) {
-        if (options.overwrite || !tree.exists(join(sourceRoot, 'manifest.webmanifest'))) {
-          generateFiles(tree, join(__dirname, 'files', 'service-worker'), sourceRoot, {
+        const publicDirectory = join(sourceRoot, 'public');
+        const usePublicDirectory = tree.exists(publicDirectory);
+        const baseDirectory = usePublicDirectory ? publicDirectory : sourceRoot;
+        if (options.overwrite || !tree.exists(join(baseDirectory, 'manifest.webmanifest'))) {
+          generateFiles(tree, join(__dirname, 'files', 'service-worker'), baseDirectory, {
             ...options,
             name: projectName.replace(/^user-interface-/, ''),
             classify,
