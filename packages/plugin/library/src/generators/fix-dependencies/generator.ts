@@ -18,6 +18,7 @@ import {
   CoerceFile,
   Dependency,
   ForEachSecondaryEntryPoint,
+  GetProjectPackageJson,
   GetProjectRoot,
   GetRootPackageJson,
   HasProjectWithPackageName,
@@ -226,6 +227,11 @@ function getUsedPackagesFromSourceRoot(tree: Tree, projectSourceRoot: string) {
   return getPackageListFromSourceFiles(project);
 }
 
+function getProjectPackageVersion(tree: Tree, projectName: string): string {
+  const packageJson = GetProjectPackageJson(tree, projectName);
+  return packageJson.version ?? '*';
+}
+
 function fixDependenciesWithTsMorphProject(
   project: ProjectConfiguration,
   tree: Tree,
@@ -305,7 +311,7 @@ function fixDependenciesWithTsMorphProject(
 
   for (const packageName of peerDependencyList) {
     if (HasProjectWithPackageName(packageName)) {
-      peerDependencies[packageName] = peerDependencies[packageName] ?? '*';
+      peerDependencies[packageName] = peerDependencies[packageName] ?? '^' + getProjectPackageVersion(tree, PackageNameToProjectName(packageName));
     } else {
       const version = findBasePackageVersion(packageName, projectRoot);
       if (peerDependencies[packageName]) {
@@ -326,7 +332,7 @@ function fixDependenciesWithTsMorphProject(
 
   for (const packageName of dependencyList) {
     if (HasProjectWithPackageName(packageName)) {
-      dependencies[packageName] = dependencies[packageName] ?? '*';
+      dependencies[packageName] = dependencies[packageName] ?? '^' + getProjectPackageVersion(tree, PackageNameToProjectName(packageName));
     } else {
       const version = findBasePackageVersion(packageName, projectRoot);
       if (dependencies[packageName]) {
@@ -353,83 +359,6 @@ function fixDependenciesWithTsMorphProject(
       ngPackageJson.allowedNonPeerDependencies ??= [];
       CoerceArrayItems(ngPackageJson.allowedNonPeerDependencies, dependencyList);
     }, join(projectRoot, 'ng-package.json'));
-  }
-
-  return {
-    addedPackageList,
-    changedPackageList,
-    removedPackageList,
-    unknownPackageList,
-  };
-
-}
-
-function fixDevDependenciesWithTsMorphProject(
-  projectGraph: ProjectGraph,
-  tree: Tree,
-  projectRoot: string,
-  packageJson: ProjectPackageJson,
-) {
-
-  const project = CreateProject();
-
-  AddDir(
-    tree,
-    projectRoot,
-    project,
-    (fileName, path) => !path.includes('node_modules') &&
-      fileName.endsWith('.ts') &&
-      !TESTING_FOLDERS.map(folder => join(projectRoot, folder)).some(folder => path.includes(folder)) &&
-      TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext)),
-  );
-
-  const packageList: string[] = getPackageListFromSourceFiles(project);
-
-  packageJson.devDependencies ??= {};
-
-  const {
-    dependencies,
-    peerDependencies,
-    devDependencies,
-  } = packageJson;
-
-  const addedPackageList: string[] = [];
-  const changedPackageList: string[] = [];
-  const removedPackageList: string[] = [];
-  const unknownPackageList: string[] = [];
-
-  for (const packageName of Object.keys(devDependencies)) {
-    if (!packageList.includes(packageName) &&
-      !peerDependencies?.[packageName] &&
-      !PACKAGE_REMOVE_BLACK_LIST.includes(packageName)) {
-      removedPackageList.push(`${ packageName }@${ devDependencies[packageName] } from devDependencies`);
-      delete devDependencies[packageName];
-    }
-  }
-
-  for (const packageName of packageList) {
-    if (HasProjectWithPackageName(packageName)) {
-      if (!peerDependencies?.[packageName] && !dependencies?.[packageName]) {
-        devDependencies[packageName] = '*';
-      }
-    } else {
-      if (!peerDependencies?.[packageName] && !dependencies?.[packageName]) {
-        const version = findBasePackageVersion(packageName, projectRoot);
-        if (devDependencies?.[packageName]) {
-          if (devDependencies[packageName] !== version) {
-            changedPackageList.push(`${ packageName }@${ devDependencies[packageName] } -> ${ version }`);
-            devDependencies[packageName] = version;
-          }
-        } else {
-          addedPackageList.push(`${ packageName }@${ version }`);
-          devDependencies[packageName] = version;
-        }
-        if (version === 'latest') {
-          unknownPackageList.push(packageName);
-        }
-        devDependencies[packageName] = version;
-      }
-    }
   }
 
   return {
@@ -677,7 +606,7 @@ function forcePeerDependencies(packageJson: PackageJson) {
   }
 }
 
-function forcePackagesAsDependencies(packageJson: PackageJson, packages: string[], projectRoot: string) {
+function forcePackagesAsDependencies(tree: Tree, packageJson: PackageJson, packages: string[], projectRoot: string) {
   packageJson.dependencies ??= {};
   packageJson.peerDependencies ??= {};
   for (const packageName of Object.keys(packageJson.peerDependencies)) {
@@ -689,7 +618,7 @@ function forcePackagesAsDependencies(packageJson: PackageJson, packages: string[
   for (const packageName of packages) {
     if (!packageJson.dependencies[packageName]) {
       if (HasProjectWithPackageName(packageName)) {
-        packageJson.dependencies[packageName] = '*';
+        packageJson.dependencies[packageName] = getProjectPackageVersion(tree, PackageNameToProjectName(packageName));
       } else {
         packageJson.dependencies[packageName] = findBasePackageVersion(packageName, projectRoot);
       }
@@ -784,7 +713,7 @@ export async function fixDependenciesGenerator(
       }
 
       if (options.dependencies?.length) {
-        forcePackagesAsDependencies(packageJson, options.dependencies, projectRoot);
+        forcePackagesAsDependencies(tree, packageJson, options.dependencies, projectRoot);
       }
 
       setDependencyVersionFromRootPackageJson(packageJson, rootPackageJson);
