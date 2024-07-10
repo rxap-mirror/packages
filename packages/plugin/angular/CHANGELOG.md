@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.1-dev.7...@rxap/plugin-angular@19.3.1-dev.8) (2024-07-10)
+
+**Note:** Version bump only for package @rxap/plugin-angular
+
 ## [19.3.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.1-dev.6...@rxap/plugin-angular@19.3.1-dev.7) (2024-07-09)
 
 ### Bug Fixes

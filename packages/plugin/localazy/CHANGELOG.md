@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@19.0.5-dev.7...@rxap/plugin-localazy@19.0.5-dev.8) (2024-07-10)
+
+### Bug Fixes
+
+- only create a auto tag for protected refs ([3641c69](https://gitlab.com/rxap/packages/commit/3641c695e3a70f0b6418700987c23346f64329d4))
+
 ## [19.0.5-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@19.0.5-dev.6...@rxap/plugin-localazy@19.0.5-dev.7) (2024-07-09)
 
 **Note:** Version bump only for package @rxap/plugin-localazy
