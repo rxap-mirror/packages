@@ -1,5 +1,7 @@
-// region
+// region 
+export * from './lib/provide';
 export * from './lib/socket-io.config';
 export * from './lib/socket-io.module';
 export * from './lib/socket-io.service';
+export * from './lib/tokens';
 // endregion
