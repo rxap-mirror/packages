@@ -586,7 +586,7 @@
       },
       {
         "package": "@rxap/socket-io",
-        "version": "18.1.0-dev.1"
+        "version": "18.1.0-dev.2"
       },
       {
         "package": "@rxap/table-system",
