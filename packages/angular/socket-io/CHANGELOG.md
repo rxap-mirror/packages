@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@18.1.0-dev.1...@rxap/socket-io@18.1.0-dev.2) (2024-07-10)
+
+### Bug Fixes
+
+- add missing deps property ([3a55a06](https://gitlab.com/rxap/packages/commit/3a55a060671a955e964d44fdf1c4b72b0297e8c2))
+
 # [18.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@18.1.0-dev.0...@rxap/socket-io@18.1.0-dev.1) (2024-07-10)
 
 **Note:** Version bump only for package @rxap/socket-io
