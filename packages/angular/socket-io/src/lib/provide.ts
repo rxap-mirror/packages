@@ -27,11 +27,13 @@ export function provideSocketIoFromConfig(urlKey = 'socket.url', optionsKey = 's
   return [
     {
       provide: RXAP_SOCKET_IO_URL,
-      useFactory: (config: ConfigService) => config.getOrThrow(urlKey)
+      useFactory: (config: ConfigService) => config.getOrThrow(urlKey),
+      deps: [ ConfigService ]
     },
     {
       provide: RXAP_SOCKET_IO_OPTIONS,
-      useFactory: (config: ConfigService) => config.get(optionsKey, {})
+      useFactory: (config: ConfigService) => config.get(optionsKey, {}),
+      deps: [ ConfigService ]
     },
     WrappedSocket
   ];
