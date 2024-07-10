@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.2-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.2-dev.8...@rxap/plugin-nestjs@19.1.2-dev.9) (2024-07-10)
+
+### Bug Fixes
+
+- ensure services are correctly created ([6760176](https://gitlab.com/rxap/packages/commit/6760176b43db349b696bded511ac6dd1ba3ef02d))
+
 ## [19.1.2-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.2-dev.7...@rxap/plugin-nestjs@19.1.2-dev.8) (2024-07-09)
 
 ### Bug Fixes
