@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@18.0.5-dev.0...@rxap/socket-io@18.1.0-dev.0) (2024-07-10)
+
+### Features
+
+- support new provide concept ([9289e04](https://gitlab.com/rxap/packages/commit/9289e04030bad85329ce0eb8eed9e4f0d797ce7c))
+
 ## [18.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@18.0.4...@rxap/socket-io@18.0.5-dev.0) (2024-07-09)
 
 **Note:** Version bump only for package @rxap/socket-io
