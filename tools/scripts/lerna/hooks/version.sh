@@ -14,6 +14,11 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
+if [ -f "${BASE_DIR}/dist/lerna/rxap-entry-publish.txt" ]; then
+  echo -e "${BLUE}Rxap entry point publish skip version.sh${NC}"
+  exit 0
+fi
+
 #source "${BASE_DIR}/tools/scripts/lerna/get-changed-nx-projects.sh"
 #changed_projects=$(getChangedNxProjects)
 

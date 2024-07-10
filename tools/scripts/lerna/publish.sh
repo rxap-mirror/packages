@@ -149,6 +149,9 @@ fi
 
 if [[ "$PUBLISH_MODE" == "auto" ]]; then
   bash "${BASE_DIR}/tools/scripts/lerna/update-rxap-package-group.sh"
+  RXAP_ENTRY_PUBLISH="true"
+  echo "$RXAP_ENTRY_PUBLISH" > "${BASE_DIR}/dist/lerna/rxap-entry-publish.txt"
+  export RXAP_ENTRY_PUBLISH
 
   if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
 

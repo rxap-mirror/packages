@@ -14,6 +14,12 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
+if [ -f "${BASE_DIR}/dist/lerna/rxap-entry-publish.txt" ]; then
+  echo -e "${BLUE}Rxap entry point publish${NC}"
+  nx run rxap:build
+  exit 0
+fi
+
 #if [ -f "${BASE_DIR}/dist/lerna/changed-projects.txt" ]; then
 #  cached_changed_projects=$(cat "${BASE_DIR}/dist/lerna/changed-projects.txt")
 #fi

@@ -14,6 +14,11 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
+if [ -f "${BASE_DIR}/dist/lerna/rxap-entry-publish.txt" ]; then
+  echo -e "${BLUE}Rxap entry point publish skip prepack.sh${NC}"
+  exit 0
+fi
+
 if [ -f "${BASE_DIR}/dist/lerna/prepublishOnly.error" ]; then
   echo -e "${RED}Error in prepublishOnly.sh${NC}"
   exit 1

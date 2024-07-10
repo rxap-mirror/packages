@@ -11,12 +11,18 @@ cd "$BASE_DIR" || exit 1
 
 #source "${BASE_DIR}/tools/scripts/lerna/get-changed-nx-projects.sh"
 source "${BASE_DIR}/tools/scripts/colors.sh"
+
+if [ -f "${BASE_DIR}/dist/lerna/rxap-entry-publish.txt" ]; then
+  echo -e "${BLUE}Rxap entry point publish skip prepack.sh${NC}"
+  exit 0
+fi
+
 #changed_projects=$(getChangedNxProjects)
 
 # Convert commas to space
 #project_list=${changed_projects//,/ }
 
-echo "changed projects:"
+#echo "changed projects:"
 
 # check if there are no changed projects
 #if [[ -z "$changed_projects" ]]; then
