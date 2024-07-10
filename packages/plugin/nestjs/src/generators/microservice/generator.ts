@@ -3,7 +3,11 @@ import {
   Tree,
 } from '@nx/devkit';
 import { applicationGenerator } from '@nx/nest';
-import { dasherize } from '@rxap/utilities';
+import {
+  CoerceArrayItems,
+  CoercePrefix,
+  dasherize,
+} from '@rxap/utilities';
 import { join } from 'path';
 import initApplicationGenerator from '../init-application/generator';
 import { MicroserviceGeneratorSchema } from './schema';
@@ -21,19 +25,18 @@ export async function microserviceGenerator(
 
   let { directory, name } = options;
 
-  name = dasherize(name);
-  directory ??= join('service', name.replace(/-service$/, ''));
+  name = CoercePrefix(dasherize(name), 'service-');
+  directory ??= join('service', name.replace(/(^service-)/, ''));
 
   presetOptions.tags ??= '';
-  if (!presetOptions.tags.includes('nest')) {
-    presetOptions.tags += (
-                            presetOptions.tags.length ? ',' : ''
-                          ) + 'nest';
-  }
+  const tags = (presetOptions.tags as string).split(',').map(tag => tag.trim());
+  CoerceArrayItems(tags, ['nest', 'service']);
+  presetOptions.tags = tags.join(',');
 
   console.log('Generate nest application'.cyan);
   console.log('name: ' + name.magenta);
   console.log('directory: ' + directory.magenta);
+  console.log('tags: ' + tags.join(', ').magenta);
 
   await applicationGenerator(tree, {
     ...presetOptions,
