@@ -1,25 +1,32 @@
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 
 import * as io from 'socket.io-client';
 
-import { SocketIoConfig } from './socket-io.config';
+import { SocketIoOptions } from './socket-io.config';
+import {
+  RXAP_SOCKET_IO_OPTIONS,
+  RXAP_SOCKET_IO_URL,
+} from './tokens';
 
+@Injectable()
 export class WrappedSocket {
   subscribersCounter: Record<string, number> = {};
   eventObservables$: Record<string, Observable<any>> = {};
   ioSocket: any;
-  emptyConfig: SocketIoConfig = {
-    url: '',
-    options: {},
-  };
 
-  constructor(private config: SocketIoConfig) {
-    if (config === undefined) {
-      config = this.emptyConfig;
-    }
-    const url: string = config.url;
-    const options: any = config.options;
+  constructor(
+    @Inject(RXAP_SOCKET_IO_URL)
+    url: string,
+    @Optional()
+    @Inject(RXAP_SOCKET_IO_OPTIONS)
+    options: SocketIoOptions = {},
+  ) {
     const ioFunc = (io as any).default ? (io as any).default : io;
     this.ioSocket = ioFunc(url, options);
   }

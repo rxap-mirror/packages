@@ -8,13 +8,16 @@ import { WrappedSocket } from './socket-io.service';
 
 /** Socket factory */
 export function SocketFactory(config: SocketIoConfig) {
-  return new WrappedSocket(config);
+  return new WrappedSocket(config.url, config.options);
 }
 
 export const SOCKET_CONFIG_TOKEN = new InjectionToken<SocketIoConfig>(
   'rxap-socket-io/config',
 );
 
+/**
+ * @deprecated use the provideSocketIo function instead
+ */
 @NgModule({})
 export class SocketIoModule {
   static forRoot(config: SocketIoConfig): ModuleWithProviders<SocketIoModule> {
