@@ -1,9 +1,9 @@
 import { Provider } from '@angular/core';
 import { ConfigService } from '@rxap/config';
+import { SocketIoOptions } from './socket-io.config';
 import {
-  SocketIoOptions,
   WrappedSocket,
-} from '@rxap/socket-io';
+} from './socket-io.service';
 import {
   RXAP_SOCKET_IO_OPTIONS,
   RXAP_SOCKET_IO_URL,
