@@ -133,7 +133,7 @@ function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
       `{workspaceRoot}/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/main.js.map`
     ],
     'dependsOn': [
-      '^build'
+      'swagger-build'
     ]
   }, Strategy.REPLACE);
 
