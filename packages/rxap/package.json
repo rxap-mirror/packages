@@ -498,7 +498,7 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.2-dev.8"
+        "version": "19.1.2-dev.9"
       },
       {
         "package": "@rxap/plugin-open-api",
