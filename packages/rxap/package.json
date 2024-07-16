@@ -342,7 +342,7 @@
       },
       {
         "package": "@rxap/nest-open-api",
-        "version": "10.4.2-dev.0"
+        "version": "10.4.2-dev.1"
       },
       {
         "package": "@rxap/nest-sentry",
@@ -498,11 +498,11 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.2-dev.10"
+        "version": "19.1.2-dev.11"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.4-dev.8"
+        "version": "19.1.4-dev.9"
       },
       {
         "package": "@rxap/plugin-storybook",
