@@ -11,6 +11,7 @@ import {
   InjectScopeInFilePath,
   ReadFileWithScope,
 } from '@rxap/node-utilities';
+import { coerceArray } from '@rxap/utilities';
 import { OpenApiModuleOptions } from './open-api.module';
 
 @Injectable()
@@ -38,7 +39,7 @@ export class OpenApiModuleOptionsLoader implements ConfigurableModuleOptionsFact
         throw new Error(`Could not interpolate env variables in open api server config file "${ this.fileNameWithScope(openApiServerConfigFilePath) }": ${ e.message }`);
       }
       try {
-        config.serverConfig = JSON.parse(content);
+        config.serverConfig = coerceArray(JSON.parse(content));
       } catch (e: any) {
         throw new Error(`Could not parse open api server config file "${ this.fileNameWithScope(openApiServerConfigFilePath) }": ${ e.message }`);
       }

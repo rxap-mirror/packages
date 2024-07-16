@@ -36,7 +36,7 @@ describe('OpenApiModuleOptionsLoader', () => {
     jest.spyOn(loader as any, 'existsFileWithScope').mockReturnValue(true);
     jest.spyOn(loader as any, 'readFileWithScope').mockReturnValue(JSON.stringify({ url: 'https://${REMOTE_DOMAIN}/api' }));
     const options = loader.create();
-    expect(options).toEqual({ serverConfig: { url: 'https://example.com/api' } });
+    expect(options).toEqual({ serverConfig: [{ url: 'https://example.com/api' }] });
   });
 
 });
