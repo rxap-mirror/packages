@@ -31,6 +31,7 @@ export async function generateGenerator(
   options: GenerateGeneratorSchema,
 ) {
   options.export ??= true;
+  options.skipFormat ??= true;
   console.log('loading openapi config');
   const openapi = await LoadOpenApiConfig(tree, options);
   // console.log('resolve all schema refs');
