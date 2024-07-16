@@ -14,7 +14,7 @@
         },
         "skipFormat": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "project": {
           "type": "string",
@@ -84,7 +84,7 @@
         },
         "skipFormat": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "directory": {
           "type": "string",
