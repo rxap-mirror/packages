@@ -79,7 +79,7 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, overwrit
 
 }
 
-function updateProjectTargets(project: ProjectConfiguration, options: SwaggerGeneratorSchema) {
+function updateProjectTargets(projectName: string, project: ProjectConfiguration, options: SwaggerGeneratorSchema) {
 
   let tsConfig = join(project.root, 'tsconfig.app.json');
   if ('build' in (project.targets ?? {})) {
@@ -110,7 +110,14 @@ function updateProjectTargets(project: ProjectConfiguration, options: SwaggerGen
     },
   });
 
-  CoerceTarget(project, 'swagger-generate', {}, Strategy.REPLACE);
+  CoerceTarget(project, 'swagger-generate', {
+    outputs: [
+      `{workspaceRoot}/swagger/${options.standalone ? projectName : project.root }/openapi.json`
+    ],
+    inputs: [
+      `{workspaceRoot}/swagger/${options.standalone ? projectName : project.root}/main.js`,
+    ],
+  }, Strategy.REPLACE);
 
 }
 
@@ -125,13 +132,6 @@ function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
 
   CoerceTarget(nxJson, 'swagger-generate', {
     executor: '@rxap/plugin-nestjs:swagger-generate',
-    outputs: [
-      `{workspaceRoot}/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/openapi.json`
-    ],
-    inputs: [
-      `{workspaceRoot}/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/main.js`,
-      `{workspaceRoot}/swagger/${options.standalone ? '{projectName}' : '{projectRoot}'}/main.js.map`
-    ],
     'dependsOn': [
       'swagger-build'
     ]
@@ -166,13 +166,14 @@ export async function swaggerGenerator(
   options: SwaggerGeneratorSchema,
 ) {
   const projectRoot = GetProjectRoot(tree, options.project);
+  const projectName = options.project;
   generateFiles(
     tree,
     path.join(__dirname, 'files'),
     join(projectRoot, 'src'),
     {
       tmpl: '',
-      projectName: options.project,
+      projectName,
     },
   );
 
@@ -180,7 +181,7 @@ export async function swaggerGenerator(
 
   coerceEnvironmentFiles(tree, options);
   updateNxDefaults(tree, options);
-  updateProjectTargets(project, options);
+  updateProjectTargets(projectName, project, options);
   const projectSourceRoot = project.sourceRoot;
   if (!projectSourceRoot) {
     throw new Error('The selected project has no sourceRoot');
