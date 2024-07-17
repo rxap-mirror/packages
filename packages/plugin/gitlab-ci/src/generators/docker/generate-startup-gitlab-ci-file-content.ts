@@ -110,6 +110,7 @@ export function buildStartupMatrix(
 
     if (IsUserInterfaceProject(project)) {
       matrixItem.SERVICE_PORT = '80';
+      matrixItem.SERVICE_PATH = '/';
     }
 
     if (imageSuffix) {
