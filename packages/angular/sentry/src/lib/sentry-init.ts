@@ -18,7 +18,7 @@ export function SentryInit(environment: Environment) {
     debug: ConfigService.Get('sentry.debug', environment.sentry?.debug ?? false, ConfigService.Config),
     environment: DetermineSentryEnvironment(environment),
     release: DetermineSentryRelease(environment),
-    tunnel: ConfigService.Get('sentry.tunnel', environment.production ? '/tunnel' : undefined, ConfigService.Config),
+    tunnel: ConfigService.Get('sentry.tunnel', undefined, ConfigService.Config),
     initialScope: {
       user: { ip_address: '{{auto}}' },
       tags: {
