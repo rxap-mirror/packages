@@ -122,6 +122,6 @@ export class SentryInterceptor implements NestInterceptor {
                .some(({
                         type,
                         filter,
-                      }) => !(exception instanceof type && (!filter || filter(exception))));
+                      }: any) => !(exception instanceof type && (!filter || filter(exception))));
   }
 }

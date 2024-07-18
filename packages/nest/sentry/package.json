@@ -13,10 +13,10 @@
     "@nestjs/config": "^3.2.2",
     "@rxap/nest-logger": "^10.2.5-dev.5",
     "@rxap/nest-utilities": "^10.3.4-dev.0",
-    "@sentry/core": "^8.9.2",
-    "@sentry/node": "^8.9.2",
-    "@sentry/types": "^8.9.2",
-    "@sentry/utils": "^8.9.2",
+    "@sentry/core": "^8.18.0",
+    "@sentry/node": "^8.18.0",
+    "@sentry/types": "^8.18.0",
+    "@sentry/utils": "^8.18.0",
     "rxjs": "^7.8.1"
   },
   "author": {

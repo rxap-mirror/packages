@@ -4,13 +4,14 @@ import {
   OnApplicationBootstrap,
   OnApplicationShutdown,
 } from '@nestjs/common';
-import * as Sentry from '@sentry/node';
 import {
   Client,
   ClientOptions,
 } from '@sentry/types';
 import { SentryModuleOptions } from './sentry.interfaces';
 import { SENTRY_MODULE_OPTIONS } from './tokens';
+import * as Sentry from "@sentry/nestjs"
+import { nodeProfilingIntegration } from "@sentry/profiling-node";
 
 @Injectable()
 export class SentryService implements OnApplicationShutdown, OnApplicationBootstrap {
@@ -34,6 +35,7 @@ export class SentryService implements OnApplicationShutdown, OnApplicationBootst
     Sentry.init({
       ...sentryOptions,
       integrations: [
+        nodeProfilingIntegration(),
         Sentry.onUncaughtExceptionIntegration({
           onFatalError: async (err) => {
             // console.error('uncaughtException, not cool!')
