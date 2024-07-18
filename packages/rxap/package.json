@@ -246,7 +246,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.5-dev.0"
+        "version": "18.0.5-dev.1"
       },
       {
         "package": "@rxap/firebase",
@@ -418,7 +418,7 @@
       },
       {
         "package": "@rxap/ngx-sentry",
-        "version": "18.0.5-dev.1"
+        "version": "18.0.5-dev.2"
       },
       {
         "package": "@rxap/ngx-status-check",
