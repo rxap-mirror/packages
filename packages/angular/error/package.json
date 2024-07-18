@@ -14,7 +14,7 @@
     "@rxap/config": "^18.1.3-dev.0",
     "@rxap/data-grid": "^18.0.5-dev.0",
     "@rxap/environment": "^18.0.5-dev.1",
-    "@sentry/angular": "^8.9.2",
+    "@sentry/angular": "^8.18.0",
     "rxjs": "^7.8.1"
   },
   "author": {
