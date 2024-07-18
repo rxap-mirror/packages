@@ -54,7 +54,7 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
       Writers.object({
         providers: w => {
           w.writeLine('[');
-          w.writeLine('importProvidersFrom(HttpClientModule),');
+          w.writeLine('provideHttpClient(),');
           w.writeLine('ProvideIconAssetPath([');
           w.quote('mdi.svg');
           w.write(',');
@@ -70,12 +70,8 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
     }, e => e.getText().startsWith('applicationConfig'));
     CoerceImports(sourceFile, [
       {
-        namedImports: [ 'HttpClientModule' ],
+        namedImports: [ 'provideHttpClient' ],
         moduleSpecifier: '@angular/common/http',
-      },
-      {
-        namedImports: [ 'importProvidersFrom' ],
-        moduleSpecifier: '@angular/core',
       },
       {
         namedImports: [ 'provideNoopAnimations' ],
