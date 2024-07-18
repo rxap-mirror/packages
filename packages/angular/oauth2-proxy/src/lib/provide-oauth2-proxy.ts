@@ -3,12 +3,18 @@ import {
   PubSubService,
   RXAP_TOPICS,
 } from '@rxap/ngx-pub-sub';
+import {
+  debounceTime,
+  tap,
+} from 'rxjs';
 
 export function subscribeToLogoutEvent(pubSubService: PubSubService) {
   return () => {
-    pubSubService.subscribe(RXAP_TOPICS.authentication.logout).subscribe(() => {
-      location.replace(location.origin + '/oauth2/sign_out');
-    });
+    pubSubService.subscribe(RXAP_TOPICS.authentication.logout).pipe(
+      // wait some time to ensure other logout handlers are executed
+      debounceTime(64),
+      tap(() => location.replace(location.origin + '/oauth2/sign_out'))
+    ).subscribe();
   };
 }
 
