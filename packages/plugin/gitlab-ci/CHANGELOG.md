@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@19.0.5-dev.7...@rxap/plugin-gitlab-ci@19.0.5-dev.8) (2024-07-18)
+
+### Bug Fixes
+
+- set default service path for nginx container ([b930a72](https://gitlab.com/rxap/packages/commit/b930a72b4dc0488bacad8cc85bff966a9156386a))
+
 ## [19.0.5-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@19.0.5-dev.6...@rxap/plugin-gitlab-ci@19.0.5-dev.7) (2024-07-09)
 
 **Note:** Version bump only for package @rxap/plugin-gitlab-ci

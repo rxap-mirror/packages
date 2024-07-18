@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@19.0.5-dev.7...@rxap/plugin-storybook@19.0.5-dev.8) (2024-07-18)
+
+### Bug Fixes
+
+- proper dark mode support ([baeaf3c](https://gitlab.com/rxap/packages/commit/baeaf3c986e635fdb057c156e15192eff5617c58))
+- use provideHttpClient instead of HttpClientModule ([acb957d](https://gitlab.com/rxap/packages/commit/acb957dff2a446c135d1f5105bdb4fb395dcb1a1))
+
 ## [19.0.5-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@19.0.5-dev.6...@rxap/plugin-storybook@19.0.5-dev.7) (2024-07-09)
 
 **Note:** Version bump only for package @rxap/plugin-storybook

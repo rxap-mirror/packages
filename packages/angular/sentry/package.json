@@ -1,5 +1,5 @@
 {
-  "version": "18.0.5-dev.0",
+  "version": "18.0.5-dev.1",
   "name": "@rxap/ngx-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
