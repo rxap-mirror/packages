@@ -24,6 +24,7 @@ export const decorators = [
       dark: 'dark',
     },
     defaultTheme: 'light',
+    parentSelector: 'body',
   }),
   applicationConfig({
     providers: [
