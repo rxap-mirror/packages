@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.5-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/environment@18.0.5-dev.0...@rxap/environment@18.0.5-dev.1) (2024-07-18)
+
+### Bug Fixes
+
+- add missing dynamic configuration options ([1dc8a4f](https://gitlab.com/rxap/packages/commit/1dc8a4f2a33aaa508804bd919456a0cd784c8c94))
+
 ## [18.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@18.0.4...@rxap/environment@18.0.5-dev.0) (2024-07-09)
 
 **Note:** Version bump only for package @rxap/environment
