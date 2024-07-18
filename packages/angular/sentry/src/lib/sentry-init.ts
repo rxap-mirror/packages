@@ -33,13 +33,14 @@ export function SentryInit(environment: Environment) {
     integrations: [
       Sentry.httpClientIntegration({
         failedRequestTargets: environment.sentry?.integrations?.httpClient?.failedRequestTargets,
+        failedRequestStatusCodes: environment.sentry?.integrations?.httpClient?.failedRequestStatusCodes,
       }),
       Sentry.browserTracingIntegration({}),
       Sentry.replayIntegration({
         // Additional SDK configuration goes in here, for example:
-        maskAllText: true,
-        blockAllMedia: true,
-        maskAllInputs: true,
+        maskAllText: ConfigService.Get('sentry.integrations.replay.maskAllText', true, ConfigService.Config),
+        blockAllMedia: ConfigService.Get('sentry.integrations.replay.blockAllMedia', true, ConfigService.Config),
+        maskAllInputs: ConfigService.Get('sentry.integrations.replay.maskAllInputs', true, ConfigService.Config),
       }),
     ],
     tracesSampleRate: ConfigService.Get('sentry.tracesSampleRate', 1.0, ConfigService.Config),

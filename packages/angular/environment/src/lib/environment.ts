@@ -54,7 +54,8 @@ export interface Environment {
     dsn?: string,
     integrations?: {
       httpClient?: {
-        failedRequestTargets?: string[];
+        failedRequestTargets?: Array<string | RegExp>;
+        failedRequestStatusCodes?: Array<[number, number] | number>;
       };
       BrowserTracing?: {
         tracePropagationTargets?: string[];
