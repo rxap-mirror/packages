@@ -45,6 +45,7 @@ export async function coercePreview(tree: Tree, projectName: string, options: In
           dark: w => w.quote('dark'),
         }),
         defaultTheme: w => w.quote('light'),
+        parentSelector: w => w.quote('body'),
       })(w);
       w.write(')');
     }, e => e.getText().startsWith('withThemeByClassName'));
