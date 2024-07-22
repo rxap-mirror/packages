@@ -1,5 +1,5 @@
 {
-  "version": "10.4.2-dev.1",
+  "version": "10.4.2-dev.2",
   "name": "@rxap/nest-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -109,6 +109,10 @@
       {
         "package": "@rxap/utilities",
         "version": "16.3.0-dev.2"
+      },
+      {
+        "package": "@sentry/core",
+        "version": "8.18.0"
       }
     ]
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.2-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.2-dev.7...@rxap/plugin-library@19.3.2-dev.8) (2024-07-22)
+
+### Bug Fixes
+
+- include sentry in package auto update ([0f65b81](https://gitlab.com/rxap/packages/commit/0f65b8172e28c5734b1a853f4ec3c9a33b2f4c63))
+
 ## [19.3.2-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.2-dev.6...@rxap/plugin-library@19.3.2-dev.7) (2024-07-09)
 
 ### Bug Fixes

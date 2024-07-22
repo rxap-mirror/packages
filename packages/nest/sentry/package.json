@@ -1,5 +1,5 @@
 {
-  "version": "10.3.4-dev.5",
+  "version": "10.4.0-dev.0",
   "name": "@rxap/nest-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,10 +11,13 @@
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
     "@nestjs/config": "^3.2.2",
+    "@nestjs/core": "^10.3.8",
     "@rxap/nest-logger": "^10.2.5-dev.5",
     "@rxap/nest-utilities": "^10.3.4-dev.0",
     "@sentry/core": "^8.18.0",
+    "@sentry/nestjs": "^8.18.0",
     "@sentry/node": "^8.18.0",
+    "@sentry/profiling-node": "^8.18.0",
     "@sentry/types": "^8.18.0",
     "@sentry/utils": "^8.18.0",
     "rxjs": "^7.8.1"
@@ -59,8 +62,20 @@
         "version": "10.3.8"
       },
       {
+        "package": "@nestjs/microservices",
+        "version": "10.3.8"
+      },
+      {
+        "package": "@nestjs/platform-express",
+        "version": "10.3.8"
+      },
+      {
         "package": "@nestjs/throttler",
         "version": "5.1.2"
+      },
+      {
+        "package": "@nestjs/websockets",
+        "version": "10.0.0"
       },
       {
         "package": "@rxap/nest-logger",
@@ -69,6 +84,30 @@
       {
         "package": "@rxap/nest-utilities",
         "version": "10.3.4-dev.0"
+      },
+      {
+        "package": "@sentry/core",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/nestjs",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/node",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/profiling-node",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/types",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/utils",
+        "version": "8.18.0"
       }
     ]
   },

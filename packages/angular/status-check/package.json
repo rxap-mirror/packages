@@ -1,5 +1,5 @@
 {
-  "version": "18.0.5-dev.0",
+  "version": "18.0.5-dev.1",
   "name": "@rxap/ngx-status-check",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -115,6 +115,10 @@
       {
         "package": "@rxap/utilities",
         "version": "16.3.0-dev.2"
+      },
+      {
+        "package": "@sentry/angular",
+        "version": "8.18.0"
       }
     ]
   },

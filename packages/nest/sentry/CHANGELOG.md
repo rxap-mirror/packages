@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.3.4-dev.5...@rxap/nest-sentry@10.4.0-dev.0) (2024-07-22)
+
+### Features
+
+- use new nestjs specific sentry instance ([f5472e8](https://gitlab.com/rxap/packages/commit/f5472e83133ad8fdd08b078956482b701ebd18f1))
+
 ## [10.3.4-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.3.4-dev.4...@rxap/nest-sentry@10.3.4-dev.5) (2024-07-09)
 
 **Note:** Version bump only for package @rxap/nest-sentry

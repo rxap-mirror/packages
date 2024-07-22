@@ -1,5 +1,5 @@
 {
-  "version": "18.0.5-dev.0",
+  "version": "18.0.5-dev.1",
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -124,6 +124,10 @@
       {
         "package": "@rxap/validator",
         "version": "3.0.7-dev.0"
+      },
+      {
+        "package": "@sentry/angular",
+        "version": "8.18.0"
       }
     ]
   },
