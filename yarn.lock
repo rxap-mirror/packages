@@ -9130,7 +9130,7 @@ __metadata:
     "@rxap/nest-utilities": ^10.3.4-dev.0
     "@rxap/node-utilities": ^1.3.3-dev.0
     "@rxap/utilities": ^16.3.0-dev.2
-    "@sentry/core": ^8.9.2
+    "@sentry/core": ^8.18.0
     class-transformer: ^0.5.1
     class-validator: ^0.14.1
     openapi-types: ^10.0.0
@@ -9151,10 +9151,10 @@ __metadata:
     "@nestjs/config": ^3.2.2
     "@rxap/nest-logger": ^10.2.5-dev.5
     "@rxap/nest-utilities": ^10.3.4-dev.0
-    "@sentry/core": ^8.9.2
-    "@sentry/node": ^8.9.2
-    "@sentry/types": ^8.9.2
-    "@sentry/utils": ^8.9.2
+    "@sentry/core": ^8.18.0
+    "@sentry/node": ^8.18.0
+    "@sentry/types": ^8.18.0
+    "@sentry/utils": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9308,7 +9308,7 @@ __metadata:
     "@rxap/config": ^18.1.3-dev.0
     "@rxap/data-grid": ^18.0.5-dev.0
     "@rxap/environment": ^18.0.5-dev.1
-    "@sentry/angular": ^8.9.2
+    "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9446,7 +9446,7 @@ __metadata:
   peerDependencies:
     "@rxap/config": ^18.1.3-dev.0
     "@rxap/environment": ^18.0.5-dev.1
-    "@sentry/angular": ^8.9.2
+    "@sentry/angular": ^8.18.0
   languageName: unknown
   linkType: soft
 
@@ -9463,7 +9463,7 @@ __metadata:
     "@angular/router": ^18.0.6
     "@rxap/config": ^18.1.3-dev.0
     "@rxap/open-api": ^18.0.5-dev.1
-    "@sentry/angular": ^8.9.2
+    "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
