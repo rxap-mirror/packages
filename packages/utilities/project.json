@@ -18,7 +18,7 @@
           "packages/utilities/docs",
           {
             "input": "./packages/utilities/src/generators",
-            "glob": "**/!(*.ts",
+            "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/generators"
           },
           {

@@ -25,7 +25,7 @@
           "packages/nest/oauth2-proxy/*.md",
           {
             "input": "./packages/nest/oauth2-proxy/src/generators",
-            "glob": "**/!(*.ts",
+            "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/generators"
           },
           {

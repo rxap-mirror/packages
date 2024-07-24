@@ -14,7 +14,7 @@
     "docs",
     {
       "input": "./packages/angular/pub-sub/src/generators",
-      "glob": "**/!(*.ts",
+      "glob": "**/!(*.ts|*.js|*.json)",
       "output": "./src/generators"
     },
     {

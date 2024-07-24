@@ -24,7 +24,7 @@
     "docs",
     {
       "input": "./packages/angular/material/directives/src/generators",
-      "glob": "**/!(*.ts",
+      "glob": "**/!(*.ts|*.js|*.json)",
       "output": "./src/generators"
     },
     {

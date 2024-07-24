@@ -15,7 +15,7 @@
     "docs",
     {
       "input": "./packages/angular/open-api/src/generators",
-      "glob": "**/!(*.ts",
+      "glob": "**/!(*.ts|*.js|*.json)",
       "output": "./src/generators"
     },
     {
