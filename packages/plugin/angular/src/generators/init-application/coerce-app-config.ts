@@ -51,6 +51,7 @@ export function coerceAppConfig(tree: Tree, projectName: string, options: InitAp
       providers.push('ProvidePubSub()');
       providers.push('ProvideChangelog()');
       providers.push('provideTheme()');
+      providers.push('provideExternalApps()');
       importProvidersFrom.push('MarkdownModule.forRoot()');
       CoerceImports(sourceFile, [
         {
@@ -68,6 +69,10 @@ export function coerceAppConfig(tree: Tree, projectName: string, options: InitAp
         {
           moduleSpecifier: '@rxap/ngx-theme',
           namedImports: [ 'provideTheme' ],
+        },
+        {
+          moduleSpecifier: '@rxap/layout',
+          namedImports: [ 'provideExternalApps' ],
         }
       ]);
     }
