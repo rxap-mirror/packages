@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add-seperate-external-apps-provider migration should run successfully 1`] = `null`;
+
+exports[`add-seperate-external-apps-provider migration should run successfully 2`] = `null`;
+
+exports[`add-seperate-external-apps-provider migration should run successfully 3`] = `
+"import { ApplicationConfig } from '@angular/core';
+import { provideExternalApps } from '@rxap/layout';
+
+export const appConfig: ApplicationConfig = { providers: [
+  provideExternalApps(),
+] };
+"
+`;
+
+exports[`add-seperate-external-apps-provider migration should run successfully 4`] = `
+"import { ApplicationConfig } from '@angular/core';
+import { provideExternalApps } from '@rxap/layout';
+
+export const appConfig = { providers: [provideExternalApps()] };"
+`;

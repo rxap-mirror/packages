@@ -30,12 +30,24 @@ import {
 
 export function provideLayout(...additionalProviders: Provider[]): Provider[] {
   return [
-    ExternalAppsService,
     LayoutService,
     LogoService,
     HeaderService,
     FooterService,
     ...additionalProviders,
+  ];
+}
+
+export function provideExternalApps(...apps: ExternalApp[]): Provider[] {
+  return [
+    ExternalAppsService,
+    ...apps.map(app => (
+      {
+        provide: RXAP_EXTERNAL_APP,
+        useValue: app,
+        multi: true,
+      }
+    ))
   ];
 }
 
@@ -49,16 +61,6 @@ export function withNavigationConfig(
       useValue: config,
     },
   ];
-}
-
-export function withExternalApps(...apps: ExternalApp[]): Provider[] {
-  return apps.map(app => (
-    {
-      provide: RXAP_EXTERNAL_APP,
-      useValue: app,
-      multi: true,
-    }
-  ));
 }
 
 export function withNavigationInserts(inserts: Record<string, NavigationWithInserts>): Provider[] {
