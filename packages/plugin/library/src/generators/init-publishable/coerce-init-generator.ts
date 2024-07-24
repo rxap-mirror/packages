@@ -46,7 +46,7 @@ export async function CoerceInitGenerator(
       {
         input: join('src', 'generators'),
         glob: '**/!(*.ts|*.js|*.json)',
-        output: 'generators',
+        output: join('src', 'generators'),
       },
       'generators.json'
     ]);

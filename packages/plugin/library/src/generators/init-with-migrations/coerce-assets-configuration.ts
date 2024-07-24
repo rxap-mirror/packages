@@ -51,7 +51,7 @@ function coerceAssetsInNgPackageJson(tree: Tree, projectName: string, project: P
       {
         input: join('src', 'migrations'),
         glob: "**/!(*.ts|*.js|*.json)",
-        output: "src/migrations"
+        output: join('src', 'migrations')
       }
     ]);
   }, join(projectRoot, 'ng-package.json'));
