@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.2-dev.8...@rxap/plugin-library@19.4.0-dev.0) (2024-07-24)
+
+### Features
+
+- support auto version set ([602e045](https://gitlab.com/rxap/packages/commit/602e0454538a5179142b7abebe83d61d7461f61f))
+
 ## [19.3.2-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.3.2-dev.7...@rxap/plugin-library@19.3.2-dev.8) (2024-07-22)
 
 ### Bug Fixes
