@@ -16,8 +16,8 @@
       "implementation": "./src/migrations/18.0.0/add-with-user-profile-provider/add-with-user-profile-provider"
     },
     "add-seperate-external-apps-provider": {
-      "version": "18.1.0",
-      "description": "Migration for v18.1.0",
+      "version": "18.2.0",
+      "description": "Migration for v18.2.0",
       "implementation": "./src/migrations/18.0.0/add-seperate-external-apps-provider/add-seperate-external-apps-provider"
     }
   }
