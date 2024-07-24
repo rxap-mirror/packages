@@ -15,8 +15,14 @@ import {
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 
-function coerceAssets(assets: Assets, projectRoot: string) {
-  CoerceAssets(assets, [
+function coerceAssetsInBuildTarget(tree: Tree, projectName: string, project: ProjectConfiguration) {
+
+  const projectRoot = GetProjectRoot(tree, projectName);
+
+  const buildTarget = GetTarget(project, 'build');
+  const buildTargetOptions: { assets?: Assets } = GetTargetOptions(buildTarget);
+  buildTargetOptions.assets ??= [];
+  CoerceAssets(buildTargetOptions.assets, [
     {
       input: `./${projectRoot}`,
       glob: "migrations.json",
@@ -28,16 +34,6 @@ function coerceAssets(assets: Assets, projectRoot: string) {
       output: "./src/migrations"
     }
   ]);
-}
-
-function coerceAssetsInBuildTarget(tree: Tree, projectName: string, project: ProjectConfiguration) {
-
-  const projectRoot = GetProjectRoot(tree, projectName);
-
-  const buildTarget = GetTarget(project, 'build');
-  const buildTargetOptions: { assets?: Assets } = GetTargetOptions(buildTarget);
-  buildTargetOptions.assets ??= [];
-  coerceAssets(buildTargetOptions.assets, projectRoot);
   updateProjectConfiguration(tree, projectName, project);
 }
 
@@ -50,7 +46,14 @@ function coerceAssetsInNgPackageJson(tree: Tree, projectName: string, project: P
 
   UpdateJsonFile(tree, (ngPackageJson: NgPackageJson) => {
     ngPackageJson.assets ??= [];
-    coerceAssets(ngPackageJson.assets, projectRoot);
+    CoerceAssets(ngPackageJson.assets, [
+      'migrations.json',
+      {
+        input: join('src', 'migrations'),
+        glob: "**/!(*.ts|*.js|*.json)",
+        output: "src/migrations"
+      }
+    ]);
   }, join(projectRoot, 'ng-package.json'));
 
 }

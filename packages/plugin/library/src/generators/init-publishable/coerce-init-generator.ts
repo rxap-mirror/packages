@@ -39,29 +39,34 @@ export async function CoerceInitGenerator(
   const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
   const projectRoot = GetProjectRoot(tree, projectName);
 
-  const generatorsAssets: Assets = [
-    {
-      input: './' + join(projectSourceRoot, 'generators'),
-      glob: '**/!(*.ts',
-      output: './src/generators',
-    },
-    {
-      input: './' + projectRoot,
-      glob: 'generators.json',
-      output: '.',
-    },
-  ];
-
   if (IsAngularProject(project)) {
     const ngPackagr = ReadNgPackageJson(tree, project);
     ngPackagr.assets ??= [];
-    CoerceAssets(ngPackagr.assets, generatorsAssets);
+    CoerceAssets(ngPackagr.assets, [
+      {
+        input: join('src', 'generators'),
+        glob: '**/!(*.ts|*.js|*.json)',
+        output: 'generators',
+      },
+      'generators.json'
+    ]);
     WriteNgPackageJson(tree, project, ngPackagr);
   } else {
     const buildTarget = GetTarget(project, 'build');
     buildTarget.options ??= {};
     buildTarget.options.assets ??= [];
-    CoerceAssets(buildTarget.options.assets, generatorsAssets);
+    CoerceAssets(buildTarget.options.assets, [
+      {
+        input: './' + join(projectSourceRoot, 'generators'),
+        glob: '**/!(*.ts|*.js|*.json)',
+        output: './src/generators',
+      },
+      {
+        input: './' + projectRoot,
+        glob: 'generators.json',
+        output: '.',
+      },
+    ]);
   }
   // endregion
 
