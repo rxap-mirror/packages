@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.1-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.1-dev.9...@rxap/plugin-angular@19.3.1-dev.10) (2024-07-24)
+
+### Bug Fixes
+
+- add provideExternalApps to app.config for monolithic applications ([e46e354](https://gitlab.com/rxap/packages/commit/e46e354b404aa86838fce3dda36f63722366a62b))
+
 ## [19.3.1-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.1-dev.8...@rxap/plugin-angular@19.3.1-dev.9) (2024-07-22)
 
 **Note:** Version bump only for package @rxap/plugin-angular

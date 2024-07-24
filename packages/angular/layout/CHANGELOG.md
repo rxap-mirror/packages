@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.1.2-dev.6...@rxap/layout@18.2.0-dev.0) (2024-07-24)
+
+### Features
+
+- provide ExternalApps as root service ([be05239](https://gitlab.com/rxap/packages/commit/be0523923ff3ae759557fbd6fb88ec144ff810fa))
+
 ## [18.1.2-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.1.2-dev.5...@rxap/layout@18.1.2-dev.6) (2024-07-09)
 
 ### Bug Fixes
