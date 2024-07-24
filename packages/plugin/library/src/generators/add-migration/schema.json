@@ -29,11 +29,16 @@
       "type": "boolean",
       "description": "Whether or not to include `package.json` updates.",
       "default": false
+    },
+    "increment": {
+      "type": "string",
+      "enum": ["major", "minor", "patch"],
+      "description": "Increment the version of the package.json file",
+      "x-priority": "important"
     }
   },
   "required": [
     "project",
-    "name",
-    "packageVersion"
+    "name"
   ]
 }
