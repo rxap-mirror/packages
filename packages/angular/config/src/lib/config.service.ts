@@ -9,6 +9,7 @@ import {
   deepMerge,
   SetObjectValue,
 } from '@rxap/utilities';
+import { ReplaySubject } from 'rxjs';
 import { RXAP_CONFIG } from './tokens';
 import { NoInferType } from './types';
 
@@ -29,6 +30,12 @@ export interface ConfigLoadOptions {
   providedIn: 'root',
 })
 export class ConfigService<Config extends Record<string, any> = Record<string, any>> {
+
+  public static onError = new ReplaySubject<unknown>(1);
+  public static onRequestError = new ReplaySubject<Response>(1);
+
+  public static onErrorFnc: Array<(error: any) => void> = [];
+  public static onRequestErrorFnc: Array<(response: Response) => void> = [];
 
   public static Config: any = null;
 
@@ -130,6 +137,28 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     this.Config = config;
   }
 
+  private static handleError(error: any) {
+    this.onError.next(error);
+    for (const fnc of this.onErrorFnc) {
+      try {
+        fnc(error);
+      } catch (e: any) {
+        console.error('Error in onErrorFnc', e);
+      }
+    }
+  }
+
+  private static handleRequestError(response: Response) {
+    this.onRequestError.next(response);
+    for (const fnc of this.onRequestErrorFnc) {
+      try {
+        fnc(response);
+      } catch (e: any) {
+        console.error('Error in onRequestErrorFnc', e);
+      }
+    }
+  }
+
   private static async loadConfig<T = any>(url: string, required?: boolean, schema?: AnySchema): Promise<T | null> {
 
     let config: any;
@@ -140,6 +169,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     } catch (error: any) {
       const message = `Could not fetch config from '${ url }': ${ error.message }`;
       if (required) {
+        this.handleError(error);
         this.showError(message);
         throw new Error(message);
       } else {
@@ -157,8 +187,12 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
         case 405:
           message = `Config service is not started yet. Wait 30s and try again.`;
           break;
+        case 401:
+          message = `Unauthorized to fetch config from '${ url }'`;
+          break;
       }
       if (required) {
+        this.handleRequestError(response);
         this.showError(message);
         throw new Error(message);
       } else {
@@ -172,6 +206,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     } catch (error: any) {
       const message = `Could not parse config from '${ url }' to a json object: ${ error.message }`;
       if (required) {
+        this.handleError(error);
         this.showError(message);
         throw new Error(message);
       } else {
@@ -186,6 +221,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       } catch (error: any) {
         const message = `Config from '${ url }' is not valid: ${ error.message }`;
         if (required) {
+          this.handleError(error);
           this.showError(message);
           throw new Error(message);
         } else {
