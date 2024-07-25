@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@18.1.3-dev.0...@rxap/config@18.2.0-dev.0) (2024-07-25)
+
+### Features
+
+- add error handler concept ([2c5ed57](https://gitlab.com/rxap/packages/commit/2c5ed57d925876e123d15e88581f8acf8e825850))
+
 ## [18.1.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@18.1.2...@rxap/config@18.1.3-dev.0) (2024-07-09)
 
 **Note:** Version bump only for package @rxap/config

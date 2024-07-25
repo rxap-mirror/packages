@@ -1,5 +1,5 @@
 {
-  "version": "18.0.1-dev.1",
+  "version": "18.0.1-dev.2",
   "name": "@rxap/ngx-oauth2-proxy",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,7 +10,7 @@
     "@angular/common": "^18.0.6",
     "@angular/core": "^18.0.6",
     "@angular/router": "^18.0.6",
-    "@rxap/ngx-pub-sub": "^18.1.0-dev.1",
+    "@rxap/ngx-pub-sub": "^18.1.0-dev.2",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -50,7 +50,7 @@
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "18.1.0-dev.1"
+        "version": "18.1.0-dev.2"
       }
     ]
   },
