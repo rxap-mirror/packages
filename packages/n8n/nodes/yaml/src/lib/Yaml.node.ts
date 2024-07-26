@@ -8,6 +8,7 @@ import * as extract from './actions/extract.operation';
 import * as convert from './actions/convert.operation';
 import * as jsonToYaml from './actions/jsonToYaml.operation';
 import * as yamlToJson from './actions/yamlToJson.operation';
+import * as setValue from './actions/setValue.operation';
 
 
 export class Yaml implements INodeType {
@@ -54,12 +55,18 @@ export class Yaml implements INodeType {
             value: 'yamlToJson',
             description: 'Converts data from YAML to JSON',
           },
+          {
+            name: 'Set value in YAML',
+            value: 'setValue',
+            description: 'Converts data from YAML to JSON',
+          },
         ]
       },
       ...extract.description,
       ...convert.description,
       ...yamlToJson.description,
       ...jsonToYaml.description,
+      ...setValue.description,
     ]
   };
 
@@ -83,6 +90,10 @@ export class Yaml implements INodeType {
 
     if (operation === 'yamlToJson') {
       returnData = await yamlToJson.execute.call(this, items);
+    }
+
+    if (operation === 'setValue') {
+      returnData = await setValue.execute.call(this, items);
     }
 
     return [returnData];
