@@ -2,6 +2,8 @@ import { decode } from 'iconv-lite';
 import has from 'lodash/has';
 import {
   deepCopy,
+  FieldType,
+  IDataObject,
   IExecuteFunctions,
   INodeExecutionData,
   INodeProperties,
@@ -15,6 +17,17 @@ import {
   createBinaryFromJsonAsYAML,
 } from '../utils/binary';
 import { encodeDecodeOptions } from '../utils/descriptions';
+import { validateEntry } from '../utils/set-value';
+
+export type SetField = {
+  name: string;
+  type: 'stringValue' | 'numberValue' | 'booleanValue' | 'arrayValue' | 'objectValue';
+  stringValue?: string;
+  numberValue?: number;
+  booleanValue?: boolean;
+  arrayValue?: string[] | string | IDataObject | IDataObject[];
+  objectValue?: string | IDataObject;
+};
 
 export const properties: INodeProperties[] = [
   {
@@ -26,20 +39,142 @@ export const properties: INodeProperties[] = [
     description: 'Name of the property which contains the YAML data to where the value should be set',
   },
   {
-    displayName: 'Property path',
-    name: 'propertyKey',
-    type: 'string',
-    default: 'data',
-    required: true,
-    description: 'Property path where the value should be set',
-  },
-  {
-    displayName: 'Property value',
-    name: 'propertyValue',
-    type: 'json',
-    default: 'data',
-    required: true,
-    description: 'Property path where the value should be set',
+    displayName: 'Fields to Set',
+    name: 'fields',
+    placeholder: 'Add Field',
+    type: 'fixedCollection',
+    description: 'Edit existing fields or add new ones to modify the output data',
+    typeOptions: {
+      multipleValues: true,
+      sortable: true,
+    },
+    default: {},
+    options: [
+      {
+        name: 'values',
+        displayName: 'Values',
+        values: [
+          {
+            displayName: 'Name',
+            name: 'name',
+            type: 'string',
+            default: '',
+            placeholder: 'e.g. fieldName',
+            description:
+              'Name of the field to set the value of. Supports dot-notation. Example: data.person[0].name.',
+            requiresDataPath: 'single',
+          },
+          {
+            displayName: 'Type',
+            name: 'type',
+            type: 'options',
+            description: 'The field value type',
+            options: [
+              {
+                name: 'String',
+                value: 'stringValue',
+              },
+              {
+                name: 'Number',
+                value: 'numberValue',
+              },
+              {
+                name: 'Boolean',
+                value: 'booleanValue',
+              },
+              {
+                name: 'Array',
+                value: 'arrayValue',
+              },
+              {
+                name: 'Object',
+                value: 'objectValue',
+              },
+            ],
+            default: 'stringValue',
+          },
+          {
+            displayName: 'Value',
+            name: 'stringValue',
+            type: 'string',
+            default: '',
+            displayOptions: {
+              show: {
+                type: ['stringValue'],
+              },
+            },
+            validateType: 'string',
+            ignoreValidationDuringExecution: true,
+          },
+          {
+            displayName: 'Value',
+            name: 'numberValue',
+            type: 'string',
+            default: '',
+            displayOptions: {
+              show: {
+                type: ['numberValue'],
+              },
+            },
+            validateType: 'number',
+            ignoreValidationDuringExecution: true,
+          },
+          {
+            displayName: 'Value',
+            name: 'booleanValue',
+            type: 'options',
+            default: 'true',
+            options: [
+              {
+                name: 'True',
+                value: 'true',
+              },
+              {
+                name: 'False',
+                value: 'false',
+              },
+            ],
+            displayOptions: {
+              show: {
+                type: ['booleanValue'],
+              },
+            },
+            validateType: 'boolean',
+            ignoreValidationDuringExecution: true,
+          },
+          {
+            displayName: 'Value',
+            name: 'arrayValue',
+            type: 'string',
+            default: '',
+            placeholder: 'e.g. [ arrayItem1, arrayItem2, arrayItem3 ]',
+            displayOptions: {
+              show: {
+                type: ['arrayValue'],
+              },
+            },
+            validateType: 'array',
+            ignoreValidationDuringExecution: true,
+          },
+          {
+            displayName: 'Value',
+            name: 'objectValue',
+            type: 'json',
+            default: '={}',
+            typeOptions: {
+              rows: 2,
+            },
+            displayOptions: {
+              show: {
+                type: ['objectValue'],
+              },
+            },
+            validateType: 'object',
+            ignoreValidationDuringExecution: true,
+          },
+        ],
+      },
+    ],
   },
   {
     displayName: 'Input Type',
@@ -62,14 +197,14 @@ export const properties: INodeProperties[] = [
     ],
   },
   {
-    displayName: 'Options',
-    name: 'options',
+    displayName: 'Binary Options',
+    name: 'binaryOptions',
     type: 'collection',
     placeholder: 'Add Option',
     default: {},
     displayOptions: {
       show: {
-        inputType: [ 'binary', 'auto' ],
+        inputType: [ 'binary' ],
       },
     },
     options: [
@@ -119,6 +254,28 @@ export const properties: INodeProperties[] = [
       },
     ],
   },
+  {
+    displayName: 'Set Options',
+    name: 'setOptions',
+    type: 'collection',
+    placeholder: 'Add Option',
+    default: {},
+    options: [
+      {
+        displayName: 'Ignore Type Conversion Errors',
+        name: 'ignoreConversionErrors',
+        type: 'boolean',
+        default: false,
+        description:
+          'Whether to ignore field type errors and apply a less strict type conversion',
+        displayOptions: {
+          show: {
+            '/mode': ['manual'],
+          },
+        },
+      },
+    ],
+  },
 ];
 
 const displayOptions = {
@@ -129,7 +286,10 @@ const displayOptions = {
 
 export const description = updateDisplayOptions(displayOptions, properties);
 
-export async function execute(this: IExecuteFunctions, items: INodeExecutionData[]): Promise<INodeExecutionData[]> {
+export async function execute(
+  this: IExecuteFunctions,
+  items: INodeExecutionData[]
+): Promise<INodeExecutionData[]> {
   const returnData: INodeExecutionData[] = [];
 
   const dataPropertyName = this.getNodeParameter('dataPropertyName', 0);
@@ -156,7 +316,7 @@ export async function execute(this: IExecuteFunctions, items: INodeExecutionData
         if (!has(item.binary, dataPropertyName)) {
           continue;
         }
-        const options = this.getNodeParameter('options', itemIndex);
+        const options = this.getNodeParameter('binaryOptions', itemIndex, {}) as IDataObject;
         const encoding = (
                            options['encoding'] as string
                          ) || 'utf8';
@@ -182,9 +342,22 @@ export async function execute(this: IExecuteFunctions, items: INodeExecutionData
         );
       }
 
-      const propertyKey = this.getNodeParameter('propertyKey', itemIndex) as string;
-      const propertyValue = this.getNodeParameter('propertyValue', itemIndex) as string;
-      yaml.setIn(propertyKey.split('.'), propertyValue);
+      const fields = this.getNodeParameter('fields.values', itemIndex, []) as SetField[];
+
+      for (const entry of fields) {
+        const options = this.getNodeParameter('setOptions', itemIndex, {}) as IDataObject;
+        const { name, value } = validateEntry(
+          entry.name,
+          entry.type.replace('Value', '') as FieldType,
+          entry[entry.type],
+          this.getNode(),
+          itemIndex,
+          options['ignoreConversionErrors'] as boolean,
+        );
+        yaml.setIn(name.split('.'), value);
+      }
+
+
 
       if (realInputType === 'string') {
         returnData.push({
@@ -193,7 +366,7 @@ export async function execute(this: IExecuteFunctions, items: INodeExecutionData
           }
         });
       } else if (realInputType === 'binary') {
-        const options = this.getNodeParameter('options', itemIndex, {});
+        const options = this.getNodeParameter('binaryOptions', itemIndex, {}) as IDataObject;
         const binaryData = await createBinaryFromJson.call(this, { data: yaml.toString() }, {
           sourceKey: 'data',
           fileName: (options['fileName'] as string) || 'file.txt',
