@@ -37,6 +37,13 @@
         "type": "string"
       },
       "description": "List of packages that should always be added as dependencies"
+    },
+    "peerDependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of packages that should always be added as peerDependencies"
     }
   },
   "required": []

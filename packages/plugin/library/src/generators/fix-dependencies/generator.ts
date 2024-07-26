@@ -626,6 +626,26 @@ function forcePackagesAsDependencies(tree: Tree, packageJson: PackageJson, packa
   }
 }
 
+function forcePackagesAsPeerDependencies(tree: Tree, packageJson: PackageJson, packages: string[], projectRoot: string) {
+  packageJson.dependencies ??= {};
+  packageJson.peerDependencies ??= {};
+  for (const packageName of Object.keys(packageJson.dependencies)) {
+    if (packages.includes(packageName)) {
+      packageJson.peerDependencies[packageName] = packageJson.dependencies[packageName];
+      delete packageJson.dependencies[packageName];
+    }
+  }
+  for (const packageName of packages) {
+    if (!packageJson.peerDependencies[packageName]) {
+      if (HasProjectWithPackageName(packageName)) {
+        packageJson.peerDependencies[packageName] = getProjectPackageVersion(tree, PackageNameToProjectName(packageName));
+      } else {
+        packageJson.peerDependencies[packageName] = findBasePackageVersion(packageName, projectRoot);
+      }
+    }
+  }
+}
+
 /**
  * This generator tries to fix the dependencies in the project.json of the project
  *
@@ -714,6 +734,10 @@ export async function fixDependenciesGenerator(
 
       if (options.dependencies?.length) {
         forcePackagesAsDependencies(tree, packageJson, options.dependencies, projectRoot);
+      }
+
+      if (options.peerDependencies?.length) {
+        forcePackagesAsPeerDependencies(tree, packageJson, options.peerDependencies, projectRoot);
       }
 
       setDependencyVersionFromRootPackageJson(packageJson, rootPackageJson);
