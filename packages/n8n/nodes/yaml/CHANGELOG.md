@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-yaml@0.1.0-dev.0...@rxap/n8n-nodes-yaml@0.1.0-dev.1) (2024-07-26)
+
+### Features
+
+- support multi set options ([09b4b84](https://gitlab.com/rxap/packages/commit/09b4b8455f8f07caf31886f6f246375e9de85f7d))
+
 # 0.1.0-dev.0 (2024-07-26)
 
 ### Features
