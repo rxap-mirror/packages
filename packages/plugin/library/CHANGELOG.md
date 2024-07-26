@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.4.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.4.0-dev.1...@rxap/plugin-library@19.4.0-dev.2) (2024-07-26)
+
+### Features
+
+- support force peer dependencies ([4bba38e](https://gitlab.com/rxap/packages/commit/4bba38efebab361fd84cb2ff31dac6b24b4353ec))
+
 # [19.4.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.4.0-dev.0...@rxap/plugin-library@19.4.0-dev.1) (2024-07-25)
 
 ### Bug Fixes

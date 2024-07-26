@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.4-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.4-dev.13...@rxap/plugin-open-api@19.1.4-dev.14) (2024-07-26)
+
+**Note:** Version bump only for package @rxap/plugin-open-api
+
 ## [19.1.4-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.4-dev.12...@rxap/plugin-open-api@19.1.4-dev.13) (2024-07-25)
 
 **Note:** Version bump only for package @rxap/plugin-open-api
