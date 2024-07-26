@@ -243,6 +243,7 @@
     "packages/*",
     "packages/angular/*",
     "packages/angular/material/*",
+    "packages/n8n/nodes/*",
     "packages/browser/*",
     "packages/plugin/*",
     "packages/preset/*",

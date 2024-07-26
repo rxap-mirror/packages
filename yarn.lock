@@ -9063,6 +9063,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/n8n-nodes-yaml@workspace:packages/n8n/nodes/yaml":
+  version: 0.0.0-use.local
+  resolution: "@rxap/n8n-nodes-yaml@workspace:packages/n8n/nodes/yaml"
+  dependencies:
+    "@nx/devkit": 19.4.2
+    iconv-lite: ^0.6.3
+    lodash: ^4.17.21
+    tslib: 2.6.2
+    yaml: 2.3.1
+  peerDependencies:
+    n8n-workflow: ^1.48.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/nest-dto@workspace:packages/nest/dto":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-dto@workspace:packages/nest/dto"
