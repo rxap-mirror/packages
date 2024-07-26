@@ -1,0 +1,14 @@
+{
+  "node": "rxap-n8n-nodes.yaml",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Core Nodes"],
+  "resources": {
+    "credentialDocumentation": [],
+    "primaryDocumentation": []
+  },
+  "alias": ["YAML"],
+  "subcategories": {
+    "Core Nodes": ["Files", "Data Transformation"]
+  }
+}
