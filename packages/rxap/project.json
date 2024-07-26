@@ -64,6 +64,7 @@
     "generator-utilities",
     "json-schema-to-typescript",
     "mixin",
+    "n8n-nodes-yaml",
     "nest-dto",
     "nest-firebase",
     "nest-jwt",

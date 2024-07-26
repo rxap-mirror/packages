@@ -462,7 +462,7 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.3.1-dev.12"
+        "version": "19.3.1-dev.13"
       },
       {
         "package": "@rxap/plugin-application",
@@ -474,7 +474,7 @@
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.5-dev.12"
+        "version": "19.0.5-dev.13"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -490,7 +490,7 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.4.0-dev.1"
+        "version": "19.4.0-dev.2"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -498,11 +498,11 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.2-dev.15"
+        "version": "19.1.2-dev.16"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.4-dev.13"
+        "version": "19.1.4-dev.14"
       },
       {
         "package": "@rxap/plugin-storybook",
@@ -526,7 +526,7 @@
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.3-dev.13"
+        "version": "19.0.3-dev.14"
       },
       {
         "package": "@rxap/preset-workspace",
