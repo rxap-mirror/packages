@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.1.1-dev.8...@rxap/plugin-application@19.1.1) (2024-07-30)
+
+**Note:** Version bump only for package @rxap/plugin-application
+
 ## [19.1.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.1.1-dev.7...@rxap/plugin-application@19.1.1-dev.8) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/plugin-application

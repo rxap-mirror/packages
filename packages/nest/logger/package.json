@@ -1,11 +1,11 @@
 {
-  "version": "10.2.5-dev.6",
+  "version": "10.2.5",
   "name": "@rxap/nest-logger",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.4.2",
-    "@rxap/ts-morph": "^1.4.3-dev.4",
-    "@rxap/workspace-utilities": "^19.4.0-dev.6",
+    "@rxap/ts-morph": "^1.4.3",
+    "@rxap/workspace-utilities": "^19.4.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

@@ -1,5 +1,5 @@
 {
-  "version": "18.0.5-dev.1",
+  "version": "18.0.5",
   "name": "@rxap/oauth",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,8 +9,8 @@
   "peerDependencies": {
     "@angular/core": "^18.0.6",
     "@angular/router": "^18.0.6",
-    "@rxap/authentication": "^18.1.2-dev.1",
-    "@rxap/rxjs": "^1.1.8-dev.2",
+    "@rxap/authentication": "^18.1.2",
+    "@rxap/rxjs": "^1.1.8",
     "angular-oauth2-oidc": "^15.0.1",
     "angular-oauth2-oidc-jwks": "^15.0.1",
     "rxjs": "^7.8.1"
@@ -54,15 +54,15 @@
       },
       {
         "package": "@rxap/authentication",
-        "version": "18.1.2-dev.1"
+        "version": "18.1.2"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.8-dev.2"
+        "version": "1.1.8"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.3.0-dev.2"
+        "version": "16.3.0"
       }
     ]
   },

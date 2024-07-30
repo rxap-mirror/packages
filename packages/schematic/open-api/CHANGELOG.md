@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@18.0.5-dev.8...@rxap/schematics-open-api@18.0.5) (2024-07-30)
+
+**Note:** Version bump only for package @rxap/schematics-open-api
+
 ## [18.0.5-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@18.0.5-dev.7...@rxap/schematics-open-api@18.0.5-dev.8) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/schematics-open-api

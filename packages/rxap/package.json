@@ -1,5 +1,5 @@
 {
-  "version": "19.1.13-dev.28",
+  "version": "19.1.13",
   "name": "rxap",
   "license": "MIT",
   "dependencies": {
