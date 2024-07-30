@@ -9,6 +9,7 @@
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },
+  "description": "n8n nodes to work with YAML files",
   "peerDependencies": {
     "n8n-workflow": "^1.48.0"
   },

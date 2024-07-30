@@ -395,7 +395,25 @@
     },
     "@nx/js:tsc": {
       "cache": true,
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build",
+        "readme",
+        "compodoc",
+        "typedoc",
+        "index-export",
+        "check-version",
+        "build-tailwind",
+        "generate-package-json",
+        "check-ng-package",
+        "localazy-download",
+        "build-info",
+        "expose-as-schematic",
+        "copy-open-api-sdk",
+        "^copy-open-api-sdk",
+        "^generate-open-api",
+        "bundle-json-schema",
+        "^index-export"
+      ],
       "inputs": ["production", "^production"]
     },
     "copy-client-sdk": {

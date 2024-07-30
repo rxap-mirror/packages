@@ -181,6 +181,7 @@ export const properties: INodeProperties[] = [
     name: 'inputType',
     type: 'options',
     default: 'auto',
+    description: 'The format of the input data',
     options: [
       {
         name: 'Binary',
