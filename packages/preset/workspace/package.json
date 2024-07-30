@@ -36,6 +36,7 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/preset/workspace"
   },
+  "schematics": "./generators.json",
   "type": "commonjs",
   "typings": "./src/index.d.ts"
 }

@@ -40,5 +40,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/web3-storage"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }

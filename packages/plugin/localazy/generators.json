@@ -26,6 +26,11 @@
       "factory": "./src/generators/gitlab-ci/index",
       "schema": "./src/generators/gitlab-ci/schema.json",
       "description": "gitlab-ci generator"
+    },
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
     }
   }
 }

@@ -26,6 +26,11 @@
       "factory": "./src/generators/init-library/index",
       "schema": "./src/generators/init-library/schema.json",
       "description": "init-library generator"
+    },
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
     }
   }
 }

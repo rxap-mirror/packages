@@ -16,6 +16,11 @@
       "factory": "./src/generators/documentation/index",
       "schema": "./src/generators/documentation/schema.json",
       "description": "documentation generator"
+    },
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
     }
   }
 }
