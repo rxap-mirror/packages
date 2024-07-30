@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.6-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@19.0.6-dev.7...@rxap/plugin-utilities@19.0.6-dev.8) (2024-07-30)
+
+### Bug Fixes
+
+- add missing generic type ([28240cd](https://gitlab.com/rxap/packages/commit/28240cd3841c16c85d523d45e1070298d160e125))
+
 ## [19.0.6-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@19.0.6-dev.6...@rxap/plugin-utilities@19.0.6-dev.7) (2024-07-09)
 
 **Note:** Version bump only for package @rxap/plugin-utilities

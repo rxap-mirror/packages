@@ -1,6 +1,7 @@
 {
-  "version": "0.1.0-dev.1",
+  "version": "0.1.0-dev.2",
   "name": "@rxap/n8n-nodes-yaml",
+  "description": "n8n nodes to work with YAML files",
   "license": "MIT",
   "dependencies": {
     "@nx/devkit": "19.4.2",
@@ -9,7 +10,6 @@
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },
-  "description": "n8n nodes to work with YAML files",
   "peerDependencies": {
     "n8n-workflow": "^1.48.0"
   },
