@@ -5,6 +5,7 @@ import {
 import {
   GetProjectRoot,
   GetProjectSourceRoot,
+  GetProjectTargetOptions,
 } from '@rxap/plugin-utilities';
 import { coerceArray } from '@rxap/utilities';
 import { join } from 'path';
@@ -16,6 +17,7 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
 
   const projectSourceRoot = GetProjectSourceRoot(context);
   const projectRoot = GetProjectRoot(context);
+  const { tsConfig: tsconfig = join(projectRoot, 'tsconfig.lib.json') } = GetProjectTargetOptions<{ tsConfig?: string }>(context, context.projectName, 'build');
 
   const entryPoints = options.entryPoints ?? [];
   if (entryPoints.length === 0) {
@@ -35,6 +37,7 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
   const app = await Application.bootstrapWithPlugins({
     entryPoints: entryPoints,//.map(entryPoint => relative(projectRoot, entryPoint)),
     skipErrorChecking: true,
+    tsconfig,
   });
 
   console.debug('Converting');
