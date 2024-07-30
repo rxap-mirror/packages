@@ -399,7 +399,6 @@
         "^build",
         "readme",
         "compodoc",
-        "typedoc",
         "index-export",
         "check-version",
         "build-tailwind",
