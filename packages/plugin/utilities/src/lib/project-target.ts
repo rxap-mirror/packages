@@ -20,12 +20,12 @@ export function GetProjectTarget(context: ExecutorContext, projectName = context
   return targetConfiguration;
 }
 
-export function GetProjectTargetOptions(
+export function GetProjectTargetOptions<T = Record<string, unknown>>(
   context: ExecutorContext,
   projectName = context.projectName,
   targetName: string,
   configurationName = context.configurationName,
-) {
+): T {
   const target = GetProjectTarget(context, projectName, targetName);
-  return GetTargetOptions(target, configurationName);
+  return GetTargetOptions<T>(target, configurationName);
 }
