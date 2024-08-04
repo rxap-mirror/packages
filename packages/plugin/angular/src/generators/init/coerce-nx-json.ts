@@ -22,7 +22,6 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     'standalone': true,
     'addTailwind': true,
     'routing': true,
-    'directory': `user-interface`,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/angular:host', {
     'style': 'scss',
@@ -46,7 +45,6 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     'standalone': true,
     'addTailwind': true,
     host: 'shell',
-    'directory': `user-interface/feature`,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/angular:component', {
     'style': 'scss',
@@ -60,7 +58,6 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     'changeDetection': 'OnPush',
     'standalone': true,
     'style': 'scss',
-    'directory': 'angular',
     'tags': 'angular,ngx',
     'prefix': 'rxap',
     'skipModule': true,

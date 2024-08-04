@@ -46,7 +46,6 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     '{projectRoot}/tsconfig.*.json',
   ]);
   CoerceNxJsonGenerators(nxJson, '@nx/plugin:plugin', {
-    'directory': 'plugin',
     'publishable': false,
     'tags': 'plugin,nx,nx-plugin',
   });
@@ -56,7 +55,6 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     buildable: false,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/nest:library', {
-    'directory': 'nest',
     'tags': 'nest',
     'publishable': false,
     buildable: false,
@@ -65,7 +63,6 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     'e2eTestRunner': 'none',
     'tags': 'nest',
     'strict': true,
-    'directory': 'service',
   });
   CoerceNxJsonGenerators(nxJson, '@nx/plugin:executor', {
     'unitTestRunner': 'none',
