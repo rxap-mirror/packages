@@ -330,7 +330,6 @@ exports[`preset should use angular preset 3`] = `
   },
   "generators": {
     "@nx/plugin:plugin": {
-      "directory": "plugin",
       "publishable": false,
       "tags": "plugin,nx,nx-plugin"
     },
@@ -340,7 +339,6 @@ exports[`preset should use angular preset 3`] = `
       "buildable": false
     },
     "@nx/nest:library": {
-      "directory": "nest",
       "tags": "nest",
       "publishable": false,
       "buildable": false
@@ -348,8 +346,7 @@ exports[`preset should use angular preset 3`] = `
     "@nx/nest:application": {
       "e2eTestRunner": "none",
       "tags": "nest",
-      "strict": true,
-      "directory": "service"
+      "strict": true
     },
     "@nx/plugin:executor": {
       "unitTestRunner": "none"
@@ -366,8 +363,7 @@ exports[`preset should use angular preset 3`] = `
       "prefix": "rxap",
       "standalone": true,
       "addTailwind": true,
-      "routing": true,
-      "directory": "user-interface"
+      "routing": true
     },
     "@nx/angular:host": {
       "style": "scss",
@@ -390,8 +386,7 @@ exports[`preset should use angular preset 3`] = `
       "prefix": "rxap",
       "standalone": true,
       "addTailwind": true,
-      "host": "shell",
-      "directory": "user-interface/feature"
+      "host": "shell"
     },
     "@nx/angular:component": {
       "style": "scss",
@@ -405,7 +400,6 @@ exports[`preset should use angular preset 3`] = `
       "changeDetection": "OnPush",
       "standalone": true,
       "style": "scss",
-      "directory": "angular",
       "tags": "angular,ngx",
       "prefix": "rxap",
       "skipModule": true,

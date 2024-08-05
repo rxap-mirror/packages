@@ -205,7 +205,6 @@ exports[`init should init default workspace 3`] = `
   },
   "generators": {
     "@nx/plugin:plugin": {
-      "directory": "plugin",
       "publishable": false,
       "tags": "plugin,nx,nx-plugin"
     },
@@ -215,7 +214,6 @@ exports[`init should init default workspace 3`] = `
       "buildable": false
     },
     "@nx/nest:library": {
-      "directory": "nest",
       "tags": "nest",
       "publishable": false,
       "buildable": false
@@ -223,8 +221,7 @@ exports[`init should init default workspace 3`] = `
     "@nx/nest:application": {
       "e2eTestRunner": "none",
       "tags": "nest",
-      "strict": true,
-      "directory": "service"
+      "strict": true
     },
     "@nx/plugin:executor": {
       "unitTestRunner": "none"

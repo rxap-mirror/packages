@@ -203,7 +203,6 @@ exports[`preset should use workspace preset 3`] = `
   },
   "generators": {
     "@nx/plugin:plugin": {
-      "directory": "plugin",
       "publishable": false,
       "tags": "plugin,nx,nx-plugin"
     },
@@ -213,7 +212,6 @@ exports[`preset should use workspace preset 3`] = `
       "buildable": false
     },
     "@nx/nest:library": {
-      "directory": "nest",
       "tags": "nest",
       "publishable": false,
       "buildable": false
@@ -221,8 +219,7 @@ exports[`preset should use workspace preset 3`] = `
     "@nx/nest:application": {
       "e2eTestRunner": "none",
       "tags": "nest",
-      "strict": true,
-      "directory": "service"
+      "strict": true
     },
     "@nx/plugin:executor": {
       "unitTestRunner": "none"
