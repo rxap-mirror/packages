@@ -40,7 +40,7 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
     const port = this.getPort(config);
     let publicPort = config.get(
       'PUBLIC_PORT',
-      this.environment.production ? config.get<string | number>('ROOT_DOMAIN_PORT', 443) : port,
+      this.environment.production ? config.get<string | number>('ROOT_DOMAIN_PORT', port) : port,
     );
 
     if (typeof publicPort === 'string') {
