@@ -30,7 +30,7 @@ export class MinioHealthIndicator extends HealthIndicator {
 
   public async isHealthy(): Promise<HealthIndicatorResult> {
     try {
-      const response = await this.minioService.client.listBuckets();
+      const response = await this.minioService.listBuckets();
       if (Array.isArray(response)) {
         return this.getStatus('minio', true);
       }
