@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.4.5...@rxap/nest-server@10.4.6-dev.0) (2024-08-05)
+
+### Bug Fixes
+
+- use port env as default port ([4b93db7](https://gitlab.com/rxap/packages/commit/4b93db7d78719092af3250dd54a1925ade190f0f))
+
 ## [10.4.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.4.5-dev.0...@rxap/nest-server@10.4.5) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/nest-server
