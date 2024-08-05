@@ -354,7 +354,7 @@
       },
       {
         "package": "@rxap/nest-server",
-        "version": "10.4.6-dev.0"
+        "version": "10.4.6"
       },
       {
         "package": "@rxap/nest-socket-io-client",
@@ -466,7 +466,7 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.3.2-dev.0"
+        "version": "19.3.2"
       },
       {
         "package": "@rxap/plugin-application",
@@ -478,7 +478,7 @@
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.6-dev.0"
+        "version": "19.0.6"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -526,15 +526,15 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.1.4-dev.0"
+        "version": "19.1.4"
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4"
       },
       {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.5-dev.0"
+        "version": "19.0.5"
       },
       {
         "package": "@rxap/reflect-metadata",
