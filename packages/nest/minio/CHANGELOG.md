@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@10.1.5-dev.0...@rxap/nest-minio@10.2.0-dev.0) (2024-08-05)
+
+### Features
+
+- add module option loader ([fab605e](https://gitlab.com/rxap/packages/commit/fab605e656a651c2ac65637fb5affcf5b0ef3639))
+
 ## [10.1.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@10.1.4...@rxap/nest-minio@10.1.5-dev.0) (2024-08-05)
 
 ### Bug Fixes
