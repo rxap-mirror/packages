@@ -6,13 +6,13 @@ import {
   Client,
   ClientOptions,
 } from 'minio';
-import { MODULE_OPTIONS_TOKEN } from './configurable-module-builder';
+import { MINIO_OPTIONS } from './tokens';
 
 @Injectable()
 export class MinioService extends Client {
 
   constructor(
-    @Inject(MODULE_OPTIONS_TOKEN) options: ClientOptions,
+    @Inject(MINIO_OPTIONS) options: ClientOptions,
   ) {
     super(options);
   }
