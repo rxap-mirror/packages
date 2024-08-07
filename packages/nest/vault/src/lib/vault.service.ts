@@ -1,14 +1,14 @@
 import {
   Inject,
   Injectable,
-  Logger,
+  Logger
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
   existsSync,
-  readFileSync,
+  readFileSync
 } from 'fs';
-import * as Client from 'node-vault';
+import Client from 'node-vault';
 import { VAULT_OPTIONS } from './tokens';
 import { VaultOptions } from './vault-options';
 
@@ -75,7 +75,7 @@ interface VaultClient {
 
   help<T>(path: string, requestOptions: Partial<RequestOptions>): Promise<VaultResponse<T>>;
 
-  write<T>(path: string, data: any, requestOptions: Partial<RequestOptions>): Promise<VaultResponse<T>>;
+  write<T>(path: string, data: unknown, requestOptions: Partial<RequestOptions>): Promise<VaultResponse<T>>;
 
   read<T>(path: string, requestOptions: Partial<RequestOptions>): Promise<VaultResponse<T>>;
 
@@ -85,7 +85,7 @@ interface VaultClient {
 
   request<T>(requestOptions: RequestOptions): Promise<T>;
 
-  tokenRenewSelf({ increment }: { increment: string | number }): Promise<VaultResponse<null, VaultAuth>>;
+  tokenRenewSelf({ increment }: { increment?: string }): Promise<VaultResponse<null, VaultAuth>>;
 
   tokenLookupSelf(): Promise<VaultResponse<TokenLookupSelfData>>;
 
@@ -136,7 +136,7 @@ export class VaultService {
   }
 
   public async write<T>(
-    path: string, data: any, requestOptions: Partial<RequestOptions> = {}): Promise<VaultResponse<T>> {
+    path: string, data: unknown, requestOptions: Partial<RequestOptions> = {}): Promise<VaultResponse<T>> {
     this.logger.verbose(`Writing to vault path '${ path }'`, 'VaultService');
     await this.initialized;
     return this.client.write<T>(path, data, requestOptions);
@@ -160,15 +160,21 @@ export class VaultService {
     return this.client.delete<T>(path, requestOptions);
   }
 
-  public async tokenRenewSelf({ increment }: { increment: string | number }): Promise<VaultResponse<null, VaultAuth>> {
-    this.logger.verbose(`Renewing vault own token with increment '${ increment }'`, 'VaultService');
+  public async tokenRenewSelf(
+    { increment }: { increment?: string }, autoRenew?: boolean): Promise<VaultResponse<null, VaultAuth>> {
+    this.logger.verbose(`Renewing vault own token with increment '${ increment ?? 'default' }'`, 'VaultService');
     await this.initialized;
     const response = await this.client.tokenRenewSelf({ increment });
     if (!response.auth?.client_token) {
-      throw new Error(`Failed to renew vault token with increment '${ increment }'`);
+      throw new Error(`Failed to renew vault token with increment '${ increment ?? 'default' }'`);
     }
-    this.logger.debug(`Set vault client token with renewed token with increment '${ increment }'`, 'VaultService');
+    this.logger.debug(
+      `Set vault client token with renewed token with increment '${ increment ?? 'default' }'`, 'VaultService');
     this.client.token = response.auth?.client_token;
+    this.logger.verbose(`Token is valid for ${ response.lease_duration } seconds`, 'VaultService');
+    if (autoRenew) {
+      this.triggerAutoRenewIn(response.lease_duration * 0.6, increment, autoRenew);
+    }
     return response;
   }
 
@@ -180,19 +186,11 @@ export class VaultService {
     return this.client.tokenLookupSelf();
   }
 
-  /**
-   * Renews a lease with the specified lease_id and increment.
-   *
-   * @param {object} params - The parameters for renewing the lease.
-   * @param {string} params.lease_id - The ID of the lease to renew.
-   * @param {string|number} params.increment - The increment for renewing the lease.
-   * @returns {Promise<VaultResponse>} - A Promise that resolves to a VaultResponse object.
-   */
   public async renewLease({
     lease_id,
     increment
-  }: { lease_id: string; increment: string | number }): Promise<VaultResponse> {
-    this.logger.verbose(`Renewing lease '${ lease_id }' with increment '${ increment }'`, 'VaultService');
+  }: { lease_id: string; increment?: string }): Promise<VaultResponse> {
+    this.logger.verbose(`Renewing lease '${ lease_id }' with increment '${ increment ?? 'default' }'`, 'VaultService');
     await this.initialized;
     return this.client.request({
       path: '/sys/leases/renew',
@@ -202,6 +200,17 @@ export class VaultService {
         increment
       }
     });
+  }
+
+  private triggerAutoRenewIn(timeout: number, increment: string | undefined, autoRenew: boolean | undefined): void {
+    this.logger.debug(`Triggering auto renew in ${ timeout }ms for an increment '${ increment }'`, 'VaultService');
+    const minTimeout = 1000 * 60 * 10;
+    if (timeout < minTimeout) {
+      this.logger.warn(
+        `Auto renew timeout is less than ${ minTimeout }ms. Setting it to ${ minTimeout }ms`, 'VaultService');
+      timeout = minTimeout;
+    }
+    setTimeout(() => this.tokenRenewSelf({ increment }, autoRenew), timeout);
   }
 
   private async getToken(): Promise<string> {
@@ -218,16 +227,32 @@ export class VaultService {
       const role: string = this.getKubernetesRole(this.options.kubernetesAuth);
       const jwt: string = this.getKubernetesJwt(this.options.kubernetesAuth);
       const path: string | undefined = this.getKubernetesPath(this.options.kubernetesAuth);
-      return this.kubernetesLogin(role, jwt, path);
+      const autoRenew: boolean = this.shouldKubernetesAutoRenew(this.options.kubernetesAuth);
+      return this.kubernetesLogin(role, jwt, path, autoRenew);
     }
     if (this.config.get('VAULT_KUBERNETES_ROLE')) {
       this.logger.verbose('Using kubernetes auth to retrieve a token with env VAULT_KUBERNETES_ROLE', 'VaultService');
       const role: string = this.config.getOrThrow('VAULT_KUBERNETES_ROLE');
       const jwt: string = this.getKubernetesJwt();
       const path: string | undefined = this.getKubernetesPath();
-      return this.kubernetesLogin(role, jwt, path);
+      const autoRenew: boolean = this.shouldKubernetesAutoRenew();
+      return this.kubernetesLogin(role, jwt, path, autoRenew);
     }
     throw new Error('No authentication method provided for vault');
+  }
+
+  private shouldKubernetesAutoRenew(kubernetesAuth?: VaultOptions['kubernetesAuth']): boolean {
+    if (typeof kubernetesAuth === 'object' && kubernetesAuth?.autoRenew !== undefined) {
+      this.logger.verbose('Using kubernetes auto renew from options', 'VaultService');
+      return kubernetesAuth.autoRenew;
+    }
+
+    if (this.config.get('VAULT_KUBERNETES_AUTO_RENEW') !== undefined) {
+      this.logger.verbose('Using kubernetes auto renew from env VAULT_KUBERNETES_AUTO_RENEW', 'VaultService');
+      return this.config.getOrThrow('VAULT_KUBERNETES_AUTO_RENEW');
+    }
+
+    return false;
   }
 
   private getKubernetesRole(kubernetesAuth?: VaultOptions['kubernetesAuth']): string {
@@ -280,20 +305,33 @@ export class VaultService {
     return undefined;
   }
 
-  private async kubernetesLogin(role: string, jwt: string, path: string | undefined): Promise<string> {
+  private async kubernetesLogin(
+    role: string, jwt: string, path: string | undefined, autoRenew: boolean | undefined): Promise<string> {
     this.logger.debug(
       `Logging into vault using kubernetes auth with role '${ role }' and path '${ path ?? 'kubernetes' }'`,
       'VaultService'
     );
-    const response = await this.client.kubernetesLogin({
+    const {
+      auth
+    } = await this.client.kubernetesLogin({
       role,
       jwt,
       kubernetesPath: path
     });
-    if (!response.auth) {
-      throw new Error('Failed to login to vault using kubernetes auth');
+
+    if (!auth) {
+      throw new Error('Failed to login to vault using kubernetes auth. The response did not contain an auth object');
     }
-    const { auth: { client_token } } = response;
+
+    const {
+      client_token,
+      lease_duration
+    } = auth;
+
+    this.logger.verbose(`Token is valid for ${ lease_duration } seconds`, 'VaultService');
+    if (autoRenew) {
+      this.triggerAutoRenewIn(lease_duration * 0.6 * 1000, undefined, autoRenew);
+    }
     return client_token;
   }
 

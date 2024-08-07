@@ -18,6 +18,11 @@ export interface VaultOptions {
    */
   kubernetesAuth?: boolean | {
     /**
+     * If true, the token will be automatically renewed before it expires. If not provided, the `VAULT_KUBERNETES_AUTO_RENEW`
+     * environment variable will be used. If that is not set, the default value is `false`.
+     */
+    autoRenew?: boolean;
+    /**
      * The role to use for authentication with the vault server. If not provided, the `VAULT_KUBERNETES_ROLE`
      * environment variable will be used.
      */

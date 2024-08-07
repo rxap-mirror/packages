@@ -2,7 +2,6 @@ import {
   ConfigurableModuleBuilder,
   DynamicModule,
   Global,
-  Logger,
   Module,
 } from '@nestjs/common';
 import { VAULT_OPTIONS } from './tokens';
@@ -25,8 +24,7 @@ export const {
 @Global()
 @Module({
   providers: [
-    VaultService,
-    Logger
+    VaultService
   ],
   exports: [
     VaultService
