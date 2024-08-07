@@ -6,7 +6,10 @@ import {
 import type { NestHybridApplicationOptions } from '@nestjs/common/interfaces';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { Environment } from '@rxap/nest-utilities';
-import { coerceArray } from '@rxap/utilities';
+import {
+  coerceArray,
+  isPromise,
+} from '@rxap/utilities';
 import {
   Monolithic,
   MonolithicBootstrapOptions,
@@ -15,6 +18,8 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HybridBootstrapOptions extends MonolithicBootstrapOptions {}
 
+export type MicroserviceOptionsInput<T extends INestApplication = INestApplication, MO extends MicroserviceOptions = MicroserviceOptions, MHO extends NestHybridApplicationOptions = NestHybridApplicationOptions> = MO | Promise<MO> | ((app: T, logger: Logger, options: HybridBootstrapOptions, hybridOptions: MHO) => MO | Promise<MO>);
+
 export class Hybrid<
   O extends NestApplicationOptions,
   T extends INestApplication = INestApplication,
@@ -22,14 +27,14 @@ export class Hybrid<
   MHO extends NestHybridApplicationOptions = NestHybridApplicationOptions,
 > extends Monolithic<O, T, HybridBootstrapOptions> {
 
-  protected readonly microserviceOptions: MO[];
+  protected readonly microserviceOptions: Array<MicroserviceOptionsInput<T, MO, MHO>>;
 
   constructor(
     module: any,
     environment: Environment,
     options: O,
     bootstrapOptions: Partial<HybridBootstrapOptions> = {},
-    microserviceOptions: MO | MO[],
+    microserviceOptions: MicroserviceOptionsInput<T, MO, MHO> | Array<MicroserviceOptionsInput<T, MO, MHO>>,
     protected readonly hybridOptions?: MHO,
   ) {
     super(module, environment, options, bootstrapOptions);
@@ -38,8 +43,24 @@ export class Hybrid<
 
   protected override async listen(app: T, logger: Logger, options: HybridBootstrapOptions): Promise<any> {
     for (let i = 0; i < this.microserviceOptions.length; i++) {
-      const microserviceOptions = this.microserviceOptions[i];
+      let microserviceOptions = this.microserviceOptions[i];
       const hybridOptions = Array.isArray(this.hybridOptions) ? this.hybridOptions[i] : this.hybridOptions;
+      if (typeof microserviceOptions === 'function') {
+        try {
+          microserviceOptions = microserviceOptions(app, logger, options, hybridOptions);
+        } catch (e: any) {
+          logger.error(`Failed to resolve microservice options: ${e.message}`);
+          process.exit(1);
+        }
+      }
+      if (isPromise(microserviceOptions)) {
+        try {
+          microserviceOptions = await microserviceOptions;
+        } catch (e: any) {
+          logger.error(`Failed to resolve async microservice options: ${e.message}`);
+          process.exit(1);
+        }
+      }
       app.connectMicroservice(microserviceOptions, hybridOptions);
     }
     await app.startAllMicroservices();
