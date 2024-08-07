@@ -1,0 +1,72 @@
+{
+  "name": "n8n-nodes-neo4j",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/n8n/nodes/neo4j/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["n8n", "nodes", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/n8n/nodes/neo4j",
+        "main": "packages/n8n/nodes/neo4j/src/index.ts",
+        "tsConfig": "packages/n8n/nodes/neo4j/tsconfig.lib.json",
+        "assets": [
+          "packages/n8n/nodes/neo4j/*.md",
+          {
+            "input": "./packages/n8n/nodes/neo4j/src/lib",
+            "glob": "**/*.(svg|json)",
+            "output": "./src/lib"
+          },
+          {
+            "input": "./packages/n8n/nodes/neo4j/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/n8n/nodes/neo4j",
+            "glob": "generators.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/n8n/nodes/neo4j/jest.config.ts"
+      }
+    },
+    "index-export": {},
+    "update-dependencies": {},
+    "fix-dependencies": {
+      "options": {
+        "options": {
+          "onlyDependencies": true,
+          "peerDependencies": ["n8n-workflow"]
+        }
+      }
+    },
+    "readme": {},
+    "linking": {},
+    "update-package-group": {}
+  }
+}

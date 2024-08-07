@@ -22,7 +22,7 @@ import {
   signal,
   SimpleChanges,
   viewChild,
-  ViewEncapsulation,
+  ViewEncapsulation, AfterViewInit,
 } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
@@ -90,7 +90,7 @@ import { NavigationComponent } from '../navigation.component';
   ]
 })
 export class NavigationItemComponent
-  implements OnChanges, OnDestroy {
+  implements OnChanges, OnDestroy, AfterViewInit {
 
   public readonly level = input(0);
 

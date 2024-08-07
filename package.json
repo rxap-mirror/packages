@@ -86,6 +86,7 @@
     "marked": "4.3.0",
     "minio": "8.0.1",
     "n8n-workflow": "^1.48.0",
+    "neo4j-driver": "^5.23.0",
     "ngx-logger": "5.0.12",
     "ngx-markdown": "16.0.0",
     "node-vault": "^0.10.2",

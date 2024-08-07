@@ -1,0 +1,46 @@
+{
+  "name": "@rxap/n8n-nodes-neo4j",
+  "version": "0.0.1",
+  "dependencies": {
+    "@nx/devkit": "19.4.2",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {},
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [
+      "src/lib/neo4j.node.js"
+    ]
+  },
+  "typings": "./src/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../../dist/packages/n8n/nodes/neo4j"
+  },
+  "keywords": [
+    "rxap",
+    "n8n",
+    "n8n-community-node-package",
+    "nodes",
+    "packages",
+    "n8n-nodes-neo4j"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/n8n/nodes/neo4j",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/n8n/nodes/neo4j"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "generators": "./generators.json"
+}
