@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-vault@10.0.6...@rxap/nest-vault@10.1.0-dev.0) (2024-08-07)
+
+### Features
+
+- add health indicator ([981e9c0](https://gitlab.com/rxap/packages/commit/981e9c0c2ef12d6d83ca0fd9171fc7f3d8a90c4c))
+- add RabbitmqVaultService service ([7fafa96](https://gitlab.com/rxap/packages/commit/7fafa968d91e603387917b5e68649deb046b0b7f))
+
 ## [10.0.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-vault@10.0.6-dev.0...@rxap/nest-vault@10.0.6) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/nest-vault

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.4.6...@rxap/nest-server@10.5.0-dev.0) (2024-08-07)
+
+### Features
+
+- support async microservice initialization ([c4c807c](https://gitlab.com/rxap/packages/commit/c4c807c591b296fabaa8aead4e7b78bf1585ffff))
+
 ## [10.4.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.4.6-dev.0...@rxap/nest-server@10.4.6) (2024-08-05)
 
 **Note:** Version bump only for package @rxap/nest-server

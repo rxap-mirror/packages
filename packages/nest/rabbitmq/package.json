@@ -1,5 +1,5 @@
 {
-  "version": "10.0.0-dev.0",
+  "version": "10.0.0-dev.1",
   "name": "@rxap/nest-rabbitmq",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,7 +11,7 @@
     "@nestjs/config": "^3.2.2",
     "@nestjs/microservices": "^10.3.8",
     "@nestjs/terminus": "^10.2.3",
-    "@rxap/nest-vault": "^10.0.6",
+    "@rxap/nest-vault": "^10.1.0-dev.0",
     "@rxap/utilities": "^16.3.0",
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.4",
@@ -34,6 +34,58 @@
     "rxap"
   ],
   "main": "./src/index.js",
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@nestjs/axios",
+        "version": "3.0.2"
+      },
+      {
+        "package": "@nestjs/common",
+        "version": "10.3.8"
+      },
+      {
+        "package": "@nestjs/config",
+        "version": "3.2.2"
+      },
+      {
+        "package": "@nestjs/core",
+        "version": "10.3.8"
+      },
+      {
+        "package": "@nestjs/microservices",
+        "version": "10.3.8"
+      },
+      {
+        "package": "@nestjs/mongoose",
+        "version": "10.0.10"
+      },
+      {
+        "package": "@nestjs/sequelize",
+        "version": "10.0.1"
+      },
+      {
+        "package": "@nestjs/terminus",
+        "version": "10.2.3"
+      },
+      {
+        "package": "@nestjs/typeorm",
+        "version": "10.0.2"
+      },
+      {
+        "package": "@nestjs/websockets",
+        "version": "10.0.0"
+      },
+      {
+        "package": "@rxap/nest-vault",
+        "version": "10.1.0-dev.0"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.3.0"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/rabbitmq"
