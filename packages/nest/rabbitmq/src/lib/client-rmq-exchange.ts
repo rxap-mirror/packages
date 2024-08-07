@@ -5,7 +5,7 @@ import {
   ClientProxy,
   ReadPacket,
   RmqRecord,
-  WritePacket
+  WritePacket,
 } from '@nestjs/microservices';
 import {
   CONNECT_EVENT,
@@ -16,74 +16,48 @@ import {
   RQM_DEFAULT_NO_ASSERT,
   RQM_DEFAULT_NOACK,
   RQM_DEFAULT_PERSISTENT,
-  RQM_DEFAULT_URL
+  RQM_DEFAULT_URL,
 } from '@nestjs/microservices/constants';
 import { RmqUrl } from '@nestjs/microservices/external/rmq-url.interface';
-import { Deserializer } from '@nestjs/microservices/interfaces/deserializer.interface';
-import { Serializer } from '@nestjs/microservices/interfaces/serializer.interface';
 import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
 
 import {
   AmqpConnectionManager,
   ChannelWrapper,
-  connect
+  connect,
 } from 'amqp-connection-manager';
-import { AmqpConnectionManagerOptions } from 'amqp-connection-manager/dist/types/AmqpConnectionManager';
 import {
   Channel,
   Connection,
   ConsumeMessage,
-  Options
+  Options,
 } from 'amqplib';
 import { EventEmitter } from 'events';
 import {
-  EmptyError,
   firstValueFrom,
   fromEvent,
   merge,
   Observable,
   ReplaySubject,
-  tap
+  tap,
 } from 'rxjs';
 import {
   first,
   map,
   retryWhen,
   scan,
-  skip
+  skip,
 } from 'rxjs/operators';
-
-const REPLY_QUEUE = 'amq.rabbitmq.reply-to';
-
-const RQM_DEFAULT_EXCHANGE = 'default';
-const RQM_DEFAULT_EXCHANGE_TYPE = 'topic';
-const RQM_DEFAULT_EXCHANGE_OPTIONS: Options.AssertExchange = { durable: false };
+import {
+  REPLY_QUEUE,
+  RQM_DEFAULT_EXCHANGE,
+  RQM_DEFAULT_EXCHANGE_OPTIONS,
+  RQM_DEFAULT_EXCHANGE_TYPE,
+} from './constants';
+import { ExchangeRmqOptions } from './options';
 
 export interface RmqExchangeOptions {
-  options?: {
-    urls?: string[] | RmqUrl[];
-    exchange?: string;
-    exchangeType?: string;
-    prefetchCount?: number;
-    isGlobalPrefetchCount?: boolean;
-    exchangeOptions?: Options.AssertExchange;
-    socketOptions?: AmqpConnectionManagerOptions;
-    noAck?: boolean;
-    consumerTag?: string;
-    serializer?: Serializer;
-    deserializer?: Deserializer;
-    replyQueue?: string;
-    persistent?: boolean;
-    headers?: Record<string, string>;
-    noAssert?: boolean;
-    /**
-     * Maximum number of connection attempts.
-     * Applies only to the consumer configuration.
-     * -1 === infinite
-     * @default -1
-     */
-    maxConnectionAttempts?: number;
-  };
+  options?: ExchangeRmqOptions;
 }
 
 export class ClientRMQExchange extends ClientProxy {
