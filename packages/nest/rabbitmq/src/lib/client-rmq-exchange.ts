@@ -74,21 +74,14 @@ export class ClientRMQExchange extends ClientProxy {
   protected persistent: boolean;
   protected noAssert: boolean;
 
-  constructor(protected readonly options: RmqExchangeOptions['options']) {
+  constructor(protected readonly options: ExchangeRmqOptions) {
     super();
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     this.urls = this.getOptionsProp(this.options, 'urls') || [ RQM_DEFAULT_URL ];
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     this.exchange = this.getOptionsProp(this.options, 'exchange') || RQM_DEFAULT_EXCHANGE;
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     this.exchangeOptions = this.getOptionsProp(this.options, 'exchangeOptions') || RQM_DEFAULT_EXCHANGE_OPTIONS;
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     this.exchangeType = this.getOptionsProp(this.options, 'exchangeType') || RQM_DEFAULT_EXCHANGE_TYPE;
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     this.replyQueue = this.getOptionsProp(this.options, 'replyQueue') || REPLY_QUEUE;
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     this.persistent = this.getOptionsProp(this.options, 'persistent') || RQM_DEFAULT_PERSISTENT;
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     this.noAssert = this.getOptionsProp(this.options, 'noAssert') ?? RQM_DEFAULT_NO_ASSERT;
 
     this.initializeSerializer(options);
@@ -150,7 +143,6 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   public createClient(): AmqpConnectionManager {
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     const socketOptions = this.getOptionsProp(this.options, 'socketOptions');
     return connect(this.urls, socketOptions);
   }
@@ -167,8 +159,7 @@ export class ClientRMQExchange extends ClientProxy {
       );
     const disconnect$ = eventToError(DISCONNECT_EVENT);
 
-    // @ts-expect-error - the keys are not correctly extracted from the options type
-    const urls: string[] = this.getOptionsProp(this.options, 'urls', []);
+    const urls = this.getOptionsProp(this.options, 'urls', []) ?? [];
     const connectFailed$ = eventToError(CONNECT_FAILED_EVENT).pipe(
       retryWhen(e =>
         e.pipe(
@@ -207,7 +198,6 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   public async consumeChannel(channel: Channel) {
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     const noAck = this.getOptionsProp(this.options, 'noAck', RQM_DEFAULT_NOACK);
     await channel.consume(
       this.replyQueue,
@@ -353,7 +343,7 @@ export class ClientRMQExchange extends ClientProxy {
     );
   }
 
-  protected override initializeSerializer(options: RmqExchangeOptions['options']) {
+  protected override initializeSerializer(options: ExchangeRmqOptions) {
     this.serializer = options?.serializer ?? new RmqRecordSerializer();
   }
 

@@ -3,18 +3,24 @@ import {
   isString,
   isUndefined,
 } from '@nestjs/common/utils/shared.utils';
-import { RmqUrl } from '@nestjs/microservices/external/rmq-url.interface';
-import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
 import {
-  CONNECTION_FAILED_MESSAGE,
+  CustomTransportStrategy,
+  IncomingRequest,
+  OutgoingResponse,
+  ReadPacket,
+  RmqContext,
+  Server,
+} from '@nestjs/microservices';
+import {
   CONNECT_EVENT,
   CONNECT_FAILED_EVENT,
-  DISCONNECTED_RMQ_MESSAGE,
+  CONNECTION_FAILED_MESSAGE,
   DISCONNECT_EVENT,
+  DISCONNECTED_RMQ_MESSAGE,
   NO_MESSAGE_HANDLER,
   RQM_DEFAULT_IS_GLOBAL_PREFETCH_COUNT,
-  RQM_DEFAULT_NOACK,
   RQM_DEFAULT_NO_ASSERT,
+  RQM_DEFAULT_NOACK,
   RQM_DEFAULT_PREFETCH_COUNT,
   RQM_DEFAULT_QUEUE,
   RQM_DEFAULT_QUEUE_OPTIONS,
@@ -22,15 +28,9 @@ import {
   RQM_NO_EVENT_HANDLER,
   RQM_NO_MESSAGE_HANDLER,
 } from '@nestjs/microservices/constants';
-import { RmqContext } from '@nestjs/microservices';
-import { Transport } from '@nestjs/microservices';
-import { CustomTransportStrategy, RmqOptions } from '@nestjs/microservices';
-import {
-  IncomingRequest,
-  OutgoingResponse,
-  ReadPacket,
-} from '@nestjs/microservices';
-import { Server } from '@nestjs/microservices';
+import { RmqUrl } from '@nestjs/microservices/external/rmq-url.interface';
+import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
+import { QueueRmqOptions } from './options';
 
 let rmqPackage: any = {};
 
@@ -51,29 +51,22 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   protected readonly queueOptions: any;
   protected readonly isGlobalPrefetchCount: boolean;
   protected readonly noAssert: boolean;
-  constructor(protected readonly options: RmqOptions['options']) {
+  constructor(protected readonly options: QueueRmqOptions) {
     super();
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     this.urls = this.getOptionsProp(this.options, 'urls') || [RQM_DEFAULT_URL];
     this.queue =
-      // @ts-expect-error - the keys are not correctly extracted from the options type
       this.getOptionsProp(this.options, 'queue') || RQM_DEFAULT_QUEUE;
     this.prefetchCount =
-      // @ts-expect-error - the keys are not correctly extracted from the options type
       this.getOptionsProp(this.options, 'prefetchCount') ||
       RQM_DEFAULT_PREFETCH_COUNT;
-    // @ts-expect-error - the keys are not correctly extracted from the options type
-    this.noAck = this.getOptionsProp(this.options, 'noAck', RQM_DEFAULT_NOACK);
+    this.noAck = this.getOptionsProp(this.options, 'noAck', RQM_DEFAULT_NOACK) as boolean;
     this.isGlobalPrefetchCount =
-      // @ts-expect-error - the keys are not correctly extracted from the options type
       this.getOptionsProp(this.options, 'isGlobalPrefetchCount') ||
       RQM_DEFAULT_IS_GLOBAL_PREFETCH_COUNT;
     this.queueOptions =
-      // @ts-expect-error - the keys are not correctly extracted from the options type
       this.getOptionsProp(this.options, 'queueOptions') ||
       RQM_DEFAULT_QUEUE_OPTIONS;
     this.noAssert =
-      // @ts-expect-error - the keys are not correctly extracted from the options type
       this.getOptionsProp(this.options, 'noAssert') ??
       this.queueOptions.noAssert ??
       RQM_DEFAULT_NO_ASSERT;
@@ -120,7 +113,6 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
 
     const maxConnectionAttempts = this.getOptionsProp(
       this.options,
-      // @ts-expect-error - the keys are not correctly extracted from the options type
       'maxConnectionAttempts',
       INFINITE_CONNECTION_ATTEMPTS,
     );
@@ -148,7 +140,6 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   }
 
   public createClient<T = any>(): T {
-    // @ts-expect-error - the keys are not correctly extracted from the options type
     const socketOptions = this.getOptionsProp(this.options, 'socketOptions');
     return rmqPackage.connect(this.urls, socketOptions);
   }
@@ -165,7 +156,6 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
         noAck: this.noAck,
         consumerTag: this.getOptionsProp(
           this.options,
-          // @ts-expect-error - the keys are not correctly extracted from the options type
           'consumerTag',
           undefined,
         ),
@@ -249,7 +239,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     this.channel.sendToQueue(replyTo, buffer, { correlationId, ...options });
   }
 
-  protected override initializeSerializer(options: RmqOptions['options']) {
+  protected override initializeSerializer(options: QueueRmqOptions) {
     this.serializer = options?.serializer ?? new RmqRecordSerializer();
   }
 

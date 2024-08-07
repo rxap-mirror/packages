@@ -8,7 +8,6 @@ export interface BaseRmqOptions {
   urls?: string[] | RmqUrl[];
   prefetchCount?: number;
   isGlobalPrefetchCount?: boolean;
-  exchangeOptions?: Options.AssertExchange;
   socketOptions?: AmqpConnectionManagerOptions;
   noAck?: boolean;
   consumerTag?: string;
@@ -29,9 +28,11 @@ export interface BaseRmqOptions {
 
 export interface QueueRmqOptions extends BaseRmqOptions {
   queue?: string;
+  queueOptions?: Options.AssertQueue;
 }
 
 export interface ExchangeRmqOptions extends BaseRmqOptions {
   exchange?: string;
   exchangeType?: string;
+  exchangeOptions?: Options.AssertExchange;
 }

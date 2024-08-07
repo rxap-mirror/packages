@@ -12,13 +12,13 @@ import { BaseRmqOptions } from './options';
 export class RabbitmqOptionsFactory {
 
   @Inject(ConfigService)
-  private readonly config!: ConfigService;
+  protected readonly config!: ConfigService;
 
   @Inject(Logger)
-  private readonly logger!: Logger;
+  protected readonly logger!: Logger;
 
   @Inject(RabbitmqVaultService)
-  private readonly vault!: RabbitmqVaultService;
+  protected readonly vault!: RabbitmqVaultService;
 
   async build(): Promise<BaseRmqOptions> {
 
@@ -39,9 +39,6 @@ export class RabbitmqOptionsFactory {
       options = {
         socketOptions: {
           findServers: () => this.buildUrl()
-        },
-        exchangeOptions: {
-          durable: true
         }
       };
     }
