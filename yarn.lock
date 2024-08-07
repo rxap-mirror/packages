@@ -6388,6 +6388,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/mongoose@npm:^10.0.10":
+  version: 10.0.10
+  resolution: "@nestjs/mongoose@npm:10.0.10"
+  peerDependencies:
+    "@nestjs/common": ^8.0.0 || ^9.0.0 || ^10.0.0
+    "@nestjs/core": ^8.0.0 || ^9.0.0 || ^10.0.0
+    mongoose: ^6.0.2 || ^7.0.0 || ^8.0.0
+    rxjs: ^7.0.0
+  checksum: b78ed60cdc6f7e53022201ecc934d8202f5a75eb7f85124f564b63bad193f6f6716bff973254f2e56259cfac30571c4b3e7e6d3dd6e90c27b3c3c82a6067a6cf
+  languageName: node
+  linkType: hard
+
 "@nestjs/platform-express@npm:10.3.8":
   version: 10.3.8
   resolution: "@nestjs/platform-express@npm:10.3.8"
@@ -6430,6 +6442,22 @@ __metadata:
   peerDependencies:
     typescript: ">=4.3.5"
   checksum: d7ee0236cc0e130c3bfb2f4794112b0f2e24caaf09323f553acb595629da4ba042aaf98dd5237bf7c9fd389df915930877d23757ea3e7e2b5da94539c1e5c36e
+  languageName: node
+  linkType: hard
+
+"@nestjs/sequelize@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "@nestjs/sequelize@npm:10.0.1"
+  dependencies:
+    uuid: 9.0.1
+  peerDependencies:
+    "@nestjs/common": ^8.0.0 || ^9.0.0 || ^10.0.0
+    "@nestjs/core": ^8.0.0 || ^9.0.0 || ^10.0.0
+    reflect-metadata: ^0.1.13 || ^0.2.0
+    rxjs: ^7.2.0
+    sequelize: ^6.3.5
+    sequelize-typescript: ^2.0.0
+  checksum: a5de247e48f79c4dac75881733719d6f8b030bc5bafe8b8a1b29c3af6c9cc3b42c4f27aadc24215cb8509a0cc01513ec63ffd0ee41b87cd602989ce0954c6925
   languageName: node
   linkType: hard
 
@@ -6565,6 +6593,21 @@ __metadata:
     "@nestjs/core": ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
     reflect-metadata: ^0.1.13 || ^0.2.0
   checksum: 181c99fca712be09ce9264e0b3f505f450d07d19cdacd58ca2e66c9f29e143ac3a8051a3cdc0b928f162ae0c0b14d40fc68752434d46c9b25e555974a1c8c1a1
+  languageName: node
+  linkType: hard
+
+"@nestjs/typeorm@npm:^10.0.2":
+  version: 10.0.2
+  resolution: "@nestjs/typeorm@npm:10.0.2"
+  dependencies:
+    uuid: 9.0.1
+  peerDependencies:
+    "@nestjs/common": ^8.0.0 || ^9.0.0 || ^10.0.0
+    "@nestjs/core": ^8.0.0 || ^9.0.0 || ^10.0.0
+    reflect-metadata: ^0.1.13 || ^0.2.0
+    rxjs: ^7.2.0
+    typeorm: ^0.3.0
+  checksum: 391662a69f48337e71f9e42f4c9d421a7059911cf15c92fa40cbd81bdbc467b917c0f97702035e2e69fac30f3e12460e48f763c2114809c231c7de0ab441e2d8
   languageName: node
   linkType: hard
 
@@ -9079,7 +9122,7 @@ __metadata:
   resolution: "@rxap/n8n-nodes-neo4j@workspace:packages/n8n/nodes/neo4j"
   dependencies:
     "@nx/devkit": 19.4.2
-    tslib: ^2.3.0
+    tslib: 2.6.2
   peerDependencies:
     n8n-workflow: ^1.48.0
   languageName: unknown
@@ -9208,9 +9251,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-rabbitmq@workspace:packages/nest/rabbitmq"
   dependencies:
-    "@nestjs/common": 10.3.8
     "@nx/devkit": 19.4.2
-    tslib: ^2.3.0
+    tslib: 2.6.2
+  peerDependencies:
+    "@nestjs/common": ^10.3.8
+    "@nestjs/config": ^3.2.2
+    "@nestjs/microservices": ^10.3.8
+    "@nestjs/terminus": ^10.2.3
+    "@rxap/nest-vault": ^10.0.6
+    "@rxap/utilities": ^16.3.0
+    amqp-connection-manager: ^4.1.14
+    amqplib: ^0.10.4
+    rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
 
@@ -9317,12 +9369,12 @@ __metadata:
   resolution: "@rxap/nest-vault@workspace:packages/nest/vault"
   dependencies:
     "@nx/devkit": 19.4.2
-    axios: 1.7.2
     node-vault: ^0.10.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
     "@nestjs/config": ^3.2.2
+    "@nestjs/terminus": ^10.2.3
   languageName: unknown
   linkType: soft
 
@@ -10203,13 +10255,16 @@ __metadata:
     "@nestjs/core": 10.3.8
     "@nestjs/jwt": 10.2.0
     "@nestjs/microservices": 10.3.8
+    "@nestjs/mongoose": ^10.0.10
     "@nestjs/platform-express": 10.3.8
     "@nestjs/schematics": 10.1.1
+    "@nestjs/sequelize": ^10.0.1
     "@nestjs/serve-static": 4.0.2
     "@nestjs/swagger": 7.3.1
     "@nestjs/terminus": 10.2.3
     "@nestjs/testing": 10.3.8
     "@nestjs/throttler": 5.1.2
+    "@nestjs/typeorm": ^10.0.2
     "@nx/angular": 19.4.2
     "@nx/cypress": 19.4.2
     "@nx/devkit": 19.4.2
@@ -15049,7 +15104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.7.2, axios@npm:^1.6.0, axios@npm:^1.6.1":
+"axios@npm:^1.6.0, axios@npm:^1.6.1":
   version: 1.7.2
   resolution: "axios@npm:1.7.2"
   dependencies:
