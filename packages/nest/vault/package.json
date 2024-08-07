@@ -6,7 +6,8 @@
     "@nx/devkit": "19.4.2",
     "node-vault": "^0.10.2",
     "tslib": "2.6.2",
-    "axios": "1.7.2"
+    "axios": "1.7.2",
+    "@nestjs/terminus": "10.2.3"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
