@@ -1,0 +1,74 @@
+{
+  "name": "nest-rabbitmq",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/rabbitmq/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["nest", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nest/rabbitmq",
+        "tsConfig": "packages/nest/rabbitmq/tsconfig.lib.json",
+        "packageJson": "packages/nest/rabbitmq/package.json",
+        "main": "packages/nest/rabbitmq/src/index.ts",
+        "assets": [
+          "packages/nest/rabbitmq/*.md",
+          {
+            "input": "./packages/nest/rabbitmq/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/nest/rabbitmq",
+            "glob": "generators.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/nest/rabbitmq/jest.config.ts"
+      }
+    },
+    "index-export": {},
+    "update-dependencies": {},
+    "fix-dependencies": {
+      "options": {
+        "options": {
+          "strict": true,
+          "onlyDependencies": false
+        }
+      }
+    },
+    "readme": {},
+    "linking": {},
+    "update-package-group": {},
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
+      "options": {
+        "packageName": "@nestjs/core"
+      }
+    }
+  }
+}
