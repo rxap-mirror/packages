@@ -113,12 +113,20 @@
         "version": "10.3.8"
       },
       {
+        "package": "@nestjs/mongoose",
+        "version": "10.0.10"
+      },
+      {
         "package": "@nestjs/platform-express",
         "version": "10.3.8"
       },
       {
         "package": "@nestjs/schematics",
         "version": "10.1.1"
+      },
+      {
+        "package": "@nestjs/sequelize",
+        "version": "10.0.1"
       },
       {
         "package": "@nestjs/serve-static",
@@ -139,6 +147,10 @@
       {
         "package": "@nestjs/throttler",
         "version": "5.1.2"
+      },
+      {
+        "package": "@nestjs/typeorm",
+        "version": "10.0.2"
       },
       {
         "package": "@nx/angular",
@@ -317,6 +329,10 @@
         "version": "16.0.8"
       },
       {
+        "package": "@rxap/n8n-nodes-neo4j",
+        "version": "0.0.2-dev.0"
+      },
+      {
         "package": "@rxap/n8n-nodes-yaml",
         "version": "0.1.0"
       },
@@ -347,6 +363,10 @@
       {
         "package": "@rxap/nest-open-api",
         "version": "10.4.2"
+      },
+      {
+        "package": "@rxap/nest-rabbitmq",
+        "version": "10.0.0-dev.2"
       },
       {
         "package": "@rxap/nest-sentry",
