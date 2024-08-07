@@ -36,11 +36,10 @@ let rmqPackage: any = {};
 
 const INFINITE_CONNECTION_ATTEMPTS = -1;
 
-/**
- * @publicApi
- */
+export const TRANSPORT_ID = Symbol('RxAP_RMQ');
+
 export class ServerRMQ extends Server implements CustomTransportStrategy {
-  public readonly transportId = Transport.RMQ;
+  public readonly transportId = TRANSPORT_ID;
 
   protected server: any = null;
   protected channel: any = null;
