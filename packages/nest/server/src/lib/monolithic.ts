@@ -113,14 +113,20 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
 
   protected override listen(app: T, logger: Logger, options: B): Promise<any> {
     if (options.globalApiPrefix) {
+      logger.verbose('Setting global prefix: ' + options.globalApiPrefix, 'Bootstrap');
       // TODO : create issue in @nest github project - if options is an empty object the server does not start
+      const globalPrefixOptions = options.globalPrefixOptions ?? {};
+      if (!options.globalPrefixOptions?.exclude?.length) {
+        globalPrefixOptions.exclude ??= [];
+        globalPrefixOptions.exclude.push('/health(.*)', '/info', '/openapi');
+      }
+      logger.verbose('Global prefix options: %JSON', globalPrefixOptions, 'Bootstrap');
       app.setGlobalPrefix(
         options.globalApiPrefix,
-        !options.globalPrefixOptions?.exclude?.length ?
-          { exclude: [ '/health(.*)', '/info', '/openapi' ] } :
-          options.globalPrefixOptions,
+        globalPrefixOptions
       );
     }
+    logger.debug('Starting listening at ' + options.publicUrl, 'Bootstrap');
     return app.listen(options.port, () => {
       logger.log('Listening at ' + options.publicUrl, 'Bootstrap');
     });

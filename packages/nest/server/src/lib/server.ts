@@ -58,17 +58,17 @@ export abstract class Server<O extends object, T extends INestApplicationContext
   public async bootstrap() {
 
     console.log('Server bootstrap started');
-    console.log('Initial environment', JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2));
+    console.debug('Initial environment', JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2));
 
     this.printPackageVersions();
 
     this.prepareEnvironment(this.environment);
 
-    console.log('Handle before bootstrap hooks');
+    console.debug('Handle before bootstrap hooks');
 
     await this.handleBefore();
 
-    console.log('Create application');
+    console.debug('Create application');
 
     this.app = await this.create();
 
@@ -99,19 +99,19 @@ export abstract class Server<O extends object, T extends INestApplicationContext
       );
     }
 
-    this.logger.log('Prepare options', 'Bootstrap');
+    this.logger.debug('Prepare options', 'Bootstrap');
 
     const options = this.prepareOptions(this.app, this.logger, this.config);
 
-    this.logger.log('Handle after bootstrap hooks', 'Bootstrap');
+    this.logger.debug('Handle after bootstrap hooks', 'Bootstrap');
 
     await this.handleAfter(this.app, this.logger, this.config, options);
 
-    this.logger.log('Listen', 'Bootstrap');
+    this.logger.debug('Listen', 'Bootstrap');
 
     await this.listen(this.app, this.logger, options);
 
-    this.logger.log('Handle read bootstrap hooks', 'Bootstrap');
+    this.logger.debug('Handle read bootstrap hooks', 'Bootstrap');
 
     await this.handleReady(this.app, this.logger, this.config, options);
 
@@ -192,7 +192,7 @@ export abstract class Server<O extends object, T extends INestApplicationContext
     if (existsSync(packageJsonFilePath)) {
       try {
         const packageJson = JSON.parse(readFileSync(packageJsonFilePath).toString('utf-8'));
-        Logger.log('Package versions: ', JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+        Logger.verbose('Package versions: ', JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
       } catch (e) {
         Logger.warn(`Could not parse package.json in the path '${ packageJsonFilePath }'`, 'Bootstrap');
       }

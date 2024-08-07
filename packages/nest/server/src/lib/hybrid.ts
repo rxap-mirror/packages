@@ -47,22 +47,26 @@ export class Hybrid<
       const hybridOptions = Array.isArray(this.hybridOptions) ? this.hybridOptions[i] : this.hybridOptions;
       if (typeof microserviceOptions === 'function') {
         try {
+          logger.verbose(`Resolving microservice options [${i}]`, 'Bootstrap');
           microserviceOptions = microserviceOptions(app, logger, options, hybridOptions);
         } catch (e: any) {
-          logger.error(`Failed to resolve microservice options: ${e.message}`);
+          logger.error(`Failed to resolve microservice options: ${e.message}`, e.stack, 'Bootstrap');
           process.exit(1);
         }
       }
       if (isPromise(microserviceOptions)) {
         try {
+          logger.verbose(`Awaiting async microservice options [${i}]`, 'Bootstrap');
           microserviceOptions = await microserviceOptions;
         } catch (e: any) {
-          logger.error(`Failed to resolve async microservice options: ${e.message}`);
+          logger.error(`Failed to resolve async microservice options: ${e.message}`, e.stack, 'Bootstrap');
           process.exit(1);
         }
       }
+      logger.debug(`Connecting microservice [${i}]`, 'Bootstrap');
       app.connectMicroservice(microserviceOptions, hybridOptions);
     }
+    logger.debug('Starting all microservices', 'Bootstrap');
     await app.startAllMicroservices();
     return super.listen(app, logger, options);
   }
