@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.0-dev.4...@rxap/nest-rabbitmq@10.0.0-dev.5) (2024-08-07)
+
+### Bug Fixes
+
+- use amqp-connection-manager package directly ([4a0da91](https://gitlab.com/rxap/packages/commit/4a0da91ca6ad071c05d22d02d67ac92306fdb8f5))
+
 # [10.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.0-dev.3...@rxap/nest-rabbitmq@10.0.0-dev.4) (2024-08-07)
 
 ### Bug Fixes
