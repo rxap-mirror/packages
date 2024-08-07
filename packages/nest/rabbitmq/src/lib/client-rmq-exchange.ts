@@ -1,0 +1,407 @@
+import { Logger } from '@nestjs/common/services/logger.service';
+import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
+import { isFunction } from '@nestjs/common/utils/shared.utils';
+import {
+  ClientProxy,
+  ReadPacket,
+  RmqRecord,
+  WritePacket
+} from '@nestjs/microservices';
+import {
+  CONNECT_EVENT,
+  CONNECT_FAILED_EVENT,
+  DISCONNECT_EVENT,
+  DISCONNECTED_RMQ_MESSAGE,
+  ERROR_EVENT,
+  RQM_DEFAULT_NO_ASSERT,
+  RQM_DEFAULT_NOACK,
+  RQM_DEFAULT_PERSISTENT,
+  RQM_DEFAULT_URL
+} from '@nestjs/microservices/constants';
+import { RmqUrl } from '@nestjs/microservices/external/rmq-url.interface';
+import { Deserializer } from '@nestjs/microservices/interfaces/deserializer.interface';
+import { Serializer } from '@nestjs/microservices/interfaces/serializer.interface';
+import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
+
+import {
+  AmqpConnectionManager,
+  ChannelWrapper,
+  connect
+} from 'amqp-connection-manager';
+import { AmqpConnectionManagerOptions } from 'amqp-connection-manager/dist/types/AmqpConnectionManager';
+import {
+  Channel,
+  Connection,
+  ConsumeMessage,
+  Options
+} from 'amqplib';
+import { EventEmitter } from 'events';
+import {
+  EmptyError,
+  firstValueFrom,
+  fromEvent,
+  merge,
+  Observable,
+  ReplaySubject,
+  tap
+} from 'rxjs';
+import {
+  first,
+  map,
+  retryWhen,
+  scan,
+  skip
+} from 'rxjs/operators';
+
+const REPLY_QUEUE = 'amq.rabbitmq.reply-to';
+
+const RQM_DEFAULT_EXCHANGE = 'default';
+const RQM_DEFAULT_EXCHANGE_TYPE = 'topic';
+const RQM_DEFAULT_EXCHANGE_OPTIONS: Options.AssertExchange = { durable: false };
+
+export interface RmqExchangeOptions {
+  options?: {
+    urls?: string[] | RmqUrl[];
+    exchange?: string;
+    exchangeType?: string;
+    prefetchCount?: number;
+    isGlobalPrefetchCount?: boolean;
+    exchangeOptions?: Options.AssertExchange;
+    socketOptions?: AmqpConnectionManagerOptions;
+    noAck?: boolean;
+    consumerTag?: string;
+    serializer?: Serializer;
+    deserializer?: Deserializer;
+    replyQueue?: string;
+    persistent?: boolean;
+    headers?: Record<string, string>;
+    noAssert?: boolean;
+    /**
+     * Maximum number of connection attempts.
+     * Applies only to the consumer configuration.
+     * -1 === infinite
+     * @default -1
+     */
+    maxConnectionAttempts?: number;
+  };
+}
+
+export class ClientRMQExchange extends ClientProxy {
+  protected readonly logger = new Logger(ClientProxy.name);
+  protected connection$!: ReplaySubject<Connection>;
+  protected client: AmqpConnectionManager | null = null;
+  protected channel: ChannelWrapper | null = null;
+  protected urls: string[] | RmqUrl[];
+  protected exchange: string;
+  protected exchangeType: string;
+  protected exchangeOptions: Options.AssertExchange;
+  protected responseEmitter!: EventEmitter;
+  protected replyQueue: string;
+  protected persistent: boolean;
+  protected noAssert: boolean;
+
+  constructor(protected readonly options: RmqExchangeOptions['options']) {
+    super();
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    this.urls = this.getOptionsProp(this.options, 'urls') || [ RQM_DEFAULT_URL ];
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    this.exchange = this.getOptionsProp(this.options, 'exchange') || RQM_DEFAULT_EXCHANGE;
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    this.exchangeOptions = this.getOptionsProp(this.options, 'exchangeOptions') || RQM_DEFAULT_EXCHANGE_OPTIONS;
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    this.exchangeType = this.getOptionsProp(this.options, 'exchangeType') || RQM_DEFAULT_EXCHANGE_TYPE;
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    this.replyQueue = this.getOptionsProp(this.options, 'replyQueue') || REPLY_QUEUE;
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    this.persistent = this.getOptionsProp(this.options, 'persistent') || RQM_DEFAULT_PERSISTENT;
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    this.noAssert = this.getOptionsProp(this.options, 'noAssert') ?? RQM_DEFAULT_NO_ASSERT;
+
+    this.initializeSerializer(options);
+    this.initializeDeserializer(options);
+  }
+
+  public isConnected() {
+    return this.client && this.client.isConnected();
+  }
+
+  public close(): void {
+    this.channel && this.channel.close();
+    this.client && this.client.close();
+    this.channel = null;
+    this.client = null;
+  }
+
+  public connect(): Promise<Connection> {
+    if (this.client) {
+      return this.convertConnectionToPromise();
+    }
+    this.client = this.createClient();
+    this.handleError(this.client);
+    this.handleDisconnectError(this.client);
+
+    this.responseEmitter = new EventEmitter();
+    this.responseEmitter.setMaxListeners(0);
+
+    const connect$ = this.connect$(this.client);
+    const withDisconnect$ = this.mergeDisconnectEvent(
+      this.client,
+      connect$
+    ).pipe(
+      tap(() => this.createChannel())
+    );
+
+    const withReconnect$ = fromEvent(this.client, CONNECT_EVENT).pipe(
+      skip(1)
+    );
+    const source$: Observable<{ url: string, connection: Connection }> = merge(withDisconnect$, withReconnect$);
+
+    this.connection$ = new ReplaySubject(1);
+    source$.subscribe({
+      next: data => {
+        this.connection$.next(data.connection);
+      }
+    });
+
+    return this.convertConnectionToPromise();
+  }
+
+  public createChannel(): Promise<void> {
+    return new Promise(resolve => {
+      this.channel = this.client!.createChannel({
+        json: false,
+        setup: (channel: Channel) => this.setupExchange(channel, resolve)
+      });
+    });
+  }
+
+  public createClient(): AmqpConnectionManager {
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    const socketOptions = this.getOptionsProp(this.options, 'socketOptions');
+    return connect(this.urls, socketOptions);
+  }
+
+  public mergeDisconnectEvent<T = any>(
+    instance: any,
+    source$: Observable<T>
+  ): Observable<T> {
+    const eventToError = (eventType: string) =>
+      fromEvent(instance, eventType).pipe(
+        map((err: unknown) => {
+          throw err;
+        })
+      );
+    const disconnect$ = eventToError(DISCONNECT_EVENT);
+
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    const urls: string[] = this.getOptionsProp(this.options, 'urls', []);
+    const connectFailed$ = eventToError(CONNECT_FAILED_EVENT).pipe(
+      retryWhen(e =>
+        e.pipe(
+          scan((errorCount, error: any) => {
+            if (urls.indexOf(error.url) >= urls.length - 1) {
+              throw error;
+            }
+            return errorCount + 1;
+          }, 0)
+        )
+      )
+    );
+    // If we ever decide to propagate all disconnect errors & re-emit them through
+    // the "connection" stream then comment out "first()" operator.
+    return merge(source$, disconnect$, connectFailed$).pipe(first());
+  }
+
+  public async convertConnectionToPromise() {
+    // try {
+      return await firstValueFrom(this.connection$);
+    // } catch (err) {
+    //   if (err instanceof EmptyError) {
+    //     return;
+    //   }
+    //   throw err;
+    // }
+  }
+
+  public async setupExchange(channel: Channel, resolve: () => unknown) {
+    if (!this.noAssert) {
+      await channel.assertExchange(this.exchange, this.exchangeType, this.exchangeOptions);
+    }
+
+    await this.consumeChannel(channel);
+    resolve();
+  }
+
+  public async consumeChannel(channel: Channel) {
+    // @ts-expect-error - the keys are not correctly extracted from the options type
+    const noAck = this.getOptionsProp(this.options, 'noAck', RQM_DEFAULT_NOACK);
+    await channel.consume(
+      this.replyQueue,
+      (msg: ConsumeMessage | null) => {
+        if (msg) {
+          this.responseEmitter.emit(msg.properties.correlationId, msg);
+        } else {
+          this.logger.warn(`Message is empty from RMQ queue ${this.replyQueue}`);
+        }
+      },
+      {
+        noAck
+      }
+    );
+  }
+
+  public handleError(client: AmqpConnectionManager): void {
+    client.addListener(ERROR_EVENT, (err: any) => this.logger.error(err));
+  }
+
+  public handleDisconnectError(client: AmqpConnectionManager): void {
+    client.addListener(DISCONNECT_EVENT, (err: any) => {
+      this.logger.error(DISCONNECTED_RMQ_MESSAGE);
+      this.logger.error(err);
+    });
+  }
+
+  public async handleMessage(
+    packet: unknown,
+    callback: (packet: WritePacket) => any
+  ): Promise<void>;
+  public async handleMessage(
+    packet: unknown,
+    options: Record<string, unknown>,
+    callback: (packet: WritePacket) => any
+  ): Promise<void>;
+  public async handleMessage(
+    packet: unknown,
+    optionsOrCallback: Record<string, unknown> | ((packet: WritePacket) => any),
+    callback?: (packet: WritePacket) => any
+  ): Promise<void> {
+    let options: Record<string, unknown> | undefined = undefined;
+    if (isFunction(options)) {
+      callback = options as (packet: WritePacket) => any;
+    } else {
+      options = optionsOrCallback as Record<string, unknown>;
+    }
+
+    if (!callback) {
+      throw new Error('No callback provided');
+    }
+
+    const {
+      err,
+      response,
+      isDisposed
+    } = await this.deserializer.deserialize(
+      packet,
+      options
+    );
+    if (isDisposed || err) {
+      callback({
+        err,
+        response,
+        isDisposed: true
+      });
+    }
+    callback({
+      err,
+      response
+    });
+  }
+
+  protected publish(
+    message: ReadPacket,
+    callback: (packet: WritePacket) => any
+  ): () => void {
+    try {
+      const correlationId = randomStringGenerator();
+      const listener = ({
+        content,
+        options
+      }: {
+        content: Buffer;
+        options: Record<string, unknown>;
+      }) =>
+        this.handleMessage(
+          this.parseMessageContent(content),
+          options,
+          callback
+        );
+
+      Object.assign(message, { id: correlationId });
+      const serializedPacket: ReadPacket & Partial<RmqRecord> =
+        this.serializer.serialize(message);
+
+      const options = serializedPacket.options;
+      delete serializedPacket.options;
+
+      this.responseEmitter.on(correlationId, listener);
+      this.channel!
+        .publish(
+          this.exchange,
+          serializedPacket.pattern,
+          Buffer.from(JSON.stringify(serializedPacket.data)),
+          {
+            replyTo: this.replyQueue,
+            persistent: this.persistent,
+            ...options,
+            headers: this.mergeHeaders(options?.headers),
+            correlationId
+          } as Options.Publish
+        )
+        .catch(err => callback({ err }));
+      return () => this.responseEmitter.removeListener(correlationId, listener);
+    } catch (err) {
+      callback({ err });
+    }
+    return () => void 0;
+  }
+
+  protected dispatchEvent(packet: ReadPacket): Promise<any> {
+    const serializedPacket: ReadPacket & Partial<RmqRecord> =
+      this.serializer.serialize(packet);
+
+    const options = serializedPacket.options;
+    delete serializedPacket.options;
+
+    return new Promise<void>((resolve, reject) =>
+      this.channel!.publish(
+        this.exchange,
+        serializedPacket.pattern,
+        Buffer.from(JSON.stringify(serializedPacket.data)),
+        {
+          persistent: this.persistent,
+          ...options,
+          headers: this.mergeHeaders(options?.headers)
+        } as Options.Publish,
+        (err: unknown) => (
+          err ? reject(err) : resolve()
+        )
+      )
+    );
+  }
+
+  protected override initializeSerializer(options: RmqExchangeOptions['options']) {
+    this.serializer = options?.serializer ?? new RmqRecordSerializer();
+  }
+
+  protected mergeHeaders(
+    requestHeaders?: Record<string, string>
+  ): Record<string, string> | undefined {
+    if (!requestHeaders && !this.options?.headers) {
+      return undefined;
+    }
+
+    return {
+      ...this.options?.headers,
+      ...requestHeaders
+    };
+  }
+
+  protected parseMessageContent(content: Buffer) {
+    const rawContent = content.toString();
+    try {
+      return JSON.parse(rawContent);
+    } catch {
+      return rawContent;
+    }
+  }
+}

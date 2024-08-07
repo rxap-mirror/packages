@@ -5,6 +5,17 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@acuminous/bitsyntax@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@acuminous/bitsyntax@npm:0.1.2"
+  dependencies:
+    buffer-more-ints: ~1.0.0
+    debug: ^4.3.4
+    safe-buffer: ~5.1.2
+  checksum: d2f9f30dfc8ddb10673e4780fa997fbe43fe3b6cd996b9930803d1b3c5db42fd964f9dab225f9e1cc06a2a22832b5a04e37076f2d283365768c7bd9718642db4
+  languageName: node
+  linkType: hard
+
 "@adobe/css-tools@npm:^4.0.1":
   version: 4.3.3
   resolution: "@adobe/css-tools@npm:4.3.3"
@@ -9306,6 +9317,7 @@ __metadata:
   resolution: "@rxap/nest-vault@workspace:packages/nest/vault"
   dependencies:
     "@nx/devkit": 19.4.2
+    axios: 1.7.2
     node-vault: ^0.10.2
     tslib: 2.6.2
   peerDependencies:
@@ -10239,6 +10251,7 @@ __metadata:
     "@swc/helpers": 0.5.11
     "@swc/jest": ~0.2.36
     "@tailwindcss/typography": 0.5.13
+    "@types/amqplib": ^0.10.5
     "@types/cookie-parser": 1.4.7
     "@types/csurf": 1.11.5
     "@types/fs-extra": 11.0.4
@@ -10252,6 +10265,8 @@ __metadata:
     "@typescript-eslint/parser": 7.11.0
     "@typescript-eslint/utils": ^8.0.0-alpha.28
     alias-quokka-plugin: 0.1.0
+    amqp-connection-manager: ^4.1.14
+    amqplib: ^0.10.4
     angular-oauth2-oidc: 15.0.1
     angular-oauth2-oidc-jwks: 15.0.1
     angular-quokka-plugin: 1.0.1
@@ -12491,6 +12506,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/amqplib@npm:^0.10.5":
+  version: 0.10.5
+  resolution: "@types/amqplib@npm:0.10.5"
+  dependencies:
+    "@types/node": "*"
+  checksum: bd10b4138b6834f25db2be93d6ceb1d6a6e115a4baa9df80169c552f8dc6d5a1d3e259b1c6693b674802a611f742fbcdab7b20a7ee9e20374c881970e3557f79
+  languageName: node
+  linkType: hard
+
 "@types/aria-query@npm:^5.0.1":
   version: 5.0.4
   resolution: "@types/aria-query@npm:5.0.4"
@@ -14420,6 +14444,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"amqp-connection-manager@npm:^4.1.14":
+  version: 4.1.14
+  resolution: "amqp-connection-manager@npm:4.1.14"
+  dependencies:
+    promise-breaker: ^6.0.0
+  peerDependencies:
+    amqplib: "*"
+  checksum: 3e777e0ff87085001706644070a4bbf86dcd61f08e639dbf03fbd8cb9dca4d7ffdfaa884b28768f326c883557c65052f58875a3fdd060c2412a494ed78fa6d5a
+  languageName: node
+  linkType: hard
+
+"amqplib@npm:^0.10.4":
+  version: 0.10.4
+  resolution: "amqplib@npm:0.10.4"
+  dependencies:
+    "@acuminous/bitsyntax": ^0.1.2
+    buffer-more-ints: ~1.0.0
+    readable-stream: 1.x >=1.1.9
+    url-parse: ~1.5.10
+  checksum: b93ae7f47c3af7f6977f1825d7c0e0bb8d2783330cf44345cd747e70ac53f09ca19a795df3b578dd5f239866d5b28b68412ade43da2f117bfeb4b71f4669794a
+  languageName: node
+  linkType: hard
+
 "angular-material@workspace:packages/angular/material":
   version: 0.0.0-use.local
   resolution: "angular-material@workspace:packages/angular/material"
@@ -15002,7 +15049,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.0, axios@npm:^1.6.1":
+"axios@npm:1.7.2, axios@npm:^1.6.0, axios@npm:^1.6.1":
   version: 1.7.2
   resolution: "axios@npm:1.7.2"
   dependencies:
@@ -15585,6 +15632,13 @@ __metadata:
   version: 1.1.2
   resolution: "buffer-from@npm:1.1.2"
   checksum: 0448524a562b37d4d7ed9efd91685a5b77a50672c556ea254ac9a6d30e3403a517d8981f10e565db24e8339413b43c97ca2951f10e399c6125a0d8911f5679bb
+  languageName: node
+  linkType: hard
+
+"buffer-more-ints@npm:~1.0.0":
+  version: 1.0.0
+  resolution: "buffer-more-ints@npm:1.0.0"
+  checksum: f6e88dade08a6d36f32d5f3ece141583a4f61d6c36970b16f4699bd00cfe95d4015525c2a741cf46eb918acfd61cac95683fb995189fd65c13b14949c90bfe75
   languageName: node
   linkType: hard
 
@@ -22319,7 +22373,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inherits@npm:2, inherits@npm:2.0.4, inherits@npm:^2.0.1, inherits@npm:^2.0.3, inherits@npm:^2.0.4, inherits@npm:~2.0.3":
+"inherits@npm:2, inherits@npm:2.0.4, inherits@npm:^2.0.1, inherits@npm:^2.0.3, inherits@npm:^2.0.4, inherits@npm:~2.0.1, inherits@npm:~2.0.3":
   version: 2.0.4
   resolution: "inherits@npm:2.0.4"
   checksum: 4a48a733847879d6cf6691860a6b1e3f0f4754176e4d71494c41f3475553768b10f84b5ce1d40fbd0e34e6bfbb864ee35858ad4dd2cf31e02fc4a154b724d7f1
@@ -23236,6 +23290,13 @@ __metadata:
   dependencies:
     is-inside-container: ^1.0.0
   checksum: f9734c81f2f9cf9877c5db8356bfe1ff61680f1f4c1011e91278a9c0564b395ae796addb4bf33956871041476ec82c3e5260ed57b22ac91794d4ae70a1d2f0a9
+  languageName: node
+  linkType: hard
+
+"isarray@npm:0.0.1":
+  version: 0.0.1
+  resolution: "isarray@npm:0.0.1"
+  checksum: 49191f1425681df4a18c2f0f93db3adb85573bcdd6a4482539d98eac9e705d8961317b01175627e860516a2fc45f8f9302db26e5a380a97a520e272e2a40a8d4
   languageName: node
   linkType: hard
 
@@ -29882,6 +29943,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"promise-breaker@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "promise-breaker@npm:6.0.0"
+  checksum: 84939eb36b30ad39c141350f15d42fcfcfdeea0c4f288cf4d7b794450cc93823ea211ab76fa9edcda9ddc880f62829a63630ff04ff76f0c611b6f31a73a0a000
+  languageName: node
+  linkType: hard
+
 "promise-coalesce@npm:^1.1.2":
   version: 1.1.2
   resolution: "promise-coalesce@npm:1.1.2"
@@ -30466,6 +30534,18 @@ __metadata:
   dependencies:
     mute-stream: ^1.0.0
   checksum: 65fdc31c18f457b08a4f6eea3624cbbe82f82d5f297f256062278627ed897381d1637dd494ba7419dd3c5ed73fb21a4cef1342748c6e108b0f8fc7f627a0b281
+  languageName: node
+  linkType: hard
+
+"readable-stream@npm:1.x >=1.1.9":
+  version: 1.1.14
+  resolution: "readable-stream@npm:1.1.14"
+  dependencies:
+    core-util-is: ~1.0.0
+    inherits: ~2.0.1
+    isarray: 0.0.1
+    string_decoder: ~0.10.x
+  checksum: 17dfeae3e909945a4a1abc5613ea92d03269ef54c49288599507fc98ff4615988a1c39a999dcf9aacba70233d9b7040bc11a5f2bfc947e262dedcc0a8b32b5a0
   languageName: node
   linkType: hard
 
@@ -31183,7 +31263,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:5.1.2, safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
+"safe-buffer@npm:5.1.2, safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1, safe-buffer@npm:~5.1.2":
   version: 5.1.2
   resolution: "safe-buffer@npm:5.1.2"
   checksum: f2f1f7943ca44a594893a852894055cf619c1fbcb611237fc39e461ae751187e7baf4dc391a72125e0ac4fb2d8c5c0b3c71529622e6a58f46b960211e704903c
@@ -32396,6 +32476,13 @@ __metadata:
   dependencies:
     safe-buffer: ~5.2.0
   checksum: 8417646695a66e73aefc4420eb3b84cc9ffd89572861fe004e6aeb13c7bc00e2f616247505d2dbbef24247c372f70268f594af7126f43548565c68c117bdeb56
+  languageName: node
+  linkType: hard
+
+"string_decoder@npm:~0.10.x":
+  version: 0.10.31
+  resolution: "string_decoder@npm:0.10.31"
+  checksum: fe00f8e303647e5db919948ccb5ce0da7dea209ab54702894dd0c664edd98e5d4df4b80d6fabf7b9e92b237359d21136c95bf068b2f7760b772ca974ba970202
   languageName: node
   linkType: hard
 
@@ -34069,7 +34156,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-parse@npm:^1.5.3":
+"url-parse@npm:^1.5.3, url-parse@npm:~1.5.10":
   version: 1.5.10
   resolution: "url-parse@npm:1.5.10"
   dependencies:
