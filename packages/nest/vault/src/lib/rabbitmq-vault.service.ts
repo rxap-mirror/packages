@@ -4,7 +4,6 @@ import {
   Logger
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { isAxiosError } from 'axios';
 import {
   VaultResponse,
   VaultService
@@ -76,13 +75,11 @@ export class RabbitmqVaultService {
     }, timeout);
   }
 
-  private handleError(error: unknown) {
-    if (isAxiosError(error)) {
-      if (error.status === 503) {
-        if (error.message?.includes('Vault is sealed')) {
-          this.logger.error('Vault is sealed', 'RabbitmqVaultService');
-          return new Error('Vault is sealed');
-        }
+  private handleError(error: any) {
+    if (error.status === 503) {
+      if (error.message?.includes('Vault is sealed')) {
+        this.logger.error('Vault is sealed', 'RabbitmqVaultService');
+        return new Error('Vault is sealed');
       }
     }
     return error;
