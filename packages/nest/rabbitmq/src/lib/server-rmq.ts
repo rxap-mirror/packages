@@ -30,9 +30,8 @@ import {
 } from '@nestjs/microservices/constants';
 import { RmqUrl } from '@nestjs/microservices/external/rmq-url.interface';
 import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
+import { connect } from 'amqp-connection-manager';
 import { QueueRmqOptions } from './options';
-
-let rmqPackage: any = {};
 
 const INFINITE_CONNECTION_ATTEMPTS = -1;
 
@@ -70,13 +69,6 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
       this.getOptionsProp(this.options, 'noAssert') ??
       this.queueOptions.noAssert ??
       RQM_DEFAULT_NO_ASSERT;
-
-    this.loadPackage('amqplib', ServerRMQ.name, () => require('amqplib'));
-    rmqPackage = this.loadPackage(
-      'amqp-connection-manager',
-      ServerRMQ.name,
-      () => require('amqp-connection-manager'),
-    );
 
     this.initializeSerializer(options);
     this.initializeDeserializer(options);
@@ -139,9 +131,9 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     });
   }
 
-  public createClient<T = any>(): T {
+  public createClient() {
     const socketOptions = this.getOptionsProp(this.options, 'socketOptions');
-    return rmqPackage.connect(this.urls, socketOptions);
+    return connect(this.urls, socketOptions);
   }
 
   public async setupChannel(channel: any, callback?: () => any) {
