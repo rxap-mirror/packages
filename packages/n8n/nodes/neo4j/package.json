@@ -5,13 +5,18 @@
     "@nx/devkit": "19.4.2",
     "tslib": "^2.3.0"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "n8n-workflow": "^1.48.0"
+  },
   "type": "commonjs",
   "main": "./src/index.js",
   "n8n": {
     "n8nNodesApiVersion": 1,
     "nodes": [
       "src/lib/neo4j.node.js"
+    ],
+    "credentials": [
+      "src/lib/neo4j-basic-auth.credentials.js"
     ]
   },
   "typings": "./src/index.d.ts",
