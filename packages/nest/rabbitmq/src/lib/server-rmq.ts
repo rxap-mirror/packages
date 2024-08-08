@@ -1,15 +1,16 @@
 import {
   isNil,
   isString,
-  isUndefined,
+  isUndefined
 } from '@nestjs/common/utils/shared.utils';
 import {
   CustomTransportStrategy,
   IncomingRequest,
+  MessageHandler,
   OutgoingResponse,
   ReadPacket,
   RmqContext,
-  Server,
+  Server
 } from '@nestjs/microservices';
 import {
   CONNECT_EVENT,
@@ -26,12 +27,17 @@ import {
   RQM_DEFAULT_QUEUE_OPTIONS,
   RQM_DEFAULT_URL,
   RQM_NO_EVENT_HANDLER,
-  RQM_NO_MESSAGE_HANDLER,
+  RQM_NO_MESSAGE_HANDLER
 } from '@nestjs/microservices/constants';
 import { RmqUrl } from '@nestjs/microservices/external/rmq-url.interface';
 import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
-import { connect } from 'amqp-connection-manager';
 import { QueueRmqOptions } from './options';
+import {
+  ChannelWrapper,
+  connect
+} from 'amqp-connection-manager';
+import type { IAmqpConnectionManager } from 'amqp-connection-manager/dist/types/AmqpConnectionManager';
+import type { Message } from 'amqplib';
 
 const INFINITE_CONNECTION_ATTEMPTS = -1;
 
@@ -40,8 +46,8 @@ export const TRANSPORT_ID = Symbol('RxAP_RMQ');
 export class ServerRMQ extends Server implements CustomTransportStrategy {
   public readonly transportId = TRANSPORT_ID;
 
-  protected server: any = null;
-  protected channel: any = null;
+  protected server: IAmqpConnectionManager | null = null;
+  protected channel: ChannelWrapper | null = null;
   protected connectionAttempts = 0;
   protected readonly urls: string[] | RmqUrl[];
   protected readonly queue: string;
@@ -50,9 +56,10 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   protected readonly queueOptions: any;
   protected readonly isGlobalPrefetchCount: boolean;
   protected readonly noAssert: boolean;
+
   constructor(protected readonly options: QueueRmqOptions) {
     super();
-    this.urls = this.getOptionsProp(this.options, 'urls') || [RQM_DEFAULT_URL];
+    this.urls = this.getOptionsProp(this.options, 'urls') || [ RQM_DEFAULT_URL ];
     this.queue =
       this.getOptionsProp(this.options, 'queue') || RQM_DEFAULT_QUEUE;
     this.prefetchCount =
@@ -75,7 +82,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   }
 
   public async listen(
-    callback: (err?: unknown, ...optionalParams: unknown[]) => void,
+    callback: (err?: unknown, ...optionalParams: unknown[]) => void
   ): Promise<void> {
     try {
       await this.start(callback);
@@ -90,23 +97,23 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   }
 
   public async start(
-    callback?: (err?: unknown, ...optionalParams: unknown[]) => void,
+    callback?: (err?: unknown, ...optionalParams: unknown[]) => void
   ) {
     this.server = this.createClient();
     this.server.on(CONNECT_EVENT, () => {
       if (this.channel) {
         return;
       }
-      this.channel = this.server.createChannel({
+      this.channel = this.server!.createChannel({
         json: false,
-        setup: (channel: any) => this.setupChannel(channel, callback),
+        setup: (channel: any) => this.setupChannel(channel, callback)
       });
     });
 
     const maxConnectionAttempts = this.getOptionsProp(
       this.options,
       'maxConnectionAttempts',
-      INFINITE_CONNECTION_ATTEMPTS,
+      INFINITE_CONNECTION_ATTEMPTS
     );
     this.server.on(DISCONNECT_EVENT, (err: any) => {
       this.logger.error(DISCONNECTED_RMQ_MESSAGE);
@@ -136,65 +143,75 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     return connect(this.urls, socketOptions);
   }
 
-  public async setupChannel(channel: any, callback?: () => any) {
+  public async setupChannel(channel: ChannelWrapper, callback?: () => any) {
     if (!this.noAssert) {
       await channel.assertQueue(this.queue, this.queueOptions);
     }
-    await channel.prefetch(this.prefetchCount, this.isGlobalPrefetchCount);
+    const r = await (
+      channel as any
+    ).prefetch(this.prefetchCount, this.isGlobalPrefetchCount);
     channel.consume(
       this.queue,
       (msg: Record<string, any>) => this.handleMessage(msg, channel),
       {
+        prefetch: this.prefetchCount,
         noAck: this.noAck,
         consumerTag: this.getOptionsProp(
           this.options,
           'consumerTag',
-          undefined,
-        ),
-      },
+          undefined
+        )
+      }
     );
     callback?.();
   }
 
   public async handleMessage(
     message: Record<string, any>,
-    channel: any,
+    channel: any
   ): Promise<void> {
     if (isNil(message)) {
       return;
     }
-    const { content, properties } = message;
+    const {
+      content,
+      properties
+    } = message;
     const rawMessage = this.parseMessageContent(content);
     const packet = await this.deserializer.deserialize(rawMessage, properties);
     const pattern = isString(packet.pattern)
-      ? packet.pattern
-      : JSON.stringify(packet.pattern);
+                    ? packet.pattern
+                    : JSON.stringify(packet.pattern);
 
-    const rmqContext = new RmqContext([message, channel, pattern]);
-    if (isUndefined((packet as IncomingRequest).id)) {
+    const rmqContext = new RmqContext([ message, channel, pattern ]);
+    if (isUndefined((
+      packet as IncomingRequest
+    ).id)) {
       return this.handleEvent(pattern, packet, rmqContext);
     }
     const handler = this.getHandlerByPattern(pattern);
 
     if (!handler) {
       if (!this.noAck) {
-        this.logger.warn(RQM_NO_MESSAGE_HANDLER`${pattern}`);
-        this.channel.nack(rmqContext.getMessage(), false, false);
+        this.logger.warn(RQM_NO_MESSAGE_HANDLER`${ pattern }`);
+        this.channel!.nack(rmqContext.getMessage() as Message, false, false);
       }
       const status = 'error';
       const noHandlerPacket = {
-        id: (packet as IncomingRequest).id,
+        id: (
+          packet as IncomingRequest
+        ).id,
         err: NO_MESSAGE_HANDLER,
-        status,
+        status
       };
       return this.sendMessage(
         noHandlerPacket,
         properties.replyTo,
-        properties.correlationId,
+        properties.correlationId
       );
     }
     const response$ = this.transformToObservable(
-      await handler(packet.data, rmqContext),
+      await handler(packet.data, rmqContext)
     );
 
     const publish = <T>(data: T) =>
@@ -206,12 +223,12 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   public override async handleEvent(
     pattern: string,
     packet: ReadPacket,
-    context: RmqContext,
+    context: RmqContext
   ): Promise<any> {
     const handler = this.getHandlerByPattern(pattern);
     if (!handler && !this.noAck) {
-      this.channel.nack(context.getMessage(), false, false);
-      return this.logger.warn(RQM_NO_EVENT_HANDLER`${pattern}`);
+      this.channel!.nack(context.getMessage() as Message, false, false);
+      return this.logger.warn(RQM_NO_EVENT_HANDLER`${ pattern }`);
     }
     return super.handleEvent(pattern, packet, context);
   }
@@ -219,16 +236,16 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   public sendMessage<T = any>(
     message: T,
     replyTo: any,
-    correlationId: string,
+    correlationId: string
   ): void {
     const outgoingResponse = this.serializer.serialize(
-      message as unknown as OutgoingResponse,
+      message as unknown as OutgoingResponse
     );
     const options = outgoingResponse.options;
     delete outgoingResponse.options;
 
     const buffer = Buffer.from(JSON.stringify(outgoingResponse));
-    this.channel.sendToQueue(replyTo, buffer, { correlationId, ...options });
+    this.channel!.sendToQueue(replyTo, buffer, { correlationId, ...options });
   }
 
   protected override initializeSerializer(options: QueueRmqOptions) {
