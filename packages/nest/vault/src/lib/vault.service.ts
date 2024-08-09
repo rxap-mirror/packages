@@ -164,9 +164,16 @@ export class VaultService {
     { increment }: { increment?: string }, autoRenew?: boolean): Promise<VaultResponse<null, VaultAuth>> {
     this.logger.verbose(`Renewing vault own token with increment '${ increment ?? 'default' }'`, 'VaultService');
     await this.initialized;
-    const response = await this.client.tokenRenewSelf({ increment });
+    let response: VaultResponse<null, VaultAuth>;
+    try {
+      response = await this.client.tokenRenewSelf({ increment });
+    } catch (e: any) {
+      this.logger.error(`Failed to renew vault token with increment '${ increment ?? 'default' }': ${ e.message }`, e.stack, 'VaultService');
+      throw new Error(`Failed to renew vault token with increment '${ increment ?? 'default' }': ${ e.message }`);
+    }
     if (!response.auth?.client_token) {
-      throw new Error(`Failed to renew vault token with increment '${ increment ?? 'default' }'`);
+      this.logger.fatal(`Failed to renew vault token with increment '${ increment ?? 'default' }' because the response did not contain a client token`, 'VaultService');
+      throw new Error(`Failed to renew vault token with increment '${ increment ?? 'default' }' because the response did not contain a client token`);
     }
     this.logger.debug(
       `Set vault client token with renewed token with increment '${ increment ?? 'default' }'`, 'VaultService');
