@@ -35,8 +35,13 @@ export interface i18nConfig {
   defaultLanguage?: string;
 }
 
+export interface Oauth2Config {
+  profileUrl?: string;
+}
+
 export interface Config {
   navigation?: NavigationConfig;
   logo?: LogoConfig;
   i18n?: i18nConfig;
+  oauth2?: Oauth2Config;
 }
