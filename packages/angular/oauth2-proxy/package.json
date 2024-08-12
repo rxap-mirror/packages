@@ -10,7 +10,10 @@
     "@angular/common": "^18.0.6",
     "@angular/core": "^18.0.6",
     "@angular/router": "^18.0.6",
+    "@rxap/config": "^18.2.0",
+    "@rxap/data-source": "^18.1.3",
     "@rxap/ngx-pub-sub": "^18.1.0",
+    "@rxap/pattern": "^1.1.7",
     "rxjs": "^7.8.1"
   },
   "author": {
