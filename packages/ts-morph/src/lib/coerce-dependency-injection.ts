@@ -73,6 +73,7 @@ export function CoerceDependencyInjection(
       });
     } else {
       propertyDeclaration.setType(definition.type ?? definition.injectionToken);
+      propertyDeclaration.setHasExclamationToken(true);
     }
     CoerceImports(sourceFile, {
       namedImports: [ 'Inject' ],
