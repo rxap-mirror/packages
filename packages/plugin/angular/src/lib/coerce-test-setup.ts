@@ -20,7 +20,7 @@ globalThis.ngJest = {
 import 'jest-preset-angular/setup-jest';
 `);
 
-  TsMorphAngularProjectTransform(tree, { project: projectName }, (_, [ sourceFile ]) => {
+  TsMorphAngularProjectTransform(tree, { project: projectName, basePath: projectSourceRoot }, (_, [ sourceFile ]) => {
 
     CoerceImports(sourceFile, [
       {

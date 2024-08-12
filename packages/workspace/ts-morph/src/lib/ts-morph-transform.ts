@@ -220,6 +220,7 @@ export function TsMorphNestProjectTransform(
 
 export interface TsMorphAngularProjectTransformOptions extends BuildAngularBasePathOptions, TsMorphTransformOptions {
   projectOptions?: Partial<ProjectOptions>;
+  basePath?: string;
 }
 
 export function TsMorphAngularProjectTransform(
@@ -267,7 +268,7 @@ export function TsMorphAngularProjectTransform(
   cb: TsMorphTransformCallback,
   filePath?: undefined | string | string[],
 ): void {
-  const basePath = BuildAngularBasePath(tree, options);
+  const basePath = options.basePath ?? BuildAngularBasePath(tree, options);
   return TsMorphTransform(
     tree,
     basePath,
