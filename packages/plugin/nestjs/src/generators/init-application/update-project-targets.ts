@@ -18,22 +18,6 @@ export function updateProjectTargets(
     CoerceTarget(project, 'generate-package-json', {});
   }
 
-  const outputPath = project.targets?.build?.options?.outputPath ?? join('dist', project.root);
-
-  if (options.swagger && !options.standalone) {
-    CoerceTarget(project, 'generate-open-api', {
-      executor: '@rxap/plugin-library:run-generator',
-      options: {
-        generator: '@rxap/plugin-open-api:generate',
-        options: {
-          project: `open-api-${ projectName }`,
-          path: `${ outputPath.replace('dist/', 'dist/swagger/') }/openapi.json`,
-          serverId: projectName,
-        },
-      },
-    });
-  }
-
   CoerceTarget(project, 'build', {
     executor: '@nx/webpack:webpack',
     outputs: [ '{options.outputPath}'],
