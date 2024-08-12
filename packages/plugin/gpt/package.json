@@ -1,11 +1,11 @@
 {
-  "version": "19.0.6-dev.0",
+  "version": "19.0.6-dev.1",
   "name": "@rxap/plugin-gpt",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.4.2",
-    "@rxap/ts-morph": "^1.4.3",
-    "@rxap/workspace-ts-morph": "^19.1.4-dev.0",
+    "@rxap/ts-morph": "^1.4.4-dev.0",
+    "@rxap/workspace-ts-morph": "^19.1.4-dev.1",
     "@rxap/workspace-utilities": "^19.4.0",
     "gpt-3-encoder": "^1.1.4",
     "openai": "^4.52.0",

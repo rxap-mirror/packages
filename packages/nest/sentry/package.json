@@ -1,10 +1,10 @@
 {
-  "version": "10.4.0",
+  "version": "10.4.1-dev.0",
   "name": "@rxap/nest-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.4.2",
-    "@rxap/ts-morph": "^1.4.3",
+    "@rxap/ts-morph": "^1.4.4-dev.0",
     "@rxap/workspace-utilities": "^19.4.0",
     "tslib": "2.6.2"
   },
@@ -12,7 +12,7 @@
     "@nestjs/common": "^10.3.8",
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.3.8",
-    "@rxap/nest-logger": "^10.2.5",
+    "@rxap/nest-logger": "^10.2.6-dev.0",
     "@rxap/nest-utilities": "^10.3.4",
     "@sentry/core": "^8.18.0",
     "@sentry/nestjs": "^8.18.0",
@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.2.5"
+        "version": "10.2.6-dev.0"
       },
       {
         "package": "@rxap/nest-utilities",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.3...@rxap/ts-morph@1.4.4-dev.0) (2024-08-12)
+
+### Bug Fixes
+
+- ensure the injection property has an exclamation token ([3ea04be](https://gitlab.com/rxap/packages/commit/3ea04be0d445645d588de3c372dbaed6a5dcf1f4))
+
 ## [1.4.3](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.3-dev.4...@rxap/ts-morph@1.4.3) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/ts-morph
