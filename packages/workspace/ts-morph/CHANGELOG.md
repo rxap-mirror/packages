@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@19.1.3...@rxap/workspace-ts-morph@19.1.4-dev.0) (2024-08-12)
+
+### Bug Fixes
+
+- support custom base path ([885931a](https://gitlab.com/rxap/packages/commit/885931a9738cea074c7c3caac3047537685e206e))
+
 ## [19.1.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@19.1.3-dev.8...@rxap/workspace-ts-morph@19.1.3) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/workspace-ts-morph

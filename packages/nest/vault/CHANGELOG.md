@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-vault@10.1.0-dev.0...@rxap/nest-vault@10.1.0-dev.1) (2024-08-12)
+
+### Bug Fixes
+
+- improve logging and error handling ([4a3b69d](https://gitlab.com/rxap/packages/commit/4a3b69db66088ea7e7f16181c22a86b6b6041a17))
+
 # [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-vault@10.0.6...@rxap/nest-vault@10.1.0-dev.0) (2024-08-07)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@18.2.0...@rxap/config@18.2.1-dev.0) (2024-08-12)
+
+### Bug Fixes
+
+- add oauth2 proxy config interface ([a2eb8a8](https://gitlab.com/rxap/packages/commit/a2eb8a839db8f680d35cbe51e19a860c63875f4e))
+
 # [18.2.0](https://gitlab.com/rxap/packages/compare/@rxap/config@18.2.0-dev.0...@rxap/config@18.2.0) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/config

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-oauth2-proxy@18.0.1...@rxap/ngx-oauth2-proxy@18.1.0-dev.0) (2024-08-12)
+
+### Features
+
+- add user profile method and data source ([ff9b72b](https://gitlab.com/rxap/packages/commit/ff9b72b8977bffb4492ac0964486c68432c09ac6))
+
 ## [18.0.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-oauth2-proxy@18.0.1-dev.2...@rxap/ngx-oauth2-proxy@18.0.1) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/ngx-oauth2-proxy
