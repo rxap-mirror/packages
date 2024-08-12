@@ -1,4 +1,6 @@
 import { Tree } from '@nx/devkit';
+import { CoerceImports } from '@rxap/ts-morph';
+import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   CoerceFile,
   GetProjectSourceRoot,
@@ -18,25 +20,41 @@ globalThis.ngJest = {
 import 'jest-preset-angular/setup-jest';
 `);
 
-  let content = tree.read(testSetupPath, 'utf-8')!;
-  if (!content.match(/import\s+\{.+}\s+from\s+'util';/)) {
-    content += `
-import { TextDecoder, TextEncoder } from 'util';
-global.TextEncoder ??= TextEncoder as any;
-global.TextDecoder ??= TextDecoder as any;
-`;
-  }
-  if (!content.match(/import\s+'@angular\/localize\/init';/)) {
-    content += `
-import '@angular/localize/init';
-jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
+  TsMorphAngularProjectTransform(tree, { project: projectName }, (_, [ sourceFile ]) => {
+
+    CoerceImports(sourceFile, [
+      {
+        moduleSpecifier: 'util',
+        namedImports: [ 'TextDecoder', 'TextEncoder' ],
+      },
+      {
+        moduleSpecifier: '@angular/localize/init',
+      },
+    ]);
+
+    const hasTextEncoderStatement = !!sourceFile.getStatement(
+      statement => statement.getText().includes('global.TextEncoder ??= TextEncoder as any;'));
+    const hasTextDecoderStatement = !!sourceFile.getStatement(
+      statement => statement.getText().includes('global.TextDecoder ??= TextDecoder as any;'));
+    const hasLocalizeInitStatement = !!sourceFile.getStatement(
+      statement => statement.getText().includes('jest.spyOn(global as any, \'$localize\')'));
+
+    if (!hasTextEncoderStatement) {
+      sourceFile.addStatements(`global.TextEncoder ??= TextEncoder as any;`);
+    }
+
+    if (!hasTextDecoderStatement) {
+      sourceFile.addStatements(`global.TextDecoder ??= TextDecoder as any;`);
+    }
+
+    if (!hasLocalizeInitStatement) {
+      sourceFile.addStatements(`jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
   // This template tag function just returns the first argument with no transformations.
   // Change this to fit your unit test needs.
   return args[0];
-});
-`;
-  }
+});`);
+    }
 
-  CoerceFile(tree, testSetupPath, content, true);
+  }, [ 'test-setup.ts' ]);
 
 }
