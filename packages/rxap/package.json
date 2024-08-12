@@ -434,7 +434,7 @@
       },
       {
         "package": "@rxap/ngx-oauth2-proxy",
-        "version": "18.1.0-dev.0"
+        "version": "18.1.0-dev.1"
       },
       {
         "package": "@rxap/ngx-pub-sub",
