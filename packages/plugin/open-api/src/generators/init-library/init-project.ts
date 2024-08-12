@@ -8,8 +8,11 @@ import {
   CoerceFile,
   CoerceIgnorePattern,
   CoerceTarget,
+  GetProject,
   GetProjectRoot,
   GetProjectSourceRoot,
+  GetTarget,
+  GetTargetOptions,
   HasProject,
   RemoveIgnorePattern,
   Strategy,
@@ -66,10 +69,31 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       throw new Error(
         `The api project '${ apiProjectName }' for the open api client sdk library '${ options.project }' does not exists!`);
     }
-    // region add the implicit dependency to the api project
-    project.implicitDependencies ??= [];
-    CoerceArrayItems(project.implicitDependencies, [ apiProjectName ]);
-    // endregion
+    const apiProject = GetProject(tree, apiProjectName);
+    const swaggerBuild = GetTarget(apiProject, 'swagger-build');
+    const { outputPath: apiProjectOutputPath } = GetTargetOptions(swaggerBuild);
+    CoerceTarget(project, 'generate-open-api', {
+      "dependsOn": [
+        {
+          "projects": apiProjectName,
+          "target": "swagger-generate"
+        }
+      ],
+      "outputs": [
+        "{projectRoot}/src"
+      ],
+      "inputs": [
+        `{workspaceRoot}/${apiProjectOutputPath}/openapi.json`
+      ],
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-open-api:generate",
+        "options": {
+          "path": `${apiProjectOutputPath}/openapi.json`,
+          "serverId": apiProjectName
+        }
+      }
+    });
   }
 
   CoerceTarget(project, 'build', {
