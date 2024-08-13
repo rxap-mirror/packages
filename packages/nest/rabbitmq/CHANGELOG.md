@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.0-dev.6...@rxap/nest-rabbitmq@10.0.0-dev.7) (2024-08-13)
+
+### Bug Fixes
+
+- add bindQueue method ([68c2b04](https://gitlab.com/rxap/packages/commit/68c2b04d0b82d5104a942f7799b76c2d57534dbf))
+- correctly use defaults ([735463d](https://gitlab.com/rxap/packages/commit/735463d91e7f6296eae99a815b0481270c06f896))
+
 # [10.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.0-dev.5...@rxap/nest-rabbitmq@10.0.0-dev.6) (2024-08-09)
 
 ### Bug Fixes
