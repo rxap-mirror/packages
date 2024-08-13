@@ -111,7 +111,7 @@ export abstract class Server<O extends object, T extends INestApplicationContext
 
     await this.listen(this.app, this.logger, options);
 
-    this.logger.debug('Handle read bootstrap hooks', 'Bootstrap');
+    this.logger.debug('Handle ready bootstrap hooks', 'Bootstrap');
 
     await this.handleReady(this.app, this.logger, this.config, options);
 
