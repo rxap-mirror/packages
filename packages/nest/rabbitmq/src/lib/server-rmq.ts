@@ -96,6 +96,10 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     this.server && this.server.close();
   }
 
+  public bindQueue(exchange: string, routingKey: string) {
+    return this.channel!.bindQueue(this.queue, exchange, routingKey);
+  }
+
   public async start(
     callback?: (err?: unknown, ...optionalParams: unknown[]) => void
   ) {
