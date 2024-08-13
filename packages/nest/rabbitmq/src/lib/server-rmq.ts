@@ -59,18 +59,18 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
 
   constructor(protected readonly options: QueueRmqOptions) {
     super();
-    this.urls = this.getOptionsProp(this.options, 'urls') || [ RQM_DEFAULT_URL ];
+    this.urls = this.getOptionsProp(this.options, 'urls') ?? [ RQM_DEFAULT_URL ];
     this.queue =
-      this.getOptionsProp(this.options, 'queue') || RQM_DEFAULT_QUEUE;
+      this.getOptionsProp(this.options, 'queue') ?? RQM_DEFAULT_QUEUE;
     this.prefetchCount =
-      this.getOptionsProp(this.options, 'prefetchCount') ||
+      this.getOptionsProp(this.options, 'prefetchCount') ??
       RQM_DEFAULT_PREFETCH_COUNT;
     this.noAck = this.getOptionsProp(this.options, 'noAck', RQM_DEFAULT_NOACK) as boolean;
     this.isGlobalPrefetchCount =
-      this.getOptionsProp(this.options, 'isGlobalPrefetchCount') ||
+      this.getOptionsProp(this.options, 'isGlobalPrefetchCount') ??
       RQM_DEFAULT_IS_GLOBAL_PREFETCH_COUNT;
     this.queueOptions =
-      this.getOptionsProp(this.options, 'queueOptions') ||
+      this.getOptionsProp(this.options, 'queueOptions') ??
       RQM_DEFAULT_QUEUE_OPTIONS;
     this.noAssert =
       this.getOptionsProp(this.options, 'noAssert') ??

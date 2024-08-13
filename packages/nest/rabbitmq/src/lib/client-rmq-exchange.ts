@@ -76,12 +76,12 @@ export class ClientRMQExchange extends ClientProxy {
 
   constructor(protected readonly options: ExchangeRmqOptions) {
     super();
-    this.urls = this.getOptionsProp(this.options, 'urls') || [ RQM_DEFAULT_URL ];
-    this.exchange = this.getOptionsProp(this.options, 'exchange') || RQM_DEFAULT_EXCHANGE;
-    this.exchangeOptions = this.getOptionsProp(this.options, 'exchangeOptions') || RQM_DEFAULT_EXCHANGE_OPTIONS;
-    this.exchangeType = this.getOptionsProp(this.options, 'exchangeType') || RQM_DEFAULT_EXCHANGE_TYPE;
-    this.replyQueue = this.getOptionsProp(this.options, 'replyQueue') || REPLY_QUEUE;
-    this.persistent = this.getOptionsProp(this.options, 'persistent') || RQM_DEFAULT_PERSISTENT;
+    this.urls = this.getOptionsProp(this.options, 'urls') ?? [ RQM_DEFAULT_URL ];
+    this.exchange = this.getOptionsProp(this.options, 'exchange') ?? RQM_DEFAULT_EXCHANGE;
+    this.exchangeOptions = this.getOptionsProp(this.options, 'exchangeOptions') ?? RQM_DEFAULT_EXCHANGE_OPTIONS;
+    this.exchangeType = this.getOptionsProp(this.options, 'exchangeType') ?? RQM_DEFAULT_EXCHANGE_TYPE;
+    this.replyQueue = this.getOptionsProp(this.options, 'replyQueue') ?? REPLY_QUEUE;
+    this.persistent = this.getOptionsProp(this.options, 'persistent') ?? RQM_DEFAULT_PERSISTENT;
     this.noAssert = this.getOptionsProp(this.options, 'noAssert') ?? RQM_DEFAULT_NO_ASSERT;
 
     this.initializeSerializer(options);
