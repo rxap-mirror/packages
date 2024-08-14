@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.0-dev.15...@rxap/nest-rabbitmq@10.0.0-dev.16) (2024-08-14)
+
+### Bug Fixes
+
+- improve logging ([abcd7ae](https://gitlab.com/rxap/packages/commit/abcd7ae24b412447b3a2467c067d0c9737893137))
+- improve logging ([e04a801](https://gitlab.com/rxap/packages/commit/e04a80182cca43cfeaea8a0bdd6b236fa997756b))
+
 # [10.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.0-dev.14...@rxap/nest-rabbitmq@10.0.0-dev.15) (2024-08-14)
 
 ### Bug Fixes
