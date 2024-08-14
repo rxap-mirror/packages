@@ -72,11 +72,25 @@ export class RxapLogger extends ConsoleLogger {
         const msg = message.replace(/%JSON/g, () => {
           if (optionalParams.length) {
             const param = optionalParams.shift();
-            if (param && typeof param === 'object') {
-              return this.stringifyCircular(param);
-            } else {
-              optionalParams.unshift(param);
+            if (typeof param === 'object') {
+              if (param) {
+                return this.stringifyCircular(param);
+              } else if (param === null) {
+                return '<null>';
+              } else {
+                return '<undefined>';
+              }
             }
+            if (typeof param === 'string') {
+              return JSON.stringify(param);
+            }
+            if (typeof param === 'number') {
+              return JSON.stringify(param);
+            }
+            if (typeof param === 'boolean') {
+              return JSON.stringify(param);
+            }
+            optionalParams.unshift(param);
           }
           return '<json>';
         });
