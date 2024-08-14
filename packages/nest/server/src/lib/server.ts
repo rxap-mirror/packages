@@ -40,6 +40,7 @@ export type MainAfterFunction<NestApplicationContext extends INestApplicationCon
 export type LoggerFactory<NestApplicationContext extends INestApplicationContext, B extends object, Logger extends LoggerService> = (
   this: Server<any, NestApplicationContext, B, Logger>,
   app: NestApplicationContext,
+  config: ConfigService<unknown>,
   environment: Environment,
 ) => Logger | Promise<Logger>;
 
@@ -85,7 +86,13 @@ export abstract class Server<Options extends object, NestApplicationContext exte
       throw new Error('Nest app creation failed');
     }
 
-    this.logger = await this._loggerFactory.call(this, this.app, this.environment);
+    this.config = this.app.get(ConfigService);
+
+    if (!this.config) {
+      throw new Error('Could not inject a ConfigService instance');
+    }
+
+    this.logger = await this._loggerFactory.call(this, this.app, this.config, this.environment);
 
     if (!this.logger) {
       throw new Error('Could not inject a Logger instance');
@@ -94,12 +101,6 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     this.logger.log(`Logger instance name: ${ this.logger.constructor.name }`, 'Bootstrap');
 
     this.app.useLogger(this.logger);
-
-    this.config = this.app.get(ConfigService);
-
-    if (!this.config) {
-      throw new Error('Could not inject a ConfigService instance');
-    }
 
     if (this.config.get('ENVIRONMENT_NAME') && this.config.get('ENVIRONMENT_NAME') !== this.environment.name) {
       this.logger.warn(
