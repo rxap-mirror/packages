@@ -10,17 +10,23 @@ export interface ClientRmqExchangeModuleOptions extends CustomClientOptions {
 
 export class ClientRmqExchangeModuleOptionsFactory extends RabbitmqOptionsFactory implements ClientsModuleOptionsFactory {
 
-  async createClientOptions(exchange: string = this.config.getOrThrow('RABBITMQ_EXCHANGE')): Promise<ClientRmqExchangeModuleOptions> {
+  async createClientOptions(
+    name: string = this.config.getOrThrow('RABBITMQ_EXCHANGE_NAME'),
+    type: string = this.config.get('RABBITMQ_EXCHANGE_TYPE', 'topic'),
+  ): Promise<ClientRmqExchangeModuleOptions> {
 
     const options = await this.build();
 
-    this.logger.debug(`Using exchange '${ exchange }'`, 'ClientRmqExchangeModuleOptionsFactory');
+    this.logger.debug(`Using exchange '${ name }' with type '${type}'`, 'ClientRmqExchangeModuleOptionsFactory');
 
     return {
       customClass: ClientRMQExchange,
       options: {
         ...options,
-        exchange,
+        exchange: {
+          name,
+          type,
+        },
       }
     };
   }
