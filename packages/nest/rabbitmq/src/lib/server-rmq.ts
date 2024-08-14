@@ -101,12 +101,14 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   }
 
   public bindQueue(exchange: string, routingKey: string) {
+    this.logger.verbose(`Binding queue to exchange '${ exchange }' with routing key '${ routingKey }'`, 'ServerRMQ');
     return this.channel!.bindQueue(this.queue, exchange, routingKey);
   }
 
   public async start(
     callback?: (err?: unknown, ...optionalParams: unknown[]) => void
   ) {
+    this.logger.verbose('Connecting to RMQ server...', 'ServerRMQ');
     this.server = this.createClient();
     this.server.on(CONNECT_EVENT, () => {
       if (this.channel) {
@@ -178,6 +180,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     message: Record<string, any>,
     channel: any
   ): Promise<void> {
+    this.logger.verbose('Message received: %JSON', message, 'ServerRMQ');
     if (isNil(message)) {
       return;
     }
@@ -187,10 +190,10 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     } = message;
     const rawMessage = this.parseMessageContent(content);
     const packet = await this.deserializer.deserialize(rawMessage, properties);
+    this.logger.verbose('Extracted packet message content: %JSON', packet, 'ServerRMQ');
     const pattern = isString(packet.pattern)
                     ? packet.pattern
                     : JSON.stringify(packet.pattern);
-
     const rmqContext = new RmqContext([ message, channel, pattern ]);
     if (isUndefined((
       packet as IncomingRequest
