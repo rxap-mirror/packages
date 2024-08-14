@@ -228,7 +228,7 @@ export class ClientRMQExchange extends ClientProxy {
     optionsOrCallback: Record<string, unknown> | ((packet: WritePacket) => any),
     callback?: (packet: WritePacket) => any
   ): Promise<void> {
-    this.logger.debug('RMQ received message: %JSON', packet, 'ClientRMQExchange');
+    this.logger.verbose('Received message: %JSON', packet, 'ClientRMQExchange');
     let options: Record<string, unknown> | undefined = undefined;
     if (isFunction(options)) {
       callback = options as (packet: WritePacket) => any;
@@ -249,9 +249,9 @@ export class ClientRMQExchange extends ClientProxy {
       options
     );
 
-    this.logger.verbose('RMQ deserialized response: %JSON', response, 'ClientRMQExchange');
-    this.logger.verbose('RMQ deserialized error: %JSON', err, 'ClientRMQExchange');
-    this.logger.verbose('RMQ deserialized isDisposed: %JSON', isDisposed, 'ClientRMQExchange');
+    this.logger.verbose('Deserialized response: %JSON', response, 'ClientRMQExchange');
+    this.logger.verbose('Deserialized error: %JSON', err, 'ClientRMQExchange');
+    this.logger.verbose('Deserialized isDisposed: %JSON', isDisposed, 'ClientRMQExchange');
     if (isDisposed || err) {
       callback({
         err,
