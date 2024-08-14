@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.5.0-dev.4...@rxap/nest-server@10.5.0-dev.5) (2024-08-14)
+
+### Bug Fixes
+
+- add config instance to logger factory ([fa96467](https://gitlab.com/rxap/packages/commit/fa9646759088832eb877db60fe9dbe5b3e42c537))
+
 # [10.5.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.5.0-dev.3...@rxap/nest-server@10.5.0-dev.4) (2024-08-14)
 
 ### Bug Fixes
