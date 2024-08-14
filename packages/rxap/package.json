@@ -366,7 +366,7 @@
       },
       {
         "package": "@rxap/nest-rabbitmq",
-        "version": "10.0.0-dev.10"
+        "version": "10.0.0-dev.11"
       },
       {
         "package": "@rxap/nest-sentry",
@@ -570,7 +570,7 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.2.5-dev.1"
+        "version": "18.2.5-dev.2"
       },
       {
         "package": "@rxap/schematic-composer",
