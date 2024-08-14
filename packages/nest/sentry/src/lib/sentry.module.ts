@@ -7,12 +7,11 @@ import {
   Module,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { RxapLogger } from '@rxap/nest-logger';
+import { CONSOLE_LOGGER_OPTIONS, RxapLogger } from '@rxap/nest-logger';
 import { SentryModuleOptions } from './sentry.interfaces';
 import { SentryLogger } from './sentry.logger';
 import { SentryService } from './sentry.service';
 import {
-  CONSOLE_LOGGER_OPTIONS,
   SENTRY_MODULE_OPTIONS,
 } from './tokens';
 

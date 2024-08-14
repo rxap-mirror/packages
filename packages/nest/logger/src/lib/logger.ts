@@ -1,8 +1,12 @@
 import {
   ConsoleLogger,
+  ConsoleLoggerOptions,
+  Inject,
   Injectable,
   LogLevel,
+  Optional,
 } from '@nestjs/common';
+import { CONSOLE_LOGGER_OPTIONS } from './tokens';
 
 /**
  * A custom logger class that extends the ConsoleLogger class.
@@ -10,6 +14,16 @@ import {
  */
 @Injectable()
 export class RxapLogger extends ConsoleLogger {
+
+  constructor(
+    @Optional()
+    context?: string,
+    @Inject(CONSOLE_LOGGER_OPTIONS)
+    @Optional()
+    options: ConsoleLoggerOptions = {},
+  ) {
+    super(context as any, options);
+  }
 
   override log(message: string, ...optionalParams: any[]) {
     const {
