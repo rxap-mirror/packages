@@ -61,28 +61,16 @@ export interface RmqExchangeOptions {
 }
 
 export class ClientRMQExchange extends ClientProxy {
-  protected readonly logger = new Logger(ClientProxy.name);
   protected connection$!: ReplaySubject<Connection>;
   protected client: AmqpConnectionManager | null = null;
   protected channel: ChannelWrapper | null = null;
-  protected urls: string[] | RmqUrl[];
-  protected exchange: string;
-  protected exchangeType: string;
-  protected exchangeOptions: Options.AssertExchange;
   protected responseEmitter!: EventEmitter;
-  protected replyQueue: string;
-  protected persistent: boolean;
-  protected noAssert: boolean;
 
-  constructor(protected readonly options: ExchangeRmqOptions) {
+  constructor(
+    protected readonly options: ExchangeRmqOptions,
+    protected readonly logger = new Logger(ClientProxy.name),
+  ) {
     super();
-    this.urls = this.getOptionsProp(this.options, 'urls') ?? [ RQM_DEFAULT_URL ];
-    this.exchange = this.getOptionsProp(this.options, 'exchange') ?? RQM_DEFAULT_EXCHANGE;
-    this.exchangeOptions = this.getOptionsProp(this.options, 'exchangeOptions') ?? RQM_DEFAULT_EXCHANGE_OPTIONS;
-    this.exchangeType = this.getOptionsProp(this.options, 'exchangeType') ?? RQM_DEFAULT_EXCHANGE_TYPE;
-    this.replyQueue = this.getOptionsProp(this.options, 'replyQueue') ?? REPLY_QUEUE;
-    this.persistent = this.getOptionsProp(this.options, 'persistent') ?? RQM_DEFAULT_PERSISTENT;
-    this.noAssert = this.getOptionsProp(this.options, 'noAssert') ?? RQM_DEFAULT_NO_ASSERT;
 
     this.initializeSerializer(options);
     this.initializeDeserializer(options);
@@ -144,7 +132,7 @@ export class ClientRMQExchange extends ClientProxy {
 
   public createClient(): AmqpConnectionManager {
     const socketOptions = this.getOptionsProp(this.options, 'socketOptions');
-    return connect(this.urls, socketOptions);
+    return connect(this.options.urls, socketOptions);
   }
 
   public mergeDisconnectEvent<T = any>(
@@ -189,9 +177,9 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   public async setupExchange(channel: Channel, resolve: () => unknown) {
-    this.logger.verbose(`Setting up exchange '${this.exchange}'`, 'ClientRMQExchange');
-    if (!this.noAssert) {
-      await channel.assertExchange(this.exchange, this.exchangeType, this.exchangeOptions);
+    this.logger.verbose(`Setting up exchange '${this.options.exchange.name}'`, 'ClientRMQExchange');
+    if (!this.options.noAssert) {
+      await channel.assertExchange(this.options.exchange.name, this.options.exchange.type, this.options.exchange.options);
     }
 
     await this.consumeChannel(channel);
@@ -201,12 +189,12 @@ export class ClientRMQExchange extends ClientProxy {
   public async consumeChannel(channel: Channel) {
     const noAck = this.getOptionsProp(this.options, 'noAck', RQM_DEFAULT_NOACK);
     await channel.consume(
-      this.replyQueue,
+      this.options.replyQueue ?? REPLY_QUEUE,
       (msg: ConsumeMessage | null) => {
         if (msg) {
           this.responseEmitter.emit(msg.properties.correlationId, msg);
         } else {
-          this.logger.warn(`Message is empty from RMQ queue ${this.replyQueue}`);
+          this.logger.warn(`Message is empty from RMQ queue ${this.options.replyQueue ?? REPLY_QUEUE}`);
         }
       },
       {
@@ -305,12 +293,12 @@ export class ClientRMQExchange extends ClientProxy {
       this.responseEmitter.on(correlationId, listener);
       this.channel!
         .publish(
-          this.exchange,
+          this.options.exchange.name,
           serializedPacket.pattern,
           Buffer.from(JSON.stringify(serializedPacket.data)),
           {
-            replyTo: this.replyQueue,
-            persistent: this.persistent,
+            replyTo: this.options.replyQueue ?? REPLY_QUEUE,
+            persistent: this.options.persistent,
             ...options,
             headers: this.mergeHeaders(options?.headers),
             correlationId
@@ -334,11 +322,11 @@ export class ClientRMQExchange extends ClientProxy {
 
     return new Promise<void>((resolve, reject) =>
       this.channel!.publish(
-        this.exchange,
+        this.options.exchange.name,
         serializedPacket.pattern,
         Buffer.from(JSON.stringify(serializedPacket.data)),
         {
-          persistent: this.persistent,
+          persistent: this.options.persistent,
           ...options,
           headers: this.mergeHeaders(options?.headers)
         } as Options.Publish,

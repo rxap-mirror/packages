@@ -38,9 +38,7 @@ export interface ExchangeOptions {
 }
 
 export interface ExchangeRmqOptions extends BaseRmqOptions {
-  exchange?: string;
-  exchangeType?: string;
-  exchangeOptions?: Options.AssertExchange;
+  exchange: ExchangeOptions;
 }
 
 export interface ServerRmqOptions extends QueueRmqOptions {
