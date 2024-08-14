@@ -374,7 +374,7 @@
       },
       {
         "package": "@rxap/nest-server",
-        "version": "10.5.0-dev.4"
+        "version": "10.5.0-dev.5"
       },
       {
         "package": "@rxap/nest-socket-io-client",
