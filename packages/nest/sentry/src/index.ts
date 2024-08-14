@@ -9,4 +9,5 @@ export * from './lib/sentry.service';
 export * from './lib/setup-sentry-error-handler';
 export * from './lib/setup-sentry-logger';
 export * from './lib/tokens';
+export * from './lib/use-sentry-logger-factory';
 // endregion
