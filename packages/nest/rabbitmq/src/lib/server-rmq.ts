@@ -161,7 +161,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     message: Record<string, any>,
     channel: any
   ): Promise<void> {
-    this.logger.verbose?.('Message received: %JSON', message, 'ServerRMQ');
+    this.logger.debug?.('Message received', 'ServerRMQ');
     if (isNil(message)) {
       return;
     }
@@ -170,8 +170,10 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
       properties
     } = message;
     const rawMessage = this.parseMessageContent(content);
+    this.logger.verbose?.('Message content: %JSON', rawMessage, 'ServerRMQ');
+    this.logger.verbose?.('Message properties: %JSON', properties, 'ServerRMQ');
     const packet = await this.deserializer.deserialize(rawMessage, properties);
-    this.logger.verbose?.('Extracted packet message content: %JSON', packet, 'ServerRMQ');
+    this.logger.debug?.('Extracted packet message content: %JSON', packet, 'ServerRMQ');
     const pattern = isString(packet.pattern)
                     ? packet.pattern
                     : JSON.stringify(packet.pattern);
