@@ -1,6 +1,6 @@
 import {
   INestMicroservice,
-  Logger,
+  LoggerService,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
@@ -12,21 +12,18 @@ export interface MicroserviceBootstrapOptions {
   version: string;
 }
 
-export class Microservice<O extends object = MicroserviceOptions>
-  extends Server<O, INestMicroservice, MicroserviceBootstrapOptions> {
+export class Microservice<Logger extends LoggerService, Options extends object = MicroserviceOptions>
+  extends Server<Options, INestMicroservice, MicroserviceBootstrapOptions, Logger> {
 
   protected override create(): Promise<INestMicroservice> {
     return NestFactory.createMicroservice(this.module, this.options);
   }
 
-  protected override prepareOptions(app: INestMicroservice): MicroserviceBootstrapOptions {
-    const logger = app.get(Logger);
-    const config: ConfigService<unknown> = app.get(ConfigService);
-
+  protected override prepareOptions(app: INestMicroservice, logger: Logger, config: ConfigService): MicroserviceBootstrapOptions {
     logger.log('environment: ' +
       JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
 
-    logger.debug(
+    logger.log(
       'Server Config: ' +
       JSON.stringify((config as any).internalConfig, undefined, this.environment.production ? undefined : 2),
       'Bootstrap',

@@ -1,6 +1,6 @@
 import {
   INestApplication,
-  Logger,
+  LoggerService,
   NestApplicationOptions,
 } from '@nestjs/common';
 import type { NestHybridApplicationOptions } from '@nestjs/common/interfaces';
@@ -18,36 +18,37 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HybridBootstrapOptions extends MonolithicBootstrapOptions {}
 
-export type MicroserviceOptionsInput<T extends INestApplication = INestApplication, MO extends MicroserviceOptions = MicroserviceOptions, MHO extends NestHybridApplicationOptions = NestHybridApplicationOptions> = MO | Promise<MO> | ((app: T, logger: Logger, options: HybridBootstrapOptions, hybridOptions: MHO) => MO | Promise<MO>);
+export type MicroserviceOptionsInput<Logger extends LoggerService, NestApplicationContext extends INestApplication = INestApplication, MO extends MicroserviceOptions = MicroserviceOptions, MHO extends NestHybridApplicationOptions = NestHybridApplicationOptions> = MO | Promise<MO> | ((app: NestApplicationContext, logger: Logger, options: HybridBootstrapOptions, hybridOptions: MHO) => MO | Promise<MO>);
 
 export class Hybrid<
-  O extends NestApplicationOptions,
-  T extends INestApplication = INestApplication,
+  Options extends NestApplicationOptions,
+  Logger extends LoggerService,
+  NestApplicationContext extends INestApplication = INestApplication,
   MO extends MicroserviceOptions = MicroserviceOptions,
   MHO extends NestHybridApplicationOptions = NestHybridApplicationOptions,
-> extends Monolithic<O, T, HybridBootstrapOptions> {
+> extends Monolithic<Options, Logger, NestApplicationContext, HybridBootstrapOptions> {
 
-  protected readonly microserviceOptions: Array<MicroserviceOptionsInput<T, MO, MHO>>;
+  protected readonly microserviceOptions: Array<MicroserviceOptionsInput<Logger, NestApplicationContext, MO, MHO>>;
 
   constructor(
     module: any,
     environment: Environment,
-    options: O,
+    options: Options,
     bootstrapOptions: Partial<HybridBootstrapOptions> = {},
-    microserviceOptions: MicroserviceOptionsInput<T, MO, MHO> | Array<MicroserviceOptionsInput<T, MO, MHO>>,
+    microserviceOptions: MicroserviceOptionsInput<Logger, NestApplicationContext, MO, MHO> | Array<MicroserviceOptionsInput<Logger, NestApplicationContext, MO, MHO>>,
     protected readonly hybridOptions?: MHO,
   ) {
     super(module, environment, options, bootstrapOptions);
     this.microserviceOptions = coerceArray(microserviceOptions);
   }
 
-  protected override async listen(app: T, logger: Logger, options: HybridBootstrapOptions): Promise<any> {
+  protected override async listen(app: NestApplicationContext, logger: Logger, options: HybridBootstrapOptions): Promise<any> {
     for (let i = 0; i < this.microserviceOptions.length; i++) {
       let microserviceOptions = this.microserviceOptions[i];
       const hybridOptions = Array.isArray(this.hybridOptions) ? this.hybridOptions[i] : this.hybridOptions;
       if (typeof microserviceOptions === 'function') {
         try {
-          logger.verbose(`Resolving microservice options [${i}]`, 'Bootstrap');
+          logger.log(`Resolving microservice options [${i}]`, 'Bootstrap');
           microserviceOptions = microserviceOptions(app, logger, options, hybridOptions);
         } catch (e: any) {
           logger.error(`Failed to resolve microservice options: ${e.message}`, e.stack, 'Bootstrap');
@@ -56,17 +57,17 @@ export class Hybrid<
       }
       if (isPromise(microserviceOptions)) {
         try {
-          logger.verbose(`Awaiting async microservice options [${i}]`, 'Bootstrap');
+          logger.log(`Awaiting async microservice options [${i}]`, 'Bootstrap');
           microserviceOptions = await microserviceOptions;
         } catch (e: any) {
           logger.error(`Failed to resolve async microservice options: ${e.message}`, e.stack, 'Bootstrap');
           process.exit(1);
         }
       }
-      logger.debug(`Connecting microservice [${i}]`, 'Bootstrap');
+      logger.log(`Connecting microservice [${i}]`, 'Bootstrap');
       app.connectMicroservice(microserviceOptions, hybridOptions);
     }
-    logger.debug('Starting all microservices', 'Bootstrap');
+    logger.log('Starting all microservices', 'Bootstrap');
     await app.startAllMicroservices();
     return super.listen(app, logger, options);
   }

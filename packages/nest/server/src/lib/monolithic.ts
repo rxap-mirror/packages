@@ -1,6 +1,6 @@
 import {
   INestApplication,
-  Logger,
+  LoggerService,
   NestApplicationOptions,
 } from '@nestjs/common';
 import type { GlobalPrefixOptions } from '@nestjs/common/interfaces';
@@ -18,13 +18,13 @@ export interface MonolithicBootstrapOptions {
   globalPrefixOptions: GlobalPrefixOptions;
 }
 
-export class Monolithic<O extends NestApplicationOptions, T extends INestApplication = INestApplication, B extends MonolithicBootstrapOptions = MonolithicBootstrapOptions>
-  extends Server<O, T, B> {
+export class Monolithic<Options extends NestApplicationOptions, Logger extends LoggerService, NestApplicationContext extends INestApplication = INestApplication, BootstrapOptions extends MonolithicBootstrapOptions = MonolithicBootstrapOptions>
+  extends Server<Options, NestApplicationContext, BootstrapOptions, Logger> {
 
-  protected override create(): Promise<T> {
+  protected override create(): Promise<NestApplicationContext> {
     this.options.bufferLogs ??= true;
     this.options.autoFlushLogs ??= true;
-    return NestFactory.create<T>(this.module, this.options);
+    return NestFactory.create<NestApplicationContext>(this.module, this.options);
   }
 
   protected getPort(config: ConfigService): number {
@@ -84,12 +84,12 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
     return publicUrl;
   }
 
-  protected override prepareOptions(app: T, logger: Logger, config: ConfigService): B {
+  protected override prepareOptions(app: NestApplicationContext, logger: Logger, config: ConfigService): BootstrapOptions {
 
     logger.log('environment: ' +
       JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
 
-    logger.debug(
+    logger.log(
       'Server Config: ' +
       JSON.stringify((config as any).internalConfig, undefined, this.environment.production ? undefined : 2),
       'Bootstrap',
@@ -108,25 +108,25 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
       publicUrl,
       version: DetermineVersion(this.environment),
       port,
-    } as B;
+    } as BootstrapOptions;
   }
 
-  protected override listen(app: T, logger: Logger, options: B): Promise<any> {
+  protected override listen(app: NestApplicationContext, logger: Logger, options: BootstrapOptions): Promise<any> {
     if (options.globalApiPrefix) {
-      logger.verbose(`Setting global prefix '${ options.globalApiPrefix }'`, 'Bootstrap');
+      logger.log(`Setting global prefix '${ options.globalApiPrefix }'`, 'Bootstrap');
       // TODO : create issue in @nest github project - if options is an empty object the server does not start
       const globalPrefixOptions = options.globalPrefixOptions ?? {};
       if (!options.globalPrefixOptions?.exclude?.length) {
         globalPrefixOptions.exclude ??= [];
         globalPrefixOptions.exclude.push('/health(.*)', '/info', '/openapi');
       }
-      logger.verbose(`Global prefix options: ${JSON.stringify(globalPrefixOptions, undefined, this.environment.production ? undefined : 2)}`, 'Bootstrap');
+      logger.log(`Global prefix options: ${JSON.stringify(globalPrefixOptions, undefined, this.environment.production ? undefined : 2)}`, 'Bootstrap');
       app.setGlobalPrefix(
         options.globalApiPrefix,
         globalPrefixOptions
       );
     }
-    logger.debug('Starting listening at ' + options.publicUrl, 'Bootstrap');
+    logger.log('Starting listening at ' + options.publicUrl, 'Bootstrap');
     return app.listen(options.port, () => {
       logger.log('Listening at ' + options.publicUrl, 'Bootstrap');
     });
