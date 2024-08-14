@@ -189,6 +189,7 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   public async setupExchange(channel: Channel, resolve: () => unknown) {
+    this.logger.verbose(`Setting up exchange '${this.exchange}'`, 'ClientRMQExchange');
     if (!this.noAssert) {
       await channel.assertExchange(this.exchange, this.exchangeType, this.exchangeOptions);
     }
@@ -275,6 +276,7 @@ export class ClientRMQExchange extends ClientProxy {
     message: ReadPacket,
     callback: (packet: WritePacket) => any
   ): () => void {
+    this.logger.verbose('Publishing message: %JSON', message, 'ClientRMQExchange');
     try {
       const correlationId = randomStringGenerator();
       const listener = ({
@@ -320,6 +322,7 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   protected dispatchEvent(packet: ReadPacket): Promise<any> {
+    this.logger.verbose('Dispatching event: %JSON', packet, 'ClientRMQExchange');
     const serializedPacket: ReadPacket & Partial<RmqRecord> =
       this.serializer.serialize(packet);
 
