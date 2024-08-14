@@ -2,16 +2,15 @@ import { Logger } from '@nestjs/common';
 import {
   isNil,
   isString,
-  isUndefined
+  isUndefined,
 } from '@nestjs/common/utils/shared.utils';
 import {
   CustomTransportStrategy,
   IncomingRequest,
-  MessageHandler,
   OutgoingResponse,
   ReadPacket,
   RmqContext,
-  Server
+  Server,
 } from '@nestjs/microservices';
 import {
   CONNECT_EVENT,
@@ -20,25 +19,21 @@ import {
   DISCONNECT_EVENT,
   DISCONNECTED_RMQ_MESSAGE,
   NO_MESSAGE_HANDLER,
-  RQM_DEFAULT_IS_GLOBAL_PREFETCH_COUNT,
-  RQM_DEFAULT_NO_ASSERT,
-  RQM_DEFAULT_NOACK,
-  RQM_DEFAULT_PREFETCH_COUNT,
-  RQM_DEFAULT_QUEUE,
-  RQM_DEFAULT_QUEUE_OPTIONS,
-  RQM_DEFAULT_URL,
   RQM_NO_EVENT_HANDLER,
-  RQM_NO_MESSAGE_HANDLER
+  RQM_NO_MESSAGE_HANDLER,
 } from '@nestjs/microservices/constants';
-import { RmqUrl } from '@nestjs/microservices/external/rmq-url.interface';
 import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
-import { QueueRmqOptions } from './options';
+import { coerceArray } from '@rxap/utilities';
 import {
   ChannelWrapper,
-  connect
+  connect,
 } from 'amqp-connection-manager';
 import type { IAmqpConnectionManager } from 'amqp-connection-manager/dist/types/AmqpConnectionManager';
-import type { Message } from 'amqplib';
+import { Message } from 'amqplib';
+import {
+  QueueRmqOptions,
+  ServerRmqOptions,
+} from './options';
 
 const INFINITE_CONNECTION_ATTEMPTS = -1;
 
@@ -50,36 +45,13 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   protected server: IAmqpConnectionManager | null = null;
   protected channel: ChannelWrapper | null = null;
   protected connectionAttempts = 0;
-  protected readonly urls: string[] | RmqUrl[];
-  protected readonly queue: string;
-  protected readonly prefetchCount: number;
-  protected readonly noAck: boolean;
-  protected readonly queueOptions: any;
-  protected readonly isGlobalPrefetchCount: boolean;
-  protected readonly noAssert: boolean;
+  protected queue!: string;
 
   constructor(
-    protected readonly options: QueueRmqOptions,
+    protected readonly options: ServerRmqOptions,
     protected override readonly logger: Logger = new Logger(Server.name)
   ) {
     super();
-    this.urls = this.getOptionsProp(this.options, 'urls') ?? [ RQM_DEFAULT_URL ];
-    this.queue =
-      this.getOptionsProp(this.options, 'queue') ?? RQM_DEFAULT_QUEUE;
-    this.prefetchCount =
-      this.getOptionsProp(this.options, 'prefetchCount') ??
-      RQM_DEFAULT_PREFETCH_COUNT;
-    this.noAck = this.getOptionsProp(this.options, 'noAck', RQM_DEFAULT_NOACK) as boolean;
-    this.isGlobalPrefetchCount =
-      this.getOptionsProp(this.options, 'isGlobalPrefetchCount') ??
-      RQM_DEFAULT_IS_GLOBAL_PREFETCH_COUNT;
-    this.queueOptions =
-      this.getOptionsProp(this.options, 'queueOptions') ??
-      RQM_DEFAULT_QUEUE_OPTIONS;
-    this.noAssert =
-      this.getOptionsProp(this.options, 'noAssert') ??
-      this.queueOptions.noAssert ??
-      RQM_DEFAULT_NO_ASSERT;
 
     this.initializeSerializer(options);
     this.initializeDeserializer(options);
@@ -150,22 +122,28 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
 
   public createClient() {
     const socketOptions = this.getOptionsProp(this.options, 'socketOptions');
-    return connect(this.urls, socketOptions);
+    return connect(this.options.urls, socketOptions);
   }
 
   public async setupChannel(channel: ChannelWrapper, callback?: () => any) {
-    if (!this.noAssert) {
-      await channel.assertQueue(this.queue, this.queueOptions);
+    if (!this.options.noAssert) {
+      for (const exchange of coerceArray(this.options.exchange)) {
+        await channel.assertExchange(exchange.name, exchange.type, exchange.options);
+      }
+      const { queue } = await channel.assertQueue(this.options.queue ?? '', this.options.queueOptions);
+      this.queue = queue;
+    } else {
+      this.queue = this.options.queue ?? '';
     }
     const r = await (
       channel as any
-    ).prefetch(this.prefetchCount, this.isGlobalPrefetchCount);
+    ).prefetch(this.options.prefetchCount ?? 0, this.options.isGlobalPrefetchCount);
     channel.consume(
       this.queue,
       (msg: Record<string, any>) => this.handleMessage(msg, channel),
       {
-        prefetch: this.prefetchCount,
-        noAck: this.noAck,
+        prefetch: this.options.prefetchCount ?? 0,
+        noAck: this.options.noAck ?? true,
         consumerTag: this.getOptionsProp(
           this.options,
           'consumerTag',
@@ -203,7 +181,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     const handler = this.getHandlerByPattern(pattern);
 
     if (!handler) {
-      if (!this.noAck) {
+      if (!(this.options.noAck ?? true)) {
         this.logger.warn(RQM_NO_MESSAGE_HANDLER`${ pattern }`);
         this.channel!.nack(rmqContext.getMessage() as Message, false, false);
       }
@@ -237,7 +215,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     context: RmqContext
   ): Promise<any> {
     const handler = this.getHandlerByPattern(pattern);
-    if (!handler && !this.noAck) {
+    if (!handler && !(this.options.noAck ?? true)) {
       this.channel!.nack(context.getMessage() as Message, false, false);
       return this.logger.warn(RQM_NO_EVENT_HANDLER`${ pattern }`);
     }
