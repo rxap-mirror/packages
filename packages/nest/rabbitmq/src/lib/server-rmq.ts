@@ -10,6 +10,7 @@ import {
 import {
   CustomTransportStrategy,
   IncomingRequest,
+  MessageHandler,
   OutgoingResponse,
   ReadPacket,
   RmqContext,
@@ -33,6 +34,7 @@ import {
 } from 'amqp-connection-manager';
 import type { IAmqpConnectionManager } from 'amqp-connection-manager/dist/types/AmqpConnectionManager';
 import { Message } from 'amqplib';
+import { RabbitMqIncomingRequestDeserializer } from './incoming-request.deserializer';
 import {
   QueueRmqOptions,
   ServerRmqOptions,
@@ -58,6 +60,10 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
 
     this.initializeSerializer(options);
     this.initializeDeserializer(options);
+  }
+
+  protected override initializeDeserializer(options: ServerRmqOptions) {
+    this.deserializer = options?.deserializer ?? new RabbitMqIncomingRequestDeserializer();
   }
 
   public async listen(
@@ -167,20 +173,21 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     }
     const {
       content,
-      properties
+      properties,
+      fields
     } = message;
     const rawMessage = this.parseMessageContent(content);
     this.logger.verbose?.('Message content: %JSON', rawMessage, 'ServerRMQ');
     this.logger.verbose?.('Message properties: %JSON', properties, 'ServerRMQ');
-    const packet = await this.deserializer.deserialize(rawMessage, properties);
+    this.logger.verbose?.('Message fields: %JSON', fields, 'ServerRMQ');
+    const packet = await this.deserializer.deserialize(rawMessage, { fields, properties });
     this.logger.debug?.('Extracted packet message content: %JSON', packet, 'ServerRMQ');
-    const pattern = isString(packet.pattern)
-                    ? packet.pattern
-                    : JSON.stringify(packet.pattern);
+    const pattern = (isString(packet.pattern) ? packet.pattern : JSON.stringify(packet.pattern));
     const rmqContext = new RmqContext([ message, channel, pattern ]);
     if (isUndefined((
       packet as IncomingRequest
     ).id)) {
+      this.logger.debug?.('Message without correlation id', 'ServerRMQ');
       return this.handleEvent(pattern, packet, rmqContext);
     }
     const handler = this.getHandlerByPattern(pattern);
@@ -211,6 +218,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     const publish = <T>(data: T) =>
       this.sendMessage(data, properties.replyTo, properties.correlationId);
 
+    this.logger.debug?.('Handling event and sending response', 'ServerRMQ');
     response$ && this.send(response$, publish);
   }
 
@@ -253,4 +261,15 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
       return content.toString();
     }
   }
+
+  public override addHandler(
+    pattern: any,
+    callback: MessageHandler,
+    isEventHandler?: boolean,
+    extras?: Record<any, any>
+  ) {
+    this.logger.log(`Adding message handler for pattern '${ pattern }'`, 'ServerRMQ');
+    super.addHandler(pattern, callback, isEventHandler, extras);
+  }
+
 }

@@ -240,6 +240,7 @@ export class ClientRMQExchange extends ClientProxy {
     optionsOrCallback: Record<string, unknown> | ((packet: WritePacket) => any),
     callback?: (packet: WritePacket) => any
   ): Promise<void> {
+    this.logger.debug('RMQ received message:', packet, 'ClientRMQExchange');
     let options: Record<string, unknown> | undefined = undefined;
     if (isFunction(options)) {
       callback = options as (packet: WritePacket) => any;
@@ -248,6 +249,7 @@ export class ClientRMQExchange extends ClientProxy {
     }
 
     if (!callback) {
+      this.logger.error('No callback provided', 'ClientRMQExchange');
       throw new Error('No callback provided');
     }
 
@@ -259,6 +261,10 @@ export class ClientRMQExchange extends ClientProxy {
       packet,
       options
     );
+
+    this.logger.verbose('RMQ deserialized response:', response, 'ClientRMQExchange');
+    this.logger.verbose('RMQ deserialized error:', err, 'ClientRMQExchange');
+    this.logger.verbose('RMQ deserialized isDisposed:', isDisposed, 'ClientRMQExchange');
     if (isDisposed || err) {
       callback({
         err,
@@ -281,16 +287,13 @@ export class ClientRMQExchange extends ClientProxy {
       const correlationId = randomStringGenerator();
       const listener = ({
         content,
-        options
-      }: {
-        content: Buffer;
-        options: Record<string, unknown>;
-      }) =>
-        this.handleMessage(
-          this.parseMessageContent(content),
-          options,
-          callback
-        );
+        fields,
+        properties
+      }: ConsumeMessage) => this.handleMessage(
+        this.parseMessageContent(content),
+        { fields, properties },
+        callback,
+      );
 
       Object.assign(message, { id: correlationId });
       const serializedPacket: ReadPacket & Partial<RmqRecord> =
