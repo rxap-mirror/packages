@@ -7,18 +7,17 @@ import { RabbitmqOptionsFactory } from './rabbitmq-options-factory';
 
 export class ClientRmqExchangeModuleOptionsFactory extends RabbitmqOptionsFactory implements ClientsModuleOptionsFactory {
 
-  async createClientOptions(): Promise<ClientProvider> {
+  async createClientOptions(exchange: string = this.config.getOrThrow('RABBITMQ_EXCHANGE')): Promise<ClientProvider> {
 
     const options = await this.build();
+
+    this.logger.debug(`Using exchange '${ exchange }'`, 'ClientRmqExchangeModuleOptionsFactory');
 
     return {
       customClass: ClientRMQExchange,
       options: {
         ...options,
-        exchange: this.config.getOrThrow('RABBITMQ_EXCHANGE'),
-        exchangeOptions: {
-          durable: true
-        }
+        exchange,
       }
     };
   }

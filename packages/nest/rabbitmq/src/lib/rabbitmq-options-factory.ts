@@ -36,6 +36,7 @@ export class RabbitmqOptionsFactory {
         }
       };
     } else {
+      this.logger.debug('RabbitMQ is enabled', 'RabbitMQModuleConfigFactory');
       options = {
         socketOptions: {
           findServers: () => this.buildUrl()
@@ -47,6 +48,7 @@ export class RabbitmqOptionsFactory {
   }
 
   async getCredentials(): Promise<{ username: string, password: string }> {
+    this.logger.verbose('Getting RabbitMQ credentials', 'RabbitMQModuleConfigFactory');
 
     if (this.config.get('RABBITMQ_USERNAME') && this.config.get('RABBITMQ_PASSWORD')) {
       this.logger.debug('Using username and password from env', 'RabbitMQModuleConfigFactory');
@@ -67,6 +69,7 @@ export class RabbitmqOptionsFactory {
   }
 
   async buildUrl(): Promise<string> {
+    this.logger.verbose('Building RabbitMQ url', 'RabbitMQModuleConfigFactory');
     if (this.config.get('RABBITMQ_URI')) {
       this.logger.debug('Using uri from env RABBITMQ_URI', 'RabbitMQModuleConfigFactory');
       return this.config.getOrThrow('RABBITMQ_URI');
