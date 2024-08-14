@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import {
   isNil,
   isString,
@@ -57,7 +58,10 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   protected readonly isGlobalPrefetchCount: boolean;
   protected readonly noAssert: boolean;
 
-  constructor(protected readonly options: QueueRmqOptions) {
+  constructor(
+    protected readonly options: QueueRmqOptions,
+    protected override readonly logger: Logger = new Logger(Server.name)
+  ) {
     super();
     this.urls = this.getOptionsProp(this.options, 'urls') ?? [ RQM_DEFAULT_URL ];
     this.queue =
