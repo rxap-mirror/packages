@@ -7,11 +7,13 @@ import {
   isString,
   isUndefined,
 } from '@nestjs/common/utils/shared.utils';
-import { RxapLogger } from '@rxap/nest-logger';
+import {
+  CONSOLE_LOGGER_OPTIONS,
+  RxapLogger,
+} from '@rxap/nest-logger';
 import * as Sentry from '@sentry/node';
 import { SentryModuleOptions } from './sentry.interfaces';
 import {
-  CONSOLE_LOGGER_OPTIONS,
   SENTRY_MODULE_OPTIONS,
 } from './tokens';
 
