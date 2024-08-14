@@ -1,8 +1,4 @@
-import {
-  INestApplication,
-  Logger,
-} from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { INestApplication } from '@nestjs/common';
 import {
   DocumentBuilder,
   SwaggerCustomOptions,
@@ -21,8 +17,8 @@ export function SetupSwagger({ builder, documentOptions, swaggerOptions, path = 
 
   return (
     app: INestApplication,
-    config: ConfigService,
-    logger: Logger,
+    config: any,
+    logger: any,
     options: { version: string, publicUrl: string },
   ) => {
 

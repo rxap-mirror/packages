@@ -1,11 +1,9 @@
 import {
   HttpStatus,
   INestApplication,
-  Logger,
   ValidationPipe,
   ValidationPipeOptions,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import {
   classTransformOptions,
   Environment,
@@ -20,8 +18,8 @@ export interface ValidationPipeSetupOptions {
 export function ValidationPipeSetup({ validatorPipeOptions }: ValidationPipeSetupOptions = {}) {
   return (
     app: INestApplication,
-    config: ConfigService,
-    logger: Logger,
+    config: any,
+    logger: any,
     options: any,
     environment: Environment,
   ) => {
