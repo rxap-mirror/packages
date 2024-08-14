@@ -212,7 +212,7 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     if (existsSync(packageJsonFilePath)) {
       try {
         const packageJson = JSON.parse(readFileSync(packageJsonFilePath).toString('utf-8'));
-        Logger.verbose('Package versions: ', JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+        Logger.verbose('Package versions: ' + JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
       } catch (e) {
         Logger.warn(`Could not parse package.json in the path '${ packageJsonFilePath }'`, 'Bootstrap');
       }
