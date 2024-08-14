@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.4.1-dev.1...@rxap/nest-sentry@10.4.1-dev.2) (2024-08-14)
+
+### Bug Fixes
+
+- add logger factories ([309bc85](https://gitlab.com/rxap/packages/commit/309bc85e6f0373767a6836d1cd805ea777ea0327))
+
 ## [10.4.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.4.1-dev.0...@rxap/nest-sentry@10.4.1-dev.1) (2024-08-14)
 
 ### Bug Fixes
