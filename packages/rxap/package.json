@@ -366,7 +366,7 @@
       },
       {
         "package": "@rxap/nest-rabbitmq",
-        "version": "10.0.0-dev.13"
+        "version": "10.0.0-dev.14"
       },
       {
         "package": "@rxap/nest-sentry",
@@ -374,7 +374,7 @@
       },
       {
         "package": "@rxap/nest-server",
-        "version": "10.5.0-dev.5"
+        "version": "10.5.0-dev.6"
       },
       {
         "package": "@rxap/nest-socket-io-client",
