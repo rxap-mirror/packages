@@ -77,9 +77,10 @@ export class RxapLogger extends ConsoleLogger {
                 return this.stringifyCircular(param);
               } else if (param === null) {
                 return '<null>';
-              } else {
-                return '<undefined>';
               }
+            }
+            if (typeof param === 'undefined') {
+              return '<undefined>';
             }
             if (typeof param === 'string') {
               return JSON.stringify(param);
