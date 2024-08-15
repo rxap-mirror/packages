@@ -6,27 +6,29 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentProvider,
-  BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
   CoerceFormSubmitOperation,
   CoerceFormTableActionRule,
-  CoerceImports,
   CoerceOperation,
   LoadFromTableActionOptions,
-  OperationIdToResponseClassImportPath,
-  OperationIdToResponseClassName,
-  TsMorphAngularProjectTransformOptions,
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
-import { CoerceDtoClass } from '@rxap/ts-morph';
+import {
+  CoerceDtoClass,
+  CoerceImports,
+  OperationIdToResponseClassImportPath,
+  OperationIdToResponseClassName,
+} from '@rxap/ts-morph';
 import {
   classify,
   CoerceSuffix,
   dasherize,
   Normalized,
 } from '@rxap/utilities';
+import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
+import { BuildNestControllerName } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   OptionalKind,

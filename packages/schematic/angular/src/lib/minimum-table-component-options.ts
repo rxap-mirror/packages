@@ -5,13 +5,10 @@ import {
   SchematicsException,
 } from '@angular-devkit/schematics';
 import {
-  BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
   CoerceInterface,
   CoerceTypeAlias,
-  OperationIdToResponseClassImportPath,
-  OperationIdToResponseClassName,
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import {
@@ -22,6 +19,8 @@ import {
   CoerceComponentInput,
   CoerceImports,
   NormalizedDataProperty,
+  OperationIdToResponseClassImportPath,
+  OperationIdToResponseClassName,
   RequiresTypeImport,
   TypeImportToImportStructure,
 } from '@rxap/ts-morph';
@@ -31,6 +30,7 @@ import {
   IsRecord,
   Normalized,
 } from '@rxap/utilities';
+import { BuildNestControllerName } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   ImportDeclarationStructure,

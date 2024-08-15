@@ -1,8 +1,13 @@
 import { classify } from '@rxap/schematics-utilities';
 import {
   CoerceDependencyInjection,
+  CoerceImports,
   CoerceMappingClassMethod,
   Module,
+  OperationIdToParameterClassImportPath,
+  OperationIdToParameterClassName,
+  OperationIdToRequestBodyClassImportPath,
+  OperationIdToRequestBodyClassName,
   ToMappingObjectOptions,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
@@ -10,12 +15,7 @@ import { Scope } from 'ts-morph';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
-  OperationIdToParameterClassImportPath,
-  OperationIdToParameterClassName,
-  OperationIdToRequestBodyClassImportPath,
-  OperationIdToRequestBodyClassName,
 } from '../nest/operation-id-utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import {
   CoerceTableActionOptions,
   CoerceTableActionRule,

@@ -1,3 +1,8 @@
+import {
+  CoerceImports,
+  OperationIdToParameterClassImportPath,
+  OperationIdToParameterClassName,
+} from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import {
   ClassDeclaration,
@@ -8,10 +13,7 @@ import {
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
-  OperationIdToParameterClassImportPath,
-  OperationIdToParameterClassName,
 } from '../nest/operation-id-utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import {
   CoerceProxyRemoteMethodClass,
   CoerceProxyRemoteMethodClassOptions,

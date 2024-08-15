@@ -2,23 +2,25 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { CoercePropertyDeclaration } from '@rxap/ts-morph';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
-import { CoerceClassMethod } from '../coerce-class-method';
+import {
+  CoerceClassConstructor,
+  CoerceClassMethod,
+  CoerceImports,
+  CoercePropertyDeclaration,
+  OperationIdToRequestBodyClassImportPath,
+  OperationIdToRequestBodyClassName,
+} from '@rxap/ts-morph';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
-  OperationIdToRequestBodyClassImportPath,
-  OperationIdToRequestBodyClassName,
 } from '../nest/operation-id-utilities';
-import { TsMorphAngularProjectTransformOptions } from '../ts-morph-transform';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { AddComponentImport } from './add-component-import';
 import {
   CoerceDialogComponentOptions,
   CoerceDialogComponentRule,
 } from './coerce-dialog-component';
+import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
 
 export interface CoerceDialogTableActionComponentOptions extends CoerceDialogComponentOptions,
                                                                  TsMorphAngularProjectTransformOptions {

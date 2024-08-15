@@ -7,7 +7,6 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentProvider,
-  BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
   CoerceDataSourceClass,
@@ -17,8 +16,6 @@ import {
   CoerceMethodClass,
   OperationIdToClassImportPath,
   OperationIdToClassName,
-  OperationIdToResponseClassImportPath,
-  OperationIdToResponseClassName,
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import {
@@ -33,11 +30,14 @@ import {
   CoercePropertyDeclaration,
   OperationIdToClassRemoteMethodImportPath,
   OperationIdToRemoteMethodClassName,
+  OperationIdToResponseClassImportPath,
+  OperationIdToResponseClassName,
 } from '@rxap/ts-morph';
 import {
   classify,
   Normalized,
 } from '@rxap/utilities';
+import { BuildNestControllerName } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   ClassDeclaration,
