@@ -1,12 +1,12 @@
 {
-  "version": "18.0.6-dev.2",
+  "version": "18.0.6-dev.3",
   "name": "@rxap/schematics-xml-parser",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@angular-devkit/core": "18.0.7",
     "@angular-devkit/schematics": "18.0.7",
     "@nx/devkit": "19.4.2",
-    "@rxap/schematics-ts-morph": "^18.2.0-dev.0",
+    "@rxap/schematics-ts-morph": "^18.2.0-dev.1",
     "@rxap/schematics-utilities": "^18.0.5",
     "@rxap/xml-parser": "^16.0.8",
     "ts-morph": "18.0.0",
