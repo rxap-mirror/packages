@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.4.1-dev.2...@rxap/nest-sentry@10.4.1-dev.3) (2024-08-15)
+
+### Bug Fixes
+
+- improve logging ([7469409](https://gitlab.com/rxap/packages/commit/746940977a9dcfa101d5499069635b36de831740))
+
 ## [10.4.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.4.1-dev.1...@rxap/nest-sentry@10.4.1-dev.2) (2024-08-14)
 
 ### Bug Fixes

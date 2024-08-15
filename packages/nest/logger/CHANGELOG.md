@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.6-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.2.6-dev.3...@rxap/nest-logger@10.2.6-dev.4) (2024-08-15)
+
+### Bug Fixes
+
+- correctly process custom values ([c952cd7](https://gitlab.com/rxap/packages/commit/c952cd7d2a0a764e167acba58e44ac50096c345e))
+
 ## [10.2.6-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.2.6-dev.2...@rxap/nest-logger@10.2.6-dev.3) (2024-08-14)
 
 ### Bug Fixes
