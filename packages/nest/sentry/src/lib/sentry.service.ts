@@ -1,6 +1,7 @@
 import {
   Inject,
   Injectable,
+  Logger,
   OnApplicationBootstrap,
   OnApplicationShutdown,
 } from '@nestjs/common';
@@ -19,13 +20,21 @@ export class SentryService implements OnApplicationShutdown, OnApplicationBootst
   @Inject(SENTRY_MODULE_OPTIONS)
   private readonly options!: SentryModuleOptions;
 
+  @Inject(Logger)
+  private readonly logger!: Logger;
+
   get hasInstance(): boolean {
     return !!this.options.dsn;
   }
 
   onApplicationBootstrap(): any {
     if (!this.options.dsn) {
-      console.warn('Could not create SentryService instance. The required option dsn is not defined');
+      if (this.options.enabled !== false) {
+        this.logger.warn(
+          'Could not create SentryService instance. The required option dsn is not defined', 'SentryService');
+      } else {
+        this.logger.verbose('Dsn is not defined, but sentry is disabled', 'SentryService');
+      }
       return;
     }
     const {
