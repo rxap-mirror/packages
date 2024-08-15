@@ -27,6 +27,13 @@ export function OperationIdToParameterClassName(operationId: string) {
 
 export function OperationIdToClassRemoteMethodImportPath(operationId: string, scope?: string | null) {
   const [ id, serverId = 'legacy' ] = operationId.split('@');
+  if (!process.env['RXAP_LEGACY_OPEN_API_CLIENT_SDK']) {
+    if (scope) {
+      return `${ scope }/open-api-${ dasherize(serverId) }/src/lib/remote-methods`;
+    } else {
+      return `open-api-${ dasherize(serverId) }/src/lib/remote-methods`;
+    }
+  }
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/remote-methods/${ dasherize(id) }.remote-method`;
   } else {
@@ -41,6 +48,13 @@ export function OperationIdToRequestBodyClassName(operationId: string) {
 
 export function OperationIdToCommandClassImportPath(operationId: string, scope?: string | null, isService = false) {
   const [ id, serverId = 'legacy' ] = operationId.split('@');
+  if (!process.env['RXAP_LEGACY_OPEN_API_CLIENT_SDK']) {
+    if (scope) {
+      return `${ scope }/open-api-${ dasherize(serverId) }/src/lib/commands`;
+    } else {
+      return `open-api-${ dasherize(serverId) }/src/lib/commands`;
+    }
+  }
   if (scope) {
     return `${ scope }/${isService ? 'service-' : ''}open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
   } else {
@@ -49,6 +63,13 @@ export function OperationIdToCommandClassImportPath(operationId: string, scope?:
 }
 
 export function OpenApiResponseClassImportPath(response: string, serverId: string, scope?: string | null) {
+  if (!process.env['RXAP_LEGACY_OPEN_API_CLIENT_SDK']) {
+    if (scope) {
+      return `${ scope }/open-api-${ dasherize(serverId) }/src/lib/responses`;
+    } else {
+      return `open-api-${ dasherize(serverId) }/src/lib/responses`;
+    }
+  }
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(response)
       .replace('-response', '') }.response`;
@@ -60,6 +81,13 @@ export function OpenApiResponseClassImportPath(response: string, serverId: strin
 
 export function OperationIdToResponseClassImportPath(operationId: string, scope?: string | null) {
   const [ id, serverId = 'legacy' ] = operationId.split('@');
+  if (!process.env['RXAP_LEGACY_OPEN_API_CLIENT_SDK']) {
+    if (scope) {
+      return `${ scope }/open-api-${ dasherize(serverId) }/src/lib/responses`;
+    } else {
+      return `open-api-${ dasherize(serverId) }/src/lib/responses`;
+    }
+  }
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(id) }.response`;
   } else {
@@ -69,6 +97,13 @@ export function OperationIdToResponseClassImportPath(operationId: string, scope?
 
 export function OperationIdToParameterClassImportPath(operationId: string, scope?: string | null) {
   const [ id, serverId = 'legacy' ] = operationId.split('@');
+  if (!process.env['RXAP_LEGACY_OPEN_API_CLIENT_SDK']) {
+    if (scope) {
+      return `${ scope }/open-api-${ dasherize(serverId) }/src/lib/parameters`;
+    } else {
+      return `open-api-${ dasherize(serverId) }/src/lib/parameters`;
+    }
+  }
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/parameters/${ dasherize(id) }.parameter`;
   } else {
@@ -78,6 +113,13 @@ export function OperationIdToParameterClassImportPath(operationId: string, scope
 
 export function OperationIdToRequestBodyClassImportPath(operationId: string, scope?: string | null) {
   const [ id, serverId = 'legacy' ] = operationId.split('@');
+  if (!process.env['RXAP_LEGACY_OPEN_API_CLIENT_SDK']) {
+    if (scope) {
+      return `${ scope }/open-api-${ dasherize(serverId) }/src/lib/request-bodies`;
+    } else {
+      return `open-api-${ dasherize(serverId) }/src/lib/request-bodies`;
+    }
+  }
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/request-bodies/${ dasherize(id) }.request-body`;
   } else {

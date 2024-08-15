@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "add-legacy-env": {
+      "version": "1.5.0",
+      "description": "Add the RXAP_LEGACY_OPEN_API_CLIENT_SDK env",
+      "implementation": "./src/migrations/1.0.0/add-legacy-env/add-legacy-env"
+    }
+  }
+}

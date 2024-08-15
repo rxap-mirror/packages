@@ -3,16 +3,35 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ts-morph/src",
   "projectType": "library",
-  "tags": ["packages", "standalone", "scope:utilities"],
+  "tags": [
+    "packages",
+    "standalone",
+    "scope:utilities"
+  ],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/ts-morph",
         "main": "packages/ts-morph/src/index.ts",
         "tsConfig": "packages/ts-morph/tsconfig.lib.json",
-        "assets": ["packages/ts-morph/*.md", "packages/ts-morph/docs"]
+        "assets": [
+          "packages/ts-morph/*.md",
+          "packages/ts-morph/docs",
+          {
+            "input": "./packages/ts-morph",
+            "glob": "migrations.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/ts-morph/src/migrations",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/migrations"
+          }
+        ]
       }
     },
     "fix-dependencies": {
@@ -24,17 +43,23 @@
         "generator": "@rxap/plugin-library:fix-dependencies"
       },
       "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
+      "outputs": [
+        "{projectRoot}/package.json"
+      ]
     },
     "index-export": {},
     "lint": {
       "options": {
-        "lintFilePatterns": ["packages/ts-morph/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/ts-morph/**/*.ts"
+        ]
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs ts-morph {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     },
     "readme": {},
     "test": {
@@ -53,7 +78,10 @@
     "linking": {},
     "typedoc": {
       "options": {
-        "outputPath": ["dist/docs/packages/ts-morph", "packages/ts-morph/docs"]
+        "outputPath": [
+          "dist/docs/packages/ts-morph",
+          "packages/ts-morph/docs"
+        ]
       }
     }
   }

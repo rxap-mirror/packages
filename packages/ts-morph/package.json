@@ -26,6 +26,12 @@
     "standalone",
     "ts-morph"
   ],
+  "ng-update": {
+    "migrations": "./migrations.json"
+  },
+  "nx-migrations": {
+    "migrations": "./migrations.json"
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/ts-morph"
