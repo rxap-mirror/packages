@@ -15,7 +15,7 @@ export function assertMainStatements(sourceFile: SourceFile) {
   statements.push('const options: NestApplicationOptions = {');
   statements.push('const bootstrapOptions: Partial<MonolithicBootstrapOptions> = {');
   statements.push(
-    'const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);');
+    'const server = new Monolithic<NestApplicationOptions, RxapLogger, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);');
 
   const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
   for (const statement of statements) {
@@ -36,6 +36,10 @@ export function assertMainStatements(sourceFile: SourceFile) {
         {
           moduleSpecifier: '@nestjs/common',
           namedImports: [ 'NestApplicationOptions' ],
+        },
+        {
+          moduleSpecifier: '@rxap/nest-logger',
+          namedImports: [ 'RxapLogger' ],
         },
         {
           moduleSpecifier: '@nestjs/platform-express',
