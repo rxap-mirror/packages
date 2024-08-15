@@ -353,10 +353,6 @@ export async function initApplicationGenerator(
     }
   }
 
-  if (options.localazy) {
-    await LocalazyGitlabCiGenerator(tree, {});
-  }
-
   if (!options.skipFormat) {
     await formatFiles(tree);
   }
