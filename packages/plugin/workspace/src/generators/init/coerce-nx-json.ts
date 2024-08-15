@@ -33,6 +33,9 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     '!{projectRoot}/cypress/**/*',
     '!{projectRoot}/**/*.cy.[jt]s?(x)',
     '!{projectRoot}/cypress.config.[jt]s',
+    '!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '!{projectRoot}/.storybook/**/*',
+    '!{projectRoot}/tsconfig.storybook.json'
   ], Strategy.REPLACE);
   CoerceNxJsonNamedInputs(nxJson, 'test', [
     'typescript',
