@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.2.1-dev.2...@rxap/layout@18.3.0-dev.0) (2024-08-15)
+
+### Features
+
+- support custom header items ([d25a430](https://gitlab.com/rxap/packages/commit/d25a43064ddde547c95183dab50f28c52a70a35a))
+
 ## [18.2.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.2.1-dev.1...@rxap/layout@18.2.1-dev.2) (2024-08-12)
 
 **Note:** Version bump only for package @rxap/layout
