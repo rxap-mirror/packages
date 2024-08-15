@@ -18,4 +18,7 @@ NestFactory
     return app.close();
   })
   .catch(e => console.error('failed to generate openapi: ' + e.message))
-  .then(() => console.log('DONE'));
+  .then(() => {
+    console.log('DONE');
+    process.exit(0); // ensure the server is stopped
+  });
