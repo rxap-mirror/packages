@@ -28,6 +28,20 @@ export function updateMainFile(
     const importDeclarations = [];
     const statements: string[] = [];
 
+    if (options.sentry) {
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/nest-logger',
+        namedImports: [ 'UseSentryLoggerFactory' ],
+      });
+      statements.push('server.useLogger(UseSentryLoggerFactory());');
+    } else {
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/nest-logger',
+        namedImports: [ 'UseRxapLoggerFactory' ],
+      });
+      statements.push('server.useLogger(UseRxapLoggerFactory());');
+    }
+
     if (options.validator) {
       importDeclarations.push({
         moduleSpecifier: '@rxap/nest-server',
