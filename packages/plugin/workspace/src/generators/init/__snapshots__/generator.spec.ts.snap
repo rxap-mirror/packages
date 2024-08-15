@@ -120,6 +120,15 @@ exports[`init should init default workspace 3`] = `
     "generate-open-api": {
       "cache": true
     },
+    "@nx/eslint:lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.js"
+      ],
+      "cache": true
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": [
@@ -142,15 +151,6 @@ exports[`init should init default workspace 3`] = `
         "coverageReporters": ["json", "html"],
         "codeCoverage": true
       }
-    },
-    "@nx/eslint:lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.js"
-      ]
     },
     "@nx/jest:jest": {
       "cache": true,
@@ -185,6 +185,9 @@ exports[`init should init default workspace 3`] = `
       "!{projectRoot}/cypress/**/*",
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json",
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",

@@ -5,10 +5,12 @@ import {
 } from '@nx/devkit';
 import {
   CoerceNxJsonCacheableOperation,
+  CoerceTarget,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
   IsRxapRepository,
+  Strategy,
 } from '@rxap/workspace-utilities';
 
 export function setGeneralTargetDefaults(tree: Tree) {
@@ -18,7 +20,13 @@ export function setGeneralTargetDefaults(tree: Tree) {
     throw new Error('No nx.json found');
   }
 
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version', 'build-tailwind', 'check-ng-package');
+  CoerceTarget(nxJson, '@nx/angular:ng-packagr-lite', {
+    dependsOn: [
+      'index-export', '^index-export', '^build', 'check-version', 'build-tailwind', 'check-ng-package'
+    ],
+    inputs: [ "production", "^production" ]
+  }, Strategy.OVERWRITE);
+  CoerceNxJsonCacheableOperation(nxJson, '@nx/angular:ng-packagr-lite');
   if (IsRxapRepository(tree)) {
     CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
       target: 'build',

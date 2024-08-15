@@ -4,9 +4,9 @@ import {
   updateNxJson,
 } from '@nx/devkit';
 import {
-  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { InitApplicationGeneratorSchema } from './schema';
 
@@ -19,14 +19,28 @@ export function setGeneralTargetDefaults(tree: Tree, options: InitApplicationGen
     throw new Error('No nx.json found');
   }
 
+  CoerceTargetDefaultsDependency(
+    nxJson,
+    '@nx/webpack:webpack',
+    '^index-export',
+    'index-export',
+    '^build',
+  );
+
   if (!options.standalone) {
-    CoerceTargetDefaultsDependency(nxJson, 'build', 'generate-package-json');
+    CoerceTargetDefaultsDependency(
+      nxJson,
+      '@nx/webpack:webpack',
+      'generate-package-json',
+    );
     CoerceTarget(nxJson, 'generate-package-json', {
       executor: '@rxap/plugin-nestjs:package-json',
+      inputs: [ 'production', '^production' ],
+      outputs: [ '{projectRoot}/package.json' ],
       configurations: {
         production: {},
       },
-    });
+    }, Strategy.OVERWRITE);
   }
 
   updateNxJson(tree, nxJson);

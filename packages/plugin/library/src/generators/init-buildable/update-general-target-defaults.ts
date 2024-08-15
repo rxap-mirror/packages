@@ -32,8 +32,8 @@ export function updateGeneralTargetDefaults(tree: Tree) {
     },
   }, Strategy.OVERWRITE);
 
-  CoerceTarget(nxJson, 'update-dependencies', { executor: '@rxap/plugin-library:update-dependencies' });
-  CoerceTarget(nxJson, 'update-package-group', { executor: '@rxap/plugin-library:update-package-group' });
+  CoerceTarget(nxJson, 'update-dependencies', { executor: '@rxap/plugin-library:update-dependencies' }, Strategy.OVERWRITE);
+  CoerceTarget(nxJson, 'update-package-group', { executor: '@rxap/plugin-library:update-package-group' }, Strategy.OVERWRITE);
 
   updateNxJson(tree, nxJson);
 

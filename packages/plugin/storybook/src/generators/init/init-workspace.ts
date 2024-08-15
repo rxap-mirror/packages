@@ -1,5 +1,11 @@
-import { Tree } from '@nx/devkit';
-import { AddPackageJsonDevDependency } from '@rxap/workspace-utilities';
+import {
+  readNxJson,
+  Tree,
+} from '@nx/devkit';
+import {
+  AddPackageJsonDevDependency,
+  CoerceTargetDefaultsDependency,
+} from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
 export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
@@ -15,5 +21,9 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   await AddPackageJsonDevDependency(tree, '@storybook/core-server', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@storybook/testing-library', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@storybook/test-runner', 'latest', { soft: true });
+
+  const nxJson = readNxJson(tree);
+
+  CoerceTargetDefaultsDependency(nxJson, 'build-storybook', '^index-export', 'index-export', '^build');
 
 }

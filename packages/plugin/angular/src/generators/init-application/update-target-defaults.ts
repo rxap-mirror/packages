@@ -6,9 +6,11 @@ import {
 import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
+  CoerceTargetDefaults,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { InitApplicationGeneratorSchema } from './schema';
 
@@ -43,8 +45,22 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
     );
   }
 
-  CoerceTargetDefaultsDependency(nxJson, 'build', '^generate-open-api');
-  CoerceTargetDefaultsDependency(nxJson, 'serve', '^generate-open-api');
+  CoerceTargetDefaults(nxJson, '@angular-devkit/build-angular:browser', {
+    cache: true,
+    dependsOn: [ '^index-export', 'index-export', '^build' ],
+    inputs: [ 'production', '^production' ],
+  }, Strategy.MERGE);
+
+  CoerceTargetDefaults(nxJson, '@nx/angular:webpack-browser', {
+    dependsOn: [ '^index-export', 'index-export', '^build' ],
+    inputs: [
+      'production',
+      '^production',
+      {
+        'env': 'NX_MF_DEV_SERVER_STATIC_REMOTES',
+      },
+    ],
+  }, Strategy.MERGE);
 
   CoerceNxJsonCacheableOperation(nxJson, 'localazy-download', 'localazy-upload', 'extract-i18n', 'i18n-index-html');
 

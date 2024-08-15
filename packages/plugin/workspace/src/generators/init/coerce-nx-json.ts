@@ -8,6 +8,7 @@ import {
   CoerceNxJsonGenerators,
   CoerceNxJsonNamedInputs,
   CoerceTarget,
+  CoerceTargetDefaultsInput,
   Strategy,
 } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
@@ -79,6 +80,12 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   CoerceNxJsonCacheableOperation(nxJson, 'swagger-generate');
   CoerceNxJsonCacheableOperation(nxJson, 'generate-package-json');
   CoerceNxJsonCacheableOperation(nxJson, 'generate-open-api');
+
+  CoerceTargetDefaultsInput(nxJson, '@nx/eslint:lint', 'default',
+    '{workspaceRoot}/.eslintrc.json',
+    '{workspaceRoot}/.eslintignore',
+    '{workspaceRoot}/eslint.config.js',
+  );
 
   CoerceTarget(nxJson, 'test', {
     'executor': '@nx/jest:jest',

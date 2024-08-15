@@ -1,5 +1,6 @@
 import {
   formatFiles,
+  readJson,
   Tree,
 } from '@nx/devkit';
 import { classify } from '@rxap/utilities';
@@ -7,6 +8,7 @@ import {
   CoerceFile,
   CoerceFilesStructure,
   CoerceLernaJson,
+  CoerceTargetDefaultsInput,
   GenerateSerializedSchematicFile,
   GetWorkspaceName,
   UpdateJsonFile,

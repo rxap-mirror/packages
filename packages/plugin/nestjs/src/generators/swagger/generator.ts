@@ -148,6 +148,7 @@ function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
       ],
       compiler: 'tsc',
       target: 'node',
+      deleteOutputPath: false,
     },
     inputs: [
       'build',

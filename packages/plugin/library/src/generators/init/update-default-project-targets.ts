@@ -31,8 +31,8 @@ export function updateDefaultProjectTargets(tree: Tree) {
   }, Strategy.OVERWRITE);
 
   CoerceNxJsonCacheableOperation(nxJson, 'index-export');
-  CoerceTargetDefaultsDependency(nxJson, 'build', '^index-export');
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'index-export');
+  CoerceTargetDefaultsDependency(nxJson, 'build', '^index-export', 'index-export', '^build');
+  CoerceTargetDefaultsDependency(nxJson, '@nx/js:tsc', '^index-export', 'index-export', '^build');
 
   updateNxJson(tree, nxJson);
 
