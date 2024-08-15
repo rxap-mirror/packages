@@ -2,7 +2,7 @@ import { CoerceImports } from '@rxap/ts-morph';
 import { SourceFile } from 'ts-morph';
 
 const MAIN_BOOTSTRAP_OPTIONS_STATEMENT = 'const bootstrapOptions: Partial<MonolithicBootstrapOptions> = {};';
-const MAIN_SERVER_STATEMENT = 'const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);';
+const MAIN_SERVER_STATEMENT = 'const server = new Monolithic<NestApplicationOptions, RxapLogger, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);';
 export const MAIN_BOOTSTRAP_STATEMENT = 'server.bootstrap().catch((e) => console.error(\'Server bootstrap failed: \' + e.message));';
 const MAIN_SETUP_HELMET_STATEMENT = 'server.after(SetupHelmet());';
 const MAIN_SETUP_COOKIE_STATEMENT = 'server.after(SetupCookieParser());';

@@ -15,17 +15,19 @@ import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
 <% if (platform === "express") { %>
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { RxapLogger } from '@rxap/nest-logger';
 import helmet from 'helmet';
 <% } else if (platform === "fastify") { %>
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
+import { RxapLogger } from '@rxap/nest-logger';
 import helmet from '@fastify/helmet'
 <% } %>
 import { NestApplicationOptions } from '@nestjs/common';
 
 <% if (platform === "express") { %>
-const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, { bufferLogs: true });
+const server = new Monolithic<NestApplicationOptions, RxapLogger, NestExpressApplication>(AppModule, environment, { bufferLogs: true });
 <% } else if (platform === "fastify") { %>
-const server = new Monolithic<NestApplicationOptions, NestFastifyApplication>(AppModule, environment, { bufferLogs: true });
+const server = new Monolithic<NestApplicationOptions, RxapLogger, NestFastifyApplication>(AppModule, environment, { bufferLogs: true });
 <% } %>
 <% if (google) { %>
 server.before(options => options.logger = WinstonModule.createLogger(WinstonFactory()));
