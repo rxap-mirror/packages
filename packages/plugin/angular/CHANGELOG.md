@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.3-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.3-dev.2...@rxap/plugin-angular@19.3.3-dev.3) (2024-08-15)
+
+### Bug Fixes
+
+- remove old localzay init generator ([8f8b7cc](https://gitlab.com/rxap/packages/commit/8f8b7ccc667d7d956aae19b9f6c8e2050e021184))
+- update default nx targets ([43f6151](https://gitlab.com/rxap/packages/commit/43f6151292a10218735e5cf203ec3cb169211530))
+
 ## [19.3.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.3-dev.1...@rxap/plugin-angular@19.3.3-dev.2) (2024-08-15)
 
 ### Bug Fixes

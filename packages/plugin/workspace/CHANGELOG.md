@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.4...@rxap/plugin-workspace@19.1.5-dev.0) (2024-08-15)
+
+### Bug Fixes
+
+- add missing named import defaults ([d46ce8e](https://gitlab.com/rxap/packages/commit/d46ce8eca1ba45f93cc2f64571dd054b109612b5))
+- reduce output ([08e3a02](https://gitlab.com/rxap/packages/commit/08e3a0282cc3f264b39a046b31c87da92c2fc7f7))
+- update default nx targets ([43f6151](https://gitlab.com/rxap/packages/commit/43f6151292a10218735e5cf203ec3cb169211530))
+
 ## [19.1.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.4-dev.0...@rxap/plugin-workspace@19.1.4) (2024-08-05)
 
 **Note:** Version bump only for package @rxap/plugin-workspace

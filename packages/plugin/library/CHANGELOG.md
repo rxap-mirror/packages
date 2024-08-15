@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.4.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.4.1-dev.1...@rxap/plugin-library@19.4.1-dev.2) (2024-08-15)
+
+### Bug Fixes
+
+- update default nx targets ([43f6151](https://gitlab.com/rxap/packages/commit/43f6151292a10218735e5cf203ec3cb169211530))
+
 ## [19.4.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.4.1-dev.0...@rxap/plugin-library@19.4.1-dev.1) (2024-08-12)
 
 **Note:** Version bump only for package @rxap/plugin-library
