@@ -528,8 +528,10 @@ exports[`preset should use angular preset 6`] = `
       "@proj/angular-pipes": ["angular/pipes/src/index.ts"],
       "@proj/angular-resolvers": ["angular/resolvers/src/index.ts"],
       "@proj/angular-services": ["angular/services/src/index.ts"],
+      "@proj/angular-shared": ["angular/shared/src/index.ts"],
       "@proj/angular-tables": ["angular/tables/src/index.ts"],
       "@proj/angular-testing": ["angular/testing/src/index.ts"],
+      "@proj/angular-utilities": ["angular/utilities/src/index.ts"],
       "workspace-tools": ["tools/src/index.ts"]
     }
   }
@@ -1341,6 +1343,8 @@ exports[`preset should use angular preset 18`] = `
   "guards",
   "services",
   "application-providers",
+  "utilities",
+  "shared",
   "testing",
   "resolvers",
   "http-interceptors",

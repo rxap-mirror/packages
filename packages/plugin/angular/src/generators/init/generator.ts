@@ -54,6 +54,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'guards',
     'services',
     'application-providers',
+    'utilities',
+    'shared',
     'testing',
     'resolvers',
     'http-interceptors',
