@@ -350,7 +350,7 @@
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.2.6-dev.3"
+        "version": "10.2.6-dev.4"
       },
       {
         "package": "@rxap/nest-minio",
@@ -370,7 +370,7 @@
       },
       {
         "package": "@rxap/nest-sentry",
-        "version": "10.4.1-dev.2"
+        "version": "10.4.1-dev.3"
       },
       {
         "package": "@rxap/nest-server",
