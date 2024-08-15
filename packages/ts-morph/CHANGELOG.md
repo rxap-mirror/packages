@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.4-dev.0...@rxap/ts-morph@1.5.0-dev.0) (2024-08-15)
+
+### Features
+
+- update to buildable open api client sdk ([5407e3a](https://gitlab.com/rxap/packages/commit/5407e3ae0bf77d5321d910b07d9b9316fbbd2b78))
+
 ## [1.4.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.4.3...@rxap/ts-morph@1.4.4-dev.0) (2024-08-12)
 
 ### Bug Fixes
