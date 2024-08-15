@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.6-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@19.0.6-dev.1...@rxap/plugin-storybook@19.0.6-dev.2) (2024-08-15)
+
+### Bug Fixes
+
+- add missing packages ([40d602e](https://gitlab.com/rxap/packages/commit/40d602ed9e4ec4d972c3e743063abff26110e64c))
+
 ## [19.0.6-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-storybook@19.0.6-dev.0...@rxap/plugin-storybook@19.0.6-dev.1) (2024-08-12)
 
 **Note:** Version bump only for package @rxap/plugin-storybook
