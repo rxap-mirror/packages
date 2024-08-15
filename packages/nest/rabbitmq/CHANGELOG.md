@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.0-dev.16...@rxap/nest-rabbitmq@10.0.0-dev.17) (2024-08-15)
+
+### Bug Fixes
+
+- support proper error de/serialization ([1ab9454](https://gitlab.com/rxap/packages/commit/1ab945453a3f6c418e98a77c56097c97df318922))
+- support proper error de/serialization ([a95f946](https://gitlab.com/rxap/packages/commit/a95f94609018cb18d1a947681818905c6c5562a6))
+
 # [10.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.0-dev.15...@rxap/nest-rabbitmq@10.0.0-dev.16) (2024-08-14)
 
 ### Bug Fixes
