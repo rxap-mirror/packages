@@ -2,7 +2,10 @@
   @if (!collapsable()) {
     <rxap-sidenav-toggle-button></rxap-sidenav-toggle-button>
   }
-  <div class="grow">
+  <div class="grow flex flex-row gap-x-4 items-center">
+    @for (portal of portals(); track portal) {
+      <ng-template [cdkPortalOutlet]="portal"></ng-template>
+    }
     <ng-content></ng-content>
   </div>
   <rxap-apps-button class="grow-0"></rxap-apps-button>

@@ -3,6 +3,7 @@ import { Provider } from '@angular/core';
 import { DataSource } from '@rxap/pattern';
 import { Constructor } from '@rxap/utilities';
 import { DefaultHeaderComponent } from './default-header/default-header.component';
+import { DefaultHeaderService } from './default-header/default-header.service';
 import { ExternalAppsService } from './external-apps.service';
 import { FooterService } from './footer.service';
 import { HeaderService } from './header.service';
@@ -11,6 +12,7 @@ import { LogoService } from './logo.service';
 import { NavigationService } from './navigation.service';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
+  RXAP_DEFAULT_HEADER_ITEM_COMPONENT,
   RXAP_EXTERNAL_APP,
   RXAP_FOOTER_COMPONENT,
   RXAP_HEADER_COMPONENT,
@@ -22,6 +24,7 @@ import {
   RXAP_USER_PROFILE_DATA_SOURCE,
 } from './tokens';
 import {
+  DefaultHeaderItemComponent,
   ExternalApp,
   ReleaseInfoModule,
   SettingsMenuItem,
@@ -34,6 +37,7 @@ export function provideLayout(...additionalProviders: Provider[]): Provider[] {
     LogoService,
     HeaderService,
     FooterService,
+    DefaultHeaderService,
     ...additionalProviders,
   ];
 }
@@ -87,6 +91,14 @@ export function withSettingsMenuItems(...items: Array<SettingsMenuItemComponent 
       }
     )),
   ];
+}
+
+export function withDefaultHeaderItems(...items: Array<DefaultHeaderItemComponent>): Provider[] {
+  return items.map(component => ({
+    provide: RXAP_DEFAULT_HEADER_ITEM_COMPONENT,
+    useValue: component,
+    multi: true,
+  }));
 }
 
 export function withReleaseInfoModules(...module: ReleaseInfoModule[]): Provider[] {

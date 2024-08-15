@@ -14,6 +14,8 @@ export interface ReleaseInfoModule {
 
 export type SettingsMenuItemComponent = ComponentType<unknown>;
 
+export type DefaultHeaderItemComponent = ComponentType<unknown>;
+
 export interface SettingsMenuItem {
   icon?: IconConfig;
   label: string;

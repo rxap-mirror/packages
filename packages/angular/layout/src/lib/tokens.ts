@@ -47,4 +47,6 @@ export const RXAP_RELEASE_INFO_MODULE = new InjectionToken<ReleaseInfoModule>('r
 
 export const RXAP_SETTINGS_MENU_ITEM_COMPONENT = new InjectionToken<SettingsMenuItemComponent>('rxap/layout/settings-menu-item-component');
 
+export const RXAP_DEFAULT_HEADER_ITEM_COMPONENT = new InjectionToken<ComponentType<unknown>>('rxap/layout/default-header-item-component');
+
 export const RXAP_SETTINGS_MENU_ITEM = new InjectionToken<SettingsMenuItem>('rxap/layout/settings-menu-item');
