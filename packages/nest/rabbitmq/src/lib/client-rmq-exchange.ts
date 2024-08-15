@@ -13,13 +13,10 @@ import {
   DISCONNECT_EVENT,
   DISCONNECTED_RMQ_MESSAGE,
   ERROR_EVENT,
-  RQM_DEFAULT_NO_ASSERT,
   RQM_DEFAULT_NOACK,
-  RQM_DEFAULT_PERSISTENT,
-  RQM_DEFAULT_URL,
 } from '@nestjs/microservices/constants';
-import { RmqUrl } from '@nestjs/microservices/external/rmq-url.interface';
 import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
+import { ExchangeRmqOptions } from './options';
 
 import {
   AmqpConnectionManager,
@@ -48,13 +45,9 @@ import {
   scan,
   skip,
 } from 'rxjs/operators';
-import {
-  REPLY_QUEUE,
-  RQM_DEFAULT_EXCHANGE,
-  RQM_DEFAULT_EXCHANGE_OPTIONS,
-  RQM_DEFAULT_EXCHANGE_TYPE,
-} from './constants';
-import { ExchangeRmqOptions } from './options';
+import { IncomingResponseDeserializer } from './incoming-response.deserializer';
+
+export const REPLY_QUEUE = 'amq.rabbitmq.reply-to';
 
 export interface RmqExchangeOptions {
   options?: ExchangeRmqOptions;
@@ -101,13 +94,13 @@ export class ClientRMQExchange extends ClientProxy {
     const connect$ = this.connect$(this.client);
     const withDisconnect$ = this.mergeDisconnectEvent(
       this.client,
-      connect$
+      connect$,
     ).pipe(
-      tap(() => this.createChannel())
+      tap(() => this.createChannel()),
     );
 
     const withReconnect$ = fromEvent(this.client, CONNECT_EVENT).pipe(
-      skip(1)
+      skip(1),
     );
     const source$: Observable<{ url: string, connection: Connection }> = merge(withDisconnect$, withReconnect$);
 
@@ -115,7 +108,7 @@ export class ClientRMQExchange extends ClientProxy {
     source$.subscribe({
       next: data => {
         this.connection$.next(data.connection);
-      }
+      },
     });
 
     return this.convertConnectionToPromise();
@@ -125,7 +118,7 @@ export class ClientRMQExchange extends ClientProxy {
     return new Promise(resolve => {
       this.channel = this.client!.createChannel({
         json: false,
-        setup: (channel: Channel) => this.setupExchange(channel, resolve)
+        setup: (channel: Channel) => this.setupExchange(channel, resolve),
       });
     });
   }
@@ -137,13 +130,13 @@ export class ClientRMQExchange extends ClientProxy {
 
   public mergeDisconnectEvent<T = any>(
     instance: any,
-    source$: Observable<T>
+    source$: Observable<T>,
   ): Observable<T> {
     const eventToError = (eventType: string) =>
       fromEvent(instance, eventType).pipe(
         map((err: unknown) => {
           throw err;
-        })
+        }),
       );
     const disconnect$ = eventToError(DISCONNECT_EVENT);
 
@@ -156,9 +149,9 @@ export class ClientRMQExchange extends ClientProxy {
               throw error;
             }
             return errorCount + 1;
-          }, 0)
-        )
-      )
+          }, 0),
+        ),
+      ),
     );
     // If we ever decide to propagate all disconnect errors & re-emit them through
     // the "connection" stream then comment out "first()" operator.
@@ -167,7 +160,7 @@ export class ClientRMQExchange extends ClientProxy {
 
   public async convertConnectionToPromise() {
     // try {
-      return await firstValueFrom(this.connection$);
+    return await firstValueFrom(this.connection$);
     // } catch (err) {
     //   if (err instanceof EmptyError) {
     //     return;
@@ -177,9 +170,10 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   public async setupExchange(channel: Channel, resolve: () => unknown) {
-    this.logger.verbose(`Setting up exchange '${this.options.exchange.name}'`, 'ClientRMQExchange');
+    this.logger.verbose(`Setting up exchange '${ this.options.exchange.name }'`, 'ClientRMQExchange');
     if (!this.options.noAssert) {
-      await channel.assertExchange(this.options.exchange.name, this.options.exchange.type, this.options.exchange.options);
+      await channel.assertExchange(
+        this.options.exchange.name, this.options.exchange.type, this.options.exchange.options);
     }
 
     await this.consumeChannel(channel);
@@ -194,12 +188,12 @@ export class ClientRMQExchange extends ClientProxy {
         if (msg) {
           this.responseEmitter.emit(msg.properties.correlationId, msg);
         } else {
-          this.logger.warn(`Message is empty from RMQ queue ${this.options.replyQueue ?? REPLY_QUEUE}`);
+          this.logger.warn(`Message is empty from RMQ queue ${ this.options.replyQueue ?? REPLY_QUEUE }`);
         }
       },
       {
-        noAck
-      }
+        noAck,
+      },
     );
   }
 
@@ -216,17 +210,17 @@ export class ClientRMQExchange extends ClientProxy {
 
   public async handleMessage(
     packet: unknown,
-    callback: (packet: WritePacket) => any
+    callback: (packet: WritePacket) => any,
   ): Promise<void>;
   public async handleMessage(
     packet: unknown,
     options: Record<string, unknown>,
-    callback: (packet: WritePacket) => any
+    callback: (packet: WritePacket) => any,
   ): Promise<void>;
   public async handleMessage(
     packet: unknown,
     optionsOrCallback: Record<string, unknown> | ((packet: WritePacket) => any),
-    callback?: (packet: WritePacket) => any
+    callback?: (packet: WritePacket) => any,
   ): Promise<void> {
     this.logger.verbose('Received message: %JSON', packet, 'ClientRMQExchange');
     let options: Record<string, unknown> | undefined = undefined;
@@ -243,31 +237,33 @@ export class ClientRMQExchange extends ClientProxy {
     const {
       err,
       response,
-      isDisposed
+      isDisposed,
     } = await this.deserializer.deserialize(
       packet,
-      options
+      options,
     );
 
     this.logger.verbose('Deserialized response: %JSON', response, 'ClientRMQExchange');
-    this.logger.verbose('Deserialized error: %JSON', err, 'ClientRMQExchange');
+    if (err) {
+      this.logger.verbose('Deserialized error: %JSON', err, 'ClientRMQExchange');
+    }
     this.logger.verbose('Deserialized isDisposed: %JSON', isDisposed, 'ClientRMQExchange');
     if (isDisposed || err) {
       callback({
         err,
         response,
-        isDisposed: true
+        isDisposed: true,
       });
     }
     callback({
       err,
-      response
+      response,
     });
   }
 
   protected publish(
     message: ReadPacket,
-    callback: (packet: WritePacket) => any
+    callback: (packet: WritePacket) => any,
   ): () => void {
     this.logger.verbose('Publishing message: %JSON', message, 'ClientRMQExchange');
     try {
@@ -275,10 +271,13 @@ export class ClientRMQExchange extends ClientProxy {
       const listener = ({
         content,
         fields,
-        properties
+        properties,
       }: ConsumeMessage) => this.handleMessage(
         this.parseMessageContent(content),
-        { fields, properties },
+        {
+          fields,
+          properties,
+        },
         callback,
       );
 
@@ -300,8 +299,8 @@ export class ClientRMQExchange extends ClientProxy {
             persistent: this.options.persistent,
             ...options,
             headers: this.mergeHeaders(options?.headers),
-            correlationId
-          } as Options.Publish
+            correlationId,
+          } as Options.Publish,
         )
         .catch(err => callback({ err }));
       return () => this.responseEmitter.removeListener(correlationId, listener);
@@ -327,21 +326,25 @@ export class ClientRMQExchange extends ClientProxy {
         {
           persistent: this.options.persistent,
           ...options,
-          headers: this.mergeHeaders(options?.headers)
+          headers: this.mergeHeaders(options?.headers),
         } as Options.Publish,
         (err: unknown) => (
           err ? reject(err) : resolve()
-        )
-      )
+        ),
+      ),
     );
   }
 
   protected override initializeSerializer(options: ExchangeRmqOptions) {
-    this.serializer = options?.serializer ?? new RmqRecordSerializer();
+    this.serializer = options.serializer ?? new RmqRecordSerializer();
+  }
+
+  protected override initializeDeserializer(options: ExchangeRmqOptions) {
+    this.deserializer = options.deserializer ?? new IncomingResponseDeserializer();
   }
 
   protected mergeHeaders(
-    requestHeaders?: Record<string, string>
+    requestHeaders?: Record<string, string>,
   ): Record<string, string> | undefined {
     if (!requestHeaders && !this.options?.headers) {
       return undefined;
@@ -349,7 +352,7 @@ export class ClientRMQExchange extends ClientProxy {
 
     return {
       ...this.options?.headers,
-      ...requestHeaders
+      ...requestHeaders,
     };
   }
 

@@ -18,8 +18,12 @@ export class RabbitMqIncomingRequestDeserializer implements ConsumerDeserializer
       return true;
     }
     if (
-      !isUndefined((value as IncomingRequest).pattern) ||
-      !isUndefined((value as IncomingRequest).data)
+      !isUndefined((
+        value as IncomingRequest
+      ).pattern) ||
+      !isUndefined((
+        value as IncomingRequest
+      ).data)
     ) {
       return false;
     }

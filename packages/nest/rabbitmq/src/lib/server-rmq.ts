@@ -15,6 +15,7 @@ import {
   ReadPacket,
   RmqContext,
   Server,
+  WritePacket,
 } from '@nestjs/microservices';
 import {
   CONNECT_EVENT,
@@ -27,6 +28,7 @@ import {
   RQM_NO_MESSAGE_HANDLER,
 } from '@nestjs/microservices/constants';
 import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
+import { ServerRmqOptions } from './options';
 import { coerceArray } from '@rxap/utilities';
 import {
   ChannelWrapper,
@@ -34,11 +36,15 @@ import {
 } from 'amqp-connection-manager';
 import type { IAmqpConnectionManager } from 'amqp-connection-manager/dist/types/AmqpConnectionManager';
 import { Message } from 'amqplib';
-import { RabbitMqIncomingRequestDeserializer } from './incoming-request.deserializer';
 import {
-  QueueRmqOptions,
-  ServerRmqOptions,
-} from './options';
+  catchError,
+  EMPTY,
+  finalize,
+  Observable,
+  Subscription,
+} from 'rxjs';
+import { ErrorSerializer } from './error.serializer';
+import { RabbitMqIncomingRequestDeserializer } from './incoming-request.deserializer';
 
 const INFINITE_CONNECTION_ATTEMPTS = -1;
 
@@ -52,9 +58,11 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   protected connectionAttempts = 0;
   protected queue!: string;
 
+  protected errorSerializer = new ErrorSerializer();
+
   constructor(
     protected readonly options: ServerRmqOptions,
-    protected override readonly logger: LoggerService = new Logger(Server.name)
+    protected override readonly logger: LoggerService = new Logger(Server.name),
   ) {
     super();
 
@@ -62,12 +70,8 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     this.initializeDeserializer(options);
   }
 
-  protected override initializeDeserializer(options: ServerRmqOptions) {
-    this.deserializer = options?.deserializer ?? new RabbitMqIncomingRequestDeserializer();
-  }
-
   public async listen(
-    callback: (err?: unknown, ...optionalParams: unknown[]) => void
+    callback: (err?: unknown, ...optionalParams: unknown[]) => void,
   ): Promise<void> {
     try {
       await this.start(callback);
@@ -87,7 +91,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   }
 
   public async start(
-    callback?: (err?: unknown, ...optionalParams: unknown[]) => void
+    callback?: (err?: unknown, ...optionalParams: unknown[]) => void,
   ) {
     this.logger.verbose?.('Connecting to RMQ server...', 'ServerRMQ');
     this.server = this.createClient();
@@ -97,14 +101,14 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
       }
       this.channel = this.server!.createChannel({
         json: false,
-        setup: (channel: any) => this.setupChannel(channel, callback)
+        setup: (channel: any) => this.setupChannel(channel, callback),
       });
     });
 
     const maxConnectionAttempts = this.getOptionsProp(
       this.options,
       'maxConnectionAttempts',
-      INFINITE_CONNECTION_ATTEMPTS
+      INFINITE_CONNECTION_ATTEMPTS,
     );
     this.server.on(DISCONNECT_EVENT, (err: any) => {
       this.logger.error(DISCONNECTED_RMQ_MESSAGE);
@@ -127,6 +131,37 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
         callback?.(error?.['err'] ?? new Error(CONNECTION_FAILED_MESSAGE));
       }
     });
+  }
+
+  public override send(
+    stream$: Observable<any>,
+    respond: (data: WritePacket) => unknown | Promise<unknown>,
+  ): Subscription {
+    let dataBuffer: WritePacket[] | null = null;
+    const scheduleOnNextTick = (data: WritePacket) => {
+      if (!dataBuffer) {
+        dataBuffer = [data];
+        process.nextTick(async () => {
+          for (const item of dataBuffer!) {
+            await respond(item);
+          }
+          dataBuffer = null;
+        });
+      } else if (!data.isDisposed) {
+        dataBuffer = dataBuffer.concat(data);
+      } else {
+        dataBuffer[dataBuffer.length - 1].isDisposed = data.isDisposed;
+      }
+    };
+    return stream$
+      .pipe(
+        catchError((err: any) => {
+          scheduleOnNextTick({ err: this.errorSerializer.serialize(err) });
+          return EMPTY;
+        }),
+        finalize(() => scheduleOnNextTick({ isDisposed: true })),
+      )
+      .subscribe((response: any) => scheduleOnNextTick({ response }));
   }
 
   public createClient() {
@@ -156,16 +191,16 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
         consumerTag: this.getOptionsProp(
           this.options,
           'consumerTag',
-          undefined
-        )
-      }
+          undefined,
+        ),
+      },
     );
     callback?.();
   }
 
   public async handleMessage(
     message: Record<string, any>,
-    channel: any
+    channel: any,
   ): Promise<void> {
     this.logger.debug?.('Message received', 'ServerRMQ');
     if (isNil(message)) {
@@ -174,15 +209,20 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     const {
       content,
       properties,
-      fields
+      fields,
     } = message;
     const rawMessage = this.parseMessageContent(content);
     this.logger.verbose?.('Message content: %JSON', rawMessage, 'ServerRMQ');
     this.logger.verbose?.('Message properties: %JSON', properties, 'ServerRMQ');
     this.logger.verbose?.('Message fields: %JSON', fields, 'ServerRMQ');
-    const packet = await this.deserializer.deserialize(rawMessage, { fields, properties });
+    const packet = await this.deserializer.deserialize(rawMessage, {
+      fields,
+      properties,
+    });
     this.logger.debug?.('Extracted packet message content: %JSON', packet, 'ServerRMQ');
-    const pattern = (isString(packet.pattern) ? packet.pattern : JSON.stringify(packet.pattern));
+    const pattern = (
+      isString(packet.pattern) ? packet.pattern : JSON.stringify(packet.pattern)
+    );
     const rmqContext = new RmqContext([ message, channel, pattern ]);
     if (isUndefined((
       packet as IncomingRequest
@@ -193,7 +233,9 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     const handler = this.getHandlerByPattern(pattern);
 
     if (!handler) {
-      if (!(this.options.noAck ?? true)) {
+      if (!(
+        this.options.noAck ?? true
+      )) {
         this.logger.warn(RQM_NO_MESSAGE_HANDLER`${ pattern }`);
         this.channel!.nack(rmqContext.getMessage() as Message, false, false);
       }
@@ -203,16 +245,16 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
           packet as IncomingRequest
         ).id,
         err: NO_MESSAGE_HANDLER,
-        status
+        status,
       };
       return this.sendMessage(
         noHandlerPacket,
         properties.replyTo,
-        properties.correlationId
+        properties.correlationId,
       );
     }
     const response$ = this.transformToObservable(
-      await handler(packet.data, rmqContext)
+      await handler(packet.data, rmqContext),
     );
 
     const publish = <T>(data: T) =>
@@ -225,10 +267,12 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   public override async handleEvent(
     pattern: string,
     packet: ReadPacket,
-    context: RmqContext
+    context: RmqContext,
   ): Promise<any> {
     const handler = this.getHandlerByPattern(pattern);
-    if (!handler && !(this.options.noAck ?? true)) {
+    if (!handler && !(
+      this.options.noAck ?? true
+    )) {
       this.channel!.nack(context.getMessage() as Message, false, false);
       return this.logger.warn(RQM_NO_EVENT_HANDLER`${ pattern }`);
     }
@@ -238,10 +282,10 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   public sendMessage<T = any>(
     message: T,
     replyTo: any,
-    correlationId: string
+    correlationId: string,
   ): void {
     const outgoingResponse = this.serializer.serialize(
-      message as unknown as OutgoingResponse
+      message as unknown as OutgoingResponse,
     );
     const options = outgoingResponse.options;
     delete outgoingResponse.options;
@@ -250,7 +294,21 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     this.channel!.sendToQueue(replyTo, buffer, { correlationId, ...options });
   }
 
-  protected override initializeSerializer(options: QueueRmqOptions) {
+  public override addHandler(
+    pattern: any,
+    callback: MessageHandler,
+    isEventHandler?: boolean,
+    extras?: Record<any, any>,
+  ) {
+    this.logger.log(`Adding message handler for pattern '${ pattern }'`, 'ServerRMQ');
+    super.addHandler(pattern, callback, isEventHandler, extras);
+  }
+
+  protected override initializeDeserializer(options: ServerRmqOptions) {
+    this.deserializer = options?.deserializer ?? new RabbitMqIncomingRequestDeserializer();
+  }
+
+  protected override initializeSerializer(options: ServerRmqOptions) {
     this.serializer = options?.serializer ?? new RmqRecordSerializer();
   }
 
@@ -260,16 +318,6 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     } catch {
       return content.toString();
     }
-  }
-
-  public override addHandler(
-    pattern: any,
-    callback: MessageHandler,
-    isEventHandler?: boolean,
-    extras?: Record<any, any>
-  ) {
-    this.logger.log(`Adding message handler for pattern '${ pattern }'`, 'ServerRMQ');
-    super.addHandler(pattern, callback, isEventHandler, extras);
   }
 
 }
