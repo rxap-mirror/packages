@@ -12,10 +12,9 @@ const MAIN_NEST_APP_OPTIONS_STATEMENT = 'const options: NestApplicationOptions =
 export function assertMainStatements(sourceFile: SourceFile) {
   const statements: string[] = [];
 
-  statements.push('const options: NestApplicationOptions = {');
-  statements.push('const bootstrapOptions: Partial<MonolithicBootstrapOptions> = {');
-  statements.push(
-    'const server = new Monolithic<NestApplicationOptions, RxapLogger, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);');
+  statements.push(MAIN_NEST_APP_OPTIONS_STATEMENT.replace('};', ''));
+  statements.push(MAIN_BOOTSTRAP_OPTIONS_STATEMENT.replace('};', ''));
+  statements.push(MAIN_SERVER_STATEMENT);
 
   const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
   for (const statement of statements) {
