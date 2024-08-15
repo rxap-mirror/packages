@@ -79,6 +79,9 @@ export function updateProjectTargets(
       if (options.overwrite) {
         project.targets['build'].configurations.production.localize = options.languages;
       } else {
+        if (typeof project.targets['build'].configurations.production.localize === 'boolean') {
+          project.targets['build'].configurations.production.localize = options.languages;
+        }
         project.targets['build'].configurations.production.localize ??= [];
         project.targets['build'].configurations.production.localize.push(...options.languages);
         project.targets['build'].configurations.production.localize
