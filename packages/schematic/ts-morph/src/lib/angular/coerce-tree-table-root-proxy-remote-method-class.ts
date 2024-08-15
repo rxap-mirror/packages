@@ -1,6 +1,8 @@
 import {
+  OperationIdToClassRemoteMethodImportPath,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
+  OperationIdToRemoteMethodClassName,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import {
@@ -8,10 +10,6 @@ import {
   Project,
   SourceFile,
 } from 'ts-morph';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../nest/operation-id-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import {
   CoerceProxyRemoteMethodClass,
@@ -37,7 +35,7 @@ export function CoerceTreeTableRootProxyRemoteMethodClass(options: CoerceTreeTab
     name: 'tree-table-root',
     sourceType: 'Node<unknown>',
     targetType: `OpenApiRemoteMethodParameter<${ identifier ? OperationIdToParameterClassName(getRootOperationId) : 'void' }>`,
-    proxyMethod: OperationIdToClassName(getRootOperationId),
+    proxyMethod: OperationIdToRemoteMethodClassName(getRootOperationId),
     tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {
       if (identifier) {
         CoerceImports(sourceFile, {
@@ -46,8 +44,8 @@ export function CoerceTreeTableRootProxyRemoteMethodClass(options: CoerceTreeTab
         });
       }
       CoerceImports(sourceFile, {
-        namedImports: [ OperationIdToClassName(getRootOperationId) ],
-        moduleSpecifier: OperationIdToClassImportPath(getRootOperationId, scope),
+        namedImports: [ OperationIdToRemoteMethodClassName(getRootOperationId) ],
+        moduleSpecifier: OperationIdToClassRemoteMethodImportPath(getRootOperationId, scope),
       });
       CoerceImports(sourceFile, {
         namedImports: [ 'Node' ],

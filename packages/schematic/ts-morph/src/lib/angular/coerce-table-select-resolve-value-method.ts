@@ -1,12 +1,10 @@
 import {
   CoerceDependencyInjection,
   Module,
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
 } from '@rxap/ts-morph';
 import { Scope } from 'ts-morph';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../nest/operation-id-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import {
   CoerceMethodClass,
@@ -25,14 +23,14 @@ export function CoerceTableSelectResolveValueMethodRule(options: CoerceTableSele
     ...options,
     tsMorphTransform: (project, sourceFile, classDeclaration) => {
       CoerceDependencyInjection(sourceFile, {
-        injectionToken: OperationIdToClassName(operationId),
+        injectionToken: OperationIdToRemoteMethodClassName(operationId),
         parameterName: 'method',
         scope: Scope.Private,
         module: Module.ANGULAR,
       });
       CoerceImports(sourceFile, {
-        namedImports: [ OperationIdToClassName(operationId) ],
-        moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
+        namedImports: [ OperationIdToRemoteMethodClassName(operationId) ],
+        moduleSpecifier: OperationIdToClassRemoteMethodImportPath(operationId, scope),
       });
 
       return {

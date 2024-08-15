@@ -1,7 +1,9 @@
 import {
   CoerceImports,
+  OperationIdToClassRemoteMethodImportPath,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
+  OperationIdToRemoteMethodClassName,
 } from '@rxap/ts-morph';
 import { noop } from '@rxap/utilities';
 import {
@@ -10,10 +12,6 @@ import {
   SourceFile,
   Writers,
 } from 'ts-morph';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../nest/operation-id-utilities';
 import {
   CoerceProxyRemoteMethodClass,
   CoerceProxyRemoteMethodClassOptions,
@@ -36,11 +34,11 @@ export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTre
     name: 'tree-table-children',
     sourceType: Writers.object({ node: 'Node<unknown>' }),
     targetType: `OpenApiRemoteMethodParameter<${ OperationIdToParameterClassName(getChildrenOperationId) }>`,
-    proxyMethod: OperationIdToClassName(getChildrenOperationId),
+    proxyMethod: OperationIdToRemoteMethodClassName(getChildrenOperationId),
     tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {
       CoerceImports(sourceFile, {
-        namedImports: [ OperationIdToClassName(getChildrenOperationId) ],
-        moduleSpecifier: OperationIdToClassImportPath(getChildrenOperationId, scope),
+        namedImports: [ OperationIdToRemoteMethodClassName(getChildrenOperationId) ],
+        moduleSpecifier: OperationIdToClassRemoteMethodImportPath(getChildrenOperationId, scope),
       });
       CoerceImports(sourceFile, {
         namedImports: [ 'Node' ],

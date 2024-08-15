@@ -7,20 +7,18 @@ import {
   CoerceClassMethod,
   CoerceImports,
   CoercePropertyDeclaration,
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
   OperationIdToRequestBodyClassImportPath,
   OperationIdToRequestBodyClassName,
 } from '@rxap/ts-morph';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../nest/operation-id-utilities';
+import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { AddComponentImport } from './add-component-import';
 import {
   CoerceDialogComponentOptions,
   CoerceDialogComponentRule,
 } from './coerce-dialog-component';
-import { TsMorphAngularProjectTransformOptions } from '@rxap/workspace-ts-morph';
 
 export interface CoerceDialogTableActionComponentOptions extends CoerceDialogComponentOptions,
                                                                  TsMorphAngularProjectTransformOptions {
@@ -83,12 +81,12 @@ export function CoerceDialogTableActionComponentRule(options: CoerceDialogTableA
 
       CoerceParameterDeclaration(constructorDeclaration, 'method').set({
         isReadonly: true,
-        type: OperationIdToClassName(operationId),
+        type: OperationIdToRemoteMethodClassName(operationId),
       });
 
       CoerceImports(componentSourceFile, {
-        moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
-        namedImports: [ OperationIdToClassName(operationId) ],
+        moduleSpecifier: OperationIdToClassRemoteMethodImportPath(operationId, scope),
+        namedImports: [ OperationIdToRemoteMethodClassName(operationId) ],
       });
 
       CoerceParameterDeclaration(constructorDeclaration, 'snackBar').set({

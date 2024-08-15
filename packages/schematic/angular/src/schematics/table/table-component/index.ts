@@ -10,12 +10,12 @@ import {
   CoerceComponentRule,
   CoerceGetPageOperation,
   CoerceMethodClass,
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
 import { AddPackageJsonDependencyRule } from '@rxap/schematics-utilities';
 import {
   CoerceImports,
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
   TypeImportToImportStructure,
 } from '@rxap/ts-morph';
 import {
@@ -223,7 +223,7 @@ function openApiBackendRule(normalizedOptions: NormalizedTableComponentOptions):
           sourceFile,
           {
             provide: 'RXAP_TABLE_METHOD',
-            useExisting: OperationIdToClassName(openApi.operationId),
+            useExisting: OperationIdToRemoteMethodClassName(openApi.operationId),
           },
           [
             {
@@ -231,8 +231,8 @@ function openApiBackendRule(normalizedOptions: NormalizedTableComponentOptions):
               namedImports: [ 'RXAP_TABLE_METHOD' ],
             },
             {
-              moduleSpecifier: OperationIdToClassImportPath(openApi.operationId, scope),
-              namedImports: [ OperationIdToClassName(openApi.operationId) ],
+              moduleSpecifier: OperationIdToClassRemoteMethodImportPath(openApi.operationId, scope),
+              namedImports: [ OperationIdToRemoteMethodClassName(openApi.operationId) ],
             },
           ],
         );
@@ -320,7 +320,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
           sourceFile,
           {
             provide: 'RXAP_TABLE_METHOD',
-            useExisting: OperationIdToClassName(operationId),
+            useExisting: OperationIdToRemoteMethodClassName(operationId),
           },
           [
             {
@@ -328,8 +328,8 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
               namedImports: [ 'RXAP_TABLE_METHOD' ],
             },
             {
-              moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
-              namedImports: [ OperationIdToClassName(operationId) ],
+              moduleSpecifier: OperationIdToClassRemoteMethodImportPath(operationId, scope),
+              namedImports: [ OperationIdToRemoteMethodClassName(operationId) ],
             },
           ],
         );

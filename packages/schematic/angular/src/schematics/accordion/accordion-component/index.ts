@@ -11,7 +11,6 @@ import {
   buildOperationId,
   CoerceComponentRule,
   CoerceDataSourceClass,
-  CoerceFormProvider,
   CoerceGetByIdOperation,
   CoerceGetOperation,
   CoerceInterfaceRule,
@@ -19,8 +18,6 @@ import {
   CoerceParameterDeclaration,
   HasComponent,
   HasComponentOptions,
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import {
@@ -296,8 +293,8 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
             OperationIdToResponseClassImportPath(getOperationId, scope),
         });
         CoerceImports(sourceFile, {
-          namedImports: [ OperationIdToClassName(getOperationId) ],
-          moduleSpecifier: OperationIdToClassImportPath(getOperationId, scope),
+          namedImports: [ OperationIdToRemoteMethodClassName(getOperationId) ],
+          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(getOperationId, scope),
         });
         CoerceImports(sourceFile, {
           namedImports: [ 'AccordionDataSource' ],
@@ -310,7 +307,7 @@ function openApiDataSourceRule(normalizedOptions: NormalizedAccordionComponentOp
         CoerceClassProperty(classDeclaration, 'method', {
           scope: Scope.Protected,
           hasOverrideKeyword: true,
-          initializer: `inject(${ OperationIdToClassName(getOperationId) })`,
+          initializer: `inject(${ OperationIdToRemoteMethodClassName(getOperationId) })`,
           isReadonly: true,
         });
         let parametersType = 'void';

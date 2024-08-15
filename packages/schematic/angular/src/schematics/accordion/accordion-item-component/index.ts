@@ -14,8 +14,6 @@ import {
   CoerceGetOperation,
   CoerceInterfaceRule,
   CoerceMethodClass,
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import {
@@ -231,8 +229,8 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
             OperationIdToResponseClassImportPath(operationId, scope),
         });
         CoerceImports(sourceFile, {
-          namedImports: [ OperationIdToClassName(operationId) ],
-          moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
+          namedImports: [ OperationIdToRemoteMethodClassName(operationId) ],
+          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(operationId, scope),
         });
         CoerceImports(sourceFile, {
           moduleSpecifier: '@rxap/data-source/accordion',
@@ -245,7 +243,7 @@ function panelItemOpenApiDataSourceRule(normalizedOptions: NormalizedAccordionIt
         CoerceClassProperty(classDeclaration, 'method', {
           scope: Scope.Protected,
           hasOverrideKeyword: true,
-          initializer: `inject(${ OperationIdToClassName(operationId) })`,
+          initializer: `inject(${ OperationIdToRemoteMethodClassName(operationId) })`,
           isReadonly: true,
         });
       },

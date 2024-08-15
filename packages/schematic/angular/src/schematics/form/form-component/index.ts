@@ -16,13 +16,15 @@ import {
   buildOperationId,
   CoerceFormComponentProviderRule,
   CoerceFormSubmitOperation,
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
 import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
+import {
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
+} from '@rxap/ts-morph';
 import {
   dasherize,
   Normalized,
@@ -153,7 +155,7 @@ function formSubmitProviderRule(normalizedOptions: NormalizedFormComponentOption
         provide: 'RXAP_FORM_SUBMIT_METHOD',
         useFactory: 'SubmitContextFormAdapterFactory',
         deps: [
-          OperationIdToClassName(submitOperationId),
+          OperationIdToRemoteMethodClassName(submitOperationId),
           '[ new Optional(), RXAP_FORM_CONTEXT ]',
         ],
       },
@@ -171,8 +173,8 @@ function formSubmitProviderRule(normalizedOptions: NormalizedFormComponentOption
           namedImports: [ 'Optional' ],
         },
         {
-          moduleSpecifier: OperationIdToClassImportPath(submitOperationId, scope),
-          namedImports: [ OperationIdToClassName(submitOperationId) ],
+          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(submitOperationId, scope),
+          namedImports: [ OperationIdToRemoteMethodClassName(submitOperationId) ],
         },
       ],
     }),

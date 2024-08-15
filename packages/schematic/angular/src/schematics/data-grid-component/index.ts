@@ -15,8 +15,6 @@ import {
   CoerceFormProvidersFile,
   CoerceGetDataGridOperation,
   CoerceSubmitDataGridOperation,
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
 import {
   classify,
@@ -29,6 +27,8 @@ import {
   CoerceComponentInput,
   CoerceImports,
   CoercePropertyDeclaration,
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
   OperationIdToRequestBodyClassImportPath,
   OperationIdToRequestBodyClassName,
   OperationIdToResponseClassImportPath,
@@ -236,7 +236,7 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
         provide: 'RXAP_FORM_SUBMIT_METHOD',
         useFactory: 'SubmitContextFormAdapterFactory',
         deps: [
-          OperationIdToClassName(submitOperationId),
+          OperationIdToRemoteMethodClassName(submitOperationId),
           '[ new Optional(), RXAP_FORM_CONTEXT ]',
         ],
       },
@@ -257,9 +257,9 @@ function nestjsFormModeRule(normalizedOptions: NormalizedDataGridComponentOption
           moduleSpecifier: '@rxap/form-system',
         },
         {
-          namedImports: [ OperationIdToClassName(submitOperationId) ],
+          namedImports: [ OperationIdToRemoteMethodClassName(submitOperationId) ],
           moduleSpecifier:
-            OperationIdToClassImportPath(submitOperationId, scope),
+            OperationIdToClassRemoteMethodImportPath(submitOperationId, scope),
         },
       ],
     }),
@@ -392,8 +392,8 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
             OperationIdToResponseClassImportPath(getOperationId, scope),
         });
         CoerceImports(sourceFile, {
-          namedImports: [ OperationIdToClassName(getOperationId) ],
-          moduleSpecifier: OperationIdToClassImportPath(getOperationId, scope),
+          namedImports: [ OperationIdToRemoteMethodClassName(getOperationId) ],
+          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(getOperationId, scope),
         });
         CoerceImports(sourceFile, {
           namedImports: [ 'DataGridDataSource' ],
@@ -404,7 +404,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedDataGridComponentOptions
           scope: Scope.Protected,
           isReadonly: true,
           hasOverrideKeyword: true,
-          initializer: `inject(${OperationIdToClassName(getOperationId)})`,
+          initializer: `inject(${OperationIdToRemoteMethodClassName(getOperationId)})`,
         });
         CoerceImports(sourceFile, {
           namedImports: [ 'inject' ],

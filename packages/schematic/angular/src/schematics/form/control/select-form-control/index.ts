@@ -13,8 +13,6 @@ import {
   CoerceOptionsDataSourceRule,
   CoerceOptionsOperationRule,
   EnforceUseFormControlOrderRule,
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
 } from '@rxap/schematics-ts-morph';
 import {
   classify,
@@ -23,6 +21,8 @@ import {
 import {
   CoerceDecorator,
   CoerceImports,
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
 } from '@rxap/ts-morph';
 import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
@@ -319,12 +319,12 @@ function nestJsBackendOptionsRule(normalizedOptions: NormalizedSelectFormControl
 
         CoerceDecorator(propertyDeclaration, 'UseOptionsMethod', {
           arguments: [
-            OperationIdToClassName(optionsOperationId),
+            OperationIdToRemoteMethodClassName(optionsOperationId),
           ],
         });
         CoerceImports(sourceFile, {
-          namedImports: [ OperationIdToClassName(optionsOperationId) ],
-          moduleSpecifier: OperationIdToClassImportPath(optionsOperationId, scope),
+          namedImports: [ OperationIdToRemoteMethodClassName(optionsOperationId) ],
+          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(optionsOperationId, scope),
         });
         CoerceImports(sourceFile, {
           namedImports: [ 'UseOptionsMethod' ],

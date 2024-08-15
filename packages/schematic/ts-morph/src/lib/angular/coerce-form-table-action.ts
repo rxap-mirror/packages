@@ -1,10 +1,13 @@
 import { classify } from '@rxap/schematics-utilities';
 import {
   CoerceDependencyInjection,
+  CoerceImports,
   CoerceMappingClassMethod,
   Module,
+  OperationIdToClassRemoteMethodImportPath,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
+  OperationIdToRemoteMethodClassName,
   OperationIdToRequestBodyClassImportPath,
   OperationIdToRequestBodyClassName,
   OperationIdToResponseClassImportPath,
@@ -20,11 +23,6 @@ import {
   StatementStructures,
   WriterFunction,
 } from 'ts-morph';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../nest/operation-id-utilities';
-import { CoerceImports } from '@rxap/ts-morph';
 import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
@@ -85,8 +83,8 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
       });
       if (loadFrom?.operationId) {
         CoerceImports(sourceFile, {
-          moduleSpecifier: OperationIdToClassImportPath(loadFrom.operationId, loadFrom.scope ?? scope),
-          namedImports: [ OperationIdToClassName(loadFrom.operationId) ],
+          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(loadFrom.operationId, loadFrom.scope ?? scope),
+          namedImports: [ OperationIdToRemoteMethodClassName(loadFrom.operationId) ],
         });
         if (formInitial) {
           CoerceImports(sourceFile, {
@@ -117,7 +115,7 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
       });
       if (loadFrom?.operationId) {
         CoerceDependencyInjection(sourceFile, {
-          injectionToken: OperationIdToClassName(loadFrom.operationId),
+          injectionToken: OperationIdToRemoteMethodClassName(loadFrom.operationId),
           parameterName: 'getInitial',
           scope: Scope.Private,
           module: Module.ANGULAR,

@@ -2,16 +2,14 @@ import { CoerceSuffix } from '@rxap/schematics-utilities';
 import {
   CoerceClassConstructor,
   CoerceImports,
+  OperationIdToClassRemoteMethodImportPath,
+  OperationIdToRemoteMethodClassName,
 } from '@rxap/ts-morph';
 import {
   ClassDeclaration,
   Project,
   SourceFile,
 } from 'ts-morph';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../nest/operation-id-utilities';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
@@ -57,11 +55,11 @@ export function CoerceTableDataSourceRule(options: Readonly<CoerceTableDataSourc
       });
 
       const propertyDeclaration = CoerceParameterDeclaration(constructorDeclaration, 'getByFilter').set({
-        type: OperationIdToClassName(operationId),
+        type: OperationIdToRemoteMethodClassName(operationId),
       });
 
       CoerceDecorator(propertyDeclaration, 'Inject').set({
-        arguments: [ OperationIdToClassName(operationId) ],
+        arguments: [ OperationIdToRemoteMethodClassName(operationId) ],
       });
 
       CoerceImports(sourceFile, [
@@ -70,8 +68,8 @@ export function CoerceTableDataSourceRule(options: Readonly<CoerceTableDataSourc
           namedImports: [ 'Inject' ],
         },
         {
-          moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
-          namedImports: [ OperationIdToClassName(operationId) ],
+          moduleSpecifier: OperationIdToClassRemoteMethodImportPath(operationId, scope),
+          namedImports: [ OperationIdToRemoteMethodClassName(operationId) ],
         },
         {
           moduleSpecifier: '@rxap/open-api/remote-method',
