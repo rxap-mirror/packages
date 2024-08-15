@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/preset-angular@19.0.5-dev.4...@rxap/preset-angular@19.0.5-dev.5) (2024-08-15)
+
+### Bug Fixes
+
+- add utility and shared projects ([1d952d1](https://gitlab.com/rxap/packages/commit/1d952d18c6697417938c941f771bdc18a42a94e8))
+
 ## [19.0.5-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/preset-angular@19.0.5-dev.3...@rxap/preset-angular@19.0.5-dev.4) (2024-08-15)
 
 **Note:** Version bump only for package @rxap/preset-angular
