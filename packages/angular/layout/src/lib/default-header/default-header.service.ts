@@ -9,20 +9,29 @@ import {
   isDevMode,
   signal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { from } from 'rxjs';
 import { RXAP_DEFAULT_HEADER_ITEM_COMPONENT } from '../tokens';
-import { coerceArray } from '@rxap/utilities';
+import {
+  coerceArray,
+  IsFunction,
+} from '@rxap/utilities';
 
 @Injectable()
 export class DefaultHeaderService {
 
-  private readonly components = coerceArray(inject(RXAP_DEFAULT_HEADER_ITEM_COMPONENT, { optional: true }));
+  private readonly components = toSignal(from(Promise.all(coerceArray(inject(RXAP_DEFAULT_HEADER_ITEM_COMPONENT, { optional: true }))
+    .map(item => IsFunction(item) ? item() : item))), { initialValue: [] });
+
+  private readonly injectedPortals = computed(() => this.components().map(component => new ComponentPortal(component)));
+  private readonly methodPortals = signal<Portal<unknown>[]>([]);
 
   /**
    * Represents an array of `Portal` objects with unknown type.
    *
    * @typedef {Array<Portal<unknown>>} SignalPortals
    */
-  public readonly portals = signal<Array<Portal<unknown>>>(this.components.map(component => new ComponentPortal(component)));
+  public readonly portals = computed(() => [ ...this.injectedPortals(), ...this.methodPortals() ]);
 
 
   /**
@@ -41,8 +50,8 @@ export class DefaultHeaderService {
    * @return {void}
    */
   public pushPortal(portal: Portal<unknown>) {
-    if (!this.portals().includes(portal)) {
-      this.portals.update(portals => [ ...portals, portal ]);
+    if (!this.methodPortals().includes(portal)) {
+      this.methodPortals.update(portals => [ ...portals, portal ]);
     } else {
       if (isDevMode()) {
         console.warn('Can not add the same portal multiple times');
@@ -57,9 +66,9 @@ export class DefaultHeaderService {
    * @return {void}
    */
   public removePortal(portal: Portal<unknown>) {
-    const index = this.portals().indexOf(portal);
+    const index = this.methodPortals().indexOf(portal);
     if (index !== -1) {
-      this.portals.update(portals => {
+      this.methodPortals.update(portals => {
         portals.splice(index, 1);
         return portals.slice();
       });

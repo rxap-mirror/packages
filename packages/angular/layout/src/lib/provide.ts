@@ -74,7 +74,7 @@ export function withNavigationInserts(inserts: Record<string, NavigationWithInse
   }];
 }
 
-export function withSettingsMenuItems(...items: Array<SettingsMenuItemComponent | SettingsMenuItem>): Provider[] {
+export function withSettingsMenuItems(...items: Array<SettingsMenuItemComponent | (() => Promise<SettingsMenuItemComponent> | SettingsMenuItemComponent) | SettingsMenuItem>): Provider[] {
   return [
     ...items.filter((item): item is SettingsMenuItemComponent => typeof item === 'function').map(component => (
       {
@@ -93,7 +93,7 @@ export function withSettingsMenuItems(...items: Array<SettingsMenuItemComponent 
   ];
 }
 
-export function withDefaultHeaderItems(...items: Array<DefaultHeaderItemComponent>): Provider[] {
+export function withDefaultHeaderItems(...items: Array<DefaultHeaderItemComponent | (() => Promise<DefaultHeaderItemComponent> | DefaultHeaderItemComponent)>): Provider[] {
   return items.map(component => ({
     provide: RXAP_DEFAULT_HEADER_ITEM_COMPONENT,
     useValue: component,

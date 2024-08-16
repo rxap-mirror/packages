@@ -8,6 +8,7 @@ import {
 } from '@rxap/pattern';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
+  DefaultHeaderItemComponent,
   ExternalApp,
   ExtractUsernameFromProfileFn,
   ReleaseInfoModule,
@@ -45,8 +46,8 @@ export const RXAP_EXTERNAL_APP = new InjectionToken<ExternalApp>('rxap/layout/ex
 
 export const RXAP_RELEASE_INFO_MODULE = new InjectionToken<ReleaseInfoModule>('rxap/layout/release-info-module');
 
-export const RXAP_SETTINGS_MENU_ITEM_COMPONENT = new InjectionToken<SettingsMenuItemComponent>('rxap/layout/settings-menu-item-component');
+export const RXAP_SETTINGS_MENU_ITEM_COMPONENT = new InjectionToken<Array<SettingsMenuItemComponent | (() => Promise<SettingsMenuItemComponent>)>>('rxap/layout/settings-menu-item-component');
 
-export const RXAP_DEFAULT_HEADER_ITEM_COMPONENT = new InjectionToken<ComponentType<unknown>>('rxap/layout/default-header-item-component');
+export const RXAP_DEFAULT_HEADER_ITEM_COMPONENT = new InjectionToken<Array<DefaultHeaderItemComponent | (() => Promise<DefaultHeaderItemComponent>)>>('rxap/layout/default-header-item-component');
 
 export const RXAP_SETTINGS_MENU_ITEM = new InjectionToken<SettingsMenuItem>('rxap/layout/settings-menu-item');

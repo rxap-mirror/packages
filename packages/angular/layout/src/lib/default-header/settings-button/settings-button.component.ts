@@ -9,8 +9,10 @@ import {
   Injector,
   isDevMode,
   runInInjectionContext,
+  Signal,
   signal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import {
@@ -24,8 +26,11 @@ import {
 } from '@rxap/ngx-theme';
 import {
   coerceArray,
+  IsFunction,
   ThemeDensity,
 } from '@rxap/utilities';
+import { from } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {
   RXAP_SETTINGS_MENU_ITEM,
   RXAP_SETTINGS_MENU_ITEM_COMPONENT,
@@ -55,10 +60,10 @@ export class SettingsButtonComponent {
   public readonly theme = inject(ThemeService);
   private readonly injector = inject(Injector);
 
-  customItemComponents = signal(
+  customItemComponents: Signal<ComponentPortal<unknown>[]> = toSignal(from(Promise.all(
     coerceArray(inject(RXAP_SETTINGS_MENU_ITEM_COMPONENT, { optional: true }))
-      .map(item => new ComponentPortal(item, null, this.injector)),
-  );
+      .map(item => IsFunction(item) ? item() : item),
+  )).pipe(map(items => items.map(item => new ComponentPortal(item, null, this.injector)))), { initialValue: [] });
 
   customItems = signal(coerceArray(inject(RXAP_SETTINGS_MENU_ITEM, { optional: true })));
 
