@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.3.0-dev.1...@rxap/layout@18.3.0-dev.2) (2024-08-16)
+
+### Features
+
+- support lazy component imports ([c308e32](https://gitlab.com/rxap/packages/commit/c308e328bc99f08b34811fbf0ecb91abcdd5a3d0))
+
 # [18.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.3.0-dev.0...@rxap/layout@18.3.0-dev.1) (2024-08-15)
 
 **Note:** Version bump only for package @rxap/layout
