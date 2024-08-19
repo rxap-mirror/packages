@@ -61,8 +61,12 @@ export abstract class FormArrayItemButton implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     if (this.parent.control instanceof RxapFormGroup) {
       this.formGroup = this.parent.control;
-      if (this.formGroup.controls.deleted instanceof RxapFormControl) {
-        this.deletedControl = this.formGroup.controls.deleted;
+      if (this.formGroup.controls.deleted) {
+        if (this.formGroup.controls.deleted instanceof RxapFormControl) {
+          this.deletedControl = this.formGroup.controls.deleted;
+        } else {
+          throw new Error(`The parent FormGroup instance does have a 'deleted' control, but it is not a RxapFormControl instance`);
+        }
       } else {
         this.deletedControl = new RxapFormControl(false, { controlId: 'deleted' });
         this.formGroup.addControl('deleted', this.deletedControl);

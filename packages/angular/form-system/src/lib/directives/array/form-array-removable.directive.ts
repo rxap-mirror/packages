@@ -24,7 +24,7 @@ import {
 })
 export class FormArrayRemovableDirective implements AfterViewInit, OnDestroy {
 
-  protected control!: RxapFormGroup<{ deleted: boolean }>;
+  protected formGroup!: RxapFormGroup<{ deleted: boolean }>;
 
   protected deletedControl!: RxapFormControl<boolean>;
   private _deletedControlValueSubscription?: Subscription;
@@ -37,18 +37,23 @@ export class FormArrayRemovableDirective implements AfterViewInit, OnDestroy {
   }
 
   protected get isDisabled(): boolean {
-    return !!this.control?.parent?.disabled;
+    return !!this.formGroup?.parent?.disabled;
   }
 
   ngAfterViewInit() {
     if (this.parent.control instanceof RxapFormGroup) {
-      this.control = this.parent.control;
-      if (this.control.controls.deleted instanceof RxapFormControl) {
-        this.deletedControl = this.control.controls.deleted;
+      this.formGroup = this.parent.control;
+      if (this.formGroup.controls.deleted) {
+        if (this.formGroup.controls.deleted instanceof RxapFormControl) {
+          this.deletedControl = this.formGroup.controls.deleted;
+        } else {
+          throw new Error(`The parent FormGroup instance does have a 'deleted' control, but it is not a RxapFormControl instance`);
+        }
       } else {
-        throw new Error(`The parent FormGroup instance does not have a 'deleted' control`);
+        this.deletedControl = new RxapFormControl(false, { controlId: 'deleted' });
+        this.formGroup.addControl('deleted', this.deletedControl);
       }
-      if (!(this.control.parent instanceof UntypedFormArray)) {
+      if (!(this.formGroup.parent instanceof UntypedFormArray)) {
         throw new Error(`The parent of the FormGroup is not a FormArray instance`);
       }
     } else {
@@ -56,7 +61,7 @@ export class FormArrayRemovableDirective implements AfterViewInit, OnDestroy {
     }
     this._deletedControlValueSubscription = this.deletedControl.value$.pipe(
       tap((isDeleted) => {
-        for (const [ name, control ] of Object.entries(this.control.controls)) {
+        for (const [ name, control ] of Object.entries(this.formGroup.controls)) {
           if (name !== 'deleted') {
             if (isDeleted) {
               control.disable({ onlySelf: true });
