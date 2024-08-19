@@ -127,6 +127,9 @@ exports[`init should init default workspace 3`] = `
         "{workspaceRoot}/.eslintignore",
         "{workspaceRoot}/eslint.config.js"
       ],
+      "options": {
+        "quiet": true
+      },
       "cache": true
     },
     "test": {

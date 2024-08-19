@@ -170,6 +170,9 @@ exports[`preset should use angular preset 3`] = `
         "{workspaceRoot}/.eslintignore",
         "{workspaceRoot}/eslint.config.js"
       ],
+      "options": {
+        "quiet": true
+      },
       "cache": true
     },
     "test": {
