@@ -21,6 +21,10 @@ services:
 
       - OAUTH2_PROXY_SHOW_DEBUG_ON_ERROR=true
       - OAUTH2_PROXY_HTTP_ADDRESS=0.0.0.0:4180
+      - OAUTH2_PROXY_SKIP_PROVIDER_BUTTON=true
+      - OAUTH2_PROXY_COOKIE_CSRF_PER_REQUEST=true
+      - OAUTH2_PROXY_SESSION_STORE_TYPE=redis
+      - OAUTH2_PROXY_REDIS_CONNECTION_URL=redis://redis
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.oauth2-proxy.loadbalancer.server.port=4180"
@@ -32,3 +36,6 @@ services:
       - "traefik.http.middlewares.oauth-signin.errors.query=/oauth2/sign_in"
       - "traefik.http.routers.oauth2-proxy.rule=PathPrefix(`/oauth2`)"
       - "traefik.http.routers.oauth2-proxy.priority=99999"
+  redis:
+    image: redis:7.0.2-alpine3.16
+    restart: unless-stopped
