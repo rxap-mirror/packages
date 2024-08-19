@@ -19,6 +19,7 @@ export function coerceLocalazyConfigFile(tree: Tree, project: ProjectConfigurati
       files: 'src/i18n/messages.xlf',
     },
     download: {
+      includeSourceLang: true,
       files: 'src/i18n/${languageCode}.xlf',
     },
   }, null, 2));
