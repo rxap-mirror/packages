@@ -8867,7 +8867,7 @@ __metadata:
     "@angular/cdk": ^18.0.6
     "@angular/core": ^18.0.6
     "@rxap/directives": ^18.0.5
-    "@rxap/form-system": ^18.1.2
+    "@rxap/form-system": ^18.1.3-dev.0
     "@rxap/forms": ^18.1.0
     "@rxap/pattern": ^1.1.7
     "@rxap/reflect-metadata": ^1.0.9
@@ -9046,7 +9046,7 @@ __metadata:
     "@angular/forms": ^18.0.6
     "@angular/material": ^18.0.6
     "@angular/router": ^18.0.6
-    "@rxap/form-system": ^18.1.2
+    "@rxap/form-system": ^18.1.3-dev.0
     "@rxap/forms": ^18.1.0
     "@rxap/mixin": ^16.0.8
     "@rxap/reflect-metadata": ^1.0.9
@@ -9094,7 +9094,7 @@ __metadata:
     "@angular/core": ^18.0.6
     "@angular/material": ^18.0.6
     "@rxap/data-source": ^18.1.3
-    "@rxap/form-system": ^18.1.2
+    "@rxap/form-system": ^18.1.3-dev.0
     "@rxap/forms": ^18.1.0
     "@rxap/material-table-system": ^18.0.6
     "@rxap/mixin": ^16.0.8
@@ -9514,7 +9514,7 @@ __metadata:
     "@angular/forms": ^18.0.6
     "@angular/material": ^18.0.6
     "@rxap/data-source": ^18.1.3
-    "@rxap/form-system": ^18.1.2
+    "@rxap/form-system": ^18.1.3-dev.0
     "@rxap/forms": ^18.1.0
     "@rxap/material-directives": ^18.1.0
     "@rxap/material-form-system": ^18.0.5
@@ -9733,13 +9733,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-angular@^19.3.3-dev.5, @rxap/plugin-angular@workspace:packages/plugin/angular":
+"@rxap/plugin-angular@^19.3.3-dev.6, @rxap/plugin-angular@workspace:packages/plugin/angular":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-angular@workspace:packages/plugin/angular"
   dependencies:
     "@nx/angular": 19.4.2
     "@nx/devkit": 19.4.2
-    "@rxap/plugin-application": ^19.1.1
+    "@rxap/plugin-application": ^19.1.2-dev.0
     "@rxap/plugin-library": ^19.4.1-dev.3
     "@rxap/plugin-localazy": ^19.0.5
     "@rxap/plugin-utilities": ^19.0.6
@@ -9756,7 +9756,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-application@^19.1.1, @rxap/plugin-application@workspace:packages/plugin/application":
+"@rxap/plugin-application@^19.1.2-dev.0, @rxap/plugin-application@workspace:packages/plugin/application":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-application@workspace:packages/plugin/application"
   dependencies:
@@ -9788,7 +9788,7 @@ __metadata:
   dependencies:
     "@nx/angular": 19.4.2
     "@nx/devkit": 19.4.2
-    "@rxap/plugin-angular": ^19.3.3-dev.5
+    "@rxap/plugin-angular": ^19.3.3-dev.6
     "@rxap/ts-morph": ^1.5.0-dev.0
     "@rxap/utilities": ^16.3.0
     "@rxap/workspace-ts-morph": ^19.1.4-dev.2
@@ -9880,9 +9880,9 @@ __metadata:
     "@nx/js": 19.4.2
     "@nx/nest": 19.4.2
     "@rxap/node-utilities": ^1.3.3
-    "@rxap/plugin-application": ^19.1.1
+    "@rxap/plugin-application": ^19.1.2-dev.0
     "@rxap/plugin-library": ^19.4.1-dev.3
-    "@rxap/plugin-open-api": ^19.1.5-dev.3
+    "@rxap/plugin-open-api": ^19.1.5-dev.4
     "@rxap/plugin-utilities": ^19.0.6
     "@rxap/ts-morph": ^1.5.0-dev.0
     "@rxap/utilities": ^16.3.0
@@ -9895,7 +9895,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-open-api@^19.1.5-dev.3, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
+"@rxap/plugin-open-api@^19.1.5-dev.4, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
   dependencies:
@@ -9965,7 +9965,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-workspace@^19.1.5-dev.0, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
+"@rxap/plugin-workspace@^19.1.5-dev.1, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
   dependencies:
@@ -9985,8 +9985,8 @@ __metadata:
   resolution: "@rxap/preset-angular@workspace:packages/preset/angular"
   dependencies:
     "@nx/devkit": 19.4.2
-    "@rxap/plugin-angular": ^19.3.3-dev.5
-    "@rxap/plugin-workspace": ^19.1.5-dev.0
+    "@rxap/plugin-angular": ^19.3.3-dev.6
+    "@rxap/plugin-workspace": ^19.1.5-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9996,7 +9996,7 @@ __metadata:
   resolution: "@rxap/preset-workspace@workspace:packages/preset/workspace"
   dependencies:
     "@nx/devkit": 19.4.2
-    "@rxap/plugin-workspace": ^19.1.5-dev.0
+    "@rxap/plugin-workspace": ^19.1.5-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft

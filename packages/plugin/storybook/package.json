@@ -1,5 +1,5 @@
 {
-  "version": "19.0.6-dev.4",
+  "version": "19.0.6-dev.5",
   "name": "@rxap/plugin-storybook",
   "license": "MIT",
   "dependencies": {

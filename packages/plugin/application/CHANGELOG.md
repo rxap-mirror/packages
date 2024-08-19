@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.1.1...@rxap/plugin-application@19.1.2-dev.0) (2024-08-19)
+
+### Bug Fixes
+
+- add missing defaults ([1b32086](https://gitlab.com/rxap/packages/commit/1b32086657092fb0ae48f2791e51858fcb7429cc))
+
 ## [19.1.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.1.1-dev.8...@rxap/plugin-application@19.1.1) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/plugin-application

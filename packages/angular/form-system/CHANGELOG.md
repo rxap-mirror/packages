@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.1.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.1.2...@rxap/form-system@18.1.3-dev.0) (2024-08-19)
+
+### Bug Fixes
+
+- add shouldTemporarilyDeleted input ([9c955c0](https://gitlab.com/rxap/packages/commit/9c955c09002831e7dffb81e4f28de6a57b2843d8))
+- correctly access and add the delete control ([f420ff8](https://gitlab.com/rxap/packages/commit/f420ff8667fb31a9897a4a7fc159bf90ff5a8613))
+
 ## [18.1.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.1.2-dev.1...@rxap/form-system@18.1.2) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/form-system

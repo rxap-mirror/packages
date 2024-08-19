@@ -1,11 +1,11 @@
 {
-  "version": "19.3.3-dev.5",
+  "version": "19.3.3-dev.6",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/angular": "19.4.2",
     "@nx/devkit": "19.4.2",
-    "@rxap/plugin-application": "^19.1.1",
+    "@rxap/plugin-application": "^19.1.2-dev.0",
     "@rxap/plugin-library": "^19.4.1-dev.3",
     "@rxap/plugin-localazy": "^19.0.5",
     "@rxap/plugin-utilities": "^19.0.6",

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.3.3-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.3-dev.5...@rxap/plugin-angular@19.3.3-dev.6) (2024-08-19)
+
+### Bug Fixes
+
+- add missing defaults ([20dad23](https://gitlab.com/rxap/packages/commit/20dad237a4640894ee0c992c9e2f998a2a837991))
+- ensure localize down is executed before build ([c840e59](https://gitlab.com/rxap/packages/commit/c840e59b118488903c0485365d8588a513810e37))
+
 ## [19.3.3-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.3-dev.4...@rxap/plugin-angular@19.3.3-dev.5) (2024-08-15)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.5-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.5-dev.0...@rxap/plugin-workspace@19.1.5-dev.1) (2024-08-19)
+
+### Bug Fixes
+
+- set lint to quiet by default ([0c734ac](https://gitlab.com/rxap/packages/commit/0c734ac10f807f1a33bb1d9a403807262837e38e))
+
 ## [19.1.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.4...@rxap/plugin-workspace@19.1.5-dev.0) (2024-08-15)
 
 ### Bug Fixes
