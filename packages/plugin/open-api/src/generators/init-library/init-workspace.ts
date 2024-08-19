@@ -5,6 +5,7 @@ import {
 } from '@nx/devkit';
 import { LibraryInitWorkspace } from '@rxap/plugin-library';
 import {
+  CoerceIgnorePattern,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
 } from '@rxap/workspace-utilities';
@@ -20,6 +21,7 @@ export function initWorkspace(tree: Tree, options: InitLibraryGeneratorSchema) {
     throw new Error('No nx.json found');
   }
 
+  CoerceIgnorePattern(tree, '.nxignore', [ '!swagger/**/openapi.json' ]);
   CoerceNxJsonCacheableOperation(nxJson, 'generate-open-api');
   CoerceTarget(nxJson, 'generate-open-api', {
     executor: '@rxap/plugin-library:run-generator',

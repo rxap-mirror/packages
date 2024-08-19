@@ -3,7 +3,6 @@ import {
   Tree,
 } from '@nx/devkit';
 import { LibraryInitProject } from '@rxap/plugin-library';
-import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceFile,
   CoerceIgnorePattern,
@@ -99,6 +98,9 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   CoerceTarget(project, 'build', {
     executor: "@nx/js:tsc",
     outputs: [ "{options.outputPath}"],
+    dependsOn: [
+      'generate-open-api',
+    ],
     options: {
       outputPath: `dist/${projectRoot}`,
       main: `${projectSourceRoot}/index.ts`,
@@ -114,25 +116,6 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
         `${projectSourceRoot}/lib/request-bodies/index.ts`,
         `${projectSourceRoot}/lib/responses/index.ts`,
       ],
-    }
-  }, Strategy.OVERWRITE);
-
-  CoerceTarget(project, 'index-export', {
-    outputs: [
-      `{projectRoot}/src/index.ts`,
-      `{projectRoot}/src/lib/commands/index.ts`,
-      `{projectRoot}/src/lib/components/index.ts`,
-      // `{projectRoot}/src/lib/data-sources/index.ts`,
-      // `{projectRoot}/src/lib/directives/index.ts`,
-      `{projectRoot}/src/lib/parameters/index.ts`,
-      `{projectRoot}/src/lib/remote-methods/index.ts`,
-      `{projectRoot}/src/lib/request-bodies/index.ts`,
-      `{projectRoot}/src/lib/responses/index.ts`,
-    ],
-    options: {
-      options: {
-        generateRootExport: false
-      }
     }
   }, Strategy.OVERWRITE);
 

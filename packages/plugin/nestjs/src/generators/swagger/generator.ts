@@ -189,7 +189,7 @@ export async function swaggerGenerator(
   }
   updateProjectConfiguration(tree, options.project, project);
 
-  CoerceIgnorePattern(tree, '.nxignore', [ '!/swagger/**' ]);
+  CoerceIgnorePattern(tree, '.nxignore', [ '!swagger/**/openapi.json' ]);
   CoerceIgnorePattern(tree, '.gitignore', [ 'swagger/**' ]);
 
   await AddPackageJsonDependency(tree, 'swagger-ui-express', 'latest', { soft: true });
