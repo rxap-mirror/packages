@@ -44,8 +44,8 @@ export async function coerceProjectTarget(
     CoerceArrayItems(project.targets['build-storybook'].options.styles, ['shared/angular/styles/_index.scss']);
   }
   if (IsApplicationProject(project)) {
-    project.targets['build-storybook'].options.browserTarget = `${projectName}:build`;
-    project.targets['storybook'].options.browserTarget = `${projectName}:build`;
+    project.targets['build-storybook'].options.browserTarget = `${projectName}:build:development`;
+    project.targets['storybook'].options.browserTarget = `${projectName}:build:development`;
   }
 
 }
