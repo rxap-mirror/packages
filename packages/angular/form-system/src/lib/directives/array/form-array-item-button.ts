@@ -14,6 +14,7 @@ import {
 } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import {
+  RxapFormArray,
   RxapFormControl,
   RxapFormGroup,
 } from '@rxap/forms';
@@ -29,6 +30,7 @@ export abstract class FormArrayItemButton implements AfterViewInit, OnDestroy {
   @HostBinding('type')
   type = 'button';
   protected formGroup!: RxapFormGroup<{ deleted: boolean }>;
+  protected formArray!: RxapFormArray;
   protected deletedControl!: RxapFormControl<boolean>;
   private _controlDisabledSubscription?: Subscription;
   private _deletedControlValueSubscription?: Subscription;
@@ -51,7 +53,7 @@ export abstract class FormArrayItemButton implements AfterViewInit, OnDestroy {
   }
 
   get index(): number {
-    return (this.formGroup.parent as UntypedFormArray).controls.findIndex(control => control === this.formGroup);
+    return this.formArray.controls.findIndex(control => control === this.formGroup);
   }
 
   protected get isDisabled(): boolean {
@@ -71,8 +73,10 @@ export abstract class FormArrayItemButton implements AfterViewInit, OnDestroy {
         this.deletedControl = new RxapFormControl(false, { controlId: 'deleted' });
         this.formGroup.addControl('deleted', this.deletedControl);
       }
-      if (!(this.formGroup.parent instanceof UntypedFormArray)) {
-        throw new Error(`The parent of the FormGroup is not a FormArray instance`);
+      if (this.formGroup.parent instanceof RxapFormArray) {
+        this.formArray = this.formGroup.parent;
+      } else {
+        throw new Error(`The parent of the FormGroup is not a RxapFormArray instance`);
       }
     } else {
       throw new Error(`The parent is not a form group instance`);
