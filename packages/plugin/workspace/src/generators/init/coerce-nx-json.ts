@@ -81,11 +81,17 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   CoerceNxJsonCacheableOperation(nxJson, 'generate-package-json');
   CoerceNxJsonCacheableOperation(nxJson, 'generate-open-api');
 
-  CoerceTargetDefaultsInput(nxJson, '@nx/eslint:lint', 'default',
-    '{workspaceRoot}/.eslintrc.json',
-    '{workspaceRoot}/.eslintignore',
-    '{workspaceRoot}/eslint.config.js',
-  );
+  CoerceTarget(nxJson, '@nx/eslint:lint', {
+    inputs: [
+      'default',
+      '{workspaceRoot}/.eslintrc.json',
+      '{workspaceRoot}/.eslintignore',
+      '{workspaceRoot}/eslint.config.js',
+    ],
+    options: {
+      quiet: true
+    }
+  }, Strategy.OVERWRITE);
 
   CoerceTarget(nxJson, 'test', {
     'executor': '@nx/jest:jest',
