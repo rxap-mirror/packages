@@ -22,7 +22,6 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
   }
 
   if (options.localazy) {
-    CoerceTargetDefaultsDependency(nxJson, 'build', 'localazy-download');
     CoerceTargetDefaultsDependency(nxJson, 'localazy-upload', 'extract-i18n');
     CoerceTargetDefaultsInput(
       nxJson,
@@ -47,12 +46,12 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
 
   CoerceTargetDefaults(nxJson, '@angular-devkit/build-angular:browser', {
     cache: true,
-    dependsOn: [ '^index-export', 'index-export', '^build' ],
+    dependsOn: [ '^index-export', 'index-export', '^build', 'localazy-download' ],
     inputs: [ 'production', '^production' ],
   }, Strategy.MERGE);
 
   CoerceTargetDefaults(nxJson, '@nx/angular:webpack-browser', {
-    dependsOn: [ '^index-export', 'index-export', '^build' ],
+    dependsOn: [ '^index-export', 'index-export', '^build', 'localazy-download' ],
     inputs: [
       'production',
       '^production',
