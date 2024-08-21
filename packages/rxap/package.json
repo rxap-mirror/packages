@@ -546,15 +546,15 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.1.5-dev.1"
+        "version": "19.1.5-dev.2"
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.5-dev.6"
+        "version": "19.0.5-dev.7"
       },
       {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.6-dev.1"
+        "version": "19.0.6-dev.2"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -570,31 +570,31 @@
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.2.5-dev.4"
+        "version": "18.2.5-dev.5"
       },
       {
         "package": "@rxap/schematic-composer",
-        "version": "18.0.6-dev.3"
+        "version": "18.0.6-dev.4"
       },
       {
         "package": "@rxap/schematic-nestjs",
-        "version": "18.0.6-dev.3"
+        "version": "18.0.6-dev.4"
       },
       {
         "package": "@rxap/schematics-open-api",
-        "version": "18.0.6-dev.3"
+        "version": "18.0.6-dev.4"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.2.0-dev.1"
+        "version": "18.2.0-dev.2"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "18.0.5"
+        "version": "18.0.6-dev.0"
       },
       {
         "package": "@rxap/schematics-xml-parser",
-        "version": "18.0.6-dev.3"
+        "version": "18.0.6-dev.4"
       },
       {
         "package": "@rxap/service-worker",
