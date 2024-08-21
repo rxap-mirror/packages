@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.5-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.5-dev.1...@rxap/plugin-workspace@19.1.5-dev.2) (2024-08-21)
+
+### Bug Fixes
+
+- ignore data source storage ([d00fd3a](https://gitlab.com/rxap/packages/commit/d00fd3ab19111bec6aae6921458148bdb484120f))
+
 ## [19.1.5-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.5-dev.0...@rxap/plugin-workspace@19.1.5-dev.1) (2024-08-19)
 
 ### Bug Fixes

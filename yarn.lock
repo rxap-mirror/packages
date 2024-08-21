@@ -9965,7 +9965,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-workspace@^19.1.5-dev.1, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
+"@rxap/plugin-workspace@^19.1.5-dev.2, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
   dependencies:
@@ -9986,7 +9986,7 @@ __metadata:
   dependencies:
     "@nx/devkit": 19.4.2
     "@rxap/plugin-angular": ^19.3.3-dev.6
-    "@rxap/plugin-workspace": ^19.1.5-dev.1
+    "@rxap/plugin-workspace": ^19.1.5-dev.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9996,7 +9996,7 @@ __metadata:
   resolution: "@rxap/preset-workspace@workspace:packages/preset/workspace"
   dependencies:
     "@nx/devkit": 19.4.2
-    "@rxap/plugin-workspace": ^19.1.5-dev.1
+    "@rxap/plugin-workspace": ^19.1.5-dev.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10047,8 +10047,8 @@ __metadata:
     "@angular-devkit/core": 18.0.7
     "@angular-devkit/schematics": 18.0.7
     "@nx/devkit": 19.4.2
-    "@rxap/schematics-ts-morph": ^18.2.0-dev.1
-    "@rxap/schematics-utilities": ^18.0.5
+    "@rxap/schematics-ts-morph": ^18.2.0-dev.2
+    "@rxap/schematics-utilities": ^18.0.6-dev.0
     "@rxap/ts-morph": ^1.5.0-dev.0
     "@rxap/utilities": ^16.3.0
     "@rxap/workspace-ts-morph": ^19.1.4-dev.2
@@ -10066,8 +10066,8 @@ __metadata:
   dependencies:
     "@angular-devkit/schematics": 18.0.7
     "@nx/devkit": 19.4.2
-    "@rxap/schematics-ts-morph": ^18.2.0-dev.1
-    "@rxap/schematics-utilities": ^18.0.5
+    "@rxap/schematics-ts-morph": ^18.2.0-dev.2
+    "@rxap/schematics-utilities": ^18.0.6-dev.0
     "@rxap/utilities": ^16.3.0
     "@rxap/workspace-utilities": ^19.4.0
     colors: 1.4.0
@@ -10083,8 +10083,8 @@ __metadata:
     "@angular-devkit/core": 18.0.7
     "@angular-devkit/schematics": 18.0.7
     "@nx/devkit": 19.4.2
-    "@rxap/schematics-ts-morph": ^18.2.0-dev.1
-    "@rxap/schematics-utilities": ^18.0.5
+    "@rxap/schematics-ts-morph": ^18.2.0-dev.2
+    "@rxap/schematics-utilities": ^18.0.6-dev.0
     "@rxap/ts-morph": ^1.5.0-dev.0
     "@rxap/utilities": ^16.3.0
     "@rxap/workspace-utilities": ^19.4.0
@@ -10102,8 +10102,8 @@ __metadata:
     "@angular-devkit/schematics": 18.0.7
     "@nx/devkit": 19.4.2
     "@rxap/json-schema-to-typescript": ^16.0.8
-    "@rxap/schematics-ts-morph": ^18.2.0-dev.1
-    "@rxap/schematics-utilities": ^18.0.5
+    "@rxap/schematics-ts-morph": ^18.2.0-dev.2
+    "@rxap/schematics-utilities": ^18.0.6-dev.0
     "@rxap/ts-morph": ^1.5.0-dev.0
     "@rxap/utilities": ^16.3.0
     "@rxap/workspace-utilities": ^19.4.0
@@ -10113,14 +10113,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/schematics-ts-morph@^18.2.0-dev.1, @rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph":
+"@rxap/schematics-ts-morph@^18.2.0-dev.2, @rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph"
   dependencies:
     "@angular-devkit/core": 18.0.7
     "@angular-devkit/schematics": 18.0.7
     "@nx/devkit": 19.4.2
-    "@rxap/schematics-utilities": ^18.0.5
+    "@rxap/schematics-utilities": ^18.0.6-dev.0
     "@rxap/ts-morph": ^1.5.0-dev.0
     "@rxap/utilities": ^16.3.0
     "@rxap/workspace-ts-morph": ^19.1.4-dev.2
@@ -10132,7 +10132,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/schematics-utilities@^18.0.5, @rxap/schematics-utilities@workspace:packages/schematic/utilities":
+"@rxap/schematics-utilities@^18.0.6-dev.0, @rxap/schematics-utilities@workspace:packages/schematic/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/schematics-utilities@workspace:packages/schematic/utilities"
   dependencies:
@@ -10151,8 +10151,8 @@ __metadata:
     "@angular-devkit/core": 18.0.7
     "@angular-devkit/schematics": 18.0.7
     "@nx/devkit": 19.4.2
-    "@rxap/schematics-ts-morph": ^18.2.0-dev.1
-    "@rxap/schematics-utilities": ^18.0.5
+    "@rxap/schematics-ts-morph": ^18.2.0-dev.2
+    "@rxap/schematics-utilities": ^18.0.6-dev.0
     "@rxap/xml-parser": ^16.0.8
     ts-morph: 18.0.0
     tslib: 2.6.2

@@ -1,5 +1,5 @@
 {
-  "version": "18.0.5",
+  "version": "18.0.6-dev.0",
   "name": "@rxap/schematics-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
