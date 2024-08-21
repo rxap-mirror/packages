@@ -69,6 +69,7 @@ export const gitIgnore = [
   '.idea/workspace.xml',
   '.idea/httpRequests/',
   '.idea/developer-tools.xml',
+  '.idea/dataSources/*/storage_v2'
 ];
 export const prettierIgnore = [
   'dist',
