@@ -1,5 +1,5 @@
 {
-  "version": "16.3.0",
+  "version": "16.3.1-dev.0",
   "name": "@rxap/utilities",
   "description": "A collection of utility functions, types and interfaces.",
   "license": "GPL-3.0-or-later",

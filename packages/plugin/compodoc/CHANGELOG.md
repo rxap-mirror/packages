@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@19.1.2...@rxap/plugin-compodoc@19.1.3-dev.0) (2024-08-21)
+
+**Note:** Version bump only for package @rxap/plugin-compodoc
+
 ## [19.1.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@19.1.2-dev.8...@rxap/plugin-compodoc@19.1.2) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/plugin-compodoc

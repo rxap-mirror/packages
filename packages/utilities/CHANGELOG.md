@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.3.0...@rxap/utilities@16.3.1-dev.0) (2024-08-21)
+
+### Bug Fixes
+
+- exclude class from function check ([7fa7c11](https://gitlab.com/rxap/packages/commit/7fa7c112d9e09224ef1abc0e448c45b6a40259fb))
+
 # [16.3.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.3.0-dev.2...@rxap/utilities@16.3.0) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/utilities
