@@ -492,6 +492,7 @@ gitlab-ci-setup.sh
 .idea/workspace.xml
 .idea/httpRequests/
 .idea/developer-tools.xml
+.idea/dataSources/*/storage_v2
 "
 `;
 
