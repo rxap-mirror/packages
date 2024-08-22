@@ -1,9 +1,5 @@
 import { provideLayout } from '../provide';
-import {
-  Meta,
-  moduleMetadata,
-  StoryObj,
-} from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BaseLayoutComponent } from './base-layout.component';
 
 const meta: Meta<BaseLayoutComponent> = {
@@ -15,11 +11,9 @@ const meta: Meta<BaseLayoutComponent> = {
   },
   decorators: [
     moduleMetadata({
-      providers: [
-        provideLayout(),
-      ]
+      providers: [provideLayout()],
     }),
-  ]
+  ],
 };
 export default meta;
 type Story = StoryObj<BaseLayoutComponent>;

@@ -107,6 +107,7 @@ export class RxapFormArray<T = any,
   public override readonly valueChanges!: Observable<T[]>;
 
   public readonly value$ = controlValueChanges$<T[]>(this);
+  // @ts-expect-error overwrite the public type
   public override readonly status!: ControlState;
   public readonly disabled$ = controlDisabled$(this);
   public override readonly statusChanges!: Observable<ControlState>;

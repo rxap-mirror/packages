@@ -4,14 +4,14 @@
   "description": "Provides the DataSource concept for RxAP.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.4.2",
+    "@nx/devkit": "19.6.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^18.0.6",
-    "@angular/common": "^18.0.6",
-    "@angular/core": "^18.0.6",
-    "@angular/material": "^18.0.6",
+    "@angular/cdk": "^18.2.0",
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0",
+    "@angular/material": "^18.2.0",
     "@rxap/data-structure-tree": "^1.1.9-dev.0",
     "@rxap/definition": "^18.0.5",
     "@rxap/environment": "^18.0.5",

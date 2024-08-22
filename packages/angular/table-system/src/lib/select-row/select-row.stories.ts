@@ -1,7 +1,4 @@
-import {
-  addDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
+import { addDecorator, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
@@ -12,37 +9,37 @@ import { SelectRowService } from './select-row.service';
 @Component({
   styles: [
     `
-
       table {
-          width: 100%;
+        width: 100%;
       }
-
-  `,
+    `,
   ],
   template: `
+    <table mat-table [dataSource]="data">
+      <ng-container matColumnDef="select">
+        <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
+        <td
+          *matCellDef="let element"
+          [element]="element"
+          mat-cell
+          rxap-checkbox-cell
+        ></td>
+      </ng-container>
 
-      <table mat-table [dataSource]="data">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          Name
+          <span *rxapAllRowsSelected="let rows">All {{ rows.length }}</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
 
-          <ng-container matColumnDef="select">
-              <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
-              <td *matCellDef="let element" [element]="element" mat-cell rxap-checkbox-cell></td>
-          </ng-container>
-
-          <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Name <span
-                      *rxapAllRowsSelected="let rows">All {{rows.length}}</span></th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="['select', 'name']"></tr>
-          <tr mat-row *matRowDef="let element; columns: ['select', 'name'];"></tr>
-
-      </table>
-
+      <tr mat-header-row *matHeaderRowDef="['select', 'name']"></tr>
+      <tr mat-row *matRowDef="let element; columns: ['select', 'name']"></tr>
+    </table>
   `,
 })
 class DemoTableComponent {
-
   public data = [
     { name: 'Name1' },
     { name: 'Name2' },
@@ -53,22 +50,20 @@ class DemoTableComponent {
     { name: 'Name7' },
   ];
 
-  constructor(public readonly selectRow: SelectRowService<any>) {
-  }
-
+  constructor(public readonly selectRow: SelectRowService<any>) {}
 }
 
-addDecorator(moduleMetadata({
-  imports: [
-    SelectRowModule,
-    MatTableModule,
-    CommonModule,
-    BrowserAnimationsModule,
-  ],
-  declarations: [
-    DemoTableComponent,
-  ],
-}));
+addDecorator(
+  moduleMetadata({
+    imports: [
+      SelectRowModule,
+      MatTableModule,
+      CommonModule,
+      BrowserAnimationsModule,
+    ],
+    declarations: [DemoTableComponent],
+  }),
+);
 
 export default {
   title: 'SelectTable',

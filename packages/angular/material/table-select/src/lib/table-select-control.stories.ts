@@ -1,22 +1,12 @@
 import { CommonModule } from '@angular/common';
-import {
-  Injectable,
-  INJECTOR,
-  Injector,
-} from '@angular/core';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Injectable, INJECTOR, Injector } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { faker } from '@faker-js/faker';
-import {
-  RxapStaticDataSource,
-  StaticDataSource,
-} from '@rxap/data-source';
+import { RxapStaticDataSource, StaticDataSource } from '@rxap/data-source';
 import {
   FormType,
   RXAP_FORM_DEFINITION,
@@ -28,14 +18,8 @@ import {
   UseFormControl,
 } from '@rxap/forms';
 import { Range } from '@rxap/utilities';
-import {
-  select,
-  text,
-} from '@storybook/addon-knobs';
-import {
-  moduleMetadata,
-  Story,
-} from '@storybook/angular';
+import { select, text } from '@storybook/addon-knobs';
+import { moduleMetadata, Story } from '@storybook/angular';
 import {
   UseTableSelectColumns,
   UseTableSelectDataSource,
@@ -45,15 +29,16 @@ import { TableSelectControlModule } from './table-select-control.module';
 
 @RxapStaticDataSource({
   id: 'company-list',
-  data: Range.Create(0, 100).toArray().map(() => ({
-    name: faker.name.lastName(),
-    active: faker.datatype.boolean(),
-    createdAt: faker.date.past(),
-  })),
+  data: Range.Create(0, 100)
+    .toArray()
+    .map(() => ({
+      name: faker.name.lastName(),
+      active: faker.datatype.boolean(),
+      createdAt: faker.date.past(),
+    })),
 })
 @Injectable()
-class CompanyListDataSource extends StaticDataSource<any> {
-}
+class CompanyListDataSource extends StaticDataSource<any> {}
 
 interface ITableSelectWithForm {
   company: string;
@@ -62,25 +47,24 @@ interface ITableSelectWithForm {
 @RxapForm('with-form')
 @Injectable()
 class TableSelectWithForm implements FormType<ITableSelectWithForm> {
-
   rxapFormGroup!: RxapFormGroup<any, any>;
 
   @UseTableSelectColumns({
-    name: {label: 'Name'},
-    active: {label: 'Active', type: 'boolean'},
-    createdAt: {label: 'Created at', format: 'yyyy-MM-dd', type: 'date'},
+    name: { label: 'Name' },
+    active: { label: 'Active', type: 'boolean' },
+    createdAt: { label: 'Created at', format: 'yyyy-MM-dd', type: 'date' },
   })
   @UseTableSelectDataSource(CompanyListDataSource)
-  @UseTableSelectToDisplay(item => item.name)
+  @UseTableSelectToDisplay((item) => item.name)
   @UseFormControl()
   company!: RxapFormControl;
-
 }
 
-function FormFactory(
-  injector: Injector,
-): TableSelectWithForm {
-  return new RxapFormBuilder<ITableSelectWithForm>(TableSelectWithForm, injector).build();
+function FormFactory(injector: Injector): TableSelectWithForm {
+  return new RxapFormBuilder<ITableSelectWithForm>(
+    TableSelectWithForm,
+    injector,
+  ).build();
 }
 
 export default {
@@ -104,7 +88,7 @@ export default {
         {
           provide: RXAP_FORM_DEFINITION,
           useFactory: FormFactory,
-          deps: [ INJECTOR ],
+          deps: [INJECTOR],
         },
       ],
     }),
@@ -114,22 +98,28 @@ export default {
 export const Primary: Story = () => ({
   props: {
     label: text('label', 'Select company'),
-    appearance: select('appearance', {
-      legacy: 'legacy',
-      Standard: 'standard',
-      fill: 'fill',
-      outline: 'outline',
-    }, 'standard'),
+    appearance: select(
+      'appearance',
+      {
+        legacy: 'legacy',
+        Standard: 'standard',
+        fill: 'fill',
+        outline: 'outline',
+      },
+      'standard',
+    ),
     columns: {
-      name: {label: 'Name'},
-      active: {label: 'Active', type: 'boolean'},
-      createdAt: {label: 'Created at', format: 'yyyy-MM-dd', type: 'date'},
+      name: { label: 'Name' },
+      active: { label: 'Active', type: 'boolean' },
+      createdAt: { label: 'Created at', format: 'yyyy-MM-dd', type: 'date' },
     },
-    data: Range.Create(0, 100).toArray().map(() => ({
-      name: faker.name.lastName(),
-      active: faker.datatype.boolean(),
-      createdAt: faker.date.past(),
-    })),
+    data: Range.Create(0, 100)
+      .toArray()
+      .map(() => ({
+        name: faker.name.lastName(),
+        active: faker.datatype.boolean(),
+        createdAt: faker.date.past(),
+      })),
     toDisplay: (value: any) => value.name,
   },
   template: `

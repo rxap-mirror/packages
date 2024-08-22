@@ -60,6 +60,7 @@ export class RxapFormControl<
   // TODO : find solution to only overwrite the type with out impl the getter or setter logic
   // readonly asyncValidator!: AsyncValidatorFn<T>;
   override readonly valueChanges!: Observable<T>;
+  // @ts-expect-error overwrite the public type
   override readonly status!: ControlState;
   override readonly statusChanges!: Observable<ControlState>;
   readonly initialState!: OrBoxedValue<T>;

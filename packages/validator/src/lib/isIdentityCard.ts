@@ -105,7 +105,7 @@ const validators: Record<string, (str: string) => boolean> = {
     if (str === 'CA00000AA') {
       return false;
     } // https://it.wikipedia.org/wiki/Carta_d%27identit%C3%A0_elettronica_italiana
-    return str.search(/C[A-Z]\d{5}[A-Z]{2}/is) > -1;
+    return str.search(/C[A-Z]\d{5}[A-Z]{2}/i) > -1;
   },
   NO: (str) => {
     const sanitized = str.trim();

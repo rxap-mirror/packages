@@ -3,7 +3,7 @@
   "name": "@rxap/preset-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.4.2",
+    "@nx/devkit": "19.6.2",
     "@rxap/plugin-angular": "^19.3.3-dev.7",
     "@rxap/plugin-workspace": "^19.1.5-dev.3",
     "tslib": "2.6.2"

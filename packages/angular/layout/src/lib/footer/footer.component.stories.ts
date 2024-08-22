@@ -1,9 +1,5 @@
 import { provideLayout } from '../provide';
-import {
-  Meta,
-  moduleMetadata,
-  StoryObj,
-} from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { FooterComponent } from './footer.component';
 
 const meta: Meta<FooterComponent> = {
@@ -14,10 +10,8 @@ const meta: Meta<FooterComponent> = {
   },
   decorators: [
     moduleMetadata({
-      providers: [
-        provideLayout(),
-      ]
-    })
+      providers: [provideLayout()],
+    }),
   ],
 };
 export default meta;

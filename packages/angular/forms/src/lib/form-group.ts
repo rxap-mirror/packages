@@ -84,6 +84,7 @@ export class RxapFormGroup<
   override readonly value!: T;
   override readonly errors!: E | null;
   override readonly valueChanges!: Observable<T>;
+  // @ts-expect-error overwrite the public type
   override readonly status!: ControlState;
   override readonly statusChanges!: Observable<ControlState>;
 

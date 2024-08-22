@@ -1,17 +1,13 @@
-import {
-  addDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
+import { addDecorator, moduleMetadata } from '@storybook/angular';
 
 import { ExpandRowContainerComponent } from './expand-row-container.component';
-import {
-  boolean,
-  object,
-} from '@storybook/addon-knobs';
+import { boolean, object } from '@storybook/addon-knobs';
 
-addDecorator(moduleMetadata({
-  imports: [],
-}));
+addDecorator(
+  moduleMetadata({
+    imports: [],
+  }),
+);
 
 export default {
   title: 'ExpandCellComponent',

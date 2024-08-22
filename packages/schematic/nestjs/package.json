@@ -3,9 +3,9 @@
   "name": "@rxap/schematic-nestjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@angular-devkit/core": "18.0.7",
-    "@angular-devkit/schematics": "18.0.7",
-    "@nx/devkit": "19.4.2",
+    "@angular-devkit/core": "18.2.1",
+    "@angular-devkit/schematics": "18.2.1",
+    "@nx/devkit": "19.6.2",
     "@rxap/schematics-ts-morph": "^18.2.0-dev.3",
     "@rxap/schematics-utilities": "^18.0.6-dev.1",
     "@rxap/ts-morph": "^1.5.0-dev.1",

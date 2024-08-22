@@ -3,10 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ConfigService } from '@rxap/config';
 import { Node } from '@rxap/data-structure-tree';
 import { ToMethod } from '@rxap/pattern';
-import {
-  GenerateRandomString,
-  WithChildren,
-} from '@rxap/utilities';
+import { GenerateRandomString, WithChildren } from '@rxap/utilities';
 import {
   componentWrapperDecorator,
   moduleMetadata,
@@ -34,7 +31,10 @@ export default {
       providers: [],
     }),
     //👇 Wraps our stories with a decorator
-    componentWrapperDecorator(story => `<div style="margin: 3em; border: 1px solid black">${ story }</div>`),
+    componentWrapperDecorator(
+      (story) =>
+        `<div style="margin: 3em; border: 1px solid black">${story}</div>`,
+    ),
   ],
 };
 
@@ -60,7 +60,7 @@ const rootRemoteMethod = ToMethod<Item[], void>(() => [
     hasChildren: true,
   },
 ]);
-const childrenRemoteMethod = ToMethod<Item[], Node<Item>>(node => [
+const childrenRemoteMethod = ToMethod<Item[], Node<Item>>((node) => [
   {
     id: GenerateRandomString(),
     name: 'Sub1',
@@ -81,7 +81,7 @@ const treeDataSource = new TreeDataSource(
   { id: 'storybook' },
 );
 
-const Template: Story<TreeComponent<Item>> = args => ({
+const Template: Story<TreeComponent<Item>> = (args) => ({
   props: {
     ...args,
     dataSource: treeDataSource,

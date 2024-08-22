@@ -1,34 +1,30 @@
-import {
-  Component,
-  TemplateRef,
-} from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { Story } from '@storybook/angular';
 import { WindowService } from './window.service';
 
 @Component({
-  template:
-    `
-      <div>
-            <button mat-raised-button (click)="openWindow(windowContent)">Open</button>
-        </div>
-        <ng-template #windowContent>
-            <h1>Window Content</h1>
-        </ng-template>
-    `,
+  template: `
+    <div>
+      <button mat-raised-button (click)="openWindow(windowContent)">
+        Open
+      </button>
+    </div>
+    <ng-template #windowContent>
+      <h1>Window Content</h1>
+    </ng-template>
+  `,
   styles: [
     `
-        .container {
-            padding: 32px;
-            border: 0.5px solid lightgray;
-        }
+      .container {
+        padding: 32px;
+        border: 0.5px solid lightgray;
+      }
     `,
   ],
   standalone: true,
 })
 class WindowSystemPlaygroundComponent {
-
-  constructor(private readonly windowService: WindowService) {
-  }
+  constructor(private readonly windowService: WindowService) {}
 
   openWindow(windowContent: TemplateRef<any>) {
     this.windowService.open({

@@ -1,14 +1,7 @@
-import {
-  Injectable,
-  INJECTOR,
-  Injector,
-} from '@angular/core';
+import { Injectable, INJECTOR, Injector } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  addDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
+import { addDecorator, moduleMetadata } from '@storybook/angular';
 import { RxapForm } from '../decorators/form';
 import { UseFormControl } from '../decorators/use-form-control';
 import { RxapFormBuilder } from '../form-builder';
@@ -25,47 +18,42 @@ import {
 
 @RxapForm('test')
 class TestForm implements FormDefinition {
-
   public rxapFormGroup!: RxapFormGroup;
 
   @UseFormControl()
   public name!: RxapFormControl;
-
 }
 
 @Injectable()
 class FormSubmitFailMethod implements FormSubmitMethod<any> {
-
   public call(parameters: any): boolean | Promise<boolean> {
     throw new Error('submit failed');
   }
-
 }
 
-addDecorator(moduleMetadata({
-  imports: [
-    RxapFormsModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-  ],
-  providers: [
-    TestForm,
-    {
-      provide: RXAP_FORM_DEFINITION_BUILDER,
-      useFactory: (injector: Injector) => new RxapFormBuilder(TestForm, injector),
-      deps: [ INJECTOR ],
-    },
-    {
-      provide: RXAP_FORM_DEFINITION,
-      useFactory: (builder: RxapFormBuilder) => builder.build(),
-      deps: [ RXAP_FORM_DEFINITION_BUILDER ],
-    },
-    {
-      provide: RXAP_FORM_SUBMIT_METHOD,
-      useClass: FormSubmitFailMethod,
-    },
-  ],
-}));
+addDecorator(
+  moduleMetadata({
+    imports: [RxapFormsModule, BrowserAnimationsModule, ReactiveFormsModule],
+    providers: [
+      TestForm,
+      {
+        provide: RXAP_FORM_DEFINITION_BUILDER,
+        useFactory: (injector: Injector) =>
+          new RxapFormBuilder(TestForm, injector),
+        deps: [INJECTOR],
+      },
+      {
+        provide: RXAP_FORM_DEFINITION,
+        useFactory: (builder: RxapFormBuilder) => builder.build(),
+        deps: [RXAP_FORM_DEFINITION_BUILDER],
+      },
+      {
+        provide: RXAP_FORM_SUBMIT_METHOD,
+        useClass: FormSubmitFailMethod,
+      },
+    ],
+  }),
+);
 
 export default {
   title: 'FormSubmitFailedDirective',

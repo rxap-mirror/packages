@@ -3,13 +3,13 @@
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.4.2",
+    "@nx/devkit": "19.6.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^18.0.6",
-    "@angular/common": "^18.0.6",
-    "@angular/core": "^18.0.6",
+    "@angular/cdk": "^18.2.0",
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0",
     "@rxap/components": "^18.0.5",
     "@rxap/config": "^18.2.1-dev.0",
     "@rxap/data-grid": "^18.0.5",

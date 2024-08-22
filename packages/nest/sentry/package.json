@@ -3,7 +3,7 @@
   "name": "@rxap/nest-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.4.2",
+    "@nx/devkit": "19.6.2",
     "@rxap/ts-morph": "^1.5.0-dev.1",
     "@rxap/workspace-utilities": "^19.4.1-dev.0",
     "tslib": "2.6.2"

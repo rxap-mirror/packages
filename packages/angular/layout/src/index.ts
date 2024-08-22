@@ -57,6 +57,7 @@ export * from './lib/default-header/apps-button/apps-button.component';
 
 // region default-header
 export * from './lib/default-header/default-header.component';
+export * from './lib/default-header/default-header.service';
 // endregion
 
 // region base-layout

@@ -3,16 +3,16 @@
   "name": "@rxap/ngx-material-authentication",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.4.2",
+    "@nx/devkit": "19.6.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/animations": "^18.0.6",
-    "@angular/common": "^18.0.6",
-    "@angular/core": "^18.0.6",
-    "@angular/forms": "^18.0.6",
-    "@angular/material": "^18.0.6",
-    "@angular/router": "^18.0.6",
+    "@angular/animations": "^18.2.0",
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0",
+    "@angular/forms": "^18.2.0",
+    "@angular/material": "^18.2.0",
+    "@angular/router": "^18.2.0",
     "@rxap/authentication": "^18.1.2",
     "@rxap/config": "^18.2.1-dev.0",
     "@rxap/forms": "^18.1.0",

@@ -1,15 +1,7 @@
 import { faker } from '@faker-js/faker';
-import {
-  type Meta,
-  moduleMetadata,
-  type StoryObj,
-} from '@storybook/angular';
-import {
-  provideLayout,
-  withReleaseInfoModules,
-} from '../provide';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { provideLayout, withReleaseInfoModules } from '../provide';
 import { ReleaseInfoComponent } from './release-info.component';
-
 
 const meta: Meta<ReleaseInfoComponent> = {
   component: ReleaseInfoComponent,

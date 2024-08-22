@@ -1,13 +1,12 @@
-import {
-  addDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
+import { addDecorator, moduleMetadata } from '@storybook/angular';
 
 import { CheckboxCellComponent } from './checkbox-cell.component';
 
-addDecorator(moduleMetadata({
-  imports: [],
-}));
+addDecorator(
+  moduleMetadata({
+    imports: [],
+  }),
+);
 
 export default {
   title: 'CheckboxCellComponent',

@@ -1,8 +1,4 @@
-import {
-  Meta,
-  moduleMetadata,
-  StoryObj,
-} from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { Environment } from '../environment';
 import { ProvideEnvironment } from '../provide-environment';
 import { EnvironmentComponent } from './environment.component';
@@ -18,11 +14,9 @@ const meta: Meta<EnvironmentComponent> = {
   title: 'EnvironmentComponent',
   decorators: [
     moduleMetadata({
-      providers: [
-        ProvideEnvironment(environment),
-      ]
+      providers: [ProvideEnvironment(environment)],
     }),
-  ]
+  ],
 };
 export default meta;
 type Story = StoryObj<EnvironmentComponent>;

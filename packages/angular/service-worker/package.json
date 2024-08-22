@@ -3,13 +3,13 @@
   "name": "@rxap/service-worker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.4.2",
+    "@nx/devkit": "19.6.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.6",
-    "@angular/core": "^18.0.6",
-    "@angular/service-worker": "^18.0.6",
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0",
+    "@angular/service-worker": "^18.2.0",
     "@rxap/environment": "^18.0.5",
     "@rxap/life-cycle": "^18.0.5",
     "rxjs": "^7.8.1"

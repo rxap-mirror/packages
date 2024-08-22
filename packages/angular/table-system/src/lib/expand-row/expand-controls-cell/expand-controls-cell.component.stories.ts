@@ -1,13 +1,12 @@
-import {
-  addDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
+import { addDecorator, moduleMetadata } from '@storybook/angular';
 
 import { ExpandControlsCellComponent } from './expand-controls-cell.component';
 
-addDecorator(moduleMetadata({
-  imports: [],
-}));
+addDecorator(
+  moduleMetadata({
+    imports: [],
+  }),
+);
 
 export default {
   title: 'ExpandControlsCellComponent',

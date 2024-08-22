@@ -1,12 +1,5 @@
-import {
-  provideLayout,
-  withDefaultHeaderComponent,
-} from '../provide';
-import {
-  Meta,
-  moduleMetadata,
-  StoryObj,
-} from '@storybook/angular';
+import { provideLayout, withDefaultHeaderComponent } from '../provide';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { HeaderComponent } from './header.component';
 
 const meta: Meta<HeaderComponent> = {
@@ -17,10 +10,8 @@ const meta: Meta<HeaderComponent> = {
   },
   decorators: [
     moduleMetadata({
-      providers: [
-        provideLayout(withDefaultHeaderComponent()),
-      ]
-    })
+      providers: [provideLayout(withDefaultHeaderComponent())],
+    }),
   ],
 };
 export default meta;
@@ -29,4 +20,3 @@ type Story = StoryObj<HeaderComponent>;
 export const Primary: Story = {
   args: {},
 };
-

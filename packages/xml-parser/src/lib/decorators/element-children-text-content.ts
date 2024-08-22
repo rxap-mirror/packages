@@ -83,7 +83,7 @@ export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
       );
     }
 
-    let list = elementChildren.filter(child => child.hasName(this.tag)).map(child => {
+    let list: Value[] = elementChildren.filter(child => child.hasName(this.tag)).map(child => {
       const rawValue = child.getTextContent(undefined, true);
       if (rawValue !== undefined) {
         return this.parseValue(rawValue);

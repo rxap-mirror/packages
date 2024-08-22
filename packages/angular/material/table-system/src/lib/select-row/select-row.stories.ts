@@ -1,7 +1,4 @@
-import {
-  addDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
+import { addDecorator, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
@@ -12,40 +9,40 @@ import { SelectRowService } from './select-row.service';
 @Component({
   styles: [
     `
-
-        .mat-column-name {
-            padding-left: 16px;
-        }
-
+      .mat-column-name {
+        padding-left: 16px;
+      }
     `,
   ],
   template: `
+    <table mat-table [dataSource]="data" #matTable="matTable">
+      <ng-container matColumnDef="select">
+        <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
+        <td
+          *matCellDef="let element"
+          [element]="element"
+          mat-cell
+          rxap-checkbox-cell
+        ></td>
+      </ng-container>
 
-      <table mat-table [dataSource]="data" #matTable="matTable">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
 
-          <ng-container matColumnDef="select">
-              <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
-              <td *matCellDef="let element" [element]="element" mat-cell rxap-checkbox-cell></td>
-          </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['select', 'name']"></tr>
+      <tr mat-row *matRowDef="let element; columns: ['select', 'name']"></tr>
+    </table>
 
-          <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Name</th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-          </ng-container>
+    <hr />
 
-          <tr mat-header-row *matHeaderRowDef="['select', 'name']"></tr>
-          <tr mat-row *matRowDef="let element; columns: ['select', 'name'];"></tr>
-
-      </table>
-
-      <hr>
-
-      <div>Selected rows: <span *rxapSelectedRows="let rows">{{rows | json}}</span></div>
-
+    <div>
+      Selected rows: <span *rxapSelectedRows="let rows">{{ rows | json }}</span>
+    </div>
   `,
 })
 class DemoTableComponent {
-
   public data = [
     { name: 'Name1' },
     { name: 'Name2' },
@@ -56,22 +53,20 @@ class DemoTableComponent {
     { name: 'Name7' },
   ];
 
-  constructor(public readonly selectRow: SelectRowService<any>) {
-  }
-
+  constructor(public readonly selectRow: SelectRowService<any>) {}
 }
 
-addDecorator(moduleMetadata({
-  imports: [
-    SelectRowModule,
-    MatTableModule,
-    CommonModule,
-    BrowserAnimationsModule,
-  ],
-  declarations: [
-    DemoTableComponent,
-  ],
-}));
+addDecorator(
+  moduleMetadata({
+    imports: [
+      SelectRowModule,
+      MatTableModule,
+      CommonModule,
+      BrowserAnimationsModule,
+    ],
+    declarations: [DemoTableComponent],
+  }),
+);
 
 export default {
   title: 'SelectTable',

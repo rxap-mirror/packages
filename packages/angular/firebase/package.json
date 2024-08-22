@@ -4,12 +4,12 @@
   "description": "A collection of utility angular services to interact with firebase.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.4.2",
+    "@nx/devkit": "19.6.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.6",
-    "@angular/core": "^18.0.6",
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0",
     "@angular/fire": "^7.5.0",
     "@rxap/config": "^18.2.1-dev.0",
     "@rxap/rxjs": "^1.1.9-dev.0",

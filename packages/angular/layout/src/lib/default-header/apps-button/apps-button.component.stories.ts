@@ -1,9 +1,5 @@
 import { provideLayout } from '../../provide';
-import {
-  Meta,
-  moduleMetadata,
-  StoryObj,
-} from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { AppsButtonComponent } from './apps-button.component';
 
 const meta: Meta<AppsButtonComponent> = {
@@ -11,10 +7,8 @@ const meta: Meta<AppsButtonComponent> = {
   title: 'DefaultHeaderComponent / AppsButtonComponent',
   decorators: [
     moduleMetadata({
-      providers: [
-        provideLayout(),
-      ]
-    })
+      providers: [provideLayout()],
+    }),
   ],
 };
 export default meta;
