@@ -48,9 +48,10 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
     cache: true,
     dependsOn: [ '^index-export', 'index-export', '^build', 'localazy-download' ],
     inputs: [ 'production', '^production' ],
-  }, Strategy.MERGE);
+  }, Strategy.OVERWRITE);
 
   CoerceTargetDefaults(nxJson, '@nx/angular:webpack-browser', {
+    cache: true,
     dependsOn: [ '^index-export', 'index-export', '^build', 'localazy-download' ],
     inputs: [
       'production',
@@ -59,7 +60,7 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
         'env': 'NX_MF_DEV_SERVER_STATIC_REMOTES',
       },
     ],
-  }, Strategy.MERGE);
+  }, Strategy.OVERWRITE);
 
   CoerceNxJsonCacheableOperation(nxJson, 'localazy-download', 'localazy-upload', 'extract-i18n', 'i18n-index-html');
 
