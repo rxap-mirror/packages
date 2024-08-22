@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.6](https://gitlab.com/rxap/packages/compare/@rxap/firebase@18.0.6-dev.0...@rxap/firebase@18.0.6) (2024-08-22)
+
+**Note:** Version bump only for package @rxap/firebase
+
 ## [18.0.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@18.0.5...@rxap/firebase@18.0.6-dev.0) (2024-08-22)
 
 **Note:** Version bump only for package @rxap/firebase

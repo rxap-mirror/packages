@@ -1,5 +1,5 @@
 {
-  "version": "18.0.6-dev.0",
+  "version": "18.0.6",
   "name": "@rxap/pipes",
   "description": "A collection of utility angular pipes used in RxAP.",
   "license": "GPL-3.0-or-later",
@@ -11,7 +11,7 @@
     "@angular/common": "^18.2.0",
     "@angular/core": "^18.2.0",
     "@angular/platform-browser": "^18.2.0",
-    "@rxap/utilities": "^16.3.1-dev.1"
+    "@rxap/utilities": "^16.3.1"
   },
   "author": {
     "name": "Merzough Münker",
@@ -52,7 +52,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.3.1-dev.1"
+        "version": "16.3.1"
       }
     ]
   },

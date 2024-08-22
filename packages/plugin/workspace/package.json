@@ -1,13 +1,13 @@
 {
-  "version": "19.1.5-dev.4",
+  "version": "19.1.5",
   "name": "@rxap/plugin-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.6.2",
     "@nx/js": "19.6.2",
-    "@rxap/plugin-utilities": "^19.0.7-dev.1",
-    "@rxap/utilities": "^16.3.1-dev.1",
-    "@rxap/workspace-utilities": "^19.4.1-dev.1",
+    "@rxap/plugin-utilities": "^19.0.7",
+    "@rxap/utilities": "^16.3.1",
+    "@rxap/workspace-utilities": "^19.4.1",
     "colors": "1.4.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"

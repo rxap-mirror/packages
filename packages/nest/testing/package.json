@@ -1,5 +1,5 @@
 {
-  "version": "10.0.7-dev.0",
+  "version": "10.0.7",
   "name": "@rxap/nest-testing",
   "license": "GPL-3.0-or-later",
   "dependencies": {
