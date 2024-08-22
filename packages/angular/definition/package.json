@@ -1,5 +1,5 @@
 {
-  "version": "18.0.5",
+  "version": "18.0.6-dev.0",
   "name": "@rxap/definition",
   "description": "Provides the Definition concept for RxAP.",
   "license": "GPL-3.0-or-later",
@@ -9,8 +9,8 @@
   },
   "peerDependencies": {
     "@angular/core": "^18.2.0",
-    "@rxap/reflect-metadata": "^1.0.10-dev.0",
-    "@rxap/utilities": "^16.3.1-dev.0",
+    "@rxap/reflect-metadata": "^1.0.10-dev.1",
+    "@rxap/utilities": "^16.3.1-dev.1",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -36,15 +36,15 @@
     "packageGroup": [
       {
         "package": "@angular/core",
-        "version": "18.0.6"
+        "version": "18.2.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.10-dev.0"
+        "version": "1.0.10-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.3.1-dev.0"
+        "version": "16.3.1-dev.1"
       }
     ]
   },

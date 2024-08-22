@@ -1,5 +1,5 @@
 {
-  "version": "18.0.5",
+  "version": "18.0.6-dev.0",
   "name": "@rxap/environment",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -33,11 +33,11 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "18.0.6"
+        "version": "18.2.0"
       },
       {
         "package": "@angular/core",
-        "version": "18.0.6"
+        "version": "18.2.0"
       }
     ]
   },

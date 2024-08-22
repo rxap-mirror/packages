@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@18.1.0...@rxap/ngx-theme@18.1.1-dev.0) (2024-08-22)
+
+**Note:** Version bump only for package @rxap/ngx-theme
+
 # [18.1.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@18.1.0-dev.2...@rxap/ngx-theme@18.1.0) (2024-07-30)
 
 **Note:** Version bump only for package @rxap/ngx-theme
