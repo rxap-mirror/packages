@@ -24,4 +24,8 @@ export class OpenApiHttpResponseError extends HttpErrorResponse {
     return this.metadata.id;
   }
 
+  get serverId() {
+    return this.metadata.serverId;
+  }
+
 }
