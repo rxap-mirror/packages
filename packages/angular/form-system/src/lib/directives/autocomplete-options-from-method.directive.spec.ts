@@ -11,7 +11,7 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NgControl } from '@angular/forms';
 import { TestNgControl } from './test-ng-control';
 
-describe.skip(AutocompleteOptionsFormMethodDirective.name, () => {
+describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
 
   @Injectable()
   class TestAutocompleteOptionsMethod implements Method<ControlOptions> {
@@ -66,7 +66,7 @@ describe.skip(AutocompleteOptionsFormMethodDirective.name, () => {
     detectChangesMock                        = jest.fn();
     TestBed.configureTestingModule({
       providers: [
-        AutocompleteOptionsFormMethodDirective,
+        AutocompleteOptionsFromMethodDirective,
         TestResolveMethod,
         TestAutocompleteOptionsMethod,
         {
@@ -97,7 +97,7 @@ describe.skip(AutocompleteOptionsFormMethodDirective.name, () => {
     resolveMethod                 = TestBed.inject(TestResolveMethod);
     autocompleteOptionsMethodCall = jest.spyOn(autocompleteOptionsMethod, 'call');
     resolveMethodCall             = jest.spyOn(resolveMethod, 'call');
-    directive                     = TestBed.inject(AutocompleteOptionsFormMethodDirective);
+    directive                     = TestBed.inject(AutocompleteOptionsFromMethodDirective);
   });
 
   it('should only call the autocomplete options method if a value is set', fakeAsync(() => {
