@@ -1,11 +1,11 @@
 import {
   formatFiles,
+  readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
   GenerateSerializedSchematicFile,
-  GetProject,
   GetProjectRoot,
   GetProjectSourceRoot,
 } from '@rxap/workspace-utilities';
@@ -33,7 +33,8 @@ export async function initLibraryGenerator(
 
   initWorkspace(tree, options);
 
-  const projectConfiguration = GetProject(tree, options.project);
+  // use readProjectConfiguration instead of GetProject as it will read the project configuration directly from file and not from the cache
+  const projectConfiguration = readProjectConfiguration(tree, options.project);
 
   await initProject(tree, options.project, projectConfiguration, options);
 
