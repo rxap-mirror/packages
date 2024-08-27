@@ -300,6 +300,7 @@ gitlab-ci-setup.sh
 .idea/httpRequests/
 .idea/developer-tools.xml
 .idea/dataSources/*/storage_v2
+.firebase
 "
 `;
 
