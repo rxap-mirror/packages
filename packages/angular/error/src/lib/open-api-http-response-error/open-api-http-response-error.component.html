@@ -1,0 +1,50 @@
+<rxap-data-grid [data]="error">
+  <ng-container rxapDataGridRowDef="name"></ng-container>
+  <ng-container rxapDataGridRowDef="timestamp">
+    <td *rxapDataGridCellDef="let value">{{ value | date:'HH:mm:ss' }}</td>
+  </ng-container>
+  <ng-container rxapDataGridRowDef="method"></ng-container>
+  <ng-container rxapDataGridRowDef="url"></ng-container>
+  <ng-container rxapDataGridRowDef="status"></ng-container>
+  <ng-container rxapDataGridRowDef="statusText"></ng-container>
+  <ng-container rxapDataGridRowDef="message"></ng-container>
+  <ng-container rxapDataGridRowDef="headers">
+    <td *rxapDataGridCellDef="let value">
+      <rxap-data-grid [data]="value">
+        <ng-container *ngFor="let entry of value | keyvalue" [rxapDataGridRowDef]="$any(entry.key)">
+          <td *rxapDataGridCellDef="let value">
+            <ng-container *ngIf="value.length > 1">
+              <ul>
+                <li *ngFor="let item of value">{{ item }}</li>
+              </ul>
+            </ng-container>
+            <ng-container *ngIf="value.length === 1">{{ value[0] }}</ng-container>
+            <ng-container *ngIf="value.length === 0">NONE</ng-container>
+          </td>
+        </ng-container>
+      </rxap-data-grid>
+    </td>
+  </ng-container>
+  <ng-container *ngIf="!isProduction" rxapDataGridRowDef="error">
+    <td *rxapDataGridCellDef="let value">
+      <ng-container *ngIf="value">
+        <rxap-copy-to-clipboard [value]="value | json">Copy Response Body</rxap-copy-to-clipboard>
+        <div class="body">
+          <rxap-json-viewer [expanded]="false" [json]="value"></rxap-json-viewer>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!value">NONE</ng-container>
+    </td>
+  </ng-container>
+  <ng-container *ngIf="!isProduction" rxapDataGridRowDef="body">
+    <td *rxapDataGridCellDef="let value">
+      <ng-container *ngIf="value">
+        <rxap-copy-to-clipboard [value]="value | json">Copy Request Body</rxap-copy-to-clipboard>
+        <div class="body">
+          <rxap-json-viewer [expanded]="false" [json]="value"></rxap-json-viewer>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!value">NONE</ng-container>
+    </td>
+  </ng-container>
+</rxap-data-grid>

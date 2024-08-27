@@ -14,15 +14,19 @@ import {
   IsNotReleaseVersion,
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
+import { OpenApiHttpResponseError } from '@rxap/open-api';
 import * as Sentry from '@sentry/angular';
 import { AngularErrorDialogData } from './error/angular-error-dialog-data';
 import { AngularErrorService } from './error/angular-error.service';
+import { OpenApiHttpResponseErrorDialogData } from './open-api-http-response-error/open-api-http-response-error-dialog-data';
+import { OpenApiHttpResponseErrorService } from './open-api-http-response-error/open-api-http-response-error.service';
 import {
   ExtractContextFromError,
   ExtractError,
   ExtractExtraFromError,
   ExtractTagsFromError,
   PrintError,
+  SimplifyHttpErrorResponse,
 } from './utilities';
 
 export interface ErrorHandlerOptions {
@@ -124,12 +128,30 @@ export class RxapErrorHandler implements ErrorHandler {
         data.name = extractedError.name;
       }
 
-      if (data.message !== nonMessage) {
-        this.showAngularErrorDialog(data);
+      if (extractedError instanceof OpenApiHttpResponseError) {
+        this.showOpenApiHttpResponseErrorDialog({
+          ...data,
+          ...SimplifyHttpErrorResponse(extractedError.httpErrorResponse),
+          timestamp: Date.now(),
+          metadata: extractedError.metadata,
+          method: !extractedError.metadata.operation || typeof extractedError.metadata.operation === 'string' ? 'unknown' : extractedError.metadata.operation.method,
+          operationId: extractedError.operationId,
+          serverId: extractedError.serverId
+        });
+      } else {
+        if (data.message !== nonMessage) {
+          this.showAngularErrorDialog(data);
+        }
       }
 
     }
 
+  }
+
+  protected showOpenApiHttpResponseErrorDialog(data: OpenApiHttpResponseErrorDialogData): void {
+    runInInjectionContext(this.injector, () => {
+      inject(OpenApiHttpResponseErrorService).push(data);
+    });
   }
 
   protected showAngularErrorDialog(data: AngularErrorDialogData): void {

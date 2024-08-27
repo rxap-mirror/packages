@@ -1,3 +1,9 @@
+// region open-api-http-response-error
+export * from './lib/open-api-http-response-error/open-api-http-response-error-dialog-data';
+export * from './lib/open-api-http-response-error/open-api-http-response-error.component';
+export * from './lib/open-api-http-response-error/open-api-http-response-error.service';
+// endregion
+
 // region message-http-error
 export * from './lib/message-http-error/message-http-error-dialog-data';
 export * from './lib/message-http-error/message-http-error.component';

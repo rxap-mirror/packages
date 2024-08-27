@@ -1,4 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEventType,
+} from '@angular/common/http';
 
 export interface SimplifiedHttpErrorResponse extends Record<string, unknown> {
   url: string | null;
@@ -9,6 +12,8 @@ export interface SimplifiedHttpErrorResponse extends Record<string, unknown> {
   headers: Record<string, string[]>;
   error: any;
   errorMessage: string;
+  ok: boolean;
+  type: HttpEventType.Response | HttpEventType.ResponseHeader;
 }
 
 export function SimplifyHttpErrorResponse(event: HttpErrorResponse): SimplifiedHttpErrorResponse {
@@ -33,6 +38,8 @@ export function SimplifyHttpErrorResponse(event: HttpErrorResponse): SimplifiedH
     status: event.status,
     statusText: event.statusText,
     url: event.url,
+    ok: event.ok,
+    type: event.type,
     headers: event.headers.keys()
                   .reduce((map, key) => ({
                     ...map,
