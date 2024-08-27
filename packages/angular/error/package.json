@@ -1,5 +1,5 @@
 {
-  "version": "18.0.6",
+  "version": "18.1.0-dev.0",
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -14,7 +14,7 @@
     "@rxap/config": "^18.2.1",
     "@rxap/data-grid": "^18.0.6",
     "@rxap/environment": "^18.0.6",
-    "@rxap/open-api": "^18.0.6",
+    "@rxap/open-api": "^18.0.7-dev.0",
     "@sentry/angular": "^8.18.0",
     "rxjs": "^7.8.1"
   },
@@ -83,6 +83,14 @@
         "version": "18.0.6"
       },
       {
+        "package": "@rxap/data-source",
+        "version": "18.1.4"
+      },
+      {
+        "package": "@rxap/data-structure-tree",
+        "version": "1.1.9"
+      },
+      {
         "package": "@rxap/definition",
         "version": "18.0.6"
       },
@@ -99,6 +107,14 @@
         "version": "18.1.1"
       },
       {
+        "package": "@rxap/mixin",
+        "version": "16.0.9"
+      },
+      {
+        "package": "@rxap/open-api",
+        "version": "18.0.7-dev.0"
+      },
+      {
         "package": "@rxap/pattern",
         "version": "1.1.8"
       },
@@ -109,6 +125,10 @@
       {
         "package": "@rxap/reflect-metadata",
         "version": "1.0.10"
+      },
+      {
+        "package": "@rxap/remote-method",
+        "version": "18.0.6"
       },
       {
         "package": "@rxap/rxjs",

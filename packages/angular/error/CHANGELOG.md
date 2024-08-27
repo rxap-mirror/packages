@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@18.0.6...@rxap/ngx-error@18.1.0-dev.0) (2024-08-27)
+
+### Features
+
+- add open api http response error handler ([542efd2](https://gitlab.com/rxap/packages/commit/542efd24c4965d0fdbe3b3d12dcf8e6ac6aa7ebb))
+
 ## [18.0.6](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@18.0.6-dev.0...@rxap/ngx-error@18.0.6) (2024-08-22)
 
 **Note:** Version bump only for package @rxap/ngx-error

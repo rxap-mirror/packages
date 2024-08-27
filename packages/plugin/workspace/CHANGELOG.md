@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.5...@rxap/plugin-workspace@19.1.6-dev.0) (2024-08-27)
+
+### Bug Fixes
+
+- ignore firebase cache ([a33aed9](https://gitlab.com/rxap/packages/commit/a33aed9ecec6eb1c80e745ef01698ebf6cb0c484))
+
 ## [19.1.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@19.1.5-dev.4...@rxap/plugin-workspace@19.1.5) (2024-08-22)
 
 **Note:** Version bump only for package @rxap/plugin-workspace

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.1.3...@rxap/form-system@18.2.0-dev.0) (2024-08-27)
+
+### Features
+
+- add autocomplete options directive ([f10476e](https://gitlab.com/rxap/packages/commit/f10476ea0c43d80f62315f5bd24cd87bafa37b31))
+
 ## [18.1.3](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.1.3-dev.1...@rxap/form-system@18.1.3) (2024-08-22)
 
 **Note:** Version bump only for package @rxap/form-system

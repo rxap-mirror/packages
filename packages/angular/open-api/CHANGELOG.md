@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.7-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@18.0.6...@rxap/open-api@18.0.7-dev.0) (2024-08-27)
+
+### Bug Fixes
+
+- add server id getter ([e9ffaaa](https://gitlab.com/rxap/packages/commit/e9ffaaa736338abeb185a1a78c8d8b6bcd4a5b9a))
+
 ## [18.0.6](https://gitlab.com/rxap/packages/compare/@rxap/open-api@18.0.6-dev.0...@rxap/open-api@18.0.6) (2024-08-22)
 
 **Note:** Version bump only for package @rxap/open-api
