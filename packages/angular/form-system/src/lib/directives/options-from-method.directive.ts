@@ -11,8 +11,12 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import {
+  AbstractControlDirective,
+  NgControl,
+} from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
+import { RxapFormControl } from '@rxap/forms';
 import { Mixin } from '@rxap/mixin';
 import { Method } from '@rxap/pattern';
 import {
@@ -56,20 +60,23 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   @Input('rxapOptionsFromMethodResetOnChange')
   public resetOnChange?: Value;
 
-  public options: ControlOptions | null                                          = null;
-  protected ngControl: NgControl | null                                          = null;
-  protected matFormField: MatFormField | null                                    = null;
-  protected settings: OptionsFromMethodDirectiveSettings                         = {};
-  protected method!: Method<ControlOptions, Parameters>;
-  protected readonly viewContainerRef: ViewContainerRef                          = inject(ViewContainerRef);
-  protected readonly injector: Injector                                          = inject(INJECTOR);
+  public options: ControlOptions | null                                    = null;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('rxapOptionsFromMethodCall')
+  public method!: Method<ControlOptions, Parameters>;
+  protected ngControl: NgControl | AbstractControlDirective | null         = null;
+  protected matFormField: MatFormField | null                              = null;
+  protected settings: OptionsFromMethodDirectiveSettings                   = {};
+  protected readonly viewContainerRef: ViewContainerRef                    = inject(ViewContainerRef);
+  protected readonly injector: Injector                                    = inject(INJECTOR);
   protected readonly cdr: ChangeDetectorRef                                = inject(ChangeDetectorRef);
   private readonly template: TemplateRef<OptionsFromMethodTemplateContext> = inject(TemplateRef);
 
   public async ngAfterViewInit() {
-    this.ngControl    = this.injector.get(NgControl, null);
     this.matFormField = this.injector.get(MatFormField, null);
-    this.method       = this.extractOptionsMethod();
+    this.ngControl    = this.injector.get(NgControl, this.matFormField?._control.ngControl);
+    this.control      = (this.ngControl?.control as RxapFormControl) ?? undefined;
+    this.method ??= this.extractOptionsMethod();
     // ensure that the options are loaded. It is possible that the ngOnChange is triggered before the ngAfterViewInit
     // then the options are not loaded.
     if (!this.options) {
@@ -90,7 +97,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
     }
   }
 
-  protected async loadOptions(parameters?: Parameters): Promise<ControlOptions> {
+  protected async loadOptions(parameters?: Parameters): Promise<ControlOptions | null> {
     return this.method.call(parameters);
   }
 
@@ -114,9 +121,14 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
 
   }
 
-  protected setOptions(options: ControlOptions) {
-    this.options = options.slice();
-    this.renderTemplate();
+  protected setOptions(options: ControlOptions | null) {
+    if (!options) {
+      this.options = null;
+      this.viewContainerRef.clear();
+    } else {
+      this.options = options.slice();
+      this.renderTemplate();
+    }
   }
 
 }

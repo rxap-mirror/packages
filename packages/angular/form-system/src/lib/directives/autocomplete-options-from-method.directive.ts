@@ -1,0 +1,216 @@
+import {
+  AfterViewInit,
+  Directive,
+  inject,
+  Injector,
+  INJECTOR,
+  Input,
+  isDevMode,
+  OnDestroy,
+  ProviderToken,
+} from '@angular/core';
+import { MatAutocomplete } from '@angular/material/autocomplete';
+import { ControlOption, ControlOptions } from '@rxap/utilities';
+import { distinctUntilChanged, Subscription, tap } from 'rxjs';
+import { isUUID } from '@rxap/validator';
+import { Method, MethodWithParameters } from '@rxap/pattern';
+import { Mixin } from '@rxap/mixin';
+import { NgControl } from '@angular/forms';
+import { MatFormField } from '@angular/material/form-field';
+import { isDefined } from '@rxap/rxjs';
+import { UseMethodConfig } from '../mixins/extract-methods.mixin';
+import { UseOptionsMethod } from '../mixins/extract-options-method.mixin';
+import {
+  ExtractResolveMethodMixin,
+  UseResolveMethod,
+} from '../mixins/extract-resolve-method.mixin';
+import { OptionsFromMethodDirective, OptionsFromMethodDirectiveSettings } from './options-from-method.directive';
+import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
+import { controlValueChanges$ } from '@rxap/forms';
+
+export function UseAutocompleteOptionsMethod(
+  method: ProviderToken<MethodWithParameters<ControlOptions, AutocompleteOptionsFromMethodDirectiveParameters>>,
+): any;
+export function UseAutocompleteOptionsMethod(
+  method: ProviderToken<MethodWithParameters<ControlOptions, OpenApiRemoteMethodParameter<AutocompleteOptionsFromMethodDirectiveParameters>>>,
+): any;
+export function UseAutocompleteOptionsMethod(
+  method: ProviderToken<MethodWithParameters>,
+  config: UseMethodConfig<ControlOptions, AutocompleteOptionsFromMethodDirectiveParameters>,
+): any;
+export function UseAutocompleteOptionsMethod(
+  method: ProviderToken<MethodWithParameters<ControlOptions, AutocompleteOptionsFromMethodDirectiveParameters | OpenApiRemoteMethodParameter<AutocompleteOptionsFromMethodDirectiveParameters>>>,
+  config: UseMethodConfig = {},
+) {
+  config.adapter ??= {};
+  config.adapter.parameter ??= (parameters) => ({parameters});
+  return UseOptionsMethod(method as any, config);
+}
+
+export function UseAutocompleteResolveMethod<Value = unknown>(
+  method: ProviderToken<MethodWithParameters<ControlOption<Value>, OpenApiRemoteMethodParameter<{ value: string }>>>,
+  config: UseMethodConfig = {},
+) {
+  config.adapter ??= {};
+  config.adapter.parameter ??= (parameters) => ({parameters});
+  return UseResolveMethod(method, config);
+}
+
+export interface AutocompleteOptionsFromRemoteMethodTemplateContext {
+  $implicit: ControlOption;
+}
+
+export interface AutocompleteOptionsFromMethodDirectiveSettings extends OptionsFromMethodDirectiveSettings {
+  filteredOptions?: boolean;
+}
+
+export interface AutocompleteOptionsFromMethodDirectiveParameters<Value = any> {
+  search?: Value | null;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AutocompleteOptionsFromMethodDirective<Value = any, Parameters extends AutocompleteOptionsFromMethodDirectiveParameters<Value> = AutocompleteOptionsFromMethodDirectiveParameters<Value>>
+  extends ExtractResolveMethodMixin, AfterViewInit, OnDestroy {
+}
+
+@Mixin(ExtractResolveMethodMixin)
+@Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[rxapAutocompleteOptionsFromMethod]',
+  standalone: true,
+})
+export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters extends AutocompleteOptionsFromMethodDirectiveParameters<Value> = AutocompleteOptionsFromMethodDirectiveParameters<Value>>
+  extends OptionsFromMethodDirective<Value, Parameters>
+  implements AfterViewInit, OnDestroy {
+
+  static override ngTemplateContextGuard(
+    dir: OptionsFromMethodDirective,
+    ctx: any,
+  ): ctx is AutocompleteOptionsFromRemoteMethodTemplateContext {
+    return true;
+  }
+
+  @Input('rxapAutocompleteOptionsFromMethodParameters')
+  public declare parameters?: Parameters;
+  @Input('rxapAutocompleteOptionsFromMethodResetOnChange')
+  public declare resetOnChange?: Value;
+  @Input('rxapAutocompleteOptionsFromMethodMatAutocomplete')
+  public matAutocomplete?: MatAutocomplete;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('rxapAutocompleteOptionsFromMethodCall')
+  public declare method: Method<ControlOptions, Parameters>;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('rxapAutocompleteOptionsFromMethodResolve')
+  public resolveMethod?: MethodWithParameters<ControlOption, { value: Value } & Parameters>;
+  protected override ngControl: NgControl | null                              = null;
+  protected override matFormField: MatFormField | null                        = null;
+  protected override injector: Injector                                       = inject(INJECTOR);
+  protected override settings: AutocompleteOptionsFromMethodDirectiveSettings = {};
+  /**
+   * This flag is used to prevent the setValue is called for each refresh
+   * of the options list. This is needed because the setValue method will
+   * trigger a new refresh of the options list. This results in an endless
+   * call stack. This flag is set to true if the setValue method is called
+   * once.
+   */
+  private isAutocompleteToDisplayTriggered                                    = false;
+
+  private _subscription?: Subscription;
+
+  public ngOnDestroy() {
+    this._subscription?.unsubscribe();
+  }
+
+  public override async ngAfterViewInit() {
+    if (this.matAutocomplete) {
+      this.matAutocomplete.displayWith = this.toDisplay.bind(this);
+      this.settings ??= {};
+      this.settings.filteredOptions ??= true;
+    }
+    await super.ngAfterViewInit();
+    this.resolveMethod ??= this.extractResolveMethod();
+    if (!this.control) {
+      throw new Error('The control is not yet defined');
+    }
+    const value$       = controlValueChanges$(this.control);
+    this._subscription = value$.pipe(
+      isDefined(),
+      // only trigger the load options or resolve value if the value is changed
+      // this is required because in the resolveValue method the control value is set
+      // to trigger the toDisplay function in the mat-autocomplete
+      distinctUntilChanged(),
+      tap(async value => {
+        this.setOptions(await this.loadOptions(this.parameters));
+        if (this.isValue(value)) {
+          this.triggerAutocompleteToDisplay();
+        }
+      }),
+    ).subscribe();
+  }
+
+  public toDisplay(value: any): string {
+    if (!value) {
+      return '';
+    }
+    const option = this.findOptionByValue(value);
+    return option?.display ?? (isDevMode() ? 'to display error' : '...');
+  }
+
+  public isValue(value: any): boolean {
+    return typeof value === 'string' && isUUID(value);
+  }
+
+  protected override loadOptions(parameters: Parameters = {} as Parameters): Promise<ControlOptions | null> {
+    if (!this.control) {
+      throw new Error('The control is not yet defined');
+    }
+    const value        = this.control?.value;
+    const c_parameters = {...parameters};
+    if (this.isValue(value)) {
+      return this.resolveValue(value, c_parameters);
+    } else {
+      c_parameters.search ??= value;
+      if (!c_parameters.search) {
+        return Promise.resolve([]);
+      }
+      return super.loadOptions(c_parameters);
+    }
+  }
+
+  protected override renderTemplate() {
+    super.renderTemplate();
+    if (this.matAutocomplete && !this.isAutocompleteToDisplayTriggered) {
+      this.isAutocompleteToDisplayTriggered = true;
+      this.triggerAutocompleteToDisplay();
+    }
+  }
+
+  protected async resolveValue(value: Value, parameters: Parameters = {} as Parameters) {
+    if (!this.resolveMethod) {
+      if (isDevMode()) {
+        console.warn('The resolve method is not yet defined');
+      }
+      return null;
+    }
+    // only resolve the value if the option is not already loaded
+    if (!this.findOptionByValue(value)) {
+      const option = await this.resolveMethod!.call({...parameters, value});
+      if (option.value !== value) {
+        throw new Error('The resolved value is not the same as the input value');
+      }
+      return [ option ];
+    }
+    return this.options;
+  }
+
+  private triggerAutocompleteToDisplay() {
+    // trigger a change detection after the options are rendered
+    // this is needed to trigger the mat-autocomplete options to display function
+    this.ngControl?.control?.setValue(this.ngControl?.control?.value);
+  }
+
+  private findOptionByValue(value: Value): ControlOption | null {
+    return this.options?.find((option: ControlOption) => option.value === value) ?? null;
+  }
+
+}
