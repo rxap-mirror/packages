@@ -1,5 +1,8 @@
 import { Tree } from '@nx/devkit';
-import { HasProject } from '@rxap/workspace-utilities';
+import {
+  HasProject,
+  PROJECT_LOCATION_CACHE,
+} from '@rxap/workspace-utilities';
 import { libraryGenerator as generateJsLibrary } from '@nx/js';
 import { OpenApiLibraryInitGenerator } from '@rxap/plugin-open-api';
 import 'colors';
@@ -29,6 +32,7 @@ export async function coerceOpenApiClientSdkLibrary(
     });
 
     console.log('Initialize open api client sdk library'.blue);
+    PROJECT_LOCATION_CACHE.clear();
     await OpenApiLibraryInitGenerator(tree, {
       project: openApiProjectName
     });

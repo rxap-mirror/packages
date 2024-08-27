@@ -245,15 +245,16 @@ export async function initApplicationGenerator(
       updateProjectTargets(tree, projectName, project, options);
       updateGitIgnore(tree, project, options);
       updateTags(projectName, project, options);
+
+      // apply changes to the project configuration before coerce the open api client sdk
+      updateProjectConfiguration(tree, projectName, project);
+
       if (!options.standalone) {
         updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
         if (options.swagger) {
           await coerceOpenApiClientSdkLibrary(tree, projectName);
         }
       }
-
-      // apply changes to the project configuration
-      updateProjectConfiguration(tree, projectName, project);
 
       coerceEnvironmentFiles(
         tree,
