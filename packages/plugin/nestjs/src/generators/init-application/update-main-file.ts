@@ -30,7 +30,7 @@ export function updateMainFile(
 
     if (options.sentry) {
       importDeclarations.push({
-        moduleSpecifier: '@rxap/nest-logger',
+        moduleSpecifier: '@rxap/nest-sentry',
         namedImports: [ 'UseSentryLoggerFactory' ],
       });
       statements.push('server.useLogger(UseSentryLoggerFactory());');
