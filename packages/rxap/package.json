@@ -522,11 +522,11 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.4-dev.1"
+        "version": "19.1.4-dev.2"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.6-dev.1"
+        "version": "19.1.6-dev.2"
       },
       {
         "package": "@rxap/plugin-storybook",
