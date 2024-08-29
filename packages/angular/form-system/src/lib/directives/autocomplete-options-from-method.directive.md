@@ -32,7 +32,7 @@ export class Form {
   // ensure the table data source is provided - in root or in the form component
   @UseAutocompleteOptionsMethod(SearchCompanyMethod)
   // ensure the table data source is provided - in root or in the form component
-  @UseResolveMethod(GetCompanyMethod)
+  @UseAutocompleteResolveMethod(GetCompanyMethod)
   @UseFormControl()
   company!: RxapFromControl<Company>;
 
@@ -46,7 +46,23 @@ The Method `SearchCompanyMethod` is used by the autocomplete control to search f
 The Method `GetCompanyMethod` is used to resolve the selected value. The Method must accept a the value of the form control as the first argument and return a `ControlOption` object.
 
 ```typescript
-export class SearchCompanyMethod implements Method<ControlOptions, { search?: string | null }> { ... }
-export class GetCompanyMethod implements Method<ControlOption, string> { ... }
+export class SearchCompanyMethod implements Method<ControlOptions, { parameters: { search?: string | null } }> { ... }
+export class GetCompanyMethod implements Method<ControlOption, { parameters: { value: string } }> { ... }
 ```
+
+# Method Parameter Adopter
+
+By default the following adopter function is used by the `@UseAutocompleteOptionsMethod` and `@UseAutocompleteResolveMethod` decorators.
+
+```typescript
+(parameters) => ({parameters})
+```
+
+To override this default adopter function use the second argument of the decorator.
+
+```typescript
+@UseAutocompleteOptionsMethod(SearchCompanyMethod, { adapter: { parameter: (parameters) => ({ search: parameters.search }) } })
+```
+
+> The adapter function are called in an injection context, so it is possible to use the `inject` function
 
