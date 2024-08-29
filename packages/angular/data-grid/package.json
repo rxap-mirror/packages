@@ -11,7 +11,7 @@
     "@angular/core": "^18.2.0",
     "@angular/material": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@rxap/forms": "^18.1.1",
+    "@rxap/forms": "^18.2.0-dev.0",
     "@rxap/pattern": "^1.1.8",
     "@rxap/pipes": "^18.0.6",
     "@rxap/rxjs": "^1.1.9",
@@ -81,7 +81,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "18.1.1"
+        "version": "18.2.0-dev.0"
       },
       {
         "package": "@rxap/pattern",
