@@ -31,7 +31,7 @@ export class ExtractFunctionMixin {
       throw new Error(
         `A function with the name '${ name }' is not attached to the control '${ controlId }' use the @UseFunction decorator to attach a function to the control`);
     }
-    const {function: fnc, config} = map.get(name)!;
+    const {fnc, config} = map.get(name)!;
     return ApplyUseFunctionAdapters<Args, Result>(this.injector, fnc, config);
   }
 

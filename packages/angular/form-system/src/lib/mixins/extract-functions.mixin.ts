@@ -34,7 +34,7 @@ export interface UseFunctionDefinition<
   Args extends any[] = any[],
   Config extends UseFunctionConfig<ReturnType, Args> = UseFunctionConfig<ReturnType, Args>
 > {
-  function: UseFunctionType<Args, ReturnType>;
+  fnc: UseFunctionType<Args, ReturnType>;
   config?: Config;
 }
 
