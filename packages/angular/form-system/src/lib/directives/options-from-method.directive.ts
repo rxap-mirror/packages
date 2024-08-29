@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Directive,
   inject,
+  InjectFlags,
   INJECTOR,
   Injector,
   Input,
@@ -74,7 +75,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
 
   public async ngAfterViewInit() {
     this.matFormField = this.injector.get(MatFormField, null);
-    this.ngControl    = this.injector.get(NgControl, this.matFormField?._control.ngControl);
+    this.ngControl    = this.matFormField?._control.ngControl ?? this.injector.get(NgControl, null);
     this.control      = (this.ngControl?.control as RxapFormControl) ?? undefined;
     this.method ??= this.extractOptionsMethod();
     // ensure that the options are loaded. It is possible that the ngOnChange is triggered before the ngAfterViewInit
