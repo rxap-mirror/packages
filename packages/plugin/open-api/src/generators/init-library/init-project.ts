@@ -22,6 +22,7 @@ import {
   join,
 } from 'path';
 import { stringify } from 'yaml';
+import { getSwaggerBuildOutputPath } from './get-swagger-build-output-path';
 import { InitLibraryGeneratorSchema } from './schema';
 
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
@@ -68,9 +69,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       throw new Error(
         `The api project '${ apiProjectName }' for the open api client sdk library '${ options.project }' does not exists!`);
     }
-    const apiProject = GetProject(tree, apiProjectName);
-    const swaggerBuild = GetTarget(apiProject, 'swagger-build');
-    const { outputPath: apiProjectOutputPath } = GetTargetOptions(swaggerBuild);
+    const apiProjectOutputPath = getSwaggerBuildOutputPath(tree, apiProjectName, options.project);
     CoerceTarget(project, 'generate-open-api', {
       "dependsOn": [
         {
