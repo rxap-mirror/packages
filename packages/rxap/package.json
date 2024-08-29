@@ -266,7 +266,7 @@
       },
       {
         "package": "@rxap/form-system",
-        "version": "18.2.0-dev.0"
+        "version": "18.2.0-dev.1"
       },
       {
         "package": "@rxap/form-window-system",
@@ -522,7 +522,7 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.4-dev.2"
+        "version": "19.1.4-dev.3"
       },
       {
         "package": "@rxap/plugin-open-api",
