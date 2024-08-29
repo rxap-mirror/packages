@@ -9474,7 +9474,7 @@ __metadata:
     "@angular/cdk": ^18.2.0
     "@angular/core": ^18.2.0
     "@rxap/directives": ^18.0.6
-    "@rxap/form-system": ^18.2.0-dev.3
+    "@rxap/form-system": ^18.2.0-dev.4
     "@rxap/forms": ^18.1.1
     "@rxap/pattern": ^1.1.8
     "@rxap/reflect-metadata": ^1.0.10
@@ -9653,7 +9653,7 @@ __metadata:
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/form-system": ^18.2.0-dev.3
+    "@rxap/form-system": ^18.2.0-dev.4
     "@rxap/forms": ^18.1.1
     "@rxap/mixin": ^16.0.9
     "@rxap/reflect-metadata": ^1.0.10
@@ -9701,7 +9701,7 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
     "@rxap/data-source": ^18.1.4
-    "@rxap/form-system": ^18.2.0-dev.3
+    "@rxap/form-system": ^18.2.0-dev.4
     "@rxap/forms": ^18.1.1
     "@rxap/material-table-system": ^18.0.7
     "@rxap/mixin": ^16.0.9
@@ -10122,7 +10122,7 @@ __metadata:
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
     "@rxap/data-source": ^18.1.4
-    "@rxap/form-system": ^18.2.0-dev.3
+    "@rxap/form-system": ^18.2.0-dev.4
     "@rxap/forms": ^18.1.1
     "@rxap/material-directives": ^18.1.1
     "@rxap/material-form-system": ^18.0.6

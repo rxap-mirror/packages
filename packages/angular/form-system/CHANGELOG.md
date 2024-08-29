@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.2.0-dev.3...@rxap/form-system@18.2.0-dev.4) (2024-08-29)
+
+### Bug Fixes
+
+- use the correct decorator ([ee5dd1b](https://gitlab.com/rxap/packages/commit/ee5dd1bd2fde25e8bf48551efc13d869ad7f2fd1))
+
 # [18.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.2.0-dev.2...@rxap/form-system@18.2.0-dev.3) (2024-08-29)
 
 ### Bug Fixes
