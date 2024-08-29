@@ -41,6 +41,7 @@ export interface UseFunctionDefinition<
 export class ExtractFunctionsMixin {
 
   protected extractFunctions(
+    defaultMap: Map<string, UseFunctionDefinition> | null = null,
     formDefinition: FormDefinition,
     controlId: string,
   ): Map<string, UseFunctionDefinition> {
@@ -50,13 +51,18 @@ export class ExtractFunctionsMixin {
     );
 
     if (!map) {
-      console.log(map);
+      if (defaultMap) {
+        return defaultMap;
+      }
       throw new Error(
         'Could not extract the use remote function map from the form definition instance',
       );
     }
 
     if (!map.has(controlId)) {
+      if (defaultMap) {
+        return defaultMap;
+      }
       throw new Error(
         'A use remote function definition does not exists in the form definition metadata',
       );
