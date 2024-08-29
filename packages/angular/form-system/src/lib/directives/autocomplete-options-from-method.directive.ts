@@ -19,6 +19,10 @@ import { Mixin } from '@rxap/mixin';
 import { NgControl } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { isDefined } from '@rxap/rxjs';
+import { ExtractControlMixin } from '../mixins/extract-control.mixin';
+import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
+import { ExtractIsValueFunctionMixin } from '../mixins/extract-is-value-function.mixin';
+import { ExtractMethodMixin } from '../mixins/extract-method.mixin';
 import { UseMethodConfig } from '../mixins/extract-methods.mixin';
 import { UseOptionsMethod } from '../mixins/extract-options-method.mixin';
 import {
@@ -57,6 +61,12 @@ export function UseAutocompleteResolveMethod<Value = unknown>(
   return UseResolveMethod(method, config);
 }
 
+export function UseAutocompleteIsValueFunction<Value = unknown>(
+  isValue: (value: Value) => boolean,
+): any {
+  return UseResolveMethod(isValue);
+}
+
 export interface AutocompleteOptionsFromRemoteMethodTemplateContext {
   $implicit: ControlOption;
 }
@@ -71,7 +81,7 @@ export interface AutocompleteOptionsFromMethodDirectiveParameters<Value = any> {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AutocompleteOptionsFromMethodDirective<Value = any, Parameters extends AutocompleteOptionsFromMethodDirectiveParameters<Value> = AutocompleteOptionsFromMethodDirectiveParameters<Value>>
-  extends ExtractResolveMethodMixin, AfterViewInit, OnDestroy {
+  extends ExtractResolveMethodMixin, ExtractIsValueFunctionMixin, AfterViewInit, OnDestroy {
 }
 
 @Injectable({ providedIn: 'root' })
@@ -83,7 +93,7 @@ export class NoopResolveMethod<Value> implements Method<ControlOption, { value: 
 
 }
 
-@Mixin(ExtractResolveMethodMixin)
+@Mixin(ExtractResolveMethodMixin, ExtractIsValueFunctionMixin)
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[rxapAutocompleteOptionsFromMethod]',
@@ -112,6 +122,10 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('rxapAutocompleteOptionsFromMethodResolve')
   public resolveMethod?: MethodWithParameters<ControlOption, { value: Value } & Parameters>;
+
+  @Input('rxapAutocompleteOptionsFromMethodIsValue')
+  public isValue?: (value: any) => boolean;
+
   protected override ngControl: NgControl | null                              = null;
   protected override matFormField: MatFormField | null                        = null;
   protected override injector: Injector                                       = inject(INJECTOR);
@@ -139,6 +153,7 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
     }
     await super.ngAfterViewInit();
     this.resolveMethod ??= this.extractResolveMethod();
+    this.isValue ??= this.extractIsValueFunction((value: any) => typeof value === 'string' && isUUID(value));
     if (!this.control) {
       throw new Error('The control is not yet defined');
     }
@@ -151,7 +166,7 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
       distinctUntilChanged(),
       tap(async value => {
         this.setOptions(await this.loadOptions(this.parameters));
-        if (this.isValue(value)) {
+        if (this.isValue?.(value)) {
           this.triggerAutocompleteToDisplay();
         }
       }),
@@ -166,17 +181,13 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
     return option?.display ?? (isDevMode() ? 'to display error' : '...');
   }
 
-  public isValue(value: any): boolean {
-    return typeof value === 'string' && isUUID(value);
-  }
-
   protected override loadOptions(parameters: Parameters = {} as Parameters): Promise<ControlOptions | null> {
     if (!this.control) {
       throw new Error('The control is not yet defined');
     }
     const value        = this.control?.value;
     const c_parameters = {...parameters};
-    if (this.isValue(value)) {
+    if (this.isValue?.(value)) {
       return this.resolveValue(value, c_parameters);
     } else {
       c_parameters.search ??= value;
