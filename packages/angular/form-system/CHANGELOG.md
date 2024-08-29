@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.2.0-dev.1...@rxap/form-system@18.2.0-dev.2) (2024-08-29)
+
+### Features
+
+- support custom is value function ([3cc456c](https://gitlab.com/rxap/packages/commit/3cc456c5489c781414f18020190302fd634b2d4e))
+
 # [18.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.2.0-dev.0...@rxap/form-system@18.2.0-dev.1) (2024-08-29)
 
 ### Bug Fixes
