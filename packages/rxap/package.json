@@ -274,7 +274,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "18.1.1"
+        "version": "18.2.0-dev.0"
       },
       {
         "package": "@rxap/generator-ts-morph",
