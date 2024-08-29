@@ -127,8 +127,8 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     expect(autocompleteOptionsMethodCall).not.toBeCalled();
     expect(resolveMethodCall).not.toBeCalled();
 
-    expect(directive.matAutocomplete!.displayWith!('')).toBe(directive.toDisplay.bind(directive)(''));
-    expect(directive.matAutocomplete!.displayWith!('error')).toBe(directive.toDisplay.bind(directive)('error'));
+    expect(directive.matAutocomplete!.displayWith!('')).toBe(directive.toDisplay!.bind(directive)(''));
+    expect(directive.matAutocomplete!.displayWith!('error')).toBe(directive.toDisplay!.bind(directive)('error'));
 
   }));
 
@@ -144,7 +144,7 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
 
     directive.options = [ {value: 'test', display: 'display_test'} ];
 
-    expect(directive.toDisplay('test')).toBe('display_test');
+    expect(directive.toDisplay!('test')).toBe('display_test');
 
   }));
 

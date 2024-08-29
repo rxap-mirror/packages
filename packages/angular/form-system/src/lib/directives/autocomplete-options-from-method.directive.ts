@@ -32,6 +32,10 @@ import {
   ExtractResolveMethodMixin,
   UseResolveMethod,
 } from '../mixins/extract-resolve-method.mixin';
+import {
+  ExtractToDisplayFunctionMixin,
+  UseToDisplayFunction,
+} from '../mixins/extract-to-display-function.mixin';
 import { OptionsFromMethodDirective, OptionsFromMethodDirectiveSettings } from './options-from-method.directive';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
 import { controlValueChanges$ } from '@rxap/forms';
@@ -70,6 +74,12 @@ export function UseAutocompleteIsValueFunction(
   return UseIsValueFunction(isValue);
 }
 
+export function UseAutocompleteToDisplayFunction(
+  toDisplay: (value: any) => string,
+): any {
+  return UseToDisplayFunction(toDisplay);
+}
+
 export interface AutocompleteOptionsFromRemoteMethodTemplateContext {
   $implicit: ControlOption;
 }
@@ -84,7 +94,7 @@ export interface AutocompleteOptionsFromMethodDirectiveParameters<Value = any> {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AutocompleteOptionsFromMethodDirective<Value = any, Parameters extends AutocompleteOptionsFromMethodDirectiveParameters<Value> = AutocompleteOptionsFromMethodDirectiveParameters<Value>>
-  extends ExtractResolveMethodMixin, ExtractIsValueFunctionMixin, AfterViewInit, OnDestroy {
+  extends ExtractResolveMethodMixin, ExtractIsValueFunctionMixin, ExtractToDisplayFunctionMixin, AfterViewInit, OnDestroy {
 }
 
 @Injectable({ providedIn: 'root' })
@@ -96,7 +106,7 @@ export class NoopResolveMethod<Value> implements Method<ControlOption, { value: 
 
 }
 
-@Mixin(ExtractResolveMethodMixin, ExtractIsValueFunctionMixin)
+@Mixin(ExtractResolveMethodMixin, ExtractIsValueFunctionMixin, ExtractToDisplayFunctionMixin)
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[rxapAutocompleteOptionsFromMethod]',
@@ -129,6 +139,9 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
   @Input('rxapAutocompleteOptionsFromMethodIsValue')
   public isValue?: (value: any) => boolean;
 
+  @Input('rxapAutocompleteOptionsFromMethodToDisplay')
+  public toDisplay?: (value: any) => string;
+
   protected override ngControl: NgControl | null                              = null;
   protected override matFormField: MatFormField | null                        = null;
   protected override injector: Injector                                       = inject(INJECTOR);
@@ -150,13 +163,22 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
 
   public override async ngAfterViewInit() {
     if (this.matAutocomplete) {
-      this.matAutocomplete.displayWith = this.toDisplay.bind(this);
       this.settings ??= {};
       this.settings.filteredOptions ??= true;
     }
     await super.ngAfterViewInit();
     this.resolveMethod ??= this.extractResolveMethod();
     this.isValue ??= this.extractIsValueFunction((value: any) => typeof value === 'string' && isUUID(value));
+    this.toDisplay ??= this.extractToDisplayFunction((value: any): string => {
+      if (!value) {
+        return '';
+      }
+      const option = this.findOptionByValue(value);
+      return option?.display ?? (isDevMode() ? 'to display error' : '...');
+    });
+    if (this.matAutocomplete) {
+      this.matAutocomplete.displayWith = this.toDisplay.bind(this);
+    }
     if (!this.control) {
       throw new Error('The control is not yet defined');
     }
@@ -174,14 +196,6 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
         }
       }),
     ).subscribe();
-  }
-
-  public toDisplay(value: any): string {
-    if (!value) {
-      return '';
-    }
-    const option = this.findOptionByValue(value);
-    return option?.display ?? (isDevMode() ? 'to display error' : '...');
   }
 
   protected override loadOptions(parameters: Parameters = {} as Parameters): Promise<ControlOptions | null> {
