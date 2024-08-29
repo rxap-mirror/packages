@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.2.0-dev.5...@rxap/form-system@18.2.0-dev.6) (2024-08-29)
+
+### Features
+
+- support custom toDisplay Function ([e8c40e4](https://gitlab.com/rxap/packages/commit/e8c40e41a7112c25726704ab5ea1314138efdba1))
+
 # [18.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.2.0-dev.4...@rxap/form-system@18.2.0-dev.5) (2024-08-29)
 
 ### Bug Fixes

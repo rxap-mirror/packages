@@ -13,7 +13,7 @@
     "@angular/forms": "^18.2.0",
     "@angular/material": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@rxap/form-system": "^18.2.0-dev.5",
+    "@rxap/form-system": "^18.2.0-dev.6",
     "@rxap/forms": "^18.1.1",
     "@rxap/mixin": "^16.0.9",
     "@rxap/reflect-metadata": "^1.0.10",
@@ -100,7 +100,7 @@
       },
       {
         "package": "@rxap/form-system",
-        "version": "18.2.0-dev.5"
+        "version": "18.2.0-dev.6"
       },
       {
         "package": "@rxap/forms",
