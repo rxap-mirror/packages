@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Directive,
   inject,
+  Injectable,
   Injector,
   INJECTOR,
   Input,
@@ -71,6 +72,15 @@ export interface AutocompleteOptionsFromMethodDirectiveParameters<Value = any> {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AutocompleteOptionsFromMethodDirective<Value = any, Parameters extends AutocompleteOptionsFromMethodDirectiveParameters<Value> = AutocompleteOptionsFromMethodDirectiveParameters<Value>>
   extends ExtractResolveMethodMixin, AfterViewInit, OnDestroy {
+}
+
+@Injectable({ providedIn: 'root' })
+export class NoopResolveMethod<Value> implements Method<ControlOption, { value: Value }> {
+
+  call({ value } : { value: Value }): Promise<ControlOption> {
+    return Promise.resolve({ value, display: value + '' });
+  }
+
 }
 
 @Mixin(ExtractResolveMethodMixin)
