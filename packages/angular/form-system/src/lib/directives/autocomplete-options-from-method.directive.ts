@@ -21,7 +21,10 @@ import { MatFormField } from '@angular/material/form-field';
 import { isDefined } from '@rxap/rxjs';
 import { ExtractControlMixin } from '../mixins/extract-control.mixin';
 import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
-import { ExtractIsValueFunctionMixin } from '../mixins/extract-is-value-function.mixin';
+import {
+  ExtractIsValueFunctionMixin,
+  UseIsValueFunction,
+} from '../mixins/extract-is-value-function.mixin';
 import { ExtractMethodMixin } from '../mixins/extract-method.mixin';
 import { UseMethodConfig } from '../mixins/extract-methods.mixin';
 import { UseOptionsMethod } from '../mixins/extract-options-method.mixin';
@@ -61,10 +64,10 @@ export function UseAutocompleteResolveMethod<Value = unknown>(
   return UseResolveMethod(method, config);
 }
 
-export function UseAutocompleteIsValueFunction<Value = unknown>(
-  isValue: (value: Value) => boolean,
+export function UseAutocompleteIsValueFunction(
+  isValue: (value: any) => boolean,
 ): any {
-  return UseResolveMethod(isValue);
+  return UseIsValueFunction(isValue);
 }
 
 export interface AutocompleteOptionsFromRemoteMethodTemplateContext {
