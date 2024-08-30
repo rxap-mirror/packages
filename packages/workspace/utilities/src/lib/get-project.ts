@@ -61,7 +61,9 @@ export const PROJECT_LOCATION_CACHE_LIST: string[] = [];
 export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: string): ProjectJson | null {
   if (IsGeneratorTreeLike(tree)) {
     const projects = getProjects(tree);
-    return projects.get(projectName) ?? null;
+    if (projects.has(projectName)) {
+      return projects.get(projectName)!;
+    }
   }
   if (PROJECT_LOCATION_CACHE.size === 0) {
     console.log(`The project location cache is empty. Build cache.`.yellow);

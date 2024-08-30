@@ -32,7 +32,6 @@ export async function coerceOpenApiClientSdkLibrary(
     });
 
     console.log('Initialize open api client sdk library'.blue);
-    PROJECT_LOCATION_CACHE.clear();
     await OpenApiLibraryInitGenerator(tree, {
       project: openApiProjectName
     });
