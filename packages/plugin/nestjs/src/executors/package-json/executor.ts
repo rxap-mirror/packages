@@ -3,7 +3,7 @@ import { jsonFileWithRetry } from '@rxap/node-utilities';
 import {
   GetAllPackageDependenciesForProject,
   GetProjectRoot,
-  LoadProjectToPackageMapping,
+  HasProjectWithPackageName,
   LoadProjectToPackageMappingWithRetry,
 } from '@rxap/plugin-utilities';
 import { PackageJson } from '@rxap/workspace-utilities';
@@ -20,6 +20,15 @@ export default async function runExecutor(
   await LoadProjectToPackageMappingWithRetry(context);
 
   const dependencies = GetAllPackageDependenciesForProject(context);
+
+  if (!options.includeLocalProjects) {
+    // remove all packages that reference a local project
+    for (const packageName of Object.keys(dependencies)) {
+      if (HasProjectWithPackageName(packageName)) {
+        delete dependencies[packageName];
+      }
+    }
+  }
 
   console.log('resolved local published package dependencies', JSON.stringify(dependencies));
 

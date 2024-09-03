@@ -13,6 +13,11 @@
       "items": {
         "type": "string"
       }
+    },
+    "includeLocalProjects": {
+      "type": "boolean",
+      "default": false,
+      "description": "Include local projects in the package.json file, if they have a package.json file"
     }
   },
   "required": []
