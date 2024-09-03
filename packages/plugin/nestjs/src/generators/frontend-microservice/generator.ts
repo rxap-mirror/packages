@@ -16,12 +16,14 @@ export async function frontendMicroserviceGenerator(
   }
   const presetOptions = nxJson.generators?.['@rxap/plugin-nestjs:microservice'] ?? {};
 
+  const frontendName = options.frontend.replace(/^user-interface-/, '');
+
   await microserviceGenerator(tree, {
     ...presetOptions,
-    apiPrefix: [ 'api', 'app', options.frontend, options.feature ].join('/'),
+    apiPrefix: [ 'api', 'app', frontendName, options.feature ].join('/'),
     ...options,
-    name: [ 'service', 'app', options.frontend, options.feature ].join('-'),
-    directory: [ 'service', 'app', options.frontend, options.feature ].join('/'),
+    name: [ 'service', 'app', frontendName, options.feature ].join('-'),
+    directory: [ 'service', 'app', frontendName, options.feature ].join('/'),
   });
 
 }
