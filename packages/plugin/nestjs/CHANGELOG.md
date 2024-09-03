@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.4-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.4-dev.4...@rxap/plugin-nestjs@19.1.4-dev.5) (2024-09-03)
+
+### Bug Fixes
+
+- ensure the frontend name is normalized and the user-interface- prefix striped ([ad14af8](https://gitlab.com/rxap/packages/commit/ad14af808516e7d7f236726413cb44b8943a0f1c))
+
 ## [19.1.4-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.4-dev.3...@rxap/plugin-nestjs@19.1.4-dev.4) (2024-08-30)
 
 ### Bug Fixes
