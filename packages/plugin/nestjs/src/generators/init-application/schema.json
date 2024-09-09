@@ -127,6 +127,35 @@
       "default": false,
       "description": "Whether the nest service should be standalone",
       "x-prompt": "Should this service be standalone?"
+    },
+    "typeorm": {
+      "type": "string",
+      "enum": [
+        "none",
+        "postgres"
+      ],
+      "default": "none",
+      "x-prompt": "Which typeorm database should be used?"
+    },
+    "bootstrap": {
+      "type": "string",
+      "enum": [
+        "monolithic",
+        "hybrid",
+        "microservice"
+      ],
+      "default": "monolithic",
+      "x-prompt": "Which bootstrap type should be used?"
+    },
+    "transport": {
+      "type": "string",
+      "enum": [
+        "none",
+        "rabbitmq"
+      ],
+      "default": "none",
+      "description": "The transport to use for microservices communication",
+      "x-prompt": "Which transport should be used for microservices communication?"
     }
   },
   "required": []

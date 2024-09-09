@@ -26,4 +26,7 @@ export interface InitApplicationGeneratorSchema {
   apiConfigurationFile?: string;
   standalone?: boolean;
   skipFormat?: boolean;
+  typeorm: 'none' | 'postgres',
+  bootstrap: 'monolithic' | 'hybrid' | 'microservice',
+  transport: 'none' | 'rabbitmq'
 }

@@ -77,6 +77,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     if (IsApplicationProject(project)) {
       await initApplicationGenerator(tree,
         {
+          typeorm: 'none',
+          bootstrap: 'monolithic',
+          transport: 'none',
           ...options,
           projects: [ projectName ],
           skipProjects: options.skipProjects,
