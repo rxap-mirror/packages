@@ -40,6 +40,10 @@ export * from './lib/nx-json/index';
 export * from './lib/nest/get-nest-api-prefix';
 // endregion
 
+// region deployment
+export * from './lib/deployment/utilities';
+// endregion
+
 // region collection-json
 export * from './lib/collection-json/index';
 export * from './lib/collection-json/interface';
