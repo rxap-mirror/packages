@@ -143,6 +143,7 @@
       "@rxap/ngx-changelog": ["packages/angular/changelog/src/index.ts"],
       "@rxap/ngx-error": ["packages/angular/error/src/index.ts"],
       "@rxap/ngx-localize": ["packages/angular/localize/src/index.ts"],
+      "@rxap/ngx-marker-io": ["packages/angular/marker-io/src/index.ts"],
       "@rxap/ngx-material-authentication": [
         "packages/angular/material/authentication/src/index.ts"
       ],

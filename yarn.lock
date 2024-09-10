@@ -6709,6 +6709,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@marker.io/browser@npm:^0.19.0":
+  version: 0.19.0
+  resolution: "@marker.io/browser@npm:0.19.0"
+  checksum: 535d76ed0a57b1f3bd3d748b2da975be38a36b3b2529cb51961d813588a77168ab20e483715dd4b4d2b8a02249eb5be1b1e9b51f9e676ddf7064fc7eb2d2c0c3
+  languageName: node
+  linkType: hard
+
 "@mdi/angular-material@npm:7.2.96":
   version: 7.2.96
   resolution: "@mdi/angular-material@npm:7.2.96"
@@ -10068,6 +10075,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-marker-io@workspace:packages/angular/marker-io":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-marker-io@workspace:packages/angular/marker-io"
+  dependencies:
+    "@nx/devkit": 19.6.2
+  peerDependencies:
+    "@angular/common": ^18.2.0
+    "@angular/core": ^18.2.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/ngx-material-authentication@workspace:packages/angular/material/authentication":
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-authentication@workspace:packages/angular/material/authentication"
@@ -10859,6 +10877,7 @@ __metadata:
     "@jsdevtools/coverage-istanbul-loader": 3.0.5
     "@kvs/storage": 2.1.4
     "@localazy/cli": 1.7.10
+    "@marker.io/browser": ^0.19.0
     "@mdi/angular-material": 7.2.96
     "@nestjs/axios": 3.0.2
     "@nestjs/cache-manager": 2.2.2

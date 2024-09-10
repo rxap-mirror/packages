@@ -436,6 +436,18 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "@nx/angular:ng-packagr-lite": {
+      "dependsOn": [
+        "index-export",
+        "^index-export",
+        "^build",
+        "check-version",
+        "build-tailwind",
+        "check-ng-package"
+      ],
+      "inputs": ["production", "^production"],
+      "cache": true
     }
   },
   "generators": {

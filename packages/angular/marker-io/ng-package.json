@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/packages/angular/marker-io",
+  "lib": {
+    "entryFile": "src/index.ts"
+  },
+  "allowedNonPeerDependencies": ["@nx/devkit"],
+  "assets": [
+    {
+      "input": "src/generators",
+      "glob": "**/!(*.ts|*.js|*.json)",
+      "output": "src/generators"
+    },
+    "generators.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "LICENSE.md",
+    "theme.css"
+  ]
+}
