@@ -49,7 +49,6 @@ function createServiceDockerCompose(
           'STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000',
           'ROOT_DOMAIN',
           'SENTRY_ENABLED=false',
-          'LOG_LEVEL=verbose',
           'ROOT_DOMAIN_PORT',
           'ENVIRONMENT_NAME=development',
         ],
@@ -199,14 +198,6 @@ function createTraefikConfig(
     entryPoints: {
       http: {
         address: ':80',
-        http: {
-          redirections: {
-            entrypoint: {
-              to: 'https',
-              scheme: 'https',
-            },
-          },
-        },
       },
       https: {
         address: ':443',
