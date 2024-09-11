@@ -417,6 +417,10 @@
         "version": "18.0.6"
       },
       {
+        "package": "@rxap/ngx-marker-io",
+        "version": "18.0.0-dev.1"
+      },
+      {
         "package": "@rxap/ngx-material-authentication",
         "version": "18.0.6"
       },
@@ -546,15 +550,15 @@
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.1.6-dev.2"
+        "version": "19.1.6-dev.3"
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.6-dev.2"
+        "version": "19.0.6-dev.3"
       },
       {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.7-dev.2"
+        "version": "19.0.7-dev.3"
       },
       {
         "package": "@rxap/reflect-metadata",
