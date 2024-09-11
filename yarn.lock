@@ -10597,7 +10597,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-workspace@^19.1.6-dev.2, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
+"@rxap/plugin-workspace@^19.1.6-dev.3, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
   dependencies:
@@ -10618,7 +10618,7 @@ __metadata:
   dependencies:
     "@nx/devkit": 19.6.2
     "@rxap/plugin-angular": ^19.3.4-dev.2
-    "@rxap/plugin-workspace": ^19.1.6-dev.2
+    "@rxap/plugin-workspace": ^19.1.6-dev.3
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10628,7 +10628,7 @@ __metadata:
   resolution: "@rxap/preset-workspace@workspace:packages/preset/workspace"
   dependencies:
     "@nx/devkit": 19.6.2
-    "@rxap/plugin-workspace": ^19.1.6-dev.2
+    "@rxap/plugin-workspace": ^19.1.6-dev.3
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
