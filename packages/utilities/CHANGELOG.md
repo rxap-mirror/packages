@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.3.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.3.1...@rxap/utilities@16.3.2-dev.0) (2024-09-18)
+
+### Bug Fixes
+
+- support custom property access function ([1d8be7b](https://gitlab.com/rxap/packages/commit/1d8be7b6598dbfc8a90876995c877668d1165a9e))
+
 ## [16.3.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.3.1-dev.1...@rxap/utilities@16.3.1) (2024-08-22)
 
 **Note:** Version bump only for package @rxap/utilities

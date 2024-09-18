@@ -74,7 +74,7 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.9"
+        "version": "1.1.10-dev.0"
       },
       {
         "package": "@rxap/definition",
@@ -90,7 +90,7 @@
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.9"
+        "version": "16.0.10-dev.0"
       },
       {
         "package": "@rxap/ngx-localize",
@@ -114,7 +114,7 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.10"
+        "version": "1.0.11-dev.0"
       },
       {
         "package": "@rxap/remote-method",
@@ -122,7 +122,7 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.9"
+        "version": "1.1.10-dev.0"
       },
       {
         "package": "@rxap/services",
@@ -130,7 +130,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.3.1"
+        "version": "16.3.2-dev.0"
       }
     ]
   },

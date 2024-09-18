@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.3.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.3.1...@rxap/layout@18.3.2-dev.0) (2024-09-18)
+
+**Note:** Version bump only for package @rxap/layout
+
 ## [18.3.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@18.3.1-dev.1...@rxap/layout@18.3.1) (2024-09-18)
 
 **Note:** Version bump only for package @rxap/layout
