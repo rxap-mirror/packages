@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@18.1.0-dev.0...@rxap/ngx-error@18.1.0) (2024-09-18)
+
+**Note:** Version bump only for package @rxap/ngx-error
+
 # [18.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@18.0.6...@rxap/ngx-error@18.1.0-dev.0) (2024-08-27)
 
 ### Features

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.2.0-dev.6...@rxap/form-system@18.2.0) (2024-09-18)
+
+**Note:** Version bump only for package @rxap/form-system
+
 # [18.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/form-system@18.2.0-dev.5...@rxap/form-system@18.2.0-dev.6) (2024-08-29)
 
 ### Features

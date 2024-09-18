@@ -11,8 +11,8 @@
     "@angular/cdk": "^18.2.0",
     "@angular/core": "^18.2.0",
     "@rxap/directives": "^18.0.6",
-    "@rxap/form-system": "^18.2.0-dev.6",
-    "@rxap/forms": "^18.2.0-dev.0",
+    "@rxap/form-system": "^18.2.0",
+    "@rxap/forms": "^18.2.0",
     "@rxap/pattern": "^1.1.8",
     "@rxap/reflect-metadata": "^1.0.10",
     "@rxap/rxjs": "^1.1.9",
@@ -103,11 +103,11 @@
       },
       {
         "package": "@rxap/form-system",
-        "version": "18.2.0-dev.6"
+        "version": "18.2.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "18.2.0-dev.0"
+        "version": "18.2.0"
       },
       {
         "package": "@rxap/material-directives",
@@ -123,7 +123,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.7-dev.0"
+        "version": "18.0.7"
       },
       {
         "package": "@rxap/pattern",

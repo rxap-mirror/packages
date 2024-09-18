@@ -95,7 +95,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.7-dev.0"
+        "version": "18.0.7"
       },
       {
         "package": "@rxap/pattern",
