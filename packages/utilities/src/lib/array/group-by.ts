@@ -31,12 +31,14 @@
  * This shows that the function has grouped the elements in the list based on their 'age' property.
  *
  */
-export function GroupBy<T, K extends keyof T>(list: T[], propertyKey: K): Map<K, T[]> {
+export function GroupBy<T, K extends keyof T, MK = K>(list: T[], propertyKey: K): Map<MK, T[]>;
+export function GroupBy<T, K extends keyof T, MK = string>(list: T[], propertyFunction: ((item: T) => string)): Map<MK, T[]>;
+export function GroupBy<T, K extends keyof T, MK = K | string>(list: T[], propertyKeyOrFunction: K | ((item: T) => string)): Map<MK, T[]> {
   const map = new Map();
 
   for (const item of list) {
 
-    const key = item[propertyKey];
+    const key = typeof propertyKeyOrFunction === 'function' ? propertyKeyOrFunction(item) : item[propertyKeyOrFunction];
 
     if (!map.has(key)) {
       map.set(key, []);
