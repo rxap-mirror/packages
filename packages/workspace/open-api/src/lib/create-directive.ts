@@ -1,4 +1,7 @@
-import { strings } from '@angular-devkit/core';
+import {
+  camelize,
+  classify,
+} from '@rxap/utilities';
 import {
   ClassDeclaration,
   ClassDeclarationStructure,
@@ -27,11 +30,6 @@ function AssertImportSpecifierStructureArray(obj: any): asserts obj is Array<Opt
     throw new Error('Should be a array of OptionalKind<ImportSpecifierStructure>');
   }
 }
-
-const {
-  classify,
-  camelize,
-} = strings;
 
 /**
  *

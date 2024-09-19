@@ -1,4 +1,7 @@
-import { strings } from '@angular-devkit/core';
+import {
+  classify,
+  dasherize,
+} from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclarationStructure,
@@ -21,11 +24,6 @@ import { GetParameterType } from './utilities/get-parameter-type';
 import { GetRequestBodyType } from './utilities/get-request-body-type';
 import { GetResponseType } from './utilities/get-response-type';
 import { GetTypeParameters } from './utilities/get-type-parameters';
-
-const {
-  dasherize,
-  classify,
-} = strings;
 
 /**
  *

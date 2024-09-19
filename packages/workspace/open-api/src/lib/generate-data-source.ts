@@ -1,4 +1,7 @@
-import { strings } from '@angular-devkit/core';
+import {
+  classify,
+  dasherize,
+} from '@rxap/utilities';
 import { join } from 'path';
 import {
   ClassDeclarationStructure,
@@ -13,11 +16,6 @@ import {
 import { GenerateParameter } from './types';
 import { GetParameterType } from './utilities/get-parameter-type';
 import { GetResponseType } from './utilities/get-response-type';
-
-const {
-  dasherize,
-  classify,
-} = strings;
 
 /**
  * Generates a TypeScript source file for an OpenAPI data source class based on the provided parameters.
