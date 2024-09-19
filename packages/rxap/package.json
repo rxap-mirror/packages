@@ -154,55 +154,55 @@
       },
       {
         "package": "@nx/angular",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/cypress",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/devkit",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/eslint",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/eslint-plugin",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/jest",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/js",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/nest",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/node",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/plugin",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/storybook",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/web",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@nx/webpack",
-        "version": "19.6.2"
+        "version": "19.7.4"
       },
       {
         "package": "@rxap/authentication",
@@ -666,7 +666,7 @@
       },
       {
         "package": "nx",
-        "version": "19.6.2"
+        "version": "19.7.4"
       }
     ]
   },

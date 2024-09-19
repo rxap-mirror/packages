@@ -3,7 +3,7 @@
   "name": "@rxap/ngx-material-authentication",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.6.2",
+    "@nx/devkit": "19.7.4",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

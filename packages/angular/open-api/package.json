@@ -4,7 +4,7 @@
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.6.2",
+    "@nx/devkit": "19.7.4",
     "ajv": "^8.12.0",
     "openapi-types": "^10.0.0",
     "tslib": "2.6.2"
