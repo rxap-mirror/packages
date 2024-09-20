@@ -80,7 +80,7 @@
       "outputs": [
         "{workspaceRoot}/coverage/{projectRoot}",
         "{workspaceRoot}/junit/{projectRoot}",
-        "{workspaceRoot}/{projectRoot}/coverage"
+        "{projectRoot}/coverage"
       ],
       "inputs": [
         "test",
@@ -346,7 +346,7 @@
       "outputs": [
         "{workspaceRoot}/coverage/{projectRoot}",
         "{workspaceRoot}/junit/{projectRoot}",
-        "{workspaceRoot}/{projectRoot}/coverage"
+        "{projectRoot}/coverage"
       ],
       "inputs": [
         "test",

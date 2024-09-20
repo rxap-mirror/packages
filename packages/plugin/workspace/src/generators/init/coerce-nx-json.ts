@@ -98,7 +98,7 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     'outputs': [
       '{workspaceRoot}/coverage/{projectRoot}',
       '{workspaceRoot}/junit/{projectRoot}',
-      '{workspaceRoot}/{projectRoot}/coverage',
+      '{projectRoot}/coverage',
     ],
     'inputs': [
       'test',

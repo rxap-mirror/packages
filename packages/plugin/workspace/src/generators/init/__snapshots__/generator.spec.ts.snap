@@ -137,7 +137,7 @@ exports[`init should init default workspace 3`] = `
       "outputs": [
         "{workspaceRoot}/coverage/{projectRoot}",
         "{workspaceRoot}/junit/{projectRoot}",
-        "{workspaceRoot}/{projectRoot}/coverage"
+        "{projectRoot}/coverage"
       ],
       "inputs": [
         "test",

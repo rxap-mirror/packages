@@ -135,7 +135,7 @@ exports[`preset should use workspace preset 3`] = `
       "outputs": [
         "{workspaceRoot}/coverage/{projectRoot}",
         "{workspaceRoot}/junit/{projectRoot}",
-        "{workspaceRoot}/{projectRoot}/coverage"
+        "{projectRoot}/coverage"
       ],
       "inputs": [
         "test",
