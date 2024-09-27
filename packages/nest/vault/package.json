@@ -3,6 +3,7 @@
   "name": "@rxap/nest-vault",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@nx/devkit": "19.7.4",
     "node-vault": "^0.10.2",
     "tslib": "2.6.2"
   },

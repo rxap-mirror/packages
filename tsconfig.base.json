@@ -191,6 +191,7 @@
       "@rxap/plugin-gpt": ["packages/plugin/gpt/src/index.ts"],
       "@rxap/plugin-library": ["packages/plugin/library/src/index.ts"],
       "@rxap/plugin-localazy": ["packages/plugin/localazy/src/index.ts"],
+      "@rxap/plugin-n8n": ["packages/plugin/n8n/src/index.ts"],
       "@rxap/plugin-nestjs": ["packages/plugin/nestjs/src/index.ts"],
       "@rxap/plugin-open-api": ["packages/plugin/open-api/src/index.ts"],
       "@rxap/plugin-readme-generator": [

@@ -10505,6 +10505,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-n8n@workspace:packages/plugin/n8n":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-n8n@workspace:packages/plugin/n8n"
+  dependencies:
+    "@nx/devkit": 19.7.4
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-nestjs@workspace:packages/plugin/nestjs":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-nestjs@workspace:packages/plugin/nestjs"
@@ -11158,7 +11167,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
   dependencies:
-    "@angular-devkit/core": 18.2.1
     "@nx/devkit": 19.7.4
     "@rxap/json-schema-to-typescript": ^16.0.10-dev.0
     "@rxap/utilities": ^16.3.2-dev.0

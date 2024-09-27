@@ -4,6 +4,7 @@
   "description": "n8n nodes to work with YAML files",
   "license": "MIT",
   "dependencies": {
+    "@nx/devkit": "19.7.4",
     "iconv-lite": "^0.6.3",
     "lodash": "^4.17.21",
     "tslib": "2.6.2",

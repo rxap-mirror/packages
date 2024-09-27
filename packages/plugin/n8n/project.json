@@ -1,0 +1,80 @@
+{
+  "name": "plugin-n8n",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/plugin/n8n/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["plugin", "nx", "nx-plugin", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/plugin/n8n",
+        "main": "packages/plugin/n8n/src/index.ts",
+        "tsConfig": "packages/plugin/n8n/tsconfig.lib.json",
+        "assets": [
+          "packages/plugin/n8n/*.md",
+          {
+            "input": "./packages/plugin/n8n/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/n8n/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/n8n",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/n8n",
+            "glob": "executors.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/n8n/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/plugin/n8n/jest.config.ts"
+      }
+    },
+    "update-dependencies": {},
+    "fix-dependencies": {},
+    "readme": {},
+    "linking": {},
+    "update-package-group": {},
+    "check-version": {
+      "options": {
+        "packageName": "nx"
+      }
+    },
+    "expose-as-schematic": {}
+  }
+}
