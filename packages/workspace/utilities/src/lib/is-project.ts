@@ -218,3 +218,7 @@ export function IsServiceProject(project: { tags?: string[], projectType?: strin
     !!project.tags?.includes('service') || IsNestJsProject(project)
   );
 }
+
+export function IsN8nProject(project: { tags?: string[] }): boolean {
+  return !!project.tags?.includes('n8n');
+}

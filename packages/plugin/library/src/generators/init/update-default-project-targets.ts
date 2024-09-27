@@ -20,7 +20,7 @@ export function updateDefaultProjectTargets(tree: Tree) {
   CoerceTarget(nxJson, 'index-export', {
     executor: '@rxap/plugin-library:run-generator',
     outputs: [
-      '{workspaceRoot}/{projectRoot}/src/index.ts',
+      '{projectRoot}/src/index.ts',
     ],
     options: {
       'generator': '@rxap/plugin-library:index-export',

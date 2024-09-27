@@ -70,7 +70,7 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
     dependsOn: [ 'build' ],
     executor: '@rxap/plugin-application:i18n',
     outputs: [ 'dist/{projectRoot}/index.html' ],
-    inputs: [ '{workspaceRoot}/{projectRoot}/project.json' ],
+    inputs: [ '{projectRoot}/project.json' ],
   });
 
   updateNxJson(tree, nxJson);

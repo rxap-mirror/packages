@@ -3,6 +3,30 @@
   "$id": "Init",
   "title": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "skipProjects": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip executing project specific initialization"
+    }
+  },
   "required": []
 }

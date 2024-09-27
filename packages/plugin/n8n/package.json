@@ -4,7 +4,10 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.7.4",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@rxap/utilities": "16.3.2-dev.0",
+    "@rxap/workspace-utilities": "19.4.3-dev.0",
+    "@rxap/plugin-library": "19.4.3-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -34,6 +37,7 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/n8n"
   },
+  "schematics": "./generators.json",
   "type": "commonjs",
   "typings": "./src/index.d.ts"
 }
