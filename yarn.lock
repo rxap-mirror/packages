@@ -9757,6 +9757,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/n8n-nodes-zip@workspace:packages/n8n/nodes/zip":
+  version: 0.0.0-use.local
+  resolution: "@rxap/n8n-nodes-zip@workspace:packages/n8n/nodes/zip"
+  dependencies:
+    "@nx/devkit": 19.7.4
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/nest-dto@workspace:packages/nest/dto":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-dto@workspace:packages/nest/dto"
@@ -10471,7 +10480,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-library@^19.4.3-dev.0, @rxap/plugin-library@workspace:packages/plugin/library":
+"@rxap/plugin-library@19.4.3-dev.0, @rxap/plugin-library@^19.4.3-dev.0, @rxap/plugin-library@workspace:packages/plugin/library":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-library@workspace:packages/plugin/library"
   dependencies:
@@ -10510,6 +10519,9 @@ __metadata:
   resolution: "@rxap/plugin-n8n@workspace:packages/plugin/n8n"
   dependencies:
     "@nx/devkit": 19.7.4
+    "@rxap/plugin-library": 19.4.3-dev.0
+    "@rxap/utilities": 16.3.2-dev.0
+    "@rxap/workspace-utilities": 19.4.3-dev.0
     tslib: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -11116,7 +11128,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/utilities@^16.3.2-dev.0, @rxap/utilities@workspace:packages/utilities":
+"@rxap/utilities@16.3.2-dev.0, @rxap/utilities@^16.3.2-dev.0, @rxap/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/utilities@workspace:packages/utilities"
   dependencies:
@@ -11191,7 +11203,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-utilities@^19.4.3-dev.0, @rxap/workspace-utilities@workspace:packages/workspace/utilities":
+"@rxap/workspace-utilities@19.4.3-dev.0, @rxap/workspace-utilities@^19.4.3-dev.0, @rxap/workspace-utilities@workspace:packages/workspace/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-utilities@workspace:packages/workspace/utilities"
   dependencies:

@@ -121,6 +121,7 @@
       "@rxap/mixin": ["packages/mixin/src/index.ts"],
       "@rxap/n8n-nodes-neo4j": ["packages/n8n/nodes/neo4j/src/index.ts"],
       "@rxap/n8n-nodes-yaml": ["packages/n8n/nodes/yaml/src/index.ts"],
+      "@rxap/n8n-nodes-zip": ["packages/n8n/nodes/zip/src/index.ts"],
       "@rxap/nest-dto": ["packages/nest/dto/src/index.ts"],
       "@rxap/nest-firebase": ["packages/nest/firebase/src/index.ts"],
       "@rxap/nest-jwt": ["packages/nest/jwt/src/index.ts"],

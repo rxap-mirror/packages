@@ -1,12 +1,9 @@
 {
-  "version": "19.0.0-dev.0",
-  "name": "@rxap/plugin-n8n",
+  "version": "0.0.1",
+  "name": "@rxap/n8n-nodes-zip",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.7.4",
-    "@rxap/plugin-library": "19.4.3-dev.0",
-    "@rxap/utilities": "16.3.2-dev.0",
-    "@rxap/workspace-utilities": "19.4.3-dev.0",
     "tslib": "^2.3.0"
   },
   "author": {
@@ -18,26 +15,29 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "generators": "./generators.json",
-  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/n8n",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/n8n/nodes/zip",
   "keywords": [
-    "nx",
-    "nx-plugin",
+    "n8n",
+    "n8n-nodes-zip",
+    "nodes",
     "packages",
-    "plugin",
-    "plugin-n8n",
     "rxap"
   ],
   "main": "./src/index.js",
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [],
+    "credentials": []
+  },
   "publishConfig": {
     "access": "public",
-    "directory": "../../../dist/packages/plugin/n8n"
+    "directory": "../../../../dist/packages/n8n/nodes/zip"
   },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/plugin/n8n"
+    "directory": "packages/n8n/nodes/zip"
   },
-  "schematics": "./generators.json",
   "type": "commonjs",
   "typings": "./src/index.d.ts"
 }

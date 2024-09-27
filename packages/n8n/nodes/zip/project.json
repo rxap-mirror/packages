@@ -1,0 +1,72 @@
+{
+  "name": "n8n-nodes-zip",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/n8n/nodes/zip/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["packages", "n8n", "nodes"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/n8n/nodes/zip",
+        "main": "packages/n8n/nodes/zip/src/index.ts",
+        "tsConfig": "packages/n8n/nodes/zip/tsconfig.lib.json",
+        "assets": [
+          "packages/n8n/nodes/zip/*.md",
+          {
+            "input": "./packages/n8n/nodes/zip/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/n8n/nodes/zip",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/n8n/nodes/zip/src/lib",
+            "glob": "**/*.(svg|json|png)",
+            "output": "./src/lib"
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/n8n/nodes/zip/jest.config.ts"
+      }
+    },
+    "index-export": {},
+    "update-dependencies": {},
+    "fix-dependencies": {
+      "options": {
+        "options": {
+          "onlyDependencies": true,
+          "peerDependencies": ["n8n-workflow"]
+        }
+      }
+    },
+    "readme": {},
+    "linking": {},
+    "update-package-group": {}
+  }
+}
