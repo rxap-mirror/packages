@@ -16,6 +16,7 @@ import { initProject as initPresetProject } from '../init-preset/init-project';
 import { initProject as initPublishableProject } from '../init-publishable/init-project';
 import { initProject as initSchematicProject } from '../init-schematic/init-project';
 import { initProject as initWithMigrationProject } from '../init-with-migrations/init-project';
+import { cleanup } from './cleanup';
 import { InitGeneratorSchema } from './schema';
 import { updateProjectTags } from './update-project-tags';
 import { updateProjectTargets } from './update-project-targets';
@@ -50,5 +51,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   if (HasMigrations(tree, { name: projectName })) {
     initWithMigrationProject(tree, projectName, project, options);
   }
+
+  cleanup(tree, projectName);
 
 }
