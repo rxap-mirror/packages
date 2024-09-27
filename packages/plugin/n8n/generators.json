@@ -4,6 +4,11 @@
       "factory": "./src/generators/init/generator",
       "schema": "./src/generators/init/schema.json",
       "description": "Initialize the package in the workspace"
+    },
+    "node": {
+      "factory": "./src/generators/node/generator",
+      "schema": "./src/generators/node/schema.json",
+      "description": "node generator"
     }
   },
   "schematics": {
