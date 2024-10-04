@@ -5,16 +5,21 @@ export * from './lib/validators/is-selectable-value.directive';
 
 // region mixins
 export * from './lib/mixins/adapters';
+export * from './lib/mixins/apply-use-function.adapters';
 export * from './lib/mixins/apply-use-method.adapters';
 export * from './lib/mixins/extract-control-from-parent.mixin';
 export * from './lib/mixins/extract-control.mixin';
 export * from './lib/mixins/extract-data-sources.mixin';
 export * from './lib/mixins/extract-form-definition.mixin';
+export * from './lib/mixins/extract-function.mixin';
+export * from './lib/mixins/extract-functions.mixin';
+export * from './lib/mixins/extract-is-value-function.mixin';
 export * from './lib/mixins/extract-method.mixin';
 export * from './lib/mixins/extract-methods.mixin';
 export * from './lib/mixins/extract-options-data-source.mixin';
 export * from './lib/mixins/extract-options-method.mixin';
 export * from './lib/mixins/extract-resolve-method.mixin';
+export * from './lib/mixins/extract-to-display-function.mixin';
 // endregion
 
 // region directives array

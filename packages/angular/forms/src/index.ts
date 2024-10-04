@@ -28,6 +28,7 @@ export * from './lib/directives/form-group-name.directive';
 export * from './lib/directives/form-loaded.directive';
 export * from './lib/directives/form-loading-error.directive';
 export * from './lib/directives/form-loading.directive';
+export * from './lib/directives/form-reset.directive';
 export * from './lib/directives/form-submit-failed.directive';
 export * from './lib/directives/form-submit-invalid.directive';
 export * from './lib/directives/form-submit-successful.directive';
