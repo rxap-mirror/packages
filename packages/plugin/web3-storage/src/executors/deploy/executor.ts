@@ -6,12 +6,13 @@ import {
 } from 'files-from-path';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-import * as Client from '@web3-storage/w3up-client';
-import * as Proof from '@web3-storage/w3up-client/proof';
+import { create } from '@web3-storage/w3up-client';
+import type { Client } from '@web3-storage/w3up-client';
+import { parse } from '@web3-storage/w3up-client/proof';
 import { Signer } from '@ucanto/principal/ed25519';
 import { StoreMemory } from '@web3-storage/w3up-client/stores/memory';
 import { DeployExecutorSchema } from './schema';
-import { AnyLink } from '@web3-storage/w3up-client/dist/src/types';
+import type { AnyLink } from '@web3-storage/w3up-client/dist/src/types';
 
 async function createClient(key: string, proofStr: string) {
 
@@ -19,14 +20,14 @@ async function createClient(key: string, proofStr: string) {
   // Load client with specific private key
   const principal = Signer.parse(key);
   const store = new StoreMemory();
-  const client = await Client.create({
+  const client = await create({
     principal,
     store,
   });
   console.log('Client created');
   console.log('Adding proof...');
   // Add proof that this agent has been delegated capabilities on the space
-  const proof = await Proof.parse(proofStr);
+  const proof = await parse(proofStr);
   console.log('Proof parsed');
   const space = await client.addSpace(proof);
   console.log('proof added');
@@ -73,7 +74,7 @@ export default async function runExecutor(
   }
 
   console.log('Create web3 storage client');
-  let client: Client.Client;
+  let client: Client;
   try {
     client = await createClient(key, proof);
   } catch (e: any) {
