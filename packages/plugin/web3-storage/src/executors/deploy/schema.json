@@ -9,9 +9,13 @@
       "type": "string",
       "description": "The endpoint of the web3 storage service"
     },
-    "token": {
+    "key": {
       "type": "string",
-      "description": "The token of the web3 storage service"
+      "description": "The key used to authenticate with the web3 storage service"
+    },
+    "proof": {
+      "type": "string",
+      "description": "The proof used to authenticate with the web3 storage service"
     },
     "rateLimit": {
       "type": "number",

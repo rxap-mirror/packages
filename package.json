@@ -70,6 +70,8 @@
     "@sentry/utils": "8.18.0",
     "@supabase/supabase-js": "2.38.0",
     "@tailwindcss/typography": "0.5.13",
+    "@ucanto/principal": "^9.0.1",
+    "@web3-storage/w3up-client": "^16.2.0",
     "adm-zip": "^0.5.10",
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.4",
@@ -109,7 +111,6 @@
     "tmp-promise": "^3.0.3",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2",
-    "web3.storage": "4.5.5",
     "yaml": "2.3.1",
     "zone.js": "0.14.6"
   },

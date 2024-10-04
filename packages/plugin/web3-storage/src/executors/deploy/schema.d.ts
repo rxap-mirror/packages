@@ -1,5 +1,6 @@
 export interface DeployExecutorSchema {
-  token?: string;
+  key?: string;
+  proof?: string;
   endpoint?: string;
   rateLimit?: number;
   buildTarget?: string;
