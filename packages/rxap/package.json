@@ -165,6 +165,10 @@
         "version": "19.7.4"
       },
       {
+        "package": "@nx/esbuild",
+        "version": "19.7.4"
+      },
+      {
         "package": "@nx/eslint",
         "version": "19.7.4"
       },
@@ -554,7 +558,7 @@
       },
       {
         "package": "@rxap/plugin-web3-storage",
-        "version": "19.0.8-dev.1"
+        "version": "19.0.8-dev.2"
       },
       {
         "package": "@rxap/plugin-workspace",
