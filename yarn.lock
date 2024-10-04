@@ -9762,6 +9762,7 @@ __metadata:
   resolution: "@rxap/n8n-nodes-zip@workspace:packages/n8n/nodes/zip"
   dependencies:
     "@nx/devkit": 19.7.4
+    n8n-workflow: ^1.48.0
     tslib: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -10520,8 +10521,11 @@ __metadata:
   dependencies:
     "@nx/devkit": 19.7.4
     "@rxap/plugin-library": 19.4.3-dev.0
+    "@rxap/ts-morph": 1.5.1-dev.0
     "@rxap/utilities": 16.3.2-dev.0
+    "@rxap/workspace-ts-morph": 19.1.6-dev.0
     "@rxap/workspace-utilities": 19.4.3-dev.0
+    ts-morph: 18.0.0
     tslib: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -10963,6 +10967,7 @@ __metadata:
     "@swc/helpers": 0.5.11
     "@swc/jest": ~0.2.36
     "@tailwindcss/typography": 0.5.13
+    "@types/adm-zip": ^0.5.5
     "@types/amqplib": ^0.10.5
     "@types/cookie-parser": 1.4.7
     "@types/csurf": 1.11.5
@@ -10976,6 +10981,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 7.18.0
     "@typescript-eslint/parser": 7.18.0
     "@typescript-eslint/utils": 7.18.0
+    adm-zip: ^0.5.10
     alias-quokka-plugin: 0.1.0
     amqp-connection-manager: ^4.1.14
     amqplib: ^0.10.4
@@ -11040,6 +11046,7 @@ __metadata:
     supertest: 6.2.2
     swagger-ui-express: 5.0.0
     tailwindcss: ^3.4.4
+    tmp-promise: ^3.0.3
     ts-jest: 29.1.4
     ts-morph: 18.0.0
     ts-node: 10.9.2
@@ -11098,7 +11105,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/ts-morph@^1.5.1-dev.0, @rxap/ts-morph@workspace:packages/ts-morph":
+"@rxap/ts-morph@1.5.1-dev.0, @rxap/ts-morph@^1.5.1-dev.0, @rxap/ts-morph@workspace:packages/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/ts-morph@workspace:packages/ts-morph"
   dependencies:
@@ -11190,7 +11197,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-ts-morph@^19.1.6-dev.0, @rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph":
+"@rxap/workspace-ts-morph@19.1.6-dev.0, @rxap/workspace-ts-morph@^19.1.6-dev.0, @rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph"
   dependencies:
@@ -12937,6 +12944,15 @@ __metadata:
   dependencies:
     tslib: ^2.4.0
   checksum: 8d44c64e64e39c746e45b5dff7b534716f20e1f6e8fc206f8e4c8ac454ec0eb35b65646e446dd80745bc898db37a4eca549a936766d447c2158c9c43d44e7708
+  languageName: node
+  linkType: hard
+
+"@types/adm-zip@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "@types/adm-zip@npm:0.5.5"
+  dependencies:
+    "@types/node": "*"
+  checksum: 808c25b8a1c2e1c594cf9b1514e7953105cf96e19e38aa7dc109ff2537bda7345b950ef1f4e54a6e824e5503e29d24b0ff6d0aa1ff9bd4afb79ef0ef2df9ebab
   languageName: node
   linkType: hard
 
@@ -34507,6 +34523,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tmp-promise@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "tmp-promise@npm:3.0.3"
+  dependencies:
+    tmp: ^0.2.0
+  checksum: f854f5307dcee6455927ec3da9398f139897faf715c5c6dcee6d9471ae85136983ea06662eba2edf2533bdcb0fca66d16648e79e14381e30c7fb20be9c1aa62c
+  languageName: node
+  linkType: hard
+
 "tmp@npm:^0.0.33":
   version: 0.0.33
   resolution: "tmp@npm:0.0.33"
@@ -34516,7 +34541,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tmp@npm:~0.2.1, tmp@npm:~0.2.3":
+"tmp@npm:^0.2.0, tmp@npm:~0.2.1, tmp@npm:~0.2.3":
   version: 0.2.3
   resolution: "tmp@npm:0.2.3"
   checksum: 73b5c96b6e52da7e104d9d44afb5d106bb1e16d9fa7d00dbeb9e6522e61b571fbdb165c756c62164be9a3bbe192b9b268c236d370a2a0955c7689cd2ae377b95

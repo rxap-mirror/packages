@@ -4,7 +4,10 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.7.4",
-    "tslib": "^2.3.0"
+    "n8n-workflow": "^1.48.0",
+    "tslib": "^2.3.0",
+    "adm-zip": "^0.5.10",
+    "tmp-promise": "^3.0.3"
   },
   "author": {
     "name": "Merzough Münker",
