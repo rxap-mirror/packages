@@ -15,7 +15,7 @@ import {
   IExecuteFunctions,
   INodeExecutionData,
 } from 'n8n-workflow/dist/Interfaces';
-import { statSync } from 'node:fs';
+import { statSync } from 'fs';
 import {
   join,
   relative,

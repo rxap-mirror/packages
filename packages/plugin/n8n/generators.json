@@ -16,6 +16,11 @@
       "factory": "./src/generators/init/index",
       "schema": "./src/generators/init/schema.json",
       "description": "Initialize the package in the workspace"
+    },
+    "node": {
+      "factory": "./src/generators/node/index",
+      "schema": "./src/generators/node/schema.json",
+      "description": "node generator"
     }
   }
 }

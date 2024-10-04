@@ -4,10 +4,12 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.7.4",
-    "n8n-workflow": "^1.48.0",
-    "tslib": "^2.3.0",
     "adm-zip": "^0.5.10",
-    "tmp-promise": "^3.0.3"
+    "tmp-promise": "^3.0.3",
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "^1.48.0"
   },
   "author": {
     "name": "Merzough Münker",
