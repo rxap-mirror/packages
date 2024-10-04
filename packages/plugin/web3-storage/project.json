@@ -6,10 +6,15 @@
   "tags": ["plugin", "nx", "nx-plugin", "packages"],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "platform": "node",
         "outputPath": "dist/packages/plugin/web3-storage",
+        "format": [
+          "esm"
+        ],
+        "bundle": true,
         "main": "packages/plugin/web3-storage/src/index.ts",
         "tsConfig": "packages/plugin/web3-storage/tsconfig.lib.json",
         "assets": [
@@ -35,7 +40,13 @@
             "output": "."
           },
           "packages/plugin/web3-storage/docs"
-        ]
+        ],
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
       }
     },
     "publish": {
