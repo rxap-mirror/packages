@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.8-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.0.8-dev.0...@rxap/workspace-open-api@19.0.8-dev.1) (2024-10-04)
+
+### Bug Fixes
+
+- remove dep to angular package ([ba3fc6a](https://gitlab.com/rxap/packages/commit/ba3fc6acf51a9231587206fa54808cf8f206806b))
+
 ## [19.0.8-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.0.7...@rxap/workspace-open-api@19.0.8-dev.0) (2024-09-18)
 
 **Note:** Version bump only for package @rxap/workspace-open-api

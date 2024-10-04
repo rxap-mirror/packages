@@ -1,5 +1,5 @@
 {
-  "version": "18.0.6",
+  "version": "18.0.7-dev.0",
   "name": "@rxap/material-table-window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,14 +10,14 @@
     "@angular/cdk": "^18.2.0",
     "@angular/core": "^18.2.0",
     "@angular/material": "^18.2.0",
-    "@rxap/data-source": "^18.1.4",
-    "@rxap/form-system": "^18.2.0",
-    "@rxap/forms": "^18.2.0",
-    "@rxap/material-table-system": "^18.0.7",
-    "@rxap/mixin": "^16.0.10-dev.0",
-    "@rxap/pattern": "^1.1.8",
-    "@rxap/utilities": "^16.3.2-dev.0",
-    "@rxap/window-system": "^18.0.6",
+    "@rxap/data-source": "^18.1.5-dev.0",
+    "@rxap/form-system": "^18.2.1-dev.0",
+    "@rxap/forms": "^18.2.1-dev.0",
+    "@rxap/material-table-system": "^18.0.8-dev.0",
+    "@rxap/mixin": "^16.0.10-dev.1",
+    "@rxap/pattern": "^1.1.9-dev.0",
+    "@rxap/utilities": "^16.3.2-dev.1",
+    "@rxap/window-system": "^18.0.7-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -76,95 +76,95 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.7"
+        "version": "1.1.8-dev.0"
       },
       {
         "package": "@rxap/components",
-        "version": "18.0.6"
+        "version": "18.0.7-dev.0"
       },
       {
         "package": "@rxap/config",
-        "version": "18.2.1"
+        "version": "18.2.2-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.4"
+        "version": "18.1.5-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.10-dev.0"
+        "version": "1.1.10-dev.1"
       },
       {
         "package": "@rxap/definition",
-        "version": "18.0.6"
+        "version": "18.0.7-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.6"
+        "version": "18.0.7-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.6"
+        "version": "18.0.7-dev.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "18.2.0"
+        "version": "18.2.1-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "18.2.0"
+        "version": "18.2.1-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "18.1.1"
+        "version": "18.1.2-dev.0"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.10-dev.0"
+        "version": "16.0.10-dev.1"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "18.0.6"
+        "version": "18.0.7-dev.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.8"
+        "version": "1.1.9-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.11-dev.0"
+        "version": "1.0.11-dev.1"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "18.0.6"
+        "version": "18.0.7-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.10-dev.0"
+        "version": "1.1.10-dev.1"
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.6"
+        "version": "18.0.7-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.3.2-dev.0"
+        "version": "16.3.2-dev.1"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.8"
+        "version": "3.0.9-dev.0"
       },
       {
         "package": "@rxap/window-system",
-        "version": "18.0.6"
+        "version": "18.0.7-dev.0"
       }
     ]
   },

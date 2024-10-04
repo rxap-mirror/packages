@@ -775,13 +775,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@assemblyscript/loader@npm:^0.9.4":
-  version: 0.9.4
-  resolution: "@assemblyscript/loader@npm:0.9.4"
-  checksum: 2af3d1eec181c1817e3fb95b8d900cf1e7f19933a02315569d3d4f2f3d6514673acb784b2a1a8a148436fb8a983b580bfb993c1d520c55a8fd84678b200b2ec6
-  languageName: node
-  linkType: hard
-
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.12.13, @babel/code-frame@npm:^7.16.7, @babel/code-frame@npm:^7.24.6":
   version: 7.24.6
   resolution: "@babel/code-frame@npm:7.24.6"
@@ -6106,17 +6099,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ipld/car@npm:^3.0.1, @ipld/car@npm:^3.1.4, @ipld/car@npm:^3.2.3":
-  version: 3.2.4
-  resolution: "@ipld/car@npm:3.2.4"
-  dependencies:
-    "@ipld/dag-cbor": ^7.0.0
-    multiformats: ^9.5.4
-    varint: ^6.0.0
-  checksum: f47ccf4c0bc21f7887eaafb58d6d9200b44bc0a3b847a452df5c5d1c07b79f3ea4e3aead7f7fca793cb5fea81e287d464c93bba9dd7e451e9f6ce692290b61b6
-  languageName: node
-  linkType: hard
-
 "@ipld/car@npm:^5.1.0, @ipld/car@npm:^5.1.1, @ipld/car@npm:^5.2.2":
   version: 5.3.2
   resolution: "@ipld/car@npm:5.3.2"
@@ -6126,26 +6108,6 @@ __metadata:
     multiformats: ^13.0.0
     varint: ^6.0.0
   checksum: a688a1fe854b463495ccd1a71b7a65fcf503055e4eb5a554ebfaf01eb703a7bacc3bd20a3f7843d6801061fbe62a6beabf7526a602a751b96e89c77c7117e34a
-  languageName: node
-  linkType: hard
-
-"@ipld/dag-cbor@npm:^6.0.3":
-  version: 6.0.15
-  resolution: "@ipld/dag-cbor@npm:6.0.15"
-  dependencies:
-    cborg: ^1.5.4
-    multiformats: ^9.5.4
-  checksum: c4ac8d7d271b9dd093c43495b1f24c3cdb7f10487aac529c2010c53a3320439ac9b17f53f02177e022735a1aae3d921f359c7020f765b72f94799ec3ff8e7207
-  languageName: node
-  linkType: hard
-
-"@ipld/dag-cbor@npm:^7.0.0, @ipld/dag-cbor@npm:^7.0.2":
-  version: 7.0.3
-  resolution: "@ipld/dag-cbor@npm:7.0.3"
-  dependencies:
-    cborg: ^1.6.0
-    multiformats: ^9.5.4
-  checksum: c0c59907ab6146a214c1ecb2341cc02904bc952255e15544554990690f7841380a87636d5937aaa23e9004b1c141e90238277d088ed6932b5b0e6d2e6ee1fe02
   languageName: node
   linkType: hard
 
@@ -6166,15 +6128,6 @@ __metadata:
     cborg: ^4.0.0
     multiformats: ^13.1.0
   checksum: 363882841c086e940c5e8606f1ea5d20c1e93c04344111bcc13bae302e9d953b703768c7d18e062029ead0a9f6e56008eacb03954d3b403964aa68d1d41a09f5
-  languageName: node
-  linkType: hard
-
-"@ipld/dag-pb@npm:^2.0.2":
-  version: 2.1.18
-  resolution: "@ipld/dag-pb@npm:2.1.18"
-  dependencies:
-    multiformats: ^9.5.4
-  checksum: 46b9a7dabf6e87698fc268f88d94b710ba3988e26ab7918bcdf10c4356e15eb32393b6ab56eaf0d8936b369cb77456e491495f1025f78b099f1bd26cc5ccda06
   languageName: node
   linkType: hard
 
@@ -7028,16 +6981,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@multiformats/murmur3@npm:^1.0.3":
-  version: 1.1.3
-  resolution: "@multiformats/murmur3@npm:1.1.3"
-  dependencies:
-    multiformats: ^9.5.4
-    murmurhash3js-revisited: ^3.0.0
-  checksum: e3b07547da4a75348e2e103c6750db33b0caecd33b30751496cc2ca89cb7c654408c17300ca8f9fea79792f900f577b25aba49852feffe52894c79c177e40152
-  languageName: node
-  linkType: hard
-
 "@multiformats/murmur3@npm:^2.1.0, @multiformats/murmur3@npm:^2.1.3":
   version: 2.1.8
   resolution: "@multiformats/murmur3@npm:2.1.8"
@@ -7496,7 +7439,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/ed25519@npm:^1.5.1, @noble/ed25519@npm:^1.7.3":
+"@noble/ed25519@npm:^1.7.3":
   version: 1.7.3
   resolution: "@noble/ed25519@npm:1.7.3"
   checksum: 45169927d51de513e47bbeebff3a603433c4ac7579e1b8c5034c380a0afedbe85e6959be3d69584a7a5ed6828d638f8f28879003b9bb2fb5f22d8aa2d88fd5fe
@@ -7507,13 +7450,6 @@ __metadata:
   version: 1.5.0
   resolution: "@noble/hashes@npm:1.5.0"
   checksum: 9cc031d5c888c455bfeef76af649b87f75380a4511405baea633c1e4912fd84aff7b61e99716f0231d244c9cfeda1fafd7d718963e6a0c674ed705e9b1b4f76b
-  languageName: node
-  linkType: hard
-
-"@noble/secp256k1@npm:^1.3.0":
-  version: 1.7.1
-  resolution: "@noble/secp256k1@npm:1.7.1"
-  checksum: d2301f1f7690368d8409a3152450458f27e54df47e3f917292de3de82c298770890c2de7c967d237eff9c95b70af485389a9695f73eb05a43e2bd562d18b18cb
   languageName: node
   linkType: hard
 
@@ -9333,7 +9269,7 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9348,7 +9284,7 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9387,8 +9323,8 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9402,8 +9338,8 @@ __metadata:
   peerDependencies:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
-    "@rxap/environment": ^18.0.6
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9416,8 +9352,8 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
-    "@rxap/pattern": ^1.1.8
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
   languageName: unknown
   linkType: soft
 
@@ -9432,11 +9368,11 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/forms": ^18.2.0
-    "@rxap/pattern": ^1.1.8
-    "@rxap/pipes": ^18.0.6
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/pipes": ^18.0.7-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9452,12 +9388,12 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/data-structure-tree": ^1.1.10-dev.0
-    "@rxap/definition": ^18.0.6
-    "@rxap/environment": ^18.0.6
-    "@rxap/pattern": ^1.1.8
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/data-structure-tree": ^1.1.10-dev.1
+    "@rxap/definition": ^18.0.7-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9467,8 +9403,8 @@ __metadata:
   resolution: "@rxap/data-structure-tree@workspace:packages/data-structure/tree"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9481,8 +9417,8 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9498,7 +9434,7 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/pipes": ^18.0.6
+    "@rxap/pipes": ^18.0.7-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9511,10 +9447,10 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
-    "@rxap/pattern": ^1.1.8
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/services": ^18.0.6
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/services": ^18.0.7-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9541,9 +9477,9 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/fire": ^7.5.0
-    "@rxap/config": ^18.2.1
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     firebase: ^9.23.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -9560,17 +9496,17 @@ __metadata:
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/data-source": ^18.1.4
-    "@rxap/definition": ^18.0.6
-    "@rxap/forms": ^18.2.0
-    "@rxap/mixin": ^16.0.10-dev.0
-    "@rxap/open-api": ^18.0.7
-    "@rxap/pattern": ^1.1.8
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/remote-method": ^18.0.6
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/validator": ^3.0.8
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/definition": ^18.0.7-dev.0
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/mixin": ^16.0.10-dev.1
+    "@rxap/open-api": ^18.0.8-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/remote-method": ^18.0.7-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/validator": ^3.0.9-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9584,14 +9520,14 @@ __metadata:
   peerDependencies:
     "@angular/cdk": ^18.2.0
     "@angular/core": ^18.2.0
-    "@rxap/directives": ^18.0.6
-    "@rxap/form-system": ^18.2.0
-    "@rxap/forms": ^18.2.0
-    "@rxap/pattern": ^1.1.8
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/window-system": ^18.0.6
+    "@rxap/directives": ^18.0.7-dev.0
+    "@rxap/form-system": ^18.2.1-dev.0
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/window-system": ^18.0.7-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9606,14 +9542,14 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/forms": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/definition": ^18.0.6
-    "@rxap/directives": ^18.0.6
-    "@rxap/pattern": ^1.1.8
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/services": ^18.0.6
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/validator": ^3.0.8
+    "@rxap/definition": ^18.0.7-dev.0
+    "@rxap/directives": ^18.0.7-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/services": ^18.0.7-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/validator": ^3.0.9-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9623,7 +9559,7 @@ __metadata:
   resolution: "@rxap/generator-ts-morph@workspace:packages/generator/ts-morph"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9660,17 +9596,17 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/platform-browser": ^18.2.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
   languageName: unknown
   linkType: soft
 
-"@rxap/json-schema-to-typescript@^16.0.10-dev.0, @rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript":
+"@rxap/json-schema-to-typescript@^16.0.10-dev.1, @rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript":
   version: 0.0.0-use.local
   resolution: "@rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
     "@nx/devkit": 19.7.4
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     ts-morph: 18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -9696,9 +9632,9 @@ __metadata:
   resolution: "@rxap/layout@workspace:packages/angular/layout"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
   peerDependencies:
     "@angular/animations": ^18.2.0
@@ -9707,15 +9643,15 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/browser-utilities": ^1.1.7
-    "@rxap/config": ^18.2.1
-    "@rxap/data-source": ^18.1.4
-    "@rxap/environment": ^18.0.6
-    "@rxap/material-directives": ^18.1.1
-    "@rxap/ngx-pub-sub": ^18.1.1
-    "@rxap/ngx-theme": ^18.1.1
-    "@rxap/pattern": ^1.1.8
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/browser-utilities": ^1.1.8-dev.0
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
+    "@rxap/material-directives": ^18.1.2-dev.0
+    "@rxap/ngx-pub-sub": ^18.1.2-dev.0
+    "@rxap/ngx-theme": ^18.1.2-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9729,7 +9665,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9743,10 +9679,10 @@ __metadata:
   peerDependencies:
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/browser-utilities": ^1.1.7
-    "@rxap/ngx-memory": ^18.0.6
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/browser-utilities": ^1.1.8-dev.0
+    "@rxap/ngx-memory": ^18.0.7-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9764,11 +9700,11 @@ __metadata:
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/form-system": ^18.2.0
-    "@rxap/forms": ^18.2.0
-    "@rxap/mixin": ^16.0.10-dev.0
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/form-system": ^18.2.1-dev.0
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/mixin": ^16.0.10-dev.1
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9787,16 +9723,16 @@ __metadata:
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/components": ^18.0.6
-    "@rxap/data-source": ^18.1.4
-    "@rxap/directives": ^18.0.6
-    "@rxap/forms": ^18.2.0
-    "@rxap/material-directives": ^18.1.1
-    "@rxap/pattern": ^1.1.8
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/window-system": ^18.0.6
+    "@rxap/components": ^18.0.7-dev.0
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/directives": ^18.0.7-dev.0
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/material-directives": ^18.1.2-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/window-system": ^18.0.7-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9811,25 +9747,25 @@ __metadata:
     "@angular/cdk": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/data-source": ^18.1.4
-    "@rxap/form-system": ^18.2.0
-    "@rxap/forms": ^18.2.0
-    "@rxap/material-table-system": ^18.0.7
-    "@rxap/mixin": ^16.0.10-dev.0
-    "@rxap/pattern": ^1.1.8
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/window-system": ^18.0.6
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/form-system": ^18.2.1-dev.0
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/material-table-system": ^18.0.8-dev.0
+    "@rxap/mixin": ^16.0.10-dev.1
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/window-system": ^18.0.7-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
 
-"@rxap/mixin@^16.0.10-dev.0, @rxap/mixin@workspace:packages/mixin":
+"@rxap/mixin@^16.0.10-dev.1, @rxap/mixin@workspace:packages/mixin":
   version: 0.0.0-use.local
   resolution: "@rxap/mixin@workspace:packages/mixin"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     reflect-metadata: 0.1.13
     tslib: 2.6.2
   languageName: unknown
@@ -9880,7 +9816,7 @@ __metadata:
     "@nx/devkit": 19.7.4
     tslib: 2.6.2
   peerDependencies:
-    "@rxap/nest-utilities": ^10.3.5
+    "@rxap/nest-utilities": ^10.3.6-dev.0
     class-transformer: ^0.5.1
     class-validator: ^0.14.1
   languageName: unknown
@@ -9909,8 +9845,8 @@ __metadata:
     "@nestjs/config": ^3.2.2
     "@nestjs/core": ^10.3.8
     "@nestjs/jwt": ^10.2.0
-    "@rxap/nest-utilities": ^10.3.5
-    "@rxap/pattern": ^1.1.8
+    "@rxap/nest-utilities": ^10.3.6-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -9920,8 +9856,8 @@ __metadata:
   resolution: "@rxap/nest-logger@workspace:packages/nest/logger"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9950,7 +9886,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
   languageName: unknown
   linkType: soft
 
@@ -9967,9 +9903,9 @@ __metadata:
     "@nestjs/core": ^10.3.8
     "@nestjs/swagger": ^7.3.1
     "@nestjs/terminus": ^10.2.3
-    "@rxap/nest-utilities": ^10.3.5
-    "@rxap/node-utilities": ^1.3.4
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/nest-utilities": ^10.3.6-dev.0
+    "@rxap/node-utilities": ^1.3.5-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     "@sentry/core": ^8.18.0
     class-transformer: ^0.5.1
     class-validator: ^0.14.1
@@ -9989,8 +9925,8 @@ __metadata:
     "@nestjs/config": ^3.2.2
     "@nestjs/microservices": ^10.3.8
     "@nestjs/terminus": ^10.2.3
-    "@rxap/nest-vault": ^10.1.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/nest-vault": ^10.1.1-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     amqp-connection-manager: ^4.1.14
     amqplib: ^0.10.4
     rxjs: ^7.8.1
@@ -10002,15 +9938,15 @@ __metadata:
   resolution: "@rxap/nest-sentry@workspace:packages/nest/sentry"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
     "@nestjs/config": ^3.2.2
     "@nestjs/core": ^10.3.8
-    "@rxap/nest-logger": ^10.2.8-dev.0
-    "@rxap/nest-utilities": ^10.3.5
+    "@rxap/nest-logger": ^10.2.8-dev.1
+    "@rxap/nest-utilities": ^10.3.6-dev.0
     "@sentry/core": ^8.18.0
     "@sentry/nestjs": ^8.18.0
     "@sentry/node": ^8.18.0
@@ -10033,8 +9969,8 @@ __metadata:
     "@nestjs/core": ^10.3.8
     "@nestjs/microservices": ^10.3.8
     "@nestjs/swagger": ^7.3.1
-    "@rxap/nest-utilities": ^10.3.5
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/nest-utilities": ^10.3.6-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     cookie-parser: ^1.4.6
     helmet: ^7.1.0
   languageName: unknown
@@ -10133,8 +10069,8 @@ __metadata:
     "@angular/platform-browser": ^18.2.0
     "@angular/platform-browser-dynamic": ^18.2.0
     "@nx/angular": ^19.7.4
-    "@rxap/config": ^18.2.1
-    "@rxap/environment": ^18.0.6
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
     ngx-logger: ^5.0.12
   languageName: unknown
   linkType: soft
@@ -10149,9 +10085,9 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/forms": ^18.2.0
-    "@rxap/directives": ^18.0.6
-    "@rxap/environment": ^18.0.6
-    "@rxap/open-api": ^18.0.7
+    "@rxap/directives": ^18.0.7-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
+    "@rxap/open-api": ^18.0.8-dev.0
     ngx-markdown: ^16.0.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -10167,11 +10103,11 @@ __metadata:
     "@angular/cdk": ^18.2.0
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
-    "@rxap/components": ^18.0.6
-    "@rxap/config": ^18.2.1
-    "@rxap/data-grid": ^18.0.6
-    "@rxap/environment": ^18.0.6
-    "@rxap/open-api": ^18.0.7
+    "@rxap/components": ^18.0.7-dev.0
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/data-grid": ^18.0.7-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
+    "@rxap/open-api": ^18.0.8-dev.0
     "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -10186,8 +10122,8 @@ __metadata:
   peerDependencies:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
-    "@rxap/config": ^18.2.1
-    "@rxap/ngx-user": ^18.1.1
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/ngx-user": ^18.1.2-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10201,10 +10137,10 @@ __metadata:
   peerDependencies:
     "@angular/core": ^18.2.0
     "@marker.io/browser": ^0.19.0
-    "@rxap/config": ^18.2.1
-    "@rxap/environment": ^18.0.6
-    "@rxap/ngx-pub-sub": ^18.1.1
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
+    "@rxap/ngx-pub-sub": ^18.1.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10222,13 +10158,13 @@ __metadata:
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/authentication": ^18.1.3
-    "@rxap/config": ^18.2.1
-    "@rxap/forms": ^18.2.0
-    "@rxap/material-form-system": ^18.0.6
-    "@rxap/pattern": ^1.1.8
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/authentication": ^18.1.4-dev.0
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/material-form-system": ^18.0.7-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10244,8 +10180,8 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/directives": ^18.0.6
-    "@rxap/ngx-localize": ^18.0.6
+    "@rxap/directives": ^18.0.7-dev.0
+    "@rxap/ngx-localize": ^18.0.7-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10262,20 +10198,20 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/data-source": ^18.1.4
-    "@rxap/form-system": ^18.2.0
-    "@rxap/forms": ^18.2.0
-    "@rxap/material-directives": ^18.1.1
-    "@rxap/material-form-system": ^18.0.6
-    "@rxap/material-table-system": ^18.0.7
-    "@rxap/material-table-window-system": ^18.0.6
-    "@rxap/mixin": ^16.0.10-dev.0
-    "@rxap/pattern": ^1.1.8
-    "@rxap/pipes": ^18.0.6
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/window-system": ^18.0.6
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/form-system": ^18.2.1-dev.0
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/material-directives": ^18.1.2-dev.0
+    "@rxap/material-form-system": ^18.0.7-dev.0
+    "@rxap/material-table-system": ^18.0.8-dev.0
+    "@rxap/material-table-window-system": ^18.0.7-dev.0
+    "@rxap/mixin": ^16.0.10-dev.1
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/pipes": ^18.0.7-dev.0
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/window-system": ^18.0.7-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10301,10 +10237,10 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/config": ^18.2.1
-    "@rxap/data-source": ^18.1.4
-    "@rxap/ngx-pub-sub": ^18.1.1
-    "@rxap/pattern": ^1.1.8
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/ngx-pub-sub": ^18.1.2-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10328,8 +10264,8 @@ __metadata:
     "@nx/devkit": 19.7.4
     tslib: 2.6.2
   peerDependencies:
-    "@rxap/config": ^18.2.1
-    "@rxap/environment": ^18.0.6
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
     "@sentry/angular": ^8.18.0
   languageName: unknown
   linkType: soft
@@ -10345,8 +10281,8 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/config": ^18.2.1
-    "@rxap/open-api": ^18.0.7
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/open-api": ^18.0.8-dev.0
     "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -10362,10 +10298,10 @@ __metadata:
     "@angular/cdk": ^18.2.0
     "@angular/core": ^18.2.0
     "@ctrl/tinycolor": ^4.0.2
-    "@rxap/config": ^18.2.1
-    "@rxap/ngx-pub-sub": ^18.1.1
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/ngx-pub-sub": ^18.1.2-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10378,7 +10314,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10391,10 +10327,10 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
-    "@rxap/data-source": ^18.1.4
-    "@rxap/ngx-pub-sub": ^18.1.1
-    "@rxap/open-api": ^18.0.7
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/ngx-pub-sub": ^18.1.2-dev.0
+    "@rxap/open-api": ^18.0.8-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10408,7 +10344,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/node-utilities@^1.3.4, @rxap/node-utilities@workspace:packages/node/utilities":
+"@rxap/node-utilities@^1.3.5-dev.0, @rxap/node-utilities@workspace:packages/node/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/node-utilities@workspace:packages/node/utilities"
   dependencies:
@@ -10427,8 +10363,8 @@ __metadata:
   peerDependencies:
     "@angular/core": ^18.2.0
     "@angular/router": ^18.2.0
-    "@rxap/authentication": ^18.1.3
-    "@rxap/rxjs": ^1.1.10-dev.0
+    "@rxap/authentication": ^18.1.4-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
     angular-oauth2-oidc: ^15.0.1
     angular-oauth2-oidc-jwks: ^15.0.1
     rxjs: ^7.8.1
@@ -10446,13 +10382,13 @@ __metadata:
   peerDependencies:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
-    "@rxap/config": ^18.2.1
-    "@rxap/data-source": ^18.1.4
-    "@rxap/environment": ^18.0.6
-    "@rxap/mixin": ^16.0.10-dev.0
-    "@rxap/remote-method": ^18.0.6
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/config": ^18.2.2-dev.0
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/environment": ^18.0.7-dev.0
+    "@rxap/mixin": ^16.0.10-dev.1
+    "@rxap/remote-method": ^18.0.7-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10478,24 +10414,24 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/platform-browser": ^18.2.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-angular@^19.3.5-dev.0, @rxap/plugin-angular@workspace:packages/plugin/angular":
+"@rxap/plugin-angular@^19.3.5-dev.1, @rxap/plugin-angular@workspace:packages/plugin/angular":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-angular@workspace:packages/plugin/angular"
   dependencies:
     "@nx/angular": 19.7.4
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-application": ^19.1.4-dev.0
-    "@rxap/plugin-library": ^19.4.3-dev.0
-    "@rxap/plugin-localazy": ^19.0.8-dev.0
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/plugin-application": ^19.1.4-dev.1
+    "@rxap/plugin-library": ^19.4.3-dev.1
+    "@rxap/plugin-localazy": ^19.0.8-dev.1
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     colors: 1.4.0
     semver: 7.5.3
     tailwindcss: ^3.4.4
@@ -10505,14 +10441,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-application@^19.1.4-dev.0, @rxap/plugin-application@workspace:packages/plugin/application":
+"@rxap/plugin-application@^19.1.4-dev.1, @rxap/plugin-application@workspace:packages/plugin/application":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-application@workspace:packages/plugin/application"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     handlebars: 4.7.8
     tslib: 2.6.2
     yaml: 2.3.1
@@ -10524,9 +10460,9 @@ __metadata:
   resolution: "@rxap/plugin-compodoc@workspace:packages/plugin/compodoc"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10537,11 +10473,11 @@ __metadata:
   dependencies:
     "@nx/angular": 19.7.4
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-angular": ^19.3.5-dev.0
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/plugin-angular": ^19.3.5-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10551,22 +10487,22 @@ __metadata:
   resolution: "@rxap/plugin-docker@workspace:packages/plugin/docker"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/node-utilities": ^1.3.4
-    "@rxap/plugin-gitlab-ci": ^19.0.8-dev.0
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/node-utilities": ^1.3.5-dev.0
+    "@rxap/plugin-gitlab-ci": ^19.0.8-dev.1
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-gitlab-ci@^19.0.8-dev.0, @rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci":
+"@rxap/plugin-gitlab-ci@^19.0.8-dev.1, @rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -10577,9 +10513,9 @@ __metadata:
   resolution: "@rxap/plugin-gpt@workspace:packages/plugin/gpt"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     gpt-3-encoder: ^1.1.4
     openai: ^4.52.0
     ts-morph: 18.0.0
@@ -10587,19 +10523,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-library@19.4.3-dev.0, @rxap/plugin-library@^19.4.3-dev.0, @rxap/plugin-library@workspace:packages/plugin/library":
+"@rxap/plugin-library@^19.4.3-dev.1, @rxap/plugin-library@workspace:packages/plugin/library":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-library@workspace:packages/plugin/library"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
     "@nx/devkit": 19.7.4
     "@nx/plugin": 19.7.4
-    "@rxap/node-utilities": ^1.3.4
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/node-utilities": ^1.3.5-dev.0
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     colors: 1.4.0
     handlebars: 4.7.8
     nx: 19.7.4
@@ -10609,13 +10545,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-localazy@^19.0.8-dev.0, @rxap/plugin-localazy@workspace:packages/plugin/localazy":
+"@rxap/plugin-localazy@^19.0.8-dev.1, @rxap/plugin-localazy@workspace:packages/plugin/localazy":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-localazy@workspace:packages/plugin/localazy"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -10626,11 +10562,11 @@ __metadata:
   resolution: "@rxap/plugin-n8n@workspace:packages/plugin/n8n"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-library": 19.4.3-dev.0
-    "@rxap/ts-morph": 1.5.1-dev.0
-    "@rxap/utilities": 16.3.2-dev.0
-    "@rxap/workspace-ts-morph": 19.1.6-dev.0
-    "@rxap/workspace-utilities": 19.4.3-dev.0
+    "@rxap/plugin-library": ^19.4.3-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     ts-morph: 18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -10643,15 +10579,15 @@ __metadata:
     "@nx/devkit": 19.7.4
     "@nx/js": 19.7.4
     "@nx/nest": 19.7.4
-    "@rxap/node-utilities": ^1.3.4
-    "@rxap/plugin-application": ^19.1.4-dev.0
-    "@rxap/plugin-library": ^19.4.3-dev.0
-    "@rxap/plugin-open-api": ^19.1.7-dev.0
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/node-utilities": ^1.3.5-dev.0
+    "@rxap/plugin-application": ^19.1.4-dev.1
+    "@rxap/plugin-library": ^19.4.3-dev.1
+    "@rxap/plugin-open-api": ^19.1.7-dev.1
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     colors: 1.4.0
     semver: 7.5.3
     ts-morph: 18.0.0
@@ -10659,18 +10595,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-open-api@^19.1.7-dev.0, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
+"@rxap/plugin-open-api@^19.1.7-dev.1, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/node-utilities": ^1.3.4
-    "@rxap/plugin-library": ^19.4.3-dev.0
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-open-api": ^19.0.8-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/node-utilities": ^1.3.5-dev.0
+    "@rxap/plugin-library": ^19.4.3-dev.1
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-open-api": ^19.0.8-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -10683,10 +10619,10 @@ __metadata:
     "@nx/angular": 19.7.4
     "@nx/devkit": 19.7.4
     "@nx/eslint": 19.7.4
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     colors: 1.4.0
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -10698,21 +10634,21 @@ __metadata:
   resolution: "@rxap/plugin-typedoc@workspace:packages/plugin/typedoc"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
     typedoc: ^0.25.13
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-utilities@^19.0.9-dev.0, @rxap/plugin-utilities@workspace:packages/plugin/utilities":
+"@rxap/plugin-utilities@^19.0.9-dev.1, @rxap/plugin-utilities@workspace:packages/plugin/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-utilities@workspace:packages/plugin/utilities"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/node-utilities": ^1.3.4
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/node-utilities": ^1.3.5-dev.0
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10722,22 +10658,23 @@ __metadata:
   resolution: "@rxap/plugin-web3-storage@workspace:packages/plugin/web3-storage"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@ucanto/principal": ^9.0.1
+    "@web3-storage/w3up-client": ^16.2.0
     files-from-path: 1.0.4
     tslib: 2.6.2
-    web3.storage: 4.5.5
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-workspace@^19.1.7-dev.0, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
+"@rxap/plugin-workspace@^19.1.7-dev.1, @rxap/plugin-workspace@workspace:packages/plugin/workspace":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
   dependencies:
     "@nx/devkit": 19.7.4
     "@nx/js": 19.7.4
-    "@rxap/plugin-utilities": ^19.0.9-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/plugin-utilities": ^19.0.9-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     colors: 1.4.0
     tslib: 2.6.2
     yaml: 2.3.1
@@ -10749,8 +10686,8 @@ __metadata:
   resolution: "@rxap/preset-angular@workspace:packages/preset/angular"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-angular": ^19.3.5-dev.0
-    "@rxap/plugin-workspace": ^19.1.7-dev.0
+    "@rxap/plugin-angular": ^19.3.5-dev.1
+    "@rxap/plugin-workspace": ^19.1.7-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10760,17 +10697,17 @@ __metadata:
   resolution: "@rxap/preset-workspace@workspace:packages/preset/workspace"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/plugin-workspace": ^19.1.7-dev.0
+    "@rxap/plugin-workspace": ^19.1.7-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
-"@rxap/reflect-metadata@^1.0.11-dev.0, @rxap/reflect-metadata@workspace:packages/reflect-metadata":
+"@rxap/reflect-metadata@^1.0.11-dev.1, @rxap/reflect-metadata@workspace:packages/reflect-metadata":
   version: 0.0.0-use.local
   resolution: "@rxap/reflect-metadata@workspace:packages/reflect-metadata"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     reflect-metadata: 0.1.13
     tslib: 2.6.2
   languageName: unknown
@@ -10785,19 +10722,19 @@ __metadata:
   peerDependencies:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
-    "@rxap/definition": ^18.0.6
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/definition": ^18.0.7-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
 
-"@rxap/rxjs@^1.1.10-dev.0, @rxap/rxjs@workspace:packages/rxjs":
+"@rxap/rxjs@^1.1.10-dev.1, @rxap/rxjs@workspace:packages/rxjs":
   version: 0.0.0-use.local
   resolution: "@rxap/rxjs@workspace:packages/rxjs"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     tslib: 2.6.2
   peerDependencies:
     rxjs: 7.8.1
@@ -10811,12 +10748,12 @@ __metadata:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/schematics-ts-morph": ^18.2.2-dev.0
-    "@rxap/schematics-utilities": ^18.0.8-dev.0
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/schematics-ts-morph": ^18.2.2-dev.1
+    "@rxap/schematics-utilities": ^18.0.8-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     colors: 1.4.0
     handlebars: 4.7.8
     ts-morph: 18.0.0
@@ -10830,10 +10767,10 @@ __metadata:
   dependencies:
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/schematics-ts-morph": ^18.2.2-dev.0
-    "@rxap/schematics-utilities": ^18.0.8-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/schematics-ts-morph": ^18.2.2-dev.1
+    "@rxap/schematics-utilities": ^18.0.8-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     colors: 1.4.0
     tslib: 2.6.2
     yaml: 2.3.1
@@ -10847,11 +10784,11 @@ __metadata:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/schematics-ts-morph": ^18.2.2-dev.0
-    "@rxap/schematics-utilities": ^18.0.8-dev.0
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/schematics-ts-morph": ^18.2.2-dev.1
+    "@rxap/schematics-utilities": ^18.0.8-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     ts-morph: 18.0.0
     tslib: 2.6.2
     yaml: 2.3.1
@@ -10865,30 +10802,30 @@ __metadata:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/json-schema-to-typescript": ^16.0.10-dev.0
-    "@rxap/schematics-ts-morph": ^18.2.2-dev.0
-    "@rxap/schematics-utilities": ^18.0.8-dev.0
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/json-schema-to-typescript": ^16.0.10-dev.1
+    "@rxap/schematics-ts-morph": ^18.2.2-dev.1
+    "@rxap/schematics-utilities": ^18.0.8-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     openapi-types: ^10.0.0
     ts-morph: 18.0.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
-"@rxap/schematics-ts-morph@^18.2.2-dev.0, @rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph":
+"@rxap/schematics-ts-morph@^18.2.2-dev.1, @rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/schematics-ts-morph@workspace:packages/schematic/ts-morph"
   dependencies:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/schematics-utilities": ^18.0.8-dev.0
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-ts-morph": ^19.1.6-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/schematics-utilities": ^18.0.8-dev.1
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-ts-morph": ^19.1.6-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     colors: 1.4.0
     handlebars: 4.7.8
     ts-morph: 18.0.0
@@ -10896,14 +10833,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/schematics-utilities@^18.0.8-dev.0, @rxap/schematics-utilities@workspace:packages/schematic/utilities":
+"@rxap/schematics-utilities@^18.0.8-dev.1, @rxap/schematics-utilities@workspace:packages/schematic/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/schematics-utilities@workspace:packages/schematic/utilities"
   dependencies:
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10915,9 +10852,9 @@ __metadata:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/schematics-ts-morph": ^18.2.2-dev.0
-    "@rxap/schematics-utilities": ^18.0.8-dev.0
-    "@rxap/xml-parser": ^16.0.10-dev.0
+    "@rxap/schematics-ts-morph": ^18.2.2-dev.1
+    "@rxap/schematics-utilities": ^18.0.8-dev.1
+    "@rxap/xml-parser": ^16.0.10-dev.1
     ts-morph: 18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -10933,8 +10870,8 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/service-worker": ^18.2.0
-    "@rxap/environment": ^18.0.6
-    "@rxap/life-cycle": ^18.0.6
+    "@rxap/environment": ^18.0.7-dev.0
+    "@rxap/life-cycle": ^18.0.7-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10948,8 +10885,8 @@ __metadata:
   peerDependencies:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -10971,7 +10908,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
-    "@rxap/config": ^18.2.1
+    "@rxap/config": ^18.2.2-dev.0
     rxjs: ^7.8.1
     socket.io-client: ^4.6.2
   languageName: unknown
@@ -11182,9 +11119,9 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/data-source": ^18.1.4
-    "@rxap/material-table-system": ^18.0.7
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/material-table-system": ^18.0.8-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -11200,24 +11137,24 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/contenteditable": ^18.0.6
-    "@rxap/data-source": ^18.1.4
-    "@rxap/data-structure-tree": ^1.1.10-dev.0
-    "@rxap/forms": ^18.2.0
-    "@rxap/material-directives": ^18.1.1
-    "@rxap/pattern": ^1.1.8
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/contenteditable": ^18.0.7-dev.0
+    "@rxap/data-source": ^18.1.5-dev.0
+    "@rxap/data-structure-tree": ^1.1.10-dev.1
+    "@rxap/forms": ^18.2.1-dev.0
+    "@rxap/material-directives": ^18.1.2-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
 
-"@rxap/ts-morph@1.5.1-dev.0, @rxap/ts-morph@^1.5.1-dev.0, @rxap/ts-morph@workspace:packages/ts-morph":
+"@rxap/ts-morph@^1.5.1-dev.1, @rxap/ts-morph@workspace:packages/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/ts-morph@workspace:packages/ts-morph"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     colors: 1.4.0
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -11236,13 +11173,13 @@ __metadata:
     "@angular/core": ^18.2.0
     "@angular/forms": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/directives": ^18.0.6
-    "@rxap/pattern": ^1.1.8
+    "@rxap/directives": ^18.0.7-dev.0
+    "@rxap/pattern": ^1.1.9-dev.0
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
 
-"@rxap/utilities@16.3.2-dev.0, @rxap/utilities@^16.3.2-dev.0, @rxap/utilities@workspace:packages/utilities":
+"@rxap/utilities@^16.3.2-dev.1, @rxap/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/utilities@workspace:packages/utilities"
   dependencies:
@@ -11271,11 +11208,11 @@ __metadata:
     "@angular/common": ^18.2.0
     "@angular/core": ^18.2.0
     "@angular/material": ^18.2.0
-    "@rxap/directives": ^18.0.6
-    "@rxap/material-directives": ^18.1.1
-    "@rxap/rxjs": ^1.1.10-dev.0
-    "@rxap/services": ^18.0.6
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/directives": ^18.0.7-dev.0
+    "@rxap/material-directives": ^18.1.2-dev.0
+    "@rxap/rxjs": ^1.1.10-dev.1
+    "@rxap/services": ^18.0.7-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
@@ -11289,14 +11226,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-open-api@^19.0.8-dev.0, @rxap/workspace-open-api@workspace:packages/workspace/open-api":
+"@rxap/workspace-open-api@^19.0.8-dev.1, @rxap/workspace-open-api@workspace:packages/workspace/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/json-schema-to-typescript": ^16.0.10-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/json-schema-to-typescript": ^16.0.10-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     openapi-types: ^10.0.0
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -11304,27 +11241,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-ts-morph@19.1.6-dev.0, @rxap/workspace-ts-morph@^19.1.6-dev.0, @rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph":
+"@rxap/workspace-ts-morph@^19.1.6-dev.1, @rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/ts-morph": ^1.5.1-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
-    "@rxap/workspace-utilities": ^19.4.3-dev.0
+    "@rxap/ts-morph": ^1.5.1-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
+    "@rxap/workspace-utilities": ^19.4.3-dev.1
     ts-morph: 18.0.0
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-utilities@19.4.3-dev.0, @rxap/workspace-utilities@^19.4.3-dev.0, @rxap/workspace-utilities@workspace:packages/workspace/utilities":
+"@rxap/workspace-utilities@^19.4.3-dev.1, @rxap/workspace-utilities@workspace:packages/workspace/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-utilities@workspace:packages/workspace/utilities"
   dependencies:
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/node-utilities": ^1.3.4
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/node-utilities": ^1.3.5-dev.0
+    "@rxap/utilities": ^16.3.2-dev.1
     colors: 1.4.0
     semver: 7.5.3
     tslib: 2.6.2
@@ -11332,13 +11269,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/xml-parser@^16.0.10-dev.0, @rxap/xml-parser@workspace:packages/xml-parser":
+"@rxap/xml-parser@^16.0.10-dev.1, @rxap/xml-parser@workspace:packages/xml-parser":
   version: 0.0.0-use.local
   resolution: "@rxap/xml-parser@workspace:packages/xml-parser"
   dependencies:
-    "@rxap/mixin": ^16.0.10-dev.0
-    "@rxap/reflect-metadata": ^1.0.11-dev.0
-    "@rxap/utilities": ^16.3.2-dev.0
+    "@rxap/mixin": ^16.0.10-dev.1
+    "@rxap/reflect-metadata": ^1.0.11-dev.1
+    "@rxap/utilities": ^16.3.2-dev.1
     tslib: 2.6.2
     xmldom: ^0.6.0
   languageName: unknown
@@ -14433,68 +14370,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web-std/blob@npm:^3.0.1, @web-std/blob@npm:^3.0.3, @web-std/blob@npm:^3.0.4":
-  version: 3.0.5
-  resolution: "@web-std/blob@npm:3.0.5"
-  dependencies:
-    "@web-std/stream": 1.0.0
-    web-encoding: 1.1.5
-  checksum: 898b92285b96aae959546a49b9a0a308f4d4745eb1b7d740ae08955bbd2e32879abc9a68762d918d688c4d8a6e8dc34bebeb996b3bd7942dacf6a11d1f877435
-  languageName: node
-  linkType: hard
-
-"@web-std/fetch@npm:^4.1.0, @web-std/fetch@npm:^4.1.2":
-  version: 4.2.1
-  resolution: "@web-std/fetch@npm:4.2.1"
-  dependencies:
-    "@web-std/blob": ^3.0.3
-    "@web-std/file": ^3.0.2
-    "@web-std/form-data": ^3.0.2
-    "@web-std/stream": ^1.0.1
-    "@web3-storage/multipart-parser": ^1.0.0
-    abort-controller: ^3.0.0
-    data-uri-to-buffer: ^3.0.1
-    mrmime: ^1.0.0
-  checksum: e926301432d051ae7a23b241855119a0685478eb4ec830b7c9ae6d07db4dcc16da088992fc18da68268187a911fc6f0c5314d6c2ad9aa5f6c2564cf1f4e15ed5
-  languageName: node
-  linkType: hard
-
-"@web-std/file@npm:^3.0.2":
-  version: 3.0.3
-  resolution: "@web-std/file@npm:3.0.3"
-  dependencies:
-    "@web-std/blob": ^3.0.3
-  checksum: 0f9e86288c34cb1771f291075dee8e57cded07c55694c0b94ac1e0fadca87a7db7974b1ae1fe86caaefa03e703d3e86722ac654e60925215a5a69e1a0c987d97
-  languageName: node
-  linkType: hard
-
-"@web-std/form-data@npm:^3.0.2":
-  version: 3.1.0
-  resolution: "@web-std/form-data@npm:3.1.0"
-  dependencies:
-    web-encoding: 1.1.5
-  checksum: c52e18159be74c93b463238a2551947954697d0b32c4a3feeb9d570635574ceaea242fe138f42a49885e426ea398b0e3ad7cd1300ef58a74bd9515ad83bf4868
-  languageName: node
-  linkType: hard
-
-"@web-std/stream@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@web-std/stream@npm:1.0.0"
-  dependencies:
-    web-streams-polyfill: ^3.1.1
-  checksum: 247cc704b5dc18c3e7dac70c02efbbca83357fc237a0b8b2011814a246e6710a0dd403770b756d763ef545c7a118524e405b76cb7c7ac00afea0250171fdd68c
-  languageName: node
-  linkType: hard
-
-"@web-std/stream@npm:^1.0.1":
-  version: 1.0.3
-  resolution: "@web-std/stream@npm:1.0.3"
-  dependencies:
-    web-streams-polyfill: ^3.1.1
-  checksum: 480ef4373c7da42247fd7b58f5da17db230a397ca8d78f365076db2383104169b55407732a384334b8327cd541e532f619a31b3a9a807a5b3851e1e5fa6707a5
-  languageName: node
-  linkType: hard
-
 "@web3-storage/access@npm:^20.0.1":
   version: 20.0.1
   resolution: "@web3-storage/access@npm:20.0.1"
@@ -14581,20 +14456,6 @@ __metadata:
     "@ucanto/transport": ^9.1.1
     "@web3-storage/capabilities": ^17.3.0
   checksum: 5ab7d4c4ef0eeb7461bdb3aef91f851f0bc209f7e6111339868d933cd79c5fb3d49d36cfc876cd854d73a12f482a136b0b05d0c204babfe224d925a299312850
-  languageName: node
-  linkType: hard
-
-"@web3-storage/multipart-parser@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@web3-storage/multipart-parser@npm:1.0.0"
-  checksum: d8bbb5b9b0a5c07b4119c33c64ef4b7cc8d74ca4de2dd783f608f2653f81ef298bf04136b7cdb7ce97306d5fe2217572b5655236b70e1b625ed18d4a21a81913
-  languageName: node
-  linkType: hard
-
-"@web3-storage/parse-link-header@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@web3-storage/parse-link-header@npm:3.1.0"
-  checksum: e91ce3ad25162ca84ecb8d607f54afc166ab91700c507a9cc81dac4ac6231d51cd307efdf1752f227046ef2cf255ada5e8fb6269703080f95a49b07ec90834a5
   languageName: node
   linkType: hard
 
@@ -15330,16 +15191,6 @@ __metadata:
   version: 1.3.0
   resolution: "any-promise@npm:1.3.0"
   checksum: 0ee8a9bdbe882c90464d75d1f55cf027f5458650c4bd1f0467e65aec38ccccda07ca5844969ee77ed46d04e7dded3eaceb027e8d32f385688523fe305fa7e1de
-  languageName: node
-  linkType: hard
-
-"any-signal@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "any-signal@npm:2.1.2"
-  dependencies:
-    abort-controller: ^3.0.0
-    native-abort-controller: ^1.0.3
-  checksum: 498603e30357f82e438ddc972086b3180ddbaf5ea9772f535d103b754711eb13d4c24577e497d5a1146e571ee38f167c316ace7dc1a03b62a8a8c7677e9d660f
   languageName: node
   linkType: hard
 
@@ -16102,26 +15953,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bl@npm:^5.0.0":
-  version: 5.1.0
-  resolution: "bl@npm:5.1.0"
-  dependencies:
-    buffer: ^6.0.3
-    inherits: ^2.0.4
-    readable-stream: ^3.4.0
-  checksum: a7a438ee0bc540e80b8eb68cc1ad759a9c87df06874a99411d701d01cc0b36f30cd20050512ac3e77090138890960e07bfee724f3ee6619bb39a569f5cc3b1bc
-  languageName: node
-  linkType: hard
-
-"blob-to-it@npm:^1.0.1":
-  version: 1.0.4
-  resolution: "blob-to-it@npm:1.0.4"
-  dependencies:
-    browser-readablestream-to-it: ^1.0.3
-  checksum: e7fbebe5bd7b8187a4a88203639777456596a0cc68372e7b2dbcfbae6dea2b80e2a89522140039b538140bc3e3a6b1e90d1778e725eb8899070f799e61591751
-  languageName: node
-  linkType: hard
-
 "blob-util@npm:^2.0.2":
   version: 2.0.2
   resolution: "blob-util@npm:2.0.2"
@@ -16135,22 +15966,6 @@ __metadata:
   dependencies:
     readable-stream: ^3.4.0
   checksum: c6484ea7be7235a89f3cd810ec8eaf52afe1d04acebba8ce1fd243ed07f4df22ef1407b8b0565aad2b22dc3b368cba3c87aabaff29492ac251f0823bc1172760
-  languageName: node
-  linkType: hard
-
-"blockstore-core@npm:^1.0.2":
-  version: 1.0.5
-  resolution: "blockstore-core@npm:1.0.5"
-  dependencies:
-    err-code: ^3.0.1
-    interface-blockstore: ^2.0.2
-    interface-store: ^2.0.1
-    it-all: ^1.0.4
-    it-drain: ^1.0.4
-    it-filter: ^1.0.2
-    it-take: ^1.0.1
-    multiformats: ^9.4.7
-  checksum: 164e067c132a7e29e665794a84a1e71d7b959898c7b247ae4446fdbc6a23b08eca35c560a667ff5a53bf034b07acae5b9c0f90c872a22cb2f41729cb4a67fad7
   languageName: node
   linkType: hard
 
@@ -16289,7 +16104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browser-readablestream-to-it@npm:^1.0.0, browser-readablestream-to-it@npm:^1.0.1, browser-readablestream-to-it@npm:^1.0.2, browser-readablestream-to-it@npm:^1.0.3":
+"browser-readablestream-to-it@npm:^1.0.0":
   version: 1.0.3
   resolution: "browser-readablestream-to-it@npm:1.0.3"
   checksum: 07895bbc54cdeea62c8e9b7e32d374ec5c340ed1d0bc0c6cd6f1e0561ad931b160a3988426c763672ddf38ac1f75e45b9d8ae267b43f387183edafcad625f30a
@@ -16686,18 +16501,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"carbites@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "carbites@npm:1.0.6"
-  dependencies:
-    "@ipld/car": ^3.0.1
-    "@ipld/dag-cbor": ^6.0.3
-    "@ipld/dag-pb": ^2.0.2
-    multiformats: ^9.0.4
-  checksum: f8631c97a177f6efbb8fc70684b117cd2900e9f3cf830718ed7babeae2fa3a06b6768484b9852a85c7d454f19117fd3bf7a8c92adaa318d9a4c8b975b65a231c
-  languageName: node
-  linkType: hard
-
 "carstream@npm:^2.1.0":
   version: 2.2.0
   resolution: "carstream@npm:2.2.0"
@@ -16720,15 +16523,6 @@ __metadata:
   version: 0.12.0
   resolution: "caseless@npm:0.12.0"
   checksum: b43bd4c440aa1e8ee6baefee8063b4850fd0d7b378f6aabc796c9ec8cb26d27fb30b46885350777d9bd079c5256c0e1329ad0dc7c2817e0bb466810ebb353751
-  languageName: node
-  linkType: hard
-
-"cborg@npm:^1.3.3, cborg@npm:^1.5.4, cborg@npm:^1.6.0, cborg@npm:^1.8.0, cborg@npm:^1.9.4":
-  version: 1.10.2
-  resolution: "cborg@npm:1.10.2"
-  bin:
-    cborg: cli.js
-  checksum: 7743a8f125046ac27fb371c4ea18af54fbe853f7210f1ffacc6504a79566480c39d52ac4fbc1a5b5155e27b13c3b58955dc29db1bf20c4d651549d55fec2fa7f
   languageName: node
   linkType: hard
 
@@ -16956,13 +16750,6 @@ __metadata:
   version: 1.3.1
   resolution: "cjs-module-lexer@npm:1.3.1"
   checksum: 75f20ac264a397ea5c63f9c2343a51ab878043666468f275e94862f7180ec1d764a400ec0c09085dcf0db3193c74a8b571519abd2bf4be0d2be510d1377c8d4b
-  languageName: node
-  linkType: hard
-
-"class-is@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "class-is@npm:1.1.0"
-  checksum: 49024de3b264fc501a38dd59d8668f1a2b4973fa6fcef6b83d80fe6fe99a2000a8fbea5b50d4607169c65014843c9f6b41a4f8473df806c1b4787b4d47521880
   languageName: node
   linkType: hard
 
@@ -18809,13 +18596,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"data-uri-to-buffer@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "data-uri-to-buffer@npm:3.0.1"
-  checksum: c59c3009686a78c071806b72f4810856ec28222f0f4e252aa495ec027ed9732298ceea99c50328cf59b151dd34cbc3ad6150bbb43e41fc56fa19f48c99e9fc30
-  languageName: node
-  linkType: hard
-
 "data-urls@npm:^3.0.2":
   version: 3.0.2
   resolution: "data-urls@npm:3.0.2"
@@ -18906,7 +18686,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:4.3.4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.2.0, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4, debug@npm:~4.3.1, debug@npm:~4.3.2":
+"debug@npm:4, debug@npm:4.3.4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4, debug@npm:~4.3.1, debug@npm:~4.3.2":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
   dependencies:
@@ -19338,17 +19118,6 @@ __metadata:
   version: 1.1.3
   resolution: "dlv@npm:1.1.3"
   checksum: d7381bca22ed11933a1ccf376db7a94bee2c57aa61e490f680124fa2d1cd27e94eba641d9f45be57caab4f9a6579de0983466f620a2cd6230d7ec93312105ae7
-  languageName: node
-  linkType: hard
-
-"dns-over-http-resolver@npm:^1.2.3":
-  version: 1.2.3
-  resolution: "dns-over-http-resolver@npm:1.2.3"
-  dependencies:
-    debug: ^4.3.1
-    native-fetch: ^3.0.0
-    receptacle: ^1.3.2
-  checksum: 3cc1a1d77fc43e7a8a12453da987b80860ac96dc1031386c5eb1a39154775a87cfa1d50c0eaa5ea5e397e898791654608f6e2acf03f750f4098ab8822bb7d928
   languageName: node
   linkType: hard
 
@@ -21368,18 +21137,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"files-from-path@npm:^0.2.4":
-  version: 0.2.6
-  resolution: "files-from-path@npm:0.2.6"
-  dependencies:
-    err-code: ^3.0.1
-    graceful-fs: ^4.2.9
-    ipfs-unixfs: ^6.0.5
-    it-glob: ^0.0.13
-  checksum: 661c379fb55223a84bdc8c9f237aeb569590ab896e64136e6f9df7bd3f8304f838825d528ea5deb6f1a9fb76a9ee928f4536e42f248581d5e421cf544df62f93
-  languageName: node
-  linkType: hard
-
 "filesize@npm:^10.0.12":
   version: 10.1.4
   resolution: "filesize@npm:10.1.4"
@@ -22711,16 +22468,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hamt-sharding@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "hamt-sharding@npm:2.0.1"
-  dependencies:
-    sparse-array: ^1.3.1
-    uint8arrays: ^3.0.0
-  checksum: c3032fc1447abbda9ef5eda52edfb2df542a74eabcc01b1a38a05f5185c6847163311f383c64602dc4e8d086c5e545a40767b4cfc6e7d4de2a3e58bb85e5c8e5
-  languageName: node
-  linkType: hard
-
 "handle-thing@npm:^2.0.0":
   version: 2.0.1
   resolution: "handle-thing@npm:2.0.1"
@@ -23452,13 +23199,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"idb-keyval@npm:^6.0.3":
-  version: 6.2.1
-  resolution: "idb-keyval@npm:6.2.1"
-  checksum: 7c0836f832096086e99258167740181132a71dd2694c8b8454a4f5ec69114ba6d70983115153306f0b6de1c8d3bad04f67eed3dff8f50c96815b9985d6d78470
-  languageName: node
-  linkType: hard
-
 "idb@npm:7.0.1":
   version: 7.0.1
   resolution: "idb@npm:7.0.1"
@@ -23716,34 +23456,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"interface-blockstore@npm:^2.0.2, interface-blockstore@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "interface-blockstore@npm:2.0.3"
-  dependencies:
-    interface-store: ^2.0.2
-    multiformats: ^9.0.4
-  checksum: 01248c06fd88ba2cf3c264868dd1363e20266b914c51a0b52ad2303f7c00cc9a52ce1d1830b073cc7293edf195110e4d84ac5d34781bdab5f763f91eeba10898
-  languageName: node
-  linkType: hard
-
-"interface-datastore@npm:^6.0.2":
-  version: 6.1.1
-  resolution: "interface-datastore@npm:6.1.1"
-  dependencies:
-    interface-store: ^2.0.2
-    nanoid: ^3.0.2
-    uint8arrays: ^3.0.0
-  checksum: a0388adabf029be229bbfce326bbe64fd3353373512e7e6ed4283e06710bfa141db118e3536f8535a65016a0abeec631b888d42790b00637879d6ae56cf728cd
-  languageName: node
-  linkType: hard
-
-"interface-store@npm:^2.0.1, interface-store@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "interface-store@npm:2.0.2"
-  checksum: 0e80adb1de9ff57687cfa1b08499702b72cacf33a7e0320ac7781989f3685d73f2a84996358f540250229afa19c7acebf03085087762f718035622ea6a1a5b8a
-  languageName: node
-  linkType: hard
-
 "internal-slot@npm:^1.0.4, internal-slot@npm:^1.0.7":
   version: 1.0.7
   resolution: "internal-slot@npm:1.0.7"
@@ -23772,13 +23484,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ip-regex@npm:^4.0.0":
-  version: 4.3.0
-  resolution: "ip-regex@npm:4.3.0"
-  checksum: 7ff904b891221b1847f3fdf3dbb3e6a8660dc39bc283f79eb7ed88f5338e1a3d1104b779bc83759159be266249c59c2160e779ee39446d79d4ed0890dfd06f08
-  languageName: node
-  linkType: hard
-
 "ipaddr.js@npm:1.9.1":
   version: 1.9.1
   resolution: "ipaddr.js@npm:1.9.1"
@@ -23793,129 +23498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ipfs-car@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "ipfs-car@npm:0.7.0"
-  dependencies:
-    "@ipld/car": ^3.2.3
-    "@web-std/blob": ^3.0.1
-    bl: ^5.0.0
-    blockstore-core: ^1.0.2
-    browser-readablestream-to-it: ^1.0.2
-    idb-keyval: ^6.0.3
-    interface-blockstore: ^2.0.2
-    ipfs-core-types: ^0.8.3
-    ipfs-core-utils: ^0.12.1
-    ipfs-unixfs-exporter: ^7.0.4
-    ipfs-unixfs-importer: ^9.0.4
-    ipfs-utils: ^9.0.2
-    it-all: ^1.0.5
-    it-last: ^1.0.5
-    it-pipe: ^1.1.0
-    meow: ^9.0.0
-    move-file: ^2.1.0
-    multiformats: ^9.6.3
-    stream-to-it: ^0.2.3
-    streaming-iterables: ^6.0.0
-    uint8arrays: ^3.0.0
-  bin:
-    ipfs-car: dist/cjs/cli/cli.js
-    🚘: dist/cjs/cli/cli.js
-  checksum: 52c0a9c68048a92f2d5088556439d47d76ff951cf6077282d6426c24492c0965b65792fa415bf2b119122f71e327583b2c39aee21592cc490572d5daa1356eff
-  languageName: node
-  linkType: hard
-
-"ipfs-core-types@npm:^0.8.3, ipfs-core-types@npm:^0.8.4":
-  version: 0.8.4
-  resolution: "ipfs-core-types@npm:0.8.4"
-  dependencies:
-    interface-datastore: ^6.0.2
-    multiaddr: ^10.0.0
-    multiformats: ^9.4.13
-  checksum: 0bf10eb1a469404b4af302356d16c8fb517fb7df15a4d02d3a3930b8fd7d78133220aaf3357b6066e6961187270af611f00483762c4383d24f91884c412c2099
-  languageName: node
-  linkType: hard
-
-"ipfs-core-utils@npm:^0.12.1":
-  version: 0.12.2
-  resolution: "ipfs-core-utils@npm:0.12.2"
-  dependencies:
-    any-signal: ^2.1.2
-    blob-to-it: ^1.0.1
-    browser-readablestream-to-it: ^1.0.1
-    debug: ^4.1.1
-    err-code: ^3.0.1
-    ipfs-core-types: ^0.8.4
-    ipfs-unixfs: ^6.0.3
-    ipfs-utils: ^9.0.2
-    it-all: ^1.0.4
-    it-map: ^1.0.4
-    it-peekable: ^1.0.2
-    it-to-stream: ^1.0.0
-    merge-options: ^3.0.4
-    multiaddr: ^10.0.0
-    multiaddr-to-uri: ^8.0.0
-    multiformats: ^9.4.13
-    nanoid: ^3.1.23
-    parse-duration: ^1.0.0
-    timeout-abort-controller: ^1.1.1
-    uint8arrays: ^3.0.0
-  checksum: 27aca8bd75f2c89580cd458cc791e2fa6d6f6ee51a0a491c24fa9c50b9bbee4f9eb0c080466cdc8683bfb51935661a7858768bbd656618dc51eb22deafa9f270
-  languageName: node
-  linkType: hard
-
-"ipfs-unixfs-exporter@npm:^7.0.4":
-  version: 7.0.11
-  resolution: "ipfs-unixfs-exporter@npm:7.0.11"
-  dependencies:
-    "@ipld/dag-cbor": ^7.0.2
-    "@ipld/dag-pb": ^2.0.2
-    "@multiformats/murmur3": ^1.0.3
-    err-code: ^3.0.1
-    hamt-sharding: ^2.0.0
-    interface-blockstore: ^2.0.3
-    ipfs-unixfs: ^6.0.0
-    it-last: ^1.0.5
-    multiformats: ^9.4.2
-    uint8arrays: ^3.0.0
-  checksum: b419addc600e61bf5952615f7749f866689922a5bb1a083e90b68c95bf227bf1ab0398acb326e868cb828df30589eacec91035470955bb3cdcfb10df2f6d8a1f
-  languageName: node
-  linkType: hard
-
-"ipfs-unixfs-importer@npm:^9.0.4":
-  version: 9.0.10
-  resolution: "ipfs-unixfs-importer@npm:9.0.10"
-  dependencies:
-    "@ipld/dag-pb": ^2.0.2
-    "@multiformats/murmur3": ^1.0.3
-    bl: ^5.0.0
-    err-code: ^3.0.1
-    hamt-sharding: ^2.0.0
-    interface-blockstore: ^2.0.3
-    ipfs-unixfs: ^6.0.0
-    it-all: ^1.0.5
-    it-batch: ^1.0.8
-    it-first: ^1.0.6
-    it-parallel-batch: ^1.0.9
-    merge-options: ^3.0.4
-    multiformats: ^9.4.2
-    rabin-wasm: ^0.1.4
-    uint8arrays: ^3.0.0
-  checksum: 062e0a7d6f21fc3020959ae33947531cec652e058bd94e418f7bccb56884ac8f997f929c6ca044a1b2c21bb5f3842d37ae69ed118e3495c2af68d06d6df4a8f9
-  languageName: node
-  linkType: hard
-
-"ipfs-unixfs@npm:^6.0.0, ipfs-unixfs@npm:^6.0.3, ipfs-unixfs@npm:^6.0.5":
-  version: 6.0.9
-  resolution: "ipfs-unixfs@npm:6.0.9"
-  dependencies:
-    err-code: ^3.0.1
-    protobufjs: ^6.10.2
-  checksum: 025d852c3cfb09b813b35f7a4f7a06bd0ff904f88b35cdf54c6ea1eb021f1597ab9c2739adabbae9cfe645a2323598bd7974ff4a8898701bc4ba92842bf21736
-  languageName: node
-  linkType: hard
-
-"ipfs-utils@npm:^9.0.14, ipfs-utils@npm:^9.0.2":
+"ipfs-utils@npm:^9.0.14":
   version: 9.0.14
   resolution: "ipfs-utils@npm:9.0.14"
   dependencies:
@@ -23936,25 +23519,6 @@ __metadata:
     react-native-fetch-api: ^3.0.0
     stream-to-it: ^0.2.2
   checksum: 08108e03ea7b90e0fa11b76a4e24bd29d7e027c603494b53c1cc37b367fb559eaeea7b0f10b2e83ee419d50cdcb4d8105febdf185cab75c7e55afd4c8ed51aba
-  languageName: node
-  linkType: hard
-
-"ipns@npm:^0.16.0":
-  version: 0.16.0
-  resolution: "ipns@npm:0.16.0"
-  dependencies:
-    cborg: ^1.3.3
-    debug: ^4.2.0
-    err-code: ^3.0.1
-    interface-datastore: ^6.0.2
-    libp2p-crypto: ^0.21.0
-    long: ^4.0.0
-    multiformats: ^9.4.5
-    peer-id: ^0.16.0
-    protobufjs: ^6.10.2
-    timestamp-nano: ^1.0.0
-    uint8arrays: ^3.0.0
-  checksum: ef7be2c2afc7474c8ea9126ebe45598bba48675a3d613ab58fe988d566fdb19174f429ae035ccfd45e50ad9836db4f00e803bde154002479027214394e0fe1ad
   languageName: node
   linkType: hard
 
@@ -24193,15 +23757,6 @@ __metadata:
   version: 1.0.0
   resolution: "is-interactive@npm:1.0.0"
   checksum: 824808776e2d468b2916cdd6c16acacebce060d844c35ca6d82267da692e92c3a16fdba624c50b54a63f38bdc4016055b6f443ce57d7147240de4f8cdabaf6f9
-  languageName: node
-  linkType: hard
-
-"is-ip@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "is-ip@npm:3.1.0"
-  dependencies:
-    ip-regex: ^4.0.0
-  checksum: da2c2b282407194adf2320bade0bad94be9c9d0bdab85ff45b1b62d8185f31c65dff3884519d57bf270277e5ea2046c7916a6e5a6db22fe4b7ddcdd3760f23eb
   languageName: node
   linkType: hard
 
@@ -24551,16 +24106,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"iso-random-stream@npm:^2.0.0":
-  version: 2.0.2
-  resolution: "iso-random-stream@npm:2.0.2"
-  dependencies:
-    events: ^3.3.0
-    readable-stream: ^3.4.0
-  checksum: 53d44061cc7a000df4a35aa544fe04c7d0c903238ee8bb903b5eb280edaa6862512f7f7804cc4e35598e20accf9effc1131bdd6c8f5554ccf96e731ce969d77b
-  languageName: node
-  linkType: hard
-
 "iso-url@npm:^1.1.5":
   version: 1.2.1
   resolution: "iso-url@npm:1.2.1"
@@ -24704,48 +24249,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"it-all@npm:^1.0.4, it-all@npm:^1.0.5":
+"it-all@npm:^1.0.4":
   version: 1.0.6
   resolution: "it-all@npm:1.0.6"
   checksum: 7ca9a528c08ebe2fc8a3c93a41409219d18325ed31fedb9834ebac2822f0b2a96d7abcb6cbfa092114ab4d5f08951e694c7a2c3929ce4b5300769e710ae665db
-  languageName: node
-  linkType: hard
-
-"it-batch@npm:^1.0.8, it-batch@npm:^1.0.9":
-  version: 1.0.9
-  resolution: "it-batch@npm:1.0.9"
-  checksum: b1db82fa51db579bd880f84ad48eba8b4dfca5aec38a5779faa58849aec6b83a2f8b6514bccb6ce9fd49782953b1b399d7b568f35cfb6df54f8a376801d5106e
-  languageName: node
-  linkType: hard
-
-"it-drain@npm:^1.0.4":
-  version: 1.0.5
-  resolution: "it-drain@npm:1.0.5"
-  checksum: 568a07e54302e2f933f61260e8e43b0d14f753470dd03d26e87e568cdde0ba6a7fd939cc10f223142e8007bb7c6b668c9207c64bd1c9b07105f06cb61fc8673e
-  languageName: node
-  linkType: hard
-
-"it-filter@npm:^1.0.2":
-  version: 1.0.3
-  resolution: "it-filter@npm:1.0.3"
-  checksum: 4eb39fdc9e3a09eb030a0a0e7eb295eb0dbc261a428da9c8062f565c158b1ea2939ffd92c0b13ec48055278f93f1d7b719174b9f067f0ceefbf8fd58bd4e937d
-  languageName: node
-  linkType: hard
-
-"it-first@npm:^1.0.6":
-  version: 1.0.7
-  resolution: "it-first@npm:1.0.7"
-  checksum: 0c9106d29120f02e68a08118de328437fb44c966385635d672684d4f0321ee22ca470a30f390132bdb454da0d4d3abb82c796dad8e391a827f1a3446711c7685
-  languageName: node
-  linkType: hard
-
-"it-glob@npm:^0.0.13":
-  version: 0.0.13
-  resolution: "it-glob@npm:0.0.13"
-  dependencies:
-    "@types/minimatch": ^3.0.4
-    minimatch: ^3.0.4
-  checksum: 8903bd0b2a2e6b13a09b2d4bafe6d02845ec405da27ee0916dbe799f8f23e5ef57854596b04d3fc2353ffac918fac3388d0b37e8b18a5aaad1b925655948015c
   languageName: node
   linkType: hard
 
@@ -24756,50 +24263,6 @@ __metadata:
     "@types/minimatch": ^3.0.4
     minimatch: ^3.0.4
   checksum: 629e7b66510006041df98882acfd73ac785836d51fc3ffa5c83c7099f931b3287a64c5a3772e7c1e46b63f1d511a9222f5b637c50f1c738222b46d104ff2e91c
-  languageName: node
-  linkType: hard
-
-"it-last@npm:^1.0.5":
-  version: 1.0.6
-  resolution: "it-last@npm:1.0.6"
-  checksum: bc7b68ddd6cae902f0095d0c7ccb0078abdfa41fbf55862a9df9e30ae74be08282b5b3d21f40e6103af0d202144974e216d3c44f3e8f93c2c3f890322b02fcfa
-  languageName: node
-  linkType: hard
-
-"it-map@npm:^1.0.4":
-  version: 1.0.6
-  resolution: "it-map@npm:1.0.6"
-  checksum: 5eb9da69e5d58624c79cea13dd8eeffe8a1ab6a28a527ac4d0301304279ffbe8da94faf50aa269e2a1630c94dc30a6bfe7a135bfb0c7e887216efad7c41a9f52
-  languageName: node
-  linkType: hard
-
-"it-parallel-batch@npm:^1.0.9":
-  version: 1.0.11
-  resolution: "it-parallel-batch@npm:1.0.11"
-  dependencies:
-    it-batch: ^1.0.9
-  checksum: 4c4ad170e95f584c70a83ed39b582d1c574c24830242afbbcc948c151b6a0a7c9cff7067680b8b850662a2b52850c40e3b3ed765cf2027f92e01ce3e0f15bce3
-  languageName: node
-  linkType: hard
-
-"it-peekable@npm:^1.0.2":
-  version: 1.0.3
-  resolution: "it-peekable@npm:1.0.3"
-  checksum: 6e9d68cbf582e301f191b8ad2660957c12c8100804a298fd5732ee35f2dd466a6af64d88d91343f2614675b4d4fb546618335303e9356659a9a0868c08b1ca54
-  languageName: node
-  linkType: hard
-
-"it-pipe@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "it-pipe@npm:1.1.0"
-  checksum: d653078f1543851f55070e38426dbbebad1303e9adde5238e4192b8b38ac7e4a1dcc149ccf3e4269759d1cbdd00be98b346fc8db81117c81017f09577f050e8e
-  languageName: node
-  linkType: hard
-
-"it-take@npm:^1.0.1":
-  version: 1.0.2
-  resolution: "it-take@npm:1.0.2"
-  checksum: f669358761eea8ed295976aab50374ae6cf0fa0a31b3fe98bfcef17c80fbe23bb36e3b53b9bf6ca08cb90380203e49a8f5965593636255ca8e4a9bbd8026f43c
   languageName: node
   linkType: hard
 
@@ -26350,22 +25813,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libp2p-crypto@npm:^0.21.0, libp2p-crypto@npm:^0.21.2":
-  version: 0.21.2
-  resolution: "libp2p-crypto@npm:0.21.2"
-  dependencies:
-    "@noble/ed25519": ^1.5.1
-    "@noble/secp256k1": ^1.3.0
-    err-code: ^3.0.1
-    iso-random-stream: ^2.0.0
-    multiformats: ^9.4.5
-    node-forge: ^1.2.1
-    protobufjs: ^6.11.2
-    uint8arrays: ^3.0.0
-  checksum: e03f8398db3a2913374b6a4b13560aec0c8e2d244c80fa0b2f119600789c445b235be01987580262a91d63e590f0f1a185728ea4b8697e5d4dfc9ec6da5266d6
-  languageName: node
-  linkType: hard
-
 "libphonenumber-js@npm:^1.10.53":
   version: 1.11.2
   resolution: "libphonenumber-js@npm:1.11.2"
@@ -27300,26 +26747,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"meow@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "meow@npm:9.0.0"
-  dependencies:
-    "@types/minimist": ^1.2.0
-    camelcase-keys: ^6.2.2
-    decamelize: ^1.2.0
-    decamelize-keys: ^1.1.0
-    hard-rejection: ^2.1.0
-    minimist-options: 4.1.0
-    normalize-package-data: ^3.0.0
-    read-pkg-up: ^7.0.1
-    redent: ^3.0.0
-    trim-newlines: ^3.0.0
-    type-fest: ^0.18.0
-    yargs-parser: ^20.2.3
-  checksum: 99799c47247f4daeee178e3124f6ef6f84bde2ba3f37652865d5d8f8b8adcf9eedfc551dd043e2455cd8206545fd848e269c0c5ab6b594680a0ad4d3617c9639
-  languageName: node
-  linkType: hard
-
 "merge-descriptors@npm:1.0.1":
   version: 1.0.1
   resolution: "merge-descriptors@npm:1.0.1"
@@ -27837,26 +27264,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"move-file@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "move-file@npm:2.1.0"
-  dependencies:
-    path-exists: ^4.0.0
-  checksum: 2b92bbe047a302b593fcb2c0bf1131bb090ec80b3264569fc80d782c8ff829eecc13573943fa4d804c9747dec612ef2d1e84a5cfcf29cbc64a69ffcbb7ea09b3
-  languageName: node
-  linkType: hard
-
 "mrmime@npm:2.0.0":
   version: 2.0.0
   resolution: "mrmime@npm:2.0.0"
   checksum: f6fe11ec667c3d96f1ce5fd41184ed491d5f0a5f4045e82446a471ccda5f84c7f7610dff61d378b73d964f73a320bd7f89788f9e6b9403e32cc4be28ba99f569
-  languageName: node
-  linkType: hard
-
-"mrmime@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "mrmime@npm:1.0.1"
-  checksum: cc979da44bbbffebaa8eaf7a45117e851f2d4cb46a3ada6ceb78130466a04c15a0de9a9ce1c8b8ba6f6e1b8618866b1352992bf1757d241c0ddca558b9f28a77
   languageName: node
   linkType: hard
 
@@ -27939,29 +27350,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"multiaddr-to-uri@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "multiaddr-to-uri@npm:8.0.0"
-  dependencies:
-    multiaddr: ^10.0.0
-  checksum: c70d1f4d98d4eee6f7e47e4bd5b3aeae8394339c455bed3cccfc38a11aa7f61681b5cdfa02f338687d2181526318f66d00c370dca6bf633955be6bfd87cb833d
-  languageName: node
-  linkType: hard
-
-"multiaddr@npm:^10.0.0":
-  version: 10.0.1
-  resolution: "multiaddr@npm:10.0.1"
-  dependencies:
-    dns-over-http-resolver: ^1.2.3
-    err-code: ^3.0.1
-    is-ip: ^3.1.0
-    multiformats: ^9.4.5
-    uint8arrays: ^3.0.0
-    varint: ^6.0.0
-  checksum: d53aaf7efd52ee5e6413ef36ececd29239ceb5c1f048c1fa9b820442226dc232067312d25e509a2571a14047465fb934dd35029c7f3166f4d02d13e3c501925d
-  languageName: node
-  linkType: hard
-
 "multicast-dns@npm:^7.2.5":
   version: 7.2.5
   resolution: "multicast-dns@npm:7.2.5"
@@ -27992,13 +27380,6 @@ __metadata:
   version: 13.3.0
   resolution: "multiformats@npm:13.3.0"
   checksum: 9e9da3a61e26ad22ad93fad2a61a256c4c5ad6d2290048f7297430b9afc1f4e82b30a802d2b36385c4a87772d3f5de81e43b6538b9c4d74719564feb70cca382
-  languageName: node
-  linkType: hard
-
-"multiformats@npm:^9.0.4, multiformats@npm:^9.4.13, multiformats@npm:^9.4.2, multiformats@npm:^9.4.5, multiformats@npm:^9.4.7, multiformats@npm:^9.5.4, multiformats@npm:^9.6.3":
-  version: 9.9.0
-  resolution: "multiformats@npm:9.9.0"
-  checksum: d3e8c1be400c09a014f557ea02251a2710dbc9fca5aa32cc702ff29f636c5471e17979f30bdcb0a9cbb556f162a8591dc2e1219c24fc21394a56115b820bb84e
   languageName: node
   linkType: hard
 
@@ -28100,21 +27481,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.0.2, nanoid@npm:^3.1.20, nanoid@npm:^3.1.23, nanoid@npm:^3.3.7":
+"nanoid@npm:^3.1.20, nanoid@npm:^3.3.7":
   version: 3.3.7
   resolution: "nanoid@npm:3.3.7"
   bin:
     nanoid: bin/nanoid.cjs
   checksum: d36c427e530713e4ac6567d488b489a36582ef89da1d6d4e3b87eded11eb10d7042a877958c6f104929809b2ab0bafa17652b076cdf84324aa75b30b722204f2
-  languageName: node
-  linkType: hard
-
-"native-abort-controller@npm:^1.0.3":
-  version: 1.0.4
-  resolution: "native-abort-controller@npm:1.0.4"
-  peerDependencies:
-    abort-controller: "*"
-  checksum: 7c98800304155300344f586721a12ac4207c9d660c7bc121549f6afb3db9175fe8200cfb3017ea3ea2664a9601b01fdd92f200783b2ce8792d64a4c50bd4030a
   languageName: node
   linkType: hard
 
@@ -28411,7 +27783,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-forge@npm:^1, node-forge@npm:^1.2.1, node-forge@npm:^1.3.1":
+"node-forge@npm:^1, node-forge@npm:^1.3.1":
   version: 1.3.1
   resolution: "node-forge@npm:1.3.1"
   checksum: 08fb072d3d670599c89a1704b3e9c649ff1b998256737f0e06fbd1a5bf41cae4457ccaee32d95052d80bbafd9ffe01284e078c8071f0267dc9744e51c5ed42a9
@@ -29807,13 +29179,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-duration@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "parse-duration@npm:1.1.0"
-  checksum: 3cfc10aa61b3a06373a347289e1704de47d5d845c79330bbab20b54c02567f3710ba84544a3a44a986c3381c68670d89542fe9de607fb0814e52f78b34893cd9
-  languageName: node
-  linkType: hard
-
 "parse-json@npm:^4.0.0":
   version: 4.0.0
   resolution: "parse-json@npm:4.0.0"
@@ -30087,19 +29452,6 @@ __metadata:
   version: 5.0.0
   resolution: "peek-readable@npm:5.0.0"
   checksum: bef5ceb50586eb42e14efba274ac57ffe97f0ed272df9239ce029f688f495d9bf74b2886fa27847c706a9db33acda4b7d23bbd09a2d21eb4c2a54da915117414
-  languageName: node
-  linkType: hard
-
-"peer-id@npm:^0.16.0":
-  version: 0.16.0
-  resolution: "peer-id@npm:0.16.0"
-  dependencies:
-    class-is: ^1.1.0
-    libp2p-crypto: ^0.21.0
-    multiformats: ^9.4.5
-    protobufjs: ^6.10.2
-    uint8arrays: ^3.0.0
-  checksum: 35dfb887c6f00789702214488e1f97dd1713ed77909b7f9be13b20003aed64cc444bf15e6bd845c01d47f424856acca7fa1f0501b785f5cb6e6707e3f05b9f41
   languageName: node
   linkType: hard
 
@@ -31677,7 +31029,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"protobufjs@npm:^6.10.2, protobufjs@npm:^6.11.2, protobufjs@npm:^6.11.3, protobufjs@npm:^6.8.6":
+"protobufjs@npm:^6.11.2, protobufjs@npm:^6.11.3, protobufjs@npm:^6.8.6":
   version: 6.11.4
   resolution: "protobufjs@npm:6.11.4"
   dependencies:
@@ -31927,22 +31279,6 @@ __metadata:
   version: 2.1.0
   resolution: "rabin-rs@npm:2.1.0"
   checksum: eaa21179abd3e65277cadc388f923ea897386a42baa89ad8396d03b46c9448c80b3f4482e6591d590127e61ab8f20492c3c825a8a23d4e4af1302a1d42620103
-  languageName: node
-  linkType: hard
-
-"rabin-wasm@npm:^0.1.4":
-  version: 0.1.5
-  resolution: "rabin-wasm@npm:0.1.5"
-  dependencies:
-    "@assemblyscript/loader": ^0.9.4
-    bl: ^5.0.0
-    debug: ^4.3.1
-    minimist: ^1.2.5
-    node-fetch: ^2.6.1
-    readable-stream: ^3.6.0
-  bin:
-    rabin-wasm: cli/bin.js
-  checksum: e6892830c0cae57560d4630e480b624792706183898500cf0c3415a19f7e774d99169a968a73471e5c448f9d3ebc9dbf09a9d36344d7779ececf7928ebb0d7f0
   languageName: node
   linkType: hard
 
@@ -32296,15 +31632,6 @@ __metadata:
     tiny-invariant: ^1.3.3
     tslib: ^2.0.1
   checksum: 297c2b59f66c2227eda815c2bff4dcb178010a6b6eb5c18e5e325d062c42ffc11d30641e9a2e90eb06d86320aa148cf4e96175c4a1532336d478a6edab0ea85a
-  languageName: node
-  linkType: hard
-
-"receptacle@npm:^1.3.2":
-  version: 1.3.2
-  resolution: "receptacle@npm:1.3.2"
-  dependencies:
-    ms: ^2.1.1
-  checksum: 7c5011f19e6ddcb759c1e6756877cee3c9eb78fbd1278eca4572d75f74993f0ccdc1e5f7761de6e682dff5344ee94f7a69bc492e2e8eb81d8777774a2399ce9c
   languageName: node
   linkType: hard
 
@@ -32677,13 +32004,6 @@ __metadata:
     onetime: ^7.0.0
     signal-exit: ^4.1.0
   checksum: 838dd54e458d89cfbc1a923b343c1b0f170a04100b4ce1733e97531842d7b440463967e521216e8ab6c6f8e89df877acc7b7f4c18ec76e99fb9bf5a60d358d2c
-  languageName: node
-  linkType: hard
-
-"retimer@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "retimer@npm:2.0.0"
-  checksum: a59c837e1b364c4ef85c19250a94c09a49c55076ec3c5c51fafa335ee89d2ac2b91b7623548c8edb1345d7515b054986e904f8429e6caefa0595c2c70be8923d
   languageName: node
   linkType: hard
 
@@ -33832,13 +33152,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sparse-array@npm:^1.3.1":
-  version: 1.3.2
-  resolution: "sparse-array@npm:1.3.2"
-  checksum: 3b41741cfc29c568b09cbc0205fc613c16daebde358d9356b80d53d63e739012617e7e038be3c77a493ec007927784b9e0a0531cb76cf91d4f8cc7029391039b
-  languageName: node
-  linkType: hard
-
 "spawn-wrap@npm:^2.0.0":
   version: 2.0.0
   resolution: "spawn-wrap@npm:2.0.0"
@@ -34161,19 +33474,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stream-to-it@npm:^0.2.2, stream-to-it@npm:^0.2.3":
+"stream-to-it@npm:^0.2.2":
   version: 0.2.4
   resolution: "stream-to-it@npm:0.2.4"
   dependencies:
     get-iterator: ^1.0.2
   checksum: 0725dd8ddb889829cab70b81a883d5a09cd34272ccd44fad195de9fb900a8588fbf801490b6418ae5e234c128743ad829c50cfcd6686fab3b50bb6e76d59238c
-  languageName: node
-  linkType: hard
-
-"streaming-iterables@npm:^6.0.0, streaming-iterables@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "streaming-iterables@npm:6.2.0"
-  checksum: 1fb3c6833cbb028bf60f0de9b43e54d5940e4702868ad0016567cac7ecf9675572e05af86c723f5e172b57a2c913fea0289be6f44bea7747b71e4a398b7174da
   languageName: node
   linkType: hard
 
@@ -34944,13 +34250,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"throttled-queue@npm:^2.1.2, throttled-queue@npm:^2.1.4":
-  version: 2.1.4
-  resolution: "throttled-queue@npm:2.1.4"
-  checksum: 99571cb816e1c2d3df678d6fdb0a73eca9ba1f8aa9026daf89855d4c9444491d70e3aecaaad6c77b1202ab773f78e03b9a91b1e89c4983f17835b783137266c7
-  languageName: node
-  linkType: hard
-
 "throttleit@npm:^1.0.0":
   version: 1.0.1
   resolution: "throttleit@npm:1.0.1"
@@ -34988,23 +34287,6 @@ __metadata:
   version: 1.1.0
   resolution: "thunky@npm:1.1.0"
   checksum: 993096c472b6b8f30e29dc777a8d17720e4cab448375041f20c0cb802a09a7fb2217f2a3e8cdc11851faa71c957e2db309357367fc9d7af3cb7a4d00f4b66034
-  languageName: node
-  linkType: hard
-
-"timeout-abort-controller@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "timeout-abort-controller@npm:1.1.1"
-  dependencies:
-    abort-controller: ^3.0.0
-    retimer: ^2.0.0
-  checksum: 070c220be4cac532f8cfbffccba3497baf3abe97d4bfc62344dba832b55a2eef1f0e60f33d862a1662e14852c9ef8ae952d1d93f5626d39b6592f29d7d00bd45
-  languageName: node
-  linkType: hard
-
-"timestamp-nano@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "timestamp-nano@npm:1.0.1"
-  checksum: cba7d5a6d805692f9a8df1a98056e5e742236bd2baccb469f8be1c64d53223326c74da29a7111718520c8b7a424394665882078cd9452725fffbf1f109fc3d6f
   languageName: node
   linkType: hard
 
@@ -35807,15 +35089,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uint8arrays@npm:^3.0.0":
-  version: 3.1.1
-  resolution: "uint8arrays@npm:3.1.1"
-  dependencies:
-    multiformats: ^9.4.2
-  checksum: b93b6c3f0a526b116799f3a3409bd4b5d5553eb3e73e485998ece7974742254fbc0d2f7988dd21ac86c4b974552f45d9ae9cf9cba9647e529f8eb1fdd2ed84d0
-  languageName: node
-  linkType: hard
-
 "uint8arrays@npm:^4.0.6":
   version: 4.0.10
   resolution: "uint8arrays@npm:4.0.10"
@@ -36454,20 +35727,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"w3name@npm:^1.0.6":
-  version: 1.0.8
-  resolution: "w3name@npm:1.0.8"
-  dependencies:
-    "@web-std/fetch": ^4.1.0
-    cborg: ^1.9.4
-    ipns: ^0.16.0
-    libp2p-crypto: ^0.21.2
-    throttled-queue: ^2.1.4
-    uint8arrays: ^3.0.0
-  checksum: 02dc258667a31955d323589d9ff147b1688c9f09cb0197e86adeae7dbe31ff3664e004810eeb7551df7abbbb7cd6e75db88ec1ced84cdfadd1a63d494749da5e
-  languageName: node
-  linkType: hard
-
 "wait-on@npm:^7.0.0":
   version: 7.2.0
   resolution: "wait-on@npm:7.2.0"
@@ -36547,7 +35806,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-encoding@npm:1.1.5, web-encoding@npm:^1.1.5":
+"web-encoding@npm:^1.1.5":
   version: 1.1.5
   resolution: "web-encoding@npm:1.1.5"
   dependencies:
@@ -36567,7 +35826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-streams-polyfill@npm:^3.1.1, web-streams-polyfill@npm:^3.2.1":
+"web-streams-polyfill@npm:^3.2.1":
   version: 3.3.3
   resolution: "web-streams-polyfill@npm:3.3.3"
   checksum: 21ab5ea08a730a2ef8023736afe16713b4f2023ec1c7085c16c8e293ee17ed085dff63a0ad8722da30c99c4ccbd4ccd1b2e79c861829f7ef2963d7de7004c2cb
@@ -36578,30 +35837,6 @@ __metadata:
   version: 1.3.0
   resolution: "web-worker@npm:1.3.0"
   checksum: ed1f869aefd1d81a43d0fbfe7b315a65beb6d7d2486b378c436a7047eed4216be34b2e6afca738b6fa95d016326b765f5f816355db33267dbf43b2b8a1837c0c
-  languageName: node
-  linkType: hard
-
-"web3.storage@npm:4.5.5":
-  version: 4.5.5
-  resolution: "web3.storage@npm:4.5.5"
-  dependencies:
-    "@ipld/car": ^3.1.4
-    "@web-std/blob": ^3.0.4
-    "@web-std/fetch": ^4.1.2
-    "@web-std/file": ^3.0.2
-    "@web3-storage/parse-link-header": ^3.1.0
-    browser-readablestream-to-it: ^1.0.3
-    carbites: ^1.0.6
-    cborg: ^1.8.0
-    files-from-path: ^0.2.4
-    ipfs-car: ^0.7.0
-    libp2p-crypto: ^0.21.0
-    p-retry: ^4.5.0
-    streaming-iterables: ^6.2.0
-    throttled-queue: ^2.1.2
-    uint8arrays: ^3.0.0
-    w3name: ^1.0.6
-  checksum: 2478c0fa61a8613d5face3ae7ecb12ed6f46b7e2e767ab4eb92b1dfe06a7c195fb6aa627d63b0c12346a92808434134925023efc95f6692d8b98584fa54aaef6
   languageName: node
   linkType: hard
 
