@@ -5,6 +5,7 @@ import {
 } from '@nx/devkit';
 import {
   GetProjectRoot,
+  GetProjectSourceRoot,
   readFileFromProjectRoot,
   readPackageJsonForProjectWithRetry,
   writeFileToProjectRoot,
@@ -13,6 +14,7 @@ import {
   deepMerge,
   unique,
 } from '@rxap/utilities';
+import { existsSync } from 'fs';
 import * as Handlebars from 'handlebars';
 import {
   dirname,
@@ -102,6 +104,7 @@ async function getSchematics(context: ExecutorContext): Promise<Generator[]> {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
+  const projectSourceRoot = GetProjectSourceRoot(context);
   const collectionJson = readJsonFile<{ schematics: Record<string, Generator<string>> }>(join(
     context.root,
     projectRoot,
@@ -109,11 +112,19 @@ async function getSchematics(context: ExecutorContext): Promise<Generator[]> {
   ));
   const schematicList: Generator[] = [];
   for (const [ schematic, config ] of Object.entries(collectionJson.schematics ?? {})) {
+    let path: string = join(context.root, projectRoot, config.schema);
+    if (!existsSync(path)) {
+      path = join(context.root, projectSourceRoot, config.schema);
+    }
+    if (!existsSync(path)) {
+      console.warn(`Schema file for schematic '${ schematic }' not found at '${ path }'`);
+      continue;
+    }
     schematicList.push({
       name: schematic,
       description: config.description,
       schema: await normalizeSchema(
-        context, readJsonFile(join(context.root, projectRoot, config.schema)), dirname(config.schema)),
+        context, readJsonFile(path), dirname(config.schema)),
     });
   }
   return schematicList;
@@ -125,6 +136,7 @@ async function getGenerators(context: ExecutorContext) {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
+  const projectSourceRoot = GetProjectSourceRoot(context);
   const collectionJson = readJsonFile<{ generators: Record<string, Generator<string>> }>(join(
     context.root,
     projectRoot,
@@ -132,11 +144,19 @@ async function getGenerators(context: ExecutorContext) {
   ));
   const generatorList: Generator[] = [];
   for (const [ generator, config ] of Object.entries(collectionJson.generators ?? {})) {
+    let path: string = join(context.root, projectRoot, config.schema);
+    if (!existsSync(path)) {
+      path = join(context.root, projectSourceRoot, config.schema);
+    }
+    if (!existsSync(path)) {
+      console.warn(`Schema file for generator '${ generator }' not found at '${ path }'`);
+      continue;
+    }
     generatorList.push({
       name: generator,
       description: config.description,
       schema: await normalizeSchema(
-        context, readJsonFile(join(context.root, projectRoot, config.schema)), dirname(config.schema)),
+        context, readJsonFile(path), dirname(config.schema)),
     });
   }
   const schematicList = await getSchematics(context);
@@ -149,6 +169,7 @@ async function getBuilders(context: ExecutorContext): Promise<Executor[]> {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
+  const projectSourceRoot = GetProjectSourceRoot(context);
   const buildersJson = readJsonFile<{ builders: Record<string, Generator<string>> }>(join(
     context.root,
     projectRoot,
@@ -156,11 +177,19 @@ async function getBuilders(context: ExecutorContext): Promise<Executor[]> {
   ));
   const builderList: Executor[] = [];
   for (const [ builder, config ] of Object.entries(buildersJson.builders ?? {})) {
+    let path: string = join(context.root, projectRoot, config.schema);
+    if (!existsSync(path)) {
+      path = join(context.root, projectSourceRoot, config.schema);
+    }
+    if (!existsSync(path)) {
+      console.warn(`Schema file for builder '${ builder }' not found at '${ path }'`);
+      continue;
+    }
     builderList.push({
       name: builder,
       description: config.description,
       schema: await normalizeSchema(
-        context, readJsonFile(join(context.root, projectRoot, config.schema)), dirname(config.schema)),
+        context, readJsonFile(path), dirname(config.schema)),
     });
   }
   return builderList;
@@ -172,6 +201,7 @@ async function getExecutors(context: ExecutorContext) {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
+  const projectSourceRoot = GetProjectSourceRoot(context);
   const executorsJson = readJsonFile<{ executors: Record<string, Generator<string>> }>(join(
     context.root,
     projectRoot,
@@ -179,11 +209,19 @@ async function getExecutors(context: ExecutorContext) {
   ));
   const executorList: Executor[] = [];
   for (const [ executor, config ] of Object.entries(executorsJson.executors ?? {})) {
+    let path: string = join(context.root, projectRoot, config.schema);
+    if (!existsSync(path)) {
+      path = join(context.root, projectSourceRoot, config.schema);
+    }
+    if (!existsSync(path)) {
+      console.warn(`Schema file for executor '${ executor }' not found at '${ path }'`);
+      continue;
+    }
     executorList.push({
       name: executor,
       description: config.description,
       schema: await normalizeSchema(
-        context, readJsonFile(join(context.root, projectRoot, config.schema)), dirname(config.schema)),
+        context, readJsonFile(path), dirname(config.schema)),
     });
   }
   const builderList = await getBuilders(context);
