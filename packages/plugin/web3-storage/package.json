@@ -1,5 +1,5 @@
 {
-  "version": "19.0.8-dev.1",
+  "version": "19.0.8-dev.2",
   "name": "@rxap/plugin-web3-storage",
   "license": "GPL-3.0-or-later",
   "dependencies": {
