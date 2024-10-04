@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.4.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.4.3-dev.1...@rxap/plugin-library@19.4.3-dev.2) (2024-10-04)
+
+### Bug Fixes
+
+- check if schema path is in project source root ([db05770](https://gitlab.com/rxap/packages/commit/db05770280f3d951e06236b798c7a72356f64187))
+
 ## [19.4.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.4.3-dev.0...@rxap/plugin-library@19.4.3-dev.1) (2024-10-04)
 
 ### Bug Fixes
