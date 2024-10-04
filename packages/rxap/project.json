@@ -143,12 +143,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "rm -fr dist/packages/rxap",
-          "mkdir -p dist/packages/rxap",
-          "cp packages/rxap/package.json dist/packages/rxap/package.json",
-          "cp packages/rxap/README.md dist/packages/rxap/README.md",
-          "cp -r packages/rxap/LICENSE dist/packages/rxap/LICENSE",
-          "cp -r packages/rxap/LICENSE.md dist/packages/rxap/LICENSE.md"
+          "(rm -fr dist/packages/rxap || true) && mkdir -p dist/packages/rxap && cp packages/rxap/{package.json,LICENSE.md,README.md,LICENSE,CHANGELOG.md} dist/packages/rxap/"
         ]
       }
     },
