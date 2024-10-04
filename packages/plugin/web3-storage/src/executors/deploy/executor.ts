@@ -16,7 +16,6 @@ import { AnyLink } from '@web3-storage/w3up-client/dist/src/types';
 async function createClient(key: string, proofStr: string) {
 
   console.log('Creating client...');
-
   // Load client with specific private key
   const principal = Signer.parse(key);
   const store = new StoreMemory();
