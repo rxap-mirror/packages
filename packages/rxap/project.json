@@ -216,6 +216,7 @@
           "@nx/angular",
           "@nx/cypress",
           "@nx/devkit",
+          "@nx/esbuild",
           "@nx/eslint",
           "@nx/eslint-plugin",
           "@nx/jest",
