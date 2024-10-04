@@ -9762,8 +9762,11 @@ __metadata:
   resolution: "@rxap/n8n-nodes-zip@workspace:packages/n8n/nodes/zip"
   dependencies:
     "@nx/devkit": 19.7.4
+    adm-zip: ^0.5.10
+    tmp-promise: ^3.0.3
+    tslib: 2.6.2
+  peerDependencies:
     n8n-workflow: ^1.48.0
-    tslib: ^2.3.0
   languageName: unknown
   linkType: soft
 
@@ -10526,7 +10529,7 @@ __metadata:
     "@rxap/workspace-ts-morph": 19.1.6-dev.0
     "@rxap/workspace-utilities": 19.4.3-dev.0
     ts-morph: 18.0.0
-    tslib: ^2.3.0
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
