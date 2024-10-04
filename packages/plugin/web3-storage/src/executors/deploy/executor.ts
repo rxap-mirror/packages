@@ -24,7 +24,6 @@ async function createClient(key: string, proofStr: string) {
     principal,
     store,
   });
-  console.log('Client created');
   console.log('Adding proof...');
   // Add proof that this agent has been delegated capabilities on the space
   const proof = await parse(proofStr);

@@ -14,7 +14,7 @@
         "format": [
           "esm"
         ],
-        "bundle": true,
+        "bundle": false,
         "main": "packages/plugin/web3-storage/src/index.ts",
         "tsConfig": "packages/plugin/web3-storage/tsconfig.lib.json",
         "assets": [
@@ -22,12 +22,12 @@
           {
             "input": "./packages/plugin/web3-storage/src",
             "glob": "**/!(*.ts)",
-            "output": "./src"
+            "output": "."
           },
           {
             "input": "./packages/plugin/web3-storage/src",
             "glob": "**/*.d.ts",
-            "output": "./src"
+            "output": "."
           },
           {
             "input": "./packages/plugin/web3-storage",

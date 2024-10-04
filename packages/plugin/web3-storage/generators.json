@@ -1,15 +1,15 @@
 {
   "generators": {
     "init": {
-      "factory": "./src/generators/init/generator",
-      "schema": "./src/generators/init/schema.json",
+      "factory": "./generators/init/generator",
+      "schema": "./generators/init/schema.json",
       "description": "Initialize the package in the workspace"
     }
   },
   "schematics": {
     "init": {
-      "factory": "./src/generators/init/index",
-      "schema": "./src/generators/init/schema.json",
+      "factory": "./generators/init/index",
+      "schema": "./generators/init/schema.json",
       "description": "Initialize the package in the workspace"
     }
   }
