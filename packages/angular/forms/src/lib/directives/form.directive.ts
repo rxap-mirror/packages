@@ -185,43 +185,58 @@ export class FormDirective<T = any>
   @Input()
   public submitMethod: FormSubmitMethod<any> | null = null;
 
+  @Input()
+  public loadMethod: FormLoadMethod | null = null;
+
+  @Input()
+  public loadFailedMethod: FormLoadFailedMethod | null = null;
+
+  @Input()
+  public loadSuccessfulMethod: FormLoadSuccessfulMethod | null = null;
+
+  @Input()
+  public submitFailedMethod: FormSubmitFailedMethod | null = null;
+
+  @Input()
+  public submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null;
+
   private _autoSubmitSubscription = new Subscription();
 
   constructor(
     @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_FORM_DEFINITION)
-      formDefinition: FormDefinition | null = null,
+    formDefinition: FormDefinition | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_SUBMIT_METHOD)
-      submitMethod: FormSubmitMethod<any> | null = null,
+    submitMethod: FormSubmitMethod<any> | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_LOAD_METHOD)
-    protected readonly loadMethod: FormLoadMethod | null = null,
+    loadMethod: FormLoadMethod | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_LOAD_FAILED_METHOD)
-    protected readonly loadFailedMethod: FormLoadFailedMethod | null = null,
+    loadFailedMethod: FormLoadFailedMethod | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD)
-    protected readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null = null,
+    loadSuccessfulMethod: FormLoadSuccessfulMethod | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_SUBMIT_FAILED_METHOD)
-    protected readonly submitFailedMethod: FormSubmitFailedMethod | null = null,
+    submitFailedMethod: FormSubmitFailedMethod | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD)
-    protected readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
+    submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
@@ -232,9 +247,12 @@ export class FormDirective<T = any>
     protected readonly loadingIndicatorService: LoadingIndicatorService | null = null,
   ) {
     super([], []);
-    if (submitMethod) {
-      this.submitMethod = submitMethod;
-    }
+    this.submitMethod = submitMethod ?? this.submitMethod;
+    this.loadMethod = loadMethod ?? this.loadMethod;
+    this.loadFailedMethod = loadFailedMethod ?? this.loadFailedMethod;
+    this.loadSuccessfulMethod = loadSuccessfulMethod ?? this.loadSuccessfulMethod;
+    this.submitFailedMethod = submitFailedMethod ?? this.submitFailedMethod;
+    this.submitSuccessfulMethod = submitSuccessfulMethod ?? this.submitSuccessfulMethod;
     if (!formDefinition && formDefinitionBuilder) {
       formDefinition = formDefinitionBuilder.build<FormDefinition>();
     }
