@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@18.2.1-dev.0...@rxap/forms@18.3.0-dev.0) (2024-10-08)
+
+### Features
+
+- add inputs for all control methods ([b982905](https://gitlab.com/rxap/packages/commit/b98290520039d2f39dc6cc7578f97b0340175e3f))
+
 ## [18.2.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@18.2.0...@rxap/forms@18.2.1-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/forms

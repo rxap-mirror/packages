@@ -14,7 +14,7 @@
     "@angular/material": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@rxap/form-system": "^18.2.1-dev.0",
-    "@rxap/forms": "^18.2.1-dev.0",
+    "@rxap/forms": "^18.3.0-dev.0",
     "@rxap/mixin": "^16.0.10-dev.1",
     "@rxap/reflect-metadata": "^1.0.11-dev.1",
     "@rxap/utilities": "^16.3.2-dev.1",
@@ -104,7 +104,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "18.2.1-dev.0"
+        "version": "18.3.0-dev.0"
       },
       {
         "package": "@rxap/mixin",
