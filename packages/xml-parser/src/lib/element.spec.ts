@@ -302,6 +302,26 @@ describe('XML Parser', () => {
 
     });
 
+    it('should insert raw value', () => {
+
+      const element = new RxapElement(document.createElement('element'), DOMParser);
+
+      element.setRawContent('raw-content');
+
+      expect(element.getRawContent()).toEqual('raw-content');
+
+    });
+
+    it('should insert row value as child', () => {
+
+      const element = new RxapElement(document.createElement('element'), DOMParser);
+
+      element.setChildRawContent('child', 'raw-content');
+
+      expect(element.getRawContent()).toEqual('<child>raw-content</child>');
+
+    });
+
   });
 
 });

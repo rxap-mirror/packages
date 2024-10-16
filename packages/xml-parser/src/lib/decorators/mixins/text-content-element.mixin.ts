@@ -7,6 +7,10 @@ import {
   RequiredElementMixin,
 } from './required-element.mixin';
 import { Mixin } from '@rxap/mixin';
+import {
+  SerializeValueElementMixin,
+  SerializeValueElementOptions,
+} from './serialize-value-element.mixin';
 import { TagElementMixin } from './tag-element.mixin';
 import {
   ParseValueElementOptions,
@@ -16,15 +20,17 @@ import {
 export interface TextContentElementOptions<Value, DefaultValue = Value>
   extends DefaultValueElementOptions<DefaultValue>,
           RequiredElementOptions,
-          ParseValueElementOptions<Value> {
+          ParseValueElementOptions<Value>,
+          SerializeValueElementOptions<Value> {
 }
 
 export interface TextContentElementMixin<Value, DefaultValue = Value>
   extends RequiredElementMixin,
           DefaultValueElementMixin<DefaultValue>,
-          ParseValueElementMixin<Value> {
+          ParseValueElementMixin<Value>,
+          SerializeValueElementMixin<Value> {
 }
 
-@Mixin(RequiredElementMixin, DefaultValueElementMixin, TagElementMixin, ParseValueElementMixin)
+@Mixin(RequiredElementMixin, DefaultValueElementMixin, TagElementMixin, ParseValueElementMixin, SerializeValueElementMixin)
 export class TextContentElementMixin<Value, DefaultValue = Value> {
 }

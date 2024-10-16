@@ -1,6 +1,7 @@
 import {
   ElementAttribute,
   ElementChild,
+  ElementChildRawContent,
   ElementDef,
   ParsedElement,
 } from '@rxap/xml-parser';
@@ -56,6 +57,32 @@ describe('XML Serializer', () => {
 
         @ElementChild(Child)
         child = new Child();
+
+        validate(): boolean {
+          return true;
+        }
+
+      }
+
+      const instance = new Root();
+      const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+      const xml = xmlSerializer.serializeToXml(instance);
+
+      expect(xml).toMatchSnapshot();
+
+    });
+
+    it('with raw child', () => {
+
+      @ElementDef('root')
+      class Root implements ParsedElement {
+
+        @ElementAttribute()
+        name = 'root-name';
+
+        @ElementChildRawContent()
+        child = 'some raw content';
 
         validate(): boolean {
           return true;

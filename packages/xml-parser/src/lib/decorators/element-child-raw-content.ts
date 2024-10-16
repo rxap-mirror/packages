@@ -6,9 +6,14 @@ import {
 } from '@rxap/utilities';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
-import { RxapXmlParserValidateRequiredError } from '../error';
+import {
+  RxapXmlParserValidateRequiredError,
+  RxapXmlSerializerValidateRequiredError,
+} from '../error';
 import { XmlParserService } from '../xml-parser.service';
+import { XmlSerializerService } from '../xml-serializer.service';
 import { ElementParser } from './element.parser';
+import { ElementSerializer } from './element.serializer';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   IsTagElementOptions,
@@ -20,9 +25,12 @@ import {
   TextContentElementMixin,
 } from './mixins/text-content-element.mixin';
 import { RequiredProperty } from './required-property';
-import { AddParserToMetadata } from './utilities';
+import {
+  AddParserToMetadata,
+  AddSerializerToMetadata,
+} from './utilities';
 
-export interface ElementChildRawContentOptions<Value>
+export interface ElementChildRawContentParserOptions<Value>
   extends TextContentElementOptions<Value>,
           TagElementOptions {
 }
@@ -38,7 +46,7 @@ export interface ElementChildRawContentOptions<Value>
  * that it is not a valid `ElementChildRawContentOptions`.
  * @template T - The type parameter that specifies the type of the content within the `ElementChildRawContentOptions`.
  */
-export function AssertElementChildRawContentOptions(options: any): asserts options is ElementChildRawContentOptions<any> {
+export function AssertElementChildRawContentOptions(options: any): asserts options is ElementChildRawContentParserOptions<any> {
   if (!IsTagElementOptions(options)) {
     throw new Error('The object is not a ElementChildRawContentOptions. The required property "tag" is missing!');
   }
@@ -55,7 +63,7 @@ export class ElementChildRawContentParser<T extends ParsedElement>
 
   constructor(
     public readonly propertyKey: string,
-    public readonly options: ElementChildRawContentOptions<string>,
+    public readonly options: ElementChildRawContentParserOptions<string>,
   ) {
     this.parse = this.parse.bind(this);
     Reflect.set(this.parse, 'propertyKey', propertyKey);
@@ -86,6 +94,46 @@ export class ElementChildRawContentParser<T extends ParsedElement>
 
 }
 
+export interface ElementChildRawContentSerializerOptions<Value>
+  extends TextContentElementOptions<Value>,
+          TagElementOptions {
+}
+
+export interface ElementChildRawContentSerializer<T extends ParsedElement>
+  extends TextContentElementMixin<string>,
+          TagElementMixin {
+}
+
+@Mixin(TextContentElementMixin, TagElementMixin)
+export class ElementChildRawContentSerializer<T extends ParsedElement>
+  implements ElementSerializer<T> {
+
+  constructor(
+    public readonly propertyKey: string,
+    public readonly options: ElementChildRawContentParserOptions<string>,
+  ) {
+    this.serialize = this.serialize.bind(this);
+    Reflect.set(this.serialize, 'propertyKey', propertyKey);
+  }
+
+  serialize(xmlParser: XmlSerializerService, element: RxapElement, parsedElement: T) {
+
+    // @ts-expect-error the propertyKey is set by the property decorator
+    const child = parsedElement[this.propertyKey];
+
+    if (child) {
+      element.setChildRawContent(this.tag, this.serializeValue(child));
+    } else if (this.required) {
+      throw new RxapXmlParserValidateRequiredError(
+        `Element <${ element.name }> child <${ this.tag }> raw content is required!`,
+        parsedElement.__tag!,
+      );
+    }
+
+  }
+
+}
+
 /**
  * Decorator factory that creates a decorator to parse and inject raw content from a child element into a class property.
  *
@@ -93,7 +141,7 @@ export class ElementChildRawContentParser<T extends ParsedElement>
  * the content of a specified child element is directly assigned to the property. The child element is identified by a tag,
  * which can be customized through the options provided.
  *
- * @param {Partial<ElementChildRawContentOptions<Value>> | string} optionsOrString - This parameter can either be a string
+ * @param {Partial<ElementChildRawContentParserOptions<Value>> | string} optionsOrString - This parameter can either be a string
  * representing the tag of the child element or an object containing various configuration options. If a string is provided,
  * it is used as the tag name of the child element. If an object is provided, it can specify detailed options such as the tag name,
  * whether the child element is required, and other parser-specific options.
@@ -115,7 +163,7 @@ export class ElementChildRawContentParser<T extends ParsedElement>
  * should be filled with the raw content of a child element `<my-child>` which is required to be present.
  *
  */
-export function ElementChildRawContent<Value>(optionsOrString?: Partial<ElementChildRawContentOptions<Value>> | string) {
+export function ElementChildRawContent<Value>(optionsOrString?: Partial<ElementChildRawContentParserOptions<Value> & ElementChildRawContentSerializerOptions<Value>> | string) {
   return function (target: any, propertyKey: string) {
     let options = optionsOrString === undefined ?
       { tag: dasherize(propertyKey) } :
@@ -129,6 +177,8 @@ export function ElementChildRawContent<Value>(optionsOrString?: Partial<ElementC
 
     const parser = new ElementChildRawContentParser(propertyKey, options);
     AddParserToMetadata(parser, target);
+    const serializer = new ElementChildRawContentSerializer(propertyKey, options);
+    AddSerializerToMetadata(serializer, target);
     if (options.required) {
       RequiredProperty()(target, propertyKey);
     }

@@ -3,3 +3,5 @@
 exports[`XML Serializer Xml Serializer Service minimal example 1`] = `"<root name="root-name"/>"`;
 
 exports[`XML Serializer Xml Serializer Service with child 1`] = `"<root name="root-name"><child name="child-name"/></root>"`;
+
+exports[`XML Serializer Xml Serializer Service with raw child 1`] = `"<root name="root-name"><child>some raw content</child></root>"`;

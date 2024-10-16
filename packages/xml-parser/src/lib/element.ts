@@ -124,7 +124,22 @@ export class RxapElement {
   }
 
   public getRawContent(): string {
-    return Array.from(this.element.childNodes).map(child => child.toString()).join('');
+    return this.element.innerHTML ?? this.element.textContent ?? '';
+  }
+
+  public removeAllChildren(): void {
+    for (const child of this.getAllChildNodes()) {
+      this.element.removeChild(child.element);
+    }
+  }
+
+  public setRawContent(value: string): void {
+    this.removeAllChildren();
+    if (this.element.innerHTML !== undefined) {
+      this.element.innerHTML = value;
+    } else {
+      this.element.textContent = value;
+    }
   }
 
   public getChildRawContent(nodeName: string, defaultValue?: string): string {
@@ -132,6 +147,14 @@ export class RxapElement {
       return this.getChild(nodeName)!.getRawContent();
     }
     return defaultValue ?? '';
+  }
+
+  public setChildRawContent(nodeName: string, value: string): void {
+    let child: RxapElement | undefined = this.getChild(nodeName);
+    if (!child) {
+      child = this.addChild(nodeName);
+    }
+    child.setRawContent(value);
   }
 
   public getChildTextContent<T = string>(nodeName: string, defaultValue?: any, raw = false): T {
@@ -152,13 +175,16 @@ export class RxapElement {
     return normalizeNodeName(nodeName, this.options);
   }
 
-  appendChild(node: any) {
+  appendChild(node: any | RxapElement) {
+    if (node instanceof RxapElement) {
+      node = node.element;
+    }
     this.element.appendChild(node);
   }
 
   addChild(nodeName: string) {
     nodeName = this.normalizeNodeName(nodeName);
-    const element = new this.DOMParser().parseFromString('<html></html>', 'application/xml').createElement(nodeName);
+    const element = (this.element.ownerDocument ?? new this.DOMParser().parseFromString('<html></html>', 'application/xml')).createElement(nodeName);
     this.element.appendChild(element);
     return new RxapElement(element, this.DOMParser, this.options);
   }
