@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`XML Serializer Xml Serializer Service minimal example 1`] = `"<root name="root-name"/>"`;
-
 exports[`XML Serializer Xml Serializer Service native minimal example 1`] = `"<root name="root-name"/>"`;
 
 exports[`XML Serializer Xml Serializer Service native with child 1`] = `"<root name="root-name"><child name="child-name"/></root>"`;
+
+exports[`XML Serializer Xml Serializer Service native with child extends 1`] = `"<root name="root-name"><base-child name="child-name"/><child-a name="child-name"/><child-b name="child-name"/><child-b name="child-name"/><child-c name="child-name"/></root>"`;
 
 exports[`XML Serializer Xml Serializer Service native with children 1`] = `"<root name="root-name"><child name="child-name"/><child name="child-name"/><child name="child-name"/></root>"`;
 
@@ -12,23 +12,25 @@ exports[`XML Serializer Xml Serializer Service native with children text content
 
 exports[`XML Serializer Xml Serializer Service native with raw child 1`] = `"<root name="root-name"><child>some raw content</child></root>"`;
 
+exports[`XML Serializer Xml Serializer Service native with simple at root extends 1`] = `"<sub name="root-name" sub="sub"><children>child-1</children><children>child-2</children><children>child-3</children></sub>"`;
+
 exports[`XML Serializer Xml Serializer Service native with text content 1`] = `"<root name="root-name">text content</root>"`;
 
 exports[`XML Serializer Xml Serializer Service native with text content child 1`] = `"<root name="root-name"><child>some text content</child></root>"`;
 
-exports[`XML Serializer Xml Serializer Service with child 1`] = `"<root name="root-name"><child name="child-name"/></root>"`;
-
-exports[`XML Serializer Xml Serializer Service with raw child 1`] = `"<root name="root-name"><child>some raw content</child></root>"`;
-
 exports[`XML Serializer Xml Serializer Service xmldom minimal example 1`] = `"<root name="root-name"/>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom with child 1`] = `"<root name="root-name"><child name="child-name"/></root>"`;
+
+exports[`XML Serializer Xml Serializer Service xmldom with child extends 1`] = `"<root name="root-name"><base-child name="child-name"/><child-a name="child-name"/><child-b name="child-name"/><child-b name="child-name"/><child-c name="child-name"/></root>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom with children 1`] = `"<root name="root-name"><child name="child-name"/><child name="child-name"/><child name="child-name"/></root>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom with children text content 1`] = `"<root name="root-name"><children>child-1</children><children>child-2</children><children>child-3</children></root>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom with raw child 1`] = `"<root name="root-name"><child>some raw content</child></root>"`;
+
+exports[`XML Serializer Xml Serializer Service xmldom with simple at root extends 1`] = `"<sub name="root-name" sub="sub"><children>child-1</children><children>child-2</children><children>child-3</children></sub>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom with text content 1`] = `"<root name="root-name">text content</root>"`;
 

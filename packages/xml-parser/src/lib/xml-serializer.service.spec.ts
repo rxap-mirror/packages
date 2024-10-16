@@ -6,6 +6,7 @@ import {
   ElementChildrenTextContent,
   ElementChildTextContent,
   ElementDef,
+  ElementExtends,
   ElementTextContent,
   ParsedElement,
 } from '@rxap/xml-parser';
@@ -226,6 +227,103 @@ describe('XML Serializer', () => {
           validate(): boolean {
             return true;
           }
+
+        }
+
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toMatchSnapshot();
+
+      });
+
+      it('with simple at root extends', () => {
+
+        @ElementDef('root')
+        class Root implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'root-name';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        @ElementDef('child')
+        class Child implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'child-name';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        @ElementExtends(Root)
+        @ElementDef('sub')
+        class Sub extends Root implements ParsedElement {
+
+          @ElementAttribute()
+          sub = 'sub';
+
+          @ElementChildrenTextContent()
+          children = ['child-1', 'child-2', 'child-3'];
+
+        }
+
+        const instance = new Sub();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toMatchSnapshot();
+
+      });
+
+      it('with child extends', () => {
+
+        @ElementDef('base-child')
+        class BaseChild implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'child-name';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        @ElementExtends(BaseChild)
+        @ElementDef('child-a')
+        class ChildA extends BaseChild implements ParsedElement {}
+
+        @ElementExtends(BaseChild)
+        @ElementDef('child-b')
+        class ChildB extends BaseChild implements ParsedElement {}
+
+        @ElementExtends(BaseChild)
+        @ElementDef('child-c')
+        class ChildC extends BaseChild implements ParsedElement {}
+
+        @ElementDef('root')
+        class Root implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'root-name';
+
+          validate(): boolean {
+            return true;
+          }
+
+          @ElementChildren(BaseChild)
+          children = [new BaseChild(), new ChildA(), new ChildB(), new ChildB(), new ChildC()];
 
         }
 
