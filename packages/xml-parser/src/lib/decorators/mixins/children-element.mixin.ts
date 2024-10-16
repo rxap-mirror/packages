@@ -1,8 +1,8 @@
 import { Mixin } from '@rxap/mixin';
 import {
   RequiredElementOptions,
-  RequiredElementParserMixin,
-} from './required-element.parser.mixin';
+  RequiredElementMixin,
+} from './required-element.mixin';
 import { RxapElement } from '../../element';
 import { hasIndexSignature } from '@rxap/utilities';
 
@@ -13,12 +13,12 @@ export interface ChildrenElementOptions extends RequiredElementOptions {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ChildrenElementParserMixin
-  extends RequiredElementParserMixin {
+export interface ChildrenElementMixin
+  extends RequiredElementMixin {
 }
 
-@Mixin(RequiredElementParserMixin)
-export class ChildrenElementParserMixin {
+@Mixin(RequiredElementMixin)
+export class ChildrenElementMixin {
 
   constructor(
     public readonly options: any = {},

@@ -1,14 +1,14 @@
-import { AttributeElementParserMixin } from './attribute-element-parser.mixin';
+import { AttributeElementMixin } from './attribute-element.mixin';
 
 describe('@rxap/xml-parser', () => {
 
   describe('Mixin', () => {
 
-    describe('AttributeElementParserMixin', () => {
+    describe('AttributeElementMixin', () => {
 
       it('should use default parse value if no value parser is defined', () => {
 
-        const parser = new AttributeElementParserMixin();
+        const parser = new AttributeElementMixin();
 
         expect(parser.parseValue('true')).toEqual(true);
         expect(parser.parseValue('"true"')).toEqual('true');
@@ -26,7 +26,7 @@ describe('@rxap/xml-parser', () => {
       it('should use defined value parser', () => {
 
         const parseValue = jest.fn();
-        const parser = new AttributeElementParserMixin({ parseValue });
+        const parser = new AttributeElementMixin({ parseValue });
 
         parser.parseValue('my-value');
 

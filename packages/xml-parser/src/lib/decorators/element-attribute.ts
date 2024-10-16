@@ -14,8 +14,8 @@ import { ElementSerializer } from './element.serializer';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   AttributeElementOptions,
-  AttributeElementParserMixin,
-} from './mixins/attribute-element-parser.mixin';
+  AttributeElementMixin,
+} from './mixins/attribute-element.mixin';
 import { RequiredProperty } from './required-property';
 import {
   AddParserToMetadata,
@@ -29,10 +29,10 @@ export interface ElementAttributeParserOptions<Value>
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementAttributeParser<T extends ParsedElement, Value>
-  extends AttributeElementParserMixin<Value> {
+  extends AttributeElementMixin<Value> {
 }
 
-@Mixin(AttributeElementParserMixin)
+@Mixin(AttributeElementMixin)
 export class ElementAttributeParser<T extends ParsedElement = ParsedElement, Value = any> implements ElementParser<T> {
 
   constructor(
@@ -82,10 +82,10 @@ export interface ElementAttributeSerializerOptions<Value>
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementAttributeSerializer<T extends ParsedElement, Value>
-  extends AttributeElementParserMixin<Value> {
+  extends AttributeElementMixin<Value> {
 }
 
-@Mixin(AttributeElementParserMixin)
+@Mixin(AttributeElementMixin)
 export class ElementAttributeSerializer<T extends ParsedElement = ParsedElement, Value = any> implements ElementSerializer<T> {
 
   constructor(

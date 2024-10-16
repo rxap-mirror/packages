@@ -9,7 +9,7 @@ import { ParsedElement } from './parsed-element';
 import { ElementDef } from '../decorators/element-def';
 import { ElementAttribute } from '../decorators/element-attribute';
 import { ElementChildTextContent } from '../decorators/element-child-text-content';
-import { ElementRequired } from '../decorators/mixins/required-element.parser.mixin';
+import { ElementRequired } from '../decorators/mixins/required-element.mixin';
 
 /**
  *

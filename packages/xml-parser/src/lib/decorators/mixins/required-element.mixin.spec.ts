@@ -4,13 +4,13 @@ import {
   getMetadataKeys,
 } from '@rxap/reflect-metadata';
 import { ElementParserMetaData } from '@rxap/xml-parser';
-import { ElementRequired } from './required-element.parser.mixin';
+import { ElementRequired } from './required-element.mixin';
 
 describe('@rxap/xml-parser', () => {
 
   describe('Mixins', () => {
 
-    describe('RequiredElementParserMixin', () => {
+    describe('RequiredElementMixin', () => {
 
       describe('@RequiredElement', () => {
 

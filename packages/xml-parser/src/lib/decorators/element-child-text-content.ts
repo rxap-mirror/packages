@@ -13,12 +13,12 @@ import { ElementParserMetaData } from './metadata-keys';
 import {
   IsTagElementOptions,
   TagElementOptions,
-  TagElementParserMixin,
-} from './mixins/tag-element.parser.mixin';
+  TagElementMixin,
+} from './mixins/tag-element.mixin';
 import {
   TextContentElementOptions,
-  TextContentElementParserMixin,
-} from './mixins/text-content-element.parser.mixin';
+  TextContentElementMixin,
+} from './mixins/text-content-element.mixin';
 import { RequiredProperty } from './required-property';
 import { AddParserToMetadata } from './utilities';
 
@@ -44,11 +44,11 @@ export function AssertElementChildTextContentOptions(options: any): asserts opti
 }
 
 export interface ElementChildTextContentParser<T extends ParsedElement, Value>
-  extends TextContentElementParserMixin<Value>,
-          TagElementParserMixin {
+  extends TextContentElementMixin<Value>,
+          TagElementMixin {
 }
 
-@Mixin(TextContentElementParserMixin, TagElementParserMixin)
+@Mixin(TextContentElementMixin, TagElementMixin)
 export class ElementChildTextContentParser<T extends ParsedElement, Value>
   implements ElementParser<T> {
 

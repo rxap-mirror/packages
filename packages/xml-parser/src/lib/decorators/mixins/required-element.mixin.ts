@@ -38,7 +38,7 @@ export function ElementRequired(options: RequiredElementOptions = { required: tr
   };
 }
 
-export class RequiredElementParserMixin {
+export class RequiredElementMixin {
 
   public readonly options!: any;
 

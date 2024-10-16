@@ -7,7 +7,7 @@ import { ParsedElement } from './parsed-element';
 import { ElementDef } from '../decorators/element-def';
 import { ElementAttribute } from '../decorators/element-attribute';
 import { ElementTextContent } from '../decorators/element-text-content';
-import { ElementRequired } from '../decorators/mixins/required-element.parser.mixin';
+import { ElementRequired } from '../decorators/mixins/required-element.mixin';
 import { ElementChildren } from '../decorators/element-children';
 import { ElementChild } from '../decorators/element-child';
 

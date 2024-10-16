@@ -4,7 +4,7 @@ export interface SerializeValueElementOptions<Value> {
   serializeValue?: (value: Value) => string;
 }
 
-export class SerializeValueElementSerializerMixin<Value> {
+export class SerializeValueElementMixin<Value> {
 
   constructor(readonly options: any = {}) {
   }

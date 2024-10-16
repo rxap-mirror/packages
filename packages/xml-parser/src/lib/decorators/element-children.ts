@@ -17,12 +17,12 @@ import { XmlParserService } from '../xml-parser.service';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   ChildElementOptions,
-  ChildElementParserMixin,
-} from './mixins/child-element-parser.mixin';
+  ChildElementMixin,
+} from './mixins/child-element.mixin';
 import {
   ChildrenElementOptions,
-  ChildrenElementParserMixin,
-} from './mixins/children-element-parser.mixin';
+  ChildrenElementMixin,
+} from './mixins/children-element.mixin';
 import { RequiredProperty } from './required-property';
 import {
   AddParserToMetadata,
@@ -34,7 +34,7 @@ export interface ElementChildrenOptions extends ChildElementOptions, ChildrenEle
 }
 
 export interface ElementChildrenParser<T extends ParsedElement, Child extends ParsedElement>
-  extends ChildElementParserMixin<Child>, ChildrenElementParserMixin {
+  extends ChildElementMixin<Child>, ChildrenElementMixin {
 
 }
 
@@ -43,7 +43,7 @@ export type ElementWithType<Child extends ParsedElement> = {
   type: ParsedElementType<Child> | null
 };
 
-@Mixin(ChildElementParserMixin, ChildrenElementParserMixin)
+@Mixin(ChildElementMixin, ChildrenElementMixin)
 export class ElementChildrenParser<T extends ParsedElement, Child extends ParsedElement> {
 
   constructor(

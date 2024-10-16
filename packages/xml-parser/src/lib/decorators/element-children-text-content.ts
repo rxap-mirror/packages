@@ -15,17 +15,17 @@ import { ElementParser } from './element.parser';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   ChildrenElementOptions,
-  ChildrenElementParserMixin,
-} from './mixins/children-element-parser.mixin';
+  ChildrenElementMixin,
+} from './mixins/children-element.mixin';
 import {
   IsTagElementOptions,
   TagElementOptions,
-  TagElementParserMixin,
-} from './mixins/tag-element.parser.mixin';
+  TagElementMixin,
+} from './mixins/tag-element.mixin';
 import {
   TextContentElementOptions,
-  TextContentElementParserMixin,
-} from './mixins/text-content-element.parser.mixin';
+  TextContentElementMixin,
+} from './mixins/text-content-element.mixin';
 import { RequiredProperty } from './required-property';
 import { AddParserToMetadata } from './utilities';
 
@@ -51,12 +51,12 @@ export function AssertElementChildrenTextContentOptions(options: any): asserts o
 }
 
 export interface ElementChildrenTextContentParser<T extends ParsedElement, Value>
-  extends TextContentElementParserMixin<Value, Value[]>,
-          TagElementParserMixin,
-          ChildrenElementParserMixin {
+  extends TextContentElementMixin<Value, Value[]>,
+          TagElementMixin,
+          ChildrenElementMixin {
 }
 
-@Mixin(TextContentElementParserMixin, TagElementParserMixin, ChildrenElementParserMixin)
+@Mixin(TextContentElementMixin, TagElementMixin, ChildrenElementMixin)
 export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
   implements ElementParser<T> {
 

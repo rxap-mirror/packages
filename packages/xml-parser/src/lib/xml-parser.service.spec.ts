@@ -3,7 +3,7 @@ import { DOMParser } from 'xmldom';
 import { ElementAttribute } from './decorators/element-attribute';
 import { ElementChildren } from './decorators/element-children';
 import { ElementDef } from './decorators/element-def';
-import { ElementRequired } from './decorators/mixins/required-element.parser.mixin';
+import { ElementRequired } from './decorators/mixins/required-element.mixin';
 import { ParsedElement } from './elements/parsed-element';
 import { XmlParserService } from './xml-parser.service';
 

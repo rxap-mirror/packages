@@ -28,7 +28,7 @@ export function IsTagElementOptions(options: any): options is TagElementOptions 
   return isObject(options) && hasIndexSignature(options) && options['tag'] !== undefined;
 }
 
-export class TagElementParserMixin {
+export class TagElementMixin {
 
   public readonly options!: any;
 

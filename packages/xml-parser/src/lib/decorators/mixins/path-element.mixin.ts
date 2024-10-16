@@ -2,20 +2,20 @@ import { Mixin } from '@rxap/mixin';
 import { RxapElement } from '../../element';
 import {
   RequiredElementOptions,
-  RequiredElementParserMixin,
-} from './required-element.parser.mixin';
+  RequiredElementMixin,
+} from './required-element.mixin';
 
 export interface PathElementOptions extends RequiredElementOptions {
   path?: string[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface PathElementParserMixin
-  extends RequiredElementParserMixin {
+export interface PathElementMixin
+  extends RequiredElementMixin {
 }
 
-@Mixin(RequiredElementParserMixin)
-export class PathElementParserMixin {
+@Mixin(RequiredElementMixin)
+export class PathElementMixin {
 
   constructor(
     public readonly options: any = {},

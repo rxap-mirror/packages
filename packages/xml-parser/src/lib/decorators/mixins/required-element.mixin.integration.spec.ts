@@ -1,4 +1,4 @@
-import { ElementRequired } from './required-element.parser.mixin';
+import { ElementRequired } from './required-element.mixin';
 import { FindElementParserInstanceForPropertyKey } from '../utilities';
 import { ElementAttribute } from '../element-attribute';
 import { ElementChild } from '../element-child';
@@ -11,7 +11,7 @@ describe('@rxap/xml-parser', () => {
 
   describe('Mixins', () => {
 
-    describe('RequiredElementParserMixin', () => {
+    describe('RequiredElementMixin', () => {
 
       describe('@RequiredElement', () => {
 

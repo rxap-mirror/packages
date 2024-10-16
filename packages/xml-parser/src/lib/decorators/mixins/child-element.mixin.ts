@@ -3,24 +3,24 @@ import { ParsedElement } from '../../elements/parsed-element';
 import { ParsedElementType } from '../utilities';
 import {
   PathElementOptions,
-  PathElementParserMixin,
-} from './path-element.parser.mixin';
+  PathElementMixin,
+} from './path-element.mixin';
 import {
   RequiredElementOptions,
-  RequiredElementParserMixin,
-} from './required-element.parser.mixin';
+  RequiredElementMixin,
+} from './required-element.mixin';
 
 export interface ChildElementOptions extends RequiredElementOptions, PathElementOptions {
   tag?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ChildElementParserMixin<Child extends ParsedElement>
-  extends RequiredElementParserMixin, PathElementParserMixin {
+export interface ChildElementMixin<Child extends ParsedElement>
+  extends RequiredElementMixin, PathElementMixin {
 }
 
-@Mixin(RequiredElementParserMixin, PathElementParserMixin)
-export class ChildElementParserMixin<Child extends ParsedElement> {
+@Mixin(RequiredElementMixin, PathElementMixin)
+export class ChildElementMixin<Child extends ParsedElement> {
 
   constructor(
     public readonly elementType: ParsedElementType<Child> | null,

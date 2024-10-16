@@ -11,8 +11,8 @@ import { XmlParserService } from '../xml-parser.service';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   TextContentElementOptions,
-  TextContentElementParserMixin,
-} from './mixins/text-content-element.parser.mixin';
+  TextContentElementMixin,
+} from './mixins/text-content-element.mixin';
 import { RequiredProperty } from './required-property';
 import { AddParserToMetadata } from './utilities';
 
@@ -23,11 +23,11 @@ export interface ElementTextContentOptions<Value>
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementTextContentParser<T extends ParsedElement, Value>
-  extends TextContentElementParserMixin<Value> {
+  extends TextContentElementMixin<Value> {
 
 }
 
-@Mixin(TextContentElementParserMixin)
+@Mixin(TextContentElementMixin)
 export class ElementTextContentParser<T extends ParsedElement, Value> {
 
   constructor(

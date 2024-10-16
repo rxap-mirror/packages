@@ -1,6 +1,6 @@
 import { ParsedElement } from './parsed-element';
 import { ElementTextContent } from '../decorators/element-text-content';
-import { ElementRequired } from '../decorators/mixins/required-element.parser.mixin';
+import { ElementRequired } from '../decorators/mixins/required-element.mixin';
 import { ElementDef } from '../decorators/element-def';
 
 @ElementDef('data-source')

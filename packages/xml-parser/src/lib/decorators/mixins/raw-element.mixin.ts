@@ -2,7 +2,7 @@ export interface RawElementOptions {
   raw?: boolean;
 }
 
-export class RawElementParserMixin {
+export class RawElementMixin {
 
   public readonly options!: any;
 

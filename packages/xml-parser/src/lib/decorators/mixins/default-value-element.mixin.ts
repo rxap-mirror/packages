@@ -2,7 +2,7 @@ export interface DefaultValueElementOptions<Value> {
   defaultValue?: Value;
 }
 
-export class DefaultValueElementParserMixin<Value> {
+export class DefaultValueElementMixin<Value> {
 
   public readonly options!: any;
 

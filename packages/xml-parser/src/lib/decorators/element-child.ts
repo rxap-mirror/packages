@@ -11,8 +11,8 @@ import { XmlParserService } from '../xml-parser.service';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   ChildElementOptions,
-  ChildElementParserMixin,
-} from './mixins/child-element-parser.mixin';
+  ChildElementMixin,
+} from './mixins/child-element.mixin';
 import { RequiredProperty } from './required-property';
 import {
   AddParserToMetadata,
@@ -25,10 +25,10 @@ export interface ElementChildOptions extends ChildElementOptions {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementChildParser<T extends ParsedElement, Child extends ParsedElement>
-  extends ChildElementParserMixin<Child> {
+  extends ChildElementMixin<Child> {
 }
 
-@Mixin(ChildElementParserMixin)
+@Mixin(ChildElementMixin)
 export class ElementChildParser<T extends ParsedElement, Child extends ParsedElement> {
 
   constructor(

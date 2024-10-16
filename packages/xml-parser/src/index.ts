@@ -11,16 +11,17 @@ export * from './lib/elements/parsed-element';
 // endregion
 
 // region decorators mixins
-export * from './lib/decorators/mixins/attribute-element-parser.mixin';
-export * from './lib/decorators/mixins/child-element-parser.mixin';
-export * from './lib/decorators/mixins/children-element-parser.mixin';
-export * from './lib/decorators/mixins/default-value-element.parser.mixin';
-export * from './lib/decorators/mixins/parse-value-element-parser.mixin';
-export * from './lib/decorators/mixins/path-element.parser.mixin';
-export * from './lib/decorators/mixins/raw-element.parser.mixin';
-export * from './lib/decorators/mixins/required-element.parser.mixin';
-export * from './lib/decorators/mixins/tag-element.parser.mixin';
-export * from './lib/decorators/mixins/text-content-element.parser.mixin';
+export * from './lib/decorators/mixins/attribute-element.mixin';
+export * from './lib/decorators/mixins/child-element.mixin';
+export * from './lib/decorators/mixins/children-element.mixin';
+export * from './lib/decorators/mixins/default-value-element.mixin';
+export * from './lib/decorators/mixins/parse-value-element.mixin';
+export * from './lib/decorators/mixins/path-element.mixin';
+export * from './lib/decorators/mixins/raw-element.mixin';
+export * from './lib/decorators/mixins/required-element.mixin';
+export * from './lib/decorators/mixins/serialize-value-element.mixin';
+export * from './lib/decorators/mixins/tag-element.mixin';
+export * from './lib/decorators/mixins/text-content-element.mixin';
 // endregion
 
 // region decorators
@@ -37,17 +38,21 @@ export * from './lib/decorators/element-extends';
 export * from './lib/decorators/element-record';
 export * from './lib/decorators/element-text-content';
 export * from './lib/decorators/element.parser';
+export * from './lib/decorators/element.serializer';
 export * from './lib/decorators/metadata-keys';
 export * from './lib/decorators/required-property';
 export * from './lib/decorators/utilities';
 // endregion
 
-// region
+// region 
 export * from './lib/element-factory';
 export * from './lib/element-name';
 export * from './lib/element';
 export * from './lib/error';
 export * from './lib/parse-value';
+export * from './lib/serialize-value';
 export * from './lib/xml-element-parser-function';
+export * from './lib/xml-element-serializer-function';
 export * from './lib/xml-parser.service';
+export * from './lib/xml-serializer.service';
 // endregion

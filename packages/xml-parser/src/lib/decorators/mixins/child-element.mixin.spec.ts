@@ -1,4 +1,4 @@
-import { ChildElementParserMixin } from './child-element-parser.mixin';
+import { ChildElementMixin } from './child-element.mixin';
 import { ElementDef } from '../element-def';
 import { ParsedElement } from '../../elements/parsed-element';
 
@@ -6,7 +6,7 @@ describe('@rxap/xml-parser', () => {
 
   describe('Mixins', () => {
 
-    describe('ChildElementParserMixin', () => {
+    describe('ChildElementMixin', () => {
 
       it('should throw if the child element tag is not defined', () => {
 
@@ -18,7 +18,7 @@ describe('@rxap/xml-parser', () => {
           }
         }
 
-        const parser = new ChildElementParserMixin(MyChildElement);
+        const parser = new ChildElementMixin(MyChildElement);
 
         expect(() => parser.tag).toThrowError();
 
@@ -35,7 +35,7 @@ describe('@rxap/xml-parser', () => {
           }
         }
 
-        const parser = new ChildElementParserMixin(MyChildElement);
+        const parser = new ChildElementMixin(MyChildElement);
 
         expect(parser.tag).toBe('my-child');
 

@@ -4,7 +4,7 @@ export interface ParseValueElementOptions<Value> {
   parseValue?: (rawValue: string) => Value;
 }
 
-export class ParseValueElementParserMixin<Value> {
+export class ParseValueElementMixin<Value> {
 
   constructor(readonly options: any = {}) {
   }
