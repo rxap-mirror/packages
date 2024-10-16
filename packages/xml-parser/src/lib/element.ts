@@ -124,7 +124,10 @@ export class RxapElement {
   }
 
   public getRawContent(): string {
-    return this.element.innerHTML ?? this.element.textContent ?? '';
+    if (this.element.innerHTML !== undefined) {
+      return this.element.innerHTML;
+    }
+    return Array.from(this.element.childNodes).map(child => child.toString()).join('');
   }
 
   public removeAllChildren(): void {
