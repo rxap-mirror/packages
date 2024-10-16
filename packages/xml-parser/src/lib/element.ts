@@ -29,7 +29,11 @@ export function normalizeNodeName(nodeName: string, options: RxapElementOptions)
 
 export class RxapElement {
 
-  constructor(public readonly element: Element, public readonly options: RxapElementOptions = {}) {
+  constructor(
+    public readonly element: Element,
+    public readonly DOMParser: typeof window.DOMParser,
+    public readonly options: RxapElementOptions = {},
+  ) {
   }
 
   public get name(): string {
@@ -96,7 +100,7 @@ export class RxapElement {
   public getAllChildNodes(): RxapElement[] {
     return Array.from(this.element.childNodes)
                 .filter(n => !!n.nodeName && n.nodeType === 1)
-      .map((child: ChildNode) => new RxapElement(child as any, this.options));
+      .map((child: ChildNode) => new RxapElement(child as any, this.DOMParser, this.options));
   }
 
   public getCountChildren(): number {
@@ -150,5 +154,12 @@ export class RxapElement {
 
   appendChild(node: any) {
     this.element.appendChild(node);
+  }
+
+  addChild(nodeName: string) {
+    nodeName = this.normalizeNodeName(nodeName);
+    const element = new this.DOMParser().parseFromString('<html></html>', 'application/xml').createElement(nodeName);
+    this.element.appendChild(element);
+    return new RxapElement(element, this.DOMParser, this.options);
   }
 }

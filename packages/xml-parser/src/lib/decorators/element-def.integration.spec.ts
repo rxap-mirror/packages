@@ -31,7 +31,7 @@ export class TestingXmlParserService extends XmlParserService {
       throw new Error('The parsed xml has not any element');
     }
 
-    const root = new RxapElement(xmlDoc.childNodes.item(0) as Element);
+    const root = new RxapElement(xmlDoc.childNodes.item(0) as Element, this.DOMParser);
 
     if (!elementName || !root.hasName(elementName)) {
       throw new Error(`The root node must be an <${ elementName }> element but found <${ root.name }>`);

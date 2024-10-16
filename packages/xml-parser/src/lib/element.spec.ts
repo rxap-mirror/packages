@@ -1,4 +1,5 @@
 import { RxapElement } from './element';
+import { DOMParser } from 'xmldom';
 
 describe('XML Parser', () => {
 
@@ -6,8 +7,8 @@ describe('XML Parser', () => {
 
     it('should remove the xml namespace from nodeName', () => {
 
-      const element0 = new RxapElement(document.createElement('element'));
-      const element1 = new RxapElement(document.createElement('namespace:element'));
+      const element0 = new RxapElement(document.createElement('element'), DOMParser);
+      const element1 = new RxapElement(document.createElement('namespace:element'), DOMParser);
 
       expect(element0.name).toEqual(element1.name);
 
@@ -15,7 +16,7 @@ describe('XML Parser', () => {
 
     it('should return the node text content as trimmed string', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       expect(element.getTextContent()).toEqual(undefined);
       expect(element.getTextContent('default')).toEqual('default');
@@ -38,7 +39,7 @@ describe('XML Parser', () => {
 
     it('should detected if the element has children', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       expect(element.hasChildren()).toBeFalsy();
 
@@ -54,7 +55,7 @@ describe('XML Parser', () => {
 
     it('should detected if the element has child with specified nodeName', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       expect(element.hasChild('child-1')).toBeFalsy();
       expect(element.hasChild('child-2')).toBeFalsy();
@@ -75,7 +76,7 @@ describe('XML Parser', () => {
 
       const element = new RxapElement(new DOMParser().parseFromString('<root><child-1/><child-2/></root>', 'text/xml')
                                                      .childNodes
-                                                     .item(0) as any);
+                                                     .item(0) as any, DOMParser);
 
       const children = element.getAllChildNodes();
 
@@ -87,7 +88,7 @@ describe('XML Parser', () => {
 
     it('should return all child nodes with specified node names', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       element.element.appendChild(document.createElement('child-1'));
       element.element.appendChild(document.createElement('child-1'));
@@ -102,7 +103,7 @@ describe('XML Parser', () => {
 
     it('should return one child node with specified node names', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       element.element.appendChild(document.createElement('child-1'));
       element.element.appendChild(document.createElement('child-1'));
@@ -119,7 +120,7 @@ describe('XML Parser', () => {
 
     it('should return specified child text content', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       element.element.appendChild(document.createElement('child-1'));
       element.element.appendChild(document.createElement('child-1'));
@@ -149,7 +150,7 @@ describe('XML Parser', () => {
 
     it('should return specified children text contents', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       element.element.appendChild(document.createElement('child-1'));
       element.element.appendChild(document.createElement('child-2'));
@@ -182,7 +183,7 @@ describe('XML Parser', () => {
 
     it('should detected if the element has an specified attribute', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       expect(element.has('username')).toBeFalsy();
 
@@ -194,7 +195,7 @@ describe('XML Parser', () => {
 
     it('should return the element attribute as string', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       expect(element.getString('username')).toEqual(undefined);
       expect(element.getString('username', 'mega-user')).toEqual('mega-user');
@@ -216,7 +217,7 @@ describe('XML Parser', () => {
 
     it('should return the element attribute as number', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       expect(element.getNumber('username')).toEqual(undefined);
       expect(element.getNumber('username', 42)).toEqual(42);
@@ -241,7 +242,7 @@ describe('XML Parser', () => {
 
     it('should return the element attribute as boolean', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       expect(element.getBoolean('username')).toEqual(undefined);
       expect(element.getBoolean('username', true)).toEqual(true);
@@ -267,7 +268,7 @@ describe('XML Parser', () => {
 
     it('should auto detect attribute type', () => {
 
-      const element = new RxapElement(document.createElement('element'));
+      const element = new RxapElement(document.createElement('element'), DOMParser);
 
       expect(element.get('username')).toEqual(undefined);
       expect(element.get('username', true)).toEqual(true);

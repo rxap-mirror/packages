@@ -41,7 +41,7 @@ export class XmlSerializerService {
 
     // create the ParsedElement instance of the current element
 
-    const rxapElement = new RxapElement(element);
+    const rxapElement = new RxapElement(element, this.DOMParser, this.elementOptions);
 
     instance.preSerialize?.(rxapElement);
 

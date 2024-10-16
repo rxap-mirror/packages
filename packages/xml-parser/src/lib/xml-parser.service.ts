@@ -34,7 +34,7 @@ export class XmlParserService {
   protected _rootParser: Constructor<ParsedElement> | null = null;
 
   constructor(
-    private readonly DOMParser: typeof window.DOMParser,
+    protected readonly DOMParser: typeof window.DOMParser,
     public readonly elementOptions: RxapElementOptions = {},
   ) {
     this.parse = this.parse.bind(this);
@@ -229,7 +229,7 @@ export class XmlParserService {
       throw new Error(`Could not find <${ this.rootElement }> element!`);
     }
 
-    const root = new RxapElement(rootNode as Element, this.elementOptions);
+    const root = new RxapElement(rootNode as Element, this.DOMParser, this.elementOptions);
 
     if (!root.hasName(this.rootElement)) {
       throw new Error(
