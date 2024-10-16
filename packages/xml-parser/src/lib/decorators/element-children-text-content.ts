@@ -9,9 +9,13 @@ import { ParsedElement } from '../elements/parsed-element';
 import {
   RxapXmlParserValidateError,
   RxapXmlParserValidateRequiredError,
+  RxapXmlSerializerValidateError,
+  RxapXmlSerializerValidateRequiredError,
 } from '../error';
 import { XmlParserService } from '../xml-parser.service';
+import { XmlSerializerService } from '../xml-serializer.service';
 import { ElementParser } from './element.parser';
+import { ElementSerializer } from './element.serializer';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   ChildrenElementOptions,
@@ -27,9 +31,12 @@ import {
   TextContentElementMixin,
 } from './mixins/text-content-element.mixin';
 import { RequiredProperty } from './required-property';
-import { AddParserToMetadata } from './utilities';
+import {
+  AddParserToMetadata,
+  AddSerializerToMetadata,
+} from './utilities';
 
-export interface ElementChildrenTextContentOptions<Value>
+export interface ElementChildrenTextContentParserOptions<Value>
   extends TextContentElementOptions<Value, Value[]>,
           TagElementOptions,
           ChildrenElementOptions {
@@ -44,7 +51,7 @@ export interface ElementChildrenTextContentOptions<Value>
  * @throws {Error} Throws an error if the `options` object does not have the required `tag` property, indicating that it is not a valid `ElementChildrenTextContentOptions`.
  *
  */
-export function AssertElementChildrenTextContentOptions(options: any): asserts options is ElementChildrenTextContentOptions<any> {
+export function AssertElementChildrenTextContentOptions(options: any): asserts options is ElementChildrenTextContentParserOptions<any> {
   if (!IsTagElementOptions(options)) {
     throw new Error('The object is not a ElementChildrenTextContentOptions. The required property "tag" is missing!');
   }
@@ -62,7 +69,7 @@ export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
 
   constructor(
     public readonly propertyKey: string,
-    public readonly options: ElementChildrenTextContentOptions<Value>,
+    public readonly options: ElementChildrenTextContentParserOptions<Value>,
   ) {
     this.parse = this.parse.bind(this);
     Reflect.set(this.parse, 'propertyKey', propertyKey);
@@ -125,13 +132,61 @@ export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
 
 }
 
+export interface ElementChildrenTextContentSerializerOptions<Value>
+  extends TextContentElementOptions<Value, Value[]>,
+          TagElementOptions,
+          ChildrenElementOptions {
+}
+
+export interface ElementChildrenTextContentSerializer<T extends ParsedElement, Value>
+  extends TextContentElementMixin<Value, Value[]>,
+          TagElementMixin,
+          ChildrenElementMixin {
+}
+
+@Mixin(TextContentElementMixin, TagElementMixin, ChildrenElementMixin)
+export class ElementChildrenTextContentSerializer<T extends ParsedElement, Value>
+  implements ElementSerializer<T> {
+
+  constructor(
+    public readonly propertyKey: string,
+    public readonly options: ElementChildrenTextContentParserOptions<Value>,
+  ) {
+    this.serialize = this.serialize.bind(this);
+    Reflect.set(this.serialize, 'propertyKey', propertyKey);
+  }
+
+  serialize(xmlParser: XmlSerializerService, element: RxapElement, parsedElement: T) {
+
+    // @ts-expect-error the propertyKey is set by the property decorator
+    const children = parsedElement[this.propertyKey];
+
+    if (children) {
+      if (!Array.isArray(children)) {
+        throw new RxapXmlSerializerValidateError(`The property ${ this.propertyKey } is not an array!`, parsedElement.__tag!);
+      }
+      element = this.coerceGroup(element);
+      for (const child of children) {
+        element.addChildTextContent(this.tag, this.serializeValue(child));
+      }
+    } else if (this.required) {
+      throw new RxapXmlSerializerValidateRequiredError(
+        `Some element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
+    }
+
+  }
+
+}
+
 /**
  * Decorator factory that creates a decorator to parse the text content of children elements of a specified XML/HTML tag.
  *
  * This decorator can be applied to properties within classes that are intended to parse XML/HTML data. It configures
  * the parsing behavior based on the provided options or defaults derived from the property name if no options are specified.
  *
- * @param {Partial<ElementChildrenTextContentOptions<Value>> | string} optionsOrString - Configuration options for the decorator,
+ * @param {Partial<ElementChildrenTextContentParserOptions<Value>> | string} optionsOrString - Configuration options for the decorator,
  * or a string specifying the tag name of the element whose children's text content should be parsed.
  * If a string is provided, it is used as the tag name. If an object is provided, it can specify various parsing options.
  * If omitted, the tag name is derived by dasherizing the property name.
@@ -148,7 +203,7 @@ export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
  * In the above example, the decorator will configure the parser to parse the text content of children of `<item>` elements.
  * The `required` option specifies that at least one `<item>` element must be present.
  */
-export function ElementChildrenTextContent<Value>(optionsOrString?: Partial<ElementChildrenTextContentOptions<Value>> | string) {
+export function ElementChildrenTextContent<Value>(optionsOrString?: Partial<ElementChildrenTextContentParserOptions<Value>> | string) {
   return function (target: any, propertyKey: string) {
     let options = optionsOrString === undefined ?
       { tag: dasherize(propertyKey) } :
@@ -162,6 +217,8 @@ export function ElementChildrenTextContent<Value>(optionsOrString?: Partial<Elem
 
     const parser = new ElementChildrenTextContentParser(propertyKey, options);
     AddParserToMetadata(parser, target);
+    const serializer = new ElementChildrenTextContentSerializer(propertyKey, options);
+    AddSerializerToMetadata(serializer, target);
     if (options.required) {
       RequiredProperty()(target, propertyKey);
     }

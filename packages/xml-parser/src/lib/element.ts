@@ -200,6 +200,11 @@ export class RxapElement {
     child.setTextContent(value);
   }
 
+  addChildTextContent(nodeName: string, value: string) {
+    const child = this.addChild(nodeName);
+    child.setTextContent(value);
+  }
+
   setTextContent(value: string) {
     this.removeAllChildren();
     if (this.element.innerHTML !== undefined) {

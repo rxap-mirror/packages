@@ -61,8 +61,7 @@ export class ChildrenElementMixin {
 
   }
 
-  public setChildren(element: RxapElement, children: ParsedElement[], xmlParser: XmlSerializerService): void {
-
+  public coerceGroup(element: RxapElement) {
     if (this.options.group) {
       if (element.hasChild(this.options.group)) {
         element = element.getChild(this.options.group)!;
@@ -70,6 +69,12 @@ export class ChildrenElementMixin {
         element = element.addChild(this.options.group);
       }
     }
+    return element;
+  }
+
+  public setChildren(element: RxapElement, children: ParsedElement[], xmlParser: XmlSerializerService): void {
+
+    element = this.coerceGroup(element);
 
     element.removeAllChildren();
     for (const child of children) {

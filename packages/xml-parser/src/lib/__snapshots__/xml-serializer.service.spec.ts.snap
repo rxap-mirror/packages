@@ -8,6 +8,8 @@ exports[`XML Serializer Xml Serializer Service native with child 1`] = `"<root n
 
 exports[`XML Serializer Xml Serializer Service native with children 1`] = `"<root name="root-name"><child name="child-name"/><child name="child-name"/><child name="child-name"/></root>"`;
 
+exports[`XML Serializer Xml Serializer Service native with children text content 1`] = `"<root name="root-name"><children>child-1</children><children>child-2</children><children>child-3</children></root>"`;
+
 exports[`XML Serializer Xml Serializer Service native with raw child 1`] = `"<root name="root-name"><child>some raw content</child></root>"`;
 
 exports[`XML Serializer Xml Serializer Service native with text content child 1`] = `"<root name="root-name"><child>some text content</child></root>"`;
@@ -21,6 +23,8 @@ exports[`XML Serializer Xml Serializer Service xmldom minimal example 1`] = `"<r
 exports[`XML Serializer Xml Serializer Service xmldom with child 1`] = `"<root name="root-name"><child name="child-name"/></root>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom with children 1`] = `"<root name="root-name"><child name="child-name"/><child name="child-name"/><child name="child-name"/></root>"`;
+
+exports[`XML Serializer Xml Serializer Service xmldom with children text content 1`] = `"<root name="root-name"><children>child-1</children><children>child-2</children><children>child-3</children></root>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom with raw child 1`] = `"<root name="root-name"><child>some raw content</child></root>"`;
 
