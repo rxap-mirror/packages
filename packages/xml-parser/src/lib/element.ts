@@ -191,4 +191,22 @@ export class RxapElement {
     this.element.appendChild(element);
     return new RxapElement(element, this.DOMParser, this.options);
   }
+
+  setChildTextContent(nodeName: string, value: string) {
+    let child: RxapElement | undefined = this.getChild(nodeName);
+    if (!child) {
+      child = this.addChild(nodeName);
+    }
+    child.setTextContent(value);
+  }
+
+  setTextContent(value: string) {
+    this.removeAllChildren();
+    if (this.element.innerHTML !== undefined) {
+      this.element.innerHTML = value;
+    } else {
+      this.element.textContent = value;
+    }
+  }
+
 }

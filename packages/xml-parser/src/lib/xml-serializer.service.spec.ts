@@ -2,100 +2,148 @@ import {
   ElementAttribute,
   ElementChild,
   ElementChildRawContent,
+  ElementChildTextContent,
   ElementDef,
   ParsedElement,
 } from '@rxap/xml-parser';
-import { DOMParser, XMLSerializer } from 'xmldom';
+import {
+  DOMParser,
+  XMLSerializer,
+} from 'xmldom';
 import { XmlSerializerService } from './xml-serializer.service';
 
 describe('XML Serializer', () => {
 
-  describe('Xml Serializer Service', () => {
+  describe.each([
+    {
+      name: 'native',
+      DOMParser: window.DOMParser,
+      XMLSerializer: window.XMLSerializer,
+    }, {
+      name: 'xmldom',
+      DOMParser,
+      XMLSerializer,
+    },
+  ])('Xml Serializer Service', ({
+    name,
+    XMLSerializer,
+    DOMParser,
+  }) => {
 
-    it('minimal example', () => {
+    describe(name, () => {
 
-      @ElementDef('root')
-      class Root implements ParsedElement {
+      it('minimal example', () => {
 
-        @ElementAttribute()
-        name = 'root-name';
+        @ElementDef('root')
+        class Root implements ParsedElement {
 
-        validate(): boolean {
-          return true;
+          @ElementAttribute()
+          name = 'root-name';
+
+          validate(): boolean {
+            return true;
+          }
+
         }
 
-      }
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
 
-      const instance = new Root();
-      const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+        const xml = xmlSerializer.serializeToXml(instance);
 
-      const xml = xmlSerializer.serializeToXml(instance);
+        expect(xml).toMatchSnapshot();
 
-      expect(xml).toMatchSnapshot();
+      });
 
-    });
+      it('with child', () => {
 
-    it('with child', () => {
+        @ElementDef('child')
+        class Child implements ParsedElement {
 
-      @ElementDef('child')
-      class Child implements ParsedElement {
+          @ElementAttribute()
+          name = 'child-name';
 
-        @ElementAttribute()
-        name = 'child-name';
+          validate(): boolean {
+            return true;
+          }
 
-        validate(): boolean {
-          return true;
         }
 
-      }
+        @ElementDef('root')
+        class Root implements ParsedElement {
 
-      @ElementDef('root')
-      class Root implements ParsedElement {
+          @ElementAttribute()
+          name = 'root-name';
 
-        @ElementAttribute()
-        name = 'root-name';
+          @ElementChild(Child)
+          child = new Child();
 
-        @ElementChild(Child)
-        child = new Child();
+          validate(): boolean {
+            return true;
+          }
 
-        validate(): boolean {
-          return true;
         }
 
-      }
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
 
-      const instance = new Root();
-      const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+        const xml = xmlSerializer.serializeToXml(instance);
 
-      const xml = xmlSerializer.serializeToXml(instance);
+        expect(xml).toMatchSnapshot();
 
-      expect(xml).toMatchSnapshot();
+      });
 
-    });
+      it('with raw child', () => {
 
-    it('with raw child', () => {
+        @ElementDef('root')
+        class Root implements ParsedElement {
 
-      @ElementDef('root')
-      class Root implements ParsedElement {
+          @ElementAttribute()
+          name = 'root-name';
 
-        @ElementAttribute()
-        name = 'root-name';
+          @ElementChildRawContent()
+          child = 'some raw content';
 
-        @ElementChildRawContent()
-        child = 'some raw content';
+          validate(): boolean {
+            return true;
+          }
 
-        validate(): boolean {
-          return true;
         }
 
-      }
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
 
-      const instance = new Root();
-      const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+        const xml = xmlSerializer.serializeToXml(instance);
 
-      const xml = xmlSerializer.serializeToXml(instance);
+        expect(xml).toMatchSnapshot();
 
-      expect(xml).toMatchSnapshot();
+      });
+
+      it('with text content child', () => {
+
+        @ElementDef('root')
+        class Root implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'root-name';
+
+          @ElementChildTextContent()
+          child = 'some text content';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toMatchSnapshot();
+
+      });
 
     });
 
