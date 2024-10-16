@@ -20,7 +20,7 @@ import {
 import {
   TextContentElementOptions,
   TextContentElementParserMixin,
-} from './mixins/text-content-element.parser';
+} from './mixins/text-content-element.parser.mixin';
 import { RequiredProperty } from './required-property';
 import { AddParserToMetadata } from './utilities';
 
