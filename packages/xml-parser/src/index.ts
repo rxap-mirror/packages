@@ -20,7 +20,7 @@ export * from './lib/decorators/mixins/path-element.parser.mixin';
 export * from './lib/decorators/mixins/raw-element.parser.mixin';
 export * from './lib/decorators/mixins/required-element.parser.mixin';
 export * from './lib/decorators/mixins/tag-element.parser.mixin';
-export * from './lib/decorators/mixins/text-content-element.parser';
+export * from './lib/decorators/mixins/text-content-element.parser.mixin';
 // endregion
 
 // region decorators
@@ -42,7 +42,7 @@ export * from './lib/decorators/required-property';
 export * from './lib/decorators/utilities';
 // endregion
 
-// region 
+// region
 export * from './lib/element-factory';
 export * from './lib/element-name';
 export * from './lib/element';

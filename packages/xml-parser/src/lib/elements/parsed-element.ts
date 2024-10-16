@@ -1,4 +1,5 @@
 import { KeyValue } from '@rxap/utilities';
+import { RxapElement } from '../element';
 
 export interface ParsedElement<Value = any> {
 
@@ -12,6 +13,10 @@ export interface ParsedElement<Value = any> {
   postParse?(): void;
 
   preParse?(): void;
+
+  preSerialize?(element: RxapElement): void;
+
+  postSerialize?(element: RxapElement): void;
 
   validate?(): boolean;
 

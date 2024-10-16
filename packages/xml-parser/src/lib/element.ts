@@ -55,6 +55,10 @@ export class RxapElement {
     return defaultValue as any;
   }
 
+  public set(qualifiedName: string, value: any): void {
+    this.element.setAttribute(qualifiedName, value);
+  }
+
   public hasName(name: string): boolean {
     return this.name === this.normalizeNodeName(name);
   }
@@ -144,4 +148,7 @@ export class RxapElement {
     return normalizeNodeName(nodeName, this.options);
   }
 
+  appendChild(node: any) {
+    this.element.appendChild(node);
+  }
 }

@@ -5,12 +5,18 @@ import {
 import { Constructor } from '@rxap/utilities';
 import { ParsedElement } from '../elements/parsed-element';
 import { XmlElementParserFunction } from '../xml-element-parser-function';
+import { XmlElementSerializerFunction } from '../xml-element-serializer-function';
 import { ElementParser } from './element.parser';
+import { ElementSerializer } from './element.serializer';
 import { ElementParserMetaData } from './metadata-keys';
 
 export type ParsedElementType<T extends ParsedElement = ParsedElement> = Constructor<T> & { TAG?: string };
 
 export type XmlDecoratorElementParserFunction<T extends ParsedElement = ParsedElement> = XmlElementParserFunction<T> & {
+  propertyKey: string
+};
+
+export type XmlDecoratorElementSerializerFunction<T extends ParsedElement = ParsedElement> = XmlElementSerializerFunction<T> & {
   propertyKey: string
 };
 
@@ -39,6 +45,10 @@ export function GetAllElementParser<T extends ParsedElement>(type: Constructor<T
   return getMetadata(ElementParserMetaData.PARSER, type) || [];
 }
 
+export function GetAllElementSerializer<T extends ParsedElement>(type: Constructor<T>): Array<XmlDecoratorElementSerializerFunction<T>> {
+  return getMetadata(ElementParserMetaData.SERIALIZER, type) || [];
+}
+
 /**
  * Retrieves all parser instances associated with a specific element type.
  *
@@ -51,6 +61,10 @@ export function GetAllElementParser<T extends ParsedElement>(type: Constructor<T
  */
 export function GetAllElementParserInstances<T extends ParsedElement>(type: Constructor<T>): Array<ElementParser<T>> {
   return getMetadata(ElementParserMetaData.PARSER_INSTANCE, type.prototype) || [];
+}
+
+export function GetAllElementSerializerInstances<T extends ParsedElement>(type: Constructor<T>): Array<ElementSerializer<T>> {
+  return getMetadata(ElementParserMetaData.SERIALIZER_INSTANCE, type.prototype) || [];
 }
 
 /**
@@ -73,6 +87,13 @@ export function FindElementParserInstanceForPropertyKey<T extends ParsedElement>
   propertyKey: string,
 ): ElementParser<T> | undefined {
   return GetAllElementParserInstances(type).find(parser => parser.propertyKey === propertyKey);
+}
+
+export function FindElementSerializerInstanceForPropertyKey<T extends ParsedElement>(
+  type: Constructor<T>,
+  propertyKey: string,
+): ElementSerializer<T> | undefined {
+  return GetAllElementSerializerInstances(type).find(parser => parser.propertyKey === propertyKey);
 }
 
 /**
@@ -116,6 +137,35 @@ export function AddParserToMetadata(parser: ElementParser, target: any) {
   setMetadata(
     ElementParserMetaData.PARSER_INSTANCE,
     [ ...addedElementParser, parser ],
+    target,
+  );
+
+}
+
+export function AddSerializerToMetadata(serializer: ElementSerializer, target: any) {
+
+  // TODO : test overwrite functionality
+
+  const addedSerializer = GetAllElementSerializer(target.constructor)
+    .filter(p => {
+      // if (p.hasOwnProperty('propertyKey')) {
+      //   return p.propertyKey !== parser.propertyKey;
+      // }
+      return true;
+    });
+
+  setMetadata(
+    ElementParserMetaData.SERIALIZER,
+    [ ...addedSerializer, serializer.serialize ],
+    target.constructor,
+  );
+
+  const addedElementSerializer = GetAllElementSerializerInstances(target.constructor)
+    .filter(p => p.propertyKey !== serializer.propertyKey);
+
+  setMetadata(
+    ElementParserMetaData.SERIALIZER_INSTANCE,
+    [ ...addedElementSerializer, serializer ],
     target,
   );
 

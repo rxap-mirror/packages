@@ -3,7 +3,9 @@ export const ElementParserMetaData = {
   ATTRIBUTE: 'rxap-xml-parser-attribute',
   OPTIONS: 'rxap/xml-parser/decorators/element-options',
   PARSER: 'rxap-xml-parser-element-parsers',
+  SERIALIZER: 'rxap-xml-parser-element-serializers',
   PARSER_INSTANCE: 'rxap/xml-parser/decorators/element-parser/instance',
+  SERIALIZER_INSTANCE: 'rxap/xml-parser/decorators/element-serializer/instance',
   /**
    * @deprecated
    */

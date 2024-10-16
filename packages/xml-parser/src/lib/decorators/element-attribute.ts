@@ -3,19 +3,27 @@ import { getMetadata } from '@rxap/reflect-metadata';
 import { deepMerge } from '@rxap/utilities';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
-import { RxapXmlParserValidateRequiredError } from '../error';
+import {
+  RxapXmlParserValidateRequiredError,
+  RxapXmlSerializerValidateRequiredError,
+} from '../error';
 import { XmlParserService } from '../xml-parser.service';
+import { XmlSerializerService } from '../xml-serializer.service';
 import { ElementParser } from './element.parser';
+import { ElementSerializer } from './element.serializer';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   AttributeElementOptions,
   AttributeElementParserMixin,
 } from './mixins/attribute-element-parser.mixin';
 import { RequiredProperty } from './required-property';
-import { AddParserToMetadata } from './utilities';
+import {
+  AddParserToMetadata,
+  AddSerializerToMetadata,
+} from './utilities';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ElementAttributeOptions<Value>
+export interface ElementAttributeParserOptions<Value>
   extends AttributeElementOptions<Value> {
 }
 
@@ -29,7 +37,7 @@ export class ElementAttributeParser<T extends ParsedElement = ParsedElement, Val
 
   constructor(
     public readonly propertyKey: string,
-    public readonly options: ElementAttributeOptions<Value>,
+    public readonly options: ElementAttributeParserOptions<Value>,
   ) {
     this.parse = this.parse.bind(this);
     Reflect.set(this.parse, 'propertyKey', propertyKey);
@@ -67,9 +75,47 @@ export class ElementAttributeParser<T extends ParsedElement = ParsedElement, Val
 
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ElementAttributeSerializerOptions<Value>
+  extends AttributeElementOptions<Value> {
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ElementAttributeSerializer<T extends ParsedElement, Value>
+  extends AttributeElementParserMixin<Value> {
+}
+
+@Mixin(AttributeElementParserMixin)
+export class ElementAttributeSerializer<T extends ParsedElement = ParsedElement, Value = any> implements ElementSerializer<T> {
+
+  constructor(
+    public readonly propertyKey: string,
+    public readonly options: ElementAttributeParserOptions<Value>,
+  ) {
+    this.serialize = this.serialize.bind(this);
+    Reflect.set(this.serialize, 'propertyKey', propertyKey);
+  }
+
+  public serialize(xmlParser: XmlSerializerService, element: RxapElement, parsedElement: T): T {
+    // @ts-expect-error the propertyKey is set by the property decorator
+    const value = parsedElement[this.propertyKey];
+    if (value !== undefined) {
+      element.set(this.options.attribute, this.serializeValue(value));
+    } else if (this.required) {
+      throw new RxapXmlSerializerValidateRequiredError(
+        `The attribute '${ this.attribute }' is required for <${ parsedElement.__tag }>`,
+        parsedElement.__tag!,
+        this.attribute,
+      );
+    }
+    return parsedElement;
+  }
+
+}
+
 export function ElementAttribute<Value>(): (target: any, propertyKey: string) => void;
 export function ElementAttribute<Value>(attribute: string): (target: any, propertyKey: string) => void;
-export function ElementAttribute<Value>(options: Partial<ElementAttributeOptions<Value>>): (
+export function ElementAttribute<Value>(options: Partial<ElementAttributeParserOptions<Value> & ElementAttributeSerializerOptions<Value>>): (
   target: any,
   propertyKey: string,
 ) => void;
@@ -109,18 +155,20 @@ export function ElementAttribute<Value>(options: Partial<ElementAttributeOptions
  * of the corresponding DOM element. The attribute is marked as required, meaning it must be present.
  *
  */
-export function ElementAttribute<Value>(optionsOrString?: Partial<ElementAttributeOptions<Value>> | string): (
+export function ElementAttribute<Value>(optionsOrString?: Partial<ElementAttributeParserOptions<Value> & ElementAttributeSerializerOptions<Value>> | string): (
   target: any,
   propertyKey: string,
 ) => void {
   return function (target: any, propertyKey: string) {
-    let options: Partial<ElementAttributeOptions<Value>> = optionsOrString === undefined ?
+    let options: Partial<ElementAttributeParserOptions<Value>> = optionsOrString === undefined ?
       { attribute: propertyKey } :
       typeof optionsOrString === 'string' ? { attribute: optionsOrString } : optionsOrString;
     options = deepMerge(options, getMetadata(ElementParserMetaData.OPTIONS, target, propertyKey) ?? {});
-    const optionsWithDefaults: ElementAttributeOptions<Value> = Object.assign({ attribute: propertyKey }, options);
+    const optionsWithDefaults: ElementAttributeParserOptions<Value> = Object.assign({ attribute: propertyKey }, options);
     const parser = new ElementAttributeParser(propertyKey, optionsWithDefaults);
     AddParserToMetadata(parser, target);
+    const serializer = new ElementAttributeSerializer(propertyKey, optionsWithDefaults);
+    AddSerializerToMetadata(serializer, target);
     if (optionsWithDefaults.required) {
       RequiredProperty()(target, propertyKey);
     }
