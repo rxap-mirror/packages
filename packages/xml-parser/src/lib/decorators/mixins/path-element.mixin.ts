@@ -36,4 +36,17 @@ export class PathElementMixin {
     return element;
   }
 
+  coercePath(element: RxapElement) {
+    if (this.options.path?.length) {
+      for (const fragment of this.options.path) {
+        if (element.hasChild(fragment)) {
+          element = element.getChild(fragment)!;
+        } else {
+          element = element.addChild(fragment);
+        }
+      }
+    }
+    return element;
+  }
+
 }

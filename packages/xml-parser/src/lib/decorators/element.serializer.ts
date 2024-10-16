@@ -11,5 +11,5 @@ export interface ElementSerializer<T extends ParsedElement = ParsedElement, Opti
     xmlParser: XmlSerializerService,
     element: RxapElement,
     parsedElement: T,
-  ): T;
+  ): void;
 }

@@ -96,7 +96,7 @@ export class ElementAttributeSerializer<T extends ParsedElement = ParsedElement,
     Reflect.set(this.serialize, 'propertyKey', propertyKey);
   }
 
-  public serialize(xmlParser: XmlSerializerService, element: RxapElement, parsedElement: T): T {
+  public serialize(xmlParser: XmlSerializerService, element: RxapElement, parsedElement: T): void {
     // @ts-expect-error the propertyKey is set by the property decorator
     const value = parsedElement[this.propertyKey];
     if (value !== undefined) {
@@ -108,7 +108,6 @@ export class ElementAttributeSerializer<T extends ParsedElement = ParsedElement,
         this.attribute,
       );
     }
-    return parsedElement;
   }
 
 }
