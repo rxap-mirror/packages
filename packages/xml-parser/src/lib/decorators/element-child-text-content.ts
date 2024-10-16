@@ -121,7 +121,7 @@ export class ElementChildTextContentSerializer<T extends ParsedElement, Value>
     // @ts-expect-error the propertyKey is set by the property decorator
     const child = parsedElement[this.propertyKey];
 
-    if (child) {
+    if (child !== undefined) {
       element.setChildTextContent(this.tag, this.serializeValue(child));
     } else if (this.required) {
       throw new RxapXmlParserValidateRequiredError(

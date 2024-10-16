@@ -6,6 +6,7 @@ import {
   ElementChildrenTextContent,
   ElementChildTextContent,
   ElementDef,
+  ElementTextContent,
   ParsedElement,
 } from '@rxap/xml-parser';
 import {
@@ -195,6 +196,32 @@ describe('XML Serializer', () => {
 
           @ElementChildrenTextContent()
           children = ['child-1', 'child-2', 'child-3'];
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toMatchSnapshot();
+
+      });
+
+      it('with text content', () => {
+
+        @ElementDef('root')
+        class Root implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'root-name';
+
+          @ElementTextContent()
+          children = 'text content';
 
           validate(): boolean {
             return true;
