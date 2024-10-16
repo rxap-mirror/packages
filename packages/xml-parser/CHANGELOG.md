@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.10-dev.1...@rxap/xml-parser@16.1.0-dev.0) (2024-10-16)
+
+### Features
+
+- add basic serializer ([61d6066](https://gitlab.com/rxap/packages/commit/61d60668c9e61c2218c5b9ccc7c789fcec6832bf))
+- support child element serialization ([d1cacf7](https://gitlab.com/rxap/packages/commit/d1cacf7c70c4d2fdd7d70bd7f67d5bb2af1f20b1))
+- support child raw content serialization ([aace8cf](https://gitlab.com/rxap/packages/commit/aace8cf3a2d48e80e7b9f1c1733684b2cde01771))
+- support child text content serialization ([ff2189f](https://gitlab.com/rxap/packages/commit/ff2189fcc950b987e40ee40b21877679af16c9ec))
+- support children serialization ([ea0ea4e](https://gitlab.com/rxap/packages/commit/ea0ea4ede58f9c9ed088ce570fbf4a951e2fc463))
+- support children text content serialization ([6c0dd4c](https://gitlab.com/rxap/packages/commit/6c0dd4ce5ad44444c715dbe9881f2e23fe014b91))
+- support text content serialization ([c88c903](https://gitlab.com/rxap/packages/commit/c88c9037faa850b322efea39c7a3c016feff2aa2))
+
 ## [16.0.10-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.10-dev.0...@rxap/xml-parser@16.0.10-dev.1) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/xml-parser
