@@ -1,4 +1,6 @@
 import { Mixin } from '@rxap/mixin';
+import { ParsedElement } from '../../elements/parsed-element';
+import { XmlSerializerService } from '../../xml-serializer.service';
 import {
   RequiredElementOptions,
   RequiredElementMixin,
@@ -56,6 +58,23 @@ export class ChildrenElementMixin {
     }
 
     return elementChildren;
+
+  }
+
+  public setChildren(element: RxapElement, children: ParsedElement[], xmlParser: XmlSerializerService): void {
+
+    if (this.options.group) {
+      if (element.hasChild(this.options.group)) {
+        element = element.getChild(this.options.group)!;
+      } else {
+        element = element.addChild(this.options.group);
+      }
+    }
+
+    element.removeAllChildren();
+    for (const child of children) {
+      xmlParser.serialize(child, element);
+    }
 
   }
 

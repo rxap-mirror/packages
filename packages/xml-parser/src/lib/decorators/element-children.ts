@@ -12,8 +12,14 @@ import { ParsedElement } from '../elements/parsed-element';
 import {
   RxapXmlParserValidateError,
   RxapXmlParserValidateRequiredError,
+  RxapXmlSerializerError,
+  RxapXmlSerializerValidateError,
+  RxapXmlSerializerValidateRequiredError,
 } from '../error';
 import { XmlParserService } from '../xml-parser.service';
+import { XmlSerializerService } from '../xml-serializer.service';
+import { ElementParser } from './element.parser';
+import { ElementSerializer } from './element.serializer';
 import { ElementParserMetaData } from './metadata-keys';
 import {
   ChildElementOptions,
@@ -26,10 +32,11 @@ import {
 import { RequiredProperty } from './required-property';
 import {
   AddParserToMetadata,
+  AddSerializerToMetadata,
   ParsedElementType,
 } from './utilities';
 
-export interface ElementChildrenOptions extends ChildElementOptions, ChildrenElementOptions {
+export interface ElementChildrenParserOptions extends ChildElementOptions, ChildrenElementOptions {
 
 }
 
@@ -44,12 +51,12 @@ export type ElementWithType<Child extends ParsedElement> = {
 };
 
 @Mixin(ChildElementMixin, ChildrenElementMixin)
-export class ElementChildrenParser<T extends ParsedElement, Child extends ParsedElement> {
+export class ElementChildrenParser<T extends ParsedElement, Child extends ParsedElement> implements ElementParser<T> {
 
   constructor(
     public readonly propertyKey: string,
     public readonly elementType: ParsedElementType<Child> | null,
-    public readonly options: ElementChildrenOptions,
+    public readonly options: ElementChildrenParserOptions,
   ) {
     this.parse = this.parse.bind(this);
     Reflect.set(this.parse, 'propertyKey', propertyKey);
@@ -165,6 +172,49 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
 
 }
 
+
+export interface ElementChildrenSerializerOptions extends ChildElementOptions, ChildrenElementOptions {
+
+}
+
+export interface ElementChildrenSerializer<T extends ParsedElement, Child extends ParsedElement>
+  extends ChildElementMixin<Child>, ChildrenElementMixin {
+
+}
+
+@Mixin(ChildElementMixin, ChildrenElementMixin)
+export class ElementChildrenSerializer<T extends ParsedElement, Child extends ParsedElement> implements ElementSerializer<T> {
+
+  constructor(
+    public readonly propertyKey: string,
+    public readonly elementType: ParsedElementType<Child> | null,
+    public readonly options: ElementChildrenParserOptions,
+  ) {
+    this.serialize = this.serialize.bind(this);
+    Reflect.set(this.serialize, 'propertyKey', propertyKey);
+  }
+
+  serialize(xmlParser: XmlSerializerService, element: RxapElement, parsedElement: T): void {
+
+    // @ts-expect-error the propertyKey is set by the property decorator
+    const children = parsedElement[this.propertyKey];
+
+    if (children) {
+      if (!Array.isArray(children)) {
+        throw new RxapXmlSerializerValidateError(`The property ${ this.propertyKey } is not an array!`, parsedElement.__tag!);
+      }
+      this.setChildren(element, children, xmlParser);
+    } else if (this.required) {
+      throw new RxapXmlSerializerValidateRequiredError(
+        `Some element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
+    }
+
+  }
+
+}
+
 /**
  * Decorator factory that creates a decorator to parse children elements of a specified type from a parent element.
  * This decorator can be applied to properties within a class to automatically handle the parsing of child elements
@@ -188,12 +238,14 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
  */
 export function ElementChildren<Child extends ParsedElement>(
   elementTyp: ParsedElementType<Child> | null = null,
-  options: ElementChildrenOptions = {},
+  options: ElementChildrenParserOptions & ElementChildrenSerializerOptions = {},
 ) {
   return function (target: any, propertyKey: string) {
     options = deepMerge(options, getMetadata(ElementParserMetaData.OPTIONS, target, propertyKey) || {});
     const parser = new ElementChildrenParser(propertyKey, elementTyp, options);
     AddParserToMetadata(parser, target);
+    const serializer = new ElementChildrenSerializer(propertyKey, elementTyp, options);
+    AddSerializerToMetadata(serializer, target);
     if (options.required) {
       RequiredProperty()(target, propertyKey);
     }

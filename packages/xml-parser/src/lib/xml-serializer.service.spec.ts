@@ -2,6 +2,7 @@ import {
   ElementAttribute,
   ElementChild,
   ElementChildRawContent,
+  ElementChildren,
   ElementChildTextContent,
   ElementDef,
   ParsedElement,
@@ -129,6 +130,44 @@ describe('XML Serializer', () => {
 
           @ElementChildTextContent()
           child = 'some text content';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toMatchSnapshot();
+
+      });
+
+      it('with children', () => {
+
+        @ElementDef('child')
+        class Child implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'child-name';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        @ElementDef('root')
+        class Root implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'root-name';
+
+          @ElementChildren(Child)
+          children = [new Child(), new Child(), new Child()];
 
           validate(): boolean {
             return true;

@@ -209,4 +209,11 @@ export class RxapElement {
     }
   }
 
+  setChildren(children: RxapElement[]) {
+    this.removeAllChildren();
+    for (const child of children) {
+      this.appendChild(child);
+    }
+  }
+
 }
