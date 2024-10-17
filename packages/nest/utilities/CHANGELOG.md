@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.6-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.6-dev.0...@rxap/nest-utilities@10.3.6-dev.1) (2024-10-17)
+
+### Bug Fixes
+
+- add missing generic type ([8831fe8](https://gitlab.com/rxap/packages/commit/8831fe883ea8908ad9c3d395b9e9ad09f1da1387))
+
 ## [10.3.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.5...@rxap/nest-utilities@10.3.6-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/nest-utilities
