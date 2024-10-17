@@ -398,7 +398,7 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.3.6-dev.0"
+        "version": "10.3.6-dev.1"
       },
       {
         "package": "@rxap/nest-vault",
