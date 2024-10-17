@@ -1,4 +1,6 @@
 // region 
+export * from './lib/class-transformer-options';
+export * from './lib/class-validator-options';
 export * from './lib/filter-query.dto';
 export * from './lib/icon.dto';
 export * from './lib/page.dto';

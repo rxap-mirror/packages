@@ -1,5 +1,5 @@
 {
-  "version": "10.3.6-dev.0",
+  "version": "10.3.6-dev.1",
   "name": "@rxap/nest-dto",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -26,30 +26,6 @@
     "packages",
     "rxap"
   ],
-  "nx-migrations": {
-    "packageGroup": [
-      {
-        "package": "@nestjs/cache-manager",
-        "version": "2.2.2"
-      },
-      {
-        "package": "@nestjs/common",
-        "version": "10.3.8"
-      },
-      {
-        "package": "@nestjs/config",
-        "version": "3.2.2"
-      },
-      {
-        "package": "@nestjs/core",
-        "version": "10.3.8"
-      },
-      {
-        "package": "@nestjs/throttler",
-        "version": "5.1.2"
-      }
-    ]
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/dto"

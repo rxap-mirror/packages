@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.6-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-dto@10.3.6-dev.0...@rxap/nest-dto@10.3.6-dev.1) (2024-10-17)
+
+### Bug Fixes
+
+- move the class validator and transformer options object to nest-dto ([ccc3976](https://gitlab.com/rxap/packages/commit/ccc3976efa1b9dd3eedc930aea7b9a89197c1635))
+
 ## [10.3.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-dto@10.3.5...@rxap/nest-dto@10.3.6-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/nest-dto
