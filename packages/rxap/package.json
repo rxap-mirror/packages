@@ -346,7 +346,7 @@
       },
       {
         "package": "@rxap/nest-dto",
-        "version": "10.3.6-dev.0"
+        "version": "10.3.6-dev.1"
       },
       {
         "package": "@rxap/nest-firebase",
@@ -398,7 +398,7 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.3.6-dev.1"
+        "version": "10.3.6-dev.2"
       },
       {
         "package": "@rxap/nest-vault",
