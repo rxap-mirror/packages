@@ -1,8 +1,5 @@
 import type { ClassTransformOptions } from 'class-transformer';
 
-/**
- * @deprecated import from @rxap/nest-dto instead
- */
 export const classTransformOptions: ClassTransformOptions = {
   enableImplicitConversion: true,
   exposeDefaultValues: true,
@@ -15,9 +12,6 @@ export const classTransformOptions: ClassTransformOptions = {
  */
 export const transformOptions = classTransformOptions;
 
-/**
- * @deprecated import from @rxap/nest-dto instead
- */
 export function ClassTransformOptionsFactory(additionalOptions: ClassTransformOptions = {}) {
   return {
     ...classTransformOptions,

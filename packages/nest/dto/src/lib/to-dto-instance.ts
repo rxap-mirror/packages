@@ -1,8 +1,4 @@
 import {
-  classTransformOptions,
-  validatorOptions,
-} from '@rxap/nest-utilities';
-import {
   ClassConstructor,
   ClassTransformOptions,
   plainToInstance,
@@ -11,6 +7,8 @@ import {
   validateSync,
   ValidatorOptions,
 } from 'class-validator';
+import { classTransformOptions } from './class-transformer-options';
+import { validatorOptions } from './class-validator-options';
 
 type OptionalMethods<T> = {
   // eslint-disable-next-line @typescript-eslint/ban-types

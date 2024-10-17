@@ -1,8 +1,5 @@
 import type { ValidatorOptions } from 'class-validator';
 
-/**
- * @deprecated import from @rxap/nest-dto instead
- */
 export const validatorOptions: ValidatorOptions = {
   enableDebugMessages: true,
   skipUndefinedProperties: false,
@@ -11,9 +8,6 @@ export const validatorOptions: ValidatorOptions = {
   forbidUnknownValues: true,
 };
 
-/**
- * @deprecated import from @rxap/nest-dto instead
- */
 export function ValidatorOptionsFactory(additionalOptions: ValidatorOptions = {}) {
   return {
     ...validatorOptions,
