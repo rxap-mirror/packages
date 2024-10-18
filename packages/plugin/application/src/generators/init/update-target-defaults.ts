@@ -53,8 +53,5 @@ export function updateTargetDefaults(tree: Tree) {
     },
   }, Strategy.MERGE);
 
-  CoerceNxJsonCacheableOperation(nxJson, 'docker');
-  CoerceNxJsonCacheableOperation(nxJson, 'deploy');
-
   updateNxJson(tree, nxJson);
 }
