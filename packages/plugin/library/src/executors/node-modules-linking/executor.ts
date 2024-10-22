@@ -47,8 +47,9 @@ export default async function runExecutor(
   }
 
   const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
-  const packageName = packageJson.name.replace(/@rxap\//, '');
-  const nodeModulesDir = join(context.root, 'dist', 'node_modules', '@rxap');
+  const scope = packageJson.name.split('/')[0] ?? '';
+  const packageName = packageJson.name.replace(scope + '/', '');
+  const nodeModulesDir = join(context.root, 'dist', 'node_modules', scope);
   mkdirSync(nodeModulesDir, { recursive: true });
 
   const link = join(nodeModulesDir, packageName);
