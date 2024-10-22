@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.4.4-dev.1...@rxap/nest-open-api@10.4.4-dev.2) (2024-10-22)
+
+### Bug Fixes
+
+- omit js maps for production builds ([6666e4a](https://gitlab.com/rxap/packages/commit/6666e4aaef7c5b6b5e75b1926358a7e287f2e903))
+- resolve injection scope issue ([a22578a](https://gitlab.com/rxap/packages/commit/a22578a88f15b36218b73f0d815c6c78677c3c1c))
+
 ## [10.4.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.4.4-dev.0...@rxap/nest-open-api@10.4.4-dev.1) (2024-10-22)
 
 ### Bug Fixes
