@@ -41,15 +41,16 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
    */
   public timeout = 60000;
 
+  @Inject(HttpService)
+  protected readonly http!: HttpService;
 
-  constructor(
-    @Inject(HttpService)
-    protected readonly http: HttpService,
-    @Inject(OpenApiConfigService)
-    protected readonly openApiConfigService: OpenApiConfigService,
-    @Inject(Logger)
-    protected readonly logger: Logger,
-  ) {
+  @Inject(OpenApiConfigService)
+  protected readonly openApiConfigService!: OpenApiConfigService;
+
+  @Inject(Logger)
+  protected readonly logger!: Logger;
+
+  constructor() {
     const metadata = this.getOperationFromMetaData();
     this.operation = typeof metadata.operation === 'string' ? JSON.parse(metadata.operation) : metadata.operation;
     this.serverId = metadata.serverId;
@@ -57,11 +58,15 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
 
   public async execute(args: OpenApiOperationCommandParameters<Parameters, Body> = {}): Promise<Response> {
 
+    if (!this.operation) {
+      throw new Error('FATAL: The constructor of the OpenApiOperationCommand should be called');
+    }
+
     let config: AxiosRequestConfig;
     try {
       config = await this.buildRequestConfig(args);
     } catch (e: any) {
-      throw new InternalServerErrorException(`Could not build command request config: ${ e.message }`);
+      throw new InternalServerErrorException(`Could not build command request config: ${ e.message }`, e.stack);
     }
 
     const requestId = (function randomNum() {

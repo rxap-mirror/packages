@@ -21,20 +21,23 @@ export class OpenApiConfigService {
   public readonly serverConfig: OpenApiServerConfig[];
   public readonly upstreamInterceptor: Record<string | '__default__', OpenApiUpstreamInterceptor[]>;
 
-  constructor(
-    @Inject(OPEN_API_SERVER_CONFIG)
-      serverConfig: OpenApiServerConfig | OpenApiServerConfig[],
-    @Inject(OPEN_API_UPSTREAM_INTERCEPTOR)
-      upstreamInterceptor: OpenApiUpstreamInterceptor | OpenApiUpstreamInterceptor[],
-    protected readonly logger: Logger,
-  ) {
-    this.serverConfig = coerceArray(serverConfig);
+  @Inject(OPEN_API_SERVER_CONFIG)
+  private readonly inject_serverConfig!: OpenApiServerConfig | OpenApiServerConfig[];
+
+  @Inject(OPEN_API_UPSTREAM_INTERCEPTOR)
+  private readonly inject_upstreamInterceptor!: OpenApiUpstreamInterceptor | OpenApiUpstreamInterceptor[];
+
+  @Inject(Logger)
+  protected readonly logger!: Logger;
+
+  constructor() {
+    this.serverConfig = coerceArray(this.inject_serverConfig);
     if (this.serverConfig.length) {
       this.logger.debug(`Server config: ${ JSON.stringify(this.serverConfig) }`, 'OpenApiConfigService');
     } else {
       this.logger.debug('No server config provided', 'OpenApiConfigService');
     }
-    this.upstreamInterceptor = this.createUpstreamInterceptorMap(coerceArray(upstreamInterceptor));
+    this.upstreamInterceptor = this.createUpstreamInterceptorMap(coerceArray(this.inject_upstreamInterceptor));
   }
 
   getBaseUrl(serverId: string): string {
