@@ -370,7 +370,7 @@
       },
       {
         "package": "@rxap/nest-open-api",
-        "version": "10.4.4-dev.0"
+        "version": "10.4.4-dev.1"
       },
       {
         "package": "@rxap/nest-rabbitmq",
@@ -498,11 +498,11 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.3.5-dev.2"
+        "version": "19.3.5-dev.3"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "19.1.4-dev.1"
+        "version": "19.1.4-dev.2"
       },
       {
         "package": "@rxap/plugin-compodoc",
@@ -510,7 +510,7 @@
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.9-dev.2"
+        "version": "19.0.9-dev.3"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -526,7 +526,7 @@
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.4.3-dev.2"
+        "version": "19.4.3-dev.3"
       },
       {
         "package": "@rxap/plugin-localazy",
@@ -534,15 +534,15 @@
       },
       {
         "package": "@rxap/plugin-n8n",
-        "version": "19.0.0-dev.2"
+        "version": "19.0.0-dev.3"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.5-dev.2"
+        "version": "19.1.5-dev.3"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.7-dev.2"
+        "version": "19.1.7-dev.3"
       },
       {
         "package": "@rxap/plugin-storybook",
@@ -566,7 +566,7 @@
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.7-dev.2"
+        "version": "19.0.7-dev.3"
       },
       {
         "package": "@rxap/preset-workspace",
