@@ -87,24 +87,39 @@ export class OpenApiModule extends ConfigurableModuleClass {
       scope: Scope.REQUEST,
       inject: [ MODULE_OPTIONS_TOKEN, DefaultUpstreamInterceptor, ...interceptors ],
     });
+    // If the OPEN_API_UPSTREAM_INTERCEPTOR token is only provided with the scope REQUEST then for some odd reason
+    // the constructor of all direct and indirect dependencies services are not called.
+    // Only if the services are used in a controller with the scope REQUEST the constructor is called.
+    // This would lead to the issue that the OpenAPiCommand feature can only be used in the context of a controller,
+    // but not in services that are used in a module or CQRS Handler
+    // IMPORTED: The DefaultUpstreamInterceptor can also not be provided as this services uses the @INJECT(Request) decorator
+    module.providers.push({
+      provide: OPEN_API_UPSTREAM_INTERCEPTOR,
+      useFactory: OpenApiUpstreamInterceptorFactory,
+      inject: [ MODULE_OPTIONS_TOKEN, ...interceptors ],
+    });
     return module;
   }
 
 }
 
 export function OpenApiServerConfigFactory(options: OpenApiModuleOptions) {
-  return options.serverConfig ?? [];
+  return options?.serverConfig ?? [];
 }
 
 export function OpenApiUpstreamInterceptorFactory(
   options: OpenApiModuleOptions,
-  defaultInterceptor: DefaultUpstreamInterceptor,
   ...additionalInterceptors: OpenApiUpstreamInterceptor[]
 ) {
   const interceptors = options.interceptors ?? [];
-  interceptors.push(...additionalInterceptors);
-  if (!interceptors.some(interceptor => interceptor instanceof DefaultUpstreamInterceptor)) {
-    interceptors.push(defaultInterceptor);
+  if (additionalInterceptors.length) {
+    const defaultInterceptor = additionalInterceptors.shift();
+    if (defaultInterceptor) {
+      if (!additionalInterceptors.some(interceptor => interceptor instanceof DefaultUpstreamInterceptor)) {
+        interceptors.push(defaultInterceptor);
+      }
+    }
+    interceptors.push(...additionalInterceptors);
   }
   return interceptors;
 }

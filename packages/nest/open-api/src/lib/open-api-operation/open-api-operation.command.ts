@@ -41,16 +41,14 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
    */
   public timeout = 60000;
 
-  @Inject(HttpService)
-  protected readonly http!: HttpService;
-
-  @Inject(OpenApiConfigService)
-  protected readonly openApiConfigService!: OpenApiConfigService;
-
-  @Inject(Logger)
-  protected readonly logger!: Logger;
-
-  constructor() {
+  constructor(
+    @Inject(HttpService)
+    protected readonly http: HttpService,
+    @Inject(OpenApiConfigService)
+    protected readonly openApiConfigService: OpenApiConfigService,
+    @Inject(Logger)
+    protected readonly logger: Logger
+  ) {
     const metadata = this.getOperationFromMetaData();
     this.operation = typeof metadata.operation === 'string' ? JSON.parse(metadata.operation) : metadata.operation;
     this.serverId = metadata.serverId;
