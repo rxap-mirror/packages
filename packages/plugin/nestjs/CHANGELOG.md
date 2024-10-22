@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.5-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.5-dev.3...@rxap/plugin-nestjs@19.1.5-dev.4) (2024-10-22)
+
+### Bug Fixes
+
+- omit js maps for production builds ([6666e4a](https://gitlab.com/rxap/packages/commit/6666e4aaef7c5b6b5e75b1926358a7e287f2e903))
+
 ## [19.1.5-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.5-dev.2...@rxap/plugin-nestjs@19.1.5-dev.3) (2024-10-22)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs
