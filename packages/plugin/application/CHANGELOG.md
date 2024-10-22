@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.1.4-dev.1...@rxap/plugin-application@19.1.4-dev.2) (2024-10-22)
+
+### Bug Fixes
+
+- remove deploy and docker cache settings ([38c7cc7](https://gitlab.com/rxap/packages/commit/38c7cc79ad0de9b4d3a53b168949f50a84af33df))
+
 ## [19.1.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@19.1.4-dev.0...@rxap/plugin-application@19.1.4-dev.1) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/plugin-application

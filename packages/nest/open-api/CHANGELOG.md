@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.4.4-dev.0...@rxap/nest-open-api@10.4.4-dev.1) (2024-10-22)
+
+### Bug Fixes
+
+- improve injection and error logging ([ccabde5](https://gitlab.com/rxap/packages/commit/ccabde5292c2602517e0ab14a1103ff5dc62aebb))
+
 ## [10.4.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.4.3...@rxap/nest-open-api@10.4.4-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/nest-open-api
