@@ -15,7 +15,14 @@
         "packageJson": "packages/nest/jwt/package.json",
         "main": "packages/nest/jwt/src/index.ts",
         "assets": ["packages/nest/jwt/*.md", "packages/nest/jwt/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/jwt/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {

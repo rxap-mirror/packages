@@ -17,7 +17,14 @@
           "packages/nest/utilities/*.md",
           "packages/nest/utilities/docs"
         ]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/utilities/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {

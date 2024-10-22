@@ -15,7 +15,14 @@
         "packageJson": "packages/nest/testing/package.json",
         "main": "packages/nest/testing/src/index.ts",
         "assets": ["packages/nest/testing/*.md", "packages/nest/testing/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/testing/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-testing {args.ver} {args.tag}",

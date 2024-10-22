@@ -14,7 +14,14 @@
         "packageJson": "packages/nest/vault/package.json",
         "main": "packages/nest/vault/src/index.ts",
         "assets": ["packages/nest/vault/*.md", "packages/nest/vault/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/vault/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-vault {args.ver} {args.tag}",
@@ -49,7 +56,7 @@
         "options": {
           "strict": true,
           "onlyDependencies": false,
-          "dependencies": [ "node-vault" ]
+          "dependencies": ["node-vault"]
         }
       }
     },

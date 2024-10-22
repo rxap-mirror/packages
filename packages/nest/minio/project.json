@@ -14,7 +14,14 @@
         "packageJson": "packages/nest/minio/package.json",
         "main": "packages/nest/minio/src/index.ts",
         "assets": ["packages/nest/minio/*.md", "packages/nest/minio/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/minio/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {

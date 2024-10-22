@@ -15,7 +15,14 @@
         "packageJson": "packages/nest/dto/package.json",
         "main": "packages/nest/dto/src/index.ts",
         "assets": ["packages/nest/dto/*.md", "packages/nest/dto/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/dto/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-dto {args.ver} {args.tag}",

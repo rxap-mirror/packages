@@ -27,7 +27,14 @@
           },
           "packages/nest/logger/docs"
         ]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/logger/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {

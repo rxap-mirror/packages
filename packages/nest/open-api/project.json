@@ -15,7 +15,14 @@
         "packageJson": "packages/nest/open-api/package.json",
         "main": "packages/nest/open-api/src/index.ts",
         "assets": ["packages/nest/open-api/*.md", "packages/nest/open-api/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/open-api/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {

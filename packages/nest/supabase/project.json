@@ -14,7 +14,14 @@
         "packageJson": "packages/nest/supabase/package.json",
         "main": "packages/nest/supabase/src/index.ts",
         "assets": ["packages/nest/supabase/*.md", "packages/nest/supabase/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/supabase/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-supabase {args.ver} {args.tag}",

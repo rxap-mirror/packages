@@ -24,9 +24,12 @@ import {
   CoerceTargetDefaultsDependency,
   GenerateSerializedSchematicFile,
   GetProjectRoot,
+  GetTarget,
+  GetTargetOptions,
   IsPublishable,
   SkipNonLibraryProject,
   Strategy,
+  UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
@@ -82,6 +85,19 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration, options
         packageName: '@nestjs/core',
       },
     });
+    const buildTarget = GetTarget(project, 'build');
+    const buildOptions = GetTargetOptions(buildTarget);
+    const tsConfigPath = (buildOptions.tsConfig ?? join(project.root, 'tsconfig.lib.json')) as string;
+    const prodTsConfigPath = tsConfigPath.replace('tsconfig.lib.json', 'tsconfig.lib.prod.json');
+    CoerceTarget(project, 'build', {
+      configurations: {
+        production: {
+          tsConfig: prodTsConfigPath,
+        },
+        development: {}
+      },
+      defaultConfiguration: 'development',
+    }, Strategy.OVERWRITE);
   }
 
   if (options.targets?.fixDependencies !== false) {
@@ -174,6 +190,14 @@ export async function initLibraryGenerator(
       updateProjectTargets(tree, project, options);
       updatePackageJson(tree, project, rootPackageJson);
 
+      if (IsPublishable(tree, project)) {
+        UpdateTsConfigJson(tree, tsConfig => {
+          tsConfig.extends = './tsconfig.lib.json';
+          tsConfig.compilerOptions = {
+            sourceMap: false
+          };
+        }, { create: true, infix: 'lib.prod', basePath: project.root });
+      }
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);

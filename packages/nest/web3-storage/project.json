@@ -17,7 +17,14 @@
           "packages/nest/web3-storage/*.md",
           "packages/nest/web3-storage/docs"
         ]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/web3-storage/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs nest-web3-storage {args.ver} {args.tag}",

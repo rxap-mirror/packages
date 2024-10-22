@@ -28,7 +28,14 @@
           },
           "packages/nest/sentry/docs"
         ]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/sentry/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {

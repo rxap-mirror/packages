@@ -14,7 +14,14 @@
         "packageJson": "packages/nest/firebase/package.json",
         "main": "packages/nest/firebase/src/index.ts",
         "assets": ["packages/nest/firebase/*.md", "packages/nest/firebase/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/firebase/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {

@@ -17,7 +17,14 @@
           "packages/nest/socket-io-client/*.md",
           "packages/nest/socket-io-client/docs"
         ]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/socket-io-client/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {

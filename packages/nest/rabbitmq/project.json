@@ -34,7 +34,14 @@
             "output": "."
           }
         ]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/rabbitmq/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "nx-release-publish": {
       "options": {

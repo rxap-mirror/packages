@@ -14,7 +14,14 @@
         "packageJson": "packages/nest/server/package.json",
         "main": "packages/nest/server/src/index.ts",
         "assets": ["packages/nest/server/*.md", "packages/nest/server/docs"]
-      }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/server/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
     },
     "check-version": {
       "options": {
