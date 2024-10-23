@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.8-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@18.0.8-dev.0...@rxap/open-api@18.0.8-dev.1) (2024-10-23)
+
+### Bug Fixes
+
+- support other content types then json ([d3ba7c4](https://gitlab.com/rxap/packages/commit/d3ba7c43bd7d72b853979fd3df69586c7dc33486))
+
 ## [18.0.8-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@18.0.7...@rxap/open-api@18.0.8-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/open-api

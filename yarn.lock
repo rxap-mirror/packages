@@ -9594,7 +9594,7 @@ __metadata:
     "@rxap/definition": ^18.0.7-dev.0
     "@rxap/forms": ^18.3.0-dev.0
     "@rxap/mixin": ^16.0.10-dev.1
-    "@rxap/open-api": ^18.0.8-dev.0
+    "@rxap/open-api": ^18.0.8-dev.1
     "@rxap/pattern": ^1.1.9-dev.0
     "@rxap/reflect-metadata": ^1.0.11-dev.1
     "@rxap/remote-method": ^18.0.7-dev.0
@@ -9694,7 +9694,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/json-schema-to-typescript@^16.0.10-dev.1, @rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript":
+"@rxap/json-schema-to-typescript@^16.0.10-dev.2, @rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript":
   version: 0.0.0-use.local
   resolution: "@rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript"
   dependencies:
@@ -10180,7 +10180,7 @@ __metadata:
     "@angular/forms": ^18.2.0
     "@rxap/directives": ^18.0.7-dev.0
     "@rxap/environment": ^18.0.7-dev.0
-    "@rxap/open-api": ^18.0.8-dev.0
+    "@rxap/open-api": ^18.0.8-dev.1
     ngx-markdown: ^16.0.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -10200,7 +10200,7 @@ __metadata:
     "@rxap/config": ^18.2.2-dev.0
     "@rxap/data-grid": ^18.0.7-dev.0
     "@rxap/environment": ^18.0.7-dev.0
-    "@rxap/open-api": ^18.0.8-dev.0
+    "@rxap/open-api": ^18.0.8-dev.1
     "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -10375,7 +10375,7 @@ __metadata:
     "@angular/material": ^18.2.0
     "@angular/router": ^18.2.0
     "@rxap/config": ^18.2.2-dev.0
-    "@rxap/open-api": ^18.0.8-dev.0
+    "@rxap/open-api": ^18.0.8-dev.1
     "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -10422,7 +10422,7 @@ __metadata:
     "@angular/core": ^18.2.0
     "@rxap/data-source": ^18.1.5-dev.0
     "@rxap/ngx-pub-sub": ^18.1.2-dev.0
-    "@rxap/open-api": ^18.0.8-dev.0
+    "@rxap/open-api": ^18.0.8-dev.1
     "@rxap/utilities": ^16.3.2-dev.1
     rxjs: ^7.8.1
   languageName: unknown
@@ -10675,7 +10675,7 @@ __metadata:
     "@rxap/node-utilities": ^1.3.5-dev.0
     "@rxap/plugin-application": ^19.1.4-dev.2
     "@rxap/plugin-library": ^19.4.3-dev.3
-    "@rxap/plugin-open-api": ^19.1.7-dev.3
+    "@rxap/plugin-open-api": ^19.1.7-dev.4
     "@rxap/plugin-utilities": ^19.0.9-dev.1
     "@rxap/ts-morph": ^1.5.1-dev.1
     "@rxap/utilities": ^16.3.2-dev.1
@@ -10688,7 +10688,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-open-api@^19.1.7-dev.3, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
+"@rxap/plugin-open-api@^19.1.7-dev.4, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
   dependencies:
@@ -10697,7 +10697,7 @@ __metadata:
     "@rxap/plugin-library": ^19.4.3-dev.3
     "@rxap/plugin-utilities": ^19.0.9-dev.1
     "@rxap/utilities": ^16.3.2-dev.1
-    "@rxap/workspace-open-api": ^19.0.8-dev.1
+    "@rxap/workspace-open-api": ^19.0.8-dev.2
     "@rxap/workspace-ts-morph": ^19.1.6-dev.1
     "@rxap/workspace-utilities": ^19.4.3-dev.1
     tslib: 2.6.2
@@ -10895,7 +10895,7 @@ __metadata:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
     "@nx/devkit": 19.7.4
-    "@rxap/json-schema-to-typescript": ^16.0.10-dev.1
+    "@rxap/json-schema-to-typescript": ^16.0.10-dev.2
     "@rxap/schematics-ts-morph": ^18.2.2-dev.1
     "@rxap/schematics-utilities": ^18.0.8-dev.1
     "@rxap/ts-morph": ^1.5.1-dev.1
@@ -11321,12 +11321,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-open-api@^19.0.8-dev.1, @rxap/workspace-open-api@workspace:packages/workspace/open-api":
+"@rxap/workspace-open-api@^19.0.8-dev.2, @rxap/workspace-open-api@workspace:packages/workspace/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
   dependencies:
     "@nx/devkit": 19.7.4
-    "@rxap/json-schema-to-typescript": ^16.0.10-dev.1
+    "@rxap/json-schema-to-typescript": ^16.0.10-dev.2
     "@rxap/utilities": ^16.3.2-dev.1
     "@rxap/workspace-utilities": ^19.4.3-dev.1
     openapi-types: ^10.0.0
