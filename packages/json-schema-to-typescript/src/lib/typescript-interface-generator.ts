@@ -339,6 +339,9 @@ export class TypescriptInterfaceGenerator {
             ),
           );
         }
+        if (schema.format === 'binary') {
+          return 'File';
+        }
 
         return 'string';
 
