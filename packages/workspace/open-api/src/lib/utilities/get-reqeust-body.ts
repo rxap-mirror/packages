@@ -36,6 +36,18 @@ export function GetRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.
             return schema;
           }
         }
+        if (requestBodies['application/x-www-form-urlencoded']) {
+          const schema = requestBodies['application/x-www-form-urlencoded']['schema'];
+          if (schema) {
+            return schema;
+          }
+        }
+        if (requestBodies['multipart/form-data']) {
+          const schema = requestBodies['multipart/form-data']['schema'];
+          if (schema) {
+            return schema;
+          }
+        }
       }
 
     }
