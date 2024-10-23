@@ -1,4 +1,7 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import {
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
 import { isDevMode } from '@angular/core';
 import { HttpRemoteMethodParameter } from '@rxap/remote-method/http';
 import {
@@ -20,6 +23,12 @@ export interface SchemaValidationResponse<Data> {
   status: number;
   body?: Data | null;
   data?: Data;
+}
+
+function assertsObject(value: any): asserts value is object {
+  if (typeof value !== 'object') {
+    throw new Error('The value must be an object');
+  }
 }
 
 export class SchemaValidationMixin<Response = any, Parameters extends Record<string, any> | void = any, RequestBody = any> {
@@ -390,10 +399,67 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     }
 
     if (requestBody !== undefined) {
-      options.body = requestBody;
+      const [ body, contentType ] = this.buildBody(operation, requestBody);
+      if (body !== undefined) {
+        options.body = body;
+        if (contentType !== undefined) {
+          options.headers ??= new HttpHeaders();
+          options.headers.set('Content-Type', contentType);
+        }
+      }
     }
 
     return options;
+
+  }
+
+  private buildBody(operation: OperationObjectWithMetadata, requestBody: RequestBody): [ any, string | undefined ] {
+    const accept: string[] = [];
+    if (operation.requestBody && !IsReferenceObject(operation.requestBody)) {
+      if (operation.requestBody.content) {
+        for (const contentType of Object.keys(operation.requestBody.content)) {
+          accept.push(contentType);
+        }
+      }
+    }
+    if (!accept.length) {
+      console.warn('No content type found for the request body! Omitting the body!');
+      return [ undefined, undefined ];
+    }
+    if (accept.length > 1) {
+      console.warn('Multiple content types found for the request body! Using the first one!');
+    }
+    const contentType = accept[0];
+    switch (contentType) {
+
+      case 'application/json':
+        assertsObject(requestBody);
+        return [ requestBody, contentType ];
+
+      case 'application/x-www-form-urlencoded':
+        assertsObject(requestBody);
+        // eslint-disable-next-line no-case-declarations
+        let params = new HttpParams();
+        for (const [ key, value ] of Object.entries(requestBody)) {
+          params = params.set(key, value);
+        }
+        return [ params.toString(), contentType ];
+
+      case 'multipart/form-data':
+        assertsObject(requestBody);
+        // eslint-disable-next-line no-case-declarations
+        const formData = new FormData();
+
+        // Iterate through the JSON object and append each field to FormData
+        for (const [ key, value ] of Object.entries(requestBody)) {
+          formData.append(key, value);
+        }
+        return [ formData, contentType ];
+
+      default:
+        return [ requestBody, contentType ];
+
+    }
 
   }
 
