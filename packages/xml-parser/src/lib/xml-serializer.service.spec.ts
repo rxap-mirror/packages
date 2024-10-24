@@ -36,6 +36,33 @@ describe('XML Serializer', () => {
 
     describe(name, () => {
 
+      it('should serialize xmlns', () => {
+
+        @ElementDef('definition')
+        class UserElement implements ParsedElement {
+
+          __xmlns?: Map<string, string>;
+
+          public validate(): boolean {
+            return true;
+          }
+
+        }
+
+        const instance = new UserElement();
+        instance.__xmlns = new Map<string, string>([
+          [ '', 'http://www.w3.org/2001/XMLSchema-instance' ],
+          [ 'xsi', 'http://www.w3.org/2001/XMLSchema-instance' ],
+        ]);
+
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toMatchSnapshot();
+
+      });
+
       it('minimal example', () => {
 
         @ElementDef('root')

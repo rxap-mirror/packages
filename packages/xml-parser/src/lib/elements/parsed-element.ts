@@ -5,6 +5,7 @@ export interface ParsedElement<Value = any> {
 
   __tag?: string;
   __parent?: ParsedElement;
+  __xmlns?: Map<string, string>;
 
   postValidate?(): void;
 

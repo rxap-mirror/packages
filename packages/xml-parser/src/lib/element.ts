@@ -29,11 +29,23 @@ export function normalizeNodeName(nodeName: string, options: RxapElementOptions)
 
 export class RxapElement {
 
+
   constructor(
     public readonly element: Element,
     public readonly DOMParser: typeof window.DOMParser,
     public readonly options: RxapElementOptions = {},
   ) {
+  }
+
+  get attributes(): Record<string, string> {
+    return Array.from(this.element.attributes).reduce((acc, attr) => ({
+      ...acc,
+      [attr.name]: attr.value,
+    }), {});
+  }
+
+  get attributeNames(): string[] {
+    return Object.keys(this.attributes);
   }
 
   public get name(): string {

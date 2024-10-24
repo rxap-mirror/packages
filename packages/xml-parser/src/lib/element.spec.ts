@@ -22,6 +22,25 @@ describe('XML Parser', () => {
     }) => {
 
       describe(name, () => {
+
+        it('should get a list of all element attributes', () => {
+
+          const domElement = document.createElement('element');
+          domElement.setAttribute('username', 'username-e');
+          domElement.setAttribute('password', 'password-e');
+          domElement.setAttribute('xls:test', 'https');
+          const element = new RxapElement(domElement, DOMParser);
+
+          expect(element.attributes).toEqual({
+            'username': 'username-e',
+            'password': 'password-e',
+            'xls:test': 'https',
+          });
+
+          expect(element.attributeNames).toEqual([ 'username', 'password', 'xls:test' ]);
+
+        });
+
         it('should remove the xml namespace from nodeName', () => {
 
           const element0 = new RxapElement(document.createElement('element'), DOMParser);

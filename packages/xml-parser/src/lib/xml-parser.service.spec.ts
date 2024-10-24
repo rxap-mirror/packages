@@ -9,97 +9,137 @@ import { XmlParserService } from './xml-parser.service';
 
 describe('XML Parser', () => {
 
-  describe('Xml Parser Service', () => {
+  describe.each([
+    {
+      name: 'native',
+      DOMParser: window.DOMParser,
+    }, {
+      name: 'xmldom',
+      DOMParser,
+    },
+  ])('Xml Parser Service', ({
+    name,
+    DOMParser,
+  }) => {
 
-    describe('Full Example A', () => {
+    describe(name, () => {
 
-      let xmlParser: XmlParserService;
+      it('should parse xmlns', () => {
 
-      beforeEach(() => {
+        @ElementDef('definition')
+        class UserElement {
 
-        xmlParser = new XmlParserService(DOMParser);
+          public validate(): boolean {
+            return true;
+          }
+
+        }
+
+        const xmlParser = new XmlParserService(DOMParser);
+        xmlParser.register(UserElement);
+        const element = xmlParser.parseFromXml(
+          '<definition xmlns="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>');
+        expect(element).toBeDefined();
+        expect(element.__xmlns).toBeDefined();
+        console.log(element.__xmlns);
+        expect(element.__xmlns?.keys()).toContain('');
+        expect(element.__xmlns?.keys()).toContain('xsi');
+        expect(Array.from(element.__xmlns?.entries() ?? [])).toEqual([
+          [ '', 'http://www.w3.org/2001/XMLSchema-instance' ],
+          [ 'xsi', 'http://www.w3.org/2001/XMLSchema-instance' ],
+        ]);
 
       });
 
-      @ElementDef('project')
-      class ProjectElement implements ParsedElement {
+      describe('Full Example A', () => {
 
-        @ElementAttribute()
-        @ElementRequired()
-        public name!: string;
+        let xmlParser: XmlParserService;
 
-        public validate(): boolean {
-          return true;
+        beforeEach(() => {
+
+          xmlParser = new XmlParserService(DOMParser);
+
+        });
+
+        @ElementDef('project')
+        class ProjectElement implements ParsedElement {
+
+          @ElementAttribute()
+          @ElementRequired()
+          public name!: string;
+
+          public validate(): boolean {
+            return true;
+          }
+
         }
 
-      }
+        @ElementDef('software-project')
+        class SoftwareProjectElement extends ProjectElement {
 
-      @ElementDef('software-project')
-      class SoftwareProjectElement extends ProjectElement {
+          @ElementAttribute()
+          @ElementRequired()
+          public git!: boolean;
 
-        @ElementAttribute()
-        @ElementRequired()
-        public git!: boolean;
-
-      }
-
-      @ElementDef('definition')
-      class UserElement {
-
-        @ElementAttribute()
-        @ElementRequired()
-        public username!: string;
-
-        @ElementChildren(SoftwareProjectElement)
-        @ElementChildren(ProjectElement)
-        public projects!: ProjectElement[];
-
-        public validate(): boolean {
-          return true;
         }
 
-      }
+        @ElementDef('definition')
+        class UserElement {
 
-      it('register parser', () => {
+          @ElementAttribute()
+          @ElementRequired()
+          public username!: string;
 
-        expect(xmlParser.parsers.size).toBe(0);
+          @ElementChildren(SoftwareProjectElement)
+          @ElementChildren(ProjectElement)
+          public projects!: ProjectElement[];
 
-        xmlParser.register(UserElement);
-        expect(xmlParser.parsers.size).toBe(1);
+          public validate(): boolean {
+            return true;
+          }
 
-        xmlParser.register(UserElement);
-        expect(xmlParser.parsers.size).toBe(1);
+        }
 
-        xmlParser.register(ProjectElement);
-        expect(xmlParser.parsers.size).toBe(2);
+        it('register parser', () => {
 
-        xmlParser.register(ProjectElement);
-        expect(xmlParser.parsers.size).toBe(2);
+          expect(xmlParser.parsers.size).toBe(0);
 
-        xmlParser.register(SoftwareProjectElement);
-        expect(xmlParser.parsers.size).toBe(3);
+          xmlParser.register(UserElement);
+          expect(xmlParser.parsers.size).toBe(1);
 
-        const userElementParser = xmlParser.parsers.get('definition')!;
-        expect(userElementParser).toBeDefined();
-        expect(userElementParser.parsers.length).toBe(3);
+          xmlParser.register(UserElement);
+          expect(xmlParser.parsers.size).toBe(1);
 
-        const projectElementParser = xmlParser.parsers.get('project')!;
-        expect(projectElementParser).toBeDefined();
-        expect(projectElementParser.parsers.length).toBe(1);
+          xmlParser.register(ProjectElement);
+          expect(xmlParser.parsers.size).toBe(2);
 
-        const softwareProjectElementParser = xmlParser.parsers.get('software-project')!;
-        expect(softwareProjectElementParser).toBeDefined();
-        expect(softwareProjectElementParser.parsers.length).toBe(2);
+          xmlParser.register(ProjectElement);
+          expect(xmlParser.parsers.size).toBe(2);
 
-      });
+          xmlParser.register(SoftwareProjectElement);
+          expect(xmlParser.parsers.size).toBe(3);
 
-      it('should parse xml file and use registered parsers and validate parsed elements', () => {
+          const userElementParser = xmlParser.parsers.get('definition')!;
+          expect(userElementParser).toBeDefined();
+          expect(userElementParser.parsers.length).toBe(3);
 
-        xmlParser.register(UserElement);
-        xmlParser.register(ProjectElement);
-        xmlParser.register(SoftwareProjectElement);
+          const projectElementParser = xmlParser.parsers.get('project')!;
+          expect(projectElementParser).toBeDefined();
+          expect(projectElementParser.parsers.length).toBe(1);
 
-        const template = `
+          const softwareProjectElementParser = xmlParser.parsers.get('software-project')!;
+          expect(softwareProjectElementParser).toBeDefined();
+          expect(softwareProjectElementParser.parsers.length).toBe(2);
+
+        });
+
+        it('should parse xml file and use registered parsers and validate parsed elements', () => {
+
+          xmlParser.register(UserElement);
+          xmlParser.register(ProjectElement);
+          xmlParser.register(SoftwareProjectElement);
+
+          const template = `
 <definition id="id1" username="my-username">
   <project name="my-project-1"/>
   <project name="my-project-2"/>
@@ -107,86 +147,88 @@ describe('XML Parser', () => {
 </definition>
       `;
 
-        const userElement = xmlParser.parseFromXml<UserElement>(template);
+          const userElement = xmlParser.parseFromXml<UserElement>(template);
 
-        expect(userElement).toBeInstanceOf(UserElement);
-        expect(userElement.validate()).toBeTruthy();
+          expect(userElement).toBeInstanceOf(UserElement);
+          expect(userElement.validate()).toBeTruthy();
 
-        expect(userElement.projects.length).toBe(3);
-        expect(userElement.projects[0]).toBeInstanceOf(ProjectElement);
-        expect(userElement.projects[1]).toBeInstanceOf(ProjectElement);
-        expect(userElement.projects[2]).toBeInstanceOf(SoftwareProjectElement);
+          expect(userElement.projects.length).toBe(3);
+          expect(userElement.projects[0]).toBeInstanceOf(ProjectElement);
+          expect(userElement.projects[1]).toBeInstanceOf(ProjectElement);
+          expect(userElement.projects[2]).toBeInstanceOf(SoftwareProjectElement);
 
-        expect(userElement).toEqual({
-          __tag: 'definition',
-          __parent: null,
-          username: 'my-username',
-          projects: [
-            {
-              __parent: userElement,
-              __tag: 'project',
-              name: 'my-project-1',
-            },
-            {
-              __parent: userElement,
-              __tag: 'project',
-              name: 'my-project-2',
-            },
-            {
-              __parent: userElement,
-              __tag: 'software-project',
-              name: 'my-project-3',
-              git: true,
-            },
-          ],
+          expect(userElement).toEqual({
+            __tag: 'definition',
+            __parent: null,
+            username: 'my-username',
+            projects: [
+              {
+                __parent: userElement,
+                __tag: 'project',
+                name: 'my-project-1',
+              },
+              {
+                __parent: userElement,
+                __tag: 'project',
+                name: 'my-project-2',
+              },
+              {
+                __parent: userElement,
+                __tag: 'software-project',
+                name: 'my-project-3',
+                git: true,
+              },
+            ],
+          });
+
         });
 
       });
 
-    });
+      describe('With scoped element names', () => {
 
-    describe('With scoped element names', () => {
+        @ElementDef('rdf:Label')
+        class RdfLabelElement implements ParsedElement {
 
-      @ElementDef('rdf:Label')
-      class RdfLabelElement implements ParsedElement {
+          validate(): boolean {
+            return true;
+          }
 
-        validate(): boolean {
-          return true;
         }
 
-      }
+        @ElementDef('rdf:RDF')
+        class RdfElement implements ParsedElement {
 
-      @ElementDef('rdf:RDF')
-      class RdfElement implements ParsedElement {
+          @ElementChild(RdfLabelElement, { required: true })
+          label!: RdfLabelElement;
 
-        @ElementChild(RdfLabelElement, { required: true })
-        label!: RdfLabelElement;
+          validate(): boolean {
+            return true;
+          }
 
-        validate(): boolean {
-          return true;
         }
 
-      }
+        let xmlParser: XmlParserService;
 
-      let xmlParser: XmlParserService;
-
-      beforeEach(() => {
-        xmlParser = new XmlParserService(DOMParser, {
-          caseSensitive: true,
-          withNamespace: true,
+        beforeEach(() => {
+          xmlParser = new XmlParserService(DOMParser, {
+            caseSensitive: true,
+            withNamespace: true,
+          });
+          xmlParser.setRootElement(RdfElement);
         });
-        xmlParser.setRootElement(RdfElement);
-      });
 
-      it('should handle scoped element names', () => {
+        it('should handle scoped element names', () => {
 
-        const xml = '<rdf:RDF><rdf:Label/></rdf:RDF>';
+          const xml = '<rdf:RDF><rdf:Label/></rdf:RDF>';
 
-        const rdfElement = xmlParser.parseFromXml<RdfElement>(xml);
+          const rdfElement = xmlParser.parseFromXml<RdfElement>(xml);
 
-        expect(rdfElement).toBeInstanceOf(RdfElement);
-        expect(rdfElement.label).toBeDefined();
-        expect(rdfElement.label).toBeInstanceOf(RdfLabelElement);
+          expect(rdfElement).toBeInstanceOf(RdfElement);
+          expect(rdfElement.label).toBeDefined();
+          expect(rdfElement.label).toBeInstanceOf(RdfLabelElement);
+
+        });
 
       });
 

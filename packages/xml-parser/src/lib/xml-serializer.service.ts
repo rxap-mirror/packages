@@ -35,6 +35,17 @@ export class XmlSerializerService {
     const {serializers, elementName} = this.determineElementNameAndSerializer(instance);
 
     const element = this.createElement(elementName);
+
+    if (instance.__xmlns?.size) {
+      instance.__xmlns.forEach((value, key) => {
+        if (key) {
+          element.setAttribute(`xmlns:${key}`, value);
+        } else {
+          element.setAttribute('xmlns', value);
+        }
+      });
+    }
+
     if (parent) {
       parent.appendChild(element);
     }
@@ -60,7 +71,7 @@ export class XmlSerializerService {
     const serializers = getMetadata<XmlElementSerializerFunction<any>[]>(
       ElementParserMetaData.SERIALIZER,
       element.constructor,
-    )!;
+    ) ?? [];
 
     return { elementName, serializers };
   }
