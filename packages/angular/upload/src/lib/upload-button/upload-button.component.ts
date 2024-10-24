@@ -12,6 +12,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  computed,
   ElementRef,
   EventEmitter,
   HostListener,
@@ -59,7 +60,6 @@ import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
     CdkOverlayOrigin,
     MethodDirective,
     MatIconModule,
-    NgIf,
     MatProgressSpinnerModule,
     MatTooltipModule,
     CdkConnectedOverlay,
@@ -72,7 +72,9 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
 
   static nextId = 0;
 
-  public accept = input('**/**');
+  public accept = input<string | string[]>('**/**');
+
+  readonly acceptAttribute = computed(() => Array.isArray(this.accept) ? this.accept.join(',') : this.accept);
 
   public allowDownload = input(false);
 
@@ -229,4 +231,9 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
       this.stateChanges.next();
     }
   }
+
+  clear() {
+    this.value = null;
+  }
+
 }

@@ -9,26 +9,32 @@
     type="button">
     <span class="flex flex-row justify-center items-center gap-3">
       <mat-icon class="grow-0" svgIcon="upload"></mat-icon>&nbsp;
-      <span *ngIf="value; else infoText" class="truncate grow-0">{{value.name}}</span>
-      <ng-template #infoText>
-        <span *ngIf="placeholder">{{ placeholder }}</span>
+      @if (value) {
+        <span class="truncate grow-0">{{ value.name }}</span>
+      } @else {
+        @if (placeholder) {
+          <span>{{ placeholder }}</span>
+        }
         <ng-content></ng-content>
-      </ng-template>
+      }
     </span>
   </button>
-  <button (click)="openOverlay()"
-          *ngIf="isImage"
-          class="grow-0"
-          i18n-matTooltip
-          mat-icon-button
-          matTooltip="Open image preview"
-          type="button">
-    <mat-icon>preview</mat-icon>
-  </button>
-  <button (click)="download()" *ngIf="allowDownload() && value" class="grow-0" i18n-matTooltip mat-icon-button
-          matTooltip="Download file" type="button">
-    <mat-icon svgIcon="download"></mat-icon>
-  </button>
+  @if (isImage) {
+    <button (click)="openOverlay()"
+            class="grow-0"
+            i18n-matTooltip
+            mat-icon-button
+            matTooltip="Open image preview"
+            type="button">
+      <mat-icon>preview</mat-icon>
+    </button>
+  }
+  @if (allowDownload() && value) {
+    <button (click)="download()" class="grow-0" i18n-matTooltip mat-icon-button
+            matTooltip="Download file" type="button">
+      <mat-icon svgIcon="download"></mat-icon>
+    </button>
+  }
 </div>
 
 <ng-template
@@ -44,4 +50,5 @@
   </div>
 </ng-template>
 
-<input #fileInput (change)="onFileInputChange($event)" [accept]="accept()" [id]="id" class="hidden" type="file">
+<input #fileInput (change)="onFileInputChange($event)" [accept]="acceptAttribute()" [id]="id" class="hidden"
+       type="file">
