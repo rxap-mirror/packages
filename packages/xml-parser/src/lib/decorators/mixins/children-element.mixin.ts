@@ -76,7 +76,6 @@ export class ChildrenElementMixin {
 
     element = this.coerceGroup(element);
 
-    element.removeAllChildren();
     for (const child of children) {
       xmlParser.serialize(child, element);
     }

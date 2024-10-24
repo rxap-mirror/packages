@@ -187,6 +187,59 @@ describe('XML Serializer', () => {
 
       });
 
+      it('with multiple children', () => {
+
+        @ElementDef('child-a')
+        class ChildA implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'child-a-name';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        @ElementDef('child-b')
+        class ChildB implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'child-b-name';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        @ElementDef('root')
+        class Root implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'root-name';
+
+          @ElementChildren(ChildA)
+          childrenA = [new ChildA(), new ChildA(), new ChildA()];
+
+          @ElementChildren(ChildB)
+          childrenB = [new ChildB(), new ChildB(), new ChildB()];
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toMatchSnapshot();
+
+      });
+
       it('with children text content', () => {
 
         @ElementDef('root')
