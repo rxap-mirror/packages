@@ -246,7 +246,7 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.10-dev.1"
+        "version": "1.1.10-dev.2"
       },
       {
         "package": "@rxap/definition",
@@ -282,7 +282,7 @@
       },
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.14-dev.1"
+        "version": "1.0.14-dev.2"
       },
       {
         "package": "@rxap/generator-utilities",
@@ -298,7 +298,7 @@
       },
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.10-dev.2"
+        "version": "16.0.10-dev.3"
       },
       {
         "package": "@rxap/keycloak",
@@ -306,7 +306,7 @@
       },
       {
         "package": "@rxap/layout",
-        "version": "18.3.2-dev.1"
+        "version": "18.3.2-dev.2"
       },
       {
         "package": "@rxap/life-cycle",
@@ -330,7 +330,7 @@
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.10-dev.1"
+        "version": "16.0.10-dev.2"
       },
       {
         "package": "@rxap/n8n-nodes-neo4j",
@@ -358,7 +358,7 @@
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.2.8-dev.1"
+        "version": "10.2.8-dev.2"
       },
       {
         "package": "@rxap/nest-minio",
@@ -378,7 +378,7 @@
       },
       {
         "package": "@rxap/nest-sentry",
-        "version": "10.4.3-dev.1"
+        "version": "10.4.3-dev.2"
       },
       {
         "package": "@rxap/nest-server",
@@ -498,83 +498,83 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "19.3.5-dev.3"
+        "version": "19.3.5-dev.4"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "19.1.4-dev.2"
+        "version": "19.1.4-dev.3"
       },
       {
         "package": "@rxap/plugin-compodoc",
-        "version": "19.1.5-dev.1"
+        "version": "19.1.5-dev.2"
       },
       {
         "package": "@rxap/plugin-cypress",
-        "version": "19.0.9-dev.3"
+        "version": "19.0.9-dev.4"
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "19.0.8-dev.1"
+        "version": "19.0.8-dev.2"
       },
       {
         "package": "@rxap/plugin-gitlab-ci",
-        "version": "19.0.8-dev.1"
+        "version": "19.0.8-dev.2"
       },
       {
         "package": "@rxap/plugin-gpt",
-        "version": "19.0.8-dev.1"
+        "version": "19.0.8-dev.2"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "19.4.3-dev.3"
+        "version": "19.4.3-dev.4"
       },
       {
         "package": "@rxap/plugin-localazy",
-        "version": "19.0.8-dev.1"
+        "version": "19.0.8-dev.2"
       },
       {
         "package": "@rxap/plugin-n8n",
-        "version": "19.0.0-dev.3"
+        "version": "19.0.0-dev.4"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.5-dev.5"
+        "version": "19.1.5-dev.6"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.7-dev.4"
+        "version": "19.1.7-dev.5"
       },
       {
         "package": "@rxap/plugin-storybook",
-        "version": "19.0.8-dev.1"
+        "version": "19.0.8-dev.2"
       },
       {
         "package": "@rxap/plugin-typedoc",
-        "version": "19.0.5-dev.1"
+        "version": "19.0.5-dev.2"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "19.0.9-dev.1"
+        "version": "19.0.9-dev.2"
       },
       {
         "package": "@rxap/plugin-web3-storage",
-        "version": "19.0.8-dev.3"
+        "version": "19.0.8-dev.4"
       },
       {
         "package": "@rxap/plugin-workspace",
-        "version": "19.1.7-dev.1"
+        "version": "19.1.7-dev.2"
       },
       {
         "package": "@rxap/preset-angular",
-        "version": "19.0.7-dev.3"
+        "version": "19.0.7-dev.4"
       },
       {
         "package": "@rxap/preset-workspace",
-        "version": "19.0.8-dev.1"
+        "version": "19.0.8-dev.2"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.11-dev.1"
+        "version": "1.0.11-dev.2"
       },
       {
         "package": "@rxap/remote-method",
@@ -582,35 +582,35 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.10-dev.1"
+        "version": "1.1.10-dev.2"
       },
       {
         "package": "@rxap/schematic-angular",
-        "version": "18.2.7-dev.1"
+        "version": "18.2.7-dev.2"
       },
       {
         "package": "@rxap/schematic-composer",
-        "version": "18.0.8-dev.1"
-      },
-      {
-        "package": "@rxap/schematic-nestjs",
-        "version": "18.0.8-dev.1"
-      },
-      {
-        "package": "@rxap/schematics-open-api",
         "version": "18.0.8-dev.2"
       },
       {
+        "package": "@rxap/schematic-nestjs",
+        "version": "18.0.8-dev.2"
+      },
+      {
+        "package": "@rxap/schematics-open-api",
+        "version": "18.0.8-dev.3"
+      },
+      {
         "package": "@rxap/schematics-ts-morph",
-        "version": "18.2.2-dev.1"
+        "version": "18.2.2-dev.2"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "18.0.8-dev.1"
+        "version": "18.0.8-dev.2"
       },
       {
         "package": "@rxap/schematics-xml-parser",
-        "version": "18.0.8-dev.4"
+        "version": "18.0.8-dev.5"
       },
       {
         "package": "@rxap/service-worker",
@@ -638,7 +638,7 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "1.5.1-dev.1"
+        "version": "1.5.1-dev.2"
       },
       {
         "package": "@rxap/upload",
@@ -646,7 +646,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.3.2-dev.1"
+        "version": "16.4.0-dev.0"
       },
       {
         "package": "@rxap/validator",
@@ -662,19 +662,19 @@
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "19.0.8-dev.2"
+        "version": "19.0.8-dev.3"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "19.1.6-dev.1"
+        "version": "19.1.6-dev.2"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "19.4.3-dev.1"
+        "version": "19.4.3-dev.2"
       },
       {
         "package": "@rxap/xml-parser",
-        "version": "16.1.0-dev.2"
+        "version": "16.1.0-dev.3"
       },
       {
         "package": "nx",
