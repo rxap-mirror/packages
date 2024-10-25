@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.3.2-dev.1...@rxap/utilities@16.4.0-dev.0) (2024-10-25)
+
+### Features
+
+- add isConstructor function ([f0f32a0](https://gitlab.com/rxap/packages/commit/f0f32a0262a394d2c069b42c0ede75f991cfdacb))
+
 ## [16.3.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.3.2-dev.0...@rxap/utilities@16.3.2-dev.1) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/utilities

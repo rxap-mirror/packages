@@ -20,9 +20,9 @@
     "@rxap/forms": "^18.3.0-dev.0",
     "@rxap/material-directives": "^18.1.2-dev.0",
     "@rxap/pattern": "^1.1.9-dev.0",
-    "@rxap/reflect-metadata": "^1.0.11-dev.1",
-    "@rxap/rxjs": "^1.1.10-dev.1",
-    "@rxap/utilities": "^16.3.2-dev.1",
+    "@rxap/reflect-metadata": "^1.0.11-dev.2",
+    "@rxap/rxjs": "^1.1.10-dev.2",
+    "@rxap/utilities": "^16.4.0-dev.0",
     "@rxap/window-system": "^18.0.7-dev.0",
     "rxjs": "^7.8.1"
   },
@@ -94,7 +94,7 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.10-dev.1"
+        "version": "1.1.10-dev.2"
       },
       {
         "package": "@rxap/definition",
@@ -126,11 +126,11 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.11-dev.1"
+        "version": "1.0.11-dev.2"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.10-dev.1"
+        "version": "1.1.10-dev.2"
       },
       {
         "package": "@rxap/services",
@@ -138,7 +138,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.3.2-dev.1"
+        "version": "16.4.0-dev.0"
       },
       {
         "package": "@rxap/validator",

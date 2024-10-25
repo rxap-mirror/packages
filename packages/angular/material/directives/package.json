@@ -11,8 +11,8 @@
     "@angular/material": "^18.2.0",
     "@rxap/browser-utilities": "^1.1.8-dev.0",
     "@rxap/ngx-memory": "^18.0.7-dev.0",
-    "@rxap/rxjs": "^1.1.10-dev.1",
-    "@rxap/utilities": "^16.3.2-dev.1",
+    "@rxap/rxjs": "^1.1.10-dev.2",
+    "@rxap/utilities": "^16.4.0-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -75,11 +75,11 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.10-dev.1"
+        "version": "1.1.10-dev.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.3.2-dev.1"
+        "version": "16.4.0-dev.0"
       }
     ]
   },
