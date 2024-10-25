@@ -2,6 +2,8 @@
 
 exports[`XML Serializer Xml Serializer Service native minimal example 1`] = `"<root name="root-name"/>"`;
 
+exports[`XML Serializer Xml Serializer Service native should not serialize undefined or null children 1`] = `"<root name="root-name"/>"`;
+
 exports[`XML Serializer Xml Serializer Service native should serialize xmlns 1`] = `"<definition xmlns="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>"`;
 
 exports[`XML Serializer Xml Serializer Service native with child 1`] = `"<root name="root-name"><child name="child-name"/></root>"`;
@@ -23,6 +25,8 @@ exports[`XML Serializer Xml Serializer Service native with text content 1`] = `"
 exports[`XML Serializer Xml Serializer Service native with text content child 1`] = `"<root name="root-name"><child>some text content</child></root>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom minimal example 1`] = `"<root name="root-name"/>"`;
+
+exports[`XML Serializer Xml Serializer Service xmldom should not serialize undefined or null children 1`] = `"<root name="root-name"/>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom should serialize xmlns 1`] = `"<definition xmlns="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>"`;
 

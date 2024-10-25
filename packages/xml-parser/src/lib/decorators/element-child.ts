@@ -3,7 +3,10 @@ import {
   getMetadata,
   getOwnMetadata,
 } from '@rxap/reflect-metadata';
-import { deepMerge } from '@rxap/utilities';
+import {
+  deepMerge,
+  isConstructor,
+} from '@rxap/utilities';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
 import {
@@ -40,7 +43,7 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
 
   constructor(
     public readonly propertyKey: string,
-    public readonly elementType: ParsedElementType<Child>,
+    public readonly elementTypeOrFunction: ParsedElementType<Child> | (() => ParsedElementType<Child>),
     public readonly options: ElementChildParserOptions,
   ) {
     this.parse = this.parse.bind(this);
@@ -77,8 +80,13 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
   }
 
   private findChildElementType(element: RxapElement): ParsedElementType<Child> {
+    const elementType = this.elementType;
 
-    const extendedTypes = this.getExtendedTypes(this.elementType);
+    if (!elementType) {
+      throw new Error(`The element type is not defined for <${ element.name }>`);
+    }
+
+    const extendedTypes = this.getExtendedTypes(elementType);
 
     for (const extendedType of extendedTypes) {
       if (extendedType.TAG) {
@@ -88,7 +96,7 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
       }
     }
 
-    return this.elementType;
+    return elementType;
 
   }
 
@@ -118,7 +126,7 @@ export class ElementChildSerializer<T extends ParsedElement, Child extends Parse
 
   constructor(
     public readonly propertyKey: string,
-    public readonly elementType: ParsedElementType<Child>,
+    public readonly elementTypeOrFunction: ParsedElementType<Child> | (() => ParsedElementType<Child>),
     public readonly options: ElementChildParserOptions,
   ) {
     this.serialize = this.serialize.bind(this);
@@ -188,7 +196,7 @@ export class ElementChildSerializer<T extends ParsedElement, Child extends Parse
  * decorator to enforce its presence.
  */
 export function ElementChild<Child extends ParsedElement>(
-  elementType: ParsedElementType<Child>,
+  elementType: ParsedElementType<Child> | (() => ParsedElementType<Child>),
   options: ElementChildParserOptions & ElementChildSerializerOptions = {},
 ) {
   return function (target: any, propertyKey: string) {

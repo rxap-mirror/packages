@@ -36,6 +36,47 @@ describe('XML Serializer', () => {
 
     describe(name, () => {
 
+      it('should not serialize undefined or null children', () => {
+
+        @ElementDef('child')
+        class Child implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'child-name';
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        @ElementDef('root')
+        class Root implements ParsedElement {
+
+          @ElementAttribute()
+          name = 'root-name';
+
+          @ElementChild(Child)
+          childA: Child | null = null;
+
+          @ElementChild(Child)
+          childB?: Child;
+
+          validate(): boolean {
+            return true;
+          }
+
+        }
+
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toMatchSnapshot();
+
+      });
+
       it('should serialize xmlns', () => {
 
         @ElementDef('definition')

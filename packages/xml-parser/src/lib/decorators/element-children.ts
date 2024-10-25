@@ -6,6 +6,7 @@ import {
 import {
   deepMerge,
   hasIndexSignature,
+  isConstructor,
 } from '@rxap/utilities';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
@@ -55,7 +56,7 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
 
   constructor(
     public readonly propertyKey: string,
-    public readonly elementType: ParsedElementType<Child> | null,
+    public readonly elementTypeOrFunction: ParsedElementType<Child> | (() => ParsedElementType<Child>) | null,
     public readonly options: ElementChildrenParserOptions,
   ) {
     this.parse = this.parse.bind(this);
@@ -187,7 +188,7 @@ export class ElementChildrenSerializer<T extends ParsedElement, Child extends Pa
 
   constructor(
     public readonly propertyKey: string,
-    public readonly elementType: ParsedElementType<Child> | null,
+    public readonly elementTypeOrFunction: ParsedElementType<Child> | (() => ParsedElementType<Child>) | null,
     public readonly options: ElementChildrenParserOptions,
   ) {
     this.serialize = this.serialize.bind(this);
@@ -237,7 +238,7 @@ export class ElementChildrenSerializer<T extends ParsedElement, Child extends Pa
  * option is set to true, it also ensures that the property is marked as required.
  */
 export function ElementChildren<Child extends ParsedElement>(
-  elementTyp: ParsedElementType<Child> | null = null,
+  elementTyp: ParsedElementType<Child> | (() => ParsedElementType<Child>) | null = null,
   options: ElementChildrenParserOptions & ElementChildrenSerializerOptions = {},
 ) {
   return function (target: any, propertyKey: string) {

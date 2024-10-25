@@ -16,6 +16,52 @@ describe('@rxap/xml-parser', () => {
 
   describe('ElementChild', () => {
 
+    it('should support circular child elements', () => {
+
+      @ElementDef('child-a')
+      class ChildA implements ParsedElement {
+
+        b?: ChildB;
+
+        validate(): boolean {
+          return true;
+        }
+
+      }
+
+      @ElementDef('child-b')
+      class ChildB {
+
+        @ElementChild(() => ChildA)
+        a?: ChildA;
+
+      }
+
+      ElementChild(() => ChildB)(ChildA.prototype, 'b');
+
+      const xml = '<child-a><child-b><child-a/></child-b></child-a>';
+      const xmlParser = new XmlParserService(DOMParser);
+
+      xmlParser.setRootElement(ChildA);
+      const element = xmlParser.parseFromXml(xml);
+
+      expect(element.toJSON()).toEqual({
+        "__tag": "child-a",
+        "__xmlns": {},
+        "b": {
+          "__parent": "child-a",
+          "__tag": "child-b",
+          "__xmlns": {},
+          "a": {
+            "__parent": "child-b",
+            "__tag": "child-a",
+            "__xmlns": {}
+          }
+        }
+      });
+
+    });
+
     describe('ElementChildParser', () => {
 
       it('should throw if the child element is not defined but required', () => {
