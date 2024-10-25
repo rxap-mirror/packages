@@ -21,6 +21,7 @@ export * from './lib/object/delete-null-properties';
 export * from './lib/object/delete-properties';
 export * from './lib/object/delete-undefined-properties';
 export * from './lib/object/each-property';
+export * from './lib/object/is-constructor';
 export * from './lib/object/is-object';
 export * from './lib/object/remove-from-object';
 export * from './lib/object/set-to-object';
