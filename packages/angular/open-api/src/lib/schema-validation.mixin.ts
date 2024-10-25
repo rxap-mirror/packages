@@ -5,6 +5,7 @@ import {
 import { isDevMode } from '@angular/core';
 import { HttpRemoteMethodParameter } from '@rxap/remote-method/http';
 import {
+  assertsObject,
   coerceArray,
   isPromiseLike,
   IsRecord,
@@ -25,11 +26,7 @@ export interface SchemaValidationResponse<Data> {
   data?: Data;
 }
 
-function assertsObject(value: any): asserts value is object {
-  if (typeof value !== 'object') {
-    throw new Error('The value must be an object');
-  }
-}
+
 
 export class SchemaValidationMixin<Response = any, Parameters extends Record<string, any> | void = any, RequestBody = any> {
 
