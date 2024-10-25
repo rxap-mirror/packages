@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.0-dev.3...@rxap/xml-parser@16.1.0-dev.4) (2024-10-25)
+
+### Features
+
+- use the correct setter for settings inner text content ([c94ffe3](https://gitlab.com/rxap/packages/commit/c94ffe3d9e38e61b569a32a2afb783aa8a529c67))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.0-dev.2...@rxap/xml-parser@16.1.0-dev.3) (2024-10-25)
 
 ### Features
