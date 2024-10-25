@@ -57,7 +57,18 @@ export class XmlSerializerService {
     instance.preSerialize?.(rxapElement);
 
     for (const s of serializers) {
-      s(this, rxapElement, instance);
+      try {
+        s(this, rxapElement, instance);
+      } catch (e: any) {
+        console.debug({
+          instance,
+          parent,
+          element,
+          serializer: s,
+          serializers,
+        });
+        throw new Error(`Error while serializing element '${elementName}' with serializer '${s.name}': ${e.message}`);
+      }
     }
 
     instance.postSerialize?.(rxapElement);

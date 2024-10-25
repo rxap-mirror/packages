@@ -219,10 +219,14 @@ export class RxapElement {
 
   setTextContent(value: string) {
     this.removeAllChildren();
-    if (this.element.innerHTML !== undefined) {
-      this.element.innerHTML = value;
-    } else {
+    if (this.element.textContent !== undefined) {
       this.element.textContent = value;
+    }
+    else if (this.element.innerHTML !== undefined) {
+      this.element.innerHTML = value;
+    }
+    else {
+      throw new Error('Could not set text content. Element does not have the property textContent or innerHTML');
     }
   }
 
