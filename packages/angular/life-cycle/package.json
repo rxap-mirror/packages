@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@angular/core": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@rxap/utilities": "^16.4.0-dev.0",
+    "@rxap/utilities": "^16.4.0-dev.1",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -52,7 +52,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.0-dev.0"
+        "version": "16.4.0-dev.1"
       }
     ]
   },

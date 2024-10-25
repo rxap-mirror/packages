@@ -12,7 +12,7 @@
     "@angular/forms": "^18.2.0",
     "@rxap/directives": "^18.0.7-dev.0",
     "@rxap/environment": "^18.0.7-dev.0",
-    "@rxap/open-api": "^18.0.8-dev.1",
+    "@rxap/open-api": "^18.0.8-dev.2",
     "ngx-markdown": "^16.0.0",
     "rxjs": "^7.8.1"
   },
@@ -74,7 +74,7 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.10-dev.2"
+        "version": "1.1.10-dev.3"
       },
       {
         "package": "@rxap/definition",
@@ -90,11 +90,11 @@
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.10-dev.2"
+        "version": "16.0.10-dev.3"
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.8-dev.1"
+        "version": "18.0.8-dev.2"
       },
       {
         "package": "@rxap/pattern",
@@ -102,7 +102,7 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.11-dev.2"
+        "version": "1.0.11-dev.3"
       },
       {
         "package": "@rxap/remote-method",
@@ -110,7 +110,7 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.10-dev.2"
+        "version": "1.1.10-dev.3"
       },
       {
         "package": "@rxap/services",
@@ -118,7 +118,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.0-dev.0"
+        "version": "16.4.0-dev.1"
       }
     ]
   },

@@ -75,7 +75,7 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.10-dev.2"
+        "version": "1.1.10-dev.3"
       },
       {
         "package": "@rxap/services",
@@ -83,7 +83,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.0-dev.0"
+        "version": "16.4.0-dev.1"
       }
     ]
   },

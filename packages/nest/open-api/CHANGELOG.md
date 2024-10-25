@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.4.4-dev.2...@rxap/nest-open-api@10.5.0-dev.0) (2024-10-25)
+
+### Features
+
+- support non json request bodies ([de661fc](https://gitlab.com/rxap/packages/commit/de661fc6cc762d5584599643db327f2dcd7ac5c5))
+
 ## [10.4.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.4.4-dev.1...@rxap/nest-open-api@10.4.4-dev.2) (2024-10-22)
 
 ### Bug Fixes

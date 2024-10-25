@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.8-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/open-api@18.0.8-dev.1...@rxap/open-api@18.0.8-dev.2) (2024-10-25)
+
+### Bug Fixes
+
+- use utility function ([3cf87c0](https://gitlab.com/rxap/packages/commit/3cf87c0197971e4f033889ecafc87d615d7a8b02))
+
 ## [18.0.8-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@18.0.8-dev.0...@rxap/open-api@18.0.8-dev.1) (2024-10-23)
 
 ### Bug Fixes
