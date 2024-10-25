@@ -16,7 +16,7 @@ export class HttpParams {
   }
 
   set(key: string, value: HttpParamType) {
-    this.params.set(key, value);
+    return this.params.set(key, value);
   }
 
   has(key: string) {

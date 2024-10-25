@@ -5,7 +5,10 @@ import {
   InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
-import { coerceArray } from '@rxap/utilities';
+import {
+  assertsObject,
+  coerceArray,
+} from '@rxap/utilities';
 import {
   AxiosRequestConfig,
   AxiosResponse,
@@ -26,6 +29,10 @@ import { OpenApiConfigService } from './open-api-config.service';
 import { OpenApiOperationCommandException } from './open-api-operation-command-exception';
 import { OPERATION_COMMAND_META_DATA_KEY } from './tokens';
 import { OpenApiOperationCommandParameters } from './types';
+
+export function IsReferenceObject(obj?: any): obj is OpenAPIV3.ReferenceObject {
+  return !!obj && '$ref' in obj;
+}
 
 @Injectable()
 export abstract class OpenApiOperationCommand<Response = any, Parameters extends Record<string, any> | void = any, Body = any> {
@@ -182,12 +189,19 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
 
     config.url = this.buildUrl(args);
     config.method = this.operation.method;
-    config.data = this.buildRequestBody(args.body);
+    config.headers = this.buildHeaders(args.parameters);
+    const [ data, contentType ] = this.buildRequestBody(args.body);
+    if (data !== undefined) {
+      config.data = data;
+      if (contentType !== undefined) {
+        config.headers ??= {};
+        config.headers['Content-Type'] = contentType;
+      }
+    }
     config.params = this.buildRequestParams(args.parameters);
     config.paramsSerializer = {
       indexes: null,
     };
-    config.headers = this.buildHeaders(args.parameters);
     config.responseType = this.getResponseType();
     config.timeout = this.timeout;
 
@@ -301,8 +315,55 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
     return params;
   }
 
-  protected buildRequestBody(body?: Body): any {
-    return body;
+  protected buildRequestBody(requestBody?: Body): [ any, string | undefined ] {
+
+    const accept: string[] = [];
+    if (this.operation.requestBody && !IsReferenceObject(this.operation.requestBody)) {
+      if (this.operation.requestBody.content) {
+        for (const contentType of Object.keys(this.operation.requestBody.content)) {
+          accept.push(contentType);
+        }
+      }
+    }
+    if (!accept.length) {
+      console.warn('No content type found for the request body! Omitting the body!');
+      return [ undefined, undefined ];
+    }
+    if (accept.length > 1) {
+      console.warn('Multiple content types found for the request body! Using the first one!');
+    }
+    const contentType = accept[0];
+    switch (contentType) {
+
+      case 'application/json':
+        assertsObject(requestBody);
+        return [ requestBody, contentType ];
+
+      case 'application/x-www-form-urlencoded':
+        assertsObject(requestBody);
+        // eslint-disable-next-line no-case-declarations
+        const params = new HttpParams();
+        for (const [ key, value ] of Object.entries(requestBody)) {
+          params.set(key, value);
+        }
+        return [ params.toString(), contentType ];
+
+      case 'multipart/form-data':
+        assertsObject(requestBody);
+        // eslint-disable-next-line no-case-declarations
+        const formData = new FormData();
+
+        // Iterate through the JSON object and append each field to FormData
+        for (const [ key, value ] of Object.entries(requestBody)) {
+          formData.append(key, value);
+        }
+        return [ formData, contentType ];
+
+      default:
+        return [ requestBody, contentType ];
+
+    }
+
   }
 
   protected getResponseType(): ResponseType {
