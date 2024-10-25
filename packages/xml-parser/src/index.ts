@@ -45,6 +45,7 @@ export * from './lib/decorators/utilities';
 // endregion
 
 // region 
+export * from './lib/default-to-json';
 export * from './lib/element-factory';
 export * from './lib/element-name';
 export * from './lib/element';

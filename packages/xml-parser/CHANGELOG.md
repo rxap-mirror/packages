@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.0-dev.1...@rxap/xml-parser@16.1.0-dev.2) (2024-10-25)
+
+### Features
+
+- support namespace parsing and restoring ([d8a11ce](https://gitlab.com/rxap/packages/commit/d8a11ce80b24872b3aba4e92ed63ae199a2db559))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.0-dev.0...@rxap/xml-parser@16.1.0-dev.1) (2024-10-24)
 
 ### Bug Fixes
