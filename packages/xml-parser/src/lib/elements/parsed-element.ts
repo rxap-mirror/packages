@@ -23,4 +23,15 @@ export interface ParsedElement<Value = any> {
 
   toValue?(context?: KeyValue): Value;
 
+  toJSON?(): any;
+
+}
+
+export interface SafeParsedElement<Value = any> extends ParsedElement<Value> {
+
+  __tag: string;
+  __xmlns: Map<string, string>;
+
+  toJSON(): any;
+
 }

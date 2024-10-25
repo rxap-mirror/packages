@@ -6,13 +6,17 @@ import {
 } from '@rxap/utilities';
 import { AttributeOptions } from './decorators/attribute';
 import { ElementParserMetaData } from './decorators/metadata-keys';
+import { defaultToJson } from './default-to-json';
 import {
   normalizeNodeName,
   RxapElement,
   RxapElementOptions,
 } from './element';
 import { ElementName } from './element-name';
-import { ParsedElement } from './elements/parsed-element';
+import {
+  ParsedElement,
+  SafeParsedElement,
+} from './elements/parsed-element';
 import { RxapXmlParserError } from './error';
 import { XmlElementParserFunction } from './xml-element-parser-function';
 
@@ -109,12 +113,12 @@ export class XmlParserService {
    * @param args Constructor parameters for the ParsedElement instance
    * @param parent The parent Parsed Element
    */
-  public parse<D extends ParsedElement>(
+  public parse<D extends ParsedElement<V>, V = any>(
     element: RxapElement,
     elementNameOrConstructor: string | Constructor<D> = element.name,
     parent: ParsedElement | null,
     args: any[] = [],
-  ): D {
+  ): D & SafeParsedElement<V> {
 
     const {
       elementName,
@@ -131,6 +135,9 @@ export class XmlParserService {
       xmlnsMap.set(xmlns.includes(':') ? xmlns.split(':').pop()! : '', value);
     }
     Reflect.set(instance, '__xmlns', xmlnsMap);
+    if (typeof instance.toJSON !== 'function') {
+      Reflect.set(instance, 'toJSON', defaultToJson.bind(instance));
+    }
 
     this.parseAttributes(instance, element);
 
@@ -186,7 +193,7 @@ export class XmlParserService {
         parsers: getMetadata<XmlElementParserFunction<any>[]>(
           ElementParserMetaData.PARSER,
             elementNameOrConstructor,
-        )!,
+        ) ?? [],
         elementParser: elementNameOrConstructor,
       };
     }
@@ -203,7 +210,7 @@ export class XmlParserService {
    * @param xml
    * @param args a list of args passed to the element constructor
    */
-  public parseFromXml<D extends ParsedElement>(xml: string, ...args: any[]): D {
+  public parseFromXml<D extends ParsedElement, V = any>(xml: string, ...args: any[]): D & SafeParsedElement<V> {
 
     let xmlDoc: Document;
     try {
@@ -227,7 +234,8 @@ export class XmlParserService {
 
   protected determineRootElement(xmlDoc: Document) {
 
-    const rootNode = Array.from(xmlDoc.childNodes)
+    const rootChildren = Array.from(xmlDoc.childNodes);
+    const rootNode = rootChildren
       .filter(node => node.nodeType === 1)
       .find(node => normalizeNodeName(node.nodeName, this.elementOptions) === this.rootElement);
 

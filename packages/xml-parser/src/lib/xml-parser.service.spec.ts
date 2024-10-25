@@ -41,7 +41,8 @@ describe('XML Parser', () => {
           '<definition xmlns="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>');
         expect(element).toBeDefined();
         expect(element.__xmlns).toBeDefined();
-        console.log(element.__xmlns);
+        expect(element.toJSON).toBeDefined();
+        expect(typeof element.toJSON === 'function').toBeTruthy();
         expect(element.__xmlns?.keys()).toContain('');
         expect(element.__xmlns?.keys()).toContain('xsi');
         expect(Array.from(element.__xmlns?.entries() ?? [])).toEqual([
@@ -84,7 +85,7 @@ describe('XML Parser', () => {
         }
 
         @ElementDef('definition')
-        class UserElement {
+        class UserElement implements ParsedElement {
 
           @ElementAttribute()
           @ElementRequired()
@@ -157,28 +158,31 @@ describe('XML Parser', () => {
           expect(userElement.projects[1]).toBeInstanceOf(ProjectElement);
           expect(userElement.projects[2]).toBeInstanceOf(SoftwareProjectElement);
 
-          expect(userElement).toEqual({
-            __tag: 'definition',
-            __parent: null,
-            username: 'my-username',
-            projects: [
+          expect(userElement.toJSON()).toEqual({
+            "__tag": "definition",
+            "__xmlns": {},
+            "projects": [
               {
-                __parent: userElement,
-                __tag: 'project',
-                name: 'my-project-1',
+                "__parent": "definition",
+                "__tag": "project",
+                "__xmlns": {},
+                "name": "my-project-1"
               },
               {
-                __parent: userElement,
-                __tag: 'project',
-                name: 'my-project-2',
+                "__parent": "definition",
+                "__tag": "project",
+                "__xmlns": {},
+                "name": "my-project-2"
               },
               {
-                __parent: userElement,
-                __tag: 'software-project',
-                name: 'my-project-3',
-                git: true,
-              },
+                "__parent": "definition",
+                "__tag": "software-project",
+                "__xmlns": {},
+                "git": true,
+                "name": "my-project-3"
+              }
             ],
+            "username": "my-username"
           });
 
         });
@@ -220,7 +224,7 @@ describe('XML Parser', () => {
 
         it('should handle scoped element names', () => {
 
-          const xml = '<rdf:RDF><rdf:Label/></rdf:RDF>';
+          const xml = '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Label/></rdf:RDF>';
 
           const rdfElement = xmlParser.parseFromXml<RdfElement>(xml);
 
