@@ -14,6 +14,7 @@ export * from './lib/options/to-options';
 // endregion
 
 // region object
+export * from './lib/object/asserts-object';
 export * from './lib/object/camelize-property-keys';
 export * from './lib/object/coerce-property';
 export * from './lib/object/delete-empty-properties';
