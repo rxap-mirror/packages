@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.7-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.6...@rxap/nest-utilities@10.3.7-dev.0) (2024-10-28)
+
+### Bug Fixes
+
+- support custom filter query delimiter ([0dab601](https://gitlab.com/rxap/packages/commit/0dab601ded4d1a990d04c9c29124cc0130f6d48f))
+
 ## [10.3.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.6-dev.2...@rxap/nest-utilities@10.3.6) (2024-10-28)
 
 ### Bug Fixes
