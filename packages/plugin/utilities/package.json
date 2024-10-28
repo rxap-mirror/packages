@@ -1,11 +1,11 @@
 {
-  "version": "19.0.9-dev.3",
+  "version": "19.0.9",
   "name": "@rxap/plugin-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.7.4",
-    "@rxap/node-utilities": "^1.3.5-dev.0",
-    "@rxap/workspace-utilities": "^19.4.3-dev.3",
+    "@rxap/node-utilities": "^1.3.5",
+    "@rxap/workspace-utilities": "^19.4.3",
     "tslib": "2.6.2"
   },
   "author": {

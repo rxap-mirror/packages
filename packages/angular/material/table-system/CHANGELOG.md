@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.8](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@18.0.8-dev.0...@rxap/material-table-system@18.0.8) (2024-10-28)
+
+**Note:** Version bump only for package @rxap/material-table-system
+
 ## [18.0.8-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@18.0.7...@rxap/material-table-system@18.0.8-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/material-table-system

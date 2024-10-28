@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.7](https://gitlab.com/rxap/packages/compare/@rxap/ngx-memory@18.0.7-dev.0...@rxap/ngx-memory@18.0.7) (2024-10-28)
+
+**Note:** Version bump only for package @rxap/ngx-memory
+
 ## [18.0.7-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-memory@18.0.6...@rxap/ngx-memory@18.0.7-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/ngx-memory

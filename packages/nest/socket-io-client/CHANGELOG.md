@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-socket-io-client@10.1.6-dev.0...@rxap/nest-socket-io-client@10.1.6) (2024-10-28)
+
+### Bug Fixes
+
+- omit js maps for production builds ([6666e4a](https://gitlab.com/rxap/packages/commit/6666e4aaef7c5b6b5e75b1926358a7e287f2e903))
+
 ## [10.1.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-socket-io-client@10.1.5...@rxap/nest-socket-io-client@10.1.6-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/nest-socket-io-client

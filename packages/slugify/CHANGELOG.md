@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.9](https://gitlab.com/rxap/packages/compare/@rxap/slugify@16.0.9-dev.0...@rxap/slugify@16.0.9) (2024-10-28)
+
+**Note:** Version bump only for package @rxap/slugify
+
 ## [16.0.9-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/slugify@16.0.8...@rxap/slugify@16.0.9-dev.0) (2024-10-04)
 
 **Note:** Version bump only for package @rxap/slugify

@@ -1,5 +1,5 @@
 {
-  "version": "18.0.7-dev.0",
+  "version": "18.0.7",
   "name": "@rxap/icon",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,7 +11,7 @@
     "@angular/core": "^18.2.0",
     "@angular/material": "^18.2.0",
     "@angular/platform-browser": "^18.2.0",
-    "@rxap/utilities": "^16.4.0-dev.1"
+    "@rxap/utilities": "^16.4.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -64,7 +64,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.0-dev.1"
+        "version": "16.4.0"
       }
     ]
   },
