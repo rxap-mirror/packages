@@ -1,5 +1,7 @@
 import {
+  Inject,
   Injectable,
+  Optional,
   PipeTransform,
 } from '@nestjs/common';
 
@@ -12,15 +14,26 @@ function coerceArray<T>(value?: T | T[] | null): T[] {
   return value === null || value === undefined ? [] : Array.isArray(value) ? value : [ value ];
 }
 
+export const DEFAULT_FILTER_QUERY_PIPE_DELIMITER = Symbol('DEFAULT_FILTER_QUERY_PIPE_DELIMITER');
+
 @Injectable()
 export class FilterQueryPipe implements PipeTransform {
 
-  public transform(value: string | string[] | undefined): FilterQuery[] {
+  constructor(
+    @Optional()
+    @Inject(DEFAULT_FILTER_QUERY_PIPE_DELIMITER)
+    private readonly delimiter = '|'
+  ) {}
+
+  public transform(value: string | string[] | FilterQuery | FilterQuery[] | undefined): FilterQuery[] {
     if (!value) {
       return [];
     }
     return coerceArray(value).map(item => {
-      const [ column, filter ] = item.split('|');
+      if (typeof item === 'object') {
+        return item;
+      }
+      const [ column, filter ] = item.split(this.delimiter);
       return { column, filter };
     });
   }
