@@ -36,12 +36,7 @@ export class GetPageAdapterRemoteMethod<Data extends Record<string, any>>
 
   public static BuildFilter(filterEvent?: string | Record<string, any> | null): string[] {
     const filter: string[] = [];
-    if (!filterEvent || typeof filterEvent === 'string') {
-      filter.push('__archived:false');
-    } else {
-      if (!filterEvent['__archived']) {
-        filter.push([ '__archived', 'false' ].join('|'));
-      }
+    if (filterEvent && typeof filterEvent !== 'string') {
       for (const [ key, value ] of Object.entries(filterEvent)) {
         if (value !== null && value !== undefined && `${ value }` !== '') {
           const valueString = coerceString(value);
@@ -55,14 +50,12 @@ export class GetPageAdapterRemoteMethod<Data extends Record<string, any>>
   }
 
   protected async _call(event: TableEvent): Promise<Data[]> {
-    const sortBy = event.sort?.active ?? this.options?.sortBy ?? '__updatedAt';
     const parameters: GetPageRemoteMethodParameters = {
       pageIndex: event.page?.pageIndex ?? 0,
       pageSize: event.page?.pageSize ?? 10,
-      sortBy,
+      sortBy: event.sort?.active ?? this.options?.sortBy ?? undefined,
       // use the || operator to set the default sort direction if the sort direction is undefined or an empty string
-      sortDirection: (sortBy === '__updatedAt' ? 'desc' : event.sort?.direction) ||
-        (this.options?.sortDirection ?? 'asc'),
+      sortDirection: event.sort?.direction ?? this.options?.sortDirection ?? undefined,
       filter: GetPageAdapterRemoteMethod.BuildFilter(event.filter),
       ...(event.parameters ?? {}),
     };
