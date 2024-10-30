@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.9-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@18.0.8...@rxap/open-api@18.0.9-dev.0) (2024-10-30)
+
+### Bug Fixes
+
+- remove \_\_archived concept ([6cd40d6](https://gitlab.com/rxap/packages/commit/6cd40d605ac0c9d45e2e446ac2424a082a6e004e))
+
 ## [18.0.8](https://gitlab.com/rxap/packages/compare/@rxap/open-api@18.0.8-dev.2...@rxap/open-api@18.0.8) (2024-10-28)
 
 **Note:** Version bump only for package @rxap/open-api
