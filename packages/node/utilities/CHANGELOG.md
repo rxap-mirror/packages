@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.3.5...@rxap/node-utilities@1.3.6-dev.0) (2024-11-04)
+
+### Bug Fixes
+
+- support production fallback in scoped file names ([08db421](https://gitlab.com/rxap/packages/commit/08db4217a5ff374f39baa6c2a29d218899fa3ee2))
+
 ## [1.3.5](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.3.5-dev.0...@rxap/node-utilities@1.3.5) (2024-10-28)
 
 **Note:** Version bump only for package @rxap/node-utilities

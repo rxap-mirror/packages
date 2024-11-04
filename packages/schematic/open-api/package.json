@@ -1,5 +1,5 @@
 {
-  "version": "18.0.8",
+  "version": "18.0.9-dev.0",
   "name": "@rxap/schematics-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,11 +7,11 @@
     "@angular-devkit/schematics": "18.2.1",
     "@nx/devkit": "19.7.4",
     "@rxap/json-schema-to-typescript": "^16.0.10",
-    "@rxap/schematics-ts-morph": "^18.2.2",
-    "@rxap/schematics-utilities": "^18.0.8",
+    "@rxap/schematics-ts-morph": "^18.2.3-dev.0",
+    "@rxap/schematics-utilities": "^18.0.9-dev.0",
     "@rxap/ts-morph": "^1.5.1",
     "@rxap/utilities": "^16.4.0",
-    "@rxap/workspace-utilities": "^19.4.3",
+    "@rxap/workspace-utilities": "^19.4.4-dev.0",
     "openapi-types": "^10.0.0",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2"

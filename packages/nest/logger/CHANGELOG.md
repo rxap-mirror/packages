@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.9-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.2.8...@rxap/nest-logger@10.2.9-dev.0) (2024-11-04)
+
+**Note:** Version bump only for package @rxap/nest-logger
+
 ## [10.2.8](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.2.8-dev.3...@rxap/nest-logger@10.2.8) (2024-10-28)
 
 **Note:** Version bump only for package @rxap/nest-logger

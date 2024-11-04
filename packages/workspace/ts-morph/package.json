@@ -1,12 +1,12 @@
 {
-  "version": "19.1.6",
+  "version": "19.1.7-dev.0",
   "name": "@rxap/workspace-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.7.4",
     "@rxap/ts-morph": "^1.5.1",
     "@rxap/utilities": "^16.4.0",
-    "@rxap/workspace-utilities": "^19.4.3",
+    "@rxap/workspace-utilities": "^19.4.4-dev.0",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2"
   },
