@@ -1,3 +1,4 @@
+import { dasherize } from '@rxap/utilities';
 import {
   existsSync,
   readFileSync,
@@ -12,6 +13,7 @@ import {
  * @returns {string} The modified file path with the scope injected. If no scope is provided, returns the original file path.
  */
 export function InjectScopeInFilePath(filePath: string, scope?: string): string {
+  scope = scope ? dasherize(scope) : scope;
   if (!scope) {
     return filePath;
   }
@@ -32,10 +34,18 @@ export function InjectScopeInFilePath(filePath: string, scope?: string): string 
  *
  * @param path - The original file path to check for existence.
  * @param scope - Optional. A string representing the scope to be injected into the file path.
+ * @param production - Optional. A boolean indicating whether the application is running in production mode.
  * @returns {boolean} - Returns `true` if a file exists at either the scoped path or the original path, otherwise returns `false`.
  */
-export function ExistsFileWithScope(path: string, scope?: string): boolean {
-  return existsSync(InjectScopeInFilePath(path, scope)) || existsSync(path);
+export function ExistsFileWithScope(path: string, scope?: string, production?: boolean): boolean {
+  scope = scope ? dasherize(scope) : scope;
+  if (existsSync(InjectScopeInFilePath(path, scope))) {
+    return true;
+  }
+  if (production && existsSync(InjectScopeInFilePath(path, 'production'))) {
+    return true;
+  }
+  return existsSync(path);
 }
 
 /**
@@ -44,7 +54,9 @@ export function ExistsFileWithScope(path: string, scope?: string): boolean {
  *
  * @param {string} path - The original file path from which to read.
  * @param {string} [scope] - Optional scope that may modify the file path.
+ * @param production - Optional. A boolean indicating whether the application is running in production mode.
  * @param {BufferEncoding} [encoding='utf-8'] - The character encoding to use when reading the file. Defaults to 'utf-8'.
+ * @param {Logger} [logger=console] - Optional. A logger object with a `log` method to log messages. Defaults to `console`.
  * @returns {string} The content of the file read as a string.
  * @throws {Error} Throws an error if neither the scoped nor the original file paths exist.
  *
@@ -56,14 +68,19 @@ export function ExistsFileWithScope(path: string, scope?: string): boolean {
  * // Reads a file from 'path/to/file.txt' without a scope, using 'ascii' encoding.
  * const content = ReadFileWithScope('path/to/file.txt', undefined, 'ascii');
  */
-export function ReadFileWithScope(path: string, scope?: string, encoding: BufferEncoding = 'utf-8'): string {
+export function ReadFileWithScope(path: string, scope?: string, production?: boolean, encoding: BufferEncoding = 'utf-8', logger: { log: (msg: string, ...args: any[]) => void } = console): string {
+  scope = scope ? dasherize(scope) : scope;
   let filePath = InjectScopeInFilePath(path, scope);
   if (!existsSync(filePath)) {
+    if (production) {
+      filePath = InjectScopeInFilePath(path, 'production');
+    } else {
+      filePath = path;
+    }
     if (!existsSync(path)) {
       throw new Error(`The file "${ path }" does not exists!`);
     }
-    filePath = path;
   }
-  console.log(`Read file with scope '${scope}': ${ filePath }`);
+  logger.log(`Read file with scope '${scope}' (production=${production}): ${ filePath }`);
   return readFileSync(filePath, encoding);
 }

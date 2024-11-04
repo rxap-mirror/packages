@@ -429,7 +429,14 @@
     },
     "@nx/angular:package": {
       "cache": true,
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "index-export",
+        "^index-export",
+        "^build",
+        "check-version",
+        "build-tailwind",
+        "check-ng-package"
+      ],
       "inputs": ["production", "^production"]
     },
     "@nx/js:swc": {

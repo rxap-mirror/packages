@@ -3,25 +3,35 @@ import {
   Inject,
   Injectable,
   Logger,
+  Optional,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { RXAP_GLOBAL_STATE } from '@rxap/nest-utilities';
+import {
+  ENVIRONMENT,
+  Environment,
+  RXAP_GLOBAL_STATE,
+} from '@rxap/nest-utilities';
 import {
   ExistsFileWithScope,
   InjectScopeInFilePath,
   ReadFileWithScope,
 } from '@rxap/node-utilities';
 import { coerceArray } from '@rxap/utilities';
+import { existsSync } from 'fs';
 import { OpenApiModuleOptions } from './open-api.module';
 
 @Injectable()
 export class OpenApiModuleOptionsLoader implements ConfigurableModuleOptionsFactory<OpenApiModuleOptions, 'create'> {
 
   @Inject(ConfigService)
-  private readonly config!: ConfigService;
+  protected readonly config!: ConfigService;
 
   @Inject(Logger)
-  private readonly logger!: Logger;
+  protected readonly logger!: Logger;
+
+  @Optional()
+  @Inject(ENVIRONMENT)
+  protected readonly environment: Environment | null = RXAP_GLOBAL_STATE.environment;
 
   create(): OpenApiModuleOptions {
     const openApiServerConfigFilePath = this.config.getOrThrow('OPEN_API_SERVER_CONFIG_FILE_PATH');
@@ -47,19 +57,27 @@ export class OpenApiModuleOptionsLoader implements ConfigurableModuleOptionsFact
     return config;
   }
 
-  private existsFileWithScope(filePath: string): boolean {
-    return ExistsFileWithScope(filePath, RXAP_GLOBAL_STATE.environment?.name);
+  protected existsFileWithScope(filePath: string): boolean {
+    return ExistsFileWithScope(filePath, this.environment?.name, this.environment?.production);
   }
 
-  private readFileWithScope(filePath: string): string {
-    return ReadFileWithScope(filePath, RXAP_GLOBAL_STATE.environment?.name);
+  protected readFileWithScope(filePath: string): string {
+    return ReadFileWithScope(filePath, this.environment?.name, this.environment?.production, 'utf-8', this.logger);
   }
 
-  private fileNameWithScope(filePath: string): string {
-    return InjectScopeInFilePath(filePath, RXAP_GLOBAL_STATE.environment?.name);
+  protected fileNameWithScope(filePath: string): string {
+    const filename = InjectScopeInFilePath(filePath, this.environment?.name);
+    if (existsSync(filename)) {
+      return filename;
+    }
+    if (this.environment?.production) {
+      return InjectScopeInFilePath(filePath, 'production');
+    } else {
+      return filePath;
+    }
   }
 
-  private interpolateEnvVariables(value: string): string {
+  protected interpolateEnvVariables(value: string): string {
     return value.replace(/\${(.+?)}/g, (_, key) => this.config.getOrThrow(key));
   }
 
