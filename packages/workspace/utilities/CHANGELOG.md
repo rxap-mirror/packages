@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.5.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.4.4-dev.0...@rxap/workspace-utilities@19.5.0-dev.0) (2024-11-05)
+
+### Features
+
+- add yaml document updater utility ([d45c4d3](https://gitlab.com/rxap/packages/commit/d45c4d37b280c98ff8c159924745793c7302587a))
+
 ## [19.4.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.4.3...@rxap/workspace-utilities@19.4.4-dev.0) (2024-11-04)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

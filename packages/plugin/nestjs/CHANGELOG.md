@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.6-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.6-dev.0...@rxap/plugin-nestjs@19.1.6-dev.1) (2024-11-05)
+
+### Bug Fixes
+
+- add minio and openai options ([cb8fd49](https://gitlab.com/rxap/packages/commit/cb8fd490cd33198a56789d8cf6c30d0a35cd6881))
+
 ## [19.1.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.5...@rxap/plugin-nestjs@19.1.6-dev.0) (2024-11-04)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs

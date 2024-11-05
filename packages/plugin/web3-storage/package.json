@@ -1,10 +1,10 @@
 {
-  "version": "19.0.9-dev.0",
+  "version": "19.0.9-dev.1",
   "name": "@rxap/plugin-web3-storage",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.7.4",
-    "@rxap/plugin-utilities": "^19.0.10-dev.0",
+    "@rxap/plugin-utilities": "^19.0.10-dev.1",
     "@ucanto/principal": "^9.0.1",
     "@web3-storage/w3up-client": "^16.2.0",
     "files-from-path": "1.0.4",
