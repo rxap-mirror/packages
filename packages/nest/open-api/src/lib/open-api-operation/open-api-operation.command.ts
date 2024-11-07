@@ -357,9 +357,19 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
         // Iterate through the JSON object and append each field to FormData
         for (const [ key, value ] of Object.entries(requestBody)) {
           if (Array.isArray(value)) {
-            value.forEach((v) => formData.append(key, v));
+            value.forEach((v) => {
+              if (value instanceof Buffer) {
+                formData.append(key, v, { filename: (v as any).filename, filepath: (v as any).filepath, contentType: (v as any).contentType });
+              } else {
+                formData.append(key, v);
+              }
+            });
           } else {
-            formData.append(key, value);
+            if (value instanceof Buffer) {
+              formData.append(key, value, { filename: (value as any).filename, filepath: (value as any).filepath, contentType: (value as any).contentType });
+            } else {
+              formData.append(key, value);
+            }
           }
         }
         return [ formData, contentType ];
