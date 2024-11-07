@@ -340,7 +340,7 @@ export class TypescriptInterfaceGenerator {
           );
         }
         if (schema.format === 'binary') {
-          return 'Buffer & { filename?: string, filepath?: string, contentType?: string }';
+          return '(Buffer & { filename?: string, filepath?: string, contentType?: string }) | File';
         }
 
         return 'string';
