@@ -62,6 +62,19 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
     this.serverId = metadata.serverId;
   }
 
+  protected stringifyData(data: any): string {
+    if (data instanceof FormData) {
+      return '<form-data>';
+    } else {
+      return JSON.stringify(data, (key, value) => {
+        if (Array.isArray(value) && value.length > 3) {
+          return value.slice(0, 3).concat([ (value.length - 3) + ' more items ...' ]);
+        }
+        return value;
+      });
+    }
+  }
+
   public async execute(args: OpenApiOperationCommandParameters<Parameters, Body> = {}): Promise<Response> {
 
     if (!this.operation) {
@@ -84,7 +97,7 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
         this.logger.debug(`[${ requestId }] ${ config.method?.toUpperCase() } ${ config.url }${ HttpParams.ToHttpQueryString(
           config.params) }`, this.constructor.name);
         if (config.data) {
-          this.logger.verbose(`[${ requestId }] REQUEST ${ JSON.stringify(config.data) }`, this.constructor.name);
+          this.logger.verbose(`[${ requestId }] REQUEST ${ this.stringifyData(config.data) }`, this.constructor.name);
         }
       }
       const now = Date.now();
@@ -93,7 +106,7 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
           next: (response: AxiosResponse) => {
             if (this.log !== false) {
               if (response.data) {
-                this.logger.verbose(`[${ requestId }] RESPONSE ${ response.status } ${ JSON.stringify(response.data) } +${ Date.now() -
+                this.logger.verbose(`[${ requestId }] RESPONSE ${ response.status } ${ this.stringifyData(response.data) } +${ Date.now() -
                 now }ms`, this.constructor.name);
               } else {
                 this.logger.verbose('[${id}] RESPONSE <empty>', this.constructor.name);
@@ -108,12 +121,12 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
                 now }ms`, this.constructor.name);
                 if (this.log !== false) {
                   if (error.config.data) {
-                    this.logger.verbose(`[${ requestId }] REQUEST ${ JSON.stringify(error.config.data) }`, this.constructor.name);
+                    this.logger.verbose(`[${ requestId }] REQUEST ${ this.stringifyData(error.config.data) }`, this.constructor.name);
                   }
                   if (error.response) {
                     if (error.response.data) {
                       this.logger.verbose(
-                        `[${ requestId }] RESPONSE ${ JSON.stringify(error.response.data) }`,
+                        `[${ requestId }] RESPONSE ${ this.stringifyData(error.response.data) }`,
                         this.constructor.name,
                       );
                     }
