@@ -298,7 +298,7 @@
       },
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.11-dev.0"
+        "version": "16.0.11-dev.1"
       },
       {
         "package": "@rxap/keycloak",
@@ -538,11 +538,11 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.6-dev.2"
+        "version": "19.1.6-dev.3"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.8-dev.2"
+        "version": "19.1.8-dev.3"
       },
       {
         "package": "@rxap/plugin-storybook",
@@ -598,7 +598,7 @@
       },
       {
         "package": "@rxap/schematics-open-api",
-        "version": "18.0.9-dev.2"
+        "version": "18.0.9-dev.3"
       },
       {
         "package": "@rxap/schematics-ts-morph",
@@ -662,7 +662,7 @@
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "19.0.9-dev.2"
+        "version": "19.0.9-dev.3"
       },
       {
         "package": "@rxap/workspace-ts-morph",
