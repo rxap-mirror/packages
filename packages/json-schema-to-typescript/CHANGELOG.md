@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.11-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.10...@rxap/json-schema-to-typescript@16.0.11-dev.0) (2024-11-07)
+
+### Bug Fixes
+
+- use binary type that is supported by nodejs and web ([12d7405](https://gitlab.com/rxap/packages/commit/12d74058bbd12123fbecd3672415517336dd30ed))
+- use binary type that is supported by nodejs and web ([b0b5955](https://gitlab.com/rxap/packages/commit/b0b595547ff56c2f5fa05f1255b7c87514ddae81))
+
 ## [16.0.10](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.10-dev.4...@rxap/json-schema-to-typescript@16.0.10) (2024-10-28)
 
 **Note:** Version bump only for package @rxap/json-schema-to-typescript

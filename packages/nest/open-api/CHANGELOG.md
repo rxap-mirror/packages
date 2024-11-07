@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.5.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.5.1-dev.0...@rxap/nest-open-api@10.5.1-dev.1) (2024-11-07)
+
+### Bug Fixes
+
+- correctly support array with form data request body ([1c2577b](https://gitlab.com/rxap/packages/commit/1c2577b839ab367fb13e8de9e6b39ce48c390daf))
+- correctly support array with form data request body ([f8291b6](https://gitlab.com/rxap/packages/commit/f8291b659978601bedccdac521acb9f21ee35ef6))
+
 ## [10.5.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.5.0...@rxap/nest-open-api@10.5.1-dev.0) (2024-11-04)
 
 ### Bug Fixes
