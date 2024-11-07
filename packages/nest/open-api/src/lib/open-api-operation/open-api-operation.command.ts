@@ -29,6 +29,7 @@ import { OpenApiConfigService } from './open-api-config.service';
 import { OpenApiOperationCommandException } from './open-api-operation-command-exception';
 import { OPERATION_COMMAND_META_DATA_KEY } from './tokens';
 import { OpenApiOperationCommandParameters } from './types';
+import FormData from 'form-data';
 
 export function IsReferenceObject(obj?: any): obj is OpenAPIV3.ReferenceObject {
   return !!obj && '$ref' in obj;
@@ -355,7 +356,11 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
 
         // Iterate through the JSON object and append each field to FormData
         for (const [ key, value ] of Object.entries(requestBody)) {
-          formData.append(key, value);
+          if (Array.isArray(value)) {
+            value.forEach((v) => formData.append(key, v));
+          } else {
+            formData.append(key, value);
+          }
         }
         return [ formData, contentType ];
 
