@@ -521,7 +521,7 @@ export class TypescriptInterfaceGenerator {
         return 'unknown';
 
       case 'file':
-        return 'Buffer';
+        return '(Buffer & { filename?: string, filepath?: string, contentType?: string }) | File';
 
       default:
         if (Array.isArray(schema.type)) {
