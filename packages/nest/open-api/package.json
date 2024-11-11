@@ -1,5 +1,5 @@
 {
-  "version": "10.5.1-dev.2",
+  "version": "10.5.1-dev.3",
   "name": "@rxap/nest-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -19,7 +19,6 @@
     "@sentry/core": "^8.18.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
-    "form-data": "^4.0.1",
     "openapi-types": "^10.0.0",
     "rxjs": "^7.8.1"
   },

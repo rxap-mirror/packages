@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.5.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.5.1-dev.2...@rxap/nest-open-api@10.5.1-dev.3) (2024-11-11)
+
+### Bug Fixes
+
+- use binary type that is supported by nodejs and web ([2a3699c](https://gitlab.com/rxap/packages/commit/2a3699c755fafde8680e4141ed6b7c88f488ca37))
+
 ## [10.5.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.5.1-dev.1...@rxap/nest-open-api@10.5.1-dev.2) (2024-11-07)
 
 ### Bug Fixes
