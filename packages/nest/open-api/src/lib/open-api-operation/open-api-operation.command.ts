@@ -29,7 +29,6 @@ import { OpenApiConfigService } from './open-api-config.service';
 import { OpenApiOperationCommandException } from './open-api-operation-command-exception';
 import { OPERATION_COMMAND_META_DATA_KEY } from './tokens';
 import { OpenApiOperationCommandParameters } from './types';
-import FormData from 'form-data';
 
 export function IsReferenceObject(obj?: any): obj is OpenAPIV3.ReferenceObject {
   return !!obj && '$ref' in obj;
@@ -367,22 +366,42 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
         // eslint-disable-next-line no-case-declarations
         const formData = new FormData();
 
+        // eslint-disable-next-line no-case-declarations
+        const append = (key: string, value: any) => {
+          const filename = typeof value === 'object' && 'filename' in value ? value.filename : undefined;
+          if (typeof value === 'string') {
+            formData.append(key, value);
+          } else if (typeof value === 'boolean') {
+            formData.append(key, value.toString());
+          } else if (typeof value === 'number') {
+            formData.append(key, value.toString());
+          } else if (value instanceof Blob) {
+            formData.append(key, value, filename);
+          } else if (value instanceof File) {
+            formData.append(key, value, filename);
+          } else if (value instanceof Buffer) {
+            formData.append(key, new Blob([ value ]), filename);
+          } else if (value instanceof ArrayBuffer) {
+            formData.append(key, new Blob([ value ]), filename);
+          } else if (value instanceof Uint32Array) {
+            formData.append(key, new Blob([ value ]), filename);
+          } else if (value instanceof Uint8Array) {
+            formData.append(key, new Blob([ value ]), filename);
+          } else if (value instanceof Uint16Array) {
+            formData.append(key, new Blob([ value ]), filename);
+          } else {
+            throw new InternalServerErrorException(`Unsupported value type for multipart/form-data: (${key}) ${ typeof value }`);
+          }
+        };
+
         // Iterate through the JSON object and append each field to FormData
         for (const [ key, value ] of Object.entries(requestBody)) {
           if (Array.isArray(value)) {
             value.forEach((v) => {
-              if (value instanceof Buffer) {
-                formData.append(key, v, { filename: (v as any).filename, filepath: (v as any).filepath, contentType: (v as any).contentType });
-              } else {
-                formData.append(key, v);
-              }
+              append(key, v);
             });
           } else {
-            if (value instanceof Buffer) {
-              formData.append(key, value, { filename: (value as any).filename, filepath: (value as any).filepath, contentType: (value as any).contentType });
-            } else {
-              formData.append(key, value);
-            }
+            append(key, value);
           }
         }
         return [ formData, contentType ];

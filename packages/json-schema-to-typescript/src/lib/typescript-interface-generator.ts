@@ -340,7 +340,7 @@ export class TypescriptInterfaceGenerator {
           );
         }
         if (schema.format === 'binary') {
-          return '(Buffer & { filename?: string, filepath?: string, contentType?: string }) | File';
+          return '(Blob | File | Buffer | ArrayBuffer | Uint32Array | Uint8Array | Uint16Array) & { filename?: string }';
         }
 
         return 'string';
@@ -521,7 +521,7 @@ export class TypescriptInterfaceGenerator {
         return 'unknown';
 
       case 'file':
-        return '(Buffer & { filename?: string, filepath?: string, contentType?: string }) | File';
+        return '(Blob | File | Buffer | ArrayBuffer | Uint32Array | Uint8Array | Uint16Array) & { filename?: string }';
 
       default:
         if (Array.isArray(schema.type)) {
