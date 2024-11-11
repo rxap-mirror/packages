@@ -298,7 +298,7 @@
       },
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.11-dev.1"
+        "version": "16.0.11-dev.2"
       },
       {
         "package": "@rxap/keycloak",
@@ -370,7 +370,7 @@
       },
       {
         "package": "@rxap/nest-open-api",
-        "version": "10.5.1-dev.2"
+        "version": "10.5.1-dev.3"
       },
       {
         "package": "@rxap/nest-rabbitmq",
@@ -538,11 +538,11 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "19.1.6-dev.3"
+        "version": "19.1.6-dev.4"
       },
       {
         "package": "@rxap/plugin-open-api",
-        "version": "19.1.8-dev.3"
+        "version": "19.1.8-dev.4"
       },
       {
         "package": "@rxap/plugin-storybook",
@@ -598,7 +598,7 @@
       },
       {
         "package": "@rxap/schematics-open-api",
-        "version": "18.0.9-dev.3"
+        "version": "18.0.9-dev.4"
       },
       {
         "package": "@rxap/schematics-ts-morph",
@@ -662,7 +662,7 @@
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "19.0.9-dev.3"
+        "version": "19.0.9-dev.4"
       },
       {
         "package": "@rxap/workspace-ts-morph",
