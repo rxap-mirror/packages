@@ -1,5 +1,5 @@
 <dialog #dialog
-        class="max-w-6xl rounded overflow-auto drop-shadow-2xl dark:bg-black dark:text-white flex flex-col gap-3 p-6">
+        class="max-w-6xl rounded overflow-auto drop-shadow-2xl bg-white text-black dark:bg-black dark:text-white flex flex-col gap-3 p-6">
   <h2 class="text-2xl font-bold" i18n>A new application version is available</h2>
   <ng-container [ngSwitch]="$any(updateAvailableEvent).type">
     <table *ngSwitchCase="'VERSION_DETECTED'" class="table-auto">
