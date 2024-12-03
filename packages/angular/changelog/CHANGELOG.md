@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.8-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@18.0.7...@rxap/ngx-changelog@18.0.8-dev.0) (2024-12-03)
+
+### Bug Fixes
+
+- ensure the proper theme color is used ([f6f0a9f](https://gitlab.com/rxap/packages/commit/f6f0a9f5ff667cf5eff57d9fded13b89ccd8ffc7))
+
 ## [18.0.7](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@18.0.7-dev.0...@rxap/ngx-changelog@18.0.7) (2024-10-28)
 
 **Note:** Version bump only for package @rxap/ngx-changelog
