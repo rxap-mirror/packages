@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "IndexExport executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "generateRootExport": {
+      "type": "boolean",
+      "default": true,
+      "description": "Generate index.ts in the source root of the project"
+    }
+  },
+  "required": []
+}

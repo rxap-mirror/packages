@@ -29,6 +29,11 @@
       "implementation": "./src/executors/node-modules-linking/executor",
       "schema": "./src/executors/node-modules-linking/schema.json",
       "description": "node-modules-linking executor"
+    },
+    "index-export": {
+      "implementation": "./src/executors/index-export/executor",
+      "schema": "./src/executors/index-export/schema.json",
+      "description": "index-export executor"
     }
   }
 }

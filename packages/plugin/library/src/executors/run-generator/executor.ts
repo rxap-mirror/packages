@@ -67,7 +67,7 @@ function extractFlattenOptions(options: Record<string, any>): Record<string, any
   return extracted;
 }
 
-export default async function runExecutor(options: RunGeneratorExecutorSchema, context: ExecutorContext) {
+export async function runExecutor(options: RunGeneratorExecutorSchema, context: ExecutorContext) {
   console.log('Executor ran for RunGenerator', options);
 
   let command = `nx g ${ options.generator }`;
@@ -133,3 +133,5 @@ export default async function runExecutor(options: RunGeneratorExecutorSchema, c
     __unparsed__: [],
   }, context);
 }
+
+export default runExecutor;
