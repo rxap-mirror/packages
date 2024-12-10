@@ -1,5 +1,5 @@
 {
-  "version": "18.0.8",
+  "version": "18.0.9-dev.0",
   "name": "@rxap/service-worker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,8 +10,8 @@
     "@angular/common": "^18.2.0",
     "@angular/core": "^18.2.0",
     "@angular/service-worker": "^18.2.0",
-    "@rxap/environment": "^18.0.7",
-    "@rxap/life-cycle": "^18.0.7",
+    "@rxap/environment": "^18.0.8-dev.0",
+    "@rxap/life-cycle": "^18.0.8-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -57,15 +57,15 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/life-cycle",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.0"
+        "version": "16.4.1-dev.0"
       }
     ]
   },

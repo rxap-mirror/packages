@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.8-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@18.0.7...@rxap/dialog@18.0.8-dev.0) (2024-12-10)
+
+**Note:** Version bump only for package @rxap/dialog
+
 ## [18.0.7](https://gitlab.com/rxap/packages/compare/@rxap/dialog@18.0.7-dev.0...@rxap/dialog@18.0.7) (2024-10-28)
 
 **Note:** Version bump only for package @rxap/dialog

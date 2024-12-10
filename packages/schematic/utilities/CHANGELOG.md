@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.10-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@18.0.9...@rxap/schematics-utilities@18.0.10-dev.0) (2024-12-10)
+
+**Note:** Version bump only for package @rxap/schematics-utilities
+
 ## [18.0.9](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@18.0.9-dev.1...@rxap/schematics-utilities@18.0.9) (2024-12-10)
 
 **Note:** Version bump only for package @rxap/schematics-utilities

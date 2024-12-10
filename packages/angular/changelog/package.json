@@ -1,5 +1,5 @@
 {
-  "version": "18.0.8",
+  "version": "18.0.9-dev.0",
   "name": "@rxap/ngx-changelog",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,9 +10,9 @@
     "@angular/common": "^18.2.0",
     "@angular/core": "^18.2.0",
     "@angular/forms": "^18.2.0",
-    "@rxap/directives": "^18.0.7",
-    "@rxap/environment": "^18.0.7",
-    "@rxap/open-api": "^18.0.9",
+    "@rxap/directives": "^18.0.8-dev.0",
+    "@rxap/environment": "^18.0.8-dev.0",
+    "@rxap/open-api": "^18.0.10-dev.0",
     "ngx-markdown": "^16.0.0",
     "rxjs": "^7.8.1"
   },
@@ -66,59 +66,59 @@
       },
       {
         "package": "@rxap/config",
-        "version": "18.2.2"
+        "version": "18.2.3-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "18.1.5"
+        "version": "18.1.6-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.10"
+        "version": "1.1.11-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.10"
+        "version": "16.0.11-dev.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.9"
+        "version": "18.0.10-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.9"
+        "version": "1.1.10-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.11"
+        "version": "1.0.12-dev.0"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.10"
+        "version": "1.1.11-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "18.0.7"
+        "version": "18.0.8-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.0"
+        "version": "16.4.1-dev.0"
       }
     ]
   },

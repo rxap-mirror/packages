@@ -1,12 +1,12 @@
 {
-  "version": "19.1.5",
+  "version": "19.1.6-dev.0",
   "name": "@rxap/plugin-application",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.8.14",
-    "@rxap/plugin-utilities": "^19.0.10",
-    "@rxap/utilities": "^16.4.0",
-    "@rxap/workspace-utilities": "^19.5.0",
+    "@rxap/plugin-utilities": "^19.0.11-dev.0",
+    "@rxap/utilities": "^16.4.1-dev.0",
+    "@rxap/workspace-utilities": "^19.5.1-dev.0",
     "handlebars": "4.7.8",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
