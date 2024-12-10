@@ -57,18 +57,20 @@ if [[ "$PUBLISH_MODE" == "auto" ]]; then
 
   echo -e "${BLUE}Run the fix-dependencies target${NC}"
 
-  yarn nx reset
+ # yarn nx reset
 
 #  yarn nx run-many \
 #    --projects="${changed_projects}" \
 #    --parallel 8 \
 #    --target="fix-dependencies"
 
-  yarn nx run-many \
-    --target="fix-dependencies"
+#   yarn nx run-many \
+#     --target="fix-dependencies"
 
-  echo -e "${BLUE}add changes to git${NC}"
-  git add .
+  #nx g @rxap/plugin-library:fix-dependencies --strict='true' --onlyDependencies='true' --verbose
+
+#   echo -e "${BLUE}add changes to git${NC}"
+#   git add .
 
 else
 
