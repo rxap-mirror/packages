@@ -16,8 +16,9 @@ describe('@rxap/remote-method/directive/button', () => {
   describe('HttpRemoteMethodDirective', () => {
 
     @Component({
-      template: '<button rxapHttpRemoteMethod="test"></button>',
-    })
+    template: '<button rxapHttpRemoteMethod="test"></button>',
+    standalone: false
+})
     class TestComponent {
     }
 

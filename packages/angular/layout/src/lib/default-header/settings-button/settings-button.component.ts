@@ -38,20 +38,19 @@ import {
 import { SettingsMenuItem } from '../../types';
 
 @Component({
-  selector: 'rxap-settings-button',
-  standalone: true,
-  templateUrl: './settings-button.component.html',
-  styleUrls: [ './settings-button.component.scss' ],
-  imports: [
-    MatIconButton,
-    MatIcon,
-    MatMenu,
-    MatMenuTrigger,
-    MatMenuItem,
-    CdkPortalOutlet,
-    IconDirective,
-    NgIf,
-  ],
+    selector: 'rxap-settings-button',
+    templateUrl: './settings-button.component.html',
+    styleUrls: ['./settings-button.component.scss'],
+    imports: [
+        MatIconButton,
+        MatIcon,
+        MatMenu,
+        MatMenuTrigger,
+        MatMenuItem,
+        CdkPortalOutlet,
+        IconDirective,
+        NgIf,
+    ]
 })
 export class SettingsButtonComponent {
 

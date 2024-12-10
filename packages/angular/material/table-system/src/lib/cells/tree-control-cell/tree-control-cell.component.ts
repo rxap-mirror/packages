@@ -13,17 +13,16 @@ import { RowDataWithNode } from '@rxap/data-source/table/tree';
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'rxap-tree-control-cell, td[rxap-tree-control-cell]',
-  templateUrl: './tree-control-cell.component.html',
-  styleUrls: [ './tree-control-cell.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    IconDirective,
-    NgIf,
-  ],
+    selector: 'rxap-tree-control-cell, td[rxap-tree-control-cell]',
+    templateUrl: './tree-control-cell.component.html',
+    styleUrls: ['./tree-control-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatButtonModule,
+        MatIconModule,
+        IconDirective,
+        NgIf,
+    ]
 })
 export class TreeControlCellComponent implements OnInit, DoCheck {
 

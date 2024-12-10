@@ -20,38 +20,34 @@ import { AccordionHeaderComponent } from './accordion-header/accordion-header.co
 import { SimpleAccordionMethod } from './simple-accordion.method';
 
 @Component({
-  selector: 'rxap-simple-accordion',
-  templateUrl: './simple-accordion.component.html',
-  styleUrls: ['./simple-accordion.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    FirstPanelComponent,
-
-    SecondPanelComponent,
-
-    ThirdPanelComponent,
-
-    DataSourceErrorComponent,
-    DataSourceDirective,
-    NavigateBackButtonComponent,
-    MatProgressBarModule,
-    MatDividerModule,
-    MatExpansionModule,
-    PersistentAccordionDirective,
-    CommonModule,
-    AccordionHeaderComponent,
-    AsyncPipe,
-    NgIf,
-  ],
-  providers: [
-    SimpleAccordionDataSource,
-    {
-      provide: ACCORDION_DATA_SOURCE,
-      useExisting: SimpleAccordionDataSource,
-    },
-    SimpleAccordionMethod,
-  ],
+    selector: 'rxap-simple-accordion',
+    templateUrl: './simple-accordion.component.html',
+    styleUrls: ['./simple-accordion.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        FirstPanelComponent,
+        SecondPanelComponent,
+        ThirdPanelComponent,
+        DataSourceErrorComponent,
+        DataSourceDirective,
+        NavigateBackButtonComponent,
+        MatProgressBarModule,
+        MatDividerModule,
+        MatExpansionModule,
+        PersistentAccordionDirective,
+        CommonModule,
+        AccordionHeaderComponent,
+        AsyncPipe,
+        NgIf,
+    ],
+    providers: [
+        SimpleAccordionDataSource,
+        {
+            provide: ACCORDION_DATA_SOURCE,
+            useExisting: SimpleAccordionDataSource,
+        },
+        SimpleAccordionMethod,
+    ]
 })
 export class SimpleAccordionComponent {
 

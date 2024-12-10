@@ -26,44 +26,37 @@ import { AccordionHeaderComponent } from './accordion-header/accordion-header.co
 import { ComplexAccordionMethod } from './complex-accordion.method';
 
 @Component({
-  selector: 'rxap-complex-accordion',
-  templateUrl: './complex-accordion.component.html',
-  styleUrls: ['./complex-accordion.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DataGridDemoPanelComponent,
-
-    DataGridCollectionDemoPanelComponent,
-
-    EditDataGridDemoPanelComponent,
-
-    EditDataGridCollectionDemoPanelComponent,
-
-    TableDemoPanelComponent,
-
-    TreeTableDemoPanelComponent,
-
-    DataSourceErrorComponent,
-    DataSourceDirective,
-    NavigateBackButtonComponent,
-    MatProgressBarModule,
-    MatDividerModule,
-    MatExpansionModule,
-    PersistentAccordionDirective,
-    CommonModule,
-    AccordionHeaderComponent,
-    AsyncPipe,
-    NgIf,
-  ],
-  providers: [
-    ComplexAccordionDataSource,
-    {
-      provide: ACCORDION_DATA_SOURCE,
-      useExisting: ComplexAccordionDataSource,
-    },
-    ComplexAccordionMethod,
-  ],
+    selector: 'rxap-complex-accordion',
+    templateUrl: './complex-accordion.component.html',
+    styleUrls: ['./complex-accordion.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DataGridDemoPanelComponent,
+        DataGridCollectionDemoPanelComponent,
+        EditDataGridDemoPanelComponent,
+        EditDataGridCollectionDemoPanelComponent,
+        TableDemoPanelComponent,
+        TreeTableDemoPanelComponent,
+        DataSourceErrorComponent,
+        DataSourceDirective,
+        NavigateBackButtonComponent,
+        MatProgressBarModule,
+        MatDividerModule,
+        MatExpansionModule,
+        PersistentAccordionDirective,
+        CommonModule,
+        AccordionHeaderComponent,
+        AsyncPipe,
+        NgIf,
+    ],
+    providers: [
+        ComplexAccordionDataSource,
+        {
+            provide: ACCORDION_DATA_SOURCE,
+            useExisting: ComplexAccordionDataSource,
+        },
+        ComplexAccordionMethod,
+    ]
 })
 export class ComplexAccordionComponent {
 

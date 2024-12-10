@@ -42,31 +42,30 @@ import { Subject } from 'rxjs';
 import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
 
 @Component({
-  selector: 'rxap-upload-button',
-  templateUrl: './upload-button.component.html',
-  styleUrls: [ './upload-button.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: { class: 'rxap-upload-button' },
-  providers: [
-    {
-      provide: MatFormFieldControl,
-      useExisting: UploadButtonComponent,
-    },
-  ],
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    CdkOverlayOrigin,
-    MethodDirective,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatTooltipModule,
-    CdkConnectedOverlay,
-    AsyncPipe,
-    ReadAsDataURLPipe,
-    MatSnackBarModule,
-  ],
+    selector: 'rxap-upload-button',
+    templateUrl: './upload-button.component.html',
+    styleUrls: ['./upload-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+  
+    host: { class: 'rxap-upload-button' },
+    providers: [
+        {
+            provide: MatFormFieldControl,
+            useExisting: UploadButtonComponent,
+        },
+    ],
+    imports: [
+        MatButtonModule,
+        CdkOverlayOrigin,
+        MethodDirective,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatTooltipModule,
+        CdkConnectedOverlay,
+        AsyncPipe,
+        ReadAsDataURLPipe,
+        MatSnackBarModule,
+    ]
 })
 export class UploadButtonComponent implements ControlValueAccessor, MatFormFieldControl<File>, OnDestroy {
 

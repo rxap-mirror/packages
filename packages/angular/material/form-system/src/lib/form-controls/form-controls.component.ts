@@ -38,19 +38,18 @@ import { MatButtonModule } from '@angular/material/button';
 declare const $localize: any;
 
 @Component({
-  selector: 'rxap-form-controls',
-  templateUrl: './form-controls.component.html',
-  styleUrls: [ './form-controls.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    NgClass,
-    MatProgressSpinnerModule,
-    NgIf,
-    AsyncPipe,
-    MatSnackBarModule,
-  ],
+    selector: 'rxap-form-controls',
+    templateUrl: './form-controls.component.html',
+    styleUrls: ['./form-controls.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatButtonModule,
+        NgClass,
+        MatProgressSpinnerModule,
+        NgIf,
+        AsyncPipe,
+        MatSnackBarModule,
+    ]
 })
 export class FormControlsComponent<FormData> implements OnInit {
   public submitting$!: Observable<boolean>;

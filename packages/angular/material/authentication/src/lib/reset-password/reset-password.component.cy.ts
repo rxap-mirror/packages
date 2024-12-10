@@ -13,11 +13,10 @@ describe(ResetPasswordComponent.name, () => {
         <rxap-reset-password></rxap-reset-password>
       </rxap-authentication-container>
     `,
-    standalone: true,
     imports: [
-      AuthenticationContainerComponent, ResetPasswordComponent,
-    ],
-  })
+        AuthenticationContainerComponent, ResetPasswordComponent,
+    ]
+})
   class TestComponent {}
 
   beforeEach(() => {

@@ -18,13 +18,12 @@ import { CdkTable } from '@angular/cdk/table';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'th[rxap-checkbox-header-cell]',
-  templateUrl: './checkbox-header-cell.component.html',
-  styleUrls: [ './checkbox-header-cell.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ MatCheckboxModule, AsyncPipe ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'th[rxap-checkbox-header-cell]',
+    templateUrl: './checkbox-header-cell.component.html',
+    styleUrls: ['./checkbox-header-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatCheckboxModule, AsyncPipe]
 })
 export class CheckboxHeaderCellComponent<Data extends Record<string, any>> implements OnInit {
 

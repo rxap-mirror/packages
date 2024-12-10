@@ -10,8 +10,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/marker-io/ng-package.json",
-        "tailwindConfig": "packages/angular/marker-io/tailwind.config.js"
+        "project": "packages/angular/marker-io/ng-package.json"
       },
       "configurations": {
         "production": {

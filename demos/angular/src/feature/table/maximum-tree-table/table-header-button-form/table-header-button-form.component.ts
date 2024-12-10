@@ -18,29 +18,26 @@ import { CommonModule } from '@angular/common';
 
 
 @Component({
-  selector: 'rxap-table-header-button-form',
-  templateUrl: './table-header-button-form.component.html',
-  styleUrls: [ './table-header-button-form.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MaterialFormSystemModule,
-    FormControlsComponent,
-    RxapFormsModule,
-
-  ],
-  providers: [
-    FormProviders,
-    FormComponentProviders,
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: {
-        appearance: 'fill',
-      },
-    },
-
-  ],
+    selector: 'rxap-table-header-button-form',
+    templateUrl: './table-header-button-form.component.html',
+    styleUrls: ['./table-header-button-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MaterialFormSystemModule,
+        FormControlsComponent,
+        RxapFormsModule,
+    ],
+    providers: [
+        FormProviders,
+        FormComponentProviders,
+        {
+            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+            useValue: {
+                appearance: 'fill',
+            },
+        },
+    ]
 })
 export class TableHeaderButtonFormComponent {}

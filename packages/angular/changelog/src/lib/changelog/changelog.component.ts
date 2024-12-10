@@ -17,17 +17,16 @@ import { ChangelogControllerGetVersionRemoteMethod } from '../openapi/remote-met
 import { ChangelogControllerListRemoteMethod } from '../openapi/remote-methods/changelog-controller-list.remote-method';
 
 @Component({
-  selector: 'rxap-changelog',
-  standalone: true,
-  imports: [
-    MethodTemplateDirective,
-    MarkdownModule,
-    NgForOf,
-    NgIf,
-    NgClass,
-  ],
-  templateUrl: './changelog.component.html',
-  styleUrls: [ './changelog.component.scss' ],
+    selector: 'rxap-changelog',
+    imports: [
+        MethodTemplateDirective,
+        MarkdownModule,
+        NgForOf,
+        NgIf,
+        NgClass,
+    ],
+    templateUrl: './changelog.component.html',
+    styleUrls: ['./changelog.component.scss']
 })
 export class ChangelogComponent implements OnInit {
 

@@ -41,12 +41,11 @@ import { LoadingIndicatorService } from '@rxap/services';
 import { isDefined } from '@rxap/rxjs';
 
 @Component({
-  selector: 'rxap-window-content',
-  templateUrl: './window-content.component.html',
-  styleUrls: [ './window-content.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.Default,
-  standalone: true,
-  imports: [ PortalModule ],
+    selector: 'rxap-window-content',
+    templateUrl: './window-content.component.html',
+    styleUrls: ['./window-content.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
+    imports: [PortalModule]
 })
 export class WindowContentComponent implements AfterViewInit, OnInit {
 

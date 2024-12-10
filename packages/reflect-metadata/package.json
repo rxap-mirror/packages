@@ -3,7 +3,7 @@
   "name": "@rxap/reflect-metadata",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/devkit": "20.2.1",
     "@rxap/utilities": "^16.4.1-dev.0",
     "reflect-metadata": "0.1.13",
     "tslib": "2.6.2"

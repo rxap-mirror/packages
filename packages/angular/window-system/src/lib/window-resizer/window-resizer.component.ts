@@ -31,12 +31,11 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'rxap-window-resizer',
-  templateUrl: './window-resizer.component.html',
-  styleUrls: [ './window-resizer.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ MatIconModule, AsyncPipe, NgClass ],
+    selector: 'rxap-window-resizer',
+    templateUrl: './window-resizer.component.html',
+    styleUrls: ['./window-resizer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatIconModule, AsyncPipe, NgClass]
 })
 export class WindowResizerComponent implements OnInit, OnDestroy {
 

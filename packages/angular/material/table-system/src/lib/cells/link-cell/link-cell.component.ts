@@ -13,13 +13,12 @@ import {
 } from '@angular/common';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'td[rxap-link-cell]',
-  templateUrl: './link-cell.component.html',
-  styleUrls: [ './link-cell.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ NgIf, MatTooltipModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'td[rxap-link-cell]',
+    templateUrl: './link-cell.component.html',
+    styleUrls: ['./link-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgIf, MatTooltipModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault]
 })
 export class LinkCellComponent {
 

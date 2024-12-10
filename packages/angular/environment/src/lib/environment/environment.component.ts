@@ -11,14 +11,13 @@ import { Environment } from '../environment';
 import { RXAP_ENVIRONMENT } from './tokens';
 
 @Component({
-  selector: 'rxap-environment',
-  templateUrl: './environment.component.html',
-  styleUrls: [ './environment.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: { class: 'rxap-environment' },
-  standalone: true,
-  imports: [ NgIf, DatePipe ],
+    selector: 'rxap-environment',
+    templateUrl: './environment.component.html',
+    styleUrls: ['./environment.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+  
+    host: { class: 'rxap-environment' },
+    imports: [NgIf, DatePipe]
 })
 export class EnvironmentComponent {
 

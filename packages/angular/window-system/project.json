@@ -10,8 +10,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/window-system/ng-package.json",
-        "tailwindConfig": "packages/angular/window-system/tailwind.config.js"
+        "project": "packages/angular/window-system/ng-package.json"
       },
       "configurations": {
         "production": {

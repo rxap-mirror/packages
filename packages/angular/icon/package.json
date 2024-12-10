@@ -3,15 +3,15 @@
   "name": "@rxap/icon",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/devkit": "20.2.1",
+    "@rxap/utilities": "^16.4.1-dev.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^18.2.0",
-    "@angular/core": "^18.2.0",
-    "@angular/material": "^18.2.0",
-    "@angular/platform-browser": "^18.2.0",
-    "@rxap/utilities": "^16.4.1-dev.0"
+    "@angular/common": "19.0.3",
+    "@angular/core": "19.0.3",
+    "@angular/material": "19.0.2",
+    "@angular/platform-browser": "19.0.3"
   },
   "author": {
     "name": "Merzough Münker",

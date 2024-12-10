@@ -102,18 +102,17 @@ describe('@rxap/directives/material/expansion', () => {
       let directive: PersistentTabGroupDirective;
 
       @Component({
-        template: `
+    template: `
           <mat-tab-group rxapPersistentTabGroup="name">
             <mat-tab label="1"></mat-tab>
             <mat-tab label="1"></mat-tab>
             <mat-tab label="1"></mat-tab>
           </mat-tab-group>`,
-        standalone: true,
-        imports: [
-          MatTabsModule,
-          PersistentTabGroupDirective,
-        ],
-      })
+    imports: [
+        MatTabsModule,
+        PersistentTabGroupDirective,
+    ]
+})
       class TestComponent {}
 
       beforeEach(async () => {

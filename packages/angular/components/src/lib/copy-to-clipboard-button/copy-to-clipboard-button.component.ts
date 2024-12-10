@@ -13,17 +13,16 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'rxap-copy-to-clipboard-button',
-  templateUrl: './copy-to-clipboard-button.component.html',
-  styleUrls: [ './copy-to-clipboard-button.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    ClipboardModule,
-    MatIconModule,
-    MatSnackBarModule,
-  ],
+    selector: 'rxap-copy-to-clipboard-button',
+    templateUrl: './copy-to-clipboard-button.component.html',
+    styleUrls: ['./copy-to-clipboard-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatButtonModule,
+        ClipboardModule,
+        MatIconModule,
+        MatSnackBarModule,
+    ]
 })
 export class CopyToClipboardButtonComponent {
   @Input()

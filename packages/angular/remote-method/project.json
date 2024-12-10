@@ -10,8 +10,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/remote-method/ng-package.json",
-        "tailwindConfig": "packages/angular/remote-method/tailwind.config.js"
+        "project": "packages/angular/remote-method/ng-package.json"
       },
       "configurations": {
         "production": {

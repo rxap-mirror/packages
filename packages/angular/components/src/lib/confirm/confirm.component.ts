@@ -8,12 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'rxap-confirm',
-  templateUrl: './confirm.component.html',
-  styleUrls: [ './confirm.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ MatButtonModule, MatIconModule ],
+    selector: 'rxap-confirm',
+    templateUrl: './confirm.component.html',
+    styleUrls: ['./confirm.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatButtonModule, MatIconModule]
 })
 export class ConfirmComponent {
 

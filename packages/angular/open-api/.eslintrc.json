@@ -5,7 +5,8 @@
     {
       "files": ["*.ts"],
       "rules": {
-        "no-prototype-builtins": "warn"
+        "no-prototype-builtins": "warn",
+        "@angular-eslint/prefer-standalone": "off"
       }
     },
     {

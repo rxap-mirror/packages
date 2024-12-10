@@ -1,8 +1,4 @@
-import {
-  APP_INITIALIZER,
-  isDevMode,
-  StaticProvider,
-} from '@angular/core';
+import { isDevMode, StaticProvider, inject, provideAppInitializer } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { coerceArray } from '@rxap/utilities';
@@ -32,12 +28,10 @@ export function ProvideIconAssetPath(pathList: string[] = [
   'custom.svg',
 ]): StaticProvider {
   return [
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: LoadIconSetsFactory,
-      deps: [ MatIconRegistry, DomSanitizer, RXAP_ICON_ASSET_PATH ],
-    },
+    provideAppInitializer(() => {
+        const initializerFn = (LoadIconSetsFactory)(inject(MatIconRegistry), inject(DomSanitizer), inject(RXAP_ICON_ASSET_PATH));
+        return initializerFn();
+      }),
     {
       provide: RXAP_ICON_ASSET_PATH,
       useValue: pathList,

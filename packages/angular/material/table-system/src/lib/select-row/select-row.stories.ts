@@ -7,14 +7,14 @@ import { SelectRowModule } from './select-row.module';
 import { SelectRowService } from './select-row.service';
 
 @Component({
-  styles: [
-    `
+    styles: [
+        `
       .mat-column-name {
         padding-left: 16px;
       }
     `,
-  ],
-  template: `
+    ],
+    template: `
     <table mat-table [dataSource]="data" #matTable="matTable">
       <ng-container matColumnDef="select">
         <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
@@ -41,6 +41,7 @@ import { SelectRowService } from './select-row.service';
       Selected rows: <span *rxapSelectedRows="let rows">{{ rows | json }}</span>
     </div>
   `,
+    standalone: false
 })
 class DemoTableComponent {
   public data = [

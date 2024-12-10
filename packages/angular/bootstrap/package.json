@@ -3,17 +3,17 @@
   "name": "@rxap/ngx-bootstrap",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/angular": "20.2.1",
+    "@nx/devkit": "20.2.1",
+    "@rxap/config": "^18.2.3-dev.0",
+    "@rxap/environment": "^18.0.8-dev.0",
+    "ngx-logger": "5.0.12",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^18.2.0",
-    "@angular/platform-browser": "^18.2.0",
-    "@angular/platform-browser-dynamic": "^18.2.0",
-    "@nx/angular": "^19.8.14",
-    "@rxap/config": "^18.2.3-dev.0",
-    "@rxap/environment": "^18.0.8-dev.0",
-    "ngx-logger": "^5.0.12"
+    "@angular/core": "19.0.3",
+    "@angular/platform-browser": "19.0.3",
+    "@angular/platform-browser-dynamic": "19.0.3"
   },
   "author": {
     "name": "Merzough Münker",

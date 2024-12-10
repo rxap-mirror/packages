@@ -1,14 +1,9 @@
-import {
-  APP_INITIALIZER,
-  Provider,
-} from '@angular/core';
+import { Provider, inject, provideAppInitializer } from '@angular/core';
 import { ChangelogService } from './changelog.service';
 
 export function ProvideChangelog(): Provider {
-  return {
-    provide: APP_INITIALIZER,
-    multi: true,
-    deps: [ ChangelogService ],
-    useFactory: (changelogService: ChangelogService) => () => changelogService.showChangelogDialogIfNewVersion(),
-  };
+  return provideAppInitializer(() => {
+        const initializerFn = ((changelogService: ChangelogService) => () => changelogService.showChangelogDialogIfNewVersion())(inject(ChangelogService));
+        return initializerFn();
+      });
 }

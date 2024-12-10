@@ -103,7 +103,7 @@ import {
     },
     // endregion
   ],
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+
   host: { '(reset)': 'onReset()' },
   // eslint-disable-next-line @angular-eslint/no-outputs-metadata-property
   outputs: [ 'ngSubmit' ],

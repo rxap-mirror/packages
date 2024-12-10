@@ -15,20 +15,19 @@ import {
 } from '@angular/common';
 
 @Component({
-  selector: 'rxap-window-task',
-  templateUrl: './window-task.component.html',
-  styleUrls: [ './window-task.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgClass,
-    NgIf,
-    MatIconModule,
-    IconDirective,
-    MatButtonModule,
-    StopPropagationDirective,
-    AsyncPipe,
-  ],
+    selector: 'rxap-window-task',
+    templateUrl: './window-task.component.html',
+    styleUrls: ['./window-task.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgClass,
+        NgIf,
+        MatIconModule,
+        IconDirective,
+        MatButtonModule,
+        StopPropagationDirective,
+        AsyncPipe,
+    ]
 })
 export class WindowTaskComponent {
 

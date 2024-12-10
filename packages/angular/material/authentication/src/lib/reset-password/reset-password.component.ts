@@ -25,36 +25,35 @@ import { fadeAnimation } from '../fade-animation';
 import { ResetPasswordFormProviders } from './reset-password.form';
 
 @Component({
-  selector: 'rxap-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: [ './reset-password.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    ResetPasswordFormProviders,
-    {
-      provide: ErrorStateMatcher,
-      useClass: ShowOnDirtyErrorStateMatcher,
-    },
-  ],
-  animations: [
-    fadeAnimation,
-  ],
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    FormDirective,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    NgIf,
-    MatButtonModule,
-    FormControlMarkDirtyDirective,
-    FormSubmitFailedDirective,
-    FormSubmittingDirective,
-    MatProgressBarModule,
-    MatSnackBarModule,
-    ControlErrorDirective,
-  ],
+    selector: 'rxap-reset-password',
+    templateUrl: './reset-password.component.html',
+    styleUrls: ['./reset-password.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        ResetPasswordFormProviders,
+        {
+            provide: ErrorStateMatcher,
+            useClass: ShowOnDirtyErrorStateMatcher,
+        },
+    ],
+    animations: [
+        fadeAnimation,
+    ],
+    imports: [
+        ReactiveFormsModule,
+        FormDirective,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        NgIf,
+        MatButtonModule,
+        FormControlMarkDirtyDirective,
+        FormSubmitFailedDirective,
+        FormSubmittingDirective,
+        MatProgressBarModule,
+        MatSnackBarModule,
+        ControlErrorDirective,
+    ]
 })
 export class ResetPasswordComponent {
 }

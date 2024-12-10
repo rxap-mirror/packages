@@ -11,11 +11,10 @@ import {
 import { LargeWindowComponent } from './large-window/large-window.component';
 
 @Component({
-  selector: 'rxap-window-demo',
-  standalone: true,
-  imports: [ CommonModule, MatButtonModule, RxapWindowSystemModule ],
-  templateUrl: './window-demo.component.html',
-  styleUrls: ['./window-demo.component.scss'],
+    selector: 'rxap-window-demo',
+    imports: [CommonModule, MatButtonModule, RxapWindowSystemModule],
+    templateUrl: './window-demo.component.html',
+    styleUrls: ['./window-demo.component.scss']
 })
 export class WindowDemoComponent {
 

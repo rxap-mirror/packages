@@ -13,11 +13,10 @@ import {
 } from 'rxjs';
 
 @Component({
-  selector: 'rxap-http-error',
-  standalone: true,
-  imports: [ CommonModule, MatButtonModule ],
-  templateUrl: './http-error.component.html',
-  styleUrls: [ './http-error.component.scss' ],
+    selector: 'rxap-http-error',
+    imports: [CommonModule, MatButtonModule],
+    templateUrl: './http-error.component.html',
+    styleUrls: ['./http-error.component.scss']
 })
 export class HttpErrorComponent {
 

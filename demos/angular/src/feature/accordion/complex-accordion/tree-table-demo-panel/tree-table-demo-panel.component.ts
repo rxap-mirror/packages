@@ -13,20 +13,19 @@ import { TreeTableDemoPanelDataSource } from './tree-table-demo-panel.data-sourc
 import { TreeTableDemoPanelMethod } from './tree-table-demo-panel.method';
 
 @Component({
-  selector: 'rxap-tree-table-demo-panel',
-  templateUrl: './tree-table-demo-panel.component.html',
-  styleUrls: ['./tree-table-demo-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    TreeTableDemoTableComponent,
-    DataSourceDirective,
-    MatProgressBarModule,
-    DataSourceErrorComponent,
-    AsyncPipe,
-    JsonPipe,
-  ],
-  providers: [TreeTableDemoPanelDataSource, TreeTableDemoPanelMethod],
+    selector: 'rxap-tree-table-demo-panel',
+    templateUrl: './tree-table-demo-panel.component.html',
+    styleUrls: ['./tree-table-demo-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        TreeTableDemoTableComponent,
+        DataSourceDirective,
+        MatProgressBarModule,
+        DataSourceErrorComponent,
+        AsyncPipe,
+        JsonPipe,
+    ],
+    providers: [TreeTableDemoPanelDataSource, TreeTableDemoPanelMethod]
 })
 export class TreeTableDemoPanelComponent {
   public readonly parameters$: Observable<{ uuid: string }>;

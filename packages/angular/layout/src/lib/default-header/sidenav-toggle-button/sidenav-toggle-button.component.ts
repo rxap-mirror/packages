@@ -9,15 +9,14 @@ import { MatIcon } from '@angular/material/icon';
 import { LayoutService } from '../../layout.service';
 
 @Component({
-  selector: 'rxap-sidenav-toggle-button',
-  templateUrl: './sidenav-toggle-button.component.html',
-  styleUrls: [ './sidenav-toggle-button.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatIcon,
-    MatIconButton,
-  ],
+    selector: 'rxap-sidenav-toggle-button',
+    templateUrl: './sidenav-toggle-button.component.html',
+    styleUrls: ['./sidenav-toggle-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatIcon,
+        MatIconButton,
+    ]
 })
 export class SidenavToggleButtonComponent {
 

@@ -9,7 +9,6 @@ import { FormDirective } from './form.directive';
 
 @Directive({
   selector: '[rxapFormReset]',
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '(click)': 'onClick()',
     '(confirmed)': 'onConfirm()',

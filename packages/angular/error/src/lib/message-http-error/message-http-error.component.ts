@@ -12,15 +12,14 @@ import { RXAP_ERROR_DIALOG_ERROR } from '../tokens';
 import { MessageHttpErrorDialogData } from './message-http-error-dialog-data';
 
 @Component({
-  selector: 'rxap-http-error-message',
-  templateUrl: './message-http-error.component.html',
-  styleUrls: [ './message-http-error.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgIf,
-    AnyHttpErrorComponent,
-  ],
+    selector: 'rxap-http-error-message',
+    templateUrl: './message-http-error.component.html',
+    styleUrls: ['./message-http-error.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgIf,
+        AnyHttpErrorComponent,
+    ]
 })
 export class MessageHttpErrorComponent implements IErrorDialogComponent<MessageHttpErrorDialogData> {
 

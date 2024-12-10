@@ -10,8 +10,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/oauth2-proxy/ng-package.json",
-        "tailwindConfig": "packages/angular/oauth2-proxy/tailwind.config.js"
+        "project": "packages/angular/oauth2-proxy/ng-package.json"
       },
       "configurations": {
         "production": {

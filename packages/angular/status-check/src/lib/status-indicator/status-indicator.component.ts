@@ -36,11 +36,10 @@ import { STATUS_INDICATOR_INTERVAL } from '../tokens';
 declare const $localize: any;
 
 @Component({
-  selector: 'rxap-status-indicator',
-  standalone: true,
-  imports: [ RouterLink, NgClass, MatTooltipModule ],
-  templateUrl: './status-indicator.component.html',
-  styleUrls: [ './status-indicator.component.scss' ],
+    selector: 'rxap-status-indicator',
+    imports: [RouterLink, NgClass, MatTooltipModule],
+    templateUrl: './status-indicator.component.html',
+    styleUrls: ['./status-indicator.component.scss']
 })
 export class StatusIndicatorComponent implements OnInit, OnDestroy {
 

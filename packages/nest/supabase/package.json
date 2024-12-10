@@ -3,13 +3,13 @@
   "name": "@rxap/nest-supabase",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/devkit": "20.2.1",
+    "@supabase/supabase-js": "2.38.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.3.8",
-    "@nestjs/config": "^3.2.2",
-    "@supabase/supabase-js": "^2.38.0"
+    "@nestjs/common": "10.3.8",
+    "@nestjs/config": "3.2.2"
   },
   "author": {
     "name": "Merzough Münker",

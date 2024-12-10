@@ -1,5 +1,7 @@
 import {
-  APP_INITIALIZER,
+  EnvironmentProviders,
+  inject,
+  provideAppInitializer,
   Provider,
 } from '@angular/core';
 import { PubSubService } from './pub-sub.service';
@@ -8,14 +10,12 @@ import {
   RXAP_PUB_SUB_DISABLE_GARBAGE_COLLECTOR,
 } from './tokens';
 
-export function ProvidePubSub(...providers: Provider[]): Provider[] {
+export function ProvidePubSub(...providers: Provider[]): Array<Provider | EnvironmentProviders> {
   return [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: (service: PubSubService) => () => service.startGarbageCollector(),
-      deps: [ PubSubService ],
-      multi: true,
-    },
+    provideAppInitializer(() => {
+        const initializerFn = ((service: PubSubService) => () => service.startGarbageCollector())(inject(PubSubService));
+        return initializerFn();
+      }),
     ...providers,
   ];
 }

@@ -32,26 +32,25 @@ import { SidenavFooterDirective } from './sidenav-footer.directive';
 import { SidenavHeaderDirective } from './sidenav-header.directive';
 
 @Component({
-  selector: 'rxap-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: [ './sidenav.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatIcon,
-    MatIconButton,
-    MatSidenav,
-    MatSidenavContainer,
-    MatSidenavContent,
-    NavigationComponent,
-    NgIf,
-    RouterOutlet,
-    NgClass,
-    NgStyle,
-    MatDivider,
-    NgTemplateOutlet,
-    MatButton,
-  ],
+    selector: 'rxap-sidenav',
+    templateUrl: './sidenav.component.html',
+    styleUrls: ['./sidenav.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatIcon,
+        MatIconButton,
+        MatSidenav,
+        MatSidenavContainer,
+        MatSidenavContent,
+        NavigationComponent,
+        NgIf,
+        RouterOutlet,
+        NgClass,
+        NgStyle,
+        MatDivider,
+        NgTemplateOutlet,
+        MatButton,
+    ]
 })
 export class SidenavComponent {
 

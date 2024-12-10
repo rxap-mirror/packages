@@ -12,8 +12,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/timeago/ng-package.json",
-        "tailwindConfig": "packages/angular/timeago/tailwind.config.js"
+        "project": "packages/angular/timeago/ng-package.json"
       },
       "configurations": {
         "production": {

@@ -13,12 +13,11 @@ import { SantizationPipe } from '@rxap/pipes/santization';
 import { MessageDialogData } from './types';
 
 @Component({
-  selector: 'rxap-message-dialog',
-  templateUrl: './message-dialog.component.html',
-  styleUrls: [ './message-dialog.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ MatDialogModule, MatButtonModule, NgFor, SantizationPipe ],
+    selector: 'rxap-message-dialog',
+    templateUrl: './message-dialog.component.html',
+    styleUrls: ['./message-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatDialogModule, MatButtonModule, NgFor, SantizationPipe]
 })
 export class MessageDialogComponent {
 

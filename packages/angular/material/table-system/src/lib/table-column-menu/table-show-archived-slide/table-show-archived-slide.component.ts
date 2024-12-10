@@ -17,12 +17,11 @@ import { TableFilterService } from '../../table-filter/table-filter.service';
 import { TableColumnMenuComponent } from '../table-column-menu.component';
 
 @Component({
-  selector: 'rxap-table-show-archived-slide',
-  templateUrl: './table-show-archived-slide.component.html',
-  styleUrls: [ './table-show-archived-slide.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ StopPropagationDirective, MatSlideToggleModule ],
+    selector: 'rxap-table-show-archived-slide',
+    templateUrl: './table-show-archived-slide.component.html',
+    styleUrls: ['./table-show-archived-slide.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [StopPropagationDirective, MatSlideToggleModule]
 })
 export class TableShowArchivedSlideComponent implements AfterViewInit {
 

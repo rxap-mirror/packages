@@ -18,13 +18,12 @@ import {
 } from '@angular/common';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'td[rxap-image-cell]',
-  templateUrl: './image-cell.component.html',
-  styleUrls: [ './image-cell.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ NgIf, NgClass, BackgroundImageDirective ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'td[rxap-image-cell]',
+    templateUrl: './image-cell.component.html',
+    styleUrls: ['./image-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgIf, NgClass, BackgroundImageDirective]
 })
 export class ImageCellComponent {
 

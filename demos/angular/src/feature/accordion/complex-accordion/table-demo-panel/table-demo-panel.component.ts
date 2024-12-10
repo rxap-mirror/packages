@@ -13,20 +13,19 @@ import { TableDemoPanelDataSource } from './table-demo-panel.data-source';
 import { TableDemoPanelMethod } from './table-demo-panel.method';
 
 @Component({
-  selector: 'rxap-table-demo-panel',
-  templateUrl: './table-demo-panel.component.html',
-  styleUrls: ['./table-demo-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    TableDemoTableComponent,
-    DataSourceDirective,
-    MatProgressBarModule,
-    DataSourceErrorComponent,
-    AsyncPipe,
-    JsonPipe,
-  ],
-  providers: [TableDemoPanelDataSource, TableDemoPanelMethod],
+    selector: 'rxap-table-demo-panel',
+    templateUrl: './table-demo-panel.component.html',
+    styleUrls: ['./table-demo-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        TableDemoTableComponent,
+        DataSourceDirective,
+        MatProgressBarModule,
+        DataSourceErrorComponent,
+        AsyncPipe,
+        JsonPipe,
+    ],
+    providers: [TableDemoPanelDataSource, TableDemoPanelMethod]
 })
 export class TableDemoPanelComponent {
   public readonly parameters$: Observable<{ uuid: string }>;

@@ -17,24 +17,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
-  selector: 'rxap-edit-data-grid-collection-demo-data-grid',
-  templateUrl: './edit-data-grid-collection-demo-data-grid.component.html',
-  styleUrls: [ './edit-data-grid-collection-demo-data-grid.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DataGridModule,
-    RxapFormsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatInputModule,
-    MatSlideToggleModule,
-  ],
-  providers: [
-
-    FormProviders,
-    FormComponentProviders,
-  ],
+    selector: 'rxap-edit-data-grid-collection-demo-data-grid',
+    templateUrl: './edit-data-grid-collection-demo-data-grid.component.html',
+    styleUrls: ['./edit-data-grid-collection-demo-data-grid.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DataGridModule,
+        RxapFormsModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatInputModule,
+        MatSlideToggleModule,
+    ],
+    providers: [
+        FormProviders,
+        FormComponentProviders,
+    ]
 })
 export class EditDataGridCollectionDemoDataGridComponent {
 

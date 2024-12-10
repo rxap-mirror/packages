@@ -33,18 +33,17 @@ import {
 import { tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'rxap-table-select-input',
-  templateUrl: './table-select-input.component.html',
-  styleUrls: [ './table-select-input.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: MatFormFieldControl,
-      useExisting: forwardRef(() => TableSelectInputComponent),
-    },
-  ],
-  standalone: true,
-  imports: [ NgClass, NgIf ],
+    selector: 'rxap-table-select-input',
+    templateUrl: './table-select-input.component.html',
+    styleUrls: ['./table-select-input.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+            provide: MatFormFieldControl,
+            useExisting: forwardRef(() => TableSelectInputComponent),
+        },
+    ],
+    imports: [NgClass, NgIf]
 })
 export class TableSelectInputComponent<Data extends Record<string, any> = Record<string, any>>
   extends ControlValueAccessor<Data>

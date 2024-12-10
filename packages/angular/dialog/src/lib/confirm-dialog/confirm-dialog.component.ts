@@ -16,12 +16,11 @@ export interface ConfirmDialogData {
 }
 
 @Component({
-  selector: 'rxap-confirm-dialog',
-  templateUrl: './confirm-dialog.component.html',
-  styleUrls: [ './confirm-dialog.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ MatDialogModule, MatButtonModule, SantizationPipe ],
+    selector: 'rxap-confirm-dialog',
+    templateUrl: './confirm-dialog.component.html',
+    styleUrls: ['./confirm-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatDialogModule, MatButtonModule, SantizationPipe]
 })
 export class ConfirmDialogComponent {
 

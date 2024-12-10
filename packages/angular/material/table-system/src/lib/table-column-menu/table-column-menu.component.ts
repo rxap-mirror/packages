@@ -20,21 +20,20 @@ import { coerceBoolean } from '@rxap/utilities';
 import { TableColumnOptionComponent } from './table-column-option/table-column-option.component';
 
 @Component({
-  selector: 'rxap-table-column-menu',
-  templateUrl: './table-column-menu.component.html',
-  styleUrls: [ './table-column-menu.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'rxapTableColumns',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatMenuModule,
-    MatIconModule,
-    NgFor,
-    StopPropagationDirective,
-    MatCheckboxModule,
-    NgClass,
-  ],
+    selector: 'rxap-table-column-menu',
+    templateUrl: './table-column-menu.component.html',
+    styleUrls: ['./table-column-menu.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    exportAs: 'rxapTableColumns',
+    imports: [
+        MatButtonModule,
+        MatMenuModule,
+        MatIconModule,
+        NgFor,
+        StopPropagationDirective,
+        MatCheckboxModule,
+        NgClass,
+    ]
 })
 export class TableColumnMenuComponent implements AfterContentInit {
 

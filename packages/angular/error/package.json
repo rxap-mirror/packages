@@ -3,20 +3,20 @@
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
-    "tslib": "2.6.2"
-  },
-  "peerDependencies": {
-    "@angular/cdk": "^18.2.0",
-    "@angular/common": "^18.2.0",
-    "@angular/core": "^18.2.0",
+    "@nx/devkit": "20.2.1",
     "@rxap/components": "^18.0.8-dev.0",
     "@rxap/config": "^18.2.3-dev.0",
     "@rxap/data-grid": "^18.0.8-dev.0",
     "@rxap/environment": "^18.0.8-dev.0",
     "@rxap/open-api": "^18.0.10-dev.0",
-    "@sentry/angular": "^8.18.0",
-    "rxjs": "^7.8.1"
+    "@sentry/angular": "8.18.0",
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@angular/cdk": "19.0.2",
+    "@angular/common": "19.0.3",
+    "@angular/core": "19.0.3",
+    "rxjs": "7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

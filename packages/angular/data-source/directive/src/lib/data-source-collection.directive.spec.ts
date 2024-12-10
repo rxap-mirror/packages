@@ -38,7 +38,7 @@ describe('@rxap/data-source/directive', () => {
     }
 
     @Component({
-      template: `
+    template: `
           <div *rxapDataSourceCollection="let item from dataSource; empty: empty">
               {{item}}
           </div>
@@ -48,7 +48,8 @@ describe('@rxap/data-source/directive', () => {
           </ng-template>
 
       `,
-    })
+    standalone: false
+})
     class TestComponent {
 
       constructor(public readonly dataSource: TestDataSource) {

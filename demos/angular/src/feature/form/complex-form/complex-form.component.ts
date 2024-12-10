@@ -27,13 +27,12 @@ import {
 } from './form.providers';
 
 @Component({
-    standalone: true,
     selector: 'rxap-complex-form',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './complex-form.component.html',
     styleUrls: ['./complex-form.component.scss'],
-  imports: [ReactiveFormsModule, FormControlsComponent, RxapFormsModule, MatInputModule, MatIconModule, MatButtonModule, InputClearButtonDirective, ForFormArrayItemsDirective, FormArrayRemovableDirective, FormArrayItemRemoveButtonDirective, FormArrayItemRestoreButtonDirective, FormArrayAddItemButtonDirective, MatCheckboxModule, MatSelectModule, InputSelectOptionsDirective],
-  providers: [FormProviders, FormComponentProviders],
+    imports: [ReactiveFormsModule, FormControlsComponent, RxapFormsModule, MatInputModule, MatIconModule, MatButtonModule, InputClearButtonDirective, ForFormArrayItemsDirective, FormArrayRemovableDirective, FormArrayItemRemoveButtonDirective, FormArrayItemRestoreButtonDirective, FormArrayAddItemButtonDirective, MatCheckboxModule, MatSelectModule, InputSelectOptionsDirective],
+    providers: [FormProviders, FormComponentProviders]
 })
 export class ComplexFormComponent {
 }

@@ -46,21 +46,19 @@ describe(OptionsFromMethodDirective.name, () => {
   }
 
   @Component({
-    standalone: true,
     imports: [
-      ReactiveFormsModule,
-      RxapFormsModule,
-      MatSelectModule,
-      OptionsFromMethodDirective,
+        ReactiveFormsModule,
+        RxapFormsModule,
+        MatSelectModule,
+        OptionsFromMethodDirective,
     ],
     providers: [
-      TestFormDefinition,
-      {
-        provide: RXAP_FORM_DEFINITION,
-        useFactory: (injector: Injector) => new RxapFormBuilder<ITestFormDefinition>(TestFormDefinition,
-          injector).build(),
-        deps: [ INJECTOR ],
-      },
+        TestFormDefinition,
+        {
+            provide: RXAP_FORM_DEFINITION,
+            useFactory: (injector: Injector) => new RxapFormBuilder<ITestFormDefinition>(TestFormDefinition, injector).build(),
+            deps: [INJECTOR],
+        },
     ],
     template: `
       <form rxapForm>
@@ -73,8 +71,8 @@ describe(OptionsFromMethodDirective.name, () => {
           </mat-select>
         </mat-form-field>
       </form>
-    `,
-  })
+    `
+})
   class TestComponent {
 
     method = inject(TestMethod);

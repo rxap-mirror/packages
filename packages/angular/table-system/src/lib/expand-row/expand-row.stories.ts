@@ -7,8 +7,8 @@ import { ExpandRowService } from './expand-row.service';
 import { ExpandRowModule } from './expand-row.module';
 
 @Component({
-  styles: [
-    `
+    styles: [
+        `
       table {
         width: 100%;
       }
@@ -33,8 +33,8 @@ import { ExpandRowModule } from './expand-row.module';
         border-bottom-width: 0;
       }
     `,
-  ],
-  template: `
+    ],
+    template: `
     <table mat-table [dataSource]="data" multiTemplateDataRows>
       <ng-container matColumnDef="expandControls">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -80,6 +80,7 @@ import { ExpandRowModule } from './expand-row.module';
       ></tr>
     </table>
   `,
+    standalone: false
 })
 class DemoTableComponent {
   public data = [

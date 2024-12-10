@@ -13,12 +13,11 @@ import { WindowTaskComponent } from './window-task/window-task.component';
 import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'rxap-window-task-bar',
-  templateUrl: './window-task-bar.component.html',
-  styleUrls: [ './window-task-bar.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ NgFor, WindowTaskComponent ],
+    selector: 'rxap-window-task-bar',
+    templateUrl: './window-task-bar.component.html',
+    styleUrls: ['./window-task-bar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgFor, WindowTaskComponent]
 })
 export class WindowTaskBarComponent implements OnInit, OnDestroy {
 

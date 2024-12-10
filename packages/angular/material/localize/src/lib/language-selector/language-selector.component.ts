@@ -19,21 +19,20 @@ import { StopPropagationDirective } from '@rxap/directives';
 import { LanguageSelectorService } from '@rxap/ngx-localize';
 
 @Component({
-  selector: 'rxap-language-selector',
-  templateUrl: './language-selector.component.html',
-  styleUrls: [ './language-selector.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatFormField,
-    StopPropagationDirective,
-    MatSelect,
-    FormsModule,
-    MatOption,
-    KeyValuePipe,
-    MatLabel,
-    MatHint,
-  ],
+    selector: 'rxap-language-selector',
+    templateUrl: './language-selector.component.html',
+    styleUrls: ['./language-selector.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatFormField,
+        StopPropagationDirective,
+        MatSelect,
+        FormsModule,
+        MatOption,
+        KeyValuePipe,
+        MatLabel,
+        MatHint,
+    ]
 })
 export class LanguageSelectorComponent {
 

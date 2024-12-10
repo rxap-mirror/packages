@@ -9,25 +9,24 @@ import { EditDataGridCollectionDemoPanelDataSource } from './edit-data-grid-coll
 import { EditDataGridCollectionDemoPanelMethod } from './edit-data-grid-collection-demo-panel.method';
 
 @Component({
-  selector: 'rxap-edit-data-grid-collection-demo-panel',
-  templateUrl: './edit-data-grid-collection-demo-panel.component.html',
-  styleUrls: ['./edit-data-grid-collection-demo-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    EditDataGridCollectionDemoDataGridComponent,
-    DataSourceDirective,
-    CommonModule,
-    DataSourceErrorComponent,
-    MatProgressBarModule,
-    AsyncPipe,
-    JsonPipe,
-  ],
-  providers: [
-    EditDataGridCollectionDemoDataGridDataSource,
-    EditDataGridCollectionDemoPanelDataSource,
-    EditDataGridCollectionDemoPanelMethod,
-  ],
+    selector: 'rxap-edit-data-grid-collection-demo-panel',
+    templateUrl: './edit-data-grid-collection-demo-panel.component.html',
+    styleUrls: ['./edit-data-grid-collection-demo-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        EditDataGridCollectionDemoDataGridComponent,
+        DataSourceDirective,
+        CommonModule,
+        DataSourceErrorComponent,
+        MatProgressBarModule,
+        AsyncPipe,
+        JsonPipe,
+    ],
+    providers: [
+        EditDataGridCollectionDemoDataGridDataSource,
+        EditDataGridCollectionDemoPanelDataSource,
+        EditDataGridCollectionDemoPanelMethod,
+    ]
 })
 export class EditDataGridCollectionDemoPanelComponent {
   constructor(

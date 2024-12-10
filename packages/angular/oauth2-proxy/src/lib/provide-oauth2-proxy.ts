@@ -1,4 +1,4 @@
-import { APP_INITIALIZER } from '@angular/core';
+import { inject, provideAppInitializer } from '@angular/core';
 import {
   PubSubService,
   RXAP_TOPICS,
@@ -19,10 +19,8 @@ export function subscribeToLogoutEvent(pubSubService: PubSubService) {
 }
 
 export function provideOauth2Proxy() {
-  return {
-    provide: APP_INITIALIZER,
-    useFactory: subscribeToLogoutEvent,
-    deps: [ PubSubService ],
-    multi: true,
-  };
+  return provideAppInitializer(() => {
+        const initializerFn = (subscribeToLogoutEvent)(inject(PubSubService));
+        return initializerFn();
+      });
 }

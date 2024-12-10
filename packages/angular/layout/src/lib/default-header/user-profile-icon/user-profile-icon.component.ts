@@ -15,15 +15,14 @@ import { EXTRACT_USERNAME_FROM_PROFILE } from '../../tokens';
 import { ExtractUsernameFromProfileFn } from '../../types';
 
 @Component({
-  selector: 'rxap-user-profile-icon',
-  templateUrl: './user-profile-icon.component.html',
-  styleUrls: [ './user-profile-icon.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatMenuModule,
-    MatIconModule,
-  ],
+    selector: 'rxap-user-profile-icon',
+    templateUrl: './user-profile-icon.component.html',
+    styleUrls: ['./user-profile-icon.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatMenuModule,
+        MatIconModule,
+    ]
 })
 export class UserProfileIconComponent {
 

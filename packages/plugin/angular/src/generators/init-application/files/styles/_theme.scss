@@ -9,6 +9,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 @include init-theme();

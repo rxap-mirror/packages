@@ -7,20 +7,19 @@ import { CommonModule, AsyncPipe, JsonPipe } from '@angular/common';
 import { SecondPanelMethod } from './second-panel.method';
 
 @Component({
-  selector: 'rxap-second-panel',
-  templateUrl: './second-panel.component.html',
-  styleUrls: ['./second-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    DataSourceDirective,
-    MatProgressBarModule,
-    CommonModule,
-    DataSourceErrorComponent,
-    AsyncPipe,
-    JsonPipe,
-  ],
-  standalone: true,
-  providers: [SecondPanelDataSource, SecondPanelMethod],
+    selector: 'rxap-second-panel',
+    templateUrl: './second-panel.component.html',
+    styleUrls: ['./second-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DataSourceDirective,
+        MatProgressBarModule,
+        CommonModule,
+        DataSourceErrorComponent,
+        AsyncPipe,
+        JsonPipe,
+    ],
+    providers: [SecondPanelDataSource, SecondPanelMethod]
 })
 export class SecondPanelComponent {
 

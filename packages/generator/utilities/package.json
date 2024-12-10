@@ -3,7 +3,7 @@
   "name": "@rxap/generator-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/devkit": "20.2.1",
     "tslib": "2.6.2"
   },
   "author": {

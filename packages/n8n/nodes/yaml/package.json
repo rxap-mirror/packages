@@ -4,14 +4,12 @@
   "description": "n8n nodes to work with YAML files",
   "license": "MIT",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/devkit": "20.2.1",
     "iconv-lite": "^0.6.3",
     "lodash": "^4.17.21",
+    "n8n-workflow": "^1.48.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
-  },
-  "peerDependencies": {
-    "n8n-workflow": "^1.48.0"
   },
   "author": {
     "name": "Merzough Münker",

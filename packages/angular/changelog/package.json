@@ -3,18 +3,18 @@
   "name": "@rxap/ngx-changelog",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
-    "tslib": "2.6.2"
-  },
-  "peerDependencies": {
-    "@angular/common": "^18.2.0",
-    "@angular/core": "^18.2.0",
-    "@angular/forms": "^18.2.0",
+    "@nx/devkit": "20.2.1",
     "@rxap/directives": "^18.0.8-dev.0",
     "@rxap/environment": "^18.0.8-dev.0",
     "@rxap/open-api": "^18.0.10-dev.0",
-    "ngx-markdown": "^16.0.0",
-    "rxjs": "^7.8.1"
+    "ngx-markdown": "16.0.0",
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@angular/common": "19.0.3",
+    "@angular/core": "19.0.3",
+    "@angular/forms": "19.0.3",
+    "rxjs": "7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

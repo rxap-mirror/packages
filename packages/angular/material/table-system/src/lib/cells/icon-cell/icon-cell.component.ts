@@ -9,13 +9,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'td[rxap-icon-cell]',
-  templateUrl: './icon-cell.component.html',
-  styleUrls: [ './icon-cell.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ NgIf, MatIconModule, IconDirective ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'td[rxap-icon-cell]',
+    templateUrl: './icon-cell.component.html',
+    styleUrls: ['./icon-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgIf, MatIconModule, IconDirective]
 })
 export class IconCellComponent {
 

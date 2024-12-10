@@ -36,7 +36,7 @@ export const RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR = new InjectionToken(
  */
 @Directive({
   selector: '[rxapOpenForm]',
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+
   host: {
     '(click)': 'onClick()',
     '(confirmed)': 'onConfirm()',

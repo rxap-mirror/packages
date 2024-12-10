@@ -1,7 +1,4 @@
-import {
-  APP_INITIALIZER,
-  Provider,
-} from '@angular/core';
+import { Provider, inject, provideAppInitializer } from '@angular/core';
 import { AutoUpdateService } from './auto-update.service';
 import { CheckForUpdateService } from './check-for-update.service';
 import { DialogUpdateService } from './dialog-update.service';
@@ -9,39 +6,31 @@ import { LogUpdateService } from './log-update.service';
 
 export function ProvideServiceWorkerUpdater(...providers: Provider[]): Provider[] {
   return [
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: (checkForUpdate: CheckForUpdateService) => () => checkForUpdate.start(),
-      deps: [ CheckForUpdateService ],
-    },
+    provideAppInitializer(() => {
+        const initializerFn = ((checkForUpdate: CheckForUpdateService) => () => checkForUpdate.start())(inject(CheckForUpdateService));
+        return initializerFn();
+      }),
     ...providers,
   ];
 }
 
 export function withLogUpdater(): Provider {
-  return {
-    provide: APP_INITIALIZER,
-    multi: true,
-    useFactory: (logUpdateService: LogUpdateService) => () => logUpdateService.start(),
-    deps: [ LogUpdateService ],
-  };
+  return provideAppInitializer(() => {
+        const initializerFn = ((logUpdateService: LogUpdateService) => () => logUpdateService.start())(inject(LogUpdateService));
+        return initializerFn();
+      });
 }
 
 export function withDialogUpdater(): Provider {
-  return {
-    provide: APP_INITIALIZER,
-    multi: true,
-    useFactory: (dus: DialogUpdateService) => () => dus.start(),
-    deps: [ DialogUpdateService ],
-  };
+  return provideAppInitializer(() => {
+        const initializerFn = ((dus: DialogUpdateService) => () => dus.start())(inject(DialogUpdateService));
+        return initializerFn();
+      });
 }
 
 export function withAutoUpdater(): Provider {
-  return {
-    provide: APP_INITIALIZER,
-    multi: true,
-    useFactory: (aus: AutoUpdateService) => () => aus.start(),
-    deps: [ AutoUpdateService ],
-  };
+  return provideAppInitializer(() => {
+        const initializerFn = ((aus: AutoUpdateService) => () => aus.start())(inject(AutoUpdateService));
+        return initializerFn();
+      });
 }

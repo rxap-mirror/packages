@@ -11,8 +11,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/material/localize/ng-package.json",
-        "tailwindConfig": "packages/angular/material/localize/tailwind.config.js"
+        "project": "packages/angular/material/localize/ng-package.json"
       },
       "configurations": {
         "production": {

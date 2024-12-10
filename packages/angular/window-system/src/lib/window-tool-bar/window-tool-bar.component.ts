@@ -16,20 +16,19 @@ import {
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'rxap-window-tool-bar',
-  templateUrl: './window-tool-bar.component.html',
-  styleUrls: [ './window-tool-bar.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.Default,
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    NgIf,
-    PortalModule,
-    MatIconModule,
-    IconDirective,
-    MatButtonModule,
-    AsyncPipe,
-  ],
+    selector: 'rxap-window-tool-bar',
+    templateUrl: './window-tool-bar.component.html',
+    styleUrls: ['./window-tool-bar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
+    imports: [
+        MatToolbarModule,
+        NgIf,
+        PortalModule,
+        MatIconModule,
+        IconDirective,
+        MatButtonModule,
+        AsyncPipe,
+    ]
 })
 export class WindowToolBarComponent<D> {
 

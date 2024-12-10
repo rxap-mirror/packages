@@ -1,16 +1,14 @@
 import {
-  APP_INITIALIZER,
-  Provider,
+  inject,
+  provideAppInitializer,
 } from '@angular/core';
 import { ThemeService } from './theme.service';
 
-export function provideTheme(): Provider[] {
+export function provideTheme() {
   return [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: (themeService: ThemeService) => () => themeService.restore(),
-      deps: [ ThemeService ],
-      multi: true
-    }
+    provideAppInitializer(() => {
+        const initializerFn = ((themeService: ThemeService) => () => themeService.restore())(inject(ThemeService));
+        return initializerFn();
+      })
   ];
 }

@@ -1,9 +1,4 @@
-import {
-  APP_INITIALIZER,
-  inject,
-  Injectable,
-  Provider
-} from '@angular/core';
+import { inject, Injectable, Provider, provideAppInitializer } from '@angular/core';
 import markerSDK, {
   MarkerReporter,
   MarkerSdk
@@ -79,11 +74,9 @@ export class MarkerIoService {
 
 export function provideMarkerIo(): Provider[] {
   return [
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: (service: MarkerIoService) => () => service.load(),
-      deps: [ MarkerIoService ]
-    }
+    provideAppInitializer(() => {
+        const initializerFn = ((service: MarkerIoService) => () => service.load())(inject(MarkerIoService));
+        return initializerFn();
+      })
   ];
 }

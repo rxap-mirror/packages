@@ -7,12 +7,11 @@ import {
 import { CopyToClipboardButtonComponent } from '../copy-to-clipboard-button/copy-to-clipboard-button.component';
 
 @Component({
-  selector: 'rxap-copy-to-clipboard',
-  templateUrl: './copy-to-clipboard.component.html',
-  styleUrls: [ './copy-to-clipboard.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ NgIf, CopyToClipboardButtonComponent ],
+    selector: 'rxap-copy-to-clipboard',
+    templateUrl: './copy-to-clipboard.component.html',
+    styleUrls: ['./copy-to-clipboard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgIf, CopyToClipboardButtonComponent]
 })
 export class CopyToClipboardComponent {
 

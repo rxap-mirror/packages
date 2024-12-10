@@ -1,3 +1,4 @@
+import { performance } from 'node:perf_hooks';
 import {
   TextDecoder,
   TextEncoder,
@@ -22,3 +23,8 @@ jest.doMock('@rxap/node-utilities', () => ({
   GetLatestPackageVersion: jest.fn().mockImplementation(async () => 'latest'),
 }));
 
+Object.defineProperties(globalThis, {
+  TextDecoder: { value: TextDecoder },
+  TextEncoder: { value: TextEncoder },
+  performance: { value: performance },
+});

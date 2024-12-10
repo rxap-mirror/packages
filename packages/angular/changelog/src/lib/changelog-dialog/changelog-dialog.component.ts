@@ -11,11 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { ChangelogComponent } from '../changelog/changelog.component';
 
 @Component({
-  selector: 'rxap-changelog-dialog',
-  standalone: true,
-  imports: [ CommonModule, ChangelogComponent, FormsModule ],
-  templateUrl: './changelog-dialog.component.html',
-  styleUrls: [ './changelog-dialog.component.scss' ],
+    selector: 'rxap-changelog-dialog',
+    imports: [CommonModule, ChangelogComponent, FormsModule],
+    templateUrl: './changelog-dialog.component.html',
+    styleUrls: ['./changelog-dialog.component.scss']
 })
 export class ChangelogDialogComponent implements AfterViewInit {
 

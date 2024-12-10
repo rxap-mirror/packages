@@ -9,12 +9,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterService } from '../footer.service';
 
 @Component({
-  selector: 'rxap-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: [ './footer.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ MatToolbarModule, PortalModule ],
+    selector: 'rxap-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatToolbarModule, PortalModule]
 })
 export class FooterComponent {
 

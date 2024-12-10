@@ -37,27 +37,26 @@ import { WindowResizerComponent } from '../window-resizer/window-resizer.compone
 import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.component';
 
 @Component({
-  selector: 'rxap-window-container',
-  templateUrl: './window-container.component.html',
-  styleUrls: [ './window-container.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.Default,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    class: 'rxap-window-container',
-  },
-  standalone: true,
-  imports: [
-    CdkDrag,
-    NgStyle,
-    CdkDragHandle,
-    WindowToolBarComponent,
-    NgIf,
-    MatToolbarModule,
-    PortalModule,
-    MatProgressBarModule,
-    WindowResizerComponent,
-    AsyncPipe,
-  ],
+    selector: 'rxap-window-container',
+    templateUrl: './window-container.component.html',
+    styleUrls: ['./window-container.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
+  
+    host: {
+        class: 'rxap-window-container',
+    },
+    imports: [
+        CdkDrag,
+        NgStyle,
+        CdkDragHandle,
+        WindowToolBarComponent,
+        NgIf,
+        MatToolbarModule,
+        PortalModule,
+        MatProgressBarModule,
+        WindowResizerComponent,
+        AsyncPipe,
+    ]
 })
 export class WindowContainerComponent implements OnInit {
 

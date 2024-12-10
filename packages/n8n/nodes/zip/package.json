@@ -3,13 +3,11 @@
   "name": "@rxap/n8n-nodes-zip",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/devkit": "20.2.1",
     "adm-zip": "^0.5.10",
+    "n8n-workflow": "^1.48.0",
     "tmp-promise": "^3.0.3",
     "tslib": "2.6.2"
-  },
-  "peerDependencies": {
-    "n8n-workflow": "^1.48.0"
   },
   "author": {
     "name": "Merzough Münker",

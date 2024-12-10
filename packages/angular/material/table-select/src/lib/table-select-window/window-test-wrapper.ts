@@ -68,7 +68,7 @@ export class MockWindowRef<O = any, R = any> extends Subject<R> {
 }
 
 @Component({
-  template: `
+    template: `
     <div class="flex flex-col gap-8">
       <div class="grow">
         <ng-template [cdkPortalOutlet]="content"></ng-template>
@@ -79,11 +79,10 @@ export class MockWindowRef<O = any, R = any> extends Subject<R> {
       </div>
     </div>
   `,
-  standalone: true,
-  imports: [
-    PortalModule,
-    NgIf,
-  ],
+    imports: [
+        PortalModule,
+        NgIf,
+    ]
 })
 export class WindowTestWrapperComponent implements AfterViewInit {
 

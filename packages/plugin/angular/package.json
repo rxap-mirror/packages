@@ -3,8 +3,8 @@
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/angular": "19.8.14",
-    "@nx/devkit": "19.8.14",
+    "@nx/angular": "20.2.1",
+    "@nx/devkit": "20.2.1",
     "@rxap/plugin-application": "^19.1.6-dev.0",
     "@rxap/plugin-library": "^19.5.0-dev.0",
     "@rxap/plugin-localazy": "^19.0.10-dev.0",

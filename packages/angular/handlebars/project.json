@@ -16,8 +16,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/handlebars/ng-package.json",
-        "tailwindConfig": "packages/angular/handlebars/tailwind.config.js"
+        "project": "packages/angular/handlebars/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -41,9 +40,7 @@
         "options": {
           "strict": true,
           "onlyDependencies": false,
-          "dependencies": [
-            "handlebars"
-          ]
+          "dependencies": ["handlebars"]
         },
         "generator": "@rxap/plugin-library:fix-dependencies"
       },

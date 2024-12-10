@@ -7,20 +7,19 @@ import { CommonModule, AsyncPipe, JsonPipe } from '@angular/common';
 import { FirstPanelMethod } from './first-panel.method';
 
 @Component({
-  selector: 'rxap-first-panel',
-  templateUrl: './first-panel.component.html',
-  styleUrls: ['./first-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    DataSourceDirective,
-    MatProgressBarModule,
-    CommonModule,
-    DataSourceErrorComponent,
-    AsyncPipe,
-    JsonPipe,
-  ],
-  standalone: true,
-  providers: [FirstPanelDataSource, FirstPanelMethod],
+    selector: 'rxap-first-panel',
+    templateUrl: './first-panel.component.html',
+    styleUrls: ['./first-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DataSourceDirective,
+        MatProgressBarModule,
+        CommonModule,
+        DataSourceErrorComponent,
+        AsyncPipe,
+        JsonPipe,
+    ],
+    providers: [FirstPanelDataSource, FirstPanelMethod]
 })
 export class FirstPanelComponent {
 

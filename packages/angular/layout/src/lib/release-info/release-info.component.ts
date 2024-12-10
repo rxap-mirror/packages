@@ -14,14 +14,13 @@ import { RXAP_RELEASE_INFO_MODULE } from '../tokens';
 import { coerceArray } from '@rxap/utilities';
 
 @Component({
-  selector: 'rxap-release-info',
-  standalone: true,
-  imports: [
-    MatButton,
-  ],
-  templateUrl: './release-info.component.html',
-  styleUrl: './release-info.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'rxap-release-info',
+    imports: [
+        MatButton,
+    ],
+    templateUrl: './release-info.component.html',
+    styleUrl: './release-info.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReleaseInfoComponent {
 

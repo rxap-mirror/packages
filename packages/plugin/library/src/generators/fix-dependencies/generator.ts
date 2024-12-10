@@ -668,6 +668,7 @@ export async function fixDependenciesGenerator(
   tree: Tree,
   options: FixDependenciesGeneratorSchema,
 ) {
+  console.log('Fix dependencies');
 
   if (!options.verbose) {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -676,6 +677,7 @@ export async function fixDependenciesGenerator(
   }
 
   if (options.reset || options.resetAll) {
+    console.log('Reset dependencies');
     for (const [ projectName, project ] of getProjects(tree).entries()) {
       const projectRoot = project.root;
       if (skipProject(tree, options, project, projectName)) {
@@ -693,13 +695,16 @@ export async function fixDependenciesGenerator(
   }
 
   const rootPackageJson = GetRootPackageJson(tree);
+  console.log('Root package.json loaded');
 
   const projectGraph = await createProjectGraphAsync();
+  console.log('Project graph created');
   LoadProjectToPackageMapping(tree, projectGraph);
 
   const unknownPackageMap: Record<string, string[]> = {};
   const latestTsLibVersion = await resolveLatestPackageVersion('tslib');
 
+  console.log('Start fixing dependencies');
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
     const projectRoot = project.root;
@@ -752,6 +757,7 @@ export async function fixDependenciesGenerator(
     }, { basePath: projectRoot });
 
   }
+  console.log('Finished fixing dependencies');
 
   const unknownPackageMapToProject: Record<string, string[]> = {};
 

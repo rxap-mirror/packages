@@ -14,16 +14,15 @@ import {
 import { HeaderService } from '../header.service';
 
 @Component({
-  selector: 'rxap-header',
-  templateUrl: './header.component.html',
-  styleUrls: [ './header.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatToolbar,
-    MatToolbarRow,
-    CdkPortalOutlet,
-  ],
+    selector: 'rxap-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatToolbar,
+        MatToolbarRow,
+        CdkPortalOutlet,
+    ]
 })
 export class HeaderComponent {
 

@@ -7,14 +7,13 @@ import { NavigateBackButtonComponent } from '@rxap/components';
 import { MultipleAccordion } from '../multiple-accordion';
 
 @Component({
-  selector: 'rxap-accordion-header',
-  templateUrl: './accordion-header.component.html',
-  styleUrls: [ './accordion-header.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NavigateBackButtonComponent,
-  ],
+    selector: 'rxap-accordion-header',
+    templateUrl: './accordion-header.component.html',
+    styleUrls: ['./accordion-header.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NavigateBackButtonComponent,
+    ]
 })
 export class AccordionHeaderComponent {
   @Input({

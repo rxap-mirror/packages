@@ -13,11 +13,10 @@ describe(LoginComponent.name, () => {
         <rxap-login></rxap-login>
       </rxap-authentication-container>
     `,
-    standalone: true,
     imports: [
-      AuthenticationContainerComponent, LoginComponent,
-    ],
-  })
+        AuthenticationContainerComponent, LoginComponent,
+    ]
+})
   class TestComponent {}
 
   beforeEach(() => {

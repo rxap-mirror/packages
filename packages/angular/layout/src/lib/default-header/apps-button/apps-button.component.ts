@@ -18,20 +18,19 @@ import { IconDirective } from '@rxap/material-directives/icon';
 import { ExternalAppsService } from '../../external-apps.service';
 
 @Component({
-  selector: 'rxap-apps-button',
-  templateUrl: './apps-button.component.html',
-  styleUrls: [ './apps-button.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgOptimizedImage,
-    MatButton,
-    RouterLink,
-    MatAnchor,
-    MatIconButton,
-    MatIcon,
-    IconDirective,
-  ],
+    selector: 'rxap-apps-button',
+    templateUrl: './apps-button.component.html',
+    styleUrls: ['./apps-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgOptimizedImage,
+        MatButton,
+        RouterLink,
+        MatAnchor,
+        MatIconButton,
+        MatIcon,
+        IconDirective,
+    ]
 })
 export class AppsButtonComponent implements OnInit {
   /**

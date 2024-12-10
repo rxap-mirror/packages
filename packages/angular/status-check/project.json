@@ -19,8 +19,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/status-check/ng-package.json",
-        "tailwindConfig": "packages/angular/status-check/tailwind.config.js"
+        "project": "packages/angular/status-check/ng-package.json"
       },
       "configurations": {
         "production": {

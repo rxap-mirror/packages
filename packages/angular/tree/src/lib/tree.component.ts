@@ -65,28 +65,27 @@ import { TreeContentDirective } from './tree-content.directive';
 import { TreeDataSource } from './tree.data-source';
 
 @Component({
-  selector: 'rxap-tree',
-  templateUrl: './tree.component.html',
-  styleUrls: [ './tree.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgStyle,
-    NgIf,
-    MatProgressBarModule,
-    MatTreeModule,
-    MatIconModule,
-    IconDirective,
-    MatCheckboxModule,
-    MatButtonModule,
-    ContenteditableDirective,
-    MatProgressSpinnerModule,
-    MatDividerModule,
-    PortalModule,
-    AsyncPipe,
-    NgClass,
-    NgForOf,
-  ],
+    selector: 'rxap-tree',
+    templateUrl: './tree.component.html',
+    styleUrls: ['./tree.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgStyle,
+        NgIf,
+        MatProgressBarModule,
+        MatTreeModule,
+        MatIconModule,
+        IconDirective,
+        MatCheckboxModule,
+        MatButtonModule,
+        ContenteditableDirective,
+        MatProgressSpinnerModule,
+        MatDividerModule,
+        PortalModule,
+        AsyncPipe,
+        NgClass,
+        NgForOf,
+    ]
 })
 export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   implements OnInit, AfterContentInit {

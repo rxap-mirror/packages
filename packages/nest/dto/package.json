@@ -3,12 +3,10 @@
   "name": "@rxap/nest-dto",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/devkit": "20.2.1",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.14.1",
     "tslib": "2.6.2"
-  },
-  "peerDependencies": {
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.1"
   },
   "author": {
     "name": "Merzough Münker",

@@ -12,15 +12,14 @@ import { RXAP_ERROR_DIALOG_ERROR } from '../tokens';
 import { CodeHttpErrorDialogData } from './code-http-error-dialog-data';
 
 @Component({
-  selector: 'rxap-http-error-message',
-  templateUrl: './code-http-error.component.html',
-  styleUrls: [ './code-http-error.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    NgIf,
-    AnyHttpErrorComponent,
-  ],
+    selector: 'rxap-http-error-message',
+    templateUrl: './code-http-error.component.html',
+    styleUrls: ['./code-http-error.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        NgIf,
+        AnyHttpErrorComponent,
+    ]
 })
 export class CodeHttpErrorComponent implements IErrorDialogComponent<CodeHttpErrorDialogData> {
 

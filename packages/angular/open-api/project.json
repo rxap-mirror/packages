@@ -10,8 +10,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/open-api/ng-package.json",
-        "tailwindConfig": "packages/angular/open-api/tailwind.config.js"
+        "project": "packages/angular/open-api/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -35,10 +34,7 @@
         "options": {
           "strict": true,
           "onlyDependencies": false,
-          "dependencies": [
-            "ajv",
-            "openapi-types"
-          ]
+          "dependencies": ["ajv", "openapi-types"]
         },
         "generator": "@rxap/plugin-library:fix-dependencies"
       },

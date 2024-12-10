@@ -20,38 +20,34 @@ import { AccordionHeaderComponent } from './accordion-header/accordion-header.co
 import { MultipleAccordionMethod } from './multiple-accordion.method';
 
 @Component({
-  selector: 'rxap-multiple-accordion',
-  templateUrl: './multiple-accordion.component.html',
-  styleUrls: ['./multiple-accordion.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    FirstPanelComponent,
-
-    SecondPanelComponent,
-
-    ThirdPanelComponent,
-
-    DataSourceErrorComponent,
-    DataSourceDirective,
-    NavigateBackButtonComponent,
-    MatProgressBarModule,
-    MatDividerModule,
-    MatExpansionModule,
-    PersistentAccordionDirective,
-    CommonModule,
-    AccordionHeaderComponent,
-    AsyncPipe,
-    NgIf,
-  ],
-  providers: [
-    MultipleAccordionDataSource,
-    {
-      provide: ACCORDION_DATA_SOURCE,
-      useExisting: MultipleAccordionDataSource,
-    },
-    MultipleAccordionMethod,
-  ],
+    selector: 'rxap-multiple-accordion',
+    templateUrl: './multiple-accordion.component.html',
+    styleUrls: ['./multiple-accordion.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        FirstPanelComponent,
+        SecondPanelComponent,
+        ThirdPanelComponent,
+        DataSourceErrorComponent,
+        DataSourceDirective,
+        NavigateBackButtonComponent,
+        MatProgressBarModule,
+        MatDividerModule,
+        MatExpansionModule,
+        PersistentAccordionDirective,
+        CommonModule,
+        AccordionHeaderComponent,
+        AsyncPipe,
+        NgIf,
+    ],
+    providers: [
+        MultipleAccordionDataSource,
+        {
+            provide: ACCORDION_DATA_SOURCE,
+            useExisting: MultipleAccordionDataSource,
+        },
+        MultipleAccordionMethod,
+    ]
 })
 export class MultipleAccordionComponent {
 

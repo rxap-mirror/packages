@@ -32,7 +32,7 @@ import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  template: `
+    template: `
     <label>{{ label }}</label>
     <select [ngModel]="value" (ngModelChange)="onChange($event)">
       <option
@@ -43,8 +43,7 @@ import { FormsModule } from '@angular/forms';
       </option>
     </select>
   `,
-  standalone: true,
-  imports: [FormsModule, DataSourceCollectionDirective],
+    imports: [FormsModule, DataSourceCollectionDirective]
 })
 class SelectControlComponent
   extends ControlValueAccessor

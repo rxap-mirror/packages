@@ -10,8 +10,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/material/table-select/ng-package.json",
-        "tailwindConfig": "packages/angular/material/table-select/tailwind.config.js"
+        "project": "packages/angular/material/table-select/ng-package.json"
       },
       "configurations": {
         "production": {

@@ -53,41 +53,40 @@ import {
 import { NavigationComponent } from '../navigation.component';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'li[rxap-navigation-item]',
-  templateUrl: './navigation-item.component.html',
-  styleUrls: [ './navigation-item.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  animations: [
-    trigger('sub-nav', [
-      transition(':enter', [
-        style({
-          display: 'block',
-          height: '0',
-          overflow: 'hidden',
-        }),
-        animate(150, style({ height: '*' })),
-      ]),
-      transition(':leave', [
-        style({ overflow: 'hidden' }),
-        animate(300, style({ height: '0' })),
-        style({ display: 'none' }),
-      ]),
-    ]),
-  ],
-  standalone: true,
-  imports: [
-    RouterLinkActive,
-    RouterLink,
-    NgIf,
-    MatRippleModule,
-    MatIconModule,
-    IconDirective,
-    MatDividerModule,
-    forwardRef(() => NavigationComponent),
-    NgClass,
-  ]
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'li[rxap-navigation-item]',
+    templateUrl: './navigation-item.component.html',
+    styleUrls: ['./navigation-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    animations: [
+        trigger('sub-nav', [
+            transition(':enter', [
+                style({
+                    display: 'block',
+                    height: '0',
+                    overflow: 'hidden',
+                }),
+                animate(150, style({ height: '*' })),
+            ]),
+            transition(':leave', [
+                style({ overflow: 'hidden' }),
+                animate(300, style({ height: '0' })),
+                style({ display: 'none' }),
+            ]),
+        ]),
+    ],
+    imports: [
+        RouterLinkActive,
+        RouterLink,
+        NgIf,
+        MatRippleModule,
+        MatIconModule,
+        IconDirective,
+        MatDividerModule,
+        forwardRef(() => NavigationComponent),
+        NgClass,
+    ]
 })
 export class NavigationItemComponent
   implements OnChanges, OnDestroy, AfterViewInit {

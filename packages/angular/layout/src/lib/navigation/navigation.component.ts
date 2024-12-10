@@ -27,24 +27,23 @@ import {
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'ul[rxap-navigation]',
-  templateUrl: './navigation.component.html',
-  styleUrls: [ './navigation.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    class: 'list-none dark:text-neutral-400 text-neutral-700',
-  },
-  imports: [
-    NgFor,
-    NgIf,
-    MatDividerModule,
-    forwardRef(() => NavigationItemComponent),
-    AsyncPipe,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'ul[rxap-navigation]',
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+  
+    host: {
+        class: 'list-none dark:text-neutral-400 text-neutral-700',
+    },
+    imports: [
+        NgFor,
+        NgIf,
+        MatDividerModule,
+        forwardRef(() => NavigationItemComponent),
+        AsyncPipe,
+    ]
 })
 export class NavigationComponent implements OnInit {
 

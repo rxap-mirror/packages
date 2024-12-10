@@ -7,26 +7,25 @@ import { RXAP_WINDOW_SETTINGS } from '@rxap/window-system';
 import { FormProviders, FormComponentProviders } from './form.providers';
 
 @Component({
-  standalone: true,
-  selector: 'rxap-maximum-tree-form',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './maximum-tree-form.component.html',
-  styleUrls: ['./maximum-tree-form.component.scss'],
-  imports: [
-    ReactiveFormsModule,
-    FormControlsComponent,
-    RxapFormsModule,
-    FormWindowFooterDirective,
-  ],
-  providers: [
-    {
-      provide: RXAP_WINDOW_SETTINGS,
-      useValue: {
-        title: $localize`MaximumTree`,
-      },
-    },
-    FormProviders,
-    FormComponentProviders,
-  ],
+    selector: 'rxap-maximum-tree-form',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './maximum-tree-form.component.html',
+    styleUrls: ['./maximum-tree-form.component.scss'],
+    imports: [
+        ReactiveFormsModule,
+        FormControlsComponent,
+        RxapFormsModule,
+        FormWindowFooterDirective,
+    ],
+    providers: [
+        {
+            provide: RXAP_WINDOW_SETTINGS,
+            useValue: {
+                title: $localize `MaximumTree`,
+            },
+        },
+        FormProviders,
+        FormComponentProviders,
+    ]
 })
 export class MaximumTreeFormComponent {}

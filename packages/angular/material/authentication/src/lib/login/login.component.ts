@@ -39,40 +39,39 @@ import { LoginFormProviders } from './login.form';
 import { RequestResetPasswordMethod } from './request-reset-password.method';
 
 @Component({
-  selector: 'rxap-login',
-  templateUrl: './login.component.html',
-  styleUrls: [ './login.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    LoginFormProviders,
-    {
-      provide: ErrorStateMatcher,
-      useClass: ShowOnDirtyErrorStateMatcher,
-    },
-  ],
-  animations: [
-    fadeAnimation,
-  ],
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    FormDirective,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    NgIf,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
-    FormControlMarkDirtyDirective,
-    FormSubmitFailedDirective,
-    FormSubmittingDirective,
-    MatProgressBarModule,
-    AsyncPipe,
-    MatSnackBarModule,
-    ControlErrorDirective,
-  ],
+    selector: 'rxap-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        LoginFormProviders,
+        {
+            provide: ErrorStateMatcher,
+            useClass: ShowOnDirtyErrorStateMatcher,
+        },
+    ],
+    animations: [
+        fadeAnimation,
+    ],
+    imports: [
+        ReactiveFormsModule,
+        FormDirective,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        NgIf,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule,
+        FormControlMarkDirtyDirective,
+        FormSubmitFailedDirective,
+        FormSubmittingDirective,
+        MatProgressBarModule,
+        AsyncPipe,
+        MatSnackBarModule,
+        ControlErrorDirective,
+    ]
 })
 export class LoginComponent {
 

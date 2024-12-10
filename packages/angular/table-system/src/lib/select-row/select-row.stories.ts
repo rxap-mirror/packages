@@ -7,14 +7,14 @@ import { SelectRowModule } from './select-row.module';
 import { SelectRowService } from './select-row.service';
 
 @Component({
-  styles: [
-    `
+    styles: [
+        `
       table {
         width: 100%;
       }
     `,
-  ],
-  template: `
+    ],
+    template: `
     <table mat-table [dataSource]="data">
       <ng-container matColumnDef="select">
         <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
@@ -38,6 +38,7 @@ import { SelectRowService } from './select-row.service';
       <tr mat-row *matRowDef="let element; columns: ['select', 'name']"></tr>
     </table>
   `,
+    standalone: false
 })
 class DemoTableComponent {
   public data = [

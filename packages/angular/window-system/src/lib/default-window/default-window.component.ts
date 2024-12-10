@@ -6,12 +6,11 @@ import { WindowContentComponent } from '../window-content/window-content.compone
 import { WindowContainerComponent } from '../window-container/window-container.component';
 
 @Component({
-  selector: 'rxap-default-window',
-  templateUrl: './default-window.component.html',
-  styleUrls: [ './default-window.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.Default,
-  standalone: true,
-  imports: [ WindowContainerComponent, WindowContentComponent ],
+    selector: 'rxap-default-window',
+    templateUrl: './default-window.component.html',
+    styleUrls: ['./default-window.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
+    imports: [WindowContainerComponent, WindowContentComponent]
 })
 export class DefaultWindowComponent {
 }

@@ -81,30 +81,29 @@ function IsDataGridMode(value: string): value is DataGridMode {
 }
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'rxap-data-grid',
-  templateUrl: './data-grid.component.html',
-  styleUrls: [ './data-grid.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    NgIf,
-    NgFor,
-    MatButtonModule,
-    MatIconModule,
-    GetFromObjectPipe,
-    ReplacePipe,
-    EscapeQuotationMarkPipe,
-    RxapFormsModule,
-    DataGridValuePipe,
-    MatProgressSpinnerModule,
-    MatDividerModule,
-    NgTemplateOutlet,
-    MatFormFieldModule,
-    NgClass,
-    IsEmptyPipe,
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'rxap-data-grid',
+    templateUrl: './data-grid.component.html',
+    styleUrls: ['./data-grid.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        AsyncPipe,
+        NgIf,
+        NgFor,
+        MatButtonModule,
+        MatIconModule,
+        GetFromObjectPipe,
+        ReplacePipe,
+        EscapeQuotationMarkPipe,
+        RxapFormsModule,
+        DataGridValuePipe,
+        MatProgressSpinnerModule,
+        MatDividerModule,
+        NgTemplateOutlet,
+        MatFormFieldModule,
+        NgClass,
+        IsEmptyPipe,
+    ]
 })
 export class DataGridComponent<T extends Record<string, any>> implements OnInit, OnDestroy, AfterContentInit {
 

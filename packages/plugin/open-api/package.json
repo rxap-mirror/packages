@@ -3,7 +3,7 @@
   "name": "@rxap/plugin-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
+    "@nx/devkit": "20.2.1",
     "@rxap/node-utilities": "^1.3.7-dev.0",
     "@rxap/plugin-library": "^19.5.0-dev.0",
     "@rxap/plugin-utilities": "^19.0.11-dev.0",

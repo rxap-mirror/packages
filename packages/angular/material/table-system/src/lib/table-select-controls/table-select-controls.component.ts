@@ -12,15 +12,14 @@ import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'rxap-table-select-controls',
-  templateUrl: './table-select-controls.component.html',
-  styleUrls: [ './table-select-controls.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    AsyncPipe,
-  ],
+    selector: 'rxap-table-select-controls',
+    templateUrl: './table-select-controls.component.html',
+    styleUrls: ['./table-select-controls.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatButtonModule,
+        AsyncPipe,
+    ]
 })
 export class TableSelectControlsComponent {
   public hasNotSelected$: Observable<boolean>;

@@ -13,11 +13,10 @@ import { RXAP_ERROR_DIALOG_ERROR } from '../tokens';
 import { AngularErrorDialogData } from './angular-error-dialog-data';
 
 @Component({
-  selector: 'rxap-angular-error',
-  standalone: true,
-  imports: [ DataGridModule, KeyValuePipe, NgForOf, NgIf ],
-  templateUrl: './angular-error.component.html',
-  styleUrls: [ './angular-error.component.scss' ],
+    selector: 'rxap-angular-error',
+    imports: [DataGridModule, KeyValuePipe, NgForOf, NgIf],
+    templateUrl: './angular-error.component.html',
+    styleUrls: ['./angular-error.component.scss']
 })
 export class AngularErrorComponent implements IErrorDialogComponent<AngularErrorDialogData> {
 

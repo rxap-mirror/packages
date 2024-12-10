@@ -17,22 +17,21 @@ import { SidenavToggleButtonComponent } from './sidenav-toggle-button/sidenav-to
 import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
 
 @Component({
-  selector: 'rxap-default-header',
-  standalone: true,
-  imports: [
-    AppsButtonComponent,
-    SettingsButtonComponent,
-    SidenavToggleButtonComponent,
-    UserProfileIconComponent,
-    MatToolbarRow,
-    CdkPortalOutlet,
-  ],
-  host: {
-    'class': 'grow',
-  },
-  templateUrl: './default-header.component.html',
-  styleUrl: './default-header.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'rxap-default-header',
+    imports: [
+        AppsButtonComponent,
+        SettingsButtonComponent,
+        SidenavToggleButtonComponent,
+        UserProfileIconComponent,
+        MatToolbarRow,
+        CdkPortalOutlet,
+    ],
+    host: {
+        'class': 'grow',
+    },
+    templateUrl: './default-header.component.html',
+    styleUrl: './default-header.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DefaultHeaderComponent {
 

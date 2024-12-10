@@ -118,11 +118,12 @@ describe('@rxap/directives/material/expansion', () => {
       let directive: PersistentExpansionPanelDirective;
 
       @Component({
-        template: `
+    template: `
             <mat-expansion-panel rxapPersistentExpansionPanel="name" group="group" id="id">
                 <mat-expansion-panel-header></mat-expansion-panel-header>
             </mat-expansion-panel>`,
-      })
+    standalone: false
+})
       class TestComponent {
       }
 

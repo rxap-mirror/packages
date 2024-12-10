@@ -16,7 +16,8 @@ import {
 } from './open-api-table.data-source';
 
 @Pipe({
-  name: 'toOpenApiTableDataSource',
+    name: 'toOpenApiTableDataSource',
+    standalone: false
 })
 export class ToOpenApiTableDataSourcePipe implements PipeTransform {
 

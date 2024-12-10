@@ -22,38 +22,33 @@ import {
 
 
 @Component({
-  selector: 'rxap-table-header-button-form',
-  templateUrl: './table-header-button-form.component.html',
-  styleUrls: [ './table-header-button-form.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MaterialFormSystemModule,
-    FormControlsComponent,
-    RxapFormsModule,
-
-    FormWindowFooterDirective,
-
-  ],
-  providers: [
-    FormProviders,
-    FormComponentProviders,
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: {
-        appearance: 'fill',
-      },
-    },
-
-    {
-      provide: RXAP_WINDOW_SETTINGS,
-      useValue: {
-        title: $localize`TableHeaderButton`,
-      },
-    },
-
-  ],
+    selector: 'rxap-table-header-button-form',
+    templateUrl: './table-header-button-form.component.html',
+    styleUrls: ['./table-header-button-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MaterialFormSystemModule,
+        FormControlsComponent,
+        RxapFormsModule,
+        FormWindowFooterDirective,
+    ],
+    providers: [
+        FormProviders,
+        FormComponentProviders,
+        {
+            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+            useValue: {
+                appearance: 'fill',
+            },
+        },
+        {
+            provide: RXAP_WINDOW_SETTINGS,
+            useValue: {
+                title: $localize `TableHeaderButton`,
+            },
+        },
+    ]
 })
 export class TableHeaderButtonFormComponent {}

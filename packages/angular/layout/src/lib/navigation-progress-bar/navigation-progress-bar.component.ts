@@ -17,14 +17,13 @@ import {
 } from 'rxjs/operators';
 
 @Component({
-  selector: 'rxap-navigation-progress-bar',
-  templateUrl: './navigation-progress-bar.component.html',
-  styleUrls: [ './navigation-progress-bar.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatProgressBar,
-  ],
+    selector: 'rxap-navigation-progress-bar',
+    templateUrl: './navigation-progress-bar.component.html',
+    styleUrls: ['./navigation-progress-bar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatProgressBar,
+    ]
 })
 export class NavigationProgressBarComponent {
 

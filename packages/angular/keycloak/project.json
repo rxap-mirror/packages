@@ -17,8 +17,7 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/keycloak/ng-package.json",
-        "tailwindConfig": "packages/angular/keycloak/tailwind.config.js"
+        "project": "packages/angular/keycloak/ng-package.json"
       },
       "configurations": {
         "production": {

@@ -15,12 +15,11 @@ import {
 } from 'rxjs/operators';
 
 @Component({
-  selector: 'rxap-auth-loading',
-  templateUrl: './loading.component.html',
-  styleUrls: [ './loading.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ MatProgressBarModule ],
+    selector: 'rxap-auth-loading',
+    templateUrl: './loading.component.html',
+    styleUrls: ['./loading.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatProgressBarModule]
 })
 export class LoadingComponent implements OnInit, OnDestroy {
   public subscription?: Subscription;

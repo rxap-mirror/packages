@@ -32,13 +32,12 @@ export interface Segment {
 }
 
 @Component({
-  selector: 'rxap-json-viewer',
-  templateUrl: './json-viewer.component.html',
-  styleUrls: [ './json-viewer.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush, // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: { class: 'rxap-json-viewer' },
-  standalone: true,
-  imports: [ NgFor, NgClass, NgIf, forwardRef(() => JsonViewerComponent) ],
+    selector: 'rxap-json-viewer',
+    templateUrl: './json-viewer.component.html',
+    styleUrls: ['./json-viewer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { class: 'rxap-json-viewer' },
+    imports: [NgFor, NgClass, NgIf, forwardRef(() => JsonViewerComponent)]
 })
 export class JsonViewerComponent implements OnInit, OnChanges {
 

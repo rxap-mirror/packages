@@ -9,11 +9,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'rxap-window-action-bar',
-  templateUrl: './window-action-bar.component.html',
-  styleUrls: [ './window-action-bar.component.scss' ],
-  standalone: true,
-  imports: [ NgIf, MatToolbarModule ],
+    selector: 'rxap-window-action-bar',
+    templateUrl: './window-action-bar.component.html',
+    styleUrls: ['./window-action-bar.component.scss'],
+    imports: [NgIf, MatToolbarModule]
 })
 export class WindowActionBarComponent {
 

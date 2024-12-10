@@ -36,17 +36,16 @@ export interface DataSourceLikeForErrorHandling {
 }
 
 @Component({
-  selector: 'rxap-data-source-error',
-  templateUrl: './data-source-error.component.html',
-  styleUrls: [ './data-source-error.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    NgIf,
-    MatProgressSpinnerModule,
-    JsonPipe,
-  ],
+    selector: 'rxap-data-source-error',
+    templateUrl: './data-source-error.component.html',
+    styleUrls: ['./data-source-error.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        MatButtonModule,
+        NgIf,
+        MatProgressSpinnerModule,
+        JsonPipe,
+    ]
 })
 export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
 

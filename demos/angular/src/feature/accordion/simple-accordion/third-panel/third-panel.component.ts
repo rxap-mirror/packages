@@ -7,20 +7,19 @@ import { CommonModule, AsyncPipe, JsonPipe } from '@angular/common';
 import { ThirdPanelMethod } from './third-panel.method';
 
 @Component({
-  selector: 'rxap-third-panel',
-  templateUrl: './third-panel.component.html',
-  styleUrls: ['./third-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    DataSourceDirective,
-    MatProgressBarModule,
-    CommonModule,
-    DataSourceErrorComponent,
-    AsyncPipe,
-    JsonPipe,
-  ],
-  standalone: true,
-  providers: [ThirdPanelDataSource, ThirdPanelMethod],
+    selector: 'rxap-third-panel',
+    templateUrl: './third-panel.component.html',
+    styleUrls: ['./third-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DataSourceDirective,
+        MatProgressBarModule,
+        CommonModule,
+        DataSourceErrorComponent,
+        AsyncPipe,
+        JsonPipe,
+    ],
+    providers: [ThirdPanelDataSource, ThirdPanelMethod]
 })
 export class ThirdPanelComponent {
 

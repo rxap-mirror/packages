@@ -9,25 +9,24 @@ import { DataGridCollectionDemoPanelDataSource } from './data-grid-collection-de
 import { DataGridCollectionDemoPanelMethod } from './data-grid-collection-demo-panel.method';
 
 @Component({
-  selector: 'rxap-data-grid-collection-demo-panel',
-  templateUrl: './data-grid-collection-demo-panel.component.html',
-  styleUrls: ['./data-grid-collection-demo-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DataGridCollectionDemoDataGridComponent,
-    DataSourceDirective,
-    CommonModule,
-    DataSourceErrorComponent,
-    MatProgressBarModule,
-    AsyncPipe,
-    JsonPipe,
-  ],
-  providers: [
-    DataGridCollectionDemoDataGridDataSource,
-    DataGridCollectionDemoPanelDataSource,
-    DataGridCollectionDemoPanelMethod,
-  ],
+    selector: 'rxap-data-grid-collection-demo-panel',
+    templateUrl: './data-grid-collection-demo-panel.component.html',
+    styleUrls: ['./data-grid-collection-demo-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DataGridCollectionDemoDataGridComponent,
+        DataSourceDirective,
+        CommonModule,
+        DataSourceErrorComponent,
+        MatProgressBarModule,
+        AsyncPipe,
+        JsonPipe,
+    ],
+    providers: [
+        DataGridCollectionDemoDataGridDataSource,
+        DataGridCollectionDemoPanelDataSource,
+        DataGridCollectionDemoPanelMethod,
+    ]
 })
 export class DataGridCollectionDemoPanelComponent {
   constructor(

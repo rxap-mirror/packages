@@ -3,20 +3,20 @@
   "name": "@rxap/table-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.8.14",
-    "tslib": "2.6.2"
-  },
-  "peerDependencies": {
-    "@angular/animations": "^18.2.0",
-    "@angular/cdk": "^18.2.0",
-    "@angular/common": "^18.2.0",
-    "@angular/core": "^18.2.0",
-    "@angular/forms": "^18.2.0",
-    "@angular/material": "^18.2.0",
+    "@nx/devkit": "20.2.1",
     "@rxap/data-source": "^18.1.6-dev.0",
     "@rxap/material-table-system": "^18.0.9-dev.0",
     "@rxap/utilities": "^16.4.1-dev.0",
-    "rxjs": "^7.8.1"
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@angular/animations": "19.0.3",
+    "@angular/cdk": "19.0.2",
+    "@angular/common": "19.0.3",
+    "@angular/core": "19.0.3",
+    "@angular/forms": "19.0.3",
+    "@angular/material": "19.0.2",
+    "rxjs": "7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

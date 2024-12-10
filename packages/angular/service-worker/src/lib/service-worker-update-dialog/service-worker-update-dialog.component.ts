@@ -17,14 +17,13 @@ import { VersionEvent } from '@angular/service-worker';
 export const UPDATE_AVAILABLE_EVENT = new InjectionToken<VersionEvent>('UPDATE_AVAILABLE_EVENT');
 
 @Component({
-  selector: 'rxap-service-worker-update-dialog',
-  standalone: true,
-  imports: [
-    NgSwitch,
-    NgSwitchCase,
-  ],
-  templateUrl: './service-worker-update-dialog.component.html',
-  styleUrls: [ './service-worker-update-dialog.component.scss' ],
+    selector: 'rxap-service-worker-update-dialog',
+    imports: [
+        NgSwitch,
+        NgSwitchCase,
+    ],
+    templateUrl: './service-worker-update-dialog.component.html',
+    styleUrls: ['./service-worker-update-dialog.component.scss']
 })
 export class ServiceWorkerUpdateDialogComponent implements AfterViewInit {
 

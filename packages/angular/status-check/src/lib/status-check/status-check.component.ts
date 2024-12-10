@@ -41,11 +41,10 @@ export interface ServiceStatus {
 }
 
 @Component({
-  selector: 'rxap-status-check',
-  standalone: true,
-  imports: [ RouterLink, NgIf, NgClass, NgForOf ],
-  templateUrl: './status-check.component.html',
-  styleUrls: [ './status-check.component.scss' ],
+    selector: 'rxap-status-check',
+    imports: [RouterLink, NgIf, NgClass, NgForOf],
+    templateUrl: './status-check.component.html',
+    styleUrls: ['./status-check.component.scss']
 })
 export class StatusCheckComponent implements OnInit, OnDestroy {
 

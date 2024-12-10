@@ -33,17 +33,16 @@ export interface IErrorDialogComponent<Error = any> {
 }
 
 @Component({
-  selector: 'rxap-error-dialog',
-  templateUrl: './error-dialog.component.html',
-  styleUrls: [ './error-dialog.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.Default,
-  standalone: true,
-  imports: [
-    NgIf,
-    NgClass,
-    NgForOf,
-    PortalModule,
-  ],
+    selector: 'rxap-error-dialog',
+    templateUrl: './error-dialog.component.html',
+    styleUrls: ['./error-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
+    imports: [
+        NgIf,
+        NgClass,
+        NgForOf,
+        PortalModule,
+    ]
 })
 export class ErrorDialogComponent implements AfterViewInit {
 

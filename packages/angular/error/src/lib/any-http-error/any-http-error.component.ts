@@ -21,21 +21,20 @@ import { RXAP_ERROR_DIALOG_ERROR } from '../tokens';
 import { AnyHttpErrorDialogData } from './any-http-error-dialog-data';
 
 @Component({
-  selector: 'rxap-any-http-error',
-  templateUrl: './any-http-error.component.html',
-  styleUrls: [ './any-http-error.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    DataGridModule,
-    NgIf,
-    DatePipe,
-    KeyValuePipe,
-    NgForOf,
-    CopyToClipboardComponent,
-    JsonPipe,
-    JsonViewerComponent,
-  ],
+    selector: 'rxap-any-http-error',
+    templateUrl: './any-http-error.component.html',
+    styleUrls: ['./any-http-error.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        DataGridModule,
+        NgIf,
+        DatePipe,
+        KeyValuePipe,
+        NgForOf,
+        CopyToClipboardComponent,
+        JsonPipe,
+        JsonViewerComponent,
+    ]
 })
 export class AnyHttpErrorComponent implements IErrorDialogComponent<AnyHttpErrorDialogData> {
 

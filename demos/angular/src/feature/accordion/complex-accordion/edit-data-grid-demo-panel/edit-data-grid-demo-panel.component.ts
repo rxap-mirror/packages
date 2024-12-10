@@ -8,20 +8,19 @@ import { EditDataGridDemoPanelDataSource } from './edit-data-grid-demo-panel.dat
 import { EditDataGridDemoPanelMethod } from './edit-data-grid-demo-panel.method';
 
 @Component({
-  selector: 'rxap-edit-data-grid-demo-panel',
-  templateUrl: './edit-data-grid-demo-panel.component.html',
-  styleUrls: ['./edit-data-grid-demo-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    EditDataGridDemoDataGridComponent,
-    DataSourceDirective,
-    MatProgressBarModule,
-    DataSourceErrorComponent,
-    AsyncPipe,
-    JsonPipe,
-  ],
-  providers: [EditDataGridDemoPanelDataSource, EditDataGridDemoPanelMethod],
+    selector: 'rxap-edit-data-grid-demo-panel',
+    templateUrl: './edit-data-grid-demo-panel.component.html',
+    styleUrls: ['./edit-data-grid-demo-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        EditDataGridDemoDataGridComponent,
+        DataSourceDirective,
+        MatProgressBarModule,
+        DataSourceErrorComponent,
+        AsyncPipe,
+        JsonPipe,
+    ],
+    providers: [EditDataGridDemoPanelDataSource, EditDataGridDemoPanelMethod]
 })
 export class EditDataGridDemoPanelComponent {
   public readonly panelDataSource = inject(EditDataGridDemoPanelDataSource);
