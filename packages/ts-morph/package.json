@@ -3,7 +3,7 @@
   "name": "@rxap/ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.7.4",
+    "@nx/devkit": "19.8.14",
     "@rxap/utilities": "^16.4.0",
     "colors": "1.4.0",
     "ts-morph": "18.0.0",

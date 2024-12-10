@@ -3,7 +3,7 @@
   "name": "@rxap/nest-server",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.7.4",
+    "@nx/devkit": "19.8.14",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

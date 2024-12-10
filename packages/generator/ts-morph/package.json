@@ -3,7 +3,7 @@
   "name": "@rxap/generator-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.7.4",
+    "@nx/devkit": "19.8.14",
     "@rxap/workspace-ts-morph": "^19.1.7",
     "tslib": "2.6.2"
   },

@@ -3,14 +3,14 @@
   "name": "@rxap/ngx-bootstrap",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.7.4",
+    "@nx/devkit": "19.8.14",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@angular/core": "^18.2.0",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
-    "@nx/angular": "^19.7.4",
+    "@nx/angular": "^19.8.14",
     "@rxap/config": "^18.2.2",
     "@rxap/environment": "^18.0.7",
     "ngx-logger": "^5.0.12"

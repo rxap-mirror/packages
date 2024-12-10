@@ -3,7 +3,7 @@
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.7.4",
+    "@nx/devkit": "19.8.14",
     "@rxap/ts-morph": "^1.5.1",
     "@rxap/workspace-ts-morph": "^19.1.7",
     "@rxap/workspace-utilities": "^19.5.0",

@@ -16,17 +16,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@adobe/css-tools@npm:^4.0.1":
-  version: 4.3.3
-  resolution: "@adobe/css-tools@npm:4.3.3"
-  checksum: d21f3786b84911fee59c995a146644a85c98692979097b26484ffa9e442fb1a92ccd68ce984e3e7cf8d5933c3560fbc0ad3e3cd1de50b9a723d1c012e793bbcb
-  languageName: node
-  linkType: hard
-
 "@adobe/css-tools@npm:^4.3.2":
   version: 4.4.0
   resolution: "@adobe/css-tools@npm:4.4.0"
   checksum: 1f08fb49bf17fc7f2d1a86d3e739f29ca80063d28168307f1b0a962ef37501c5667271f6771966578897f2e94e43c4770fd802728a6e6495b812da54112d506a
+  languageName: node
+  linkType: hard
+
+"@adobe/css-tools@npm:~4.3.3":
+  version: 4.3.3
+  resolution: "@adobe/css-tools@npm:4.3.3"
+  checksum: d21f3786b84911fee59c995a146644a85c98692979097b26484ffa9e442fb1a92ccd68ce984e3e7cf8d5933c3560fbc0ad3e3cd1de50b9a723d1c012e793bbcb
   languageName: node
   linkType: hard
 
@@ -5100,6 +5100,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/compat@npm:^1.1.1":
+  version: 1.2.4
+  resolution: "@eslint/compat@npm:1.2.4"
+  peerDependencies:
+    eslint: ^9.10.0
+  peerDependenciesMeta:
+    eslint:
+      optional: true
+  checksum: d68b0e5d4f2890c86b439cd2e4c0f9c6e7eae09230a69cf80a0b647f7242ed5c662cc286a06d6eb06d95e3def62ed26e9e1eac494538d58b4e2cfc355d37c176
+  languageName: node
+  linkType: hard
+
 "@eslint/eslintrc@npm:^2.1.4":
   version: 2.1.4
   resolution: "@eslint/eslintrc@npm:2.1.4"
@@ -7679,22 +7691,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/angular@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/angular@npm:19.7.4"
+"@nrwl/angular@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/angular@npm:19.8.14"
   dependencies:
-    "@nx/angular": 19.7.4
+    "@nx/angular": 19.8.14
     tslib: ^2.3.0
-  checksum: 2c94690d75d6807d3a47550c2603edf9ef124fae9b7ca7e92d7c6115a96af9e4eeadb2353486de1c7e5462404eb55e5a985ebe7469ee8b91fa85d0a64d4ed7a9
+  checksum: 75a3e4d269090583de129b4992a326062a8a875d6e4a962543ba324bff7c092f2238357ba872cbf4b65006d52f1e2eac19927793277d879e837a5b08febfde11
   languageName: node
   linkType: hard
 
-"@nrwl/cypress@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/cypress@npm:19.7.4"
+"@nrwl/cypress@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/cypress@npm:19.8.14"
   dependencies:
-    "@nx/cypress": 19.7.4
-  checksum: bee1565cb346d4e38956e024231a83f601ce7685a531d169cee02cb1b5d0abce149aae8b4fc41fdc0f45bb62fcd6de8b7a1a19b468015c821ded9e13384ac47e
+    "@nx/cypress": 19.8.14
+  checksum: a1c79d2fb8fdfb58d42b8fb234da85fbdba756a71e820b21f23ab775257774efa3d277fda8eaf8432821200726c8f78330adede396ce97127f0aec8365353a43
   languageName: node
   linkType: hard
 
@@ -7723,66 +7735,66 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/devkit@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/devkit@npm:19.7.4"
+"@nrwl/devkit@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/devkit@npm:19.8.14"
   dependencies:
-    "@nx/devkit": 19.7.4
-  checksum: dfcebec85a1f1ee02f7630db7ffe1670ea7fcf4756a28771eb9114e27393ac12cfa794b73a27802f737a9ee419aa3e6aef8198dcdcf659ae46e6a4b47a57bb15
+    "@nx/devkit": 19.8.14
+  checksum: 847c5a1b2d4dbeec9f477f14037d42f5308aa444e48faf5a10454b8d4322653f00b3c58d5cd996e062bf32de09b5a18a0e6dda539b9c6966ab5edf2f41050573
   languageName: node
   linkType: hard
 
-"@nrwl/esbuild@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/esbuild@npm:19.7.4"
+"@nrwl/esbuild@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/esbuild@npm:19.8.14"
   dependencies:
-    "@nx/esbuild": 19.7.4
-  checksum: 12cdcc573d850b0c22aca2922190d6347c3fe87b60ba55653cda13d58945baebe2cce352503e272d60062f0c5731353e03feb3758e00769846776b43fe7eb3f2
+    "@nx/esbuild": 19.8.14
+  checksum: 75a9ba5dcf7eb86bd653d28dbb58f6657d5007b0e809cc1cd45b8f29f656cd9773dfd6c73cacbd9ab76f1eba487f3e331b1afe465f49bbd779bee9f90a71ec9d
   languageName: node
   linkType: hard
 
-"@nrwl/eslint-plugin-nx@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/eslint-plugin-nx@npm:19.7.4"
+"@nrwl/eslint-plugin-nx@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/eslint-plugin-nx@npm:19.8.14"
   dependencies:
-    "@nx/eslint-plugin": 19.7.4
-  checksum: 2ecd762fe77033fd7ac99e6afaf9c8a0b9eb1d42be5ba8dbe6a00153604fc49505d68b46656c5a7ecda2b67a8498bdc8b2e1258f034796a29cbee6257e7232fc
+    "@nx/eslint-plugin": 19.8.14
+  checksum: 21fdf580cc3e67a6e7db6471bd06d51c1b76f33ad7fa2979bf6d08e9e17dc8e9c65d28cb06d8b5c0ff08eee96a6c728352da45aefc31ec24123e630de450ddaa
   languageName: node
   linkType: hard
 
-"@nrwl/jest@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/jest@npm:19.7.4"
+"@nrwl/jest@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/jest@npm:19.8.14"
   dependencies:
-    "@nx/jest": 19.7.4
-  checksum: 6407a0065d793b359a4f42a1e52b98c451114da3403d06a20ef3c9a62738ca245d2e74f17c711c7c6c31b49b8f8ecf236d518d9caf39898ab28d5383bfc74ea8
+    "@nx/jest": 19.8.14
+  checksum: fd3c7f17a4b5ee4402980f5ba937749060d6ae264a9cfedf8b8b6f5c425a67668d2eed9380ea32130a0869d4159693b474249a840c737621d2be3289ba47917a
   languageName: node
   linkType: hard
 
-"@nrwl/js@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/js@npm:19.7.4"
+"@nrwl/js@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/js@npm:19.8.14"
   dependencies:
-    "@nx/js": 19.7.4
-  checksum: ac53d642d1f138940624b59ce7c1528ef511b72ec5429b58699feaccfaf0e610d8d2879010bf8ba99dd309d75bee2826b1a99adbd70e6d26cabd5381afa50efe
+    "@nx/js": 19.8.14
+  checksum: 69400a02b3a795a4bd6afdbe1b12b24f5d7be00eeec717e9d4695b98de1936476490b1f02662a94cbedadc151770da4aef1d76baa011a6bf19c65b13a84a978e
   languageName: node
   linkType: hard
 
-"@nrwl/nest@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/nest@npm:19.7.4"
+"@nrwl/nest@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/nest@npm:19.8.14"
   dependencies:
-    "@nx/nest": 19.7.4
-  checksum: fbc2d8974ff9d29725d158a4b9e149842ae060c94be7acf9f717f3914a370c08daa524f62234e433e569301a6893e86b7aa9b8264766811db9abc77cd4db2aa1
+    "@nx/nest": 19.8.14
+  checksum: 4f60e2e16168871074b05887c0c9bae9b737d197c55369a3517376c18942f120f4f341e7160953eca6b01c195464203f189f4028003c99635395b063c6a42619
   languageName: node
   linkType: hard
 
-"@nrwl/node@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/node@npm:19.7.4"
+"@nrwl/node@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/node@npm:19.8.14"
   dependencies:
-    "@nx/node": 19.7.4
-  checksum: faca777e95c28dc06cd98a8be190227601cabe87f1ff7259ab92a825377838d1da250e4f3908bed2759b22c558615ab324967dabf3a63149df3cf492bf9def3f
+    "@nx/node": 19.8.14
+  checksum: 800cff87e047b0d41acca90aa5ea2472b8fcfb0a785d10f70d026939118c4596667fbe2bbb19e3a89f4b0801526940fdd1bff80b660ad12fb1a841f50232a107
   languageName: node
   linkType: hard
 
@@ -7795,21 +7807,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/nx-plugin@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/nx-plugin@npm:19.7.4"
+"@nrwl/nx-plugin@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/nx-plugin@npm:19.8.14"
   dependencies:
-    "@nx/plugin": 19.7.4
-  checksum: d111722921bc396a7da35e6d6252514a74123fcde26410e923f4a8dd36bc0a42d4ae2e8c754f2487b4e40666f5ae73aab96a62720468be3626b448c2b1db5e1a
+    "@nx/plugin": 19.8.14
+  checksum: 2b23919b04f4a45d237d3b5ba44821902418aa8c7def32e40bc19852737b6d9a46f0949c8866bc560c40dfbd3c24cc0f3fd1d919bba7540c998f8818cd5e5687
   languageName: node
   linkType: hard
 
-"@nrwl/storybook@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/storybook@npm:19.7.4"
+"@nrwl/storybook@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/storybook@npm:19.8.14"
   dependencies:
-    "@nx/storybook": 19.7.4
-  checksum: ec27b9890ad836e7b3f3358d7081534604efefe649ca5464461312ea035d2c8bc2534b88bd3b80fe44ec4e64e9ea2a46c4cae1f8c7ecb7f162fb35f4c4b709a3
+    "@nx/storybook": 19.8.14
+  checksum: 0418721906f51a3af948e81ef4028864152e2714d119c9ab4e1df7d53b32c6aa5728fcae444d6193ce8aa4e9e174e2391c384c4ef9bee83ff15790df88af61aa
   languageName: node
   linkType: hard
 
@@ -7825,42 +7837,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/tao@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/tao@npm:19.7.4"
+"@nrwl/tao@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/tao@npm:19.8.14"
   dependencies:
-    nx: 19.7.4
+    nx: 19.8.14
     tslib: ^2.3.0
   bin:
     tao: index.js
-  checksum: b44409f0be5de601704f23351bf22862239f6e449c6c25aa7a6931da08ec11c3ad8f3985f412d232dbe7944b9ea2a0e4f5fe4fd400fbaa2090df66ab84617da2
+  checksum: f9e10d1edb2089c091a1e234d206b5f37e4a62666788cf00c4b9767885df7d3c2dd1d36f9de7b932de72a699e02e3013fbf41e3243a35ce197b3fb5ca5f165af
   languageName: node
   linkType: hard
 
-"@nrwl/web@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/web@npm:19.7.4"
+"@nrwl/web@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/web@npm:19.8.14"
   dependencies:
-    "@nx/web": 19.7.4
-  checksum: 450bbe9aeaaa87760e89f2fb6ff0fc2b527307c01b7f22226b6f07d60ea985c2463b0617a5f63d9fd487c61bdc68ffc0e5dfdfff0ebc665d91e1b2e8894f651c
+    "@nx/web": 19.8.14
+  checksum: deef6fe048ca4701c98b803fb30545c7225e0f30b353c8201629e29f9f65879868a1e1a78e75c60a85b54105b5c7ace17272f13af28115f289cda9f3e3dd470d
   languageName: node
   linkType: hard
 
-"@nrwl/webpack@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/webpack@npm:19.7.4"
+"@nrwl/webpack@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/webpack@npm:19.8.14"
   dependencies:
-    "@nx/webpack": 19.7.4
-  checksum: 88b1942d3b888f0492e2e1a13128c437b772a1eb1ec036c74b07a63cd1a2eba0d284ccd2bee3e997d89c5402224860e3d6b2ce9b759f56b8036edbdc20ba165b
+    "@nx/webpack": 19.8.14
+  checksum: 94569394616c6d537f817294612d3c7326c51c1f549383a5eea0d4cde4f652f126885afd5028881d4c617a0c4ca9e0143aaea485a21c4c0f91639785175bfc71
   languageName: node
   linkType: hard
 
-"@nrwl/workspace@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nrwl/workspace@npm:19.7.4"
+"@nrwl/workspace@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nrwl/workspace@npm:19.8.14"
   dependencies:
-    "@nx/workspace": 19.7.4
-  checksum: 8d1fa34ccb3d40309738400146f4a2d859684a6006bd244b69251c64c01d6c77e8a46787d683a03735061e11ec7c46e774c9ccf2a9446c897dec82c703b9f09a
+    "@nx/workspace": 19.8.14
+  checksum: d20259c12d0ea336d90f37fa5dbe6b8c847ed40a1ab6870172be22dfd87cb6e6d8048c114d70e17237a5b275c571b0648e7521f16677dc544f6009323b03f69e
   languageName: node
   linkType: hard
 
@@ -7877,20 +7889,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/angular@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/angular@npm:19.7.4"
+"@nx/angular@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/angular@npm:19.8.14"
   dependencies:
     "@module-federation/enhanced": ~0.6.0
-    "@nrwl/angular": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/eslint": 19.7.4
-    "@nx/js": 19.7.4
-    "@nx/web": 19.7.4
-    "@nx/webpack": 19.7.4
-    "@nx/workspace": 19.7.4
+    "@nrwl/angular": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/eslint": 19.8.14
+    "@nx/js": 19.8.14
+    "@nx/web": 19.8.14
+    "@nx/webpack": 19.8.14
+    "@nx/workspace": 19.8.14
     "@phenomnomnominal/tsquery": ~5.0.1
-    "@typescript-eslint/type-utils": ^7.16.0
+    "@typescript-eslint/type-utils": ^8.0.0
     chalk: ^4.1.0
     find-cache-dir: ^3.3.2
     magic-string: ~0.30.2
@@ -7906,18 +7918,18 @@ __metadata:
     "@angular-devkit/schematics": ">= 16.0.0 < 19.0.0"
     "@schematics/angular": ">= 16.0.0 < 19.0.0"
     rxjs: ^6.5.3 || ^7.5.0
-  checksum: 7c07e803dc5fefcd231bd9a19895859549b9d521b21bf7cc598727cb1fdbc346f338a26f910d6f7d922dd15187d822d1d97f0e96bb7e1b793c6b99af4b52a942
+  checksum: cafaba3b359707a52ffedb98848a62af3e4898ce17f0d295c1fef788fa56c2b1b19aa1055a3976436287131bfc7f643310584783b44c2f959ab398ca2cf75041
   languageName: node
   linkType: hard
 
-"@nx/cypress@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/cypress@npm:19.7.4"
+"@nx/cypress@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/cypress@npm:19.8.14"
   dependencies:
-    "@nrwl/cypress": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/eslint": 19.7.4
-    "@nx/js": 19.7.4
+    "@nrwl/cypress": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/eslint": 19.8.14
+    "@nx/js": 19.8.14
     "@phenomnomnominal/tsquery": ~5.0.1
     detect-port: ^1.5.1
     tslib: ^2.3.0
@@ -7926,7 +7938,7 @@ __metadata:
   peerDependenciesMeta:
     cypress:
       optional: true
-  checksum: d19a835a35504ec5d3cd444045df42cfe5be4e44b10565128063dafffe9a002b7a94e48122d7f09015b6b3cffae63387a74eb9ac4f0611474dcdc634548f6ebb
+  checksum: 86696f2d2953513e186afea6a41a8fbbc4a4d4c60cfc7749aacccbaf2af1b19db6e312ea652e9907735adcb857c260c711533351401084c47a452f2cc68264c2
   languageName: node
   linkType: hard
 
@@ -7949,11 +7961,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/devkit@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/devkit@npm:19.7.4"
+"@nx/devkit@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/devkit@npm:19.8.14"
   dependencies:
-    "@nrwl/devkit": 19.7.4
+    "@nrwl/devkit": 19.8.14
     ejs: ^3.1.7
     enquirer: ~2.3.6
     ignore: ^5.0.4
@@ -7963,21 +7975,20 @@ __metadata:
     tslib: ^2.3.0
     yargs-parser: 21.1.1
   peerDependencies:
-    nx: ">= 17 <= 20"
-  checksum: 6dc05efe756ce8518d4dfa3b92542287ac1c3baa3691000dd8e795ff1c6e809a2f018312ae76e3ac9bbd6658cdec8d1b4131a30bddb8efdf51e2933cd149a9f4
+    nx: ">= 19 <= 21"
+  checksum: ee462aeb35a78d305f3f193e0be45b5afa8afd7eda7e8e2d5d82c066769ea0d04f1375638e8421081d72b76dee8040c84d5edb61e351572ff00ad2e837c6f9d3
   languageName: node
   linkType: hard
 
-"@nx/esbuild@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/esbuild@npm:19.7.4"
+"@nx/esbuild@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/esbuild@npm:19.8.14"
   dependencies:
-    "@nrwl/esbuild": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/js": 19.7.4
-    chalk: ^4.1.0
+    "@nrwl/esbuild": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/js": 19.8.14
     fast-glob: 3.2.7
-    fs-extra: ^11.1.0
+    picocolors: ^1.1.0
     tsconfig-paths: ^4.1.2
     tslib: ^2.3.0
   peerDependencies:
@@ -7985,41 +7996,43 @@ __metadata:
   peerDependenciesMeta:
     esbuild:
       optional: true
-  checksum: 5f04a3f2d2e1814bcc36306e1db0f9920b4e1b9df97ab48aaa81e70d16acc285e83b65cced32b7fc6b16b0af7b3726bfea8f8f913af127a9433fec918e4180e0
+  checksum: 696792fe809a08eb23061c094798a56a13f2925a794cfe390309c249d07e620f0c8025609fcff9bdea6e6ba47ab395ecd2af4e9215a550dbdc1e6083cdebfd0a
   languageName: node
   linkType: hard
 
-"@nx/eslint-plugin@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/eslint-plugin@npm:19.7.4"
+"@nx/eslint-plugin@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/eslint-plugin@npm:19.8.14"
   dependencies:
-    "@nrwl/eslint-plugin-nx": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/js": 19.7.4
-    "@typescript-eslint/type-utils": ^7.16.0
-    "@typescript-eslint/utils": ^7.16.0
+    "@eslint/compat": ^1.1.1
+    "@nrwl/eslint-plugin-nx": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/js": 19.8.14
+    "@typescript-eslint/type-utils": ^8.0.0
+    "@typescript-eslint/utils": ^8.0.0
     chalk: ^4.1.0
     confusing-browser-globals: ^1.0.9
+    globals: ^15.9.0
     jsonc-eslint-parser: ^2.1.0
     semver: ^7.5.3
     tslib: ^2.3.0
   peerDependencies:
-    "@typescript-eslint/parser": ^6.13.2 || ^7.0.0
+    "@typescript-eslint/parser": ^6.13.2 || ^7.0.0 || ^8.0.0
     eslint-config-prettier: ^9.0.0
   peerDependenciesMeta:
     eslint-config-prettier:
       optional: true
-  checksum: 9369ecab773cda8d9c0d388db9c23e9b1174c690315bfd022d9a3615d4e6d92fc9e26ce2a1de2dfd3092f3e7062ac719dd60279cf5a35708fccfa52f0497cad4
+  checksum: 352923dbbc50e239cd65003b040acc3673a240dba654e7b8f7f682bb6c73f5199f7276cd3d9d8c131d6209a96577fc9b8fdcc60fd1f3ab44c880547448c54387
   languageName: node
   linkType: hard
 
-"@nx/eslint@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/eslint@npm:19.7.4"
+"@nx/eslint@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/eslint@npm:19.8.14"
   dependencies:
-    "@nx/devkit": 19.7.4
-    "@nx/js": 19.7.4
-    "@nx/linter": 19.7.4
+    "@nx/devkit": 19.8.14
+    "@nx/js": 19.8.14
+    "@nx/linter": 19.8.14
     semver: ^7.5.3
     tslib: ^2.3.0
     typescript: ~5.4.2
@@ -8029,19 +8042,19 @@ __metadata:
   peerDependenciesMeta:
     "@zkochan/js-yaml":
       optional: true
-  checksum: e02953edb9cffbc9b748f3be5a811fa46f949596fdc1d201d49a61b23ebd07304248b65e74f4912829fbffef9ad3124848b0b0139a004dc4d1d25600b9b18c56
+  checksum: 3856012c6f1f5e134fadaa659faf381da704ca042ef7cb81a80d35815529358f021e8cb1b45c7b8bf3bf0585e655103e87877b8684bbf1c394700f874a238161
   languageName: node
   linkType: hard
 
-"@nx/jest@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/jest@npm:19.7.4"
+"@nx/jest@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/jest@npm:19.8.14"
   dependencies:
     "@jest/reporters": ^29.4.1
     "@jest/test-result": ^29.4.1
-    "@nrwl/jest": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/js": 19.7.4
+    "@nrwl/jest": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/js": 19.8.14
     "@phenomnomnominal/tsquery": ~5.0.1
     chalk: ^4.1.0
     identity-obj-proxy: 3.0.0
@@ -8053,13 +8066,13 @@ __metadata:
     semver: ^7.5.3
     tslib: ^2.3.0
     yargs-parser: 21.1.1
-  checksum: ced0402b35b51f245fcdec82a90f9c1f81b7d3fff30bdb910a32d7a5e9c7304e6574430e71080a4287b020559e49ea1d04e7dcfe466a060a343e26ba4c9aecb0
+  checksum: b68a6d32f6b22250f172a45995980a3c3ca818308ed2fe82abd6f60303826ceb24f3a8e7cd9ec540782d9f33c2880644cec7278747aa8b1d442400ead5c98c05
   languageName: node
   linkType: hard
 
-"@nx/js@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/js@npm:19.7.4"
+"@nx/js@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/js@npm:19.8.14"
   dependencies:
     "@babel/core": ^7.23.2
     "@babel/plugin-proposal-decorators": ^7.22.7
@@ -8068,15 +8081,16 @@ __metadata:
     "@babel/preset-env": ^7.23.2
     "@babel/preset-typescript": ^7.22.5
     "@babel/runtime": ^7.22.6
-    "@nrwl/js": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/workspace": 19.7.4
+    "@nrwl/js": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/workspace": 19.8.14
     babel-plugin-const-enum: ^1.0.1
     babel-plugin-macros: ^2.8.0
     babel-plugin-transform-typescript-metadata: ^0.3.1
     chalk: ^4.1.0
     columnify: ^1.6.0
     detect-port: ^1.5.1
+    enquirer: ~2.3.6
     fast-glob: 3.2.7
     ignore: ^5.0.4
     js-tokens: ^4.0.0
@@ -8095,46 +8109,46 @@ __metadata:
   peerDependenciesMeta:
     verdaccio:
       optional: true
-  checksum: 9a2091a4fa3c53d04a4f50f1abaf918c46f605aebdf5406d51e1d5036c1d1d9b3e99dd7169c55599ea9bcf45a86dfb5d80cc9743ce358f1f204b808fabfd91d6
+  checksum: 330216db31efbb68cba0c6d2e3746e30e081a20a290da6c811fb4fd6363816e1fb6a9e42d1407bc52db01687190bbbb0de50e30888c8dd9bdb9d750d0ca51422
   languageName: node
   linkType: hard
 
-"@nx/linter@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/linter@npm:19.7.4"
+"@nx/linter@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/linter@npm:19.8.14"
   dependencies:
-    "@nx/eslint": 19.7.4
-  checksum: f8f73274ab75dc7f5333b7b0dc997ed8b73d7f0b6148a2cc3f349a3cf9f061eaf92336cf1121af37173008d61ed33ae2e46570b423d00eeb2f5f8db07638b693
+    "@nx/eslint": 19.8.14
+  checksum: a87d227dabe0bd5ba343e6c54159781ee6bbbb21497ce960afd8e181255820af28e6037bb6da3883a864b2cce0fe76bfce9cd67e4993d0cc204b92704f38ee51
   languageName: node
   linkType: hard
 
-"@nx/nest@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nest@npm:19.7.4"
+"@nx/nest@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nest@npm:19.8.14"
   dependencies:
     "@nestjs/schematics": ^9.1.0
-    "@nrwl/nest": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/eslint": 19.7.4
-    "@nx/js": 19.7.4
-    "@nx/node": 19.7.4
+    "@nrwl/nest": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/eslint": 19.8.14
+    "@nx/js": 19.8.14
+    "@nx/node": 19.8.14
     "@phenomnomnominal/tsquery": ~5.0.1
     tslib: ^2.3.0
-  checksum: c32fbf5615ca91bce0d34c2e5b2a026e5a962889b19e2a795dd450d654053e7ab8bbaed7bb63f4aaab82373456e09ab6b5cc9108dfd7a4fbc6cb40c72df537ab
+  checksum: 011a49f54c17a52c5f7b8ea79914584e65f179dee5d4f5fe0fcb6ed38db8a4eec055fca17317ec35b609af13a44e61fef8339c60544b6400db589f0ebe7d7756
   languageName: node
   linkType: hard
 
-"@nx/node@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/node@npm:19.7.4"
+"@nx/node@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/node@npm:19.8.14"
   dependencies:
-    "@nrwl/node": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/eslint": 19.7.4
-    "@nx/jest": 19.7.4
-    "@nx/js": 19.7.4
+    "@nrwl/node": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/eslint": 19.8.14
+    "@nx/jest": 19.8.14
+    "@nx/js": 19.8.14
     tslib: ^2.3.0
-  checksum: 4170c791b83387d7bc338264cfb8e626a476f332f526e12f2236e443af2c4826234c803f6f46c541e4bef7e06de89d5ea378449baf7dae32ff82b98326d7f063
+  checksum: 4ee9188d1165f42309b6735266bf37b5b86992b894c56a2b154dce9f69b1ba390ed209ddb6c7f6c49250947fc5f70b8466980cc7824fe9081930e608a27d1c4e
   languageName: node
   linkType: hard
 
@@ -8145,9 +8159,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-darwin-arm64@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-darwin-arm64@npm:19.7.4"
+"@nx/nx-darwin-arm64@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-darwin-arm64@npm:19.8.14"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -8159,9 +8173,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-darwin-x64@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-darwin-x64@npm:19.7.4"
+"@nx/nx-darwin-x64@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-darwin-x64@npm:19.8.14"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -8173,9 +8187,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-freebsd-x64@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-freebsd-x64@npm:19.7.4"
+"@nx/nx-freebsd-x64@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-freebsd-x64@npm:19.8.14"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
@@ -8187,9 +8201,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-arm-gnueabihf@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-linux-arm-gnueabihf@npm:19.7.4"
+"@nx/nx-linux-arm-gnueabihf@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-linux-arm-gnueabihf@npm:19.8.14"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
@@ -8201,9 +8215,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-arm64-gnu@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-linux-arm64-gnu@npm:19.7.4"
+"@nx/nx-linux-arm64-gnu@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-linux-arm64-gnu@npm:19.8.14"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
@@ -8215,9 +8229,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-arm64-musl@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-linux-arm64-musl@npm:19.7.4"
+"@nx/nx-linux-arm64-musl@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-linux-arm64-musl@npm:19.8.14"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
@@ -8229,9 +8243,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-x64-gnu@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-linux-x64-gnu@npm:19.7.4"
+"@nx/nx-linux-x64-gnu@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-linux-x64-gnu@npm:19.8.14"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
@@ -8243,9 +8257,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-x64-musl@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-linux-x64-musl@npm:19.7.4"
+"@nx/nx-linux-x64-musl@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-linux-x64-musl@npm:19.8.14"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
@@ -8257,9 +8271,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-win32-arm64-msvc@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-win32-arm64-msvc@npm:19.7.4"
+"@nx/nx-win32-arm64-msvc@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-win32-arm64-msvc@npm:19.8.14"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -8271,69 +8285,68 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nx-win32-x64-msvc@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/nx-win32-x64-msvc@npm:19.7.4"
+"@nx/nx-win32-x64-msvc@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/nx-win32-x64-msvc@npm:19.8.14"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@nx/plugin@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/plugin@npm:19.7.4"
+"@nx/plugin@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/plugin@npm:19.8.14"
   dependencies:
-    "@nrwl/nx-plugin": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/eslint": 19.7.4
-    "@nx/jest": 19.7.4
-    "@nx/js": 19.7.4
-    fs-extra: ^11.1.0
+    "@nrwl/nx-plugin": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/eslint": 19.8.14
+    "@nx/jest": 19.8.14
+    "@nx/js": 19.8.14
     tslib: ^2.3.0
-  checksum: 0028efd1dd03cf355e19091578327072992c8555fe94e465591bc866a2c8018e090b17c98d9a0b4ed8ca842b4f53d61db927da02193eaa3a5eddb91d897146ec
+  checksum: 84420996ba1b9b3f943b8a313d377c7b2236c2205c788007dfe9d8ad4b9e8c94613e8f83a6913d1c5e1aaa52ab7a318f436dcee5154f66be2e47aea590687f6c
   languageName: node
   linkType: hard
 
-"@nx/storybook@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/storybook@npm:19.7.4"
+"@nx/storybook@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/storybook@npm:19.8.14"
   dependencies:
-    "@nrwl/storybook": 19.7.4
-    "@nx/cypress": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/eslint": 19.7.4
-    "@nx/js": 19.7.4
+    "@nrwl/storybook": 19.8.14
+    "@nx/cypress": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/eslint": 19.8.14
+    "@nx/js": 19.8.14
     "@phenomnomnominal/tsquery": ~5.0.1
     semver: ^7.5.3
     tslib: ^2.3.0
-  checksum: 9d4794a16ee43c59365761f695029a9beaee4317f1938cfec57bef889d55ac0d9ded3cd10e6270d6dbeae7a2b886886d9219cdaba83f0d598ad37ea1fa58b341
+  checksum: e91ccb6a524260ddc7f870fc5b4e4f7cd41228b091822cf5805cc9d11892a5b295f7c9cd0e90578a0ef83c69aab5f50a5942fed70550d6967b1e3de48f922458
   languageName: node
   linkType: hard
 
-"@nx/web@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/web@npm:19.7.4"
+"@nx/web@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/web@npm:19.8.14"
   dependencies:
-    "@nrwl/web": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/js": 19.7.4
-    chalk: ^4.1.0
+    "@nrwl/web": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/js": 19.8.14
     detect-port: ^1.5.1
     http-server: ^14.1.0
+    picocolors: ^1.1.0
     tslib: ^2.3.0
-  checksum: 67ac743098b21ad64754c5ff6cc37f8eb4b0717b655f2fcb43c261f66359037a1cb10eeb6e89a2791a906ac9b1cdc5150ac85fd420cf691b990f13f8cdce2c14
+  checksum: 81fcde829f8907bcf9f22ca9fc8f0fc020a09f196b433e761f80c4cf9276f6cfd43c34e6e51bab18c35a6f097c78dce8a659197e54ead4972ec9003083e6ef71
   languageName: node
   linkType: hard
 
-"@nx/webpack@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/webpack@npm:19.7.4"
+"@nx/webpack@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/webpack@npm:19.8.14"
   dependencies:
     "@babel/core": ^7.23.2
     "@module-federation/enhanced": ^0.6.0
     "@module-federation/sdk": ^0.6.0
-    "@nrwl/webpack": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/js": 19.7.4
+    "@nrwl/webpack": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/js": 19.8.14
     "@phenomnomnominal/tsquery": ~5.0.1
     ajv: ^8.12.0
     autoprefixer: ^10.4.9
@@ -8360,7 +8373,7 @@ __metadata:
     sass-loader: ^12.2.0
     source-map-loader: ^5.0.0
     style-loader: ^3.3.0
-    stylus: ^0.59.0
+    stylus: ^0.64.0
     stylus-loader: ^7.1.0
     terser-webpack-plugin: ^5.3.3
     ts-loader: ^9.3.1
@@ -8370,22 +8383,22 @@ __metadata:
     webpack-dev-server: ^5.0.4
     webpack-node-externals: ^3.0.0
     webpack-subresource-integrity: ^5.1.0
-  checksum: 85a33512378cb2841b8f9668712e6ff4d5d965094a9b78988ecd6ad1e085daf945ab4eadcfd9a5859915aee4a0714d7ca15e4420ddb8bbc6cb93966f242b256f
+  checksum: 3e300d4aa4f9e0a185c72dfc84c79f822d658814660fa5586ce455c1a693e62e41fd2dc2d46e851b0c4c2d31bf020b3bd7630d3fc11d38d0a36b575bd678d3d3
   languageName: node
   linkType: hard
 
-"@nx/workspace@npm:19.7.4":
-  version: 19.7.4
-  resolution: "@nx/workspace@npm:19.7.4"
+"@nx/workspace@npm:19.8.14":
+  version: 19.8.14
+  resolution: "@nx/workspace@npm:19.8.14"
   dependencies:
-    "@nrwl/workspace": 19.7.4
-    "@nx/devkit": 19.7.4
+    "@nrwl/workspace": 19.8.14
+    "@nx/devkit": 19.8.14
     chalk: ^4.1.0
     enquirer: ~2.3.6
-    nx: 19.7.4
+    nx: 19.8.14
     tslib: ^2.3.0
     yargs-parser: 21.1.1
-  checksum: e7716caefec7abd9adf6814645bb5613da7e57543fa7542c9c1c07048e1dd0c4b0b11397d6f00c3919d5a0ccc5dcf3c5c4b77b0a67f5b5d752f4bc63e470e5f3
+  checksum: 07c50fe0ef85f04638324d1e00c65d2b877761b3444f913abf7eb08fdbb2345784933d470858f0e4b74f078bb6d278b5e29250b1dee50c99d764a0ebce251167
   languageName: node
   linkType: hard
 
@@ -9357,7 +9370,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/authentication@workspace:packages/angular/authentication"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -9372,7 +9385,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/authorization@workspace:packages/angular/authorization"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -9387,7 +9400,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/browser-tailwind@workspace:packages/browser/tailwind"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@tailwindcss/typography": 0.5.13
     tailwindcss: ^3.4.4
     tslib: 2.6.2
@@ -9398,7 +9411,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/browser-utilities@workspace:packages/browser/utilities"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     rxjs: 7.8.1
@@ -9409,7 +9422,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/components@workspace:packages/angular/components"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -9427,7 +9440,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/config@workspace:packages/angular/config"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -9442,7 +9455,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/contenteditable@workspace:packages/angular/contenteditable"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -9455,7 +9468,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/data-grid@workspace:packages/angular/data-grid"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -9475,7 +9488,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/data-source@workspace:packages/angular/data-source"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -9496,7 +9509,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/data-structure-tree@workspace:packages/data-structure/tree"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/rxjs": ^1.1.10
     "@rxap/utilities": ^16.4.0
     tslib: 2.6.2
@@ -9507,7 +9520,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/definition@workspace:packages/angular/definition"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -9521,7 +9534,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/dialog@workspace:packages/angular/dialog"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -9537,7 +9550,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/directives@workspace:packages/angular/directives"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -9553,7 +9566,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/environment@workspace:packages/angular/environment"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -9565,7 +9578,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/firebase@workspace:packages/angular/firebase"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -9583,7 +9596,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/form-system@workspace:packages/angular/form-system"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -9609,7 +9622,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/form-window-system@workspace:packages/angular/form-window-system"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -9630,7 +9643,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/forms@workspace:packages/angular/forms"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -9652,7 +9665,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/generator-ts-morph@workspace:packages/generator/ts-morph"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/workspace-ts-morph": ^19.1.7
     tslib: 2.6.2
   languageName: unknown
@@ -9662,7 +9675,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/generator-utilities@workspace:packages/generator/utilities"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9671,7 +9684,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/handlebars@workspace:packages/angular/handlebars"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     handlebars: 4.7.8
     tslib: 2.6.2
   peerDependencies:
@@ -9683,7 +9696,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/icon@workspace:packages/angular/icon"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -9699,7 +9712,7 @@ __metadata:
   resolution: "@rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/utilities": ^16.4.0
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -9710,7 +9723,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/keycloak@workspace:packages/angular/keycloak"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -9725,7 +9738,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/layout@workspace:packages/angular/layout"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/ts-morph": ^1.5.1
     "@rxap/workspace-ts-morph": ^19.1.7
     "@rxap/workspace-utilities": ^19.5.0
@@ -9754,7 +9767,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/life-cycle@workspace:packages/angular/life-cycle"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -9768,7 +9781,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/material-directives@workspace:packages/angular/material/directives"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -9785,7 +9798,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/material-form-system@workspace:packages/angular/material/form-system"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -9807,7 +9820,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/material-table-system@workspace:packages/angular/material/table-system"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/animations": ^18.2.0
@@ -9835,7 +9848,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/material-table-window-system@workspace:packages/angular/material/table-window-system"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -9857,7 +9870,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/mixin@workspace:packages/mixin"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/reflect-metadata": ^1.0.11
     "@rxap/utilities": ^16.4.0
     reflect-metadata: 0.1.13
@@ -9869,7 +9882,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-neo4j@workspace:packages/n8n/nodes/neo4j"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     n8n-workflow: ^1.48.0
@@ -9880,7 +9893,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-yaml@workspace:packages/n8n/nodes/yaml"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     iconv-lite: ^0.6.3
     lodash: ^4.17.21
     tslib: 2.6.2
@@ -9894,7 +9907,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-zip@workspace:packages/n8n/nodes/zip"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     adm-zip: ^0.5.10
     tmp-promise: ^3.0.3
     tslib: 2.6.2
@@ -9907,7 +9920,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-dto@workspace:packages/nest/dto"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     class-transformer: ^0.5.1
@@ -9919,7 +9932,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-firebase@workspace:packages/nest/firebase"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9931,7 +9944,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-jwt@workspace:packages/nest/jwt"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9948,7 +9961,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-logger@workspace:packages/nest/logger"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/ts-morph": ^1.5.1
     "@rxap/workspace-utilities": ^19.5.0
     tslib: 2.6.2
@@ -9961,7 +9974,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-minio@workspace:packages/nest/minio"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9975,7 +9988,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-oauth2-proxy@workspace:packages/nest/oauth2-proxy"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9987,7 +10000,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-open-api@workspace:packages/nest/open-api"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/axios": ^3.0.2
@@ -10011,7 +10024,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-rabbitmq@workspace:packages/nest/rabbitmq"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -10030,7 +10043,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-sentry@workspace:packages/nest/sentry"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/ts-morph": ^1.5.1
     "@rxap/workspace-utilities": ^19.5.0
     tslib: 2.6.2
@@ -10054,7 +10067,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-server@workspace:packages/nest/server"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -10073,7 +10086,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-socket-io-client@workspace:packages/nest/socket-io-client"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -10088,7 +10101,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-supabase@workspace:packages/nest/supabase"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -10101,7 +10114,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-testing@workspace:packages/nest/testing"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10110,7 +10123,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-utilities@workspace:packages/nest/utilities"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/cache-manager": ^2.2.2
@@ -10128,7 +10141,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-vault@workspace:packages/nest/vault"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     node-vault: ^0.10.2
     tslib: 2.6.2
   peerDependencies:
@@ -10142,7 +10155,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-web3-storage@workspace:packages/nest/web3-storage"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -10155,13 +10168,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-bootstrap@workspace:packages/angular/bootstrap"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
     "@angular/platform-browser": ^18.2.0
     "@angular/platform-browser-dynamic": ^18.2.0
-    "@nx/angular": ^19.7.4
+    "@nx/angular": ^19.8.14
     "@rxap/config": ^18.2.2
     "@rxap/environment": ^18.0.7
     ngx-logger: ^5.0.12
@@ -10172,7 +10185,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-changelog@workspace:packages/angular/changelog"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10190,7 +10203,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-error@workspace:packages/angular/error"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -10210,7 +10223,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-localize@workspace:packages/angular/localize"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10225,7 +10238,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-marker-io@workspace:packages/angular/marker-io"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -10242,7 +10255,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-authentication@workspace:packages/angular/material/authentication"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/animations": ^18.2.0
@@ -10266,7 +10279,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-localize@workspace:packages/angular/material/localize"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10283,7 +10296,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-table-select@workspace:packages/angular/material/table-select"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -10313,7 +10326,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-memory@workspace:packages/angular/memory"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -10324,7 +10337,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-oauth2-proxy@workspace:packages/angular/oauth2-proxy"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10342,7 +10355,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-pub-sub@workspace:packages/angular/pub-sub"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -10354,7 +10367,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-sentry@workspace:packages/angular/sentry"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@rxap/config": ^18.2.2
@@ -10367,7 +10380,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-status-check@workspace:packages/angular/status-check"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10385,7 +10398,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-theme@workspace:packages/angular/theme"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -10403,7 +10416,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-timeago@workspace:packages/angular/timeago"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -10416,7 +10429,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-user@workspace:packages/angular/user"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -10432,7 +10445,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/node-local-storage@workspace:packages/node/local-storage"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10441,7 +10454,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/node-utilities@workspace:packages/node/utilities"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/utilities": ^16.4.0
     ignore: 5.2.4
     tslib: 2.6.2
@@ -10452,7 +10465,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/oauth@workspace:packages/angular/oauth"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -10469,7 +10482,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/open-api@workspace:packages/angular/open-api"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     ajv: ^8.12.0
     openapi-types: ^10.0.0
     tslib: 2.6.2
@@ -10491,7 +10504,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/pattern@workspace:packages/pattern"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     rxjs: 7.8.1
@@ -10502,7 +10515,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/pipes@workspace:packages/angular/pipes"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10516,8 +10529,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-angular@workspace:packages/plugin/angular"
   dependencies:
-    "@nx/angular": 19.7.4
-    "@nx/devkit": 19.7.4
+    "@nx/angular": 19.8.14
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-application": ^19.1.5
     "@rxap/plugin-library": ^19.4.4
     "@rxap/plugin-localazy": ^19.0.9
@@ -10539,7 +10552,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-application@workspace:packages/plugin/application"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-utilities": ^19.0.10
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-utilities": ^19.5.0
@@ -10553,7 +10566,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-compodoc@workspace:packages/plugin/compodoc"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-utilities": ^19.0.10
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-utilities": ^19.5.0
@@ -10565,8 +10578,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-cypress@workspace:packages/plugin/cypress"
   dependencies:
-    "@nx/angular": 19.7.4
-    "@nx/devkit": 19.7.4
+    "@nx/angular": 19.8.14
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-angular": ^19.3.6
     "@rxap/ts-morph": ^1.5.1
     "@rxap/utilities": ^16.4.0
@@ -10580,7 +10593,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-docker@workspace:packages/plugin/docker"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/node-utilities": ^1.3.6
     "@rxap/plugin-gitlab-ci": ^19.0.9
     "@rxap/plugin-utilities": ^19.0.10
@@ -10593,7 +10606,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-utilities": ^19.0.10
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-utilities": ^19.5.0
@@ -10606,7 +10619,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-gpt@workspace:packages/plugin/gpt"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/ts-morph": ^1.5.1
     "@rxap/workspace-ts-morph": ^19.1.7
     "@rxap/workspace-utilities": ^19.5.0
@@ -10622,8 +10635,8 @@ __metadata:
   resolution: "@rxap/plugin-library@workspace:packages/plugin/library"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
-    "@nx/devkit": 19.7.4
-    "@nx/plugin": 19.7.4
+    "@nx/devkit": 19.8.14
+    "@nx/plugin": 19.8.14
     "@rxap/node-utilities": ^1.3.6
     "@rxap/plugin-utilities": ^19.0.10
     "@rxap/ts-morph": ^1.5.1
@@ -10632,7 +10645,7 @@ __metadata:
     "@rxap/workspace-utilities": ^19.5.0
     colors: 1.4.0
     handlebars: 4.7.8
-    nx: 19.7.4
+    nx: 19.8.14
     semver: 7.5.3
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -10643,7 +10656,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-localazy@workspace:packages/plugin/localazy"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-utilities": ^19.0.10
     "@rxap/workspace-utilities": ^19.5.0
     tslib: 2.6.2
@@ -10655,7 +10668,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-n8n@workspace:packages/plugin/n8n"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-library": ^19.4.4
     "@rxap/ts-morph": ^1.5.1
     "@rxap/utilities": ^16.4.0
@@ -10670,9 +10683,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-nestjs@workspace:packages/plugin/nestjs"
   dependencies:
-    "@nx/devkit": 19.7.4
-    "@nx/js": 19.7.4
-    "@nx/nest": 19.7.4
+    "@nx/devkit": 19.8.14
+    "@nx/js": 19.8.14
+    "@nx/nest": 19.8.14
     "@rxap/node-utilities": ^1.3.6
     "@rxap/plugin-application": ^19.1.5
     "@rxap/plugin-library": ^19.4.4
@@ -10693,7 +10706,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/node-utilities": ^1.3.6
     "@rxap/plugin-library": ^19.4.4
     "@rxap/plugin-utilities": ^19.0.10
@@ -10710,9 +10723,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-storybook@workspace:packages/plugin/storybook"
   dependencies:
-    "@nx/angular": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/eslint": 19.7.4
+    "@nx/angular": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/eslint": 19.8.14
     "@rxap/ts-morph": ^1.5.1
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-ts-morph": ^19.1.7
@@ -10727,7 +10740,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-typedoc@workspace:packages/plugin/typedoc"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-utilities": ^19.0.10
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-utilities": ^19.5.0
@@ -10740,7 +10753,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-utilities@workspace:packages/plugin/utilities"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/node-utilities": ^1.3.6
     "@rxap/workspace-utilities": ^19.5.0
     tslib: 2.6.2
@@ -10751,7 +10764,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-web3-storage@workspace:packages/plugin/web3-storage"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-utilities": ^19.0.10
     "@ucanto/principal": ^9.0.1
     "@web3-storage/w3up-client": ^16.2.0
@@ -10764,8 +10777,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
   dependencies:
-    "@nx/devkit": 19.7.4
-    "@nx/js": 19.7.4
+    "@nx/devkit": 19.8.14
+    "@nx/js": 19.8.14
     "@rxap/plugin-utilities": ^19.0.10
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-utilities": ^19.5.0
@@ -10779,7 +10792,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/preset-angular@workspace:packages/preset/angular"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-angular": ^19.3.6
     "@rxap/plugin-workspace": ^19.1.8
     tslib: 2.6.2
@@ -10790,7 +10803,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/preset-workspace@workspace:packages/preset/workspace"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/plugin-workspace": ^19.1.8
     tslib: 2.6.2
   languageName: unknown
@@ -10800,7 +10813,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/reflect-metadata@workspace:packages/reflect-metadata"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/utilities": ^16.4.0
     reflect-metadata: 0.1.13
     tslib: 2.6.2
@@ -10811,7 +10824,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/remote-method@workspace:packages/angular/remote-method"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10827,7 +10840,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/rxjs@workspace:packages/rxjs"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/utilities": ^16.4.0
     tslib: 2.6.2
   peerDependencies:
@@ -10841,7 +10854,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/schematics-ts-morph": ^18.2.3
     "@rxap/schematics-utilities": ^18.0.9
     "@rxap/ts-morph": ^1.5.1
@@ -10860,7 +10873,7 @@ __metadata:
   resolution: "@rxap/schematic-composer@workspace:packages/schematic/composer"
   dependencies:
     "@angular-devkit/schematics": 18.2.1
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/schematics-ts-morph": ^18.2.3
     "@rxap/schematics-utilities": ^18.0.9
     "@rxap/utilities": ^16.4.0
@@ -10877,7 +10890,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/schematics-ts-morph": ^18.2.3
     "@rxap/schematics-utilities": ^18.0.9
     "@rxap/ts-morph": ^1.5.1
@@ -10895,7 +10908,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/json-schema-to-typescript": ^16.0.11
     "@rxap/schematics-ts-morph": ^18.2.3
     "@rxap/schematics-utilities": ^18.0.9
@@ -10914,7 +10927,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/schematics-utilities": ^18.0.9
     "@rxap/ts-morph": ^1.5.1
     "@rxap/utilities": ^16.4.0
@@ -10932,7 +10945,7 @@ __metadata:
   resolution: "@rxap/schematics-utilities@workspace:packages/schematic/utilities"
   dependencies:
     "@angular-devkit/schematics": 18.2.1
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-utilities": ^19.5.0
     tslib: 2.6.2
@@ -10945,7 +10958,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 18.2.1
     "@angular-devkit/schematics": 18.2.1
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/schematics-ts-morph": ^18.2.3
     "@rxap/schematics-utilities": ^18.0.9
     "@rxap/xml-parser": ^16.1.0
@@ -10958,7 +10971,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/service-worker@workspace:packages/angular/service-worker"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10974,7 +10987,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/services@workspace:packages/angular/services"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^18.2.0
@@ -10989,7 +11002,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/slugify@workspace:packages/slugify"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10998,7 +11011,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/socket-io@workspace:packages/angular/socket-io"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^18.2.0
@@ -11065,20 +11078,20 @@ __metadata:
     "@nestjs/testing": 10.3.8
     "@nestjs/throttler": 5.1.2
     "@nestjs/typeorm": ^10.0.2
-    "@nx/angular": 19.7.4
-    "@nx/cypress": 19.7.4
-    "@nx/devkit": 19.7.4
-    "@nx/esbuild": 19.7.4
-    "@nx/eslint": 19.7.4
-    "@nx/eslint-plugin": 19.7.4
-    "@nx/jest": 19.7.4
-    "@nx/js": 19.7.4
-    "@nx/nest": 19.7.4
-    "@nx/node": 19.7.4
-    "@nx/plugin": 19.7.4
-    "@nx/storybook": 19.7.4
-    "@nx/web": 19.7.4
-    "@nx/webpack": 19.7.4
+    "@nx/angular": 19.8.14
+    "@nx/cypress": 19.8.14
+    "@nx/devkit": 19.8.14
+    "@nx/esbuild": 19.8.14
+    "@nx/eslint": 19.8.14
+    "@nx/eslint-plugin": 19.8.14
+    "@nx/jest": 19.8.14
+    "@nx/js": 19.8.14
+    "@nx/nest": 19.8.14
+    "@nx/node": 19.8.14
+    "@nx/plugin": 19.8.14
+    "@nx/storybook": 19.8.14
+    "@nx/web": 19.8.14
+    "@nx/webpack": 19.8.14
     "@schematics/angular": 18.2.1
     "@sentry/angular": 8.18.0
     "@sentry/core": 8.18.0
@@ -11169,7 +11182,7 @@ __metadata:
     ngx-logger: 5.0.12
     ngx-markdown: 16.0.0
     node-vault: ^0.10.2
-    nx: 19.7.4
+    nx: 19.8.14
     nx-cloud: 19.1.0
     openai: ^4.52.0
     postcss: 8.4.38
@@ -11207,7 +11220,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/table-system@workspace:packages/angular/table-system"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/animations": ^18.2.0
@@ -11227,7 +11240,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/tree@workspace:packages/angular/tree"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -11250,7 +11263,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ts-morph@workspace:packages/ts-morph"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/utilities": ^16.4.0
     colors: 1.4.0
     ts-morph: 18.0.0
@@ -11262,7 +11275,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/upload@workspace:packages/angular/upload"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -11280,7 +11293,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/utilities@workspace:packages/utilities"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11289,7 +11302,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/validator@workspace:packages/validator"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11298,7 +11311,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/window-system@workspace:packages/angular/window-system"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^18.2.0
@@ -11318,7 +11331,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-cypress@workspace:packages/workspace/cypress"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -11327,7 +11340,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/json-schema-to-typescript": ^16.0.11
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-utilities": ^19.5.0
@@ -11342,7 +11355,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph"
   dependencies:
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/ts-morph": ^1.5.1
     "@rxap/utilities": ^16.4.0
     "@rxap/workspace-utilities": ^19.5.0
@@ -11356,7 +11369,7 @@ __metadata:
   resolution: "@rxap/workspace-utilities@workspace:packages/workspace/utilities"
   dependencies:
     "@angular-devkit/schematics": 18.2.1
-    "@nx/devkit": 19.7.4
+    "@nx/devkit": 19.8.14
     "@rxap/node-utilities": ^1.3.6
     "@rxap/utilities": ^16.4.0
     colors: 1.4.0
@@ -14049,7 +14062,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:7.18.0, @typescript-eslint/type-utils@npm:^7.16.0":
+"@typescript-eslint/scope-manager@npm:8.18.0":
+  version: 8.18.0
+  resolution: "@typescript-eslint/scope-manager@npm:8.18.0"
+  dependencies:
+    "@typescript-eslint/types": 8.18.0
+    "@typescript-eslint/visitor-keys": 8.18.0
+  checksum: d01f36ca17a2ffa9873851bf823942d254ab826ef3581d9104c1eee944a3e6fcebec60f521bfb65a6ee11efc11acdf2469706a4371bed9fec893009802b5cb45
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/type-utils@npm:7.18.0":
   version: 7.18.0
   resolution: "@typescript-eslint/type-utils@npm:7.18.0"
   dependencies:
@@ -14066,10 +14089,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/type-utils@npm:^8.0.0":
+  version: 8.18.0
+  resolution: "@typescript-eslint/type-utils@npm:8.18.0"
+  dependencies:
+    "@typescript-eslint/typescript-estree": 8.18.0
+    "@typescript-eslint/utils": 8.18.0
+    debug: ^4.3.4
+    ts-api-utils: ^1.3.0
+  peerDependencies:
+    eslint: ^8.57.0 || ^9.0.0
+    typescript: ">=4.8.4 <5.8.0"
+  checksum: 60456e3cfb8cb49236bca886e0b94a3568c2ce0b1a370d71b071479f43b209489ecc959f21a7d55a0f6ec9afefdb3a7a2abdba2fd44969e1ddf28a99c88bb60a
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/types@npm:7.18.0":
   version: 7.18.0
   resolution: "@typescript-eslint/types@npm:7.18.0"
   checksum: 7df2750cd146a0acd2d843208d69f153b458e024bbe12aab9e441ad2c56f47de3ddfeb329c4d1ea0079e2577fea4b8c1c1ce15315a8d49044586b04fedfe7a4d
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/types@npm:8.18.0":
+  version: 8.18.0
+  resolution: "@typescript-eslint/types@npm:8.18.0"
+  checksum: fec2dbb356608d7538868c58b0de71851b7b2cea4ebb752cd4acdd217e0d54d19d6230344e9867559ea67dd6655fde6f2460be23f206aea487cc295c28eb6191
   languageName: node
   linkType: hard
 
@@ -14092,7 +14137,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:7.18.0, @typescript-eslint/utils@npm:^7.16.0":
+"@typescript-eslint/typescript-estree@npm:8.18.0":
+  version: 8.18.0
+  resolution: "@typescript-eslint/typescript-estree@npm:8.18.0"
+  dependencies:
+    "@typescript-eslint/types": 8.18.0
+    "@typescript-eslint/visitor-keys": 8.18.0
+    debug: ^4.3.4
+    fast-glob: ^3.3.2
+    is-glob: ^4.0.3
+    minimatch: ^9.0.4
+    semver: ^7.6.0
+    ts-api-utils: ^1.3.0
+  peerDependencies:
+    typescript: ">=4.8.4 <5.8.0"
+  checksum: 2b04a9eb1d942ee26358f411ed6df26b36366ec93d6e3d1ab94f27915c23531e01edb94456ae1d47086e7180dc94d0027035ab08d377469fe01ffa621bfaf96f
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/utils@npm:7.18.0":
   version: 7.18.0
   resolution: "@typescript-eslint/utils@npm:7.18.0"
   dependencies:
@@ -14106,6 +14169,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/utils@npm:8.18.0, @typescript-eslint/utils@npm:^8.0.0":
+  version: 8.18.0
+  resolution: "@typescript-eslint/utils@npm:8.18.0"
+  dependencies:
+    "@eslint-community/eslint-utils": ^4.4.0
+    "@typescript-eslint/scope-manager": 8.18.0
+    "@typescript-eslint/types": 8.18.0
+    "@typescript-eslint/typescript-estree": 8.18.0
+  peerDependencies:
+    eslint: ^8.57.0 || ^9.0.0
+    typescript: ">=4.8.4 <5.8.0"
+  checksum: 8da7419ae53944a3efc99e33df8fa651303ff736338ed101eae0f64fe53661ad947784ff769ca8589c9803a099dd6d43e891fbedec5212a2b2ea031f0218eb56
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/visitor-keys@npm:7.18.0":
   version: 7.18.0
   resolution: "@typescript-eslint/visitor-keys@npm:7.18.0"
@@ -14113,6 +14191,16 @@ __metadata:
     "@typescript-eslint/types": 7.18.0
     eslint-visitor-keys: ^3.4.3
   checksum: 6e806a7cdb424c5498ea187a5a11d0fef7e4602a631be413e7d521e5aec1ab46ba00c76cfb18020adaa0a8c9802354a163bfa0deb74baa7d555526c7517bb158
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/visitor-keys@npm:8.18.0":
+  version: 8.18.0
+  resolution: "@typescript-eslint/visitor-keys@npm:8.18.0"
+  dependencies:
+    "@typescript-eslint/types": 8.18.0
+    eslint-visitor-keys: ^4.2.0
+  checksum: bf4c45bb3bdfd2bc4df86bc50649e8a9734d294a80fb9a78b52cc8ed247384f9d525fb0693372fd52864175fd7036069c5f59b920c12f0ee34d52c2ab0332841
   languageName: node
   linkType: hard
 
@@ -20685,6 +20773,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-visitor-keys@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "eslint-visitor-keys@npm:4.2.0"
+  checksum: 779c604672b570bb4da84cef32f6abb085ac78379779c1122d7879eade8bb38ae715645324597cf23232d03cef06032c9844d25c73625bc282a5bfd30247e5b5
+  languageName: node
+  linkType: hard
+
 "eslint@npm:8.57.0":
   version: 8.57.0
   resolution: "eslint@npm:8.57.0"
@@ -22443,6 +22538,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glob@npm:^10.4.5":
+  version: 10.4.5
+  resolution: "glob@npm:10.4.5"
+  dependencies:
+    foreground-child: ^3.1.0
+    jackspeak: ^3.1.2
+    minimatch: ^9.0.4
+    minipass: ^7.1.2
+    package-json-from-dist: ^1.0.0
+    path-scurry: ^1.11.1
+  bin:
+    glob: dist/esm/bin.mjs
+  checksum: 0bc725de5e4862f9f387fd0f2b274baf16850dcd2714502ccf471ee401803997983e2c05590cb65f9675a3c6f2a58e7a53f9e365704108c6ad3cbf1d60934c4a
+  languageName: node
+  linkType: hard
+
 "glob@npm:^6.0.1":
   version: 6.0.4
   resolution: "glob@npm:6.0.4"
@@ -22572,6 +22683,13 @@ __metadata:
   dependencies:
     type-fest: ^0.20.2
   checksum: 56066ef058f6867c04ff203b8a44c15b038346a62efbc3060052a1016be9f56f4cf0b2cd45b74b22b81e521a889fc7786c73691b0549c2f3a6e825b3d394f43c
+  languageName: node
+  linkType: hard
+
+"globals@npm:^15.9.0":
+  version: 15.13.0
+  resolution: "globals@npm:15.13.0"
+  checksum: 3f98514ce25a21150b246fbd63aeaeb271a93b3340cf7f4f6e9934d3b37dbb4b0fddef9c470183097dcfd2e8757bb86bbae701588f0e376667d8d9d6f665db3b
   languageName: node
   linkType: hard
 
@@ -29035,22 +29153,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nx@npm:19.7.4":
-  version: 19.7.4
-  resolution: "nx@npm:19.7.4"
+"nx@npm:19.8.14":
+  version: 19.8.14
+  resolution: "nx@npm:19.8.14"
   dependencies:
     "@napi-rs/wasm-runtime": 0.2.4
-    "@nrwl/tao": 19.7.4
-    "@nx/nx-darwin-arm64": 19.7.4
-    "@nx/nx-darwin-x64": 19.7.4
-    "@nx/nx-freebsd-x64": 19.7.4
-    "@nx/nx-linux-arm-gnueabihf": 19.7.4
-    "@nx/nx-linux-arm64-gnu": 19.7.4
-    "@nx/nx-linux-arm64-musl": 19.7.4
-    "@nx/nx-linux-x64-gnu": 19.7.4
-    "@nx/nx-linux-x64-musl": 19.7.4
-    "@nx/nx-win32-arm64-msvc": 19.7.4
-    "@nx/nx-win32-x64-msvc": 19.7.4
+    "@nrwl/tao": 19.8.14
+    "@nx/nx-darwin-arm64": 19.8.14
+    "@nx/nx-darwin-x64": 19.8.14
+    "@nx/nx-freebsd-x64": 19.8.14
+    "@nx/nx-linux-arm-gnueabihf": 19.8.14
+    "@nx/nx-linux-arm64-gnu": 19.8.14
+    "@nx/nx-linux-arm64-musl": 19.8.14
+    "@nx/nx-linux-x64-gnu": 19.8.14
+    "@nx/nx-linux-x64-musl": 19.8.14
+    "@nx/nx-win32-arm64-msvc": 19.8.14
+    "@nx/nx-win32-x64-msvc": 19.8.14
     "@yarnpkg/lockfile": ^1.1.0
     "@yarnpkg/parsers": 3.0.0-rc.46
     "@zkochan/js-yaml": 0.0.7
@@ -29065,7 +29183,6 @@ __metadata:
     figures: 3.2.0
     flat: ^5.0.2
     front-matter: ^4.0.2
-    fs-extra: ^11.1.0
     ignore: ^5.0.4
     jest-diff: ^29.4.1
     jsonc-parser: 3.2.0
@@ -29116,7 +29233,7 @@ __metadata:
   bin:
     nx: bin/nx.js
     nx-cloud: bin/nx-cloud.js
-  checksum: 07883f5cd3ce11461c7cdf1f96529abeab828b9bae40c26c299f9d5000f5b410741aec6fac7024463751665e2cdd066b95b971470406fcb39d8a05094bab3630
+  checksum: fc735eae2ab9e43986fc19649a20238ce4dc121074231e666515145ca4fa64fa093a7b2196e6a3899032d7445a0396edab22db9344e84f4f5c10bef3177e5cc0
   languageName: node
   linkType: hard
 
@@ -29783,6 +29900,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"package-json-from-dist@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "package-json-from-dist@npm:1.0.1"
+  checksum: 58ee9538f2f762988433da00e26acc788036914d57c71c246bf0be1b60cdbd77dd60b6a3e1a30465f0b248aeb80079e0b34cb6050b1dfa18c06953bb1cbc7602
+  languageName: node
+  linkType: hard
+
 "pacote@npm:18.0.6":
   version: 18.0.6
   resolution: "pacote@npm:18.0.6"
@@ -30227,6 +30351,13 @@ __metadata:
   version: 1.0.1
   resolution: "picocolors@npm:1.0.1"
   checksum: fa68166d1f56009fc02a34cdfd112b0dd3cf1ef57667ac57281f714065558c01828cdf4f18600ad6851cbe0093952ed0660b1e0156bddf2184b6aaf5817553a5
+  languageName: node
+  linkType: hard
+
+"picocolors@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "picocolors@npm:1.1.1"
+  checksum: e1cf46bf84886c79055fdfa9dcb3e4711ad259949e3565154b004b260cd356c5d54b31a1437ce9782624bf766272fe6b0154f5f0c744fb7af5d454d2b60db045
   languageName: node
   linkType: hard
 
@@ -33171,17 +33302,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sax@npm:>=0.6.0, sax@npm:^1.2.4":
+"sax@npm:>=0.6.0, sax@npm:^1.2.4, sax@npm:~1.4.1":
   version: 1.4.1
   resolution: "sax@npm:1.4.1"
   checksum: 3ad64df16b743f0f2eb7c38ced9692a6d924f1cd07bbe45c39576c2cf50de8290d9d04e7b2228f924c7d05fecc4ec5cf651423278e0c7b63d260c387ef3af84a
-  languageName: node
-  linkType: hard
-
-"sax@npm:~1.2.4":
-  version: 1.2.4
-  resolution: "sax@npm:1.2.4"
-  checksum: d3df7d32b897a2c2f28e941f732c71ba90e27c24f62ee918bd4d9a8cfb3553f2f81e5493c7f0be94a11c1911b643a9108f231dd6f60df3fa9586b5d2e3e9e1fe
   languageName: node
   linkType: hard
 
@@ -34541,18 +34665,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylus@npm:^0.59.0":
-  version: 0.59.0
-  resolution: "stylus@npm:0.59.0"
+"stylus@npm:^0.64.0":
+  version: 0.64.0
+  resolution: "stylus@npm:0.64.0"
   dependencies:
-    "@adobe/css-tools": ^4.0.1
+    "@adobe/css-tools": ~4.3.3
     debug: ^4.3.2
-    glob: ^7.1.6
-    sax: ~1.2.4
+    glob: ^10.4.5
+    sax: ~1.4.1
     source-map: ^0.7.3
   bin:
     stylus: bin/stylus
-  checksum: 2faf4a5618747c17b7d10854e40efdd43b438a6cf99d197b0231578f5091bfe9313663d846b5666bb37140140420c51606bb127fd877bbf2db46730c01403b01
+  checksum: e059d3142b2a7f69205b565c6fa16f0f2cbd960027f4ea9ef8a652cc6546d7c94051db32117681ba6a6af01db35bb58c45dfafe808a257b723507b8df2cb6507
   languageName: node
   linkType: hard
 

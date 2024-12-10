@@ -3,9 +3,9 @@
   "name": "@rxap/plugin-nestjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "19.7.4",
-    "@nx/js": "19.7.4",
-    "@nx/nest": "19.7.4",
+    "@nx/devkit": "19.8.14",
+    "@nx/js": "19.8.14",
+    "@nx/nest": "19.8.14",
     "@rxap/node-utilities": "^1.3.6",
     "@rxap/plugin-application": "^19.1.5",
     "@rxap/plugin-library": "^19.4.4",
