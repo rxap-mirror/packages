@@ -1,11 +1,10 @@
 {
-  "version": "18.0.8-dev.0",
+  "version": "19.0.0-dev.0",
   "name": "@rxap/dialog",
   "description": "A collection of angular material dialog components",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.2.1",
-    "@rxap/pipes": "^18.0.8-dev.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -13,6 +12,7 @@
     "@angular/common": "19.0.3",
     "@angular/core": "19.0.3",
     "@angular/material": "19.0.2",
+    "@rxap/pipes": "^19.0.0-dev.0",
     "rxjs": "7.8.1"
   },
   "author": {

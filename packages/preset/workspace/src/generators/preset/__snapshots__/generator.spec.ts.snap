@@ -47,10 +47,10 @@ exports[`preset should use workspace preset 2`] = `
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
-    "@nx/eslint": "19.8.14",
-    "@nx/eslint-plugin": "19.8.14",
-    "@nx/jest": "19.8.14",
-    "@nx/js": "19.8.14",
+    "@nx/eslint": "20.2.1",
+    "@nx/eslint-plugin": "20.2.1",
+    "@nx/jest": "20.2.1",
+    "@nx/js": "20.2.1",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
     "@swc-node/register": "~1.9.1",
@@ -70,7 +70,7 @@ exports[`preset should use workspace preset 2`] = `
     "rxap": "latest",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
-    "typescript": "~5.5.2"
+    "typescript": "~5.6.2"
   },
   "engines": {
     "node": ">=18 <21",

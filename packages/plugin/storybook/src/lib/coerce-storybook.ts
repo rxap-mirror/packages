@@ -27,8 +27,6 @@ export async function coerceStorybook(
     project: projectName,
   };
 
-  storybookOptions.configureCypress ??= false;
-  storybookOptions.generateCypressSpecs ??= false;
   storybookOptions.generateStories ??= true;
   storybookOptions.configureStaticServe ??= true;
   storybookOptions.tsConfiguration ??= true;

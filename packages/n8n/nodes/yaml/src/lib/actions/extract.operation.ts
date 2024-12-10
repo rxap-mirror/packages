@@ -153,7 +153,7 @@ export async function execute(this: IExecuteFunctions, items: INodeExecutionData
         errorDescription =
           "Try to change the operation or select a YAML file in 'Input Binary Field'";
       }
-      if (this.continueOnFail(error)) {
+      if (this.continueOnFail()) {
         returnData.push({
           json: {
             error: error.message,

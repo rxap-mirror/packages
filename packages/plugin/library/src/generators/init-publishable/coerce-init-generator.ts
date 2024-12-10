@@ -72,12 +72,10 @@ export async function CoerceInitGenerator(
 
   try {
     await generatorGenerator(tree, {
-      // directory: join(projectSourceRoot, 'generators', 'init'),
+      path: join(projectSourceRoot, 'generators', 'init'),
       name: 'init',
       description: 'Initialize the package in the workspace',
       unitTestRunner: 'none',
-      nameAndDirectoryFormat: 'derived',
-      project: projectName,
     });
 
     DeleteRecursive(tree, join(projectSourceRoot, 'generators', 'init'));

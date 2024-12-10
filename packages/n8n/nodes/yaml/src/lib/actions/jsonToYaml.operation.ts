@@ -58,7 +58,7 @@ export async function execute(this: IExecuteFunctions, items: INodeExecutionData
       });
 
     } catch (error: any) {
-      if (this.continueOnFail(error)) {
+      if (this.continueOnFail()) {
         items[itemIndex] = {
           json: {
             error: error.message,

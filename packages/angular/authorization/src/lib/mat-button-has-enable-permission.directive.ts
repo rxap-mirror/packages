@@ -14,10 +14,13 @@ import {
   MatIconButton,
   MatMiniFabButton,
 } from '@angular/material/button';
-import { CanDisable } from '@angular/material/core';
 import { AuthorizationService } from './authorization.service';
 import { HasEnablePermission } from './has-enable-permission';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
+
+interface CanDisable {
+  disabled: boolean;
+}
 
 @Directive({
   selector: 'button[rxapHasEnablePermission],[mat-button][rxapHasEnablePermission],[mat-raised-button][rxapHasEnablePermission],[mat-stroked-button][rxapHasEnablePermission],[mat-flat-button][rxapHasEnablePermission],[mat-icon-button][rxapHasEnablePermission],[mat-fab][rxapHasEnablePermission],[mat-mini-fab][rxapHasEnablePermission]',

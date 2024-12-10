@@ -114,7 +114,7 @@ function createIncludesForWorkspace(
   writeFileSync(
     join(tmpDirectory, 'summary.json'),
     JSON.stringify(
-      Object.entries(context.workspace.projects)
+      Object.entries(context.projectsConfigurations)
         .map(([ projectName, project ]) => {
           const readmeFile = join(project.root, 'README.md');
           return {
@@ -147,7 +147,7 @@ function toRelativePath(
   if (!pathInWorkspace) {
     return undefined;
   }
-  const project = context.workspace.projects[context.projectName];
+  const project = context.projectsConfigurations[context.projectName];
   const currentDirectory = joinPathFragments(context.root, project.root);
   const absolutePath = resolve(context.root, pathInWorkspace);
   return relative(currentDirectory, absolutePath);
@@ -200,7 +200,7 @@ export default async function runExecutor(options: BuildExecutorSchema, context:
 
   debug('Prepare Compodoc...\n', options);
 
-  const project = context.workspace.projects[context.projectName];
+  const project = context.projectsConfigurations[context.projectName];
 
   const args = toCompodocOptions(options, context);
 

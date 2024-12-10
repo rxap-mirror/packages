@@ -9,6 +9,7 @@ declare let $localize: any;
 
 @Injectable()
 export class I18nMatDatepickerIntl implements MatDatepickerIntl {
+  comparisonDateLabel: string = $localize`:@@comparisonDateLabelMatDatepicker:Comparison date`;
   /**
    * Stream that emits whenever the labels here are changed. Use this to notify
    * components if the labels have changed after initialization.

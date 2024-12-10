@@ -1,11 +1,9 @@
 {
-  "version": "18.0.8-dev.0",
+  "version": "19.0.0-dev.0",
   "name": "@rxap/ngx-material-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.2.1",
-    "@rxap/directives": "^18.0.8-dev.0",
-    "@rxap/ngx-localize": "^18.0.8-dev.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -13,6 +11,8 @@
     "@angular/core": "19.0.3",
     "@angular/forms": "19.0.3",
     "@angular/material": "19.0.2",
+    "@rxap/directives": "^19.0.0-dev.0",
+    "@rxap/ngx-localize": "^19.0.0-dev.0",
     "rxjs": "7.8.1"
   },
   "author": {

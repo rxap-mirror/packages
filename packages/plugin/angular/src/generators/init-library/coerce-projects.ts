@@ -25,7 +25,6 @@ export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSc
   ).split(',').map(tag => tag.trim());
   tags.push('angular');
   tags.push('ngx');
-  defaultOptions.projectNameAndRootFormat = 'as-provided';
   defaultOptions.publishable ??= false;
   defaultOptions.buildable ??= false;
   defaultOptions.skipFormat ??= false;

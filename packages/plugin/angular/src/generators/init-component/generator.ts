@@ -1,5 +1,5 @@
 import {
-  componentCypressSpecGenerator,
+  cypressComponentConfiguration,
   componentGenerator,
   componentStoryGenerator,
   componentTestGenerator,
@@ -104,8 +104,7 @@ export async function initComponentGenerator(
   if (!tree.exists(join(directory, componentFileName + '.ts'))) {
     await componentGenerator(tree, {
       ...componentOptions,
-      directory,
-      nameAndDirectoryFormat: 'as-provided',
+      path: directory,
     });
   }
 
@@ -119,20 +118,6 @@ export async function initComponentGenerator(
       componentFileName,
       skipFormat: componentOptions.skipFormat,
     });
-
-    if (options.cypressProject || HasTarget(tree, options.project, 'e2e')) {
-      console.log('Generate component cypress spec'.blue);
-      await componentCypressSpecGenerator(tree, {
-        projectName: options.project,
-        projectPath: projectRoot,
-        componentName,
-        componentPath,
-        componentFileName,
-        cypressProject: componentOptions.cypressProject ?? options.project,
-        skipFormat: componentOptions.skipFormat,
-        specDirectory: componentOptions.specDirectory,
-      });
-    }
 
   }
 

@@ -20,7 +20,6 @@ export async function coerceToolsProject(tree: Tree) {
       name: 'workspace-tools',
       directory: 'tools',
       importPath: 'workspace-tools',
-      projectNameAndRootFormat: 'as-provided',
       minimal: true,
     });
     // throw new Error('The workspace-tools project was created. Please run the generator again.');

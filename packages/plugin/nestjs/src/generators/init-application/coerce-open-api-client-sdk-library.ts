@@ -21,7 +21,6 @@ export async function coerceOpenApiClientSdkLibrary(
       name: openApiProjectName,
       directory: `open-api/${ projectName }`,
       importPath: openApiProjectName,
-      projectNameAndRootFormat: 'as-provided',
       linter: 'none',
       minimal: true,
       unitTestRunner: 'none',

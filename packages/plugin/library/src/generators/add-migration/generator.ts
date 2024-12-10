@@ -46,8 +46,7 @@ export async function addMigrationGenerator(
     packageVersion,
     packageJsonUpdates: options.packageJsonUpdates,
     description: options.description,
-    directory: migrationRoot,
-    nameAndDirectoryFormat: 'as-provided'
+    path: migrationRoot,
   });
 
   initProject(tree, options.project, readProjectConfiguration(tree, options.project), generatorOptions);

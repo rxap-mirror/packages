@@ -387,7 +387,7 @@ export async function execute(
       }
 
     } catch (error: any) {
-      if (this.continueOnFail(error)) {
+      if (this.continueOnFail()) {
         items[itemIndex] = {
           json: {
             error: error.message,

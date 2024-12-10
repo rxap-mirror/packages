@@ -72,7 +72,7 @@ export class MarkerIoService {
   }
 }
 
-export function provideMarkerIo(): Provider[] {
+export function provideMarkerIo() {
   return [
     provideAppInitializer(() => {
         const initializerFn = ((service: MarkerIoService) => () => service.load())(inject(MarkerIoService));

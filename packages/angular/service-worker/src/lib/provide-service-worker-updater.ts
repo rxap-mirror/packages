@@ -1,10 +1,15 @@
-import { Provider, inject, provideAppInitializer } from '@angular/core';
+import {
+  Provider,
+  inject,
+  provideAppInitializer,
+  EnvironmentProviders,
+} from '@angular/core';
 import { AutoUpdateService } from './auto-update.service';
 import { CheckForUpdateService } from './check-for-update.service';
 import { DialogUpdateService } from './dialog-update.service';
 import { LogUpdateService } from './log-update.service';
 
-export function ProvideServiceWorkerUpdater(...providers: Provider[]): Provider[] {
+export function ProvideServiceWorkerUpdater(...providers: Array<Provider | EnvironmentProviders>): Array<Provider | EnvironmentProviders> {
   return [
     provideAppInitializer(() => {
         const initializerFn = ((checkForUpdate: CheckForUpdateService) => () => checkForUpdate.start())(inject(CheckForUpdateService));
@@ -14,21 +19,21 @@ export function ProvideServiceWorkerUpdater(...providers: Provider[]): Provider[
   ];
 }
 
-export function withLogUpdater(): Provider {
+export function withLogUpdater() {
   return provideAppInitializer(() => {
         const initializerFn = ((logUpdateService: LogUpdateService) => () => logUpdateService.start())(inject(LogUpdateService));
         return initializerFn();
       });
 }
 
-export function withDialogUpdater(): Provider {
+export function withDialogUpdater() {
   return provideAppInitializer(() => {
         const initializerFn = ((dus: DialogUpdateService) => () => dus.start())(inject(DialogUpdateService));
         return initializerFn();
       });
 }
 
-export function withAutoUpdater(): Provider {
+export function withAutoUpdater() {
   return provideAppInitializer(() => {
         const initializerFn = ((aus: AutoUpdateService) => () => aus.start())(inject(AutoUpdateService));
         return initializerFn();

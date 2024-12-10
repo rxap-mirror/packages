@@ -41,7 +41,6 @@ export async function microserviceGenerator(
 
   await applicationGenerator(tree, {
     ...presetOptions,
-    projectNameAndRootFormat: 'as-provided',
     name,
     directory,
   });

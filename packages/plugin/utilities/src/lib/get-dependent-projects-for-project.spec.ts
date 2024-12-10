@@ -30,7 +30,7 @@ describe('GetDependentProjectsForProject', () => {
   });
 
   it('should throw an error when the project graph is undefined', () => {
-    context.projectGraph = undefined;
+    context.projectGraph = undefined as any;
 
     expect(() => GetDependentProjectsForProject(context)).toThrowError(
       'The projectGraph is undefined. Ensure the projectGraph is passed into the executor context.'
