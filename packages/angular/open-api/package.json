@@ -1,5 +1,5 @@
 {
-  "version": "18.0.9-dev.0",
+  "version": "18.0.9",
   "name": "@rxap/open-api",
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "license": "GPL-3.0-or-later",

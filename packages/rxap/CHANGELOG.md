@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.23](https://gitlab.com/rxap/packages/compare/rxap@19.1.23-dev.7...rxap@19.1.23) (2024-12-10)
+
+**Note:** Version bump only for package rxap
+
 ## [19.1.23-dev.7](https://gitlab.com/rxap/packages/compare/rxap@19.1.23-dev.6...rxap@19.1.23-dev.7) (2024-11-11)
 
 ### Bug Fixes

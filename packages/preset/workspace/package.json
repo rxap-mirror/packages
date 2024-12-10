@@ -1,10 +1,10 @@
 {
-  "version": "19.0.9-dev.1",
+  "version": "19.0.9",
   "name": "@rxap/preset-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "19.7.4",
-    "@rxap/plugin-workspace": "^19.1.8-dev.1",
+    "@rxap/plugin-workspace": "^19.1.8",
     "tslib": "2.6.2"
   },
   "author": {

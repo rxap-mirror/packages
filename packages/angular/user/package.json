@@ -10,7 +10,7 @@
     "@angular/core": "^18.2.0",
     "@rxap/data-source": "^18.1.5",
     "@rxap/ngx-pub-sub": "^18.1.2",
-    "@rxap/open-api": "^18.0.9-dev.0",
+    "@rxap/open-api": "^18.0.9",
     "@rxap/utilities": "^16.4.0",
     "rxjs": "^7.8.1"
   },
@@ -92,7 +92,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "18.0.9-dev.0"
+        "version": "18.0.9"
       },
       {
         "package": "@rxap/pattern",
