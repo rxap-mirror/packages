@@ -1,5 +1,5 @@
 {
-  "version": "0.0.4-dev.0",
+  "version": "0.0.4-dev.1",
   "name": "@rxap/n8n-nodes-neo4j",
   "license": "GPL-3.0-or-later",
   "dependencies": {

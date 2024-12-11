@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/node-local-storage@1.0.10-dev.0...@rxap/node-local-storage@1.0.10-dev.1) (2024-12-11)
+
+**Note:** Version bump only for package @rxap/node-local-storage
+
 ## [1.0.10-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/node-local-storage@1.0.9...@rxap/node-local-storage@1.0.10-dev.0) (2024-12-10)
 
 **Note:** Version bump only for package @rxap/node-local-storage

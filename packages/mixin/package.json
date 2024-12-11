@@ -1,11 +1,11 @@
 {
-  "version": "16.0.11-dev.0",
+  "version": "16.0.11-dev.1",
   "name": "@rxap/mixin",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.2.1",
-    "@rxap/reflect-metadata": "^1.0.12-dev.0",
-    "@rxap/utilities": "^16.4.1-dev.0",
+    "@rxap/reflect-metadata": "^1.0.12-dev.1",
+    "@rxap/utilities": "^16.4.1-dev.1",
     "reflect-metadata": "0.1.13",
     "tslib": "2.6.2"
   },

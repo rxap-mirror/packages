@@ -1,5 +1,5 @@
 {
-  "version": "19.0.0-dev.0",
+  "version": "19.0.0-dev.1",
   "name": "@rxap/ngx-bootstrap",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,8 +11,8 @@
     "@angular/core": "19.0.3",
     "@angular/platform-browser": "19.0.3",
     "@angular/platform-browser-dynamic": "19.0.3",
-    "@rxap/config": "^19.0.0-dev.0",
-    "@rxap/environment": "^19.0.0-dev.0",
+    "@rxap/config": "^19.0.0-dev.1",
+    "@rxap/environment": "^19.0.0-dev.1",
     "ngx-logger": "5.0.12"
   },
   "author": {
@@ -38,43 +38,39 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "18.2.0"
+        "version": "19.0.3"
       },
       {
         "package": "@angular/common",
-        "version": "18.2.0"
+        "version": "19.0.3"
       },
       {
         "package": "@angular/compiler",
-        "version": "18.2.0"
+        "version": "19.0.3"
       },
       {
         "package": "@angular/core",
-        "version": "18.2.0"
+        "version": "19.0.3"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "18.2.0"
+        "version": "19.0.3"
       },
       {
         "package": "@angular/platform-browser-dynamic",
-        "version": "18.2.0"
-      },
-      {
-        "package": "@nx/angular",
-        "version": "19.8.14"
+        "version": "19.0.3"
       },
       {
         "package": "@rxap/config",
-        "version": "18.2.3-dev.0"
+        "version": "19.0.0-dev.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "18.0.8-dev.0"
+        "version": "19.0.0-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.1-dev.0"
+        "version": "16.4.1-dev.1"
       }
     ]
   },
