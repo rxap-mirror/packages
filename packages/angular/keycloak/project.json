@@ -12,7 +12,7 @@
     "angular:standalone"
   ],
   "targets": {
-    "index-export": {},
+
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -30,23 +30,9 @@
       "defaultConfiguration": "production"
     },
     "build-tailwind": {},
-    "check-ng-package": {},
-    "check-version": {
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
+
+
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -55,7 +41,7 @@
         ]
       }
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/angular/keycloak/jest.config.ts"
@@ -65,26 +51,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "compodoc": {
-      "options": {
-        "tsConfig": "packages/angular/keycloak/tsconfig.compodoc.json",
-        "outputPath": [
-          "dist/compodoc/packages/angular/keycloak",
-          "packages/angular/keycloak/compodoc"
-        ]
-      }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/keycloak",
-          "packages/angular/keycloak/docs"
-        ]
       }
     }
   }

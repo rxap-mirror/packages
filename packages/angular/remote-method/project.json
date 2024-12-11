@@ -23,23 +23,9 @@
       "defaultConfiguration": "production"
     },
     "build-tailwind": {},
-    "check-ng-package": {},
-    "check-version": {
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
+
+
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -56,7 +42,7 @@
         ]
       }
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/angular/remote-method/jest.config.ts"
@@ -66,27 +52,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "index-export": {},
-    "compodoc": {
-      "options": {
-        "tsConfig": "packages/angular/remote-method/tsconfig.compodoc.json",
-        "outputPath": [
-          "dist/compodoc/packages/angular/remote-method",
-          "packages/angular/remote-method/compodoc"
-        ]
-      }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/remote-method",
-          "packages/angular/remote-method/docs"
-        ]
       }
     }
   }

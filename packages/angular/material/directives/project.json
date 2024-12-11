@@ -23,24 +23,10 @@
       "defaultConfiguration": "production"
     },
     "build-tailwind": {},
-    "check-ng-package": {},
-    "check-version": {
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
-    "index-export": {},
+
+
+
+
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -61,7 +47,7 @@
         ]
       }
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/angular/material/directives/jest.config.ts"
@@ -73,8 +59,8 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
+
+
     "component-test": {
       "executor": "@nx/cypress:cypress",
       "options": {
@@ -89,24 +75,8 @@
         }
       }
     },
-    "linking": {},
-    "compodoc": {
-      "options": {
-        "tsConfig": "packages/angular/material/directives/tsconfig.compodoc.json",
-        "outputPath": [
-          "dist/compodoc/packages/angular/material/directives",
-          "packages/angular/material/directives/compodoc"
-        ]
-      }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/material/directives",
-          "packages/angular/material/directives/docs"
-        ]
-      }
-    },
+
+
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {

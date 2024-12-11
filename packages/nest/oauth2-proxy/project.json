@@ -57,25 +57,6 @@
       "options": {
         "jestConfig": "packages/nest/oauth2-proxy/jest.config.ts"
       }
-    },
-    "index-export": {},
-    "update-dependencies": {},
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        }
-      }
-    },
-    "readme": {},
-    "linking": {},
-    "update-package-group": {},
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
-      "options": {
-        "packageName": "@nestjs/core"
-      }
     }
   }
 }

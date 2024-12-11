@@ -50,30 +50,6 @@
       ],
       "cache": true
     },
-    "fix-dependencies": {
-      "inputs": ["production", "^production", "{projectRoot}/package.json"],
-      "dependsOn": ["^fix-dependencies"],
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"],
-      "options": {
-        "generator": "@rxap/plugin-library:fix-dependencies",
-        "options": {
-          "strict": true,
-          "onlyDependencies": true
-        }
-      }
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group",
-      "dependsOn": ["update-dependencies", "^update-dependencies"],
-      "inputs": ["production", "{projectRoot}/package.json"],
-      "outputs": ["{projectRoot}/package.json"]
-    },
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies",
-      "outputs": ["{projectRoot}/package.json"],
-      "inputs": ["{workspaceRoot}/package.json", "{projectRoot}/package.json"]
-    },
     "test": {
       "cache": true,
       "executor": "@nx/jest:jest",
@@ -106,15 +82,6 @@
       "executor": "@rxap/plugin-open-api:copy-client-sdk",
       "outputs": ["{projectRoot}/src/lib/openapi"],
       "cache": true
-    },
-    "linking": {
-      "executor": "@rxap/plugin-library:node-modules-linking",
-      "dependsOn": ["build", "^linking"],
-      "inputs": [
-        {
-          "env": "CI_JOB_ID"
-        }
-      ]
     },
     "index-json-schema": {
       "inputs": [
@@ -234,21 +201,6 @@
       "outputs": ["{projectRoot}/theme.css"],
       "cache": true
     },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme",
-      "inputs": [
-        "{projectRoot}/README.md.handlebars",
-        "{projectRoot}/GETSTARTED.md",
-        "{projectRoot}/GUIDES.md",
-        "{projectRoot}/package.json",
-        "{projectRoot}/collection.json",
-        "{projectRoot}/generators.json",
-        "{projectRoot}/executors.json",
-        "{projectRoot}/builders.json"
-      ],
-      "outputs": ["{projectRoot}/README.md"],
-      "cache": true
-    },
     "docker": {
       "executor": "@rxap/plugin-docker:build",
       "inputs": ["production", "^production", "{projectRoot}/package.json"],
@@ -257,11 +209,6 @@
         "imageName": "rxap/packages",
         "imageRegistry": "registry.gitlab.com"
       },
-      "cache": true
-    },
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
-      "inputs": ["{projectRoot}/package.json", "{workspaceRoot}/package.json"],
       "cache": true
     },
     "component-test": {
@@ -283,22 +230,8 @@
       "dependsOn": ["docker"],
       "executor": "@rxap/plugin-docker:save"
     },
-    "check-ng-package": {
-      "executor": "@rxap/plugin-angular:check-ng-package",
-      "inputs": ["{projectRoot}/ng-package.json", "{projectRoot}/package.json"],
-      "cache": true
-    },
     "config": {
       "executor": "@rxap/plugin-application:config"
-    },
-    "index-export": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/src/index.ts"],
-      "options": {
-        "generator": "@rxap/plugin-library:index-export"
-      },
-      "inputs": ["production"],
-      "cache": true
     },
     "localazy-upload": {
       "dependsOn": ["extract-i18n"],
@@ -316,27 +249,6 @@
       "outputs": ["{workspaceRoot}/dist/{projectRoot}/index.html"],
       "inputs": ["{projectRoot}/project.json"],
       "cache": true
-    },
-    "compodoc": {
-      "executor": "@rxap/plugin-compodoc:build",
-      "defaultConfiguration": "html",
-      "outputs": ["{options.outputPath}"],
-      "inputs": ["production", "^production"],
-      "configurations": {
-        "json": {
-          "exportFormat": "json"
-        },
-        "html": {
-          "exportFormat": "html"
-        }
-      },
-      "cache": true
-    },
-    "typedoc": {
-      "cache": true,
-      "executor": "@rxap/plugin-typedoc:build",
-      "outputs": ["{options.outputPath}"],
-      "inputs": ["production", "^production"]
     },
     "ci-info": {
       "cache": true
@@ -558,5 +470,11 @@
       "preVersionCommand": "yarn dlx nx run-many -t build"
     }
   },
-  "useLegacyCache": true
+  "useLegacyCache": true,
+  "plugins": [
+    "./packages/plugin/library/src/plugin.ts",
+    "./packages/plugin/angular/src/plugin.ts",
+    "./packages/plugin/compodoc/src/plugin.ts",
+    "./packages/plugin/typedoc/src/plugin.ts"
+  ]
 }

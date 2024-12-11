@@ -18,17 +18,7 @@
         ]
       }
     },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": true
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/browser/utilities/**/*.ts"]
@@ -38,8 +28,8 @@
       "command": "node tools/scripts/publish.mjs browser-utilities {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "index-export": {},
-    "readme": {},
+
+
     "test": {
       "options": {
         "jestConfig": "packages/browser/utilities/jest.config.ts"
@@ -51,9 +41,9 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [

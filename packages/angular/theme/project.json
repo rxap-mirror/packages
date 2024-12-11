@@ -6,7 +6,7 @@
   "projectType": "library",
   "tags": ["angular", "ngx", "packages", "scope:compose"],
   "targets": {
-    "index-export": {},
+
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -34,32 +34,11 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
     },
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies"
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group"
-    },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme"
-    },
-    "fix-dependencies": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"],
-      "options": {
-        "generator": "@rxap/plugin-library:fix-dependencies",
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        }
-      }
-    },
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
+
+
+
+
+
     "build-tailwind": {
       "executor": "@rxap/plugin-angular:tailwind",
       "configurations": {
@@ -67,27 +46,6 @@
           "minify": true
         },
         "development": {}
-      }
-    },
-    "check-ng-package": {
-      "executor": "@rxap/plugin-angular:check-ng-package"
-    },
-    "linking": {},
-    "compodoc": {
-      "options": {
-        "tsConfig": "packages/angular/theme/tsconfig.compodoc.json",
-        "outputPath": [
-          "dist/compodoc/packages/angular/theme",
-          "packages/angular/theme/compodoc"
-        ]
-      }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/theme",
-          "packages/angular/theme/docs"
-        ]
       }
     }
   }

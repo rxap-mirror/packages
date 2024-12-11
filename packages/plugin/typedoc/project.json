@@ -65,16 +65,12 @@
         "jestConfig": "packages/plugin/typedoc/jest.config.ts"
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "fix-dependencies": {},
-    "readme": {},
-    "linking": {},
-    "check-version": {
-      "options": {
-        "packageName": "nx"
-      }
-    },
+
+
+
+
+
+
     "expose-as-schematic": {},
     "typedoc": {
       "options": {

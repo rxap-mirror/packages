@@ -23,23 +23,9 @@
       },
       "defaultConfiguration": "development"
     },
-    "check-version": {
-      "options": {
-        "packageName": "@nestjs/core"
-      }
-    },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
-    "index-export": {},
+
+
+
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/server/**/*.ts"]
@@ -49,7 +35,7 @@
       "command": "node tools/scripts/publish.mjs nest-server {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/nest/server/jest.config.ts"
@@ -61,9 +47,9 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [

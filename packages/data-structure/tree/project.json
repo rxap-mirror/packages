@@ -18,17 +18,7 @@
         ]
       }
     },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": true
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/data-structure/tree/**/*.ts"]
@@ -38,7 +28,7 @@
       "command": "node tools/scripts/publish.mjs data-structure-tree {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/data-structure/tree/jest.config.ts"
@@ -50,10 +40,10 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "index-export": {},
+
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [

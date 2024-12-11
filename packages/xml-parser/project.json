@@ -5,7 +5,7 @@
   "projectType": "library",
   "tags": ["packages", "scope:utilities", "standalone"],
   "targets": {
-    "index-export": {},
+
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
@@ -16,17 +16,7 @@
         "assets": ["packages/xml-parser/*.md", "packages/xml-parser/docs"]
       }
     },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": true
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/xml-parser/**/*.ts"]
@@ -36,7 +26,7 @@
       "command": "node tools/scripts/publish.mjs xml-parser {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/xml-parser/jest.config.ts"
@@ -48,9 +38,9 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [

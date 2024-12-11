@@ -23,28 +23,14 @@
       "defaultConfiguration": "production"
     },
     "build-tailwind": {},
-    "check-ng-package": {},
-    "check-version": {
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
+
+
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/layout/cypress.config.ts"
       }
     },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "onlyDependencies": false,
-          "strict": true
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -53,7 +39,7 @@
         ]
       }
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/angular/layout/jest.config.ts"
@@ -65,27 +51,11 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "index-export": {},
-    "compodoc": {
-      "options": {
-        "tsConfig": "packages/angular/layout/tsconfig.compodoc.json",
-        "outputPath": [
-          "dist/compodoc/packages/angular/layout",
-          "packages/angular/layout/compodoc"
-        ]
-      }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/layout",
-          "packages/angular/layout/docs"
-        ]
-      }
-    },
+
+
+
+
+
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {

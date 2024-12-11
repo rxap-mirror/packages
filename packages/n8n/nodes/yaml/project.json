@@ -55,17 +55,17 @@
         "jestConfig": "packages/n8n/nodes/yaml/jest.config.ts"
       }
     },
-    "update-dependencies": {},
+
     "fix-dependencies": {
+      "executor": "@rxap/plugin-library:fix-dependencies",
+      "outputs": ["{projectRoot}/package.json"],
       "options": {
-        "options": {
-          "onlyDependencies": true,
-          "peerDependencies": ["n8n-workflow"]
-        }
+        "onlyDependencies": true,
+        "peerDependencies": ["n8n-workflow"]
       }
-    },
-    "readme": {},
-    "linking": {},
-    "update-package-group": {}
+    }
+
+
+
   }
 }

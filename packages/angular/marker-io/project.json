@@ -32,25 +32,13 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     },
-    "index-export": {},
-    "update-dependencies": {},
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        }
-      }
-    },
-    "readme": {},
-    "linking": {},
-    "update-package-group": {},
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
+
+
+
+
+
+
+
     "build-tailwind": {
       "executor": "@rxap/plugin-angular:tailwind",
       "configurations": {
@@ -59,9 +47,6 @@
         },
         "development": {}
       }
-    },
-    "check-ng-package": {
-      "executor": "@rxap/plugin-angular:check-ng-package"
     }
   }
 }

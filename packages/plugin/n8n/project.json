@@ -65,16 +65,12 @@
         "jestConfig": "packages/plugin/n8n/jest.config.ts"
       }
     },
-    "update-dependencies": {},
-    "fix-dependencies": {},
-    "readme": {},
-    "linking": {},
-    "update-package-group": {},
-    "check-version": {
-      "options": {
-        "packageName": "nx"
-      }
-    },
+
+
+
+
+
+
     "expose-as-schematic": {}
   }
 }

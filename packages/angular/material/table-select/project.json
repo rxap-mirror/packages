@@ -23,28 +23,14 @@
       "defaultConfiguration": "production"
     },
     "build-tailwind": {},
-    "check-ng-package": {},
-    "check-version": {
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
+
+
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/material/table-select/cypress.config.ts"
       }
     },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -53,7 +39,7 @@
         ]
       }
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/angular/material/table-select/jest.config.ts"
@@ -63,27 +49,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "index-export": {},
-    "compodoc": {
-      "options": {
-        "tsConfig": "packages/angular/material/table-select/tsconfig.compodoc.json",
-        "outputPath": [
-          "dist/compodoc/packages/angular/material/table-select",
-          "packages/angular/material/table-select/compodoc"
-        ]
-      }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/material/table-select",
-          "packages/angular/material/table-select/docs"
-        ]
       }
     }
   }

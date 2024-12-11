@@ -57,17 +57,7 @@
         ]
       }
     },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": true
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/schematic/composer/**/*.ts"]
@@ -77,7 +67,7 @@
       "command": "node tools/scripts/publish.mjs schematic-composer {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/schematic/composer/jest.config.ts"
@@ -89,15 +79,10 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
-      "options": {
-        "packageName": "@angular-devkit/schematics"
-      }
-    },
+
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [

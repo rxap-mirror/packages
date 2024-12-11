@@ -5,7 +5,7 @@
   "projectType": "library",
   "tags": ["nest", "packages", "scope:integration"],
   "targets": {
-    "index-export": {},
+
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
@@ -37,22 +37,8 @@
       },
       "defaultConfiguration": "development"
     },
-    "check-version": {
-      "options": {
-        "packageName": "@nestjs/core"
-      }
-    },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
+
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/sentry/**/*.ts"]
@@ -62,7 +48,7 @@
       "command": "node tools/scripts/publish.mjs nest-sentry {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/nest/sentry/jest.config.ts"
@@ -74,9 +60,9 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [

@@ -33,28 +33,12 @@
         "jestConfig": "packages/workspace/cypress/jest.config.ts"
       }
     },
-    "index-export": {},
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies"
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group"
-    },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme"
-    },
-    "fix-dependencies": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"],
-      "options": {
-        "generator": "@rxap/plugin-library:fix-dependencies",
-        "options": {
-          "strict": true,
-          "onlyDependencies": true
-        }
-      }
-    },
-    "linking": {},
+
+
+
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [

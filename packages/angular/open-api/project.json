@@ -23,22 +23,15 @@
       "defaultConfiguration": "production"
     },
     "build-tailwind": {},
-    "check-ng-package": {},
-    "check-version": {
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
+
+
     "fix-dependencies": {
       "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false,
-          "dependencies": ["ajv", "openapi-types"]
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
+        "strict": true,
+        "onlyDependencies": false,
+        "dependencies": ["ajv", "openapi-types"]
       },
-      "executor": "@rxap/plugin-library:run-generator",
+      "executor": "@rxap/plugin-library:fix-dependencies",
       "outputs": ["{projectRoot}/package.json"]
     },
     "lint": {
@@ -51,7 +44,7 @@
         ]
       }
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/angular/open-api/jest.config.ts"
@@ -61,27 +54,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "index-export": {},
-    "compodoc": {
-      "options": {
-        "tsConfig": "packages/angular/open-api/tsconfig.compodoc.json",
-        "outputPath": [
-          "dist/compodoc/packages/angular/open-api",
-          "packages/angular/open-api/compodoc"
-        ]
-      }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/open-api",
-          "packages/angular/open-api/docs"
-        ]
       }
     }
   }

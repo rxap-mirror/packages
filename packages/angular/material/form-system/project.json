@@ -23,12 +23,8 @@
       "defaultConfiguration": "production"
     },
     "build-tailwind": {},
-    "check-ng-package": {},
-    "check-version": {
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
+
+
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/material/form-system/cypress.config.ts"
@@ -39,17 +35,7 @@
         }
       }
     },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -58,7 +44,7 @@
         ]
       }
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/angular/material/form-system/jest.config.ts"
@@ -68,27 +54,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "index-export": {},
-    "compodoc": {
-      "options": {
-        "tsConfig": "packages/angular/material/form-system/tsconfig.compodoc.json",
-        "outputPath": [
-          "dist/compodoc/packages/angular/material/form-system",
-          "packages/angular/material/form-system/compodoc"
-        ]
-      }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/material/form-system",
-          "packages/angular/material/form-system/docs"
-        ]
       }
     }
   }

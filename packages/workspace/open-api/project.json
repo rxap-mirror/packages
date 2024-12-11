@@ -18,18 +18,8 @@
         ]
       }
     },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": true
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
-    "index-export": {},
+
+
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/workspace/open-api/**/*.ts"]
@@ -39,7 +29,7 @@
       "command": "node tools/scripts/publish.mjs workspace-open-api {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/workspace/open-api/jest.config.ts"
@@ -51,9 +41,9 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [

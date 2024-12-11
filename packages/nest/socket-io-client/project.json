@@ -26,22 +26,8 @@
       },
       "defaultConfiguration": "development"
     },
-    "check-version": {
-      "options": {
-        "packageName": "@nestjs/core"
-      }
-    },
-    "fix-dependencies": {
-      "options": {
-        "options": {
-          "strict": true,
-          "onlyDependencies": false
-        },
-        "generator": "@rxap/plugin-library:fix-dependencies"
-      },
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"]
-    },
+
+
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/socket-io-client/**/*.ts"]
@@ -51,7 +37,7 @@
       "command": "node tools/scripts/publish.mjs nest-socket-io-client {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "readme": {},
+
     "test": {
       "options": {
         "jestConfig": "packages/nest/socket-io-client/jest.config.ts"
@@ -63,10 +49,10 @@
         }
       }
     },
-    "update-dependencies": {},
-    "update-package-group": {},
-    "linking": {},
-    "index-export": {},
+
+
+
+
     "typedoc": {
       "options": {
         "outputPath": [
