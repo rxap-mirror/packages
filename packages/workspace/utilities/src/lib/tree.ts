@@ -1,5 +1,6 @@
 import { CoercePrefix } from '@rxap/utilities';
-import { Mode } from 'fs';
+import { BufferEncoding } from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
+import { Mode, unlinkSync, writeFileSync, readdirSync, readFileSync, renameSync, existsSync, statSync } from 'fs';
 import {
   dirname,
   join,
@@ -181,7 +182,18 @@ export function IsSchematicTreeLike(tree: TreeLike): tree is SchematicTreeLike {
  * ```
  */
 export function IsGeneratorTreeLike(tree: TreeLike): tree is GeneratorTreeLike {
-  return !IsSchematicTreeLike(tree) && typeof (tree as GeneratorTreeLike).root === 'string';
+  return IsTreeLike(tree)
+         && typeof (tree as GeneratorTreeLike).root === 'string'
+        && typeof (tree as GeneratorTreeLike).read === 'function'
+        && typeof (tree as GeneratorTreeLike).write === 'function'
+        && typeof (tree as GeneratorTreeLike).children === 'function'
+        && typeof (tree as GeneratorTreeLike).isFile === 'function'
+        && typeof (tree as GeneratorTreeLike).listChanges === 'function'
+        && typeof (tree as GeneratorTreeLike).changePermissions === 'function';
+}
+
+export function IsFsTreeLike(tree: TreeLike): tree is FsTree {
+  return tree instanceof FsTree;
 }
 
 export interface FileEntryLike {
@@ -206,7 +218,7 @@ export class FakeDirEntry implements DirEntryLike {
 
   constructor(
     public readonly path: string,
-    private readonly tree: GeneratorTreeLike,
+    private readonly tree: GeneratorTreeLike | FsTree,
   ) {}
 
   public get parent(): FakeDirEntry | null {
@@ -251,6 +263,41 @@ export class FakeDirEntry implements DirEntryLike {
 
 }
 
+export class FsTree implements TreeLike {
+
+  constructor(public readonly root: string) {}
+
+  delete(path: string): void {
+    unlinkSync(join(this.root, path));
+  }
+
+  rename(from: string, to: string): void {
+    renameSync(join(this.root, from), join(this.root, to));
+  }
+
+  exists(path: string): boolean {
+    return existsSync(join(this.root, path));
+  }
+
+  read(path: string, encoding: BufferEncoding): string | null;
+  read(path: string): Buffer | null;
+  read(path: string, encoding?: BufferEncoding): Buffer | string | null {
+    return readFileSync(join(this.root, path), encoding);
+  }
+
+  write(filePath: string, content: Buffer | string, options?: TreeWriteOptions): void {
+    writeFileSync(join(this.root, filePath), content, options);
+  }
+
+  isFile(filePath: string): boolean {
+    return statSync(join(this.root, filePath)).isFile();
+  }
+
+  children(dirPath: string): string[] {
+    return readdirSync(join(this.root, dirPath));
+  }
+}
+
 export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLike {
 
   /**
@@ -264,6 +311,9 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
     if (IsGeneratorTreeLike(this.wrapped)) {
       return this.wrapped.root;
     }
+    if (IsFsTreeLike(this.wrapped)) {
+      return this.wrapped.root;
+    }
     throw new Error('Invalid tree');
   }
 
@@ -271,7 +321,7 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
     if (!wrapped) {
       throw new Error('FATAL: wrapped tree is not defined');
     }
-    if (!IsGeneratorTreeLike(wrapped) && !IsSchematicTreeLike(wrapped)) {
+    if (!IsGeneratorTreeLike(wrapped) && !IsSchematicTreeLike(wrapped) && !IsFsTreeLike(wrapped)) {
       throw new Error('Invalid tree');
     }
   }
@@ -308,6 +358,12 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
       }
       return this.wrapped.read(filePath);
     }
+    if (IsFsTreeLike(this.wrapped)) {
+      if (encoding) {
+        return this.wrapped.read(filePath, encoding);
+      }
+      return this.wrapped.read(filePath);
+    }
     throw new Error('Invalid tree');
   }
 
@@ -324,6 +380,10 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
         console.warn('TreeWriteOptions are not supported by schematic tree like instance');
       }
       this.wrapped.overwrite(filePath, content);
+      return;
+    }
+    if (IsFsTreeLike(this.wrapped)) {
+      this.wrapped.write(filePath, content);
       return;
     }
     throw new Error('Invalid tree');
@@ -346,6 +406,9 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
         throw e;
       }
     }
+    if (IsFsTreeLike(this.wrapped)) {
+      return this.wrapped.isFile(filePath);
+    }
     throw new Error('Invalid tree');
   }
 
@@ -356,6 +419,9 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
     if (IsSchematicTreeLike(this.wrapped)) {
       const dir = this.wrapped.getDir(dirPath);
       return [ ...dir.subfiles, ...dir.subdirs ];
+    }
+    if (IsFsTreeLike(this.wrapped)) {
+      return this.wrapped.children(dirPath);
     }
     throw new Error('Invalid tree');
   }
@@ -387,6 +453,10 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
       this.wrapped.write(path, content);
       return;
     }
+    if (IsFsTreeLike(this.wrapped)) {
+      this.wrapped.write(path, content);
+      return;
+    }
     throw new Error('Invalid tree');
   }
 
@@ -396,6 +466,13 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
       return;
     }
     if (IsGeneratorTreeLike(this.wrapped)) {
+      if (this.wrapped.exists(path)) {
+        throw new Error(`File ${ path } already exists`);
+      }
+      this.wrapped.write(path, content);
+      return;
+    }
+    if (IsFsTreeLike(this.wrapped)) {
       if (this.wrapped.exists(path)) {
         throw new Error(`File ${ path } already exists`);
       }
@@ -416,6 +493,13 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
       }
       return content;
     }
+    if (IsFsTreeLike(this.wrapped)) {
+      const content = this.wrapped.read(path, 'utf-8');
+      if (content === null) {
+        throw new Error(`File ${ path } does not exists`);
+      }
+      return content;
+    }
     throw new Error('Invalid tree');
   }
 
@@ -424,6 +508,13 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
       return this.wrapped.readJson(path) as T;
     }
     if (IsGeneratorTreeLike(this.wrapped)) {
+      const content = this.wrapped.read(path, 'utf-8');
+      if (content === null) {
+        throw new Error(`File ${ path } does not exists`);
+      }
+      return JSON.parse(content);
+    }
+    if (IsFsTreeLike(this.wrapped)) {
       const content = this.wrapped.read(path, 'utf-8');
       if (content === null) {
         throw new Error(`File ${ path } does not exists`);
@@ -447,6 +538,16 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
         content,
       };
     }
+    if (IsFsTreeLike(this.wrapped)) {
+      const content = this.wrapped.read(path);
+      if (content === null) {
+        return null;
+      }
+      return {
+        path: path as any,
+        content,
+      };
+    }
     throw new Error('Invalid tree');
   }
 
@@ -455,6 +556,9 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
       return this.wrapped.getDir(path);
     }
     if (IsGeneratorTreeLike(this.wrapped)) {
+      return new FakeDirEntry(path, this.wrapped);
+    }
+    if (IsFsTreeLike(this.wrapped)) {
       return new FakeDirEntry(path, this.wrapped);
     }
     throw new Error('Invalid tree');

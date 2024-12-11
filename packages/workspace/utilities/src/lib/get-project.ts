@@ -31,11 +31,28 @@ export interface ProjectJson extends ProjectConfiguration, Record<string, any> {
   prefix?: string;
 }
 
-export const PROJECT_LOCATION_CACHE = new Map<string, string>();
+export const PROJECT_NAME_TO_PROJECT_LOCATION_CACHE = new Map<string, string>();
+export const PROJECT_LOCATION_TO_PROJECT_NAME_CACHE = new Map<string, string>();
 
 export const PACKAGE_NAME_TO_PROJECT_LOCATION_CACHE = new Map<string, string>();
 
 export const PROJECT_LOCATION_CACHE_LIST: string[] = [];
+
+function buildProjectLocationCache(tree: TreeLike) {
+  PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.clear();
+  PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.clear();
+  const treeAdapter = new TreeAdapter(tree);
+  for (const { path, isFile } of VisitTree(tree)) {
+    if (isFile && path.endsWith('project.json')) {
+      console.log(`Found project.json file: ${ path }`.grey);
+      const project = treeAdapter.readJson(path) as ProjectJson;
+      if (project.name) {
+        PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.set(project.name, path);
+        PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.set(path, project.name);
+      }
+    }
+  }
+}
 
 /**
  * Searches for a project within a given tree structure and returns its configuration in JSON format.
@@ -65,21 +82,12 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
       return projects.get(projectName)!;
     }
   }
-  if (PROJECT_LOCATION_CACHE.size === 0) {
+  if (PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.size === 0) {
     console.log(`The project location cache is empty. Build cache.`.yellow);
-    const treeAdapter = new TreeAdapter(tree);
-    for (const { path, isFile } of VisitTree(tree)) {
-      if (isFile && path.endsWith('project.json')) {
-        console.log(`Found project.json file: ${ path }`.grey);
-        const project = treeAdapter.readJson(path) as ProjectJson;
-        if (project.name) {
-          PROJECT_LOCATION_CACHE.set(project.name, path);
-        }
-      }
-    }
+    buildProjectLocationCache(tree);
   }
-  if (PROJECT_LOCATION_CACHE.has(projectName)) {
-    const path = PROJECT_LOCATION_CACHE.get(projectName)!;
+  if (PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.has(projectName)) {
+    const path = PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.get(projectName)!;
     const treeAdapter = new TreeAdapter(tree);
     const project = JSON.parse(treeAdapter.read(path)!.toString('utf-8')) as ProjectJson;
     project.root ??= dirname(path).replace(/^\//, '');
@@ -93,9 +101,29 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
     const project = JSON.parse(fileEntry.content.toString('utf-8')) as ProjectJson;
     if (project.name === projectName) {
       project.root ??= dirname(fileEntry.path).replace(/^\//, '');
-      PROJECT_LOCATION_CACHE.set(projectName, fileEntry.path);
+      PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.set(projectName, fileEntry.path);
       return project;
     }
+  }
+  return null;
+}
+
+export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath: string): ProjectJson | null {
+  if (IsGeneratorTreeLike(tree)) {
+    const projects = getProjects(tree);
+    for (const project of projects.values()) {
+      if (project.root === projectPath) {
+        return project;
+      }
+    }
+  }
+  if (PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.size === 0) {
+    console.log(`The project location cache is empty. Build cache.`.yellow);
+    buildProjectLocationCache(tree);
+  }
+  const projectName = PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.get(projectPath);
+  if (projectName) {
+    return FindProject(tree, projectName);
   }
   return null;
 }
