@@ -40,17 +40,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/browser/utilities",
-          "packages/browser/utilities/docs"
-        ]
-      }
     }
   }
 }

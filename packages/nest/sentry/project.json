@@ -59,17 +59,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/sentry",
-          "packages/nest/sentry/docs"
-        ]
-      }
     }
   }
 }

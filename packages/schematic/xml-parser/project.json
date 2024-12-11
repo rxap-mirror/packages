@@ -39,18 +39,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/schematic/xml-parser",
-          "packages/schematic/xml-parser/docs"
-        ]
-      }
     }
   }
 }

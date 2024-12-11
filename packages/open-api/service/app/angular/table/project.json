@@ -11,14 +11,6 @@
           "packages/open-api/service/app/angular/table/**/*.ts"
         ]
       }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/open-api/service/app/angular/table",
-          "packages/open-api/service/app/angular/table/docs"
-        ]
-      }
     }
   }
 }

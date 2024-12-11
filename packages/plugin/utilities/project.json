@@ -41,17 +41,6 @@
         }
       }
     },
-    "typedoc": {
-      "executor": "@enio.ai/typedoc:typedoc",
-      "outputs": ["{workspaceRoot}/docs/packages/plugin/utilities"],
-      "options": {
-        "options": "typedoc.json",
-        "outputPath": [
-          "dist/docs/packages/plugin/utilities",
-          "packages/plugin/utilities/docs"
-        ]
-      }
-    },
 
 
 

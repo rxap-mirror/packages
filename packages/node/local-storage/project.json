@@ -33,19 +33,6 @@
       "options": {
         "jestConfig": "packages/node/local-storage/jest.config.ts"
       }
-    },
-
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/node/local-storage",
-          "packages/node/local-storage/docs"
-        ]
-      }
     }
   }
 }

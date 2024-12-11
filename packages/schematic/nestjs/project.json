@@ -55,18 +55,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/schematic/nestjs",
-          "packages/schematic/nestjs/docs"
-        ]
-      }
     }
   }
 }

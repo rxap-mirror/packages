@@ -39,18 +39,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/data-structure/tree",
-          "packages/data-structure/tree/docs"
-        ]
-      }
     }
   }
 }

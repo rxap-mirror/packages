@@ -40,21 +40,6 @@
       "options": {
         "jestConfig": "packages/nest/web3-storage/jest.config.ts"
       }
-    },
-
-
-
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/web3-storage",
-          "packages/nest/web3-storage/docs"
-        ]
-      }
     }
   }
 }

@@ -51,16 +51,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/utilities",
-          "packages/utilities/docs"
-        ]
-      }
     }
   }
 }

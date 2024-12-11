@@ -50,16 +50,6 @@
         "onlyDependencies": false,
         "dependencies": ["node-vault"]
       }
-    },
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/vault",
-          "packages/nest/vault/docs"
-        ]
-      }
     }
   }
 }

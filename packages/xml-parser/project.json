@@ -37,17 +37,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/xml-parser",
-          "packages/xml-parser/docs"
-        ]
-      }
     }
   }
 }

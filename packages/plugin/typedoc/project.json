@@ -71,14 +71,6 @@
 
 
 
-    "expose-as-schematic": {},
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/plugin/typedoc",
-          "packages/plugin/typedoc/docs"
-        ]
-      }
-    }
+    "expose-as-schematic": {}
   }
 }

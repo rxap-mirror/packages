@@ -64,14 +64,6 @@
       "options": {
         "generator": "@rxap/plugin-library:expose-as-schematic"
       }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/plugin/cypress",
-          "packages/plugin/cypress/docs"
-        ]
-      }
     }
   }
 }

@@ -71,15 +71,6 @@
       "options": {
         "generator": "@rxap/plugin-library:expose-as-schematic"
       }
-    },
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/preset/workspace",
-          "packages/preset/workspace/docs"
-        ]
-      }
     }
   }
 }

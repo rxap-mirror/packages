@@ -46,14 +46,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": ["dist/docs/packages/nest/jwt", "packages/nest/jwt/docs"]
-      }
     }
   }
 }

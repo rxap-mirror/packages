@@ -39,18 +39,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/workspace/ts-morph",
-          "packages/workspace/ts-morph/docs"
-        ]
-      }
     }
   }
 }

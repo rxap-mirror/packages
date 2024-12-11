@@ -38,17 +38,6 @@
       "options": {
         "jestConfig": "packages/nest/dto/jest.config.ts"
       }
-    },
-
-
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": ["dist/docs/packages/nest/dto", "packages/nest/dto/docs"]
-      }
     }
   }
 }

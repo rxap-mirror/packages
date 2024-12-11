@@ -60,17 +60,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/ts-morph",
-          "packages/ts-morph/docs"
-        ]
-      }
     }
   }
 }

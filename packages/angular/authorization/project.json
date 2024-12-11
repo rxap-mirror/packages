@@ -51,17 +51,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/authorization",
-          "packages/angular/authorization/docs"
-        ]
-      }
     }
   }
 }

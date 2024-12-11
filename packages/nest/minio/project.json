@@ -45,18 +45,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/minio",
-          "packages/nest/minio/docs"
-        ]
-      }
     }
   }
 }

@@ -85,17 +85,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/plugin/angular",
-          "packages/plugin/angular/docs"
-        ]
-      }
     }
   }
 }

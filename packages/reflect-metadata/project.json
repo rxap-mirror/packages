@@ -39,18 +39,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/reflect-metadata",
-          "packages/reflect-metadata/docs"
-        ]
-      }
     }
   }
 }

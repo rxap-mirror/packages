@@ -48,18 +48,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/socket-io-client",
-          "packages/nest/socket-io-client/docs"
-        ]
-      }
     }
   }
 }

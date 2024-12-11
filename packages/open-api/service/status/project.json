@@ -9,14 +9,6 @@
       "options": {
         "lintFilePatterns": ["packages/open-api/service/status/**/*.ts"]
       }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/open-api/service/status",
-          "packages/open-api/service/status/docs"
-        ]
-      }
     }
   }
 }

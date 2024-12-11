@@ -4,14 +4,5 @@
   "sourceRoot": "packages/open-api/service/app/angular/accordion/src",
   "projectType": "library",
   "tags": ["open-api"],
-  "targets": {
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/open-api/service/app/angular/accordion",
-          "packages/open-api/service/app/angular/accordion/docs"
-        ]
-      }
-    }
-  }
+  "targets": {}
 }

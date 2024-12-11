@@ -37,21 +37,6 @@
       "options": {
         "jestConfig": "packages/nest/supabase/jest.config.ts"
       }
-    },
-
-
-
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/supabase",
-          "packages/nest/supabase/docs"
-        ]
-      }
     }
   }
 }

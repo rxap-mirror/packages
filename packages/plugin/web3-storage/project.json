@@ -75,14 +75,6 @@
       "options": {
         "generator": "@rxap/plugin-library:expose-as-schematic"
       }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/plugin/web3-storage",
-          "packages/plugin/web3-storage/docs"
-        ]
-      }
     }
   }
 }

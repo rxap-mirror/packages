@@ -46,17 +46,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/open-api",
-          "packages/nest/open-api/docs"
-        ]
-      }
     }
   }
 }

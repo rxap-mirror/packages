@@ -64,17 +64,6 @@
         "production": {},
         "development": {}
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/angular/error",
-          "packages/angular/error/docs"
-        ]
-      }
     }
   }
 }

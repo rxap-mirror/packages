@@ -8,14 +8,6 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/open-api/service/changelog",
-          "packages/open-api/service/changelog/docs"
-        ]
-      }
     }
   }
 }

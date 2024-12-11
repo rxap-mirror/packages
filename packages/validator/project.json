@@ -36,18 +36,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/validator",
-          "packages/validator/docs"
-        ]
-      }
     }
   }
 }

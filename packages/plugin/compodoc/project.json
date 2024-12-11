@@ -68,14 +68,6 @@
       "options": {
         "generator": "@rxap/plugin-library:expose-as-schematic"
       }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/plugin/compodoc",
-          "packages/plugin/compodoc/docs"
-        ]
-      }
     }
   }
 }

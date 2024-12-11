@@ -40,17 +40,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/workspace/open-api",
-          "packages/workspace/open-api/docs"
-        ]
-      }
     }
   }
 }

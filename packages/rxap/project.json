@@ -226,14 +226,6 @@
           "nx"
         ]
       }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/rxap",
-          "packages/rxap/docs"
-        ]
-      }
     }
   }
 }

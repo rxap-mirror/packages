@@ -56,18 +56,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/schematic/angular",
-          "packages/schematic/angular/docs"
-        ]
-      }
     }
   }
 }

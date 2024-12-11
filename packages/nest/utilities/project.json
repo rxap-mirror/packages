@@ -49,17 +49,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/utilities",
-          "packages/nest/utilities/docs"
-        ]
-      }
     }
   }
 }

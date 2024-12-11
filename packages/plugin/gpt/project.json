@@ -70,17 +70,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/plugin/gpt",
-          "packages/plugin/gpt/docs"
-        ]
-      }
     }
   }
 }

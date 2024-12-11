@@ -32,20 +32,6 @@
       "options": {
         "jestConfig": "packages/workspace/cypress/jest.config.ts"
       }
-    },
-
-
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/workspace/cypress",
-          "packages/workspace/cypress/docs"
-        ]
-      }
     }
   }
 }

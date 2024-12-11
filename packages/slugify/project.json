@@ -36,15 +36,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": ["dist/docs/packages/slugify", "packages/slugify/docs"]
-      }
     }
   }
 }

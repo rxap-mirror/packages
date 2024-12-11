@@ -41,20 +41,6 @@
           "codeCoverage": true
         }
       }
-    },
-    "typedoc": {
-      "executor": "@enio.ai/typedoc:typedoc",
-      "outputs": ["{workspaceRoot}/docs/packages/node/utilities"],
-      "options": {
-        "options": "typedoc.json",
-        "outputPath": [
-          "dist/docs/packages/node/utilities",
-          "packages/node/utilities/docs"
-        ]
-      }
-    },
-
-
-    "linking": {}
+    }
   }
 }

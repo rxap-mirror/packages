@@ -39,18 +39,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/json-schema-to-typescript",
-          "packages/json-schema-to-typescript/docs"
-        ]
-      }
     }
   }
 }

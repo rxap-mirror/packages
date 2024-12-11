@@ -46,17 +46,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/nest/server",
-          "packages/nest/server/docs"
-        ]
-      }
     }
   }
 }

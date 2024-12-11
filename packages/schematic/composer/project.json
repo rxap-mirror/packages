@@ -78,18 +78,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/schematic/composer",
-          "packages/schematic/composer/docs"
-        ]
-      }
     }
   }
 }

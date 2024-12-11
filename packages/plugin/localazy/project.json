@@ -71,17 +71,6 @@
           "codeCoverage": true
         }
       }
-    },
-
-
-
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/plugin/localazy",
-          "packages/plugin/localazy/docs"
-        ]
-      }
     }
   }
 }

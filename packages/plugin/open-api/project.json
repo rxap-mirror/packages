@@ -73,14 +73,6 @@
       "options": {
         "generator": "@rxap/plugin-library:expose-as-schematic"
       }
-    },
-    "typedoc": {
-      "options": {
-        "outputPath": [
-          "dist/docs/packages/plugin/open-api",
-          "packages/plugin/open-api/docs"
-        ]
-      }
     }
   }
 }
