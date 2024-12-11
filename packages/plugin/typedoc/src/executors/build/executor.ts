@@ -20,7 +20,7 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
   const projectRoot = GetProjectRoot(context);
   if (!options.tsConfig) {
     if (HasProjectTarget(context, context.projectName, 'build')) {
-      const { tsConfig } = GetProjectTargetOptions<{ tsConfig?: string }>(context, context.projectName, 'build');
+      const { tsConfig = join(projectSourceRoot, 'tsconfig.lib.json') } = GetProjectTargetOptions<{ tsConfig?: string }>(context, context.projectName, 'build');
       options.tsConfig = tsConfig;
     } else {
       options.tsConfig = join(projectSourceRoot, 'tsconfig.lib.json');
@@ -44,6 +44,8 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
   }
 
   console.log('entryPoints:', entryPoints);
+  console.log('outputPath:', outputPath);
+  console.log('tsConfig:', options.tsConfig);
 
   console.debug('Creating Application');
   const app = await Application.bootstrapWithPlugins({
