@@ -12,6 +12,10 @@
         "outputPath": "dist/packages/plugin/angular",
         "main": "packages/plugin/angular/src/index.ts",
         "tsConfig": "packages/plugin/angular/tsconfig.lib.json",
+        "generateExportsField": true,
+        "additionalEntryPoints": [
+          "packages/plugin/angular/src/plugin.ts"
+        ],
         "assets": [
           "packages/plugin/angular/*.md",
           {
