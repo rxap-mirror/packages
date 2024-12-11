@@ -202,7 +202,7 @@ export default async function runExecutor(options: BuildExecutorSchema, context:
 
   const project = context.projectsConfigurations.projects[context.projectName];
 
-  if (!options.outputPath) {
+  if (!options.outputPath?.length) {
     options.outputPath = [ join(project.root, 'compodoc') ];
   }
 

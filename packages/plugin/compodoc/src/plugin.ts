@@ -111,8 +111,8 @@ async function createProjectConfiguration(
 
 function createCompodocTarget(): TargetConfiguration {
   return {
-    executor: '@rxap/plugin-angular:check-ng-package',
-    inputs: [ '{projectRoot}/ng-package.json', '{projectRoot}/package.json' ],
+    executor: '@rxap/plugin-compodoc:build',
+    inputs: [ 'production', '^production' ],
     'outputs': [ '{projectRoot}/compodoc' ],
     defaultConfiguration: 'html',
     cache: true,
