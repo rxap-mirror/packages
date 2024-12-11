@@ -12,6 +12,10 @@
         "outputPath": "dist/packages/plugin/docker",
         "main": "packages/plugin/docker/src/index.ts",
         "tsConfig": "packages/plugin/docker/tsconfig.lib.json",
+        "generateExportsField": true,
+        "additionalEntryPoints": [
+          "packages/plugin/docker/src/plugin.ts"
+        ],
         "assets": [
           "packages/plugin/docker/*.md",
           {
