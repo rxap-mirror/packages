@@ -6,7 +6,7 @@ import {
 import { ProjectConfiguration } from '@nx/devkit';
 import {
   PackageJson,
-  PROJECT_LOCATION_CACHE,
+  PROJECT_NAME_TO_PROJECT_LOCATION_CACHE,
   UpdateProjectConfiguration,
   UpdateProjectPackageJson,
 } from '@rxap/workspace-utilities';
@@ -35,8 +35,8 @@ interface ProjectJson extends ProjectConfiguration, Record<string, any> {
  * @deprecated import from @rxap/workspace-utilities
  */
 export function FindProject(host: Tree, projectName: string): ProjectJson | null {
-  if (PROJECT_LOCATION_CACHE.has(projectName)) {
-    const path = PROJECT_LOCATION_CACHE.get(projectName)!;
+  if (PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.has(projectName)) {
+    const path = PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.get(projectName)!;
     return JSON.parse(host.read(path)!.toString('utf-8')) as ProjectJson;
   }
   for (const fileEntry of SearchFile(host.root)) {
@@ -51,7 +51,7 @@ export function FindProject(host: Tree, projectName: string): ProjectJson | null
     }
     if (project.name === projectName) {
       project.root ??= dirname(fileEntry.path).replace(/^\//, '');
-      PROJECT_LOCATION_CACHE.set(projectName, fileEntry.path);
+      PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.set(projectName, fileEntry.path);
       return project;
     }
   }
