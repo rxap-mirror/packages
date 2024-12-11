@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "FixDependencies executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "projects": {
+      "alias": "project",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reset": {
+      "type": "boolean"
+    },
+    "resolve": {
+      "type": "boolean"
+    },
+    "resetAll": {
+      "alias": "resetAll",
+      "type": "boolean"
+    },
+    "strict": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, will fail if any dependency is not found"
+    },
+    "onlyDependencies": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, will move all peer dependencies to dependencies"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of packages that should always be added as dependencies"
+    },
+    "peerDependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of packages that should always be added as peerDependencies"
+    }
+  },
+  "required": []
+}

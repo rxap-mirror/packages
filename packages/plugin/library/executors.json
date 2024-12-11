@@ -34,6 +34,11 @@
       "implementation": "./src/executors/index-export/executor",
       "schema": "./src/executors/index-export/schema.json",
       "description": "index-export executor"
+    },
+    "fix-dependencies": {
+      "implementation": "./src/executors/fix-dependencies/executor",
+      "schema": "./src/executors/fix-dependencies/schema.json",
+      "description": "fix-dependencies executor"
     }
   }
 }
