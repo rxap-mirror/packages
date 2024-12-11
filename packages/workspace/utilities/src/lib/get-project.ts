@@ -121,7 +121,7 @@ export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath
     console.log(`The project location cache is empty. Build cache.`.yellow);
     buildProjectLocationCache(tree);
   }
-  const projectName = PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.get(projectPath);
+  const projectName = PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.get(join(projectPath, 'project.json'));
   if (projectName) {
     return FindProject(tree, projectName);
   }
