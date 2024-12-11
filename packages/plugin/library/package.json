@@ -3,8 +3,8 @@
   "name": "@rxap/plugin-library",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@nx/devkit": "20.2.1",
+    "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@nx/plugin": "20.2.1",
     "@rxap/node-utilities": "^1.3.7-dev.1",
     "@rxap/plugin-utilities": "^20.0.0-dev.1",
