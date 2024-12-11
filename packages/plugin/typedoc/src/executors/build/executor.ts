@@ -24,6 +24,10 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
     entryPoints.push(join(projectSourceRoot, 'index.ts'));
   }
 
+  if (!options.outputPath?.length) {
+    options.outputPath = [ join(projectRoot, 'docs') ];
+  }
+
   const outputPath = coerceArray(options.outputPath);
 
   if (outputPath.length === 0) {
