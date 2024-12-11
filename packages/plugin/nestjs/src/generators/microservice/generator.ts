@@ -8,7 +8,6 @@ import {
   CoercePrefix,
   dasherize,
 } from '@rxap/utilities';
-import { PROJECT_LOCATION_CACHE } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import initApplicationGenerator from '../init-application/generator';
 import { MicroserviceGeneratorSchema } from './schema';
