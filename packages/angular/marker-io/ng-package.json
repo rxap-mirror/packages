@@ -16,6 +16,7 @@
     "CHANGELOG.md",
     "LICENSE",
     "LICENSE.md",
-    "theme.css"
+    "theme.css",
+    "compodoc"
   ]
 }

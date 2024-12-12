@@ -13,10 +13,6 @@ export function CoerceGitIgnore(tree: Tree, projectName: string) {
     'compodoc',
   ]);
 
-  CoerceIgnorePattern(tree, '.eslintignore', [
-    'compodoc',
-  ]);
-
   CoerceIgnorePattern(tree, join(projectRoot, '.eslintignore'), [
     'compodoc',
   ]);

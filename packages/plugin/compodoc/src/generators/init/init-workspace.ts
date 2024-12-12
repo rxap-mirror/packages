@@ -5,6 +5,7 @@ import {
 } from '@nx/devkit';
 import {
   AddPackageJsonDevDependency,
+  CoerceIgnorePattern,
   CoerceNxPlugin,
   IsRxapRepository,
 } from '@rxap/workspace-utilities';
@@ -14,6 +15,14 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   console.log('init compodoc workspace');
 
   await AddPackageJsonDevDependency(tree, '@compodoc/compodoc', 'latest', { soft: true });
+
+  CoerceIgnorePattern(tree, '.eslintignore', [
+    'compodoc',
+  ]);
+
+  CoerceIgnorePattern(tree, '.gitignore', [
+    'compodoc',
+  ]);
 
   const nxJson = readNxJson(tree);
 

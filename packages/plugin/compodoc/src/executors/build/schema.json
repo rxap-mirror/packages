@@ -234,5 +234,5 @@
       "default": false
     }
   },
-  "required": ["outputPath", "tsConfig"]
+  "required": []
 }
