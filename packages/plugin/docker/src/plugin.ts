@@ -16,23 +16,13 @@ import { Optional } from 'nx/src/project-graph/plugins';
 import { dirname } from 'path';
 import 'colors';
 
-export interface PluginOptions {
-  imageRegistry: string;
-  imageName?: string;
-  dockerfile?: string;
-  push?: boolean;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface PluginOptions {}
 
 export function normalizeOptions(
   options: PluginOptions | undefined,
 ): PluginOptions {
-  if (!options) {
-    throw new Error('The options are required');
-  }
-  if (!options.imageRegistry) {
-    throw new Error('The options imageRegistry is required');
-  }
-  return options;
+  return options ?? {};
 }
 
 export const createNodesV2: CreateNodesV2<PluginOptions> = [
@@ -114,7 +104,7 @@ async function createProjectConfiguration(
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
 
-  targets['docker'] = createDockerBuildTarget(options);
+  targets['docker'] = createDockerBuildTarget();
   targets['docker-save'] = createDockerSaveTarget();
 
   return [
@@ -124,15 +114,9 @@ async function createProjectConfiguration(
   ];
 }
 
-function createDockerBuildTarget(options: PluginOptions): TargetConfiguration {
+function createDockerBuildTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-docker:build',
-    options: DeleteEmptyProperties({
-      imageRegistry: options.imageRegistry,
-      imageName: options.imageName,
-      push: options.push,
-      dockerfile: options.dockerfile,
-    }),
     dependsOn: [ 'build' ],
   };
 }

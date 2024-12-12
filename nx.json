@@ -148,16 +148,6 @@
       "input": ["production", "^production"],
       "cache": true
     },
-    "docker": {
-      "executor": "@rxap/plugin-docker:build",
-      "inputs": ["production", "^production", "{projectRoot}/package.json"],
-      "dependsOn": ["build"],
-      "options": {
-        "imageName": "rxap/packages",
-        "imageRegistry": "registry.gitlab.com"
-      },
-      "cache": true
-    },
     "component-test": {
       "executor": "@nx/cypress:cypress",
       "inputs": ["default", "^production"],
@@ -224,19 +214,6 @@
           "codeCoverage": true
         }
       }
-    },
-    "lint": {
-      "outputs": ["{options.outputFile}"],
-      "inputs": [
-        "default",
-        "{projectRoot}/.eslintrc.json",
-        "{projectRoot}/.eslintignore",
-        "{workspaceRoot}/.eslintrc.json"
-      ],
-      "options": {
-        "quiet": true
-      },
-      "cache": true
     },
     "swagger-build": {
       "cache": true
@@ -312,6 +289,29 @@
       ],
       "inputs": ["production", "^production"],
       "cache": true
+    },
+
+
+
+    "lint": {
+      "outputs": ["{options.outputFile}"],
+      "inputs": [
+        "default",
+        "{projectRoot}/.eslintrc.json",
+        "{projectRoot}/.eslintignore",
+        "{workspaceRoot}/.eslintrc.json"
+      ],
+      "options": {
+        "quiet": true
+      },
+      "cache": true
+    },
+    "docker": {
+      "options": {
+        "imageRegistry": "registry.gitlab.com",
+        "imageName": "rxap/packages",
+        "dockerfile": "shared/angular/Dockerfile"
+      }
     }
   },
   "generators": {
@@ -428,13 +428,6 @@
     "./packages/plugin/compodoc/src/plugin.ts",
     "./packages/plugin/typedoc/src/plugin.ts",
     "./packages/plugin/localazy/src/plugin.ts",
-    {
-      "plugin": "./packages/plugin/docker/src/plugin.ts",
-      "options": {
-        "imageRegistry": "registry.gitlab.com",
-        "imageName": "rxap/packages",
-        "dockerfile": "shared/angular/Dockerfile"
-      }
-    }
+    "./packages/plugin/docker/src/plugin.ts"
   ]
 }
