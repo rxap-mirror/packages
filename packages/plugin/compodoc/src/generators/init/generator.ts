@@ -1,22 +1,40 @@
 import {
   formatFiles,
-  getProjects,
-  readProjectConfiguration,
+  ProjectConfiguration,
   Tree,
-  updateProjectConfiguration,
 } from '@nx/devkit';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
+  ForeachInitProject,
   GenerateSerializedSchematicFile,
-  GetProjectSourceRoot,
-  SkipNonAngularProject,
+  InitProjectOptions,
+  IsAngularProject,
+  IsApplicationProject,
+  IsLibraryProject,
+  IsNestJsProject,
 } from '@rxap/workspace-utilities';
-import { join } from 'path';
-import { CoerceCompodocTarget } from '../../lib/coerce-compodoc-target';
-import { CoerceCompodocTsConfig } from '../../lib/coerce-compodoc-ts-config';
-import { CoerceGitIgnore } from '../../lib/coerce-git-ignore';
+import { initProject as initApplicationProject } from '../init-application/init-project';
+import { initProject as initLibraryProject } from '../init-library/init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
+
+function skipProject(tree: Tree, options: InitProjectOptions, project: ProjectConfiguration, projectName: string): boolean {
+
+  if (projectName === 'workspace') {
+    return false;
+  }
+
+  if (IsAngularProject(project)) {
+    return false;
+  }
+
+  if (IsNestJsProject(project)) {
+    return false;
+  }
+
+  return true;
+
+}
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   options.project ??= undefined;
@@ -28,15 +46,17 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   await initWorkspace(tree, options);
 
-  const project = readProjectConfiguration(tree, 'workspace');
-  CoerceCompodocTarget(tree, 'workspace', project);
-  CoerceGitIgnore(tree, 'workspace');
-  updateProjectConfiguration(tree, 'workspace', project);
-  const angularProjectIncludeList = Array.from(getProjects(tree))
-    .filter(([projectName, project]) => !SkipNonAngularProject(tree, {}, project, projectName))
-    .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
-    .map(sourceRoot => join(sourceRoot, '**/*.ts'));
-  CoerceCompodocTsConfig(tree, 'workspace', angularProjectIncludeList);
+  for (const [projectName, project] of ForeachInitProject(tree, options, skipProject)) {
+
+    if (IsApplicationProject(project)) {
+      await initApplicationProject(tree, projectName, project, options);
+    }
+
+    if (IsLibraryProject(project)) {
+      await initLibraryProject(tree, projectName, project, options);
+    }
+
+  }
 
   GenerateSerializedSchematicFile(
     tree,
