@@ -5,8 +5,8 @@ import {
 } from '@nx/devkit';
 import {
   AddPackageJsonDevDependency,
-  CoerceNxJsonCacheableOperation,
-  CoerceTarget,
+  CoerceNxPlugin,
+  IsRxapRepository,
 } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
@@ -17,21 +17,11 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
 
   const nxJson = readNxJson(tree);
 
-  CoerceTarget(nxJson, 'compodoc', {
-    executor: '@rxap/plugin-compodoc:build',
-    defaultConfiguration: 'html',
-    outputs: [ '{options.outputPath}' ],
-    inputs: [ 'production', '^production' ],
-    configurations: {
-      json: {
-        exportFormat: 'json',
-      },
-      html: {
-        exportFormat: 'html',
-      },
-    },
-  });
-  CoerceNxJsonCacheableOperation(nxJson, 'compodoc');
+  if (IsRxapRepository(tree)) {
+    CoerceNxPlugin(nxJson, './packages/plugin/compodoc/src/plugin.ts');
+  } else {
+    CoerceNxPlugin(nxJson, '@rxap/plugin-compodoc/plugin');
+  }
 
   updateNxJson(tree, nxJson);
 

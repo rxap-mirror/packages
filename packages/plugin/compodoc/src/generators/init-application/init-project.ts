@@ -10,8 +10,6 @@ import { InitApplicationGeneratorSchema } from './schema';
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
   console.log(`init compodoc application project: ${ projectName }`);
 
-  CoerceCompodocTarget(tree, projectName, project);
-
   CoerceCompodocTsConfig(tree, projectName);
 
   CoerceGitIgnore(tree, projectName);

@@ -12,8 +12,6 @@ import { updateProjectNgPackageConfiguration } from './update-project-ng-package
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
   console.log(`init compodoc library project: ${ projectName }`);
 
-  CoerceCompodocTarget(tree, projectName, project);
-
   if (IsPublishable(tree, project)) {
     updateProjectNgPackageConfiguration(tree, project);
   }
