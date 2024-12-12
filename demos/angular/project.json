@@ -116,8 +116,7 @@
     "config": {},
     "docker": {
       "options": {
-        "imageSuffix": "/user-interface/angular",
-        "dockerfile": "shared/angular/Dockerfile"
+        "imageSuffix": "/user-interface/angular"
       }
     },
     "docker-save": {},

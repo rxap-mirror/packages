@@ -40,16 +40,6 @@
     ]
   },
   "targetDefaults": {
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
-      ],
-      "cache": true
-    },
     "test": {
       "cache": true,
       "executor": "@nx/jest:jest",
@@ -180,27 +170,6 @@
       "input": ["production", "^production"],
       "cache": true
     },
-    "build-tailwind": {
-      "executor": "@rxap/plugin-angular:tailwind",
-      "configurations": {
-        "production": {
-          "minify": true
-        }
-      },
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": ["browser-tailwind"]
-        }
-      ],
-      "inputs": [
-        "{projectRoot}/**/*.html",
-        "{projectRoot}/**/*.scss",
-        "{projectRoot}/**/*.css"
-      ],
-      "outputs": ["{projectRoot}/theme.css"],
-      "cache": true
-    },
     "docker": {
       "executor": "@rxap/plugin-docker:build",
       "inputs": ["production", "^production", "{projectRoot}/package.json"],
@@ -283,14 +252,17 @@
         }
       }
     },
-    "@nx/eslint:lint": {
-      "executor": "@nx/eslint:lint",
+    "lint": {
       "outputs": ["{options.outputFile}"],
       "inputs": [
         "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
+        "{projectRoot}/.eslintrc.json",
+        "{projectRoot}/.eslintignore",
+        "{workspaceRoot}/.eslintrc.json"
       ],
+      "options": {
+        "quiet": true
+      },
       "cache": true
     },
     "swagger-build": {
@@ -472,9 +444,23 @@
   },
   "useLegacyCache": true,
   "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
     "./packages/plugin/library/src/plugin.ts",
     "./packages/plugin/angular/src/plugin.ts",
     "./packages/plugin/compodoc/src/plugin.ts",
-    "./packages/plugin/typedoc/src/plugin.ts"
+    "./packages/plugin/typedoc/src/plugin.ts",
+    {
+      "plugin": "./packages/plugin/docker/src/plugin.ts",
+      "options": {
+        "imageRegistry": "registry.gitlab.com",
+        "imageName": "rxap/packages",
+        "dockerfile": "shared/angular/Dockerfile"
+      }
+    }
   ]
 }

@@ -37,7 +37,6 @@
       }
     },
     "lint": {
-      "outputs": [],
       "options": {
         "lintFilePatterns": [
           "packages/angular/error/**/*.ts",
@@ -56,13 +55,6 @@
       },
       "configurations": {
         "open": {}
-      }
-    },
-
-    "build-tailwind": {
-      "configurations": {
-        "production": {},
-        "development": {}
       }
     }
   }

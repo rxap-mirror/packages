@@ -38,24 +38,6 @@
       "options": {
         "jestConfig": "packages/angular/user/jest.config.ts"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-
-
-
-
-
-    "build-tailwind": {
-      "executor": "@rxap/plugin-angular:tailwind",
-      "configurations": {
-        "production": {
-          "minify": true
-        },
-        "development": {}
-      }
     }
   }
 }

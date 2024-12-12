@@ -40,10 +40,7 @@
         "jestConfig": "packages/angular/changelog/jest.config.ts"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
+
 
 
 
@@ -61,16 +58,8 @@
           "watch": true
         }
       }
-    },
-
-    "build-tailwind": {
-      "executor": "@rxap/plugin-angular:tailwind",
-      "configurations": {
-        "production": {
-          "minify": true
-        },
-        "development": {}
-      }
     }
+
+
   }
 }

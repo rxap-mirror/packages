@@ -4,10 +4,5 @@
   "sourceRoot": "packages/open-api/service/changelog/src",
   "projectType": "library",
   "tags": ["open-api"],
-  "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    }
-  }
+  "targets": {}
 }

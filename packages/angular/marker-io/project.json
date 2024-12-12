@@ -28,25 +28,6 @@
       "options": {
         "jestConfig": "packages/angular/marker-io/jest.config.ts"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-
-
-
-
-
-
-
-    "build-tailwind": {
-      "executor": "@rxap/plugin-angular:tailwind",
-      "configurations": {
-        "production": {
-          "minify": true
-        },
-        "development": {}
-      }
     }
   }
 }

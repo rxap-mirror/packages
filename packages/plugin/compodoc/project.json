@@ -46,10 +46,7 @@
       "command": "node tools/scripts/publish.mjs plugin-compodoc {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
+
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
