@@ -53,6 +53,7 @@ export * from './lib/collection-json/interface';
 export * from './lib/coerce/coerce-nx-json-cacheable-operation';
 export * from './lib/coerce/coerce-nx-json-generators';
 export * from './lib/coerce/coerce-nx-json-named-inputs';
+export * from './lib/coerce/coerce-nx-plugin';
 export * from './lib/coerce/coerce-target-defaults-dependency';
 export * from './lib/coerce/coerce-target-defaults-input';
 export * from './lib/coerce/coerce-target-defaults-output';
