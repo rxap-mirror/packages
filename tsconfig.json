@@ -6,6 +6,9 @@
   "references": [
     {
       "path": "./tsconfig.compodoc.json"
+    },
+    {
+      "path": "./tsconfig.typedoc.json"
     }
   ],
   "ts-node": {

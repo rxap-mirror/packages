@@ -32,7 +32,9 @@
             "input": "./packages/nest/oauth2-proxy",
             "glob": "generators.json",
             "output": "."
-          }
+          },
+          "packages/nest/oauth2-proxy/docs",
+          "packages/nest/oauth2-proxy/compodoc"
         ]
       },
       "configurations": {
@@ -48,7 +50,6 @@
         "packageRoot": "dist/{projectRoot}"
       }
     },
-
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

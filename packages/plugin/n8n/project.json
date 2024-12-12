@@ -46,7 +46,8 @@
             "input": "./packages/plugin/n8n/src/generators",
             "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/generators"
-          }
+          },
+          "packages/plugin/n8n/docs"
         ]
       }
     },
@@ -55,7 +56,6 @@
         "packageRoot": "dist/{projectRoot}"
       }
     },
-
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -63,12 +63,6 @@
         "jestConfig": "packages/plugin/n8n/jest.config.ts"
       }
     },
-
-
-
-
-
-
     "expose-as-schematic": {}
   }
 }

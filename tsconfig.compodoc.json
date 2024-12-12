@@ -53,7 +53,25 @@
     "packages/angular/tree/src/**/*.ts",
     "packages/angular/upload/src/**/*.ts",
     "packages/angular/user/src/**/*.ts",
-    "packages/angular/window-system/src/**/*.ts"
+    "packages/angular/window-system/src/**/*.ts",
+    "packages/angular/marker-io/src/**/*.ts",
+    "packages/angular/oauth2-proxy/src/**/*.ts",
+    "packages/nest/dto/src/**/*.ts",
+    "packages/nest/firebase/src/**/*.ts",
+    "packages/nest/jwt/src/**/*.ts",
+    "packages/nest/logger/src/**/*.ts",
+    "packages/nest/minio/src/**/*.ts",
+    "packages/nest/oauth2-proxy/src/**/*.ts",
+    "packages/nest/open-api/src/**/*.ts",
+    "packages/nest/rabbitmq/src/**/*.ts",
+    "packages/nest/sentry/src/**/*.ts",
+    "packages/nest/server/src/**/*.ts",
+    "packages/nest/socket-io-client/src/**/*.ts",
+    "packages/nest/supabase/src/**/*.ts",
+    "packages/nest/testing/src/**/*.ts",
+    "packages/nest/utilities/src/**/*.ts",
+    "packages/nest/vault/src/**/*.ts",
+    "packages/nest/web3-storage/src/**/*.ts"
   ],
   "exclude": ["**/*.stories.ts", "**/*.spec.ts", "**/*.cy.ts"]
 }

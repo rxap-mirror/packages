@@ -12,19 +12,28 @@ import { coerceArray } from '@rxap/utilities';
 import { join } from 'path';
 import { Application } from 'typedoc';
 import { BuildExecutorSchema } from './schema';
+import { existsSync } from 'fs';
 
 const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, context: ExecutorContext) => {
   console.log('Executor ran for Build', options);
 
   const projectSourceRoot = GetProjectSourceRoot(context);
   const projectRoot = GetProjectRoot(context);
+  if (!options.tsConfig && HasProjectTarget(context, context.projectName, 'build')) {
+    const { tsConfig } = GetProjectTargetOptions<{ tsConfig?: string }>(context, context.projectName, 'build');
+    options.tsConfig = tsConfig;
+  }
   if (!options.tsConfig) {
-    if (HasProjectTarget(context, context.projectName, 'build')) {
-      const { tsConfig = join(projectSourceRoot, 'tsconfig.lib.json') } = GetProjectTargetOptions<{ tsConfig?: string }>(context, context.projectName, 'build');
-      options.tsConfig = tsConfig;
-    } else {
+    if (existsSync(join(projectSourceRoot, 'tsconfig.typedoc.json'))) {
+      options.tsConfig = join(projectSourceRoot, 'tsconfig.typedoc.json');
+    } else if (existsSync(join(projectSourceRoot, 'tsconfig.lib.json'))) {
       options.tsConfig = join(projectSourceRoot, 'tsconfig.lib.json');
+    } else if (existsSync(join(projectSourceRoot, 'tsconfig.json'))) {
+      options.tsConfig = join(projectSourceRoot, 'tsconfig.json');
     }
+  }
+  if (!options.tsConfig) {
+    throw new Error('Ensure that a tsconfig.json is available in the project source root or in the build target options.');
   }
 
   const entryPoints = options.entryPoints ?? [];

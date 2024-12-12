@@ -25,7 +25,6 @@
     "plugin-web3-storage",
     "plugin-workspace",
     "plugin-storybook",
-    "plugin-compodoc",
     "plugin-typedoc"
   ],
   "targets": {

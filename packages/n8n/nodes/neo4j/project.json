@@ -36,7 +36,8 @@
             "input": "./packages/n8n/nodes/neo4j",
             "glob": "generators.json",
             "output": "."
-          }
+          },
+          "packages/n8n/nodes/neo4j/docs"
         ]
       }
     },
@@ -45,7 +46,6 @@
         "packageRoot": "dist/{projectRoot}"
       }
     },
-
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -53,8 +53,6 @@
         "jestConfig": "packages/n8n/nodes/neo4j/jest.config.ts"
       }
     },
-
-
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:fix-dependencies",
       "outputs": ["{projectRoot}/package.json"],
@@ -63,8 +61,5 @@
         "peerDependencies": ["n8n-workflow"]
       }
     }
-
-
-
   }
 }

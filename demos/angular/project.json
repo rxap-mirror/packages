@@ -21,16 +21,11 @@
     "angular-material-form-system",
     "angular-material-table-system",
     "angular-data-source",
-    "angular",
     "angular-material-table-select",
     "browser-tailwind",
     "angular-status-check",
     "angular-changelog",
-    "angular-user",
-    "plugin-application",
-    "plugin-docker",
-    "plugin-localazy",
-    "plugin-web3-storage"
+    "angular-user"
   ],
   "tags": [
     "angular",

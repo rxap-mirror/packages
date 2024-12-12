@@ -95,7 +95,6 @@
     "pattern",
     "plugin-angular",
     "plugin-application",
-    "plugin-compodoc",
     "plugin-cypress",
     "plugin-docker",
     "plugin-gitlab-ci",

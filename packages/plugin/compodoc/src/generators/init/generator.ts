@@ -56,6 +56,10 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       await initLibraryProject(tree, projectName, project, options);
     }
 
+    if (projectName === 'workspace') {
+      await initLibraryProject(tree, projectName, project, options);
+    }
+
   }
 
   GenerateSerializedSchematicFile(

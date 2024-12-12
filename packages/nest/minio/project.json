@@ -13,7 +13,11 @@
         "tsConfig": "packages/nest/minio/tsconfig.lib.json",
         "packageJson": "packages/nest/minio/package.json",
         "main": "packages/nest/minio/src/index.ts",
-        "assets": ["packages/nest/minio/*.md", "packages/nest/minio/docs"]
+        "assets": [
+          "packages/nest/minio/*.md",
+          "packages/nest/minio/docs",
+          "packages/nest/minio/compodoc"
+        ]
       },
       "configurations": {
         "production": {
@@ -23,8 +27,6 @@
       },
       "defaultConfiguration": "development"
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/minio/**/*.ts"]
@@ -34,7 +36,6 @@
       "command": "node tools/scripts/publish.mjs nest-minio {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "options": {
         "jestConfig": "packages/nest/minio/jest.config.ts"

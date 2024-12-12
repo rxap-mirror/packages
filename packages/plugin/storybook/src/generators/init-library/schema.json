@@ -18,10 +18,6 @@
       "default": false,
       "description": "Whether to overwrite existing files"
     },
-    "skipFormat": {
-      "type": "boolean",
-      "default": false
-    },
     "skipProjects": {
       "type": "boolean",
       "default": false,

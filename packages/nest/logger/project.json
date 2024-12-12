@@ -25,7 +25,8 @@
             "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/migrations"
           },
-          "packages/nest/logger/docs"
+          "packages/nest/logger/docs",
+          "packages/nest/logger/compodoc"
         ]
       },
       "configurations": {
@@ -36,9 +37,6 @@
       },
       "defaultConfiguration": "development"
     },
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/logger/**/*.ts"]
@@ -48,7 +46,6 @@
       "command": "node tools/scripts/publish.mjs nest-logger {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "options": {
         "jestConfig": "packages/nest/logger/jest.config.ts"

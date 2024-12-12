@@ -5,7 +5,6 @@
   "projectType": "library",
   "tags": ["nest", "packages", "scope:integration"],
   "targets": {
-
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
@@ -26,7 +25,8 @@
             "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/migrations"
           },
-          "packages/nest/sentry/docs"
+          "packages/nest/sentry/docs",
+          "packages/nest/sentry/compodoc"
         ]
       },
       "configurations": {
@@ -37,8 +37,6 @@
       },
       "defaultConfiguration": "development"
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/sentry/**/*.ts"]
@@ -48,7 +46,6 @@
       "command": "node tools/scripts/publish.mjs nest-sentry {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "options": {
         "jestConfig": "packages/nest/sentry/jest.config.ts"

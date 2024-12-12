@@ -22,7 +22,7 @@ export function normalizeOptions(
 }
 
 export const createNodesV2: CreateNodesV2<PluginOptions> = [
-  '**/tsconfig.lib.json',
+  '**/tsconfig.typedoc.json',
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
 

@@ -15,7 +15,8 @@
         "main": "packages/nest/utilities/src/index.ts",
         "assets": [
           "packages/nest/utilities/*.md",
-          "packages/nest/utilities/docs"
+          "packages/nest/utilities/docs",
+          "packages/nest/utilities/compodoc"
         ]
       },
       "configurations": {
@@ -26,9 +27,6 @@
       },
       "defaultConfiguration": "development"
     },
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/utilities/**/*.ts"]
@@ -38,7 +36,6 @@
       "command": "node tools/scripts/publish.mjs nest-utilities {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "options": {
         "jestConfig": "packages/nest/utilities/jest.config.ts"

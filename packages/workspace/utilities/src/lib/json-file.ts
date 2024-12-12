@@ -73,6 +73,7 @@ export function GetJsonFile<T = any>(tree: TreeLike, filePath: string, create = 
   try {
     return JSON.parse(content);
   } catch (e: any) {
+    console.log('>>>' + content.gray + '<<<');
     throw new Error(`Could not parse the json file '${ filePath }': ${ e.message }`);
   }
 

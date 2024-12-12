@@ -13,7 +13,11 @@
         "tsConfig": "packages/nest/firebase/tsconfig.lib.json",
         "packageJson": "packages/nest/firebase/package.json",
         "main": "packages/nest/firebase/src/index.ts",
-        "assets": ["packages/nest/firebase/*.md", "packages/nest/firebase/docs"]
+        "assets": [
+          "packages/nest/firebase/*.md",
+          "packages/nest/firebase/docs",
+          "packages/nest/firebase/compodoc"
+        ]
       },
       "configurations": {
         "production": {
@@ -23,8 +27,6 @@
       },
       "defaultConfiguration": "development"
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/firebase/**/*.ts"]
@@ -34,7 +36,6 @@
       "command": "node tools/scripts/publish.mjs nest-firebase {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "options": {
         "jestConfig": "packages/nest/firebase/jest.config.ts"

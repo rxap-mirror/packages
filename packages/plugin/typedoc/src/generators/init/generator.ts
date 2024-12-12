@@ -7,6 +7,7 @@ import { CoerceArrayItems } from '@rxap/utilities';
 import {
   ForeachInitProject,
   GenerateSerializedSchematicFile,
+  GetProjectSourceRoot,
   InitProjectOptions,
   IsApplicationProject,
   IsLibraryProject,
@@ -15,11 +16,24 @@ import { initProject as initApplicationProject } from '../init-application/init-
 import { initProject as initLibraryProject } from '../init-library/init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
+import { join } from 'path';
 
 function skipProject(tree: Tree, options: InitProjectOptions, project: ProjectConfiguration, projectName: string): boolean {
 
   if (projectName === 'workspace') {
     return false;
+  }
+
+  if (!tree.exists(join(project.root, 'tsconfig.json'))) {
+    return true;
+  }
+
+  if (!tree.exists(join(project.sourceRoot, 'index.ts'))) {
+    return true;
+  }
+
+  if (project.tags?.includes('internal')) {
+    return true;
   }
 
   if (IsLibraryProject(project)) {
@@ -47,6 +61,10 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
 
     if (IsLibraryProject(project)) {
+      await initLibraryProject(tree, projectName, project, options);
+    }
+
+    if (projectName === 'workspace') {
       await initLibraryProject(tree, projectName, project, options);
     }
 

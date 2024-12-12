@@ -13,7 +13,11 @@
         "tsConfig": "packages/nest/server/tsconfig.lib.json",
         "packageJson": "packages/nest/server/package.json",
         "main": "packages/nest/server/src/index.ts",
-        "assets": ["packages/nest/server/*.md", "packages/nest/server/docs"]
+        "assets": [
+          "packages/nest/server/*.md",
+          "packages/nest/server/docs",
+          "packages/nest/server/compodoc"
+        ]
       },
       "configurations": {
         "production": {
@@ -23,9 +27,6 @@
       },
       "defaultConfiguration": "development"
     },
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/nest/server/**/*.ts"]
@@ -35,7 +36,6 @@
       "command": "node tools/scripts/publish.mjs nest-server {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "options": {
         "jestConfig": "packages/nest/server/jest.config.ts"

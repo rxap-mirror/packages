@@ -21,6 +21,7 @@
     "LICENSE",
     "LICENSE.md",
     "theme.css",
-    "compodoc"
+    "compodoc",
+    "docs"
   ]
 }

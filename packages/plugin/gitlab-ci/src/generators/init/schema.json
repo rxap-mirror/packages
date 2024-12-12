@@ -22,7 +22,7 @@
     "componentsSource": {
       "type": "string",
       "enum": [ "component", "local" ],
-      "default": "component",
+      "default": "component"
     },
     "release": {
       "type": "string",

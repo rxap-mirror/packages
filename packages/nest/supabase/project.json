@@ -13,7 +13,11 @@
         "tsConfig": "packages/nest/supabase/tsconfig.lib.json",
         "packageJson": "packages/nest/supabase/package.json",
         "main": "packages/nest/supabase/src/index.ts",
-        "assets": ["packages/nest/supabase/*.md", "packages/nest/supabase/docs"]
+        "assets": [
+          "packages/nest/supabase/*.md",
+          "packages/nest/supabase/docs",
+          "packages/nest/supabase/compodoc"
+        ]
       },
       "configurations": {
         "production": {
@@ -27,7 +31,6 @@
       "command": "node tools/scripts/publish.mjs nest-supabase {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

@@ -5,7 +5,6 @@
   "projectType": "library",
   "tags": ["nest", "packages"],
   "targets": {
-
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
@@ -14,7 +13,11 @@
         "tsConfig": "packages/nest/dto/tsconfig.lib.json",
         "packageJson": "packages/nest/dto/package.json",
         "main": "packages/nest/dto/src/index.ts",
-        "assets": ["packages/nest/dto/*.md", "packages/nest/dto/docs"]
+        "assets": [
+          "packages/nest/dto/*.md",
+          "packages/nest/dto/docs",
+          "packages/nest/dto/compodoc"
+        ]
       },
       "configurations": {
         "production": {
@@ -28,7 +31,6 @@
       "command": "node tools/scripts/publish.mjs nest-dto {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

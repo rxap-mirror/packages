@@ -13,7 +13,11 @@
         "tsConfig": "packages/nest/vault/tsconfig.lib.json",
         "packageJson": "packages/nest/vault/package.json",
         "main": "packages/nest/vault/src/index.ts",
-        "assets": ["packages/nest/vault/*.md", "packages/nest/vault/docs"]
+        "assets": [
+          "packages/nest/vault/*.md",
+          "packages/nest/vault/docs",
+          "packages/nest/vault/compodoc"
+        ]
       },
       "configurations": {
         "production": {
@@ -27,7 +31,6 @@
       "command": "node tools/scripts/publish.mjs nest-vault {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -35,10 +38,6 @@
         "jestConfig": "packages/nest/vault/jest.config.ts"
       }
     },
-
-
-
-
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:fix-dependencies",
       "outputs": ["{projectRoot}/package.json"],

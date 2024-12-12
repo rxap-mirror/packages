@@ -19,6 +19,9 @@
     },
     {
       "path": "./tsconfig.compodoc.json"
+    },
+    {
+      "path": "./tsconfig.typedoc.json"
     }
   ],
   "extends": "../../../tsconfig.base.json",

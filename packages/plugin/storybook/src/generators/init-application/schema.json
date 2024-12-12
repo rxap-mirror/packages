@@ -13,10 +13,6 @@
         "type": "string"
       }
     },
-    "skipFormat": {
-      "type": "boolean",
-      "default": false
-    },
     "overwrite": {
       "type": "boolean",
       "default": false,

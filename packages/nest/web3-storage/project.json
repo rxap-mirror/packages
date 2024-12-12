@@ -15,7 +15,8 @@
         "main": "packages/nest/web3-storage/src/index.ts",
         "assets": [
           "packages/nest/web3-storage/*.md",
-          "packages/nest/web3-storage/docs"
+          "packages/nest/web3-storage/docs",
+          "packages/nest/web3-storage/compodoc"
         ]
       },
       "configurations": {
@@ -30,7 +31,6 @@
       "command": "node tools/scripts/publish.mjs nest-web3-storage {args.ver} {args.tag}",
       "dependsOn": ["build"]
     },
-
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

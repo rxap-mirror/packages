@@ -36,7 +36,8 @@
             "input": "./packages/n8n/nodes/zip/src/lib",
             "glob": "**/*.(svg|json|png)",
             "output": "./src/lib"
-          }
+          },
+          "packages/n8n/nodes/zip/docs"
         ]
       }
     },
@@ -45,7 +46,6 @@
         "packageRoot": "dist/{projectRoot}"
       }
     },
-
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -53,8 +53,6 @@
         "jestConfig": "packages/n8n/nodes/zip/jest.config.ts"
       }
     },
-
-
     "fix-dependencies": {
       "options": {
         "onlyDependencies": true,
@@ -63,8 +61,5 @@
       "executor": "@rxap/plugin-library:fix-dependencies",
       "outputs": ["{projectRoot}/package.json"]
     }
-
-
-
   }
 }

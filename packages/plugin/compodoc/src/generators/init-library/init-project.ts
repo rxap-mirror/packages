@@ -4,10 +4,13 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
+  CoerceAssets,
+  GetProjectRoot,
   GetProjectSourceRoot,
+  GetTarget,
+  HasTarget,
   IsAngularProject,
   IsPublishable,
-  SkipNonAngularProject,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { CoerceCompodocTsConfig } from '../../lib/coerce-compodoc-ts-config';
@@ -18,15 +21,24 @@ import { updateProjectNgPackageConfiguration } from './update-project-ng-package
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
   console.log(`init compodoc library project: ${ projectName }`);
 
-  if (IsPublishable(tree, project) && IsAngularProject(project)) {
-    updateProjectNgPackageConfiguration(tree, project);
+  if (IsPublishable(tree, project)) {
+    if (IsAngularProject(project)) {
+      updateProjectNgPackageConfiguration(tree, project);
+    } else if (HasTarget(tree, projectName, 'build')) {
+      const target = GetTarget(project, 'build');
+      if (target.options['assets']) {
+        const projectRoot = GetProjectRoot(tree, projectName);
+        CoerceAssets(target.options.assets, [ join(projectRoot, 'compodoc') ]);
+      }
+    }
   }
 
   if (projectName === 'workspace') {
     const angularProjectIncludeList = Array.from(getProjects(tree))
-        .filter(([projectName, project]) => !SkipNonAngularProject(tree, {}, project, projectName))
-        .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
-        .map(sourceRoot => join(sourceRoot, '**/*.ts'));
+      .filter(([projectName]) => projectName !== 'workspace')
+      .filter(([projectName]) => tree.exists(join(GetProjectRoot(tree, projectName), 'tsconfig.compodoc.json')))
+      .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
+      .map(sourceRoot => join(sourceRoot, '**/*.ts'));
     CoerceCompodocTsConfig(tree, 'workspace', angularProjectIncludeList);
   } else {
     CoerceCompodocTsConfig(tree, projectName);

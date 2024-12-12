@@ -29,7 +29,7 @@
     },
     "overwrite": {
       "type": "boolean",
-      "description": "Overwrite existing files.",
+      "description": "Overwrite existing files."
     }
   },
   "required": [
