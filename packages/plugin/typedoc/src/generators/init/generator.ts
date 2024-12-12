@@ -1,11 +1,34 @@
 import {
   formatFiles,
+  ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
 import { CoerceArrayItems } from '@rxap/utilities';
-import { GenerateSerializedSchematicFile } from '@rxap/workspace-utilities';
+import {
+  ForeachInitProject,
+  GenerateSerializedSchematicFile,
+  InitProjectOptions,
+  IsApplicationProject,
+  IsLibraryProject,
+} from '@rxap/workspace-utilities';
+import { initProject as initApplicationProject } from '../init-application/init-project';
+import { initProject as initLibraryProject } from '../init-library/init-project';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
+
+function skipProject(tree: Tree, options: InitProjectOptions, project: ProjectConfiguration, projectName: string): boolean {
+
+  if (projectName === 'workspace') {
+    return false;
+  }
+
+  if (IsLibraryProject(project)) {
+    return false;
+  }
+
+  return true;
+
+}
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   options.project ??= undefined;
@@ -17,10 +40,17 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   await initWorkspace(tree, options);
 
-  // const project = readProjectConfiguration(tree, 'workspace');
-  // CoerceTypedocTarget(tree, 'workspace', project);
-  // CoerceGitIgnore(tree, 'workspace');
-  // updateProjectConfiguration(tree, 'workspace', project);
+  for (const [projectName, project] of ForeachInitProject(tree, options, skipProject)) {
+
+    if (IsApplicationProject(project)) {
+      await initApplicationProject(tree, projectName, project, options);
+    }
+
+    if (IsLibraryProject(project)) {
+      await initLibraryProject(tree, projectName, project, options);
+    }
+
+  }
 
   GenerateSerializedSchematicFile(
     tree,

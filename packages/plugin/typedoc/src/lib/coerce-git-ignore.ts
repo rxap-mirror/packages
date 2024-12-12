@@ -13,7 +13,7 @@ export function CoerceGitIgnore(tree: Tree, projectName: string) {
     'docs',
   ]);
 
-  CoerceIgnorePattern(tree, '.eslintignore', [
+  CoerceIgnorePattern(tree, join(projectRoot, '.eslintignore'), [
     'docs',
   ]);
 

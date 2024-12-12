@@ -5,9 +5,9 @@ import {
 } from '@nx/devkit';
 import {
   AddPackageJsonDevDependency,
-  CoerceNxJsonCacheableOperation,
-  CoerceTarget,
-  Strategy,
+  CoerceIgnorePattern,
+  CoerceNxPlugin,
+  IsRxapRepository,
 } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
@@ -16,14 +16,21 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
 
   await AddPackageJsonDevDependency(tree, 'typedoc', 'latest', { soft: true });
 
+  CoerceIgnorePattern(tree, '.eslintignore', [
+    'docs',
+  ]);
+
+  CoerceIgnorePattern(tree, '.gitignore', [
+    'docs',
+  ]);
+
   const nxJson = readNxJson(tree);
 
-  CoerceTarget(nxJson, 'typedoc', {
-    executor: '@rxap/plugin-typedoc:build',
-    outputs: [ '{options.outputPath}' ],
-    inputs: [ 'production', '^production' ],
-  }, Strategy.OVERWRITE);
-  CoerceNxJsonCacheableOperation(nxJson, 'typedoc');
+  if (IsRxapRepository(tree)) {
+    CoerceNxPlugin(nxJson, './packages/plugin/typedoc/src/plugin.ts');
+  } else {
+    CoerceNxPlugin(nxJson, '@rxap/plugin-typedoc/plugin');
+  }
 
   updateNxJson(tree, nxJson);
 
