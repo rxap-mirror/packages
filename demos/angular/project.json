@@ -155,20 +155,8 @@
       }
     },
     "localazy-download": {
-      "executor": "@rxap/plugin-localazy:download",
       "options": {
-        "workingDirectory": "demos/angular",
         "readKey": "a7660611872834350666-2ab45baa738ef411f7a3d5e57ffbe6787f7842d8c9e5144c34abae5ef1f4adf0"
-      },
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
-    "localazy-upload": {
-      "executor": "@rxap/plugin-localazy:upload",
-      "options": {
-        "extractTarget": "angular:extract-i18n"
       }
     },
     "deploy": {

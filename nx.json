@@ -124,28 +124,6 @@
       "inputs": ["build", "^build"],
       "cache": true
     },
-    "localazy-download": {
-      "executor": "@rxap/plugin-localazy:download",
-      "inputs": [
-        {
-          "runtime": "date"
-        },
-        {
-          "env": "CI_COMMIT_TIMESTAMP"
-        },
-        {
-          "env": "CI_COMMIT_SHA"
-        },
-        {
-          "env": "CI_JOB_ID"
-        },
-        {
-          "env": "CI_PIPELINE_ID"
-        }
-      ],
-      "outputs": ["{projectRoot}/src/i18n"],
-      "cache": true
-    },
     "expose-as-schematic": {
       "executor": "@rxap/plugin-library:run-generator",
       "options": {
@@ -201,11 +179,6 @@
     },
     "config": {
       "executor": "@rxap/plugin-application:config"
-    },
-    "localazy-upload": {
-      "dependsOn": ["extract-i18n"],
-      "inputs": ["{projectRoot}/src/i18n/messages.xlf"],
-      "cache": true
     },
     "deploy": {
       "dependsOn": ["build", "i18n-index-html"],
@@ -454,6 +427,7 @@
     "./packages/plugin/angular/src/plugin.ts",
     "./packages/plugin/compodoc/src/plugin.ts",
     "./packages/plugin/typedoc/src/plugin.ts",
+    "./packages/plugin/localazy/src/plugin.ts",
     {
       "plugin": "./packages/plugin/docker/src/plugin.ts",
       "options": {

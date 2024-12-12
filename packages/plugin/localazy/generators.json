@@ -5,11 +5,6 @@
       "schema": "./src/generators/config/schema.json",
       "description": "Add the executor 'localazy-download' and 'localazy-upload' and update the nx.json file"
     },
-    "gitlab-ci": {
-      "factory": "./src/generators/gitlab-ci/generator",
-      "schema": "./src/generators/gitlab-ci/schema.json",
-      "description": "gitlab-ci generator"
-    },
     "init": {
       "factory": "./src/generators/init/generator",
       "schema": "./src/generators/init/schema.json",
@@ -21,11 +16,6 @@
       "factory": "./src/generators/config/index",
       "schema": "./src/generators/config/schema.json",
       "description": "Add the executor 'localazy-download' and 'localazy-upload' and update the nx.json file"
-    },
-    "gitlab-ci": {
-      "factory": "./src/generators/gitlab-ci/index",
-      "schema": "./src/generators/gitlab-ci/schema.json",
-      "description": "gitlab-ci generator"
     },
     "init": {
       "factory": "./src/generators/init/index",
