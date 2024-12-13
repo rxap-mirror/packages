@@ -14,10 +14,6 @@ import { InitApplicationGeneratorSchema } from './schema';
 export function updateProjectTargets(
   tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
-  if (!options.standalone) {
-    CoerceTarget(project, 'generate-package-json', {});
-  }
-
   CoerceTarget(project, 'build', {
     executor: '@nx/webpack:webpack',
     outputs: [ '{options.outputPath}'],
@@ -64,7 +60,6 @@ export function updateProjectTargets(
 
   if (project.targets?.['docker']) {
     project.targets['docker'].options ??= {};
-    project.targets['docker'].options.dockerfile ??= 'shared/nestjs/Dockerfile';
     project.targets['docker'].options.buildArgList ??= [];
     if (options.apiPrefix !== false &&
         !project.targets['docker'].options.buildArgList.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {

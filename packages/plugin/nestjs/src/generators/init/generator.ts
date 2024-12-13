@@ -1,15 +1,12 @@
 import {
   formatFiles,
-  getProjects,
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import {
-  CoerceArrayItems,
-  DeleteProperties,
-} from '@rxap/utilities';
+import { CoerceArrayItems } from '@rxap/utilities';
 import {
   AddPackageJsonDevDependency,
+  ForeachInitProject,
   GenerateSerializedSchematicFile,
   GetNxVersion,
   IsApplicationProject,
@@ -18,6 +15,7 @@ import {
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
 import initApplicationGenerator from '../init-application/generator';
 import initLibraryGenerator from '../init-library/generator';
+import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
 
 function skipProject(tree: Tree, options: InitGeneratorSchema, project: ProjectConfiguration, projectName: string) {
@@ -42,6 +40,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   }
   console.log('nestjs init generator:', options);
 
+  await initWorkspace(tree, options);
+
   GenerateSerializedSchematicFile(
     tree,
     '/',
@@ -52,17 +52,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   await AddPackageJsonDevDependency(tree, '@nx/nest', GetNxVersion(tree), { soft: true });
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  for (const [ projectName, project ] of ForeachInitProject(tree, options, skipProject)) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
-    }
-
-    if (!options.skipProjects) {
-
-      console.log(`init nestjs project: ${ projectName }`);
-
-    }
+    console.log(`init nestjs project: ${ projectName }`);
 
     if (IsLibraryProject(project)) {
       await initLibraryGenerator(tree,

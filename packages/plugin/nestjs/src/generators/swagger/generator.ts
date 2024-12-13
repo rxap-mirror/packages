@@ -79,48 +79,6 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, overwrit
 
 }
 
-function updateProjectTargets(projectName: string, project: ProjectConfiguration, options: SwaggerGeneratorSchema) {
-
-  let tsConfig = join(project.root, 'tsconfig.app.json');
-  if ('build' in (project.targets ?? {})) {
-    const buildTarget = GetTarget(project, 'build');
-    const buildTargetOptions = GetTargetOptions(buildTarget);
-    if (buildTargetOptions['tsConfig']) {
-      tsConfig = buildTargetOptions['tsConfig'] as string;
-    }
-  }
-
-  const outputPath = GetBuildOutputForProject(project).replace('dist/', 'swagger/');
-
-  CoerceTarget(project, 'swagger-build', {
-    options: {
-      outputPath,
-      main: `${ project.sourceRoot }/swagger.ts`,
-      target: `node`,
-      compiler: `tsc`,
-      webpackConfig: `${ project.root }/webpack.config.js`,
-      transformers: [ '@nestjs/swagger/plugin' ],
-      tsConfig,
-      fileReplacements: [
-        {
-          replace: `${ project.sourceRoot }/environments/environment.ts`,
-          with: `${ project.sourceRoot }/environments/environment.swagger.ts`,
-        },
-      ],
-    },
-  });
-
-  CoerceTarget(project, 'swagger-generate', {
-    outputs: [
-      `{workspaceRoot}/swagger/${options.standalone ? projectName : project.root }/openapi.json`
-    ],
-    inputs: [
-      `{workspaceRoot}/swagger/${options.standalone ? projectName : project.root}/main.js`,
-    ],
-  }, Strategy.REPLACE);
-
-}
-
 function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
   const nxJson = readNxJson(tree);
 
@@ -182,7 +140,6 @@ export async function swaggerGenerator(
 
   coerceEnvironmentFiles(tree, options);
   updateNxDefaults(tree, options);
-  updateProjectTargets(projectName, project, options);
   const projectSourceRoot = project.sourceRoot;
   if (!projectSourceRoot) {
     throw new Error('The selected project has no sourceRoot');

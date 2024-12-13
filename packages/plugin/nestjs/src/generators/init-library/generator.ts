@@ -79,12 +79,6 @@ function setGeneralTargetDefaults(tree: Tree) {
 function updateProjectTargets(tree: Tree, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
 
   if (IsPublishable(tree, project)) {
-    CoerceTarget(project, 'check-version', {
-      executor: '@rxap/plugin-library:check-version',
-      options: {
-        packageName: '@nestjs/core',
-      },
-    });
     const buildTarget = GetTarget(project, 'build');
     const buildOptions = GetTargetOptions(buildTarget);
     const tsConfigPath = (buildOptions.tsConfig ?? join(project.root, 'tsconfig.lib.json')) as string;
@@ -97,17 +91,6 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration, options
         development: {}
       },
       defaultConfiguration: 'development',
-    }, Strategy.OVERWRITE);
-  }
-
-  if (options.targets?.fixDependencies !== false) {
-    CoerceTarget(project, 'fix-dependencies', {
-      options: {
-        options: {
-          strict: true,
-          onlyDependencies: false,
-        },
-      },
     }, Strategy.OVERWRITE);
   }
 
