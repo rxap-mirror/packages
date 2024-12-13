@@ -2,18 +2,14 @@ import {
   formatFiles,
   Tree,
 } from '@nx/devkit';
-import {
-  AddPackageJsonDevDependency,
-  GenerateSerializedSchematicFile,
-  GetNxVersion,
-} from '@rxap/workspace-utilities';
-import { join } from 'path';
-import initLibraryGenerator from '../init-library/generator';
-import { coerceNxJson } from './coerce-nx-json';
+import { GenerateSerializedSchematicFile } from '@rxap/workspace-utilities';
+import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   console.log('angular init generator:', options);
+
+  await initWorkspace(tree, options);
 
   GenerateSerializedSchematicFile(
     tree,
@@ -22,56 +18,6 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'init',
     options,
   );
-
-  await AddPackageJsonDevDependency(tree, '@nx/angular', GetNxVersion(tree), { soft: true });
-
-  coerceNxJson(tree, options);
-
-  for (const projectName of [
-    'components',
-    'forms',
-    'controls',
-    'tables'
-  ]) {
-    await initLibraryGenerator(tree, {
-      project: 'angular-' + projectName,
-      targets: {
-        indexExport: true,
-      },
-      coerce: {
-        directory: join('angular', projectName),
-        addTailwind: true,
-        buildable: true,
-      }
-    });
-  }
-
-  for (const projectName of [
-    'methods',
-    'data-sources',
-    'pipes',
-    'directives',
-    'guards',
-    'services',
-    'application-providers',
-    'utilities',
-    'shared',
-    'testing',
-    'resolvers',
-    'http-interceptors',
-    'bootstrap-hooks'
-  ]) {
-    await initLibraryGenerator(tree, {
-      project: 'angular-' + projectName,
-      targets: {
-        indexExport: true,
-      },
-      coerce: {
-        directory: join('angular', projectName),
-        buildable: true,
-      }
-    });
-  }
 
   if (!options.skipFormat) {
     await formatFiles(tree);

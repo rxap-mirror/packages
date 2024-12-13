@@ -4,12 +4,10 @@ import {
   updateNxJson,
 } from '@nx/devkit';
 import {
-  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaults,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
-  CoerceTargetDefaultsOutput,
   Strategy,
 } from '@rxap/workspace-utilities';
 import { InitApplicationGeneratorSchema } from './schema';
@@ -19,29 +17,6 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
 
   if (!nxJson) {
     throw new Error('NxJson not found');
-  }
-
-  if (options.localazy) {
-    CoerceTargetDefaultsDependency(nxJson, 'localazy-upload', 'extract-i18n');
-    CoerceTargetDefaultsInput(
-      nxJson,
-      'localazy-upload',
-      '{projectRoot}/src/i18n/messages.xlf',
-    );
-    CoerceTargetDefaultsInput(
-      nxJson,
-      'localazy-download',
-      { runtime: 'date' },
-      { env: 'CI_COMMIT_TIMESTAMP' },
-      { env: 'CI_COMMIT_SHA' },
-      { env: 'CI_JOB_ID' },
-      { env: 'CI_PIPELINE_ID' },
-    );
-    CoerceTargetDefaultsOutput(
-      nxJson,
-      'localazy-download',
-      '{projectRoot}/src/i18n',
-    );
   }
 
   CoerceTargetDefaults(nxJson, '@angular-devkit/build-angular:browser', {
@@ -61,8 +36,6 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
       },
     ],
   }, Strategy.OVERWRITE);
-
-  CoerceNxJsonCacheableOperation(nxJson, 'localazy-download', 'localazy-upload', 'extract-i18n', 'i18n-index-html');
 
   CoerceTargetDefaultsInput(nxJson, 'deploy', '{workspaceRoot}/dist/{projectRoot}');
   CoerceTargetDefaultsDependency(nxJson, 'deploy', 'i18n-index-html');
