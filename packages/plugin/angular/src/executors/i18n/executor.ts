@@ -158,8 +158,6 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for I18n', options);
 
-  console.log('DEPRECATED: The i18n executor is deprecated. Use from the @rxap/plugin-angular package instead.'.red);
-
   coerceAvailableLanguages(options, context);
 
   if (!options.availableLanguages?.length) {

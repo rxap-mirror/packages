@@ -43,8 +43,6 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for Config', options);
 
-  console.log('DEPRECATED: The config executor is deprecated. Use from the @rxap/plugin-angular package instead.'.red);
-
   const outputPath = GuessOutputPathFromContext(context);
 
   for (const key of Object.keys(process.env)) {
