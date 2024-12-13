@@ -8,9 +8,8 @@ const runExecutor: PromiseExecutor<IndexExportExecutorSchema> = async (
 ) => {
   console.log('Executor ran for IndexExport', options);
   return runGenerator({
-    generator: '@rxap/plugin-library:index-export',
+    generator: '@rxap/plugin-library:expose-as-schematic',
     options: DeleteEmptyProperties({
-      generateRootExport: options.generateRootExport,
       project: context.projectName,
     })
   }, context);

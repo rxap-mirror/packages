@@ -44,7 +44,6 @@ function buildProjectLocationCache(tree: TreeLike) {
   const treeAdapter = new TreeAdapter(tree);
   for (const { path, isFile } of VisitTree(tree)) {
     if (isFile && path.endsWith('project.json')) {
-      console.log(`Found project.json file: ${ path }`.grey);
       const project = treeAdapter.readJson(path) as ProjectJson;
       if (project.name) {
         PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.set(project.name, path);
@@ -83,7 +82,7 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
     }
   }
   if (PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.size === 0) {
-    console.log(`The project location cache is empty. Build cache.`.yellow);
+    // console.log(`The project location cache is empty. Build cache.`.yellow);
     buildProjectLocationCache(tree);
   }
   if (PROJECT_NAME_TO_PROJECT_LOCATION_CACHE.has(projectName)) {
@@ -118,7 +117,7 @@ export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath
     }
   }
   if (PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.size === 0) {
-    console.log(`The project location cache is empty. Build cache.`.yellow);
+    // console.log(`The project location cache is empty. Build cache.`.yellow);
     buildProjectLocationCache(tree);
   }
   const projectName = PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.get(join(projectPath, 'project.json'));

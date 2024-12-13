@@ -58,7 +58,6 @@
       "options": {
         "jestConfig": "packages/plugin/n8n/jest.config.ts"
       }
-    },
-    "expose-as-schematic": {}
+    }
   }
 }

@@ -8,7 +8,6 @@ import {
   FindProjectByPath,
   FsTree,
   GetPackageJson,
-  GetProject,
   HasPackageJson,
   IsAngularProject,
   IsNestJsProject,
@@ -18,7 +17,10 @@ import {
 } from '@rxap/workspace-utilities';
 import { existsSync } from 'fs';
 import { Optional } from 'nx/src/project-graph/plugins';
-import { dirname, join } from 'path';
+import {
+  dirname,
+  join,
+} from 'path';
 import 'colors';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -89,7 +91,7 @@ async function shouldHaveProjectConfiguration(
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot);
   if (!FindProjectByPath(tree, projectPath)) {
-    console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
+    // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
   }
   if (projectPath === context.workspaceRoot) {
@@ -141,10 +143,21 @@ async function createProjectConfiguration(
   if (IsSchematicProject(projectConfiguration)) {
     targets['check-version'] = createCheckVersionTarget('@angular-devkit/schematics');
   }
+  if (existsSync(join(projectPath, 'generators.json'))) {
+    targets['expose-as-schematic'] = createExposeAsSchematic();
+  }
 
   return [projectPath, {
     targets
   }];
+}
+
+function createExposeAsSchematic(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-library:expose-as-schematic',
+    inputs: ['{projectRoot}/generators.json}'],
+    outputs: ['{projectRoot}/generators.json}'],
+  };
 }
 
 function createCheckVersionTarget(packageName: string): TargetConfiguration {

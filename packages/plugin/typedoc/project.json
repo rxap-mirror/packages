@@ -58,13 +58,6 @@
       "options": {
         "jestConfig": "packages/plugin/typedoc/jest.config.ts"
       }
-    },
-
-
-
-
-
-
-    "expose-as-schematic": {}
+    }
   }
 }

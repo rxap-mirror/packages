@@ -85,7 +85,7 @@ async function shouldHaveProjectConfiguration(
   const tree = new FsTree(context.workspaceRoot);
   const projectConfiguration = FindProjectByPath(tree, projectPath);
   if (!projectConfiguration) {
-    console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
+    // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
   }
   if ((
