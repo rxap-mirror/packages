@@ -31,6 +31,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
     '**/tsconfig.app.json',
     '**/src/main.ts',
     '**/src/app/app.module.ts',
+    '**/src/app/app.controller.ts',
   ]),
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);

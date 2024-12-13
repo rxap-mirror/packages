@@ -1,41 +1,35 @@
 import { ExecutorContext } from '@nx/devkit';
 import { GuessOutputPathFromContext } from '@rxap/plugin-utilities';
 import {
+  deepMerge,
+  SetToObject,
+} from '@rxap/utilities';
+import {
+  existsSync,
   readFileSync,
   writeFileSync,
 } from 'fs';
 import { join } from 'path';
 import { ConfigExecutorSchema } from './schema';
+import 'colors';
 
-function createFileName(key: string): string {
-  const match = key.match(/^RXAP_CONFIG_(.*)/);
-  if (match) {
-    const name = match[1].toLowerCase().replace(/_/g, '.');
-    return [ 'config', name, 'json' ].join('.');
-  }
-  return 'config.json';
-}
-
-function createConfigContent(key: string) {
-  if (key.match(/^RXAP_CONFIG/)) {
-    const value = process.env[key];
-    if (value) {
-      let content: string;
-      if (value.match(/^(\/[^/\s]*)+\/?$/)) {
-        content = readFileSync(value).toString('utf-8');
-      } else {
-        content = value;
-      }
-      try {
-        JSON.parse(content);
-      } catch (e: any) {
-        throw new Error(`Can not parse config from '${ key }': ${ content }`);
-      }
-      return content;
+function getContent(key: string) {
+  const value = process.env[key];
+  if (value) {
+    let content: string;
+    if (value.match(/^(\/[^/\s]*)+\/?$/)) {
+      content = readFileSync(value).toString('utf-8');
+    } else {
+      content = value;
+    }
+    try {
+      return JSON.parse(content);
+    } catch (e: any) {
+      throw new Error(`Can not parse config from '${ key }': ${ content }`);
     }
   }
-  throw new Error(`Can not create config from '${ key }'. Env name does not start with 'RXAP_CONFIG'`);
 }
+
 
 export default async function runExecutor(
   options: ConfigExecutorSchema,
@@ -45,21 +39,34 @@ export default async function runExecutor(
 
   const outputPath = GuessOutputPathFromContext(context);
 
-  for (const key of Object.keys(process.env)) {
-    if (key.match(/^RXAP_CONFIG/)) {
-      try {
-        const content = createConfigContent(key);
-        console.info(`Add config '${ key }'`);
-        writeFileSync(join(outputPath, createFileName(key)), content);
-      } catch (e: any) {
-        console.error(e.message);
-        return {
-          success: false,
-          error: e.message,
-        };
+  let config: any = {};
+  const configPath = join(outputPath, 'config.json');
+  if (existsSync(configPath)) {
+    config = JSON.parse(readFileSync(configPath, 'utf-8'));
+  }
+
+  for (const key of Object.keys(process.env).filter(key => !!key && key.startsWith('RXAP_CONFIG')).sort((a, b) => a.length - b.length)) {
+    try {
+      const content = getContent(key);
+      const match = key.match(/^RXAP_CONFIG_(.*)/);
+      if (match) {
+        const key = match[1].toLowerCase().replace(/_/g, '.');
+        console.log(`Set config '${ key }'`.grey);
+        SetToObject(config, key, content);
+      } else {
+        console.log('Merge config'.grey);
+        deepMerge(config, content);
       }
+    } catch (e: any) {
+      console.error(e.message);
+      return {
+        success: false,
+        error: e.message,
+      };
     }
   }
+
+  writeFileSync(configPath, JSON.stringify(config, null, 2));
 
   return {
     success: true,

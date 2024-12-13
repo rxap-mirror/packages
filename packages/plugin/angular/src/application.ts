@@ -7,14 +7,10 @@ import {
 import {
   FindProjectByPath,
   FsTree,
-  IsRxapRepository,
 } from '@rxap/workspace-utilities';
-import { existsSync } from 'fs';
 import { Optional } from 'nx/src/project-graph/plugins';
-import {
-  dirname,
-  join,
-} from 'path';
+import { combineGlobPatterns } from 'nx/src/utils/globs';
+import { dirname } from 'path';
 import 'colors';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -27,7 +23,13 @@ export function normalizeOptions(
 }
 
 export const createNodesV2: CreateNodesV2<PluginOptions> = [
-  '**/ng-package.json',
+  combineGlobPatterns([
+    '**/tsconfig.app.json',
+    '**/src/main.ts',
+    '**/src/app/app.module.ts',
+    '**/src/app/app.component.ts',
+    '**/src/index.html',
+  ]),
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
 
@@ -105,11 +107,7 @@ async function createProjectConfiguration(
     throw new Error(`Could not find project in '${ projectPath }'`);
   }
 
-  targets['check-ng-package'] = createCheckNgPackageTarget();
-
-  if (existsSync(join(projectPath, 'tailwind.config.js'))) {
-    targets['build-tailwind'] = createBuildTailwindTarget(IsRxapRepository(context.workspaceRoot));
-  }
+  targets['config'] = createConfigTarget();
 
   return [
     projectPath, {
@@ -118,35 +116,9 @@ async function createProjectConfiguration(
   ];
 }
 
-function createBuildTailwindTarget(isRxapRepository: boolean): TargetConfiguration {
-  const dependsOn: TargetConfiguration['dependsOn'] = [];
-  if (isRxapRepository) {
-    dependsOn.push({
-      target: 'build',
-      projects: [ 'browser-tailwind' ],
-    });
-  }
+function createConfigTarget(): TargetConfiguration {
   return {
-    executor: '@rxap/plugin-angular:build-tailwind',
-    configurations: {
-      production: {
-        minify: true,
-      },
-    },
-    dependsOn,
-    inputs: [
-      '{projectRoot}/**/*.html',
-      '{projectRoot}/**/*.scss',
-      '{projectRoot}/**/*.css',
-    ],
-    outputs: [ '{projectRoot}/theme.css' ],
-    cache: true,
-  };
-}
-
-function createCheckNgPackageTarget(): TargetConfiguration {
-  return {
-    executor: '@rxap/plugin-angular:check-ng-package',
-    inputs: [ '{projectRoot}/ng-package.json', '{projectRoot}/package.json' ],
+    executor: '@rxap/plugin-angular:config',
+    dependsOn: ['build'],
   };
 }
