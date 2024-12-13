@@ -14,7 +14,9 @@
         "tsConfig": "packages/plugin/angular/tsconfig.lib.json",
         "generateExportsField": true,
         "additionalEntryPoints": [
-          "packages/plugin/angular/src/library.ts"
+          "packages/plugin/angular/src/library.ts",
+          "packages/plugin/angular/src/application.ts",
+          "packages/plugin/angular/src/i18n.ts"
         ],
         "assets": [
           "packages/plugin/angular/*.md",

@@ -114,7 +114,6 @@
         "imageSuffix": "/user-interface/angular"
       }
     },
-    "docker-save": {},
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
@@ -162,8 +161,7 @@
     "deploy": {
       "executor": "@rxap/plugin-web3-storage:deploy",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}/ipfs-cid.txt"]
-    },
-    "i18n-index-html": {}
+    }
   },
   "i18n": {
     "sourceLocale": "en-US",
