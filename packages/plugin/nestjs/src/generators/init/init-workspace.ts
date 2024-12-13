@@ -15,9 +15,9 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   const nxJson = readNxJson(tree)!;
 
   if (IsRxapRepository(tree)) {
-    CoerceNxPlugin(nxJson, './packages/plugin/nestjs/src/plugin.ts');
+    CoerceNxPlugin(nxJson, './packages/plugin/nestjs/src/application.ts');
   } else {
-    CoerceNxPlugin(nxJson, '@rxap/plugin-nestjs/plugin');
+    CoerceNxPlugin(nxJson, '@rxap/plugin-nestjs/application');
   }
 
   updateNxJson(tree, nxJson);

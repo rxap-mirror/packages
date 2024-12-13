@@ -424,7 +424,9 @@
       }
     },
     "./packages/plugin/library/src/plugin.ts",
-    "./packages/plugin/angular/src/plugin.ts",
+    "./packages/plugin/angular/src/library.ts",
+    "./packages/plugin/angular/src/application.ts",
+    "./packages/plugin/nestjs/src/application.ts",
     "./packages/plugin/compodoc/src/plugin.ts",
     "./packages/plugin/typedoc/src/plugin.ts",
     "./packages/plugin/localazy/src/plugin.ts",

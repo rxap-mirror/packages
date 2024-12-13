@@ -20,9 +20,11 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   const nxJson = readNxJson(tree)!;
 
   if (IsRxapRepository(tree)) {
-    CoerceNxPlugin(nxJson, './packages/plugin/angular/src/plugin.ts');
+    CoerceNxPlugin(nxJson, './packages/plugin/angular/src/library.ts');
+    CoerceNxPlugin(nxJson, './packages/plugin/angular/src/application.ts');
   } else {
-    CoerceNxPlugin(nxJson, '@rxap/plugin-angular/plugin');
+    CoerceNxPlugin(nxJson, '@rxap/plugin-angular/library');
+    CoerceNxPlugin(nxJson, '@rxap/plugin-angular/application');
   }
 
   updateNxJson(tree, nxJson);
