@@ -32,10 +32,7 @@
         "lintFilePatterns": ["packages/nest/jwt/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs nest-jwt {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
     "test": {
       "options": {
         "jestConfig": "packages/nest/jwt/jest.config.ts"

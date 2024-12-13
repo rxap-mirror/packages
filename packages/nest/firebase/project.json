@@ -32,10 +32,7 @@
         "lintFilePatterns": ["packages/nest/firebase/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs nest-firebase {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
     "test": {
       "options": {
         "jestConfig": "packages/nest/firebase/jest.config.ts"

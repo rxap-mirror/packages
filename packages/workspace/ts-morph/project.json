@@ -24,10 +24,7 @@
         "lintFilePatterns": ["packages/workspace/ts-morph/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs workspace-ts-morph {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "options": {

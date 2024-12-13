@@ -32,10 +32,7 @@
         "lintFilePatterns": ["packages/nest/socket-io-client/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs nest-socket-io-client {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
     "test": {
       "options": {
         "jestConfig": "packages/nest/socket-io-client/jest.config.ts"

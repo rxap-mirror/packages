@@ -49,10 +49,7 @@
         ]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs plugin-open-api {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "options": {

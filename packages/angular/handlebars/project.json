@@ -33,12 +33,8 @@
 
     "fix-dependencies": {
       "options": {
-        "strict": true,
-        "onlyDependencies": false,
         "dependencies": ["handlebars"]
-      },
-      "executor": "@rxap/plugin-library:fix-dependencies",
-      "outputs": ["{projectRoot}/package.json"]
+      }
     },
     "lint": {
       "options": {

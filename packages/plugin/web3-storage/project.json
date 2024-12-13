@@ -49,10 +49,7 @@
         }
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs plugin-web3-storage {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "executor": "@nx/jest:jest",

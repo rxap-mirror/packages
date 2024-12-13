@@ -18,10 +18,7 @@
         ]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs workspace-cypress {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "executor": "@nx/jest:jest",

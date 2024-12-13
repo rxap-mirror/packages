@@ -62,10 +62,7 @@
         "lintFilePatterns": ["packages/schematic/composer/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs schematic-composer {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "options": {

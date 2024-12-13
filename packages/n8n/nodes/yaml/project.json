@@ -41,11 +41,7 @@
         ]
       }
     },
-    "nx-release-publish": {
-      "options": {
-        "packageRoot": "dist/{projectRoot}"
-      }
-    },
+
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -54,10 +50,7 @@
       }
     },
     "fix-dependencies": {
-      "executor": "@rxap/plugin-library:fix-dependencies",
-      "outputs": ["{projectRoot}/package.json"],
       "options": {
-        "onlyDependencies": true,
         "peerDependencies": ["n8n-workflow"]
       }
     }

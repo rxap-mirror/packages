@@ -40,10 +40,7 @@
         "lintFilePatterns": ["packages/schematic/nestjs/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs schematic-nestjs {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "options": {

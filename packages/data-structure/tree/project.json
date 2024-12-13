@@ -24,10 +24,6 @@
         "lintFilePatterns": ["packages/data-structure/tree/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs data-structure-tree {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
 
     "test": {
       "options": {

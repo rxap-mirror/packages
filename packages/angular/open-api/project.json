@@ -27,12 +27,8 @@
 
     "fix-dependencies": {
       "options": {
-        "strict": true,
-        "onlyDependencies": false,
         "dependencies": ["ajv", "openapi-types"]
-      },
-      "executor": "@rxap/plugin-library:fix-dependencies",
-      "outputs": ["{projectRoot}/package.json"]
+      }
     },
     "lint": {
       "options": {

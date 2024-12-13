@@ -21,10 +21,6 @@
         "lintFilePatterns": ["packages/mixin/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs mixin {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
 
     "test": {
       "options": {

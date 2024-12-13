@@ -24,10 +24,6 @@
         "lintFilePatterns": ["packages/generator/ts-morph/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs generator-ts-morph {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
 
     "test": {
       "options": {

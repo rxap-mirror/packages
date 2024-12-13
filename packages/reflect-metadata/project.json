@@ -24,10 +24,7 @@
         "lintFilePatterns": ["packages/reflect-metadata/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs reflect-metadata {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "options": {

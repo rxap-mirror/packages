@@ -32,10 +32,7 @@
         "lintFilePatterns": ["packages/nest/minio/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs nest-minio {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
     "test": {
       "options": {
         "jestConfig": "packages/nest/minio/jest.config.ts"

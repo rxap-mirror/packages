@@ -24,10 +24,6 @@
         "lintFilePatterns": ["packages/browser/tailwind/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs browser-tailwind {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
 
     "test": {
       "options": {

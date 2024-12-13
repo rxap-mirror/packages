@@ -32,10 +32,7 @@
         "lintFilePatterns": ["packages/nest/open-api/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs nest-open-api {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
     "test": {
       "options": {
         "jestConfig": "packages/nest/open-api/jest.config.ts"

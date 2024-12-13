@@ -27,10 +27,7 @@
       },
       "defaultConfiguration": "development"
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs nest-vault {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -39,11 +36,7 @@
       }
     },
     "fix-dependencies": {
-      "executor": "@rxap/plugin-library:fix-dependencies",
-      "outputs": ["{projectRoot}/package.json"],
       "options": {
-        "strict": true,
-        "onlyDependencies": false,
         "dependencies": ["node-vault"]
       }
     }

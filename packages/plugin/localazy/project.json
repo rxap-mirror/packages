@@ -60,10 +60,7 @@
         ]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs plugin-localazy {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "options": {

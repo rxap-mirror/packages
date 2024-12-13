@@ -39,10 +39,7 @@
         "lintFilePatterns": ["packages/schematic/open-api/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs schematic-open-api {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "options": {

@@ -24,10 +24,6 @@
         "lintFilePatterns": ["packages/browser/utilities/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs browser-utilities {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
 
 
     "test": {

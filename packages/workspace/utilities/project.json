@@ -25,10 +25,6 @@
         "lintFilePatterns": ["packages/workspace/utilities/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs workspace-utilities {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
 
     "test": {
       "options": {

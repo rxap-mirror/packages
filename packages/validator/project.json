@@ -21,10 +21,7 @@
         "lintFilePatterns": ["packages/validator/**/*.ts"]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs validator {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    },
+
 
     "test": {
       "options": {
