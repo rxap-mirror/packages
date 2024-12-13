@@ -35,6 +35,16 @@
       "schema": "./src/executors/index-export/schema.json",
       "description": "index-export executor"
     },
+    "bundle-json-schema": {
+      "implementation": "./src/executors/bundle-json-schema/executor",
+      "schema": "./src/executors/bundle-json-schema/schema.json",
+      "description": "bundle-json-schema executor"
+    },
+    "index-json-schema": {
+      "implementation": "./src/executors/index-json-schema/executor",
+      "schema": "./src/executors/index-json-schema/schema.json",
+      "description": "index-json-schema executor"
+    },
     "expose-as-schematic": {
       "implementation": "./src/executors/expose-as-schematic/executor",
       "schema": "./src/executors/expose-as-schematic/schema.json",

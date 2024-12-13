@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/schema",
   "version": 2,
-  "title": "ExposeAsSchematic executor",
+  "title": "IndexJsonSchema executor",
   "description": "",
   "type": "object",
   "properties": {},

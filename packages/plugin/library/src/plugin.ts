@@ -16,6 +16,7 @@ import {
   IsSchematicProject,
 } from '@rxap/workspace-utilities';
 import { existsSync } from 'fs';
+import { globSync } from 'glob';
 import { Optional } from 'nx/src/project-graph/plugins';
 import {
   dirname,
@@ -144,7 +145,11 @@ async function createProjectConfiguration(
     targets['check-version'] = createCheckVersionTarget('@angular-devkit/schematics');
   }
   if (existsSync(join(projectPath, 'generators.json'))) {
-    targets['expose-as-schematic'] = createExposeAsSchematic();
+    targets['expose-as-schematic'] = createExposeAsSchematicTarget();
+  }
+  if (globSync(join(projectPath, 'src/**/*.schema.json'))) {
+    targets['index-json-schema'] = createIndexJsonSchemaTarget();
+    targets['bundle-json-schema'] = createBundleJsonSchemaTarget();
   }
 
   return [projectPath, {
@@ -152,7 +157,37 @@ async function createProjectConfiguration(
   }];
 }
 
-function createExposeAsSchematic(): TargetConfiguration {
+function createIndexJsonSchemaTarget(): TargetConfiguration {
+  return {
+    inputs: [
+      '{projectRoot}/src/**/template.schema.json',
+      '{projectRoot}/src/**/*.schema.json',
+    ],
+    outputs: [
+      '{projectRoot}/template.schema.json',
+      '{projectRoot}/schematic-input.schema.json',
+    ],
+    executor: '@rxap/plugin-library:index-json-schema',
+    cache: true,
+  };
+}
+
+function createBundleJsonSchemaTarget(): TargetConfiguration {
+  return {
+    inputs: [
+      '{projectRoot}/src/**/template.schema.json',
+      '{projectRoot}/src/**/*.schema.json',
+    ],
+    outputs: [
+      '{projectRoot}/template.schema.json',
+      '{projectRoot}/schematic-input.schema.json',
+    ],
+    executor: '@rxap/plugin-library:bundle-json-schema',
+    cache: true,
+  };
+}
+
+function createExposeAsSchematicTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-library:expose-as-schematic',
     inputs: ['{projectRoot}/generators.json}'],

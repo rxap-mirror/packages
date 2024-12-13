@@ -11,7 +11,6 @@ const runExecutor: PromiseExecutor<IndexExportExecutorSchema> = async (
     generator: '@rxap/plugin-library:index-export',
     options: DeleteEmptyProperties({
       generateRootExport: options.generateRootExport,
-      project: context.projectName,
     })
   }, context);
 };
