@@ -4,6 +4,11 @@
       "implementation": "./src/executors/copy-open-api-sdk/executor",
       "schema": "./src/executors/copy-open-api-sdk/schema.json",
       "description": "copy-open-api-sdk executor"
+    },
+    "generate": {
+      "implementation": "./src/executors/generate/executor",
+      "schema": "./src/executors/generate/schema.json",
+      "description": "generate executor"
     }
   }
 }

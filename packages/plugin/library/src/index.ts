@@ -3,3 +3,4 @@ export { initGenerator as LibraryInitGenerator } from './generators/init/generat
 export { initProject as LibraryInitProject } from './generators/init/init-project';
 export { initWorkspace as LibraryInitWorkspace } from './generators/init/init-workspace';
 export { fixDependenciesGenerator as FixDependencies } from './generators/fix-dependencies/generator';
+export { runExecutor as RunGenerator } from './executors/run-generator/executor';

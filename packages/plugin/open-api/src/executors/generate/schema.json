@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "Generate executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "path": {
+        "type": "string",
+        "description": "The path to the openapi config",
+        "format": "path"
+      },
+      "skipFormat": {
+        "type": "boolean",
+        "default": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The target project where the data sources and remote methods should be generated."
+      },
+      "directory": {
+        "type": "string",
+        "description": "A directory where the library is placed."
+      },
+      "prefix": {
+        "type": "string"
+      },
+      "transport": {
+        "type": "string",
+        "enum": [
+          "amplify"
+        ]
+      },
+      "export": {
+        "type": "boolean",
+        "description": "If true the index-export generator will be executed after the generation",
+        "default": true
+      },
+      "inline": {
+        "type": "boolean",
+        "default": true
+      },
+      "skipRemoteMethod": {
+        "type": "boolean",
+        "default": false
+      },
+      "skipDataSource": {
+        "type": "boolean",
+        "default": true
+      },
+      "skipProvider": {
+        "type": "boolean",
+        "default": true
+      },
+      "skipDirectives": {
+        "type": "boolean",
+        "default": true
+      },
+      "skipCommand": {
+        "type": "boolean",
+        "default": false
+      },
+      "serverId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "path"
+    ]
+  },
+  "required": []
+}
