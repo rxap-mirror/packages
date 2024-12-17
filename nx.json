@@ -193,16 +193,10 @@
       "cache": true
     },
 
-    "copy-client-sdk": {
-      "cache": true
-    },
     "copy-open-api-sdk": {
       "dependsOn": ["^generate-open-api"],
-      "executor": "@rxap/plugin-open-api:copy-client-sdk",
+      "executor": "@rxap/plugin-open-api:copy-open-api-sdk",
       "outputs": ["{projectRoot}/src/lib/openapi"],
-      "cache": true
-    },
-    "generate-open-api": {
       "cache": true
     },
 

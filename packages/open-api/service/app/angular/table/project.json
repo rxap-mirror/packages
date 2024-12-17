@@ -4,13 +4,5 @@
   "sourceRoot": "packages/open-api/service/app/angular/table/src",
   "projectType": "library",
   "tags": ["open-api", "packages", "service", "app"],
-  "targets": {
-    "lint": {
-      "options": {
-        "lintFilePatterns": [
-          "packages/open-api/service/app/angular/table/**/*.ts"
-        ]
-      }
-    }
-  }
+  "targets": {}
 }

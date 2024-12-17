@@ -50,7 +50,7 @@ export function setGeneralTargetDefaults(tree: Tree) {
     '{projectRoot}/package.json',
   );
 
-  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'build-tailwind', 'check-ng-package', 'copy-client-sdk');
+  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'build-tailwind', 'check-ng-package', 'copy-open-api-sdk');
 
   updateNxJson(tree, nxJson);
 }

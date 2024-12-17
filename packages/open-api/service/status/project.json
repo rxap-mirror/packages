@@ -4,11 +4,5 @@
   "sourceRoot": "packages/open-api/service/status/src",
   "projectType": "library",
   "tags": ["open-api", "packages", "service"],
-  "targets": {
-    "lint": {
-      "options": {
-        "lintFilePatterns": ["packages/open-api/service/status/**/*.ts"]
-      }
-    }
-  }
+  "targets": {}
 }

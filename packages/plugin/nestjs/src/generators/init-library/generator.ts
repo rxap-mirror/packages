@@ -71,7 +71,7 @@ function setGeneralTargetDefaults(tree: Tree) {
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
 
-  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'copy-client-sdk');
+  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'copy-open-api-sdk');
 
   updateNxJson(tree, nxJson);
 }

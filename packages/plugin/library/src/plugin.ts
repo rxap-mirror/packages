@@ -147,7 +147,7 @@ async function createProjectConfiguration(
   if (existsSync(join(projectPath, 'generators.json'))) {
     targets['expose-as-schematic'] = createExposeAsSchematicTarget();
   }
-  if (globSync(join(projectPath, 'src/**/*.schema.json'))) {
+  if (globSync(join(projectPath, 'src/**/*.schema.json'))?.length) {
     targets['index-json-schema'] = createIndexJsonSchemaTarget();
     targets['bundle-json-schema'] = createBundleJsonSchemaTarget();
   }
