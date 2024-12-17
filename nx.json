@@ -67,76 +67,8 @@
     "serve": {
       "dependsOn": ["build-info", "^copy-open-api-sdk", "^generate-open-api"]
     },
-    "copy-open-api-sdk": {
-      "dependsOn": ["^generate-open-api"],
-      "executor": "@rxap/plugin-open-api:copy-client-sdk",
-      "outputs": ["{projectRoot}/src/lib/openapi"],
-      "cache": true
-    },
-    "index-json-schema": {
-      "inputs": [
-        "{projectRoot}/src/**/template.schema.json",
-        "{projectRoot}/src/**/*.schema.json"
-      ],
-      "outputs": [
-        "{projectRoot}/template.schema.json",
-        "{projectRoot}/schematic-input.schema.json"
-      ],
-      "executor": "@rxap/plugin-library:run-generator",
-      "options": {
-        "generator": "@rxap/plugin-library:index-json-schema"
-      },
-      "cache": true
-    },
-    "bundle-json-schema": {
-      "dependsOn": ["index-json-schema"],
-      "inputs": [
-        "{projectRoot}/src/**/template.schema.json",
-        "{projectRoot}/src/**/*.schema.json"
-      ],
-      "outputs": ["{projectRoot}/src/**/schema.json"],
-      "executor": "@rxap/plugin-library:run-generator",
-      "options": {
-        "generator": "@rxap/plugin-library:bundle-json-schema"
-      },
-      "cache": true
-    },
     "build": {
-      "dependsOn": [
-        "^build",
-        "readme",
-        "compodoc",
-        "typedoc",
-        "index-export",
-        "check-version",
-        "build-tailwind",
-        "generate-package-json",
-        "check-ng-package",
-        "localazy-download",
-        "build-info",
-        "expose-as-schematic",
-        "copy-open-api-sdk",
-        "^copy-open-api-sdk",
-        "^generate-open-api",
-        "bundle-json-schema",
-        "^index-export"
-      ],
       "inputs": ["build", "^build"],
-      "cache": true
-    },
-    "expose-as-schematic": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "options": {
-        "generator": "@rxap/plugin-library:expose-as-schematic"
-      },
-      "outputs": [
-        "{projectRoot}/generators.json",
-        "{projectRoot}/src/generators/**/index.ts"
-      ],
-      "inputs": [
-        "{projectRoot}/generators.json",
-        "{projectRoot}/src/generators/**/schema.json"
-      ],
       "cache": true
     },
     "extract-i18n": {
@@ -163,28 +95,22 @@
       },
       "cache": true
     },
-    "docker-save": {
-      "dependsOn": ["docker"],
-      "executor": "@rxap/plugin-docker:save"
-    },
     "config": {
       "executor": "@rxap/plugin-application:config"
-    },
-    "deploy": {
-      "dependsOn": ["build", "i18n-index-html"],
-      "inputs": ["{workspaceRoot}/dist/{projectRoot}"],
-      "cache": true
-    },
-    "i18n-index-html": {
-      "dependsOn": ["build"],
-      "executor": "@rxap/plugin-application:i18n",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}/index.html"],
-      "inputs": ["{projectRoot}/project.json"],
-      "cache": true
     },
     "ci-info": {
       "cache": true
     },
+    "build-storybook": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/tsconfig.storybook.json"
+      ]
+    },
+
     "@nx/jest:jest": {
       "executor": "@nx/jest:jest",
       "outputs": [
@@ -215,18 +141,6 @@
         }
       }
     },
-    "swagger-build": {
-      "cache": true
-    },
-    "swagger-generate": {
-      "cache": true
-    },
-    "generate-package-json": {
-      "cache": true
-    },
-    "generate-open-api": {
-      "cache": true
-    },
     "@nx/js:tsc": {
       "cache": true,
       "dependsOn": [
@@ -248,18 +162,6 @@
         "^index-export"
       ],
       "inputs": ["production", "^production"]
-    },
-    "copy-client-sdk": {
-      "cache": true
-    },
-    "build-storybook": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        "{projectRoot}/.storybook/**/*",
-        "{projectRoot}/tsconfig.storybook.json"
-      ]
     },
     "@nx/angular:package": {
       "cache": true,
@@ -291,7 +193,18 @@
       "cache": true
     },
 
-
+    "copy-client-sdk": {
+      "cache": true
+    },
+    "copy-open-api-sdk": {
+      "dependsOn": ["^generate-open-api"],
+      "executor": "@rxap/plugin-open-api:copy-client-sdk",
+      "outputs": ["{projectRoot}/src/lib/openapi"],
+      "cache": true
+    },
+    "generate-open-api": {
+      "cache": true
+    },
 
     "lint": {
       "outputs": ["{options.outputFile}"],
@@ -430,6 +343,7 @@
     "./packages/plugin/compodoc/src/plugin.ts",
     "./packages/plugin/typedoc/src/plugin.ts",
     "./packages/plugin/localazy/src/plugin.ts",
-    "./packages/plugin/docker/src/plugin.ts"
+    "./packages/plugin/docker/src/plugin.ts",
+    "./packages/plugin/web3-storage/src/plugin.ts"
   ]
 }

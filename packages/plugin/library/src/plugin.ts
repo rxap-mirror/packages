@@ -192,6 +192,7 @@ function createExposeAsSchematicTarget(): TargetConfiguration {
     executor: '@rxap/plugin-library:expose-as-schematic',
     inputs: ['{projectRoot}/generators.json}'],
     outputs: ['{projectRoot}/generators.json}'],
+    cache: true,
   };
 }
 

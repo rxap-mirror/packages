@@ -156,10 +156,6 @@
       "options": {
         "readKey": "a7660611872834350666-2ab45baa738ef411f7a3d5e57ffbe6787f7842d8c9e5144c34abae5ef1f4adf0"
       }
-    },
-    "deploy": {
-      "executor": "@rxap/plugin-web3-storage:deploy",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}/ipfs-cid.txt"]
     }
   },
   "i18n": {
