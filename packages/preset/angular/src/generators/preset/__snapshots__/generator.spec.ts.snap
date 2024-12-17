@@ -22,8 +22,8 @@ exports[`preset should use angular preset 1`] = `
   ".eslintignore",
   "jest.preset.js",
   "jest.config.ts",
-  "schematics.yaml",
   "angular",
+  "schematics.yaml",
 ]
 `;
 
@@ -298,7 +298,7 @@ exports[`preset should use angular preset 3`] = `
       "inputs": ["{projectRoot}/ng-package.json", "{projectRoot}/package.json"],
       "cache": true
     },
-    "copy-client-sdk": {
+    "copy-open-api-sdk": {
       "cache": true
     }
   },
@@ -429,7 +429,11 @@ exports[`preset should use angular preset 3`] = `
   },
   "cli": {
     "packageManager": "yarn"
-  }
+  },
+  "plugins": [
+    "@rxap/plugin-angular/library",
+    "@rxap/plugin-angular/application"
+  ]
 }
 "
 `;

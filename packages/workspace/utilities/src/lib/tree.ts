@@ -1,5 +1,4 @@
 import { CoercePrefix } from '@rxap/utilities';
-import { BufferEncoding } from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 import { Mode, unlinkSync, writeFileSync, readdirSync, readFileSync, renameSync, existsSync, statSync } from 'fs';
 import {
   dirname,
