@@ -103,19 +103,11 @@ export function updateProjectTargets(
     project.targets['extract-i18n'].options ??= {};
     project.targets['extract-i18n'].options.format = 'xliff2';
     project.targets['extract-i18n'].options.outputPath = join(project.sourceRoot, 'i18n');
-    if (options.localazy) {
+    if (options.localazy && options.localazyReadKey) {
       project.targets['localazy-download'] ??= {
-        executor: '@rxap/plugin-localazy:download',
         options: DeleteEmptyProperties({
           readKey: options.localazyReadKey,
-          workingDirectory: project.root,
         }),
-      };
-      project.targets['localazy-upload'] ??= {
-        executor: '@rxap/plugin-localazy:upload',
-        options: {
-          extractTarget: `${ project.name }:extract-i18n`,
-        },
       };
     }
   }

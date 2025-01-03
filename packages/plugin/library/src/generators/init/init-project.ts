@@ -21,14 +21,11 @@ import { initProject as initWithMigrationProject } from '../init-with-migrations
 import { cleanup } from './cleanup';
 import { InitGeneratorSchema } from './schema';
 import { updateProjectTags } from './update-project-tags';
-import { updateProjectTargets } from './update-project-targets';
 
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitGeneratorSchema) {
   console.log(`init library project: ${ projectName }`);
 
   updateProjectTags(project);
-
-  updateProjectTargets(project, options);
 
   if (IsBuildable(project)) {
     initBuildableProject(tree, projectName, project, options);

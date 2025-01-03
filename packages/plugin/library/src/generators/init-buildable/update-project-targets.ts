@@ -1,8 +1,5 @@
 import { ProjectConfiguration } from '@nx/devkit';
-import {
-  CoerceTarget,
-  RemoveTarget,
-} from '@rxap/workspace-utilities';
+import { CoerceTarget } from '@rxap/workspace-utilities';
 import { InitBuildableGeneratorSchema } from './schema';
 
 export function updateProjectTargets(project: ProjectConfiguration, options: InitBuildableGeneratorSchema) {
@@ -10,11 +7,5 @@ export function updateProjectTargets(project: ProjectConfiguration, options: Ini
     CoerceTarget(project, 'build', {
       defaultConfiguration: 'production',
     });
-  }
-  CoerceTarget(project, 'update-dependencies', {});
-  if (options.targets?.fixDependencies === false) {
-    RemoveTarget(project, 'fix-dependencies');
-  } else {
-    CoerceTarget(project, 'fix-dependencies', {});
   }
 }

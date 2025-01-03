@@ -17,14 +17,12 @@ import { join } from 'path';
 import { CoerceInitGenerator } from './coerce-init-generator';
 import { InitPublishableGeneratorSchema } from './schema';
 import { updateProjectPackageJson } from './update-project-package-json';
-import { updateProjectTargets } from './update-project-targets';
 
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitPublishableGeneratorSchema) {
   console.log(`init publishable library project: ${ projectName }`);
 
   const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
 
-  updateProjectTargets(project, options);
   updateProjectPackageJson(tree, project, projectName, rootPackageJson);
   if (tree.exists('LICENSE')) {
     CoerceFile(tree, join(project.root, 'LICENSE.md'), tree.read('LICENSE')!);

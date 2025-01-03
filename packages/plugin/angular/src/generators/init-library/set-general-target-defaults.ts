@@ -4,11 +4,8 @@ import {
   updateNxJson,
 } from '@nx/devkit';
 import {
-  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
-  CoerceTargetDefaultsInput,
-  CoerceTargetDefaultsOutput,
   IsRxapRepository,
   Strategy,
 } from '@rxap/workspace-utilities';
@@ -26,7 +23,6 @@ export function setGeneralTargetDefaults(tree: Tree) {
     ],
     inputs: [ "production", "^production" ]
   }, Strategy.OVERWRITE);
-  CoerceNxJsonCacheableOperation(nxJson, '@nx/angular:ng-packagr-lite');
   if (IsRxapRepository(tree)) {
     CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
       target: 'build',
@@ -35,22 +31,6 @@ export function setGeneralTargetDefaults(tree: Tree) {
       ],
     });
   }
-  CoerceTargetDefaultsOutput(nxJson, 'build-tailwind', '{projectRoot}/theme.css');
-  CoerceTargetDefaultsInput(
-    nxJson,
-    'build-tailwind',
-    '{projectRoot}/**/*.html',
-    '{projectRoot}/**/*.scss',
-    '{projectRoot}/**/*.css',
-  );
-  CoerceTargetDefaultsInput(
-    nxJson,
-    'check-ng-package',
-    '{projectRoot}/ng-package.json',
-    '{projectRoot}/package.json',
-  );
-
-  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'build-tailwind', 'check-ng-package', 'copy-open-api-sdk');
 
   updateNxJson(tree, nxJson);
 }

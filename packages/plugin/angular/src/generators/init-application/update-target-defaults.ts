@@ -37,14 +37,7 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
     ],
   }, Strategy.OVERWRITE);
 
-  CoerceTargetDefaultsInput(nxJson, 'deploy', '{workspaceRoot}/dist/{projectRoot}');
   CoerceTargetDefaultsDependency(nxJson, 'deploy', 'i18n-index-html');
-  CoerceTarget(nxJson, 'i18n-index-html', {
-    dependsOn: [ 'build' ],
-    executor: '@rxap/plugin-application:i18n',
-    outputs: [ 'dist/{projectRoot}/index.html' ],
-    inputs: [ '{projectRoot}/project.json' ],
-  });
 
   updateNxJson(tree, nxJson);
 }
