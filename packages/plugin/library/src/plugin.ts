@@ -121,7 +121,7 @@ async function createProjectConfiguration(
   }
 
   if (IsLibraryProject(projectConfiguration)) {
-    if (!IsPluginProject(projectConfiguration) && !IsN8NProject(projectConfiguration)) {
+    if (!IsPluginProject(projectConfiguration) && !IsN8NProject(projectConfiguration) && projectConfiguration.name !== 'workspace-tools') {
       targets['index-export'] = createIndexExportTarget();
     }
 
