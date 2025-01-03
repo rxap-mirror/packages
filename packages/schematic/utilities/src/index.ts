@@ -60,7 +60,7 @@ export * from './lib/angular-json/target';
 export * from './lib/angular-json/tslint';
 // endregion
 
-// region
+// region 
 export * from './lib/angular-json-file';
 export * from './lib/builders-json-file';
 export * from './lib/check-if-packages-are-installed';
@@ -68,6 +68,7 @@ export * from './lib/clone';
 export * from './lib/coerce-file';
 export * from './lib/collection-json-file';
 export * from './lib/deep-merge';
+export * from './lib/delete-directory';
 export * from './lib/env-file';
 export * from './lib/equals';
 export * from './lib/execute-schematic';
@@ -91,4 +92,3 @@ export * from './lib/required';
 export * from './lib/search-file';
 export * from './lib/workspace';
 // endregion
-export * from './lib/delete-directory';

@@ -89,7 +89,6 @@ export * from './lib/angular/coerce-form-definition-group';
 export * from './lib/angular/coerce-form-definition-type';
 export * from './lib/angular/coerce-form-definition';
 export * from './lib/angular/coerce-form-provider';
-export * from './lib/angular/coerce-form-providers-file';
 export * from './lib/angular/coerce-form-table-action';
 export * from './lib/angular/coerce-method-class';
 export * from './lib/angular/coerce-navigation-table-action';
@@ -127,7 +126,7 @@ export * from './lib/angular/has-table-component';
 export * from './lib/angular/index';
 // endregion
 
-// region
+// region 
 export * from './lib/add-class-method';
 export * from './lib/add-dir';
 export * from './lib/add-fake-provider';
