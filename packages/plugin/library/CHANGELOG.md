@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.0.0-dev.2...@rxap/plugin-library@20.0.0-dev.3) (2025-01-03)
+
+### Bug Fixes
+
+- improve cache detection ([ac3b8fe](https://gitlab.com/rxap/packages/commit/ac3b8fe591c09df1ca68dfe8475a9268b9380fad))
+
 # [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.0.0-dev.1...@rxap/plugin-library@20.0.0-dev.2) (2025-01-03)
 
 ### Bug Fixes

@@ -1,11 +1,11 @@
 {
-  "version": "20.0.0-dev.2",
+  "version": "20.0.0-dev.3",
   "name": "@rxap/plugin-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.2.1",
     "@rxap/node-utilities": "^1.3.7-dev.2",
-    "@rxap/plugin-library": "^20.0.0-dev.2",
+    "@rxap/plugin-library": "^20.0.0-dev.3",
     "@rxap/plugin-utilities": "^20.0.0-dev.2",
     "@rxap/utilities": "^16.4.1-dev.2",
     "@rxap/workspace-open-api": "^19.0.10-dev.2",
