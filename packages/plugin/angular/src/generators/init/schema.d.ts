@@ -4,4 +4,5 @@ export interface InitGeneratorSchema {
   skipProjects?: boolean;
   skipFormat?: boolean;
   prefix?: string;
+  withSharedLibraries?: boolean;
 }

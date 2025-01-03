@@ -33,50 +33,52 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
 
   coerceNxJson(tree, options);
 
-  for (const projectName of [
-    'components',
-    'forms',
-    'controls',
-    'tables'
-  ]) {
-    await initLibraryGenerator(tree, {
-      project: 'angular-' + projectName,
-      targets: {
-        indexExport: true,
-      },
-      coerce: {
-        directory: join('angular', projectName),
-        addTailwind: true,
-        buildable: true,
-      }
-    });
-  }
+  if (options.withSharedLibraries) {
+    for (const projectName of [
+      'components',
+      'forms',
+      'controls',
+      'tables'
+    ]) {
+      await initLibraryGenerator(tree, {
+        project: 'angular-' + projectName,
+        targets: {
+          indexExport: true,
+        },
+        coerce: {
+          directory: join('angular', projectName),
+          addTailwind: true,
+          buildable: true,
+        }
+      });
+    }
 
-  for (const projectName of [
-    'methods',
-    'data-sources',
-    'pipes',
-    'directives',
-    'guards',
-    'services',
-    'application-providers',
-    'utilities',
-    'shared',
-    'testing',
-    'resolvers',
-    'http-interceptors',
-    'bootstrap-hooks'
-  ]) {
-    await initLibraryGenerator(tree, {
-      project: 'angular-' + projectName,
-      targets: {
-        indexExport: true,
-      },
-      coerce: {
-        directory: join('angular', projectName),
-        buildable: true,
-      }
-    });
+    for (const projectName of [
+      'methods',
+      'data-sources',
+      'pipes',
+      'directives',
+      'guards',
+      'services',
+      'application-providers',
+      'utilities',
+      'shared',
+      'testing',
+      'resolvers',
+      'http-interceptors',
+      'bootstrap-hooks'
+    ]) {
+      await initLibraryGenerator(tree, {
+        project: 'angular-' + projectName,
+        targets: {
+          indexExport: true,
+        },
+        coerce: {
+          directory: join('angular', projectName),
+          buildable: true,
+        }
+      });
+    }
   }
 
 }

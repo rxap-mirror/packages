@@ -28,6 +28,11 @@
     "prefix": {
       "type": "string",
       "description": "The prefix for the angular components"
+    },
+    "withSharedLibraries": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to add shared libraries"
     }
   },
   "required": []
