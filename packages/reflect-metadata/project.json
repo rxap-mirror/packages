@@ -23,19 +23,9 @@
       "options": {
         "lintFilePatterns": ["packages/reflect-metadata/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/reflect-metadata/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

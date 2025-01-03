@@ -59,18 +59,8 @@
           "packages/angular/data-source/accordion/**/*.html"
         ]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/data-source/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

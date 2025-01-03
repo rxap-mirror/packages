@@ -35,18 +35,8 @@
           "packages/angular/pipes/santization/**/*.html"
         ]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/pipes/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

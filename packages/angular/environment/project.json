@@ -39,18 +39,8 @@
           "packages/angular/environment/**/*.html"
         ]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/environment/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

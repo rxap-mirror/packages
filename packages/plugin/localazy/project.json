@@ -54,19 +54,9 @@
           "packages/plugin/localazy/generators.json"
         ]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/plugin/localazy/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

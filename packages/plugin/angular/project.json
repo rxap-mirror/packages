@@ -66,19 +66,9 @@
           "packages/plugin/angular/executors.json"
         ]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/plugin/angular/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

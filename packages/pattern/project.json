@@ -21,19 +21,9 @@
       "options": {
         "lintFilePatterns": ["packages/pattern/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/pattern/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

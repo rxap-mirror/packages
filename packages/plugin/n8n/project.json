@@ -50,14 +50,8 @@
           "packages/plugin/n8n/docs"
         ]
       }
-    },
-
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/plugin/n8n/jest.config.ts"
-      }
     }
+
+
   }
 }

@@ -33,18 +33,8 @@
           "packages/angular/socket-io/**/*.html"
         ]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/socket-io/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

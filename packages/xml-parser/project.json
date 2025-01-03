@@ -21,19 +21,9 @@
       "options": {
         "lintFilePatterns": ["packages/xml-parser/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/xml-parser/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

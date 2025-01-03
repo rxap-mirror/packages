@@ -50,19 +50,9 @@
           "packages/plugin/application/generators.json"
         ]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/plugin/application/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

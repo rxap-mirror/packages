@@ -54,19 +54,9 @@
           "packages/plugin/docker/executors.json"
         ]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/plugin/docker/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

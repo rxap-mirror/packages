@@ -24,18 +24,8 @@
       "options": {
         "lintFilePatterns": ["packages/workspace/utilities/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/workspace/utilities/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

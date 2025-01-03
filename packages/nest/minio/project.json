@@ -31,18 +31,8 @@
       "options": {
         "lintFilePatterns": ["packages/nest/minio/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/nest/minio/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

@@ -45,17 +45,7 @@
           "tools/workspace/executors.json"
         ]
       }
-    },
-    "test": {
-      "options": {
-        "jestConfig": "tools/workspace/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
   }
 }

@@ -49,19 +49,9 @@
           "packages/plugin/gpt/generators.json"
         ]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/plugin/gpt/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

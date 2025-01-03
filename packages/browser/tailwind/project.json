@@ -23,18 +23,8 @@
       "options": {
         "lintFilePatterns": ["packages/browser/tailwind/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/browser/tailwind/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

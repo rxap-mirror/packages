@@ -23,19 +23,9 @@
       "options": {
         "lintFilePatterns": ["packages/workspace/ts-morph/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/workspace/ts-morph/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

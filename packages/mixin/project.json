@@ -20,18 +20,8 @@
       "options": {
         "lintFilePatterns": ["packages/mixin/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/mixin/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

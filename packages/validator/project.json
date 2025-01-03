@@ -20,19 +20,9 @@
       "options": {
         "lintFilePatterns": ["packages/validator/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/validator/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

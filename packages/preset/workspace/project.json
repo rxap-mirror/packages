@@ -45,15 +45,9 @@
           "packages/preset/workspace/docs"
         ]
       }
-    },
-
-
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/preset/workspace/jest.config.ts"
-      }
     }
+
+
+
   }
 }

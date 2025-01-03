@@ -23,18 +23,8 @@
       "options": {
         "lintFilePatterns": ["packages/json-schema-to-typescript/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/json-schema-to-typescript/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

@@ -49,15 +49,9 @@
           "packages/plugin/typedoc/docs"
         ]
       }
-    },
-
-
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/plugin/typedoc/jest.config.ts"
-      }
     }
+
+
+
   }
 }

@@ -35,17 +35,7 @@
       }
     },
 
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/forms/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
+
 
 
     "component-test": {

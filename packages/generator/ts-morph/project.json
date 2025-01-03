@@ -23,18 +23,8 @@
       "options": {
         "lintFilePatterns": ["packages/generator/ts-morph/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/generator/ts-morph/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

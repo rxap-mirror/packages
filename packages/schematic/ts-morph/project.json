@@ -23,19 +23,9 @@
       "options": {
         "lintFilePatterns": ["packages/schematic/ts-morph/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/schematic/ts-morph/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

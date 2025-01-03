@@ -18,15 +18,9 @@
           "packages/node/local-storage/docs"
         ]
       }
-    },
-
-
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/node/local-storage/jest.config.ts"
-      }
     }
+
+
+
   }
 }

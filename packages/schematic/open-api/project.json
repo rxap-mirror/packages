@@ -38,19 +38,9 @@
       "options": {
         "lintFilePatterns": ["packages/schematic/open-api/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/schematic/open-api/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

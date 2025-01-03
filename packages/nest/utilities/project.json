@@ -31,18 +31,8 @@
       "options": {
         "lintFilePatterns": ["packages/nest/utilities/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/nest/utilities/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

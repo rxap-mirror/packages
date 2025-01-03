@@ -31,18 +31,8 @@
       "options": {
         "lintFilePatterns": ["packages/nest/firebase/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/nest/firebase/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

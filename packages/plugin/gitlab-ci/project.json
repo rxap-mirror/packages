@@ -37,15 +37,9 @@
           "packages/plugin/gitlab-ci/docs"
         ]
       }
-    },
-
-
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/plugin/gitlab-ci/jest.config.ts"
-      }
     }
+
+
+
   }
 }

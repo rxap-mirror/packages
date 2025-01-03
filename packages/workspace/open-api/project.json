@@ -24,19 +24,9 @@
       "options": {
         "lintFilePatterns": ["packages/workspace/open-api/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/workspace/open-api/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

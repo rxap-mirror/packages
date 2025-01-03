@@ -26,13 +26,7 @@
         "development": {}
       },
       "defaultConfiguration": "development"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/nest/dto/jest.config.ts"
-      }
     }
+
   }
 }

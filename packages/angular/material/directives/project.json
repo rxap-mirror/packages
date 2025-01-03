@@ -48,17 +48,7 @@
       }
     },
 
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/material/directives/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
+
 
 
     "component-test": {

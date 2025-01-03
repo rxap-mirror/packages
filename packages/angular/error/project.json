@@ -24,18 +24,6 @@
       },
       "defaultConfiguration": "production"
     },
-    "test": {
-      "outputs": [],
-      "options": {
-        "jestConfig": "packages/angular/error/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
     "lint": {
       "options": {
         "lintFilePatterns": [

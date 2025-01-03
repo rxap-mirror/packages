@@ -41,15 +41,9 @@
           "packages/plugin/compodoc/docs"
         ]
       }
-    },
-
-
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/plugin/compodoc/jest.config.ts"
-      }
     }
+
+
+
   }
 }

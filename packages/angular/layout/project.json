@@ -40,17 +40,7 @@
       }
     },
 
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/layout/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
+
 
 
 

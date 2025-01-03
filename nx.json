@@ -40,36 +40,8 @@
     ]
   },
   "targetDefaults": {
-    "test": {
-      "cache": true,
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}",
-        "{workspaceRoot}/junit/{projectRoot}",
-        "{projectRoot}/coverage"
-      ],
-      "inputs": [
-        "test",
-        "^test",
-        "{workspaceRoot}/jest.preset.js",
-        "{workspaceRoot}/jest.preset.ts",
-        {
-          "env": "JEST_JUNIT_OUTPUT_DIR"
-        }
-      ],
-      "options": {
-        "passWithNoTests": true,
-        "silent": true,
-        "coverageReporters": ["json", "html"],
-        "codeCoverage": true
-      }
-    },
     "serve": {
       "dependsOn": ["build-info", "^copy-open-api-sdk", "^generate-open-api"]
-    },
-    "build": {
-      "inputs": ["build", "^build"],
-      "cache": true
     },
     "extract-i18n": {
       "outputs": ["{options.outputPath}"],
@@ -111,86 +83,24 @@
       ]
     },
 
-    "@nx/jest:jest": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}",
-        "{workspaceRoot}/junit/{projectRoot}",
-        "{projectRoot}/coverage"
-      ],
-      "inputs": [
-        "test",
-        "^test",
-        "{workspaceRoot}/jest.preset.js",
-        "{workspaceRoot}/jest.preset.ts",
-        {
-          "env": "JEST_JUNIT_OUTPUT_DIR"
-        }
-      ],
-      "options": {
-        "passWithNoTests": true,
-        "silent": true,
-        "coverageReporters": ["json", "html"],
-        "codeCoverage": true
-      },
-      "cache": true,
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "@nx/js:tsc": {
-      "cache": true,
+    "build": {
       "dependsOn": [
         "^build",
         "readme",
+        "typedoc",
         "compodoc",
         "index-export",
         "check-version",
         "build-tailwind",
         "generate-package-json",
         "check-ng-package",
-        "localazy-download",
         "build-info",
         "expose-as-schematic",
         "copy-open-api-sdk",
-        "^copy-open-api-sdk",
-        "^generate-open-api",
-        "bundle-json-schema",
-        "^index-export"
+        "bundle-json-schema"
       ],
-      "inputs": ["production", "^production"]
-    },
-    "@nx/angular:package": {
       "cache": true,
-      "dependsOn": [
-        "index-export",
-        "^index-export",
-        "^build",
-        "check-version",
-        "build-tailwind",
-        "check-ng-package"
-      ],
       "inputs": ["production", "^production"]
-    },
-    "@nx/js:swc": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
-    },
-    "@nx/angular:ng-packagr-lite": {
-      "dependsOn": [
-        "index-export",
-        "^index-export",
-        "^build",
-        "check-version",
-        "build-tailwind",
-        "check-ng-package"
-      ],
-      "inputs": ["production", "^production"],
-      "cache": true
     },
 
     "copy-open-api-sdk": {
@@ -200,6 +110,29 @@
       "cache": true
     },
 
+    "test": {
+      "cache": true,
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}",
+        "{workspaceRoot}/junit/{projectRoot}",
+        "{projectRoot}/coverage"
+      ],
+      "inputs": [
+        "test",
+        "{workspaceRoot}/jest.preset.js",
+        "{workspaceRoot}/jest.preset.ts",
+        "{projectRoot}/jest.config.ts",
+        {
+          "env": "JEST_JUNIT_OUTPUT_DIR"
+        }
+      ],
+      "options": {
+        "passWithNoTests": true,
+        "silent": true,
+        "coverageReporters": ["json", "html"],
+        "codeCoverage": true
+      }
+    },
     "lint": {
       "outputs": ["{options.outputFile}"],
       "inputs": [
@@ -328,6 +261,12 @@
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
       }
     },
     "./packages/plugin/library/src/plugin.ts",

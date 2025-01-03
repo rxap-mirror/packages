@@ -42,13 +42,6 @@
       }
     },
 
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/n8n/nodes/yaml/jest.config.ts"
-      }
-    },
     "fix-dependencies": {
       "options": {
         "peerDependencies": ["n8n-workflow"]

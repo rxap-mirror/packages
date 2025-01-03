@@ -23,19 +23,9 @@
       "options": {
         "lintFilePatterns": ["packages/schematic/xml-parser/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/schematic/xml-parser/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

@@ -45,15 +45,9 @@
           "packages/preset/angular/docs"
         ]
       }
-    },
-
-
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/preset/angular/jest.config.ts"
-      }
     }
+
+
+
   }
 }

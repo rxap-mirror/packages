@@ -23,19 +23,9 @@
       "options": {
         "lintFilePatterns": ["packages/schematic/utilities/**/*.ts"]
       }
-    },
-
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/schematic/utilities/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
+
   }
 }

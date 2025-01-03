@@ -31,18 +31,8 @@
       "options": {
         "lintFilePatterns": ["packages/nest/socket-io-client/**/*.ts"]
       }
-    },
-
-    "test": {
-      "options": {
-        "jestConfig": "packages/nest/socket-io-client/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
+
   }
 }

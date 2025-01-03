@@ -29,17 +29,7 @@
           "packages/angular/bootstrap/**/*.html"
         ]
       }
-    },
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/bootstrap/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
+
   }
 }
