@@ -10,6 +10,12 @@
       "x-prompt": "Has this workspace publishable packages?",
       "default": false
     },
+    "fullStack": {
+      "type": "boolean",
+      "description": "If true, the workspace will be initialized for full stack application development",
+      "x-prompt": "Is this workspace a full stack application?",
+      "default": false
+    },
     "standalone": {
       "type": "boolean",
       "description": "If true, the workspace will be initialized for standalone development",

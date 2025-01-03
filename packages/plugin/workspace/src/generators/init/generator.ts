@@ -60,7 +60,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   coerceDevContainerConfig(tree);
   coercePrettierConfig(tree);
   await coerceToolsProject(tree);
-  await coerceRootPackageJsonScripts(tree);
+  coerceRootPackageJsonScripts(tree, options);
   if (!options.skipLicense) {
     await coercePackageJsonLicense(tree, options);
   }
