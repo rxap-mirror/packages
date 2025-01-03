@@ -10,6 +10,8 @@ import {
   GetPackageJson,
   HasPackageJson,
   IsAngularProject,
+  IsLibraryProject,
+  IsN8NProject,
   IsNestJsProject,
   IsPluginProject,
   IsPublishable,
@@ -114,42 +116,45 @@ async function createProjectConfiguration(
   if (!projectConfiguration) {
     throw new Error(`Could not find project in '${ projectPath }'`);
   }
-  const tags = projectConfiguration.tags ?? [];
-
   if (existsSync(join(projectPath, 'README.md.handlebars'))) {
     targets['readme'] = createReadmeTarget(projectPath);
   }
 
-  targets['index-export'] = createIndexExportTarget();
-
-  if (HasPackageJson(tree, projectPath)) {
-    const packageJson = GetPackageJson(tree, projectPath);
-    if (IsPublishable(tree, projectConfiguration)) {
-      if ('nx-migrations' in packageJson) {
-        targets['update-package-group'] = createUpdatePackageGroupTarget();
-      }
-      targets['update-dependencies'] = createUpdateDependenciesTarget();
+  if (IsLibraryProject(projectConfiguration)) {
+    if (!IsPluginProject(projectConfiguration) && !IsN8NProject(projectConfiguration)) {
+      targets['index-export'] = createIndexExportTarget();
     }
-  }
 
-  if (IsAngularProject(projectConfiguration)) {
-    targets['check-version'] = createCheckVersionTarget('@angular/core');
-  }
-  if (IsPluginProject(projectConfiguration)) {
-    targets['check-version'] = createCheckVersionTarget('nx');
-  }
-  if (IsNestJsProject(projectConfiguration)) {
-    targets['check-version'] = createCheckVersionTarget('@nestjs/core');
-  }
-  if (IsSchematicProject(projectConfiguration)) {
-    targets['check-version'] = createCheckVersionTarget('@angular-devkit/schematics');
-  }
-  if (existsSync(join(projectPath, 'generators.json'))) {
-    targets['expose-as-schematic'] = createExposeAsSchematicTarget();
-  }
-  if (globSync(join(projectPath, 'src/**/*.schema.json'))?.length) {
-    targets['index-json-schema'] = createIndexJsonSchemaTarget();
-    targets['bundle-json-schema'] = createBundleJsonSchemaTarget();
+    if (HasPackageJson(tree, projectPath)) {
+      const packageJson = GetPackageJson(tree, projectPath);
+      if (IsPublishable(tree, projectConfiguration)) {
+        if ('nx-migrations' in packageJson) {
+          targets['update-package-group'] = createUpdatePackageGroupTarget();
+        }
+        targets['update-dependencies'] = createUpdateDependenciesTarget();
+      }
+    }
+
+    if (IsAngularProject(projectConfiguration)) {
+      targets['check-version'] = createCheckVersionTarget('@angular/core');
+    }
+    if (IsPluginProject(projectConfiguration)) {
+      targets['check-version'] = createCheckVersionTarget('nx');
+    }
+    if (IsNestJsProject(projectConfiguration)) {
+      targets['check-version'] = createCheckVersionTarget('@nestjs/core');
+    }
+    if (IsSchematicProject(projectConfiguration)) {
+      targets['check-version'] = createCheckVersionTarget('@angular-devkit/schematics');
+    }
+    if (existsSync(join(projectPath, 'generators.json'))) {
+      targets['expose-as-schematic'] = createExposeAsSchematicTarget();
+    }
+    if (globSync(join(projectPath, 'src/**/*.schema.json'))?.length) {
+      targets['index-json-schema'] = createIndexJsonSchemaTarget();
+      targets['bundle-json-schema'] = createBundleJsonSchemaTarget();
+    }
+
   }
 
   return [projectPath, {

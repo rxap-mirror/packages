@@ -3,6 +3,7 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
+  CoerceIgnorePattern,
   HasMigrations,
   IsBuildable,
   IsPluginProject,
@@ -10,6 +11,7 @@ import {
   IsPublishable,
   IsSchematicProject,
 } from '@rxap/workspace-utilities';
+import { join } from 'path';
 import { initProject as initBuildableProject } from '../init-buildable/init-project';
 import { initProject as initPluginProject } from '../init-plugin/init-project';
 import { initProject as initPresetProject } from '../init-preset/init-project';
@@ -51,6 +53,12 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   if (HasMigrations(tree, { name: projectName })) {
     initWithMigrationProject(tree, projectName, project, options);
   }
+
+  CoerceIgnorePattern(tree, join(project.root, '.eslintignore'), [
+    'dist',
+    'coverage',
+    'node_modules',
+  ]);
 
   cleanup(tree, projectName);
 
