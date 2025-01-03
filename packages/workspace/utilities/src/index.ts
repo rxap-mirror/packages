@@ -1,7 +1,3 @@
-// region project
-export * from './lib/project/foreach-init-project';
-// endregion
-
 // region ts-config
 export * from './lib/ts-config/compile-on-save-definition';
 export * from './lib/ts-config/compiler-options-definition';
@@ -14,6 +10,10 @@ export * from './lib/ts-config/interface';
 export * from './lib/ts-config/references-definition';
 export * from './lib/ts-config/ts-node-definition';
 export * from './lib/ts-config/type-acquisition-definition';
+// endregion
+
+// region project
+export * from './lib/project/foreach-init-project';
 // endregion
 
 // region package-json
@@ -71,7 +71,7 @@ export * from './lib/builders-json/index';
 export * from './lib/builders-json/interface';
 // endregion
 
-// region
+// region 
 export * from './lib/build-angular-base-path';
 export * from './lib/build-nest-base-path';
 export * from './lib/build-nest-controller-name';

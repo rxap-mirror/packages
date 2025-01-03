@@ -11,7 +11,7 @@ import {
   readFileSync,
 } from 'fs';
 import { join } from 'path';
-import gt from 'semver/functions/gt';
+import { gt } from 'semver';
 import { IsRxapRepository } from './is-rxap-repository';
 import {
   GetJsonFile,
