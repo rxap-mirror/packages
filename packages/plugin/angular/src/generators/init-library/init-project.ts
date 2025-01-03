@@ -1,12 +1,14 @@
 import {
   ProjectConfiguration,
-  readJson,
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { LibraryInitProject } from '@rxap/plugin-library';
-import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { IsBuildable } from '@rxap/workspace-utilities';
+import {
+  CoerceIgnorePattern,
+  IsBuildable,
+} from '@rxap/workspace-utilities';
+import { join } from 'path';
 import { coerceTestSetup } from '../../lib/coerce-test-setup';
 import { checkIfSecondaryEntrypointIncludeInTheTsConfig } from './check-if-secondary-entrypoint-include-in-the-ts-config';
 import { cleanup } from './cleanup';
@@ -38,5 +40,9 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   coerceTestSetup(tree, projectName);
 
   updateProjectConfiguration(tree, projectName, project);
+
+  CoerceIgnorePattern(tree, join(project.root, '.eslintignore'), [
+    '.angular',
+  ]);
 
 }

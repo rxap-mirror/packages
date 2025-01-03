@@ -127,7 +127,7 @@ function createBuildTailwindTarget(isRxapRepository: boolean): TargetConfigurati
     });
   }
   return {
-    executor: '@rxap/plugin-angular:build-tailwind',
+    executor: '@rxap/plugin-angular:tailwind',
     configurations: {
       production: {
         minify: true,
