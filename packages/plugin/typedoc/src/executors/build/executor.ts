@@ -24,12 +24,12 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
     options.tsConfig = tsConfig;
   }
   if (!options.tsConfig) {
-    if (existsSync(join(projectSourceRoot, 'tsconfig.typedoc.json'))) {
-      options.tsConfig = join(projectSourceRoot, 'tsconfig.typedoc.json');
-    } else if (existsSync(join(projectSourceRoot, 'tsconfig.lib.json'))) {
-      options.tsConfig = join(projectSourceRoot, 'tsconfig.lib.json');
-    } else if (existsSync(join(projectSourceRoot, 'tsconfig.json'))) {
-      options.tsConfig = join(projectSourceRoot, 'tsconfig.json');
+    if (existsSync(join(projectRoot, 'tsconfig.typedoc.json'))) {
+      options.tsConfig = join(projectRoot, 'tsconfig.typedoc.json');
+    } else if (existsSync(join(projectRoot, 'tsconfig.lib.json'))) {
+      options.tsConfig = join(projectRoot, 'tsconfig.lib.json');
+    } else if (existsSync(join(projectRoot, 'tsconfig.json'))) {
+      options.tsConfig = join(projectRoot, 'tsconfig.json');
     }
   }
   if (!options.tsConfig) {
