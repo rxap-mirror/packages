@@ -100,6 +100,7 @@ export class ClientRMQExchange extends ClientProxy {
     );
 
     const withReconnect$ = fromEvent(this.client, CONNECT_EVENT).pipe(
+      tap(() => this.logger.log('Connected to RMQ', 'ClientRMQExchange')),
       skip(1),
     );
     const source$: Observable<{ url: string, connection: Connection }> = merge(withDisconnect$, withReconnect$);
@@ -134,7 +135,8 @@ export class ClientRMQExchange extends ClientProxy {
   ): Observable<T> {
     const eventToError = (eventType: string) =>
       fromEvent(instance, eventType).pipe(
-        map((err: unknown) => {
+        map((err: any) => {
+          this.logger.error(`Error occurred for event type "${ eventType }": ${err.message}`, err.stack, 'ClientRMQExchange');
           throw err;
         }),
       );
@@ -188,7 +190,7 @@ export class ClientRMQExchange extends ClientProxy {
         if (msg) {
           this.responseEmitter.emit(msg.properties.correlationId, msg);
         } else {
-          this.logger.warn(`Message is empty from RMQ queue ${ this.options.replyQueue ?? REPLY_QUEUE }`);
+          this.logger.warn(`Message is empty from RMQ queue ${ this.options.replyQueue ?? REPLY_QUEUE }`, 'ClientRMQExchange');
         }
       },
       {
@@ -198,13 +200,13 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   public handleError(client: AmqpConnectionManager): void {
-    client.addListener(ERROR_EVENT, (err: any) => this.logger.error(err));
+    client.addListener(ERROR_EVENT, (err: any) => this.logger.error(err, undefined, 'ClientRMQExchange'));
   }
 
   public handleDisconnectError(client: AmqpConnectionManager): void {
     client.addListener(DISCONNECT_EVENT, (err: any) => {
-      this.logger.error(DISCONNECTED_RMQ_MESSAGE);
-      this.logger.error(err);
+      this.logger.error(DISCONNECTED_RMQ_MESSAGE, undefined, 'ClientRMQExchange');
+      this.logger.error(err, undefined, 'ClientRMQExchange');
     });
   }
 
@@ -243,11 +245,11 @@ export class ClientRMQExchange extends ClientProxy {
       options,
     );
 
-    this.logger.verbose('Deserialized response: %JSON', response, 'ClientRMQExchange');
+    // this.logger.verbose('Deserialized response: %JSON', response, 'ClientRMQExchange');
     if (err) {
       this.logger.verbose('Deserialized error: %JSON', err, 'ClientRMQExchange');
     }
-    this.logger.verbose('Deserialized isDisposed: %JSON', isDisposed, 'ClientRMQExchange');
+    // this.logger.verbose('Deserialized isDisposed: %JSON', isDisposed, 'ClientRMQExchange');
     if (isDisposed || err) {
       callback({
         err,

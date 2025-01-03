@@ -5,8 +5,13 @@ export class ErrorSerializer {
 
   serialize(error: Error | unknown): SerializedError {
 
-    if (!(error instanceof Error)) {
-      return { message: this.stringifyCircular(error), name: 'Unknown' };
+    if (!(
+      error instanceof Error
+    )) {
+      return {
+        message: this.stringifyCircular(error),
+        name: 'Unknown',
+      };
     }
 
     const serializedError: SerializedError = {

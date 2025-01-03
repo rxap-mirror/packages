@@ -23,6 +23,7 @@ import {
   CONNECTION_FAILED_MESSAGE,
   DISCONNECT_EVENT,
   DISCONNECTED_RMQ_MESSAGE,
+  ERROR_EVENT,
   NO_MESSAGE_HANDLER,
   RQM_NO_EVENT_HANDLER,
   RQM_NO_MESSAGE_HANDLER,
@@ -95,6 +96,9 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
   ) {
     this.logger.verbose?.('Connecting to RMQ server...', 'ServerRMQ');
     this.server = this.createClient();
+
+    this.server.addListener(ERROR_EVENT, (err: any) => this.logger.error(err, undefined, 'ServerRMQ'));
+
     this.server.on(CONNECT_EVENT, () => {
       if (this.channel) {
         return;
@@ -111,13 +115,12 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
       INFINITE_CONNECTION_ATTEMPTS,
     );
     this.server.on(DISCONNECT_EVENT, (err: any) => {
-      this.logger.error(DISCONNECTED_RMQ_MESSAGE);
-      this.logger.error(err);
+      this.logger.error(DISCONNECTED_RMQ_MESSAGE + ': ' + err.message, undefined, 'ServerRMQ');
     });
     this.server.on(CONNECT_FAILED_EVENT, (error: Record<string, unknown>) => {
       this.logger.error(CONNECTION_FAILED_MESSAGE);
       if (error?.['err']) {
-        this.logger.error(error['err']);
+        this.logger.error(CONNECTION_FAILED_MESSAGE + ': ' + error['err'], undefined, 'ServerRMQ');
       }
       const isReconnecting = !!this.channel;
       if (
@@ -202,7 +205,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     message: Record<string, any>,
     channel: any,
   ): Promise<void> {
-    this.logger.debug?.('Message received', 'ServerRMQ');
+    this.logger.verbose?.('Message received', 'ServerRMQ');
     if (isNil(message)) {
       return;
     }
@@ -253,14 +256,12 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
         properties.correlationId,
       );
     }
-    const response$ = this.transformToObservable(
-      await handler(packet.data, rmqContext),
-    );
+    const response$ = this.transformToObservable(handler(packet.data, rmqContext));
 
     const publish = <T>(data: T) =>
       this.sendMessage(data, properties.replyTo, properties.correlationId);
 
-    this.logger.debug?.('Handling event and sending response', 'ServerRMQ');
+    this.logger.verbose?.('Handling event and sending response', 'ServerRMQ');
     response$ && this.send(response$, publish);
   }
 
