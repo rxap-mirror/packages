@@ -37,11 +37,7 @@ exports[`init should init default workspace 2`] = `
     "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
     "rxap:compose": "nx g @rxap/schematic-composer:compose",
     "prepare": "husky install",
-    "schematic": "bash tools/scripts/schematic.sh",
-    "server": "bash tools/scripts/start-local-dev-services.sh",
-    "server:status": "bash tools/scripts/get-local-dev-services-status.sh",
-    "server:stop": "bash tools/scripts/stop-local-dev-services.sh",
-    "init:env": "bash tools/scripts/setup-env-file.sh"
+    "schematic": "bash tools/scripts/schematic.sh"
   },
   "dependencies": {
     "tslib": "^2.3.0"
@@ -102,58 +98,14 @@ exports[`init should init default workspace 3`] = `
     "lint": {
       "cache": true
     },
-    "ci-info": {
-      "cache": true
-    },
-    "index-export": {
-      "cache": true
-    },
-    "swagger-build": {
-      "cache": true
-    },
-    "swagger-generate": {
-      "cache": true
-    },
-    "generate-package-json": {
-      "cache": true
-    },
-    "generate-open-api": {
-      "cache": true
-    },
     "@nx/eslint:lint": {
+      "cache": true,
       "inputs": [
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
         "{workspaceRoot}/eslint.config.js"
-      ],
-      "options": {
-        "quiet": true
-      },
-      "cache": true
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}",
-        "{workspaceRoot}/junit/{projectRoot}",
-        "{projectRoot}/coverage"
-      ],
-      "inputs": [
-        "test",
-        "^test",
-        "{workspaceRoot}/jest.preset.js",
-        "{workspaceRoot}/jest.preset.ts",
-        {
-          "env": "JEST_JUNIT_OUTPUT_DIR"
-        }
-      ],
-      "options": {
-        "passWithNoTests": true,
-        "silent": true,
-        "coverageReporters": ["json", "html"],
-        "codeCoverage": true
-      }
+      ]
     },
     "@nx/jest:jest": {
       "cache": true,

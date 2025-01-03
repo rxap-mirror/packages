@@ -13,7 +13,7 @@
         "main": "packages/plugin/nestjs/src/index.ts",
         "tsConfig": "packages/plugin/nestjs/tsconfig.lib.json",
         "generateExportsField": true,
-        "additionalEntryPoints": ["packages/plugin/nestjs/src/plugin.ts"],
+        "additionalEntryPoints": ["packages/plugin/nestjs/src/application.ts"],
         "assets": [
           "packages/plugin/nestjs/*.md",
           {
