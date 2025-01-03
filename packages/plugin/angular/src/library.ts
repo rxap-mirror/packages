@@ -148,5 +148,6 @@ function createCheckNgPackageTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-angular:check-ng-package',
     inputs: [ '{projectRoot}/ng-package.json', '{projectRoot}/package.json' ],
+    cache: true,
   };
 }

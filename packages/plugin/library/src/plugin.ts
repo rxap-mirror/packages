@@ -205,7 +205,8 @@ function createCheckVersionTarget(packageName: string): TargetConfiguration {
   return {
     executor: '@rxap/plugin-library:check-version',
     inputs: ['{projectRoot}/package.json', '{workspaceRoot}/package.json'],
-    options: { packageName }
+    options: { packageName },
+    cache: true,
   };
 }
 
@@ -247,6 +248,10 @@ function createIndexExportTarget(): TargetConfiguration {
     executor: '@rxap/plugin-library:index-export',
     outputs: ['{projectRoot}/src/index.ts'],
     cache: true,
-    inputs: ['production']
+    inputs: [
+      `{projectRoot}/src/lib/**/*.ts`,
+      '!{projectRoot}/src/lib/**/*.{spec,stories,cy}.ts',
+      '!{projectRoot}/src/index.ts'
+    ]
   };
 }
