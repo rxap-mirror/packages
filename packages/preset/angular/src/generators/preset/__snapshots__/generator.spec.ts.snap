@@ -143,13 +143,7 @@ exports[`preset should use angular preset 3`] = `
       "cache": true
     },
     "index-export": {
-      "cache": true,
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/src/index.ts"],
-      "options": {
-        "generator": "@rxap/plugin-library:index-export"
-      },
-      "inputs": ["production"]
+      "cache": true
     },
     "swagger-build": {
       "cache": true
@@ -227,51 +221,7 @@ exports[`preset should use angular preset 3`] = `
       "dependsOn": ["^index-export", "index-export", "^build"]
     },
     "fix-dependencies": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": ["{projectRoot}/package.json"],
-      "options": {
-        "generator": "@rxap/plugin-library:fix-dependencies",
-        "options": {
-          "strict": true,
-          "onlyDependencies": true
-        }
-      },
       "dependsOn": ["^fix-dependencies"]
-    },
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies"
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group"
-    },
-    "readme": {
-      "inputs": [
-        "{projectRoot}/README.md.handlebars",
-        "{projectRoot}/GETSTARTED.md",
-        "{projectRoot}/GUIDES.md",
-        "{projectRoot}/package.json",
-        "{projectRoot}/collection.json",
-        "{projectRoot}/generators.json",
-        "{projectRoot}/executors.json",
-        "{projectRoot}/builders.json"
-      ],
-      "outputs": ["{projectRoot}/README.md"],
-      "cache": true
-    },
-    "linking": {
-      "executor": "@rxap/plugin-library:node-modules-linking",
-      "dependsOn": ["build", "^linking"],
-      "inputs": [
-        {
-          "env": "CI_JOB_ID"
-        }
-      ]
-    },
-    "check-version": {
-      "cache": true
-    },
-    "expose-as-schematic": {
-      "cache": true
     },
     "@nx/angular:ng-packagr-lite": {
       "dependsOn": [
@@ -282,24 +232,7 @@ exports[`preset should use angular preset 3`] = `
         "build-tailwind",
         "check-ng-package"
       ],
-      "inputs": ["production", "^production"],
-      "cache": true
-    },
-    "build-tailwind": {
-      "outputs": ["{projectRoot}/theme.css"],
-      "inputs": [
-        "{projectRoot}/**/*.html",
-        "{projectRoot}/**/*.scss",
-        "{projectRoot}/**/*.css"
-      ],
-      "cache": true
-    },
-    "check-ng-package": {
-      "inputs": ["{projectRoot}/ng-package.json", "{projectRoot}/package.json"],
-      "cache": true
-    },
-    "copy-open-api-sdk": {
-      "cache": true
+      "inputs": ["production", "^production"]
     }
   },
   "namedInputs": {
