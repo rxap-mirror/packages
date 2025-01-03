@@ -74,54 +74,19 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   CoerceNxJsonGenerators(nxJson, '@nx/plugin:generator', {
     'unitTestRunner': 'none',
   });
-  CoerceNxJsonCacheableOperation(nxJson, 'ci-info');
-  CoerceNxJsonCacheableOperation(nxJson, 'index-export');
-  CoerceNxJsonCacheableOperation(nxJson, 'swagger-build');
-  CoerceNxJsonCacheableOperation(nxJson, 'swagger-generate');
-  CoerceNxJsonCacheableOperation(nxJson, 'generate-package-json');
-  CoerceNxJsonCacheableOperation(nxJson, 'generate-open-api');
-
-  CoerceTarget(nxJson, '@nx/eslint:lint', {
-    inputs: [
-      'default',
-      '{workspaceRoot}/.eslintrc.json',
-      '{workspaceRoot}/.eslintignore',
-      '{workspaceRoot}/eslint.config.js',
-    ],
-    options: {
-      quiet: true
-    }
-  }, Strategy.OVERWRITE);
-
-  CoerceTarget(nxJson, 'test', {
-    'executor': '@nx/jest:jest',
-    'outputs': [
-      '{workspaceRoot}/coverage/{projectRoot}',
-      '{workspaceRoot}/junit/{projectRoot}',
-      '{projectRoot}/coverage',
-    ],
-    'inputs': [
-      'test',
-      '^test',
-      '{workspaceRoot}/jest.preset.js',
-      '{workspaceRoot}/jest.preset.ts',
-      {
-        'env': 'JEST_JUNIT_OUTPUT_DIR',
-      },
-    ],
-    'options': {
-      'passWithNoTests': true,
-      'silent': true,
-      'coverageReporters': [
-        'json',
-        "html"
-      ],
-      'codeCoverage': true,
-    },
-  }, Strategy.OVERWRITE);
 
   nxJson.cli ??= {};
   nxJson.cli.packageManager ??= 'yarn';
+
+  if (options.packages) {
+    nxJson.release ??= {};
+    nxJson.release.projectsRelationship ??= 'independent';
+    nxJson.release.version ??= {};
+    nxJson.release.version.preVersionCommand ??= 'yarn dlx nx run-many -t build';
+    nxJson.release.version.conventionalCommits ??= true;
+    nxJson.release.changelog ??= {};
+    nxJson.release.changelog.projectChangelogs ??= true;
+  }
 
   updateNxJson(tree, nxJson);
 }

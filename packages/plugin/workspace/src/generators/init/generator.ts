@@ -52,10 +52,6 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     });
   }
 
-  if (options.packages) {
-    CoerceLernaJson(tree);
-  }
-
   await addPackageDependencies(tree);
   coerceIgnorePattern(tree);
   await coercePackageJson(tree, options);
