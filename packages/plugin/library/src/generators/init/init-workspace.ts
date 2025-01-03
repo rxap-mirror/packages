@@ -1,5 +1,13 @@
-import { Tree } from '@nx/devkit';
-import { IsAlreadyExecuted } from '@rxap/workspace-utilities';
+import {
+  readNxJson,
+  Tree,
+  updateNxJson,
+} from '@nx/devkit';
+import {
+  CoerceNxPlugin,
+  IsAlreadyExecuted,
+  IsRxapRepository,
+} from '@rxap/workspace-utilities';
 import { initWorkspace as initBuildableWorkspace } from '../init-buildable/init-workspace';
 import { initWorkspace as initPluginWorkspace } from '../init-plugin/init-workspace';
 import { initWorkspace as initPresetWorkspace } from '../init-preset/init-workspace';
@@ -14,6 +22,16 @@ export function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   if (IsAlreadyExecuted([__dirname, __filename, 'initWorkspace'].join('_'))) {
     return;
   }
+
+  const nxJson = readNxJson(tree)!;
+
+  if (IsRxapRepository(tree)) {
+    CoerceNxPlugin(nxJson, './packages/plugin/library/src/plugin.ts');
+  } else {
+    CoerceNxPlugin(nxJson, '@rxap/plugin-library/plugin');
+  }
+
+  updateNxJson(tree, nxJson);
 
   console.log('init library workspace');
 
