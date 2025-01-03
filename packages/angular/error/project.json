@@ -7,7 +7,6 @@
   "tags": ["angular", "ngx", "packages", "scope:compose"],
   "implicitDependencies": ["angular-error"],
   "targets": {
-
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -32,10 +31,6 @@
         ]
       }
     },
-
-
-
-
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/error/cypress.config.ts",

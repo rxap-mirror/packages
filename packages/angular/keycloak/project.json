@@ -12,7 +12,6 @@
     "angular:standalone"
   ],
   "targets": {
-
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -29,10 +28,6 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -41,7 +36,5 @@
         ]
       }
     }
-
-
   }
 }

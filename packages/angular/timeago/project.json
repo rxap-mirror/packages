@@ -7,7 +7,6 @@
   "tags": ["angular", "ngx", "packages", "angular:standalone"],
   "implicitDependencies": ["angular-timeago"],
   "targets": {
-
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -24,12 +23,6 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
-
-
-
     "component-test": {
       "executor": "@nx/cypress:cypress",
       "options": {
@@ -44,6 +37,5 @@
         }
       }
     }
-
   }
 }

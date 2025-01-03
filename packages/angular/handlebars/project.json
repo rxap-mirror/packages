@@ -28,9 +28,6 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
     "fix-dependencies": {
       "options": {
         "dependencies": ["handlebars"]
@@ -44,7 +41,5 @@
         ]
       }
     }
-
-
   }
 }

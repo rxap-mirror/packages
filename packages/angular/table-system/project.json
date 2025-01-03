@@ -22,16 +22,11 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/table-system/cypress.config.ts"
       }
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -40,7 +35,5 @@
         ]
       }
     }
-
-
   }
 }

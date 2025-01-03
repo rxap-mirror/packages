@@ -32,6 +32,7 @@
     "ngx",
     "packages",
     "rxap",
+    "scope:compose",
     "scope:integration"
   ],
   "nx-migrations": {

@@ -6,7 +6,6 @@
   "projectType": "library",
   "tags": ["angular", "ngx", "packages", "scope:utilities"],
   "targets": {
-
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -23,16 +22,12 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/components/cypress.config.ts",
         "devServerTarget": "angular:build"
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -41,7 +36,5 @@
         ]
       }
     }
-
-
   }
 }

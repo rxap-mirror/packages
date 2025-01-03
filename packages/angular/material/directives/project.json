@@ -22,11 +22,6 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -47,10 +42,6 @@
         ]
       }
     },
-
-
-
-
     "component-test": {
       "executor": "@nx/cypress:cypress",
       "options": {
@@ -65,8 +56,6 @@
         }
       }
     },
-
-
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {

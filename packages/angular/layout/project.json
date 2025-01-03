@@ -22,15 +22,11 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/layout/cypress.config.ts"
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -39,13 +35,6 @@
         ]
       }
     },
-
-
-
-
-
-
-
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {

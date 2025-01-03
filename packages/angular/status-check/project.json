@@ -31,16 +31,11 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/status-check/cypress.config.ts"
       }
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -49,7 +44,5 @@
         ]
       }
     }
-
-
   }
 }

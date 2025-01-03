@@ -22,9 +22,6 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
     "fix-dependencies": {
       "options": {
         "dependencies": ["ajv", "openapi-types"]
@@ -40,7 +37,5 @@
         ]
       }
     }
-
-
   }
 }

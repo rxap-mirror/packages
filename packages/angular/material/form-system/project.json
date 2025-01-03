@@ -22,9 +22,6 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/material/form-system/cypress.config.ts"
@@ -35,7 +32,6 @@
         }
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -44,7 +40,5 @@
         ]
       }
     }
-
-
   }
 }

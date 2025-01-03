@@ -82,7 +82,6 @@
         "{projectRoot}/tsconfig.storybook.json"
       ]
     },
-
     "build": {
       "dependsOn": [
         "^build",
@@ -97,19 +96,18 @@
         "build-info",
         "expose-as-schematic",
         "copy-open-api-sdk",
-        "bundle-json-schema"
+        "bundle-json-schema",
+        "^index-export"
       ],
       "cache": true,
       "inputs": ["production", "^production"]
     },
-
     "copy-open-api-sdk": {
       "dependsOn": ["^generate-open-api"],
       "executor": "@rxap/plugin-open-api:copy-open-api-sdk",
       "outputs": ["{projectRoot}/src/lib/openapi"],
       "cache": true
     },
-
     "test": {
       "cache": true,
       "outputs": [
@@ -152,6 +150,31 @@
         "imageName": "rxap/packages",
         "dockerfile": "shared/angular/Dockerfile"
       }
+    },
+    "@nx/js:tsc": {
+      "dependsOn": ["^index-export", "index-export", "^build"]
+    },
+    "fix-dependencies": {
+      "dependsOn": ["^fix-dependencies"]
+    },
+    "@nx/angular:ng-packagr-lite": {
+      "dependsOn": [
+        "index-export",
+        "^index-export",
+        "^build",
+        "check-version",
+        "build-tailwind",
+        "check-ng-package"
+      ],
+      "inputs": ["production", "^production"]
+    },
+    "build-tailwind": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": ["browser-tailwind"]
+        }
+      ]
     }
   },
   "generators": {

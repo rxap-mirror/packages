@@ -23,6 +23,11 @@
       "input": "./packages/angular/layout/src/migrations",
       "glob": "**/!(*.ts|*.js|*.json)",
       "output": "./src/migrations"
+    },
+    {
+      "input": "src/migrations",
+      "glob": "**/!(*.ts|*.js|*.json)",
+      "output": "src/migrations"
     }
   ],
   "allowedNonPeerDependencies": [

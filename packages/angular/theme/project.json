@@ -6,7 +6,6 @@
   "projectType": "library",
   "tags": ["angular", "ngx", "packages", "scope:compose"],
   "targets": {
-
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -23,6 +22,5 @@
       },
       "defaultConfiguration": "production"
     }
-
   }
 }

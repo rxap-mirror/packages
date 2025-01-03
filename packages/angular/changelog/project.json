@@ -16,7 +16,6 @@
         "skipDataSources": true
       }
     },
-
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
@@ -33,12 +32,6 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
-
-
-
     "component-test": {
       "executor": "@nx/cypress:cypress",
       "options": {
@@ -53,7 +46,5 @@
         }
       }
     }
-
-
   }
 }

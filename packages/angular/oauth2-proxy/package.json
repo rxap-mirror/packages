@@ -31,7 +31,8 @@
     "angular-oauth2-proxy",
     "ngx",
     "packages",
-    "rxap"
+    "rxap",
+    "scope:integration"
   ],
   "nx-migrations": {
     "packageGroup": [

@@ -22,11 +22,6 @@
       },
       "defaultConfiguration": "production"
     },
-
-
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -35,7 +30,5 @@
         ]
       }
     }
-
-
   }
 }

@@ -17,7 +17,6 @@ import { extendAngularSpecificEslint } from './extend-angular-specific-eslint';
 import { InitLibraryGeneratorSchema } from './schema';
 import { updatePackageJson } from './update-package-json';
 import { updateProjectNgPackageConfiguration } from './update-project-ng-package-configuration';
-import { updateProjectTargets } from './update-project-targets';
 import { updateTsConfig } from './update-ts-config';
 
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
