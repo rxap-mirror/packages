@@ -1,4 +1,4 @@
-export interface CopyClientSdkExecutorSchema {
+export interface CopyOpenApiSdkExecutorSchema {
   clientSdkProject: string;
   angular?: boolean;
   nestJs?: boolean;

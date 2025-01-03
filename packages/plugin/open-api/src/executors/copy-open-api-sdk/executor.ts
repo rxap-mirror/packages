@@ -7,7 +7,7 @@ import {
   rmSync,
 } from 'fs';
 import { join } from 'path';
-import { CopyClientSdkExecutorSchema } from './schema';
+import { CopyOpenApiSdkExecutorSchema } from './schema';
 
 const GENERIC_SOURCE_FILE_FOLDER = [
   'parameters',
@@ -26,7 +26,7 @@ const NEST_JS_SOURCE_FILE_FOLDER = [
   'commands',
 ];
 
-function getAngularSourceFileFolder(options: CopyClientSdkExecutorSchema) {
+function getAngularSourceFileFolder(options: CopyOpenApiSdkExecutorSchema) {
   const copy = [ ...ANGULAR_SOURCE_FILE_FOLDER ];
   if (options.skipDataSources) {
     copy.splice(copy.indexOf('data-sources'), 1);
@@ -40,7 +40,7 @@ function getAngularSourceFileFolder(options: CopyClientSdkExecutorSchema) {
   return copy;
 }
 
-function clearOutputDir(options: CopyClientSdkExecutorSchema, context: ExecutorContext) {
+function clearOutputDir(options: CopyOpenApiSdkExecutorSchema, context: ExecutorContext) {
   const projectSourceRoot = GetProjectSourceRoot(context);
   // if the output dir exists
   if (existsSync(join(projectSourceRoot, 'lib', options.outputDir))) {
@@ -54,7 +54,7 @@ function clearOutputDir(options: CopyClientSdkExecutorSchema, context: ExecutorC
   mkdirSync(join(projectSourceRoot, 'lib', options.outputDir), { recursive: true });
 }
 
-function copyFolder(options: CopyClientSdkExecutorSchema, context: ExecutorContext, folderName: string) {
+function copyFolder(options: CopyOpenApiSdkExecutorSchema, context: ExecutorContext, folderName: string) {
   const sourceProjectSourceRoot = GetProjectSourceRoot(context, options.clientSdkProject);
   const targetProjectSourceRoot = GetProjectSourceRoot(context);
   const sourceFolderPath = join(sourceProjectSourceRoot, 'lib', folderName);
@@ -69,7 +69,7 @@ function copyFolder(options: CopyClientSdkExecutorSchema, context: ExecutorConte
 }
 
 export default async function runExecutor(
-  options: CopyClientSdkExecutorSchema,
+  options: CopyOpenApiSdkExecutorSchema,
   context: ExecutorContext,
 ) {
 
@@ -80,7 +80,7 @@ export default async function runExecutor(
     options.skipRemoteMethods = false;
   }
 
-  console.log('Executor ran for CopyClientSdk', options);
+  console.log('Executor ran for CopyOpenApiSdk', options);
 
   if (!context.projectsConfigurations.projects[options.clientSdkProject]) {
     throw new Error(`Could not find project '${ options.clientSdkProject }'`);
