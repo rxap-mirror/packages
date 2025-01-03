@@ -51,6 +51,10 @@ export function IsPluginProject(project: { tags?: string[] }): boolean {
   return !!project.tags?.includes('plugin');
 }
 
+export function IsN8NProject(project: { tags?: string[] }): boolean {
+  return !!project.tags?.includes('n8n');
+}
+
 /**
  * Determines if the given project is categorized as a 'preset' by checking the presence of the 'preset' tag in its tags array.
  *
