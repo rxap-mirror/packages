@@ -50,7 +50,7 @@ yarn nx reset
     --target="build" \
     --exclude="angular" \
     --configuration="production" \
-    --skip-nx-cache 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
+    --nxBail 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
   exit_code=${PIPESTATUS[0]}
   if [ $exit_code -ne 0 ]; then
     exit $exit_code
