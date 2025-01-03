@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/preset-angular@20.0.0-dev.1...@rxap/preset-angular@20.0.0-dev.2) (2025-01-03)
+
+### Features
+
+- support nx plugins ([d8ca485](https://gitlab.com/rxap/packages/commit/d8ca4858aa1fd1f8529a75440d4a283a0f03a01e))
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/preset-angular@19.0.9-dev.1...@rxap/preset-angular@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/preset-angular

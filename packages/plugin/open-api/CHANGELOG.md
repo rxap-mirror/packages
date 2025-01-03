@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@20.0.0-dev.1...@rxap/plugin-open-api@20.0.0-dev.2) (2025-01-03)
+
+### Features
+
+- support nx plugins ([e328b50](https://gitlab.com/rxap/packages/commit/e328b507488df02562107a6288f60f7953a76191))
+- support nx plugins ([3ce5d42](https://gitlab.com/rxap/packages/commit/3ce5d428533386361226f95202e7b970021c1104))
+- support nx plugins ([a28c12d](https://gitlab.com/rxap/packages/commit/a28c12d411a1ce331a9b25f201d8b4674ac84e88))
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@19.1.9-dev.1...@rxap/plugin-open-api@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/plugin-open-api

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.0.0-dev.1...@rxap/plugin-typedoc@20.0.0-dev.2) (2025-01-03)
+
+### Bug Fixes
+
+- only use the build target if exists ([ce3d483](https://gitlab.com/rxap/packages/commit/ce3d483fae9998a1ef99a7d57fb830abea410f4d))
+- only use the build target if exists ([bc323dd](https://gitlab.com/rxap/packages/commit/bc323dd192399ffd29b5fcfa9213e3192bc4115f))
+- use correct prefixes ([f080f2e](https://gitlab.com/rxap/packages/commit/f080f2e43e24ca7a3f188f1b9d7ab69447f87af6))
+
+### Features
+
+- init plugin use ([cb80eb0](https://gitlab.com/rxap/packages/commit/cb80eb01ebd1c53b5e411cda02ce4e5b976cb74d))
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+- support nx plugins ([f40f273](https://gitlab.com/rxap/packages/commit/f40f2735e35f92f94d26f558946e79354e2a77a7))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@19.0.7-dev.0...@rxap/plugin-typedoc@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/plugin-typedoc

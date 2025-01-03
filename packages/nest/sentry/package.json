@@ -1,13 +1,13 @@
 {
-  "version": "10.4.5-dev.1",
+  "version": "10.4.5-dev.2",
   "name": "@rxap/nest-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.2.1",
-    "@rxap/nest-logger": "^10.2.10-dev.1",
-    "@rxap/nest-utilities": "^10.3.8-dev.1",
-    "@rxap/ts-morph": "^1.5.2-dev.1",
-    "@rxap/workspace-utilities": "^19.5.1-dev.1",
+    "@rxap/nest-logger": "^10.2.10-dev.2",
+    "@rxap/nest-utilities": "^10.3.8-dev.2",
+    "@rxap/ts-morph": "^1.5.2-dev.2",
+    "@rxap/workspace-utilities": "^19.6.0-dev.0",
     "@sentry/core": "8.18.0",
     "@sentry/nestjs": "8.18.0",
     "@sentry/node": "8.18.0",

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.6.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.5.1-dev.1...@rxap/workspace-utilities@19.6.0-dev.0) (2025-01-03)
+
+### Bug Fixes
+
+- check with full project path ([cf85542](https://gitlab.com/rxap/packages/commit/cf85542c51935955cca6d8038a0564a27e27014d))
+
+### Features
+
+- add CoerceNxPlugin function ([3065108](https://gitlab.com/rxap/packages/commit/30651084998f863b0dbd0417eeefd6675e027f1b))
+- add ForeachInitProject function ([adc243c](https://gitlab.com/rxap/packages/commit/adc243cdfad10c2fba75a877229b415b6fec1a1a))
+- add FsTree class ([8647222](https://gitlab.com/rxap/packages/commit/8647222bb98669b0720950c9c56a631f60e86197))
+- add is n8n project function ([c3666f3](https://gitlab.com/rxap/packages/commit/c3666f37dc37569d936714acc36a1d87d04491a7))
+- support nx plugins ([d8ca485](https://gitlab.com/rxap/packages/commit/d8ca4858aa1fd1f8529a75440d4a283a0f03a01e))
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+
 ## [19.5.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.5.1-dev.0...@rxap/workspace-utilities@19.5.1-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

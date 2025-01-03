@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.0.0-dev.1...@rxap/plugin-nestjs@20.0.0-dev.2) (2025-01-03)
+
+### Bug Fixes
+
+- skip angular projects ([ec3ed5e](https://gitlab.com/rxap/packages/commit/ec3ed5e4dacb3c69dea8158005ea328e15547486))
+
+### Features
+
+- add application plugin ([d3bf26d](https://gitlab.com/rxap/packages/commit/d3bf26d2e20fdb6c410aaf6a35e751afcead629b))
+- support nx plugins ([a28c12d](https://gitlab.com/rxap/packages/commit/a28c12d411a1ce331a9b25f201d8b4674ac84e88))
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+- support nx plugins ([2182939](https://gitlab.com/rxap/packages/commit/2182939d1806d22deb78683471df5b7b83cf7395))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@19.1.7-dev.1...@rxap/plugin-nestjs@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs

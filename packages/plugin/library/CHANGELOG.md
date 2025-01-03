@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.0.0-dev.1...@rxap/plugin-library@20.0.0-dev.2) (2025-01-03)
+
+### Bug Fixes
+
+- add default lint ignores ([5782709](https://gitlab.com/rxap/packages/commit/5782709a83542a77e18471a2d3d17ff5a9f65f66))
+
+### Features
+
+- add exclude folders to jetbrains config ([562cada](https://gitlab.com/rxap/packages/commit/562cadaa63964287987b34f804f1ce0aa211ffaf))
+- add fix-dependencies executor ([0fd50fc](https://gitlab.com/rxap/packages/commit/0fd50fcbd6a8f8ffce5e179531e402de52f6a8b7))
+- support nx plugins ([3ce5d42](https://gitlab.com/rxap/packages/commit/3ce5d428533386361226f95202e7b970021c1104))
+- support nx plugins ([a28c12d](https://gitlab.com/rxap/packages/commit/a28c12d411a1ce331a9b25f201d8b4674ac84e88))
+- support nx plugins ([959c478](https://gitlab.com/rxap/packages/commit/959c478fb89f5688a3d741823ea0a67878b1d4cb))
+- support nx plugins ([a8a6b9d](https://gitlab.com/rxap/packages/commit/a8a6b9d084c4bc55b7fff4dbd533c3e9d727e106))
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+- support nx plugins ([d5e192a](https://gitlab.com/rxap/packages/commit/d5e192a0c8e2972ff36b6af8054eee81bf57f29c))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@19.5.0-dev.0...@rxap/plugin-library@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/plugin-library

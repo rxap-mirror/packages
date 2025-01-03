@@ -1,12 +1,12 @@
 {
-  "version": "16.1.1-dev.1",
+  "version": "16.1.1-dev.2",
   "name": "@rxap/xml-parser",
   "description": "A utility packages to convert xml files into class instances.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@rxap/mixin": "^16.0.11-dev.1",
-    "@rxap/reflect-metadata": "^1.0.12-dev.1",
-    "@rxap/utilities": "^16.4.1-dev.1",
+    "@rxap/mixin": "^16.0.11-dev.2",
+    "@rxap/reflect-metadata": "^1.0.12-dev.2",
+    "@rxap/utilities": "^16.4.1-dev.2",
     "tslib": "2.6.2"
   },
   "author": {

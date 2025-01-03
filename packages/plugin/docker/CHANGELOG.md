@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@20.0.0-dev.1...@rxap/plugin-docker@20.0.0-dev.2) (2025-01-03)
+
+### Features
+
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+- support nx plugins ([4e47330](https://gitlab.com/rxap/packages/commit/4e4733004fcccb02fdd75708ae24ff388bbca418))
+- support nx plugins ([4aedbeb](https://gitlab.com/rxap/packages/commit/4aedbeb0f952a06b24b4c041b0e5d8c8f30c7176))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@19.0.10-dev.0...@rxap/plugin-docker@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/plugin-docker

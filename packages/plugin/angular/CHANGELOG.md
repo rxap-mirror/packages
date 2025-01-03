@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.0.0-dev.1...@rxap/plugin-angular@20.0.0-dev.2) (2025-01-03)
+
+### Features
+
+- add application plugin ([d3bf26d](https://gitlab.com/rxap/packages/commit/d3bf26d2e20fdb6c410aaf6a35e751afcead629b))
+- add i18n plugin ([93d3aef](https://gitlab.com/rxap/packages/commit/93d3aef9e669a25f7f7c5a606eb92ca1605b9db6))
+- move executors ([ff7b71d](https://gitlab.com/rxap/packages/commit/ff7b71dd2d5318db3331e9fb442a0b473a9832b9))
+- support nx plugins ([a28c12d](https://gitlab.com/rxap/packages/commit/a28c12d411a1ce331a9b25f201d8b4674ac84e88))
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+- support nx plugins ([d5d7493](https://gitlab.com/rxap/packages/commit/d5d74931307583b0ed5ec3908b767dd1b4be7a90))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@19.3.7-dev.1...@rxap/plugin-angular@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/plugin-angular

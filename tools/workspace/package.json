@@ -1,8 +1,6 @@
 {
-  "name": "workspace",
   "version": "1.0.0",
-  "type": "commonjs",
-  "executors": "./executors.json",
+  "name": "workspace",
   "dependencies": {
     "tslib": "2.6.2"
   },
@@ -11,7 +9,9 @@
     "@nx/cypress": "^16.5.0",
     "@nx/devkit": "^16.5.0",
     "@nx/plugin": "^16.5.0",
-    "@rxap/plugin-utilities": "*",
+    "@rxap/plugin-utilities": "^20.0.0-dev.2",
     "handlebars": "^4.7.7"
-  }
+  },
+  "executors": "./executors.json",
+  "type": "commonjs"
 }

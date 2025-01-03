@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@20.0.0-dev.1...@rxap/plugin-localazy@20.0.0-dev.2) (2025-01-03)
+
+### Features
+
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+- support nx plugins ([42982f2](https://gitlab.com/rxap/packages/commit/42982f2fde5af200ab03c90ab96085d6631ee995))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@19.0.10-dev.0...@rxap/plugin-localazy@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/plugin-localazy
