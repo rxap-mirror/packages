@@ -41,7 +41,6 @@
         ]
       }
     },
-
     "fix-dependencies": {
       "options": {
         "peerDependencies": ["n8n-workflow"]

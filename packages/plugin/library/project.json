@@ -13,9 +13,7 @@
         "main": "packages/plugin/library/src/index.ts",
         "tsConfig": "packages/plugin/library/tsconfig.lib.json",
         "generateExportsField": true,
-        "additionalEntryPoints": [
-          "packages/plugin/library/src/plugin.ts"
-        ],
+        "additionalEntryPoints": ["packages/plugin/library/src/plugin.ts"],
         "assets": [
           "packages/plugin/library/*.md",
           {
@@ -42,9 +40,6 @@
         ]
       }
     },
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -55,7 +50,5 @@
         ]
       }
     }
-
-
   }
 }

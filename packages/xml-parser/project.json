@@ -5,7 +5,6 @@
   "projectType": "library",
   "tags": ["packages", "scope:utilities", "standalone"],
   "targets": {
-
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
@@ -13,17 +12,26 @@
         "outputPath": "dist/packages/xml-parser",
         "main": "packages/xml-parser/src/index.ts",
         "tsConfig": "packages/xml-parser/tsconfig.lib.json",
-        "assets": ["packages/xml-parser/*.md", "packages/xml-parser/docs"]
+        "assets": [
+          "packages/xml-parser/*.md",
+          "packages/xml-parser/docs",
+          {
+            "input": "./packages/xml-parser/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/xml-parser",
+            "glob": "generators.json",
+            "output": "."
+          }
+        ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/xml-parser/**/*.ts"]
       }
     }
-
-
-
   }
 }

@@ -15,14 +15,10 @@
         "assets": ["packages/slugify/*.md", "packages/slugify/docs"]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/slugify/**/*.ts"]
       }
     }
-
-
-
   }
 }

@@ -21,9 +21,7 @@
         "main": "packages/plugin/typedoc/src/index.ts",
         "tsConfig": "packages/plugin/typedoc/tsconfig.lib.json",
         "generateExportsField": true,
-        "additionalEntryPoints": [
-          "packages/plugin/typedoc/src/plugin.ts"
-        ],
+        "additionalEntryPoints": ["packages/plugin/typedoc/src/plugin.ts"],
         "assets": [
           "packages/plugin/typedoc/*.md",
           {
@@ -50,8 +48,5 @@
         ]
       }
     }
-
-
-
   }
 }

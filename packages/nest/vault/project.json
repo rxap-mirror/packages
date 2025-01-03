@@ -27,7 +27,6 @@
       },
       "defaultConfiguration": "development"
     },
-
     "fix-dependencies": {
       "options": {
         "dependencies": ["node-vault"]

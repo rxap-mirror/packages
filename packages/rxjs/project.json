@@ -15,14 +15,10 @@
         "assets": ["packages/rxjs/*.md", "packages/rxjs/docs"]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/rxjs/**/*.ts"]
       }
     }
-
-
-
   }
 }

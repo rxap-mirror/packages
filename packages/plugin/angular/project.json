@@ -54,9 +54,6 @@
         ]
       }
     },
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -67,8 +64,5 @@
         ]
       }
     }
-
-
-
   }
 }

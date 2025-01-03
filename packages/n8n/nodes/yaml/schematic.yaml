@@ -1,5 +1,3 @@
 package: "@rxap/plugin-library"
 name: init
-options:
-  targets:
-    indexExport: false
+options: {}

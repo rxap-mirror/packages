@@ -13,9 +13,7 @@
         "main": "packages/plugin/localazy/src/index.ts",
         "tsConfig": "packages/plugin/localazy/tsconfig.lib.json",
         "generateExportsField": true,
-        "additionalEntryPoints": [
-          "packages/plugin/localazy/src/plugin.ts"
-        ],
+        "additionalEntryPoints": ["packages/plugin/localazy/src/plugin.ts"],
         "assets": [
           "packages/plugin/localazy/*.md",
           {
@@ -42,9 +40,6 @@
         ]
       }
     },
-
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -55,8 +50,5 @@
         ]
       }
     }
-
-
-
   }
 }

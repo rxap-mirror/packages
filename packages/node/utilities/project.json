@@ -6,7 +6,6 @@
   "tags": ["node", "packages", "scope:utilities"],
   "implicitDependencies": ["!rxap"],
   "targets": {
-
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
@@ -20,14 +19,10 @@
         ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/node/utilities/**/*.ts"]
       }
     }
-
-
-
   }
 }

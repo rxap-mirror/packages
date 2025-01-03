@@ -18,13 +18,10 @@
         ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/data-structure/tree/**/*.ts"]
       }
     }
-
-
   }
 }

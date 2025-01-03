@@ -56,14 +56,10 @@
         ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/schematic/composer/**/*.ts"]
       }
     }
-
-
-
   }
 }

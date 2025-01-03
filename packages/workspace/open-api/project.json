@@ -18,15 +18,10 @@
         ]
       }
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/workspace/open-api/**/*.ts"]
       }
     }
-
-
-
   }
 }

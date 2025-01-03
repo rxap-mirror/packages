@@ -15,14 +15,10 @@
         "assets": ["packages/validator/*.md", "packages/validator/docs"]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/validator/**/*.ts"]
       }
     }
-
-
-
   }
 }

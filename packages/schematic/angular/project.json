@@ -33,14 +33,10 @@
         ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/schematic/angular/**/*.ts"]
       }
     }
-
-
-
   }
 }

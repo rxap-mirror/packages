@@ -30,18 +30,24 @@
             "glob": "collection.json",
             "output": "."
           },
-          "packages/schematic/nestjs/docs"
+          "packages/schematic/nestjs/docs",
+          {
+            "input": "./packages/schematic/nestjs/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/schematic/nestjs",
+            "glob": "generators.json",
+            "output": "."
+          }
         ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/schematic/nestjs/**/*.ts"]
       }
     }
-
-
-
   }
 }

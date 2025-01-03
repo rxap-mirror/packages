@@ -32,7 +32,5 @@
         "lintFilePatterns": ["packages/nest/socket-io-client/**/*.ts"]
       }
     }
-
-
   }
 }

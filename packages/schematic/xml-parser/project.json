@@ -18,14 +18,10 @@
         ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/schematic/xml-parser/**/*.ts"]
       }
     }
-
-
-
   }
 }

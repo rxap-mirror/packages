@@ -18,13 +18,10 @@
         ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/json-schema-to-typescript/**/*.ts"]
       }
     }
-
-
   }
 }

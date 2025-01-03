@@ -18,13 +18,10 @@
         ]
       }
     },
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/browser/tailwind/**/*.ts"]
       }
     }
-
-
   }
 }

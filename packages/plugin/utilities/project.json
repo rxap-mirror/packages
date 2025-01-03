@@ -18,15 +18,10 @@
         ]
       }
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/plugin/utilities/**/*.ts"]
       }
     }
-
-
-
   }
 }

@@ -11,16 +11,12 @@
       "options": {
         "platform": "node",
         "outputPath": "dist/packages/plugin/web3-storage",
-        "format": [
-          "esm"
-        ],
+        "format": ["esm"],
         "bundle": false,
         "main": "packages/plugin/web3-storage/src/index.ts",
         "tsConfig": "packages/plugin/web3-storage/tsconfig.lib.json",
         "generateExportsField": true,
-        "additionalEntryPoints": [
-          "packages/plugin/web3-storage/src/plugin.ts"
-        ],
+        "additionalEntryPoints": ["packages/plugin/web3-storage/src/plugin.ts"],
         "assets": [
           "packages/plugin/web3-storage/*.md",
           {
@@ -53,8 +49,5 @@
         }
       }
     }
-
-
-
   }
 }

@@ -5,7 +5,6 @@
   "projectType": "library",
   "tags": ["packages", "standalone", "scope:utilities"],
   "targets": {
-
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
@@ -29,15 +28,10 @@
         ]
       }
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": ["packages/utilities/**/*.ts"]
       }
     }
-
-
-
   }
 }

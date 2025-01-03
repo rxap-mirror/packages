@@ -13,9 +13,7 @@
         "main": "packages/plugin/open-api/src/index.ts",
         "tsConfig": "packages/plugin/open-api/tsconfig.lib.json",
         "generateExportsField": true,
-        "additionalEntryPoints": [
-          "packages/plugin/open-api/src/plugin.ts"
-        ],
+        "additionalEntryPoints": ["packages/plugin/open-api/src/plugin.ts"],
         "assets": [
           "packages/plugin/open-api/*.md",
           {
@@ -42,8 +40,6 @@
         ]
       }
     },
-
-
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -53,8 +49,5 @@
         ]
       }
     }
-
-
-
   }
 }

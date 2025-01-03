@@ -32,7 +32,5 @@
         "lintFilePatterns": ["packages/nest/firebase/**/*.ts"]
       }
     }
-
-
   }
 }
