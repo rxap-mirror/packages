@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.2-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.2-dev.2...@rxap/nest-rabbitmq@10.0.2-dev.3) (2025-01-03)
+
+### Bug Fixes
+
+- resolve small issues ([75bfb03](https://gitlab.com/rxap/packages/commit/75bfb03c280ca99183c1dd580f148b10d28a428e))
+
 ## [10.0.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.0.2-dev.1...@rxap/nest-rabbitmq@10.0.2-dev.2) (2025-01-03)
 
 **Note:** Version bump only for package @rxap/nest-rabbitmq

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.0.0-dev.3...@rxap/plugin-library@20.0.0-dev.4) (2025-01-03)
+
+### Bug Fixes
+
+- add library plugin on workspace init ([cbd8fde](https://gitlab.com/rxap/packages/commit/cbd8fde53887c7a069fec1e7ef06770b2de653dd))
+
 # [20.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.0.0-dev.2...@rxap/plugin-library@20.0.0-dev.3) (2025-01-03)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.0.0-dev.3...@rxap/plugin-angular@20.0.0-dev.4) (2025-01-03)
+
+### Bug Fixes
+
+- add shared library option ([ae5f2f4](https://gitlab.com/rxap/packages/commit/ae5f2f482f25101b8d2f9a3cfa9e407eb070ec88))
+
 # [20.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.0.0-dev.2...@rxap/plugin-angular@20.0.0-dev.3) (2025-01-03)
 
 ### Bug Fixes
