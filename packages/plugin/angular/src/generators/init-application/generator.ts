@@ -10,19 +10,12 @@ import {
   ApplicationInitProject,
   ApplicationInitWorkspace,
 } from '@rxap/plugin-application';
-import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
-import {
-  CoerceAppConfigProvider,
-  CoerceImports,
-  ProviderObject,
-} from '@rxap/ts-morph';
 import {
   classify,
   CoerceArrayItems,
   dasherize,
   DeleteProperties,
 } from '@rxap/utilities';
-import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
