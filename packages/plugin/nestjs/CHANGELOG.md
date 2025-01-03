@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.0.0-dev.3...@rxap/plugin-nestjs@20.0.0-dev.4) (2025-01-03)
+
+### Bug Fixes
+
+- remove unused parameter ([af0b37b](https://gitlab.com/rxap/packages/commit/af0b37b56ab436e62879c331a8ec0b3ccc0ef46b))
+- use correct entry point name ([69e7e56](https://gitlab.com/rxap/packages/commit/69e7e56f773afe06c3716784898f45d3dcb44c16))
+
 # [20.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.0.0-dev.2...@rxap/plugin-nestjs@20.0.0-dev.3) (2025-01-03)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs
