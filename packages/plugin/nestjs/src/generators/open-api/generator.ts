@@ -64,7 +64,7 @@ function UpdateAppConfig(tree: Tree, options: OpenApiGeneratorSchema) {
       project: options.project,
       backend: undefined,
     },
-    (project, [ sourceFile ]) => {
+    (_, [ sourceFile ]) => {
 
       CoerceNestAppConfig(sourceFile, {
         itemList: [
