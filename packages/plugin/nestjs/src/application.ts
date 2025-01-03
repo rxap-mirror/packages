@@ -89,8 +89,15 @@ async function shouldHaveProjectConfiguration(
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot);
-  if (!FindProjectByPath(tree, projectPath)) {
+  const projectConfiguration = FindProjectByPath(tree, projectPath);
+  if (!projectConfiguration) {
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
+    return false;
+  }
+  if (['ngx', 'angular'].some(tag => projectConfiguration.tags?.includes(tag))) {
+    return false;
+  }
+  if (existsSync(join(projectPath, 'src/index.html'))) {
     return false;
   }
   return true;
