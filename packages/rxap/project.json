@@ -76,6 +76,7 @@
     "nest-oauth2-proxy",
     "nest-open-api",
     "nest-rabbitmq",
+    "nest-rabbitmq-vault",
     "nest-sentry",
     "nest-server",
     "nest-socket-io-client",
