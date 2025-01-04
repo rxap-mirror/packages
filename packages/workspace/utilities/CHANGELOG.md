@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.6.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.0-dev.0...@rxap/workspace-utilities@19.6.0-dev.1) (2025-01-04)
+
+### Bug Fixes
+
+- remove dependency to angular ([937bf19](https://gitlab.com/rxap/packages/commit/937bf198fea95fba32384c9842bbac46dbf50d38))
+
 # [19.6.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.5.1-dev.1...@rxap/workspace-utilities@19.6.0-dev.0) (2025-01-03)
 
 ### Bug Fixes
