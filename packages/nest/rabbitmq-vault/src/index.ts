@@ -1,1 +1,4 @@
-export * from './lib/nest-rabbitmq-vault.module';
+// region 
+export * from './lib/rabbitmq-vault-options-factory';
+export * from './lib/rabbitmq-vault.service';
+// endregion

@@ -22,7 +22,6 @@ exports[`preset should use angular preset 1`] = `
   ".eslintignore",
   "jest.preset.js",
   "jest.config.ts",
-  "angular",
   "schematics.yaml",
 ]
 `;
@@ -36,36 +35,12 @@ exports[`preset should use angular preset 2`] = `
     "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
     "rxap:compose": "nx g @rxap/schematic-composer:compose",
     "prepare": "husky install",
-    "schematic": "bash tools/scripts/schematic.sh",
-    "server": "bash tools/scripts/start-local-dev-services.sh",
-    "server:status": "bash tools/scripts/get-local-dev-services-status.sh",
-    "server:stop": "bash tools/scripts/stop-local-dev-services.sh",
-    "init:env": "bash tools/scripts/setup-env-file.sh"
+    "schematic": "bash tools/scripts/schematic.sh"
   },
   "dependencies": {
-    "@angular/animations": "~19.0.0",
-    "@angular/common": "~19.0.0",
-    "@angular/compiler": "~19.0.0",
-    "@angular/core": "~19.0.0",
-    "@angular/forms": "~19.0.0",
-    "@angular/localize": "18.0.1",
-    "@angular/platform-browser": "~19.0.0",
-    "@angular/platform-browser-dynamic": "~19.0.0",
-    "@angular/router": "~19.0.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~19.0.0",
-    "@angular-devkit/core": "~19.0.0",
-    "@angular-devkit/schematics": "~19.0.0",
-    "@angular-eslint/eslint-plugin": "^19.0.0",
-    "@angular-eslint/eslint-plugin-template": "^19.0.0",
-    "@angular-eslint/template-parser": "^19.0.0",
-    "@angular/cli": "~19.0.0",
-    "@angular/compiler-cli": "~19.0.0",
-    "@angular/language-service": "~19.0.0",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@nx/angular": "latest",
@@ -75,7 +50,6 @@ exports[`preset should use angular preset 2`] = `
     "@nx/js": "20.2.1",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
-    "@schematics/angular": "~19.0.0",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
@@ -83,22 +57,14 @@ exports[`preset should use angular preset 2`] = `
     "@types/node": "18.16.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
-    "@typescript-eslint/utils": "^7.16.0",
-    "autoprefixer": "^10.4.0",
     "eslint": "~8.57.0",
     "eslint-config-prettier": "^9.0.0",
     "husky": "latest",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "jest-preset-angular": "~14.4.0",
-    "jsonc-eslint-parser": "^2.1.0",
-    "ng-packagr": "~19.0.0",
     "nx-cloud": "latest",
-    "postcss": "^8.4.5",
-    "postcss-url": "~10.1.3",
     "prettier": "^2.6.2",
     "rxap": "latest",
-    "tailwindcss": "^3.0.2",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "~5.6.2"
@@ -126,71 +92,19 @@ exports[`preset should use angular preset 3`] = `
   },
   "targetDefaults": {
     "build": {
-      "cache": true,
-      "dependsOn": [
-        "^index-export",
-        "index-export",
-        "^build",
-        "readme",
-        "check-version",
-        "expose-as-schematic"
-      ]
+      "cache": true
     },
     "lint": {
       "cache": true
     },
-    "ci-info": {
-      "cache": true
-    },
-    "index-export": {
-      "cache": true
-    },
-    "swagger-build": {
-      "cache": true
-    },
-    "swagger-generate": {
-      "cache": true
-    },
-    "generate-package-json": {
-      "cache": true
-    },
-    "generate-open-api": {
-      "cache": true
-    },
     "@nx/eslint:lint": {
+      "cache": true,
       "inputs": [
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
         "{workspaceRoot}/eslint.config.js"
-      ],
-      "options": {
-        "quiet": true
-      },
-      "cache": true
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}",
-        "{workspaceRoot}/junit/{projectRoot}",
-        "{projectRoot}/coverage"
-      ],
-      "inputs": [
-        "test",
-        "^test",
-        "{workspaceRoot}/jest.preset.js",
-        "{workspaceRoot}/jest.preset.ts",
-        {
-          "env": "JEST_JUNIT_OUTPUT_DIR"
-        }
-      ],
-      "options": {
-        "passWithNoTests": true,
-        "silent": true,
-        "coverageReporters": ["json", "html"],
-        "codeCoverage": true
-      }
+      ]
     },
     "@nx/jest:jest": {
       "cache": true,
@@ -205,6 +119,9 @@ exports[`preset should use angular preset 3`] = `
         }
       }
     },
+    "ci-info": {
+      "cache": true
+    },
     "localazy-upload": {
       "cache": true
     },
@@ -216,23 +133,6 @@ exports[`preset should use angular preset 3`] = `
     },
     "component-test": {
       "cache": true
-    },
-    "@nx/js:tsc": {
-      "dependsOn": ["^index-export", "index-export", "^build"]
-    },
-    "fix-dependencies": {
-      "dependsOn": ["^fix-dependencies"]
-    },
-    "@nx/angular:ng-packagr-lite": {
-      "dependsOn": [
-        "index-export",
-        "^index-export",
-        "^build",
-        "check-version",
-        "build-tailwind",
-        "check-ng-package"
-      ],
-      "inputs": ["production", "^production"]
     }
   },
   "namedInputs": {
@@ -453,27 +353,6 @@ exports[`preset should use angular preset 6`] = `
 "{
   "compilerOptions": {
     "paths": {
-      "@proj/angular-application-providers": [
-        "angular/application-providers/src/index.ts"
-      ],
-      "@proj/angular-bootstrap-hooks": ["angular/bootstrap-hooks/src/index.ts"],
-      "@proj/angular-components": ["angular/components/src/index.ts"],
-      "@proj/angular-controls": ["angular/controls/src/index.ts"],
-      "@proj/angular-data-sources": ["angular/data-sources/src/index.ts"],
-      "@proj/angular-directives": ["angular/directives/src/index.ts"],
-      "@proj/angular-forms": ["angular/forms/src/index.ts"],
-      "@proj/angular-guards": ["angular/guards/src/index.ts"],
-      "@proj/angular-http-interceptors": [
-        "angular/http-interceptors/src/index.ts"
-      ],
-      "@proj/angular-methods": ["angular/methods/src/index.ts"],
-      "@proj/angular-pipes": ["angular/pipes/src/index.ts"],
-      "@proj/angular-resolvers": ["angular/resolvers/src/index.ts"],
-      "@proj/angular-services": ["angular/services/src/index.ts"],
-      "@proj/angular-shared": ["angular/shared/src/index.ts"],
-      "@proj/angular-tables": ["angular/tables/src/index.ts"],
-      "@proj/angular-testing": ["angular/testing/src/index.ts"],
-      "@proj/angular-utilities": ["angular/utilities/src/index.ts"],
       "workspace-tools": ["tools/src/index.ts"]
     }
   }
@@ -1272,24 +1151,4 @@ export default async () => ({
 
 exports[`preset should use angular preset 17`] = `null`;
 
-exports[`preset should use angular preset 18`] = `
-[
-  "components",
-  "forms",
-  "controls",
-  "tables",
-  "methods",
-  "data-sources",
-  "pipes",
-  "directives",
-  "guards",
-  "services",
-  "application-providers",
-  "utilities",
-  "shared",
-  "testing",
-  "resolvers",
-  "http-interceptors",
-  "bootstrap-hooks",
-]
-`;
+exports[`preset should use angular preset 18`] = `[]`;
