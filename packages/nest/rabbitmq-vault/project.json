@@ -1,0 +1,52 @@
+{
+  "name": "nest-rabbitmq-vault",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/rabbitmq-vault/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["nest", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nest/rabbitmq-vault",
+        "tsConfig": "packages/nest/rabbitmq-vault/tsconfig.lib.json",
+        "packageJson": "packages/nest/rabbitmq-vault/package.json",
+        "main": "packages/nest/rabbitmq-vault/src/index.ts",
+        "assets": [
+          "packages/nest/rabbitmq-vault/*.md",
+          {
+            "input": "./packages/nest/rabbitmq-vault/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/nest/rabbitmq-vault",
+            "glob": "generators.json",
+            "output": "."
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/rabbitmq-vault/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

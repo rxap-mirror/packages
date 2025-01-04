@@ -504,6 +504,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/xml-parser/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/xml-parser/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/xml-parser/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq-vault/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq-vault/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq-vault/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq-vault/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

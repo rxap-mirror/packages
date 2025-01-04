@@ -1,0 +1,42 @@
+{
+  "name": "@rxap/nest-rabbitmq-vault",
+  "version": "10.0.0-dev.0",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "10.3.8",
+    "@nestjs/config": "3.2.2",
+    "@rxap/nest-rabbitmq": "10.0.2-dev.3",
+    "@rxap/nest-vault": "10.1.2-dev.2"
+  },
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/rabbitmq-vault"
+  },
+  "keywords": [
+    "rxap",
+    "nest",
+    "packages",
+    "nest-rabbitmq-vault"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/rabbitmq-vault",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/rabbitmq-vault"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "generators": "./generators.json"
+}

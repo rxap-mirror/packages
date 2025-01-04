@@ -6,8 +6,8 @@ import {
 import { ConfigService } from '@nestjs/config';
 import {
   VaultResponse,
-  VaultService
-} from './vault.service';
+  VaultService,
+} from '@rxap/nest-vault';
 
 @Injectable()
 export class RabbitmqVaultService {

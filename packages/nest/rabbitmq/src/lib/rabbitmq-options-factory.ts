@@ -4,7 +4,6 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { RabbitmqVaultService } from '@rxap/nest-vault';
 import { CoercePrefix } from '@rxap/utilities';
 import { BaseRmqOptions } from './options';
 
@@ -16,9 +15,6 @@ export class RabbitmqOptionsFactory {
 
   @Inject(Logger)
   protected readonly logger!: Logger;
-
-  @Inject(RabbitmqVaultService)
-  protected readonly vault!: RabbitmqVaultService;
 
   async build(): Promise<BaseRmqOptions> {
 
@@ -47,7 +43,7 @@ export class RabbitmqOptionsFactory {
     return options;
   }
 
-  async getCredentials(): Promise<{ username: string, password: string }> {
+  async getCredentials(): Promise<{ username: string, password: string } | null> {
     this.logger.verbose('Getting RabbitMQ credentials', 'RabbitMQModuleConfigFactory');
 
     if (this.config.get('RABBITMQ_USERNAME') && this.config.get('RABBITMQ_PASSWORD')) {
@@ -58,13 +54,7 @@ export class RabbitmqOptionsFactory {
       };
     }
 
-    if (this.config.get('RABBITMQ_VAULT_ROLE')) {
-      this.logger.debug('Using vault to get username and password', 'RabbitMQModuleConfigFactory');
-      const role = this.config.getOrThrow('RABBITMQ_VAULT_ROLE');
-      return this.vault.getCredentials(role, true);
-    }
-
-    throw new Error('No credentials found for RabbitMQ connection');
+    return null;
 
   }
 
@@ -74,10 +64,14 @@ export class RabbitmqOptionsFactory {
       this.logger.debug('Using uri from env RABBITMQ_URI', 'RabbitMQModuleConfigFactory');
       return this.config.getOrThrow('RABBITMQ_URI');
     }
+    const credentials = await this.getCredentials();
+    if (!credentials) {
+      throw new Error('No credentials found for RabbitMQ connection');
+    }
     const {
       username,
       password
-    } = await this.getCredentials();
+    } = credentials;
     const host = this.config.getOrThrow('RABBITMQ_HOST');
     const port = this.config.getOrThrow('RABBITMQ_PORT');
     const vhost = this.config.getOrThrow('RABBITMQ_VHOST');

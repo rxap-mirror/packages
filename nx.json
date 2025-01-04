@@ -175,6 +175,9 @@
           "projects": ["browser-tailwind"]
         }
       ]
+    },
+    "check-version": {
+      "cache": true
     }
   },
   "generators": {
