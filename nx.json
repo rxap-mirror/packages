@@ -273,7 +273,7 @@
   "cli": {
     "packageManager": "yarn"
   },
-  "parallel": 8,
+  "parallel": 6,
   "useInferencePlugins": false,
   "defaultBase": "development",
   "release": {
