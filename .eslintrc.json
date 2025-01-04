@@ -31,7 +31,13 @@
               },
               {
                 "sourceTag": "workspace",
-                "notDependOnLibsWithTags": ["schematic", "generator"]
+                "notDependOnLibsWithTags": ["schematic", "generator"],
+                "bannedExternalImports": [
+                  "@angular-devkit/architect",
+                  "@angular-devkit/core",
+                  "@angular-devkit/schematics",
+                  "@angular/schematics"
+                ]
               },
               {
                 "sourceTag": "plugin",

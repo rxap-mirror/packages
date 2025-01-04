@@ -1,4 +1,3 @@
-import { SchematicsException } from '@angular-devkit/schematics';
 import {
   CoercePrefix,
   CoerceSuffix,
@@ -22,7 +21,7 @@ export interface BuildNestControllerNameOptions {
  * - `nestModule`: the name of the NestJS module this controller belongs to.
  * - `controllerNameSuffix`: optional suffix to append to the controller name.
  * @returns {string} The fully constructed controller name.
- * @throws {SchematicsException} Throws an error if the controller name cannot be determined.
+ * @throws {Error} Throws an error if the controller name cannot be determined.
  * @throws {Error} Throws an error if the resulting controller name ends with a dash.
  *
  * ### Usage
@@ -62,7 +61,7 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
   }
 
   if (!controllerName) {
-    throw new SchematicsException('Could not determine the controller name');
+    throw new Error('Could not determine the controller name');
   }
 
   if (controllerNameSuffix) {
