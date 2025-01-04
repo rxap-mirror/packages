@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-vault@10.1.2-dev.2...@rxap/nest-vault@10.2.0-dev.0) (2025-01-04)
+
+### Features
+
+- move vault and rabbitmq feature to separate package ([85aa64d](https://gitlab.com/rxap/packages/commit/85aa64df35087dfc662fc89b0812c0e907d37344))
+
 ## [10.1.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-vault@10.1.2-dev.1...@rxap/nest-vault@10.1.2-dev.2) (2025-01-03)
 
 **Note:** Version bump only for package @rxap/nest-vault

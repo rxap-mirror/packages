@@ -8586,8 +8586,8 @@ __metadata:
   peerDependencies:
     "@nestjs/common": 10.3.8
     "@nestjs/config": 3.2.2
-    "@rxap/nest-rabbitmq": 10.0.2-dev.3
-    "@rxap/nest-vault": 10.1.2-dev.2
+    "@rxap/nest-rabbitmq": ^10.1.0-dev.0
+    "@rxap/nest-vault": ^10.2.0-dev.0
   languageName: unknown
   linkType: soft
 
