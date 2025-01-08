@@ -3,15 +3,15 @@
   "name": "@rxap/keycloak",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.2.1",
-    "keycloak-js": "23.0.7",
+    "@nx/devkit": "20.3.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "19.0.3",
-    "@angular/core": "19.0.3",
-    "@angular/router": "19.0.3",
-    "rxjs": "7.8.1"
+    "@angular/common": "^19.0.3",
+    "@angular/core": "^19.0.3",
+    "@angular/router": "^19.0.3",
+    "keycloak-js": "^23.0.7",
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

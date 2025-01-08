@@ -3,18 +3,18 @@
   "name": "@rxap/upload",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.2.1",
+    "@nx/devkit": "20.3.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "19.0.2",
-    "@angular/common": "19.0.3",
-    "@angular/core": "19.0.3",
-    "@angular/forms": "19.0.3",
-    "@angular/material": "19.0.2",
+    "@angular/cdk": "^19.0.2",
+    "@angular/common": "^19.0.3",
+    "@angular/core": "^19.0.3",
+    "@angular/forms": "^19.0.3",
+    "@angular/material": "^19.0.2",
     "@rxap/directives": "^19.0.0",
     "@rxap/pattern": "^1.1.10",
-    "rxjs": "7.8.1"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

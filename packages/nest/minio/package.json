@@ -3,14 +3,14 @@
   "name": "@rxap/nest-minio",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.2.1",
-    "minio": "8.0.1",
+    "@nx/devkit": "20.3.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "10.3.8",
-    "@nestjs/config": "3.2.2",
-    "@nestjs/terminus": "10.2.3"
+    "@nestjs/common": "^10.3.8",
+    "@nestjs/config": "^3.2.2",
+    "@nestjs/terminus": "^10.2.3",
+    "minio": "^8.0.1"
   },
   "author": {
     "name": "Merzough Münker",

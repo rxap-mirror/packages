@@ -3,24 +3,24 @@
   "name": "@rxap/nest-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.2.1",
-    "@rxap/nest-logger": "^10.2.10",
-    "@rxap/nest-utilities": "^10.3.8",
+    "@nx/devkit": "20.3.1",
     "@rxap/ts-morph": "^1.5.2",
     "@rxap/workspace-utilities": "^19.6.0",
-    "@sentry/core": "8.18.0",
-    "@sentry/nestjs": "8.18.0",
-    "@sentry/node": "8.18.0",
-    "@sentry/profiling-node": "8.18.0",
-    "@sentry/types": "8.18.0",
-    "@sentry/utils": "8.18.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "10.3.8",
-    "@nestjs/config": "3.2.2",
-    "@nestjs/core": "10.3.8",
-    "rxjs": "7.8.1"
+    "@nestjs/common": "^10.3.8",
+    "@nestjs/config": "^3.2.2",
+    "@nestjs/core": "^10.3.8",
+    "@rxap/nest-logger": "^10.2.10",
+    "@rxap/nest-utilities": "^10.3.8",
+    "@sentry/core": "^8.18.0",
+    "@sentry/nestjs": "^8.18.0",
+    "@sentry/node": "^8.18.0",
+    "@sentry/profiling-node": "^8.18.0",
+    "@sentry/types": "^8.18.0",
+    "@sentry/utils": "^8.18.0",
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

@@ -3,14 +3,14 @@
   "name": "@rxap/form-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.2.1",
+    "@nx/devkit": "20.3.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "19.0.3",
-    "@angular/forms": "19.0.3",
-    "@angular/material": "19.0.2",
-    "@angular/router": "19.0.3",
+    "@angular/core": "^19.0.3",
+    "@angular/forms": "^19.0.3",
+    "@angular/material": "^19.0.2",
+    "@angular/router": "^19.0.3",
     "@rxap/data-source": "^19.0.0",
     "@rxap/definition": "^19.0.0",
     "@rxap/forms": "^19.0.0",
@@ -22,7 +22,7 @@
     "@rxap/rxjs": "^1.1.11",
     "@rxap/utilities": "^16.4.1",
     "@rxap/validator": "^3.0.10",
-    "rxjs": "7.8.1"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

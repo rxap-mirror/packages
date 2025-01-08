@@ -3,13 +3,13 @@
   "name": "@rxap/schematics-xml-parser",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@angular-devkit/core": "19.0.4",
-    "@angular-devkit/schematics": "19.0.4",
-    "@nx/devkit": "20.2.1",
+    "@angular-devkit/core": "^19.0.4",
+    "@angular-devkit/schematics": "^19.0.4",
+    "@nx/devkit": "20.3.1",
     "@rxap/schematics-ts-morph": "^19.0.0",
     "@rxap/schematics-utilities": "^19.0.0",
     "@rxap/xml-parser": "^16.1.1",
-    "ts-morph": "18.0.0",
+    "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
   "author": {

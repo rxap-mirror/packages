@@ -3,18 +3,18 @@
   "name": "@rxap/ngx-theme",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@ctrl/tinycolor": "4.0.2",
-    "@nx/devkit": "20.2.1",
+    "@nx/devkit": "20.3.1",
+    "@ctrl/tinycolor": "^4.0.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "19.0.2",
-    "@angular/core": "19.0.3",
+    "@angular/cdk": "^19.0.2",
+    "@angular/core": "^19.0.3",
     "@rxap/config": "^19.0.0",
     "@rxap/ngx-pub-sub": "^19.0.0",
     "@rxap/rxjs": "^1.1.11",
     "@rxap/utilities": "^16.4.1",
-    "rxjs": "7.8.1"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

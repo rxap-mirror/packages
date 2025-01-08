@@ -3,20 +3,20 @@
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.2.1",
+    "@nx/devkit": "20.3.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "19.0.2",
-    "@angular/common": "19.0.3",
-    "@angular/core": "19.0.3",
+    "@angular/cdk": "^19.0.2",
+    "@angular/common": "^19.0.3",
+    "@angular/core": "^19.0.3",
     "@rxap/components": "^19.0.0",
     "@rxap/config": "^19.0.0",
     "@rxap/data-grid": "^19.0.0",
     "@rxap/environment": "^19.0.0",
     "@rxap/open-api": "^19.0.0",
-    "@sentry/angular": "8.18.0",
-    "rxjs": "7.8.1"
+    "@sentry/angular": "^8.18.0",
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

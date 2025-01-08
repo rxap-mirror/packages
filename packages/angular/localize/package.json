@@ -3,15 +3,15 @@
   "name": "@rxap/ngx-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.2.1",
+    "@nx/devkit": "20.3.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "19.0.3",
-    "@angular/core": "19.0.3",
+    "@angular/common": "^19.0.3",
+    "@angular/core": "^19.0.3",
     "@rxap/config": "^19.0.0",
     "@rxap/ngx-user": "^19.0.0",
-    "rxjs": "7.8.1"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",

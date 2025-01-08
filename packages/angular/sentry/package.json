@@ -3,13 +3,13 @@
   "name": "@rxap/ngx-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.2.1",
+    "@nx/devkit": "20.3.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@rxap/config": "^19.0.0",
     "@rxap/environment": "^19.0.0",
-    "@sentry/angular": "8.18.0"
+    "@sentry/angular": "^8.18.0"
   },
   "author": {
     "name": "Merzough Münker",

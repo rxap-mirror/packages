@@ -44,10 +44,10 @@ exports[`preset should use angular preset 2`] = `
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@nx/angular": "latest",
-    "@nx/eslint": "20.2.1",
-    "@nx/eslint-plugin": "20.2.1",
-    "@nx/jest": "20.2.1",
-    "@nx/js": "20.2.1",
+    "@nx/eslint": "20.3.1",
+    "@nx/eslint-plugin": "20.3.1",
+    "@nx/jest": "20.3.1",
+    "@nx/js": "20.3.1",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
     "@swc-node/register": "~1.9.1",
@@ -103,7 +103,7 @@ exports[`preset should use angular preset 3`] = `
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.js"
+        "{workspaceRoot}/eslint.config.cjs"
       ]
     },
     "@nx/jest:jest": {
@@ -158,7 +158,7 @@ exports[`preset should use angular preset 3`] = `
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/eslint.config.cjs",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"

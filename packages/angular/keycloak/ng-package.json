@@ -23,5 +23,5 @@
       "output": "."
     }
   ],
-  "allowedNonPeerDependencies": ["@nx/devkit", "keycloak-js"]
+  "allowedNonPeerDependencies": ["@nx/devkit"]
 }
