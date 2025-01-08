@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3-dev.2",
+  "version": "0.0.3",
   "name": "@rxap/n8n-nodes-zip",
   "license": "GPL-3.0-or-later",
   "dependencies": {

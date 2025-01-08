@@ -1,11 +1,11 @@
 {
-  "version": "19.6.0-dev.1",
+  "version": "19.6.0",
   "name": "@rxap/workspace-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.2.1",
-    "@rxap/node-utilities": "^1.3.7-dev.2",
-    "@rxap/utilities": "^16.4.1-dev.2",
+    "@rxap/node-utilities": "^1.3.7",
+    "@rxap/utilities": "^16.4.1",
     "colors": "1.4.0",
     "semver": "7.5.3",
     "tslib": "2.6.2",

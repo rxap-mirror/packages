@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.12](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.12-dev.2...@rxap/json-schema-to-typescript@16.0.12) (2025-01-08)
+
+**Note:** Version bump only for package @rxap/json-schema-to-typescript
+
 ## [16.0.12-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.12-dev.1...@rxap/json-schema-to-typescript@16.0.12-dev.2) (2025-01-03)
 
 **Note:** Version bump only for package @rxap/json-schema-to-typescript

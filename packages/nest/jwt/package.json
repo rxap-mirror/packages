@@ -1,11 +1,11 @@
 {
-  "version": "10.2.8-dev.2",
+  "version": "10.2.8",
   "name": "@rxap/nest-jwt",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.2.1",
-    "@rxap/nest-utilities": "^10.3.8-dev.2",
-    "@rxap/pattern": "^1.1.10-dev.2",
+    "@rxap/nest-utilities": "^10.3.8",
+    "@rxap/pattern": "^1.1.10",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

@@ -1,5 +1,5 @@
 {
-  "version": "0.1.3-dev.2",
+  "version": "0.1.3",
   "name": "@rxap/n8n-nodes-yaml",
   "description": "n8n nodes to work with YAML files",
   "license": "MIT",

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0](https://gitlab.com/rxap/packages/compare/rxap@20.0.0-dev.2...rxap@20.0.0) (2025-01-08)
+
+### Bug Fixes
+
+- update package groups ([aeb7821](https://gitlab.com/rxap/packages/commit/aeb7821d7c030cd00ad1603407764b32074cd8b7))
+- update package groups ([db75b68](https://gitlab.com/rxap/packages/commit/db75b6814f56f5a7daed03ad20bfcfca3872f298))
+
 # [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/rxap@20.0.0-dev.1...rxap@20.0.0-dev.2) (2024-12-11)
 
 ### Bug Fixes

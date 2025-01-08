@@ -1,5 +1,5 @@
 {
-  "version": "19.0.0-dev.2",
+  "version": "19.0.0",
   "name": "@rxap/window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,11 +11,11 @@
     "@angular/common": "19.0.3",
     "@angular/core": "19.0.3",
     "@angular/material": "19.0.2",
-    "@rxap/directives": "^19.0.0-dev.2",
-    "@rxap/material-directives": "^19.0.0-dev.2",
-    "@rxap/rxjs": "^1.1.11-dev.2",
-    "@rxap/services": "^19.0.0-dev.2",
-    "@rxap/utilities": "^16.4.1-dev.2",
+    "@rxap/directives": "^19.0.0",
+    "@rxap/material-directives": "^19.0.0",
+    "@rxap/rxjs": "^1.1.11",
+    "@rxap/services": "^19.0.0",
+    "@rxap/utilities": "^16.4.1",
     "rxjs": "7.8.1"
   },
   "author": {
@@ -69,35 +69,35 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.9-dev.2"
+        "version": "1.1.9"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.0.0-dev.2"
+        "version": "19.0.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "19.0.0-dev.2"
+        "version": "19.0.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "19.0.0-dev.2"
+        "version": "19.0.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.10-dev.2"
+        "version": "1.1.10"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.11-dev.2"
+        "version": "1.1.11"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.0-dev.2"
+        "version": "19.0.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.1-dev.2"
+        "version": "16.4.1"
       }
     ]
   },
