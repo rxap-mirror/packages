@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/preset-angular@20.0.0...@rxap/preset-angular@20.0.1-dev.0) (2025-01-08)
+
+**Note:** Version bump only for package @rxap/preset-angular
+
 # [20.0.0](https://gitlab.com/rxap/packages/compare/@rxap/preset-angular@20.0.0-dev.7...@rxap/preset-angular@20.0.0) (2025-01-08)
 
 **Note:** Version bump only for package @rxap/preset-angular

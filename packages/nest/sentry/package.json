@@ -1,19 +1,19 @@
 {
-  "version": "10.4.5",
+  "version": "10.4.6-dev.0",
   "name": "@rxap/nest-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.3.1",
-    "@rxap/ts-morph": "^1.5.2",
-    "@rxap/workspace-utilities": "^19.6.0",
+    "@rxap/ts-morph": "^1.5.3-dev.0",
+    "@rxap/workspace-utilities": "^19.6.1-dev.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.3.8",
-    "@rxap/nest-logger": "^10.2.10",
-    "@rxap/nest-utilities": "^10.3.8",
+    "@rxap/nest-logger": "^10.2.11-dev.0",
+    "@rxap/nest-utilities": "^10.3.9-dev.0",
     "@sentry/core": "^8.18.0",
     "@sentry/nestjs": "^8.18.0",
     "@sentry/node": "^8.18.0",
@@ -46,6 +46,10 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@nestjs/cache-manager",
+        "version": "2.2.2"
+      },
+      {
         "package": "@nestjs/common",
         "version": "10.3.8"
       },
@@ -66,8 +70,44 @@
         "version": "10.3.8"
       },
       {
+        "package": "@nestjs/throttler",
+        "version": "5.1.2"
+      },
+      {
         "package": "@nestjs/websockets",
         "version": "10.0.0"
+      },
+      {
+        "package": "@rxap/nest-logger",
+        "version": "10.2.11-dev.0"
+      },
+      {
+        "package": "@rxap/nest-utilities",
+        "version": "10.3.9-dev.0"
+      },
+      {
+        "package": "@sentry/core",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/nestjs",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/node",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/profiling-node",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/types",
+        "version": "8.18.0"
+      },
+      {
+        "package": "@sentry/utils",
+        "version": "8.18.0"
       }
     ]
   },

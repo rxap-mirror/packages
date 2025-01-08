@@ -1,5 +1,5 @@
 {
-  "version": "19.0.0",
+  "version": "19.0.1-dev.0",
   "name": "@rxap/ngx-oauth2-proxy",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,10 +10,10 @@
     "@angular/common": "^19.0.3",
     "@angular/core": "^19.0.3",
     "@angular/router": "^19.0.3",
-    "@rxap/config": "^19.0.0",
-    "@rxap/data-source": "^19.0.0",
-    "@rxap/ngx-pub-sub": "^19.0.0",
-    "@rxap/pattern": "^1.1.10",
+    "@rxap/config": "^19.0.1-dev.0",
+    "@rxap/data-source": "^19.0.1-dev.0",
+    "@rxap/ngx-pub-sub": "^19.0.1-dev.0",
+    "@rxap/pattern": "^1.1.11-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -70,43 +70,43 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.11"
+        "version": "1.1.12-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.10"
+        "version": "1.1.11-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.12"
+        "version": "1.0.13-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.11"
+        "version": "1.1.12-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.1"
+        "version": "16.4.2-dev.0"
       }
     ]
   },

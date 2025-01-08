@@ -1,5 +1,5 @@
 {
-  "version": "19.0.0",
+  "version": "19.0.1-dev.0",
   "name": "@rxap/material-table-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -14,16 +14,16 @@
     "@angular/forms": "^19.0.3",
     "@angular/material": "^19.0.2",
     "@angular/router": "^19.0.3",
-    "@rxap/components": "^19.0.0",
-    "@rxap/data-source": "^19.0.0",
-    "@rxap/directives": "^19.0.0",
-    "@rxap/forms": "^19.0.0",
-    "@rxap/material-directives": "^19.0.0",
-    "@rxap/pattern": "^1.1.10",
-    "@rxap/reflect-metadata": "^1.0.12",
-    "@rxap/rxjs": "^1.1.11",
-    "@rxap/utilities": "^16.4.1",
-    "@rxap/window-system": "^19.0.0",
+    "@rxap/components": "^19.0.1-dev.0",
+    "@rxap/data-source": "^19.0.1-dev.0",
+    "@rxap/directives": "^19.0.1-dev.0",
+    "@rxap/forms": "^19.0.1-dev.0",
+    "@rxap/material-directives": "^19.0.1-dev.0",
+    "@rxap/pattern": "^1.1.11-dev.0",
+    "@rxap/reflect-metadata": "^1.0.13-dev.0",
+    "@rxap/rxjs": "^1.1.12-dev.0",
+    "@rxap/utilities": "^16.4.2-dev.0",
+    "@rxap/window-system": "^19.0.1-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -82,71 +82,71 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.9"
+        "version": "1.1.10-dev.0"
       },
       {
         "package": "@rxap/components",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.11"
+        "version": "1.1.12-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.10"
+        "version": "1.1.11-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.12"
+        "version": "1.0.13-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.11"
+        "version": "1.1.12-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.1"
+        "version": "16.4.2-dev.0"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.10"
+        "version": "3.0.11-dev.0"
       },
       {
         "package": "@rxap/window-system",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       }
     ]
   },

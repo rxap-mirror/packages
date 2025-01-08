@@ -1,5 +1,5 @@
 {
-  "version": "10.0.0",
+  "version": "10.0.1-dev.0",
   "name": "@rxap/nest-rabbitmq-vault",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,8 +8,8 @@
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
     "@nestjs/config": "^3.2.2",
-    "@rxap/nest-rabbitmq": "^10.1.0",
-    "@rxap/nest-vault": "^10.2.0"
+    "@rxap/nest-rabbitmq": "^10.1.1-dev.0",
+    "@rxap/nest-vault": "^10.2.1-dev.0"
   },
   "author": {
     "name": "Merzough Münker",

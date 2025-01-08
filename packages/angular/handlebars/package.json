@@ -1,11 +1,11 @@
 {
-  "version": "19.0.0",
+  "version": "19.0.1-dev.0",
   "name": "@rxap/handlebars",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.3.1",
-    "tslib": "2.6.2",
-    "handlebars": "^4.7.8"
+    "handlebars": "^4.7.8",
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@angular/core": "^19.0.3"

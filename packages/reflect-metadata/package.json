@@ -1,10 +1,10 @@
 {
-  "version": "1.0.12",
+  "version": "1.0.13-dev.0",
   "name": "@rxap/reflect-metadata",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.3.1",
-    "@rxap/utilities": "^16.4.1",
+    "@rxap/utilities": "^16.4.2-dev.0",
     "reflect-metadata": "^0.1.13",
     "tslib": "2.6.2"
   },

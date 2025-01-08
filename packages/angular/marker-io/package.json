@@ -1,5 +1,5 @@
 {
-  "version": "19.0.0",
+  "version": "19.0.1-dev.0",
   "name": "@rxap/ngx-marker-io",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,10 +9,10 @@
   "peerDependencies": {
     "@angular/core": "^19.0.3",
     "@marker.io/browser": "^0.19.0",
-    "@rxap/config": "^19.0.0",
-    "@rxap/environment": "^19.0.0",
-    "@rxap/ngx-pub-sub": "^19.0.0",
-    "@rxap/utilities": "^16.4.1",
+    "@rxap/config": "^19.0.1-dev.0",
+    "@rxap/environment": "^19.0.1-dev.0",
+    "@rxap/ngx-pub-sub": "^19.0.1-dev.0",
+    "@rxap/utilities": "^16.4.2-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -44,19 +44,19 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "19.0.0"
+        "version": "19.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.1"
+        "version": "16.4.2-dev.0"
       }
     ]
   },

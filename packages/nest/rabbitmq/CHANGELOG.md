@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.1.0...@rxap/nest-rabbitmq@10.1.1-dev.0) (2025-01-08)
+
+**Note:** Version bump only for package @rxap/nest-rabbitmq
+
 # [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-rabbitmq@10.1.0-dev.0...@rxap/nest-rabbitmq@10.1.0) (2025-01-08)
 
 **Note:** Version bump only for package @rxap/nest-rabbitmq
