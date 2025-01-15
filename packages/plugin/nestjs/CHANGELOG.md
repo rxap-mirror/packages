@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.0.1-dev.0...@rxap/plugin-nestjs@20.1.0-dev.0) (2025-01-15)
+
+### Features
+
+- support custom interceptors with module registration ([bb31033](https://gitlab.com/rxap/packages/commit/bb31033cce2f85a315909e477a3ac7605b6c0a9a))
+
 ## [20.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.0.0...@rxap/plugin-nestjs@20.0.1-dev.0) (2025-01-08)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs
