@@ -504,10 +504,10 @@
       <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/rabbitmq-vault/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/rabbitmq-vault/dist" />
       <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/rabbitmq-vault/docs" />
-      <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/rabbitmq/compodoc" />
-      <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/rabbitmq/coverage" />
-      <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/rabbitmq/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/rabbitmq/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/amqp/compodoc" />
+      <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/amqp/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/amqp/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/../cqrs/packages/nest/amqp/docs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

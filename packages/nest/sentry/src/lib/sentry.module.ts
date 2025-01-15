@@ -3,17 +3,24 @@ import {
   ConsoleLoggerOptions,
   DynamicModule,
   Global,
+  HttpException,
   Logger,
   Module,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CONSOLE_LOGGER_OPTIONS, RxapLogger } from '@rxap/nest-logger';
-import { SentryModuleOptions } from './sentry.interfaces';
+import {
+  SentryInterceptorOptions,
+  SentryModuleOptions,
+} from './sentry.interfaces';
 import { SentryLogger } from './sentry.logger';
 import { SentryService } from './sentry.service';
 import {
+  SENTRY_INTERCEPTOR_OPTIONS,
   SENTRY_MODULE_OPTIONS,
 } from './tokens';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { SentryInterceptor } from './sentry.interceptor';
 
 export const {
   ConfigurableModuleClass,
@@ -25,6 +32,15 @@ export const {
     isGlobal: true,
   })
   .build();
+
+export const DEFAULT_SENTRY_INTERCEPTOR_OPTIONS: SentryInterceptorOptions = {
+  filters: [
+    {
+      type: HttpException,
+      filter: (exception: HttpException) => 500 > exception.getStatus(),
+    },
+  ],
+};
 
 @Global()
 @Module({
@@ -73,6 +89,15 @@ export class SentryModule extends ConfigurableModuleClass {
         timestamp: timestamp ?? true,
         logLevels: logLevels ?? [ 'log', 'error', 'warn' ],
       },
+    });
+    module.providers.push({
+      provide: SENTRY_INTERCEPTOR_OPTIONS,
+      useFactory: (options: SentryModuleOptions) => options.interceptors ?? DEFAULT_SENTRY_INTERCEPTOR_OPTIONS,
+      inject: [MODULE_OPTIONS_TOKEN]
+    });
+    module.providers.push({
+      provide: APP_INTERCEPTOR,
+      useClass: SentryInterceptor,
     });
     return module;
   }
