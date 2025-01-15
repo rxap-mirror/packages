@@ -9680,7 +9680,7 @@ __metadata:
     "@angular/core": ^19.0.3
     "@rxap/config": ^19.0.1-dev.0
     rxjs: ^7.8.1
-    socket.io-client: ^4.6.2
+    socket.io-client: ^4.8.1
   languageName: unknown
   linkType: soft
 
