@@ -58,6 +58,8 @@ export function withSocketIoOptions(options: Partial<ManagerOptions & SocketOpti
   };
 }
 
+// region dynamic from config
+
 export function withDynamicSocketIoUrl(key = 'socket.url'): Provider {
   return {
     provide: RXAP_SOCKET_IO_URL,
@@ -81,3 +83,5 @@ export function withDynamicSocketIoOptions(key = 'socket.options'): Provider {
     deps: [ ConfigService ]
   };
 }
+
+// endregion
