@@ -67,18 +67,18 @@ export abstract class Server<Options extends object, NestApplicationContext exte
 
   public async bootstrap() {
 
-    console.log('Server bootstrap started');
-    console.debug('Initial environment', JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2));
+    console.log('[Bootstrap] Server bootstrap started');
+    console.debug('[Bootstrap] Initial environment', JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2));
 
     this.printPackageVersions();
 
     this.prepareEnvironment(this.environment);
 
-    console.debug('Handle before bootstrap hooks');
+    console.debug('[Bootstrap] Handle before bootstrap hooks');
 
     await this.handleBefore();
 
-    console.debug('Create application');
+    console.debug('[Bootstrap] Create application');
 
     this.app = await this.create();
 
@@ -98,7 +98,7 @@ export abstract class Server<Options extends object, NestApplicationContext exte
       throw new Error('Could not inject a Logger instance');
     }
 
-    this.logger.log(`Logger instance name: ${ this.logger.constructor.name }`, 'Bootstrap');
+    this.logger.log(`[Bootstrap] Logger instance name: ${ this.logger.constructor.name }`, 'Bootstrap');
 
     this.app.useLogger(this.logger);
 
@@ -162,12 +162,12 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     this.loadBuildJson(environment);
 
     if (process.env['ENVIRONMENT_NAME']) {
-      console.log(`Set environment name from process.env.ENVIRONMENT_NAME to '${ process.env['ENVIRONMENT_NAME'] }'`);
+      console.log(`[Bootstrap] Set environment name from process.env.ENVIRONMENT_NAME to '${ process.env['ENVIRONMENT_NAME'] }'`);
       environment.name = process.env['ENVIRONMENT_NAME'];
     }
 
     RXAP_GLOBAL_STATE.environment = environment;
-    console.log('Final environment', JSON.stringify(RXAP_GLOBAL_STATE.environment, undefined, this.environment.production ? undefined : 2));
+    console.log('[Bootstrap] Final environment', JSON.stringify(RXAP_GLOBAL_STATE.environment, undefined, this.environment.production ? undefined : 2));
   }
 
   protected abstract prepareOptions(app: NestApplicationContext, logger: Logger, config: ConfigService): BootstrapOptions;
@@ -212,12 +212,12 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     if (existsSync(packageJsonFilePath)) {
       try {
         const packageJson = JSON.parse(readFileSync(packageJsonFilePath).toString('utf-8'));
-        Logger.verbose('Package versions: ' + JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+        console.debug(`[Bootstrap] Package versions: ${ JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2) }`);
       } catch (e) {
-        Logger.warn(`Could not parse package.json in the path '${ packageJsonFilePath }'`, 'Bootstrap');
+        console.warn(`[Bootstrap] Could not parse package.json in the path '${ packageJsonFilePath }'`);
       }
     } else {
-      Logger.warn(`The package.json file does not exists in the path '${ packageJsonFilePath }'`, 'Bootstrap');
+      console.warn(`[Bootstrap] The package.json file does not exists in the path '${ packageJsonFilePath }'`);
     }
   }
 

@@ -6,6 +6,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { DetermineVersion } from '@rxap/nest-utilities';
+import process from 'node:process';
 import { Server } from './server';
 
 export interface MicroserviceBootstrapOptions {
@@ -20,12 +21,13 @@ export class Microservice<Logger extends LoggerService, Options extends object =
   }
 
   protected override prepareOptions(app: INestMicroservice, logger: Logger, config: ConfigService): MicroserviceBootstrapOptions {
-    logger.log('environment: ' +
-      JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+    logger.log(`environment: ${ JSON.stringify(this.environment) }`, 'Bootstrap');
 
-    logger.log(
-      'Server Config: ' +
-      JSON.stringify((config as any).internalConfig, undefined, this.environment.production ? undefined : 2),
+    logger.verbose?.('Process Environment: %JSON', process.env, 'Bootstrap');
+
+    logger.debug?.(
+      'Server Config: %JSON',
+      (config as any).internalConfig,
       'Bootstrap',
     );
 

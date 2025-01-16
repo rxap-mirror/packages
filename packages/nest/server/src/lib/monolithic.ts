@@ -7,6 +7,7 @@ import type { GlobalPrefixOptions } from '@nestjs/common/interfaces';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DetermineVersion } from '@rxap/nest-utilities';
+import * as process from 'node:process';
 import { hostname } from 'os';
 import { Server } from './server';
 
@@ -86,12 +87,13 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
 
   protected override prepareOptions(app: NestApplicationContext, logger: Logger, config: ConfigService): BootstrapOptions {
 
-    logger.log('environment: ' +
-      JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+    logger.log(`environment: ${ JSON.stringify(this.environment) }`, 'Bootstrap');
 
-    logger.log(
-      'Server Config: ' +
-      JSON.stringify((config as any).internalConfig, undefined, this.environment.production ? undefined : 2),
+    logger.verbose?.('Process Environment: %JSON', process.env, 'Bootstrap');
+
+    logger.debug?.(
+      'Server Config: %JSON',
+      (config as any).internalConfig,
       'Bootstrap',
     );
 
@@ -120,7 +122,7 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
         globalPrefixOptions.exclude ??= [];
         globalPrefixOptions.exclude.push('/health(.*)', '/info', '/openapi');
       }
-      logger.log(`Global prefix options: ${JSON.stringify(globalPrefixOptions, undefined, this.environment.production ? undefined : 2)}`, 'Bootstrap');
+      logger.log(`Global prefix options: %JSON`, globalPrefixOptions, 'Bootstrap');
       app.setGlobalPrefix(
         options.globalApiPrefix,
         globalPrefixOptions
