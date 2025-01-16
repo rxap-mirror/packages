@@ -1,5 +1,5 @@
 {
-  "version": "10.3.0-dev.0",
+  "version": "10.3.0-dev.1",
   "name": "@rxap/nest-logger",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,8 +10,8 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
-    "@rxap/nest-utilities": "^10.3.9-dev.0",
-    "@rxap/utilities": "^16.2.0"
+    "@rxap/nest-utilities": "^10.3.9-dev.1",
+    "@rxap/utilities": "^16.4.2-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -37,8 +37,32 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@nestjs/cache-manager",
+        "version": "2.2.2"
+      },
+      {
         "package": "@nestjs/common",
         "version": "10.3.8"
+      },
+      {
+        "package": "@nestjs/config",
+        "version": "3.2.2"
+      },
+      {
+        "package": "@nestjs/core",
+        "version": "10.3.8"
+      },
+      {
+        "package": "@nestjs/throttler",
+        "version": "5.1.2"
+      },
+      {
+        "package": "@rxap/nest-utilities",
+        "version": "10.3.9-dev.1"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.4.2-dev.0"
       }
     ]
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.3.0-dev.0...@rxap/nest-logger@10.3.0-dev.1) (2025-01-16)
+
+### Features
+
+- add google logging print messages function ([8bcf9ad](https://gitlab.com/rxap/packages/commit/8bcf9ad442259cc958878ef276582c3421d1b901))
+
 # [10.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.2.11-dev.0...@rxap/nest-logger@10.3.0-dev.0) (2025-01-16)
 
 ### Features

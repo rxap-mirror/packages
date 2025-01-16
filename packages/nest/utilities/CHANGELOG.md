@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.9-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.9-dev.0...@rxap/nest-utilities@10.3.9-dev.1) (2025-01-16)
+
+### Bug Fixes
+
+- remove unused key ([7b55979](https://gitlab.com/rxap/packages/commit/7b559796e5641418723c62ce5d422013f10faf54))
+
 ## [10.3.9-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.8...@rxap/nest-utilities@10.3.9-dev.0) (2025-01-08)
 
 **Note:** Version bump only for package @rxap/nest-utilities

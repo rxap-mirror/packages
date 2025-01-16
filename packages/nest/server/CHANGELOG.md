@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.5.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.5.3-dev.0...@rxap/nest-server@10.5.3-dev.1) (2025-01-16)
+
+### Bug Fixes
+
+- improve logging output ([f9b8a0d](https://gitlab.com/rxap/packages/commit/f9b8a0d59694a6548a73744685c507ff0ceb262a))
+
 ## [10.5.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.5.2...@rxap/nest-server@10.5.3-dev.0) (2025-01-08)
 
 **Note:** Version bump only for package @rxap/nest-server
