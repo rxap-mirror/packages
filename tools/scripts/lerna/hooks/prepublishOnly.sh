@@ -46,10 +46,12 @@ yarn nx reset
   echo "No changed projects found"
   echo "yarn nx run-many --target=build --configuration=production"
 
+  # use --skip-nx-cache to ensure the package.json is copied
   yarn nx affected \
     --target="build" \
     --exclude="angular" \
     --configuration="production" \
+    --skip-nx-cache \
     --nxBail 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-build.log"
   exit_code=${PIPESTATUS[0]}
   if [ $exit_code -ne 0 ]; then
