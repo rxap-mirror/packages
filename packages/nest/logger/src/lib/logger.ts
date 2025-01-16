@@ -6,7 +6,20 @@ import {
   LogLevel,
   Optional,
 } from '@nestjs/common';
-import { CONSOLE_LOGGER_OPTIONS } from './tokens';
+import {
+  CONSOLE_LOGGER_OPTIONS,
+  RXAP_LOGGER_PRINT_MESSAGES,
+} from './tokens';
+
+/**
+ * @return true - call the super.printMessages method
+ */
+export type PrintMessagesFunction = (
+  messages: unknown[],
+  context: string,
+  logLevel: LogLevel,
+  writeStreamType?: 'stdout' | 'stderr',
+) => boolean;
 
 /**
  * A custom logger class that extends the ConsoleLogger class.
@@ -21,90 +34,51 @@ export class RxapLogger extends ConsoleLogger {
     @Inject(CONSOLE_LOGGER_OPTIONS)
     @Optional()
     options: ConsoleLoggerOptions = {},
+    @Optional()
+    @Inject(RXAP_LOGGER_PRINT_MESSAGES)
+    protected readonly printMessagesFunction: PrintMessagesFunction | null = null
   ) {
     super(context as any, options);
   }
 
-  override log(message: string, ...optionalParams: any[]) {
-    const {
-      msg,
-      params,
-    } = this.interpolate(message, optionalParams, 'log');
-    super.log(msg, ...params);
-  }
-
-  override error(message: string, ...optionalParams: any[]) {
-    const {
-      msg,
-      params,
-    } = this.interpolate(message, optionalParams, 'error');
-    super.error(msg, ...params);
-  }
-
-  override warn(message: string, ...optionalParams: any[]) {
-    const {
-      msg,
-      params,
-    } = this.interpolate(message, optionalParams, 'warn');
-    super.warn(msg, ...params);
-  }
-
-  override debug(message: string, ...optionalParams: any[]) {
-    const {
-      msg,
-      params,
-    } = this.interpolate(message, optionalParams, 'debug');
-    super.debug(msg, ...params);
-  }
-
-  override verbose(message: string, ...optionalParams: any[]) {
-    const {
-      msg,
-      params,
-    } = this.interpolate(message, optionalParams, 'verbose');
-    super.verbose(msg, ...params);
-  }
-
-  protected interpolate(message: unknown, optionalParams: any[], logLevel: LogLevel): { msg: unknown, params: any[] } {
-    if (this.isLevelEnabled(logLevel) && typeof message === 'string') {
-      if (message.includes('%JSON')) {
-        // replace each %JSON with the corresponding optionalParam
-        const msg = message.replace(/%JSON/g, () => {
-          if (optionalParams.length) {
-            const param = optionalParams.shift();
-            if (typeof param === 'object') {
-              if (param) {
-                return this.stringifyCircular(param);
-              } else if (param === null) {
-                return '<null>';
-              }
-            }
-            if (typeof param === 'undefined') {
-              return '<undefined>';
-            }
-            if (typeof param === 'string') {
-              return JSON.stringify(param);
-            }
-            if (typeof param === 'number') {
-              return JSON.stringify(param);
-            }
-            if (typeof param === 'boolean') {
-              return JSON.stringify(param);
-            }
-            optionalParams.unshift(param);
-          }
-          return '<json>';
-        });
-        return {
-          msg,
-          params: optionalParams,
-        };
-      }
+  protected interpolate(messages: unknown[]): unknown[] {
+    if (messages.length <= 1) {
+      return messages;
     }
-    return {
-      msg: message,
-      params: optionalParams,
-    };
+    if (typeof messages[0] !== 'string') {
+      return messages;
+    }
+    if (!(messages[0] as string).includes('%JSON')) {
+      return messages;
+    }
+    let message = messages.shift() as string;
+    message = message.replace(/%JSON/g, () => {
+      if (messages.length) {
+        const param = messages.shift();
+        if (typeof param === 'object') {
+          if (param) {
+            return this.stringifyCircular(param);
+          } else if (param === null) {
+            return '<null>';
+          }
+        }
+        if (typeof param === 'undefined') {
+          return '<undefined>';
+        }
+        if (typeof param === 'string') {
+          return JSON.stringify(param);
+        }
+        if (typeof param === 'number') {
+          return JSON.stringify(param);
+        }
+        if (typeof param === 'boolean') {
+          return JSON.stringify(param);
+        }
+        messages.unshift(param);
+      }
+      return '<json>';
+    });
+    return [message, ...messages];
   }
 
   protected stringifyCircular(obj: any) {
@@ -120,6 +94,22 @@ export class RxapLogger extends ConsoleLogger {
       }
       return value;
     });
+  }
+
+  protected override printMessages(
+    messages: unknown[],
+    context = '',
+    logLevel: LogLevel = 'log',
+    writeStreamType?: 'stdout' | 'stderr',
+  ) {
+    if (this.printMessagesFunction) {
+      const call = this.printMessagesFunction(messages, context, logLevel, writeStreamType);
+      if (call) {
+        super.printMessages(this.interpolate(messages), context, logLevel, writeStreamType);
+      }
+    } else {
+      super.printMessages(this.interpolate(messages), context, logLevel, writeStreamType);
+    }
   }
 
 }

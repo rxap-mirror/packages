@@ -8,7 +8,12 @@ import {
   Module,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { CONSOLE_LOGGER_OPTIONS, RxapLogger } from '@rxap/nest-logger';
+import {
+  CONSOLE_LOGGER_OPTIONS,
+  PrintMessagesFunction,
+  RXAP_LOGGER_PRINT_MESSAGES,
+  RxapLogger,
+} from '@rxap/nest-logger';
 import {
   SentryInterceptorOptions,
   SentryModuleOptions,
@@ -64,19 +69,19 @@ export const DEFAULT_SENTRY_INTERCEPTOR_OPTIONS: SentryInterceptorOptions = {
 })
 export class SentryModule extends ConfigurableModuleClass {
 
-  static register(options: typeof OPTIONS_TYPE = {}, consoleLoggerOptions: ConsoleLoggerOptions = {}): DynamicModule {
-    return this.updateProviders(super.register(options), consoleLoggerOptions);
+  static register(options: typeof OPTIONS_TYPE = {}, consoleLoggerOptions: ConsoleLoggerOptions = {}, printMessagesFunction: PrintMessagesFunction | null = null): DynamicModule {
+    return this.updateProviders(super.register(options), consoleLoggerOptions, printMessagesFunction);
   }
 
-  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE, consoleLoggerOptions: ConsoleLoggerOptions = {}): DynamicModule {
-    return this.updateProviders(super.registerAsync(options), consoleLoggerOptions);
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE, consoleLoggerOptions: ConsoleLoggerOptions = {}, printMessagesFunction: PrintMessagesFunction | null = null): DynamicModule {
+    return this.updateProviders(super.registerAsync(options), consoleLoggerOptions, printMessagesFunction);
   }
 
   private static updateProviders(module: DynamicModule, {
     timestamp,
     logLevels,
     ...consoleLoggerOptions
-  }: ConsoleLoggerOptions) {
+  }: ConsoleLoggerOptions, printMessagesFunction: PrintMessagesFunction | null) {
     module.providers ??= [];
     module.providers.push({
       provide: SENTRY_MODULE_OPTIONS,
@@ -95,6 +100,12 @@ export class SentryModule extends ConfigurableModuleClass {
       useFactory: (options: SentryModuleOptions) => options.interceptors ?? DEFAULT_SENTRY_INTERCEPTOR_OPTIONS,
       inject: [MODULE_OPTIONS_TOKEN]
     });
+    if (printMessagesFunction) {
+      module.providers.push({
+        provide: RXAP_LOGGER_PRINT_MESSAGES,
+        useValue: printMessagesFunction
+      });
+    }
     module.providers.push({
       provide: APP_INTERCEPTOR,
       useClass: SentryInterceptor,
