@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.0-dev.0...@rxap/nest-sentry@10.5.0-dev.1) (2025-01-16)
+
+### Features
+
+- support custom print messages function ([db34f07](https://gitlab.com/rxap/packages/commit/db34f070178b9ea7a453304e7f66d20d3a508e01))
+
 # [10.5.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.4.6-dev.0...@rxap/nest-sentry@10.5.0-dev.0) (2025-01-15)
 
 ### Features

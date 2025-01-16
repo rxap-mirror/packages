@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.2.11-dev.0...@rxap/nest-logger@10.3.0-dev.0) (2025-01-16)
+
+### Features
+
+- support custom print messages function ([db34f07](https://gitlab.com/rxap/packages/commit/db34f070178b9ea7a453304e7f66d20d3a508e01))
+
 ## [10.2.11-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.2.10...@rxap/nest-logger@10.2.11-dev.0) (2025-01-08)
 
 **Note:** Version bump only for package @rxap/nest-logger
