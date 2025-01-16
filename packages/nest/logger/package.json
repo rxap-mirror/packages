@@ -9,7 +9,9 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.3.8"
+    "@nestjs/common": "^10.3.8",
+    "@rxap/nest-utilities": "^10.3.9-dev.0",
+    "@rxap/utilities": "^16.2.0"
   },
   "author": {
     "name": "Merzough Münker",

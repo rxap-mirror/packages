@@ -1,5 +1,5 @@
 import { LogLevel } from '@nestjs/common';
-import { PrintMessagesFunction } from '@rxap/nest-logger';
+import { PrintMessagesFunction } from './logger';
 import { Environment } from '@rxap/nest-utilities';
 import { DeleteEmptyProperties } from '@rxap/utilities';
 
