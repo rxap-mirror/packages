@@ -12,10 +12,6 @@ export interface Environment {
    */
   production: boolean;
   /**
-   * Where the service worker is active or not
-   */
-  serviceWorker?: boolean;
-  /**
    * The current app release
    */
   release?: string | null;
