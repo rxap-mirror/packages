@@ -37,6 +37,8 @@ export class EnvironmentModule extends ConfigurableModuleClass {
       useFactory: EnvironmentFactory,
       inject: [ MODULE_OPTIONS_TOKEN ],
     });
+    module.exports ??= [];
+    module.exports.push(ENVIRONMENT);
     return module;
   }
 
