@@ -43,7 +43,7 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentryGeneratorSche
         },
       ],
       importWriter: w => {
-        w.writeLine('SentryModule.forRootAsync(');
+        w.writeLine('SentryModule.registerAsync(');
         Writers.object({
           imports: '[ ConfigModule ]',
           inject: '[ ConfigService ]',
