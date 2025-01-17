@@ -4,6 +4,7 @@ import {
   updateNxJson,
 } from '@nx/devkit';
 import {
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   Strategy,
@@ -26,6 +27,8 @@ export function setGeneralTargetDefaults(tree: Tree, options: InitApplicationGen
     'index-export',
     '^build',
   );
+
+  CoerceNxJsonCacheableOperation(nxJson, '@nx/webpack:webpack');
 
   if (!options.standalone) {
     CoerceTargetDefaultsDependency(
