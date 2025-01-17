@@ -132,7 +132,7 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@nestjs/terminus', NESTJS_TERMINUS_VERSION, { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/config', NESTJS_CONFIG_VERSION, { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/cache-manager', NESTJS_CACHE_MANAGER_VERSION, { soft: true });
-  await AddPackageJsonDependency(tree, 'cache-manager', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'cache-manager', '^5.7.6', { soft: true });
   await AddPackageJsonDependency(tree, 'joi', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-nestjs', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-library', 'latest', { soft: true });
