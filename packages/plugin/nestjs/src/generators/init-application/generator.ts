@@ -18,7 +18,7 @@ import {
   CoerceNestAppModule,
   CoerceNestCacheModuleImport,
   CoerceNestConfigModuleImport,
-  CoerceNestEnvironmentProvider,
+  CoerceNestEnvironmentModule,
   CoerceNestModuleImport,
   CoerceNestThrottlerModuleImport,
 } from '@rxap/ts-morph';
@@ -280,6 +280,7 @@ export async function initApplicationGenerator(
           CoerceNestConfigModuleImport(moduleSourceFile, { overwrite: options.overwrite });
           CoerceNestCacheModuleImport(moduleSourceFile, { overwrite: options.overwrite });
           CoerceAppGuardProvider(moduleSourceFile);
+          CoerceNestEnvironmentModule(moduleSourceFile);
           const itemList = ExtractExistingConfigValidation(moduleSourceFile);
           for (const item of [
             {

@@ -12,6 +12,7 @@ export * from './lib/nest/coerce-nest-app-module';
 export * from './lib/nest/coerce-nest-cache-module-import';
 export * from './lib/nest/coerce-nest-config-module-import';
 export * from './lib/nest/coerce-nest-controller';
+export * from './lib/nest/coerce-nest-environment-module';
 export * from './lib/nest/coerce-nest-environment-provider';
 export * from './lib/nest/coerce-nest-module-controller';
 export * from './lib/nest/coerce-nest-module-import';
