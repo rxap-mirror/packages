@@ -124,8 +124,8 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
     (project, [ sourceFile ]) => {
 
       CoerceSentryModule(sourceFile, options);
-      CoerceSentryInterceptorOptionsProvider(sourceFile);
-      CoerceAppInterceptorProvider(sourceFile);
+      // CoerceSentryInterceptorOptionsProvider(sourceFile);
+      // CoerceAppInterceptorProvider(sourceFile);
 
     },
     [ '/app/app.module.ts' ],
