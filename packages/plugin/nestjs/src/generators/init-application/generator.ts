@@ -280,7 +280,6 @@ export async function initApplicationGenerator(
           CoerceNestConfigModuleImport(moduleSourceFile, { overwrite: options.overwrite });
           CoerceNestCacheModuleImport(moduleSourceFile, { overwrite: options.overwrite });
           CoerceAppGuardProvider(moduleSourceFile);
-          CoerceNestEnvironmentProvider(moduleSourceFile);
           const itemList = ExtractExistingConfigValidation(moduleSourceFile);
           for (const item of [
             {

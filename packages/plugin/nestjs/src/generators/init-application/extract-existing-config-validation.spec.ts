@@ -17,7 +17,7 @@ describe('ExtractExistingConfigValidation', () => {
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import { ENVIRONMENT, GetLogLevels } from '@rxap/nest-utilities';
+import { GetLogLevels } from '@rxap/nest-utilities';
 import { SENTRY_INTERCEPTOR_OPTIONS, SentryInterceptor, SentryModule, SentryOptionsFactory } from '@rxap/nest-sentry';
 import * as Joi from 'joi';
 import { environment } from '../environments/environment';
@@ -82,26 +82,6 @@ import { ServerConfig } from 'nest-open-api';
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
-    },
-    {
-      provide: ENVIRONMENT,
-      useValue: environment,
-    },
-    Logger,
-    {
-      provide: SENTRY_INTERCEPTOR_OPTIONS,
-      useValue: {
-        filters: [
-          {
-            type: HttpException,
-            filter: (exception: HttpException) => 500 > exception.getStatus(),
-          },
-        ],
-      },
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: SentryInterceptor,
     },
   ],
 })
@@ -199,7 +179,6 @@ import {
   SentryOptionsFactory,
 } from '@rxap/nest-sentry';
 import {
-  ENVIRONMENT,
   GetLogLevels,
 } from '@rxap/nest-utilities';
 import { environment } from '../environments/environment';
@@ -238,28 +217,8 @@ import { HealthModule } from './health/health.module';
   controllers: [ AppController ],
   providers: [
     {
-      provide: APP_INTERCEPTOR,
-      useClass: SentryInterceptor,
-    },
-    {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
-    },
-    {
-      provide: ENVIRONMENT,
-      useValue: environment,
-    },
-    Logger,
-    {
-      provide: SENTRY_INTERCEPTOR_OPTIONS,
-      useValue: {
-        filters: [
-          {
-            type: HttpException,
-            filter: (exception: HttpException) => 500 > exception.getStatus(),
-          },
-        ],
-      },
     },
   ],
 })
