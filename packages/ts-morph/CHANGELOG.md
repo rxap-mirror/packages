@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.5.3-dev.0...@rxap/ts-morph@1.5.3-dev.1) (2025-01-21)
+
+### Bug Fixes
+
+- introduce the environment module ([8934256](https://gitlab.com/rxap/packages/commit/8934256cda5dc5e64be43a3c9a079419f89f1442))
+
 ## [1.5.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.5.2...@rxap/ts-morph@1.5.3-dev.0) (2025-01-08)
 
 **Note:** Version bump only for package @rxap/ts-morph

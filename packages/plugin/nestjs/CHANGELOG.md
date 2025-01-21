@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.0...@rxap/plugin-nestjs@20.1.0-dev.1) (2025-01-21)
+
+### Bug Fixes
+
+- add missing cachable hint ([68623d3](https://gitlab.com/rxap/packages/commit/68623d30869a20350163d727b82f06ff74d547f4))
+- introduce the environment module ([8934256](https://gitlab.com/rxap/packages/commit/8934256cda5dc5e64be43a3c9a079419f89f1442))
+- ping cache manager to v5 ([d755d64](https://gitlab.com/rxap/packages/commit/d755d6418c645bc7077c439844d1bbbf90f2f247))
+- remove provider import of ENVIRONMENT ([94e27ba](https://gitlab.com/rxap/packages/commit/94e27bab87e01fba2cbb7ff4f84fb02fa471502a))
+- remove sentry manuel providers ([b2065dd](https://gitlab.com/rxap/packages/commit/b2065dd0efb2d6ab65e51ac68bd4bdb4a8708252))
+- use registerAsync instead of forRootAsync ([413ff44](https://gitlab.com/rxap/packages/commit/413ff44c394780654ddf7a8b9586a314ed77a9eb))
+
 # [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.0.1-dev.0...@rxap/plugin-nestjs@20.1.0-dev.0) (2025-01-15)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.9-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.9-dev.1...@rxap/nest-utilities@10.3.9-dev.2) (2025-01-21)
+
+### Bug Fixes
+
+- export the environment provider ([7706353](https://gitlab.com/rxap/packages/commit/7706353bdce84827f700100a815650872c15b500))
+
 ## [10.3.9-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.9-dev.0...@rxap/nest-utilities@10.3.9-dev.1) (2025-01-16)
 
 ### Bug Fixes
