@@ -3,7 +3,7 @@
   "name": "@rxap/mixin",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.3.1",
+    "@nx/devkit": "20.3.2",
     "@rxap/reflect-metadata": "^1.0.13-dev.0",
     "@rxap/utilities": "^16.4.2-dev.0",
     "reflect-metadata": "^0.1.13",

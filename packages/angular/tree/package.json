@@ -4,7 +4,7 @@
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.3.1",
+    "@nx/devkit": "20.3.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

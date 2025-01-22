@@ -6536,36 +6536,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/angular@npm:20.3.1, @nx/angular@npm:^20.3.1":
-  version: 20.3.1
-  resolution: "@nx/angular@npm:20.3.1"
-  dependencies:
-    "@nx/devkit": 20.3.1
-    "@nx/eslint": 20.3.1
-    "@nx/js": 20.3.1
-    "@nx/module-federation": 20.3.1
-    "@nx/web": 20.3.1
-    "@nx/webpack": 20.3.1
-    "@nx/workspace": 20.3.1
-    "@phenomnomnominal/tsquery": ~5.0.1
-    "@typescript-eslint/type-utils": ^8.0.0
-    chalk: ^4.1.0
-    magic-string: ~0.30.2
-    minimatch: 9.0.3
-    piscina: ^4.4.0
-    semver: ^7.5.3
-    tslib: ^2.3.0
-    webpack-merge: ^5.8.0
-  peerDependencies:
-    "@angular-devkit/build-angular": ">= 17.0.0 < 20.0.0"
-    "@angular-devkit/core": ">= 17.0.0 < 20.0.0"
-    "@angular-devkit/schematics": ">= 17.0.0 < 20.0.0"
-    "@schematics/angular": ">= 17.0.0 < 20.0.0"
-    rxjs: ^6.5.3 || ^7.5.0
-  checksum: 73bf15538e15558eae490201c7d4275ef067ce36b7118152936509fb91b861658192a085f9f31a8f83331bb081a3adccd824a919d41d5649a0eb30b18124c418
-  languageName: node
-  linkType: hard
-
 "@nx/angular@npm:20.3.2":
   version: 20.3.2
   resolution: "@nx/angular@npm:20.3.2"
@@ -6593,6 +6563,36 @@ __metadata:
     "@schematics/angular": ">= 17.0.0 < 20.0.0"
     rxjs: ^6.5.3 || ^7.5.0
   checksum: 047663994a20147e75f5a1eed3d86a9766d1e4de5356ea7efa7e1e4bcfad00edd09b9581371a44329e91d80f5580e90799026e3d7ac9225bd0d6655d87481891
+  languageName: node
+  linkType: hard
+
+"@nx/angular@npm:^20.3.1":
+  version: 20.3.1
+  resolution: "@nx/angular@npm:20.3.1"
+  dependencies:
+    "@nx/devkit": 20.3.1
+    "@nx/eslint": 20.3.1
+    "@nx/js": 20.3.1
+    "@nx/module-federation": 20.3.1
+    "@nx/web": 20.3.1
+    "@nx/webpack": 20.3.1
+    "@nx/workspace": 20.3.1
+    "@phenomnomnominal/tsquery": ~5.0.1
+    "@typescript-eslint/type-utils": ^8.0.0
+    chalk: ^4.1.0
+    magic-string: ~0.30.2
+    minimatch: 9.0.3
+    piscina: ^4.4.0
+    semver: ^7.5.3
+    tslib: ^2.3.0
+    webpack-merge: ^5.8.0
+  peerDependencies:
+    "@angular-devkit/build-angular": ">= 17.0.0 < 20.0.0"
+    "@angular-devkit/core": ">= 17.0.0 < 20.0.0"
+    "@angular-devkit/schematics": ">= 17.0.0 < 20.0.0"
+    "@schematics/angular": ">= 17.0.0 < 20.0.0"
+    rxjs: ^6.5.3 || ^7.5.0
+  checksum: 73bf15538e15558eae490201c7d4275ef067ce36b7118152936509fb91b861658192a085f9f31a8f83331bb081a3adccd824a919d41d5649a0eb30b18124c418
   languageName: node
   linkType: hard
 
@@ -6769,29 +6769,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/jest@npm:20.3.1":
-  version: 20.3.1
-  resolution: "@nx/jest@npm:20.3.1"
-  dependencies:
-    "@jest/reporters": ^29.4.1
-    "@jest/test-result": ^29.4.1
-    "@nx/devkit": 20.3.1
-    "@nx/js": 20.3.1
-    "@phenomnomnominal/tsquery": ~5.0.1
-    chalk: ^4.1.0
-    identity-obj-proxy: 3.0.0
-    jest-config: ^29.4.1
-    jest-resolve: ^29.4.1
-    jest-util: ^29.4.1
-    minimatch: 9.0.3
-    resolve.exports: 2.0.3
-    semver: ^7.5.3
-    tslib: ^2.3.0
-    yargs-parser: 21.1.1
-  checksum: 6a0906f3cbd719eb29b072cf195e9b579b9f20cc6fe2bb5c940a13a8ee1c9c0a66432b50079d133d37a5baa2389f185297c41d2935272234fdf8039cefe79cf7
-  languageName: node
-  linkType: hard
-
 "@nx/jest@npm:20.3.2":
   version: 20.3.2
   resolution: "@nx/jest@npm:20.3.2"
@@ -6941,20 +6918,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/nest@npm:20.3.1":
-  version: 20.3.1
-  resolution: "@nx/nest@npm:20.3.1"
-  dependencies:
-    "@nestjs/schematics": ^9.1.0
-    "@nx/devkit": 20.3.1
-    "@nx/eslint": 20.3.1
-    "@nx/js": 20.3.1
-    "@nx/node": 20.3.1
-    tslib: ^2.3.0
-  checksum: b32f10e11655f210b71da9a78abb6942683ebec087fd76cf2a93025371e5a99be1f0b205137fb8f214a4b4397d65a9b7ee79d7ccaec9f2d929c4cb5cdedc5ce5
-  languageName: node
-  linkType: hard
-
 "@nx/nest@npm:20.3.2":
   version: 20.3.2
   resolution: "@nx/nest@npm:20.3.2"
@@ -6966,19 +6929,6 @@ __metadata:
     "@nx/node": 20.3.2
     tslib: ^2.3.0
   checksum: 2df3ac956da4874519d8fa15b87e58d3e8bc0a9f863c2880668032f355a63029f374c3d1be4b843cbc39fb68487c60a9b6918d8d4bd12b797fda68ba1a3d911b
-  languageName: node
-  linkType: hard
-
-"@nx/node@npm:20.3.1":
-  version: 20.3.1
-  resolution: "@nx/node@npm:20.3.1"
-  dependencies:
-    "@nx/devkit": 20.3.1
-    "@nx/eslint": 20.3.1
-    "@nx/jest": 20.3.1
-    "@nx/js": 20.3.1
-    tslib: ^2.3.0
-  checksum: e1ad51816197ce79b0b56ae255c785171bc3bbe635027bf1252bc7b29de318dd55d3ba6a5cec5824a2ff080c3134621b878a498f215b3aa0180287f523d0412d
   languageName: node
   linkType: hard
 
@@ -7202,19 +7152,6 @@ __metadata:
   version: 20.3.2
   resolution: "@nx/nx-win32-x64-msvc@npm:20.3.2"
   conditions: os=win32 & cpu=x64
-  languageName: node
-  linkType: hard
-
-"@nx/plugin@npm:20.3.1":
-  version: 20.3.1
-  resolution: "@nx/plugin@npm:20.3.1"
-  dependencies:
-    "@nx/devkit": 20.3.1
-    "@nx/eslint": 20.3.1
-    "@nx/jest": 20.3.1
-    "@nx/js": 20.3.1
-    tslib: ^2.3.0
-  checksum: e07f0a55f137dcff174b4a3e3fc0e51d0c3207dc37e3dff010786c2bd4834df6f2cac14cf72560fa5e6cb2dec02f46a5b21b79259c1a74c686918eaae5f0e55a
   languageName: node
   linkType: hard
 
@@ -8592,7 +8529,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/authentication@workspace:packages/angular/authentication"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -8607,7 +8544,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/authorization@workspace:packages/angular/authorization"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -8622,7 +8559,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/browser-tailwind@workspace:packages/browser/tailwind"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@tailwindcss/typography": ^0.5.13
     tailwindcss: ^3.4.4
     tslib: 2.6.2
@@ -8633,7 +8570,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/browser-utilities@workspace:packages/browser/utilities"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     rxjs: ^7.8.1
@@ -8644,7 +8581,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/components@workspace:packages/angular/components"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -8662,7 +8599,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/config@workspace:packages/angular/config"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -8677,7 +8614,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/contenteditable@workspace:packages/angular/contenteditable"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -8690,7 +8627,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/data-grid@workspace:packages/angular/data-grid"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -8710,7 +8647,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/data-source@workspace:packages/angular/data-source"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -8731,7 +8668,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/data-structure-tree@workspace:packages/data-structure/tree"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/rxjs": ^1.1.12-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
     tslib: 2.6.2
@@ -8742,7 +8679,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/definition@workspace:packages/angular/definition"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -8756,7 +8693,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/dialog@workspace:packages/angular/dialog"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -8772,7 +8709,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/directives@workspace:packages/angular/directives"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -8788,7 +8725,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/environment@workspace:packages/angular/environment"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -8800,7 +8737,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/firebase@workspace:packages/angular/firebase"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -8818,7 +8755,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/form-system@workspace:packages/angular/form-system"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -8844,7 +8781,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/form-window-system@workspace:packages/angular/form-window-system"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -8865,7 +8802,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/forms@workspace:packages/angular/forms"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -8887,7 +8824,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/generator-ts-morph@workspace:packages/generator/ts-morph"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/workspace-ts-morph": ^19.1.9-dev.1
     tslib: 2.6.2
   languageName: unknown
@@ -8897,7 +8834,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/generator-utilities@workspace:packages/generator/utilities"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -8906,7 +8843,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/handlebars@workspace:packages/angular/handlebars"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     handlebars: ^4.7.8
     tslib: 2.6.2
   peerDependencies:
@@ -8918,7 +8855,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/icon@workspace:packages/angular/icon"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -8934,7 +8871,7 @@ __metadata:
   resolution: "@rxap/json-schema-to-typescript@workspace:packages/json-schema-to-typescript"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/utilities": ^16.4.2-dev.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -8945,7 +8882,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/keycloak@workspace:packages/angular/keycloak"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -8960,7 +8897,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/layout@workspace:packages/angular/layout"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/workspace-ts-morph": ^19.1.9-dev.1
     "@rxap/workspace-utilities": ^19.6.1-dev.0
@@ -8989,7 +8926,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/life-cycle@workspace:packages/angular/life-cycle"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9003,7 +8940,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/material-directives@workspace:packages/angular/material/directives"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9020,7 +8957,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/material-form-system@workspace:packages/angular/material/form-system"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -9042,7 +8979,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/material-table-system@workspace:packages/angular/material/table-system"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/animations": ^19.0.3
@@ -9070,7 +9007,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/material-table-window-system@workspace:packages/angular/material/table-window-system"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -9092,7 +9029,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/mixin@workspace:packages/mixin"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/reflect-metadata": ^1.0.13-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
     reflect-metadata: ^0.1.13
@@ -9104,7 +9041,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-neo4j@workspace:packages/n8n/nodes/neo4j"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     n8n-workflow: ^1.48.0
     tslib: 2.6.2
   languageName: unknown
@@ -9114,7 +9051,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-yaml@workspace:packages/n8n/nodes/yaml"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     iconv-lite: ^0.6.3
     lodash: ^4.17.21
     n8n-workflow: ^1.48.0
@@ -9127,7 +9064,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-zip@workspace:packages/n8n/nodes/zip"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     adm-zip: ^0.5.10
     n8n-workflow: ^1.48.0
     tmp-promise: ^3.0.3
@@ -9139,7 +9076,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-dto@workspace:packages/nest/dto"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     class-transformer: ^0.5.1
     class-validator: ^0.14.1
     tslib: 2.6.2
@@ -9150,7 +9087,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-firebase@workspace:packages/nest/firebase"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9162,7 +9099,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-jwt@workspace:packages/nest/jwt"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9179,7 +9116,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-logger@workspace:packages/nest/logger"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/workspace-utilities": ^19.6.1-dev.0
     tslib: 2.6.2
@@ -9194,7 +9131,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-minio@workspace:packages/nest/minio"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9208,7 +9145,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-oauth2-proxy@workspace:packages/nest/oauth2-proxy"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9220,7 +9157,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-open-api@workspace:packages/nest/open-api"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/axios": ^3.0.2
@@ -9257,7 +9194,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-rabbitmq@workspace:packages/nest/rabbitmq"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9275,7 +9212,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-sentry@workspace:packages/nest/sentry"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/workspace-utilities": ^19.6.1-dev.0
     tslib: 2.6.2
@@ -9299,7 +9236,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-server@workspace:packages/nest/server"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9318,7 +9255,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-socket-io-client@workspace:packages/nest/socket-io-client"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9333,7 +9270,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-supabase@workspace:packages/nest/supabase"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9346,7 +9283,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-testing@workspace:packages/nest/testing"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9355,7 +9292,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-utilities@workspace:packages/nest/utilities"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/cache-manager": ^2.2.2
@@ -9373,7 +9310,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-vault@workspace:packages/nest/vault"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9387,7 +9324,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-web3-storage@workspace:packages/nest/web3-storage"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^10.3.8
@@ -9401,7 +9338,7 @@ __metadata:
   resolution: "@rxap/ngx-bootstrap@workspace:packages/angular/bootstrap"
   dependencies:
     "@nx/angular": ^20.3.1
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9417,7 +9354,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-changelog@workspace:packages/angular/changelog"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -9435,7 +9372,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-error@workspace:packages/angular/error"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -9455,7 +9392,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-localize@workspace:packages/angular/localize"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -9470,7 +9407,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-marker-io@workspace:packages/angular/marker-io"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9487,7 +9424,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-authentication@workspace:packages/angular/material/authentication"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/animations": ^19.0.3
@@ -9511,7 +9448,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-localize@workspace:packages/angular/material/localize"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -9528,7 +9465,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-table-select@workspace:packages/angular/material/table-select"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -9558,7 +9495,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-memory@workspace:packages/angular/memory"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9569,7 +9506,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-oauth2-proxy@workspace:packages/angular/oauth2-proxy"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -9587,7 +9524,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-pub-sub@workspace:packages/angular/pub-sub"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9599,7 +9536,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-sentry@workspace:packages/angular/sentry"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@rxap/config": ^19.0.1-dev.0
@@ -9612,7 +9549,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-status-check@workspace:packages/angular/status-check"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -9631,7 +9568,7 @@ __metadata:
   resolution: "@rxap/ngx-theme@workspace:packages/angular/theme"
   dependencies:
     "@ctrl/tinycolor": ^4.0.2
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -9648,7 +9585,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-timeago@workspace:packages/angular/timeago"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9661,7 +9598,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-user@workspace:packages/angular/user"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9677,7 +9614,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/node-local-storage@workspace:packages/node/local-storage"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9686,7 +9623,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/node-utilities@workspace:packages/node/utilities"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/utilities": ^16.4.2-dev.0
     ignore: ^5.2.4
     tslib: 2.6.2
@@ -9709,7 +9646,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/oauth@workspace:packages/angular/oauth"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -9726,7 +9663,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/open-api@workspace:packages/angular/open-api"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -9748,7 +9685,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/pattern@workspace:packages/pattern"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     rxjs: ^7.8.1
@@ -9759,7 +9696,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/pipes@workspace:packages/angular/pipes"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -9773,8 +9710,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-angular@workspace:packages/plugin/angular"
   dependencies:
-    "@nx/angular": 20.3.1
-    "@nx/devkit": 20.3.1
+    "@nx/angular": 20.3.2
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-application": ^20.0.1-dev.0
     "@rxap/plugin-library": ^20.0.1-dev.1
     "@rxap/plugin-utilities": ^20.0.1-dev.0
@@ -9796,7 +9733,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-application@workspace:packages/plugin/application"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-utilities": ^20.0.1-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
@@ -9823,7 +9760,7 @@ __metadata:
   resolution: "@rxap/plugin-cypress@workspace:packages/plugin/cypress"
   dependencies:
     "@nx/angular": ^20.3.1
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-angular": ^20.0.1-dev.1
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/utilities": ^16.4.2-dev.0
@@ -9837,7 +9774,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-docker@workspace:packages/plugin/docker"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/node-utilities": ^1.3.8-dev.0
     "@rxap/plugin-gitlab-ci": ^20.0.1-dev.0
     "@rxap/plugin-utilities": ^20.0.1-dev.0
@@ -9850,7 +9787,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-gitlab-ci@workspace:packages/plugin/gitlab-ci"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-utilities": ^20.0.1-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
@@ -9863,7 +9800,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-gpt@workspace:packages/plugin/gpt"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/workspace-ts-morph": ^19.1.9-dev.1
     "@rxap/workspace-utilities": ^19.6.1-dev.0
@@ -9879,8 +9816,8 @@ __metadata:
   resolution: "@rxap/plugin-library@workspace:packages/plugin/library"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
-    "@nx/devkit": 20.3.1
-    "@nx/plugin": 20.3.1
+    "@nx/devkit": 20.3.2
+    "@nx/plugin": 20.3.2
     "@rxap/node-utilities": ^1.3.8-dev.0
     "@rxap/plugin-utilities": ^20.0.1-dev.0
     "@rxap/ts-morph": ^1.5.3-dev.1
@@ -9889,7 +9826,7 @@ __metadata:
     "@rxap/workspace-utilities": ^19.6.1-dev.0
     colors: 1.4.0
     handlebars: 4.7.8
-    nx: 20.3.1
+    nx: 20.3.2
     semver: 7.5.3
     ts-morph: 18.0.0
     tslib: 2.6.2
@@ -9901,7 +9838,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-localazy@workspace:packages/plugin/localazy"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-utilities": ^20.0.1-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
     tslib: 2.6.2
@@ -9912,7 +9849,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-n8n@workspace:packages/plugin/n8n"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-library": ^20.0.1-dev.1
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/utilities": ^16.4.2-dev.0
@@ -9927,9 +9864,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-nestjs@workspace:packages/plugin/nestjs"
   dependencies:
-    "@nx/devkit": 20.3.1
-    "@nx/js": 20.3.1
-    "@nx/nest": 20.3.1
+    "@nx/devkit": 20.3.2
+    "@nx/js": 20.3.2
+    "@nx/nest": 20.3.2
     "@rxap/node-utilities": ^1.3.8-dev.0
     "@rxap/plugin-application": ^20.0.1-dev.0
     "@rxap/plugin-library": ^20.0.1-dev.1
@@ -9950,7 +9887,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/node-utilities": ^1.3.8-dev.0
     "@rxap/plugin-library": ^20.0.1-dev.1
     "@rxap/plugin-utilities": ^20.0.1-dev.0
@@ -9967,8 +9904,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-storybook@workspace:packages/plugin/storybook"
   dependencies:
-    "@nx/angular": 20.3.1
-    "@nx/devkit": 20.3.1
+    "@nx/angular": 20.3.2
+    "@nx/devkit": 20.3.2
     "@nx/eslint": ^20.3.1
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/utilities": ^16.4.2-dev.0
@@ -9984,12 +9921,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-typedoc@workspace:packages/plugin/typedoc"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-utilities": ^20.0.1-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
     colors: 1.4.0
-    nx: 20.3.1
+    nx: 20.3.2
     tslib: 2.6.2
     typedoc: ^0.25.13
   languageName: unknown
@@ -9999,7 +9936,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-utilities@workspace:packages/plugin/utilities"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/node-utilities": ^1.3.8-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
     tslib: 2.6.2
@@ -10022,7 +9959,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-web3-storage@workspace:packages/plugin/web3-storage"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-utilities": ^20.0.1-dev.0
     "@ucanto/principal": ^9.0.1
     "@web3-storage/w3up-client": ^16.2.0
@@ -10035,8 +9972,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
   dependencies:
-    "@nx/devkit": 20.3.1
-    "@nx/js": 20.3.1
+    "@nx/devkit": 20.3.2
+    "@nx/js": 20.3.2
     "@rxap/plugin-utilities": ^20.0.1-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
@@ -10050,7 +9987,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/preset-angular@workspace:packages/preset/angular"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-angular": ^20.0.1-dev.1
     "@rxap/plugin-workspace": ^20.0.1-dev.0
     tslib: 2.6.2
@@ -10061,7 +9998,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/preset-workspace@workspace:packages/preset/workspace"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/plugin-workspace": ^20.0.1-dev.0
     tslib: 2.6.2
   languageName: unknown
@@ -10071,7 +10008,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/reflect-metadata@workspace:packages/reflect-metadata"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/utilities": ^16.4.2-dev.0
     reflect-metadata: ^0.1.13
     tslib: 2.6.2
@@ -10082,7 +10019,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/remote-method@workspace:packages/angular/remote-method"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -10098,7 +10035,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/rxjs@workspace:packages/rxjs"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@rxap/utilities": ^16.4.2-dev.0
@@ -10112,7 +10049,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 19.0.4
     "@angular-devkit/schematics": 19.0.4
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/schematics-ts-morph": ^19.0.1-dev.1
     "@rxap/schematics-utilities": ^19.0.1-dev.0
     "@rxap/ts-morph": ^1.5.3-dev.1
@@ -10131,7 +10068,7 @@ __metadata:
   resolution: "@rxap/schematic-composer@workspace:packages/schematic/composer"
   dependencies:
     "@angular-devkit/schematics": 19.0.4
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/schematics-ts-morph": ^19.0.1-dev.1
     "@rxap/schematics-utilities": ^19.0.1-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
@@ -10148,7 +10085,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 19.0.4
     "@angular-devkit/schematics": 19.0.4
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/schematics-ts-morph": ^19.0.1-dev.1
     "@rxap/schematics-utilities": ^19.0.1-dev.0
     "@rxap/ts-morph": ^1.5.3-dev.1
@@ -10166,7 +10103,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 19.0.4
     "@angular-devkit/schematics": 19.0.4
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/json-schema-to-typescript": ^16.0.13-dev.0
     "@rxap/schematics-ts-morph": ^19.0.1-dev.1
     "@rxap/schematics-utilities": ^19.0.1-dev.0
@@ -10185,7 +10122,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": 19.0.4
     "@angular-devkit/schematics": 19.0.4
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/schematics-utilities": ^19.0.1-dev.0
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/utilities": ^16.4.2-dev.0
@@ -10203,7 +10140,7 @@ __metadata:
   resolution: "@rxap/schematics-utilities@workspace:packages/schematic/utilities"
   dependencies:
     "@angular-devkit/schematics": ^19.0.4
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/utilities": ^16.4.2-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
     tslib: 2.6.2
@@ -10216,7 +10153,7 @@ __metadata:
   dependencies:
     "@angular-devkit/core": ^19.0.4
     "@angular-devkit/schematics": ^19.0.4
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/schematics-ts-morph": ^19.0.1-dev.1
     "@rxap/schematics-utilities": ^19.0.1-dev.0
     "@rxap/xml-parser": ^16.1.2-dev.0
@@ -10229,7 +10166,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/service-worker@workspace:packages/angular/service-worker"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -10245,7 +10182,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/services@workspace:packages/angular/services"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/common": ^19.0.3
@@ -10260,7 +10197,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/slugify@workspace:packages/slugify"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10269,7 +10206,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/socket-io@workspace:packages/angular/socket-io"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.0.3
@@ -10480,7 +10417,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/table-system@workspace:packages/angular/table-system"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/animations": ^19.0.3
@@ -10500,7 +10437,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/tree@workspace:packages/angular/tree"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -10523,7 +10460,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/ts-morph@workspace:packages/ts-morph"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/utilities": ^16.4.2-dev.0
     colors: ^1.4.0
     ts-morph: ^18.0.0
@@ -10535,7 +10472,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/upload@workspace:packages/angular/upload"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -10553,7 +10490,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/utilities@workspace:packages/utilities"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10572,7 +10509,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/validator@workspace:packages/validator"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10581,7 +10518,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/window-system@workspace:packages/angular/window-system"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   peerDependencies:
     "@angular/cdk": ^19.0.2
@@ -10601,7 +10538,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-cypress@workspace:packages/workspace/cypress"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10610,7 +10547,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/json-schema-to-typescript": ^16.0.13-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
@@ -10625,7 +10562,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/ts-morph": ^1.5.3-dev.1
     "@rxap/utilities": ^16.4.2-dev.0
     "@rxap/workspace-utilities": ^19.6.1-dev.0
@@ -10638,7 +10575,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-utilities@workspace:packages/workspace/utilities"
   dependencies:
-    "@nx/devkit": 20.3.1
+    "@nx/devkit": 20.3.2
     "@rxap/node-utilities": ^1.3.8-dev.0
     "@rxap/utilities": ^16.4.2-dev.0
     colors: ^1.4.0
