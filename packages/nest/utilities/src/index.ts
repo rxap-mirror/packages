@@ -5,6 +5,7 @@ export * from './lib/apply-sort';
 export * from './lib/cache-module-options-loader';
 export * from './lib/class-transformer-options';
 export * from './lib/class-validator-options';
+export * from './lib/default-validation-schema';
 export * from './lib/determine-environment';
 export * from './lib/determine-production-environment-name';
 export * from './lib/determine-release-name';
