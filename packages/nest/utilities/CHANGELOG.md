@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.9-dev.2...@rxap/nest-utilities@10.4.0-dev.0) (2025-01-22)
+
+### Features
+
+- add validation schema ([792719a](https://gitlab.com/rxap/packages/commit/792719a1bbea5aef18b7352933f0650725485e99))
+
 ## [10.3.9-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.3.9-dev.1...@rxap/nest-utilities@10.3.9-dev.2) (2025-01-21)
 
 ### Bug Fixes

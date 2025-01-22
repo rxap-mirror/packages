@@ -1,17 +1,17 @@
 {
-  "version": "10.3.0-dev.2",
+  "version": "10.3.0-dev.3",
   "name": "@rxap/nest-logger",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.3.2",
-    "@rxap/ts-morph": "^1.5.3-dev.1",
-    "@rxap/workspace-utilities": "^19.6.1-dev.0",
+    "@rxap/ts-morph": "^1.5.3-dev.2",
+    "@rxap/workspace-utilities": "^19.6.1-dev.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
-    "@rxap/nest-utilities": "^10.3.9-dev.2",
-    "@rxap/utilities": "^16.4.2-dev.0"
+    "@rxap/nest-utilities": "^10.4.0-dev.0",
+    "@rxap/utilities": "^16.4.2-dev.1"
   },
   "author": {
     "name": "Merzough Münker",
@@ -58,11 +58,11 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.3.9-dev.2"
+        "version": "10.4.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.2-dev.0"
+        "version": "16.4.2-dev.1"
       }
     ]
   },

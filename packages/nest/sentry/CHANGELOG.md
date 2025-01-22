@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.0-dev.3...@rxap/nest-sentry@10.5.0-dev.4) (2025-01-22)
+
+### Features
+
+- add validation schema ([792719a](https://gitlab.com/rxap/packages/commit/792719a1bbea5aef18b7352933f0650725485e99))
+
 # [10.5.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.0-dev.2...@rxap/nest-sentry@10.5.0-dev.3) (2025-01-21)
 
 **Note:** Version bump only for package @rxap/nest-sentry

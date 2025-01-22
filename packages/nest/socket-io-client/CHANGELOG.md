@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.8-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-socket-io-client@10.1.8-dev.0...@rxap/nest-socket-io-client@10.1.8-dev.1) (2025-01-22)
+
+**Note:** Version bump only for package @rxap/nest-socket-io-client
+
 ## [10.1.8-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-socket-io-client@10.1.7...@rxap/nest-socket-io-client@10.1.8-dev.0) (2025-01-08)
 
 **Note:** Version bump only for package @rxap/nest-socket-io-client
