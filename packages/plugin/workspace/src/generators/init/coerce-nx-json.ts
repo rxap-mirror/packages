@@ -4,12 +4,10 @@ import {
   updateNxJson,
 } from '@nx/devkit';
 import {
-  CoerceNxJsonCacheableOperation,
   CoerceNxJsonGenerators,
   CoerceNxJsonNamedInputs,
   CoerceNxPlugin,
-  CoerceTarget,
-  CoerceTargetDefaultsInput,
+  GetWorkspaceProjectName,
   IsRxapRepository,
   Strategy,
 } from '@rxap/workspace-utilities';
@@ -17,6 +15,8 @@ import { InitGeneratorSchema } from './schema';
 
 export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   const nxJson = readNxJson(tree)!;
+
+  nxJson.defaultProject ??= GetWorkspaceProjectName(tree);
 
   CoerceNxJsonNamedInputs(nxJson, 'default', [ '{projectRoot}/**/*' ]);
   CoerceNxJsonNamedInputs(nxJson, 'build', [
