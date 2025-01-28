@@ -85,19 +85,13 @@
     "build": {
       "dependsOn": [
         "^build",
-        "readme",
         "typedoc",
         "compodoc",
-        "index-export",
-        "check-version",
         "build-tailwind",
         "generate-package-json",
-        "check-ng-package",
         "build-info",
-        "expose-as-schematic",
         "copy-open-api-sdk",
-        "bundle-json-schema",
-        "^index-export"
+        "bundle-json-schema"
       ],
       "cache": true,
       "inputs": ["production", "^production"]
@@ -153,19 +147,15 @@
     },
     "@nx/js:tsc": {
       "cache": true,
-      "dependsOn": ["^index-export", "index-export", "^build"]
+      "dependsOn": ["^build"]
     },
     "fix-dependencies": {
       "dependsOn": ["^fix-dependencies"]
     },
     "@nx/angular:ng-packagr-lite": {
       "dependsOn": [
-        "index-export",
-        "^index-export",
         "^build",
-        "check-version",
-        "build-tailwind",
-        "check-ng-package"
+        "build-tailwind"
       ],
       "inputs": ["production", "^production"]
     },
