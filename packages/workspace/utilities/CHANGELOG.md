@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.2...@rxap/workspace-utilities@19.6.1-dev.3) (2025-01-28)
+
+### Bug Fixes
+
+- remove static name requirement for workspace project ([9100223](https://gitlab.com/rxap/packages/commit/9100223a036d60b0d9d41e7648606599720ddf9c))
+
 ## [19.6.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.1...@rxap/workspace-utilities@19.6.1-dev.2) (2025-01-28)
 
 ### Bug Fixes
