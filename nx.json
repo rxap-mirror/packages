@@ -152,6 +152,7 @@
       }
     },
     "@nx/js:tsc": {
+      "cache": true,
       "dependsOn": ["^index-export", "index-export", "^build"]
     },
     "fix-dependencies": {

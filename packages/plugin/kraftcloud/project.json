@@ -1,0 +1,59 @@
+{
+  "name": "plugin-kraftcloud",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/plugin/kraftcloud/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["plugin", "nx", "nx-plugin", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/plugin/kraftcloud",
+        "main": "packages/plugin/kraftcloud/src/index.ts",
+        "tsConfig": "packages/plugin/kraftcloud/tsconfig.lib.json",
+        "assets": [
+          "packages/plugin/kraftcloud/*.md",
+          {
+            "input": "./packages/plugin/kraftcloud/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/kraftcloud/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/kraftcloud",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/kraftcloud",
+            "glob": "executors.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/kraftcloud/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

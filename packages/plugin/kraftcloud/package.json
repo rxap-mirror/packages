@@ -1,0 +1,38 @@
+{
+  "version": "20.0.0-dev.0",
+  "name": "@rxap/plugin-kraftcloud",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/kraftcloud",
+  "keywords": [
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-kraftcloud",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/kraftcloud"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/kraftcloud"
+  },
+  "type": "commonjs",
+  "types": "./src/index.d.ts"
+}
