@@ -9,9 +9,11 @@ import {
   GetProjectRoot,
   GetProjectSourceRoot,
   GetTarget,
+  GetWorkspaceProjectName,
   HasTarget,
   IsAngularProject,
   IsPublishable,
+  IsWorkspaceProject,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { CoerceGitIgnore } from '../../lib/coerce-git-ignore';
@@ -34,15 +36,15 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     }
   }
 
-  if (projectName === 'workspace') {
+  if (IsWorkspaceProject(project)) {
     const includeList = Array.from(getProjects(tree))
-      .filter(([projectName]) => projectName !== 'workspace')
+      .filter(([_, project]) => !IsWorkspaceProject(project))
       .filter(([projectName]) => tree.exists(join(GetProjectRoot(tree, projectName), 'tsconfig.typedoc.json')))
       .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
       .map(sourceRoot => join(sourceRoot, '**/*.ts'));
-    CoerceTypedocTsConfig(tree, 'workspace', includeList);
+    CoerceTypedocTsConfig(tree, GetWorkspaceProjectName(tree), includeList);
     const entryPoints = Array.from(getProjects(tree))
-      .filter(([projectName]) => projectName !== 'workspace')
+      .filter(([_, project]) => !IsWorkspaceProject(project))
       .filter(([projectName]) => tree.exists(join(GetProjectRoot(tree, projectName), 'tsconfig.typedoc.json')))
       .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
       .map(sourceRoot => join(sourceRoot, 'index.ts'));

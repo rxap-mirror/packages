@@ -5,6 +5,7 @@ import {
   GetProjectRoot,
   IsAngularProject,
   IsNestJsProject,
+  IsWorkspaceProject,
   UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
 
@@ -13,7 +14,7 @@ export function CoerceCompodocTsConfig(tree: Tree, projectName: string, include:
   const projectRoot = GetProjectRoot(tree, projectName);
   const project = GetProject(tree, projectName);
 
-  if (IsAngularProject(project) || projectName === 'workspace') {
+  if (IsAngularProject(project) || IsWorkspaceProject(project)) {
     exclude ??= [ '**/*.stories.ts', '**/*.spec.ts', '**/*.cy.ts' ];
   }
 
@@ -22,9 +23,9 @@ export function CoerceCompodocTsConfig(tree: Tree, projectName: string, include:
   }
 
   UpdateTsConfigJson(tree, tsConfig => {
-    tsConfig.extends ??= projectName === 'workspace' ? './tsconfig.base.json' : './tsconfig.json';
+    tsConfig.extends ??= IsWorkspaceProject(project) ? './tsconfig.base.json' : './tsconfig.json';
     tsConfig.compilerOptions ??= {};
-    if (IsAngularProject(project) || projectName === 'workspace') {
+    if (IsAngularProject(project) || IsWorkspaceProject(project)) {
       tsConfig.compilerOptions.types ??= [];
       CoerceArrayItems(tsConfig.compilerOptions.types, [ '@angular/localize' ]);
     }

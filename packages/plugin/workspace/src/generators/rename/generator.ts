@@ -6,6 +6,7 @@ import { CoerceArrayItems } from '@rxap/utilities';
 import {
   CoerceFile,
   GetProjectRoot,
+  GetWorkspaceProjectName,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { RenameGeneratorSchema } from './schema';
@@ -16,7 +17,7 @@ export async function renameGenerator(
 ) {
   const projectRoot = options.project ? GetProjectRoot(tree, options.project) : '.';
   const isStandalone = projectRoot === '.';
-  options.name ??= 'workspace';
+  options.name ??= GetWorkspaceProjectName(tree);
   console.log(`Rename project (standalone: ${isStandalone ? 'true' : 'false'}) '${options.project ?? '<auto>'}' in '${projectRoot}' to '${options.name}'`);
   // region replace project name with workspace
   // region project.json

@@ -8,9 +8,11 @@ import {
   GetProjectRoot,
   GetProjectSourceRoot,
   GetTarget,
+  GetWorkspaceProjectName,
   HasTarget,
   IsAngularProject,
   IsPublishable,
+  IsWorkspaceProject,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { CoerceCompodocTsConfig } from '../../lib/coerce-compodoc-ts-config';
@@ -33,13 +35,13 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     }
   }
 
-  if (projectName === 'workspace') {
+  if (IsWorkspaceProject(project)) {
     const angularProjectIncludeList = Array.from(getProjects(tree))
-      .filter(([projectName]) => projectName !== 'workspace')
+      .filter(([_, project]) => !IsWorkspaceProject(project))
       .filter(([projectName]) => tree.exists(join(GetProjectRoot(tree, projectName), 'tsconfig.compodoc.json')))
       .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
       .map(sourceRoot => join(sourceRoot, '**/*.ts'));
-    CoerceCompodocTsConfig(tree, 'workspace', angularProjectIncludeList);
+    CoerceCompodocTsConfig(tree, GetWorkspaceProjectName(tree), angularProjectIncludeList);
   } else {
     CoerceCompodocTsConfig(tree, projectName);
   }

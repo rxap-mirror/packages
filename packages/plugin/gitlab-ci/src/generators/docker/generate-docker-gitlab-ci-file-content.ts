@@ -10,6 +10,7 @@ import {
   GetWorkspaceName,
   IsNestJsProject,
   IsStandaloneWorkspace,
+  IsWorkspaceProject,
   ProcessBuildArgs,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
@@ -105,7 +106,7 @@ export function buildDockerMatrix(
 
     matrix.push(matrixItem);
 
-    if (projectName === 'workspace' && IsStandaloneWorkspace(tree)) {
+    if (IsWorkspaceProject(project) && IsStandaloneWorkspace(tree)) {
       matrixItem.PROJECT_NAME = GetWorkspaceName(tree);
     } else {
       matrixItem.PROJECT_NAME = projectName;

@@ -3,7 +3,10 @@ import {
   getPackageManagerCommand,
   joinPathFragments,
 } from '@nx/devkit';
-import { GetWorkspaceName } from '@rxap/plugin-utilities';
+import {
+  GetWorkspaceName,
+  IsWorkspaceProject,
+} from '@rxap/plugin-utilities';
 import { coerceArray } from '@rxap/utilities';
 import {
   ChildProcess,
@@ -56,15 +59,15 @@ function toCompodocOptions(
     minimal: options.exportFormat === 'json',
 
     name: options.name || (
-      context.projectName === 'workspace' ? GetWorkspaceName(context) : context.projectName
+      IsWorkspaceProject(context) ? GetWorkspaceName(context) : context.projectName
     ),
 
-    includes: context.projectName === 'workspace'
+    includes: IsWorkspaceProject(context)
               ? createIncludesForWorkspace(options, context)
               : toRelativePath(options.includes, options, context),
     includesName:
       options.includesName || (
-                             context.projectName === 'workspace' ? 'Projects' : undefined
+                             IsWorkspaceProject(context) ? 'Projects' : undefined
                            ),
 
     assetsFolder: toRelativePath(options.assetsFolder, options, context),
@@ -233,7 +236,7 @@ export default async function runExecutor(options: BuildExecutorSchema, context:
   const result = await new Promise<{ success: boolean }>((resolve) => {
     let childProcess: ChildProcess;
 
-    if (options.watch && context.projectName === 'workspace') {
+    if (options.watch && IsWorkspaceProject(context)) {
       const _cmd = `${ getPackageManagerCommand().exec } nodemon`;
       const _cmdArgs = [
         '--ignore dist',

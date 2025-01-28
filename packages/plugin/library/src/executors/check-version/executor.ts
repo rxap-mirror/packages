@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
-import { readPackageJsonForProjectWithRetry } from '@rxap/plugin-utilities';
+import { readPackageJsonForProjectWithRetry, readRootPackageJson } from '@rxap/plugin-utilities';
 import {
   parse,
   satisfies,
@@ -13,7 +13,7 @@ export default async function runExecutor(
   console.log('Executor ran for CheckVersion', options);
 
   const projectJson = await readPackageJsonForProjectWithRetry(context);
-  const rootPackageJson = await readPackageJsonForProjectWithRetry(context, 'workspace');
+  const rootPackageJson = await readRootPackageJson(context);
 
   let targetVersion = rootPackageJson.devDependencies?.[options.packageName] ??
     rootPackageJson.dependencies?.[options.packageName];

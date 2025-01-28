@@ -4,18 +4,22 @@ import {
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { CoerceTarget } from '@rxap/workspace-utilities';
+import {
+  CoerceTarget,
+  GetWorkspaceProject,
+  HasWorkspaceProject,
+} from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
 export function coerceWorkspaceProject(tree: Tree, options: InitGeneratorSchema) {
 
-  if (!getProjects(tree).get('workspace')) {
+  if (!HasWorkspaceProject(tree)) {
     addProjectConfiguration(tree, 'workspace', {
       root: '',
     });
   }
 
-  const workspaceProject = getProjects(tree).get('workspace')!;
+  const workspaceProject = GetWorkspaceProject(tree);
 
   CoerceTarget(workspaceProject, 'ci-info', {
     executor: '@rxap/plugin-workspace:ci-info',
@@ -75,6 +79,6 @@ export function coerceWorkspaceProject(tree: Tree, options: InitGeneratorSchema)
     });
   }
 
-  updateProjectConfiguration(tree, 'workspace', workspaceProject);
+  updateProjectConfiguration(tree, workspaceProject.name!, workspaceProject);
 
 }

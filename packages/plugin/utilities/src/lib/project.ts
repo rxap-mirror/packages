@@ -31,3 +31,7 @@ export function GetProjectSourceRoot(context: ExecutorContext, projectName = con
   const projectConfiguration = GetProjectConfiguration(context, projectName);
   return projectConfiguration.sourceRoot ?? join(projectConfiguration.root, 'src');
 }
+
+export function IsWorkspaceProject(context: ExecutorContext, projectName = context.projectName): boolean {
+  return ['', '/'].includes(GetProjectRoot(context, projectName));
+}

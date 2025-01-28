@@ -1,6 +1,8 @@
 import {
   GetProject,
+  GetWorkspaceProject,
   HasProject,
+  HasWorkspaceProject,
 } from './get-project';
 import { TreeLike } from './tree';
 
@@ -13,9 +15,9 @@ import { TreeLike } from './tree';
  * @returns {boolean} - Returns `true` if the tree contains a 'workspace' project with both 'build' and 'serve' targets, otherwise returns `false`.
  */
 export function IsStandaloneWorkspace(tree: TreeLike): boolean {
-  if (!HasProject(tree, 'workspace')) {
+  if (!HasWorkspaceProject(tree)) {
     return false;
   }
-  const workspaceProject = GetProject(tree, 'workspace');
+  const workspaceProject = GetWorkspaceProject(tree);
   return !!workspaceProject.targets?.['build'] && !!workspaceProject.targets?.['serve'];
 }

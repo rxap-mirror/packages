@@ -32,6 +32,14 @@ export function readPackageJsonForProjectWithRetry(
   return jsonFileWithRetry(packageJsonPath, retries, sleep);
 }
 
+export function readRootPackageJson(
+  context: ExecutorContext,
+  retries = 3, sleep = 3000
+): Promise<ProjectPackageJson> {
+  const packageJsonPath = join(context.root, 'package.json');
+  return jsonFileWithRetry(packageJsonPath, retries, sleep);
+}
+
 export function writePackageJsonFormProject<T extends ProjectPackageJson = ProjectPackageJson>(
   context: ExecutorContext,
   content: T,

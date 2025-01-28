@@ -12,6 +12,7 @@ import {
   IsApplicationProject,
   IsLibraryProject,
   IsNestJsProject,
+  IsWorkspaceProject,
 } from '@rxap/workspace-utilities';
 import { initProject as initApplicationProject } from '../init-application/init-project';
 import { initProject as initLibraryProject } from '../init-library/init-project';
@@ -20,7 +21,7 @@ import { InitGeneratorSchema } from './schema';
 
 function skipProject(tree: Tree, options: InitProjectOptions, project: ProjectConfiguration, projectName: string): boolean {
 
-  if (projectName === 'workspace') {
+  if (IsWorkspaceProject(project)) {
     return false;
   }
 
@@ -56,7 +57,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       await initLibraryProject(tree, projectName, project, options);
     }
 
-    if (projectName === 'workspace') {
+    if (IsWorkspaceProject(project)) {
       await initLibraryProject(tree, projectName, project, options);
     }
 

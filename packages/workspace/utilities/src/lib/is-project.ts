@@ -132,16 +132,16 @@ export function IsUtilitiesProject(project: { tags?: string[] }): boolean {
 }
 
 /**
- * Determines if the given project is categorized as a workspace project based on its tags.
+ * Determines if the given project is categorized as a workspace project based on root
  *
- * This function checks if the 'workspace' tag is included in the project's tags array. It returns true if the tag is present, otherwise false.
+ * This function checks if the 'workspace' root is equal to '' or '/'
  *
- * @param {Object} project - An object representing a project, which may have a 'tags' property.
+ * @param {Object} project - An object representing a project, which may have a root property
  * @param {string[]} [project.tags] - Optional array of tags associated with the project.
  * @returns {boolean} - True if the 'workspace' tag is found in the project's tags, otherwise false.
  */
-export function IsWorkspaceProject(project: { tags?: string[] }): boolean {
-  return !!project.tags?.includes('workspace');
+export function IsWorkspaceProject(project: { root?: string }): boolean {
+  return (project.root !== undefined && ['', '/'].includes(project.root));
 }
 
 /**

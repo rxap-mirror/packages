@@ -190,6 +190,20 @@ export function GetProject<Tree extends TreeLike>(tree: Tree, projectName: strin
   return projectConfiguration;
 }
 
+export function GetWorkspaceProject<Tree extends TreeLike>(tree: Tree): ProjectJson {
+  if (!HasWorkspaceProject(tree)) {
+    throw new Error(`The workspace does not have a workspace project located at /project.json`);
+  }
+  return new TreeAdapter(tree).readJson('project.json');
+}
+
+export function GetWorkspaceProjectName<Tree extends TreeLike>(tree: Tree): string {
+  if (!HasWorkspaceProject(tree)) {
+    throw new Error(`The workspace does not have a workspace project located at /project.json`);
+  }
+  return new TreeAdapter(tree).readJson<any>('project.json')!.name;
+}
+
 /**
  * Determines whether a specified project exists within a given tree-like structure.
  *
@@ -205,6 +219,10 @@ export function GetProject<Tree extends TreeLike>(tree: Tree, projectName: strin
  */
 export function HasProject<Tree extends TreeLike>(tree: Tree, projectName: string): boolean {
   return FindProject(tree, projectName) !== null;
+}
+
+export function HasWorkspaceProject<Tree extends TreeLike>(tree: Tree): boolean {
+  return tree.exists('project.json');
 }
 
 /**

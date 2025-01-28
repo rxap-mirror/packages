@@ -12,6 +12,8 @@ import {
   AddPackageJsonDependency,
   CoerceTarget,
   GetProject,
+  GetWorkspaceProject,
+  GetWorkspaceProjectName,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';
 import { parseDocument } from 'yaml';
@@ -84,7 +86,7 @@ async function oauth2ProxyAuthentication(tree: Tree, projectName: string, projec
     }, 'shared/angular/proxy.conf.json');
   }
 
-  const workspaceProject = GetProject(tree, 'workspace');
+  const workspaceProject = GetWorkspaceProject(tree);
   if (workspaceProject.targets && 'docker-compose' in workspaceProject.targets) {
     CoerceTarget(workspaceProject, 'docker-compose', {
       options: {
