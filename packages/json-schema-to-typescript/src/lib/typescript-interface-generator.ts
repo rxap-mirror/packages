@@ -86,6 +86,7 @@ export class TypescriptInterfaceGenerator {
     this.project =
       project ??
       new Project({
+        useInMemoryFileSystem: true,
         manipulationSettings: {
           indentationText: IndentationText.TwoSpaces,
           quoteKind: QuoteKind.Single,
