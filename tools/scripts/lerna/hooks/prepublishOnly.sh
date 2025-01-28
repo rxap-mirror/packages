@@ -38,7 +38,7 @@ fi
 
 rm "${BASE_DIR}/dist/lerna/prepublishOnly.error" || true
 
-rm -fr "${BASE_DIR}/dist/packages"
+# rm -fr "${BASE_DIR}/dist/packages"
 
 yarn nx reset
 
