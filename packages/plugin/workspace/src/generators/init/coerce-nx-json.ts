@@ -7,8 +7,10 @@ import {
   CoerceNxJsonCacheableOperation,
   CoerceNxJsonGenerators,
   CoerceNxJsonNamedInputs,
+  CoerceNxPlugin,
   CoerceTarget,
   CoerceTargetDefaultsInput,
+  IsRxapRepository,
   Strategy,
 } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
@@ -77,6 +79,12 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
 
   nxJson.cli ??= {};
   nxJson.cli.packageManager ??= 'yarn';
+
+  if (IsRxapRepository(tree)) {
+    CoerceNxPlugin(nxJson, './packages/plugin/workspace/src/plugin.ts');
+  } else {
+    CoerceNxPlugin(nxJson, '@rxap/plugin-workspace/plugin');
+  }
 
   if (options.packages) {
     nxJson.release ??= {};

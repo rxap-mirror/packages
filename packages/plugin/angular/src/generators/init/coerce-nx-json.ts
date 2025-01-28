@@ -3,10 +3,7 @@ import {
   Tree,
   updateNxJson,
 } from '@nx/devkit';
-import {
-  CoerceNxJsonCacheableOperation,
-  CoerceNxJsonGenerators,
-} from '@rxap/workspace-utilities';
+import { CoerceNxJsonGenerators } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
 export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
@@ -70,11 +67,6 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   CoerceNxJsonGenerators(nxJson, '@nx/angular:library-secondary-entry-point', {
     'skipModule': true,
   });
-  CoerceNxJsonCacheableOperation(nxJson, 'ci-info');
-  CoerceNxJsonCacheableOperation(nxJson, 'localazy-upload');
-  CoerceNxJsonCacheableOperation(nxJson, 'extract-i18n');
-  CoerceNxJsonCacheableOperation(nxJson, 'localazy-download');
-  CoerceNxJsonCacheableOperation(nxJson, 'component-test');
 
   updateNxJson(tree, nxJson);
 }

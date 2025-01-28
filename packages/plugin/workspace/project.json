@@ -12,6 +12,8 @@
         "outputPath": "dist/packages/plugin/workspace",
         "main": "packages/plugin/workspace/src/index.ts",
         "tsConfig": "packages/plugin/workspace/tsconfig.lib.json",
+        "generateExportsField": true,
+        "additionalEntryPoints": ["packages/plugin/workspace/src/plugin.ts"],
         "assets": [
           "packages/plugin/workspace/*.md",
           {
