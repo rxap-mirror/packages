@@ -14,7 +14,7 @@
     "@rxap/workspace-utilities": "^19.6.1-dev.1",
     "colors": "1.4.0",
     "handlebars": "4.7.8",
-    "nx": "20.3.2",
+    "nx": "20.4.0",
     "semver": "7.5.3",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2",
