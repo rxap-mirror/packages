@@ -60,13 +60,13 @@ exports[`preset should use workspace preset 2`] = `
     "eslint-config-prettier": "^9.0.0",
     "husky": "latest",
     "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
     "nx-cloud": "latest",
     "prettier": "^2.6.2",
     "rxap": "latest",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
-    "typescript": "~5.7.3"
+    "typescript": "~5.7.2"
   },
   "engines": {
     "node": ">=18 <21",
@@ -102,7 +102,7 @@ exports[`preset should use workspace preset 3`] = `
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.cjs"
+        "{workspaceRoot}/eslint.config.mjs"
       ]
     },
     "@nx/jest:jest": {
@@ -142,7 +142,7 @@ exports[`preset should use workspace preset 3`] = `
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.cjs",
+      "!{projectRoot}/eslint.config.mjs",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
