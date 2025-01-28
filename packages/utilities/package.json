@@ -4,7 +4,7 @@
   "description": "A collection of utility functions, types and interfaces.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.3.2",
+    "@nx/devkit": "20.4.0",
     "tslib": "2.6.2"
   },
   "author": {

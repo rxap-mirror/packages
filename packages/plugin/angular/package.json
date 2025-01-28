@@ -3,8 +3,8 @@
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/angular": "20.3.2",
-    "@nx/devkit": "20.3.2",
+    "@nx/angular": "20.4.0",
+    "@nx/devkit": "20.4.0",
     "@rxap/plugin-application": "^20.0.1-dev.1",
     "@rxap/plugin-library": "^20.0.1-dev.2",
     "@rxap/plugin-utilities": "^20.0.1-dev.1",

@@ -3,7 +3,7 @@
   "name": "@rxap/nest-logger",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.3.2",
+    "@nx/devkit": "20.4.0",
     "@rxap/ts-morph": "^1.5.3-dev.2",
     "@rxap/workspace-utilities": "^19.6.1-dev.1",
     "tslib": "2.6.2"
