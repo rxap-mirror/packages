@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.1",
+  "version": "19.0.1-dev.2",
   "name": "@rxap/ngx-pub-sub",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -33,7 +33,7 @@
     "packageGroup": [
       {
         "package": "@angular/core",
-        "version": "19.0.3"
+        "version": "19.1.3"
       }
     ]
   },

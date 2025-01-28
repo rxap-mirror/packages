@@ -1,11 +1,11 @@
 {
-  "version": "20.0.0-dev.0",
+  "version": "20.0.0-dev.1",
   "name": "@rxap/plugin-kraft",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.0",
-    "@rxap/plugin-utilities": "20.0.1-dev.1",
-    "@rxap/workspace-utilities": "19.6.1-dev.1",
+    "@rxap/plugin-utilities": "^20.0.1-dev.2",
+    "@rxap/workspace-utilities": "^19.6.1-dev.2",
     "colors": "1.4.0",
     "glob": "10.3.10",
     "nx": "20.4.0",
@@ -19,6 +19,7 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "executors": "./executors.json",
   "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/kraft",
   "keywords": [
@@ -40,6 +41,5 @@
     "directory": "packages/plugin/kraft"
   },
   "type": "commonjs",
-  "types": "./src/index.d.ts",
-  "executors": "./executors.json"
+  "types": "./src/index.d.ts"
 }

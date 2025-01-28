@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.1...@rxap/workspace-utilities@19.6.1-dev.2) (2025-01-28)
+
+### Bug Fixes
+
+- support minimal interface ([cbbea4b](https://gitlab.com/rxap/packages/commit/cbbea4b6ff07c99bb983887c7dfdb7f07a359e40))
+
 ## [19.6.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.0...@rxap/workspace-utilities@19.6.1-dev.1) (2025-01-22)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

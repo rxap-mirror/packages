@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.13-dev.1...@rxap/json-schema-to-typescript@16.1.0-dev.0) (2025-01-28)
+
+### Bug Fixes
+
+- check that name is not empty ([7089ad6](https://gitlab.com/rxap/packages/commit/7089ad6ef46fb1583d383b5bce3ede58c0ddb69c))
+- use in memory ts-morph project ([e51b441](https://gitlab.com/rxap/packages/commit/e51b44141d6943805bfcb04e32e6eb67cb63313d))
+
+### Features
+
+- add generate generator ([e61bd3c](https://gitlab.com/rxap/packages/commit/e61bd3cf4193cacfb0131b3f802e952aee5ab362))
+
 ## [16.0.13-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.13-dev.0...@rxap/json-schema-to-typescript@16.0.13-dev.1) (2025-01-22)
 
 **Note:** Version bump only for package @rxap/json-schema-to-typescript
