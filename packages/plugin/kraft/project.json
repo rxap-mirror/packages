@@ -1,7 +1,7 @@
 {
-  "name": "plugin-kraftcloud",
+  "name": "plugin-kraft",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/plugin/kraftcloud/src",
+  "sourceRoot": "packages/plugin/kraft/src",
   "projectType": "library",
   "release": {
     "version": {
@@ -17,33 +17,35 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/plugin/kraftcloud",
-        "main": "packages/plugin/kraftcloud/src/index.ts",
-        "tsConfig": "packages/plugin/kraftcloud/tsconfig.lib.json",
+        "outputPath": "dist/packages/plugin/kraft",
+        "main": "packages/plugin/kraft/src/index.ts",
+        "tsConfig": "packages/plugin/kraft/tsconfig.lib.json",
+        "generateExportsField": true,
+        "additionalEntryPoints": ["packages/plugin/kraft/src/plugin.ts"],
         "assets": [
-          "packages/plugin/kraftcloud/*.md",
+          "packages/plugin/kraft/*.md",
           {
-            "input": "./packages/plugin/kraftcloud/src",
+            "input": "./packages/plugin/kraft/src",
             "glob": "**/!(*.ts)",
             "output": "./src"
           },
           {
-            "input": "./packages/plugin/kraftcloud/src",
+            "input": "./packages/plugin/kraft/src",
             "glob": "**/*.d.ts",
             "output": "./src"
           },
           {
-            "input": "./packages/plugin/kraftcloud",
+            "input": "./packages/plugin/kraft",
             "glob": "generators.json",
             "output": "."
           },
           {
-            "input": "./packages/plugin/kraftcloud",
+            "input": "./packages/plugin/kraft",
             "glob": "executors.json",
             "output": "."
           },
           {
-            "input": "./packages/plugin/kraftcloud/src/generators",
+            "input": "./packages/plugin/kraft/src/generators",
             "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/generators"
           }

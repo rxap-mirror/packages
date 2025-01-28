@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "cloud-deploy": {
+      "implementation": "./src/executors/cloud-deploy/executor",
+      "schema": "./src/executors/cloud-deploy/schema.json",
+      "description": "Run the kraft cloud deploy sub command with the specified arguments"
+    }
+  }
+}

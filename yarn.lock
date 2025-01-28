@@ -10030,10 +10030,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-kraftcloud@workspace:packages/plugin/kraftcloud":
+"@rxap/plugin-kraft@workspace:packages/plugin/kraft":
   version: 0.0.0-use.local
-  resolution: "@rxap/plugin-kraftcloud@workspace:packages/plugin/kraftcloud"
+  resolution: "@rxap/plugin-kraft@workspace:packages/plugin/kraft"
   dependencies:
+    "@nx/devkit": 20.4.0
     tslib: ^2.3.0
   languageName: unknown
   linkType: soft
