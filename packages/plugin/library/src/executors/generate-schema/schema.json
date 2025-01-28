@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "GenerateSchema executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "excludes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of glob patterns relative to the project that should be excluded"
+    }
+  },
+  "required": []
+}

@@ -140,6 +140,7 @@ async function createProjectConfiguration(
     }
     if (IsPluginProject(projectConfiguration)) {
       targets['check-version'] = createCheckVersionTarget('nx');
+      targets['generate-schema'] = createSchemaGenerateTarget();
     }
     if (IsNestJsProject(projectConfiguration)) {
       targets['check-version'] = createCheckVersionTarget('@nestjs/core');
@@ -253,5 +254,14 @@ function createIndexExportTarget(): TargetConfiguration {
       '!{projectRoot}/src/lib/**/*.{spec,stories,cy}.ts',
       '!{projectRoot}/src/index.ts'
     ]
+  };
+}
+
+function createSchemaGenerateTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-library:generate-schema',
+    outputs: ['{projectRoot}/**/schema.d.ts'],
+    inputs: ['{projectRoot}/**/schema.json'],
+    cache: true,
   };
 }
