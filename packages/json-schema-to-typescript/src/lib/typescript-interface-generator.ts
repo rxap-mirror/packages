@@ -102,11 +102,17 @@ export class TypescriptInterfaceGenerator {
   }
 
   public async build(name: string): Promise<SourceFile> {
+    if (!name) {
+      throw new Error('The name must not be empty!');
+    }
     await this.bundleSchema();
     return this.buildSync(name, this.bundledSchema);
   }
 
   public buildSync(name: string, bundledSchema: JSONSchema | null = this.bundledSchema ?? this.schema): SourceFile {
+    if (!name) {
+      throw new Error('The name must not be empty!');
+    }
     this.bundledSchema = bundledSchema;
 
     if (!this.bundledSchema) {
