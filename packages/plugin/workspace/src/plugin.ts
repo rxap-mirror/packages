@@ -93,7 +93,7 @@ async function shouldHaveProjectConfiguration(
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot);
-  if (projectPath !== context.workspaceRoot) {
+  if (projectPath !== '.') {
     return false;
   }
   if (!FindProjectByPath(tree, projectPath)) {
