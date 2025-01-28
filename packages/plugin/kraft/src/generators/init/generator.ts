@@ -1,5 +1,6 @@
 import { Tree } from '@nx/devkit';
 import {
+  CoerceIgnorePattern,
   CoerceNxPlugin,
   IsRxapRepository,
   UpdateNxJson,
@@ -14,6 +15,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       CoerceNxPlugin(nxJson, '@rxap/plugin-kraft/plugin');
     }
   });
+  CoerceIgnorePattern(tree, '.gitignore', ['.unikraft']);
 }
 
 export default initGenerator;

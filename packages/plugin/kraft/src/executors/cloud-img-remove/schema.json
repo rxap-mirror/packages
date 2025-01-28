@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "$id": "CloudImgRemove",
+  "title": "kraft cloud img remove",
+  "type": "object",
+  "description": "Remove an image for your account using 'kraft cloud img remove'.",
+  "properties": {
+    "all": { "type": "boolean", "description": "Remove all images" },
+    "buildkit-host": { "type": "string", "description": "Path to the buildkit host" },
+    "config-dir": { "type": "string", "description": "Path to KraftKit config directory" },
+    "containerd-addr": { "type": "string", "description": "Address of containerd daemon socket" },
+    "editor": { "type": "string", "description": "Set the text editor for file editing prompts" },
+    "events-pid-file": { "type": "string", "description": "PID for events process used with multiple unikernels" },
+    "git-protocol": { "type": "string", "description": "Preferred Git protocol (default 'https')" },
+    "http-unix-sock": { "type": "string", "description": "Shared socket for HTTP(S) connections" },
+    "log-level": { "type": "string", "description": "Log level verbosity (default 'info')" },
+    "log-timestamps": { "type": "boolean", "description": "Enable log timestamps" },
+    "log-type": { "type": "string", "description": "Log type (default 'fancy')" },
+    "manifests-dir": { "type": "string", "description": "Path to Unikraft manifest cache" },
+    "metro": { "type": "string", "description": "Unikraft Cloud metro location" },
+    "no-check-updates": { "type": "boolean", "description": "Disable update checks" },
+    "no-color": { "type": "boolean", "description": "Disable colored output" },
+    "no-emojis": { "type": "boolean", "description": "Disable emojis in console output" },
+    "no-parallel": { "type": "boolean", "description": "Run tasks serially instead of in parallel" },
+    "no-prompt": { "type": "boolean", "description": "Disable user interaction prompts" },
+    "no-warn-sudo": { "type": "boolean", "description": "Suppress warnings when running with sudo" },
+    "pager": { "type": "string", "description": "System pager to pipe output to (default 'cat')" },
+    "plugins-dir": { "type": "string", "description": "Path to KraftKit plugin directory" },
+    "qemu": { "type": "string", "description": "Path to QEMU executable" },
+    "runtime-dir": { "type": "string", "description": "Directory for placing runtime files" },
+    "sources-dir": { "type": "string", "description": "Path to Unikraft component cache" },
+    "token": { "type": "string", "description": "Unikraft Cloud access token" },
+    "with-manifest": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths to package/component manifests"
+    },
+    "with-mirror": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths to mirrors of Unikraft component artifacts"
+    }
+  },
+  "required": []
+}

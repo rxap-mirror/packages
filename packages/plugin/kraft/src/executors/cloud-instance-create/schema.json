@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "$id": "CloudInstanceCreate",
+  "title": "kraft cloud instance create",
+  "type": "object",
+  "description": "Create an instance on Unikraft Cloud from an image.",
+  "properties": {
+    "certificate": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Set the certificates to use for the service"
+    },
+    "domain": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The domain names to use for the service"
+    },
+    "entrypoint": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Set the entrypoint for the instance"
+    },
+    "env": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Environmental variables"
+    },
+    "feature": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of features to enable"
+    },
+    "memory": {
+      "type": "string",
+      "description": "Specify the amount of memory to allocate (MiB increments)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Specify the name of the instance"
+    },
+    "output": {
+      "type": "string",
+      "enum": ["table", "yaml", "json", "list"],
+      "description": "Set output format. Options: table, yaml, json, list"
+    },
+    "port": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Specify the port mapping between external to internal"
+    },
+    "replicas": {
+      "type": "number",
+      "description": "Number of replicas of the instance"
+    },
+    "restart": {
+      "type": "string",
+      "enum": ["never", "always", "on-failure"],
+      "description": "Set the restart policy for the instance (default 'never')"
+    },
+    "rollout": {
+      "type": "string",
+      "description": "Set the rollout strategy for an instance"
+    },
+    "rollout-qualifier": {
+      "type": "string",
+      "description": "Set the rollout qualifier used for t..."
+
+    },
+    "rollout-wait": {
+      "type": "string",
+      "description": "Time to wait before performing rollout action (default '10s')"
+    },
+    "scale-to-zero": {
+      "type": "string",
+      "enum": ["on", "off", "idle"],
+      "description": "Scale to zero policy of the instance (default 'off')"
+    },
+    "scale-to-zero-cooldown": {
+      "type": "string",
+      "description": "Cooldown period before scaling to zero"
+    },
+    "scale-to-zero-stateful": {
+      "type": "boolean",
+      "description": "Save state when scaling to zero"
+    },
+    "service": {
+      "type": "string",
+      "description": "Attach this instance to an existing service"
+    },
+    "start": {
+      "type": "boolean",
+      "description": "Immediately start the instance after creation"
+    },
+    "subdomain": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Set the subdomains to use when creating the service"
+    },
+    "vcpus": {
+      "type": "number",
+      "description": "Specify the number of vCPUs to allocate"
+    },
+    "volume": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of volumes to attach instance to"
+    },
+    "wait-for-image": {
+      "type": "boolean",
+      "description": "Wait for the image to be available before creating the instance"
+    },
+    "wait-for-image-timeout": {
+      "type": "string",
+      "description": "Time to wait before timing out when waiting for image (default '1m0s')"
+    },
+    "buildkit-host": {
+      "type": "string",
+      "description": "Path to the buildkit host"
+    }
+  },
+  "required": []
+}

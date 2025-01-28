@@ -4,6 +4,46 @@
       "implementation": "./src/executors/cloud-deploy/executor",
       "schema": "./src/executors/cloud-deploy/schema.json",
       "description": "Run the kraft cloud deploy sub command with the specified arguments"
+    },
+    "cloud-instance-remove": {
+      "implementation": "./src/executors/cloud-instance-remove/executor",
+      "schema": "./src/executors/cloud-instance-remove/schema.json",
+      "description": "Remove instances"
+    },
+    "cloud-instance-create": {
+      "implementation": "./src/executors/cloud-instance-create/executor",
+      "schema": "./src/executors/cloud-instance-create/schema.json",
+      "description": "Create an instance"
+    },
+    "cloud-instance-start": {
+      "implementation": "./src/executors/cloud-instance-start/executor",
+      "schema": "./src/executors/cloud-instance-start/schema.json",
+      "description": "Start instances"
+    },
+    "cloud-instance-stop": {
+      "implementation": "./src/executors/cloud-instance-stop/executor",
+      "schema": "./src/executors/cloud-instance-stop/schema.json",
+      "description": "Stop instances"
+    },
+    "cloud-instance-get": {
+      "implementation": "./src/executors/cloud-instance-get/executor",
+      "schema": "./src/executors/cloud-instance-get/schema.json",
+      "description": "Retrieve the state of instances"
+    },
+    "cloud-instance-logs": {
+      "implementation": "./src/executors/cloud-instance-logs/executor",
+      "schema": "./src/executors/cloud-instance-logs/schema.json",
+      "description": "Get console output of instances"
+    },
+    "cloud-img-remove": {
+      "implementation": "./src/executors/cloud-img-remove/executor",
+      "schema": "./src/executors/cloud-img-remove/schema.json",
+      "description": "Remove an image"
+    },
+    "cloud-tunnel": {
+      "implementation": "./src/executors/cloud-tunnel/executor",
+      "schema": "./src/executors/cloud-tunnel/schema.json",
+      "description": "Forward a local port to an unexposed instance"
     }
   }
 }

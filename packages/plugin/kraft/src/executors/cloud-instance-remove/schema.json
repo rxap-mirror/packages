@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "$id": "CloudInstanceRemove",
+  "title": "kraft cloud instance remove",
+  "type": "object",
+  "description": "Remove a KraftCloud instance.",
+  "properties": {
+    "all": { "type": "boolean", "description": "Remove all instances" },
+    "help": { "type": "boolean", "description": "Help for remove" },
+    "stopped": { "type": "boolean", "description": "Remove all stopped instances" },
+    "buildkit-host": { "type": "string", "description": "Path to the buildkit host" },
+    "config-dir": { "type": "string", "description": "Path to KraftKit config directory" },
+    "containerd-addr": { "type": "string", "description": "Address of containerd daemon socket" },
+    "editor": { "type": "string", "description": "Set the text editor to open when prompt to edit a file" },
+    "events-pid-file": { "type": "string", "description": "Events process ID used when running multiple unikernels" },
+    "git-protocol": { "type": "string", "description": "Preferred Git protocol to use (default \"https\")" },
+    "http-unix-sock": { "type": "string", "description": "When making HTTP(S) connections, pipe requests via this shared socket" },
+    "log-level": {
+      "type": "string",
+      "description": "Log level verbosity. Choice of: [panic, fatal, error, warn, info, debug, trace] (default \"info\")"
+    },
+    "log-timestamps": { "type": "boolean", "description": "Enable log timestamps" },
+    "log-type": {
+      "type": "string",
+      "description": "Log type. Choice of: [fancy, basic, json] (default \"fancy\")"
+    },
+    "manifests-dir": { "type": "string", "description": "Path to Unikraft manifest cache" },
+    "metro": { "type": "string", "description": "Unikraft Cloud metro location" },
+    "no-check-updates": { "type": "boolean", "description": "Do not check for updates" },
+    "no-color": { "type": "boolean", "description": "Disable color output" },
+    "no-emojis": { "type": "boolean", "description": "Do not use emojis in any console output" },
+    "no-parallel": { "type": "boolean", "description": "Do not run internal tasks in parallel" },
+    "no-prompt": { "type": "boolean", "description": "Do not prompt for user interaction" },
+    "no-warn-sudo": { "type": "boolean", "description": "Do not warn on running via sudo" },
+    "pager": { "type": "string", "description": "System pager to pipe output to (default \"cat\")" },
+    "plugins-dir": { "type": "string", "description": "Path to KraftKit plugin directory" },
+    "qemu": { "type": "string", "description": "Path to QEMU executable" },
+    "runtime-dir": { "type": "string", "description": "Directory for placing runtime files (e.g., pidfiles)" },
+    "sources-dir": { "type": "string", "description": "Path to Unikraft component cache" },
+    "token": { "type": "string", "description": "Unikraft Cloud access token" },
+    "with-manifest": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths to package or component manifests (default [https://manifests.kraftkit.sh/index.yaml])"
+    },
+    "with-mirror": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths to mirrors of Unikraft component artifacts"
+    }
+  },
+  "required": []
+}

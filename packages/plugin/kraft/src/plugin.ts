@@ -116,14 +116,22 @@ async function createProjectConfiguration(
   if (!projectConfiguration) {
     throw new Error(`Could not find project in '${ projectPath }'`);
   }
-  targets['kraft-deploy'] = createKraftDeployTarget();
+  targets['kraft-cloud-deploy'] = createKraftCloudDeployTarget();
+  targets['kraft-cloud-img-remove'] = createKraftCloudImgRemoveTarget();
+  targets['kraft-cloud-instance-create'] = createKraftCloudInstanceCreateTarget();
+  targets['kraft-cloud-instance-get'] = createKraftCloudInstanceGetTarget();
+  targets['kraft-cloud-instance-logs'] = createKraftCloudInstanceLogsTarget();
+  targets['kraft-cloud-instance-remove'] = createKraftCloudInstanceRemoveTarget();
+  targets['kraft-cloud-instance-start'] = createKraftCloudInstanceStartTarget();
+  targets['kraft-cloud-instance-stop'] = createKraftCloudInstanceStopTarget();
+  targets['kraft-cloud-tunnel'] = createKraftCloudTunnelTarget();
 
   return [projectPath, {
     targets
   }];
 }
 
-function createKraftDeployTarget(): TargetConfiguration {
+function createKraftCloudDeployTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-kraft:cloud-deploy',
     configurations: {
@@ -131,5 +139,68 @@ function createKraftDeployTarget(): TargetConfiguration {
         'scale-to-zero': 'off'
       }
     }
+  };
+}
+
+function createKraftCloudInstanceRemoveTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-kraft:cloud-instance-remove',
+  };
+}
+
+function createKraftCloudInstanceCreateTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-kraft:cloud-instance-create',
+    options: {
+      start: true
+    },
+    configurations: {
+      development: {
+        'scale-to-zero': 'off'
+      }
+    }
+  };
+}
+
+function createKraftCloudInstanceStartTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-kraft:cloud-instance-start'
+  };
+}
+
+function createKraftCloudInstanceStopTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-kraft:cloud-instance-stop'
+  };
+}
+
+function createKraftCloudInstanceGetTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-kraft:cloud-instance-get'
+  };
+}
+
+function createKraftCloudInstanceLogsTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-kraft:cloud-instance-logs',
+    options: {
+      follow: true,
+      tail: 100
+    }
+  };
+}
+
+function createKraftCloudTunnelTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-kraft:cloud-tunnel',
+    options: {
+      'tunnel-image': 'official/utils/tunnel:1.0'
+    }
+  };
+}
+
+function createKraftCloudImgRemoveTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-kraft:cloud-img-remove',
   };
 }
