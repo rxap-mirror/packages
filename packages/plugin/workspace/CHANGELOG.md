@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.0.1-dev.3...@rxap/plugin-workspace@20.0.1-dev.4) (2025-01-28)
+
+### Bug Fixes
+
+- ensure the default project is set ([5d1610d](https://gitlab.com/rxap/packages/commit/5d1610d33ad409400bc93a99b38b88d0ec46f368))
+- use correct workspace root check ([4d0c0ed](https://gitlab.com/rxap/packages/commit/4d0c0ed5e1f3bd9db2866162476a290028f70b33))
+
 ## [20.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.0.1-dev.2...@rxap/plugin-workspace@20.0.1-dev.3) (2025-01-28)
 
 ### Bug Fixes

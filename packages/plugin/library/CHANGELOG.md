@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.0-dev.1...@rxap/plugin-library@20.1.0-dev.2) (2025-01-28)
+
+### Bug Fixes
+
+- use correct workspace root check ([4d0c0ed](https://gitlab.com/rxap/packages/commit/4d0c0ed5e1f3bd9db2866162476a290028f70b33))
+
 # [20.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.0-dev.0...@rxap/plugin-library@20.1.0-dev.1) (2025-01-28)
 
 ### Bug Fixes
