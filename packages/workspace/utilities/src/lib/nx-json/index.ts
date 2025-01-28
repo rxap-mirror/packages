@@ -1,3 +1,11 @@
+export type PluginConfiguration = string | ExpandedPluginConfiguration;
+export type ExpandedPluginConfiguration<T = unknown> = {
+  plugin: string;
+  options?: T;
+  include?: string[];
+  exclude?: string[];
+};
+
 export interface NxJson {
   targetDefaults?: Record<string, {
     inputs?: string[];
@@ -17,4 +25,5 @@ export interface NxJson {
     options: Record<string, any>;
   }>;
   generators?: Record<string, Record<string, unknown>>;
+  plugins?: PluginConfiguration[];
 }
