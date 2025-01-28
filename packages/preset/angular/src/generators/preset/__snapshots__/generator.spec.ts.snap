@@ -118,23 +118,9 @@ exports[`preset should use angular preset 3`] = `
           "codeCoverage": true
         }
       }
-    },
-    "ci-info": {
-      "cache": true
-    },
-    "localazy-upload": {
-      "cache": true
-    },
-    "extract-i18n": {
-      "cache": true
-    },
-    "localazy-download": {
-      "cache": true
-    },
-    "component-test": {
-      "cache": true
     }
   },
+  "defaultProject": "workspace",
   "namedInputs": {
     "default": ["{projectRoot}/**/*"],
     "build": [
@@ -264,6 +250,7 @@ exports[`preset should use angular preset 3`] = `
     "packageManager": "yarn"
   },
   "plugins": [
+    "@rxap/plugin-workspace/plugin",
     "@rxap/plugin-angular/library",
     "@rxap/plugin-angular/application"
   ]
@@ -1023,61 +1010,7 @@ tmp.*
 exports[`preset should use angular preset 12`] = `
 "{
   "name": "workspace",
-  "$schema": "node_modules/nx/schemas/project-schema.json",
-  "targets": {
-    "ci-info": {
-      "executor": "@rxap/plugin-workspace:ci-info",
-      "inputs": [
-        {
-          "env": "CI_COMMIT_TIMESTAMP"
-        },
-        {
-          "env": "CI_COMMIT_BRANCH"
-        },
-        {
-          "env": "CI_COMMIT_TAG"
-        },
-        {
-          "env": "CI_COMMIT_SHA"
-        },
-        {
-          "env": "CI_ENVIRONMENT_NAME"
-        },
-        {
-          "env": "CI_JOB_ID"
-        },
-        {
-          "env": "CI_PIPELINE_ID"
-        },
-        {
-          "env": "CI_PROJECT_ID"
-        },
-        {
-          "env": "CI_RUNNER_ID"
-        },
-        {
-          "env": "CI_ENVIRONMENT_URL"
-        },
-        {
-          "env": "CI_ENVIRONMENT_TIER"
-        },
-        {
-          "env": "CI_ENVIRONMENT_SLUG"
-        },
-        {
-          "env": "CI_COMMIT_REF_SLUG"
-        }
-      ],
-      "outputs": ["{workspaceRoot}/dist/**/build.json"]
-    },
-    "docker-compose": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "options": {
-        "generator": "@rxap/plugin-workspace:docker-compose",
-        "withoutProjectArgument": true
-      }
-    }
-  }
+  "$schema": "node_modules/nx/schemas/project-schema.json"
 }
 "
 `;

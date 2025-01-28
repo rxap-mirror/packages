@@ -121,6 +121,7 @@ exports[`init should init default workspace 3`] = `
       }
     }
   },
+  "defaultProject": "workspace",
   "namedInputs": {
     "default": ["{projectRoot}/**/*"],
     "build": [
