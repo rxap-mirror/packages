@@ -107,6 +107,9 @@ export default async function runExecutor(
       };
     } else {
       console.log('OpenAPI file successfully created');
+      return {
+        success: true,
+      };
     }
   }
 
