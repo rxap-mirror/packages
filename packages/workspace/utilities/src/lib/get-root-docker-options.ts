@@ -43,7 +43,15 @@ export function GetRootDockerOptions(tree: TreeLike): RootDockerOptions {
   const adapter = new TreeAdapter(tree);
   const nxJson = JSON.parse(adapter.read('nx.json', 'utf-8')!);
   const packageJson = JSON.parse(adapter.read('package.json', 'utf-8')!);
-  const options: RootDockerOptions = nxJson.targetDefaults?.['docker']?.options ?? {};
+  const options: RootDockerOptions = nxJson.targetDefaults?.['@rxap/plugin-docker:build']?.options ?? nxJson.targetDefaults?.['docker']?.options ?? {};
+  if (!options.imageName) {
+    if (packageJson.repository?.url?.startsWith('https://gitlab.com')) {
+      const match = packageJson.repository.url.match(/https:\/\/gitlab\.com\/(.+)\.git/);
+      if (match?.[1]) {
+        options.imageName = match[1];
+      }
+    }
+  }
   options.imageName ??= packageJson.name;
   return options;
 }
