@@ -199,13 +199,13 @@ export async function initApplicationGenerator(
   if (options.standalone) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'shared'),
-      target: 'shared/nestjs',
+      target: '',
       overwrite: options.overwrite,
     });
   } else {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'shared'),
-      target: '',
+      target: 'shared/nestjs',
       overwrite: options.overwrite,
     });
   }
