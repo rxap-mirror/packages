@@ -71,7 +71,19 @@ export default async function runExecutor(
         };
       }
     }
+
+    if (checkIfOpenApiFileExists(context)) {
+      console.log('OpenAPI file exists');
+      return {
+        success: true,
+      };
+    } else {
+      console.log('OpenAPI file does not exist');
+    }
+
   } else {
+    const isStandalone = ['', '.', '/'].includes(projectRoot);
+    const outputDir = join('swagger', isStandalone ? projectName : projectRoot);
     const result = await run({
       cwd: context.root,
       command: 'node',
@@ -79,7 +91,7 @@ export default async function runExecutor(
         PORT: port.toFixed(0),
       },
       args: [
-        join('swagger', projectRoot || projectName, 'main.js'),
+        join(outputDir, 'main.js'),
       ],
       __unparsed__: [],
     }, context);
@@ -88,15 +100,14 @@ export default async function runExecutor(
       console.log('Failed to run the swagger node application');
       return result;
     }
-  }
-
-  if (checkIfOpenApiFileExists(context)) {
-    console.log('OpenAPI file exists');
-    return {
-      success: true,
-    };
-  } else {
-    console.log('OpenAPI file does not exist');
+    if (!existsSync(join(outputDir, 'openapi.json'))) {
+      console.log('OpenAPI file does not exist');
+      return {
+        success: false,
+      };
+    } else {
+      console.log('OpenAPI file successfully created');
+    }
   }
 
   return {
