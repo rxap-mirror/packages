@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.5...@rxap/workspace-utilities@19.6.1-dev.6) (2025-01-29)
+
+### Bug Fixes
+
+- extract root docker options ([ca7863d](https://gitlab.com/rxap/packages/commit/ca7863dc29344b88d1446bf0c1efffedc038921f))
+
 ## [19.6.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.4...@rxap/workspace-utilities@19.6.1-dev.5) (2025-01-29)
 
 ### Bug Fixes
