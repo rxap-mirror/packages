@@ -10,7 +10,7 @@ const runExecutor: PromiseExecutor<GenerateExecutorSchema> = async (
 ) => {
   console.log('Executor ran for Generate', options);
   return RunGenerator({
-    generator: '@rxap/plugin-library:generate',
+    generator: '@rxap/plugin-open-api:generate',
     options: DeleteEmptyProperties({
       ...options,
     })
