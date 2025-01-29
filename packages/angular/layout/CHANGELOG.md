@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.1-dev.7...@rxap/layout@19.0.1-dev.8) (2025-01-29)
+
+### Bug Fixes
+
+- header buttons ([624721c](https://gitlab.com/rxap/packages/commit/624721ce05f0eb2d69191e6888727d1c14e2708e))
+
 ## [19.0.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.1-dev.6...@rxap/layout@19.0.1-dev.7) (2025-01-29)
 
 **Note:** Version bump only for package @rxap/layout

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.0-dev.6...@rxap/plugin-library@20.1.0-dev.7) (2025-01-29)
+
+### Bug Fixes
+
+- add additionalEntryPoints option ([b333289](https://gitlab.com/rxap/packages/commit/b333289aec81b6419900dd8e2a364d925fc6fd35))
+
 # [20.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.0-dev.5...@rxap/plugin-library@20.1.0-dev.6) (2025-01-29)
 
 **Note:** Version bump only for package @rxap/plugin-library
