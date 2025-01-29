@@ -64,59 +64,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       },
       paths: {}
     }));
-  } else {
-    if (!HasProject(tree, apiProjectName)) {
-      throw new Error(
-        `The api project '${ apiProjectName }' for the open api client sdk library '${ options.project }' does not exists!`);
-    }
-    const apiProjectOutputPath = getSwaggerBuildOutputPath(tree, apiProjectName, options.project);
-    CoerceTarget(project, 'generate-open-api', {
-      "dependsOn": [
-        {
-          "projects": apiProjectName,
-          "target": "swagger-generate"
-        }
-      ],
-      "outputs": [
-        "{projectRoot}/src"
-      ],
-      "inputs": [
-        `{workspaceRoot}/${apiProjectOutputPath}/openapi.json`
-      ],
-      "executor": "@rxap/plugin-library:run-generator",
-      "options": {
-        "generator": "@rxap/plugin-open-api:generate",
-        "options": {
-          "path": `${apiProjectOutputPath}/openapi.json`,
-          "serverId": apiProjectName
-        }
-      }
-    });
   }
-
-  CoerceTarget(project, 'build', {
-    executor: "@nx/js:tsc",
-    outputs: [ "{options.outputPath}"],
-    dependsOn: [
-      'generate-open-api',
-    ],
-    options: {
-      outputPath: `dist/${projectRoot}`,
-      main: `${projectSourceRoot}/index.ts`,
-      tsConfig: `${projectRoot}/tsconfig.lib.json`,
-      generateExportsField: true,
-      additionalEntryPoints: [
-        `${projectSourceRoot}/lib/commands/index.ts`,
-        `${projectSourceRoot}/lib/components/index.ts`,
-        // `${projectSourceRoot}/lib/data-sources/index.ts`,
-        // `${projectSourceRoot}/lib/directives/index.ts`,
-        `${projectSourceRoot}/lib/parameters/index.ts`,
-        `${projectSourceRoot}/lib/remote-methods/index.ts`,
-        `${projectSourceRoot}/lib/request-bodies/index.ts`,
-        `${projectSourceRoot}/lib/responses/index.ts`,
-      ],
-    }
-  }, Strategy.OVERWRITE);
 
 
   // region cleanup

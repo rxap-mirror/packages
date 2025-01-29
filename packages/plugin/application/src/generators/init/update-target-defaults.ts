@@ -38,15 +38,7 @@ export function updateTargetDefaults(tree: Tree) {
     throw new Error('No nx.json found');
   }
 
-  CoerceTargetDefaultsDependency(nxJson, 'docker', 'build');
-  CoerceTargetDefaultsDependency(nxJson, 'deploy', 'build');
-  CoerceTargetDefaultsDependency(nxJson, 'docker-save', 'docker');
-
-  CoerceTargetDefaults(nxJson, 'docker-save', {
-    executor: '@rxap/plugin-docker:save',
-  });
-  CoerceTargetDefaults(nxJson, 'docker', {
-    executor: '@rxap/plugin-docker:build',
+  CoerceTargetDefaults(nxJson, '@rxap/plugin-docker:build', {
     options: {
       imageRegistry: process.env.REGISTRY ?? 'registry.gitlab.com',
       imageName: process.env.IMAGE_NAME ?? guessImageName(tree),

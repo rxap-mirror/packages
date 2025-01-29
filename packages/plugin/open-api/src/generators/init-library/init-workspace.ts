@@ -22,13 +22,6 @@ export function initWorkspace(tree: Tree, options: InitLibraryGeneratorSchema) {
   }
 
   CoerceIgnorePattern(tree, '.nxignore', [ '!swagger/**/openapi.json' ]);
-  CoerceNxJsonCacheableOperation(nxJson, 'generate-open-api');
-  CoerceTarget(nxJson, 'generate-open-api', {
-    executor: '@rxap/plugin-library:run-generator',
-    options: {
-      generator: '@rxap/plugin-open-api:generate'
-    },
-  });
 
   updateNxJson(tree, nxJson);
 

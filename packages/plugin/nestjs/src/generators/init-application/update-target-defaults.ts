@@ -36,14 +36,6 @@ export function updateTargetDefaults(tree: Tree, options: InitApplicationGenerat
       '@nx/webpack:webpack',
       'generate-package-json',
     );
-    CoerceTarget(nxJson, 'generate-package-json', {
-      executor: '@rxap/plugin-nestjs:package-json',
-      inputs: [ 'production', '^production' ],
-      outputs: [ '{projectRoot}/package.json' ],
-      configurations: {
-        production: {},
-      },
-    }, Strategy.OVERWRITE);
   }
 
   updateNxJson(tree, nxJson);

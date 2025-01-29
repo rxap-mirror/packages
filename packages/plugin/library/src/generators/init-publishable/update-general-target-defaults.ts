@@ -13,7 +13,6 @@ export function updateGeneralTargetDefaults(tree: Tree) {
   }
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'readme');
-  CoerceTargetDefaultsDependency(nxJson, 'fix-dependencies', '^fix-dependencies');
 
   updateNxJson(tree, nxJson);
 

@@ -86,17 +86,6 @@ export async function configGenerator(
 
   const nxJson = readNxJson(tree);
 
-  nxJson.targetDefaults ??= {};
-  nxJson.targetDefaults['docker'] ??= {
-    dependsOn: [ '^build' ],
-  };
-
-  if (options.save) {
-    nxJson.targetDefaults['save'] ??= {
-      dependsOn: [ 'docker' ],
-    };
-  }
-
   updateNxJson(tree, nxJson);
 
 }
