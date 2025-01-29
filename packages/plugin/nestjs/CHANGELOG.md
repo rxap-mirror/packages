@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.20...@rxap/plugin-nestjs@20.1.0-dev.21) (2025-01-29)
+
+### Bug Fixes
+
+- enable cache ([c0ba47d](https://gitlab.com/rxap/packages/commit/c0ba47d95ad8362247c64ed12c67bc97a968e804))
+- use absolute path ([56cfca7](https://gitlab.com/rxap/packages/commit/56cfca753e170c2f296b9c527db38144876f3579))
+
 # [20.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.19...@rxap/plugin-nestjs@20.1.0-dev.20) (2025-01-29)
 
 ### Bug Fixes
