@@ -25,8 +25,8 @@ export function updateWebpackConfig(tree: Tree, projectName: string, project: Pr
   if (!webpackConfig.includes('fileReplacements')) {
     webpackConfig = webpackConfig.replace(`      target: 'node',`, `      target: 'node',
       fileReplacements: [{
-        replace: 'src/environments/environment.ts',
-        with: 'src/environments/environment.prod.ts',
+        replace: '${projectRoot}/src/environments/environment.ts',
+        with: '${projectRoot}/src/environments/environment.prod.ts',
       }],`);
     tree.write(join(projectRoot, 'webpack.config.js'), webpackConfig);
   }
