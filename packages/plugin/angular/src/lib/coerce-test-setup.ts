@@ -54,7 +54,6 @@ import 'jest-preset-angular/setup-jest';
   return args[0];
 });`);
     }
-
   }, [ 'test-setup.ts' ]);
 
 }
