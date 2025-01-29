@@ -150,6 +150,9 @@ function createGeneratePackageJsonTarget(): TargetConfiguration {
 function createSwaggerBuildTarget(projectPath: string): TargetConfiguration {
   return {
     executor: 'nx:run-commands',
+    cache: true,
+    inputs: [ 'production', '^production' ],
+    outputs: [ '{workspaceRoot}/dist/{projectRoot}' ],
     options: {
       command: 'webpack-cli build',
       cwd: projectPath,
