@@ -71,9 +71,6 @@
     "config": {
       "executor": "@rxap/plugin-application:config"
     },
-    "ci-info": {
-      "cache": true
-    },
     "build-storybook": {
       "cache": true,
       "inputs": [

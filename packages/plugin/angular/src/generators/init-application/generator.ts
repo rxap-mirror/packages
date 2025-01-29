@@ -343,6 +343,7 @@ export async function initApplicationGenerator(
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
+
     }
   }
 
