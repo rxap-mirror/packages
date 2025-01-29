@@ -11,7 +11,7 @@ import {
 } from '@rxap/workspace-utilities';
 import { InitApplicationGeneratorSchema } from './schema';
 
-export function setGeneralTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchema) {
+export function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchema) {
   console.log('updating default targets');
 
   const nxJson = readNxJson(tree);

@@ -6,17 +6,18 @@ import {
   CoerceAssets,
   CoerceTarget,
   GetTarget,
+  HasTarget,
   Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
+import { isLegacyConfiguration } from './is-legacy-configuration';
 import { InitApplicationGeneratorSchema } from './schema';
 
-export function updateProjectTargets(
+export function updateLegacyProjectTargets(
   tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
-
   CoerceTarget(project, 'build', {
     executor: '@nx/webpack:webpack',
-    outputs: [ '{options.outputPath}'],
+    outputs: [ '{options.outputPath}' ],
     defaultConfiguration: 'production',
     options: {
       target: 'node',
@@ -57,14 +58,31 @@ export function updateProjectTargets(
     ]);
     CoerceTarget(project, 'build', buildConfiguration, Strategy.REPLACE);
   }
+}
 
-  if (project.targets?.['docker']) {
-    project.targets['docker'].options ??= {};
-    project.targets['docker'].options.buildArgList ??= [];
+export function updateProjectTargets(
+  tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+
+  if (isLegacyConfiguration(project)) {
+    updateLegacyProjectTargets(tree, projectName, project, options);
+  } else {
+    CoerceTarget(project, 'build', {
+      configurations: {
+        development: {
+          config: 'webpack.config.dev.js',
+        },
+      },
+    }, Strategy.OVERWRITE);
+  }
+
+  if (HasTarget(project, 'docker')) {
     if (options.apiPrefix !== false &&
-        !project.targets['docker'].options.buildArgList.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {
-      project.targets['docker'].options.buildArgList.push(
-        'PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\[\'GLOBAL_API_PREFIX\'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*\'(.+)\',?\\s*\\);');
+        !GetTarget(project, 'docker').options.buildArgList.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {
+      CoerceTarget(project, 'docker', {
+        options: {
+          buildArgList: ['PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\[\'GLOBAL_API_PREFIX\'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*\'(.+)\',?\\s*\\);']
+        }
+      }, Strategy.MERGE);
     }
   }
 

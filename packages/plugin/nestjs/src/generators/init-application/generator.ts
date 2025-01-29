@@ -64,12 +64,13 @@ import { removeAppControllerSpecFile } from './remove-app-controller-spec-file';
 import { removeAppServiceFile } from './remove-app-service-file';
 import { InitApplicationGeneratorSchema } from './schema';
 import 'colors';
-import { setGeneralTargetDefaults } from './set-general-target-defaults';
+import { updateTargetDefaults } from './update-target-defaults';
 import { updateApiConfigurationFile } from './update-api-configuration-file';
 import { updateGitIgnore } from './update-git-ignore';
 import { updateMainFile } from './update-main-file';
 import { updateProjectTargets } from './update-project-targets';
 import { updateTags } from './update-tags';
+import { updateWebpackConfig } from './update-webpack-config';
 
 function skipProject(
   tree: Tree,
@@ -195,13 +196,21 @@ export async function initApplicationGenerator(
 
   console.log('coerce files structure');
 
-  CoerceFilesStructure(tree, {
-    srcFolder: join(__dirname, 'files', 'shared'),
-    target: 'shared/nestjs',
-    overwrite: options.overwrite,
-  });
+  if (options.standalone) {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'shared'),
+      target: 'shared/nestjs',
+      overwrite: options.overwrite,
+    });
+  } else {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'shared'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  }
 
-  setGeneralTargetDefaults(tree, options);
+  updateTargetDefaults(tree, options);
 
   if (!options.skipProjects) {
 
@@ -242,6 +251,7 @@ export async function initApplicationGenerator(
 
       ApplicationInitProject(tree, projectName, project, options);
 
+      updateWebpackConfig(tree, projectName, project, options);
       updateProjectTargets(tree, projectName, project, options);
       updateGitIgnore(tree, project, options);
       updateTags(projectName, project, options);
