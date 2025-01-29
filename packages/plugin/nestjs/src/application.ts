@@ -123,13 +123,11 @@ async function createProjectConfiguration(
   }
   if (existsSync(join(projectPath, 'src/swagger.ts'))) {
     if (isLegacyConfiguration(projectConfiguration)) {
-      targets['swagger-build'] = createSwaggerBuildTarget(projectPath);
+      targets['swagger-build'] = createLegacySwaggerBuildTarget(projectPath);
       targets['swagger-generate'] = createLegacySwaggerGenerateTarget(projectPath);
     } else {
-      if (!projectConfiguration.name) {
-        throw new Error(`Ensure each nestjs application project that uses the swagger generator has a defined name. The project located at '${projectPath}' does not have a defined project name`);
-      }
-      targets['swagger-generate'] = createSwaggerGenerateTarget(projectPath, projectConfiguration.name);
+      targets['swagger-generate'] = createSwaggerGenerateTarget(projectPath);
+      targets['swagger-build'] = createSwaggerBuildTarget(projectPath);
     }
   }
 
@@ -150,6 +148,18 @@ function createGeneratePackageJsonTarget(): TargetConfiguration {
 }
 
 function createSwaggerBuildTarget(projectPath: string): TargetConfiguration {
+  return {
+    executor: 'nx:run-commands',
+    options: {
+      command: 'webpack-cli build',
+      cwd: projectPath,
+      config: 'webpack.config.swagger.js',
+      args: [ 'node-env=development' ],
+    },
+  };
+}
+
+function createLegacySwaggerBuildTarget(projectPath: string): TargetConfiguration {
   const target: TargetConfiguration = {
     cache: true,
     executor: '@nx/webpack:webpack',
@@ -186,18 +196,13 @@ function createLegacySwaggerGenerateTarget(projectPath: string): TargetConfigura
   };
 }
 
-function createSwaggerGenerateTarget(projectPath: string, projectName: string): TargetConfiguration {
+function createSwaggerGenerateTarget(projectPath: string): TargetConfiguration {
   return {
     cache: true,
     executor: '@rxap/plugin-nestjs:swagger-generate',
-    dependsOn: [ 'build' ],
+    dependsOn: [ 'swagger-build' ],
     outputs: [ '{workspaceRoot}/' + join(`swagger`, projectPath, 'openapi.json') ],
     inputs: [ '{workspaceRoot}/' + join(`swagger`, projectPath, 'main.js') ],
-    defaultConfiguration: 'swagger',
-    configurations: {
-      swagger: {
-        buildTarget: `${projectName}:build:swagger`
-      }
-    }
+    defaultConfiguration: 'swagger'
   };
 }
