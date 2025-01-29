@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.9...@rxap/plugin-nestjs@20.1.0-dev.10) (2025-01-29)
+
+### Bug Fixes
+
+- correctly detect standalone project ([8d3ddcb](https://gitlab.com/rxap/packages/commit/8d3ddcb9597411a0ea3ab0bc771ac698986043a4))
+
 # [20.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.8...@rxap/plugin-nestjs@20.1.0-dev.9) (2025-01-29)
 
 ### Bug Fixes
