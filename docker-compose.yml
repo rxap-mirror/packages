@@ -21,6 +21,8 @@ services:
       - ROOT_DOMAIN
       - ROOT_DOMAIN_PORT
       - HOST_IP
+    env_file:
+      - .env
   catch-all-api:
     image: registry.gitlab.com/rxap/docker/catch-all:alpine
   rxap-service-configuration:

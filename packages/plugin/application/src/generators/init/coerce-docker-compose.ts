@@ -61,6 +61,15 @@ export function coerceDockerCompose(tree: Tree) {
       'traefik.http.routers.traefik.entrypoints=https',
       'traefik.http.routers.traefik.rule=Host(`traefik.${ROOT_DOMAIN}`)',
       'traefik.http.services.traefik.loadbalancer.server.port=8080',
+    ],
+    environment: [
+      'REMOTE_DOMAIN',
+      'ROOT_DOMAIN',
+      'ROOT_DOMAIN_PORT',
+      'HOST_IP',
+    ],
+    env_file: [
+      '.env'
     ]
   });
 
