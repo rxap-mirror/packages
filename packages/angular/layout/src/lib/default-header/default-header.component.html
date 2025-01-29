@@ -1,5 +1,5 @@
 <div class="w-full flex flex-row gap-x-4 justify-between items-center">
-  @if (!collapsable()) {
+  @if (collapsable()) {
     <rxap-sidenav-toggle-button></rxap-sidenav-toggle-button>
   }
   <div class="grow flex flex-row gap-x-4 items-center">
@@ -10,7 +10,7 @@
   </div>
   <rxap-apps-button class="grow-0"></rxap-apps-button>
   <rxap-settings-button class="grow-0"></rxap-settings-button>
-  @if (this.profile(); as profile) {
+  @if (profile(); as profile) {
     <rxap-user-profile-icon [profile]="profile" class="grow-0"></rxap-user-profile-icon>
   }
 </div>
