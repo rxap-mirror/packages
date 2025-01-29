@@ -124,11 +124,10 @@ export async function indexExportGenerator(tree: Tree, options: IndexExportGener
       }
     }
 
-    if (Array.isArray(project.targets?.build?.options?.additionalEntryPoints)) {
-      for (const entryPoint of project.targets.build.options.additionalEntryPoints) {
-        if (entryPoint.endsWith('index.ts')) {
-          generateIndexFile(tree, dirname(entryPoint), '');
-        }
+    const additionalEntryPoints = (options.additionalEntryPoints ?? []).concat(project.targets?.build?.options?.additionalEntryPoints ?? []);
+    for (const entryPoint of additionalEntryPoints) {
+      if (entryPoint.endsWith('index.ts')) {
+        generateIndexFile(tree, dirname(entryPoint), '');
       }
     }
 
