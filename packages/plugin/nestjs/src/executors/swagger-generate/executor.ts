@@ -5,11 +5,14 @@ import {
 import nodeExecutor from '@nx/js/src/executors/node/node.impl';
 import {
   GetDependentProjectsForProject,
+  GetProjectRoot,
   GuessOutputPathFromContext,
 } from '@rxap/plugin-utilities';
 import { existsSync } from 'fs';
 import { join } from 'path';
+import { isLegacyConfiguration } from '../is-legacy-configuration';
 import { SwaggerGenerateExecutorSchema } from './schema';
+import run from 'nx/src/executors/run-commands/run-commands.impl';
 
 function checkIfOpenApiFileExists(context: ExecutorContext): boolean {
   const outputPath = GuessOutputPathFromContext(context, undefined, undefined, 'swagger-build');
@@ -38,32 +41,52 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for SwaggerGenerate', options);
 
-  const projectName = context.projectName;
+  const projectRoot = GetProjectRoot(context);
+  const projectName = context.projectName!;
 
   await linkLibrariesToDistNodeModules(context);
 
   // This will give a random number between 9000 and 9999
   const port = Math.floor(Math.random() * 1000) + 9000;
 
-  const nodeProc = nodeExecutor({
-    watch: false,
-    buildTarget: options.buildTarget ?? `${projectName}:swagger-build`,
-    inspect: false,
-    runtimeArgs: [],
-    args: [],
-    waitUntilTargets: [],
-    buildTargetOptions: {},
-    host: 'localhost',
-    port: port
-  }, context);
+  if (isLegacyConfiguration(context)) {
+    const nodeProc = nodeExecutor({
+      watch: false,
+      buildTarget: options.buildTarget ?? `${ projectName }:swagger-build`,
+      inspect: false,
+      runtimeArgs: [],
+      args: [],
+      waitUntilTargets: [],
+      buildTargetOptions: {},
+      host: 'localhost',
+      port: port
+    }, context);
 
-  for await (const event of nodeProc) {
-    console.log('Node executor event', event);
-    if (!event.success) {
-      console.log('Node executor target was not successful');
-      return {
-        success: false,
-      };
+    for await (const event of nodeProc) {
+      console.log('Node executor event', event);
+      if (!event.success) {
+        console.log('Node executor target was not successful');
+        return {
+          success: false,
+        };
+      }
+    }
+  } else {
+    const result = await run({
+      cwd: context.root,
+      command: 'node',
+      env: {
+        PORT: port.toFixed(0),
+      },
+      args: [
+        join('swagger', projectRoot || projectName, 'main.js'),
+      ],
+      __unparsed__: [],
+    }, context);
+
+    if (!result.success) {
+      console.log('Failed to run the swagger node application');
+      return result;
     }
   }
 
