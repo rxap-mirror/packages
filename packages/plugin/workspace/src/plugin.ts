@@ -7,23 +7,9 @@ import {
 import {
   FindProjectByPath,
   FsTree,
-  GetPackageJson,
-  HasPackageJson,
-  IsAngularProject,
-  IsLibraryProject,
-  IsN8NProject,
-  IsNestJsProject,
-  IsPluginProject,
-  IsPublishable,
-  IsSchematicProject,
 } from '@rxap/workspace-utilities';
-import { existsSync } from 'fs';
-import { globSync } from 'glob';
 import { Optional } from 'nx/src/project-graph/plugins';
-import {
-  dirname,
-  join,
-} from 'path';
+import { dirname } from 'path';
 import 'colors';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -117,10 +103,23 @@ async function createProjectConfiguration(
     throw new Error(`Could not find project in '${ projectPath }'`);
   }
   targets['ci-info'] = createCiInfoTarget();
+  if (tree.exists('docker-compose.yml')) {
+    targets['docker-compose'] = createDockerComposeTarget();
+  }
 
   return [projectPath, {
     targets
   }];
+}
+
+function createDockerComposeTarget(): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-library:run-generator',
+    options: {
+      generator: '@rxap/plugin-workspace:docker-compose',
+      withoutProjectArgument: true,
+    },
+  };
 }
 
 function createCiInfoTarget(): TargetConfiguration {
