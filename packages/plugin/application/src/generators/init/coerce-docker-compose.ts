@@ -77,7 +77,7 @@ export function coerceDockerCompose(tree: Tree) {
   ];
 
   coerceDockerComposeService(dockerCompose, 'rxap-service-configuration', {
-    image: 'registry.gitlab.com/rxap/applications/services/configuration:${RXAP_SERVICE_CONFIGURATION:-development}',
+    image: 'registry.gitlab.com/rxap/applications/services/configuration:${RXAP_SERVICE_CONFIGURATION:-latest}',
     volumes: [
       './shared/service/configuration:/app/assets:ro',
     ],
@@ -86,7 +86,7 @@ export function coerceDockerCompose(tree: Tree) {
   });
 
   coerceDockerComposeService(dockerCompose, 'rxap-service-changelog', {
-    image: 'registry.gitlab.com/rxap/applications/services/changelog:${RXAP_SERVICE_CHANGELOG:-development}',
+    image: 'registry.gitlab.com/rxap/applications/services/changelog:${RXAP_SERVICE_CHANGELOG:-latest}',
     volumes: [
       './shared/service/changelog:/app/assets:ro',
     ],
@@ -95,7 +95,7 @@ export function coerceDockerCompose(tree: Tree) {
   });
 
   coerceDockerComposeService(dockerCompose, 'rxap-service-user', {
-    image: 'registry.gitlab.com/rxap/applications/services/user:${RXAP_SERVICE_USER:-development}',
+    image: 'registry.gitlab.com/rxap/applications/services/user:${RXAP_SERVICE_USER:-latest}',
     volumes: [
       './shared/service/user:/app/assets:ro',
     ],

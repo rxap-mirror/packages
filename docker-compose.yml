@@ -25,7 +25,7 @@ services:
   catch-all-api:
     image: registry.gitlab.com/rxap/docker/catch-all:alpine
   rxap-service-configuration:
-    image: registry.gitlab.com/rxap/packages/service/configuration:${RXAP_CHANNEL:-development}
+    image: registry.gitlab.com/rxap/packages/service/configuration:${RXAP_CHANNEL:-latest}
     labels:
       - traefik.enable=true
       - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.path=/health
@@ -44,7 +44,7 @@ services:
     env_file:
       - .env
   rxap-service-changelog:
-    image: registry.gitlab.com/rxap/packages/service/changelog:${RXAP_CHANNEL:-development}
+    image: registry.gitlab.com/rxap/packages/service/changelog:${RXAP_CHANNEL:-latest}
     labels:
       - traefik.enable=true
       - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.path=/health
@@ -63,7 +63,7 @@ services:
     env_file:
       - .env
   rxap-service-user:
-    image: registry.gitlab.com/rxap/packages/service/user:${RXAP_CHANNEL:-development}
+    image: registry.gitlab.com/rxap/packages/service/user:${RXAP_CHANNEL:-latest}
     labels:
       - traefik.enable=true
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.path=/health
