@@ -34,7 +34,6 @@ function createServiceDockerCompose(
   options: DockerComposeGeneratorSchema,
 ): string {
   return stringify({
-    version: '3.8',
     services: services.reduce((
       services,
       {
@@ -64,7 +63,6 @@ function createFrontendDockerCompose(
   options: DockerComposeGeneratorSchema,
 ): string {
   return stringify({
-    version: '3.8',
     services: services.reduce((
       services,
       {

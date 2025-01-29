@@ -20,7 +20,6 @@ interface DockerComposeService {
 }
 
 interface DockerCompose {
-  version: string;
   networks?: {
     default?: {
       name: string;
@@ -37,7 +36,7 @@ export function coerceDockerComposeService(dockerCompose: DockerCompose, name: s
 
 export function coerceDockerCompose(tree: Tree) {
 
-  let dockerCompose: DockerCompose = { version: '3.7' };
+  let dockerCompose: DockerCompose = { };
   let originalDockerCompose: DockerCompose | undefined;
   if (tree.exists('docker-compose.yml')) {
     originalDockerCompose = dockerCompose = parse(tree.read('docker-compose.yml', 'utf-8')!);
