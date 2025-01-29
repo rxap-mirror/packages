@@ -1,9 +1,11 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
+  GetProjectRoot,
   GetProjectSourceRoot,
   GuessOutputPathFromContext,
 } from '@rxap/plugin-utilities';
 import { ProcessBuildArgs } from '@rxap/workspace-utilities';
+import { existsSync } from 'fs';
 import { join } from 'path';
 import {
   dockerBuild,
@@ -34,6 +36,12 @@ export default async function runExecutor(
         options.imageRegistry,
         options.imageName,
       ].join('/');
+    }
+  }
+
+  if (!options.dockerfile) {
+    if (existsSync(join(GetProjectRoot(context), 'Dockerfile'))) {
+      options.dockerfile = join(GetProjectRoot(context), 'Dockerfile');
     }
   }
 
