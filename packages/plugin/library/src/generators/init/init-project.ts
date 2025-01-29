@@ -3,9 +3,11 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
+  coerceIdeaExcludeFolders,
   CoerceIgnorePattern,
   HasMigrations,
   IsBuildable,
+  isJetbrainsProject,
   IsPluginProject,
   IsPresetProject,
   IsPublishable,
@@ -62,35 +64,14 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     'node_modules',
   ]);
 
-  try {
-    if (tree.exists('.idea/workspace.xml')) {
-      const excludeFolders = [
-        'file://$MODULE_DIR$/' + join(project.root, 'dist'),
-        'file://$MODULE_DIR$/' + join(project.root, 'docs'),
-        'file://$MODULE_DIR$/' + join(project.root, 'compodoc'),
-        'file://$MODULE_DIR$/' + join(project.root, 'coverage'),
-      ];
-      // uses jetbrains IDE
-      for (const {
-        path,
-        content
-      } of SearchFile(tree, '/.idea')) {
-        if (path.endsWith('.iml')) {
-          const doc = await parseStringPromise(content.toString());
-          for (const excludeFolder of excludeFolders) {
-            if (Array.from(doc.module.component[0].content[0].excludeFolder).map((item: any) => item['$'].url).some(
-              (url: string) => url === excludeFolder)) {
-              continue;
-            }
-            doc.module.component[0].content[0].excludeFolder.push({ '$': { url: excludeFolder } });
-          }
-          const builder = new Builder();
-          tree.write(path, builder.buildObject(doc));
-        }
-      }
-    }
-  } catch (e: any) {
-    console.log('error updating exclude folders in .idea/*.iml', e.message);
+  if (isJetbrainsProject(tree)) {
+    const excludeFolders = [
+      join(project.root, 'dist'),
+      join(project.root, 'docs'),
+      join(project.root, 'compodoc'),
+      join(project.root, 'coverage'),
+    ];
+    await coerceIdeaExcludeFolders(tree, excludeFolders);
   }
 
   cleanup(tree, projectName);

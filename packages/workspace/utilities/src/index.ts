@@ -54,6 +54,7 @@ export * from './lib/collection-json/interface';
 // endregion
 
 // region coerce
+export * from './lib/coerce/coerce-idea-exclude-folders';
 export * from './lib/coerce/coerce-nx-json-cacheable-operation';
 export * from './lib/coerce/coerce-nx-json-generators';
 export * from './lib/coerce/coerce-nx-json-named-inputs';
@@ -100,6 +101,7 @@ export * from './lib/has-project-feature';
 export * from './lib/has-target';
 export * from './lib/is-already-executed';
 export * from './lib/is-buildable';
+export * from './lib/is-jetbrains-project';
 export * from './lib/is-project';
 export * from './lib/is-publishable';
 export * from './lib/is-rxap-repository';

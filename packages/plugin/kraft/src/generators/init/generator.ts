@@ -1,7 +1,9 @@
 import { Tree } from '@nx/devkit';
 import {
+  coerceIdeaExcludeFolders,
   CoerceIgnorePattern,
   CoerceNxPlugin,
+  isJetbrainsProject,
   IsRxapRepository,
   UpdateNxJson,
 } from '@rxap/workspace-utilities';
@@ -16,6 +18,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
   });
   CoerceIgnorePattern(tree, '.gitignore', ['.unikraft']);
+  if (isJetbrainsProject(tree)) {
+    await coerceIdeaExcludeFolders(tree, ['.unikraft']);
+  }
 }
 
 export default initGenerator;

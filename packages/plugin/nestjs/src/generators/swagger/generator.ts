@@ -6,8 +6,10 @@ import {
 } from '@nx/devkit';
 import {
   AddPackageJsonDependency,
+  coerceIdeaExcludeFolders,
   CoerceIgnorePattern,
   GetProjectRoot,
+  isJetbrainsProject,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { join } from 'path';
@@ -44,6 +46,10 @@ export async function swaggerGenerator(
     throw new Error('The selected project has no sourceRoot');
   }
   updateProjectConfiguration(tree, projectName, project);
+
+  if (isJetbrainsProject(tree)) {
+    await coerceIdeaExcludeFolders(tree, ['swagger']);
+  }
 
   CoerceIgnorePattern(tree, '.nxignore', [ '!swagger/**/openapi.json' ]);
   CoerceIgnorePattern(tree, '.gitignore', [ 'swagger/**' ]);
