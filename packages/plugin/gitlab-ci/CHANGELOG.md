@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@20.0.1-dev.5...@rxap/plugin-gitlab-ci@20.0.1-dev.6) (2025-01-29)
+
+### Bug Fixes
+
+- autodetect dockerfile ([51a0afb](https://gitlab.com/rxap/packages/commit/51a0afbe024c4373dcd7d5184ced9eec086a1769))
+
 ## [20.0.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gitlab-ci@20.0.1-dev.4...@rxap/plugin-gitlab-ci@20.0.1-dev.5) (2025-01-29)
 
 **Note:** Version bump only for package @rxap/plugin-gitlab-ci
