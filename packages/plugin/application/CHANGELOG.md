@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@20.0.1-dev.9...@rxap/plugin-application@20.0.1-dev.10) (2025-01-29)
+
+### Bug Fixes
+
+- add missing environments ([53c8169](https://gitlab.com/rxap/packages/commit/53c816931c7234b223c86f4a843e375591741479))
+
 ## [20.0.1-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@20.0.1-dev.8...@rxap/plugin-application@20.0.1-dev.9) (2025-01-29)
 
 ### Bug Fixes

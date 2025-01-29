@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.19...@rxap/plugin-nestjs@20.1.0-dev.20) (2025-01-29)
+
+### Bug Fixes
+
+- add custom swagger-build target ([f770ac9](https://gitlab.com/rxap/packages/commit/f770ac906c2aef938596eb21e08929c55833ccb5))
+
 # [20.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.18...@rxap/plugin-nestjs@20.1.0-dev.19) (2025-01-29)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs
