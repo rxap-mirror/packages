@@ -38,7 +38,7 @@ export function updateWebpackConfig(tree: Tree, projectName: string, project: Pr
     webpackConfig = webpackConfig.replace('./src/main.ts', './src/swagger.ts');
   }
   if (webpackConfig.includes(`join(__dirname, './dist`)) {
-    webpackConfig = webpackConfig.replace(`join(__dirname, './dist`, `join(__dirname, './swagger`);
+    webpackConfig = webpackConfig.replace(/join\(__dirname, '(.*\.\/)dist/, (_, path) => `join(__dirname, '${path}swagger`);
   }
   tree.write(join(projectRoot, 'webpack.config.swagger.js'), webpackConfig);
 
