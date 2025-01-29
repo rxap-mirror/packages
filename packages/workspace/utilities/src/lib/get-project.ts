@@ -22,6 +22,7 @@ import {
 import { SearchFile } from './search-file';
 import {
   IsGeneratorTreeLike,
+  IsTreeLike,
   TreeAdapter,
   TreeLike,
 } from './tree';
@@ -328,10 +329,20 @@ export function GetProjectByPackageName<Tree extends TreeLike>(tree: Tree, packa
  *
  * @template Tree - A generic type extending TreeLike, which defines the structure expected for the tree parameter.
  */
-export function GetProjectRoot<Tree extends TreeLike>(tree: Tree, projectName: string): string {
+export function GetProjectRoot(project: { root?: string }): string;
+export function GetProjectRoot<Tree extends TreeLike>(tree: Tree, projectName: string): string;
+export function GetProjectRoot<Tree extends TreeLike>(treeOrProject: Tree | { root?: string }, projectName?: string): string {
 
-  const project = GetProject(tree, projectName);
-  const root = project.root;
+  let root: string | undefined;
+  if (IsTreeLike(treeOrProject)) {
+    if (!projectName) {
+      throw new Error(`Ensure the parameter projectName is defined`);
+    }
+    const project = GetProject(treeOrProject, projectName);
+    root = project.root;
+  } else {
+    root = treeOrProject.root;
+  }
 
   if (!root) {
     throw new Error(`The project '${ projectName }' does not have a root path`);
