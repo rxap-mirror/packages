@@ -5,11 +5,6 @@ http:
       priority: 200
       service: rxap-service-configuration
       entryPoints: https
-    rxap-service-status:
-      rule: PathPrefix(`/api/status`)
-      priority: 200
-      service: rxap-service-status
-      entryPoints: https
     rxap-service-changelog:
       rule: PathPrefix(`/api/changelog`)
       priority: 200
@@ -33,18 +28,6 @@ http:
           timeout: 3s
         servers:
           - url: http://{{env "HOST_IP" }}:6220
-    rxap-service-status:
-      failover:
-        service: rxap-service-status-local
-        fallback: rxap-service-status@docker
-    rxap-service-status-local:
-      loadBalancer:
-        healthCheck:
-          path: /health
-          interval: 10s
-          timeout: 3s
-        servers:
-          - url: http://{{env "HOST_IP" }}:6230
     rxap-service-changelog:
       failover:
         service: rxap-service-changelog-local

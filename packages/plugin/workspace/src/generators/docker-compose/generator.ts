@@ -46,16 +46,12 @@ function createServiceDockerCompose(
         image: buildImageName(docker, rootDocker, true),
         environment: [
           ...options.serviceEnvironments ?? [],
-          'STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000',
           'ROOT_DOMAIN',
           'SENTRY_ENABLED=false',
           'ROOT_DOMAIN_PORT',
           'ENVIRONMENT_NAME=development',
         ],
         env_file: [ '.env' ],
-        depends_on: [
-          'rxap-service-status',
-        ],
       };
       return services;
     }, {} as Record<string, any>),

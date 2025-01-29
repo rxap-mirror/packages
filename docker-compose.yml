@@ -34,7 +34,6 @@ services:
     volumes:
       - ./shared/service/configuration:/app/assets
     environment:
-      - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
@@ -42,26 +41,6 @@ services:
       - ENVIRONMENT_NAME=development
     depends_on:
       - traefik
-      - rxap-service-status
-    env_file:
-      - .env
-  rxap-service-status:
-    image: registry.gitlab.com/rxap/packages/service/status:${RXAP_CHANNEL:-development}
-    labels:
-      - traefik.enable=true
-      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.path=/health
-      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.interval=10s
-      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.timeout=3s
-    environment:
-      - ROOT_DOMAIN
-      - SENTRY_ENABLED=false
-      - LOG_LEVEL=verbose
-      - ROOT_DOMAIN_PORT
-      - ENVIRONMENT_NAME=development
-    depends_on:
-      - traefik
-    ports:
-      - 5300:3000
     env_file:
       - .env
   rxap-service-changelog:
@@ -72,7 +51,6 @@ services:
       - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.timeout=3s
     environment:
-      - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
@@ -82,7 +60,6 @@ services:
       - ./shared/service/changelog:/app/assets
     depends_on:
       - traefik
-      - rxap-service-status
     env_file:
       - .env
   rxap-service-user:
@@ -93,7 +70,6 @@ services:
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.timeout=3s
     environment:
-      - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
@@ -103,7 +79,6 @@ services:
       - ./shared/service/user:/app/assets
     depends_on:
       - traefik
-      - rxap-service-status
     env_file:
       - .env
   cors-options:

@@ -69,7 +69,6 @@ export function coerceDockerCompose(tree: Tree) {
   coerceDockerComposeService(dockerCompose, 'cors-options', { image: 'registry.gitlab.com/rxap/docker/cors-options:alpine' });
 
   const environment = [
-    'STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000',
     'ROOT_DOMAIN',
     'SENTRY_ENABLED=false',
     'LOG_LEVEL=verbose',
@@ -84,14 +83,6 @@ export function coerceDockerCompose(tree: Tree) {
     ],
     environment,
     env_file: ['.env'],
-    depends_on: ['rxap-service-status']
-  });
-
-  coerceDockerComposeService(dockerCompose, 'rxap-service-status', {
-    image: 'registry.gitlab.com/rxap/applications/services/status:${RXAP_SERVICE_STATUS:-development}',
-    environment,
-    env_file: ['.env'],
-    ports: ['5300:3000']
   });
 
   coerceDockerComposeService(dockerCompose, 'rxap-service-changelog', {
@@ -101,7 +92,6 @@ export function coerceDockerCompose(tree: Tree) {
     ],
     environment,
     env_file: ['.env'],
-    depends_on: ['rxap-service-status']
   });
 
   coerceDockerComposeService(dockerCompose, 'rxap-service-user', {
@@ -111,7 +101,6 @@ export function coerceDockerCompose(tree: Tree) {
     ],
     environment,
     env_file: ['.env'],
-    depends_on: ['rxap-service-status']
   });
 
   if (!originalDockerCompose || !equals(originalDockerCompose, dockerCompose)) {
