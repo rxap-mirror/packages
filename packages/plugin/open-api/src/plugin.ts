@@ -166,7 +166,7 @@ function createGenerateOpenApiTarget(serviceProjectName: string, serviceProjectR
         target: 'swagger-generate',
       },
     ],
-    executor: '@rxap/plugin-openapi:generate',
+    executor: '@rxap/plugin-open-api:generate',
     outputs: [ '{projectRoot}/src' ],
     cache: true,
     inputs: [ `{workspaceRoot}/swagger/${ serviceProjectRoot }/openapi.json` ],
