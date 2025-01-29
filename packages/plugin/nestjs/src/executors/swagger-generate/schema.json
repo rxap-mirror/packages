@@ -4,6 +4,10 @@
   "title": "SwaggerGenerate executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "buildTarget": {
+      "type": "string"
+    }
+  },
   "required": []
 }

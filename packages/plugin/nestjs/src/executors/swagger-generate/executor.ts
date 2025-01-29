@@ -47,7 +47,7 @@ export default async function runExecutor(
 
   const nodeProc = nodeExecutor({
     watch: false,
-    buildTarget: `${projectName}:swagger-build`,
+    buildTarget: options.buildTarget ?? `${projectName}:swagger-build`,
     inspect: false,
     runtimeArgs: [],
     args: [],
