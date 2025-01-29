@@ -77,7 +77,7 @@ export function updateProjectTargets(
 
   if (HasTarget(project, 'docker')) {
     if (options.apiPrefix !== false &&
-        !GetTarget(project, 'docker').options.buildArgList.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {
+        !GetTarget(project, 'docker').options.buildArgList?.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {
       CoerceTarget(project, 'docker', {
         options: {
           buildArgList: ['PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\[\'GLOBAL_API_PREFIX\'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*\'(.+)\',?\\s*\\);']
