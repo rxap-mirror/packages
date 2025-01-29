@@ -21,14 +21,14 @@ export function updateWebpackConfig(tree: Tree, projectName: string, project: Pr
   }
   // endregion
 
-  const webpackConfig = tree.read(join(projectRoot, 'webpack.config.dev.js'), 'utf-8')!;
+  let webpackConfig = tree.read(join(projectRoot, 'webpack.config.js'), 'utf-8')!;
   if (!webpackConfig.includes('fileReplacements')) {
-    webpackConfig.replace(`      target: 'node',`, `      target: 'node',
+    webpackConfig = webpackConfig.replace(`      target: 'node',`, `      target: 'node',
       fileReplacements: [{
         replace: 'src/environments/environment.ts',
         with: 'src/environments/environment.prod.ts',
       }],`);
-    tree.write(join(projectRoot, 'webpack.config.dev.js'), webpackConfig);
+    tree.write(join(projectRoot, 'webpack.config.js'), webpackConfig);
   }
 
 }

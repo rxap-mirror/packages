@@ -1,124 +1,21 @@
 import {
   generateFiles,
-  ProjectConfiguration,
-  readNxJson,
   readProjectConfiguration,
   Tree,
-  updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { GuessOutputPath } from '@rxap/plugin-utilities';
-import {
-  CoerceImports,
-  CoerceVariableDeclaration,
-} from '@rxap/ts-morph';
-import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
   CoerceIgnorePattern,
-  CoerceNxJsonCacheableOperation,
-  CoerceTarget,
-  GetBuildOutputForProject,
   GetProjectRoot,
-  GetTarget,
-  GetTargetOptions,
-  GetWorkspaceName,
-  HasTarget,
-  IsStandaloneWorkspace,
-  Strategy,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { join } from 'path';
-import {
-  WriterFunction,
-  Writers,
-} from 'ts-morph';
+import { coerceEnvironmentFiles } from './coerce-environment-files';
 import { SwaggerGeneratorSchema } from './schema';
-
-function coerceEnvironmentFiles(tree: Tree, options: { project: string, overwrite?: boolean }) {
-
-  TsMorphNestProjectTransform(
-    tree,
-    {
-      project: options.project,
-      backend: undefined,
-    },
-    (project, [ sourceFile ]) => {
-
-      CoerceImports(sourceFile, {
-        moduleSpecifier: '@rxap/nest-utilities',
-        namedImports: [ 'Environment' ],
-      });
-
-      let appName = options.project;
-      if (IsStandaloneWorkspace(tree)) {
-        appName = GetWorkspaceName(tree);
-      }
-
-      const baseEnvironment: Record<string, WriterFunction | string> = {
-        name: w => w.quote('swagger'),
-        production: 'true',
-        swagger: 'true',
-        app: w => w.quote(appName),
-      };
-
-      const normal = CoerceVariableDeclaration(sourceFile, 'environment', {
-        type: 'Environment',
-        initializer: Writers.object(baseEnvironment),
-      });
-
-      if (options.overwrite) {
-        normal.set({ initializer: Writers.object(baseEnvironment) });
-      }
-
-    },
-    [
-      '/environments/environment.swagger.ts?',
-    ],
-  );
-
-}
-
-function updateNxDefaults(tree: Tree, options: SwaggerGeneratorSchema) {
-  const nxJson = readNxJson(tree);
-
-  if (!nxJson) {
-    throw new Error('No nx.json found');
-  }
-
-  CoerceNxJsonCacheableOperation(nxJson, 'swagger-build', 'swagger-generate');
-
-  CoerceTarget(nxJson, 'swagger-generate', {
-    executor: '@rxap/plugin-nestjs:swagger-generate',
-    'dependsOn': [
-      'swagger-build'
-    ]
-  }, Strategy.REPLACE);
-
-  CoerceTarget(nxJson, 'swagger-build', {
-    executor: '@nx/webpack:webpack',
-    outputs: [
-      '{options.outputPath}',
-    ],
-    options: {
-      transformers: [
-        '@nestjs/swagger/plugin',
-      ],
-      compiler: 'tsc',
-      target: 'node',
-      deleteOutputPath: false,
-    },
-    inputs: [
-      'build',
-      '^build',
-    ],
-    dependsOn: [
-      '^build',
-    ],
-  }, Strategy.OVERWRITE);
-
-  updateNxJson(tree, nxJson);
-}
+import { updateNxDefaults } from './update-nx-defaults';
+import { updateProjectTargets } from './update-project-targets';
+import { updateWebpackConfig } from './update-webpack-config';
 
 export async function swaggerGenerator(
   tree: Tree,
@@ -136,15 +33,17 @@ export async function swaggerGenerator(
     },
   );
 
-  const project = readProjectConfiguration(tree, options.project);
+  const project = readProjectConfiguration(tree, projectName);
 
   coerceEnvironmentFiles(tree, options);
   updateNxDefaults(tree, options);
+  updateWebpackConfig(tree, projectName, project);
+  updateProjectTargets(tree, projectName, project, options);
   const projectSourceRoot = project.sourceRoot;
   if (!projectSourceRoot) {
     throw new Error('The selected project has no sourceRoot');
   }
-  updateProjectConfiguration(tree, options.project, project);
+  updateProjectConfiguration(tree, projectName, project);
 
   CoerceIgnorePattern(tree, '.nxignore', [ '!swagger/**/openapi.json' ]);
   CoerceIgnorePattern(tree, '.gitignore', [ 'swagger/**' ]);
