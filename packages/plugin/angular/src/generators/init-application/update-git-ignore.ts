@@ -14,8 +14,7 @@ export function updateGitIgnore(project: ProjectConfiguration, tree: Tree, optio
       throw new Error(`The project ${ project.name } has no source root`);
     }
 
-    const gitIgnorePath = join(project.sourceRoot, '.gitignore');
-    CoerceIgnorePattern(tree, gitIgnorePath, [
+    CoerceIgnorePattern(tree, join(project.sourceRoot, '.gitignore'), [
       '/i18n',
     ]);
   }
