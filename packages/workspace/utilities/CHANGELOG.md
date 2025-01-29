@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.3...@rxap/workspace-utilities@19.6.1-dev.4) (2025-01-29)
+
+### Bug Fixes
+
+- improve input flexibility ([670cda6](https://gitlab.com/rxap/packages/commit/670cda671245c36b459fe50c09fcd3014347403c))
+
 ## [19.6.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.2...@rxap/workspace-utilities@19.6.1-dev.3) (2025-01-28)
 
 ### Bug Fixes

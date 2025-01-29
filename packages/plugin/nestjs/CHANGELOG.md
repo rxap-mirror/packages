@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.6...@rxap/plugin-nestjs@20.1.0-dev.7) (2025-01-29)
+
+### Features
+
+- support new webpack configuration concept ([ce72340](https://gitlab.com/rxap/packages/commit/ce7234057e744e6c83b9bd623d1789a5fc6b4ccf))
+- support new webpack configuration concept ([6af69f6](https://gitlab.com/rxap/packages/commit/6af69f69b2d6971ea80f330f79b8149f3753b237))
+
 # [20.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.5...@rxap/plugin-nestjs@20.1.0-dev.6) (2025-01-29)
 
 ### Bug Fixes

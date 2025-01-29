@@ -1,5 +1,5 @@
 {
-  "version": "20.0.1-dev.4",
+  "version": "20.0.1-dev.5",
   "name": "@rxap/plugin-storybook",
   "license": "MIT",
   "dependencies": {
@@ -8,8 +8,8 @@
     "@nx/eslint": "^20.3.1",
     "@rxap/ts-morph": "^1.5.3-dev.3",
     "@rxap/utilities": "^16.4.2-dev.2",
-    "@rxap/workspace-ts-morph": "^19.1.9-dev.4",
-    "@rxap/workspace-utilities": "^19.6.1-dev.3",
+    "@rxap/workspace-ts-morph": "^19.1.9-dev.5",
+    "@rxap/workspace-utilities": "^19.6.1-dev.4",
     "colors": "^1.4.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
