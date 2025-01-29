@@ -1,5 +1,5 @@
 {
-  "version": "20.0.1-dev.6",
+  "version": "20.0.1-dev.7",
   "name": "@rxap/plugin-docker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
