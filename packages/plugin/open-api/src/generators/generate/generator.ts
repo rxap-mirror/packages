@@ -101,7 +101,29 @@ export async function generateGenerator(
   }, project => GenerateOperation(openapi, project, options, nestGeneratorFunctionList));
 
   if (options.export) {
-    await LibraryIndexExportGenerator(tree, { project: options.project, generateRootExport: false });
+    const additionalEntryPoints: string[] = [
+      `${projectRoot}/src/lib/components/index.ts`,
+      `${projectRoot}/src/lib/parameters/index.ts`,
+      `${projectRoot}/src/lib/responses/index.ts`,
+      `${projectRoot}/src/lib/request-bodies/index.ts`,
+    ];
+    if (!options.skipRemoteMethod) {
+      additionalEntryPoints.push(`${projectRoot}/src/lib/remote-methods/index.ts`);
+    }
+    if (!options.skipDataSource) {
+      additionalEntryPoints.push(`${projectRoot}/src/lib/data-sources/index.ts`);
+    }
+    if (!options.skipDirectives) {
+      additionalEntryPoints.push(`${projectRoot}/src/lib/directives/index.ts`);
+    }
+    if (!options.skipCommand) {
+      additionalEntryPoints.push(`${projectRoot}/src/lib/commands/index.ts`);
+    }
+    await LibraryIndexExportGenerator(tree, {
+      project: options.project,
+      generateRootExport: false,
+      additionalEntryPoints
+    });
   } else {
     CoerceFile(tree, join(GetProjectSourceRoot(tree, projectName), 'index.ts'), 'export {};', true);
   }
