@@ -6,6 +6,7 @@ import { GuessOutputPath } from '@rxap/plugin-utilities';
 import { CoercePrefix } from '@rxap/utilities';
 import {
   GetNestApiPrefix,
+  GetProjectRoot,
   GetTargetOptions,
   GetWorkspaceName,
   IsNestJsProject,
@@ -14,6 +15,7 @@ import {
   ProcessBuildArgs,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
+import { join } from 'path';
 import { stringify } from 'yaml';
 import { DockerGeneratorSchema } from './schema';
 import { skipProject } from './skip-project';
@@ -93,7 +95,7 @@ export function buildDockerMatrix(
     const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
 
     const imageSuffix = dockerTargetOptions.imageSuffix;
-    const dockerfile = dockerTargetOptions.dockerfile;
+    let dockerfile = dockerTargetOptions.dockerfile;
     const context = dockerTargetOptions.context ??
                     (
                       project.targets['build'] ? GuessOutputPath(projectName, project.root, project.targets['build'], 'production') :
@@ -101,6 +103,12 @@ export function buildDockerMatrix(
                     ) ??
                     project.sourceRoot ??
                     project.root;
+
+    if (!dockerfile) {
+      if (tree.exists(join(GetProjectRoot(project), 'Dockerfile'))) {
+        dockerfile = join(GetProjectRoot(project), 'Dockerfile');
+      }
+    }
 
     const matrixItem: Record<string, string> = {};
 
