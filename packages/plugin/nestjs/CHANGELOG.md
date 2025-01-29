@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.7...@rxap/plugin-nestjs@20.1.0-dev.8) (2025-01-29)
+
+### Bug Fixes
+
+- add docker file in root in standalone projects ([040ea70](https://gitlab.com/rxap/packages/commit/040ea708f9673dd20a3ef027faf4313265e2d663))
+- support new webpack configuration concept ([a37f01c](https://gitlab.com/rxap/packages/commit/a37f01c9f724b5dbf5b0bbc3611c091c95f4085d))
+
 # [20.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.0-dev.6...@rxap/plugin-nestjs@20.1.0-dev.7) (2025-01-29)
 
 ### Features
