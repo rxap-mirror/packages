@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.4...@rxap/workspace-utilities@19.6.1-dev.5) (2025-01-29)
+
+### Bug Fixes
+
+- add jetbrains ignores ([0b59259](https://gitlab.com/rxap/packages/commit/0b5925911be0429e1634388816b91c0d419156ad))
+
 ## [19.6.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.3...@rxap/workspace-utilities@19.6.1-dev.4) (2025-01-29)
 
 ### Bug Fixes
