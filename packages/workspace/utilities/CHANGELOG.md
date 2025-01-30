@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.6...@rxap/workspace-utilities@19.6.1-dev.7) (2025-01-30)
+
+### Bug Fixes
+
+- missing xml2js dep ([ed3bf87](https://gitlab.com/rxap/packages/commit/ed3bf878cbb3900e483866e065d3110c26839dda))
+
 ## [19.6.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.5...@rxap/workspace-utilities@19.6.1-dev.6) (2025-01-29)
 
 ### Bug Fixes

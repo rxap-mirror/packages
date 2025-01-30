@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@20.0.1-dev.6...@rxap/plugin-utilities@20.0.1-dev.7) (2025-01-30)
+
+### Bug Fixes
+
+- missing xml2js dep ([ed3bf87](https://gitlab.com/rxap/packages/commit/ed3bf878cbb3900e483866e065d3110c26839dda))
+- missing xml2js dep ([1f11b99](https://gitlab.com/rxap/packages/commit/1f11b99cfc50654020eeaafec031314584299edb))
+
 ## [20.0.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@20.0.1-dev.5...@rxap/plugin-utilities@20.0.1-dev.6) (2025-01-29)
 
 **Note:** Version bump only for package @rxap/plugin-utilities
