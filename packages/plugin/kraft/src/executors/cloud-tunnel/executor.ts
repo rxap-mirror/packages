@@ -22,7 +22,7 @@ const runExecutor: PromiseExecutor<CloudTunnelExecutorSchema> = async (
   if (localPort) {
     tunnel = `${tunnel}:${localPort}`;
   }
-  console.log(`Access with http://localhost:${localPort ?? destPort.replace(/\/.+$/, '')}/${urlPath.replace(/^\//, '')}`);
+  console.log(`Access with http://localhost:${localPort ?? destPort.replace(/\/.+$/, '')}/${urlPath?.replace(/^\//, '')}`);
   return run({
     cwd: GetProjectRoot(context),
     command: 'kraft cloud tunnel',
