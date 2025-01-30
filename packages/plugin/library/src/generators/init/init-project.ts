@@ -12,13 +12,8 @@ import {
   IsPresetProject,
   IsPublishable,
   IsSchematicProject,
-  SearchFile,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import {
-  Builder,
-  parseStringPromise,
-} from 'xml2js';
 import { initProject as initBuildableProject } from '../init-buildable/init-project';
 import { initProject as initPluginProject } from '../init-plugin/init-project';
 import { initProject as initPresetProject } from '../init-preset/init-project';
