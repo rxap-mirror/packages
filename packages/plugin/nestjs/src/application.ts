@@ -118,7 +118,7 @@ async function createProjectConfiguration(
     throw new Error(`Could not find project in '${ projectPath }'`);
   }
   // only generate the package json if the project is not in the root
-  if (['', '/'].includes(projectConfiguration.root)) {
+  if (!['', '/', '.'].includes(projectConfiguration.root)) {
     targets['generate-package-json'] = createGeneratePackageJsonTarget();
   }
   if (existsSync(join(projectPath, 'src/swagger.ts'))) {
