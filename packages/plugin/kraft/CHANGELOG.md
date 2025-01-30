@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-kraft@20.0.0-dev.7...@rxap/plugin-kraft@20.0.0-dev.8) (2025-01-30)
+
+### Bug Fixes
+
+- check if url path is defined ([a64bcf8](https://gitlab.com/rxap/packages/commit/a64bcf8663f33b53be4856a1b7eb361af3af4167))
+
 # [20.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-kraft@20.0.0-dev.6...@rxap/plugin-kraft@20.0.0-dev.7) (2025-01-30)
 
 **Note:** Version bump only for package @rxap/plugin-kraft
