@@ -7,12 +7,8 @@ import {
   CoerceFile,
   CoerceIgnorePattern,
   CoerceTarget,
-  GetProject,
   GetProjectRoot,
   GetProjectSourceRoot,
-  GetTarget,
-  GetTargetOptions,
-  HasProject,
   RemoveIgnorePattern,
   Strategy,
   UpdateTsConfigJson,
@@ -22,7 +18,6 @@ import {
   join,
 } from 'path';
 import { stringify } from 'yaml';
-import { getSwaggerBuildOutputPath } from './get-swagger-build-output-path';
 import { InitLibraryGeneratorSchema } from './schema';
 
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
@@ -41,19 +36,16 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     CoerceIgnorePattern(tree, '.nxignore', [ '!/open-api/**/src/lib/**' ]);
   }
 
+  if (project.targets?.['build']?.executor) {
+    delete project.targets['build'];
+  }
+
   if (options.external) {
     CoerceTarget(project, 'generate-open-api', {
       inputs: [join('{projectRoot}', 'src', 'openapi.yaml')],
-      outputs: [
-        join('{projectRoot}', 'src', 'lib'),
-        join('{projectRoot}', 'src', 'index.ts'),
-      ],
       options: {
-        options: {
-          project: options.project,
-          path: join(projectSourceRoot, 'openapi.yaml'),
-          serverId: apiProjectName
-        }
+        path: join(projectSourceRoot, 'openapi.yaml'),
+        serverId: apiProjectName
       }
     }, Strategy.OVERWRITE);
     CoerceFile(tree, join(projectSourceRoot, 'openapi.yaml'), stringify({
