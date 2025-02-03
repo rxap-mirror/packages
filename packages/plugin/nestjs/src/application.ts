@@ -152,7 +152,7 @@ function createSwaggerBuildTarget(projectPath: string): TargetConfiguration {
     executor: 'nx:run-commands',
     cache: true,
     inputs: [ 'production', '^production' ],
-    outputs: [ '{workspaceRoot}/dist/{projectRoot}' ],
+    outputs: [ '{workspaceRoot}/swagger/{projectRoot}' ],
     options: {
       command: 'webpack-cli build',
       cwd: projectPath,
