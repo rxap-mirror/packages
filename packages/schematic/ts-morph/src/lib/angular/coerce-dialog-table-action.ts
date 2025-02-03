@@ -41,6 +41,11 @@ export function CoerceDialogTableActionRule(options: CoerceDialogTableActionRule
       });
 
       CoerceImports(sourceFile, {
+        namedImports: [ 'firstValueFrom' ],
+        moduleSpecifier: 'rxjs',
+      });
+
+      CoerceImports(sourceFile, {
         namedImports: [ `${ classify(type) }DialogComponent` ],
         moduleSpecifier: `../../${ dasherize(type) }-dialog/${ dasherize(type) }-dialog.component`,
       });
