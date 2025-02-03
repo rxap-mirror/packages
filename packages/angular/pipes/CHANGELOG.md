@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/pipes@19.0.1-dev.2...@rxap/pipes@19.1.0-dev.0) (2025-02-03)
+
+### Features
+
+- add utility pipes ([c2d939f](https://gitlab.com/rxap/packages/commit/c2d939f4543d4205931c89c2b894ea60341c968a))
+
 ## [19.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/pipes@19.0.1-dev.1...@rxap/pipes@19.0.1-dev.2) (2025-01-28)
 
 **Note:** Version bump only for package @rxap/pipes
