@@ -52,7 +52,7 @@ export async function swaggerGenerator(
   }
 
   CoerceIgnorePattern(tree, '.nxignore', [ '!swagger/**/openapi.json' ]);
-  CoerceIgnorePattern(tree, '.gitignore', [ 'swagger/**' ]);
+  CoerceIgnorePattern(tree, '.gitignore', [ 'swagger/**/*.*', '!swagger/**/openapi.json' ]);
 
   await AddPackageJsonDependency(tree, 'swagger-ui-express', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });
