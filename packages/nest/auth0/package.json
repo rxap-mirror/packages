@@ -1,0 +1,40 @@
+{
+  "name": "@rxap/nest-auth0",
+  "version": "10.0.0-dev.0",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@nestjs/passport": "^11.0.5",
+    "@nx/devkit": "20.4.0",
+    "auth0": "^4.18.0",
+    "passport-jwt": "^4.0.1",
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/auth0"
+  },
+  "keywords": [
+    "rxap",
+    "nest",
+    "packages",
+    "nest-auth0"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/auth0",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/auth0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "generators": "./generators.json"
+}
