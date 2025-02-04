@@ -1,1 +1,8 @@
-export * from './lib/nest-auth0.module';
+// region 
+export * from './lib/auth0-module-options.factory';
+export * from './lib/auth0-validation-schema';
+export * from './lib/auth0.module';
+export * from './lib/auth0.service';
+export * from './lib/jwt.strategy';
+export * from './lib/tokens';
+// endregion
