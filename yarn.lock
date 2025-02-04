@@ -5898,6 +5898,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/passport@npm:^11.0.5":
+  version: 11.0.5
+  resolution: "@nestjs/passport@npm:11.0.5"
+  peerDependencies:
+    "@nestjs/common": ^10.0.0 || ^11.0.0
+    passport: ^0.5.0 || ^0.6.0 || ^0.7.0
+  checksum: f327e50f7e7bcf220aed3de6ef635bbb5f05af580418a24dcf3708d2747b5197a44ad357e1a5c3ce120477c490858b7c35ec1c3eb2f08740a2012a314c402412
+  languageName: node
+  linkType: hard
+
 "@nestjs/platform-express@npm:10.3.8":
   version: 10.3.8
   resolution: "@nestjs/platform-express@npm:10.3.8"
@@ -9148,6 +9158,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/nest-auth0@workspace:packages/nest/auth0":
+  version: 0.0.0-use.local
+  resolution: "@rxap/nest-auth0@workspace:packages/nest/auth0"
+  dependencies:
+    "@nestjs/passport": ^11.0.5
+    "@nx/devkit": 20.4.0
+    auth0: ^4.18.0
+    passport-jwt: ^4.0.1
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/nest-dto@workspace:packages/nest/dto":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-dto@workspace:packages/nest/dto"
@@ -9258,6 +9280,7 @@ __metadata:
   resolution: "@rxap/nest-openfga@workspace:packages/nest/openfga"
   dependencies:
     "@nx/devkit": 20.4.0
+    "@openfga/sdk": ^0.8.0
     tslib: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -10421,6 +10444,7 @@ __metadata:
     "@types/marked": 4.3.2
     "@types/mock-fs": 4.13.4
     "@types/node": ^22.5.0
+    "@types/passport-jwt": ^4.0.1
     "@types/supertest": 2.0.16
     "@types/xml2js": ^0.4.14
     "@types/xmldom": 0.1.34
@@ -12700,6 +12724,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jsonwebtoken@npm:*":
+  version: 9.0.8
+  resolution: "@types/jsonwebtoken@npm:9.0.8"
+  dependencies:
+    "@types/ms": "*"
+    "@types/node": "*"
+  checksum: 658a07da02e1aa6ab2bec4335755a68a73cdf6939ad68a5de1ead5a00d3e002fadb023e3cf69c64f332edfed1703ff4e1b6fb96b5e7b58a4328df3b55b82fd69
+  languageName: node
+  linkType: hard
+
 "@types/jsonwebtoken@npm:9.0.5":
   version: 9.0.5
   resolution: "@types/jsonwebtoken@npm:9.0.5"
@@ -12792,6 +12826,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ms@npm:*":
+  version: 2.1.0
+  resolution: "@types/ms@npm:2.1.0"
+  checksum: 532d2ebb91937ccc4a89389715e5b47d4c66e708d15942fe6cc25add6dc37b2be058230a327dd50f43f89b8b6d5d52b74685a9e8f70516edfc9bdd6be910eff4
+  languageName: node
+  linkType: hard
+
 "@types/mysql@npm:2.15.22":
   version: 2.15.22
   resolution: "@types/mysql@npm:2.15.22"
@@ -12856,6 +12897,35 @@ __metadata:
   version: 4.0.2
   resolution: "@types/parse-json@npm:4.0.2"
   checksum: 5bf62eec37c332ad10059252fc0dab7e7da730764869c980b0714777ad3d065e490627be9f40fc52f238ffa3ac4199b19de4127196910576c2fe34dd47c7a470
+  languageName: node
+  linkType: hard
+
+"@types/passport-jwt@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@types/passport-jwt@npm:4.0.1"
+  dependencies:
+    "@types/jsonwebtoken": "*"
+    "@types/passport-strategy": "*"
+  checksum: 778f88eaefe39d845ba4824760f9b149c1e408249357514ea9b3d302c180af1faadc164af3fbf41596a23ad01f0a1c95501e193693f4db804f34713853fdc727
+  languageName: node
+  linkType: hard
+
+"@types/passport-strategy@npm:*":
+  version: 0.2.38
+  resolution: "@types/passport-strategy@npm:0.2.38"
+  dependencies:
+    "@types/express": "*"
+    "@types/passport": "*"
+  checksum: b580e165182b137a6e57b6b7511904e6c875a5e372f08679ec54f456dc5c2a72d86f23d9373a52d8286b207fe8240946686f9e3d50b0bc1b4f7316f336a06fa2
+  languageName: node
+  linkType: hard
+
+"@types/passport@npm:*":
+  version: 1.0.17
+  resolution: "@types/passport@npm:1.0.17"
+  dependencies:
+    "@types/express": "*"
+  checksum: b131d5963576e759f972f038bb7461dcaaa1dc484a488eb093eac6a9f8d4f51c9b7adcd432ae84e3ecb68839dfba16f6d569f36664330b6af59d36ff3c4c64e2
   languageName: node
   linkType: hard
 
@@ -15045,6 +15115,17 @@ __metadata:
     stubborn-fs: ^1.2.5
     when-exit: ^2.1.1
   checksum: 4ee528fe35b4bc84cd626f6414cd2b51f04f94c2f6e8ab5c97d056779ef507bdd1e2671056957a031e6b487571fcc0a8627e8660645e6d61c84e561ae71cc8b6
+  languageName: node
+  linkType: hard
+
+"auth0@npm:^4.18.0":
+  version: 4.18.0
+  resolution: "auth0@npm:4.18.0"
+  dependencies:
+    jose: ^4.13.2
+    undici-types: ^6.15.0
+    uuid: ^9.0.0
+  checksum: 9fff6bf6751c64e858cb5b34a4652aac5e226dce7a2cd2428a3b692453422c8106c06a8c75d29acdcb87fcd80b2f15dc0577d277792e2bfe0be54b18a614a365
   languageName: node
   linkType: hard
 
@@ -24635,6 +24716,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:^4.13.2":
+  version: 4.15.9
+  resolution: "jose@npm:4.15.9"
+  checksum: 41abe1c99baa3cf8a78ebbf93da8f8e50e417b7a26754c4afa21865d87527b8ac2baf66de2c5f6accc3f7d7158658dae7364043677236ea1d07895b040097f15
+  languageName: node
+  linkType: hard
+
 "jpeg-exif@npm:^1.1.4":
   version: 1.1.4
   resolution: "jpeg-exif@npm:1.1.4"
@@ -24926,7 +25014,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:9.0.2":
+"jsonwebtoken@npm:9.0.2, jsonwebtoken@npm:^9.0.0":
   version: 9.0.2
   resolution: "jsonwebtoken@npm:9.0.2"
   dependencies:
@@ -29162,6 +29250,23 @@ __metadata:
     no-case: ^3.0.4
     tslib: ^2.0.3
   checksum: ba98bfd595fc91ef3d30f4243b1aee2f6ec41c53b4546bfa3039487c367abaa182471dcfc830a1f9e1a0df00c14a370514fa2b3a1aacc68b15a460c31116873e
+  languageName: node
+  linkType: hard
+
+"passport-jwt@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "passport-jwt@npm:4.0.1"
+  dependencies:
+    jsonwebtoken: ^9.0.0
+    passport-strategy: ^1.0.0
+  checksum: 0669d5bf8fc18ee57eb39601491c59ac084acfa6c972e0a3289e9d88a3ee6fab9e9fb279f359eee81939fedb66904c4a74423004480b60c54621af0d7b2ee0d5
+  languageName: node
+  linkType: hard
+
+"passport-strategy@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "passport-strategy@npm:1.0.0"
+  checksum: 5086693f2508e538dffa55a338c89fe8192fb5f4478c71f80cd5890b8573419a098f4fec88b505374f60bbe9049f6f24b9f3992678612528a3370b4dc73354a2
   languageName: node
   linkType: hard
 
@@ -35196,6 +35301,13 @@ __metadata:
     has-symbols: ^1.0.3
     which-boxed-primitive: ^1.0.2
   checksum: b7a1cf5862b5e4b5deb091672ffa579aa274f648410009c81cca63fed3b62b610c4f3b773f912ce545bb4e31edc3138975b5bc777fc6e4817dca51affb6380e9
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:^6.15.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 46331c7d6016bf85b3e8f20c159d62f5ae471aba1eb3dc52fff35a0259d58dcc7d592d4cc4f00c5f9243fa738a11cfa48bd20203040d4a9e6bc25e807fab7ab3
   languageName: node
   linkType: hard
 

@@ -516,6 +516,10 @@
       <excludeFolder url="packages/nest/openfga/docsfile://$MODULE_DIR$/"/>
       <excludeFolder url="packages/nest/openfga/compodocfile://$MODULE_DIR$/"/>
       <excludeFolder url="packages/nest/openfga/coveragefile://$MODULE_DIR$/"/>
+      <excludeFolder url="packages/nest/auth0/distfile://$MODULE_DIR$/"/>
+      <excludeFolder url="packages/nest/auth0/docsfile://$MODULE_DIR$/"/>
+      <excludeFolder url="packages/nest/auth0/compodocfile://$MODULE_DIR$/"/>
+      <excludeFolder url="packages/nest/auth0/coveragefile://$MODULE_DIR$/"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

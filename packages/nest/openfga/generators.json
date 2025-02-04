@@ -1,9 +1,3 @@
 {
-  "generators": {
-    "init": {
-      "factory": "./src/generators/init",
-      "schema": "./src/generators/schema.json",
-      "description": "Initialize the package in the workspace"
-    }
-  }
+  "generators": {}
 }

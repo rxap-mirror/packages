@@ -185,6 +185,7 @@
     "@types/marked": "4.3.2",
     "@types/mock-fs": "4.13.4",
     "@types/node": "^22.5.0",
+    "@types/passport-jwt": "^4.0.1",
     "@types/supertest": "2.0.16",
     "@types/xml2js": "^0.4.14",
     "@types/xmldom": "0.1.34",

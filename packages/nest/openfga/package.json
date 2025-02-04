@@ -6,8 +6,8 @@
   "types": "./src/index.d.ts",
   "dependencies": {
     "@nx/devkit": "20.4.0",
-    "tslib": "^2.3.0",
-    "@openfga/sdk": "^0.8.0"
+    "@openfga/sdk": "^0.8.0",
+    "tslib": "^2.3.0"
   },
   "publishConfig": {
     "access": "public",
