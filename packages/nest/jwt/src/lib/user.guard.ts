@@ -13,8 +13,14 @@ import {
   RequestWithJwtAndUser,
 } from './types';
 
+/**
+ * @deprecated will be removed in the feature
+ */
 export const GET_USER_COMMAND = Symbol('GET_USER_COMMAND');
 
+/**
+ * @deprecated will be removed in the feature
+ */
 @Injectable()
 export class UserGuard<User = DefaultUser> implements CanActivate {
 
