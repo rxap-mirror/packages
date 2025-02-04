@@ -7406,6 +7406,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@openfga/sdk@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@openfga/sdk@npm:0.8.0"
+  dependencies:
+    "@opentelemetry/api": ^1.9.0
+    axios: ^1.7.9
+    tiny-async-pool: ^2.1.0
+  checksum: 1573f129b6968046dcc5102367e598f8537fcef5e5b44abadfd88cc3fdca57f6808e525f0e12c9c37936f53e6a034eadcab2119cbfcf5e295f6ad2b366e79515
+  languageName: node
+  linkType: hard
+
 "@opentelemetry/api-logs@npm:0.52.1":
   version: 0.52.1
   resolution: "@opentelemetry/api-logs@npm:0.52.1"
@@ -9242,6 +9253,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/nest-openfga@workspace:packages/nest/openfga":
+  version: 0.0.0-use.local
+  resolution: "@rxap/nest-openfga@workspace:packages/nest/openfga"
+  dependencies:
+    "@nx/devkit": 20.4.0
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/nest-rabbitmq-vault@workspace:packages/nest/rabbitmq-vault":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-rabbitmq-vault@workspace:packages/nest/rabbitmq-vault"
@@ -10365,6 +10385,7 @@ __metadata:
     "@nx/storybook": 20.4.0
     "@nx/web": 20.4.0
     "@nx/webpack": 20.4.0
+    "@openfga/sdk": ^0.8.0
     "@schematics/angular": 19.1.4
     "@sentry/angular": 8.18.0
     "@sentry/core": 8.18.0
@@ -15097,7 +15118,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.0, axios@npm:^1.6.1, axios@npm:^1.7.4":
+"axios@npm:^1.6.0, axios@npm:^1.6.1, axios@npm:^1.7.4, axios@npm:^1.7.9":
   version: 1.7.9
   resolution: "axios@npm:1.7.9"
   dependencies:
@@ -34237,6 +34258,13 @@ __metadata:
   version: 1.0.1
   resolution: "timestamp-nano@npm:1.0.1"
   checksum: cba7d5a6d805692f9a8df1a98056e5e742236bd2baccb469f8be1c64d53223326c74da29a7111718520c8b7a424394665882078cd9452725fffbf1f109fc3d6f
+  languageName: node
+  linkType: hard
+
+"tiny-async-pool@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "tiny-async-pool@npm:2.1.0"
+  checksum: 8891326f30e587590f94c5e1f8cab59c9aa305e442fc5b9f7ea997f8611d805a797aae2ea93cd00b42b494ef749353df38b4555e2a769d6fff31a3db7add7208
   languageName: node
   linkType: hard
 

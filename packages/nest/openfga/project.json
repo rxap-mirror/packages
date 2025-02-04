@@ -1,0 +1,52 @@
+{
+  "name": "nest-openfga",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/openfga/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["nest", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nest/openfga",
+        "tsConfig": "packages/nest/openfga/tsconfig.lib.json",
+        "packageJson": "packages/nest/openfga/package.json",
+        "main": "packages/nest/openfga/src/index.ts",
+        "assets": [
+          "packages/nest/openfga/*.md",
+          {
+            "input": "./packages/nest/openfga/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/nest/openfga",
+            "glob": "generators.json",
+            "output": "."
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/openfga/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

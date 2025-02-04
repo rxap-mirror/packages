@@ -1,0 +1,1 @@
+export const OPEN_FGA_CLIENT_OPTIONS = Symbol('OPEN_FGA_CLIENT_OPTIONS');

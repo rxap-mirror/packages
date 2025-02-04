@@ -59,6 +59,7 @@
     "@nestjs/terminus": "10.2.3",
     "@nestjs/throttler": "5.1.2",
     "@nestjs/typeorm": "^10.0.2",
+    "@openfga/sdk": "^0.8.0",
     "@sentry/angular": "8.18.0",
     "@sentry/core": "8.18.0",
     "@sentry/hub": "7.117.0",

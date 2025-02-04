@@ -89,7 +89,12 @@
         "generate-package-json",
         "build-info",
         "copy-open-api-sdk",
-        "bundle-json-schema"
+        "bundle-json-schema",
+        "^index-export",
+        "index-export",
+        "readme",
+        "check-version",
+        "expose-as-schematic"
       ],
       "cache": true,
       "inputs": ["production", "^production"]
@@ -145,16 +150,13 @@
     },
     "@nx/js:tsc": {
       "cache": true,
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "^index-export", "index-export"]
     },
     "fix-dependencies": {
       "dependsOn": ["^fix-dependencies"]
     },
     "@nx/angular:ng-packagr-lite": {
-      "dependsOn": [
-        "^build",
-        "build-tailwind"
-      ],
+      "dependsOn": ["^build", "build-tailwind"],
       "inputs": ["production", "^production"]
     },
     "build-tailwind": {

@@ -1,0 +1,38 @@
+{
+  "name": "@rxap/nest-openfga",
+  "version": "10.0.0-dev.0",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@nx/devkit": "20.4.0",
+    "tslib": "^2.3.0",
+    "@openfga/sdk": "^0.8.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/openfga"
+  },
+  "keywords": [
+    "rxap",
+    "nest",
+    "packages",
+    "nest-openfga"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/openfga",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/openfga"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "generators": "./generators.json"
+}
