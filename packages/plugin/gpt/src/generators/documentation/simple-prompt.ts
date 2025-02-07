@@ -1,16 +1,21 @@
-import { encode } from 'gpt-3-encoder';
 import { OpenAI } from 'openai';
 import { ChatCompletionCreateParamsBase } from 'openai/resources/chat/completions';
+import { ChatCompletionCreateParamsNonStreaming } from 'openai/src/resources/chat/completions';
+import { encoding_for_model } from 'tiktoken';
+import 'colors';
 
+/**
+ * Model Context size https://platform.openai.com/docs/models
+ */
 const tokenLimits = {
-  'gpt-4-4o': 128_000,
-  'gpt-4-turbo': 128_000,
-  'gpt-4': 8192,
-  'gpt-3.5-turbo': 4096,
-  'gpt-3.5-turbo-16k': 16384,
+  'gpt-4o': 128_000, // $2.50
+  'gpt-4o-mini': 128_000, // $0.15
+  'o1': 200_000, // $15.00
+  'o1-mini': 128_000, // $1.10
+  'o3-mini': 200_000, // $1.10
 };
 
-export type Model = 'whisper-1' | 'dall-e-2' | 'gpt-3.5-turbo-16k' | 'tts-1-hd-1106' | 'tts-1-hd' | 'gpt-4-turbo-2024-04-09' | 'gpt-4-0125-preview' | 'gpt-4-turbo-preview' | 'gpt-4-turbo' | 'gpt-3.5-turbo-instruct-0914' | 'gpt-4o' | 'gpt-3.5-turbo-instruct' | 'text-embedding-3-small' | 'tts-1' | 'gpt-4' | 'text-embedding-3-large' | 'gpt-4-1106-preview' | 'babbage-002' | 'gpt-4-0613' | 'gpt-3.5-turbo-0125' | 'tts-1-1106' | 'dall-e-3' | 'text-embedding-ada-002' | 'davinci-002' | 'gpt-3.5-turbo' | 'gpt-3.5-turbo-1106' | 'gpt-4o-2024-05-13';
+export type Model = keyof typeof tokenLimits;
 
 export interface SimplePromptOptions {
   max_tokens?: number,
@@ -31,19 +36,22 @@ export async function SimplePrompt(
   systemPrompt: string,
   prompt: string,
   openai: OpenAI,
-  options: Partial<ChatCompletionCreateParamsBase> = {
-    max_tokens: 1024,
-    model: 'gpt-4-turbo',
+  options: Partial<ChatCompletionCreateParamsBase> & { model: Model } = {
+    model: 'o3-mini',
+    max_tokens: 10_000
   },
 ) {
 
-  const systemPromptLength = encode(systemPrompt).length;
-  const promptLength = encode(prompt).length;
+  const enc = encoding_for_model(options.model);
 
-  const inputLength = Math.floor((systemPromptLength + promptLength) * 1.1);
+  const systemPromptLength = enc.encode(systemPrompt).length;
+  const promptLength = enc.encode(prompt).length;
 
-  options.model ??= 'gpt-4o';
-  options.max_tokens ??= 1024;
+  enc.free();
+
+  const inputLength = systemPromptLength + promptLength;
+
+  options.model ??= 'o3-mini';
 
   if (!tokenLimits[options.model]) {
     throw new Error(`\x1b[31mModel '${ options.model }' is not supported.\x1b[0m`);
@@ -64,37 +72,36 @@ export async function SimplePrompt(
     }
   }
 
-  let content: string | undefined;
+  let content: string | undefined = undefined;
 
-  try {
-    const response = await openai.chat.completions.create({
-      max_tokens: options.max_tokens,
-      model: options.model,
-      messages: [
-        {
-          'role': 'system',
-          'content': systemPrompt,
-        },
-        {
-          'role': 'user',
-          'content': prompt,
-        },
-      ],
-      temperature: 0,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0,
-    });
-
-    content = response.choices[0].message?.content;
-
-  } catch (e) {
-    console.log(e.response?.data);
-    throw new Error('OpenAI API error: ' + e.message);
+  console.log(`send with '${promptLength}' prompt tokens and '${systemPromptLength}' system prompt tokens with '${options.max_tokens}' max tokens`.grey);
+  const input: ChatCompletionCreateParamsNonStreaming = {
+    model: options.model,
+    messages: [
+      {
+        'role': 'system',
+        'content': systemPrompt,
+      },
+      {
+        'role': 'user',
+        'content': prompt,
+      },
+    ],
+  };
+  if (options.max_tokens) {
+    if (options.model.startsWith('o')) {
+      input.max_completion_tokens = options.max_tokens;
+    } else {
+      input.max_tokens = options.max_tokens;
+    }
   }
+  const response = await openai.chat.completions.create(input);
+
+  content = response.choices[0].message?.content;
 
   if (!content) {
-    throw new Error(`\x1b[31mNo content in response for paper\x1b[0m`);
+    console.log('No content in response'.red);
+    throw new Error(`No content in response`);
   }
 
   return content;

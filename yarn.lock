@@ -10477,7 +10477,6 @@ __metadata:
     firebase-admin: 10.3.0
     form-data: ^4.0.1
     glob: 10.3.10
-    gpt-3-encoder: ^1.1.4
     handlebars: 4.7.8
     helmet: 7.1.0
     html-webpack-plugin: 5.6.0
@@ -10503,7 +10502,7 @@ __metadata:
     node-vault: ^0.10.2
     nx: 20.4.0
     nx-cloud: 19.1.0
-    openai: ^4.52.0
+    openai: ^4.82.0
     postcss: 8.4.38
     postcss-import: 14.1.0
     postcss-preset-env: 7.8.3
@@ -10519,6 +10518,7 @@ __metadata:
     supertest: 6.2.2
     swagger-ui-express: 5.0.0
     tailwindcss: ^3.4.4
+    tiktoken: ^1.0.20
     tmp-promise: ^3.0.3
     ts-jest: 29.1.4
     ts-morph: 18.0.0
@@ -28660,6 +28660,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"openai@npm:^4.82.0":
+  version: 4.82.0
+  resolution: "openai@npm:4.82.0"
+  dependencies:
+    "@types/node": ^18.11.18
+    "@types/node-fetch": ^2.6.4
+    abort-controller: ^3.0.0
+    agentkeepalive: ^4.2.1
+    form-data-encoder: 1.7.2
+    formdata-node: ^4.3.2
+    node-fetch: ^2.6.7
+  peerDependencies:
+    ws: ^8.18.0
+    zod: ^3.23.8
+  peerDependenciesMeta:
+    ws:
+      optional: true
+    zod:
+      optional: true
+  bin:
+    openai: bin/cli
+  checksum: d4d219362d6205adffe57de58a343dbdabfcecd9c6bf656e755a2c9c48a2b70e68985f0ea4015e2c74b46f19a129641d8901a01c3a6e2cdb7a3dbbc953011a3f
+  languageName: node
+  linkType: hard
+
 "openapi-types@npm:^10.0.0":
   version: 10.0.0
   resolution: "openapi-types@npm:10.0.0"
@@ -34346,6 +34371,13 @@ __metadata:
   version: 1.1.0
   resolution: "thunky@npm:1.1.0"
   checksum: 993096c472b6b8f30e29dc777a8d17720e4cab448375041f20c0cb802a09a7fb2217f2a3e8cdc11851faa71c957e2db309357367fc9d7af3cb7a4d00f4b66034
+  languageName: node
+  linkType: hard
+
+"tiktoken@npm:^1.0.20":
+  version: 1.0.20
+  resolution: "tiktoken@npm:1.0.20"
+  checksum: 1e42c91e26c99e8da2acaecfb4b1c442b2bc6cdf9354ff6a015a5f76793aff563ab216791488c9e6dc0df5ec1eecfea95cf452c2bb296fb2ca6740b72f05bc9a
   languageName: node
   linkType: hard
 

@@ -1,0 +1,375 @@
+Your task is to generate complete JSDoc documentation for the provided TypeScript source code. The context supplied consists of two parts:
+
+1. The source code and all related files (both files referenced by the source code and files that use the source code) are provided as context formatted according to the schema in the context.xsd file below.
+
+2. An overview of the available JSDoc block tags is provided in the block-tags.txt file below. You must use these tags in your documentation.
+
+Use the following file contents as reference:
+
+-------------------- block-tags.txt --------------------
+@deprecated
+Document that this is no longer the preferred way.
+
+@description (synonyms: @desc)
+Describe a symbol.
+
+@enum
+Document a collection of related properties.
+
+@event
+Document an event.
+
+@example
+Provide an example of how to use a documented item.
+
+@exports
+Identify the member that is exported by a JavaScript module.
+
+@external (synonyms: @host)
+Identifies an external class, namespace, or module.
+
+@file (synonyms: @fileoverview, @overview)
+Describe a file.
+
+@fires (synonyms: @emits)
+Describe the events this method may fire.
+
+@function (synonyms: @func, @method)
+Describe a function or method.
+
+@generator
+Indicate that a function is a generator function.
+
+@global
+Document a global object.
+
+@hideconstructor
+Indicate that the constructor should not be displayed.
+
+@ignore
+Omit a symbol from the documentation.
+
+@implements
+This symbol implements an interface.
+
+@inheritdoc
+Indicate that a symbol should inherit its parent's documentation.
+
+@inner
+Document an inner object.
+
+@instance
+Document an instance member.
+
+@interface
+This symbol is an interface that others can implement.
+
+@kind
+What kind of symbol is this?
+
+@lends
+Document properties on an object literal as if they belonged to a symbol with a given name.
+
+@license
+Identify the license that applies to this code.
+
+@listens
+List the events that a symbol listens for.
+
+@member (synonyms: @var)
+Document a member.
+
+@memberof
+This symbol belongs to a parent symbol.
+
+@mixes
+This object mixes in all the members from another object.
+
+@mixin
+Document a mixin object.
+
+@module
+Document a JavaScript module.
+
+@name
+Document the name of an object.
+
+@namespace
+Document a namespace object.
+
+@override
+Indicate that a symbol overrides its parent.
+
+@package
+This symbol is meant to be package-private.
+
+@param (synonyms: @arg, @argument)
+Document the parameter to a function.
+
+@private
+This symbol is meant to be private.
+
+@property (synonyms: @prop)
+Document a property of an object.
+
+@protected
+This symbol is meant to be protected.
+
+@public
+This symbol is meant to be public.
+
+@readonly
+This symbol is meant to be read-only.
+
+@requires
+This file requires a JavaScript module.
+
+@returns (synonyms: @return)
+Document the return value of a function.
+
+@see
+Refer to some other documentation for more information.
+
+@since
+When was this feature added?
+
+@static
+Document a static member.
+
+@summary
+A shorter version of the full description.
+
+@this
+What does the 'this' keyword refer to here?
+
+@throws (synonyms: @exception)
+Describe what errors could be thrown.
+
+@todo
+Document tasks to be completed.
+
+@tutorial
+Insert a link to an included tutorial file.
+
+@type
+Document the type of an object.
+
+@typedef
+Document a custom type.
+
+@variation
+Distinguish different objects with the same name.
+
+@version
+Documents the version number of an item.
+
+@yields (synonyms: @yield)
+Document the value yielded by a generator function.
+------------------------------------------------------------
+
+-------------------- context.xsd --------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+
+    <!-- Definition of the sourceFileType to capture the 'path' attribute -->
+    <xsd:complexType name="sourceFileType">
+        <xsd:attribute name="path" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <!-- Root element 'context' -->
+    <xsd:element name="context">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- 'referenced' element with multiple 'source-file' elements -->
+                <xsd:element name="referenced" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="source-file" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <!-- 'used' element with multiple 'source-file' elements -->
+                <xsd:element name="used" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="source-file" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
+------------------------------------------------------------
+
+Instructions:
+- Read the provided source code along with its related files (referenced and using) as structured by the context.xsd.
+- Create the complete JSDoc documentation using only the JSDoc block tags listed above.
+- Output ONLY the JSDoc content, without any additional text or any TypeScript comment syntax (omit /*, */, etc.).
+
+Example Input:
+------------------------------------------------------------
+<context>
+  <referenced>
+    <sourceFile path="/delete-undefined-properties.ts">
+export function DeleteUndefinedProperties<T extends {}>(obj: T, recursive?: boolean): Exclude<T, undefined> {
+  if (!obj || typeof obj !== 'object') {
+    return obj as any;
+  }
+
+  const keys = Object.keys(obj);
+  const cloneObj: any = {};
+
+  for (const key of keys) {
+    if ((obj as any)[key] !== undefined) {
+      const value = (obj as any)[key];
+      cloneObj[key] = value;
+      if (recursive && value) {
+        if (Array.isArray(value)) {
+          cloneObj[key] = value.map((item) => DeleteUndefinedProperties(item, true));
+        } else if (typeof value === 'object') {
+          cloneObj[key] = DeleteUndefinedProperties(value, true);
+        }
+      }
+    }
+  }
+
+  return cloneObj;
+}
+    </sourceFile>
+    <sourceFile path="/delete-null-properties.ts">
+export function DeleteNullProperties<T extends {}>(obj: T, recursive?: boolean): Exclude<T, null> {
+  if (!obj || typeof obj !== 'object') {
+    return obj as any;
+  }
+
+  const keys = Object.keys(obj);
+  const cloneObj: any = {};
+
+  for (const key of keys) {
+    if ((obj as any)[key] !== null) {
+      const value = (obj as any)[key];
+      cloneObj[key] = value;
+      if (recursive && value) {
+        if (Array.isArray(value)) {
+          cloneObj[key] = value.map((item) => DeleteNullProperties(item, true));
+        } else if (typeof value === 'object') {
+          cloneObj[key] = DeleteNullProperties(value, true);
+        }
+      }
+    }
+  }
+
+  return cloneObj;
+}
+    </sourceFile>
+  </referenced>
+  <used>
+    <sourceFile path="/delete-empty-properties.spec.ts">
+import { DeleteEmptyProperties } from './delete-empty-properties';
+
+describe('DeleteEmptyProperties function', () => {
+  test('should remove null properties from an object', () => {
+    const inputObj = {
+      a: 1,
+      b: null,
+      c: 'test',
+    };
+
+    const expectedOutput = {
+      a: 1,
+      c: 'test',
+    };
+
+    expect(DeleteEmptyProperties(inputObj)).toEqual(expectedOutput);
+  });
+
+  test('should not remove null properties from nested objects if recursive flag is not set', () => {
+    const inputObj = {
+      a: 1,
+      b: null,
+      c: {
+        d: 3,
+        e: null,
+      },
+    };
+
+    const expectedOutput = {
+      a: 1,
+      c: {
+        d: 3,
+        e: null,
+      },
+    };
+
+    expect(DeleteEmptyProperties(inputObj)).toEqual(expectedOutput);
+  });
+
+  test('should remove null properties from nested objects if recursive flag is set', () => {
+    const inputObj = {
+      a: 1,
+      b: null,
+      c: {
+        d: 3,
+        e: null,
+      },
+    };
+
+    const expectedOutput = {
+      a: 1,
+      c: {
+        d: 3,
+      },
+    };
+
+    expect(DeleteEmptyProperties(inputObj, true)).toEqual(expectedOutput);
+  });
+});
+    </sourceFile>
+  </used>
+</context>
+
+
+<sourceFile path="/delete-empty-properties.ts">
+import { DeleteUndefinedProperties } from './delete-undefined-properties';
+import { DeleteNullProperties } from './delete-null-properties';
+
+export function DeleteEmptyProperties<T extends {}>(obj: T, recursive?: boolean): Exclude<Exclude<T, null>, undefined> {
+  return DeleteUndefinedProperties(DeleteNullProperties(obj, recursive), recursive);
+}
+</sourceFile>
+
+TASK: create the JsDoc documentation for the function DeleteEmptyProperties from the file `delete-empty-properties.ts`
+------------------------------------------------------------
+
+Example Output:
+------------------------------------------------------------
+Deletes all properties from an object that are either null or undefined.
+
+@template T - The type of the object. It must be an object type.
+
+@param {T} obj - The object from which to delete the properties. This object is not modified.
+
+@param {boolean} [recursive=false] - Optional. If true, the function will recursively delete null and undefined properties from all nested objects and arrays within the object. If false or omitted, the function will only delete null and undefined properties from the top level of the object.
+
+@returns {Exclude<Exclude<T, null>, undefined>} - A new object of the same type as the input object, but with all null and undefined properties removed. If the recursive option is true, all nested objects and arrays within the object will also have their null and undefined properties removed.
+
+@example
+```typescript
+// returns { a: 1, c: { d: 4 } }
+DeleteEmptyProperties({ a: 1, b: null, c: { d: 4, e: undefined } }, true);
+```
+
+@example
+```typescript
+// returns { a: 1, c: { d: 4, e: undefined } }
+DeleteEmptyProperties({ a: 1, b: null, c: { d: 4, e: undefined } });
+```
+------------------------------------------------------------
+Remember:
+- Your output must include only the JSDoc documentation content as shown in the example output, with no surrounding comment syntax.
+- Ensure if an example is given the code is inclosed in "```typescript" and "```"

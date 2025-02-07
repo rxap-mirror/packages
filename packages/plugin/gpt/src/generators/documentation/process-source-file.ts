@@ -17,9 +17,9 @@ export async function processSourceFile(
     await processFunction(options, functionDeclaration);
   }
 
-  for (const classDeclaration of sourceFile.getClasses()) {
-    await processClass(options, classDeclaration);
-  }
+  // for (const classDeclaration of sourceFile.getClasses()) {
+  //   await processClass(options, classDeclaration);
+  // }
 
 
 }
