@@ -1,5 +1,8 @@
 import { CreateProject } from '@rxap/ts-morph';
-import { coerceArray } from '@rxap/utilities';
+import {
+  coerceArray,
+  isPromise,
+} from '@rxap/utilities';
 import {
   BuildAngularBasePath,
   BuildAngularBasePathOptions,
@@ -20,6 +23,10 @@ export type TsMorphTransformCallback = ((project: Project, sourceFile: undefined
   ((project: Project, sourceFile: SourceFile) => void) |
   ((project: Project, sourceFile: SourceFile[]) => void);
 
+export type AsyncTsMorphTransformCallback = ((project: Project, sourceFile: undefined) => Promise<void>) |
+  ((project: Project, sourceFile: SourceFile) => Promise<void>) |
+  ((project: Project, sourceFile: SourceFile[]) => Promise<void>);
+
 export interface TsMorphTransformOptions {
   replace?: boolean;
   /**
@@ -28,6 +35,10 @@ export interface TsMorphTransformOptions {
    * default: true
    */
   filter?: boolean;
+  /**
+   * false - files that are not typescript files will be excluded
+   */
+  includeNonTsFiles?: boolean;
 }
 
 export function TsMorphTransform(
@@ -54,6 +65,30 @@ export function TsMorphTransform(
   projectOptions?: Partial<ProjectOptions>,
   filePath?: undefined,
 ): void
+export function TsMorphTransform(
+  tree: TreeLike,
+  sourceRoot: string,
+  cb: (project: Project, sourceFile: SourceFile[]) => Promise<void>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
+  filePath?: string[],
+): Promise<void>
+export function TsMorphTransform(
+  tree: TreeLike,
+  sourceRoot: string,
+  cb: (project: Project, sourceFile: SourceFile) => Promise<void>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
+  filePath?: string,
+): Promise<void>
+export function TsMorphTransform(
+  tree: TreeLike,
+  sourceRoot: string,
+  cb: (project: Project, sourceFile: undefined) => Promise<void>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
+  filePath?: undefined,
+): Promise<void>
 /**
  * Transforms TypeScript source files using the TsMorph library based on specified options and filters.
  *
@@ -78,11 +113,11 @@ export function TsMorphTransform(
 export function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
-  cb: TsMorphTransformCallback,
+  cb: TsMorphTransformCallback | AsyncTsMorphTransformCallback,
   options: TsMorphTransformOptions = {},
   projectOptions: Partial<ProjectOptions> = {},
   filePathFilter?: undefined | string | string[],
-): void {
+): void | Promise<void> {
   const {
     replace = false,
     filter = true,
@@ -108,14 +143,20 @@ export function TsMorphTransform(
       sourceRoot,
       project,
       (fileName: string, dirPath: string) => {
+        let include = false;
         if (!filePath || !filter) {
-          return true;
+          include = true;
+        } else {
+          const fullPath = join(dirPath, fileName);
+          if (dirPath.endsWith(fileName)) {
+            throw new Error(`The dirPath '${ dirPath }' ends with the fileName '${ fileName }'`);
+          }
+          include = filePath.map(f => f.replace(/\?$/, '')).some(f => fullPath.endsWith(f));
         }
-        const fullPath = join(dirPath, fileName);
-        if (dirPath.endsWith(fileName)) {
-          throw new Error(`The dirPath '${ dirPath }' ends with the fileName '${ fileName }'`);
+        if (include && !options.includeNonTsFiles && !fileName.endsWith('.ts')) {
+          include = false;
         }
-        return filePath.map(f => f.replace(/\?$/, '')).some(f => fullPath.endsWith(f));
+        return include;
       }
     );
   }
@@ -155,10 +196,15 @@ export function TsMorphTransform(
     }
   }
 
-  (cb as any)(project, sourceFile);
+  const result = (cb as any)(project, sourceFile);
 
-
-  ApplyTsMorphProject(tree, project, sourceRoot, false);
+  if (isPromise(result)) {
+    return result.then(() => {
+      ApplyTsMorphProject(tree, project, sourceRoot, false);
+    });
+  } else {
+    ApplyTsMorphProject(tree, project, sourceRoot, false);
+  }
 }
 
 export interface TsMorphNestProjectTransformOptions extends TsMorphTransformOptions {
