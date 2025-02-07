@@ -4,17 +4,20 @@ import {
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
-import { DeleteEmptyProperties } from '@rxap/utilities';
 import {
   FindProjectByPath,
-  FsTree,
   IsAngularProject,
   IsApplicationProject,
   IsNestJsProject,
 } from '@rxap/workspace-utilities';
 import { Optional } from 'nx/src/project-graph/plugins';
-import { dirname } from 'path';
+import {
+  dirname,
+  join,
+} from 'path';
+import { combineGlobPatterns } from 'nx/src/utils/globs';
 import 'colors';
+import { FsTree } from 'nx/src/generators/tree';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PluginOptions {}
@@ -26,7 +29,10 @@ export function normalizeOptions(
 }
 
 export const createNodesV2: CreateNodesV2<PluginOptions> = [
-  '**/tsconfig.app.json',
+  combineGlobPatterns([
+    '**/tsconfig.app.json',
+    '**/Dockerfile'
+  ]),
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
 
@@ -82,7 +88,7 @@ async function shouldHaveProjectConfiguration(
   context: CreateNodesContextV2,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
-  const tree = new FsTree(context.workspaceRoot);
+  const tree = new FsTree(context.workspaceRoot, false);
   const projectConfiguration = FindProjectByPath(tree, projectPath);
   if (!projectConfiguration) {
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
@@ -103,8 +109,9 @@ async function createProjectConfiguration(
 ): Promise<[ string, Optional<ProjectConfiguration, 'root'> ]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
+  const tree = new FsTree(context.workspaceRoot, false);
 
-  targets['docker'] = createDockerBuildTarget();
+  targets['docker'] = createDockerBuildTarget(tree, projectPath);
   targets['docker-save'] = createDockerSaveTarget();
 
   return [
@@ -114,11 +121,23 @@ async function createProjectConfiguration(
   ];
 }
 
-function createDockerBuildTarget(): TargetConfiguration {
-  return {
+function createDockerBuildTarget(tree: FsTree, projectPath: string): TargetConfiguration {
+  const target: TargetConfiguration = {
     executor: '@rxap/plugin-docker:build',
     dependsOn: [ 'build' ],
   };
+
+  if (tree.exists(join(projectPath, 'Dockerfile'))) {
+    target.options ??= {};
+    target.options.dockerfile = 'Dockerfile';
+  }
+
+  if (tree.exists(join(projectPath, 'src', 'Dockerfile'))) {
+    target.options ??= {};
+    target.options.dockerfile = 'src/Dockerfile';
+  }
+
+  return target;
 }
 
 function createDockerSaveTarget(): TargetConfiguration {

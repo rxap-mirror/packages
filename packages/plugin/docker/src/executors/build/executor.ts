@@ -30,6 +30,8 @@ export default async function runExecutor(
     options.context = join(context.root, outputPath);
   }
 
+  const projectRoot = GetProjectRoot(context);
+
   if (options.imageRegistry) {
     if (options.imageName) {
       options.imageName = [
@@ -40,14 +42,18 @@ export default async function runExecutor(
   }
 
   if (!options.dockerfile) {
-    if (existsSync(join(GetProjectRoot(context), 'Dockerfile'))) {
-      options.dockerfile = join(GetProjectRoot(context), 'Dockerfile');
+    if (existsSync(join(projectRoot, 'Dockerfile'))) {
+      options.dockerfile = join(projectRoot, 'Dockerfile');
     }
   }
 
   if (options.dockerfile) {
     if (!options.dockerfile.startsWith('/')) {
-      options.dockerfile = join(context.root, options.dockerfile);
+      if (existsSync(join(context.root, projectRoot, options.dockerfile))) {
+        options.dockerfile = join(context.root, projectRoot, options.dockerfile);
+      } else if (existsSync(join(context.root, options.dockerfile))) {
+        options.dockerfile = join(context.root, options.dockerfile);
+      }
     }
     console.log(`Using dockerfile: ${ options.dockerfile }`);
   } else {
