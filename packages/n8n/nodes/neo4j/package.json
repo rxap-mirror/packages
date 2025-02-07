@@ -3,7 +3,7 @@
   "name": "@rxap/n8n-nodes-neo4j",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.0",
+    "@nx/devkit": "20.4.1",
     "n8n-workflow": "^1.48.0",
     "tslib": "2.6.2"
   },

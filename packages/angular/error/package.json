@@ -3,7 +3,7 @@
   "name": "@rxap/ngx-error",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.0",
+    "@nx/devkit": "20.4.1",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

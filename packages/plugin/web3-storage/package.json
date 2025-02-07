@@ -3,7 +3,7 @@
   "name": "@rxap/plugin-web3-storage",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.0",
+    "@nx/devkit": "20.4.1",
     "@rxap/plugin-utilities": "^20.0.1-dev.7",
     "@ucanto/principal": "^9.0.1",
     "@web3-storage/w3up-client": "^16.2.0",

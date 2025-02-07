@@ -3,7 +3,7 @@
   "name": "@rxap/workspace-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.0",
+    "@nx/devkit": "20.4.1",
     "@rxap/ts-morph": "^1.5.3-dev.3",
     "@rxap/utilities": "^16.4.2-dev.2",
     "@rxap/workspace-utilities": "^19.6.1-dev.7",
