@@ -10,14 +10,14 @@ import {
   IsApplicationProject,
   IsNestJsProject,
 } from '@rxap/workspace-utilities';
+import { FsTree } from 'nx/src/generators/tree';
 import { Optional } from 'nx/src/project-graph/plugins';
+import { combineGlobPatterns } from 'nx/src/utils/globs';
+import 'colors';
 import {
   dirname,
   join,
 } from 'path';
-import { combineGlobPatterns } from 'nx/src/utils/globs';
-import 'colors';
-import { FsTree } from 'nx/src/generators/tree';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PluginOptions {}
@@ -94,9 +94,15 @@ async function shouldHaveProjectConfiguration(
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
   }
-  if ((
-        !IsAngularProject(projectConfiguration) && !IsNestJsProject(projectConfiguration)
-      ) || !IsApplicationProject(projectConfiguration)) {
+  if (
+    !(
+      IsAngularProject(projectConfiguration) ||
+      IsNestJsProject(projectConfiguration) ||
+      tree.exists(join(projectPath, 'Dockerfile')) ||
+      tree.exists(join(projectPath, 'src', 'Dockerfile'))
+    ) ||
+    !IsApplicationProject(projectConfiguration)
+  ) {
     return false;
   }
   return true;
