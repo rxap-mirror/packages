@@ -8,8 +8,8 @@
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
     "@nestjs/config": "^3.2.2",
-    "@rxap/nest-rabbitmq": "^10.1.1-dev.2",
-    "@rxap/nest-vault": "^10.2.1-dev.2"
+    "@rxap/nest-rabbitmq": "^10.1.1-dev.3",
+    "@rxap/nest-vault": "^10.2.1-dev.3"
   },
   "author": {
     "name": "Merzough Münker",

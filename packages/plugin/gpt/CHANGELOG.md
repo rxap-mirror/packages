@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@20.0.1-dev.8...@rxap/plugin-gpt@20.1.0-dev.0) (2025-02-07)
+
+### Features
+
+- support new ai models ([a43ffc6](https://gitlab.com/rxap/packages/commit/a43ffc6b77b949c6521f0a6a4d7557734d062e42))
+
 ## [20.0.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@20.0.1-dev.7...@rxap/plugin-gpt@20.0.1-dev.8) (2025-01-30)
 
 **Note:** Version bump only for package @rxap/plugin-gpt

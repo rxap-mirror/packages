@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.3-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@10.2.3-dev.2...@rxap/nest-minio@10.2.3-dev.3) (2025-02-07)
+
+**Note:** Version bump only for package @rxap/nest-minio
+
 ## [10.2.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@10.2.3-dev.1...@rxap/nest-minio@10.2.3-dev.2) (2025-01-28)
 
 **Note:** Version bump only for package @rxap/nest-minio

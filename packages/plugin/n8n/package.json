@@ -1,14 +1,14 @@
 {
-  "version": "20.0.1-dev.11",
+  "version": "20.0.1-dev.12",
   "name": "@rxap/plugin-n8n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.1",
-    "@rxap/plugin-library": "^20.1.0-dev.8",
-    "@rxap/ts-morph": "^1.5.3-dev.3",
-    "@rxap/utilities": "^16.4.2-dev.2",
-    "@rxap/workspace-ts-morph": "^19.1.9-dev.8",
-    "@rxap/workspace-utilities": "^19.6.1-dev.7",
+    "@rxap/plugin-library": "^20.1.0-dev.9",
+    "@rxap/ts-morph": "^1.5.3-dev.4",
+    "@rxap/utilities": "^16.4.2-dev.3",
+    "@rxap/workspace-ts-morph": "^19.1.9-dev.9",
+    "@rxap/workspace-utilities": "^19.6.1-dev.8",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2"
   },

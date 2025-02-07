@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.2",
+  "version": "19.0.1-dev.3",
   "name": "@rxap/directives",
   "description": "A collection of utility angular directives used in RxAP.",
   "license": "GPL-3.0-or-later",
@@ -9,10 +9,10 @@
   },
   "peerDependencies": {
     "@angular/core": "^19.1.3",
-    "@rxap/pattern": "^1.1.11-dev.2",
-    "@rxap/rxjs": "^1.1.12-dev.2",
-    "@rxap/services": "^19.0.1-dev.2",
-    "@rxap/utilities": "^16.4.2-dev.2",
+    "@rxap/pattern": "^1.1.11-dev.3",
+    "@rxap/rxjs": "^1.1.12-dev.3",
+    "@rxap/services": "^19.0.1-dev.3",
+    "@rxap/utilities": "^16.4.2-dev.3",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -46,19 +46,19 @@
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.11-dev.2"
+        "version": "1.1.11-dev.3"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.12-dev.2"
+        "version": "1.1.12-dev.3"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.1-dev.2"
+        "version": "19.0.1-dev.3"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.2-dev.2"
+        "version": "16.4.2-dev.3"
       }
     ]
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.9-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@19.1.9-dev.8...@rxap/workspace-ts-morph@19.1.9-dev.9) (2025-02-07)
+
+### Bug Fixes
+
+- support async callback function ([fca7fab](https://gitlab.com/rxap/packages/commit/fca7fab364c5bec4dae262cddc18720e21bbd5ef))
+
 ## [19.1.9-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@19.1.9-dev.7...@rxap/workspace-ts-morph@19.1.9-dev.8) (2025-01-30)
 
 **Note:** Version bump only for package @rxap/workspace-ts-morph
