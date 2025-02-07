@@ -3,10 +3,14 @@ import {
   GetProjectRoot,
   GetProjectSourceRoot,
   GuessOutputPathFromContext,
+  HasProjectTarget,
 } from '@rxap/plugin-utilities';
 import { ProcessBuildArgs } from '@rxap/workspace-utilities';
 import { existsSync } from 'fs';
-import { join } from 'path';
+import {
+  dirname,
+  join,
+} from 'path';
 import {
   dockerBuild,
   dockerPush,
@@ -21,14 +25,6 @@ export default async function runExecutor(
   options: BuildExecutorSchema,
   context: ExecutorContext,
 ) {
-
-  if (!options.context) {
-    const outputPath = GuessOutputPathFromContext(context);
-
-    console.log(`Using output path: ${ outputPath }`);
-
-    options.context = join(context.root, outputPath);
-  }
 
   const projectRoot = GetProjectRoot(context);
 
@@ -58,6 +54,19 @@ export default async function runExecutor(
     console.log(`Using dockerfile: ${ options.dockerfile }`);
   } else {
     console.log('No dockerfile specified');
+  }
+
+  if (!options.context) {
+    const targetName = 'build';
+    if (!HasProjectTarget(context, context.projectName, targetName)) {
+      options.context = options.dockerfile ? dirname(options.dockerfile) : join(context.root, projectRoot);
+    } else {
+      const outputPath = GuessOutputPathFromContext(context, undefined, undefined, targetName);
+
+      console.log(`Using output path: ${ outputPath }`);
+
+      options.context = join(context.root, outputPath);
+    }
   }
 
   console.log('Executor ran for Build', options);

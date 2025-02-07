@@ -136,9 +136,7 @@ function createDockerBuildTarget(tree: FsTree, projectPath: string): TargetConfi
   if (tree.exists(join(projectPath, 'Dockerfile'))) {
     target.options ??= {};
     target.options.dockerfile = 'Dockerfile';
-  }
-
-  if (tree.exists(join(projectPath, 'src', 'Dockerfile'))) {
+  } else if (tree.exists(join(projectPath, 'src', 'Dockerfile'))) {
     target.options ??= {};
     target.options.dockerfile = 'src/Dockerfile';
   }
