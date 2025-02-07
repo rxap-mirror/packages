@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@20.0.1-dev.11...@rxap/plugin-docker@20.0.1-dev.12) (2025-02-07)
+
+### Bug Fixes
+
+- support dockerfile in project root ([ccd97eb](https://gitlab.com/rxap/packages/commit/ccd97ebd85eeb4d8d968a505dfab2a052ed46617))
+
 ## [20.0.1-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@20.0.1-dev.10...@rxap/plugin-docker@20.0.1-dev.11) (2025-02-07)
 
 ### Bug Fixes
