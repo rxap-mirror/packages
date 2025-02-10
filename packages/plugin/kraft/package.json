@@ -1,11 +1,11 @@
 {
-  "version": "20.0.0-dev.9",
+  "version": "20.0.0-dev.10",
   "name": "@rxap/plugin-kraft",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",
-    "@rxap/plugin-utilities": "^20.0.1-dev.8",
-    "@rxap/workspace-utilities": "^19.6.1-dev.8",
+    "@rxap/plugin-utilities": "^20.0.1-dev.9",
+    "@rxap/workspace-utilities": "^19.6.1-dev.9",
     "colors": "1.4.0",
     "glob": "10.3.10",
     "nx": "20.4.2",

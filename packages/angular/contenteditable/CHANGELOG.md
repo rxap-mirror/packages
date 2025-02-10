@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/contenteditable@19.0.1-dev.3...@rxap/contenteditable@19.0.1-dev.4) (2025-02-10)
+
+**Note:** Version bump only for package @rxap/contenteditable
+
 ## [19.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/contenteditable@19.0.1-dev.2...@rxap/contenteditable@19.0.1-dev.3) (2025-02-07)
 
 **Note:** Version bump only for package @rxap/contenteditable

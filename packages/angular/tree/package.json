@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.3",
+  "version": "19.0.1-dev.4",
   "name": "@rxap/tree",
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "license": "GPL-3.0-or-later",
@@ -12,14 +12,14 @@
     "@angular/common": "^19.1.3",
     "@angular/core": "^19.1.3",
     "@angular/material": "^19.1.1",
-    "@rxap/contenteditable": "^19.0.1-dev.3",
-    "@rxap/data-source": "^19.0.1-dev.3",
-    "@rxap/data-structure-tree": "^1.1.12-dev.3",
-    "@rxap/forms": "^19.0.1-dev.3",
-    "@rxap/material-directives": "^19.0.1-dev.3",
-    "@rxap/pattern": "^1.1.11-dev.3",
-    "@rxap/rxjs": "^1.1.12-dev.3",
-    "@rxap/utilities": "^16.4.2-dev.3",
+    "@rxap/contenteditable": "^19.0.1-dev.4",
+    "@rxap/data-source": "^19.0.1-dev.4",
+    "@rxap/data-structure-tree": "^1.1.12-dev.4",
+    "@rxap/forms": "^19.0.1-dev.4",
+    "@rxap/material-directives": "^19.0.1-dev.4",
+    "@rxap/pattern": "^1.1.11-dev.4",
+    "@rxap/rxjs": "^1.1.12-dev.4",
+    "@rxap/utilities": "^16.4.2-dev.4",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -77,67 +77,67 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.10-dev.3"
+        "version": "1.1.10-dev.4"
       },
       {
         "package": "@rxap/contenteditable",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.12-dev.3"
+        "version": "1.1.12-dev.4"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/forms",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.11-dev.3"
+        "version": "1.1.11-dev.4"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.13-dev.3"
+        "version": "1.0.13-dev.4"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.12-dev.3"
+        "version": "1.1.12-dev.4"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.1-dev.3"
+        "version": "19.0.1-dev.4"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.2-dev.3"
+        "version": "16.4.2-dev.4"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.11-dev.3"
+        "version": "3.0.11-dev.4"
       }
     ]
   },
