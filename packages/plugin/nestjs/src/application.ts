@@ -117,8 +117,9 @@ async function createProjectConfiguration(
   if (!projectConfiguration) {
     throw new Error(`Could not find project in '${ projectPath }'`);
   }
+  const isRootProject = ['', '/', '.'].includes(projectConfiguration.root);
   // only generate the package json if the project is not in the root
-  if (!['', '/', '.'].includes(projectConfiguration.root)) {
+  if (!isRootProject) {
     targets['generate-package-json'] = createGeneratePackageJsonTarget();
   }
   if (existsSync(join(projectPath, 'src/swagger.ts'))) {
@@ -127,7 +128,7 @@ async function createProjectConfiguration(
       targets['swagger-generate'] = createLegacySwaggerGenerateTarget(projectPath);
     } else {
       targets['swagger-generate'] = createSwaggerGenerateTarget(projectPath);
-      targets['swagger-build'] = createSwaggerBuildTarget(projectPath);
+      targets['swagger-build'] = createSwaggerBuildTarget(projectPath, isRootProject);
     }
   }
 
@@ -147,12 +148,16 @@ function createGeneratePackageJsonTarget(): TargetConfiguration {
   };
 }
 
-function createSwaggerBuildTarget(projectPath: string): TargetConfiguration {
+function createSwaggerBuildTarget(projectPath: string, isRootProject: boolean): TargetConfiguration {
+  let output = '{workspaceRoot}/swagger';
+  if (!isRootProject) {
+    output += '/{projectRoot}';
+  }
   return {
     executor: 'nx:run-commands',
     cache: true,
     inputs: [ 'production', '^production' ],
-    outputs: [ '{workspaceRoot}/swagger/{projectRoot}' ],
+    outputs: [ output ],
     options: {
       command: 'webpack-cli build',
       cwd: projectPath,
