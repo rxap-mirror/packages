@@ -152,6 +152,8 @@ function createSwaggerBuildTarget(projectPath: string, isRootProject: boolean): 
   let output = '{workspaceRoot}/swagger';
   if (!isRootProject) {
     output += '/{projectRoot}';
+  } else {
+    output += '/{projectName}';
   }
   return {
     executor: 'nx:run-commands',
