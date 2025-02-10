@@ -65,6 +65,7 @@ export const gitIgnore = [
   '.idea/nx-console.xml',
   '.idea/cody_history.xml',
   '.idea/JetClient',
+  '.idea/vcs.xml',
   '.idea/shelf/',
   '.idea/workspace.xml',
   '.idea/httpRequests/',
