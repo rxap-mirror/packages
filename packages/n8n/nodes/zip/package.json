@@ -3,7 +3,7 @@
   "name": "@rxap/n8n-nodes-zip",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.1",
+    "@nx/devkit": "20.4.2",
     "adm-zip": "^0.5.10",
     "n8n-workflow": "^1.48.0",
     "tmp-promise": "^3.0.3",

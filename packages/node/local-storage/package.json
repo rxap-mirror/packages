@@ -3,7 +3,7 @@
   "name": "@rxap/node-local-storage",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.1",
+    "@nx/devkit": "20.4.2",
     "tslib": "2.6.2"
   },
   "author": {

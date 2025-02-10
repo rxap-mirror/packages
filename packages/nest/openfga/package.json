@@ -3,7 +3,7 @@
   "name": "@rxap/nest-openfga",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.1",
+    "@nx/devkit": "20.4.2",
     "@openfga/sdk": "^0.8.0",
     "tslib": "^2.3.0"
   },
