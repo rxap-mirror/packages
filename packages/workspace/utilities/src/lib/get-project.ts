@@ -108,7 +108,7 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
   return null;
 }
 
-export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath: string): ProjectJson | null {
+export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath: string, recursive = false): ProjectJson | null {
   if (IsGeneratorTreeLike(tree)) {
     const projects = getProjects(tree);
     let currentPath = projectPath;
@@ -119,7 +119,7 @@ export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath
         }
       }
       currentPath = join(currentPath, '..');
-    } while (currentPath);
+    } while (currentPath && recursive);
   }
   if (PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.size === 0) {
     // console.log(`The project location cache is empty. Build cache.`.yellow);
@@ -130,7 +130,7 @@ export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath
   do {
     projectName = PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.get(join(currentPath, 'project.json')) ?? null;
     currentPath = join(currentPath, '..');
-  } while (currentPath && !projectName);
+  } while (currentPath && !projectName && recursive);
   if (projectName) {
     return FindProject(tree, projectName);
   }
