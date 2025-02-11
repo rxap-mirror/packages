@@ -9,8 +9,7 @@
     "@rxap/workspace-utilities": "^19.6.1-dev.9",
     "colors": "1.4.0",
     "nx": "20.4.2",
-    "tslib": "2.6.2",
-    "typedoc": "^0.25.13"
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",

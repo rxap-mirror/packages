@@ -6,11 +6,13 @@ import {
 } from '@nx/devkit';
 import {
   FindProjectByPath,
-  FsTree,
+  GetRootPackageJson,
+  ProjectJson,
 } from '@rxap/workspace-utilities';
 import { Optional } from 'nx/src/project-graph/plugins';
-import { dirname } from 'path';
+import { dirname, join } from 'path';
 import 'colors';
+import { FsTree } from 'nx/src/generators/tree';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PluginOptions {}
@@ -78,7 +80,7 @@ async function shouldHaveProjectConfiguration(
   context: CreateNodesContextV2,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
-  const tree = new FsTree(context.workspaceRoot);
+  const tree = new FsTree(context.workspaceRoot, false);
   if (!FindProjectByPath(tree, projectPath)) {
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
@@ -93,14 +95,14 @@ async function createProjectConfiguration(
 ): Promise<[ string, Optional<ProjectConfiguration, 'root'> ]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
-  const tree = new FsTree(context.workspaceRoot);
+  const tree = new FsTree(context.workspaceRoot, false);
   const projectConfiguration = FindProjectByPath(tree, projectPath);
 
   if (!projectConfiguration) {
     throw new Error(`Could not find project in '${ projectPath }'`);
   }
 
-  targets['typedoc'] = createTypedocTarget();
+  targets['typedoc'] = createTypedocTarget(tree, projectConfiguration);
 
   return [
     projectPath, {
@@ -109,11 +111,40 @@ async function createProjectConfiguration(
   ];
 }
 
-function createTypedocTarget(): TargetConfiguration {
+function findTsConfigOption(tree: FsTree, { root }: ProjectJson): string {
+  if (tree.exists(join(root, 'tsconfig.typedoc.json'))) {
+    return join(root, 'tsconfig.typedoc.json');
+  }
+  if (tree.exists(join(root, 'tsconfig.lib.json'))) {
+    return join(root, 'tsconfig.lib.json');
+  }
+  if (tree.exists(join(root, 'tsconfig.json'))) {
+    return join(root, 'tsconfig.json');
+  }
+  throw new Error(`Could not find a tsconfig.*.json or tsconfig.json in the project root: '${root}'`);
+}
+
+function findEntryPoints(tree: FsTree, { root }: ProjectJson): string[] {
+  return [join(root, 'src/index.ts')];
+}
+
+function createTypedocTarget(tree: FsTree, projectConfiguration: ProjectJson): TargetConfiguration {
+  const options: Record<string, any> = {};
+
+  options['tsconfig'] = findTsConfigOption(tree, projectConfiguration);
+  options['entryPoints'] = findEntryPoints(tree, projectConfiguration);
+  options['json'] = true;
+  options['html'] = true;
+  const packageJson = GetRootPackageJson(tree);
+  options['markdown'] = 'typedoc-plugin-markdown' in packageJson.devDependencies;
+  options['wiki'] = 'typedoc-plugin-markdown' in packageJson.devDependencies && 'typedoc-github-wiki-theme' in packageJson.devDependencies;
+  options['skipErrorChecking'] = true;
+
   return {
     executor: '@rxap/plugin-typedoc:build',
     inputs: [ "production", "^production" ],
     outputs: [ '{projectRoot}/docs' ],
     cache: true,
+    options
   };
 }

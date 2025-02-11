@@ -5,81 +5,117 @@ import {
 import {
   GetProjectRoot,
   GetProjectSourceRoot,
-  GetProjectTargetOptions,
-  HasProjectTarget,
 } from '@rxap/plugin-utilities';
-import { coerceArray } from '@rxap/utilities';
+import { rm } from 'fs/promises';
+import run from 'nx/src/executors/run-commands/run-commands.impl';
 import { join } from 'path';
-import { Application } from 'typedoc';
 import { BuildExecutorSchema } from './schema';
-import { existsSync } from 'fs';
+
+function toArgs(options: any): string[] {
+  const args: string[] = [];
+
+  for (const [key,value] of Object.entries(options)) {
+
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        args.push(`--${key} ${item}`);
+      }
+    } else {
+      if (typeof value === 'boolean') {
+        if (value) {
+          args.push(`--${key}`);
+        } else {
+          args.push(`--${key} ${value}`);
+        }
+      } else {
+        args.push(`--${ key } ${ value }`);
+      }
+    }
+
+  }
+
+  return args;
+}
 
 const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, context: ExecutorContext) => {
   console.log('Executor ran for Build', options);
 
   const projectSourceRoot = GetProjectSourceRoot(context);
   const projectRoot = GetProjectRoot(context);
-  if (!options.tsConfig && HasProjectTarget(context, context.projectName, 'build')) {
-    const { tsConfig } = GetProjectTargetOptions<{ tsConfig?: string }>(context, context.projectName, 'build');
-    options.tsConfig = tsConfig;
-  }
-  if (!options.tsConfig) {
-    if (existsSync(join(projectRoot, 'tsconfig.typedoc.json'))) {
-      options.tsConfig = join(projectRoot, 'tsconfig.typedoc.json');
-    } else if (existsSync(join(projectRoot, 'tsconfig.lib.json'))) {
-      options.tsConfig = join(projectRoot, 'tsconfig.lib.json');
-    } else if (existsSync(join(projectRoot, 'tsconfig.json'))) {
-      options.tsConfig = join(projectRoot, 'tsconfig.json');
-    }
-  }
-  if (!options.tsConfig) {
-    throw new Error('Ensure that a tsconfig.json is available in the project source root or in the build target options.');
-  }
 
   const entryPoints = options.entryPoints ?? [];
   if (entryPoints.length === 0) {
     entryPoints.push(join(projectSourceRoot, 'index.ts'));
   }
 
-  if (!options.outputPath?.length) {
-    options.outputPath = [ join(projectRoot, 'docs') ];
+  if (!options.outputPaths?.length) {
+    options.outputPaths = [ join(projectRoot, 'docs') ];
   }
 
-  const outputPath = coerceArray(options.outputPath);
+  const { outputPaths, html, json, plugins, markdown, wiki, ...argOptions } = options;
 
-  if (outputPath.length === 0) {
-    const outputDir = projectRoot === '/' ? context.projectName : projectRoot;
-    outputPath.push(join('dist', 'docs', outputDir));
-  }
+  for (const outputPath of outputPaths) {
 
-  console.log('entryPoints:', entryPoints);
-  console.log('outputPath:', outputPath);
-  console.log('tsConfig:', options.tsConfig);
+    await rm(outputPath, { recursive: true, force: true });
 
-  console.debug('Creating Application');
-  const app = await Application.bootstrapWithPlugins({
-    entryPoints: entryPoints,//.map(entryPoint => relative(projectRoot, entryPoint)),
-    skipErrorChecking: true,
-    tsconfig: options.tsConfig,
-  });
+    if (html) {
+      await run({
+        command: 'typedoc',
+        color: true,
+        args: toArgs(argOptions).concat(`--html ${join(outputPath, 'html')}`),
+        __unparsed__: [],
+      }, context);
+    }
 
-  console.debug('Converting');
-  const project = await app.convert();
+    if (json) {
+      await run({
+        command: 'typedoc',
+        color: true,
+        args: toArgs(argOptions).concat(`--json ${join(outputPath, 'documentation.json')}`),
+        __unparsed__: [],
+      }, context);
+    }
 
-  if (!project) {
-    return { success: false };
-  }
+    if (markdown) {
+      await run({
+        command: 'typedoc',
+        color: true,
+        args: toArgs(argOptions).concat(
+          `--out ${join(outputPath, 'markdown')}`,
+          '--plugin typedoc-plugin-markdown'
+        ),
+        __unparsed__: [],
+      }, context);
+    }
 
-  for (const path of outputPath) {
-    console.log('Generating docs at:', path);
-    // Rendered docs
-    await app.generateDocs(project, path);
-    // Alternatively, generate JSON output
-    await app.generateJson(project, join(path, `documentation.json`));
+    if (wiki) {
+      await run({
+        command: 'typedoc',
+        color: true,
+        args: toArgs(argOptions).concat(
+          `--out ${join(outputPath, 'wiki')}`,
+          '--plugin typedoc-plugin-markdown',
+          '--plugin typedoc-github-wiki-theme',
+        ),
+        __unparsed__: [],
+      }, context);
+    }
+
+    if (plugins?.length) {
+      await run({
+        command: 'typedoc',
+        color: true,
+        args: toArgs(argOptions).concat(
+          `--out ${outputPath}`,
+          ...plugins.map(plugin => `--plugin ${plugin}`)
+        ),
+        __unparsed__: [],
+      }, context);
+    }
   }
 
   return {
-    success: true,
+    success: true
   };
 };
 

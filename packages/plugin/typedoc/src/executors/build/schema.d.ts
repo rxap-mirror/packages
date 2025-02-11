@@ -1,5 +1,11 @@
 export interface BuildExecutorSchema {
-  entryPoints?: string[];
-  outputPath?: string | string[];
-  tsConfig?: string;
+  entryPoints?: Array<string>;
+  outputPaths?: Array<string>;
+  tsconfig: string;
+  plugins?: Array<string>;
+  json?: boolean;
+  html?: boolean;
+  skipErrorChecking?: boolean;
+  markdown?: boolean;
+  wiki?: boolean;
 }

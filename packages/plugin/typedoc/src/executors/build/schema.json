@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "version": 2,
+  "$id": "Build",
   "title": "Build executor",
   "description": "",
   "type": "object",
@@ -11,15 +12,37 @@
         "type": "string"
       }
     },
-    "outputPath": {
+    "outputPaths": {
       "type": "array",
       "items": {
         "type": "string"
       }
     },
-    "tsConfig": {
+    "tsconfig": {
       "type": "string"
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "json": {
+      "type": "boolean"
+    },
+    "html": {
+      "type": "boolean"
+    },
+    "skipErrorChecking": {
+      "type": "boolean",
+      "default": true
+    },
+    "markdown": {
+      "type": "boolean"
+    },
+    "wiki": {
+      "type": "boolean"
     }
   },
-  "required": []
+  "required": ["tsconfig"]
 }
