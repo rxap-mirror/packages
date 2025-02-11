@@ -94,6 +94,12 @@ async function shouldHaveProjectConfiguration(
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
   }
+  if (projectPath.includes('.devcontainer')) {
+    return false;
+  }
+  if (projectPath.match(/^\.\w+/)) {
+    return false;
+  }
   if (
     !(
       IsAngularProject(projectConfiguration) ||
