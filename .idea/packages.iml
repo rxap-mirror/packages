@@ -521,6 +521,7 @@
       <excludeFolder url="packages/nest/auth0/compodocfile:///home/mmuenker/Projects/rxap/packages/" />
       <excludeFolder url="packages/nest/auth0/coveragefile:///home/mmuenker/Projects/rxap/packages/" />
       <excludeFolder url="file://$MODULE_DIR$/packages/nest/openfga/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/plugin/compodoc/docs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

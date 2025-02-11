@@ -77,3 +77,4 @@ gitlab-ci-setup.sh
 docs
 
 compodoc
+!packages/plugin/compodoc

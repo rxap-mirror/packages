@@ -6580,24 +6580,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/devkit@npm:20.2.1":
-  version: 20.2.1
-  resolution: "@nx/devkit@npm:20.2.1"
-  dependencies:
-    ejs: ^3.1.7
-    enquirer: ~2.3.6
-    ignore: ^5.0.4
-    minimatch: 9.0.3
-    semver: ^7.5.3
-    tmp: ~0.2.1
-    tslib: ^2.3.0
-    yargs-parser: 21.1.1
-  peerDependencies:
-    nx: ">= 19 <= 21"
-  checksum: a66ed48a4d4f404514d6bc8331fc53b133efe637a5e58dbfac60325c381d826d541a12048f78bc3ba2dfa09d6ab5a29b170b3bfb68215717bca93e7f449e6e63
-  languageName: node
-  linkType: hard
-
 "@nx/devkit@npm:20.3.1":
   version: 20.3.1
   resolution: "@nx/devkit@npm:20.3.1"
@@ -9749,18 +9731,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/node-utilities@npm:^1.3.7":
-  version: 1.3.7
-  resolution: "@rxap/node-utilities@npm:1.3.7"
-  dependencies:
-    "@nx/devkit": 20.2.1
-    "@rxap/utilities": ^16.4.1
-    ignore: 5.2.4
-    tslib: 2.6.2
-  checksum: 65cb2edbf0232c0acc156bc3048c18cdb6639580f2fad2ad5e47d78694522c413b908a62e7ad8a72ad308accbef7ad9014786525fc04817bf9abb7fe86cbd75c
-  languageName: node
-  linkType: hard
-
 "@rxap/oauth@workspace:packages/angular/oauth":
   version: 0.0.0-use.local
   resolution: "@rxap/oauth@workspace:packages/angular/oauth"
@@ -9867,9 +9837,9 @@ __metadata:
   resolution: "@rxap/plugin-compodoc@workspace:packages/plugin/compodoc"
   dependencies:
     "@nx/devkit": 20.4.2
-    "@rxap/plugin-utilities": ^20.0.0-dev.1
-    "@rxap/utilities": ^16.4.1-dev.1
-    "@rxap/workspace-utilities": ^19.5.1-dev.1
+    "@rxap/plugin-utilities": ^20.0.1-dev.11
+    "@rxap/utilities": ^16.4.2-dev.4
+    "@rxap/workspace-utilities": ^19.6.1-dev.11
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10073,18 +10043,6 @@ __metadata:
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
-
-"@rxap/plugin-utilities@npm:^20.0.0-dev.1":
-  version: 20.0.0
-  resolution: "@rxap/plugin-utilities@npm:20.0.0"
-  dependencies:
-    "@nx/devkit": 20.2.1
-    "@rxap/node-utilities": ^1.3.7
-    "@rxap/workspace-utilities": ^19.6.0
-    tslib: 2.6.2
-  checksum: 6036d54f5597e8cd580b76dc4b464f95eebd7a5648e4e734a3836ec3ebc90abfaf2a0191912e45c7d5f055c6f3a69b3480317a9063f39e84c8cbd83589dfafb7
-  languageName: node
-  linkType: hard
 
 "@rxap/plugin-web3-storage@workspace:packages/plugin/web3-storage":
   version: 0.0.0-use.local
@@ -10630,16 +10588,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/utilities@npm:^16.4.1, @rxap/utilities@npm:^16.4.1-dev.1":
-  version: 16.4.1
-  resolution: "@rxap/utilities@npm:16.4.1"
-  dependencies:
-    "@nx/devkit": 20.2.1
-    tslib: 2.6.2
-  checksum: 91e0ad6e688edb29b4b870593e71c7392f7cd213a7077d041a9c46b865fb0651a0846f3e90df6a6f9909239546af0a635bd86dca2de046575095c49f2e9a34fb
-  languageName: node
-  linkType: hard
-
 "@rxap/validator@workspace:packages/validator":
   version: 0.0.0-use.local
   resolution: "@rxap/validator@workspace:packages/validator"
@@ -10720,21 +10668,6 @@ __metadata:
     yaml: ^2.3.1
   languageName: unknown
   linkType: soft
-
-"@rxap/workspace-utilities@npm:^19.5.1-dev.1, @rxap/workspace-utilities@npm:^19.6.0":
-  version: 19.6.0
-  resolution: "@rxap/workspace-utilities@npm:19.6.0"
-  dependencies:
-    "@nx/devkit": 20.2.1
-    "@rxap/node-utilities": ^1.3.7
-    "@rxap/utilities": ^16.4.1
-    colors: 1.4.0
-    semver: 7.5.3
-    tslib: 2.6.2
-    yaml: 2.3.1
-  checksum: afbbd61f5c6e0046b424b679331387843f3ac730c7a5cfb4689e6dc80956df9e1d80c086505ff2947afc7225ff1656f4dee6f71834506ba3408fdbf7ed7d65f5
-  languageName: node
-  linkType: hard
 
 "@rxap/xml-parser@^16.1.2-dev.4, @rxap/xml-parser@workspace:packages/xml-parser":
   version: 0.0.0-use.local

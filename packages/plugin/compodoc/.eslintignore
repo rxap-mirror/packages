@@ -1,0 +1,7 @@
+node_modules
+compodoc
+docs
+coverage
+dist
+.nx
+.angular
