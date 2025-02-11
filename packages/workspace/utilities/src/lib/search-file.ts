@@ -8,7 +8,7 @@ import {
   TreeLike,
 } from './tree';
 
-export function SearchFile<Tree extends TreeLike>(tree: Tree, path?: string): Generator<FileEntryLike>;
+export function SearchFile<Tree extends TreeLike>(tree: Tree, path?: string, include?: (path: string) => boolean, exclude?: (path: string) => boolean): Generator<FileEntryLike>;
 export function SearchFile(dir: DirEntryLike): Generator<FileEntryLike>;
 /**
  * Recursively searches through directories and trees to find and yield file entries.
@@ -35,7 +35,7 @@ export function SearchFile(dir: DirEntryLike): Generator<FileEntryLike>;
  * - This is designed to be used in environments where file systems or virtual file structures are represented
  * in a tree-like format, such as in certain JavaScript/TypeScript projects or schematics.
  */
-export function* SearchFile(dirOrTree: DirEntryLike | TreeLike, path?: string): Generator<FileEntryLike> {
+export function* SearchFile(dirOrTree: DirEntryLike | TreeLike, path?: string, include?: (path: string) => boolean, exclude?: (path: string) => boolean): Generator<FileEntryLike> {
 
   let dir: DirEntryLike;
 
@@ -53,17 +53,23 @@ export function* SearchFile(dirOrTree: DirEntryLike | TreeLike, path?: string): 
           continue;
         }
 
-        if ([ 'node_modules' ].some(ignore => fullPath.includes(ignore))) {
+        if ([ 'node_modules', 'dist', 'docs', 'coverage' ].some(ignore => fullPath.includes(ignore))) {
+          continue;
+        }
+
+        if (exclude && exclude(fullPath)) {
           continue;
         }
 
         if (dirOrTree.isFile(fullPath)) {
-          yield {
-            path: fullPath,
-            content: dirOrTree.read(fullPath)!,
-          };
+          if (!include || include(fullPath)) {
+            yield {
+              path: fullPath,
+              content: dirOrTree.read(fullPath)!,
+            };
+          }
         } else {
-          yield* SearchFile(dirOrTree, fullPath);
+          yield* SearchFile(dirOrTree, fullPath, include, exclude);
         }
       }
       return;
@@ -81,7 +87,7 @@ export function* SearchFile(dirOrTree: DirEntryLike | TreeLike, path?: string): 
     return;
   }
 
-  if ([ '/node_modules' ].some(ignore => dir.path.includes(ignore))) {
+  if ([ '/node_modules', '/dist', '/docs', '/coverage' ].some(ignore => dir.path.includes(ignore))) {
     return;
   }
 

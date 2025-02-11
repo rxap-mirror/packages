@@ -141,7 +141,7 @@ export function IsUtilitiesProject(project: { tags?: string[] }): boolean {
  * @returns {boolean} - True if the 'workspace' tag is found in the project's tags, otherwise false.
  */
 export function IsWorkspaceProject(project: { root?: string }): boolean {
-  return (project.root !== undefined && ['', '/'].includes(project.root));
+  return (project.root !== undefined && ['', '/', '.'].includes(project.root));
 }
 
 /**

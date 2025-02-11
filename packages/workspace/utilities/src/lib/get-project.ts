@@ -403,10 +403,19 @@ export function GetProjectType<Tree extends TreeLike>(tree: Tree, projectName: s
  * @throws {Error} Throws an error if the project does not have a source root path defined.
  * @template Tree - A generic type that extends TreeLike, representing the structure containing project data.
  */
-export function GetProjectSourceRoot<Tree extends TreeLike>(tree: Tree, projectName: string): string {
-
-  const project = GetProject(tree, projectName);
-  const sourceRoot = project.sourceRoot;
+export function GetProjectSourceRoot(project: { sourceRoot?: string }): string;
+export function GetProjectSourceRoot<Tree extends TreeLike>(tree: Tree, projectName: string): string;
+export function GetProjectSourceRoot<Tree extends TreeLike>(treeOrProject: Tree | { sourceRoot?: string }, projectName?: string): string {
+  let sourceRoot: string | undefined;
+  if (IsTreeLike(treeOrProject)) {
+    if (!projectName) {
+      throw new Error(`Ensure the parameter projectName is defined`);
+    }
+    const project = GetProject(treeOrProject, projectName);
+    sourceRoot = project.sourceRoot;
+  } else {
+    sourceRoot = treeOrProject.sourceRoot;
+  }
 
   if (!sourceRoot) {
     throw new Error(`The project '${ projectName }' does not have a source root path`);
