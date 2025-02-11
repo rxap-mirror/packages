@@ -7,6 +7,7 @@ import { CoerceArrayItems } from '@rxap/utilities';
 import {
   ForeachInitProject,
   GenerateSerializedSchematicFile,
+  GetProjectRoot,
   GetProjectSourceRoot,
   InitProjectOptions,
   IsApplicationProject,
@@ -25,11 +26,11 @@ function skipProject(tree: Tree, options: InitProjectOptions, project: ProjectCo
     return false;
   }
 
-  if (!tree.exists(join(project.root, 'tsconfig.json'))) {
+  if (!tree.exists(join(GetProjectRoot(project), 'tsconfig.json'))) {
     return true;
   }
 
-  if (!tree.exists(join(project.sourceRoot, 'index.ts'))) {
+  if (!tree.exists(join(GetProjectSourceRoot(project), 'index.ts'))) {
     return true;
   }
 

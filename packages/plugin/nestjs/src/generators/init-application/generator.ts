@@ -35,6 +35,7 @@ import {
   GetNestApiPrefix,
   GetProject,
   GetProjectRoot,
+  GetProjectSourceRoot,
   HasProject,
   SkipNonApplicationProject,
 } from '@rxap/workspace-utilities';
@@ -228,11 +229,7 @@ export async function initApplicationGenerator(
         continue;
       }
 
-      const projectSourceRoot = project.sourceRoot;
-
-      if (!projectSourceRoot) {
-        throw new Error(`Can't find project source root for project ${ projectName }`);
-      }
+      const projectSourceRoot = GetProjectSourceRoot(project);
 
       GenerateSerializedSchematicFile(
         tree,

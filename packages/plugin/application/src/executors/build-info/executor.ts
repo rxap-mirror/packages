@@ -1,5 +1,6 @@
 import { ExecutorContext } from '@nx/devkit';
 import { GetProjectConfiguration } from '@rxap/plugin-utilities';
+import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
 import {
   existsSync,
   writeFileSync,
@@ -104,11 +105,7 @@ export default async function runExecutor(
 
   const buildJsonFile = JSON.stringify(buildInfo, undefined, 2);
 
-  if (!project.sourceRoot) {
-    throw new Error(`The project '${ project.name }' has no source root`);
-  }
-
-  const buildInfoFilePath = join(context.root, project.sourceRoot, 'build.json');
+  const buildInfoFilePath = join(context.root, GetProjectSourceRoot(project), 'build.json');
 
   if (existsSync(buildInfoFilePath)) {
     console.warn(`The build.json file already exists in the location: '${ buildInfoFilePath }'`);

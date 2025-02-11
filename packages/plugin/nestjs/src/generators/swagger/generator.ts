@@ -41,10 +41,6 @@ export async function swaggerGenerator(
   updateNxDefaults(tree, options);
   updateWebpackConfig(tree, projectName, project);
   updateProjectTargets(tree, projectName, project, options);
-  const projectSourceRoot = project.sourceRoot;
-  if (!projectSourceRoot) {
-    throw new Error('The selected project has no sourceRoot');
-  }
   updateProjectConfiguration(tree, projectName, project);
 
   if (isJetbrainsProject(tree)) {

@@ -7,6 +7,7 @@ import { CoercePrefix } from '@rxap/utilities';
 import {
   GetNestApiPrefix,
   GetProjectRoot,
+  GetProjectSourceRoot,
   GetTargetOptions,
   GetWorkspaceName,
   IsNestJsProject,
@@ -125,13 +126,10 @@ export function buildDockerMatrix(
     }
 
     if (IsNestJsProject(project)) {
-      if (!project.sourceRoot) {
-        throw new Error(`The project '${ projectName }' has no source root`);
-      }
       const nestApiPrefix = GetNestApiPrefix(
         tree,
         {},
-        project.sourceRoot,
+        GetProjectSourceRoot(project),
         matrixItem.PROJECT_NAME,
       );
       if (nestApiPrefix) {
@@ -143,7 +141,7 @@ export function buildDockerMatrix(
       const buildArgList = ProcessBuildArgs(
         dockerTargetOptions.buildArgList,
         matrixItem.PROJECT_NAME,
-        project.sourceRoot,
+        GetProjectSourceRoot(project),
         { PROJECT_NAME: matrixItem.PROJECT_NAME },
         path => tree.exists(path),
         (path, encoding) => tree.read(path, encoding),

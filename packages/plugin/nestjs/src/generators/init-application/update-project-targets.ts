@@ -5,6 +5,7 @@ import {
 import {
   CoerceAssets,
   CoerceTarget,
+  GetProjectSourceRoot,
   GetTarget,
   HasTarget,
   Strategy,
@@ -34,8 +35,8 @@ export function updateLegacyProjectTargets(
       production: {
         fileReplacements: [
           {
-            replace: `${ project.sourceRoot }/environments/environment.ts`,
-            with: `${ project.sourceRoot }/environments/environment.prod.ts`,
+            replace: `${ GetProjectSourceRoot(project) }/environments/environment.ts`,
+            with: `${ GetProjectSourceRoot(project) }/environments/environment.prod.ts`,
           },
         ],
       },

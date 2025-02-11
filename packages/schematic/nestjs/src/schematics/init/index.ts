@@ -519,11 +519,11 @@ function updateProjectTargets(options: InitSchema) {
         buildTarget.options['generatePackageJson'] = true;
         buildTarget.options['assets'] ??= [];
         const assets = buildTarget.options['assets'] as string[];
-        const dockerfilePath = join(project.sourceRoot!, 'Dockerfile');
+        const dockerfilePath = join(GetProjectSourceRoot(project), 'Dockerfile');
         if (!assets.includes(dockerfilePath)) {
           assets.push(dockerfilePath);
         }
-        const healthcheckPath = join(project.sourceRoot!, 'healthcheck.js');
+        const healthcheckPath = join(GetProjectSourceRoot(project), 'healthcheck.js');
         if (!assets.includes(healthcheckPath)) {
           assets.push(healthcheckPath);
         }

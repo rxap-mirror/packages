@@ -46,7 +46,7 @@ export function updateProjectTargets(
   project: ProjectConfiguration & { i18n?: ProjectI18nConfiguration },
   options: InitApplicationGeneratorSchema,
 ) {
-  const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
+  const projectSourceRoot = GetProjectSourceRoot(project);
 
   project.targets ??= {};
 
@@ -58,7 +58,7 @@ export function updateProjectTargets(
     if (project.targets['docker']) {
       project.targets['docker'].options ??= {};
       project.targets['docker'].options.dockerfile ??= options.moduleFederation === 'remote' ?
-                                                       join(project.sourceRoot!, 'Dockerfile') :
+                                                       join(projectSourceRoot, 'Dockerfile') :
                                                        'shared/angular/Dockerfile';
     }
   }
@@ -92,17 +92,14 @@ export function updateProjectTargets(
       project.i18n.locales ??= {};
       for (const language of options.languages) {
         project.i18n.locales[language] ??= {
-          translation: `${ project.sourceRoot }/i18n/${ language }.xlf`,
+          translation: `${ projectSourceRoot }/i18n/${ language }.xlf`,
           baseHref: `${ language }/`,
         };
       }
     }
-    if (!project.sourceRoot) {
-      throw new Error(`The project ${ project.name } has no source root`);
-    }
     project.targets['extract-i18n'].options ??= {};
     project.targets['extract-i18n'].options.format = 'xliff2';
-    project.targets['extract-i18n'].options.outputPath = join(project.sourceRoot, 'i18n');
+    project.targets['extract-i18n'].options.outputPath = join(projectSourceRoot, 'i18n');
     if (options.localazy && options.localazyReadKey) {
       project.targets['localazy-download'] ??= {
         options: DeleteEmptyProperties({
@@ -119,8 +116,8 @@ export function updateProjectTargets(
       production: {
         fileReplacements: [
           {
-            replace: `${ project.sourceRoot }/environments/environment.ts`,
-            with: `${ project.sourceRoot }/environments/environment.prod.ts`,
+            replace: `${ projectSourceRoot }/environments/environment.ts`,
+            with: `${ projectSourceRoot }/environments/environment.prod.ts`,
           },
         ],
       },
@@ -157,11 +154,8 @@ export function updateProjectTargets(
   // always add the localize init polyfill as some rxap components use the i18n directive
   CoerceAssets(project.targets['build'].options.polyfills, [ '@angular/localize/init' ]);
   if (options.serviceWorker) {
-    if (!project.sourceRoot) {
-      throw new Error(`The project ${ project.name } has no source root`);
-    }
     CoerceAssets(project.targets['build'].options.assets, [
-      join(project.sourceRoot, 'manifest.webmanifest'),
+      join(projectSourceRoot, 'manifest.webmanifest'),
     ]);
     project.targets['build'].configurations ??= {};
     project.targets['build'].configurations.production ??= {};
