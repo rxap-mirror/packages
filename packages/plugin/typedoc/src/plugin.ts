@@ -1,14 +1,23 @@
 import {
   CreateNodesContextV2,
   CreateNodesV2,
+  getProjects,
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
 import {
   FindProjectByPath,
+  GetProjectRoot,
+  GetProjectSourceRoot,
   GetRootPackageJson,
+  HasWorkspaceProject,
+  IsLibraryProject,
+  IsStandaloneWorkspace,
+  IsWorkspaceProject,
   ProjectJson,
+  SearchFile,
 } from '@rxap/workspace-utilities';
+import { unique } from '@rxap/utilities';
 import { Optional } from 'nx/src/project-graph/plugins';
 import { dirname, join } from 'path';
 import 'colors';
@@ -124,8 +133,26 @@ function findTsConfigOption(tree: FsTree, { root }: ProjectJson): string {
   throw new Error(`Could not find a tsconfig.*.json or tsconfig.json in the project root: '${root}'`);
 }
 
-function findEntryPoints(tree: FsTree, { root }: ProjectJson): string[] {
-  return [join(root, 'src/index.ts')];
+function findEntryPoints(tree: FsTree, projectConfiguration: ProjectJson): string[] {
+  const { root } = projectConfiguration;
+  if (IsStandaloneWorkspace(tree)) {
+    return [ join(root, 'src/index.ts') ];
+  }
+  if (IsWorkspaceProject(projectConfiguration)) {
+    const entryPoints: string[] = [];
+    for (const { path } of SearchFile(tree, undefined, path => path.endsWith('tsconfig.typedoc.json'))) {
+      const folder = dirname(path);
+      if (tree.exists(join(folder, 'src/index.ts'))) {
+        entryPoints.push(join(folder, 'src/index.ts'));
+      }
+    }
+    return entryPoints.filter(unique());
+  } else {
+    if (!tree.exists(join(root, 'src/index.ts'))) {
+      throw new Error(`The project ${projectConfiguration.name} has a tsconfig.typedoc.json but not a 'src/index.ts' (${projectConfiguration.root})`);
+    }
+    return [ join(root, 'src/index.ts') ];
+  }
 }
 
 function createTypedocTarget(tree: FsTree, projectConfiguration: ProjectJson): TargetConfiguration {
