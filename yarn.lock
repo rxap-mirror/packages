@@ -9866,7 +9866,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-compodoc@workspace:packages/plugin/compodoc"
   dependencies:
-    "@nx/devkit": 20.2.1
+    "@nx/devkit": 20.4.2
     "@rxap/plugin-utilities": ^20.0.0-dev.1
     "@rxap/utilities": ^16.4.1-dev.1
     "@rxap/workspace-utilities": ^19.5.1-dev.1
