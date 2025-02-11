@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@20.0.0-dev.1...@rxap/plugin-compodoc@20.0.0-dev.2) (2025-02-11)
+
+### Bug Fixes
+
+- remove static name requirement for workspace project ([9100223](https://gitlab.com/rxap/packages/commit/9100223a036d60b0d9d41e7648606599720ddf9c))
+- use ForeachInitProject Generator ([7f9aec0](https://gitlab.com/rxap/packages/commit/7f9aec065e55a127db4407add7a7e9a772a9289b))
+
+### Features
+
+- init plugin use ([1dc8e3a](https://gitlab.com/rxap/packages/commit/1dc8e3ac6c40c8ea3d8832942aa3d47790bfbd22))
+- init plugin use ([1666499](https://gitlab.com/rxap/packages/commit/1666499e3d86e9e0e1f5cd2f39e87f289cb1770c))
+- support nx plugins ([011871a](https://gitlab.com/rxap/packages/commit/011871a844241ead7a5dc2a07470af65251c8647))
+- support nx plugins ([0709ac0](https://gitlab.com/rxap/packages/commit/0709ac0069174e9ffef265251afb82845094f079))
+- support nx plugins ([f6e5aee](https://gitlab.com/rxap/packages/commit/f6e5aeeeaac85a0f75a24ca4139dd13b2bc9bde1))
+
 # [20.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@19.1.7-dev.0...@rxap/plugin-compodoc@20.0.0-dev.1) (2024-12-11)
 
 **Note:** Version bump only for package @rxap/plugin-compodoc
