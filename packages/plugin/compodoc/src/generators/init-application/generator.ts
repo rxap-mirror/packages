@@ -7,6 +7,7 @@ import {
 } from '@nx/devkit';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
+  ForeachInitProject,
   GenerateSerializedSchematicFile,
   GetProjectRoot,
   SkipNonAngularProject,
@@ -52,26 +53,17 @@ export async function initApplicationGenerator(
 
   await initWorkspace(tree, options);
 
-  if (!options.skipProjects) {
+  for (const [projectName, project] of ForeachInitProject(tree, options, skipProject)) {
 
-    for (const [ projectName, project ] of getProjects(tree).entries()) {
+    await initProject(tree, projectName, project, options);
 
-      if (skipProject(tree, options, project, projectName)) {
-        continue;
-      }
-
-      await initProject(tree, projectName, project, options);
-
-      GenerateSerializedSchematicFile(
-        tree,
-        GetProjectRoot(tree, projectName),
-        '@rxap/plugin-compodoc',
-        'init-application',
-        options,
-      );
-
-      updateProjectConfiguration(tree, projectName, project);
-    }
+    GenerateSerializedSchematicFile(
+      tree,
+      GetProjectRoot(tree, projectName),
+      '@rxap/plugin-compodoc',
+      'init-application',
+      options,
+    );
 
   }
 
