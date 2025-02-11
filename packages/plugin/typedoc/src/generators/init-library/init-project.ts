@@ -43,14 +43,6 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
       .map(sourceRoot => join(sourceRoot, '**/*.ts'));
     CoerceTypedocTsConfig(tree, GetWorkspaceProjectName(tree), includeList);
-    const entryPoints = Array.from(getProjects(tree))
-      .filter(([_, project]) => !IsWorkspaceProject(project))
-      .filter(([projectName]) => tree.exists(join(GetProjectRoot(tree, projectName), 'tsconfig.typedoc.json')))
-      .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
-      .map(sourceRoot => join(sourceRoot, 'index.ts'));
-    CoerceTarget(project, 'typedoc', {
-      options: { entryPoints }
-    });
   } else {
     CoerceTypedocTsConfig(tree, projectName);
   }
