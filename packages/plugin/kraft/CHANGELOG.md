@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-kraft@20.0.0-dev.11...@rxap/plugin-kraft@20.0.0-dev.12) (2025-02-11)
+
+### Bug Fixes
+
+- remove unused options ([d2186d5](https://gitlab.com/rxap/packages/commit/d2186d5edb9ab22c7393cff2735e340ce0f4357e))
+
 # [20.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-kraft@20.0.0-dev.10...@rxap/plugin-kraft@20.0.0-dev.11) (2025-02-11)
 
 ### Bug Fixes

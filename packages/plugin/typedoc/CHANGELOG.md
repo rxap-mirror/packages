@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.1.0-dev.0...@rxap/plugin-typedoc@20.1.0-dev.1) (2025-02-11)
+
+### Bug Fixes
+
+- safe access project sourceRoot property ([16ca874](https://gitlab.com/rxap/packages/commit/16ca8747120876ad90e38c0cc012c175741fda0b))
+
 # [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.0.1-dev.9...@rxap/plugin-typedoc@20.1.0-dev.0) (2025-02-11)
 
 ### Bug Fixes

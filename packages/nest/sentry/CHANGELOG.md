@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.0-dev.13...@rxap/nest-sentry@10.5.0-dev.14) (2025-02-11)
+
+**Note:** Version bump only for package @rxap/nest-sentry
+
 # [10.5.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.0-dev.12...@rxap/nest-sentry@10.5.0-dev.13) (2025-02-11)
 
 **Note:** Version bump only for package @rxap/nest-sentry

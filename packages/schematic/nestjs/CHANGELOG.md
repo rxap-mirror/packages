@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.1-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@19.0.1-dev.12...@rxap/schematic-nestjs@19.0.1-dev.13) (2025-02-11)
+
+### Bug Fixes
+
+- safe access project sourceRoot property ([16ca874](https://gitlab.com/rxap/packages/commit/16ca8747120876ad90e38c0cc012c175741fda0b))
+
 ## [19.0.1-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@19.0.1-dev.11...@rxap/schematic-nestjs@19.0.1-dev.12) (2025-02-11)
 
 **Note:** Version bump only for package @rxap/schematic-nestjs
