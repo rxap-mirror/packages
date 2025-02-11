@@ -1,12 +1,12 @@
 {
-  "version": "19.0.1-dev.11",
+  "version": "19.0.1-dev.12",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",
     "@rxap/ts-morph": "^1.5.3-dev.5",
-    "@rxap/workspace-ts-morph": "^19.1.9-dev.10",
-    "@rxap/workspace-utilities": "^19.6.1-dev.9",
+    "@rxap/workspace-ts-morph": "^19.1.9-dev.11",
+    "@rxap/workspace-utilities": "^19.6.1-dev.10",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

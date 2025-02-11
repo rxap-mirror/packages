@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.0.1-dev.9...@rxap/plugin-typedoc@20.1.0-dev.0) (2025-02-11)
+
+### Bug Fixes
+
+- remove static tsconfig options ([84a2cf1](https://gitlab.com/rxap/packages/commit/84a2cf10394f7641a24993364589ee71d004b795))
+- support workspace generation ([b3a0e6f](https://gitlab.com/rxap/packages/commit/b3a0e6ff58611e2f2144c33e265efb47d846579b))
+
+### Features
+
+- support typedoc markdown plugins ([94b91ff](https://gitlab.com/rxap/packages/commit/94b91ff2bba30e79de77b1250b10525b8269c8fd))
+
 ## [20.0.1-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.0.1-dev.8...@rxap/plugin-typedoc@20.0.1-dev.9) (2025-02-10)
 
 **Note:** Version bump only for package @rxap/plugin-typedoc

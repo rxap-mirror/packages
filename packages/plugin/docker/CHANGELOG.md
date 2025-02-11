@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@20.0.1-dev.14...@rxap/plugin-docker@20.0.1-dev.15) (2025-02-11)
+
+### Bug Fixes
+
+- ignore hidden folders ([a22ff1f](https://gitlab.com/rxap/packages/commit/a22ff1f37766e5dcef9a5c56c4f1fe09c9e716df))
+- search for project recursive ([5e3edc4](https://gitlab.com/rxap/packages/commit/5e3edc4ef182971bb6e069f52841794c64b37504))
+
 ## [20.0.1-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@20.0.1-dev.13...@rxap/plugin-docker@20.0.1-dev.14) (2025-02-10)
 
 **Note:** Version bump only for package @rxap/plugin-docker
