@@ -111,17 +111,26 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
 export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath: string): ProjectJson | null {
   if (IsGeneratorTreeLike(tree)) {
     const projects = getProjects(tree);
-    for (const project of projects.values()) {
-      if (project.root === projectPath) {
-        return project;
+    let currentPath = projectPath;
+    do {
+      for (const project of projects.values()) {
+        if (project.root === currentPath) {
+          return project;
+        }
       }
-    }
+      currentPath = join(currentPath, '..');
+    } while (currentPath);
   }
   if (PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.size === 0) {
     // console.log(`The project location cache is empty. Build cache.`.yellow);
     buildProjectLocationCache(tree);
   }
-  const projectName = PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.get(join(projectPath, 'project.json'));
+  let currentPath = projectPath;
+  let projectName: string | null = null;
+  do {
+    projectName = PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.get(join(currentPath, 'project.json')) ?? null;
+    currentPath = join(currentPath, '..');
+  } while (currentPath && !projectName);
   if (projectName) {
     return FindProject(tree, projectName);
   }
