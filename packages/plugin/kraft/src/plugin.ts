@@ -107,12 +107,6 @@ async function createProjectConfiguration(
 ): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
-  const tree = new FsTree(context.workspaceRoot);
-  const projectConfiguration = FindProjectByPath(tree, projectPath);
-
-  if (!projectConfiguration) {
-    throw new Error(`Could not find project in '${ projectPath }'`);
-  }
   targets['kraft-cloud-deploy'] = createKraftCloudDeployTarget();
   targets['kraft-cloud-img-remove'] = createKraftCloudImgRemoveTarget();
   targets['kraft-cloud-instance-create'] = createKraftCloudInstanceCreateTarget();
