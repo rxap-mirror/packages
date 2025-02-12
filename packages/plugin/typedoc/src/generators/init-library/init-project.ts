@@ -5,6 +5,7 @@ import {
 } from '@nx/devkit';
 import {
   CoerceAssets,
+  coerceIdeaExcludeFolders,
   CoerceTarget,
   GetProjectRoot,
   GetProjectSourceRoot,
@@ -12,6 +13,7 @@ import {
   GetWorkspaceProjectName,
   HasTarget,
   IsAngularProject,
+  isJetbrainsProject,
   IsPublishable,
   IsWorkspaceProject,
 } from '@rxap/workspace-utilities';
@@ -48,5 +50,12 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   }
 
   CoerceGitIgnore(tree, projectName);
+
+  if (isJetbrainsProject(tree)) {
+    await coerceIdeaExcludeFolders(tree, [
+      join(project.root, 'docs'),
+    ]);
+  }
+
 
 }
