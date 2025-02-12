@@ -1,7 +1,7 @@
 {
   "version": "19.0.1-dev.4",
   "name": "@rxap/definition",
-  "description": "Provides the Definition concept for RxAP.",
+  "description": "Provides a base definition class and related utilities for managing and loading definitions in Angular applications. It includes metadata handling, dependency injection support, and lifecycle management for definitions. This package simplifies the creation and management of configurable and extensible application components.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

@@ -1,6 +1,7 @@
 {
   "version": "1.1.11-dev.4",
   "name": "@rxap/pattern",
+  "description": "Provides interfaces and types for implementing common patterns like commands, data sources, and methods with metadata. It offers a structured approach to defining and interacting with data and actions in a consistent manner. The package also includes an init generator for managing peer dependencies in a workspace.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

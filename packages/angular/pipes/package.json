@@ -1,7 +1,7 @@
 {
   "version": "19.1.0-dev.2",
   "name": "@rxap/pipes",
-  "description": "A collection of utility angular pipes used in RxAP.",
+  "description": "Provides a set of Angular pipes for common data transformations, including currency formatting, string manipulation, and object property access. These pipes offer standalone functionality for easy integration into Angular templates. The package includes pipes for escaping quotation marks, joining arrays, limiting array length, replacing substrings, slicing arrays, truncating strings, and deleting identifier properties from objects.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

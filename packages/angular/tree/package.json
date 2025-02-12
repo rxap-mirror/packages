@@ -1,7 +1,7 @@
 {
   "version": "19.0.1-dev.4",
   "name": "@rxap/tree",
-  "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
+  "description": "This package provides a tree component and data source for Angular applications. It includes features such as searching, filtering, and displaying hierarchical data. The package also offers directives for customizing the content of tree nodes.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

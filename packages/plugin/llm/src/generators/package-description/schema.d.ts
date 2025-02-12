@@ -10,4 +10,5 @@ export interface PackageDescriptionGeneratorSchema {
   baseUrl?: string;
   /** Set the LLM model to be used */
   model?: string;
+  overwrite?: boolean;
 }

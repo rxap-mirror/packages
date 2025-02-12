@@ -1,7 +1,7 @@
 {
   "version": "19.0.1-dev.4",
   "name": "@rxap/form-window-system",
-  "description": "Provides the FormSystem concept for RxAP.",
+  "description": "Provides directives and services to simplify opening forms in windows within an Angular application. It includes features for submitting forms, managing window footers, and opening forms using methods. This package integrates with @rxap/forms and @rxap/window-system to streamline form-based workflows in a windowed environment.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

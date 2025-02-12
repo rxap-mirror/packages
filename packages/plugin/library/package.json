@@ -1,6 +1,7 @@
 {
   "version": "20.1.0-dev.12",
   "name": "@rxap/plugin-library",
+  "description": "This package provides generators and executors for managing and maintaining Nx plugin libraries. It includes functionality for generating index exports, fixing dependencies, generating JSON schemas, and more. It helps streamline the development process for Nx plugins by automating common tasks and enforcing best practices.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",

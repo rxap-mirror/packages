@@ -1,6 +1,7 @@
 {
   "version": "19.0.1-dev.4",
   "name": "@rxap/ngx-user",
+  "description": "Provides Angular services and data sources for managing user settings such as dark mode, language, and theme preferences. It uses Rxap data sources and Open API remote methods to interact with a user settings API. The package also includes components and utilities for managing theme density and typography.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

@@ -1,6 +1,7 @@
 {
   "version": "10.5.0-dev.14",
   "name": "@rxap/nest-sentry",
+  "description": "This package provides a Sentry integration for NestJS applications. It includes a logger, interceptor, and module to simplify error tracking and performance monitoring with Sentry. It offers configurable options for setting up Sentry in your NestJS application.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

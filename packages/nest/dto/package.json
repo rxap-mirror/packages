@@ -1,6 +1,7 @@
 {
   "version": "10.3.8-dev.4",
   "name": "@rxap/nest-dto",
+  "description": "This package provides a set of reusable DTOs (Data Transfer Objects) and utilities for NestJS applications, leveraging class-transformer and class-validator for data validation and transformation. It includes base DTOs for common use cases like UUIDs, icons, and paginated data, along with options for configuring class-transformer and class-validator. It also offers a utility function to easily create DTO instances from plain objects with validation.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

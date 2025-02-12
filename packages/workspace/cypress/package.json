@@ -1,6 +1,7 @@
 {
   "version": "19.0.4",
   "name": "@rxap/workspace-cypress",
+  "description": "This package provides custom Cypress commands for Angular Material components, particularly for interacting with form fields and handling errors. It also includes an init generator that manages peer dependencies and runs init generators for those dependencies. The package aims to simplify testing Angular Material-based applications with Cypress.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

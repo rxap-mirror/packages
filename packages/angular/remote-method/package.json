@@ -1,7 +1,7 @@
 {
   "version": "19.0.1-dev.4",
   "name": "@rxap/remote-method",
-  "description": "Provides the RemoteMethod concept for RxAP.",
+  "description": "This package provides abstractions for defining and executing remote methods in Angular applications. It includes features such as automatic refreshing, proxying, and error handling. It offers a structured way to manage remote calls and their dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

@@ -7,6 +7,8 @@ import {
   GetProject,
   GetProjectPackageJson,
   GetProjectSourceRoot,
+  IsLibraryProject,
+  IsPublishable,
   UpdateProjectPackageJson,
 } from '@rxap/workspace-utilities';
 import { readFileSync } from 'node:fs';
@@ -45,13 +47,18 @@ export async function packageDescriptionGenerator(
 
   const projectConfiguration = GetProject(tree, projectName);
 
-  if (projectConfiguration.projectType !== 'library') {
+  if (!IsLibraryProject(projectConfiguration)) {
     console.log(`The project '${projectName}' is not a library project.`.yellow);
     return;
   }
 
-  if (!tree.exists(join(projectConfiguration.root, 'package.json'))) {
-    console.log(`The project '${projectName}' does not have a package.json.!`.yellow);
+  if (!IsPublishable(tree, projectConfiguration)) {
+    console.log(`The project '${projectName}' is not intended to be published.`.yellow);
+    return;
+  }
+
+  if (GetProjectPackageJson(tree, projectName).description && !options.overwrite) {
+    console.log(`The project '${projectName}' has already a description. User --overwrite to replace the existing description`.yellow);
     return;
   }
 

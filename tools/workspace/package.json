@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
   "name": "workspace",
+  "description": "This package provides a Cypress component testing preset and custom Cypress commands for Angular Material and other UI elements. It also includes an executor to generate a README.md file for the workspace, listing and describing the projects within the workspace. The Cypress commands simplify testing Angular Material components and tables.\n",
   "dependencies": {
     "tslib": "2.6.2"
   },

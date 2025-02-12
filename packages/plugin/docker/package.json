@@ -1,6 +1,7 @@
 {
   "version": "20.0.1-dev.16",
   "name": "@rxap/plugin-docker",
+  "description": "This plugin provides executors and generators for building and saving Docker images within an Nx workspace. It simplifies the process of creating Dockerfiles, building images, and pushing them to registries, as well as saving images to archives. It also includes generators for configuring projects and generating GitLab CI pipelines for Docker-based applications.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

@@ -1,7 +1,7 @@
 {
   "version": "19.0.1-dev.4",
   "name": "@rxap/directives",
-  "description": "A collection of utility angular directives used in RxAP.",
+  "description": "This package provides a set of Angular directives to simplify common tasks such as setting background images, confirming clicks, making elements contenteditable, and more. It includes directives for handling UI interactions, applying styles, and managing asynchronous operations. These directives aim to reduce boilerplate code and improve the reusability of components in Angular applications.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

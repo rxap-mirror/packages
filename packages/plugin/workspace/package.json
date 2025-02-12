@@ -1,6 +1,7 @@
 {
   "version": "20.0.1-dev.14",
   "name": "@rxap/plugin-workspace",
+  "description": "This package provides a collection of Nx plugins and generators for workspace management. It includes tools for initializing workspaces, managing Docker Compose configurations, fixing implicit internal dependencies, and generating CI information. The plugins and generators aim to streamline common workspace tasks and enforce consistent configurations.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

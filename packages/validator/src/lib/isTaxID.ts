@@ -22,14 +22,6 @@ import { isDate } from './isDate';
  * See `http://www.irs.gov/Businesses/Small-Businesses-&-Self-Employed/How-EINs-are-Assigned-and-Valid-EIN-Prefixes`
  * for more information.
  */
-
-// Locale functions
-
-/*
- * bg-BG validation function
- * (Edinen graždanski nomer (EGN/ЕГН), persons only)
- * Checks if birth date (first six digits) is valid and calculates check (last) digit
- */
 function bgBgCheck(tin: any) {
   // Extract full year, normalize month and check birth date validity
   let century_year = tin.slice(0, 2);
@@ -64,7 +56,7 @@ function bgBgCheck(tin: any) {
   return checksum === digits[9];
 }
 
-/*
+/**
  * cs-CZ validation function
  * (Rodné číslo (RČ), persons only)
  * Checks if birth date (first six digits) is valid and divisibility by 11
@@ -138,7 +130,7 @@ function csCzCheck(tin: any) {
   return true;
 }
 
-/*
+/**
  * de-AT validation function
  * (Abgabenkontonummer, persons/entities)
  * Verify TIN validity by calling luhnCheck()
@@ -147,7 +139,7 @@ function deAtCheck(tin: any) {
   return algorithms.luhnCheck(tin);
 }
 
-/*
+/**
  * de-DE validation function
  * (Steueridentifikationsnummer (Steuer-IdNr.), persons only)
  * Tests for single duplicate/triplicate value, then calculates ISO 7064 check (last) digit
@@ -190,7 +182,7 @@ function deDeCheck(tin: any) {
   return algorithms.iso7064Check(tin);
 }
 
-/*
+/**
  * dk-DK validation function
  * (CPR-nummer (personnummer), persons only)
  * Checks if birth date (first six digits) is valid and assigned to century (seventh) digit,
@@ -256,7 +248,7 @@ function dkDkCheck(tin: any) {
   return checksum === 0 ? digits[9] === 0 : digits[9] === 11 - checksum;
 }
 
-/*
+/**
  * el-CY validation function
  * (Arithmos Forologikou Mitroou (AFM/ΑΦΜ), persons only)
  * Verify TIN validity by calculating ASCII value of check (last) character
@@ -285,7 +277,7 @@ function elCyCheck(tin: any) {
   return String.fromCharCode((checksum % 26) + 65) === tin.charAt(8);
 }
 
-/*
+/**
  * el-GR validation function
  * (Arithmos Forologikou Mitroou (AFM/ΑΦΜ), persons/entities)
  * Verify TIN validity by calculating check (last) digit
@@ -303,13 +295,10 @@ function elGrCheck(tin: any) {
   return ((checksum % 11) % 10) === digits[8];
 }
 
-/*
+/**
  * en-GB validation function (should go here if needed)
  * (National Insurance Number (NINO) or Unique Taxpayer Reference (UTR),
  * persons/entities respectively)
- */
-
-/*
  * en-IE validation function
  * (Personal Public Service Number (PPS No), persons only)
  * Verify TIN validity by calculating check (second to last) character
@@ -416,7 +405,7 @@ function enUsGetPrefixes() {
   return prefixes;
 }
 
-/*
+/**
  * en-US validation function
  * Verify that the TIN starts with a valid IRS campus prefix
  */
@@ -424,7 +413,7 @@ function enUsCheck(tin: any) {
   return enUsGetPrefixes().indexOf(tin.substr(0, 2)) !== -1;
 }
 
-/*
+/**
  * es-ES validation function
  * (Documento Nacional de Identidad (DNI)
  * or Número de Identificación de Extranjero (NIE), persons only)
@@ -485,7 +474,7 @@ function esEsCheck(tin: any) {
   return chars[8] === lookup[checksum];
 }
 
-/*
+/**
  * et-EE validation function
  * (Isikukood (IK), persons only)
  * Checks if birth date (century digit and six following) is valid and calculates check (last) digit
@@ -546,7 +535,7 @@ function etEeCheck(tin: any) {
   return checksum % 11 === digits[10];
 }
 
-/*
+/**
  * fi-FI validation function
  * (Henkilötunnus (HETU), persons only)
  * Checks if birth date (first six digits plus century symbol) is valid
@@ -606,7 +595,7 @@ function fiFiCheck(tin: any) {
   return letters_lookup[checksum] === tin.slice(10);
 }
 
-/*
+/**
  * fr/nl-BE validation function
  * (Numéro national (N.N.), persons only)
  * Checks if birth date (first six digits) is valid and calculates check (last two) digits
@@ -632,7 +621,7 @@ function frBeCheck(tin: any) {
   return true;
 }
 
-/*
+/**
  * fr-FR validation function
  * (Numéro fiscal de référence (numéro SPI), persons only)
  * Verify TIN validity by calculating check (last three) digits
@@ -644,7 +633,7 @@ function frFrCheck(tin: any) {
   return checksum === checkdigits;
 }
 
-/*
+/**
  * fr/lb-LU validation function
  * (numéro d’identification personnelle, persons only)
  * Verify birth date validity and run Luhn and Verhoeff checks
@@ -664,7 +653,7 @@ function frLuCheck(tin: any) {
   return algorithms.verhoeffCheck(`${ tin.slice(0, 11) }${ tin[12] }`);
 }
 
-/*
+/**
  * hr-HR validation function
  * (Osobni identifikacijski broj (OIB), persons/entities)
  * Verify TIN validity by calling iso7064Check(digits)
@@ -673,7 +662,7 @@ function hrHrCheck(tin: any) {
   return algorithms.iso7064Check(tin);
 }
 
-/*
+/**
  * hu-HU validation function
  * (Adóazonosító jel, persons only)
  * Verify TIN validity by calculating check (last) digit
@@ -689,13 +678,12 @@ function huHuCheck(tin: any) {
   return checksum % 11 === digits[9];
 }
 
-/*
+/**
  * lt-LT validation function (should go here if needed)
  * (Asmens kodas, persons/entities respectively)
  * Current validation check is alias of etEeCheck- same format applies
  */
-
-/*
+/**
  * it-IT first/last name validity check
  * Accepts it-IT TIN-encoded names as a three-element character array and checks their validity
  * Due to lack of clarity between resources ("Are only Italian consonants used?
@@ -733,7 +721,7 @@ function itItNameCheck(name: string) {
   return true;
 }
 
-/*
+/**
  * it-IT validation function
  * (Codice fiscale (TIN-IT), persons only)
  * Verify name, birth date and codice catastale validity
@@ -863,7 +851,7 @@ function itItCheck(tin: any) {
   return true;
 }
 
-/*
+/**
  * lv-LV validation function
  * (Personas kods (PK), persons only)
  * Check validity of birth date and calculate check (last) digit
@@ -908,7 +896,7 @@ function lvLvCheck(tin: any) {
   return true;
 }
 
-/*
+/**
  * mt-MT validation function
  * (Identity Card Number or Unique Taxpayer Reference, persons/entities)
  * Verify Identity Card Number structure (no other tests found)
@@ -943,7 +931,7 @@ function mtMtCheck(tin: any) {
   return true;
 }
 
-/*
+/**
  * nl-NL validation function
  * (Burgerservicenummer (BSN) or Rechtspersonen Samenwerkingsverbanden Informatie Nummer (RSIN),
  * persons/entities respectively)
@@ -955,7 +943,7 @@ function nlNlCheck(tin: any) {
     parseInt(tin[8], 10);
 }
 
-/*
+/**
  * pl-PL validation function
  * (Powszechny Elektroniczny System Ewidencji Ludności (PESEL)
  * or Numer identyfikacji podatkowej (NIP), persons/entities)
@@ -1022,13 +1010,12 @@ function plPlCheck(tin: any) {
   return checksum === parseInt(tin[10], 10);
 }
 
-/*
+/**
  * pt-BR validation function
  * (Cadastro de Pessoas Físicas (CPF, persons)
  * Cadastro Nacional de Pessoas Jurídicas (CNPJ, entities)
  * Both inputs will be validated
  */
-
 function ptBrCheck(tin: any) {
   if (tin.length === 11) {
     let sum;
@@ -1127,7 +1114,7 @@ function ptBrCheck(tin: any) {
   return true;
 }
 
-/*
+/**
  * pt-PT validation function
  * (Número de identificação fiscal (NIF), persons/entities)
  * Verify TIN validity by calculating check (last) digit (variant of MOD 11)
@@ -1141,7 +1128,7 @@ function ptPtCheck(tin: any) {
   return checksum === parseInt(tin[8], 10);
 }
 
-/*
+/**
  * ro-RO validation function
  * (Cod Numeric Personal (CNP) or Cod de înregistrare fiscală (CIF),
  * persons only)
@@ -1194,7 +1181,7 @@ function roRoCheck(tin: any) {
   return true;
 }
 
-/*
+/**
  * sk-SK validation function
  * (Rodné číslo (RČ) or bezvýznamové identifikačné číslo (BIČ), persons only)
  * Checks validity of pre-1954 birth numbers (rodné číslo) only
@@ -1237,7 +1224,7 @@ function skSkCheck(tin: any) {
   return true;
 }
 
-/*
+/**
  * sl-SI validation function
  * (Davčna številka, persons/entities)
  * Verify TIN validity by calculating check (last) digit (variant of MOD 11)
@@ -1251,7 +1238,7 @@ function slSiCheck(tin: any) {
   return checksum === parseInt(tin[7], 10);
 }
 
-/*
+/**
  * sv-SE validation function
  * (Personnummer or samordningsnummer, persons only)
  * Checks validity of birth date and calls luhnCheck() to validate check (last) digit
@@ -1313,7 +1300,7 @@ function svSeCheck(tin: any) {
 
 // Locale lookup objects
 
-/*
+/**
  * Tax id regex formats for various locales
  *
  * Where not explicitly specified in DG-TAXUD document both
@@ -1405,7 +1392,7 @@ const sanitizeRegexes: Record<string, RegExp> = {
 // sanitizeRegexes locale aliases
 sanitizeRegexes['nl-BE'] = sanitizeRegexes['fr-BE'];
 
-/*
+/**
  * Validator function
  * Return true if the passed string is a valid tax identification number
  * for the specified locale.

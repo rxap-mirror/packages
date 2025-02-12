@@ -27,6 +27,10 @@
       "type": "string",
       "description": "Set the LLM model to be used",
       "default": "gemini/2.0-flash"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Replaces the existing description files"
     }
   },
   "required": ["project"]
