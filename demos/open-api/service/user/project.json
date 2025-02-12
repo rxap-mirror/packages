@@ -1,7 +1,7 @@
 {
   "name": "open-api-service-user",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/open-api/service/user/src",
+  "sourceRoot": "demos/open-api/service/user/src",
   "projectType": "library",
   "tags": ["open-api", "packages", "service"],
   "// targets": "to see all targets run: nx show project open-api-service-user --web",

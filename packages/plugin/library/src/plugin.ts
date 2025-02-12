@@ -136,7 +136,7 @@ async function createProjectConfiguration(
       }
     }
 
-    if (IsAngularProject(projectConfiguration)) {
+    if (IsAngularProject(projectConfiguration) && IsPublishable(tree, projectConfiguration)) {
       targets['check-version'] = createCheckVersionTarget('@angular/core');
     }
     if (IsPluginProject(projectConfiguration)) {

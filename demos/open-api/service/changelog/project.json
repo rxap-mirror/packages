@@ -1,7 +1,7 @@
 {
   "name": "open-api-service-changelog",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/open-api/service/changelog/src",
+  "sourceRoot": "demos/open-api/service/changelog/src",
   "projectType": "library",
   "tags": ["open-api", "packages", "service"],
   "// targets": "to see all targets run: nx show project open-api-service-changelog --web",

@@ -262,21 +262,21 @@
       ],
       "@rxap/xml-parser": ["packages/xml-parser/src/index.ts"],
       "open-api-service-app-angular-accordion/*": [
-        "packages/open-api/service/app/angular/accordion/src/lib/*"
+        "demos/open-api/service/app/angular/accordion/src/lib/*"
       ],
       "open-api-service-app-angular-table/*": [
-        "packages/open-api/service/app/angular/table/src/lib/*"
+        "demos/open-api/service/app/angular/table/src/lib/*"
       ],
       "open-api-service-changelog/*": [
-        "packages/open-api/service/changelog/src/lib/*"
+        "demos/open-api/service/changelog/src/lib/*"
       ],
       "open-api-service-configuration/*": [
-        "packages/open-api/service/configuration/src/lib/*"
+        "demos/open-api/service/configuration/src/lib/*"
       ],
       "open-api-service-status/*": [
-        "packages/open-api/service/status/src/lib/*"
+        "demos/open-api/service/status/src/lib/*"
       ],
-      "open-api-service-user/*": ["packages/open-api/service/user/src/lib/*"],
+      "open-api-service-user/*": ["demos/open-api/service/user/src/lib/*"],
       "rxap": ["packages/rxap/index.ts"],
       "web3-storage": ["packages/plugin/web3-storage/src/index.ts"],
       "workspace": ["tools/workspace/src/index.ts"],

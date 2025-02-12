@@ -278,13 +278,15 @@
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
-      }
+      },
+      "exclude": ["demos/**"]
     },
     {
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      }
+      },
+      "exclude": ["demos/**"]
     },
     "./packages/plugin/library/src/plugin.ts",
     "./packages/plugin/angular/src/library.ts",
