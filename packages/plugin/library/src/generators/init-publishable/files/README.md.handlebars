@@ -1,8 +1,4 @@
-# {{packageJson.name}}
-{{#if packageJson.description ~}}
-> {{packageJson.description}}
-{{/if}}
-
+{{#if packageJson.description ~}}{{packageJson.description}}{{/if}}
 [![npm version](https://img.shields.io/npm/v/{{packageJson.name}}?style=flat-square)](https://www.npmjs.com/package/{{packageJson.name}})
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -19,9 +15,15 @@
 {{/if}}
 {{#if hasGenerators ~}}
 - [Generators](#generators)
+{{#each generatorList}}
+  - [{{this.name}}](#{{this.name}})
+{{/each}}
 {{/if}}
 {{#if hasExecutors ~}}
 - [Executors](#executors)
+{{#each executorsList}}
+  - [{{this.name}}](#{{this.name}})
+{{/each}}
 {{/if}}
 
 # Installation
@@ -72,7 +74,7 @@ yarn nx g {{packageJson.name}}:config [project]
 > {{this.description}}
 
 ```bash
-yarn nx g {{@root.packageJson.name}}:{{this.name}}
+nx g {{@root.packageJson.name}}:{{this.name}}
 ```
 {{#hasProperties this.schema.properties}}
 
@@ -92,16 +94,6 @@ Option | Type | Default | Description
 ## {{this.name}}
 > {{this.description}}
 
-**project.json**
-```json
-{
-  "targets": {
-    "{{this.name}}": {
-      "executor": "{{@root.packageJson.name}}:{{this.name}}"
-    }
-  }
-}
-```
 {{#hasProperties this.schema.properties}}
 
 Option | Type | Default | Description

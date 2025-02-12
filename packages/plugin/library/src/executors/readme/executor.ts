@@ -160,7 +160,7 @@ async function getGenerators(context: ExecutorContext) {
     });
   }
   const schematicList = await getSchematics(context);
-  return [ ...generatorList, ...schematicList ];
+  return [ ...generatorList, ...schematicList ].filter((item, index, self) => self.findIndex(s => s.name === item.name) === index);
 }
 
 async function getBuilders(context: ExecutorContext): Promise<Executor[]> {
@@ -225,7 +225,7 @@ async function getExecutors(context: ExecutorContext) {
     });
   }
   const builderList = await getBuilders(context);
-  return [ ...executorList, ...builderList ];
+  return [ ...executorList, ...builderList ].filter((item, index, self) => self.findIndex(s => s.name === item.name) === index);;
 }
 
 async function getPeerDependencyList(context: ExecutorContext): Promise<Array<{ name: string, version: string }>> {
@@ -244,8 +244,9 @@ async function getPeerDependencyList(context: ExecutorContext): Promise<Array<{ 
 }
 
 Handlebars.registerHelper('hasProperties', function (this: any, record: Record<string, unknown>, options: any) {
+  console.log('check:',  JSON.stringify(record));
   if (Object.keys(record).length > 0) {
-    options.fn(this);
+    return options.fn(this);
   }
 });
 
