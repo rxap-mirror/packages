@@ -225,7 +225,7 @@ async function getExecutors(context: ExecutorContext) {
     });
   }
   const builderList = await getBuilders(context);
-  return [ ...executorList, ...builderList ].filter((item, index, self) => self.findIndex(s => s.name === item.name) === index);;
+  return [ ...executorList, ...builderList ].filter((item, index, self) => self.findIndex(s => s.name === item.name) === index);
 }
 
 async function getPeerDependencyList(context: ExecutorContext): Promise<Array<{ name: string, version: string }>> {

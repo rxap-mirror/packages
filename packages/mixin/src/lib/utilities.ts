@@ -27,7 +27,9 @@
  * const service = factory(Service);
  * ```
  */
-export interface Constructor<T> extends Function {
+export interface Constructor<T>
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  extends Function {
   new(...args: any[]): T;
 }
 
