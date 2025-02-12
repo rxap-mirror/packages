@@ -254,11 +254,14 @@ export class TypescriptInterfaceGenerator {
         ],
       });
     } else {
-      sourceFile.addInterface({
+      const ref = sourceFile.addInterface({
         name: typeName,
         properties,
         isExported: true,
       });
+      if (!properties.length) {
+        sourceFile.insertStatements(ref.getChildIndex(), '// eslint-disable-next-line @typescript-eslint/no-empty-interface');
+      }
     }
 
     sourceFile.organizeImports();
