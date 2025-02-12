@@ -8,17 +8,21 @@
       "type": "string",
       "format": "path"
     },
-    "openaiApiKey": {
+    "apiKey": {
       "type": "string",
       "description": "The openai api key"
     },
-    "openaiOrgId": {
+    "orgId": {
       "type": "string",
       "description": "The openai organization id"
     },
-    "openaiProjectId": {
+    "projectId": {
       "type": "string",
       "description": "The openai project id"
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "The openai base url"
     },
     "model": {
       "type": "string",

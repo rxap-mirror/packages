@@ -1,10 +1,11 @@
 export interface DocumentationGeneratorSchema {
   path?: string;
   /** The openai api key */
-  openaiApiKey?: string;
+  apiKey?: string;
   /** The openai organization id */
-  openaiOrgId?: string;
+  orgId?: string;
   /** The openai project id */
-  openaiProjectId?: string;
+  projectId?: string;
   model?: string;
+  baseUrl?: string;
 }

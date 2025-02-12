@@ -14,7 +14,10 @@ import {
 import { DocumentationGeneratorSchema } from './schema';
 import { addJsDoc } from './utilities/add-js-doc';
 import { clearJsDoc } from './utilities/clear-js-doc';
-import { completion } from './utilities/completion';
+import {
+  completion,
+  CompletionOptions,
+} from './utilities/completion';
 import { composeContext } from './utilities/compose-context';
 import {
   Model,
@@ -27,22 +30,22 @@ interface GenerateTsDocOptions {
   target: string;
   node: JSDocableNode;
   systemPrompt: string;
-  model?: string;
+  options?: CompletionOptions;
 }
 
-async function generateTsDoc({  context, target, question, node, systemPrompt, model }: GenerateTsDocOptions) {
+async function generateTsDoc({  context, target, question, node, systemPrompt, options }: GenerateTsDocOptions) {
 
-  console.log(question);
+  console.log(`${question}`.blue);
   try {
-    const jsDoc = await completion(systemPrompt, [ context, target, question ].join('\n\n'), { model: model as Model });
+    const jsDoc = await completion(systemPrompt, [ context, target, question ].join('\n\n'), options);
 
-    console.log('jsDoc', jsDoc);
+    console.log(jsDoc.grey);
 
     clearJsDoc(node);
     addJsDoc(node, jsDoc);
 
   } catch (e: any) {
-    console.log(`jsDoc prompt error: ${e.message}`.red);
+    console.log(`${e.message}`.red, e.stack);
   }
 
 }
@@ -52,7 +55,7 @@ export async function documentationGenerator(
   options: DocumentationGeneratorSchema
 ) {
 
-  const model = options.model;
+  const {model, apiKey, orgId, projectId, baseUrl } = options;
 
   if (model && !Object.keys(tokenLimits).includes(model)) {
     throw new Error(`The model '${model}' is not supported in the documentation generator`);
@@ -61,6 +64,8 @@ export async function documentationGenerator(
   // relative path form the workspace root
   const cwd = relative(tree.root, process.cwd());
   const path = options.path ? join(cwd, options.path) : cwd;
+
+  console.log(`base path: ${path}`.grey);
 
   const systemPrompt = readFileSync(join(__dirname, 'system-prompts', 'generic.txt'), 'utf-8');
 
@@ -81,7 +86,7 @@ export async function documentationGenerator(
           target,
           context,
           node: functionDeclaration,
-          model
+          options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
         });
       }
 
@@ -94,7 +99,7 @@ export async function documentationGenerator(
           target,
           context,
           node: classDeclaration,
-          model
+          options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
         });
 
         for (const method of classDeclaration.getMethods().filter(method => !method.getScope() || method.getScope() === Scope.Public)) {
@@ -106,7 +111,7 @@ export async function documentationGenerator(
             target,
             context,
             node: method,
-            model
+            options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
           });
 
         }
@@ -120,7 +125,7 @@ export async function documentationGenerator(
             target,
             context,
             node: property,
-            model
+            options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
           });
 
         }
