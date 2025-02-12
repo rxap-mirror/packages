@@ -1,0 +1,39 @@
+{
+  "version": "20.0.0-dev.0",
+  "name": "@rxap/plugin-llm",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@nx/devkit": "20.4.2",
+    "tslib": "^2.3.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/llm",
+  "keywords": [
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-llm",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/llm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/llm"
+  },
+  "type": "commonjs",
+  "types": "./src/index.d.ts"
+}

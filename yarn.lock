@@ -9936,6 +9936,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-llm@workspace:packages/plugin/llm":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-llm@workspace:packages/plugin/llm"
+  dependencies:
+    "@nx/devkit": 20.4.2
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-localazy@workspace:packages/plugin/localazy":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-localazy@workspace:packages/plugin/localazy"
