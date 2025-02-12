@@ -72,7 +72,7 @@ export async function CoerceInitGenerator(
 
   try {
     await generatorGenerator(tree, {
-      path: join(projectSourceRoot, 'generators', 'init'),
+      path: join(projectSourceRoot, 'generators', 'init', 'generator'),
       name: 'init',
       description: 'Initialize the package in the workspace',
       unitTestRunner: 'none',
