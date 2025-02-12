@@ -273,9 +273,7 @@
       "open-api-service-configuration/*": [
         "demos/open-api/service/configuration/src/lib/*"
       ],
-      "open-api-service-status/*": [
-        "demos/open-api/service/status/src/lib/*"
-      ],
+      "open-api-service-status/*": ["demos/open-api/service/status/src/lib/*"],
       "open-api-service-user/*": ["demos/open-api/service/user/src/lib/*"],
       "rxap": ["packages/rxap/index.ts"],
       "web3-storage": ["packages/plugin/web3-storage/src/index.ts"],
