@@ -4,6 +4,7 @@ import {
   TsMorphTransformCallback,
 } from '@rxap/workspace-ts-morph';
 import {
+  GetProject,
   GetProjectPackageJson,
   GetProjectSourceRoot,
   UpdateProjectPackageJson,
@@ -40,6 +41,18 @@ export async function packageDescriptionGenerator(
 
   if (model && !Object.keys(tokenLimits).includes(model)) {
     throw new Error(`The model '${model}' is not supported in the documentation generator`);
+  }
+
+  const projectConfiguration = GetProject(tree, projectName);
+
+  if (projectConfiguration.projectType !== 'library') {
+    console.log(`The project '${projectName}' is not a library project.`.yellow);
+    return;
+  }
+
+  if (!tree.exists(join(projectConfiguration.root, 'package.json'))) {
+    console.log(`The project '${projectName}' does not have a package.json.!`.yellow);
+    return;
   }
 
   const systemPrompt = readFileSync(join(__dirname, 'system-prompts', 'generic.txt'), 'utf-8');
