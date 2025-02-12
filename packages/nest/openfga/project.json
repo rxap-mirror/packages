@@ -33,7 +33,8 @@
             "glob": "generators.json",
             "output": "."
           },
-          "packages/nest/openfga/docs"
+          "packages/nest/openfga/docs",
+          "packages/nest/openfga/compodoc"
         ]
       },
       "configurations": {

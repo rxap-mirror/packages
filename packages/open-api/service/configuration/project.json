@@ -4,5 +4,6 @@
   "sourceRoot": "packages/open-api/service/configuration/src",
   "projectType": "library",
   "tags": ["open-api", "packages", "service"],
+  "// targets": "to see all targets run: nx show project open-api-service-configuration --web",
   "targets": {}
 }

@@ -33,7 +33,8 @@
             "glob": "generators.json",
             "output": "."
           },
-          "packages/nest/rabbitmq-vault/docs"
+          "packages/nest/rabbitmq-vault/docs",
+          "packages/nest/rabbitmq-vault/compodoc"
         ]
       },
       "configurations": {

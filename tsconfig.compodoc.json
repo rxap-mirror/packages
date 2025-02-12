@@ -71,7 +71,10 @@
     "packages/nest/testing/src/**/*.ts",
     "packages/nest/utilities/src/**/*.ts",
     "packages/nest/vault/src/**/*.ts",
-    "packages/nest/web3-storage/src/**/*.ts"
+    "packages/nest/web3-storage/src/**/*.ts",
+    "packages/nest/auth0/src/**/*.ts",
+    "packages/nest/openfga/src/**/*.ts",
+    "packages/nest/rabbitmq-vault/src/**/*.ts"
   ],
   "exclude": ["**/*.stories.ts", "**/*.spec.ts", "**/*.cy.ts"]
 }

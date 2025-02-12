@@ -4,10 +4,7 @@ import {
   installPackagesTask,
   Tree,
 } from '@nx/devkit';
-import {
-  join,
-  relative,
-} from 'path';
+import { join, relative } from 'path';
 import { InitGeneratorSchema } from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {

@@ -33,7 +33,8 @@
             "glob": "generators.json",
             "output": "."
           },
-          "packages/nest/auth0/docs"
+          "packages/nest/auth0/docs",
+          "packages/nest/auth0/compodoc"
         ]
       },
       "configurations": {

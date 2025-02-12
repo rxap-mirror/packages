@@ -3,6 +3,7 @@
   "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/open-api/service/app/angular/table/src",
   "projectType": "library",
-  "tags": ["open-api", "packages", "service", "app"],
+  "tags": ["open-api", "packages", "service", "app", "angular"],
+  "// targets": "to see all targets run: nx show project open-api-service-app-angular-table --web",
   "targets": {}
 }
