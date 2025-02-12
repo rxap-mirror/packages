@@ -35,18 +35,21 @@ interface GenerateTsDocOptions {
 
 async function generateTsDoc({  context, target, question, node, systemPrompt, options }: GenerateTsDocOptions) {
 
-  console.log(`${question}`.blue);
+  // console.log(`${question}`.blue);
   try {
     const jsDoc = await completion(systemPrompt, [ context, target, question ].join('\n\n'), options);
 
-    console.log(jsDoc.grey);
+    // console.log(jsDoc.grey);
 
     clearJsDoc(node);
     addJsDoc(node, jsDoc);
 
   } catch (e: any) {
     console.log(`${e.message}`.red, e.stack);
+    return false;
   }
+
+  return true;
 
 }
 
@@ -70,6 +73,7 @@ export async function documentationGenerator(
   const systemPrompt = readFileSync(join(__dirname, 'system-prompts', 'generic.txt'), 'utf-8');
 
   const operation: AsyncTsMorphTransformCallback = async (project: Project) => {
+    const failed: string[] = [];
     for (const sourceFile of project.getSourceFiles()) {
 
       const context = composeContext(sourceFile);
@@ -80,7 +84,7 @@ export async function documentationGenerator(
 
       for (const functionDeclaration of sourceFile.getFunctions()) {
         const question = `TASK: create the TSDoc documentation for the function \`${functionDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
-        await generateTsDoc({
+        const success = await generateTsDoc({
           systemPrompt,
           question,
           target,
@@ -88,12 +92,51 @@ export async function documentationGenerator(
           node: functionDeclaration,
           options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
         });
+        if (!success) {
+          failed.push(`${sourceFile.getFilePath()}#function:${functionDeclaration.getName()}`);
+        }
+      }
+
+      for (const interfaceDeclaration of sourceFile.getInterfaces()) {
+
+        const question = `TASK: create the TSDoc documentation for the interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
+        const success = await generateTsDoc({
+          systemPrompt,
+          question,
+          target,
+          context,
+          node: interfaceDeclaration,
+          options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
+        });
+
+        if (!success) {
+          failed.push(`${sourceFile.getFilePath()}#interface:${interfaceDeclaration.getName()}`);
+        }
+
+      }
+
+      for (const typeDeclaration of sourceFile.getTypeAliases()) {
+
+        const question = `TASK: create the TSDoc documentation for the type \`${typeDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
+        const success = await generateTsDoc({
+          systemPrompt,
+          question,
+          target,
+          context,
+          node: typeDeclaration,
+          options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
+        });
+
+        if (!success) {
+          failed.push(`${sourceFile.getFilePath()}#type:${typeDeclaration.getName()}`);
+        }
+
       }
 
       for (const classDeclaration of sourceFile.getClasses()) {
         let question = `TASK: create the TSDoc documentation for the class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
 
-        await generateTsDoc({
+        const success = await generateTsDoc({
           systemPrompt,
           question,
           target,
@@ -101,11 +144,14 @@ export async function documentationGenerator(
           node: classDeclaration,
           options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
         });
+        if (!success) {
+          failed.push(`${sourceFile.getFilePath()}#class:${classDeclaration.getName()}`);
+        }
 
         for (const method of classDeclaration.getMethods().filter(method => !method.getScope() || method.getScope() === Scope.Public)) {
           question = `TASK: create the TSDoc documentation for the method \`${method.getName()}\` of class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
 
-          await generateTsDoc({
+          const success = await generateTsDoc({
             systemPrompt,
             question,
             target,
@@ -113,13 +159,16 @@ export async function documentationGenerator(
             node: method,
             options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
           });
+          if (!success) {
+            failed.push(`${sourceFile.getFilePath()}#method:${classDeclaration.getName()}::${method.getName()}`);
+          }
 
         }
 
         for (const property of classDeclaration.getProperties().filter(property => !property.getScope() || property.getScope() === Scope.Public)) {
           question = `TASK: create the TSDoc documentation for the property \`${property.getName()}\` of class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
 
-          await generateTsDoc({
+          const success = await generateTsDoc({
             systemPrompt,
             question,
             target,
@@ -127,11 +176,19 @@ export async function documentationGenerator(
             node: property,
             options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
           });
+          if (!success) {
+            failed.push(`${sourceFile.getFilePath()}#method:${classDeclaration.getName()}::${property.getName()}`);
+          }
 
         }
 
       }
 
+    }
+
+    if (failed.length > 0) {
+      console.log('Some documentation generation failed:'.bgRed);
+      console.log(`${failed.map(item => ' - ' + item).join('\n')}`.red);
     }
   };
 

@@ -48,8 +48,6 @@ export async function completion(
     input.max_tokens = maxTokens;
   }
 
-
-
   const response = await new OpenAI({
     apiKey: options.apiKey,
     project: options.projectId,
