@@ -1,6 +1,8 @@
 - package: "@rxap/plugin-angular"
   name: init-library
-  options: {}
-- package: "@rxap/plugin-typedoc"
-  name: init-library
+  options:
+    targets:
+      indexExport: true
+- package: "@rxap/plugin-library"
+  name: init
   options: {}

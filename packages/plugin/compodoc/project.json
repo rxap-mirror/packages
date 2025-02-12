@@ -13,9 +13,7 @@
         "main": "packages/plugin/compodoc/src/index.ts",
         "tsConfig": "packages/plugin/compodoc/tsconfig.lib.json",
         "generateExportsField": true,
-        "additionalEntryPoints": [
-          "packages/plugin/compodoc/src/plugin.ts"
-        ],
+        "additionalEntryPoints": ["packages/plugin/compodoc/src/plugin.ts"],
         "assets": [
           "packages/plugin/compodoc/*.md",
           {
@@ -42,8 +40,5 @@
         ]
       }
     }
-
-
-
   }
 }

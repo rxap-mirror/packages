@@ -507,6 +507,27 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/nest/openfga/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/plugin/compodoc/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/plugin/llm/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/auth0/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/auth0/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/auth0/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/auth0/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/openfga/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/openfga/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/openfga/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq-vault/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq-vault/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq-vault/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/rabbitmq-vault/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/plugin/compodoc/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/plugin/compodoc/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/plugin/compodoc/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/plugin/llm/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/plugin/llm/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/plugin/llm/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>
