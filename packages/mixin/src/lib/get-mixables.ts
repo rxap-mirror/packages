@@ -8,13 +8,45 @@ import { GetPropertyDescriptor } from './get-property-descriptor';
 import { getMetadata } from '@rxap/reflect-metadata';
 
 /**
- * Returns a map of property descriptors
+ * @summary
+ * Returns a map of property descriptors from a mixin that can be applied to a client class, handling property overwriting rules and filtering based on property types.
  *
- * @param client the client Constructor
- * @param mixin the mixin object or class constructor
- * @return a map of all property descriptors of the mixin object or class
- * constructor without property descriptors with key that are included in the
- * array clientKeys
+ * @param client - The target constructor class that will receive the mixin properties
+ * @param mixin - The source mixin, which can be either a constructor class or an object containing properties to be mixed in
+ *
+ * @returns A PropertyDescriptorMap containing all valid property descriptors that can be mixed in, filtered based on overwrite rules and property types
+ *
+ * @throws Error when the mixin parameter is neither a class (function) nor an object
+ *
+ * @example
+ * ```typescript
+ * class MyMixin {
+ *   public getName() { return 'name'; }
+ *   public get value() { return 42; }
+ * }
+ *
+ * class Target {
+ *   constructor() {}
+ * }
+ *
+ * const mixables = getMixables(Target, MyMixin);
+ * // Returns property descriptors for 'getName' and 'value'
+ * ```
+ *
+ * @example
+ * ```typescript
+ * class MyMixin {
+ *   @Overwrite()
+ *   public getValue() { return 42; }
+ * }
+ *
+ * class Target {
+ *   public getValue() { return 0; }
+ * }
+ *
+ * const mixables = getMixables(Target, MyMixin);
+ * // Returns property descriptor for 'getValue' due to @Overwrite decorator
+ * ```
  */
 export function getMixables(client: Constructor<any>, mixin: Mixin<any>): PropertyDescriptorMap {
 
