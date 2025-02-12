@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "Documentation",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string",
+      "format": "path"
+    },
+    "openaiApiKey": {
+      "type": "string",
+      "description": "The openai api key"
+    },
+    "openaiOrgId": {
+      "type": "string",
+      "description": "The openai organization id"
+    },
+    "openaiProjectId": {
+      "type": "string",
+      "description": "The openai project id"
+    },
+    "model": {
+      "type": "string",
+      "description": "Set the LLM model to be used"
+    }
+  },
+  "required": []
+}
