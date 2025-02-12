@@ -41,7 +41,7 @@ export default async function runExecutor(
     }
   }
 
-  const packageJson = { dependencies, name: context.projectName, private: true };
+  const packageJson = { dependencies, name: context.projectName, private: true, version: '0.0.0' };
 
   console.log('generated package.json', JSON.stringify(packageJson));
 
