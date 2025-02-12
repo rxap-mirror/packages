@@ -12,19 +12,19 @@ import {
   Scope,
 } from 'ts-morph';
 import { DocumentationGeneratorSchema } from './schema';
-import { addJsDoc } from './utilities/add-js-doc';
-import { cleanupJsDoc } from './utilities/cleanup-js-doc';
-import { clearAllJsDocs } from './utilities/clear-all-js-docs';
-import { clearJsDoc } from './utilities/clear-js-doc';
+import { addJsDoc } from '../../lib/add-js-doc';
+import { cleanupJsDoc } from '../../lib/cleanup-js-doc';
+import { clearAllJsDocs } from '../../lib/clear-all-js-docs';
+import { clearJsDoc } from '../../lib/clear-js-doc';
 import {
   completion,
   CompletionOptions,
-} from './utilities/completion';
-import { composeContext } from './utilities/compose-context';
+} from '../../lib/completion';
+import { composeContext } from '../../lib/compose-context';
 import {
   Model,
   tokenLimits,
-} from './utilities/model';
+} from '../../lib/model';
 
 interface GenerateTsDocOptions {
   question: string;
@@ -60,7 +60,7 @@ export async function documentationGenerator(
   options: DocumentationGeneratorSchema
 ) {
 
-  const {model, apiKey, orgId, projectId, baseUrl } = options;
+  const {model = 'anthropic/claude-3-5-sonnet', apiKey, orgId, projectId, baseUrl } = options;
 
   if (model && !Object.keys(tokenLimits).includes(model)) {
     throw new Error(`The model '${model}' is not supported in the documentation generator`);

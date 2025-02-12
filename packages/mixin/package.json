@@ -1,6 +1,7 @@
 {
   "version": "16.0.12-dev.4",
   "name": "@rxap/mixin",
+  "description": "Provides decorators and utilities for applying the mixin pattern in TypeScript. It allows you to compose classes by combining properties and methods from multiple sources. This library includes features for overwriting properties and handling metadata during the mixin process.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

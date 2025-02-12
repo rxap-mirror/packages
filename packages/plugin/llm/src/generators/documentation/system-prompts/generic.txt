@@ -181,20 +181,20 @@ export function configure(options: { value: string }) {}
     <xsd:element name="context">
         <xsd:complexType>
             <xsd:sequence>
-                <!-- 'referenced' element with multiple 'source-file' elements -->
+                <!-- 'referenced' element with multiple 'sourceFile' elements -->
                 <xsd:element name="referenced" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element name="source-file" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
+                            <xsd:element name="sourceFile" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
                         </xsd:sequence>
                     </xsd:complexType>
                 </xsd:element>
 
-                <!-- 'used' element with multiple 'source-file' elements -->
+                <!-- 'used' element with multiple 'sourceFile' elements -->
                 <xsd:element name="used" minOccurs="0" maxOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element name="source-file" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
+                            <xsd:element name="sourceFile" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
                         </xsd:sequence>
                     </xsd:complexType>
                 </xsd:element>

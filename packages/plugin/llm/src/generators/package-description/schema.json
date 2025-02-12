@@ -1,12 +1,11 @@
 {
   "$schema": "https://json-schema.org/schema",
-  "$id": "Documentation",
+  "$id": "PackageDescription",
   "title": "",
   "type": "object",
   "properties": {
-    "path": {
-      "type": "string",
-      "format": "path"
+    "project": {
+      "type": "string"
     },
     "apiKey": {
       "type": "string",
@@ -27,8 +26,8 @@
     "model": {
       "type": "string",
       "description": "Set the LLM model to be used",
-      "default": "anthropic/claude-3-5-sonnet"
+      "default": "gemini/2.0-flash"
     }
   },
-  "required": []
+  "required": ["project"]
 }

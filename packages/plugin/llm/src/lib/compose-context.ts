@@ -2,7 +2,7 @@ import { SourceFile } from 'ts-morph';
 import { Builder } from 'xml2js';
 import { clearAllJsDocs } from './clear-all-js-docs';
 
-interface ContextSourceFile {
+export interface ContextSourceFile {
   $: {
     path: string;
   }
@@ -18,7 +18,7 @@ interface Context {
   }
 }
 
-function sourceFileToContextSourceFile(sourceFile: SourceFile): ContextSourceFile {
+export function sourceFileToContextSourceFile(sourceFile: SourceFile): ContextSourceFile {
   return {
     $: {
       path: sourceFile.getFilePath(),

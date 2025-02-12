@@ -1,5 +1,5 @@
-export interface DocumentationGeneratorSchema {
-  path?: string;
+export interface PackageDescriptionGeneratorSchema {
+  project: string;
   /** The openai api key */
   apiKey?: string;
   /** The openai organization id */

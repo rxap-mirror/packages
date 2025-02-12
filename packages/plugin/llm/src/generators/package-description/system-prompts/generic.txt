@@ -1,0 +1,44 @@
+Your task is to generate a short description for an npm package based on the source code of the package
+
+The source code of the npm package is provided as context formatted according to the schema in the context.xsd file below.
+
+Use the following file contents as reference:
+
+-------------------- context.xsd --------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+
+    <!-- Definition of the sourceFileType to capture the 'path' attribute -->
+    <xsd:complexType name="sourceFileType">
+        <xsd:attribute name="path" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <!-- Root element 'context' -->
+    <xsd:element name="context">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- the name of the npm package -->
+                <xsd:element name="package" minOccurs="1" maxOccurs="1"/>
+                <!-- multiple 'sourceFile' elements -->
+                <xsd:element name="sourceFile" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
+------------------------------------------------------------
+
+Instructions:
+- Read the provided source code as structured by the context.xsd.
+- Create short one to three sentence description of the npm package
+- Output ONLY the description text without any other text
+
+Example Output:
+------------------------------------------------------------
+TypeScript Compiler API wrapper. Provides an easier way to programmatically navigate and manipulate TypeScript and JavaScript code.
+------------------------------------------------------------
+
+Remember:
+- The goal is to allow an developer to unterstand what this npm package offers
+- ONLY output the description of the npm package

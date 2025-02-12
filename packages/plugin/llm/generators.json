@@ -9,6 +9,11 @@
       "factory": "./src/generators/documentation/generator",
       "schema": "./src/generators/documentation/schema.json",
       "description": "Automatically generate the documenation for all exported typescript symboles"
+    },
+    "package-description": {
+      "factory": "./src/generators/package-description/generator",
+      "schema": "./src/generators/package-description/schema.json",
+      "description": "Generates a package description based on the source code"
     }
   }
 }
