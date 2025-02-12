@@ -20,7 +20,7 @@ export async function coerceIdeaExcludeFolders<Tree extends TreeLike>(tree: Tree
         const doc = await parseStringPromise(content.toString());
         for (let excludeFolder of excludeFolders) {
 
-          excludeFolder = CoercePrefix('file://$MODULE_DIR$/', excludeFolder.replace(/^\//, ''));
+          excludeFolder = CoercePrefix(excludeFolder.replace(/^\//, ''), 'file://$MODULE_DIR$/');
 
           if (Array.from(doc.module.component[0].content[0].excludeFolder).map((item: any) => item['$'].url).some(
             (url: string) => url === excludeFolder)) {
