@@ -32,7 +32,8 @@
             "input": "./packages/nest/auth0",
             "glob": "generators.json",
             "output": "."
-          }
+          },
+          "packages/nest/auth0/docs"
         ]
       },
       "configurations": {

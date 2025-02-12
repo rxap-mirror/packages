@@ -126,7 +126,13 @@
     "packages/workspace/ts-morph/src/**/*.ts",
     "packages/workspace/utilities/src/**/*.ts",
     "packages/xml-parser/src/**/*.ts",
-    "tools/workspace/src/**/*.ts"
+    "tools/workspace/src/**/*.ts",
+    "packages/nest/auth0/src/**/*.ts",
+    "packages/nest/openfga/src/**/*.ts",
+    "packages/nest/rabbitmq-vault/src/**/*.ts",
+    "packages/plugin/compodoc/src/**/*.ts",
+    "packages/plugin/kraft/src/**/*.ts",
+    "packages/plugin/llm/src/**/*.ts"
   ],
   "exclude": [
     "**/*.stories.ts",

@@ -32,7 +32,8 @@
             "input": "./packages/nest/openfga",
             "glob": "generators.json",
             "output": "."
-          }
+          },
+          "packages/nest/openfga/docs"
         ]
       },
       "configurations": {

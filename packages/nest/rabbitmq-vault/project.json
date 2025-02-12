@@ -32,7 +32,8 @@
             "input": "./packages/nest/rabbitmq-vault",
             "glob": "generators.json",
             "output": "."
-          }
+          },
+          "packages/nest/rabbitmq-vault/docs"
         ]
       },
       "configurations": {

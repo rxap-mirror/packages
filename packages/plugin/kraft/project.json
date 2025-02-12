@@ -48,7 +48,8 @@
             "input": "./packages/plugin/kraft/src/generators",
             "glob": "**/!(*.ts|*.js|*.json)",
             "output": "./src/generators"
-          }
+          },
+          "packages/plugin/kraft/docs"
         ]
       }
     },
