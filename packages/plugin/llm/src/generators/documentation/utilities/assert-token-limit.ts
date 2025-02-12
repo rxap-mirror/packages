@@ -12,4 +12,6 @@ export function assertTokenLimit(model: Model, ...inputs: string[]) {
     throw new Error(`The input has '${sum}' tokens and the model has a limit of ${tokenLimits[model][0] * 0.8}`);
   }
 
+  return sum;
+
 }

@@ -239,3 +239,4 @@ DeleteEmptyProperties({ a: 1, b: null, c: { d: 4, e: undefined } });
 Remember:
 - Your output must include only the TSDoc documentation content as shown in the example output, with no surrounding comment syntax.
 - Ensure if a code example is given the code is inclosed in "```typescript" and "```"
+- ONLY OUTPUT THE COMMENT TEXT WITHOUT ANY OTHER RESPONSE LIKE "Based on the source code" etc.

@@ -8,6 +8,7 @@ export const tokenLimits = {
   'anthropic/claude-3-opus': [200_000, 4096],
 
   'gemini/2.0-flash': [1_000_000, 1_000_000], // $0.10 $0.40
+  'gemini/2.0-pro': [1_000_000, 1_000_000],
   'gemini/1.5-flash': [128_000,128_000], // $0.075 $0.30
   'gemini/1.5-pro': [128_000,128_000], // $1.25 $5.00
 

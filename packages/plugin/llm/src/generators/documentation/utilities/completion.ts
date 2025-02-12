@@ -25,7 +25,7 @@ export async function completion(
 
   const { model = 'openai/gpt-4o-mini', maxTokens = tokenLimits[model][1] } = options;
 
-  assertTokenLimit(model, systemPrompt, prompt);
+  const count = assertTokenLimit(model, systemPrompt, prompt);
 
   const input: ChatCompletionCreateParamsNonStreaming = {
     model,
@@ -48,6 +48,7 @@ export async function completion(
     input.max_tokens = maxTokens;
   }
 
+  console.log('TOKENS'.grey + ' ' + count);
   const response = await new OpenAI({
     apiKey: options.apiKey,
     project: options.projectId,

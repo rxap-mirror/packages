@@ -1,5 +1,6 @@
 import { SourceFile } from 'ts-morph';
 import { Builder } from 'xml2js';
+import { clearAllJsDocs } from './clear-all-js-docs';
 
 interface ContextSourceFile {
   $: {
@@ -22,7 +23,7 @@ function sourceFileToContextSourceFile(sourceFile: SourceFile): ContextSourceFil
     $: {
       path: sourceFile.getFilePath(),
     },
-    _: '\n' + sourceFile.getText({ trimLeadingIndentation: true, includeJsDocComments: false })
+    _: '\n' + clearAllJsDocs(sourceFile).getFullText()
   };
 }
 

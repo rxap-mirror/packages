@@ -13,6 +13,8 @@ import {
 } from 'ts-morph';
 import { DocumentationGeneratorSchema } from './schema';
 import { addJsDoc } from './utilities/add-js-doc';
+import { cleanupJsDoc } from './utilities/cleanup-js-doc';
+import { clearAllJsDocs } from './utilities/clear-all-js-docs';
 import { clearJsDoc } from './utilities/clear-js-doc';
 import {
   completion,
@@ -42,7 +44,7 @@ async function generateTsDoc({  context, target, question, node, systemPrompt, o
     // console.log(jsDoc.grey);
 
     clearJsDoc(node);
-    addJsDoc(node, jsDoc);
+    addJsDoc(node, cleanupJsDoc(jsDoc));
 
   } catch (e: any) {
     console.log(`${e.message}`.red, e.stack);
@@ -75,14 +77,24 @@ export async function documentationGenerator(
   const operation: AsyncTsMorphTransformCallback = async (project: Project) => {
     const failed: string[] = [];
     for (const sourceFile of project.getSourceFiles()) {
+      if (sourceFile.getFilePath().match(/\.(spec|cy|stories|d|test)\.ts$/)) {
+        continue;
+      }
+
+      console.log(`PROCESS`.grey + ' ' + `${sourceFile.getFilePath()}`.cyan);
 
       const context = composeContext(sourceFile);
 
+      // console.log('CONTEXT'.bgGreen + '\n' + `${context}`.grey);
+
       let target = `<sourceFile path="${ sourceFile.getFilePath() }">\n`;
-      target += sourceFile.getText({ trimLeadingIndentation: true, includeJsDocComments: false });
+      target += clearAllJsDocs(sourceFile).getFullText();
       target += '</sourceFile>\n';
 
+      // console.log('TARGET'.bgGreen + '\n' + `${target}`.grey);
+
       for (const functionDeclaration of sourceFile.getFunctions()) {
+        console.log(`PROCESS`.grey + ' ' + `function ${functionDeclaration.getName()}`.green);
         const question = `TASK: create the TSDoc documentation for the function \`${functionDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
         const success = await generateTsDoc({
           systemPrompt,
@@ -98,8 +110,8 @@ export async function documentationGenerator(
       }
 
       for (const interfaceDeclaration of sourceFile.getInterfaces()) {
-
-        const question = `TASK: create the TSDoc documentation for the interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
+        console.log(`PROCESS`.grey + ' ' + `interface ${interfaceDeclaration.getName()}`.green);
+        let question = `TASK: create the TSDoc documentation for the interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
         const success = await generateTsDoc({
           systemPrompt,
           question,
@@ -113,10 +125,46 @@ export async function documentationGenerator(
           failed.push(`${sourceFile.getFilePath()}#interface:${interfaceDeclaration.getName()}`);
         }
 
+        for (const method of interfaceDeclaration.getMethods()) {
+          console.log(`PROCESS`.grey + ' ' + `method ${interfaceDeclaration.getName()}::${method.getName()}`.green);
+          question = `TASK: create the TSDoc documentation for the method \`${method.getName()}\` of interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
+
+          const success = await generateTsDoc({
+            systemPrompt,
+            question,
+            target,
+            context,
+            node: method,
+            options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
+          });
+          if (!success) {
+            failed.push(`${sourceFile.getFilePath()}#method:${interfaceDeclaration.getName()}::${method.getName()}`);
+          }
+
+        }
+
+        for (const property of interfaceDeclaration.getProperties()) {
+          console.log(`PROCESS`.grey + ' ' + `interface ${interfaceDeclaration.getName()}::${property.getName()}`.green);
+          question = `TASK: create the TSDoc documentation for the method \`${property.getName()}\` of interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
+
+          const success = await generateTsDoc({
+            systemPrompt,
+            question,
+            target,
+            context,
+            node: property,
+            options: { model: model as Model, apiKey, orgId, projectId, baseUrl },
+          });
+          if (!success) {
+            failed.push(`${sourceFile.getFilePath()}#method:${interfaceDeclaration.getName()}::${property.getName()}`);
+          }
+
+        }
+
       }
 
       for (const typeDeclaration of sourceFile.getTypeAliases()) {
-
+        console.log(`PROCESS`.grey + ' ' + `type ${typeDeclaration.getName()}`.green);
         const question = `TASK: create the TSDoc documentation for the type \`${typeDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
         const success = await generateTsDoc({
           systemPrompt,
@@ -134,6 +182,7 @@ export async function documentationGenerator(
       }
 
       for (const classDeclaration of sourceFile.getClasses()) {
+        console.log(`PROCESS`.grey + ' ' + `class ${classDeclaration.getName()}`.green);
         let question = `TASK: create the TSDoc documentation for the class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
 
         const success = await generateTsDoc({
@@ -149,6 +198,7 @@ export async function documentationGenerator(
         }
 
         for (const method of classDeclaration.getMethods().filter(method => !method.getScope() || method.getScope() === Scope.Public)) {
+          console.log(`PROCESS`.grey + ' ' + `method ${classDeclaration.getName()}::${method.getName()}`.green);
           question = `TASK: create the TSDoc documentation for the method \`${method.getName()}\` of class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
 
           const success = await generateTsDoc({
@@ -166,6 +216,7 @@ export async function documentationGenerator(
         }
 
         for (const property of classDeclaration.getProperties().filter(property => !property.getScope() || property.getScope() === Scope.Public)) {
+          console.log(`PROCESS`.grey + ' ' + `method ${classDeclaration.getName()}::${property.getName()}`.green);
           question = `TASK: create the TSDoc documentation for the property \`${property.getName()}\` of class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
 
           const success = await generateTsDoc({

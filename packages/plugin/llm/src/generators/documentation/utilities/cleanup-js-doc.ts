@@ -1,17 +1,31 @@
 export function cleanupJsDoc(jsDoc: string) {
 
+  if (!(
+    jsDoc.includes('/**') || jsDoc.includes('*/')
+  )) {
+    return jsDoc;
+  }
+
   const cleanJsDocArray = jsDoc
     .split('\n')
     .map(line => line
       .trim()
       .replace(/^\/\*\*/, '')
-      .replace(/^\s?\*\//, '')
-      .replace(/^\s?\*\s?/, '')
-      .replace(/^\s?\*\s```typescript/, ' *')
-      .trim(),
+      .replace(/^\*\//, '')
+      .replace(/^\*\s/, '')
+      .replace(/^\*$/, ''),
     );
 
-  cleanJsDocArray.pop();
+  // cleanJsDocArray.pop();
+  // cleanJsDocArray.shift();
+
+  if (cleanJsDocArray[0].trim() === '') {
+    cleanJsDocArray.shift();
+  }
+
+  if (cleanJsDocArray[cleanJsDocArray.length - 1].trim() === '') {
+    cleanJsDocArray.pop();
+  }
 
   return cleanJsDocArray.join('\n');
 
