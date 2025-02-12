@@ -9941,7 +9941,13 @@ __metadata:
   resolution: "@rxap/plugin-llm@workspace:packages/plugin/llm"
   dependencies:
     "@nx/devkit": 20.4.2
+    "@rxap/workspace-ts-morph": 19.1.9-dev.12
+    colors: 1.4.0
+    openai: ^4.82.0
+    tiktoken: ^1.0.20
+    ts-morph: 18.0.0
     tslib: ^2.3.0
+    xml2js: ^0.6.2
   languageName: unknown
   linkType: soft
 
@@ -10650,7 +10656,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/workspace-ts-morph@^19.1.9-dev.12, @rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph":
+"@rxap/workspace-ts-morph@19.1.9-dev.12, @rxap/workspace-ts-morph@^19.1.9-dev.12, @rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-ts-morph@workspace:packages/workspace/ts-morph"
   dependencies:
