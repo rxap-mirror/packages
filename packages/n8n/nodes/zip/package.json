@@ -1,5 +1,5 @@
 {
-  "version": "0.0.4-dev.5",
+  "version": "0.0.4",
   "name": "@rxap/n8n-nodes-zip",
   "description": "This n8n node package provides functionality to interact with zip files, specifically to extract them. It allows users to extract zip files from a binary property and make the extracted files available as binary data in subsequent nodes.\n",
   "license": "GPL-3.0-or-later",

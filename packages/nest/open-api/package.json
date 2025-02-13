@@ -1,5 +1,5 @@
 {
-  "version": "10.5.3-dev.5",
+  "version": "10.5.3",
   "name": "@rxap/nest-open-api",
   "description": "This package provides tools and utilities for integrating OpenAPI specifications into NestJS applications. It includes features for handling upstream API requests, managing server configurations, and generating OpenAPI documentation. It also offers interceptors and exception filters for enhanced request handling and validation.\n",
   "license": "GPL-3.0-or-later",
@@ -14,9 +14,9 @@
     "@nestjs/core": "^10.3.8",
     "@nestjs/swagger": "^7.3.1",
     "@nestjs/terminus": "^10.2.3",
-    "@rxap/nest-utilities": "^10.4.0-dev.4",
-    "@rxap/node-utilities": "^1.3.8-dev.5",
-    "@rxap/utilities": "^16.4.2-dev.4",
+    "@rxap/nest-utilities": "^10.4.0",
+    "@rxap/node-utilities": "^1.3.8",
+    "@rxap/utilities": "^16.4.2",
     "@sentry/core": "^8.18.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
@@ -101,15 +101,15 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.4.0-dev.4"
+        "version": "10.4.0"
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.3.8-dev.5"
+        "version": "1.3.8"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.2-dev.4"
+        "version": "16.4.2"
       },
       {
         "package": "@sentry/core",

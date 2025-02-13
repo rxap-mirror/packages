@@ -1,5 +1,5 @@
 {
-  "version": "1.0.11-dev.5",
+  "version": "1.0.11",
   "name": "@rxap/node-local-storage",
   "description": "Provides a simple local storage implementation for Node.js environments, persisting data to a specified directory. It implements the standard `Storage` interface, allowing for easy data storage and retrieval. This package is useful for applications that need a persistent storage mechanism without relying on a database.\n",
   "license": "GPL-3.0-or-later",

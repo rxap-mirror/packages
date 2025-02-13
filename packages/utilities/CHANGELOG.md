@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.4.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.4.2-dev.4...@rxap/utilities@16.4.2) (2025-02-13)
+
+**Note:** Version bump only for package @rxap/utilities
+
 ## [16.4.2-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.4.2-dev.3...@rxap/utilities@16.4.2-dev.4) (2025-02-10)
 
 **Note:** Version bump only for package @rxap/utilities
