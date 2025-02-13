@@ -50,7 +50,7 @@ export async function microserviceGenerator(
     generateMain: true,
     ...options,
     project: projectName,
-  });
+  } as any);
 
   console.log(`run the application init generator: nx g @rxap/plugin-application:init --project ${ projectName }`);
 

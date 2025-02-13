@@ -27,6 +27,9 @@
     "repositoryUrl": {
       "type": "string",
       "description": "The URL of the repository"
+    },
+    "skipInstall": {
+      "type": "boolean"
     }
   },
   "required": []

@@ -1,6 +1,7 @@
 export interface IndexExportGeneratorSchema {
+  projects?: Array<string>;
   project?: string;
-  projects?: string[];
+  /** Generate index.ts in the source root of the project */
   generateRootExport?: boolean;
-  additionalEntryPoints?: string[];
+  additionalEntryPoints?: Array<string>;
 }

@@ -20,7 +20,7 @@ export async function presetGenerator(
   await WorkspaceInitGenerator(tree, {
     packages,
     standalone,
-    license,
+    license: license as any,
     repositoryUrl,
     overwrite: true,
   });

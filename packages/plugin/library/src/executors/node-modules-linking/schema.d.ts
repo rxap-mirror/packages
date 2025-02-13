@@ -1,1 +1,3 @@
-export interface NodeModulesLinkingExecutorSchema {} // eslint-disable-line
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface NodeModulesLinkingExecutorSchema {
+}

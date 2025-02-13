@@ -34,7 +34,7 @@ export async function initApplicationGenerator(
 
     for (const [ projectName, project ] of getProjects(tree).entries()) {
 
-      if (skipProject(tree, options, project, projectName)) {
+      if (skipProject(tree, options as any, project, projectName)) {
         continue;
       }
 

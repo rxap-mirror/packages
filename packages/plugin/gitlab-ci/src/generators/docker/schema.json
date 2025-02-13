@@ -38,6 +38,9 @@
     },
     "skipE2eService": {
       "type": "boolean"
+    },
+    "project": {
+      "type": "string"
     }
   },
   "required": []

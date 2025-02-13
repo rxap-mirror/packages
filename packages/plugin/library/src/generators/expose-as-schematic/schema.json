@@ -5,11 +5,13 @@
   "type": "object",
   "properties": {
     "projects": {
-      "alias": "project",
       "type": "array",
       "items": {
         "type": "string"
       }
+    },
+    "project": {
+      "type": "string"
     }
   },
   "required": []

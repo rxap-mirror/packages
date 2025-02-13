@@ -670,12 +670,6 @@ export async function fixDependenciesGenerator(
 ) {
   console.log('Fix dependencies');
 
-  if (!options.verbose) {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    console.debug = () => {
-    };
-  }
-
   if (options.reset || options.resetAll) {
     console.log('Reset dependencies');
     for (const [ projectName, project ] of getProjects(tree).entries()) {

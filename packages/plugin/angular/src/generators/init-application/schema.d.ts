@@ -1,36 +1,57 @@
-import { Schema as AngularApplicationGeneratorSchema } from '@nx/angular/src/generators/application/schema';
-import { Schema as AngularHostGeneratorSchema } from '@nx/angular/src/generators/host/schema';
-import { Schema as AngularRemoteGeneratorSchema } from '@nx/angular/src/generators/remote/schema';
+export enum InitApplicationModuleFederationGeneratorSchemaEnum {
+  HOST = 'host',
+  REMOTE = 'remote'
+}
 
 export interface InitApplicationGeneratorSchema {
-  sentry?: boolean;
-  openApi?: boolean;
-  config?: boolean;
   project?: string;
-  projects?: string[];
-  localazy?: boolean;
-  i18n?: boolean;
-  serviceWorker?: boolean;
-  languages?: string[];
-  material?: boolean;
-  generateMain?: boolean;
-  overwrite?: boolean;
-  cleanup?: boolean;
-  monolithic?: boolean;
-  openApiLegacy?: boolean;
-  localazyReadKey?: string;
-  authentik?: boolean;
-  oauth?: boolean;
-  skipProjects?: boolean;
-  authentication?: boolean | 'oauth2-proxy';
-  deploy?: 'web3-storage';
-  moduleFederation?: 'host' | 'remote';
-  host?: string;
-  coerce?: boolean | Omit<AngularHostGeneratorSchema | AngularRemoteGeneratorSchema | AngularApplicationGeneratorSchema, 'name'>;
-  layoutRoutePath?: string;
-  standaloneImport?: boolean;
-  skipFormat?: boolean;
-  skipDocker?: boolean;
+  projects?: Array<string>;
+  /** Whether to enable incremental build */
   incrementalBuild?: boolean;
+  moduleFederation?: InitApplicationModuleFederationGeneratorSchemaEnum;
+  /** Route path for layout children */
+  layoutRoutePath?: string;
+  /** Whether to import the mfe remote as a standalone import */
+  standaloneImport?: boolean;
+  /** Whether to skip the docker configuration */
+  skipDocker?: boolean;
+  /** Host project for module federation */
+  host?: string;
+  /** Add target to deploy to after build */
+  deploy?: 'web3-storage';
+  sentry?: boolean;
   apiStatusCheck?: boolean;
+  authentication?: 'oauth2-proxy' | boolean;
+  /** Whether to enable OpenAPI */
+  openApi?: boolean;
+  openApiLegacy?: boolean;
+  /** Whether to enable configuration */
+  config?: boolean;
+  /** Whether to enable Localazy */
+  localazy?: boolean;
+  /** Whether to enable i18n */
+  i18n?: boolean;
+  /** Whether to enable service worker */
+  serviceWorker?: boolean;
+  languages?: Array<string>;
+  /** Whether to enable Angular Material */
+  material?: boolean;
+  /** Whether to generate the main file */
+  generateMain?: boolean;
+  /** Whether to overwrite existing files */
+  overwrite?: boolean;
+  /** Whether to cleanup files */
+  cleanup?: boolean;
+  /** Whether to generate a monolithic application */
+  monolithic?: boolean;
+  /** Localazy read key */
+  localazyReadKey?: string;
+  /** Use authentik for authentication */
+  authentik?: boolean;
+  /** Use OAuth for authentication */
+  oauth?: boolean;
+  /** Whether to skip executing project specific initialization */
+  skipProjects?: boolean;
+  skipFormat?: boolean;
+  coerce?: boolean | any;
 }

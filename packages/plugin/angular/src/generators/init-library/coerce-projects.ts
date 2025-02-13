@@ -60,7 +60,7 @@ export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSc
       let directory = projectName;
       let customOptions: Partial<AngularLibraryGeneratorSchema> = {};
       if (typeof options.coerce === 'object') {
-        customOptions = options.coerce;
+        customOptions = options.coerce as any;
         if (options.coerce.directory) {
           if (options.projects?.length === 1) {
             directory = options.coerce.directory;

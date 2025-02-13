@@ -61,7 +61,7 @@ export async function initFeatureGenerator(
         itemList: [{
           routerLink: [ '/', options.name ],
           label: options.navigation.label,
-          icon: options.navigation.icon
+          icon: options.navigation.icon as any
         }],
         overwrite: options.overwrite,
       });

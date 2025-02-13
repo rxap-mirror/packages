@@ -1,11 +1,24 @@
+export enum InitLicenseGeneratorSchemaEnum {
+  NONE = 'none',
+  MIT = 'mit',
+  GPL = 'gpl'
+}
+
 export interface InitGeneratorSchema {
-  packages: boolean;
-  overwrite?: boolean;
-  skipProjects?: boolean;
-  standalone?: boolean;
-  skipLicense?: boolean;
-  repositoryUrl?: string;
-  license?: 'mit' | 'gpl' | 'none';
-  skipFormat?: boolean;
+  /** If true, the workspace will be initialized for package development */
+  packages?: boolean;
+  /** If true, the workspace will be initialized for full stack application development */
   fullStack?: boolean;
+  /** If true, the workspace will be initialized for standalone development */
+  standalone?: boolean;
+  /** Whether to overwrite existing files */
+  overwrite?: boolean;
+  skipFormat?: boolean;
+  /** Whether to skip executing project specific initialization */
+  skipProjects?: boolean;
+  /** Whether to skip adding a license file */
+  skipLicense?: boolean;
+  license?: InitLicenseGeneratorSchemaEnum;
+  /** The URL of the repository */
+  repositoryUrl?: string;
 }

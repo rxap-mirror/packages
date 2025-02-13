@@ -1,4 +1,5 @@
 export interface ValidatorGeneratorSchema {
-  overwrite?: boolean;
+  /** The name of the project. */
   project: string;
+  overwrite?: boolean;
 }

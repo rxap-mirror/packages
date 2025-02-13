@@ -38,17 +38,27 @@ function isExecutor(path: string): boolean {
 function getSuffix(path: string): string | undefined {
   let suffix: string | undefined = undefined;
   if (isExecutor(path)) {
-    suffix = 'ExecutorSchema';
+    suffix = 'Executor';
   }
   if (isGenerator(path)) {
-    suffix = 'GeneratorSchema';
+    suffix = 'Generator';
   }
   return suffix;
 }
 
 async function generateSchema(schema: JSONSchema, suffix?: string): Promise<string> {
+  let name = camelize(schema.$id || schema.title || 'schema');
+  if (suffix) {
+    if (name.endsWith(suffix)) {
+      name = name.replace(new RegExp(`${suffix}$`), '');
+    }
+    if (name === 'schema') {
+      suffix = undefined;
+    } else {
+      suffix = [suffix, 'Schema'].join('');
+    }
+  }
   const generator = new TypescriptInterfaceGenerator(schema, { suffix });
-  const name = camelize(schema.$id || schema.title || 'schema');
   const sourceFile = await generator.build(name);
   return sourceFile.getFullText();
 }

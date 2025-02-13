@@ -1,3 +1,4 @@
 export interface GenerateSchemaExecutorSchema {
-  excludes: string[];
-} // eslint-disable-line
+  /** A list of glob patterns relative to the project that should be excluded */
+  excludes?: Array<string>;
+}

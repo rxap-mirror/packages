@@ -30,6 +30,9 @@
       "description": "Do not perform the actual operation, only simulate the process. No files are uploaded nor written.",
       "default": false
     },
+    "version": {
+      "type": "string"
+    },
     "quite": {
       "type": "boolean",
       "description": "Quiet mode. Print only important information.",

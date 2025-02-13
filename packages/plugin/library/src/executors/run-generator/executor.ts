@@ -73,7 +73,7 @@ export async function runExecutor(options: RunGeneratorExecutorSchema, context: 
   let command = `nx g ${ options.generator }`;
 
   if (IsRxapRepository(context.root)) {
-    if (options.generator.match(/@rxap\/schematic/)) {
+    if (options.generator?.match(/@rxap\/schematic/)) {
       command = `yarn schematic ${ options.generator }`;
     }
   }

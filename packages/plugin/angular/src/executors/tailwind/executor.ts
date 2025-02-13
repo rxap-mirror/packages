@@ -10,11 +10,19 @@ export default async function runExecutor(options: TailwindExecutorSchema, conte
 
   const projectRoot = GetProjectRoot(context);
 
-  const args: Record<string, string | boolean | number> = {
-    '--config': join(projectRoot, options.config),
-    '--input': join(projectRoot, options.input),
-    '--output': join(projectRoot, options.output),
-  };
+  const args: Record<string, string | boolean | number> = {};
+
+  if (options.input) {
+    args['--input'] = join(projectRoot, options.input);
+  }
+
+  if (options.output) {
+    args['--output'] = join(projectRoot, options.output);
+  }
+
+  if (options.config) {
+    args['--config'] = join(projectRoot, options.config);
+  }
 
   if (options.minify) {
     args['--minify'] = true;

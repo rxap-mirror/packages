@@ -5,7 +5,6 @@
   "type": "object",
   "properties": {
     "projects": {
-      "alias": "project",
       "type": "array",
       "items": {
         "type": "string"
@@ -30,6 +29,9 @@
       "type": "boolean",
       "default": false,
       "description": "reorder all target properties to be in alphabetic order"
+    },
+    "project": {
+      "type": "string"
     }
   },
   "required": []

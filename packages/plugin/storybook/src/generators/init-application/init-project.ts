@@ -8,6 +8,6 @@ import { InitApplicationGeneratorSchema } from './schema';
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
   console.log(`init storybook application project: ${ projectName }`);
 
-  await libraryInitProject(tree, projectName, project, options);
+  await libraryInitProject(tree, projectName, project, options as any);
 
 }

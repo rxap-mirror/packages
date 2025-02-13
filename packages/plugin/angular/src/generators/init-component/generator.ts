@@ -24,7 +24,11 @@ import {
   join,
   relative,
 } from 'path';
-import { InitComponentGeneratorSchema } from './schema';
+import {
+  InitComponentChangeDetectionGeneratorSchemaEnum,
+  InitComponentGeneratorSchema,
+  InitComponentStyleGeneratorSchemaEnum,
+} from './schema';
 import 'colors';
 
 function buildComponentDirectory(tree: Tree, options: InitComponentGeneratorSchema) {
@@ -82,7 +86,7 @@ export async function initComponentGenerator(
   componentOptions.displayBlock ??= false;
   componentOptions.inlineStyle ??= false;
   componentOptions.standalone ??= true;
-  componentOptions.changeDetection ??= 'OnPush';
+  componentOptions.changeDetection ??= InitComponentChangeDetectionGeneratorSchemaEnum.ON_PUSH;
   componentOptions.skipTests ??= false;
   componentOptions.flat ??= false;
   componentOptions.skipImport ??= false;
@@ -90,7 +94,7 @@ export async function initComponentGenerator(
   componentOptions.type ??= 'component';
   componentOptions.export ??= false;
   componentOptions.skipFormat ??= false;
-  componentOptions.style ??= 'scss';
+  componentOptions.style ??= InitComponentStyleGeneratorSchemaEnum.SCSS;
 
   const componentName = classify(componentOptions.name) + 'Component';
   const componentFileName = dasherize(componentOptions.name) + '.component';

@@ -63,7 +63,10 @@ import { getPort } from './get-port';
 import { initE2eProject } from './init-e2e-project';
 import { removeAppControllerSpecFile } from './remove-app-controller-spec-file';
 import { removeAppServiceFile } from './remove-app-service-file';
-import { InitApplicationGeneratorSchema } from './schema';
+import {
+  InitApplicationGeneratorSchema,
+  InitApplicationPlatformGeneratorSchemaEnum,
+} from './schema';
 import 'colors';
 import { updateTargetDefaults } from './update-target-defaults';
 import { updateApiConfigurationFile } from './update-api-configuration-file';
@@ -104,7 +107,7 @@ export async function initApplicationGenerator(
   options.sentry ??= true;
   options.swagger ??= true;
   options.healthIndicator ??= true;
-  options.platform ??= 'express';
+  options.platform ??= InitApplicationPlatformGeneratorSchemaEnum.EXPRESS;
   options.validator ??= true;
   options.healthIndicatorList ??= [];
   options.port ??= undefined;
@@ -243,7 +246,10 @@ export async function initApplicationGenerator(
 
       const port = getPort(tree, options, projectSourceRoot);
       console.log(`Using port '${port}'`);
-      const globalApiPrefix = GetNestApiPrefix(tree, options, projectSourceRoot, projectName);
+      let globalApiPrefix = GetNestApiPrefix(tree, options, projectSourceRoot, projectName);
+      if (typeof globalApiPrefix !== 'string') {
+        globalApiPrefix = '';
+      }
       console.log(`Using api prefix '${globalApiPrefix}'`);
 
       ApplicationInitProject(tree, projectName, project, options);

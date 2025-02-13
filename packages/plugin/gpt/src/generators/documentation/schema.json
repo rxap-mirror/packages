@@ -12,6 +12,9 @@
         "type": "string"
       }
     },
+    "project": {
+      "type": "string"
+    },
     "offline": {
       "type": "boolean",
       "description": "If true, the openai api is not used"

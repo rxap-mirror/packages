@@ -1,7 +1,7 @@
 export interface I18nExecutorSchema {
+  availableLanguages?: Array<string>;
   defaultLanguage?: string;
-  availableLanguages?: string[];
   indexHtmlTemplate?: string;
-  assets?: Array<string | { glob: string, input: string, output: string }> | boolean;
   buildTarget?: string;
+  assets?: Array<string> | boolean;
 }

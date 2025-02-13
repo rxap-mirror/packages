@@ -1,8 +1,12 @@
 export interface InitGeneratorSchema {
-  projects?: string[];
+  projects?: Array<string>;
+  /** Whether to overwrite existing files */
   overwrite?: boolean;
-  skipProjects?: boolean;
   skipFormat?: boolean;
+  /** Whether to skip executing project specific initialization */
+  skipProjects?: boolean;
+  /** The prefix for the angular components */
   prefix?: string;
+  /** Whether to add shared libraries */
   withSharedLibraries?: boolean;
 }

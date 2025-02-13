@@ -1,15 +1,17 @@
 export interface InitGeneratorSchema {
   project?: string;
-  projects?: string[];
-  overwrite?: boolean;
-  skipProjects?: boolean;
-  /**
-   * @deprecated use `targets.indexExport` instead
-   */
-  indexExport?: boolean;
+  projects?: Array<string>;
   skipFormat?: boolean;
+  /** Whether to overwrite existing files */
+  overwrite?: boolean;
+  /** Whether to skip executing project specific initialization */
+  skipProjects?: boolean;
+  /** Whether to add the index-export target to the library */
+  indexExport?: boolean;
   targets?: {
-    fixDependencies?: boolean;
-    indexExport?: boolean;
-  }
+      /** If set to false the target fix-dependencies will not be added to the project */
+      fixDependencies?: boolean;
+      /** If set to false the target index-export will not be added to the project */
+      indexExport?: boolean;
+    };
 }

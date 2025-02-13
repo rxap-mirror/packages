@@ -1,10 +1,13 @@
 export interface InitPublishableGeneratorSchema {
   project?: string;
-  projects?: string[];
-  overwrite?: boolean;
-  skipProjects?: boolean;
+  projects?: Array<string>;
   skipFormat?: boolean;
+  /** Whether to overwrite existing files */
+  overwrite?: boolean;
+  /** Whether to skip executing project specific initialization */
+  skipProjects?: boolean;
   targets?: {
-    fixDependencies?: boolean;
-  }
+      /** If set to false the target fix-dependencies will not be added to the project */
+      fixDependencies?: boolean;
+    };
 }

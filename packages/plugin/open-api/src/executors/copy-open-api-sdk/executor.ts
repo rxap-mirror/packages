@@ -98,7 +98,7 @@ export default async function runExecutor(
     }
   }
 
-  if (options.nestJs) {
+  if (options.nestjs) {
     for (const folderName of NEST_JS_SOURCE_FILE_FOLDER) {
       copyFolder(options, context, folderName);
     }

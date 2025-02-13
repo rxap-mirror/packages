@@ -1,12 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DockerGeneratorSchema {
-  overwrite?: boolean;
-  project?: string;
+  /** Generate docker startup test with pull target to GCP registry */
   gcp?: boolean;
+  /** Generate docker startup test with pull target to gitlab registry */
   gitlab?: boolean;
-  tags?: string[];
+  /** Overwrite existing files */
+  overwrite?: boolean;
   skipFormat?: boolean;
-  components: boolean;
+  /** If true, the gitlab ci will be initialized with components */
+  components?: boolean;
+  tags?: Array<string>;
   skipStartup?: boolean;
   skipE2eService?: boolean;
+  project?: string;
 }

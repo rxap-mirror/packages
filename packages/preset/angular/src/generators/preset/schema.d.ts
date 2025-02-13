@@ -1,8 +1,18 @@
+export enum PresetLicenseGeneratorSchemaEnum {
+  NONE = 'none',
+  MIT = 'mit',
+  GPL = 'gpl'
+}
+
 export interface PresetGeneratorSchema {
-  packages: boolean;
+  /** If true, the workspace will be initialized for package development */
+  packages?: boolean;
+  /** If true, the workspace will be initialized for standalone development */
   standalone?: boolean;
+  license?: PresetLicenseGeneratorSchemaEnum;
+  /** The URL of the repository */
   repositoryUrl?: string;
-  license?: 'mit' | 'gpl' | 'none';
+  /** The prefix for the angular components */
   prefix?: string;
   skipInstall?: boolean;
 }

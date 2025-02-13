@@ -1,4 +1,4 @@
 export interface ExposeAsSchematicGeneratorSchema {
-  projects?: string[];
+  projects?: Array<string>;
   project?: string;
 }

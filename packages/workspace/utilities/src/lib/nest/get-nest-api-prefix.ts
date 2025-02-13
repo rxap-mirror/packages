@@ -5,7 +5,7 @@ import {
 } from '../tree';
 
 export interface GetNestApiPrefixOptions {
-  apiPrefix?: string | false;
+  apiPrefix?: string | boolean;
   projects?: string[];
 }
 

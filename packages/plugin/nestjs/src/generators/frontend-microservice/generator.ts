@@ -24,7 +24,7 @@ export async function frontendMicroserviceGenerator(
     ...options,
     name: [ 'service', 'app', frontendName, options.feature ].join('-'),
     directory: [ 'service', 'app', frontendName, options.feature ].join('/'),
-  });
+  } as any);
 
 }
 

@@ -22,7 +22,7 @@ export function GetProjectTarget(context: ExecutorContext, projectName = context
 
 export function GetProjectTargetOptions<T = Record<string, unknown>>(
   context: ExecutorContext,
-  projectName = context.projectName,
+  projectName: string | undefined = context.projectName,
   targetName: string,
   configurationName = context.configurationName,
 ): T {

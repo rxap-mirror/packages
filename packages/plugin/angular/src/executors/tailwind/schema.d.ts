@@ -1,6 +1,6 @@
 export interface TailwindExecutorSchema {
+  config?: string;
+  input?: string;
+  output?: string;
   minify?: boolean;
-  config: string;
-  input: string;
-  output: string;
 }

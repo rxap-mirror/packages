@@ -132,7 +132,7 @@ export function buildDockerMatrix(
         GetProjectSourceRoot(project),
         matrixItem.PROJECT_NAME,
       );
-      if (nestApiPrefix) {
+      if (nestApiPrefix && typeof nestApiPrefix === 'string') {
         matrixItem.PATH_PREFIX = CoercePrefix(nestApiPrefix, '/');
       }
     }

@@ -42,7 +42,10 @@ import { CoerceProjects } from './coerce-project';
 import { generateAuthentication } from './generate-authentication';
 import { generateMonolithic } from './generate-monolithic';
 import { linkMfeRemoteWithHost } from './link-mfe-remote-with-host';
-import { InitApplicationGeneratorSchema } from './schema';
+import {
+  InitApplicationGeneratorSchema,
+  InitApplicationModuleFederationGeneratorSchemaEnum,
+} from './schema';
 import { updateGitIgnore } from './update-git-ignore';
 import { updateMainFile } from './update-main-file';
 import { updateProjectTargets } from './update-project-targets';
@@ -86,7 +89,7 @@ export async function initApplicationGenerator(
     CoerceArrayItems(options.projects, [options.project]);
   }
   if (options.host) {
-    options.moduleFederation = 'remote';
+    options.moduleFederation = InitApplicationModuleFederationGeneratorSchemaEnum.REMOTE;
   }
   if (options.moduleFederation === 'remote') {
     options.authentication = false;

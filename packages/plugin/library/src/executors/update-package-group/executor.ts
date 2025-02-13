@@ -195,7 +195,7 @@ export default async function runExecutor(
     return { success: false };
   }
 
-  const packageGroupRegex = options.packageGroupRegex.map(regex => new RegExp(regex));
+  const packageGroupRegex = options.packageGroupRegex?.map(regex => new RegExp(regex)) ?? [];
 
   console.log(`Update package group for project ${ context.projectName } with the following package group regex:`, packageGroupRegex.map(regex => regex.toString()));
 

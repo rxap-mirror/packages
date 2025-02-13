@@ -24,10 +24,13 @@ import { coercePrettierConfig } from './coerce-prettier-config';
 import { coerceRootPackageJsonScripts } from './coerce-root-package-json-scripts';
 import { coerceToolsProject } from './coerce-tools-project';
 import { coerceWorkspaceProject } from './coerce-workspace-project';
-import { InitGeneratorSchema } from './schema';
+import {
+  InitGeneratorSchema,
+  InitLicenseGeneratorSchemaEnum,
+} from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
-  options.license ??= !options.skipLicense ? 'gpl' : undefined;
+  options.license ??= !options.skipLicense ? InitLicenseGeneratorSchemaEnum.GPL : undefined;
   if (options.license === 'none') {
     options.skipLicense = true;
   }

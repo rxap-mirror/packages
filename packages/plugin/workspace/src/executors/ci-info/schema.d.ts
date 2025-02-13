@@ -1,5 +1,5 @@
 export interface CiInfoExecutorSchema {
-  builder?: string;
+  branch?: string;
   tag?: string;
   release?: string;
   commit?: string;

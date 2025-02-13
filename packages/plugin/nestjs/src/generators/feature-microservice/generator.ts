@@ -22,7 +22,7 @@ export async function featureMicroserviceGenerator(
     ...options,
     name: [ 'service', 'feature', options.feature ].join('-'),
     directory: [ 'service', 'feature', options.feature ].join('/'),
-  });
+  } as any);
 
 }
 

@@ -14,6 +14,9 @@
       "description": "If true, the workspace will be initialized for standalone development",
       "x-prompt": "Is this a standalone workspace?"
     },
+    "skipInstall": {
+      "type": "boolean"
+    },
     "license": {
       "type": "string",
       "default": "gpl",

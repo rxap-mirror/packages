@@ -1,15 +1,34 @@
+export enum InitComponentsSourceGeneratorSchemaEnum {
+  COMPONENT = 'component',
+  LOCAL = 'local'
+}
+
+export enum InitReleaseGeneratorSchemaEnum {
+  NONE = 'none',
+  RELEASE_IT = 'release-it',
+  SCHEMATIC_RELEASE = 'schematic-release'
+}
+
 export interface InitGeneratorSchema {
   project?: string;
-  projects?: string[];
-  overwrite?: boolean;
-  dte?: boolean;
-  skipFormat?: boolean;
-  onlyPackages?: boolean;
-  angular?: boolean;
-  nest?: boolean;
-  release?: 'none' | 'release-it' | 'semantic-release';
+  projects?: Array<string>;
+  /** If true, the gitlab ci will be initialized with components */
+  components?: boolean;
+  componentsSource?: InitComponentsSourceGeneratorSchemaEnum;
+  release?: InitReleaseGeneratorSchemaEnum;
+  /** The name of the helm chart project path with namespace where the app version should be automatically updated */
   helmChart?: string;
-  components: boolean;
-  parallel: number;
-  componentsSource?: 'component' | 'local';
+  skipFormat?: boolean;
+  /** Whether to overwrite existing files */
+  overwrite?: boolean;
+  /** If true, the gitlab ci will be initialized exclusively for package development */
+  onlyPackages?: boolean;
+  /** If true, the gitlab ci will be initialized with dte execution for the targets */
+  dte?: boolean;
+  /** The number of parallel agents started for the nx workspace run tasks to run in the pipeline */
+  parallel?: number;
+  /** If true, the gitlab ci will be initialized for a workspace with angular projects */
+  angular?: boolean;
+  /** If true, the gitlab ci will be initialized for a workspace with nest projects */
+  nest?: boolean;
 }

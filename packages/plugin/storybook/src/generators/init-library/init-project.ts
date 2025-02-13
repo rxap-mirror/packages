@@ -17,7 +17,7 @@ import { InitLibraryGeneratorSchema } from './schema';
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
   console.log(`init storybook library project: ${ projectName }`);
 
-  await coerceStorybook(tree, projectName, project, options);
+  await coerceStorybook(tree, projectName, project, options as any);
 
   const projectRoot = GetProjectRoot(tree, projectName);
   CoerceFilesStructure(tree, {

@@ -13,7 +13,10 @@ import {
   CoerceRules,
   RuleWhen,
 } from './coerce-rule';
-import { InitGeneratorSchema } from './schema';
+import {
+  InitGeneratorSchema,
+  InitReleaseGeneratorSchemaEnum,
+} from './schema';
 
 export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema) {
   CoerceFilesStructure(tree, {
@@ -58,7 +61,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
     });
   }
 
-  if (options.release === 'release-it') {
+  if (options.release === InitReleaseGeneratorSchemaEnum.RELEASE_IT) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'release-it'),
       target: '',
@@ -66,7 +69,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
     });
   }
 
-  if (options.release === 'semantic-release') {
+  if (options.release === InitReleaseGeneratorSchemaEnum.SCHEMATIC_RELEASE) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'semantic-release'),
       target: '',
@@ -139,14 +142,14 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
     ]});
   }
 
-  if (options.release === 'release-it') {
+  if (options.release === InitReleaseGeneratorSchemaEnum.RELEASE_IT) {
     CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/pipelines/release-it.yaml' });
     CoerceInclude(gitlabCi.include, { local: '.gitlab/ci/pipelines/build.yaml', rules: [
       { if: '$RELEASE_IT == \'true\'', when: RuleWhen.NEVER }
     ]});
   }
 
-  if (options.release === 'semantic-release') {
+  if (options.release === InitReleaseGeneratorSchemaEnum.SCHEMATIC_RELEASE) {
     if (options.angular) {
       buildYamlChanged = true;
       CoerceRules(buildYaml.workflow.rules, [
