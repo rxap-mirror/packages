@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.1.0-dev.2...@rxap/json-schema-to-typescript@16.1.0-dev.3) (2025-02-13)
+
+### Bug Fixes
+
+- insert tslint comment ([88125fc](https://gitlab.com/rxap/packages/commit/88125fc15fa43d0f529ba169fc8195a5ed4b09ff))
+
 # [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.1.0-dev.1...@rxap/json-schema-to-typescript@16.1.0-dev.2) (2025-02-10)
 
 **Note:** Version bump only for package @rxap/json-schema-to-typescript

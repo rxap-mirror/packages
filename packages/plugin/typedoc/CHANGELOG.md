@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.1.0-dev.1...@rxap/plugin-typedoc@20.1.0-dev.2) (2025-02-13)
+
+### Bug Fixes
+
+- add docs folder to idea ignore ([24aa7d7](https://gitlab.com/rxap/packages/commit/24aa7d701a1f90e3dc0e2b99a58776f419d43054))
+
 # [20.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.1.0-dev.0...@rxap/plugin-typedoc@20.1.0-dev.1) (2025-02-11)
 
 ### Bug Fixes

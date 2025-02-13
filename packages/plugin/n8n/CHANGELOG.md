@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/plugin-n8n@20.0.1-dev.15...@rxap/plugin-n8n@20.0.1-dev.16) (2025-02-13)
+
+**Note:** Version bump only for package @rxap/plugin-n8n
+
 ## [20.0.1-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-n8n@20.0.1-dev.14...@rxap/plugin-n8n@20.0.1-dev.15) (2025-02-11)
 
 **Note:** Version bump only for package @rxap/plugin-n8n

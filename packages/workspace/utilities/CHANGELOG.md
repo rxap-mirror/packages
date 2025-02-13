@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.1-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.11...@rxap/workspace-utilities@19.6.1-dev.12) (2025-02-13)
+
+### Bug Fixes
+
+- use correct params ([ed19ca8](https://gitlab.com/rxap/packages/commit/ed19ca82d46635da2d257c1ea54360d573bc9fba))
+
 ## [19.6.1-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.1-dev.10...@rxap/workspace-utilities@19.6.1-dev.11) (2025-02-11)
 
 ### Bug Fixes

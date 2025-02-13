@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@19.0.1-dev.6...@rxap/socket-io@19.0.1-dev.7) (2025-02-13)
+
+**Note:** Version bump only for package @rxap/socket-io
+
 ## [19.0.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@19.0.1-dev.5...@rxap/socket-io@19.0.1-dev.6) (2025-02-10)
 
 **Note:** Version bump only for package @rxap/socket-io

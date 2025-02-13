@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.0-dev.12...@rxap/plugin-library@20.1.0-dev.13) (2025-02-13)
+
+### Bug Fixes
+
+- resolve readme generator issue ([09a5223](https://gitlab.com/rxap/packages/commit/09a5223c144d729cbd2c9fc6f6e6d06fe4e36fc3))
+- use correct generator base path ([4ab73ce](https://gitlab.com/rxap/packages/commit/4ab73ceed62ab05e899f04762f396731589bcecd))
+
 # [20.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.0-dev.11...@rxap/plugin-library@20.1.0-dev.12) (2025-02-11)
 
 **Note:** Version bump only for package @rxap/plugin-library

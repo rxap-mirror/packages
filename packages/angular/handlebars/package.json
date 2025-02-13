@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.4",
+  "version": "19.0.1-dev.5",
   "name": "@rxap/handlebars",
   "description": "Provides an Angular pipe that compiles Handlebars templates.  The pipe takes a template string and a context object as input. It then uses Handlebars to compile the template with the provided context, returning the rendered string.\n",
   "license": "GPL-3.0-or-later",

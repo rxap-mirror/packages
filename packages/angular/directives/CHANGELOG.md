@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/directives@19.0.1-dev.4...@rxap/directives@19.0.1-dev.5) (2025-02-13)
+
+**Note:** Version bump only for package @rxap/directives
+
 ## [19.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/directives@19.0.1-dev.3...@rxap/directives@19.0.1-dev.4) (2025-02-10)
 
 **Note:** Version bump only for package @rxap/directives

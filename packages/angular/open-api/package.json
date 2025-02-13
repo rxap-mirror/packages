@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.4",
+  "version": "19.0.1-dev.5",
   "name": "@rxap/open-api",
   "description": "This package provides tools for working with OpenAPI specifications in Angular applications. It includes services for configuring and loading OpenAPI definitions, validating requests and responses against schemas, and handling errors. It also offers utilities for building HTTP requests based on OpenAPI definitions.\n",
   "license": "GPL-3.0-or-later",
@@ -10,12 +10,12 @@
   "peerDependencies": {
     "@angular/common": "^19.1.3",
     "@angular/core": "^19.1.3",
-    "@rxap/config": "^19.0.1-dev.4",
-    "@rxap/data-source": "^19.0.1-dev.4",
-    "@rxap/environment": "^19.0.1-dev.4",
-    "@rxap/mixin": "^16.0.12-dev.4",
-    "@rxap/remote-method": "^19.0.1-dev.4",
-    "@rxap/rxjs": "^1.1.12-dev.4",
+    "@rxap/config": "^19.0.1-dev.5",
+    "@rxap/data-source": "^19.0.1-dev.5",
+    "@rxap/environment": "^19.0.1-dev.5",
+    "@rxap/mixin": "^16.0.12-dev.5",
+    "@rxap/remote-method": "^19.0.1-dev.5",
+    "@rxap/rxjs": "^1.1.12-dev.5",
     "@rxap/utilities": "^16.4.2-dev.4",
     "ajv": "^8.12.0",
     "openapi-types": "^10.0.0",
@@ -72,43 +72,43 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.0.1-dev.4"
+        "version": "19.0.1-dev.5"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.1-dev.4"
+        "version": "19.0.1-dev.5"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.12-dev.4"
+        "version": "1.1.12-dev.5"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.1-dev.4"
+        "version": "19.0.1-dev.5"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.1-dev.4"
+        "version": "19.0.1-dev.5"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.12-dev.4"
+        "version": "16.0.12-dev.5"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.11-dev.4"
+        "version": "1.1.11-dev.5"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.13-dev.4"
+        "version": "1.0.13-dev.5"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.0.1-dev.4"
+        "version": "19.0.1-dev.5"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.12-dev.4"
+        "version": "1.1.12-dev.5"
       },
       {
         "package": "@rxap/utilities",
