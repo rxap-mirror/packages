@@ -14,7 +14,10 @@ import {
   deepMerge,
   unique,
 } from '@rxap/utilities';
-import { existsSync } from 'fs';
+import {
+  existsSync,
+  readFileSync,
+} from 'fs';
 import * as Handlebars from 'handlebars';
 import {
   dirname,
@@ -33,7 +36,11 @@ function readGetGuidsFile(context: ExecutorContext): string {
 }
 
 function getTemplate(context: ExecutorContext) {
-  const readmeTemplateFile = readFileFromProjectRoot(context, 'README.md.handlebars', true);
+  const readmeTemplateFile = readFileFromProjectRoot(
+    context,
+    'README.md.handlebars',
+    readFileSync(join(__dirname, 'README.md.handlebars'), 'utf-8')
+  );
 
   return Handlebars.compile(readmeTemplateFile);
 }

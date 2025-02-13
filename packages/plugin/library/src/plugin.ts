@@ -117,7 +117,7 @@ async function createProjectConfiguration(
   if (!projectConfiguration) {
     throw new Error(`Could not find project in '${ projectPath }'`);
   }
-  if (existsSync(join(projectPath, 'README.md.handlebars'))) {
+  if (IsPublishable(tree, projectConfiguration)) {
     targets['readme'] = createReadmeTarget(projectPath);
   }
 
@@ -230,12 +230,15 @@ function createUpdateDependenciesTarget(): TargetConfiguration {
 }
 
 function createReadmeTarget(projectPath: string): TargetConfiguration {
-  const inputs = ['{projectRoot}/README.md.handlebars'];
+  const inputs: string[] = [];
   const potentialInputFiles = ['GETSTARTED.md', 'GUIDES.md', 'package.json', 'collection.json', 'generators.json', 'executors.json', 'builders.json'];
   for (const potentialInputFile of potentialInputFiles) {
     if (existsSync(join(projectPath, potentialInputFile))) {
       inputs.push(`{projectRoot}/${ potentialInputFile }`);
     }
+  }
+  if (existsSync(join(projectPath, 'README.md.handlebars'))) {
+    inputs.push(`{projectRoot}/README.md.handlebars`);
   }
   return {
     executor: '@rxap/plugin-library:readme',

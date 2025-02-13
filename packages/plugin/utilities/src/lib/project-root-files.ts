@@ -28,3 +28,9 @@ export function writeFileToProjectRoot(context: ExecutorContext, fileName: strin
   const filePath = join(context.root, projectRoot, fileName);
   writeFileSync(filePath, content);
 }
+
+export function hasFileInProjectRoot(context: ExecutorContext, fileName: string) {
+  const projectRoot = GetProjectRoot(context);
+  const filePath = join(context.root, projectRoot, fileName);
+  return existsSync(join(projectRoot, filePath));
+}
