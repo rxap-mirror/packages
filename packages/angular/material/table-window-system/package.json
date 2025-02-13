@@ -178,5 +178,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/material/table-window-system"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

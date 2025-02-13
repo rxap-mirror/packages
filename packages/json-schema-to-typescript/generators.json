@@ -10,5 +10,17 @@
       "schema": "./src/generators/generate/schema.json",
       "description": "Generate a typescript interface for a given json schema"
     }
+  },
+  "schematics": {
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
+    },
+    "generate": {
+      "factory": "./src/generators/generate/index",
+      "schema": "./src/generators/generate/schema.json",
+      "description": "Generate a typescript interface for a given json schema"
+    }
   }
 }

@@ -80,5 +80,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/theme"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

@@ -33,5 +33,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/slugify"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }

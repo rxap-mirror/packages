@@ -198,5 +198,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/material/table-select"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

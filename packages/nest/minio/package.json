@@ -80,5 +80,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/minio"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }

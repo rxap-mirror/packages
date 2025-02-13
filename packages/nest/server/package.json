@@ -93,5 +93,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/server"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }

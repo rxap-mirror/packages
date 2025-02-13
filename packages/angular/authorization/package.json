@@ -78,5 +78,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/authorization"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

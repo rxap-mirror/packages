@@ -70,5 +70,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/marker-io"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

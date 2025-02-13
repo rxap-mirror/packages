@@ -79,5 +79,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/service-worker"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

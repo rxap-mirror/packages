@@ -40,5 +40,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/workspace/utilities"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }

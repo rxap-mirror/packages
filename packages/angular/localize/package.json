@@ -129,5 +129,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/localize"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

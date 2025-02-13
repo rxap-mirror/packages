@@ -105,5 +105,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/forms"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

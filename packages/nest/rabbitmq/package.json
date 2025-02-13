@@ -91,6 +91,7 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/rabbitmq"
   },
+  "schematics": "./generators.json",
   "type": "commonjs",
   "typings": "./src/index.d.ts"
 }

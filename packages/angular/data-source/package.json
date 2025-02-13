@@ -108,5 +108,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/data-source"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

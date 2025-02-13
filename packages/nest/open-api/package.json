@@ -126,5 +126,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/open-api"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }

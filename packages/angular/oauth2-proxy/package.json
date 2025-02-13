@@ -120,5 +120,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/oauth2-proxy"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

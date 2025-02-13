@@ -42,6 +42,7 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/n8n/nodes/zip"
   },
+  "schematics": "./generators.json",
   "type": "commonjs",
   "typings": "./src/index.d.ts"
 }

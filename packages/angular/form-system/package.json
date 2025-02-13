@@ -153,5 +153,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/form-system"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

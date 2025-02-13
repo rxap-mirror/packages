@@ -132,5 +132,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/changelog"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

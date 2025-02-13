@@ -132,5 +132,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/status-check"
   },
+  "schematics": "./generators.json",
   "sideEffects": false
 }

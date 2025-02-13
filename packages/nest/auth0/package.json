@@ -36,6 +36,7 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/auth0"
   },
+  "schematics": "./generators.json",
   "type": "commonjs",
   "types": "./src/index.d.ts"
 }

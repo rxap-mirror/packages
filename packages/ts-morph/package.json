@@ -42,5 +42,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/ts-morph"
   },
+  "schematics": "./generators.json",
   "type": "commonjs"
 }
