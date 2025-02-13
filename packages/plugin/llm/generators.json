@@ -15,5 +15,22 @@
       "schema": "./src/generators/package-description/schema.json",
       "description": "Generates a package description based on the source code"
     }
+  },
+  "schematics": {
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the package in the workspace"
+    },
+    "documentation": {
+      "factory": "./src/generators/documentation/index",
+      "schema": "./src/generators/documentation/schema.json",
+      "description": "Automatically generate the documenation for all exported typescript symboles"
+    },
+    "package-description": {
+      "factory": "./src/generators/package-description/index",
+      "schema": "./src/generators/package-description/schema.json",
+      "description": "Generates a package description based on the source code"
+    }
   }
 }
