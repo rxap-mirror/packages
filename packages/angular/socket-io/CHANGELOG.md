@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@19.0.1-dev.7...@rxap/socket-io@19.0.1-dev.8) (2025-02-13)
+
+### Bug Fixes
+
+- update package groups ([21378b7](https://gitlab.com/rxap/packages/commit/21378b776550fac07c12e59e98c1466e80ea1232))
+
 ## [19.0.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@19.0.1-dev.6...@rxap/socket-io@19.0.1-dev.7) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/socket-io

@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.5",
+  "version": "19.0.1-dev.6",
   "name": "@rxap/material-table-window-system",
   "description": "Provides a directive and service to open a table select component in a window. This package allows users to select rows from a table within a window and return the selected data. It integrates with `@rxap/material-table-system` and `@rxap/window-system` for displaying and managing the table selection in a window.\n",
   "license": "GPL-3.0-or-later",

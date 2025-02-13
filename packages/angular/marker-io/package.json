@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.5",
+  "version": "19.0.1-dev.6",
   "name": "@rxap/ngx-marker-io",
   "description": "This package provides an Angular service to integrate with marker.io, a visual feedback and bug reporting tool. It allows you to easily load the marker.io widget, set custom data, and manage reporter information within your Angular application. The package also includes an init generator for setting up peer dependencies.\n",
   "license": "GPL-3.0-or-later",

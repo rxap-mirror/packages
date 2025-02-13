@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.5",
+  "version": "19.0.1-dev.6",
   "name": "@rxap/ngx-material-authentication",
   "description": "This package provides Angular Material components and services for user authentication, including login, reset password, and loading functionalities. It offers pre-built forms, methods, and UI components to streamline the implementation of authentication flows in Angular applications. The package also includes an authentication container component and route configurations for easy integration.\n",
   "license": "GPL-3.0-or-later",

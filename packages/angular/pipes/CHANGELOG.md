@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/pipes@19.1.0-dev.3...@rxap/pipes@19.1.0-dev.4) (2025-02-13)
+
+### Bug Fixes
+
+- update package groups ([21378b7](https://gitlab.com/rxap/packages/commit/21378b776550fac07c12e59e98c1466e80ea1232))
+
 # [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/pipes@19.1.0-dev.2...@rxap/pipes@19.1.0-dev.3) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/pipes

@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.5",
+  "version": "19.0.1-dev.6",
   "name": "@rxap/contenteditable",
   "description": "Provides an Angular directive to make any element contenteditable. It supports change detection and debouncing, and allows binding to a method for handling content changes. The package also includes an init generator for managing peer dependencies.\n",
   "license": "GPL-3.0-or-later",

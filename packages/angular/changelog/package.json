@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.5",
+  "version": "19.0.1-dev.6",
   "name": "@rxap/ngx-changelog",
   "description": "This package provides Angular components and services to display changelogs within an application. It fetches changelog data from a remote source and presents it in a user-friendly dialog or component, allowing users to view updates and changes. The package also includes features to remember the last viewed version and disable the changelog display.\n",
   "license": "GPL-3.0-or-later",

@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.5",
+  "version": "19.0.1-dev.6",
   "name": "@rxap/dialog",
   "description": "This package provides Angular Material-based message and confirm dialog components and services. It offers customizable dialogs for displaying messages and confirmations to users. The package includes components for rendering the dialogs and services for easily opening them with configurable options.\n",
   "license": "GPL-3.0-or-later",

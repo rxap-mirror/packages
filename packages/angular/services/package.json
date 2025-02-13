@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.5",
+  "version": "19.0.1-dev.6",
   "name": "@rxap/services",
   "description": "Provides Angular services for common tasks such as loading images, managing loading indicators, resetting data, and managing components in a window container sidenav. It also includes a service to generate avatar images. This package offers reusable services to simplify development in Angular applications.\n",
   "license": "GPL-3.0-or-later",

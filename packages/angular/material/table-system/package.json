@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1-dev.5",
+  "version": "19.0.1-dev.6",
   "name": "@rxap/material-table-system",
   "description": "This package provides a set of Angular directives, components, and services to enhance and customize Angular Material tables. It includes features such as row selection, column filtering, expandable rows, table actions, and more. The goal is to simplify common table-related tasks and provide a more flexible and feature-rich table experience.\n",
   "license": "GPL-3.0-or-later",
