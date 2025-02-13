@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.0...@rxap/plugin-library@20.1.1) (2025-02-13)
+
+### Bug Fixes
+
+- disable readme generation cache ([ed22424](https://gitlab.com/rxap/packages/commit/ed22424053388f9af6208cd7a3c652337f5fcfcd))
+
 # [20.1.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.0-dev.13...@rxap/plugin-library@20.1.0) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/plugin-library
