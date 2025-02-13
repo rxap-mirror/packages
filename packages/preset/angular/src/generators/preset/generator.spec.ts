@@ -16,7 +16,7 @@ describe('preset', () => {
       packages: false,
       standalone: false,
       repositoryUrl: 'https://gitlab.com/rxap/packages/testing',
-      license: 'gpl',
+      license: 'gpl' as any,
       skipInstall: true,
     });
 

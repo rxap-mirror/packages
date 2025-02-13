@@ -33,7 +33,7 @@ describe('generateMonolithic()', () => {
   it('should use MinimalLayoutComponent and no navigation when moduleFederation is host', () => {
 
     generateMonolithic(tree, projectName, readProjectConfiguration(tree, projectName), {
-      moduleFederation: 'host',
+      moduleFederation: 'host'  as any,
     });
     expect(tree.children('app/src/app')).toMatchSnapshot();
     expect(tree.read('app/src/app/app.routes.ts', 'utf-8')).toMatchSnapshot();
