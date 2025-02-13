@@ -240,7 +240,7 @@ function createReadmeTarget(projectPath: string): TargetConfiguration {
   return {
     executor: '@rxap/plugin-library:readme',
     outputs: ['{projectRoot}/README.md'],
-    cache: true,
+    cache: false,
     inputs
   };
 }
