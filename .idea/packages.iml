@@ -540,6 +540,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/ipfs/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/ipfs/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/ipfs/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/file/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/file/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/file/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/file/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

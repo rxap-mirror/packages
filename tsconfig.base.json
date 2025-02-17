@@ -119,6 +119,7 @@
         "packages/angular/material/table-window-system/src/index.ts"
       ],
       "@rxap/mixin": ["packages/mixin/src/index.ts"],
+      "@rxap/n8n-nodes-file": ["packages/n8n/nodes/file/src/index.ts"],
       "@rxap/n8n-nodes-ipfs": ["packages/n8n/nodes/ipfs/src/index.ts"],
       "@rxap/n8n-nodes-neo4j": ["packages/n8n/nodes/neo4j/src/index.ts"],
       "@rxap/n8n-nodes-sanitize-html": [
