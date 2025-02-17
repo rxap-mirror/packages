@@ -1,13 +1,13 @@
 {
-  "version": "1.0.1-dev.0",
+  "version": "1.1.0-dev.0",
   "name": "@rxap/n8n-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",
     "@rxap/utilities": "^16.4.2",
-    "tslib": "^2.3.0",
     "form-data": "^4.0.1",
     "openapi-types": "10.0.0",
+    "tslib": "^2.3.0",
     "uuid": "8.3.2"
   },
   "peerDependencies": {
@@ -21,15 +21,6 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "n8n": {
-    "n8nNodesApiVersion": 1,
-    "nodes": [],
-    "credentials": [
-      "src/lib/HttpBearerAuth.credentials.js",
-      "src/lib/Oauth2ProxyAuth.credentials.js",
-      "src/lib/BaseUrl.credentials.js"
-    ]
-  },
   "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/n8n/utilities",
   "keywords": [
@@ -39,6 +30,15 @@
     "rxap"
   ],
   "main": "./src/index.js",
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [],
+    "credentials": [
+      "src/lib/HttpBearerAuth.credentials.js",
+      "src/lib/Oauth2ProxyAuth.credentials.js",
+      "src/lib/BaseUrl.credentials.js"
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/n8n/utilities"
