@@ -27,6 +27,31 @@
     "readme": {
       "executor": "workspace:readme"
     },
+    "copy-docs-to-dist": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash ./tools/scripts/copy-to-dist.sh docs"
+      }
+    },
+    "copy-compodoc-to-dist": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash ./tools/scripts/copy-to-dist.sh compodoc"
+      }
+    },
+    "copy-coverage-to-dist": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash ./tools/scripts/copy-to-dist.sh coverage"
+      }
+    },
+    "ci-info": {
+      "dependsOn": [
+        "copy-docs-to-dist",
+        "copy-compodoc-to-dist",
+        "copy-coverage-to-dist"
+      ]
+    },
     "compose": {
       "executor": "@rxap/plugin-library:run-generator",
       "options": {
