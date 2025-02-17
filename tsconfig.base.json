@@ -119,6 +119,7 @@
         "packages/angular/material/table-window-system/src/index.ts"
       ],
       "@rxap/mixin": ["packages/mixin/src/index.ts"],
+      "@rxap/n8n-nodes-cache": ["packages/n8n/nodes/cache/src/index.ts"],
       "@rxap/n8n-nodes-development": [
         "packages/n8n/nodes/development/src/index.ts"
       ],

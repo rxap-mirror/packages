@@ -9116,6 +9116,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/n8n-nodes-cache@workspace:packages/n8n/nodes/cache":
+  version: 0.0.0-use.local
+  resolution: "@rxap/n8n-nodes-cache@workspace:packages/n8n/nodes/cache"
+  dependencies:
+    "@nx/devkit": 20.4.2
+    tslib: ^2.3.0
+  peerDependencies:
+    n8n-workflow: ^1.48.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/n8n-nodes-development@workspace:packages/n8n/nodes/development":
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-development@workspace:packages/n8n/nodes/development"
