@@ -1,0 +1,44 @@
+{
+  "name": "n8n-utilities",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/n8n/utilities/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["packages", "n8n"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/n8n/utilities",
+        "main": "packages/n8n/utilities/src/index.ts",
+        "tsConfig": "packages/n8n/utilities/tsconfig.lib.json",
+        "assets": [
+          "packages/n8n/utilities/*.md",
+          {
+            "input": "./packages/n8n/utilities/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/n8n/utilities",
+            "glob": "generators.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

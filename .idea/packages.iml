@@ -532,6 +532,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/sanitize-html/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/sanitize-html/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/sanitize-html/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/utilities/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/utilities/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/utilities/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/utilities/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

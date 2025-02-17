@@ -9131,7 +9131,11 @@ __metadata:
   resolution: "@rxap/n8n-nodes-sanitize-html@workspace:packages/n8n/nodes/sanitize-html"
   dependencies:
     "@nx/devkit": 20.4.2
+    "@rxap/n8n-utilities": 1.0.0
+    sanitize-html: ^2.14.0
     tslib: ^2.3.0
+  peerDependencies:
+    n8n-workflow: ^1.48.0
   languageName: unknown
   linkType: soft
 
@@ -9157,6 +9161,16 @@ __metadata:
     n8n-workflow: ^1.48.0
     tmp-promise: ^3.0.3
     tslib: 2.6.2
+  languageName: unknown
+  linkType: soft
+
+"@rxap/n8n-utilities@1.0.0, @rxap/n8n-utilities@workspace:packages/n8n/utilities":
+  version: 0.0.0-use.local
+  resolution: "@rxap/n8n-utilities@workspace:packages/n8n/utilities"
+  dependencies:
+    "@nx/devkit": 20.4.2
+    "@rxap/utilities": 16.4.2
+    tslib: ^2.3.0
   languageName: unknown
   linkType: soft
 
@@ -10441,6 +10455,7 @@ __metadata:
     "@types/mock-fs": 4.13.4
     "@types/node": ^22.5.0
     "@types/passport-jwt": ^4.0.1
+    "@types/sanitize-html": ^2.13.0
     "@types/supertest": 2.0.16
     "@types/xml2js": ^0.4.14
     "@types/xmldom": 0.1.34
@@ -10508,6 +10523,7 @@ __metadata:
     react-dom: ^18.2.0
     reflect-metadata: 0.1.13
     rxjs: 7.8.1
+    sanitize-html: ^2.14.0
     semver: 7.5.3
     socket.io-client: 4.8.1
     storybook: ^8.2.8
@@ -10607,7 +10623,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/utilities@^16.4.2, @rxap/utilities@workspace:packages/utilities":
+"@rxap/utilities@16.4.2, @rxap/utilities@^16.4.2, @rxap/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/utilities@workspace:packages/utilities"
   dependencies:
@@ -13044,6 +13060,15 @@ __metadata:
   version: 0.12.2
   resolution: "@types/retry@npm:0.12.2"
   checksum: e5675035717b39ce4f42f339657cae9637cf0c0051cf54314a6a2c44d38d91f6544be9ddc0280587789b6afd056be5d99dbe3e9f4df68c286c36321579b1bf4a
+  languageName: node
+  linkType: hard
+
+"@types/sanitize-html@npm:^2.13.0":
+  version: 2.13.0
+  resolution: "@types/sanitize-html@npm:2.13.0"
+  dependencies:
+    htmlparser2: ^8.0.0
+  checksum: a32c67bdf86048efa8ee5cdc1a68351758bae888956010eea58e694c1f9fc580632d1ce0478d31984559e0b03282d130ffe3e87479838c8da92cf1ac06626edc
   languageName: node
   linkType: hard
 
@@ -22341,6 +22366,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"htmlparser2@npm:^8.0.0":
+  version: 8.0.2
+  resolution: "htmlparser2@npm:8.0.2"
+  dependencies:
+    domelementtype: ^2.3.0
+    domhandler: ^5.0.3
+    domutils: ^3.0.1
+    entities: ^4.4.0
+  checksum: 29167a0f9282f181da8a6d0311b76820c8a59bc9e3c87009e21968264c2987d2723d6fde5a964d4b7b6cba663fca96ffb373c06d8223a85f52a6089ced942700
+  languageName: node
+  linkType: hard
+
 "htmlparser2@npm:^9.1.0":
   version: 9.1.0
   resolution: "htmlparser2@npm:9.1.0"
@@ -29239,6 +29276,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"parse-srcset@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "parse-srcset@npm:1.0.2"
+  checksum: 3a0380380c6082021fcce982f0b89fb8a493ce9dfd7d308e5e6d855201e80db8b90438649b31fdd82a3d6089a8ca17dccddaa2b730a718389af4c037b8539ebf
+  languageName: node
+  linkType: hard
+
 "parse-url@npm:^8.1.0":
   version: 8.1.0
   resolution: "parse-url@npm:8.1.0"
@@ -30691,6 +30735,17 @@ __metadata:
     picocolors: ^1.1.1
     source-map-js: ^1.2.1
   checksum: eb5d6cbdca24f50399aafa5d2bea489e4caee4c563ea1edd5a2485bc5f84e9ceef3febf170272bc83a99c31d23a316ad179213e853f34c2a7a8ffa534559d63a
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.3.11":
+  version: 8.5.2
+  resolution: "postcss@npm:8.5.2"
+  dependencies:
+    nanoid: ^3.3.8
+    picocolors: ^1.1.1
+    source-map-js: ^1.2.1
+  checksum: 5097c458ce792d38bb93cb245f8603804b48087540b9d0e42d612f6d0bd7add4b47848cb9bc2a5ee388f70e45a1546fa7471b84697ab95aa8206aa3989fea611
   languageName: node
   linkType: hard
 
@@ -32452,6 +32507,20 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: cab8f25ae6f1434abee8d80023d7e72b598cf1327164ddab31003c51215526801e40b66c5e65d658a0af1e9d6478cadcb4c745f4bd6751f97d8644786c0978b0
+  languageName: node
+  linkType: hard
+
+"sanitize-html@npm:^2.14.0":
+  version: 2.14.0
+  resolution: "sanitize-html@npm:2.14.0"
+  dependencies:
+    deepmerge: ^4.2.2
+    escape-string-regexp: ^4.0.0
+    htmlparser2: ^8.0.0
+    is-plain-object: ^5.0.0
+    parse-srcset: ^1.0.2
+    postcss: ^8.3.11
+  checksum: e8eb9ac1bd4d5d41cfbe647c506bdecaebb19932dc9acd044e6322a31ebdf2abc43213384d518f855d19b54782e136f1aa14b0e1ac79ffc9bdea9d47d2d5a812
   languageName: node
   linkType: hard
 
