@@ -2,15 +2,10 @@
   "node": "n8n-nodes-base.fileHash",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
-  "categories": [
-    "Data & Storage"
-  ],
+  "categories": ["Data & Storage"],
   "resources": {
     "credentialDocumentation": [],
     "primaryDocumentation": []
   },
-  "alias": [
-    "Hash",
-    "hash"
-  ]
+  "alias": ["file", "sha256", "hash"]
 }
