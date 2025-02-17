@@ -20,6 +20,8 @@
         "outputPath": "dist/packages/plugin/n8n",
         "main": "packages/plugin/n8n/src/index.ts",
         "tsConfig": "packages/plugin/n8n/tsconfig.lib.json",
+        "generateExportsField": true,
+        "additionalEntryPoints": ["packages/plugin/n8n/src/plugin.ts"],
         "assets": [
           "packages/plugin/n8n/*.md",
           {

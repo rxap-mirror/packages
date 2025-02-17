@@ -10,6 +10,7 @@ import {
   DeleteProperties,
 } from '@rxap/utilities';
 import {
+  ForeachInitProject,
   GenerateSerializedSchematicFile,
   GetProjectRoot,
   IsN8nProject,
@@ -56,26 +57,17 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   initWorkspace(tree, options);
 
-  if (!options.skipProjects) {
+  for (const [projectName, project] of ForeachInitProject(tree, options, skipProject)) {
 
-    for (const [ projectName, project ] of getProjects(tree).entries()) {
+    await initProject(tree, projectName, project, options);
 
-      if (skipProject(tree, options, project, projectName)) {
-        continue;
-      }
-
-      GenerateSerializedSchematicFile(
-        tree,
-        GetProjectRoot(tree, projectName),
-        '@rxap/plugin-library',
-        'init',
-        DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
-      );
-
-      await initProject(tree, projectName, project, options);
-
-      updateProjectConfiguration(tree, projectName, project);
-    }
+    GenerateSerializedSchematicFile(
+      tree,
+      GetProjectRoot(tree, projectName),
+      '@rxap/plugin-library',
+      'init',
+      DeleteProperties(options, [ 'project', 'projects', 'overwrite', 'skipProjects' ]),
+    );
 
   }
 

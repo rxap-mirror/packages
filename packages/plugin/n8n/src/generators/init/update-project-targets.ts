@@ -1,9 +1,7 @@
 import { ProjectConfiguration } from '@nx/devkit';
 import {
   CoerceAssets,
-  CoerceTarget,
   GetTarget,
-  Strategy,
 } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
@@ -24,19 +22,5 @@ export function updateProjectTargets(project: ProjectConfiguration, options: Ini
       'output': './src/lib',
     },
   ]);
-
-  const fixDependencies = GetTarget(project, 'fix-dependencies');
-  if (fixDependencies) {
-    CoerceTarget(project, 'fix-dependencies', {
-      "options": {
-        "options": {
-          "onlyDependencies": true,
-          "peerDependencies": [
-            "n8n-workflow"
-          ]
-        }
-      }
-    }, Strategy.MERGE);
-  }
 
 }
