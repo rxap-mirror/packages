@@ -11,7 +11,7 @@ import {
   HasPackageJson,
   IsAngularProject,
   IsLibraryProject,
-  IsN8NProject,
+  IsN8NNodesProject,
   IsNestJsProject,
   IsPluginProject,
   IsPublishable,
@@ -122,7 +122,7 @@ async function createProjectConfiguration(
   }
 
   if (IsLibraryProject(projectConfiguration)) {
-    if (!IsPluginProject(projectConfiguration) && !IsN8NProject(projectConfiguration) && projectConfiguration.name !== 'workspace-tools') {
+    if (!IsPluginProject(projectConfiguration) && !IsN8NNodesProject(projectConfiguration) && projectConfiguration.name !== 'workspace-tools') {
       targets['index-export'] = createIndexExportTarget();
     }
 

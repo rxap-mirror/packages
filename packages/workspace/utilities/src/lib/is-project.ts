@@ -55,6 +55,10 @@ export function IsN8NProject(project: { tags?: string[] }): boolean {
   return !!project.tags?.includes('n8n');
 }
 
+export function IsN8NNodesProject(project: { name?: string, tags?: string[] }): boolean {
+  return IsN8NProject(project) && !!project.name?.includes('-nodes-');
+}
+
 /**
  * Determines if the given project is categorized as a 'preset' by checking the presence of the 'preset' tag in its tags array.
  *
