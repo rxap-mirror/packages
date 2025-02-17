@@ -6,9 +6,11 @@
   "dependencies": {
     "@nx/devkit": "20.4.2",
     "adm-zip": "^0.5.10",
-    "n8n-workflow": "^1.48.0",
     "tmp-promise": "^3.0.3",
     "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "^1.48.0"
   },
   "author": {
     "name": "Merzough Münker",
