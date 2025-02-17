@@ -1,11 +1,11 @@
 {
-  "version": "20.0.2",
+  "version": "20.1.0-dev.0",
   "name": "@rxap/plugin-n8n",
   "description": "This package provides generators for initializing and creating n8n plugins within an Nx workspace. It includes generators for initializing a workspace or project for n8n development, as well as a generator for creating new n8n nodes. The package also includes utilities for updating project configurations and package.json files to support n8n plugin development.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",
-    "@rxap/plugin-library": "^20.1.1",
+    "@rxap/plugin-library": "^20.1.2-dev.0",
     "@rxap/ts-morph": "^1.5.3",
     "@rxap/utilities": "^16.4.2",
     "@rxap/workspace-ts-morph": "^19.1.9",

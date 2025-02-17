@@ -1,11 +1,11 @@
 {
-  "version": "20.0.0",
+  "version": "20.0.1-dev.0",
   "name": "@rxap/plugin-compodoc",
   "description": "This Nx plugin generates documentation for Angular, NestJS and other TypeScript projects using Compodoc. It provides executors to build and serve the documentation, as well as generators to initialize Compodoc in your projects. The plugin automates the configuration of tsconfig files and gitignore files for Compodoc.\n",
   "license": "MIT",
   "dependencies": {
     "@nx/devkit": "20.4.2",
-    "@rxap/plugin-utilities": "^20.0.1",
+    "@rxap/plugin-utilities": "^20.0.2-dev.0",
     "@rxap/utilities": "^16.4.2",
     "@rxap/workspace-utilities": "^19.6.1",
     "tslib": "2.6.2"

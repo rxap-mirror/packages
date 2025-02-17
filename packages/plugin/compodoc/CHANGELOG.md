@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@20.0.0...@rxap/plugin-compodoc@20.0.1-dev.0) (2025-02-17)
+
+### Bug Fixes
+
+- ignore non compodoc related files ([fbea062](https://gitlab.com/rxap/packages/commit/fbea06200e09e356db1b47c1c23df1284ef1bbac))
+
 # [20.0.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@20.0.0-dev.3...@rxap/plugin-compodoc@20.0.0) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/plugin-compodoc

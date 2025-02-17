@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-n8n@20.0.2...@rxap/plugin-n8n@20.1.0-dev.0) (2025-02-17)
+
+### Bug Fixes
+
+- add the office npm keyword ([49e0165](https://gitlab.com/rxap/packages/commit/49e01658bddd4cbf4fe42f9bb6c9f7a5e3b55051))
+- only include nodes projects ([a298f8a](https://gitlab.com/rxap/packages/commit/a298f8acf0145c9634b793c785883e16f1d86f12))
+- update the package json ([4316b0a](https://gitlab.com/rxap/packages/commit/4316b0a7a609f3cd5a2bf278d747e18eb8faa723))
+
+### Features
+
+- add plugin ([ed0689e](https://gitlab.com/rxap/packages/commit/ed0689e90cb283e6501f05ee15ca7c5d0a3661f2))
+
 ## [20.0.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-n8n@20.0.1...@rxap/plugin-n8n@20.0.2) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/plugin-n8n
