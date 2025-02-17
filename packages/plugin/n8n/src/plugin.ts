@@ -4,7 +4,10 @@ import {
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
-import { FindProjectByPath } from '@rxap/workspace-utilities';
+import {
+  FindProjectByPath,
+  SearchFile,
+} from '@rxap/workspace-utilities';
 import { FsTree } from 'nx/src/generators/tree';
 import { Optional } from 'nx/src/project-graph/plugins';
 import { combineGlobPatterns } from 'nx/src/utils/globs';
@@ -22,7 +25,7 @@ export function normalizeOptions(
 
 export const createNodesV2: CreateNodesV2<PluginOptions> = [
   combineGlobPatterns([
-    '**/*.node.json'
+    '**/tsconfig.lib.json'
   ]),
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -80,16 +83,20 @@ async function shouldHaveProjectConfiguration(
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot, false);
-  const projectConfiguration = FindProjectByPath(tree, projectPath, true);
+  const projectConfiguration = FindProjectByPath(tree, projectPath);
   if (!projectConfiguration) {
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
   }
   if (!projectConfiguration.tags?.includes('n8n')) {
-    // console.log(`The project ${projectConfiguration.name} does contain a *.node.json file but has not the project tag 'n8n'`);
+    // console.log(`The project ${projectConfiguration.name} does not have the tag 'n8n'`);
     return false;
   }
-  return true;
+  for (const _ of SearchFile(tree, projectPath, path => path.endsWith('.node.json'))) {
+    return true;
+  }
+  // console.log(`The project ${projectConfiguration.name} does not contain a *.node.json file`);
+  return false;
 }
 
 async function createProjectConfiguration(
