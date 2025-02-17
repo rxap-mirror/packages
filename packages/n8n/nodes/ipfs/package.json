@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "name": "@rxap/n8n-nodes-ipfs",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@nx/devkit": "20.4.2",
+    "@rxap/utilities": "16.4.2",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "^1.48.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/n8n/nodes/ipfs",
+  "keywords": [
+    "n8n",
+    "n8n-community-node-package",
+    "n8n-nodes-ipfs",
+    "nodes",
+    "packages",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [
+      "src/lib/Download/Download.node.js"
+    ],
+    "credentials": []
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../../dist/packages/n8n/nodes/ipfs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/n8n/nodes/ipfs"
+  },
+  "type": "commonjs",
+  "types": "./src/index.d.ts"
+}
