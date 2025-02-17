@@ -4,7 +4,11 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",
+    "@rxap/n8n-utilities": "^1.0.1-dev.0",
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "^1.48.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -27,7 +31,9 @@
   "main": "./src/index.js",
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "nodes": [],
+    "nodes": [
+      "src/lib/OpenWebUI/OpenWebUI.node.js"
+    ],
     "credentials": []
   },
   "publishConfig": {
