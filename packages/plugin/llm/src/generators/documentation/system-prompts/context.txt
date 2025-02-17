@@ -1,0 +1,38 @@
+-------------------- context.xsd --------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+
+    <!-- Definition of the sourceFileType to capture the 'path' attribute -->
+    <xsd:complexType name="sourceFileType">
+        <xsd:attribute name="path" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <!-- Root element 'context' -->
+    <xsd:element name="context">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- 'referenced' element with multiple 'sourceFile' elements -->
+                <xsd:element name="referenced" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="sourceFile" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <!-- 'used' element with multiple 'sourceFile' elements -->
+                <xsd:element name="used" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="sourceFile" type="sourceFileType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
+------------------------------------------------------------

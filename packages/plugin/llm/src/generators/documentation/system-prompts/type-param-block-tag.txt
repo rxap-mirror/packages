@@ -1,0 +1,22 @@
+# @typeParam
+
+The @typeParam tag is used to document a type parameter of a function, method, class, interface or type alias.
+The TSDoc standard requires that the @typeParam tag not include types and that the parameter name must be followed by a hyphen to separate it from the description.
+
+```typescript
+/**
+ * @typeParam T - the identity type
+ */
+export function identity<T>(x: T): T {
+    return x;
+}
+```
+
+```typescript
+/**
+ * @typeParam T - a user object
+ */
+export class UserService<T> {
+    getUser(): T | null { return null; }
+}
+```

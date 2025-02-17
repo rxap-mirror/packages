@@ -37,14 +37,14 @@ interface GenerateTsDocOptions {
 
 async function generateTsDoc({  context, target, question, node, systemPrompt, options }: GenerateTsDocOptions) {
 
-  // console.log(`${question}`.blue);
+  console.log(`${question}`.blue);
   try {
-    const jsDoc = await completion(systemPrompt, [ context, target, question ].join('\n\n'), options);
+    // const jsDoc = await completion(systemPrompt, [ context, target, question ].join('\n\n'), options);
 
     // console.log(jsDoc.grey);
 
-    clearJsDoc(node);
-    addJsDoc(node, cleanupJsDoc(jsDoc));
+    // clearJsDoc(node);
+    // addJsDoc(node, cleanupJsDoc(jsDoc));
 
   } catch (e: any) {
     console.log(`${e.message}`.red, e.stack);
@@ -95,7 +95,8 @@ export async function documentationGenerator(
 
       for (const functionDeclaration of sourceFile.getFunctions()) {
         console.log(`PROCESS`.grey + ' ' + `function ${functionDeclaration.getName()}`.green);
-        const question = `TASK: create the TSDoc documentation for the function \`${functionDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
+        let question = `TASK: create the TSDoc documentation for the function \`${functionDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\`\n\n`;
+        question += functionDeclaration.getText({ includeJsDocComments: false, trimLeadingIndentation: true });
         const success = await generateTsDoc({
           systemPrompt,
           question,
@@ -111,7 +112,8 @@ export async function documentationGenerator(
 
       for (const interfaceDeclaration of sourceFile.getInterfaces()) {
         console.log(`PROCESS`.grey + ' ' + `interface ${interfaceDeclaration.getName()}`.green);
-        let question = `TASK: create the TSDoc documentation for the interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
+        let question = `TASK: create the TSDoc documentation for the interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\`\n\n`;
+        question += clearAllJsDocs(interfaceDeclaration).getText({ includeJsDocComments: false, trimLeadingIndentation: true });
         const success = await generateTsDoc({
           systemPrompt,
           question,
@@ -127,8 +129,8 @@ export async function documentationGenerator(
 
         for (const method of interfaceDeclaration.getMethods()) {
           console.log(`PROCESS`.grey + ' ' + `method ${interfaceDeclaration.getName()}::${method.getName()}`.green);
-          question = `TASK: create the TSDoc documentation for the method \`${method.getName()}\` of interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
-
+          question = `TASK: create the TSDoc documentation for the method \`${method.getName()}\` of interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\`\n\n`;
+          question += method.getText({ includeJsDocComments: false, trimLeadingIndentation: true });
           const success = await generateTsDoc({
             systemPrompt,
             question,
@@ -145,8 +147,8 @@ export async function documentationGenerator(
 
         for (const property of interfaceDeclaration.getProperties()) {
           console.log(`PROCESS`.grey + ' ' + `interface ${interfaceDeclaration.getName()}::${property.getName()}`.green);
-          question = `TASK: create the TSDoc documentation for the method \`${property.getName()}\` of interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
-
+          question = `TASK: create the TSDoc documentation for the method \`${property.getName()}\` of interface \`${interfaceDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\`\n\n`;
+          question += property.getText({ includeJsDocComments: false, trimLeadingIndentation: true });
           const success = await generateTsDoc({
             systemPrompt,
             question,
@@ -165,7 +167,8 @@ export async function documentationGenerator(
 
       for (const typeDeclaration of sourceFile.getTypeAliases()) {
         console.log(`PROCESS`.grey + ' ' + `type ${typeDeclaration.getName()}`.green);
-        const question = `TASK: create the TSDoc documentation for the type \`${typeDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
+        let question = `TASK: create the TSDoc documentation for the type \`${typeDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\`\n\n`;
+        question += typeDeclaration.getText({ includeJsDocComments: false, trimLeadingIndentation: true });
         const success = await generateTsDoc({
           systemPrompt,
           question,
@@ -183,8 +186,8 @@ export async function documentationGenerator(
 
       for (const classDeclaration of sourceFile.getClasses()) {
         console.log(`PROCESS`.grey + ' ' + `class ${classDeclaration.getName()}`.green);
-        let question = `TASK: create the TSDoc documentation for the class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
-
+        let question = `TASK: create the TSDoc documentation for the class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\`\n\n`;
+        question += clearAllJsDocs(classDeclaration).getText({ includeJsDocComments: false, trimLeadingIndentation: true });
         const success = await generateTsDoc({
           systemPrompt,
           question,
@@ -199,8 +202,8 @@ export async function documentationGenerator(
 
         for (const method of classDeclaration.getMethods().filter(method => !method.getScope() || method.getScope() === Scope.Public)) {
           console.log(`PROCESS`.grey + ' ' + `method ${classDeclaration.getName()}::${method.getName()}`.green);
-          question = `TASK: create the TSDoc documentation for the method \`${method.getName()}\` of class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
-
+          question = `TASK: create the TSDoc documentation for the method \`${method.getName()}\` of class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\`\n\n`;
+          question += method.getText({ includeJsDocComments: false, trimLeadingIndentation: true });
           const success = await generateTsDoc({
             systemPrompt,
             question,
@@ -217,8 +220,8 @@ export async function documentationGenerator(
 
         for (const property of classDeclaration.getProperties().filter(property => !property.getScope() || property.getScope() === Scope.Public)) {
           console.log(`PROCESS`.grey + ' ' + `method ${classDeclaration.getName()}::${property.getName()}`.green);
-          question = `TASK: create the TSDoc documentation for the property \`${property.getName()}\` of class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\``;
-
+          question = `TASK: create the TSDoc documentation for the property \`${property.getName()}\` of class \`${classDeclaration.getName()}\` from the file \`${sourceFile.getFilePath()}\`\n\n`;
+          question += property.getText({ includeJsDocComments: false, trimLeadingIndentation: true });
           const success = await generateTsDoc({
             systemPrompt,
             question,

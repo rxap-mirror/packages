@@ -1,0 +1,11 @@
+# @summary
+
+The @summary tag should be used to give a short summary of the commented code. Is only sutable for functions, classes anc class methods
+
+```typescript
+/**
+ * @summary
+ * This description will be used on the **module** page
+ */
+export function forkProcess(): void;
+```

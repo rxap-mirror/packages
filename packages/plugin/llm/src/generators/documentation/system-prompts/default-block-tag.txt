@@ -1,0 +1,127 @@
+# @default Tag Documentation
+
+The `@default` (or `@defaultValue`) tag is used to document the default value of a property, parameter, or accessor in TypeScript.
+
+## How to Use
+
+The syntax for the `@default` tag is:
+```typescript
+/** @default <value> */
+```
+or
+```typescript
+/** @defaultValue <value> */
+```
+
+Both `@default` and `@defaultValue` are interchangeable and serve the same purpose.
+
+## When to Use
+
+Use the `@default` tag in the following scenarios:
+1. When documenting optional properties in interfaces or classes
+2. When documenting parameters with default values in functions or methods
+3. When documenting configuration objects where properties have implicit default values
+4. When documenting class properties that have initial values
+
+### Examples:
+
+1. **Interface Properties:**
+```typescript
+interface Configuration {
+    /**
+     * The port number for the server
+     * @default 3000
+     */
+    port?: number;
+}
+```
+
+2. **Class Properties:**
+```typescript
+class Timer {
+    /**
+     * The interval duration in milliseconds
+     * @default 1000
+     */
+    private interval: number = 1000;
+}
+```
+
+3. **Function Parameters:**
+```typescript
+/**
+ * Creates a new user
+ * @param name The user's name
+ * @param age The user's age
+ * @param isActive User's active status
+ * @default isActive true
+ */
+function createUser(name: string, age: number, isActive = true) {
+    // ...
+}
+```
+
+4. **Conditional Defaults:**
+```typescript
+interface DatabaseConfig {
+    /**
+     * @default 'localhost' in development, 'db.production.com' in production
+     */
+    host?: string;
+}
+```
+
+## When NOT to Use
+
+Avoid using the `@default` tag in these situations:
+
+1. **For Required Properties:**
+```typescript
+// DON'T DO THIS
+interface User {
+    /**
+     * @default "John"
+     */
+    name: string; // Required property shouldn't have a default
+}
+```
+
+2. **For Constant Values:**
+```typescript
+// DON'T DO THIS
+const MAX_RETRIES = 3;
+/**
+ * @default 3
+ */
+export { MAX_RETRIES };
+```
+
+3. **For Runtime-Determined Values:**
+```typescript
+// DON'T DO THIS
+class Application {
+    /**
+     * @default process.env.NODE_ENV
+     */
+    environment: string;
+}
+```
+
+4. **For Complex Objects Without Clear Default Values:**
+```typescript
+// DON'T DO THIS
+interface ComplexConfig {
+    /**
+     * @default {}
+     */
+    settings: Record<string, unknown>;
+}
+```
+
+## Best Practices
+
+1. Be explicit about conditional defaults
+2. Use backticks (\`) for code expressions
+3. Keep default values simple and readable
+4. Document the conditions that affect the default value
+5. Use with optional properties (marked with ?) when possible

@@ -1,0 +1,93 @@
+## @param Tag Documentation
+
+The `@param` tag is used to document a parameter of a function, method, or constructor. It provides a description for each parameter, enhancing the readability and understanding of your code's API.
+
+### How to Use the @param Tag
+
+The basic syntax for the `@param` tag is as follows:
+
+```typescript
+/**
+ * @param parameterName - Description of the parameter.
+ */
+```
+
+**Key points:**
+
+*   `parameterName` refers to the name of the parameter as defined in the function/method signature.
+*   A hyphen (`-`) **must** separate the parameter name from its description.
+*   Parameter types are **not** included in the `@param` tag.  Type information is inferred from the code.
+
+**Example:**
+
+```typescript
+/**
+ * Adds two numbers together.
+ * @param a - The first number to add.
+ * @param b - The second number to add.
+ * @returns The sum of a and b.
+ */
+export function add(a: number, b: number): number {
+  return a + b;
+}
+```
+
+### When to Use the @param Tag
+
+*   **Always use** the `@param` tag for every parameter of a function, method, or constructor that is part of your public API. This ensures that users of your code understand the purpose and meaning of each parameter.
+*   Use the `@param` tag to clarify the expected input values, units, or any specific constraints on the parameter.
+*   When documenting functions or methods with complex parameter types or behaviors.
+
+### When NOT to Use the @param Tag
+
+*   Do not include type information within the `@param` tag. TypeScript already handles type declarations.
+*   Avoid using the `@param` tag for private or internal functions/methods unless you need to generate documentation for internal use.
+*   Omit the `@param` tag for parameters with very obvious names and trivial functionality, unless you want to add extra clarity.
+
+### Advanced Usage
+
+#### Object Literals
+
+When a parameter is an object literal type, you can document individual properties using a dot-separated notation:
+
+```typescript
+/**
+ * Configures the component with the given options.
+ * @param options - Configuration options for the component.
+ * @param options.width - The width of the component in pixels.
+ * @param options.height - The height of the component in pixels.
+ */
+function configureComponent(options: { width: number; height: number }) {
+  // ...
+}
+```
+
+**Important Considerations for Object Literals:**
+
+*   This dot-separated notation works for a single level of nested properties. Deeper nesting is not directly supported.  Document the entire object if you need to describe nested properties.
+*   This feature is most effective when documenting a public API where the structure of the object literal is important for users to understand.
+
+#### Destructured Parameters
+
+TypeDoc can often infer the parameter names from destructured parameters, but it requires that all parameters are documented.
+
+```typescript
+/**
+ * Processes user data.
+ * @param id - The unique identifier of the user.
+ * @param name - The name of the user.
+ * @param email - The email address of the user.
+ */
+function processUser({ id, name, email }: { id: number; name: string; email: string }) {
+  // ...
+}
+```
+
+If TypeDoc fails to infer the parameter names, the destructured parameter will be documented as `__namedParameters`. To avoid this, ensure all destructured parameters are explicitly documented.
+
+### Best Practices
+
+*   Be concise and clear in your descriptions. Avoid jargon or overly technical language.
+*   Use consistent terminology throughout your documentation.
+*   Keep your documentation up-to-date with your code.
+*   Consider using a documentation generator like TypeDoc to automate the process of creating documentation from your TSDoc comments.

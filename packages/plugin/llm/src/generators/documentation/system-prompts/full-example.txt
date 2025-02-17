@@ -1,0 +1,100 @@
+import { Injectable, BadRequestException } from '@nest/core';
+import { UserEntity } from './user.entity';
+
+/**
+ * Checks if the given username is valid
+ *
+ * @param username - the username that should be validated
+ *
+ * @throws {BadRequestException} if the username is an empty string
+ * @throws if the username contains numbers
+ *
+ * @returns A boolean indicating if the username is valid
+ *
+ * @exmaple
+ * ```typescript
+ * const isValid = checkForValidUsername('my-username');
+ * ```
+ */
+export function checkForValidUsername(username: string): boolean {
+  if (!username) throw new BadRequestException('The given user name is empty');
+  if (username.match(/\d/)) throw new Error('The username contains numbers');
+
+  return username.length > 5 && username.startsWith('nice');
+}
+
+/**
+ * The base interface for the User object that is used in the UserService
+ */
+export interface User {
+  username: string;
+  password: string;
+}
+
+/**
+ *
+ * The UserService is used to access user entiteis and write them to the database
+ *
+ * @typeParam T - The of the user object that must extend the User interface
+ *
+ * @example
+ * ```typescript
+ * const user: User = { username: "my-name", password: "pass" };
+ * const isValid = this.userService.validUsername(user.username);
+ * if (isValid) {
+ *   await this.userService.create(user);
+ * }
+ * ```
+ */
+@Injectable()
+export class UserService<T extends User> extends DatabaseService<T, UserEntity> {
+
+  /**
+    * Intdicated if this instance is currently processing user objects
+    */
+  public readonly processing = new Subject<boolean>();
+
+  @Inject(UserRepository)
+  private readonly repositry: UserRepository;
+
+  /**
+   * Validates the given username
+   *
+   * @param username - the username that should be validated
+   *
+   * @throws {BadRequestException} if the username is an empty string
+   * @throws if the username contains numbers
+   * @throws {ConflictException} if a user with this username already exists
+   *
+   * @returns A boolean indicating if the username is valid
+   */
+  validUsername(username: string) {
+    if (this.exists(username)) {
+      throw new ConflictException('The user alrady exists')
+    }
+    return checkForValidUsername(username);
+  }
+
+  /**
+   * Checks if a user with the given username alrady exists
+   *
+   * @param username - the username that should be check for
+   *
+   * @returns A boolean indicating if the user with the given username exists
+   */
+  exists(username: string) {
+    return !!this.repositry.findUserByUsername(username);
+  }
+
+  /**
+   * Creates a new user from the given user object
+   *
+   * @param user - the user object for the new user
+   *
+   * @returns The created user entry instance
+   */
+  async create(user: T): UserEntity {
+    return this.repositry.create({ username: user.username, password: user.password })
+  }
+
+}
