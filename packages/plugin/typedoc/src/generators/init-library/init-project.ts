@@ -43,10 +43,14 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       .filter(([_, project]) => !IsWorkspaceProject(project))
       .filter(([projectName]) => tree.exists(join(GetProjectRoot(tree, projectName), 'tsconfig.typedoc.json')))
       .map(([projectName]) => GetProjectSourceRoot(tree, projectName))
-      .map(sourceRoot => join(sourceRoot, '**/*.ts'));
+      .map(sourceRoot => [
+        join(sourceRoot, 'lib/**/*.ts'),
+        join(sourceRoot, 'index.ts'),
+      ])
+      .flat();
     CoerceTypedocTsConfig(tree, GetWorkspaceProjectName(tree), includeList);
   } else {
-    CoerceTypedocTsConfig(tree, projectName);
+    CoerceTypedocTsConfig(tree, projectName, ['src/index.ts', 'src/lib/**/*.ts']);
   }
 
   CoerceGitIgnore(tree, projectName);
