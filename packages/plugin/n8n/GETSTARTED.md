@@ -19,6 +19,7 @@ nx g @rxap/plugin-n8n:init --project n8n-nodes-cqrs
 ```sh
 nx g @rxap/plugin-n8n:node \
     --name sanitizeHtml \
-    --description "Sanitize HTML content based on specified rules" \
-    --project n8n-nodes-sanitize-html
+    --description "" \
+    --project n8n-nodes-sanitize-html \
+    --nodeNamePrefix ""
 ```
