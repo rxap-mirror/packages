@@ -30,11 +30,6 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   } else {
     console.warn('no LICENSE file found in the workspace root');
   }
-  if (projectName === 'rxap') {
-    RemoveIgnorePattern(tree, join(project.root, '.gitignore'), [ 'README.md' ]);
-  } else {
-    CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'README.md' ]);
-  }
 
   if (IsRxapRepository(tree)) {
     const rxapProject = GetProject(tree, 'rxap');
