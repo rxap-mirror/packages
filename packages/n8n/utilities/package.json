@@ -9,7 +9,7 @@
     "@rxap/utilities": "16.4.2",
     "tslib": "^2.3.0"
   },
-  "peerDepdencies": {
+  "peerDependencies": {
     "n8n-workflow": "^1.48.0"
   },
   "publishConfig": {
