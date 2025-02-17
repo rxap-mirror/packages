@@ -1,4 +1,5 @@
 import { Tree } from '@nx/devkit';
+import { CoerceArrayItems } from '@rxap/utilities';
 import { UpdateProjectPackageJson } from '@rxap/workspace-utilities';
 
 export function updateProjectPackageJson(tree: Tree, projectName: string) {
@@ -8,6 +9,8 @@ export function updateProjectPackageJson(tree: Tree, projectName: string) {
     packageJson.n8n.n8nNodesApiVersion ??= 1;
     packageJson.n8n.nodes ??= [];
     packageJson.n8n.credentials ??= [];
+    packageJson.keywords ??= [];
+    CoerceArrayItems(packageJson.keywords, ['n8n-community-node-package']);
   }, { projectName });
 
 }
