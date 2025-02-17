@@ -552,6 +552,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/cache/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/cache/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/cache/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/open-webui/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/open-webui/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/open-webui/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/open-webui/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>
