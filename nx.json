@@ -298,6 +298,7 @@
     "./packages/plugin/docker/src/plugin.ts",
     "./packages/plugin/web3-storage/src/plugin.ts",
     "./packages/plugin/kraft/src/plugin.ts",
-    "./packages/plugin/workspace/src/plugin.ts"
+    "./packages/plugin/workspace/src/plugin.ts",
+    "./packages/plugin/n8n/src/plugin.ts"
   ]
 }

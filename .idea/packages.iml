@@ -528,6 +528,10 @@
       <excludeFolder url="file://$MODULE_DIR$/demos/open-api/service/user/coverage"/>
       <excludeFolder url="file://$MODULE_DIR$/demos/open-api/service/user/dist"/>
       <excludeFolder url="file://$MODULE_DIR$/demos/open-api/service/user/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/sanitize-html/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/sanitize-html/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/sanitize-html/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/sanitize-html/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

@@ -120,6 +120,9 @@
       ],
       "@rxap/mixin": ["packages/mixin/src/index.ts"],
       "@rxap/n8n-nodes-neo4j": ["packages/n8n/nodes/neo4j/src/index.ts"],
+      "@rxap/n8n-nodes-sanitize-html": [
+        "packages/n8n/nodes/sanitize-html/src/index.ts"
+      ],
       "@rxap/n8n-nodes-yaml": ["packages/n8n/nodes/yaml/src/index.ts"],
       "@rxap/n8n-nodes-zip": ["packages/n8n/nodes/zip/src/index.ts"],
       "@rxap/nest-auth0": ["packages/nest/auth0/src/index.ts"],
