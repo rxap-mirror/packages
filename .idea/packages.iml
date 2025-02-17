@@ -544,6 +544,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/file/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/file/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/file/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/development/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/development/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/development/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/development/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>
