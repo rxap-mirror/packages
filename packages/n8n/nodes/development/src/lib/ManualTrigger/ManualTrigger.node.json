@@ -1,0 +1,11 @@
+{
+  "node": "n8n-nodes-base.developmentManualTrigger",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Core Nodes"],
+  "resources": {
+    "credentialDocumentation": [],
+    "primaryDocumentation": []
+  },
+  "alias": ["manuel"]
+}

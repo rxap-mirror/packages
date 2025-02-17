@@ -30,7 +30,10 @@
   "main": "./src/index.js",
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "nodes": [],
+    "nodes": [
+      "src/lib/ExecuteWorkflowTrigger/ExecuteWorkflowTrigger.node.js",
+      "src/lib/ManualTrigger/ManualTrigger.node.js"
+    ],
     "credentials": []
   },
   "publishConfig": {

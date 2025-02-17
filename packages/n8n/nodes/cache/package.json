@@ -4,9 +4,9 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",
-    "tslib": "^2.3.0",
     "@rxap/n8n-utilities": "1.0.0",
-    "minio": "8.0.1"
+    "minio": "8.0.1",
+    "tslib": "^2.3.0"
   },
   "peerDependencies": {
     "n8n-workflow": "^1.48.0"

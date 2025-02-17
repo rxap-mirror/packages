@@ -9121,6 +9121,8 @@ __metadata:
   resolution: "@rxap/n8n-nodes-cache@workspace:packages/n8n/nodes/cache"
   dependencies:
     "@nx/devkit": 20.4.2
+    "@rxap/n8n-utilities": 1.0.0
+    minio: 8.0.1
     tslib: ^2.3.0
   peerDependencies:
     n8n-workflow: ^1.48.0
