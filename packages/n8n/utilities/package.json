@@ -18,6 +18,15 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [],
+    "credentials": [
+      "src/lib/HttpBearerAuth.credentials.js",
+      "src/lib/Oauth2ProxyAuth.credentials.js",
+      "src/lib/BaseUrl.credentials.js"
+    ]
+  },
   "generators": "./generators.json",
   "homepage": "https:/gitlab.com/rxap/packages/packages/n8n/utilities",
   "keywords": [
