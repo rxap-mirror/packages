@@ -5,7 +5,10 @@
   "dependencies": {
     "@nx/devkit": "20.4.2",
     "@rxap/utilities": "^16.4.2",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "form-data": "^4.0.1",
+    "openapi-types": "10.0.0",
+    "uuid": "8.3.2"
   },
   "peerDependencies": {
     "n8n-workflow": "^1.48.0"
