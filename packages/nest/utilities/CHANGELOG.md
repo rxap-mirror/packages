@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.4.1-dev.0...@rxap/nest-utilities@10.4.1-dev.1) (2025-02-18)
+
+### Bug Fixes
+
+- allow async options builder ([b76e8bd](https://gitlab.com/rxap/packages/commit/b76e8bda2b5b6a6167ef0fc246ad6b2597877549))
+
 ## [10.4.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.4.0...@rxap/nest-utilities@10.4.1-dev.0) (2025-02-18)
 
 **Note:** Version bump only for package @rxap/nest-utilities

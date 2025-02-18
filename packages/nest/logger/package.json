@@ -11,7 +11,7 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
-    "@rxap/nest-utilities": "^10.4.1-dev.0",
+    "@rxap/nest-utilities": "^10.4.1-dev.1",
     "@rxap/utilities": "^16.4.3-dev.0"
   },
   "author": {
@@ -59,7 +59,7 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.4.1-dev.0"
+        "version": "10.4.1-dev.1"
       },
       {
         "package": "@rxap/utilities",

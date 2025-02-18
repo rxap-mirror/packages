@@ -19,7 +19,7 @@ yarn add @rxap/tree
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @rxap/contenteditable@^19.0.2-dev.0 @rxap/data-source@^19.0.2-dev.0 @rxap/data-structure-tree@^1.1.13-dev.0 @rxap/forms@^19.0.2-dev.0 @rxap/material-directives@^19.0.2-dev.0 @rxap/pattern@^1.1.12-dev.0 @rxap/rxjs@^1.1.13-dev.0 @rxap/utilities@^16.4.3-dev.0 rxjs@^7.8.1 
+yarn add @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @rxap/contenteditable@^19.0.2-dev.0 @rxap/data-source@^19.0.2-dev.1 @rxap/data-structure-tree@^1.1.13-dev.0 @rxap/forms@^19.0.2-dev.0 @rxap/material-directives@^19.0.2-dev.1 @rxap/pattern@^1.1.12-dev.0 @rxap/rxjs@^1.1.13-dev.0 @rxap/utilities@^16.4.3-dev.0 rxjs@^7.8.1 
 ```
 **Execute the init generator:**
 ```bash
