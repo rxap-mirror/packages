@@ -138,6 +138,5 @@
     "tsconfig": "tsconfig.typedoc.json",
     "includeVersion": true,
     "entryPoints": ["src/index.ts"]
-  },
-  "logLevel": "Verbose"
+  }
 }

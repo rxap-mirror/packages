@@ -88,7 +88,14 @@
       }
     },
     "typedoc": {
-      "cache": false
+      "outputs": ["{workspaceRoot}/docs"],
+      "inputs": [
+        "{workspaceRoot}/**/src/index.ts",
+        "{workspaceRoot}/typedoc.json",
+        "{workspaceRoot}/**/src/lib/**/*.ts",
+        "!{workspaceRoot}/**/*.{spec,stories,cy}.ts",
+        "!{workspaceRoot}/**/test-setup.ts"
+      ]
     }
   }
 }
