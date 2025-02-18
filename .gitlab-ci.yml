@@ -28,8 +28,7 @@ workspace:typedoc:
     action: prepare
     name: $CI_COMMIT_REF_NAME
   variables:
-    NX_CACHE: "false"
-    NX_DAEMON: "false"
+    ADDITIONAL_TARGET_OPTIONS: "--skip-nx-cache"
   artifacts:
     name: "${CI_COMMIT_REF_SLUG}_run_workspace_typedoc"
     paths:
