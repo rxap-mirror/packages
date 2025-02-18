@@ -32,3 +32,9 @@ workspace:typedoc:
     paths:
       - docs
     expire_in: 1 week
+  rules:
+    - if: '$RXAP_COMPOSE == "true"'
+      when: never
+    - if: '$NX_MIGRATE_PACKAGE == "true"'
+      when: never
+    - when: on_success
