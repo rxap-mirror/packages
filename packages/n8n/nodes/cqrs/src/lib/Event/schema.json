@@ -1,0 +1,6 @@
+{
+  "title": "CQRS Event",
+  "id": "cqrs-event",
+  "type": "object",
+  "properties": {}
+}

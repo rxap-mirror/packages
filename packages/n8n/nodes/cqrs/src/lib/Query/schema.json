@@ -1,0 +1,6 @@
+{
+  "title": "CQRS Query",
+  "id": "cqrs-query",
+  "type": "object",
+  "properties": {}
+}

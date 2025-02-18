@@ -1,0 +1,6 @@
+{
+  "title": "CQRS Command",
+  "id": "cqrs-command",
+  "type": "object",
+  "properties": {}
+}
