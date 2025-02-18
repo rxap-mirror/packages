@@ -35,7 +35,10 @@
     "nodes": [
       "src/lib/OpenWebUI/OpenWebUI.node.js"
     ],
-    "credentials": []
+    "credentials": [
+      "src/lib/HttpBearerAuth.credentials.js",
+      "src/lib/Oauth2ProxyAuth.credentials.js"
+    ]
   },
   "publishConfig": {
     "access": "public",
