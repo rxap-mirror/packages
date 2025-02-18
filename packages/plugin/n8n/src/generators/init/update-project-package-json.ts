@@ -1,6 +1,9 @@
 import { Tree } from '@nx/devkit';
 import { CoerceArrayItems } from '@rxap/utilities';
-import { UpdateProjectPackageJson } from '@rxap/workspace-utilities';
+import {
+  GetRootPackageJson,
+  UpdateProjectPackageJson,
+} from '@rxap/workspace-utilities';
 
 export function updateProjectPackageJson(tree: Tree, projectName: string) {
 
@@ -11,6 +14,13 @@ export function updateProjectPackageJson(tree: Tree, projectName: string) {
     packageJson.n8n.credentials ??= [];
     packageJson.keywords ??= [];
     CoerceArrayItems(packageJson.keywords, ['n8n-community-node-package']);
+
+    const rootPackageJson = GetRootPackageJson(tree);
+    const n8nWorkflowVersion = rootPackageJson.dependencies?.['n8n-workflow'];
+    if (n8nWorkflowVersion) {
+      packageJson.peerDependencies ??= {};
+      packageJson.peerDependencies['n8n-workflow'] ??= n8nWorkflowVersion;
+    }
   }, { projectName });
 
 }
