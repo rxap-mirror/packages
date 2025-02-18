@@ -44,8 +44,41 @@ yarn nx reset
 
 #if [ -z "$cached_changed_projects" ]; then
   echo "No changed projects found"
-  echo "yarn nx run-many --target=build --configuration=production"
 
+  echo "yarn nx run-many --target=readme"
+  yarn nx affected \
+    --target="readme" \
+    --exclude="angular" \
+    --skip-nx-cache \
+    --nxBail 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-readme.log"
+  exit_code=${PIPESTATUS[0]}
+  if [ $exit_code -ne 0 ]; then
+    exit $exit_code
+  fi
+
+  echo "yarn nx run-many --target=compodoc"
+  yarn nx affected \
+    --target="compodoc" \
+    --exclude="angular" \
+    --skip-nx-cache \
+    --nxBail 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-compodoc.log"
+  exit_code=${PIPESTATUS[0]}
+  if [ $exit_code -ne 0 ]; then
+    exit $exit_code
+  fi
+
+  echo "yarn nx run-many --target=typedoc"
+  yarn nx affected \
+    --target="typedoc" \
+    --exclude="angular" \
+    --skip-nx-cache \
+    --nxBail 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-typedoc.log"
+  exit_code=${PIPESTATUS[0]}
+  if [ $exit_code -ne 0 ]; then
+    exit $exit_code
+  fi
+
+  echo "yarn nx run-many --target=build --configuration=production"
   # use --skip-nx-cache to ensure the package.json is copied
   yarn nx affected \
     --target="build" \

@@ -83,18 +83,13 @@
     "build": {
       "dependsOn": [
         "^build",
-        "typedoc",
-        "compodoc",
         "build-tailwind",
         "generate-package-json",
         "build-info",
         "copy-open-api-sdk",
         "bundle-json-schema",
         "^index-export",
-        "index-export",
-        "readme",
-        "check-version",
-        "expose-as-schematic"
+        "index-export"
       ],
       "cache": true,
       "inputs": ["production", "^production"]
