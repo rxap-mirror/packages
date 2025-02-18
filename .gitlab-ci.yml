@@ -27,6 +27,9 @@ workspace:typedoc:
   environment:
     action: prepare
     name: $CI_COMMIT_REF_NAME
+  variables:
+    NX_CACHE: "false"
+    NX_DAEMON: "false"
   artifacts:
     name: "${CI_COMMIT_REF_SLUG}_run_workspace_typedoc"
     paths:
