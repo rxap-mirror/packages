@@ -22,7 +22,7 @@ export interface DefaultUser {
   email: string;
 }
 
-export interface RequestWithUser<User = DefaultUser> extends Request {
+export interface RequestWithUser<User = DefaultUser> extends Omit<Request, 'user'> {
   user: User;
 }
 

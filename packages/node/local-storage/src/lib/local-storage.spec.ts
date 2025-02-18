@@ -3,7 +3,7 @@ import {
   mkdirSync,
   writeFileSync,
 } from 'fs';
-import mockFs from 'mock-fs';
+import mockFs = require('mock-fs');
 import { LocalStorage } from './local-storage';
 
 describe.skip('LocalStorage', () => {
