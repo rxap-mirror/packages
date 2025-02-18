@@ -49,6 +49,5 @@
       "type": "string",
       "enum": ["expand", "merge", "packages", "resolve"]
     }
-  },
-  "required": ["tsconfig"]
+  }
 }

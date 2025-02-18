@@ -43,17 +43,7 @@ function toArgs(options: any): string[] {
 const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, context: ExecutorContext) => {
   console.log('Executor ran for Build', options);
 
-  const projectSourceRoot = GetProjectSourceRoot(context);
   const projectRoot = GetProjectRoot(context);
-
-  const entryPoints = options.entryPoints ?? [];
-  if (entryPoints.length === 0) {
-    if (options.entryPointStrategy === BuildEntryPointStrategyExecutorSchemaEnum.PACKAGES) {
-      entryPoints.push(projectRoot);
-    } else {
-      entryPoints.push(join(projectSourceRoot, 'index.ts'));
-    }
-  }
 
   if (!options.outputPaths?.length) {
     options.outputPaths = [ join(projectRoot, 'docs') ];

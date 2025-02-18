@@ -6,7 +6,6 @@ import {
 import {
   CoerceAssets,
   coerceIdeaExcludeFolders,
-  CoerceTarget,
   GetProjectRoot,
   GetProjectSourceRoot,
   GetTarget,
@@ -16,6 +15,7 @@ import {
   isJetbrainsProject,
   IsPublishable,
   IsWorkspaceProject,
+  UpdateJsonFile,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { CoerceGitIgnore } from '../../lib/coerce-git-ignore';
@@ -49,6 +49,21 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
       ])
       .flat();
     CoerceTypedocTsConfig(tree, GetWorkspaceProjectName(tree), includeList);
+    UpdateJsonFile(tree, typedoc => {
+
+      typedoc['entryPointStrategy'] = 'packages';
+      typedoc['includeVersion'] = false;
+      typedoc['packageOptions'] ??= {};
+      typedoc['packageOptions']['tsconfig'] ??= 'tsconfig.typedoc.json';
+      typedoc['packageOptions']['includeVersion'] ??= true;
+      typedoc['packageOptions']['entryPoints'] ??= ["src/index.ts"];
+
+      typedoc['entryPoints'] = Array.from(getProjects(tree))
+        .filter(([_, project]) => !IsWorkspaceProject(project))
+        .filter(([projectName]) => tree.exists(join(GetProjectRoot(tree, projectName), 'tsconfig.typedoc.json')))
+        .map(([projectName]) => GetProjectRoot(tree, projectName));
+
+    }, 'typedoc.json', { create: true });
   } else {
     CoerceTypedocTsConfig(tree, projectName, ['src/index.ts', 'src/lib/**/*.ts']);
   }

@@ -90,7 +90,8 @@ async function shouldHaveProjectConfiguration(
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot, false);
-  if (!FindProjectByPath(tree, projectPath)) {
+  const projectConfiguration = FindProjectByPath(tree, projectPath);
+  if (!projectConfiguration) {
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
   }
@@ -138,35 +139,26 @@ function findEntryPoints(tree: FsTree, projectConfiguration: ProjectJson): strin
   if (IsStandaloneWorkspace(tree)) {
     return [ join(root, 'src/index.ts') ];
   }
-  if (IsWorkspaceProject(projectConfiguration)) {
-    const entryPoints: string[] = [];
-    for (const { path } of SearchFile(tree, undefined, path => path.endsWith('tsconfig.typedoc.json'))) {
-      const folder = dirname(path);
-      if (tree.exists(join(folder, 'src/index.ts'))) {
-        entryPoints.push(join(folder, 'src/index.ts'));
-      }
-    }
-    return entryPoints.filter(unique());
-  } else {
-    if (!tree.exists(join(root, 'src/index.ts'))) {
-      throw new Error(`The project ${projectConfiguration.name} has a tsconfig.typedoc.json but not a 'src/index.ts' (${projectConfiguration.root})`);
-    }
-    return [ join(root, 'src/index.ts') ];
+  if (!tree.exists(join(root, 'src/index.ts'))) {
+    throw new Error(`The project ${projectConfiguration.name} has a tsconfig.typedoc.json but not a 'src/index.ts' (${projectConfiguration.root})`);
   }
+  return [ join(root, 'src/index.ts') ];
 }
 
 function createTypedocTarget(tree: FsTree, projectConfiguration: ProjectJson): TargetConfiguration {
   const options: Record<string, any> = {};
 
-  options['tsconfig'] = findTsConfigOption(tree, projectConfiguration);
-  options['entryPoints'] = findEntryPoints(tree, projectConfiguration);
+  if (!IsWorkspaceProject(projectConfiguration)) {
+    options['tsconfig'] = findTsConfigOption(tree, projectConfiguration);
+    options['entryPoints'] = findEntryPoints(tree, projectConfiguration);
+    options['includeVersion'] = true;
+  }
   options['json'] = true;
   options['html'] = true;
   const packageJson = GetRootPackageJson(tree);
   options['markdown'] = 'typedoc-plugin-markdown' in packageJson.devDependencies;
   options['wiki'] = 'typedoc-plugin-markdown' in packageJson.devDependencies && 'typedoc-github-wiki-theme' in packageJson.devDependencies;
   options['skipErrorChecking'] = true;
-  options['includeVersion'] = true;
 
   return {
     executor: '@rxap/plugin-typedoc:build',

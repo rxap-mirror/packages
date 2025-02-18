@@ -9,6 +9,7 @@ import { CoerceArrayItems } from '@rxap/utilities';
 import {
   GenerateSerializedSchematicFile,
   GetProjectRoot,
+  IsWorkspaceProject,
   SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
 import { initProject } from './init-project';
@@ -23,6 +24,10 @@ function skipProject(
 ): boolean {
 
   if (options.project === projectName) {
+    return false;
+  }
+
+  if (IsWorkspaceProject(project) && tree.exists('tsconfig.typedoc.json')) {
     return false;
   }
 
