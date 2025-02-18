@@ -80,6 +80,7 @@
     "nest-dto",
     "nest-firebase",
     "nest-jwt",
+    "nest-keyv-minio",
     "nest-logger",
     "nest-minio",
     "nest-oauth2-proxy",
