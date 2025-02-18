@@ -4,17 +4,26 @@ variables:
   RXAP_COMPOSE_COMMAND: schematic
 include:
   - component: gitlab.com/rxap/gitlab-ci/base@~latest
-  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.3.2-edge.1
+  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.3.2-edge.2
     inputs:
-      version: "6.3.2-edge.1"
+      version: "6.3.2-edge.2"
       setup_tags:
         - setup
       run_many_tags:
         - run-many-mega
+      pages_needs:
+        - job: run-many
+          optional: true
+        - job: writerside
+          optional: true
+        - job: workspace:typedoc
+          optional: true
 
 workspace:typedoc:
   extends: .run
   stage: build
+  tags:
+    - run
   environment:
     action: prepare
     name: $CI_COMMIT_REF_NAME
