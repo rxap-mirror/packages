@@ -4,7 +4,7 @@ import {
   dasherize,
   DeleteUndefinedProperties,
 } from '@rxap/utilities';
-import FormData from 'form-data';
+import FormData = require('form-data');
 import {
   existsSync,
   readFileSync,

@@ -32,7 +32,7 @@ import {
   CoerceFile,
   GetProjectPrefix,
 } from '@rxap/workspace-utilities';
-import Handlebars from 'handlebars';
+import Handlebars = require('handlebars');
 import { join } from 'path';
 import {
   ClassDeclaration,
@@ -75,11 +75,11 @@ function applyContentHandlebars<T>(options: T): FileOperator {
   return (entry: FileEntry) => {
     const { path, content } = entry;
 
-    Handlebars.registerHelper('compile', (context: Handlebars.HelperDelegate, input) => {
+    Handlebars.registerHelper('compile', (context: Handlebars.HelperDelegate, input: { hash: any }) => {
       return new Handlebars.SafeString(context(input.hash));
     });
 
-    Handlebars.registerHelper('indent', (text, spaces) => {
+    Handlebars.registerHelper('indent', (text: Handlebars.SafeString | string, spaces: number) => {
       const indent = new Array(spaces + 1).join(' ');
       if (text instanceof Handlebars.SafeString) {
         text = text.toString();
@@ -89,7 +89,7 @@ function applyContentHandlebars<T>(options: T): FileOperator {
       }).join('\n'));
     });
 
-    Handlebars.registerHelper('propertyValue', (value) => {
+    Handlebars.registerHelper('propertyValue', (value: unknown) => {
       if (typeof value === 'string') {
         return `'${ value }'`;
       }
@@ -101,7 +101,7 @@ function applyContentHandlebars<T>(options: T): FileOperator {
      * ... do this ...
      * {{/ifeq}}
      */
-    Handlebars.registerHelper('ifeq', function (this: any, a, b, options) {
+    Handlebars.registerHelper('ifeq', function (this: any, a: unknown, b: unknown, options: any) {
       if (a == b) { return options.fn(this); }
       return options.inverse(this);
     });
@@ -111,17 +111,17 @@ function applyContentHandlebars<T>(options: T): FileOperator {
      * ... do this ...
      * {{/ifnoteq}}
      */
-    Handlebars.registerHelper('ifnoteq', function (this: any, a, b, options) {
+    Handlebars.registerHelper('ifnoteq', function (this: any, a: unknown, b: unknown, options: any) {
       if (a != b) { return options.fn(this); }
       return options.inverse(this);
     });
 
-    Handlebars.registerHelper('dasherize', value => dasherize(value));
-    Handlebars.registerHelper('classify', value => classify(value));
-    Handlebars.registerHelper('decamelize', value => decamelize(value));
-    Handlebars.registerHelper('camelize', value => camelize(value));
-    Handlebars.registerHelper('underscore', value => underscore(value));
-    Handlebars.registerHelper('capitalize', value => capitalize(value));
+    Handlebars.registerHelper('dasherize', (value: string) => dasherize(value));
+    Handlebars.registerHelper('classify', (value: string) => classify(value));
+    Handlebars.registerHelper('decamelize', (value: string) => decamelize(value));
+    Handlebars.registerHelper('camelize', (value: string) => camelize(value));
+    Handlebars.registerHelper('underscore', (value: string) => underscore(value));
+    Handlebars.registerHelper('capitalize', (value: string) => capitalize(value));
 
 
     try {
