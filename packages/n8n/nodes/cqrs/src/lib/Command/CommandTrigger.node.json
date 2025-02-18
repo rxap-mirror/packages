@@ -1,0 +1,16 @@
+{
+  "node": "n8n-nodes-base.cqrsCommandTrigger",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": [
+    "Data & Storage"
+  ],
+  "resources": {
+    "credentialDocumentation": [],
+    "primaryDocumentation": []
+  },
+  "alias": [
+    "Command",
+    "command"
+  ]
+}

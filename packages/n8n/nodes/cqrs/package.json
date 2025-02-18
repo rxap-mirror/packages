@@ -39,7 +39,10 @@
     "nodes": [
       "src/lib/Query/Query.node.js",
       "src/lib/Command/Command.node.js",
-      "src/lib/Event/Event.node.js"
+      "src/lib/Event/Event.node.js",
+      "src/lib/Query/QueryTrigger.node.js",
+      "src/lib/Command/CommandTrigger.node.js",
+      "src/lib/Event/EventTrigger.node.js"
     ],
     "credentials": []
   },
