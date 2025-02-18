@@ -66,6 +66,7 @@
     "json-schema-to-typescript",
     "mixin",
     "n8n-nodes-cache",
+    "n8n-nodes-cqrs",
     "n8n-nodes-development",
     "n8n-nodes-file",
     "n8n-nodes-ipfs",
