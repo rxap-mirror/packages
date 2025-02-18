@@ -1,6 +1,7 @@
 {
   "version": "1.1.0-dev.0",
   "name": "@rxap/n8n-utilities",
+  "description": "This package provides utility functions and classes for n8n nodes, including custom authentication methods (Bearer Auth, Oauth2 Proxy Auth, Base URL), a decorator for capturing execution errors, and base classes for creating nodes from OpenAPI specifications. It simplifies the process of building and integrating with REST APIs within the n8n workflow automation platform. The package offers tools for defining node properties based on OpenAPI schemas and handling different request body types.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",

@@ -1,6 +1,7 @@
 {
   "version": "1.0.1-dev.0",
   "name": "@rxap/n8n-nodes-file",
+  "description": "This package provides an n8n node to calculate the hash of a file. It supports various hash algorithms like SHA-256, MD5, and SHA-1. The node takes a binary file as input and outputs the calculated hash value.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.2",
