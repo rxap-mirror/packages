@@ -26,6 +26,10 @@ function skipProject(
     return false;
   }
 
+  if (projectName === 'rxap') {
+    return true;
+  }
+
   if (SkipNonLibraryProject(tree, options, project, projectName)) {
     return true;
   }

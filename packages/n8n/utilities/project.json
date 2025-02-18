@@ -31,7 +31,8 @@
             "input": "./packages/n8n/utilities",
             "glob": "generators.json",
             "output": "."
-          }
+          },
+          "packages/n8n/utilities/docs"
         ]
       }
     },

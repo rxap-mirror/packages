@@ -3,7 +3,7 @@
   "compilerOptions": {
     "types": ["@angular/localize"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/index.ts", "src/lib/**/*.ts"],
   "exclude": [
     "**/*.stories.ts",
     "**/*.spec.ts",

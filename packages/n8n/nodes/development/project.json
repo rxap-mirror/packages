@@ -36,7 +36,8 @@
             "input": "./packages/n8n/nodes/development/src/lib",
             "glob": "**/*.(svg|json|png)",
             "output": "./src/lib"
-          }
+          },
+          "packages/n8n/nodes/development/docs"
         ]
       }
     },
