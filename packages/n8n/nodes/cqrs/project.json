@@ -1,0 +1,49 @@
+{
+  "name": "n8n-nodes-cqrs",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/n8n/nodes/cqrs/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["packages", "n8n", "nodes"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/n8n/nodes/cqrs",
+        "main": "packages/n8n/nodes/cqrs/src/index.ts",
+        "tsConfig": "packages/n8n/nodes/cqrs/tsconfig.lib.json",
+        "assets": [
+          "packages/n8n/nodes/cqrs/*.md",
+          {
+            "input": "./packages/n8n/nodes/cqrs/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/n8n/nodes/cqrs",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/n8n/nodes/cqrs/src/lib",
+            "glob": "**/*.(svg|json|png)",
+            "output": "./src/lib"
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}
