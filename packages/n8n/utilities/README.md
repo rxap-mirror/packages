@@ -1,3 +1,4 @@
+This package provides utility functions and classes for n8n nodes, including custom authentication methods (Bearer Auth, Oauth2 Proxy Auth, Base URL), a decorator for capturing execution errors, and base classes for creating nodes from OpenAPI specifications. It simplifies the process of building and integrating with REST APIs within the n8n workflow automation platform. The package offers tools for defining node properties based on OpenAPI schemas and handling different request body types.
 
 [![npm version](https://img.shields.io/npm/v/@rxap/n8n-utilities?style=flat-square)](https://www.npmjs.com/package/@rxap/n8n-utilities)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)

@@ -1,3 +1,4 @@
+This package provides a cache node for n8n workflows, allowing users to cache items using a MinIO client. It supports both reading from and writing to the cache, with options to disable caching and configure bucket names and keys. The node can improve workflow performance by storing and retrieving data from a cache instead of re-executing expensive operations.
 
 [![npm version](https://img.shields.io/npm/v/@rxap/n8n-nodes-cache?style=flat-square)](https://www.npmjs.com/package/@rxap/n8n-nodes-cache)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)

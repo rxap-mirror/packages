@@ -1,3 +1,4 @@
+Sanitizes HTML content based on specified rules, allowing you to control which tags and attributes are permitted. This package provides a node for n8n that transforms HTML by removing potentially harmful or unwanted elements. It helps ensure that the HTML is safe and conforms to your desired standards.
 
 [![npm version](https://img.shields.io/npm/v/@rxap/n8n-nodes-sanitize-html?style=flat-square)](https://www.npmjs.com/package/@rxap/n8n-nodes-sanitize-html)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)

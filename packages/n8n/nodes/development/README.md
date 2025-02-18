@@ -1,3 +1,4 @@
+Provides development trigger nodes for n8n workflows, including a manual trigger and a workflow execution trigger. These nodes are designed to help with designing modular, microservice-like workflows and for testing workflows with specified input data.
 
 [![npm version](https://img.shields.io/npm/v/@rxap/n8n-nodes-development?style=flat-square)](https://www.npmjs.com/package/@rxap/n8n-nodes-development)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)

@@ -12,6 +12,7 @@ This package provides generators for initializing and creating n8n plugins withi
 - [Generators](#generators)
   - [init](#init)
   - [node](#node)
+  - [trigger](#trigger)
 
 # Installation
 
@@ -45,9 +46,18 @@ nx g @rxap/plugin-n8n:init --project n8n-nodes-cqrs
 **Add a new node to the library**
 ```sh
 nx g @rxap/plugin-n8n:node \
-    --name sanitizeHtml \
+    --name query \
     --description "" \
-    --project n8n-nodes-sanitize-html \
+    --project n8n-nodes-cqrs \
+    --nodeNamePrefix ""
+```
+
+**Add a new trigger to the library**
+```sh
+nx g @rxap/plugin-n8n:trigger \
+    --name query \
+    --description "" \
+    --project n8n-nodes-cqrs \
     --nodeNamePrefix ""
 ```
 
@@ -73,6 +83,20 @@ skipProjects | boolean | false | Whether to skip executing project specific init
 
 ```bash
 nx g @rxap/plugin-n8n:node
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+name | string |  | 
+project | string |  | 
+description | string |  | 
+nodeNamePrefix | string |  | 
+
+## trigger
+> trigger generator
+
+```bash
+nx g @rxap/plugin-n8n:trigger
 ```
 
 Option | Type | Default | Description

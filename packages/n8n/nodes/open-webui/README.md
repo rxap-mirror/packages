@@ -1,3 +1,4 @@
+This package provides an n8n node for interacting with the Open Web UI. It leverages the &#x60;@rxap/n8n-utilities&#x60; package and an OpenAPI definition to simplify the integration. The node allows users to connect and utilize the functionalities exposed by the Open Web UI.
 
 [![npm version](https://img.shields.io/npm/v/@rxap/n8n-nodes-open-webui?style=flat-square)](https://www.npmjs.com/package/@rxap/n8n-nodes-open-webui)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)

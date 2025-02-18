@@ -1,3 +1,4 @@
+This package provides an n8n node to calculate the hash of a file. It supports various hash algorithms like SHA-256, MD5, and SHA-1. The node takes a binary file as input and outputs the calculated hash value.
 
 [![npm version](https://img.shields.io/npm/v/@rxap/n8n-nodes-file?style=flat-square)](https://www.npmjs.com/package/@rxap/n8n-nodes-file)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
