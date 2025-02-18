@@ -12,13 +12,7 @@
 {{#if @key ~}}## {{@key}}{{/if}}
 Name | License | Version | Dependencies | Description
 --- | --- | --- | --- | ---
-{{#each this}}
-{{#if this.private}}
-{{this.name}} | - | - | - | {{this.description}}
-{{else}}
-{{this.name}} | ![NPM](https://img.shields.io/npm/l/{{this.name}}?style=flat-square) | [![npm version](https://img.shields.io/npm/v/{{this.name}}?style=flat-square)](https://www.npmjs.com/package/{{this.name}}) | ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/{{this.name}}) | {{this.description}}
-{{/if}}
-{{/each}}
+{{#each this}}{{#if this.private}}{{this.name}} | - | - | - | {{this.description}}{{else}}{{this.name}} | ![NPM](https://img.shields.io/npm/l/{{this.name}}?style=flat-square) | [![npm version](https://img.shields.io/npm/v/{{this.name}}?style=flat-square)](https://www.npmjs.com/package/{{this.name}}) | ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/{{this.name}}) | {{this.description}}{{/if}}{{/each}}
 {{/each}}
 
 
