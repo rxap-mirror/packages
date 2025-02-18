@@ -86,6 +86,9 @@
           ]
         }
       }
+    },
+    "typedoc": {
+      "cache": false
     }
   }
 }
