@@ -15,11 +15,11 @@ export class MinioModuleOptionsLoader
 
   create(): ClientOptions {
     return {
-      endPoint: this.config.getOrThrow('MINIO_END_POINT'),
+      endPoint: this.config.get('MINIO_END_POINT', 'minio'),
       port: this.config.get('MINIO_PORT', 9000),
       useSSL: this.config.get('MINIO_USE_SSL', false),
-      accessKey: this.config.getOrThrow('MINIO_ACCESS_KEY'),
-      secretKey: this.config.getOrThrow('MINIO_SECRET_KEY'),
+      accessKey: this.config.get('MINIO_ACCESS_KEY', 'minioadmin'),
+      secretKey: this.config.get('MINIO_SECRET_KEY', 'minioadmin'),
     };
   }
 
