@@ -33,6 +33,8 @@ import {
 
 type Schema = OpenAPIV3.SchemaObject & { id?: string };
 
+const CUSTOM_OPERATION = '__CUSTOM_OPERATION__';
+
 export class PatternTriggerNode implements INodeType {
 
   description: INodeTypeDescription;
@@ -40,6 +42,7 @@ export class PatternTriggerNode implements INodeType {
 
   constructor(
     private readonly schemaFilePath: string,
+    private readonly routingKeyPrefix: 'command' | 'query' | 'event',
   ) {
     this.patterns = this.loadPatters();
     // use || instead of ?? to ensure an empty string is also replaced
@@ -86,7 +89,7 @@ export class PatternTriggerNode implements INodeType {
     const queue = this.getNodeParameter('queue', 'n8n') as string;
     const exchange = this.getNodeParameter('exchange', 'cqrs') as string;
     const exchangeType = this.getNodeParameter('exchangeType', 'topic') as ExchangeType;
-    const routingKey = this.getNodeParameter('operation') as string;
+    const operation = this.getNodeParameter('operation') as string;
     const options = this.getNodeParameter('options', {}) as TriggerOptions;
 
     const channel = await rabbitmqCreateChannel.call(this);
@@ -94,6 +97,16 @@ export class PatternTriggerNode implements INodeType {
 
     // TODO load the exchange from node parameters
     await channel.assertExchange(exchange, exchangeType, { durable: false, autoDelete: false });
+
+    let routingKey: string;
+    if (operation === CUSTOM_OPERATION) {
+      routingKey = [
+        this.getNodeParameter('routingKeyPrefix') as string,
+        this.getNodeParameter('pattern') as string,
+      ].join('.');
+    } else {
+      routingKey = operation;
+    }
 
     await channel.bindQueue(queue, exchange, routingKey);
 
@@ -252,8 +265,25 @@ export class PatternTriggerNode implements INodeType {
   }
 
   protected populateDescription(): void {
-    this.description.properties.push(this.buildPatternProperty(this.patterns));
+    this.description.properties.push(this.buildOperationProperty(this.patterns));
+    this.description.properties.push(this.buildPatternForCustomOperation());
     this.description.properties.push(this.buildOptionsProperty());
+  }
+
+  private buildPatternForCustomOperation(): INodeProperties {
+    return {
+      name: 'pattern',
+      displayName: 'Pattern',
+      type: 'string',
+      default: '',
+      description: 'Prefix free pattern for the custom operation',
+      required: true,
+      displayOptions: {
+        show: {
+          operation: [ CUSTOM_OPERATION ],
+        },
+      },
+    };
   }
 
   private buildOptionsProperty(): INodeProperties {
@@ -327,7 +357,7 @@ export class PatternTriggerNode implements INodeType {
     };
   }
 
-  private buildPatternProperty(schema: Schema): INodeProperties {
+  private buildOperationProperty(schema: Schema): INodeProperties {
     const properties: Record<string, Schema> = (
       schema.properties ?? {}
     ) as any;
@@ -335,7 +365,7 @@ export class PatternTriggerNode implements INodeType {
     return {
       name: 'operation',
       displayName: 'Operation',
-      default: patternList[0],
+      default: patternList[0] ?? CUSTOM_OPERATION,
       type: 'options',
       options: patternList.map((pattern) => (
         {
@@ -344,7 +374,14 @@ export class PatternTriggerNode implements INodeType {
           description: properties[pattern]?.description,
           value: pattern,
         }
-      )),
+      )).concat([
+        {
+          name: 'Custom',
+          action: 'Custom',
+          description: 'A operation with a custom pattern',
+          value: CUSTOM_OPERATION,
+        },
+      ]),
     };
   }
 

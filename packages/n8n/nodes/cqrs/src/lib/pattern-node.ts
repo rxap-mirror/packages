@@ -273,7 +273,7 @@ export abstract class PatternNode implements INodeType {
     return {
       name: 'operation',
       displayName: 'Operation',
-      default: patternList[0],
+      default: patternList[0] ?? CUSTOM_OPERATION,
       type: 'options',
       options: patternList.map((pattern) => (
         {

@@ -2,15 +2,10 @@
   "node": "n8n-nodes-base.cqrsEventTrigger",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
-  "categories": [
-    "Data & Storage"
-  ],
+  "categories": ["Development"],
   "resources": {
     "credentialDocumentation": [],
     "primaryDocumentation": []
   },
-  "alias": [
-    "Event",
-    "event"
-  ]
+  "alias": ["event"]
 }
