@@ -133,7 +133,6 @@
     "packages/xml-parser"
   ],
   "entryPointStrategy": "packages",
-  "exclude": ["packages/angular/*"],
   "includeVersion": false,
   "packageOptions": {
     "tsconfig": "tsconfig.typedoc.json",
