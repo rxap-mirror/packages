@@ -11,3 +11,15 @@ include:
         - setup
       run_many_tags:
         - run-many-mega
+
+workspace:typedoc:
+  extends: .run
+  stage: build
+  environment:
+    action: prepare
+    name: $CI_COMMIT_REF_NAME
+  artifacts:
+    name: "${CI_COMMIT_REF_SLUG}_run_workspace_typedoc"
+    paths:
+      - docs
+    expire_in: 1 week
