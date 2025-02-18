@@ -8,7 +8,7 @@ import {
   existsSync,
   readFileSync
 } from 'fs';
-import Client from 'node-vault';
+import Client = require('node-vault');
 import { VAULT_OPTIONS } from './tokens';
 import { VaultOptions } from './vault-options';
 
