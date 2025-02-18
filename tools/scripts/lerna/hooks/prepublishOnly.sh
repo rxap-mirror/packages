@@ -59,7 +59,7 @@ yarn nx reset
   echo "yarn nx run-many --target=compodoc"
   yarn nx affected \
     --target="compodoc" \
-    --exclude="angular" \
+    --exclude="angular,workspace" \
     --skip-nx-cache \
     --nxBail 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-compodoc.log"
   exit_code=${PIPESTATUS[0]}
@@ -70,7 +70,7 @@ yarn nx reset
   echo "yarn nx run-many --target=typedoc"
   yarn nx affected \
     --target="typedoc" \
-    --exclude="angular" \
+    --exclude="angular,workspace" \
     --skip-nx-cache \
     --nxBail 2>&1 | tee "${BASE_DIR}/dist/lerna/prepublishOnly-typedoc.log"
   exit_code=${PIPESTATUS[0]}
