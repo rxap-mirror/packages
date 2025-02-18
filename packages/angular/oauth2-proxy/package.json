@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2-dev.0",
+  "version": "19.0.2-dev.1",
   "name": "@rxap/ngx-oauth2-proxy",
   "description": "Provides an Angular guard and utilities for integrating with an OAuth2 Proxy. It includes a guard to protect routes, a method to fetch user profile information, and a data source for managing the user profile. Also provides an app initializer to subscribe to logout events.\n",
   "license": "GPL-3.0-or-later",

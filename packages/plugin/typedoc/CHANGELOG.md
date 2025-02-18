@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.1.1-dev.2...@rxap/plugin-typedoc@20.2.0-dev.0) (2025-02-18)
+
+### Features
+
+- support entryPointStrategy ([a105521](https://gitlab.com/rxap/packages/commit/a105521495b0218f696abca3abb0ba759cfc58e6))
+- support workspace typedoc.json ([5eefbae](https://gitlab.com/rxap/packages/commit/5eefbae962821dee06b2e34e16194bfd860c5dce))
+
 ## [20.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.1.1-dev.1...@rxap/plugin-typedoc@20.1.1-dev.2) (2025-02-18)
 
 **Note:** Version bump only for package @rxap/plugin-typedoc

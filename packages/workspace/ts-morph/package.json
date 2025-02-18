@@ -1,5 +1,5 @@
 {
-  "version": "19.1.10-dev.1",
+  "version": "19.1.10-dev.2",
   "name": "@rxap/workspace-ts-morph",
   "description": "This package provides utilities for transforming workspace files using the TypeScript compiler API via ts-morph. It includes functions to add directories to a ts-morph project, apply ts-morph project changes to a tree, and perform transformations on Angular and Nest projects. The package also offers an init generator for adding peer dependencies to a project.\n",
   "license": "GPL-3.0-or-later",
@@ -7,7 +7,7 @@
     "@nx/devkit": "20.4.2",
     "@rxap/ts-morph": "^1.5.4-dev.0",
     "@rxap/utilities": "^16.4.3-dev.0",
-    "@rxap/workspace-utilities": "^19.6.2-dev.1",
+    "@rxap/workspace-utilities": "^19.6.2-dev.2",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
