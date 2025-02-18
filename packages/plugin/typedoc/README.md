@@ -85,7 +85,9 @@ tsconfig | string |  |
 plugins | array |  | 
 json | boolean |  | 
 html | boolean |  | 
-skipErrorChecking | boolean | true | 
+skipErrorChecking | boolean |  | 
 markdown | boolean |  | 
 wiki | boolean |  | 
+includeVersion | boolean |  | 
+entryPointStrategy | string |  | 
 
