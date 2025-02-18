@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@10.0.0...@rxap/nest-auth0@10.0.1-dev.0) (2025-02-18)
+
+**Note:** Version bump only for package @rxap/nest-auth0
+
 # [10.0.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@10.0.0-dev.4...@rxap/nest-auth0@10.0.0) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/nest-auth0

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@1.0.11...@rxap/browser-tailwind@1.0.12-dev.0) (2025-02-18)
+
+**Note:** Version bump only for package @rxap/browser-tailwind
+
 ## [1.0.11](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@1.0.11-dev.5...@rxap/browser-tailwind@1.0.11) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/browser-tailwind

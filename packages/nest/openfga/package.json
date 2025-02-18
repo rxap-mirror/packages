@@ -1,5 +1,5 @@
 {
-  "version": "10.0.0",
+  "version": "10.0.1-dev.0",
   "name": "@rxap/nest-openfga",
   "description": "A NestJS module for integrating with OpenFGA, a fine-grained authorization service. It provides a service, guard, and decorator to simplify authorization logic within NestJS applications. The module allows you to define authorization rules and enforce them using OpenFGA.\n",
   "license": "GPL-3.0-or-later",

@@ -1,5 +1,5 @@
 {
-  "version": "10.1.8",
+  "version": "10.1.9-dev.0",
   "name": "@rxap/nest-firebase",
   "description": "This package provides Firebase integration for NestJS applications. It includes modules, guards, and decorators for Firebase Authentication and App Check, as well as utilities for Firestore error handling. It simplifies the process of securing and managing Firebase-related functionalities within a NestJS application.\n",
   "license": "GPL-3.0-or-later",

@@ -1,5 +1,5 @@
 {
-  "version": "19.0.1",
+  "version": "19.0.2-dev.0",
   "name": "@rxap/ngx-pub-sub",
   "description": "Provides a simple publish/subscribe service for Angular applications. It supports caching of messages with optional retention policies and a garbage collector to manage the cache size.  The service also supports wildcard topic matching.\n",
   "license": "GPL-3.0-or-later",

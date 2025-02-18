@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.11-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-web3-storage@10.0.10...@rxap/nest-web3-storage@10.0.11-dev.0) (2025-02-18)
+
+**Note:** Version bump only for package @rxap/nest-web3-storage
+
 ## [10.0.10](https://gitlab.com/rxap/packages/compare/@rxap/nest-web3-storage@10.0.10-dev.5...@rxap/nest-web3-storage@10.0.10) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/nest-web3-storage

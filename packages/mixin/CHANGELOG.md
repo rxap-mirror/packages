@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.13-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/mixin@16.0.12...@rxap/mixin@16.0.13-dev.0) (2025-02-18)
+
+**Note:** Version bump only for package @rxap/mixin
+
 ## [16.0.12](https://gitlab.com/rxap/packages/compare/@rxap/mixin@16.0.12-dev.5...@rxap/mixin@16.0.12) (2025-02-13)
 
 **Note:** Version bump only for package @rxap/mixin
