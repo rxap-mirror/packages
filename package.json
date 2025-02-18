@@ -93,6 +93,7 @@
     "ignore": "5.2.4",
     "joi": "17.9.2",
     "keycloak-js": "23.0.7",
+    "keyv": "^5.1.0",
     "marked": "4.3.0",
     "minio": "8.0.1",
     "n8n-workflow": "^1.48.0",

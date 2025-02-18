@@ -140,6 +140,7 @@
       "@rxap/nest-dto": ["packages/nest/dto/src/index.ts"],
       "@rxap/nest-firebase": ["packages/nest/firebase/src/index.ts"],
       "@rxap/nest-jwt": ["packages/nest/jwt/src/index.ts"],
+      "@rxap/nest-keyv-minio": ["packages/nest/keyv-minio/src/index.ts"],
       "@rxap/nest-logger": ["packages/nest/logger/src/index.ts"],
       "@rxap/nest-minio": ["packages/nest/minio/src/index.ts"],
       "@rxap/nest-oauth2-proxy": ["packages/nest/oauth2-proxy/src/index.ts"],

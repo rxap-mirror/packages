@@ -89,7 +89,10 @@
         "copy-open-api-sdk",
         "bundle-json-schema",
         "^index-export",
-        "index-export"
+        "index-export",
+        "readme",
+        "check-version",
+        "expose-as-schematic"
       ],
       "cache": true,
       "inputs": ["production", "^production"]

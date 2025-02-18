@@ -1,0 +1,54 @@
+{
+  "name": "nest-keyv-minio",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/keyv-minio/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": ["nest", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nest/keyv-minio",
+        "tsConfig": "packages/nest/keyv-minio/tsconfig.lib.json",
+        "packageJson": "packages/nest/keyv-minio/package.json",
+        "main": "packages/nest/keyv-minio/src/index.ts",
+        "assets": [
+          "packages/nest/keyv-minio/*.md",
+          {
+            "input": "./packages/nest/keyv-minio/src/generators",
+            "glob": "**/!(*.ts|*.js|*.json)",
+            "output": "./src/generators"
+          },
+          {
+            "input": "./packages/nest/keyv-minio",
+            "glob": "generators.json",
+            "output": "."
+          },
+          "packages/nest/keyv-minio/docs",
+          "packages/nest/keyv-minio/compodoc"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/keyv-minio/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

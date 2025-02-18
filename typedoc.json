@@ -74,6 +74,7 @@
     "packages/nest/dto",
     "packages/nest/firebase",
     "packages/nest/jwt",
+    "packages/nest/keyv-minio",
     "packages/nest/logger",
     "packages/nest/minio",
     "packages/nest/oauth2-proxy",

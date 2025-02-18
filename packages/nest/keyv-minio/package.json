@@ -1,0 +1,45 @@
+{
+  "version": "10.0.0-dev.0",
+  "name": "@rxap/nest-keyv-minio",
+  "description": "A NestJS cache module that utilizes MinIO as a storage adapter for Keyv. It provides a simple way to integrate MinIO with NestJS caching, allowing you to store cached data in a MinIO bucket. This package includes a Keyv adapter and a module options factory for easy configuration.\n",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@nx/devkit": "20.4.2",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@nestjs/cache-manager": "^2.2.2",
+    "@nestjs/common": "^10.3.8",
+    "@rxap/nest-utilities": "^10.4.1-dev.0",
+    "keyv": "^5.1.0",
+    "minio": "^8.0.1"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/keyv-minio",
+  "keywords": [
+    "nest",
+    "nest-keyv-minio",
+    "packages",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/keyv-minio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/keyv-minio"
+  },
+  "type": "commonjs",
+  "types": "./src/index.d.ts"
+}

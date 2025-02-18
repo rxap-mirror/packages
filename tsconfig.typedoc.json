@@ -266,7 +266,9 @@
     "packages/workspace/open-api/src/index.ts",
     "packages/workspace/ts-morph/src/index.ts",
     "packages/workspace/utilities/src/index.ts",
-    "packages/xml-parser/src/index.ts"
+    "packages/xml-parser/src/index.ts",
+    "packages/nest/keyv-minio/src/lib/**/*.ts",
+    "packages/nest/keyv-minio/src/index.ts"
   ],
   "exclude": [
     "**/*.stories.ts",
