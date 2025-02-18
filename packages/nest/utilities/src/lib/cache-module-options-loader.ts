@@ -14,7 +14,7 @@ export class CacheModuleOptionsLoader<StoreConfig extends Record<any, any> = Rec
   @Inject(ConfigService)
   protected readonly config!: ConfigService;
 
-  createCacheOptions(): CacheModuleOptions<StoreConfig> {
+  createCacheOptions(): CacheModuleOptions<StoreConfig> | Promise<CacheModuleOptions<StoreConfig>> {
     const ttl = Number(this.config.get('CACHE_TTL', 60 * 60 * 1000));
     const max = Number(this.config.get('CACHE_MAX', 100));
     return {
