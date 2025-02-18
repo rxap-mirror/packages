@@ -18,8 +18,17 @@ nx g @rxap/plugin-n8n:init --project n8n-nodes-cqrs
 **Add a new node to the library**
 ```sh
 nx g @rxap/plugin-n8n:node \
-    --name sanitizeHtml \
+    --name query \
     --description "" \
-    --project n8n-nodes-sanitize-html \
+    --project n8n-nodes-cqrs \
+    --nodeNamePrefix ""
+```
+
+**Add a new trigger to the library**
+```sh
+nx g @rxap/plugin-n8n:trigger \
+    --name query \
+    --description "" \
+    --project n8n-nodes-cqrs \
     --nodeNamePrefix ""
 ```

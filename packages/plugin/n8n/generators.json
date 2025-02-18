@@ -9,6 +9,11 @@
       "factory": "./src/generators/node/generator",
       "schema": "./src/generators/node/schema.json",
       "description": "node generator"
+    },
+    "trigger": {
+      "factory": "./src/generators/trigger/generator",
+      "schema": "./src/generators/trigger/schema.json",
+      "description": "trigger generator"
     }
   },
   "schematics": {
@@ -21,6 +26,11 @@
       "factory": "./src/generators/node/index",
       "schema": "./src/generators/node/schema.json",
       "description": "node generator"
+    },
+    "trigger": {
+      "factory": "./src/generators/trigger/index",
+      "schema": "./src/generators/trigger/schema.json",
+      "description": "trigger generator"
     }
   }
 }
