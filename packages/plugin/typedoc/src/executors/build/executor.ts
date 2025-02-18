@@ -55,26 +55,38 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
 
     await rm(outputPath, { recursive: true, force: true });
 
-    if (html) {
-      await run({
-        command: 'typedoc',
-        color: true,
-        args: toArgs(argOptions).concat(`--html ${join(outputPath, 'html')}`),
-        __unparsed__: [],
-      }, context);
-    }
-
     if (json) {
-      await run({
+      const result = await run({
         command: 'typedoc',
         color: true,
         args: toArgs(argOptions).concat(`--json ${join(outputPath, 'documentation.json')}`),
         __unparsed__: [],
       }, context);
+      if (!result.success) {
+        return {
+          ...result,
+          success: false
+        };
+      }
+    }
+
+    if (html) {
+      const result = await run({
+        command: 'typedoc',
+        color: true,
+        args: toArgs(argOptions).concat(`--html ${join(outputPath, 'html')}`),
+        __unparsed__: [],
+      }, context);
+      if (!result.success) {
+        return {
+          ...result,
+          success: false
+        };
+      }
     }
 
     if (markdown) {
-      await run({
+      const result = await run({
         command: 'typedoc',
         color: true,
         args: toArgs(argOptions).concat(
@@ -83,10 +95,16 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
         ),
         __unparsed__: [],
       }, context);
+      if (!result.success) {
+        return {
+          ...result,
+          success: false
+        };
+      }
     }
 
     if (wiki) {
-      await run({
+      const result = await run({
         command: 'typedoc',
         color: true,
         args: toArgs(argOptions).concat(
@@ -96,10 +114,16 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
         ),
         __unparsed__: [],
       }, context);
+      if (!result.success) {
+        return {
+          ...result,
+          success: false
+        };
+      }
     }
 
     if (plugins?.length) {
-      await run({
+      const result = await run({
         command: 'typedoc',
         color: true,
         args: toArgs(argOptions).concat(
@@ -108,6 +132,12 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
         ),
         __unparsed__: [],
       }, context);
+      if (!result.success) {
+        return {
+          ...result,
+          success: false
+        };
+      }
     }
   }
 
