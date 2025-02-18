@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2-dev.0",
+  "version": "19.0.2-dev.1",
   "name": "@rxap/upload",
   "description": "A Material Design upload button component for Angular that supports file selection, display, and download. It integrates with Angular Forms and provides visual feedback. It also includes a pipe to read files as data URLs.\n",
   "license": "GPL-3.0-or-later",

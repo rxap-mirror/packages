@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2-dev.0",
+  "version": "19.0.2-dev.1",
   "name": "@rxap/socket-io",
   "description": "Provides Angular providers for integrating Socket.IO client functionality. It simplifies the configuration and injection of a Socket.IO client instance using tokens and dynamic configuration options. This package allows you to easily connect to a Socket.IO server within your Angular application.\n",
   "license": "GPL-3.0-or-later",

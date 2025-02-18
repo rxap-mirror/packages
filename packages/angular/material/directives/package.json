@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2-dev.0",
+  "version": "19.0.2-dev.1",
   "name": "@rxap/material-directives",
   "description": "This package coerces peer dependencies for `@rxap` packages, ensuring they are correctly installed in the project. It also runs init generators for peer dependencies that have them. It can also move the package from devDependencies to dependencies or vice versa based on the package name.\n",
   "license": "GPL-3.0-or-later",
