@@ -4,14 +4,11 @@ import {
   updateNxJson,
 } from '@nx/devkit';
 import {
-  CoerceNxJsonCacheableOperation,
   CoerceTargetDefaults,
-  CoerceTargetDefaultsDependency,
   GetPackageJson,
   GetWorkspaceName,
   Strategy,
 } from '@rxap/workspace-utilities';
-import process from 'process';
 
 function guessImageName(tree: Tree) {
   const rootPackageJson = GetPackageJson(tree);

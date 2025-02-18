@@ -2,7 +2,7 @@ import type {
   JSONSchema,
   Options,
 } from '@apidevtools/json-schema-ref-parser';
-import * as $RefParser from '@apidevtools/json-schema-ref-parser';
+import $RefParser = require('@apidevtools/json-schema-ref-parser');
 import {
   IndentationText,
   OptionalKind,
