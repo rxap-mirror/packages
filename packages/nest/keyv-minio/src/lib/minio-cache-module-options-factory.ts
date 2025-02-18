@@ -62,15 +62,16 @@ class CacheStoreV6ToV5Adapter implements CacheStore {
 @Injectable()
 export class MinioCacheModuleOptionsFactory extends CacheModuleOptionsLoader<KeyvMinioOptions> {
 
-  override createCacheOptions(): CacheOptions<KeyvMinioOptions> {
+  override createCacheOptions(): Promise<CacheOptions<KeyvMinioOptions>> | CacheOptions<KeyvMinioOptions> {
     return {
       ...super.createCacheOptions(),
-      endPoint: this.config.getOrThrow('MINIO_END_POINT'),
-      port: this.config.get('MINIO_PORT', 9000),
-      useSSL: this.config.get('MINIO_USE_SSL', false),
-      accessKey: this.config.getOrThrow('MINIO_ACCESS_KEY'),
-      secretKey: this.config.getOrThrow('MINIO_SECRET_KEY'),
-      bucketName: this.config.get('MINIO_BUCKET_NAME', 'keyv'),
+      endPoint: this.config.get('KEYV_MINIO_END_POINT', 'minio'),
+      port: this.config.get('KEYV_MINIO_PORT', 9000),
+      useSSL: this.config.get('KEYV_MINIO_USE_SSL', false),
+      accessKey: this.config.get('KEYV_MINIO_ACCESS_KEY', 'minioadmin'),
+      secretKey: this.config.get('KEYV_MINIO_SECRET_KEY', 'minioadmin'),
+      bucketName: this.config.get('KEYV_MINIO_BUCKET_NAME', 'keyv'),
+      pathPrefix: this.config.get('KEYV_MINIO_PATH_PREFIX'),
       store: (options) => new CacheStoreV6ToV5Adapter(new KeyvMinio(options as KeyvMinioOptions)),
     };
   }

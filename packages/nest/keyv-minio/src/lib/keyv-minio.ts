@@ -6,9 +6,11 @@ import {
   Client,
   ClientOptions,
 } from 'minio';
+import { join } from 'path';
 
 export interface KeyvMinioOptions extends ClientOptions {
   bucketName: string;
+  pathPrefix?: string;
 }
 
 export class KeyvMinio implements KeyvStoreAdapter {
@@ -25,8 +27,9 @@ export class KeyvMinio implements KeyvStoreAdapter {
   }
 
   async get<Value>(key: string): Promise<StoredData<Value> | undefined> {
+    const filePath = join(this.options.pathPrefix ?? '', key + '.json');
     try {
-      const dataStream = await this.client.getObject(this.bucketName, key + '.json');
+      const dataStream = await this.client.getObject(this.bucketName, filePath);
       let data = '';
       for await (const chunk of dataStream) {
         data += chunk.toString();
@@ -36,17 +39,19 @@ export class KeyvMinio implements KeyvStoreAdapter {
       if (error.code === 'NoSuchKey') {
         return undefined;
       }
-      throw new Error(`Error getting minio object in bucket ${this.bucketName} with key ${key + '.json'}: (${error.code}) ${error.message}`);
+      throw new Error(`Error getting minio object in bucket ${this.bucketName} with key ${filePath}: (${error.code}) ${error.message}`);
     }
   }
 
   async set(key: string, value: any, ttl?: number) {
-    await this.client.putObject(this.bucketName, key + '.json', JSON.stringify({ value, expires: ttl ? Date.now() + ttl : null }), undefined);
+    const filePath = join(this.options.pathPrefix ?? '', key + '.json');
+    await this.client.putObject(this.bucketName, filePath, JSON.stringify({ value, expires: ttl ? Date.now() + ttl : null }), undefined);
   }
 
   async delete(key: string): Promise<boolean> {
+    const filePath = join(this.options.pathPrefix ?? '', key + '.json');
     try {
-      await this.client.removeObject(this.bucketName, key);
+      await this.client.removeObject(this.bucketName, filePath);
     } catch (error: any) {
       if (error.code === 'NoSuchKey') {
         return false;
@@ -58,7 +63,7 @@ export class KeyvMinio implements KeyvStoreAdapter {
   async clear(): Promise<void> {
     try {
       // Use the listObjectsV2 method to get a list of objects in the bucket
-      const stream = this.client.listObjectsV2(this.bucketName, '', true);
+      const stream = this.client.listObjectsV2(this.bucketName, this.options.pathPrefix ?? '', true);
 
       await new Promise<void>((resolve, reject) => {
 
