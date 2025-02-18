@@ -34,14 +34,20 @@
       "type": "boolean"
     },
     "skipErrorChecking": {
-      "type": "boolean",
-      "default": true
+      "type": "boolean"
     },
     "markdown": {
       "type": "boolean"
     },
     "wiki": {
       "type": "boolean"
+    },
+    "includeVersion": {
+      "type": "boolean"
+    },
+    "entryPointStrategy": {
+      "type": "string",
+      "enum": ["expand", "merge", "packages", "resolve"]
     }
   },
   "required": ["tsconfig"]

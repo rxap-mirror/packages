@@ -9,7 +9,10 @@ import {
 import { rm } from 'fs/promises';
 import run from 'nx/src/executors/run-commands/run-commands.impl';
 import { join } from 'path';
-import { BuildExecutorSchema } from './schema';
+import {
+  BuildEntryPointStrategyExecutorSchemaEnum,
+  BuildExecutorSchema,
+} from './schema';
 
 function toArgs(options: any): string[] {
   const args: string[] = [];
@@ -45,7 +48,11 @@ const runExecutor: PromiseExecutor<BuildExecutorSchema> = async (options, contex
 
   const entryPoints = options.entryPoints ?? [];
   if (entryPoints.length === 0) {
-    entryPoints.push(join(projectSourceRoot, 'index.ts'));
+    if (options.entryPointStrategy === BuildEntryPointStrategyExecutorSchemaEnum.PACKAGES) {
+      entryPoints.push(projectRoot);
+    } else {
+      entryPoints.push(join(projectSourceRoot, 'index.ts'));
+    }
   }
 
   if (!options.outputPaths?.length) {

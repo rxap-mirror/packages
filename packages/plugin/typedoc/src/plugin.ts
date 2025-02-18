@@ -166,6 +166,7 @@ function createTypedocTarget(tree: FsTree, projectConfiguration: ProjectJson): T
   options['markdown'] = 'typedoc-plugin-markdown' in packageJson.devDependencies;
   options['wiki'] = 'typedoc-plugin-markdown' in packageJson.devDependencies && 'typedoc-github-wiki-theme' in packageJson.devDependencies;
   options['skipErrorChecking'] = true;
+  options['includeVersion'] = true;
 
   return {
     executor: '@rxap/plugin-typedoc:build',
