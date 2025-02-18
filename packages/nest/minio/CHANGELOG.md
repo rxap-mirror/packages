@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@10.2.4-dev.0...@rxap/nest-minio@10.3.0-dev.0) (2025-02-18)
+
+### Features
+
+- add minio validation schema ([6891a1d](https://gitlab.com/rxap/packages/commit/6891a1dfa6d651705298fd0339c0e33a94b65b09))
+
 ## [10.2.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@10.2.3...@rxap/nest-minio@10.2.4-dev.0) (2025-02-18)
 
 **Note:** Version bump only for package @rxap/nest-minio

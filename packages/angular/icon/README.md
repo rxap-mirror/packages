@@ -19,7 +19,7 @@ yarn add @rxap/icon
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @angular/platform-browser@^19.1.3 @rxap/utilities@^16.4.2 
+yarn add @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @angular/platform-browser@^19.1.3 @rxap/utilities@^16.4.3-dev.0 
 ```
 **Execute the init generator:**
 ```bash
