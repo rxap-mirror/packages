@@ -7,6 +7,7 @@ import {
 } from '@nx/devkit';
 import {
   FindProjectByPath,
+  GetProjectPackageJson,
   GetProjectRoot,
   GetProjectSourceRoot,
   GetRootPackageJson,
@@ -152,6 +153,8 @@ function createTypedocTarget(tree: FsTree, projectConfiguration: ProjectJson): T
     options['tsconfig'] = findTsConfigOption(tree, projectConfiguration);
     options['entryPoints'] = findEntryPoints(tree, projectConfiguration);
     options['includeVersion'] = true;
+    options['entryPointStrategy'] = 'expand';
+    options['name'] = GetProjectPackageJson(tree, projectConfiguration.name).name;
   }
   options['json'] = true;
   options['html'] = true;
