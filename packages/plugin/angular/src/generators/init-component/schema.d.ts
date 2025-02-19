@@ -1,22 +1,3 @@
-export enum InitComponentViewEncapsulationGeneratorSchemaEnum {
-  EMULATED = 'Emulated',
-  NONE = 'None',
-  SHADOW_DOM = 'ShadowDom'
-}
-
-export enum InitComponentChangeDetectionGeneratorSchemaEnum {
-  DEFAULT = 'Default',
-  ON_PUSH = 'OnPush'
-}
-
-export enum InitComponentStyleGeneratorSchemaEnum {
-  CSS = 'css',
-  SCSS = 'scss',
-  SASS = 'sass',
-  LESS = 'less',
-  NONE = 'none'
-}
-
 export interface InitComponentGeneratorSchema {
   /** The directory at which to create the component file, relative to the current workspace. Default is a folder with the same name as the component in the project root. */
   directory?: string;
@@ -37,13 +18,13 @@ export interface InitComponentGeneratorSchema {
   /** Whether the generated component is standalone. _Note: This is only supported in Angular versions >= 14.1.0_. */
   standalone?: boolean;
   /** The view encapsulation strategy to use in the new component. */
-  viewEncapsulation?: InitComponentViewEncapsulationGeneratorSchemaEnum;
+  viewEncapsulation?: 'Emulated' | 'None' | 'ShadowDom';
   /** The change detection strategy to use in the new component. */
-  changeDetection?: InitComponentChangeDetectionGeneratorSchemaEnum;
+  changeDetection?: 'Default' | 'OnPush';
   /** The filename or path to the NgModule that will declare this component. */
   module?: string;
   /** The file extension or preprocessor to use for style files, or `none` to skip generating the style file. */
-  style?: InitComponentStyleGeneratorSchemaEnum;
+  style?: 'css' | 'scss' | 'sass' | 'less' | 'none';
   /** Do not create `spec.ts` test files for the new component. */
   skipTests?: boolean;
   /** Create the new files at the top level of the current project. */

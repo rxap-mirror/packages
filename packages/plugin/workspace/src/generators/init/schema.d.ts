@@ -1,9 +1,3 @@
-export enum InitLicenseGeneratorSchemaEnum {
-  NONE = 'none',
-  MIT = 'mit',
-  GPL = 'gpl'
-}
-
 export interface InitGeneratorSchema {
   /** If true, the workspace will be initialized for package development */
   packages?: boolean;
@@ -18,7 +12,7 @@ export interface InitGeneratorSchema {
   skipProjects?: boolean;
   /** Whether to skip adding a license file */
   skipLicense?: boolean;
-  license?: InitLicenseGeneratorSchemaEnum;
+  license?: 'none' | 'mit' | 'gpl';
   /** The URL of the repository */
   repositoryUrl?: string;
 }

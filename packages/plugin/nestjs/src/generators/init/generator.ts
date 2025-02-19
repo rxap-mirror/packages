@@ -14,11 +14,6 @@ import {
 } from '@rxap/workspace-utilities';
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
 import initApplicationGenerator from '../init-application/generator';
-import {
-  InitApplicationBootstrapGeneratorSchemaEnum,
-  InitApplicationTransportGeneratorSchemaEnum,
-  InitApplicationTypeormGeneratorSchemaEnum,
-} from '../init-application/schema';
 import initLibraryGenerator from '../init-library/generator';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
@@ -74,9 +69,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     if (IsApplicationProject(project)) {
       await initApplicationGenerator(tree,
         {
-          typeorm: InitApplicationTypeormGeneratorSchemaEnum.NONE,
-          bootstrap: InitApplicationBootstrapGeneratorSchemaEnum.MONOLITHIC,
-          transport: InitApplicationTransportGeneratorSchemaEnum.NONE,
+          typeorm: 'none',
+          bootstrap: 'monolithic',
+          transport: 'none',
           ...options,
           projects: [ projectName ],
           skipProjects: options.skipProjects,

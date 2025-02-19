@@ -11,6 +11,7 @@ export interface UploadExecutorSchema {
   workingDirectory?: string;
   /** Do not perform the actual operation, only simulate the process. No files are uploaded nor written. */
   dryRun?: boolean;
+  version?: string;
   /** Quiet mode. Print only important information. */
   quite?: boolean;
   /** Force the upload operation if the validation step fails. */
@@ -33,5 +34,4 @@ export interface UploadExecutorSchema {
   param?: string;
   /** Fail when non-existent group is provided on the command line */
   failOnMissingGroups?: boolean;
-  version?: string;
 }

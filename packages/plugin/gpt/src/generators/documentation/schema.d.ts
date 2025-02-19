@@ -1,6 +1,7 @@
 export interface DocumentationGeneratorSchema {
   /** A list of projects where the documentation should be generated */
   projects?: Array<string>;
+  project?: string;
   /** If true, the openai api is not used */
   offline?: boolean;
   /** A filter to select the files to be processed */
@@ -11,5 +12,4 @@ export interface DocumentationGeneratorSchema {
   openaiOrgId?: string;
   /** The openai project id */
   openaiProjectId?: string;
-  project?: string;
 }

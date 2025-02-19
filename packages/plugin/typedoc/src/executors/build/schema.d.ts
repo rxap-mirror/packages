@@ -1,14 +1,7 @@
-export enum BuildEntryPointStrategyExecutorSchemaEnum {
-  EXPAND = 'expand',
-  MERGE = 'merge',
-  PACKAGES = 'packages',
-  RESOLVE = 'resolve'
-}
-
 export interface BuildExecutorSchema {
   entryPoints?: Array<string>;
   outputPaths?: Array<string>;
-  tsconfig: string;
+  tsconfig?: string;
   plugins?: Array<string>;
   json?: boolean;
   html?: boolean;
@@ -16,5 +9,5 @@ export interface BuildExecutorSchema {
   markdown?: boolean;
   wiki?: boolean;
   includeVersion?: boolean;
-  entryPointStrategy?: BuildEntryPointStrategyExecutorSchemaEnum;
+  entryPointStrategy?: 'expand' | 'merge' | 'packages' | 'resolve';
 }

@@ -29,10 +29,10 @@ export interface TypescriptInterfaceGeneratorOptions extends Options {
   basePath?: string;
   addImports?: boolean;
   /**
-   * true - if a schema property has an enum property a typescript enum will be created
-   * false - else a typescript string tuple will be used
+   * false - if a schema property has an enum property a typescript enum will be created
+   * true - else a typescript string tuple will be used
    */
-  useStringEnums?: boolean;
+  useStringTuple?: boolean;
 }
 
 export class TypescriptInterfaceGenerator {
@@ -330,15 +330,13 @@ export class TypescriptInterfaceGenerator {
             return array.every((item) => typeof item === 'number');
           };
           if (isStringArray(schema.enum)) {
-            if (schema.enum.every(item => item.match(/\d+/))) {
+            if (schema.enum.every(item => item.match(/^\d+$/))) {
               return TypescriptInterfaceGenerator.unionType(schema.enum);
             } else {
-              if (this.options.useStringEnums) {
-                const enumName = (
-                                   parentName ? classify(parentName) : ''
-                                 ) + classify(propertyName) + (
-                                   this.options.suffix ? classify(this.options.suffix) : ''
-                                 ) + 'Enum';
+              if (this.options.useStringTuple) {
+                return TypescriptInterfaceGenerator.unionType(schema.enum.map(item => w => w.quote(item)));
+              } else {
+                const enumName = `${ parentName ? classify(parentName) : '' }${ classify(propertyName) }${ this.options.suffix ? classify(this.options.suffix) : '' }Enum`;
                 currentFile.addEnum({
                   name: enumName,
                   isExported: true,
@@ -350,8 +348,6 @@ export class TypescriptInterfaceGenerator {
                   )),
                 });
                 return enumName;
-              } else {
-                return TypescriptInterfaceGenerator.unionType(schema.enum.map(item => w => w.quote(item)));
               }
             }
           }

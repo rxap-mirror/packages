@@ -56,24 +56,21 @@ import openApiGenerator from '../open-api/generator';
 import sentryGenerator from '../sentry/generator';
 import swaggerGenerator from '../swagger/generator';
 import validatorGenerator from '../validator/generator';
-import { coerceOpenApiClientSdkLibrary } from './coerce-open-api-client-sdk-library';
 import { coerceEnvironmentFiles } from './coerce-environment-files';
+import { coerceOpenApiClientSdkLibrary } from './coerce-open-api-client-sdk-library';
 import { ExtractExistingConfigValidation } from './extract-existing-config-validation';
 import { getPort } from './get-port';
 import { initE2eProject } from './init-e2e-project';
 import { removeAppControllerSpecFile } from './remove-app-controller-spec-file';
 import { removeAppServiceFile } from './remove-app-service-file';
-import {
-  InitApplicationGeneratorSchema,
-  InitApplicationPlatformGeneratorSchemaEnum,
-} from './schema';
+import { InitApplicationGeneratorSchema } from './schema';
 import 'colors';
-import { updateTargetDefaults } from './update-target-defaults';
 import { updateApiConfigurationFile } from './update-api-configuration-file';
 import { updateGitIgnore } from './update-git-ignore';
 import { updateMainFile } from './update-main-file';
 import { updateProjectTargets } from './update-project-targets';
 import { updateTags } from './update-tags';
+import { updateTargetDefaults } from './update-target-defaults';
 import { updateWebpackConfig } from './update-webpack-config';
 
 function skipProject(
@@ -107,7 +104,7 @@ export async function initApplicationGenerator(
   options.sentry ??= true;
   options.swagger ??= true;
   options.healthIndicator ??= true;
-  options.platform ??= InitApplicationPlatformGeneratorSchemaEnum.EXPRESS;
+  options.platform ??= 'express';
   options.validator ??= true;
   options.healthIndicatorList ??= [];
   options.port ??= undefined;

@@ -1,14 +1,11 @@
 import {
   formatFiles,
-  readJson,
   Tree,
 } from '@nx/devkit';
 import { classify } from '@rxap/utilities';
 import {
   CoerceFile,
   CoerceFilesStructure,
-  CoerceLernaJson,
-  CoerceTargetDefaultsInput,
   GenerateSerializedSchematicFile,
   GetWorkspaceName,
   UpdateJsonFile,
@@ -24,13 +21,10 @@ import { coercePrettierConfig } from './coerce-prettier-config';
 import { coerceRootPackageJsonScripts } from './coerce-root-package-json-scripts';
 import { coerceToolsProject } from './coerce-tools-project';
 import { coerceWorkspaceProject } from './coerce-workspace-project';
-import {
-  InitGeneratorSchema,
-  InitLicenseGeneratorSchemaEnum,
-} from './schema';
+import { InitGeneratorSchema } from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
-  options.license ??= !options.skipLicense ? InitLicenseGeneratorSchemaEnum.GPL : undefined;
+  options.license ??= !options.skipLicense ? 'gpl' : undefined;
   if (options.license === 'none') {
     options.skipLicense = true;
   }

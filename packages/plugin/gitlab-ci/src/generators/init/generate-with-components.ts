@@ -9,10 +9,7 @@ import {
   Include,
 } from './coerce-include';
 import { Rule } from './coerce-rule';
-import {
-  InitGeneratorSchema,
-  InitReleaseGeneratorSchemaEnum,
-} from './schema';
+import { InitGeneratorSchema } from './schema';
 
 function buildIncludeForComponent(name: string, version: string, source: 'component' | 'local') {
   switch (source) {
@@ -39,9 +36,9 @@ export function generateWithComponents(tree: Tree, options: InitGeneratorSchema)
   CoerceInclude(gitlabCi.include, buildIncludeForComponent('base', '~latest', options.componentsSource));
 
   switch (options.release) {
-    case InitReleaseGeneratorSchemaEnum.SCHEMATIC_RELEASE:
+    case 'schematic-release':
       throw new Error('The release type semantic-release is not supported with gitlab ci components.');
-    case InitReleaseGeneratorSchemaEnum.RELEASE_IT:
+    case 'release-it':
       CoerceInclude(gitlabCi.include, buildIncludeForComponent('release-it', '~latest', options.componentsSource));
       break;
   }

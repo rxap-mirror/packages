@@ -2,17 +2,11 @@ import {
   ExecutorContext,
   PromiseExecutor,
 } from '@nx/devkit';
-import {
-  GetProjectRoot,
-  GetProjectSourceRoot,
-} from '@rxap/plugin-utilities';
+import { GetProjectRoot } from '@rxap/plugin-utilities';
 import { rm } from 'fs/promises';
 import run from 'nx/src/executors/run-commands/run-commands.impl';
 import { join } from 'path';
-import {
-  BuildEntryPointStrategyExecutorSchemaEnum,
-  BuildExecutorSchema,
-} from './schema';
+import { BuildExecutorSchema } from './schema';
 
 function toArgs(options: any): string[] {
   const args: string[] = [];

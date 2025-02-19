@@ -1,6 +1,9 @@
 export interface InitGeneratorSchema {
   project?: string;
   projects?: Array<string>;
+  dockerImageName?: string;
+  dockerImageSuffix?: string;
+  dockerImageRegistry?: string;
   /** Whether to overwrite existing files */
   overwrite?: boolean;
   /** Whether to skip the docker configuration */
@@ -15,7 +18,4 @@ export interface InitGeneratorSchema {
   /** Whether to initialize minio docker compose setup */
   minio?: boolean;
   authentication?: 'oauth2-proxy' | boolean;
-  dockerImageName?: string;
-  dockerImageSuffix?: string;
-  dockerImageRegistry?: string;
 }

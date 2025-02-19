@@ -1,29 +1,6 @@
-export enum CloudInstanceGetOutputExecutorSchemaEnum {
-  TABLE = 'table',
-  YAML = 'yaml',
-  JSON = 'json',
-  LIST = 'list'
-}
-
-export enum CloudInstanceGetLogLevelExecutorSchemaEnum {
-  PANIC = 'panic',
-  FATAL = 'fatal',
-  ERROR = 'error',
-  WARN = 'warn',
-  INFO = 'info',
-  DEBUG = 'debug',
-  TRACE = 'trace'
-}
-
-export enum CloudInstanceGetLogTypeExecutorSchemaEnum {
-  FANCY = 'fancy',
-  BASIC = 'basic',
-  JSON = 'json'
-}
-
 export interface CloudInstanceGetExecutorSchema {
   /** Set output format (options: table, yaml, json, list) */
-  output?: CloudInstanceGetOutputExecutorSchemaEnum;
+  output?: 'table' | 'yaml' | 'json' | 'list';
   /** Path to the BuildKit host */
   'buildkit-host'?: string;
   /** Path to KraftKit config directory */
@@ -39,11 +16,11 @@ export interface CloudInstanceGetExecutorSchema {
   /** Shared socket for HTTP(S) requests */
   'http-unix-sock'?: string;
   /** Log level verbosity */
-  'log-level'?: CloudInstanceGetLogLevelExecutorSchemaEnum;
+  'log-level'?: 'panic' | 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace';
   /** Enable log timestamps */
   'log-timestamps'?: boolean;
   /** Log type */
-  'log-type'?: CloudInstanceGetLogTypeExecutorSchemaEnum;
+  'log-type'?: 'fancy' | 'basic' | 'json';
   /** Unikraft Cloud metro location */
   metro?: string;
   /** Do not check for updates */

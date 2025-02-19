@@ -1,8 +1,3 @@
-export enum MicroservicePlatformGeneratorSchemaEnum {
-  EXPRESS = 'express',
-  FASTIFY = 'fastify'
-}
-
 export interface MicroserviceGeneratorSchema {
   /** The name of microservice */
   name: string;
@@ -23,7 +18,7 @@ export interface MicroserviceGeneratorSchema {
   healthIndicatorList?: Array<string>;
   /** Whether this service use the ValidationPipe */
   validator?: boolean;
-  platform?: MicroservicePlatformGeneratorSchemaEnum;
+  platform?: 'express' | 'fastify';
   /** The default port where the server is listens */
   port?: number;
   apiPrefix?: string | boolean;

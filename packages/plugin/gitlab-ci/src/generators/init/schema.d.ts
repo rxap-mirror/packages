@@ -1,21 +1,10 @@
-export enum InitComponentsSourceGeneratorSchemaEnum {
-  COMPONENT = 'component',
-  LOCAL = 'local'
-}
-
-export enum InitReleaseGeneratorSchemaEnum {
-  NONE = 'none',
-  RELEASE_IT = 'release-it',
-  SCHEMATIC_RELEASE = 'schematic-release'
-}
-
 export interface InitGeneratorSchema {
   project?: string;
   projects?: Array<string>;
   /** If true, the gitlab ci will be initialized with components */
   components?: boolean;
-  componentsSource?: InitComponentsSourceGeneratorSchemaEnum;
-  release?: InitReleaseGeneratorSchemaEnum;
+  componentsSource?: 'component' | 'local';
+  release?: 'none' | 'release-it' | 'schematic-release';
   /** The name of the helm chart project path with namespace where the app version should be automatically updated */
   helmChart?: string;
   skipFormat?: boolean;

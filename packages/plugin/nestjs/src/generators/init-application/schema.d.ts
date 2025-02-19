@@ -1,24 +1,3 @@
-export enum InitApplicationPlatformGeneratorSchemaEnum {
-  EXPRESS = 'express',
-  FASTIFY = 'fastify'
-}
-
-export enum InitApplicationTypeormGeneratorSchemaEnum {
-  NONE = 'none',
-  POSTGRES = 'postgres'
-}
-
-export enum InitApplicationBootstrapGeneratorSchemaEnum {
-  MONOLITHIC = 'monolithic',
-  HYBRID = 'hybrid',
-  MICROSERVICE = 'microservice'
-}
-
-export enum InitApplicationTransportGeneratorSchemaEnum {
-  NONE = 'none',
-  RABBITMQ = 'rabbitmq'
-}
-
 export interface InitApplicationGeneratorSchema {
   project?: string;
   projects?: Array<string>;
@@ -37,7 +16,7 @@ export interface InitApplicationGeneratorSchema {
   healthIndicatorList?: Array<string>;
   /** Whether this service use the ValidationPipe */
   validator?: boolean;
-  platform?: InitApplicationPlatformGeneratorSchemaEnum;
+  platform?: 'express' | 'fastify';
   /** The default port where the server is listens */
   port?: number;
   apiPrefix?: string | boolean;
@@ -57,10 +36,10 @@ export interface InitApplicationGeneratorSchema {
   apiConfigurationFile?: string;
   /** Whether the nest service should be standalone */
   standalone?: boolean;
-  typeorm?: InitApplicationTypeormGeneratorSchemaEnum;
-  bootstrap?: InitApplicationBootstrapGeneratorSchemaEnum;
+  typeorm?: 'none' | 'postgres';
+  bootstrap?: 'monolithic' | 'hybrid' | 'microservice';
   /** The transport to use for microservices communication */
-  transport?: InitApplicationTransportGeneratorSchemaEnum;
+  transport?: 'none' | 'rabbitmq';
   /** Whether the application should use minio */
   minio?: boolean;
   /** Whether the application should use openai */

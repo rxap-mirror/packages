@@ -1,22 +1,3 @@
-export enum CloudInstanceCreateOutputExecutorSchemaEnum {
-  TABLE = 'table',
-  YAML = 'yaml',
-  JSON = 'json',
-  LIST = 'list'
-}
-
-export enum CloudInstanceCreateRestartExecutorSchemaEnum {
-  NEVER = 'never',
-  ALWAYS = 'always',
-  ON_FAILURE = 'on-failure'
-}
-
-export enum CloudInstanceCreateScaleToZeroExecutorSchemaEnum {
-  ON = 'on',
-  OFF = 'off',
-  IDLE = 'idle'
-}
-
 export interface CloudInstanceCreateExecutorSchema {
   /** Set the certificates to use for the service */
   certificate?: Array<string>;
@@ -33,13 +14,13 @@ export interface CloudInstanceCreateExecutorSchema {
   /** Specify the name of the instance */
   name?: string;
   /** Set output format. Options: table, yaml, json, list */
-  output?: CloudInstanceCreateOutputExecutorSchemaEnum;
+  output?: 'table' | 'yaml' | 'json' | 'list';
   /** Specify the port mapping between external to internal */
   port?: Array<string>;
   /** Number of replicas of the instance */
   replicas?: number;
   /** Set the restart policy for the instance (default 'never') */
-  restart?: CloudInstanceCreateRestartExecutorSchemaEnum;
+  restart?: 'never' | 'always' | 'on-failure';
   /** Set the rollout strategy for an instance */
   rollout?: string;
   /** Set the rollout qualifier used for t... */
@@ -47,7 +28,7 @@ export interface CloudInstanceCreateExecutorSchema {
   /** Time to wait before performing rollout action (default '10s') */
   'rollout-wait'?: string;
   /** Scale to zero policy of the instance (default 'off') */
-  'scale-to-zero'?: CloudInstanceCreateScaleToZeroExecutorSchemaEnum;
+  'scale-to-zero'?: 'on' | 'off' | 'idle';
   /** Cooldown period before scaling to zero */
   'scale-to-zero-cooldown'?: string;
   /** Save state when scaling to zero */

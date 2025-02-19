@@ -1,9 +1,3 @@
-export enum AddMigrationIncrementGeneratorSchemaEnum {
-  MAJOR = 'major',
-  MINOR = 'minor',
-  PATCH = 'patch'
-}
-
 export interface AddMigrationGeneratorSchema {
   /** Name of the project */
   project: string;
@@ -16,5 +10,5 @@ export interface AddMigrationGeneratorSchema {
   /** Whether or not to include `package.json` updates. */
   packageJsonUpdates?: boolean;
   /** Increment the version of the package.json file */
-  increment?: AddMigrationIncrementGeneratorSchemaEnum;
+  increment?: 'major' | 'minor' | 'patch';
 }

@@ -1,19 +1,3 @@
-export enum CloudInstanceLogsLogLevelExecutorSchemaEnum {
-  PANIC = 'panic',
-  FATAL = 'fatal',
-  ERROR = 'error',
-  WARN = 'warn',
-  INFO = 'info',
-  DEBUG = 'debug',
-  TRACE = 'trace'
-}
-
-export enum CloudInstanceLogsLogTypeExecutorSchemaEnum {
-  FANCY = 'fancy',
-  BASIC = 'basic',
-  JSON = 'json'
-}
-
 export interface CloudInstanceLogsExecutorSchema {
   /** Follow the logs of the instance every half second. */
   follow?: boolean;
@@ -38,11 +22,11 @@ export interface CloudInstanceLogsExecutorSchema {
   /** Shared socket for HTTP(S) connections. */
   'http-unix-sock'?: string;
   /** Log level verbosity (default 'info'). */
-  'log-level'?: CloudInstanceLogsLogLevelExecutorSchemaEnum;
+  'log-level'?: 'panic' | 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace';
   /** Enable log timestamps. */
   'log-timestamps'?: boolean;
   /** Log type (default 'fancy'). */
-  'log-type'?: CloudInstanceLogsLogTypeExecutorSchemaEnum;
+  'log-type'?: 'fancy' | 'basic' | 'json';
   /** Path to Unikraft manifest cache. */
   'manifests-dir'?: string;
   /** Unikraft Cloud metro location. */

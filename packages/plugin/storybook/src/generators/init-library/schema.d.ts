@@ -1,8 +1,3 @@
-export enum InitLibraryLinterGeneratorSchemaEnum {
-  ESLINT = 'eslint',
-  NONE = 'none'
-}
-
 export interface InitLibraryGeneratorSchema {
   project?: string;
   projects?: Array<string>;
@@ -23,7 +18,7 @@ export interface InitLibraryGeneratorSchema {
   /** A directory where the Cypress project will be placed. Placed at the root by default. */
   cypressDirectory?: string;
   /** The tool to use for running lint checks. */
-  linter?: InitLibraryLinterGeneratorSchemaEnum;
+  linter?: 'eslint' | 'none';
   /** Configure your project with TypeScript. Generate main.ts and preview.ts files, instead of main.js and preview.js. */
   tsConfiguration?: boolean;
   /** Skip formatting files. */

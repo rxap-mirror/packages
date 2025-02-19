@@ -1,5 +1,4 @@
 import {
-  cypressComponentConfiguration,
   componentGenerator,
   componentStoryGenerator,
   componentTestGenerator,
@@ -24,11 +23,7 @@ import {
   join,
   relative,
 } from 'path';
-import {
-  InitComponentChangeDetectionGeneratorSchemaEnum,
-  InitComponentGeneratorSchema,
-  InitComponentStyleGeneratorSchemaEnum,
-} from './schema';
+import { InitComponentGeneratorSchema } from './schema';
 import 'colors';
 
 function buildComponentDirectory(tree: Tree, options: InitComponentGeneratorSchema) {
@@ -86,7 +81,7 @@ export async function initComponentGenerator(
   componentOptions.displayBlock ??= false;
   componentOptions.inlineStyle ??= false;
   componentOptions.standalone ??= true;
-  componentOptions.changeDetection ??= InitComponentChangeDetectionGeneratorSchemaEnum.ON_PUSH;
+  componentOptions.changeDetection ??= 'OnPush';
   componentOptions.skipTests ??= false;
   componentOptions.flat ??= false;
   componentOptions.skipImport ??= false;
@@ -94,7 +89,7 @@ export async function initComponentGenerator(
   componentOptions.type ??= 'component';
   componentOptions.export ??= false;
   componentOptions.skipFormat ??= false;
-  componentOptions.style ??= InitComponentStyleGeneratorSchemaEnum.SCSS;
+  componentOptions.style ??= 'scss';
 
   const componentName = classify(componentOptions.name) + 'Component';
   const componentFileName = dasherize(componentOptions.name) + '.component';

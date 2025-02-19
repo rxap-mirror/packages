@@ -1,8 +1,3 @@
-export enum FeatureMicroservicePlatformGeneratorSchemaEnum {
-  EXPRESS = 'express',
-  FASTIFY = 'fastify'
-}
-
 export interface FeatureMicroserviceGeneratorSchema {
   /** The feature of the frontend project */
   feature: string;
@@ -21,7 +16,7 @@ export interface FeatureMicroserviceGeneratorSchema {
   healthIndicatorList?: Array<string>;
   /** Whether this service use the ValidationPipe */
   validator?: boolean;
-  platform?: FeatureMicroservicePlatformGeneratorSchemaEnum;
+  platform?: 'express' | 'fastify';
   /** The default port where the server is listens */
   port?: number;
   /** Default sentry dsn */

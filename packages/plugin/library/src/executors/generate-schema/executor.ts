@@ -58,7 +58,7 @@ async function generateSchema(schema: JSONSchema, suffix?: string): Promise<stri
       suffix = [suffix, 'Schema'].join('');
     }
   }
-  const generator = new TypescriptInterfaceGenerator(schema, { suffix });
+  const generator = new TypescriptInterfaceGenerator(schema, { suffix, useStringTuple: true });
   const sourceFile = await generator.build(name);
   return sourceFile.getFullText();
 }

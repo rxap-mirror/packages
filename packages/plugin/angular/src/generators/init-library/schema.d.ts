@@ -1,42 +1,3 @@
-export enum CoerceProjectNameAndRootFormatGeneratorSchemaEnum {
-  AS_PROVIDED = 'as-provided',
-  DERIVED = 'derived'
-}
-
-export enum CoerceUnitTestRunnerGeneratorSchemaEnum {
-  JEST = 'jest',
-  NONE = 'none'
-}
-
-export enum CoerceLinterGeneratorSchemaEnum {
-  ESLINT = 'eslint',
-  NONE = 'none'
-}
-
-export enum CoerceCompilationModeGeneratorSchemaEnum {
-  FULL = 'full',
-  PARTIAL = 'partial'
-}
-
-export enum CoerceViewEncapsulationGeneratorSchemaEnum {
-  EMULATED = 'Emulated',
-  NONE = 'None',
-  SHADOW_DOM = 'ShadowDom'
-}
-
-export enum CoerceChangeDetectionGeneratorSchemaEnum {
-  DEFAULT = 'Default',
-  ON_PUSH = 'OnPush'
-}
-
-export enum CoerceStyleGeneratorSchemaEnum {
-  CSS = 'css',
-  SCSS = 'scss',
-  SASS = 'sass',
-  LESS = 'less',
-  NONE = 'none'
-}
-
 export interface InitLibraryGeneratorSchema {
   project?: string;
   projects?: Array<string>;
@@ -51,7 +12,7 @@ export interface InitLibraryGeneratorSchema {
       /** A directory where the library is placed. */
       directory?: string;
       /** Whether to generate the project name and root directory as provided (`as-provided`) or generate them composing their values and taking the configured layout into account (`derived`). */
-      projectNameAndRootFormat?: CoerceProjectNameAndRootFormatGeneratorSchemaEnum;
+      projectNameAndRootFormat?: 'as-provided' | 'derived';
       /** Generate a publishable library. */
       publishable?: boolean;
       /** Generate a buildable library. */
@@ -77,17 +38,17 @@ export interface InitLibraryGeneratorSchema {
       /** Add tags to the library (used for linting). */
       tags?: string;
       /** Test runner to use for unit tests. */
-      unitTestRunner?: CoerceUnitTestRunnerGeneratorSchemaEnum;
+      unitTestRunner?: 'jest' | 'none';
       /** The library name used to import it, like `@myorg/my-awesome-lib`. Must be a valid npm name. */
       importPath?: string;
       /** Create a library with stricter type checking and build optimization options. */
       strict?: boolean;
       /** The tool to use for running lint checks. */
-      linter?: CoerceLinterGeneratorSchemaEnum;
+      linter?: 'eslint' | 'none';
       /** Split the project configuration into `<projectRoot>/project.json` rather than including it inside `workspace.json`. */
       standaloneConfig?: boolean;
       /** Specifies the compilation mode to use. If not specified, it will default to `partial` for publishable libraries and to `full` for buildable libraries. The `full` value can not be used for publishable libraries. */
-      compilationMode?: CoerceCompilationModeGeneratorSchemaEnum;
+      compilationMode?: 'full' | 'partial';
       /** Whether or not to configure the ESLint `parserOptions.project` option. We do not do this by default for lint performance reasons. */
       setParserOptionsProject?: boolean;
       /** Whether to configure Tailwind CSS for the application. It can only be used with buildable and publishable libraries. Non-buildable libraries will use the application's Tailwind configuration. */
@@ -103,11 +64,11 @@ export interface InitLibraryGeneratorSchema {
       /** Include template inline in the component.ts file. By default, an external template file is created and referenced in the component.ts file. Disclaimer: This option is only valid when `--standalone` is set to `true`. _Note: This is only supported in Angular versions >= 14.1.0_ */
       inlineTemplate?: boolean;
       /** The view encapsulation strategy to use in the new component. Disclaimer: This option is only valid when `--standalone` is set to `true`. _Note: This is only supported in Angular versions >= 14.1.0_ */
-      viewEncapsulation?: CoerceViewEncapsulationGeneratorSchemaEnum;
+      viewEncapsulation?: 'Emulated' | 'None' | 'ShadowDom';
       /** The change detection strategy to use in the new component. Disclaimer: This option is only valid when `--standalone` is set to `true`. _Note: This is only supported in Angular versions >= 14.1.0_ */
-      changeDetection?: CoerceChangeDetectionGeneratorSchemaEnum;
+      changeDetection?: 'Default' | 'OnPush';
       /** The file extension or preprocessor to use for style files, or `none` to skip generating the style file. Disclaimer: This option is only valid when `--standalone` is set to `true`. _Note: This is only supported in Angular versions >= 14.1.0_ */
-      style?: CoerceStyleGeneratorSchemaEnum;
+      style?: 'css' | 'scss' | 'sass' | 'less' | 'none';
       /** Do not create `spec.ts` test files for the new component. Disclaimer: This option is only valid when `--standalone` is set to `true`. _Note: This is only supported in Angular versions >= 14.1.0_ */
       skipTests?: boolean;
       /** The HTML selector to use for this component. Disclaimer: This option is only valid when `--standalone` is set to `true`. _Note: This is only supported in Angular versions >= 14.1.0_ */

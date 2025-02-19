@@ -1,14 +1,9 @@
-export enum InitApplicationModuleFederationGeneratorSchemaEnum {
-  HOST = 'host',
-  REMOTE = 'remote'
-}
-
 export interface InitApplicationGeneratorSchema {
   project?: string;
   projects?: Array<string>;
   /** Whether to enable incremental build */
   incrementalBuild?: boolean;
-  moduleFederation?: InitApplicationModuleFederationGeneratorSchemaEnum;
+  moduleFederation?: 'host' | 'remote';
   /** Route path for layout children */
   layoutRoutePath?: string;
   /** Whether to import the mfe remote as a standalone import */
@@ -18,7 +13,7 @@ export interface InitApplicationGeneratorSchema {
   /** Host project for module federation */
   host?: string;
   /** Add target to deploy to after build */
-  deploy?: 'web3-storage';
+  deploy?: 'web3-storage' | 'test';
   sentry?: boolean;
   apiStatusCheck?: boolean;
   authentication?: 'oauth2-proxy' | boolean;

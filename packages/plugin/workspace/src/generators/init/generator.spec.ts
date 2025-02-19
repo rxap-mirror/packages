@@ -1,7 +1,6 @@
 import { Tree } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import initGenerator from './generator';
-import { InitLicenseGeneratorSchemaEnum } from './schema';
 
 describe('init', () => {
 

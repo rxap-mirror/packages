@@ -1,8 +1,3 @@
-export enum FrontendMicroservicePlatformGeneratorSchemaEnum {
-  EXPRESS = 'express',
-  FASTIFY = 'fastify'
-}
-
 export interface FrontendMicroserviceGeneratorSchema {
   /** The name of frontend project */
   frontend: string;
@@ -23,7 +18,7 @@ export interface FrontendMicroserviceGeneratorSchema {
   healthIndicatorList?: Array<string>;
   /** Whether this service use the ValidationPipe */
   validator?: boolean;
-  platform?: FrontendMicroservicePlatformGeneratorSchemaEnum;
+  platform?: 'express' | 'fastify';
   /** The default port where the server is listens */
   port?: number;
   /** Default sentry dsn */
