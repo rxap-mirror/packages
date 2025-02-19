@@ -28,6 +28,11 @@ export interface TypescriptInterfaceGeneratorOptions extends Options {
   suffix?: string;
   basePath?: string;
   addImports?: boolean;
+  /**
+   * true - if a schema property has an enum property a typescript enum will be created
+   * false - else a typescript string tuple will be used
+   */
+  useStringEnums?: boolean;
 }
 
 export class TypescriptInterfaceGenerator {
@@ -328,16 +333,26 @@ export class TypescriptInterfaceGenerator {
             if (schema.enum.every(item => item.match(/\d+/))) {
               return TypescriptInterfaceGenerator.unionType(schema.enum);
             } else {
-              const enumName = (parentName ? classify(parentName) : '') + classify(propertyName) + (this.options.suffix ? classify(this.options.suffix) : '') + 'Enum';
-              currentFile.addEnum({
-                name: enumName,
-                isExported: true,
-                members: schema.enum.map(item => ({
-                  name: underscore(item).toUpperCase(),
-                  value: item,
-                })),
-              });
-              return enumName;
+              if (this.options.useStringEnums) {
+                const enumName = (
+                                   parentName ? classify(parentName) : ''
+                                 ) + classify(propertyName) + (
+                                   this.options.suffix ? classify(this.options.suffix) : ''
+                                 ) + 'Enum';
+                currentFile.addEnum({
+                  name: enumName,
+                  isExported: true,
+                  members: schema.enum.map(item => (
+                    {
+                      name: underscore(item).toUpperCase(),
+                      value: item,
+                    }
+                  )),
+                });
+                return enumName;
+              } else {
+                return TypescriptInterfaceGenerator.unionType(schema.enum.map(item => w => w.quote(item)));
+              }
             }
           }
           if (isNumberArray(schema.enum)) {
@@ -345,7 +360,15 @@ export class TypescriptInterfaceGenerator {
           }
           return TypescriptInterfaceGenerator.unionType(
             (schema.enum as string[]).map(
-              (item) => (writer) => writer.quote(item),
+              (item) => (writer) => {
+                if (!isNaN(Number(item))) {
+                  writer.write(item);
+                } else if (['true', 'false'].includes(item)) {
+                  writer.write(item);
+                } else {
+                  writer.quote(item);
+                }
+              },
             ),
           );
         }
