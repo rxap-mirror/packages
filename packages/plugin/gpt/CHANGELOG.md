@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@20.1.1-dev.2...@rxap/plugin-gpt@20.1.1-dev.3) (2025-02-19)
+
+### Bug Fixes
+
+- use tuples instead of enums ([8e39ee0](https://gitlab.com/rxap/packages/commit/8e39ee0145ed7650f783913857780d276b26069c))
+
 ## [20.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@20.1.1-dev.1...@rxap/plugin-gpt@20.1.1-dev.2) (2025-02-18)
 
 **Note:** Version bump only for package @rxap/plugin-gpt

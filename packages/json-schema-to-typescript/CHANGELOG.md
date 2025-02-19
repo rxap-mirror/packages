@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.1.1-dev.1...@rxap/json-schema-to-typescript@16.1.1-dev.2) (2025-02-19)
+
+### Bug Fixes
+
+- only use typescript enums if requested ([e12654d](https://gitlab.com/rxap/packages/commit/e12654df1063cb2cc145910fd943c68cc5552bf3))
+- use tuples instead of enums ([8e39ee0](https://gitlab.com/rxap/packages/commit/8e39ee0145ed7650f783913857780d276b26069c))
+
 ## [16.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.1.1-dev.0...@rxap/json-schema-to-typescript@16.1.1-dev.1) (2025-02-18)
 
 **Note:** Version bump only for package @rxap/json-schema-to-typescript

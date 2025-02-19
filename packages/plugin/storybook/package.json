@@ -1,5 +1,5 @@
 {
-  "version": "20.0.2-dev.2",
+  "version": "20.0.2-dev.3",
   "name": "@rxap/plugin-storybook",
   "description": "This package provides generators to initialize Storybook for Angular projects within an Nx workspace. It automates the configuration of Storybook, including adding dependencies, setting up configurations, and generating stories. It supports both application and library projects, and offers options to customize the setup, such as enabling Compodoc integration and skipping format checks.\n",
   "license": "MIT",
