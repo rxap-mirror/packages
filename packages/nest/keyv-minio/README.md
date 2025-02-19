@@ -19,7 +19,7 @@ yarn add @rxap/nest-keyv-minio
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/cache-manager@^2.2.2 @nestjs/common@^10.3.8 @rxap/nest-utilities@^10.4.1-dev.0 keyv@^5.1.0 minio@^8.0.1 
+yarn add @nestjs/cache-manager@^2.2.2 @nestjs/common@^10.3.8 @rxap/nest-utilities@^10.4.1-dev.1 keyv@^5.1.0 minio@^8.0.1 
 ```
 **Execute the init generator:**
 ```bash
