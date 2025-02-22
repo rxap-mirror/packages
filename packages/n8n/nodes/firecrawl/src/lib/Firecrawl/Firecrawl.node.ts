@@ -76,10 +76,44 @@ export class Firecrawl implements INodeType {
         name: 'formats',
         displayName: 'Formats',
         type: 'multiOptions',
-        options: [{
-          value: 'markdown',
-          name: 'Markdown'
-        }],
+        options: [
+          {
+            value: 'markdown',
+            name: 'Markdown'
+          },
+          {
+            value: 'html',
+            name: 'HTML'
+          },
+          {
+            value: 'rawHtml',
+            name: 'Raw HTML'
+          },
+          {
+            value: 'content',
+            name: 'Content'
+          },
+          {
+            value: 'links',
+            name: 'Links'
+          },
+          {
+            value: 'screenshot',
+            name: 'Screenshot'
+          },
+          {
+            value: 'screenshot@fullPage',
+            name: 'Screenshot Full Page'
+          },
+          {
+            value: 'extract',
+            name: 'Extract'
+          },
+          {
+            value: 'json',
+            name: 'JSON'
+          }
+        ],
         default: ['markdown'],
       },
       {
