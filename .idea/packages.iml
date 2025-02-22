@@ -564,6 +564,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/nest/keyv-minio/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/nest/keyv-minio/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/nest/keyv-minio/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/firecrawl/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/firecrawl/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/firecrawl/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/firecrawl/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>
