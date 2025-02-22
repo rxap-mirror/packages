@@ -69,6 +69,7 @@
     "n8n-nodes-cqrs",
     "n8n-nodes-development",
     "n8n-nodes-file",
+    "n8n-nodes-firecrawl",
     "n8n-nodes-ipfs",
     "n8n-nodes-neo4j",
     "n8n-nodes-open-webui",
