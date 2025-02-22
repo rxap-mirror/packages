@@ -109,6 +109,7 @@ async function shouldHaveProjectConfiguration(
       tree.exists(join(projectPath, 'src', 'Dockerfile'))
     ) ||
     IsLibraryProject(projectConfiguration)
+    || !tree.exists(join(projectPath, 'project.json'))
   ) {
     return false;
   }
