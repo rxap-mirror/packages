@@ -1,3 +1,4 @@
+import KeyvPostgres from '@keyv/postgres';
 import FireCrawlApp from '@mendable/firecrawl-js';
 import {
   CrawlScrapeOptions,
@@ -8,6 +9,7 @@ import {
   CaptureExecutionError,
   forEachItem,
 } from '@rxap/n8n-utilities';
+import Keyv from 'keyv';
 import {
   IExecuteFunctions,
   INodeExecutionData,
@@ -17,9 +19,7 @@ import {
   NodeOperationError,
 } from 'n8n-workflow';
 import { INodeProperties } from 'n8n-workflow/dist/Interfaces';
-import * as zt from 'zod';
-import Keyv from 'keyv';
-import KeyvPostgres from '@keyv/postgres';
+import type { ZodSchema } from 'zod';
 
 export class Firecrawl implements INodeType {
   description: INodeTypeDescription = {
@@ -183,7 +183,7 @@ export class Firecrawl implements INodeType {
 
     }
 
-    const scrapeUrl = async <T extends zt.ZodSchema>(url: string, options: ScrapeParams<T>): Promise<Record<any, any>> => {
+    const scrapeUrl = async <T extends ZodSchema>(url: string, options: ScrapeParams<T>): Promise<Record<any, any>> => {
       const scrapeResult = await firecrawl.scrapeUrl(url, options);
       if (scrapeResult.success) {
         return scrapeResult as Record<any, any>;
