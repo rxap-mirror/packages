@@ -4722,6 +4722,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@keyv/postgres@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@keyv/postgres@npm:2.1.1"
+  dependencies:
+    keyv: ^5.2.3
+    pg: 8.13.3
+  checksum: a521e775b55cd0e1852e15ea920956cdaed279818863de2c60d8657e98c389097d94586910572c34291e73d052bf76272de0cf8fb482025e0ddb21a43c979b94
+  languageName: node
+  linkType: hard
+
 "@keyv/serialize@npm:^1.0.2":
   version: 1.0.3
   resolution: "@keyv/serialize@npm:1.0.3"
@@ -10515,6 +10525,7 @@ __metadata:
     "@enio.ai/typedoc": 1.0.8
     "@faker-js/faker": 8.0.2
     "@jsdevtools/coverage-istanbul-loader": 3.0.5
+    "@keyv/postgres": ^2.1.1
     "@kvs/storage": 2.1.4
     "@localazy/cli": 1.7.10
     "@marker.io/browser": ^0.19.0
@@ -10633,7 +10644,7 @@ __metadata:
     joi: 17.9.2
     jsonc-eslint-parser: 2.4.0
     keycloak-js: 23.0.7
-    keyv: ^5.1.0
+    keyv: ^5.2.3
     lerna: 8.1.3
     marked: 4.3.0
     minio: 8.0.1
@@ -25397,7 +25408,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keyv@npm:^5.1.0":
+"keyv@npm:^5.2.3":
   version: 5.2.3
   resolution: "keyv@npm:5.2.3"
   dependencies:
@@ -29712,6 +29723,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pg-cloudflare@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "pg-cloudflare@npm:1.1.1"
+  checksum: 32aac06b5dc4588bbf78801b6267781bc7e13be672009df949d08e9627ba9fdc26924916665d4de99d47f9b0495301930547488dad889d826856976c7b3f3731
+  languageName: node
+  linkType: hard
+
+"pg-connection-string@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "pg-connection-string@npm:2.7.0"
+  checksum: 68015a8874b7ca5dad456445e4114af3d2602bac2fdb8069315ecad0ff9660ec93259b9af7186606529ac4f6f72a06831e6f20897a689b16cc7fda7ca0e247fd
+  languageName: node
+  linkType: hard
+
 "pg-int8@npm:1.0.1":
   version: 1.0.1
   resolution: "pg-int8@npm:1.0.1"
@@ -29726,6 +29751,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pg-pool@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "pg-pool@npm:3.7.1"
+  peerDependencies:
+    pg: ">=8.0"
+  checksum: 77f9228746b9d9a1fcb28d63aac8ac66a5ebea912f2efe6df44fe0986a86e3dcdf26ab1925f6db61139ee6df52833f55306b36e2fb7d8e0b38fe094cc51dca47
+  languageName: node
+  linkType: hard
+
 "pg-protocol@npm:*":
   version: 1.7.0
   resolution: "pg-protocol@npm:1.7.0"
@@ -29733,7 +29767,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg-types@npm:^2.2.0":
+"pg-protocol@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "pg-protocol@npm:1.7.1"
+  checksum: 88df68e8c09727311bbd0cc4344ac168962578aed3377d9dc0e2a5175ce4dfc6aa6d8c402de3a231a3aeda24f3e085d442ca47ad7c52f803e1abcdc98ddcbc7e
+  languageName: node
+  linkType: hard
+
+"pg-types@npm:^2.1.0, pg-types@npm:^2.2.0":
   version: 2.2.0
   resolution: "pg-types@npm:2.2.0"
   dependencies:
@@ -29758,6 +29799,37 @@ __metadata:
     postgres-interval: ^3.0.0
     postgres-range: ^1.1.1
   checksum: c4b813382d4a75f87462fab3245d5422b86ba1a54a1b330e6b43a459c127b4d02553dc7e5b4ae4fa0f5f17971d416eb393810f69ff6d30d986e45c2f20778c55
+  languageName: node
+  linkType: hard
+
+"pg@npm:8.13.3":
+  version: 8.13.3
+  resolution: "pg@npm:8.13.3"
+  dependencies:
+    pg-cloudflare: ^1.1.1
+    pg-connection-string: ^2.7.0
+    pg-pool: ^3.7.1
+    pg-protocol: ^1.7.1
+    pg-types: ^2.1.0
+    pgpass: 1.x
+  peerDependencies:
+    pg-native: ">=3.0.1"
+  dependenciesMeta:
+    pg-cloudflare:
+      optional: true
+  peerDependenciesMeta:
+    pg-native:
+      optional: true
+  checksum: e2e66d1e17addf8a89478b1a2c1c3654bbf006bc39af75b4677a5a4041b9b0e23d2389ccd3037250486afa3d7419d57cb4807409576aa72b1595bb3d65ba5086
+  languageName: node
+  linkType: hard
+
+"pgpass@npm:1.x":
+  version: 1.0.5
+  resolution: "pgpass@npm:1.0.5"
+  dependencies:
+    split2: ^4.1.0
+  checksum: 947ac096c031eebdf08d989de2e9f6f156b8133d6858c7c2c06c041e1e71dda6f5f3bad3c0ec1e96a09497bbc6ef89e762eefe703b5ef9cb2804392ec52ec400
   languageName: node
   linkType: hard
 
@@ -33647,7 +33719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"split2@npm:^4.0.0":
+"split2@npm:^4.0.0, split2@npm:^4.1.0":
   version: 4.2.0
   resolution: "split2@npm:4.2.0"
   checksum: 05d54102546549fe4d2455900699056580cca006c0275c334611420f854da30ac999230857a85fdd9914dc2109ae50f80fda43d2a445f2aa86eccdc1dfce779d
