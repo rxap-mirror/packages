@@ -8,6 +8,7 @@ import {
   FindProjectByPath,
   IsAngularProject,
   IsApplicationProject,
+  IsLibraryProject,
   IsNestJsProject,
 } from '@rxap/workspace-utilities';
 import { FsTree } from 'nx/src/generators/tree';
@@ -107,7 +108,7 @@ async function shouldHaveProjectConfiguration(
       tree.exists(join(projectPath, 'Dockerfile')) ||
       tree.exists(join(projectPath, 'src', 'Dockerfile'))
     ) ||
-    !IsApplicationProject(projectConfiguration)
+    IsLibraryProject(projectConfiguration)
   ) {
     return false;
   }
