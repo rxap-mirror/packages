@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.2.0-dev.2...@rxap/plugin-typedoc@20.2.0-dev.3) (2025-02-22)
+
+### Bug Fixes
+
+- set required typedoc config static ([8058138](https://gitlab.com/rxap/packages/commit/8058138ff98d9e37b711846892c79ebc45ed17d4))
+
 # [20.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.2.0-dev.1...@rxap/plugin-typedoc@20.2.0-dev.2) (2025-02-19)
 
 ### Bug Fixes
