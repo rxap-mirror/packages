@@ -21,7 +21,7 @@ export async function cached<Fn extends (...args: Parameters<Fn>) => ReturnType<
 
   if (await keyv.has(key)) {
     const cached = (await keyv.get(key))!;
-    cached['__cache__'] = true;
+    cached['__cache__'] = key;
     return cached;
   }
 
