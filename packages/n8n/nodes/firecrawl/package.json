@@ -33,7 +33,9 @@
     "nodes": [
       "src/lib/Firecrawl/Firecrawl.node.js"
     ],
-    "credentials": []
+    "credentials": [
+      "src/lib/Firecrawl.credentials.js"
+    ]
   },
   "publishConfig": {
     "access": "public",
