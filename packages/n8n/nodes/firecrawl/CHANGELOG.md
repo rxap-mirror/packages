@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-firecrawl@0.1.0-dev.0...@rxap/n8n-nodes-firecrawl@0.1.0-dev.1) (2025-02-22)
+
+### Bug Fixes
+
+- update package groups ([8ec6303](https://gitlab.com/rxap/packages/commit/8ec6303e186dad3e922780c042621a97c4153e69))
+
 # 0.1.0-dev.0 (2025-02-22)
 
 ### Bug Fixes
