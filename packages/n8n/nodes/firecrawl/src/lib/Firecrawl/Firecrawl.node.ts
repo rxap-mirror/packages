@@ -1,12 +1,13 @@
+import FireCrawlApp from '@mendable/firecrawl-js';
 import {
-  Action,
-  ActionsResult,
   CrawlScrapeOptions,
-  ErrorResponse,
   ScrapeParams,
-  ScrapeResponse,
 } from '@mendable/firecrawl-js/src';
-import { CaptureExecutionError, forEachItem } from '@rxap/n8n-utilities';
+import {
+  cached,
+  CaptureExecutionError,
+  forEachItem,
+} from '@rxap/n8n-utilities';
 import {
   IExecuteFunctions,
   INodeExecutionData,
@@ -16,8 +17,9 @@ import {
   NodeOperationError,
 } from 'n8n-workflow';
 import { INodeProperties } from 'n8n-workflow/dist/Interfaces';
-import FireCrawlApp from '@mendable/firecrawl-js';
 import * as zt from 'zod';
+import Keyv from 'keyv';
+import KeyvPostgres from '@keyv/postgres';
 
 export class Firecrawl implements INodeType {
   description: INodeTypeDescription = {
@@ -112,6 +114,7 @@ export class Firecrawl implements INodeType {
         displayName: 'Cache',
         default: 'postgres',
         type: 'options',
+        noDataExpression: true,
         options: [
           {
             name: 'None',
@@ -123,6 +126,18 @@ export class Firecrawl implements INodeType {
           }
         ],
         description: 'Use the cache to speed up the scraping process. First checks the cache for existing results. If not found, it will call the firecrawl api. If the cache is enabled, the cache will be updated with the new results.'
+      },
+      {
+        name: 'cacheTTL',
+        displayName: 'Cache TTL',
+        default: -1,
+        type: 'number',
+        noDataExpression: true,
+        displayOptions: {
+          show: {
+            cache: ['postgres']
+          }
+        }
       }
     ],
   };
@@ -141,8 +156,32 @@ export class Firecrawl implements INodeType {
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][] | null> {
 
     const operation = this.getNodeParameter('operation', 0) as 'scrapeUrl' | string;
-    const {apiKey} = await this.getCredentials('firecrawl') as { apiKey: string };
+    const cache = this.getNodeParameter('cache', 0) as 'none' | 'postgres';
+    const cacheTTL = this.getNodeParameter('cacheTTL', -1) as number;
+    const {apiKey} = await this.getCredentials<{ apiKey: string }>('firecrawl');
     const firecrawl = new FireCrawlApp({apiKey});
+
+    let keyv: Keyv | undefined = undefined;
+    switch (cache) {
+      case 'postgres':
+        // eslint-disable-next-line no-case-declarations
+        const {
+          host,
+          database,
+          user,
+          password,
+          ssl,
+          port
+        } = await this.getCredentials<{ host: string, database: string, user: string, password: string, ssl: 'allow' | 'disable' | 'require', port: number  }>('postgres');
+        keyv = new Keyv(
+          new KeyvPostgres({
+            uri: `postgres://${user}:${password}@${host}:${port}/${database}?sslmode=${ssl}`,
+            useUnloggedTable: true
+          })
+        );
+        break;
+
+    }
 
     const scrapeUrl = async <T extends zt.ZodSchema>(url: string, options: ScrapeParams<T>): Promise<Record<any, any>> => {
       const scrapeResult = await firecrawl.scrapeUrl(url, options);
@@ -164,7 +203,7 @@ export class Firecrawl implements INodeType {
 
         case 'scrapeUrl':
           return {
-            json: await scrapeUrl(url, {
+            json: await cached({ keyv, ttl: cacheTTL > 0 ? cacheTTL : undefined }, scrapeUrl, url, {
               formats: formats,
               onlyMainContent,
               includeTags: includeTags?.length ? includeTags : undefined,
@@ -185,6 +224,3 @@ export class Firecrawl implements INodeType {
   }
 
 }
-
-
-
