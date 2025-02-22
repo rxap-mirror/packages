@@ -1,4 +1,5 @@
 import Keyv from 'keyv';
+import { createHash } from 'node:crypto';
 
 export interface CacheOptions {
   disabled?: boolean;
@@ -16,7 +17,7 @@ export async function cached<Fn extends (...args: Parameters<Fn>) => ReturnType<
     return fn(...args);
   }
 
-  const key = JSON.stringify(args);
+  const key = createHash('sha256').update(JSON.stringify(args)).digest('hex');
 
   if (await keyv.has(key)) {
     const cached = (await keyv.get(key))!;
