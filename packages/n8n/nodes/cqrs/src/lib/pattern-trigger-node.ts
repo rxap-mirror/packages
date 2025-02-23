@@ -91,6 +91,13 @@ export class PatternTriggerNode implements INodeType {
               operation: [ CUSTOM_OPERATION ],
             },
           },
+        },
+        {
+          name: 'queue',
+          displayName: 'Queue',
+          type: 'string',
+          default: '',
+          hint: 'If empty generate a unique queue name'
         }
       ],
       icon: { light: `file:${this.constructor.name.replace(/Trigger$/, '')}.svg`, dark: `file:${this.constructor.name.replace(/Trigger$/, '')}.dark.svg` },
@@ -100,7 +107,7 @@ export class PatternTriggerNode implements INodeType {
 
   async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
 
-    const queue = this.getNodeParameter('queue', 'n8n') as string;
+    const queue = this.getNodeParameter('queue', '') as string;
     const exchange = this.getNodeParameter('exchange', 'cqrs') as string;
     const exchangeType = this.getNodeParameter('exchangeType', 'topic') as ExchangeType;
     const operation = this.getNodeParameter('operation') as string;
