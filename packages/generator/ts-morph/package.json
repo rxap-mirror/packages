@@ -4,7 +4,7 @@
   "description": "This package provides a deprecated `AddDir` export, which is now recommended to be imported from `@rxap/workspace-ts-morph`. It also includes an init generator that helps manage peer dependencies for other `@rxap` packages, ensuring they are correctly added to either `dependencies` or `devDependencies` in the project's `package.json`. The generator also attempts to run the init generator of the peer dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "@rxap/workspace-ts-morph": "^19.1.10-dev.2",
     "tslib": "2.6.2"
   },

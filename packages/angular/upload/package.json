@@ -4,7 +4,7 @@
   "description": "A Material Design upload button component for Angular that supports file selection, display, and download. It integrates with Angular Forms and provides visual feedback. It also includes a pipe to read files as data URLs.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

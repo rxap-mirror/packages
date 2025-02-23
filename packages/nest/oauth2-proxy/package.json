@@ -4,7 +4,7 @@
   "description": "Provides NestJS decorators to extract authentication information from request headers set by an OAuth2 proxy. Includes decorators for accessing the access token, email, groups, preferred username, and user ID. Also includes a generator for initializing the package.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

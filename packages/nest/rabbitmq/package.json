@@ -4,7 +4,7 @@
   "description": "This package provides a NestJS module for integrating with RabbitMQ using exchanges. It offers a client and server implementation for message queuing and supports features like health checks and error serialization. It simplifies the process of setting up and managing RabbitMQ connections and message handling within NestJS applications.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

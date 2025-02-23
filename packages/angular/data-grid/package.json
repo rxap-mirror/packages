@@ -4,7 +4,7 @@
   "description": "Provides a data grid component for Angular applications. It supports plain and form modes, custom header and cell templates, and integration with Rxap Forms and Data Sources. The component allows for displaying and editing data in a tabular format with features like edit mode, validation, and data refresh.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

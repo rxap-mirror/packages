@@ -5,7 +5,7 @@
   "dependencies": {
     "@keyv/postgres": "^2.1.1",
     "@mendable/firecrawl-js": "^1.18.2",
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "@rxap/n8n-utilities": "^1.1.0-dev.3",
     "keyv": "^5.2.3",
     "tslib": "^2.3.0"

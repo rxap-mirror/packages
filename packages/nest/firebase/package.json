@@ -4,7 +4,7 @@
   "description": "This package provides Firebase integration for NestJS applications. It includes modules, guards, and decorators for Firebase Authentication and App Check, as well as utilities for Firestore error handling. It simplifies the process of securing and managing Firebase-related functionalities within a NestJS application.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

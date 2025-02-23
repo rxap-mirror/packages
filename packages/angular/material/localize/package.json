@@ -4,7 +4,7 @@
   "description": "Provides components and services to simplify internationalization (i18n) in Angular Material applications. It offers components for language selection and utilities to localize Material components like Datepicker, Paginator and Stepper. This package aims to streamline the process of adapting your Angular Material UI to different languages.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

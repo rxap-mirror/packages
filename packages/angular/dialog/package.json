@@ -4,7 +4,7 @@
   "description": "This package provides Angular Material-based message and confirm dialog components and services. It offers customizable dialogs for displaying messages and confirmations to users. The package includes components for rendering the dialogs and services for easily opening them with configurable options.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

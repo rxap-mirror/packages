@@ -4,7 +4,7 @@
   "description": "This package provides tools and utilities for integrating OpenAPI specifications into NestJS applications. It includes features for handling upstream API requests, managing server configurations, and generating OpenAPI documentation. It also offers interceptors and exception filters for enhanced request handling and validation.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

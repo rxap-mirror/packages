@@ -4,7 +4,7 @@
   "description": "A NestJS module for integrating with OpenFGA, a fine-grained authorization service. It provides a service, guard, and decorator to simplify authorization logic within NestJS applications. The module allows you to define authorization rules and enforce them using OpenFGA.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "@openfga/sdk": "^0.8.0",
     "tslib": "^2.3.0"
   },

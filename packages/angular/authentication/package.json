@@ -4,7 +4,7 @@
   "description": "Provides authentication services, guards, and interceptors for Angular applications. It supports token-based authentication and provides features such as sign-out functionality and routing based on authentication status. This package also includes utilities for disabling authentication in certain environments and managing access tokens.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

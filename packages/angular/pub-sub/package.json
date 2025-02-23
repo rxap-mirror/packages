@@ -4,7 +4,7 @@
   "description": "Provides a simple publish/subscribe service for Angular applications. It supports caching of messages with optional retention policies and a garbage collector to manage the cache size.  The service also supports wildcard topic matching.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

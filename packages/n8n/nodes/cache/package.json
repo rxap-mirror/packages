@@ -4,7 +4,7 @@
   "description": "This package provides a cache node for n8n workflows, allowing users to cache items using a MinIO client. It supports both reading from and writing to the cache, with options to disable caching and configure bucket names and keys. The node can improve workflow performance by storing and retrieving data from a cache instead of re-executing expensive operations.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "@rxap/n8n-utilities": "^1.1.0-dev.3",
     "minio": "8.0.1",
     "tslib": "^2.3.0"

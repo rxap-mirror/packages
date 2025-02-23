@@ -4,7 +4,7 @@
   "description": "This n8n node allows you to convert data to and from YAML format. It supports operations like extracting data from YAML, converting to YAML, and setting values within YAML structures. It also includes utilities for handling binary data and different encoding options.\n",
   "license": "MIT",
   "dependencies": {
-    "@nx/devkit": "20.4.2",
+    "@nx/devkit": "20.4.6",
     "iconv-lite": "^0.6.3",
     "lodash": "^4.17.21",
     "tslib": "2.6.2",
