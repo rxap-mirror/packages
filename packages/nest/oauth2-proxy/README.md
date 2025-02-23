@@ -19,7 +19,7 @@ yarn add @rxap/nest-oauth2-proxy
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @rxap/utilities@^16.4.3-dev.2 
+yarn add @nestjs/common@^10.3.8 @rxap/utilities@^16.4.3 
 ```
 **Execute the init generator:**
 ```bash

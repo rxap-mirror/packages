@@ -19,7 +19,7 @@ yarn add @rxap/nest-open-api
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/axios@^3.0.2 @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @nestjs/core@^10.3.8 @nestjs/swagger@^7.3.1 @nestjs/terminus@^10.2.3 @rxap/nest-utilities@^10.4.1-dev.2 @rxap/node-utilities@^1.3.9-dev.3 @rxap/utilities@^16.4.3-dev.2 @sentry/core@^8.18.0 class-transformer@^0.5.1 class-validator@^0.14.1 openapi-types@^10.0.0 rxjs@^7.8.1 
+yarn add @nestjs/axios@^3.0.2 @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @nestjs/core@^10.3.8 @nestjs/swagger@^7.3.1 @nestjs/terminus@^10.2.3 @rxap/nest-utilities@^10.4.1 @rxap/node-utilities@^1.3.9 @rxap/utilities@^16.4.3 @sentry/core@^8.18.0 class-transformer@^0.5.1 class-validator@^0.14.1 openapi-types@^10.0.0 rxjs@^7.8.1 
 ```
 **Execute the init generator:**
 ```bash
