@@ -118,18 +118,20 @@ export abstract class PatternNode implements INodeType {
     }
 
     const responseEmitter = new Subject<{
-      correlationId: string, payload: { response?: any, err?: { status: number, message: string, name: string } }
+      correlationId: string, payload: { result?: any, response?: any, err?: { status: number, message: string, name: string }, error?: { message: string, name: string } }
     }>();
 
     if (replyQueue) {
+      this.logger.info('Listening for replies on queue: ' + REPLY_QUEUE);
       await channel.consume(REPLY_QUEUE, msg => {
         if (msg) {
+          this.logger.debug(`Received reply for correlationId: ${ msg.properties.correlationId }`);
           responseEmitter.next({
             correlationId: msg.properties.correlationId,
             payload: JSON.parse(msg.content.toString()),
           });
         } else {
-          console.warn('Received empty message');
+          this.logger.warn('Received empty message');
         }
       }, { noAck: true });
     }
@@ -173,17 +175,20 @@ export abstract class PatternNode implements INodeType {
       const correlationId = uuid();
       const cancel = new Subject<void>();
       if (replyQueue) {
+        this.logger.info(`Waiting for reply for correlationId: ${ correlationId } for item ${ i }`);
         replayQueuePromise.push(firstValueFrom(responseEmitter.pipe(
           takeUntil(cancel),
           filter(item => item.correlationId === correlationId),
           tap(item => {
-            if (item.payload.err) {
+            const error = item.payload.err || item.payload.error;
+            const response = item.payload.response || item.payload.result;
+            if (error) {
               returnItems[i] = {
-                json: item.payload.err,
-                error: new NodeOperationError(this.getNode(), item.payload.err.message, { level: 'error' }),
+                json: error,
+                error: new NodeOperationError(this.getNode(), error.message, { level: 'error' }),
               };
-            } else if (item.payload.response) {
-              const response = item.payload.response;
+            } else if (response) {
+              this.logger.info(`Received response for correlationId: ${ correlationId } for item ${ i }`);
               if (spread) {
                 let rows = [];
                 if (Array.isArray(response)) {
@@ -202,6 +207,8 @@ export abstract class PatternNode implements INodeType {
               } else {
                 returnItems[i] = { json: response };
               }
+            } else {
+              this.logger.warn(`Received empty response for correlationId: ${ correlationId } for item ${ i }: ${JSON.stringify(item.payload)}`);
             }
           }),
         )));
@@ -215,9 +222,11 @@ export abstract class PatternNode implements INodeType {
       });
 
       if (!ok) {
+        this.logger.warn(`Failed to publish message to exchange "${ exchange }" with routing key "${ routingKey }" for item ${ i }.`);
         cancel.next();
         throw new NodeOperationError(this.getNode(), 'Failed to publish message');
       } else {
+        this.logger.debug(`Published message to exchange "${ exchange }" with routing key "${ routingKey }" for item ${ i } successfully.`);
         returnItems[i] ??= {
           json: {
             success: true,
@@ -227,6 +236,7 @@ export abstract class PatternNode implements INodeType {
     }
 
     await Promise.allSettled(replayQueuePromise);
+    this.logger.debug(`All responses received`);
 
     try {
       await channel.close();
