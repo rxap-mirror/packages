@@ -32,7 +32,9 @@
   "main": "./src/index.js",
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "nodes": [],
+    "nodes": [
+      "src/lib/Zip/Zip.node.js"
+    ],
     "credentials": []
   },
   "publishConfig": {
