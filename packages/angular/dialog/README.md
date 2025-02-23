@@ -19,7 +19,7 @@ yarn add @rxap/dialog
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @rxap/pipes@^19.1.1-dev.0 rxjs@^7.8.1 
+yarn add @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @rxap/pipes@^19.1.1-dev.1 rxjs@^7.8.1 
 ```
 **Execute the init generator:**
 ```bash
