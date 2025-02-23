@@ -19,7 +19,7 @@ yarn add @rxap/ngx-bootstrap
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 @angular/platform-browser@^19.1.3 @angular/platform-browser-dynamic@^19.1.3 @rxap/config@^19.0.2-dev.2 @rxap/environment@^19.0.2-dev.1 ngx-logger@^5.0.12 
+yarn add @angular/core@^19.1.3 @angular/platform-browser@^19.1.3 @angular/platform-browser-dynamic@^19.1.3 @rxap/config@^19.0.2-dev.3 @rxap/environment@^19.0.2-dev.1 ngx-logger@^5.0.12 
 ```
 **Execute the init generator:**
 ```bash

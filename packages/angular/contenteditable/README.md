@@ -19,7 +19,7 @@ yarn add @rxap/contenteditable
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 @rxap/pattern@^1.1.12-dev.1 @rxap/utilities@^16.4.3-dev.1 
+yarn add @angular/core@^19.1.3 @rxap/pattern@^1.1.12-dev.1 @rxap/utilities@^16.4.3-dev.2 
 ```
 **Execute the init generator:**
 ```bash
