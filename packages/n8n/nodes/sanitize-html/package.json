@@ -1,11 +1,11 @@
 {
-  "version": "1.1.0-dev.4",
+  "version": "1.1.0-dev.5",
   "name": "@rxap/n8n-nodes-sanitize-html",
   "description": "Sanitizes HTML content based on specified rules, allowing you to control which tags and attributes are permitted. This package provides a node for n8n that transforms HTML by removing potentially harmful or unwanted elements. It helps ensure that the HTML is safe and conforms to your desired standards.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.6",
-    "@rxap/n8n-utilities": "^1.1.0-dev.3",
+    "@rxap/n8n-utilities": "^1.1.0-dev.4",
     "sanitize-html": "^2.14.0",
     "tslib": "^2.3.0"
   },

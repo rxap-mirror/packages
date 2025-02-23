@@ -1,5 +1,5 @@
 {
-  "version": "10.1.9-dev.0",
+  "version": "10.1.9-dev.1",
   "name": "@rxap/nest-socket-io-client",
   "description": "This package provides a NestJS module for integrating a Socket.IO client. It offers a client proxy service and a provider for managing the Socket.IO client connection, allowing NestJS applications to easily interact with Socket.IO servers.\n",
   "license": "GPL-3.0-or-later",

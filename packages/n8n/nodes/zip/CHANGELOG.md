@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-zip@0.0.5-dev.2...@rxap/n8n-nodes-zip@0.0.5-dev.3) (2025-02-23)
+
+### Bug Fixes
+
+- add missing node export ([90620c8](https://gitlab.com/rxap/packages/commit/90620c8173ddab52761c2c86d4fc7b7fd863f7c3))
+
 ## [0.0.5-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-zip@0.0.5-dev.1...@rxap/n8n-nodes-zip@0.0.5-dev.2) (2025-02-18)
 
 **Note:** Version bump only for package @rxap/n8n-nodes-zip

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-llm@20.0.1-dev.3...@rxap/plugin-llm@20.0.1-dev.4) (2025-02-23)
+
+**Note:** Version bump only for package @rxap/plugin-llm
+
 ## [20.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-llm@20.0.1-dev.2...@rxap/plugin-llm@20.0.1-dev.3) (2025-02-18)
 
 **Note:** Version bump only for package @rxap/plugin-llm

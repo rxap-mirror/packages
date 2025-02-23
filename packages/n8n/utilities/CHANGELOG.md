@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/n8n-utilities@1.1.0-dev.3...@rxap/n8n-utilities@1.1.0-dev.4) (2025-02-23)
+
+**Note:** Version bump only for package @rxap/n8n-utilities
+
 # [1.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/n8n-utilities@1.1.0-dev.2...@rxap/n8n-utilities@1.1.0-dev.3) (2025-02-22)
 
 ### Bug Fixes

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.12-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/validator@3.0.12-dev.0...@rxap/validator@3.0.12-dev.1) (2025-02-23)
+
+**Note:** Version bump only for package @rxap/validator
+
 ## [3.0.12-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/validator@3.0.11...@rxap/validator@3.0.12-dev.0) (2025-02-18)
 
 **Note:** Version bump only for package @rxap/validator
