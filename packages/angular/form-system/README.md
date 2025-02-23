@@ -19,7 +19,7 @@ yarn add @rxap/form-system
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 @angular/forms@^19.1.3 @angular/material@^19.1.1 @angular/router@^19.1.3 @rxap/data-source@^19.0.2-dev.3 @rxap/definition@^19.0.2-dev.2 @rxap/forms@^19.0.2-dev.2 @rxap/mixin@^16.0.13-dev.2 @rxap/open-api@^19.0.2-dev.3 @rxap/pattern@^1.1.12-dev.1 @rxap/reflect-metadata@^1.0.14-dev.2 @rxap/remote-method@^19.0.2-dev.2 @rxap/rxjs@^1.1.13-dev.2 @rxap/utilities@^16.4.3-dev.2 @rxap/validator@^3.0.12-dev.1 rxjs@^7.8.1 
+yarn add @angular/core@^19.1.3 @angular/forms@^19.1.3 @angular/material@^19.1.1 @angular/router@^19.1.3 @rxap/data-source@^19.0.2 @rxap/definition@^19.0.2 @rxap/forms@^19.0.2 @rxap/mixin@^16.0.13 @rxap/open-api@^19.0.2 @rxap/pattern@^1.1.12 @rxap/reflect-metadata@^1.0.14 @rxap/remote-method@^19.0.2 @rxap/rxjs@^1.1.13 @rxap/utilities@^16.4.3 @rxap/validator@^3.0.12 rxjs@^7.8.1 
 ```
 **Execute the init generator:**
 ```bash

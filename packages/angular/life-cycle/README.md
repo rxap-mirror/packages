@@ -19,7 +19,7 @@ yarn add @rxap/life-cycle
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 @angular/router@^19.1.3 @rxap/utilities@^16.4.3-dev.2 rxjs@^7.8.1 
+yarn add @angular/core@^19.1.3 @angular/router@^19.1.3 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
 ```
 **Execute the init generator:**
 ```bash
