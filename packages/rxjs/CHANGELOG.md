@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.13-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/rxjs@1.1.13-dev.1...@rxap/rxjs@1.1.13-dev.2) (2025-02-23)
+
+### Bug Fixes
+
+- update package groups ([66f235a](https://gitlab.com/rxap/packages/commit/66f235a6ce54be16b210c3d298bd0c4a88d1066d))
+
 ## [1.1.13-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/rxjs@1.1.13-dev.0...@rxap/rxjs@1.1.13-dev.1) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/rxjs
