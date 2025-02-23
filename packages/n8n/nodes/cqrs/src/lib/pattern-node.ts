@@ -136,8 +136,9 @@ export abstract class PatternNode implements INodeType {
 
     const replayQueuePromise: Promise<any>[] = [];
     for (let i = 0; i < items.length; i++) {
-      const payload = this.getNodeParameter('payload', i, {}) as IDataObject;
-      const message = JSON.stringify(payload);
+      const payload = this.getNodeParameter('payload', i, {}) as IDataObject | string;
+
+      const message = typeof payload === 'string' ? payload : JSON.stringify(payload);
 
       let routingKey: string;
       if (operation === CUSTOM_OPERATION) {
