@@ -78,7 +78,21 @@ export class PatternTriggerNode implements INodeType {
           required: true
         },
       ],
-      properties: [],
+      properties: [
+        {
+          name: 'routingKeyPrefix',
+          default: this.routingKeyPrefix,
+          type: 'string',
+          description: 'The prefix for the routing key',
+          displayName: 'Routing Key Prefix',
+          hint: 'The prefix add before the defined pattern seperated by a dot',
+          displayOptions: {
+            show: {
+              operation: [ CUSTOM_OPERATION ],
+            },
+          },
+        }
+      ],
       icon: { light: `file:${this.constructor.name.replace(/Trigger$/, '')}.svg`, dark: `file:${this.constructor.name.replace(/Trigger$/, '')}.dark.svg` },
     };
     this.populateDescription();
