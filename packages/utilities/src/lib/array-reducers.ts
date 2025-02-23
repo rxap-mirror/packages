@@ -22,6 +22,7 @@
  * // returns { name: 'John', age: 30 }
  * objectReducer({ name: 'John' }, { age: 30 });
  *
+ * @deprecated use .flat
  */
 export function objectReducer<T extends object>(a: Partial<T>, b: Partial<T>): Partial<T> {
   return { ...a, ...b };
