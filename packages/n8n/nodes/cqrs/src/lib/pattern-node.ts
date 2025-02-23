@@ -208,7 +208,8 @@ export abstract class PatternNode implements INodeType {
                 returnItems[i] = { json: response };
               }
             } else {
-              this.logger.warn(`Received empty response for correlationId: ${ correlationId } for item ${ i }: ${JSON.stringify(item.payload)}`);
+              this.logger.warn(`Received response for correlationId: ${ correlationId } for item ${ i } does not match expected structure: ${JSON.stringify(item.payload)}`);
+              returnItems[i] = { json: item.payload };
             }
           }),
         )));
