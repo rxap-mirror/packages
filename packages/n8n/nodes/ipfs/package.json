@@ -1,11 +1,11 @@
 {
-  "version": "1.0.1-dev.3",
+  "version": "1.0.1-dev.4",
   "name": "@rxap/n8n-nodes-ipfs",
   "description": "An n8n node to download files from IPFS, supporting download as file, JSON, or text, with options for specifying the IPFS gateway, CID, and file path. It allows users to retrieve content from IPFS and integrate it into their n8n workflows.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.6",
-    "@rxap/utilities": "^16.4.3-dev.1",
+    "@rxap/utilities": "^16.4.3-dev.2",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {

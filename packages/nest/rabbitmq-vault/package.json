@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
     "@nestjs/config": "^3.2.2",
-    "@rxap/nest-rabbitmq": "^10.1.2-dev.1",
+    "@rxap/nest-rabbitmq": "^10.1.2-dev.2",
     "@rxap/nest-vault": "^10.2.2-dev.2"
   },
   "author": {
