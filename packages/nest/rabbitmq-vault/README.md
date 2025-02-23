@@ -19,7 +19,7 @@ yarn add @rxap/nest-rabbitmq-vault
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @rxap/nest-rabbitmq@^10.1.2-dev.0 @rxap/nest-vault@^10.2.2-dev.1 
+yarn add @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @rxap/nest-rabbitmq@^10.1.2-dev.2 @rxap/nest-vault@^10.2.2-dev.2 
 ```
 **Execute the init generator:**
 ```bash
