@@ -216,7 +216,7 @@ export abstract class PatternNode implements INodeType {
 
       const ok = channel.publish(exchange, routingKey, Buffer.from(message), {
         headers,
-        correlationId: replyQueue ? correlationId : undefined,
+        correlationId,
         replyTo: replyQueue ? REPLY_QUEUE : undefined,
         ...parsePublishArguments(options),
       });
@@ -229,6 +229,7 @@ export abstract class PatternNode implements INodeType {
         this.logger.debug(`Published message to exchange "${ exchange }" with routing key "${ routingKey }" for item ${ i } successfully.`);
         returnItems[i] ??= {
           json: {
+            correlationId,
             success: true,
           },
         };
@@ -535,8 +536,8 @@ export abstract class PatternNode implements INodeType {
     return [
       {
         name: 'replyQueue',
-        displayName: 'Reply Queue',
-        type: 'hidden',
+        displayName: 'Wait for Reply',
+        type: 'boolean',
         default: this.withReplyQueue,
       },
       {
