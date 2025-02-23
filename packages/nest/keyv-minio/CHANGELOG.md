@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-keyv-minio@10.0.0-dev.5...@rxap/nest-keyv-minio@10.0.0-dev.6) (2025-02-23)
+
+### Bug Fixes
+
+- update package groups ([210e086](https://gitlab.com/rxap/packages/commit/210e086dd0c55ab0da0bf8ca35829d401dd0c395))
+
 # [10.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-keyv-minio@10.0.0-dev.4...@rxap/nest-keyv-minio@10.0.0-dev.5) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/nest-keyv-minio

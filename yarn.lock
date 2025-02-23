@@ -8780,7 +8780,7 @@ __metadata:
   resolution: "@rxap/data-structure-tree@workspace:packages/data-structure/tree"
   dependencies:
     "@nx/devkit": 20.4.6
-    "@rxap/rxjs": ^1.1.13-dev.2
+    "@rxap/rxjs": ^1.1.13-dev.3
     "@rxap/utilities": ^16.4.3-dev.2
     tslib: 2.6.2
   languageName: unknown
@@ -10310,7 +10310,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/rxjs@^1.1.13-dev.2, @rxap/rxjs@workspace:packages/rxjs":
+"@rxap/rxjs@^1.1.13-dev.3, @rxap/rxjs@workspace:packages/rxjs":
   version: 0.0.0-use.local
   resolution: "@rxap/rxjs@workspace:packages/rxjs"
   dependencies:
