@@ -1,5 +1,5 @@
 {
-  "version": "0.1.5-dev.3",
+  "version": "0.1.5",
   "name": "@rxap/n8n-nodes-yaml",
   "description": "This n8n node allows you to convert data to and from YAML format. It supports operations like extracting data from YAML, converting to YAML, and setting values within YAML structures. It also includes utilities for handling binary data and different encoding options.\n",
   "license": "MIT",

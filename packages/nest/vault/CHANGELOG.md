@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-vault@10.2.2-dev.2...@rxap/nest-vault@10.2.2) (2025-02-23)
+
+**Note:** Version bump only for package @rxap/nest-vault
+
 ## [10.2.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-vault@10.2.2-dev.1...@rxap/nest-vault@10.2.2-dev.2) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/nest-vault

@@ -1,5 +1,5 @@
 {
-  "version": "1.1.13-dev.1",
+  "version": "1.1.13",
   "name": "@rxap/generator-utilities",
   "description": "This package provides utilities for Nx generators, specifically to handle peer dependencies. It helps to coerce peer dependencies for other packages, ensuring they are correctly installed and configured. It also runs init generators for peer dependencies.\n",
   "license": "GPL-3.0-or-later",

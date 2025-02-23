@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2-dev.1",
+  "version": "19.0.2",
   "name": "@rxap/keycloak",
   "description": "This package provides an Angular service and interceptor to simplify integration with Keycloak, an open-source identity and access management solution. It offers features such as authentication, authorization, token management, and automatic bearer token injection for HTTP requests. The package also includes an authentication guard for Angular routes.\n",
   "license": "GPL-3.0-or-later",

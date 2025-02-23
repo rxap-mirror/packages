@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1-dev.3",
+  "version": "1.0.1",
   "name": "@rxap/n8n-nodes-development",
   "description": "Provides development trigger nodes for n8n workflows, including a manual trigger and a workflow execution trigger. These nodes are designed to help with designing modular, microservice-like workflows and for testing workflows with specified input data.\n",
   "license": "GPL-3.0-or-later",

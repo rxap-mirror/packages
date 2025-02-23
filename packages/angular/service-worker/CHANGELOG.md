@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.2](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@19.0.2-dev.3...@rxap/service-worker@19.0.2) (2025-02-23)
+
+**Note:** Version bump only for package @rxap/service-worker
+
 ## [19.0.2-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@19.0.2-dev.2...@rxap/service-worker@19.0.2-dev.3) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/service-worker

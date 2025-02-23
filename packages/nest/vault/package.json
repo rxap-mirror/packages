@@ -1,5 +1,5 @@
 {
-  "version": "10.2.2-dev.2",
+  "version": "10.2.2",
   "name": "@rxap/nest-vault",
   "description": "A NestJS module for integrating with HashiCorp Vault. It provides a VaultService for interacting with the Vault API, including authentication, reading, writing, and managing secrets. It supports token-based and Kubernetes authentication methods, along with health checks to ensure Vault connectivity.\n",
   "license": "GPL-3.0-or-later",
