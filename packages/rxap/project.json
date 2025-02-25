@@ -61,6 +61,7 @@
     "browser-tailwind",
     "browser-utilities",
     "data-structure-tree",
+    "fs",
     "generator-ts-morph",
     "generator-utilities",
     "json-schema-to-typescript",
