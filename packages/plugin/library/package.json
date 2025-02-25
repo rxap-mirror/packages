@@ -1,5 +1,5 @@
 {
-  "version": "20.2.0-dev.1",
+  "version": "20.2.0-dev.2",
   "name": "@rxap/plugin-library",
   "description": "This package provides generators and executors for managing and maintaining Nx plugin libraries. It includes functionality for generating index exports, fixing dependencies, generating JSON schemas, and more. It helps streamline the development process for Nx plugins by automating common tasks and enforcing best practices.\n",
   "license": "GPL-3.0-or-later",
