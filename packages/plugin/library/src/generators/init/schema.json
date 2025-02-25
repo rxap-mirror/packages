@@ -43,6 +43,11 @@
           "description": "If set to false the target index-export will not be added to the project"
         }
       }
+    },
+    "withInitGenerator": {
+      "type": "boolean",
+      "description": "Generate a init generator for the library",
+      "default": false
     }
   },
   "required": []

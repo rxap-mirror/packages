@@ -38,7 +38,9 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     rxapProject.implicitDependencies = rxapProject.implicitDependencies.filter(unique());
   }
 
-  await CoerceInitGenerator(tree, projectName, project, options);
+  if (options.withInitGenerator) {
+    await CoerceInitGenerator(tree, projectName, project, options);
+  }
 
   if (projectName !== 'rxap') {
     CoerceFilesStructure(tree, {

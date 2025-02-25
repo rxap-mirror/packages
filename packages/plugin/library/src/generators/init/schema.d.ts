@@ -8,6 +8,7 @@ export interface InitGeneratorSchema {
   skipProjects?: boolean;
   /** Whether to add the index-export target to the library */
   indexExport?: boolean;
+  withInitGenerator?: boolean;
   targets?: {
       /** If set to false the target fix-dependencies will not be added to the project */
       fixDependencies?: boolean;

@@ -6,6 +6,7 @@ export interface InitPublishableGeneratorSchema {
   overwrite?: boolean;
   /** Whether to skip executing project specific initialization */
   skipProjects?: boolean;
+  withInitGenerator?: boolean;
   targets?: {
       /** If set to false the target fix-dependencies will not be added to the project */
       fixDependencies?: boolean;
