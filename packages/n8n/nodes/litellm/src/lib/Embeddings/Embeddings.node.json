@@ -1,5 +1,5 @@
 {
-  "node": "n8n-nodes-base.liteLLMChat",
+  "node": "n8n-nodes-base.liteLLMEmbeddings",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
   "categories": [
@@ -10,8 +10,7 @@
     "primaryDocumentation": []
   },
   "alias": [
-    "Chat",
-    "model",
-    "Chat Model"
+    "Embeddings",
+    "embeddings"
   ]
 }

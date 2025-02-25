@@ -24,7 +24,8 @@ export class Chat implements INodeType {
     name: 'liteLLMChat',
     inputs: [],
     outputs: [ NodeConnectionType.AiLanguageModel ],
-    displayName: 'LiteLLM Chat',
+    outputNames: ['Model'],
+    displayName: 'LiteLLM Chat Model',
     group: [ 'transform' ],
     icon: 'file:Chat.png',
     codex: {
@@ -219,7 +220,6 @@ export class Chat implements INodeType {
 
     const modelName = this.getNodeParameter('model', itemIndex) as string;
     const options = this.getNodeParameter('options', itemIndex, {}) as {
-      baseURL?: string;
       frequencyPenalty?: number;
       maxTokens?: number;
       maxRetries: number;
@@ -231,9 +231,7 @@ export class Chat implements INodeType {
     };
 
     const configuration: ClientOptions = {};
-    if (options.baseURL) {
-      configuration.baseURL = options.baseURL;
-    }
+    configuration.baseURL = credentials['baseURL'] as string;
 
     const model = new ChatOpenAI({
       openAIApiKey: credentials['apiKey'] as string,
