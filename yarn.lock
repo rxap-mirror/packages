@@ -9679,6 +9679,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-litellm@workspace:packages/n8n/nodes/litellm"
   dependencies:
+    "@langchain/community": ^0.3.32
+    "@langchain/core": ^0.3.40
+    "@langchain/openai": ^0.4.4
+    "@langchain/textsplitters": ^0.1.0
+    langchain: ^0.3.19
+    lodash: 4.17.21
+    openai: ^4.82.0
+    tmp-promise: ^3.0.3
     tslib: ^2.3.0
   peerDependencies:
     n8n-workflow: ^1.48.0
