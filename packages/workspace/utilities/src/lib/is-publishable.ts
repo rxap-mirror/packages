@@ -20,7 +20,7 @@ import {
  */
 export function IsPublishable(tree: TreeLike, project: ProjectConfiguration) {
   const treeAdapter = new TreeAdapter(tree);
-  if (!IsLibraryProject(project) || !IsBuildable(project) || !treeAdapter.exists(join(project.root, 'package.json'))) {
+  if (!IsLibraryProject(project) || !IsBuildable(tree, project) || !treeAdapter.exists(join(project.root, 'package.json'))) {
     return false;
   }
   return !treeAdapter.readJson<PackageJson>(join(project.root, 'package.json'))!.private;

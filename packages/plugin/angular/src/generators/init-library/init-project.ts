@@ -29,7 +29,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
 
-  if (IsBuildable(project)) {
+  if (IsBuildable(tree, project)) {
     updateProjectNgPackageConfiguration(tree, project);
     coerceTailwindThemeScss(tree, project);
   }

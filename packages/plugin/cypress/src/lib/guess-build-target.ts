@@ -15,7 +15,7 @@ export function guessBuildTarget(tree: Tree): string {
   }
   for (const [projectName, project] of getProjects(tree).entries()) {
 
-    if (IsApplicationProject(project) && IsAngularProject(project) && IsBuildable(project)) {
+    if (IsApplicationProject(project) && IsAngularProject(project) && IsBuildable(tree, project)) {
       return `${ projectName }:build:development`;
     }
 

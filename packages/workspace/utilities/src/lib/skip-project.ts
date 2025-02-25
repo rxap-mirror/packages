@@ -112,7 +112,7 @@ export function SkipNonBuildableProject(
     return true;
   }
 
-  if (!IsBuildable(project)) {
+  if (!IsBuildable(tree, project)) {
     return true;
   }
 
