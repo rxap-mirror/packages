@@ -79,7 +79,7 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.13"
+        "version": "1.1.14"
       },
       {
         "package": "@rxap/definition",
@@ -111,7 +111,7 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.13"
+        "version": "1.1.14"
       },
       {
         "package": "@rxap/utilities",

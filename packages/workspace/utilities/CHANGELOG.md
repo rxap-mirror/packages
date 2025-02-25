@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.2...@rxap/workspace-utilities@19.6.3-dev.0) (2025-02-25)
+
+### Bug Fixes
+
+- check buildable project by tsconfig ([260be75](https://gitlab.com/rxap/packages/commit/260be754f55a446fd4df6a6f97d272d0e704ae19))
+
 ## [19.6.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.2-dev.4...@rxap/workspace-utilities@19.6.2) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

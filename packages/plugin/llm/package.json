@@ -1,12 +1,12 @@
 {
-  "version": "20.0.1",
+  "version": "20.0.2-dev.0",
   "name": "@rxap/plugin-llm",
   "description": "This npm package provides tools for generating documentation and package descriptions using large language models (LLMs). It includes functionality for cleaning JSDoc comments, counting tokens, composing context for LLM prompts, and integrating with services like OpenAI. The package also offers generators for automatically adding documentation to TypeScript code and creating package descriptions based on project source code.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.6",
-    "@rxap/workspace-ts-morph": "^19.1.10",
-    "@rxap/workspace-utilities": "^19.6.2",
+    "@rxap/workspace-ts-morph": "^19.1.11-dev.0",
+    "@rxap/workspace-utilities": "^19.6.3-dev.0",
     "colors": "1.4.0",
     "openai": "^4.82.0",
     "tiktoken": "^1.0.20",

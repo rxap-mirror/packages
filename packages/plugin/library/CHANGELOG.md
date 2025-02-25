@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.2...@rxap/plugin-library@20.2.0-dev.0) (2025-02-25)
+
+### Bug Fixes
+
+- check buildable project by tsconfig ([260be75](https://gitlab.com/rxap/packages/commit/260be754f55a446fd4df6a6f97d272d0e704ae19))
+
+### Features
+
+- disable init generator creation by default ([3117888](https://gitlab.com/rxap/packages/commit/3117888347e9e315042e7db00e43eef1065b2a0a))
+
 ## [20.1.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.1.2-dev.6...@rxap/plugin-library@20.1.2) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/plugin-library
