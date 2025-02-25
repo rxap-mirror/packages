@@ -43,11 +43,13 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   }
 
   if (projectName !== 'rxap') {
-    CoerceFilesStructure(tree, {
-      srcFolder: join(__dirname, 'files'),
-      target: project.root,
-      overwrite: options.overwrite,
-    });
+    if (options.withInitGenerator) {
+      CoerceFilesStructure(tree, {
+        srcFolder: join(__dirname, 'files'),
+        target: project.root,
+        overwrite: options.overwrite,
+      });
+    }
     CoerceFile(tree, join(project.root, 'CHANGELOG.md'));
     CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
     CoerceFile(tree, join(project.root, 'GUIDES.md'));
