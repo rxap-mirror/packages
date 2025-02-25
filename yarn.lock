@@ -9967,14 +9967,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-angular@^20.0.4-dev.0, @rxap/plugin-angular@workspace:packages/plugin/angular":
+"@rxap/plugin-angular@^20.0.4-dev.1, @rxap/plugin-angular@workspace:packages/plugin/angular":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-angular@workspace:packages/plugin/angular"
   dependencies:
     "@nx/angular": 20.4.6
     "@nx/devkit": 20.4.6
     "@rxap/plugin-application": ^20.0.3-dev.0
-    "@rxap/plugin-library": ^20.2.0-dev.0
+    "@rxap/plugin-library": ^20.2.0-dev.1
     "@rxap/plugin-utilities": ^20.0.3-dev.0
     "@rxap/ts-morph": ^1.5.4
     "@rxap/utilities": ^16.4.3
@@ -10022,7 +10022,7 @@ __metadata:
   dependencies:
     "@nx/angular": ^20.3.1
     "@nx/devkit": 20.4.6
-    "@rxap/plugin-angular": ^20.0.4-dev.0
+    "@rxap/plugin-angular": ^20.0.4-dev.1
     "@rxap/ts-morph": ^1.5.4
     "@rxap/utilities": ^16.4.3
     "@rxap/workspace-ts-morph": ^19.1.11-dev.0
@@ -10086,7 +10086,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-library@^20.2.0-dev.0, @rxap/plugin-library@workspace:packages/plugin/library":
+"@rxap/plugin-library@^20.2.0-dev.1, @rxap/plugin-library@workspace:packages/plugin/library":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-library@workspace:packages/plugin/library"
   dependencies:
@@ -10140,7 +10140,7 @@ __metadata:
   resolution: "@rxap/plugin-n8n@workspace:packages/plugin/n8n"
   dependencies:
     "@nx/devkit": 20.4.6
-    "@rxap/plugin-library": ^20.2.0-dev.0
+    "@rxap/plugin-library": ^20.2.0-dev.1
     "@rxap/ts-morph": ^1.5.4
     "@rxap/utilities": ^16.4.3
     "@rxap/workspace-ts-morph": ^19.1.11-dev.0
@@ -10161,8 +10161,8 @@ __metadata:
     "@nx/nest": 20.4.6
     "@rxap/node-utilities": ^1.3.9
     "@rxap/plugin-application": ^20.0.3-dev.0
-    "@rxap/plugin-library": ^20.2.0-dev.0
-    "@rxap/plugin-open-api": ^20.0.4-dev.0
+    "@rxap/plugin-library": ^20.2.0-dev.1
+    "@rxap/plugin-open-api": ^20.0.4-dev.1
     "@rxap/plugin-utilities": ^20.0.3-dev.0
     "@rxap/ts-morph": ^1.5.4
     "@rxap/utilities": ^16.4.3
@@ -10175,13 +10175,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-open-api@^20.0.4-dev.0, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
+"@rxap/plugin-open-api@^20.0.4-dev.1, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
   dependencies:
     "@nx/devkit": 20.4.6
     "@rxap/node-utilities": ^1.3.9
-    "@rxap/plugin-library": ^20.2.0-dev.0
+    "@rxap/plugin-library": ^20.2.0-dev.1
     "@rxap/plugin-utilities": ^20.0.3-dev.0
     "@rxap/utilities": ^16.4.3
     "@rxap/workspace-open-api": ^19.0.13-dev.0
@@ -10267,7 +10267,7 @@ __metadata:
   resolution: "@rxap/preset-angular@workspace:packages/preset/angular"
   dependencies:
     "@nx/devkit": 20.4.6
-    "@rxap/plugin-angular": ^20.0.4-dev.0
+    "@rxap/plugin-angular": ^20.0.4-dev.1
     "@rxap/plugin-workspace": ^20.0.3-dev.0
     tslib: 2.6.2
   languageName: unknown

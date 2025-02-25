@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2",
+  "version": "19.0.3-dev.0",
   "name": "@rxap/data-grid",
   "description": "Provides a data grid component for Angular applications. It supports plain and form modes, custom header and cell templates, and integration with Rxap Forms and Data Sources. The component allows for displaying and editing data in a tabular format with features like edit mode, validation, and data refresh.\n",
   "license": "GPL-3.0-or-later",
