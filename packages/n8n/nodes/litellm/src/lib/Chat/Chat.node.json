@@ -1,5 +1,5 @@
 {
-  "node": "n8n-nodes-base.liteLLMModel",
+  "node": "n8n-nodes-base.liteLLMChat",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
   "categories": [
@@ -10,7 +10,7 @@
     "primaryDocumentation": []
   },
   "alias": [
-    "Model",
+    "Chat",
     "model"
   ]
 }

@@ -29,9 +29,11 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "nodes": [
-      "src/lib/Model/Model.node.js"
+      "src/lib/Chat/Chat.node.js"
     ],
-    "credentials": []
+    "credentials": [
+      "src/lib/LiteLLM.credentials.js"
+    ]
   },
   "publishConfig": {
     "access": "public",
