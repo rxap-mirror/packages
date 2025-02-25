@@ -64,6 +64,7 @@ overwrite | boolean | false | Whether to overwrite existing files
 skipProjects | boolean | false | Whether to skip executing project specific initialization
 indexExport | boolean |  | Whether to add the index-export target to the library
 targets | object |  | 
+withInitGenerator | boolean | false | Generate a init generator for the library
 
 ## fix-dependencies
 > Adds missing dependencies and removes redudant dependencies of a project
@@ -142,6 +143,7 @@ skipFormat | boolean | false |
 overwrite | boolean | false | Whether to overwrite existing files
 skipProjects | boolean | false | Whether to skip executing project specific initialization
 targets | object |  | 
+withInitGenerator | boolean | false | Generate a init generator for the library
 
 ## expose-as-schematic
 > expose-as-schematic generator

@@ -19,7 +19,7 @@ yarn add @rxap/ngx-theme
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk@^19.1.1 @angular/core@^19.1.3 @rxap/config@^19.0.2 @rxap/ngx-pub-sub@^19.0.2 @rxap/rxjs@^1.1.13 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/cdk@^19.1.1 @angular/core@^19.1.3 @rxap/config@^19.0.2 @rxap/ngx-pub-sub@^19.0.2 @rxap/rxjs@^1.1.14 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
 ```
 **Execute the init generator:**
 ```bash
