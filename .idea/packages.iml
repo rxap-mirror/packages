@@ -572,6 +572,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/fs/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/fs/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/fs/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/lite-llm/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/lite-llm/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/lite-llm/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/lite-llm/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

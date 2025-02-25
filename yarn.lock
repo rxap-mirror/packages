@@ -9236,6 +9236,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/n8n-nodes-lite-llm@workspace:packages/n8n/nodes/lite-llm":
+  version: 0.0.0-use.local
+  resolution: "@rxap/n8n-nodes-lite-llm@workspace:packages/n8n/nodes/lite-llm"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    n8n-workflow: ^1.48.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/n8n-nodes-neo4j@workspace:packages/n8n/nodes/neo4j":
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-neo4j@workspace:packages/n8n/nodes/neo4j"

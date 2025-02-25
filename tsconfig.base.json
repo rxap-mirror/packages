@@ -130,6 +130,7 @@
         "packages/n8n/nodes/firecrawl/src/index.ts"
       ],
       "@rxap/n8n-nodes-ipfs": ["packages/n8n/nodes/ipfs/src/index.ts"],
+      "@rxap/n8n-nodes-lite-llm": ["packages/n8n/nodes/lite-llm/src/index.ts"],
       "@rxap/n8n-nodes-neo4j": ["packages/n8n/nodes/neo4j/src/index.ts"],
       "@rxap/n8n-nodes-open-webui": [
         "packages/n8n/nodes/open-webui/src/index.ts"
