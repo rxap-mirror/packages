@@ -72,6 +72,7 @@
     "n8n-nodes-file",
     "n8n-nodes-firecrawl",
     "n8n-nodes-ipfs",
+    "n8n-nodes-litellm",
     "n8n-nodes-neo4j",
     "n8n-nodes-open-webui",
     "n8n-nodes-sanitize-html",
