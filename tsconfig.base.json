@@ -76,6 +76,7 @@
         "packages/angular/form-window-system/src/index.ts"
       ],
       "@rxap/forms": ["packages/angular/forms/src/index.ts"],
+      "@rxap/fs": ["packages/fs/src/index.ts"],
       "@rxap/generator-ts-morph": ["packages/generator/ts-morph/src/index.ts"],
       "@rxap/generator-utilities": [
         "packages/generator/utilities/src/index.ts"

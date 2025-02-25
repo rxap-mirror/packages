@@ -88,7 +88,9 @@
       }
     },
     "typedoc": {
-      "outputs": ["{workspaceRoot}/docs"],
+      "outputs": [
+        "{workspaceRoot}/docs"
+      ],
       "inputs": [
         "{workspaceRoot}/**/src/index.ts",
         "{workspaceRoot}/typedoc.json",

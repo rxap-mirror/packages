@@ -8931,6 +8931,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/fs@workspace:packages/fs":
+  version: 0.0.0-use.local
+  resolution: "@rxap/fs@workspace:packages/fs"
+  dependencies:
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/generator-ts-morph@workspace:packages/generator/ts-morph":
   version: 0.0.0-use.local
   resolution: "@rxap/generator-ts-morph@workspace:packages/generator/ts-morph"

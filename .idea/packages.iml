@@ -568,6 +568,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/firecrawl/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/firecrawl/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/firecrawl/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/fs/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/fs/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/fs/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/fs/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>
