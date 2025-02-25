@@ -1,7 +1,7 @@
 {
-  "name": "n8n-nodes-lite-llm",
+  "name": "n8n-nodes-litellm",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/n8n/nodes/lite-llm/src",
+  "sourceRoot": "packages/n8n/nodes/litellm/src",
   "projectType": "library",
   "release": {
     "version": {
@@ -18,13 +18,13 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/n8n/nodes/lite-llm",
-        "main": "packages/n8n/nodes/lite-llm/src/index.ts",
-        "tsConfig": "packages/n8n/nodes/lite-llm/tsconfig.lib.json",
+        "outputPath": "dist/packages/n8n/nodes/litellm",
+        "main": "packages/n8n/nodes/litellm/src/index.ts",
+        "tsConfig": "packages/n8n/nodes/litellm/tsconfig.lib.json",
         "assets": [
-          "packages/n8n/nodes/lite-llm/*.md",
+          "packages/n8n/nodes/litellm/*.md",
           {
-            "input": "./packages/n8n/nodes/lite-llm/src/lib",
+            "input": "./packages/n8n/nodes/litellm/src/lib",
             "glob": "**/*.(svg|json|png)",
             "output": "./src/lib"
           }

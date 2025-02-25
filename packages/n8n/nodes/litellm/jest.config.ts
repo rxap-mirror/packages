@@ -1,10 +1,10 @@
 export default {
-  displayName: 'n8n-nodes-lite-llm',
+  displayName: 'n8n-nodes-litellm',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../../coverage/packages/n8n/nodes/lite-llm',
+  coverageDirectory: '../../../../coverage/packages/n8n/nodes/litellm',
 };

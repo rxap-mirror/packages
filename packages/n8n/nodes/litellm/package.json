@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "name": "@rxap/n8n-nodes-lite-llm",
+  "name": "@rxap/n8n-nodes-litellm",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "^2.3.0"
@@ -16,11 +16,11 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "homepage": "https:/gitlab.com/rxap/packages/packages/n8n/nodes/lite-llm",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/n8n/nodes/litellm",
   "keywords": [
     "n8n",
     "n8n-community-node-package",
-    "n8n-nodes-lite-llm",
+    "n8n-nodes-litellm",
     "nodes",
     "packages",
     "rxap"
@@ -35,12 +35,12 @@
   },
   "publishConfig": {
     "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/lite-llm"
+    "directory": "../../../../dist/packages/n8n/nodes/litellm"
   },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/n8n/nodes/lite-llm"
+    "directory": "packages/n8n/nodes/litellm"
   },
   "type": "commonjs",
   "types": "./src/index.d.ts"

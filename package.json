@@ -43,6 +43,8 @@
     "@faker-js/faker": "8.0.2",
     "@keyv/postgres": "^2.1.1",
     "@kvs/storage": "2.1.4",
+    "@langchain/core": "^0.3.40",
+    "@langchain/openai": "^0.4.4",
     "@marker.io/browser": "^0.19.0",
     "@mdi/angular-material": "7.2.96",
     "@mendable/firecrawl-js": "^1.18.2",
