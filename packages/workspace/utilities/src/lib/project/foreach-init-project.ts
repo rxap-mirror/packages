@@ -22,6 +22,8 @@ export function* ForeachInitProject(
   }
 
   for (const [projectName, originalProject] of getProjects(tree).entries()) {
+    originalProject.name ??= projectName;
+
     if (skipProject(tree, options, originalProject, projectName)) {
       continue;
     }
