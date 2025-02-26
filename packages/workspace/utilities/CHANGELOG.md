@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.7.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.3-dev.0...@rxap/workspace-utilities@19.7.0-dev.0) (2025-02-26)
+
+### Bug Fixes
+
+- ensure the project.name property is set ([5836d0a](https://gitlab.com/rxap/packages/commit/5836d0a6333a3e06a36bd9bda9554d64cdcb5de2))
+
+### Features
+
+- add ngPackage json utilities ([67c91c8](https://gitlab.com/rxap/packages/commit/67c91c8dc10aaa04b7063f1e335d141adec1c67e))
+
 ## [19.6.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.6.2...@rxap/workspace-utilities@19.6.3-dev.0) (2025-02-25)
 
 ### Bug Fixes

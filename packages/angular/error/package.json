@@ -11,11 +11,11 @@
     "@angular/cdk": "^19.1.1",
     "@angular/common": "^19.1.3",
     "@angular/core": "^19.1.3",
-    "@rxap/components": "^19.0.2",
+    "@rxap/components": "^19.0.3-dev.0",
     "@rxap/config": "^19.0.2",
-    "@rxap/data-grid": "^19.0.2",
+    "@rxap/data-grid": "^19.0.3-dev.0",
     "@rxap/environment": "^19.0.2",
-    "@rxap/open-api": "^19.0.2",
+    "@rxap/open-api": "^19.0.3-dev.0",
     "@sentry/angular": "^8.18.0",
     "rxjs": "^7.8.1"
   },
@@ -73,7 +73,7 @@
       },
       {
         "package": "@rxap/components",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/config",
@@ -81,11 +81,11 @@
       },
       {
         "package": "@rxap/data-grid",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -97,7 +97,7 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/environment",
@@ -105,7 +105,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/mixin",
@@ -113,7 +113,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -129,7 +129,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -137,7 +137,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.2"
+        "version": "19.0.3-dev.0"
       },
       {
         "package": "@rxap/utilities",

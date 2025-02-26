@@ -1,12 +1,12 @@
 {
-  "version": "20.0.3-dev.0",
+  "version": "20.0.3-dev.1",
   "name": "@rxap/plugin-utilities",
   "description": "Provides utility functions for Nx plugins, such as retrieving project dependencies, determining output paths, and interacting with package.json files. It simplifies common tasks within Nx executors and generators. This package helps streamline plugin development by offering pre-built functionalities for project analysis and manipulation.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.6",
     "@rxap/node-utilities": "^1.3.9",
-    "@rxap/workspace-utilities": "^19.6.3-dev.0",
+    "@rxap/workspace-utilities": "^19.7.0-dev.0",
     "tslib": "2.6.2"
   },
   "author": {

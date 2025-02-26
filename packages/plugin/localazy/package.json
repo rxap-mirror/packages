@@ -1,12 +1,12 @@
 {
-  "version": "20.0.3-dev.0",
+  "version": "20.0.3-dev.1",
   "name": "@rxap/plugin-localazy",
   "description": "This package provides executors and generators for integrating Localazy, a translation management platform, into Nx workspaces. It allows for downloading and uploading translations, managing configuration, and initializing Localazy within a project. The plugin simplifies the process of localizing applications by automating common tasks related to translation management.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.6",
-    "@rxap/plugin-utilities": "^20.0.3-dev.0",
-    "@rxap/workspace-utilities": "^19.6.3-dev.0",
+    "@rxap/plugin-utilities": "^20.0.3-dev.1",
+    "@rxap/workspace-utilities": "^19.7.0-dev.0",
     "tslib": "2.6.2"
   },
   "author": {

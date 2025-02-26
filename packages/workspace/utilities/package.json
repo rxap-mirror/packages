@@ -1,5 +1,5 @@
 {
-  "version": "19.6.3-dev.0",
+  "version": "19.7.0-dev.0",
   "name": "@rxap/workspace-utilities",
   "description": "Provides utilities for Nx workspaces, including file manipulation, project configuration, and code generation. It offers tools for reading, updating, and managing workspace files like `package.json`, `nx.json`, and `tsconfig.json`, as well as functionalities for project-related tasks such as determining project types, dependencies, and build outputs. This package simplifies common workspace operations and enhances developer productivity.\n",
   "license": "GPL-3.0-or-later",
