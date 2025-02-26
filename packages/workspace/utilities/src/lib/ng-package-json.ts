@@ -4,10 +4,18 @@ import {
   Tree,
   writeJson,
 } from '@nx/devkit';
-import { Assets } from '@rxap/workspace-utilities';
+import { Assets } from './coerce-assets';
+import { GetProjectRoot } from './get-project'
+import { UpdateJsonFile, UpdateJsonFileOptions } from './json-file';
 import { join } from 'path';
+import { TreeLike } from './tree';
 
 export interface NgPackageJson {
+  $schema?: string;
+  lib?: {
+    entryFile?: string;
+  };
+  dist?: string;
   assets?: Assets;
   allowedNonPeerDependencies?: string[];
 }
@@ -40,4 +48,48 @@ export function ReadNgPackageJson(tree: Tree, project: ProjectConfiguration): Ng
  */
 export function WriteNgPackageJson(tree: Tree, project: ProjectConfiguration, ngPackageJson: NgPackageJson) {
   writeJson(tree, join(project.root, 'ng-package.json'), ngPackageJson);
+}
+
+export function HasNgPackageJson(tree: TreeLike, projectOrRoot: ProjectConfiguration | string): boolean {
+  const projectRoot = typeof projectOrRoot === 'string' ? projectOrRoot : projectOrRoot.root;
+  return tree.exists(join(projectRoot, 'ng-package.json'));
+}
+
+export interface UpdateNgPackageJsonOptions extends UpdateJsonFileOptions {
+  projectName?: string;
+  project?: { root: string }
+  projectRoot?: string;
+}
+
+export function UpdateNgPackageJson<Tree extends TreeLike>(
+  tree: Tree,
+  updaterOrJsonFile: NgPackageJson | ((ngPackageJson: NgPackageJson) => void),
+  options: UpdateNgPackageJsonOptions,
+): void
+export function UpdateNgPackageJson<Tree extends TreeLike>(
+  tree: Tree,
+  updaterOrJsonFile: NgPackageJson | ((ngPackageJson: NgPackageJson) => Promise<void>),
+  options: UpdateNgPackageJsonOptions,
+): Promise<void>
+export function UpdateNgPackageJson<Tree extends TreeLike>(
+  tree: Tree,
+  updaterOrJsonFile: NgPackageJson | ((ngPackageJson: NgPackageJson) => void | Promise<void>),
+  options: UpdateNgPackageJsonOptions,
+): void | Promise<void> {
+  const { project, projectName, projectRoot: _projectRoot } = options;
+  let projectRoot: string;
+  if (_projectRoot) {
+    projectRoot = _projectRoot;
+  } else if (project) {
+    projectRoot = project.root;
+  } else if (projectName) {
+    projectRoot = GetProjectRoot(tree, projectName);
+  } else {
+    throw new Error('Either the project or the projectName option must be provided');
+  }
+  return UpdateJsonFile(tree, updaterOrJsonFile, join(projectRoot, 'ng-package.json'), options);
+}
+
+export function isNgPackagrProject(tree: TreeLike, project: ProjectConfiguration) {
+  return HasNgPackageJson(tree, project);
 }
