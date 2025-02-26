@@ -1,5 +1,6 @@
 import { ProjectConfiguration } from '@nx/devkit';
 import {
+  HasNgPackageJson,
   TreeLike,
   VisitTree,
 } from '@rxap/workspace-utilities';
@@ -12,7 +13,7 @@ export function* ForEachSecondaryEntryPoint(tree: TreeLike, projectOrRoot: strin
       continue;
     }
     // Skip the root ng-package.json
-    if (path.includes(join(projectRoot, 'ng-package.json'))) {
+    if (HasNgPackageJson(tree, projectOrRoot)) {
       continue;
     }
     if (path.endsWith('ng-package.json')) {

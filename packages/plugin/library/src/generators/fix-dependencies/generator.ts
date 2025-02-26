@@ -21,6 +21,7 @@ import {
   GetProjectPackageJson,
   GetProjectRoot,
   GetRootPackageJson,
+  HasNgPackageJson,
   HasProjectWithPackageName,
   IsAngularProject,
   LoadProjectToPackageMapping,
@@ -31,6 +32,7 @@ import {
   SkipNonPublishableProject,
   SkipProjectOptions,
   UpdateJsonFile,
+  UpdateNgPackageJson,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
 import { join, dirname } from 'path';
@@ -352,13 +354,13 @@ function fixDependenciesWithTsMorphProject(
   }
 
   if (IsAngularProject(project)) {
-    if (!tree.exists(join(projectRoot, 'ng-package.json'))) {
+    if (!HasNgPackageJson(tree, projectRoot)) {
       throw new Error('The project is an angular project but does not have a ng-package.json file');
     }
-    UpdateJsonFile(tree, (ngPackageJson: NgPackageJson) => {
+    UpdateNgPackageJson(tree, (ngPackageJson: NgPackageJson) => {
       ngPackageJson.allowedNonPeerDependencies ??= [];
       CoerceArrayItems(ngPackageJson.allowedNonPeerDependencies, dependencyList);
-    }, join(projectRoot, 'ng-package.json'));
+    }, { projectRoot });
   }
 
   return {

@@ -12,6 +12,7 @@ import {
   GetProjectRoot,
   HasProject,
   UpdateJsonFile,
+  UpdateNgPackageJson,
   UpdateProjectPackageJson,
   UpdateProjectTsConfigJson,
 } from '@rxap/workspace-utilities';
@@ -59,12 +60,12 @@ export async function convertToBuildableLibraryGenerator(
     defaultConfiguration: 'production',
   });
 
-  UpdateJsonFile(tree, ngPackage => {
+  UpdateNgPackageJson(tree, ngPackage => {
     ngPackage.$schema = join(toRoot, 'node_modules/ng-packagr/ng-package.schema.json');
     ngPackage.lib ??= {};
     ngPackage.lib.entryFile = 'src/index.ts';
     ngPackage.dist ??= join(toRoot, 'dist', projectRoot);
-  }, join(projectRoot, 'ng-package.json'), { create: true });
+  }, { create: true, projectRoot });
 
   UpdateProjectPackageJson(tree, (packageJson) => {
     packageJson.name = options.project;

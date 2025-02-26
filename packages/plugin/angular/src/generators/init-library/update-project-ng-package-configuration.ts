@@ -10,10 +10,6 @@ import {
 } from '@rxap/workspace-utilities';
 import { hasIndexScss } from './has-index-scss';
 import { hasTailwindConfig } from './has-tailwind-config';
-import {
-  readNgPackageJson,
-  writeNgPackageJson,
-} from './ng-package-json';
 
 export function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfiguration) {
   const ngPackageJson = ReadNgPackageJson(tree, project);

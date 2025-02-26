@@ -9,9 +9,11 @@ import {
   GetProjectRoot,
   GetTarget,
   GetTargetOptions,
+  HasNgPackageJson,
   IsAngularProject,
   NgPackageJson,
   UpdateJsonFile,
+  UpdateNgPackageJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 
@@ -40,11 +42,11 @@ function coerceAssetsInBuildTarget(tree: Tree, projectName: string, project: Pro
 function coerceAssetsInNgPackageJson(tree: Tree, projectName: string, project: ProjectConfiguration) {
   const projectRoot = GetProjectRoot(tree, projectName);
 
-  if (!tree.exists(join(projectRoot, 'ng-package.json'))) {
+  if (!HasNgPackageJson(tree, projectRoot)) {
     throw new Error(`The ng-package.json file does not exists in the project root: ${projectRoot}`);
   }
 
-  UpdateJsonFile(tree, (ngPackageJson: NgPackageJson) => {
+  UpdateNgPackageJson(tree, (ngPackageJson: NgPackageJson) => {
     ngPackageJson.assets ??= [];
     CoerceAssets(ngPackageJson.assets, [
       'migrations.json',
@@ -54,7 +56,7 @@ function coerceAssetsInNgPackageJson(tree: Tree, projectName: string, project: P
         output: join('src', 'migrations')
       }
     ]);
-  }, join(projectRoot, 'ng-package.json'));
+  }, { projectRoot });
 
 }
 

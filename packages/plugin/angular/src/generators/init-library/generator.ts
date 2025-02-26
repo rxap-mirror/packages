@@ -6,6 +6,7 @@ import {
 } from '@nx/devkit';
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
+  ForeachInitProject,
   GenerateSerializedSchematicFile,
   GetProjectRoot,
   SkipNonAngularProject,
@@ -56,25 +57,17 @@ export async function initLibraryGenerator(
     await coerceProjects(tree, options);
   }
 
-  if (!options.skipProjects) {
+  for (const [ projectName, project ] of ForeachInitProject(tree, options, skipProject)) {
 
-    for (const [ projectName, project ] of getProjects(tree).entries()) {
+    GenerateSerializedSchematicFile(
+      tree,
+      GetProjectRoot(tree, projectName),
+      '@rxap/plugin-angular',
+      'init-library',
+      options,
+    );
 
-      if (skipProject(tree, options, project, projectName)) {
-        continue;
-      }
-
-      GenerateSerializedSchematicFile(
-        tree,
-        GetProjectRoot(tree, projectName),
-        '@rxap/plugin-angular',
-        'init-library',
-        options,
-      );
-
-      await initProject(tree, projectName, project, options);
-
-    }
+    await initProject(tree, projectName, project, options);
 
   }
 

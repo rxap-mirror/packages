@@ -6,6 +6,7 @@ import {
 import { LibraryInitProject } from '@rxap/plugin-library';
 import {
   CoerceIgnorePattern,
+  HasNgPackageJson,
   IsBuildable,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -29,7 +30,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
 
-  if (IsBuildable(tree, project)) {
+  if (IsBuildable(tree, project) && HasNgPackageJson(tree, project)) {
     updateProjectNgPackageConfiguration(tree, project);
     coerceTailwindThemeScss(tree, project);
   }
