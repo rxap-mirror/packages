@@ -1,5 +1,5 @@
 {
-  "version": "19.0.3-dev.0",
+  "version": "19.0.3-dev.1",
   "name": "@rxap/form-window-system",
   "description": "Provides directives and services to simplify opening forms in windows within an Angular application. It includes features for submitting forms, managing window footers, and opening forms using methods. This package integrates with @rxap/forms and @rxap/window-system to streamline form-based workflows in a windowed environment.\n",
   "license": "GPL-3.0-or-later",

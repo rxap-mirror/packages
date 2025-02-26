@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@19.0.3-dev.0...@rxap/material-table-system@19.0.3-dev.1) (2025-02-26)
+
+### Bug Fixes
+
+- update package groups ([5810ff6](https://gitlab.com/rxap/packages/commit/5810ff609fe867842a6c9fc8531511dc1e97587a))
+
 ## [19.0.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@19.0.2...@rxap/material-table-system@19.0.3-dev.0) (2025-02-25)
 
 ### Bug Fixes

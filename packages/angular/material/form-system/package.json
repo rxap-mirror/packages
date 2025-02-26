@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2",
+  "version": "19.0.3-dev.0",
   "name": "@rxap/material-form-system",
   "description": "Provides directives and a module to enhance Angular Material forms. It includes features such as displaying control errors, clearing input fields, handling required fields, and managing form field visibility based on defined conditions. The package also offers a form controls component with built-in reset, cancel, and submit functionalities.\n",
   "license": "GPL-3.0-or-later",

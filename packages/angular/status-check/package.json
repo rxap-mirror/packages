@@ -1,5 +1,5 @@
 {
-  "version": "19.0.2",
+  "version": "19.0.3-dev.0",
   "name": "@rxap/ngx-status-check",
   "description": "This package provides Angular components and services to check and display the status of various services. It includes a status indicator component, a status check component, a service to retrieve status information, and a guard to protect routes based on service status. It also provides utilities for configuring status check intervals and integrating with OpenAPI.\n",
   "license": "GPL-3.0-or-later",
