@@ -34,7 +34,7 @@ function generateIndexFile(tree: Tree, sourceRoot: string, libRootFolder = 'lib'
       !path.endsWith('.cy.ts') &&
       !path.endsWith('.stories.ts') &&
       !path.endsWith('.d.ts')) {
-      const content = tree.read(path, 'utf-8');
+      const content = tree.read(path)?.toString('utf-8');
       if (content?.match(/^export /gm)) {
         filePathList.push(path);
       }
@@ -42,7 +42,7 @@ function generateIndexFile(tree: Tree, sourceRoot: string, libRootFolder = 'lib'
   }
 
   filePathList = filePathList.filter(path => {
-    const content = tree.read(path, 'utf-8');
+    const content = tree.read(path)?.toString('utf-8');
     return content && !content.split('\n').some(line => line.match(/rxap-no-index-export/));
   });
 

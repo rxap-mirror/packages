@@ -202,9 +202,12 @@ export async function initApplicationGenerator(
   CoerceFile(tree, 'shared/angular/assets/custom.svg', '<svg></svg>');
 
   if (options.i18n && !options.skipDocker) {
-    let dockerfileContent = tree.read('shared/angular/Dockerfile', 'utf-8')!;
-    dockerfileContent = dockerfileContent.replace('registry.gitlab.com/rxap/docker/nginx:', 'registry.gitlab.com/rxap/docker/i18n-nginx:');
-    CoerceFile(tree, 'shared/angular/Dockerfile', dockerfileContent, true);
+    let dockerfileContent = tree.read('shared/angular/Dockerfile')?.toString('utf-8');
+    if (dockerfileContent) {
+      dockerfileContent = dockerfileContent.replace(
+        'registry.gitlab.com/rxap/docker/nginx:', 'registry.gitlab.com/rxap/docker/i18n-nginx:');
+      CoerceFile(tree, 'shared/angular/Dockerfile', dockerfileContent, true);
+    }
   }
 
   CoerceFilesStructure(tree, {
