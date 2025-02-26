@@ -19,7 +19,7 @@ yarn add workspace
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nx/angular@^16.5.0 @nx/cypress@^16.5.0 @nx/devkit@^16.5.0 @nx/plugin@^16.5.0 @rxap/plugin-utilities@^20.0.3-dev.0 handlebars@^4.7.7 
+yarn add @nx/angular@^16.5.0 @nx/cypress@^16.5.0 @nx/devkit@^16.5.0 @nx/plugin@^16.5.0 @rxap/plugin-utilities@^20.0.3-dev.1 handlebars@^4.7.7 
 ```
 # Executors
 

@@ -19,7 +19,7 @@ yarn add @rxap/ngx-material-authentication
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/animations@^19.1.3 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/forms@^19.1.3 @angular/material@^19.1.1 @angular/router@^19.1.3 @rxap/authentication@^19.0.2 @rxap/config@^19.0.2 @rxap/forms@^19.0.2 @rxap/material-form-system@^19.0.2 @rxap/pattern@^1.1.12 @rxap/rxjs@^1.1.14 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/animations@^19.1.3 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/forms@^19.1.3 @angular/material@^19.1.1 @angular/router@^19.1.3 @rxap/authentication@^19.0.2 @rxap/config@^19.0.2 @rxap/forms@^19.0.3-dev.0 @rxap/material-form-system@^19.0.2 @rxap/pattern@^1.1.12 @rxap/rxjs@^1.1.14 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
 ```
 **Execute the init generator:**
 ```bash
