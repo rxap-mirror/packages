@@ -20,7 +20,7 @@ yarn add @rxap/layout
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/animations@^19.1.3 @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @angular/router@^19.1.3 @rxap/browser-utilities@^1.1.11 @rxap/config@^19.0.2 @rxap/data-source@^19.0.2 @rxap/environment@^19.0.2 @rxap/material-directives@^19.0.2 @rxap/ngx-pub-sub@^19.0.2 @rxap/ngx-theme@^19.0.2 @rxap/pattern@^1.1.12 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/animations@^19.1.3 @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @angular/router@^19.1.3 @rxap/browser-utilities@^1.1.11 @rxap/config@^19.0.2 @rxap/data-source@^19.0.3-dev.0 @rxap/environment@^19.0.2 @rxap/material-directives@^19.0.3-dev.0 @rxap/ngx-pub-sub@^19.0.2 @rxap/ngx-theme@^19.0.3-dev.0 @rxap/pattern@^1.1.12 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
 ```
 **Execute the init generator:**
 ```bash
