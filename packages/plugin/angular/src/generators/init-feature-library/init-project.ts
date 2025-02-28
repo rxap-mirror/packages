@@ -32,6 +32,15 @@ function addRoutesImportPathToBaseTsConfig(tree: Tree, projectName: string) {
   }, { infix: 'base' });
 }
 
+function removeDefaultImportPathToBaseTsConfig(tree: Tree, projectName: string) {
+
+  UpdateTsConfigPaths(tree, paths => {
+    if (paths[`${GetLibraryPathAliasName(tree, projectName)}`]) {
+      delete paths[`${GetLibraryPathAliasName(tree, projectName)}`];
+    }
+  }, { infix: 'base' });
+}
+
 export async function initProject(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitFeatureLibraryGeneratorSchema) {
   console.log(`init angular library project: ${ projectName }`);
 
@@ -51,6 +60,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   if (options.routes) {
     coerceRoutesEntryPoint(tree, projectName);
     addRoutesImportPathToBaseTsConfig(tree, projectName);
+    removeDefaultImportPathToBaseTsConfig(tree, projectName);
   }
 
 }
