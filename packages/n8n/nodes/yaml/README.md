@@ -20,7 +20,7 @@ yarn add @rxap/n8n-nodes-yaml
 ```
 **Install peer dependencies:**
 ```bash
-yarn add n8n-workflow@^1.48.0 
+yarn add n8n-workflow 
 ```
 **Execute the init generator:**
 ```bash

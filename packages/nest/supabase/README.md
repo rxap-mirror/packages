@@ -19,7 +19,7 @@ yarn add @rxap/nest-supabase
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @supabase/supabase-js@^2.38.0 
+yarn add @nestjs/common @nestjs/config @supabase/supabase-js 
 ```
 **Execute the init generator:**
 ```bash

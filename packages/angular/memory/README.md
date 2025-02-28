@@ -19,7 +19,7 @@ yarn add @rxap/ngx-memory
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 
+yarn add @angular/core 
 ```
 **Execute the init generator:**
 ```bash

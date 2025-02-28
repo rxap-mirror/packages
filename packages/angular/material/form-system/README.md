@@ -19,7 +19,7 @@ yarn add @rxap/material-form-system
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/forms@^19.1.3 @angular/material@^19.1.1 @angular/router@^19.1.3 @rxap/form-system@^19.0.3-dev.0 @rxap/forms@^19.0.3-dev.0 @rxap/mixin@^16.0.13 @rxap/reflect-metadata@^1.0.14 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/cdk @angular/common @angular/core @angular/forms @angular/material @angular/router @rxap/form-system @rxap/forms @rxap/mixin @rxap/reflect-metadata @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash

@@ -19,7 +19,7 @@ yarn add @rxap/oauth
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 @angular/router@^19.1.3 @rxap/authentication@^19.0.2 @rxap/rxjs@^1.1.14 angular-oauth2-oidc@^15.0.1 angular-oauth2-oidc-jwks@^15.0.1 rxjs@^7.8.1 
+yarn add @angular/core @angular/router @rxap/authentication @rxap/rxjs angular-oauth2-oidc angular-oauth2-oidc-jwks rxjs 
 ```
 **Execute the init generator:**
 ```bash

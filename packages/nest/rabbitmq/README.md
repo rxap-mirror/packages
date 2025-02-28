@@ -20,7 +20,7 @@ yarn add @rxap/nest-rabbitmq
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @nestjs/microservices@^10.3.8 @nestjs/terminus@^10.2.3 @rxap/utilities@^16.4.3 amqp-connection-manager@^4.1.14 amqplib@^0.10.4 rxjs@^7.8.1 
+yarn add @nestjs/common @nestjs/config @nestjs/microservices @nestjs/terminus @rxap/utilities amqp-connection-manager amqplib rxjs 
 ```
 **Execute the init generator:**
 ```bash

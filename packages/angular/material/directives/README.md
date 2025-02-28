@@ -19,7 +19,7 @@ yarn add @rxap/material-directives
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 @angular/material@^19.1.1 @rxap/browser-utilities@^1.1.11 @rxap/ngx-memory@^19.0.2 @rxap/rxjs@^1.1.14 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/core @angular/material @rxap/browser-utilities @rxap/ngx-memory @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash

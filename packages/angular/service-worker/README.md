@@ -19,7 +19,7 @@ yarn add @rxap/service-worker
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/service-worker@^19.1.3 @rxap/environment@^19.0.2 @rxap/life-cycle@^19.0.2 rxjs@^7.8.1 
+yarn add @angular/common @angular/core @angular/service-worker @rxap/environment @rxap/life-cycle rxjs 
 ```
 **Execute the init generator:**
 ```bash

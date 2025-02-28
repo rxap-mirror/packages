@@ -19,7 +19,7 @@ yarn add @rxap/ngx-changelog
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/forms@^19.1.3 @rxap/directives@^19.0.3-dev.0 @rxap/environment@^19.0.2 @rxap/open-api@^19.0.3-dev.0 ngx-markdown@^16.0.0 rxjs@^7.8.1 
+yarn add @angular/common @angular/core @angular/forms @rxap/directives @rxap/environment @rxap/open-api ngx-markdown rxjs 
 ```
 **Execute the init generator:**
 ```bash

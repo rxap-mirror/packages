@@ -19,7 +19,7 @@ yarn add @rxap/nest-minio
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @nestjs/terminus@^10.2.3 minio@^8.0.1 
+yarn add @nestjs/common @nestjs/config @nestjs/terminus minio 
 ```
 **Execute the init generator:**
 ```bash

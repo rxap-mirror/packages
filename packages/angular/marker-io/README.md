@@ -19,7 +19,7 @@ yarn add @rxap/ngx-marker-io
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 @marker.io/browser@^0.19.0 @rxap/config@^19.0.2 @rxap/environment@^19.0.2 @rxap/ngx-pub-sub@^19.0.2 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/core @marker.io/browser @rxap/config @rxap/environment @rxap/ngx-pub-sub @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash

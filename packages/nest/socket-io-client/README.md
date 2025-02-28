@@ -19,7 +19,7 @@ yarn add @rxap/nest-socket-io-client
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @nestjs/microservices@^10.3.8 rxjs@^7.8.1 socket.io-client@^4.6.2 
+yarn add @nestjs/common @nestjs/config @nestjs/microservices rxjs socket.io-client 
 ```
 **Execute the init generator:**
 ```bash

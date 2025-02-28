@@ -19,7 +19,7 @@ yarn add @rxap/ngx-material-table-select
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/forms@^19.1.3 @angular/material@^19.1.1 @rxap/data-source@^19.0.3-dev.0 @rxap/form-system@^19.0.3-dev.0 @rxap/forms@^19.0.3-dev.0 @rxap/material-directives@^19.0.3-dev.0 @rxap/material-form-system@^19.0.2 @rxap/material-table-system@^19.0.3-dev.0 @rxap/material-table-window-system@^19.0.2 @rxap/mixin@^16.0.13 @rxap/pattern@^1.1.12 @rxap/pipes@^19.1.1 @rxap/reflect-metadata@^1.0.14 @rxap/rxjs@^1.1.14 @rxap/utilities@^16.4.3 @rxap/window-system@^19.0.3-dev.0 rxjs@^7.8.1 
+yarn add @angular/cdk @angular/common @angular/core @angular/forms @angular/material @rxap/data-source @rxap/form-system @rxap/forms @rxap/material-directives @rxap/material-form-system @rxap/material-table-system @rxap/material-table-window-system @rxap/mixin @rxap/pattern @rxap/pipes @rxap/reflect-metadata @rxap/rxjs @rxap/utilities @rxap/window-system rxjs 
 ```
 **Execute the init generator:**
 ```bash

@@ -19,7 +19,7 @@ yarn add @rxap/ngx-pub-sub
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core@^19.1.3 rxjs@^7.8.1 
+yarn add @angular/core rxjs 
 ```
 **Execute the init generator:**
 ```bash

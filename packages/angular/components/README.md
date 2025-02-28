@@ -19,7 +19,7 @@ yarn add @rxap/components
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @angular/router@^19.1.3 @rxap/rxjs@^1.1.14 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/cdk @angular/common @angular/core @angular/material @angular/router @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash

@@ -63,6 +63,7 @@ skipProjects | boolean | false | Whether to skip executing project specific init
 skipLicense | boolean | false | Whether to skip adding a license file
 license | string | gpl | 
 repositoryUrl | string |  | The URL of the repository
+withHusky | boolean |  | 
 
 ## project-target
 > project-target generator

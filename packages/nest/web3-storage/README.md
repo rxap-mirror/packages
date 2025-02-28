@@ -19,7 +19,7 @@ yarn add @rxap/nest-web3-storage
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 web3.storage@^4.5.5 
+yarn add @nestjs/common @nestjs/config web3.storage 
 ```
 **Execute the init generator:**
 ```bash

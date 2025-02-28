@@ -19,7 +19,7 @@ yarn add @rxap/nest-firebase
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 firebase-admin@^10.3.0 
+yarn add @nestjs/common firebase-admin 
 ```
 **Execute the init generator:**
 ```bash

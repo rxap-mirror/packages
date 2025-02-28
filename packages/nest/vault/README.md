@@ -19,7 +19,7 @@ yarn add @rxap/nest-vault
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @nestjs/config@^3.2.2 @nestjs/terminus@^10.2.3 node-vault@^0.10.2 
+yarn add @nestjs/common @nestjs/config @nestjs/terminus node-vault 
 ```
 **Execute the init generator:**
 ```bash

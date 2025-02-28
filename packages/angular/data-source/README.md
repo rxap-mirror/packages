@@ -19,7 +19,7 @@ yarn add @rxap/data-source
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/material@^19.1.1 @rxap/data-structure-tree@^1.1.14 @rxap/definition@^19.0.2 @rxap/environment@^19.0.2 @rxap/pattern@^1.1.12 @rxap/rxjs@^1.1.14 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/cdk @angular/common @angular/core @angular/material @rxap/data-structure-tree @rxap/definition @rxap/environment @rxap/pattern @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash

@@ -19,7 +19,7 @@ yarn add @rxap/ngx-sentry
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @rxap/config@^19.0.2 @rxap/environment@^19.0.2 @sentry/angular@^8.18.0 
+yarn add @rxap/config @rxap/environment @sentry/angular 
 ```
 **Execute the init generator:**
 ```bash

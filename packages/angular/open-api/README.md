@@ -19,7 +19,7 @@ yarn add @rxap/open-api
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common@^19.1.3 @angular/core@^19.1.3 @rxap/config@^19.0.2 @rxap/data-source@^19.0.3-dev.0 @rxap/environment@^19.0.2 @rxap/mixin@^16.0.13 @rxap/remote-method@^19.0.3-dev.0 @rxap/rxjs@^1.1.14 @rxap/utilities@^16.4.3 ajv@^8.12.0 openapi-types@^10.0.0 rxjs@^7.8.1 
+yarn add @angular/common @angular/core @rxap/config @rxap/data-source @rxap/environment @rxap/mixin @rxap/remote-method @rxap/rxjs @rxap/utilities ajv openapi-types rxjs 
 ```
 **Execute the init generator:**
 ```bash

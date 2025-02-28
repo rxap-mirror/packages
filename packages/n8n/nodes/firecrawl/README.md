@@ -18,7 +18,7 @@ yarn add @rxap/n8n-nodes-firecrawl
 ```
 **Install peer dependencies:**
 ```bash
-yarn add n8n-workflow@^1.48.0 zod@^3.24.2 
+yarn add n8n-workflow zod 
 ```
 **Execute the init generator:**
 ```bash

@@ -19,7 +19,7 @@ yarn add @rxap/pattern
 ```
 **Install peer dependencies:**
 ```bash
-yarn add rxjs@^7.8.1 
+yarn add rxjs 
 ```
 **Execute the init generator:**
 ```bash

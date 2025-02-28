@@ -19,7 +19,7 @@ yarn add @rxap/table-system
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/animations@^19.1.3 @angular/cdk@^19.1.1 @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/forms@^19.1.3 @angular/material@^19.1.1 @rxap/data-source@^19.0.3-dev.0 @rxap/material-table-system@^19.0.3-dev.0 @rxap/utilities@^16.4.3 rxjs@^7.8.1 
+yarn add @angular/animations @angular/cdk @angular/common @angular/core @angular/forms @angular/material @rxap/data-source @rxap/material-table-system @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash

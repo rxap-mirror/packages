@@ -19,7 +19,7 @@ yarn add @rxap/ngx-material-localize
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common@^19.1.3 @angular/core@^19.1.3 @angular/forms@^19.1.3 @angular/material@^19.1.1 @rxap/directives@^19.0.3-dev.0 @rxap/ngx-localize@^19.0.2 rxjs@^7.8.1 
+yarn add @angular/common @angular/core @angular/forms @angular/material @rxap/directives @rxap/ngx-localize rxjs 
 ```
 **Execute the init generator:**
 ```bash

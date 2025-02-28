@@ -19,7 +19,7 @@ yarn add @rxap/nest-logger
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common@^10.3.8 @rxap/nest-utilities@^10.4.1 @rxap/utilities@^16.4.3 
+yarn add @nestjs/common @rxap/nest-utilities @rxap/utilities 
 ```
 **Execute the init generator:**
 ```bash
