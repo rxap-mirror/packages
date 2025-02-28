@@ -57,7 +57,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     });
   }
 
-  await addPackageDependencies(tree);
+  await addPackageDependencies(tree, options);
   coerceIgnorePattern(tree);
   await coercePackageJson(tree, options);
   coerceWorkspaceProject(tree, options);
