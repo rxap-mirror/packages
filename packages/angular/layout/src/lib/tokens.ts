@@ -32,8 +32,8 @@ export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameF
   {
     providedIn: 'root',
     factory: () => (profile: any) => (
-                                       profile ? profile.username ?? profile.email ?? profile.name : null
-                                     ) ?? null,
+                                       profile ? profile.displayName || profile.username || profile.email || profile.name : null
+                                     ) || null,
   },
 );
 
