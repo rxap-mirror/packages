@@ -8,6 +8,7 @@ import {
   CoerceProjectTags,
   GetLibraryPathAliasName,
   GetProjectSourceRoot,
+  HasProjectPackageJson,
   UpdateProjectPackageJson,
   UpdateTsConfigPaths,
 } from '@rxap/workspace-utilities';
@@ -36,12 +37,14 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   CoerceProjectTags(project, ['feature', 'angular', 'ngx']);
 
-  // It is required to ensure that private is set to true before calling the InitLibraryProject function
-  // Is function this value will be used to determine if the library is publishable or not. And on default, a
-  // feature library is only buildable and NOT publishable
-  UpdateProjectPackageJson(tree, json => {
-    json.private ??= true;
-  }, { projectName });
+  if (HasProjectPackageJson(tree, projectName)) {
+    // It is required to ensure that private is set to true before calling the InitLibraryProject function
+    // Is function this value will be used to determine if the library is publishable or not. And on default, a
+    // feature library is only buildable and NOT publishable
+    UpdateProjectPackageJson(tree, json => {
+      json.private ??= true;
+    }, { projectName });
+  }
 
   await InitLibraryProject(tree, projectName, project, options);
 
