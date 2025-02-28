@@ -15,4 +15,5 @@ export interface InitGeneratorSchema {
   license?: 'none' | 'mit' | 'gpl';
   /** The URL of the repository */
   repositoryUrl?: string;
+  withHusky?: boolean;
 }

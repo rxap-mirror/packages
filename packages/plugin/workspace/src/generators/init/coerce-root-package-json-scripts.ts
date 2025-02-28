@@ -5,7 +5,11 @@ import { InitGeneratorSchema } from './schema';
 export function coerceRootPackageJsonScripts(tree: Tree, options: InitGeneratorSchema) {
   UpdatePackageJson(tree, (json) => {
     json.scripts ??= {};
-    json.scripts['prepare'] ??= 'husky install';
+    if (options.withHusky) {
+      json.scripts['prepare'] ??= 'husky install';
+    } else if (json.scripts['prepare'] === 'husky install') {
+      delete json.scripts['prepare'];
+    }
     json.scripts['schematic'] ??= 'bash tools/scripts/schematic.sh';
     if (options.fullStack) {
       json.scripts['server'] ??= 'bash tools/scripts/start-local-dev-services.sh';

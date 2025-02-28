@@ -36,6 +36,14 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     overwrite: options.overwrite,
   });
 
+  if (options.withHusky) {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'husky'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  }
+
   UpdateJsonFile(tree, angularJson => {
     angularJson.version = 1;
     angularJson.projects ??= {};

@@ -54,6 +54,9 @@
     "repositoryUrl": {
       "type": "string",
       "description": "The URL of the repository"
+    },
+    "withHusky": {
+      "type": "boolean"
     }
   },
   "required": []
