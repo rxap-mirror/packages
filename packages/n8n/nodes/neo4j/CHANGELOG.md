@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-neo4j@0.0.6...@rxap/n8n-nodes-neo4j@0.0.7-dev.0) (2025-02-28)
+
+**Note:** Version bump only for package @rxap/n8n-nodes-neo4j
+
 ## [0.0.6](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-neo4j@0.0.6-dev.3...@rxap/n8n-nodes-neo4j@0.0.6) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/n8n-nodes-neo4j

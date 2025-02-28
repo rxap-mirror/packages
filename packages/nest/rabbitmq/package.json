@@ -1,5 +1,5 @@
 {
-  "version": "10.1.3",
+  "version": "10.1.4-dev.0",
   "name": "@rxap/nest-rabbitmq",
   "description": "This package provides a NestJS module for integrating with RabbitMQ using exchanges. It offers a client and server implementation for message queuing and supports features like health checks and error serialization. It simplifies the process of setting up and managing RabbitMQ connections and message handling within NestJS applications.\n",
   "license": "GPL-3.0-or-later",

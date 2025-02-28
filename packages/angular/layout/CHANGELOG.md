@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.3-dev.1...@rxap/layout@19.0.3-dev.2) (2025-02-28)
+
+### Bug Fixes
+
+- **layout:** update profile token fallback logic for displayName ([4602114](https://gitlab.com/rxap/packages/commit/46021141c0aad1422234bec1b26d00b401c1496c))
+
 ## [19.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.3-dev.0...@rxap/layout@19.0.3-dev.1) (2025-02-26)
 
 **Note:** Version bump only for package @rxap/layout

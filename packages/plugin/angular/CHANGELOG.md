@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.0.4-dev.3...@rxap/plugin-angular@20.1.0-dev.0) (2025-02-28)
+
+### Bug Fixes
+
+- check if file exists ([1e84487](https://gitlab.com/rxap/packages/commit/1e84487cebf07b415b2b0a1b0ac499c347d5d0f9))
+- **init-feature-library:** ensure project package.json exists before updating ([99a614d](https://gitlab.com/rxap/packages/commit/99a614d7f765fc3c2deaff42bec5b71361f8417e))
+
+### Features
+
+- **angular:** remove default import path when initializing a feature library ([6986ac1](https://gitlab.com/rxap/packages/commit/6986ac12b57826b75ad0d77efa98071cd547c7c8))
+
 ## [20.0.4-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.0.4-dev.2...@rxap/plugin-angular@20.0.4-dev.3) (2025-02-26)
 
 **Note:** Version bump only for package @rxap/plugin-angular

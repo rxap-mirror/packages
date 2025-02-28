@@ -1,12 +1,12 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1-dev.0",
   "name": "@rxap/n8n-nodes-firecrawl",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@keyv/postgres": "^2.1.1",
     "@mendable/firecrawl-js": "^1.18.2",
     "@nx/devkit": "20.4.6",
-    "@rxap/n8n-utilities": "^1.1.0",
+    "@rxap/n8n-utilities": "^1.1.1-dev.0",
     "keyv": "^5.2.3",
     "tslib": "^2.3.0"
   },

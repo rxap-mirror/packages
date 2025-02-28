@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.0.3-dev.1...@rxap/plugin-workspace@20.1.0-dev.0) (2025-02-28)
+
+### Bug Fixes
+
+- **workspace:** pass options to addPackageDependencies ([f3490c7](https://gitlab.com/rxap/packages/commit/f3490c72404e0f8abf6b4f1a00a5079f91ca142f))
+
+### Features
+
+- **init:** add optional husky integration ([dc71571](https://gitlab.com/rxap/packages/commit/dc715713293fefc3f85fba34cf684fe40dd92f48))
+
 ## [20.0.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.0.3-dev.0...@rxap/plugin-workspace@20.0.3-dev.1) (2025-02-26)
 
 **Note:** Version bump only for package @rxap/plugin-workspace

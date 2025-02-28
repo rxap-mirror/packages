@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.8-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-oauth2-proxy@10.0.7...@rxap/nest-oauth2-proxy@10.0.8-dev.0) (2025-02-28)
+
+**Note:** Version bump only for package @rxap/nest-oauth2-proxy
+
 ## [10.0.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-oauth2-proxy@10.0.6...@rxap/nest-oauth2-proxy@10.0.7) (2025-02-23)
 
 ### Bug Fixes

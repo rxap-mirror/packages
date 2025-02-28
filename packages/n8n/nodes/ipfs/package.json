@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2-dev.0",
   "name": "@rxap/n8n-nodes-ipfs",
   "description": "An n8n node to download files from IPFS, supporting download as file, JSON, or text, with options for specifying the IPFS gateway, CID, and file path. It allows users to retrieve content from IPFS and integrate it into their n8n workflows.\n",
   "license": "GPL-3.0-or-later",

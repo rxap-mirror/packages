@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.2.0-dev.3...@rxap/plugin-library@20.2.0-dev.4) (2025-02-28)
+
+### Bug Fixes
+
+- check if file exists ([1e84487](https://gitlab.com/rxap/packages/commit/1e84487cebf07b415b2b0a1b0ac499c347d5d0f9))
+- **readme:** remove version specification from peer dependencies ([f1d1350](https://gitlab.com/rxap/packages/commit/f1d1350ec097b518814cb3bc9584194dd148d7c1))
+
 # [20.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.2.0-dev.2...@rxap/plugin-library@20.2.0-dev.3) (2025-02-26)
 
 **Note:** Version bump only for package @rxap/plugin-library

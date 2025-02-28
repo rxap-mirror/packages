@@ -1,5 +1,5 @@
 {
-  "version": "0.0.6",
+  "version": "0.0.7-dev.0",
   "name": "@rxap/n8n-nodes-neo4j",
   "description": "Provides a Neo4j node for n8n workflows, including basic authentication credentials. It allows to connect and interact with Neo4j databases within the n8n automation platform. Includes an init generator to handle peer dependencies.\n",
   "license": "GPL-3.0-or-later",
