@@ -52,7 +52,7 @@ export function coerceAppConfig(tree: Tree, projectName: string, options: InitAp
       providers.push('ProvideChangelog()');
       providers.push('provideTheme()');
       providers.push('provideExternalApps()');
-      importProvidersFrom.push('MarkdownModule.forRoot()');
+      providers.push('provideMarkdown()');
       CoerceImports(sourceFile, [
         {
           moduleSpecifier: '@rxap/ngx-changelog',
@@ -60,7 +60,7 @@ export function coerceAppConfig(tree: Tree, projectName: string, options: InitAp
         },
         {
           moduleSpecifier: 'ngx-markdown',
-          namedImports: [ 'MarkdownModule' ],
+          namedImports: [ 'provideMarkdown' ],
         },
         {
           moduleSpecifier: '@rxap/ngx-pub-sub',
