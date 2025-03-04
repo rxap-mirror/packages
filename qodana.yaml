@@ -2,3 +2,4 @@ bootstrap: ./tools/scripts/install-dependencies.sh
 include:
   - name: Eslint
   - name: CheckDependencyLicenses
+version: 1.0
