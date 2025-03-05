@@ -36,8 +36,7 @@
       "src/lib/OpenWebUI/OpenWebUI.node.js"
     ],
     "credentials": [
-      "src/lib/HttpBearerAuth.credentials.js",
-      "src/lib/Oauth2ProxyAuth.credentials.js"
+      "src/lib/OpenWebUIAuth.credentials.js"
     ]
   },
   "publishConfig": {
