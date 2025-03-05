@@ -3,6 +3,7 @@
   "name": "@rxap/n8n-nodes-gitlab",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@rxap/n8n-utilities": "1.2.0-dev.0",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {

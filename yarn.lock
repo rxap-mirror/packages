@@ -9667,6 +9667,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-gitlab@workspace:packages/n8n/nodes/gitlab"
   dependencies:
+    "@rxap/n8n-utilities": 1.2.0-dev.0
     tslib: ^2.3.0
   peerDependencies:
     n8n-workflow: ^1.48.0
@@ -9766,7 +9767,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/n8n-utilities@^1.2.0-dev.0, @rxap/n8n-utilities@workspace:packages/n8n/utilities":
+"@rxap/n8n-utilities@1.2.0-dev.0, @rxap/n8n-utilities@^1.2.0-dev.0, @rxap/n8n-utilities@workspace:packages/n8n/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-utilities@workspace:packages/n8n/utilities"
   dependencies:
