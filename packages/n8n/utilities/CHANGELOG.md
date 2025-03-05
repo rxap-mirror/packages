@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/n8n-utilities@1.1.1-dev.0...@rxap/n8n-utilities@1.2.0-dev.0) (2025-03-05)
+
+### Features
+
+- **open-api-node:** add dynamic authentication options and baseURL support ([18139ae](https://gitlab.com/rxap/packages/commit/18139ae519a8190f4edc5f91ba96a8a4ed2939bf))
+
 ## [1.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/n8n-utilities@1.1.0...@rxap/n8n-utilities@1.1.1-dev.0) (2025-02-28)
 
 **Note:** Version bump only for package @rxap/n8n-utilities

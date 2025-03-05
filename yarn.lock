@@ -9600,7 +9600,7 @@ __metadata:
   resolution: "@rxap/n8n-nodes-cache@workspace:packages/n8n/nodes/cache"
   dependencies:
     "@nx/devkit": 20.4.6
-    "@rxap/n8n-utilities": ^1.1.1-dev.0
+    "@rxap/n8n-utilities": ^1.2.0-dev.0
     minio: 8.0.1
     tslib: ^2.3.0
   peerDependencies:
@@ -9613,7 +9613,7 @@ __metadata:
   resolution: "@rxap/n8n-nodes-cqrs@workspace:packages/n8n/nodes/cqrs"
   dependencies:
     "@nx/devkit": 20.4.6
-    "@rxap/n8n-utilities": ^1.1.1-dev.0
+    "@rxap/n8n-utilities": ^1.2.0-dev.0
     "@rxap/utilities": ^16.4.3
     amqplib: ^0.10.4
     openapi-types: 10.0.0
@@ -9654,7 +9654,7 @@ __metadata:
     "@keyv/postgres": ^2.1.1
     "@mendable/firecrawl-js": ^1.18.2
     "@nx/devkit": 20.4.6
-    "@rxap/n8n-utilities": ^1.1.1-dev.0
+    "@rxap/n8n-utilities": ^1.2.0-dev.0
     keyv: ^5.2.3
     tslib: ^2.3.0
   peerDependencies:
@@ -9719,7 +9719,7 @@ __metadata:
   resolution: "@rxap/n8n-nodes-open-webui@workspace:packages/n8n/nodes/open-webui"
   dependencies:
     "@nx/devkit": 20.4.6
-    "@rxap/n8n-utilities": ^1.1.1-dev.0
+    "@rxap/n8n-utilities": ^1.2.0-dev.0
     tslib: ^2.3.0
   peerDependencies:
     n8n-workflow: ^1.48.0
@@ -9731,7 +9731,7 @@ __metadata:
   resolution: "@rxap/n8n-nodes-sanitize-html@workspace:packages/n8n/nodes/sanitize-html"
   dependencies:
     "@nx/devkit": 20.4.6
-    "@rxap/n8n-utilities": ^1.1.1-dev.0
+    "@rxap/n8n-utilities": ^1.2.0-dev.0
     sanitize-html: ^2.14.0
     tslib: ^2.3.0
   peerDependencies:
@@ -9766,7 +9766,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/n8n-utilities@^1.1.1-dev.0, @rxap/n8n-utilities@workspace:packages/n8n/utilities":
+"@rxap/n8n-utilities@^1.2.0-dev.0, @rxap/n8n-utilities@workspace:packages/n8n/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-utilities@workspace:packages/n8n/utilities"
   dependencies:
