@@ -1,0 +1,52 @@
+{
+  "name": "n8n-nodes-gitlab",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/n8n/nodes/gitlab/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag",
+        "fallbackCurrentVersionResolver": "disk"
+      }
+    }
+  },
+  "tags": ["packages", "n8n", "nodes"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/n8n/nodes/gitlab",
+        "main": "packages/n8n/nodes/gitlab/src/index.ts",
+        "tsConfig": "packages/n8n/nodes/gitlab/tsconfig.lib.json",
+        "assets": [
+          "packages/n8n/nodes/gitlab/*.md",
+          {
+            "input": "./packages/n8n/nodes/gitlab/src/lib",
+            "glob": "**/*.(svg|json|png)",
+            "output": "./src/lib"
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "download-openapi": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}/src/lib/Gitlab",
+        "parallel": false,
+        "commands": [
+          "wget -O openapi.yaml https://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/openapi/openapi_v2.yaml",
+          "python3 -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin)))' < openapi.yaml > openapi.json",
+          "jq '.servers = [{\"url\": \"https://gitlab.com\", \"description\": \"GitLab SaaS\"}]' openapi.json | sponge openapi.json"
+        ]
+      }
+    }
+  }
+}
