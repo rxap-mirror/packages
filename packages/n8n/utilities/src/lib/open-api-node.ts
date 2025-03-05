@@ -1,6 +1,7 @@
 import { CaptureExecutionError } from './capture-execution-error.decorator';
 import {
   capitalize,
+  classify,
   dasherize,
   DeleteUndefinedProperties,
 } from '@rxap/utilities';
@@ -123,6 +124,7 @@ export abstract class OpenApiNode implements INodeType {
       group: ['input'],
       credentials: [
         {
+          displayName: 'Bearer Auth',
           name: 'httpBearerAuth',
           required: false,
           displayOptions: {
@@ -132,6 +134,7 @@ export abstract class OpenApiNode implements INodeType {
           },
         },
         {
+          displayName: 'OAuth 2 Proxy Auth',
           name: 'oauth2ProxyAuth',
           required: false,
           displayOptions: {
@@ -141,6 +144,7 @@ export abstract class OpenApiNode implements INodeType {
           },
         },
         {
+          displayName: 'Basic Auth',
           name: 'httpBasicAuth',
           required: false,
           displayOptions: {
@@ -150,6 +154,7 @@ export abstract class OpenApiNode implements INodeType {
           },
         },
         {
+          displayName: 'Custom Auth',
           name: 'httpCustomAuth',
           required: false,
           displayOptions: {
@@ -159,6 +164,7 @@ export abstract class OpenApiNode implements INodeType {
           },
         },
         {
+          displayName: 'Digest Auth',
           name: 'httpDigestAuth',
           required: false,
           displayOptions: {
@@ -168,6 +174,7 @@ export abstract class OpenApiNode implements INodeType {
           },
         },
         {
+          displayName: 'Header Auth',
           name: 'httpHeaderAuth',
           required: false,
           displayOptions: {
@@ -307,6 +314,13 @@ export abstract class OpenApiNode implements INodeType {
       } else {
         const authentication = this.getNodeParameter('authentication', i) as string;
         if (authentication) {
+          const credentials = await this.getCredentials(authentication);
+          if ('baseURL' in credentials && credentials['baseURL'] && typeof credentials['baseURL'] === 'string') {
+            requestOptions.baseURL = credentials['baseURL'] as string;
+          }
+          if ('baseUrl' in credentials && credentials['baseUrl'] && typeof credentials['baseUrl'] === 'string') {
+            requestOptions.baseURL = credentials['baseUrl'] as string;
+          }
           response = await this.helpers.requestWithAuthentication.call(
             this, authentication, requestOptions, undefined, i);
         } else {
@@ -355,42 +369,21 @@ export abstract class OpenApiNode implements INodeType {
 
   protected populateDescription(): void {
     this.description.properties.unshift(...this.buildBaseUrlParameters());
+    this.description.credentials ??= [];
     this.description.properties.unshift({
       displayName: 'Authentication',
       name: 'authentication',
-      type: 'options',
-      options: [
-        {
-          name: 'Bearer Auth',
-          value: 'httpBearerAuth',
-        },
-        {
-          name: 'OAuth 2 Proxy Auth',
-          value: 'oauth2ProxyAuth',
-        },
-        {
-          name: 'Basic Auth',
-          value: 'httpBasicAuth',
-        },
-        {
-          name: 'Custom Auth',
-          value: 'httpCustomAuth',
-        },
-        {
-          name: 'Digest Auth',
-          value: 'httpDigestAuth',
-        },
-        {
-          name: 'Header Auth',
-          value: 'httpHeaderAuth',
-        },
-      ],
-      default: 'httpBearerAuth',
+      type: this.description.credentials.length > 1 ? 'options' : 'hidden',
+      options: this.description.credentials.map(credential => ({
+        value: credential.name,
+        name: credential.displayName ?? classify(credential.name),
+      })),
+      default: this.description.credentials[0].name,
       displayOptions: {
         hide: {
           skipAuthentication: [ true ],
         }
-      }
+      },
     });
     this.description.properties.unshift({
       displayName: 'Skip Authentication',
@@ -469,7 +462,7 @@ export abstract class OpenApiNode implements INodeType {
     };
   }
 
-  private buildBaseUrlParameters(): INodeProperties[] {
+  protected buildBaseUrlParameters(): INodeProperties[] {
     const parameters: INodeProperties[] = [];
 
     const options = this.openapi.servers?.map(server => ({
