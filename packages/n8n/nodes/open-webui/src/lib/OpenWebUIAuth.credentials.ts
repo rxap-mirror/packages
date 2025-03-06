@@ -18,7 +18,7 @@ export class OpenWebUIAuth extends HttpBearerAuth {
   test: ICredentialTestRequest = {
     request: {
       baseURL: '={{$credentials.baseUrl}}',
-      url: '/openai/verify',
+      url: '/api/v1/models/',
     },
   };
 }
