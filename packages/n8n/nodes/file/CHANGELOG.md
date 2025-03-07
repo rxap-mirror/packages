@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-file@1.0.2-dev.0...@rxap/n8n-nodes-file@1.0.2) (2025-03-07)
+
+**Note:** Version bump only for package @rxap/n8n-nodes-file
+
 ## [1.0.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-file@1.0.1...@rxap/n8n-nodes-file@1.0.2-dev.0) (2025-02-28)
 
 **Note:** Version bump only for package @rxap/n8n-nodes-file

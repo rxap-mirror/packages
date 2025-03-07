@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-open-webui@0.0.3-dev.2...@rxap/n8n-nodes-open-webui@0.0.3) (2025-03-07)
+
+### Bug Fixes
+
+- **open-webui:** update authentication endpoint ([3f1b7da](https://gitlab.com/rxap/packages/commit/3f1b7da8f105212bf2bc50df91dae594c14ebe78))
+
 ## [0.0.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-open-webui@0.0.3-dev.1...@rxap/n8n-nodes-open-webui@0.0.3-dev.2) (2025-03-05)
 
 **Note:** Version bump only for package @rxap/n8n-nodes-open-webui

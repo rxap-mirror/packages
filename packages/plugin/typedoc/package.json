@@ -1,13 +1,13 @@
 {
-  "version": "20.2.1-dev.1",
+  "version": "20.2.1",
   "name": "@rxap/plugin-typedoc",
   "description": "A plugin for Nx workspaces to generate TypeDoc documentation. It provides executors and generators to easily integrate TypeDoc into your Nx projects. This plugin simplifies the process of creating and maintaining API documentation for your TypeScript libraries and applications.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.6",
-    "@rxap/plugin-utilities": "^20.0.3-dev.1",
+    "@rxap/plugin-utilities": "^20.0.3",
     "@rxap/utilities": "^16.4.3",
-    "@rxap/workspace-utilities": "^19.7.0-dev.0",
+    "@rxap/workspace-utilities": "^19.7.0",
     "colors": "1.4.0",
     "nx": "20.4.6",
     "tslib": "2.6.2"

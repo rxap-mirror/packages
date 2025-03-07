@@ -1,5 +1,5 @@
 {
-  "version": "10.0.12-dev.0",
+  "version": "10.0.12",
   "name": "@rxap/nest-supabase",
   "description": "This package provides a NestJS module for integrating with Supabase. It offers a configurable module with options for setting the Supabase URL and key, and a service for interacting with the Supabase client. The module also includes an options loader for retrieving configuration from NestJS ConfigService.\n",
   "license": "GPL-3.0-or-later",

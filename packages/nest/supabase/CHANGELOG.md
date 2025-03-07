@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.12](https://gitlab.com/rxap/packages/compare/@rxap/nest-supabase@10.0.12-dev.0...@rxap/nest-supabase@10.0.12) (2025-03-07)
+
+**Note:** Version bump only for package @rxap/nest-supabase
+
 ## [10.0.12-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-supabase@10.0.11...@rxap/nest-supabase@10.0.12-dev.0) (2025-02-28)
 
 **Note:** Version bump only for package @rxap/nest-supabase

@@ -1,5 +1,5 @@
 {
-  "version": "19.0.3-dev.0",
+  "version": "19.0.3",
   "name": "@rxap/definition",
   "description": "Provides a base definition class and related utilities for managing and loading definitions in Angular applications. It includes metadata handling, dependency injection support, and lifecycle management for definitions. This package simplifies the creation and management of configurable and extensible application components.\n",
   "license": "GPL-3.0-or-later",
