@@ -189,9 +189,9 @@ export class Firecrawl implements INodeType {
   @CaptureExecutionError()
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][] | null> {
 
-    const operation = this.getNodeParameter('operation', 0) as 'scrapeUrl' | string;
-    const cache = this.getNodeParameter('cache', 0) as 'none' | 'postgres';
-    const cacheTTL = this.getNodeParameter('cacheTTL', -1) as number;
+    const operation = this.getNodeParameter('operation', 0, 'scrapeUrl') as 'scrapeUrl' | string;
+    const cache = this.getNodeParameter('cache', 0, 'none') as 'none' | 'postgres';
+    const cacheTTL = this.getNodeParameter('cacheTTL', 0, -1) as number;
     const {apiKey} = await this.getCredentials<{ apiKey: string }>('firecrawl');
     const firecrawl = new FireCrawlApp({apiKey});
 

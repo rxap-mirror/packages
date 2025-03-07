@@ -36,7 +36,8 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "nodes": [
-      "src/lib/Firecrawl/Firecrawl.node.js"
+      "src/lib/Firecrawl/Firecrawl.node.js",
+      "src/lib/Firecrawl/ToolFirecrawl.node.js"
     ],
     "credentials": [
       "src/lib/Firecrawl.credentials.js"
