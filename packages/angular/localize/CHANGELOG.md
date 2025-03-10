@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.1...@rxap/ngx-localize@19.1.0-dev.2) (2025-03-10)
+
+### Bug Fixes
+
+- **localize:** validate XLIFF files before processing ([84750ab](https://gitlab.com/rxap/packages/commit/84750ab2fcf4d2305939dc573b5e7b18d07e0f3a))
+
 # [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.0...@rxap/ngx-localize@19.1.0-dev.1) (2025-03-10)
 
 ### Features
