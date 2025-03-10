@@ -194,6 +194,7 @@ material | boolean | true | Whether to enable Angular Material
 generateMain | boolean |  | Whether to generate the main file
 overwrite | boolean |  | Whether to overwrite existing files
 cleanup | boolean | true | Whether to cleanup files
+i18nStandalone | boolean | false | Whether to compile each language into a separate application
 monolithic | boolean | true | Whether to generate a monolithic application
 localazyReadKey | string |  | Localazy read key
 authentik | boolean |  | Use authentik for authentication
