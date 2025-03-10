@@ -5,7 +5,8 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.4.6",
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "xliff": "^6.2.1"
   },
   "peerDependencies": {
     "@angular/common": "^19.1.3",
