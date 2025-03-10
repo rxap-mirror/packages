@@ -2,7 +2,7 @@ import {
   ApplicationConfig,
   LOCALE_ID,
 } from '@angular/core';
-import { loadLanguages } from '@rxap/ngx-localize';
+import { loadLanguages } from './load-languages';
 
 export async function loadI18nBootstrapHook(options: Partial<ApplicationConfig>): Promise<void> {
 
