@@ -8,7 +8,6 @@ exports[`preset should use workspace preset 1`] = `
   "tsconfig.base.json",
   ".commitlintrc.js",
   ".devcontainer",
-  ".husky",
   ".renovaterc.json",
   ".run",
   ".yarnrc.yml",
@@ -34,7 +33,6 @@ exports[`preset should use workspace preset 2`] = `
     "rxap:update": "npx npm-check-updates --filter /@rxap/ --target newest -u && yarn",
     "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
     "rxap:compose": "nx g @rxap/schematic-composer:compose",
-    "prepare": "husky install",
     "schematic": "bash tools/scripts/schematic.sh"
   },
   "dependencies": {
@@ -58,7 +56,6 @@ exports[`preset should use workspace preset 2`] = `
     "@typescript-eslint/parser": "^7.16.0",
     "eslint": "~8.57.0",
     "eslint-config-prettier": "^9.0.0",
-    "husky": "latest",
     "jest": "^29.7.0",
     "jest-environment-node": "^29.7.0",
     "nx-cloud": "latest",
