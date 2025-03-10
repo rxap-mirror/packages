@@ -2,19 +2,33 @@ import { registerLocaleData } from '@angular/common';
 import { loadTranslations } from '@angular/localize';
 import { xliffToJson } from './xliff-to-json';
 
+function isTranslationXml(xml: string): boolean {
+  return !!xml && typeof xml === 'string' && xml.startsWith('<?xml') && xml.includes('<xliff');
+}
+
 async function fetchTranslations(locale: string, fallback: string) {
 
   let xml: string;
   try {
     xml = await fetch(`/i18n/${ locale }.xlf`).then((r) => r.text());
+    if (!isTranslationXml(xml)) {
+      throw new Error('Invalid XLIFF file');
+    }
   } catch (e: any) {
     console.error(`Could not download XLIFF file for locale ${ locale }: ${ e.message }`);
     try {
       xml = await fetch(`/i18n/${ fallback }.xlf`).then((r) => r.text());
+      if (!isTranslationXml(xml)) {
+        throw new Error('Invalid XLIFF file');
+      }
     } catch (e: any) {
       console.error(`Could not download XLIFF file for fallback locale ${ fallback }: ${ e.message }`);
       throw new Error(`Could not download XLIFF file for locale ${ locale } or fallback ${ fallback }: ${ e.message }`);
     }
+  }
+
+  if (!isTranslationXml(xml)) {
+    throw new Error('Invalid XLIFF file');
   }
 
   let json: any;
