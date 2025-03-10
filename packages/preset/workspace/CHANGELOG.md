@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/preset-workspace@20.0.3...@rxap/preset-workspace@20.0.4-dev.0) (2025-03-10)
+
+**Note:** Version bump only for package @rxap/preset-workspace
+
 ## [20.0.3](https://gitlab.com/rxap/packages/compare/@rxap/preset-workspace@20.0.3-dev.2...@rxap/preset-workspace@20.0.3) (2025-03-07)
 
 **Note:** Version bump only for package @rxap/preset-workspace
