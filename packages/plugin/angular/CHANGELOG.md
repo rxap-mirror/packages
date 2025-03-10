@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.1.0...@rxap/plugin-angular@20.2.0-dev.0) (2025-03-10)
+
+### Features
+
+- **init-application:** support standalone i18n compilation ([049a317](https://gitlab.com/rxap/packages/commit/049a3177f7ccb1e2314b41e833ad936e81a0b7a1))
+
 # [20.1.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.1.0-dev.0...@rxap/plugin-angular@20.1.0) (2025-03-07)
 
 **Note:** Version bump only for package @rxap/plugin-angular

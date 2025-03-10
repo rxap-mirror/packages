@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.0...@rxap/ngx-localize@19.1.0-dev.1) (2025-03-10)
+
+### Features
+
+- **localize:** add i18n bootstrap hook for dynamic locale loading ([22ab76c](https://gitlab.com/rxap/packages/commit/22ab76c57c7b86215b2075921124c3d6dff8e545))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.0.3...@rxap/ngx-localize@19.1.0-dev.0) (2025-03-10)
 
 ### Features
