@@ -51,6 +51,14 @@ export function updateMainFile(
       statements.push('application.before(() => SentryInit(environment));');
     }
 
+    if (options.i18n && !options.i18nStandalone) {
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/ngx-localize',
+        namedImports: [ 'loadI18nBootstrapHook' ],
+      });
+      statements.push('application.before((_, options) => loadI18nBootstrapHook(options));');
+    }
+
     CoerceImports(sourceFile, importDeclarations);
 
     for (let i = 0; i < statements.length; i++) {

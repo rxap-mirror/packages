@@ -185,7 +185,7 @@ export async function initApplicationGenerator(
     await AddPackageJsonDevDependency(tree, '@rxap/plugin-web3-storage', 'latest', { soft: true });
   }
 
-  if (options.i18n && options.deploy === 'web3-storage') {
+  if (options.i18n && options.deploy === 'web3-storage' && options.i18nStandalone) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'i18n'),
       target: 'shared/angular',
@@ -201,7 +201,7 @@ export async function initApplicationGenerator(
 
   CoerceFile(tree, 'shared/angular/assets/custom.svg', '<svg></svg>');
 
-  if (options.i18n && !options.skipDocker) {
+  if (options.i18n && !options.skipDocker && options.i18nStandalone) {
     let dockerfileContent = tree.read('shared/angular/Dockerfile')?.toString('utf-8');
     if (dockerfileContent) {
       dockerfileContent = dockerfileContent.replace(

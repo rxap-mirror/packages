@@ -126,6 +126,11 @@
       "description": "Whether to cleanup files",
       "default": true
     },
+    "i18nStandalone": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to compile each language into a separate application"
+    },
     "monolithic": {
       "type": "boolean",
       "description": "Whether to generate a monolithic application",

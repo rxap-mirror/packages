@@ -77,15 +77,19 @@ export function updateProjectTargets(
       }
       project.targets['build'].configurations ??= {};
       if (options.overwrite) {
-        project.targets['build'].configurations.production.localize = options.languages;
+        project.targets['build'].configurations.production.localize = options.i18nStandalone ? options.languages : false;
       } else {
-        if (typeof project.targets['build'].configurations.production.localize === 'boolean') {
-          project.targets['build'].configurations.production.localize = options.languages;
+        if (options.i18nStandalone) {
+          if (typeof project.targets['build'].configurations.production.localize === 'boolean') {
+            project.targets['build'].configurations.production.localize = options.languages;
+          }
+          project.targets['build'].configurations.production.localize ??= [];
+          project.targets['build'].configurations.production.localize.push(...options.languages);
+          project.targets['build'].configurations.production.localize
+            = project.targets['build'].configurations.production.localize.filter(unique());
+        } else {
+          project.targets['build'].configurations.production.localize ??= false;
         }
-        project.targets['build'].configurations.production.localize ??= [];
-        project.targets['build'].configurations.production.localize.push(...options.languages);
-        project.targets['build'].configurations.production.localize
-          = project.targets['build'].configurations.production.localize.filter(unique());
       }
       project.i18n ??= {};
       project.i18n.sourceLocale ??= 'en-US';
@@ -210,7 +214,7 @@ export function updateProjectTargets(
   if (options.deploy) {
     switch (options.deploy) {
       case 'web3-storage':
-        if (options.i18n) {
+        if (options.i18n && options.i18nStandalone) {
           CoerceTarget(project, 'i18n-index-html', {});
         }
         CoerceTarget(project, 'deploy', {

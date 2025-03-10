@@ -26,6 +26,7 @@ export interface InitApplicationGeneratorSchema {
   localazy?: boolean;
   /** Whether to enable i18n */
   i18n?: boolean;
+  i18nStandalone?: boolean;
   /** Whether to enable service worker */
   serviceWorker?: boolean;
   languages?: Array<string>;
