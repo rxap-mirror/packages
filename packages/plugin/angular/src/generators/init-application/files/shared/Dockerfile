@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/rxap/docker/nginx:alpine
+FROM registry.gitlab.com/rxap/docker/nginx@sha256:415563b4127c643d128912ac58dcf058def685130e6ab6fa79bc4bd58111de5b
 
 ARG PROJECT_NAME
 ARG SUB_DOMAIN
