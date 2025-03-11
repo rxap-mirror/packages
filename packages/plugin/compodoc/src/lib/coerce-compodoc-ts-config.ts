@@ -3,6 +3,7 @@ import { CoerceArrayItems } from '@rxap/utilities';
 import {
   GetProject,
   GetProjectRoot,
+  HasTsConfigJson,
   IsAngularProject,
   IsNestJsProject,
   IsWorkspaceProject,
@@ -39,9 +40,11 @@ export function CoerceCompodocTsConfig(tree: Tree, projectName: string, include:
     }
   }, { infix: 'compodoc', basePath: projectRoot, create: true });
 
-  UpdateTsConfigJson(tree, tsConfig => {
-    tsConfig.references ??= [];
-    CoerceArrayItems(tsConfig.references, [{ path: './tsconfig.compodoc.json' }], (a, b) => a.path === b.path);
-  }, { basePath: projectRoot });
+  if (HasTsConfigJson(tree, { basePath: projectRoot })) {
+    UpdateTsConfigJson(tree, tsConfig => {
+      tsConfig.references ??= [];
+      CoerceArrayItems(tsConfig.references, [ { path: './tsconfig.compodoc.json' } ], (a, b) => a.path === b.path);
+    }, { basePath: projectRoot });
+  }
 
 }
