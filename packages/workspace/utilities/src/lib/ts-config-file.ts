@@ -112,6 +112,10 @@ export function UpdateTsConfigJson<Tree extends TreeLike>(
   );
 }
 
+export function HasTsConfigJson<Tree extends TreeLike>(tree: Tree, options?: UpdateTsConfigJsonOptions) {
+  return tree.exists(join(options?.basePath ?? '', options?.infix ? `tsconfig.${ options.infix }.json` : 'tsconfig.json'));
+}
+
 export interface UpdateProjectTsConfigJsonOptions extends UpdateJsonFileOptions {
   infix?: string;
   project: string;
