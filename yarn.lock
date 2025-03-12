@@ -11165,7 +11165,7 @@ __metadata:
     storybook: ^8.2.8
     supertest: 6.2.2
     swagger-ui-express: 5.0.0
-    tailwindcss: latest
+    tailwindcss: ^3.4.4
     tiktoken: ^1.0.20
     tmp-promise: ^3.0.3
     ts-jest: 29.1.4
@@ -35094,13 +35094,6 @@ __metadata:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
   checksum: a6ec1ce07da6ea4d40a62d9b3babfc5e56da75c5efb3c6fe48317dbda6877949f011c67b4fd03cb9a680d3bd734f45dbc977ee9138f8ce59619c7c712fb1350f
-  languageName: node
-  linkType: hard
-
-"tailwindcss@npm:latest":
-  version: 4.0.12
-  resolution: "tailwindcss@npm:4.0.12"
-  checksum: 2a6b4e16bc04373977fa98e8d427109a8f435a1f92b86bae1691a5840cf4b3357d9b9d30ed71fbf5d805ab0a185226edd3a6542d7492d324b63498ede33b4774
   languageName: node
   linkType: hard
 
