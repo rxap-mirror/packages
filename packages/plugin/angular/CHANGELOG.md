@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.2.0-dev.1...@rxap/plugin-angular@20.2.0-dev.2) (2025-03-12)
+
+### Bug Fixes
+
+- **angular:** pin nginx Docker image to specific digest ([4d74618](https://gitlab.com/rxap/packages/commit/4d74618592c56cbda28280402e41719df64cacea))
+
+### Reverts
+
+- "chore(deps): upgrade tailwindcss to 4.0.12" ([da8a2c7](https://gitlab.com/rxap/packages/commit/da8a2c79cb35967235bfc33c2f03bde91e1bb772))
+
 # [20.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.2.0-dev.0...@rxap/plugin-angular@20.2.0-dev.1) (2025-03-10)
 
 ### Bug Fixes

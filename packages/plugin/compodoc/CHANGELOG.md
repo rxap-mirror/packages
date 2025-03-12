@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.0.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@20.0.2...@rxap/plugin-compodoc@20.0.3-dev.0) (2025-03-12)
+
+### Bug Fixes
+
+- add support for JetBrains project folder exclusion ([dd924a3](https://gitlab.com/rxap/packages/commit/dd924a33c33b772d64457659cab4307c258b1fd0))
+- **compodoc:** guard tsconfig update with existence check ([0ac866e](https://gitlab.com/rxap/packages/commit/0ac866e9b712d16e956fb1d564271f719554a6ff))
+
 ## [20.0.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-compodoc@20.0.2-dev.1...@rxap/plugin-compodoc@20.0.2) (2025-03-07)
 
 **Note:** Version bump only for package @rxap/plugin-compodoc

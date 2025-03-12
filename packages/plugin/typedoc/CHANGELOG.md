@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.2.1...@rxap/plugin-typedoc@20.3.0-dev.0) (2025-03-12)
+
+### Bug Fixes
+
+- add support for JetBrains project folder exclusion ([dd924a3](https://gitlab.com/rxap/packages/commit/dd924a33c33b772d64457659cab4307c258b1fd0))
+
+### Features
+
+- **workspace-utilities:** add function to check tsconfig.json existence ([e25238b](https://gitlab.com/rxap/packages/commit/e25238b78bdb874b3b3df73f1be54553b494f5e2))
+
 ## [20.2.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.2.1-dev.1...@rxap/plugin-typedoc@20.2.1) (2025-03-07)
 
 **Note:** Version bump only for package @rxap/plugin-typedoc

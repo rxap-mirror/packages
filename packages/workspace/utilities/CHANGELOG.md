@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.8.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.7.0...@rxap/workspace-utilities@19.8.0-dev.0) (2025-03-12)
+
+### Features
+
+- **workspace-utilities:** add function to check tsconfig.json existence ([5d11ccd](https://gitlab.com/rxap/packages/commit/5d11ccd12bb82282bce64c619de8cb8457cd35e5))
+
 # [19.7.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.7.0-dev.0...@rxap/workspace-utilities@19.7.0) (2025-03-07)
 
 **Note:** Version bump only for package @rxap/workspace-utilities
