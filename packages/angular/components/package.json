@@ -1,5 +1,5 @@
 {
-  "version": "19.0.3",
+  "version": "19.0.4-dev.0",
   "name": "@rxap/components",
   "description": "This package provides a set of reusable Angular components, including a navigate back button, a JSON viewer, an empty router outlet, a copy-to-clipboard button and component, and a confirmation dialog with directive and module. These components are designed to simplify common UI tasks and improve the user experience in Angular applications. The package also includes an init generator for use with Nx workspaces.\n",
   "license": "GPL-3.0-or-later",
@@ -13,8 +13,8 @@
     "@angular/core": "^19.2.1",
     "@angular/material": "^19.1.1",
     "@angular/router": "^19.2.1",
-    "@rxap/rxjs": "^1.1.15",
-    "@rxap/utilities": "^16.4.3",
+    "@rxap/rxjs": "^1.1.16-dev.0",
+    "@rxap/utilities": "^16.4.4-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -39,12 +39,8 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@angular/animations",
-        "version": "19.2.1"
-      },
-      {
         "package": "@angular/cdk",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/common",
@@ -60,7 +56,7 @@
       },
       {
         "package": "@angular/material",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/platform-browser",
@@ -72,11 +68,11 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.3"
+        "version": "16.4.4-dev.0"
       }
     ]
   },

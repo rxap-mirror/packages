@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-open-webui@0.0.3...@rxap/n8n-nodes-open-webui@0.0.4-dev.0) (2025-03-12)
+
+**Note:** Version bump only for package @rxap/n8n-nodes-open-webui
+
 ## [0.0.3](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-open-webui@0.0.3-dev.2...@rxap/n8n-nodes-open-webui@0.0.3) (2025-03-07)
 
 ### Bug Fixes

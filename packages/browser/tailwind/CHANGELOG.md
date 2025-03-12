@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.13-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@1.0.12...@rxap/browser-tailwind@1.0.13-dev.0) (2025-03-12)
+
+### Reverts
+
+- "chore(deps): upgrade tailwindcss to 4.0.12" ([da8a2c7](https://gitlab.com/rxap/packages/commit/da8a2c79cb35967235bfc33c2f03bde91e1bb772))
+
 ## [1.0.12](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@1.0.12-dev.1...@rxap/browser-tailwind@1.0.12) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/browser-tailwind

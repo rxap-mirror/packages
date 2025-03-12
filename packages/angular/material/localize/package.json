@@ -1,5 +1,5 @@
 {
-  "version": "19.0.3",
+  "version": "19.0.4-dev.0",
   "name": "@rxap/ngx-material-localize",
   "description": "Provides components and services to simplify internationalization (i18n) in Angular Material applications. It offers components for language selection and utilities to localize Material components like Datepicker, Paginator and Stepper. This package aims to streamline the process of adapting your Angular Material UI to different languages.\n",
   "license": "GPL-3.0-or-later",
@@ -12,8 +12,8 @@
     "@angular/core": "^19.2.1",
     "@angular/forms": "^19.2.1",
     "@angular/material": "^19.1.1",
-    "@rxap/directives": "^19.0.3",
-    "@rxap/ngx-localize": "^19.1.0-dev.2",
+    "@rxap/directives": "^19.0.4-dev.0",
+    "@rxap/ngx-localize": "^19.1.0-dev.3",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -39,12 +39,8 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@angular/animations",
-        "version": "19.2.1"
-      },
-      {
         "package": "@angular/cdk",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/common",
@@ -60,7 +56,7 @@
       },
       {
         "package": "@angular/material",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/platform-browser",
@@ -68,71 +64,71 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.13"
+        "version": "16.0.14-dev.0"
       },
       {
         "package": "@rxap/ngx-localize",
-        "version": "19.1.0-dev.2"
+        "version": "19.1.0-dev.3"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.13"
+        "version": "1.1.14-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.14"
+        "version": "1.0.15-dev.0"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.3"
+        "version": "16.4.4-dev.0"
       }
     ]
   },

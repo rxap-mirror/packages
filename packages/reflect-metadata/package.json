@@ -1,11 +1,11 @@
 {
-  "version": "1.0.14",
+  "version": "1.0.15-dev.0",
   "name": "@rxap/reflect-metadata",
   "description": "Provides utilities for working with Reflect Metadata. It includes functions for setting, getting, and manipulating metadata on objects and properties. This package also offers functionalities for change detection using proxies and metadata.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/utilities": "^16.4.3",
+    "@rxap/utilities": "^16.4.4-dev.0",
     "reflect-metadata": "^0.1.13",
     "tslib": "2.6.2"
   },

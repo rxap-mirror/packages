@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.12-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-testing@10.0.11...@rxap/nest-testing@10.0.12-dev.0) (2025-03-12)
+
+**Note:** Version bump only for package @rxap/nest-testing
+
 ## [10.0.11](https://gitlab.com/rxap/packages/compare/@rxap/nest-testing@10.0.11-dev.1...@rxap/nest-testing@10.0.11) (2025-02-23)
 
 **Note:** Version bump only for package @rxap/nest-testing

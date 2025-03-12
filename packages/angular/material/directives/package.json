@@ -1,5 +1,5 @@
 {
-  "version": "19.0.3",
+  "version": "19.0.4-dev.0",
   "name": "@rxap/material-directives",
   "description": "This package coerces peer dependencies for `@rxap` packages, ensuring they are correctly installed in the project. It also runs init generators for peer dependencies that have them. It can also move the package from devDependencies to dependencies or vice versa based on the package name.\n",
   "license": "GPL-3.0-or-later",
@@ -10,10 +10,10 @@
   "peerDependencies": {
     "@angular/core": "^19.2.1",
     "@angular/material": "^19.1.1",
-    "@rxap/browser-utilities": "^1.1.12",
-    "@rxap/ngx-memory": "^19.0.3",
-    "@rxap/rxjs": "^1.1.15",
-    "@rxap/utilities": "^16.4.3",
+    "@rxap/browser-utilities": "^1.1.13-dev.0",
+    "@rxap/ngx-memory": "^19.0.4-dev.0",
+    "@rxap/rxjs": "^1.1.16-dev.0",
+    "@rxap/utilities": "^16.4.4-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -39,12 +39,8 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@angular/animations",
-        "version": "19.2.1"
-      },
-      {
         "package": "@angular/cdk",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/common",
@@ -60,7 +56,7 @@
       },
       {
         "package": "@angular/material",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/platform-browser",
@@ -68,19 +64,19 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.12"
+        "version": "1.1.13-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.3"
+        "version": "16.4.4-dev.0"
       }
     ]
   },

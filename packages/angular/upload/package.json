@@ -1,5 +1,5 @@
 {
-  "version": "19.0.3",
+  "version": "19.0.4-dev.0",
   "name": "@rxap/upload",
   "description": "A Material Design upload button component for Angular that supports file selection, display, and download. It integrates with Angular Forms and provides visual feedback. It also includes a pipe to read files as data URLs.\n",
   "license": "GPL-3.0-or-later",
@@ -13,8 +13,8 @@
     "@angular/core": "^19.2.1",
     "@angular/forms": "^19.2.1",
     "@angular/material": "^19.1.1",
-    "@rxap/directives": "^19.0.3",
-    "@rxap/pattern": "^1.1.13",
+    "@rxap/directives": "^19.0.4-dev.0",
+    "@rxap/pattern": "^1.1.14-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -39,12 +39,8 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@angular/animations",
-        "version": "19.2.1"
-      },
-      {
         "package": "@angular/cdk",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/common",
@@ -60,7 +56,7 @@
       },
       {
         "package": "@angular/material",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/platform-browser",
@@ -68,23 +64,23 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.13"
+        "version": "1.1.14-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.3"
+        "version": "16.4.4-dev.0"
       }
     ]
   },

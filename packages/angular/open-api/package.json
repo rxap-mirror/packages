@@ -1,5 +1,5 @@
 {
-  "version": "19.0.3",
+  "version": "19.0.4-dev.0",
   "name": "@rxap/open-api",
   "description": "This package provides tools for working with OpenAPI specifications in Angular applications. It includes services for configuring and loading OpenAPI definitions, validating requests and responses against schemas, and handling errors. It also offers utilities for building HTTP requests based on OpenAPI definitions.\n",
   "license": "GPL-3.0-or-later",
@@ -10,13 +10,13 @@
   "peerDependencies": {
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
-    "@rxap/config": "^19.0.3",
-    "@rxap/data-source": "^19.0.3",
-    "@rxap/environment": "^19.0.3",
-    "@rxap/mixin": "^16.0.13",
-    "@rxap/remote-method": "^19.0.3",
-    "@rxap/rxjs": "^1.1.15",
-    "@rxap/utilities": "^16.4.3",
+    "@rxap/config": "^19.0.4-dev.0",
+    "@rxap/data-source": "^19.0.4-dev.0",
+    "@rxap/environment": "^19.0.4-dev.0",
+    "@rxap/mixin": "^16.0.14-dev.0",
+    "@rxap/remote-method": "^19.0.4-dev.0",
+    "@rxap/rxjs": "^1.1.16-dev.0",
+    "@rxap/utilities": "^16.4.4-dev.0",
     "ajv": "^8.12.0",
     "openapi-types": "^10.0.0",
     "rxjs": "^7.8.1"
@@ -43,12 +43,8 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@angular/animations",
-        "version": "19.2.1"
-      },
-      {
         "package": "@angular/cdk",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/common",
@@ -64,7 +60,7 @@
       },
       {
         "package": "@angular/material",
-        "version": "19.1.1"
+        "version": "19.2.2"
       },
       {
         "package": "@angular/platform-browser",
@@ -72,47 +68,47 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.13"
+        "version": "16.0.14-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.13"
+        "version": "1.1.14-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.14"
+        "version": "1.0.15-dev.0"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.3"
+        "version": "16.4.4-dev.0"
       }
     ]
   },

@@ -1,5 +1,5 @@
 {
-  "version": "3.0.12",
+  "version": "3.0.13-dev.0",
   "name": "@rxap/validator",
   "license": "GPL-3.0-or-later",
   "dependencies": {

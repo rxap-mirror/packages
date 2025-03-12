@@ -1,5 +1,5 @@
 {
-  "version": "20.0.2",
+  "version": "20.0.3-dev.0",
   "name": "rxap",
   "description": "Reactive Extensions for APplication development.\n",
   "license": "MIT",

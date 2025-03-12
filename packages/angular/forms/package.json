@@ -1,5 +1,5 @@
 {
-  "version": "19.0.3",
+  "version": "19.0.4-dev.0",
   "name": "@rxap/forms",
   "description": "This package provides a set of tools and directives to simplify working with Angular forms, including reactive forms, custom validators, and form directives for handling loading, submitting, and error states. It offers decorators for defining forms and controls, along with utilities for building complex forms with nested groups and arrays. The library aims to enhance the development experience by providing a more structured and maintainable approach to form management in Angular applications.\n",
   "license": "GPL-3.0-or-later",
@@ -11,14 +11,14 @@
     "@angular/core": "^19.2.1",
     "@angular/forms": "^19.2.1",
     "@angular/router": "^19.2.1",
-    "@rxap/definition": "^19.0.3",
-    "@rxap/directives": "^19.0.3",
-    "@rxap/pattern": "^1.1.13",
-    "@rxap/reflect-metadata": "^1.0.14",
-    "@rxap/rxjs": "^1.1.15",
-    "@rxap/services": "^19.0.3",
-    "@rxap/utilities": "^16.4.3",
-    "@rxap/validator": "^3.0.12",
+    "@rxap/definition": "^19.0.4-dev.0",
+    "@rxap/directives": "^19.0.4-dev.0",
+    "@rxap/pattern": "^1.1.14-dev.0",
+    "@rxap/reflect-metadata": "^1.0.15-dev.0",
+    "@rxap/rxjs": "^1.1.16-dev.0",
+    "@rxap/services": "^19.0.4-dev.0",
+    "@rxap/utilities": "^16.4.4-dev.0",
+    "@rxap/validator": "^3.0.13-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -64,35 +64,35 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.13"
+        "version": "1.1.14-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.14"
+        "version": "1.0.15-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.3"
+        "version": "19.0.4-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.3"
+        "version": "16.4.4-dev.0"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.12"
+        "version": "3.0.13-dev.0"
       }
     ]
   },
