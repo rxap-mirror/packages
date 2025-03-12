@@ -4,8 +4,8 @@
   "description": "This package provides utilities for parsing XML templates within Angular Schematics. It includes functionality to locate templates in a file system, parse them using a specified DOMParser, and register custom elements for parsing. The package also offers elements for defining modules, types, and methods within the XML templates.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@angular-devkit/core": "^19.1.4",
-    "@angular-devkit/schematics": "^19.1.4",
+    "@angular-devkit/core": "^19.2.1",
+    "@angular-devkit/schematics": "^19.2.1",
     "@nx/devkit": "20.5.0",
     "@rxap/schematics-ts-morph": "^19.0.4-dev.0",
     "@rxap/schematics-utilities": "^19.0.4-dev.0",
