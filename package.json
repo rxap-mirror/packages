@@ -192,6 +192,7 @@
     "@types/csurf": "1.11.5",
     "@types/fs-extra": "11.0.4",
     "@types/jest": "29.5.12",
+    "@types/lodash": "^4.17.16",
     "@types/marked": "4.3.2",
     "@types/mock-fs": "4.13.4",
     "@types/node": "^22.5.0",
