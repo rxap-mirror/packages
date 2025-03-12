@@ -4,7 +4,7 @@
   "description": "Provides base classes and utilities for bootstrapping Angular applications, including module-based and standalone components, with configuration loading and environment management. It offers abstractions for common setup tasks, such as dynamic module federation and environment updates. This package simplifies the initialization process for Angular projects.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/angular": "^20.3.1",
+    "@nx/angular": "^20.5.0",
     "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
