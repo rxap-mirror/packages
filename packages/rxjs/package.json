@@ -4,7 +4,7 @@
   "description": "This package provides a set of RxJS operators and utilities. It includes operators for property checking, deep equality comparison, value definition, and logging, as well as utilities for managing subscriptions, toggling boolean values, and handling request progress. It also contains a button definition interface.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

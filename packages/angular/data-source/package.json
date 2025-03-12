@@ -4,7 +4,7 @@
   "description": "Provides a set of classes and decorators for creating and managing data sources in Angular applications, including base classes, static data sources, observable data sources, and method data sources. It also includes a component for displaying data source errors. The library offers features like data persistence, refresh and retry mechanisms, and integration with RxJS observables.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

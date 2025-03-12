@@ -4,7 +4,7 @@
   "description": "Provides an Angular service and guard to manage application lifecycle. It allows to execute code when the application is stable and ready. Includes a guard to prevent route activation until the app is ready.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

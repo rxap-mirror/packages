@@ -4,7 +4,7 @@
   "description": "A NestJS cache module that utilizes MinIO as a storage adapter for Keyv. It provides a simple way to integrate MinIO with NestJS caching, allowing you to store cached data in a MinIO bucket. This package includes a Keyv adapter and a module options factory for easy configuration.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {

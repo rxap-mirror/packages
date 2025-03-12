@@ -4,7 +4,7 @@
   "description": "Provides Angular services for common tasks such as loading images, managing loading indicators, resetting data, and managing components in a window container sidenav. It also includes a service to generate avatar images. This package offers reusable services to simplify development in Angular applications.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

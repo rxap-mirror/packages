@@ -4,7 +4,7 @@
   "description": "A utility for creating slugified strings from input strings. It provides options for customizing the replacement character, removing unwanted characters, lowercasing, strict mode, locale-specific replacements, and adding a random suffix. The package includes a class and a function for easy use.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "author": {

@@ -4,7 +4,7 @@
   "description": "Provides utilities for manipulating TypeScript code using the ts-morph library. It offers a fluent API to add, modify, and remove code elements such as classes, decorators, imports, and properties in both Angular and NestJS projects. This package simplifies common code generation and refactoring tasks.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "@rxap/utilities": "^16.4.3",
     "colors": "^1.4.0",
     "ts-morph": "^18.0.0",

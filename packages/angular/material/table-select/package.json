@@ -4,7 +4,7 @@
   "description": "Provides components and directives to integrate a table selection window into Angular Material forms. It includes features for data binding, filtering, and display customization, making it easier to select data from a table within a form context. This package also offers decorators and mixins to streamline the configuration and extraction of data for table selection.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

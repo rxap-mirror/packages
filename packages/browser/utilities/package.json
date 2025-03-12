@@ -4,7 +4,7 @@
   "description": "Provides browser utilities such as clicking on a link programmatically and observing the height of an element. Includes functionality to handle peer dependencies within an Nx workspace. It also includes an init generator to add missing peer dependencies to package.json.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

@@ -4,7 +4,7 @@
   "description": "This package provides Angular Material components and services for user authentication, including login, reset password, and loading functionalities. It offers pre-built forms, methods, and UI components to streamline the implementation of authentication flows in Angular applications. The package also includes an authentication container component and route configurations for easy integration.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

@@ -4,7 +4,7 @@
   "description": "This n8n node package provides functionality to interact with zip files, specifically to extract them. It allows users to extract zip files from a binary property and make the extracted files available as binary data in subsequent nodes.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "adm-zip": "^0.5.10",
     "tmp-promise": "^3.0.3",
     "tslib": "2.6.2"

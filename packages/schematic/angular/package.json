@@ -6,7 +6,7 @@
   "dependencies": {
     "@angular-devkit/core": "19.1.4",
     "@angular-devkit/schematics": "19.1.4",
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "@rxap/schematics-ts-morph": "^19.0.4-dev.0",
     "@rxap/schematics-utilities": "^19.0.4-dev.0",
     "@rxap/ts-morph": "^1.5.4",

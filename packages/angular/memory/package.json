@@ -4,7 +4,7 @@
   "description": "This package provides Angular services and decorators for interacting with web storage (localStorage and sessionStorage) and in-memory storage. It offers a simple way to manage data persistence with expiration options and provides decorators for binding class properties directly to storage values. The package includes services for local storage, session storage, and ephemeral (in-memory) storage.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

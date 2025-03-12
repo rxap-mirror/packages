@@ -4,7 +4,7 @@
   "description": "This package provides a NestJS module for integrating with Supabase. It offers a configurable module with options for setting the Supabase URL and key, and a service for interacting with the Supabase client. The module also includes an options loader for retrieving configuration from NestJS ConfigService.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

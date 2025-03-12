@@ -4,7 +4,7 @@
   "description": "This package provides an n8n node to calculate the hash of a file. It supports various hash algorithms like SHA-256, MD5, and SHA-1. The node takes a binary file as input and outputs the calculated hash value.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {

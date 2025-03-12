@@ -4,7 +4,7 @@
   "description": "Provides a Tailwind CSS configuration with RXAP-specific theme extensions, including custom color palettes and font families. It also includes an init generator that adds missing peer dependencies to the project's package.json and runs init generators for those dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.4.6",
+    "@nx/devkit": "20.5.0",
     "@tailwindcss/typography": "^0.5.13",
     "tailwindcss": "^3.4.4",
     "tslib": "2.6.2"
