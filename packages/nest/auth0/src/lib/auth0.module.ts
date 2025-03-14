@@ -3,11 +3,14 @@ import {
   DynamicModule,
   Module,
 } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
-import { Auth0Service } from './auth0.service';
-import { JwtStrategy } from './jwt.strategy';
-import { AUTH0_OPTIONS } from './tokens';
+import { ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 import { AuthenticationClientOptions } from 'auth0';
+import { passportJwtSecret } from 'jwks-rsa';
+import { Auth0Guard } from './auth0.guard';
+import { Auth0Service } from './auth0.service';
+import { AUTH0_OPTIONS } from './tokens';
+import type { Secret } from 'jsonwebtoken';
 
 export const {
   ConfigurableModuleClass,
@@ -69,9 +72,38 @@ export const {
  * @throws {@link Error} If the required Auth0 configuration options are invalid or missing.
  */
 @Module({
-  imports: [PassportModule.register({ defaultStrategy: 'jwt' })],
-  providers: [JwtStrategy],
-  exports: [PassportModule],
+  imports: [
+    JwtModule.registerAsync({
+      useFactory: (config: ConfigService) => ({
+        secretOrKeyProvider: (_, tokenOrPayload) => {
+          return new Promise<Secret>((resolve, reject) => {
+            passportJwtSecret({
+              cache: true,
+              rateLimit: true,
+              jwksRequestsPerMinute: 5,
+              jwksUri: `${config.get('AUTH0_ISSUER_URL')}.well-known/jwks.json`,
+            })(null as any, tokenOrPayload, (err, secret) => {
+              if (err) {
+                reject(err);
+              } else if (secret) {
+                resolve(secret);
+              } else {
+                reject(new Error('No secret found'));
+              }
+            });
+          });
+        },
+        verifyOptions: {
+          audience: config.get('AUTH0_AUDIENCE'),
+          issuer: config.get('AUTH0_ISSUER_URL'),
+          algorithms: [config.get('AUTH0_ALGORITHM', 'RS256')],
+        },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+  providers: [Auth0Guard],
+  exports: [Auth0Guard],
 })
 export class Auth0Module extends ConfigurableModuleClass {
 
