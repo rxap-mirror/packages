@@ -30,45 +30,59 @@ export function ResolveFgaChecks(req: Request) {
     tuple.relation = check.relation;
 
     // region object
-    let object = check.object;
+    const object = check.object;
+    let objectLeft: string;
+    let objectRight: string;
     if (!Array.isArray(object)) {
-      object = object(req);
+      [objectLeft, objectRight] = object(req);
     } else {
+      objectLeft = object[0];
       if (typeof object[1] !== 'string') {
-        object[1] = object[1](req);
+        objectRight = object[1](req);
+      } else {
+        objectRight = object[1];
       }
     }
-    tuple.object = `${object[0]}:${object[1]}`;
+    tuple.object = `${objectLeft}:${objectRight}`;
     // endregion
 
     // region user
-    let user = check.user;
+    const user = check.user;
+    let userLeft: string;
+    let userRight: string;
+    let userModifier: string | null = null;
     if (!user) {
       if (req.user && 'sub' in req.user && typeof req.user.sub === 'string') {
-        user = ['user', req.user.sub];
+        [userLeft, userRight] = ['user', req.user.sub];
       } else {
-        user = ['user', '*'];
+        [userLeft, userRight] = ['user', '*'];
       }
     } else if (!Array.isArray(user)) {
-      user = user(req);
+      [userLeft, userRight] = user(req);
     } else {
+      userLeft = user[0];
       if (user.length === 3) {
         if (typeof user[2] !== 'string') {
-          user[2] = user[2](req);
-        }
-      } else if (typeof user[1] !== 'string') {
-        const response = user[1](req);
-        if (Array.isArray(response)) {
-          user = [user[0], response[0], response[1]];
+          userModifier = user[2](req);
         } else {
-          user[1] = response;
+          userModifier = user[2];
         }
       }
+      if (typeof user[1] !== 'string') {
+        const response = user[1](req);
+        if (Array.isArray(response)) {
+          [userRight, userModifier] = [response[0], response[1]];
+        } else {
+          userRight = response;
+        }
+      } else {
+        userRight = user[1];
+      }
     }
-    if (user.length === 3) {
-      tuple.user = `${user[0]}:${user[1]}#${user[2]}`;
+    if (userModifier) {
+      tuple.user = `${userLeft}:${userRight}#${userModifier}`;
     } else {
-      tuple.user = `${user[0]}:${user[1]}`;
+      tuple.user = `${userLeft}:${userRight}`;
     }
     // endregion
 
