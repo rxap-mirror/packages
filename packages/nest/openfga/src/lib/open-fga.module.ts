@@ -4,6 +4,7 @@ import {
   Global,
   Module
 } from '@nestjs/common';
+import { OpenFgaGuard } from './open-fga.guard';
 import { OpenFgaOptions } from './open-fga.options';
 import { OpenFgaService } from './open-fga.service';
 import { OPEN_FGA_CLIENT_OPTIONS } from './tokens';
@@ -19,8 +20,8 @@ export const {
 
 @Global()
 @Module({
-  providers: [ OpenFgaService],
-  exports: [ OpenFgaService]
+  providers: [ OpenFgaService, OpenFgaGuard],
+  exports: [ OpenFgaService, OpenFgaGuard]
 })
 export class OpenFgaModule extends ConfigurableModuleClass {
 
