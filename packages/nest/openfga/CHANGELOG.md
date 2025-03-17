@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-openfga@10.1.0-dev.0...@rxap/nest-openfga@10.1.0-dev.1) (2025-03-17)
+
+### Bug Fixes
+
+- ensure the check object is not modified ([1b83fd7](https://gitlab.com/rxap/packages/commit/1b83fd7f0270fc9e7b28444c4c3118e8e0d78274))
+
 # [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-openfga@10.0.2-dev.0...@rxap/nest-openfga@10.1.0-dev.0) (2025-03-17)
 
 ### Features
