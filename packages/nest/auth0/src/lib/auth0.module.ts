@@ -1,15 +1,26 @@
 import {
   ConfigurableModuleBuilder,
   DynamicModule,
-  Module,
+  Global,
+  Module
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-import { AuthenticationClientOptions } from 'auth0';
+import {
+  AuthenticationClientOptions,
+  ManagementClientOptionsWithClientCredentials,
+  ManagementClientOptionsWithToken
+} from 'auth0';
 import { passportJwtSecret } from 'jwks-rsa';
+import { Auth0ManagementService } from './auth0-management.service';
+import { Auth0Options } from './auth0-options';
+import { Auth0AuthenticationService } from './auth0-authentication.service';
 import { Auth0Guard } from './auth0.guard';
-import { Auth0Service } from './auth0.service';
-import { AUTH0_OPTIONS } from './tokens';
+import {
+  AUTH0_AUTHENTICATION_OPTIONS,
+  AUTH0_MANAGEMENT_OPTIONS,
+  AUTH0_OPTIONS
+} from './tokens';
 import type { Secret } from 'jsonwebtoken';
 
 export const {
@@ -17,8 +28,7 @@ export const {
   MODULE_OPTIONS_TOKEN,
   OPTIONS_TYPE,
   ASYNC_OPTIONS_TYPE,
-} = new ConfigurableModuleBuilder<AuthenticationClientOptions>()
-  .build();
+} = new ConfigurableModuleBuilder<Auth0Options>().setExtras({ global: true }).build();
 
 /**
  * A configurable module that provides Auth0 authentication services for NestJS applications.
@@ -67,10 +77,11 @@ export const {
  * @property registerAsync - Static method to configure the module with asynchronous options
  * @property updateProviders - Private static method to update the module's providers and exports
  *
- * @returns A dynamic module configured with Auth0 authentication capabilities, including the Auth0Service and JWT strategy.
+ * @returns A dynamic module configured with Auth0 authentication capabilities, including the Auth0AuthenticationService and JWT strategy.
  *
  * @throws {@link Error} If the required Auth0 configuration options are invalid or missing.
  */
+@Global()
 @Module({
   imports: [
     JwtModule.registerAsync({
@@ -170,13 +181,33 @@ export class Auth0Module extends ConfigurableModuleClass {
 
   private static updateProviders(module: DynamicModule) {
     module.providers ??= [];
-    module.providers.push(Auth0Service);
-    module.exports ??= [];
-    module.exports.push(Auth0Service);
     module.providers.push({
       provide: AUTH0_OPTIONS,
       useExisting: MODULE_OPTIONS_TOKEN
     });
+    module.providers.push({
+      provide: AUTH0_AUTHENTICATION_OPTIONS,
+      useFactory: (options: Auth0Options) => options.authentication ?? null,
+      inject: [AUTH0_OPTIONS]
+    });
+    module.providers.push({
+      provide: AUTH0_MANAGEMENT_OPTIONS,
+      useFactory: (options: Auth0Options) => options.management ?? null,
+      inject: [AUTH0_OPTIONS]
+    });
+    module.providers.push({
+      provide: Auth0AuthenticationService,
+      useFactory: (options: AuthenticationClientOptions | null) => options ? new Auth0AuthenticationService(options) : null,
+      inject: [AUTH0_AUTHENTICATION_OPTIONS]
+    });
+    module.providers.push({
+      provide: Auth0ManagementService,
+      useFactory: (options: ManagementClientOptionsWithToken | ManagementClientOptionsWithClientCredentials | null) => options ? new Auth0ManagementService(options) : null,
+      inject: [AUTH0_MANAGEMENT_OPTIONS]
+    });
+    module.exports ??= [];
+    module.exports.push(Auth0AuthenticationService);
+    module.exports.push(Auth0ManagementService);
     return module;
   }
 

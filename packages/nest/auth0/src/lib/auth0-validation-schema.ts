@@ -27,6 +27,7 @@ export interface Auth0ValidationSchema {
   AUTH0_DOMAIN: string,
   AUTH0_CLIENT_ID: string,
   AUTH0_CLIENT_SECRET: string,
+  AUTH0_MANAGEMENT_TOKEN: string,
 }
 
 /**
@@ -48,8 +49,12 @@ export function auth0ValidationSchema(environment: Environment, defaults: Partia
   schema['AUTH0_CLIENT_ID'] = Joi.string();
   schema['AUTH0_CLIENT_SECRET'] = Joi.string();
 
+  schema['AUTH0_MANAGEMENT_TOKEN'] = Joi.string();
+
   for (const [ key, value ] of Object.keys(defaults)) {
-    schema[key] = schema[key].default(value);
+    if (value) {
+      schema[key] = schema[key].default(value);
+    }
   }
 
   return schema;

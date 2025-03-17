@@ -2,10 +2,10 @@ import {
   ConfigurableModuleOptionsFactory,
   Inject,
   Injectable,
-  Logger
+  Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { AuthenticationClientOptions } from 'auth0';
+import { Auth0Options } from './auth0-options';
 
 /**
  * Creates an instance of `AuthenticationClientOptions` for Auth0 configuration.
@@ -38,7 +38,7 @@ import { AuthenticationClientOptions } from 'auth0';
  * ```
  */
 @Injectable()
-export class Auth0ModuleOptionsFactory implements ConfigurableModuleOptionsFactory<AuthenticationClientOptions, 'create'> {
+export class Auth0ModuleOptionsFactory implements ConfigurableModuleOptionsFactory<Auth0Options, 'create'> {
 
   @Inject(ConfigService)
   protected readonly config!: ConfigService;
@@ -61,13 +61,22 @@ export class Auth0ModuleOptionsFactory implements ConfigurableModuleOptionsFacto
    * const options = await auth0ModuleOptionsFactory.create();
    * ```
    */
-  async create(): Promise<AuthenticationClientOptions> {
+  async create(): Promise<Auth0Options> {
     this.logger.verbose('Create auth0 client options', 'Auth0ClientModuleOptionsFactory');
-    return {
+    const authentication = {
       domain: this.config.get('AUTH0_DOMAIN')!,
       clientId: this.config.get('AUTH0_CLIENT_ID')!,
       clientSecret: this.config.get('AUTH0_CLIENT_SECRET')!,
     };
+    const management = this.config.get('AUTH0_MANAGEMENT_TOKEN') ? {
+      domain: this.config.get('AUTH0_DOMAIN')!,
+      token: this.config.get('AUTH0_MANAGEMENT_TOKEN')!,
+    } : {
+      domain: this.config.get('AUTH0_DOMAIN')!,
+      clientId: this.config.get('AUTH0_CLIENT_ID')!,
+      clientSecret: this.config.get('AUTH0_CLIENT_SECRET')!,
+    }
+    return { authentication, management };
   }
 
 }
