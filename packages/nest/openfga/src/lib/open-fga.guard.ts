@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { CheckRequestTupleKey } from '@openfga/sdk/dist/apiModel';
+import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
 import { Request } from 'express';
 import { OPEN_FGA_METADATA, OpenFgaCheck } from './open-fga.decorator';
 import { OpenFgaService } from './open-fga.service';
@@ -101,6 +102,14 @@ export class OpenFgaGuard implements CanActivate {
   constructor(private readonly reflector: Reflector) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
+    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (isPublic) {
+      return true;
+    }
+
     const fgaChecks = this.reflector.get<OpenFgaCheck[]>(
       OPEN_FGA_METADATA,
       context.getHandler()
