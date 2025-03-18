@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-openfga@10.1.0-dev.1...@rxap/nest-openfga@10.1.0-dev.2) (2025-03-18)
+
+### Features
+
+- **openfga:** add support for public route bypass in guard ([8a2c8f9](https://gitlab.com/rxap/packages/commit/8a2c8f966311b08a7dd40968a01f9ff0ae9f3ec5))
+
 # [10.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-openfga@10.1.0-dev.0...@rxap/nest-openfga@10.1.0-dev.1) (2025-03-17)
 
 ### Bug Fixes

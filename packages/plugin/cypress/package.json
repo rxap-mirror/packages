@@ -1,12 +1,12 @@
 {
-  "version": "20.0.5-dev.3",
+  "version": "20.0.5-dev.4",
   "name": "@rxap/plugin-cypress",
   "description": "This plugin provides generators to initialize Cypress testing for Nx workspaces, with a focus on component testing for Angular applications and libraries. It automates configuration, dependency management, and code modifications to streamline Cypress setup and integration. The plugin also includes utilities for coercing configurations and dependencies to ensure compatibility and best practices.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/angular": "^20.5.0",
     "@nx/devkit": "20.5.0",
-    "@rxap/plugin-angular": "^20.2.0-dev.3",
+    "@rxap/plugin-angular": "^20.2.0-dev.4",
     "@rxap/ts-morph": "^1.5.5-dev.0",
     "@rxap/utilities": "^16.4.4-dev.0",
     "@rxap/workspace-ts-morph": "^19.1.12-dev.1",
