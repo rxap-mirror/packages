@@ -27,11 +27,9 @@ export function updateJestConfig(
       "jest-junit",
       {
         outputDirectory: "junit/${outputDirectorySuffix}",
-        suiteName: "workspace",
-        uniqueOutputName: true,
-        classNameTemplate: "{classname}",
-        titleTemplate: "{title}",
-        usePathForSuiteName: "true"
+        suiteName: '${projectName}',
+        classNameTemplate: '{classname}',
+        titleTemplate: '{title}',
       },
     ],
   ],`);
