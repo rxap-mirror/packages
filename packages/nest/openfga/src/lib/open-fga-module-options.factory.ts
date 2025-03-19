@@ -25,9 +25,18 @@ export class OpenFgaModuleOptionsFactory
     );
     const options: OpenFgaOptions = {
       apiUrl: this.config.getOrThrow('FGA_API_URL'),
-      storeId: this.config.get('FGA_STORE_ID'),
-      authorizationModelId: this.config.get('FGA_AUTHORIZATION_MODEL_ID'),
     };
+
+    const storeId = this.config.get('FGA_STORE_ID');
+    const authorizationModelId = this.config.get('FGA_AUTHORIZATION_MODEL_ID');
+
+    if (storeId) {
+      options.storeId = storeId;
+    }
+
+    if (authorizationModelId) {
+      options.authorizationModelId = authorizationModelId;
+    }
 
     const token = this.config.get('FGA_API_TOKEN');
     if (token) {
