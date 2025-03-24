@@ -32,9 +32,7 @@
     "nodes": [
       "src/lib/Gitlab/Gitlab.node.js"
     ],
-    "credentials": [
-      "src/lib/GitlabAuth.credentials.js"
-    ]
+    "credentials": []
   },
   "publishConfig": {
     "access": "public",

@@ -14,7 +14,7 @@ export class Gitlab extends OpenApiNode implements INodeType {
         displayName: 'GitLab API',
         credentials: [
           {
-            name: 'gitlabAuth',
+            name: 'gitlabApi',
             required: true,
           },
         ],
@@ -24,8 +24,8 @@ export class Gitlab extends OpenApiNode implements INodeType {
 
   override buildBaseUrlParameters() {
     // no-op
-    // the base url is defined in the gitlabAuth credential
-    return [{ name: 'baseUrl', type: 'hidden', default: 'https://gitlab.com' }] as INodeProperties[];
+    // the base url is defined in the gitlabApi credential
+    return [{ name: 'baseUrl', type: 'string', default: 'https://gitlab.com' }] as INodeProperties[];
   }
 
 }

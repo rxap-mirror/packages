@@ -227,7 +227,7 @@ export abstract class OpenApiNode implements INodeType {
           if (isEmpty(pathParameters[name])) {
             throw new Error(`The path parameter "${ name }" is missing.`);
           }
-          return pathParameters[name];
+          return encodeURIComponent(pathParameters[name]);
         });
       }
       if (operationParameters?.some((p: any) => isParameterObject(p) && p.in === 'query')) {
@@ -235,10 +235,13 @@ export abstract class OpenApiNode implements INodeType {
         const queryParameters = this.getNodeParameter('queryParameters', i) as Record<string, any>;
         for (const queryParam of operationParameters.filter(isParameterObject).filter(
           (p: OpenAPIV3.ParameterObject) => p.in === 'query')) {
-          if (queryParam.required && isEmpty(queryParameters[queryParam.name])) {
-            throw new Error(`The query parameter "${ queryParam.name }" is missing.`);
+          if (isEmpty(queryParameters[queryParam.name])) {
+            if (queryParam.required) {
+              throw new Error(`The query parameter "${ queryParam.name }" is missing.`);
+            }
+          } else {
+            requestOptions.qs[queryParam.name] = encodeURIComponent(queryParameters[queryParam.name]);
           }
-          requestOptions.qs[queryParam.name] = queryParameters[queryParam.name];
         }
       }
       if (operationParameters?.some((p: any) => isParameterObject(p) && p.in === 'header')) {
@@ -246,10 +249,13 @@ export abstract class OpenApiNode implements INodeType {
         const headerParameters = this.getNodeParameter('headerParameters', i) as Record<string, any>;
         for (const headerParam of operationParameters.filter(isParameterObject).filter(
           (p: OpenAPIV3.ParameterObject) => p.in === 'header')) {
-          if (headerParam.required && isEmpty(headerParameters[headerParam.name])) {
-            throw new Error(`The header parameter "${ headerParam.name }" is missing.`);
+          if (isEmpty(headerParameters[headerParam.name])) {
+            if (headerParam.required) {
+              throw new Error(`The header parameter "${ headerParam.name }" is missing.`);
+            }
+          } else {
+            requestOptions.headers[headerParam.name] = headerParameters[headerParam.name];
           }
-          requestOptions.headers[headerParam.name] = headerParameters[headerParam.name];
         }
       }
       // endregion
@@ -321,6 +327,7 @@ export abstract class OpenApiNode implements INodeType {
           if ('baseUrl' in credentials && credentials['baseUrl'] && typeof credentials['baseUrl'] === 'string') {
             requestOptions.baseURL = credentials['baseUrl'] as string;
           }
+          this.logger.debug('Request options: ' + JSON.stringify(requestOptions, undefined, 2));
           response = await this.helpers.requestWithAuthentication.call(
             this, authentication, requestOptions, undefined, i);
         } else {
