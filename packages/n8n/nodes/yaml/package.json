@@ -11,7 +11,7 @@
     "yaml": "^2.3.1"
   },
   "peerDependencies": {
-    "n8n-workflow": "^1.48.0"
+    "n8n-workflow": "^1.82.0"
   },
   "author": {
     "name": "Merzough Münker",

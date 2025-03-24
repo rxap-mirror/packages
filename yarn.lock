@@ -6458,15 +6458,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@n8n/tournament@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@n8n/tournament@npm:1.0.5"
+"@n8n/tournament@npm:1.0.6":
+  version: 1.0.6
+  resolution: "@n8n/tournament@npm:1.0.6"
   dependencies:
     "@n8n_io/riot-tmpl": ^4.0.1
     ast-types: ^0.16.1
     esprima-next: ^5.8.4
     recast: ^0.22.0
-  checksum: d806891a4f71c36cf188532f6c006326863d133b75d699e3beede518b8708401c80a76589144e0248e111e8718f07f1af9b5f06bde43db544913bc83bebe79a6
+  checksum: e6a5989677848d538dbcfa6fb1b349d0415fed4576a27326005c1331b14dd246b56dd0339e764efc75db1a42d4421a7125e644b2834abf2a99b877936d5a8356
   languageName: node
   linkType: hard
 
@@ -9629,7 +9629,7 @@ __metadata:
     minio: 8.0.1
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9646,7 +9646,7 @@ __metadata:
     tslib: ^2.3.0
     uuid: 8.3.2
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9657,7 +9657,7 @@ __metadata:
     "@nx/devkit": 20.5.0
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9668,7 +9668,7 @@ __metadata:
     "@nx/devkit": 20.5.0
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9686,7 +9686,7 @@ __metadata:
     langchain: ^0.3.19
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
     zod: ^3.24.2
   languageName: unknown
   linkType: soft
@@ -9698,7 +9698,7 @@ __metadata:
     "@rxap/n8n-utilities": ^1.2.1-dev.0
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9710,7 +9710,7 @@ __metadata:
     "@rxap/utilities": ^16.4.4-dev.0
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9728,7 +9728,7 @@ __metadata:
     tmp-promise: ^3.0.3
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9739,7 +9739,7 @@ __metadata:
     "@nx/devkit": 20.5.0
     tslib: 2.6.2
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9751,7 +9751,7 @@ __metadata:
     "@rxap/n8n-utilities": ^1.2.1-dev.0
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9764,7 +9764,7 @@ __metadata:
     sanitize-html: ^2.14.0
     tslib: ^2.3.0
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9778,7 +9778,7 @@ __metadata:
     tslib: 2.6.2
     yaml: ^2.3.1
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9791,7 +9791,7 @@ __metadata:
     tmp-promise: ^3.0.3
     tslib: 2.6.2
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -9807,7 +9807,7 @@ __metadata:
     tslib: ^2.3.0
     uuid: 8.3.2
   peerDependencies:
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
   languageName: unknown
   linkType: soft
 
@@ -11166,7 +11166,7 @@ __metadata:
     marked: 4.3.0
     minio: 8.0.1
     mock-fs: 5.2.0
-    n8n-workflow: ^1.48.0
+    n8n-workflow: ^1.82.0
     neo4j-driver: ^5.23.0
     ng-mocks: 14.12.2
     ng-packagr: 19.2.0
@@ -15827,14 +15827,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.7.4":
-  version: 1.7.4
-  resolution: "axios@npm:1.7.4"
+"axios@npm:1.8.2":
+  version: 1.8.2
+  resolution: "axios@npm:1.8.2"
   dependencies:
     follow-redirects: ^1.15.6
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
-  checksum: 0c17039a9acfe6a566fca8431ba5c1b455c83d30ea6157fec68a6722878fcd30f3bd32d172f6bee0c51fe75ca98e6414ddcd968a87b5606b573731629440bfaf
+  checksum: c47a43b79a058aa9e53a65bec9ade35c9f6e76a3999c795a79a2d205fb5f803fd4245497a0209a9727cbbe4f558791dd852ad2c168c5fc030259c11598ed8fd7
   languageName: node
   linkType: hard
 
@@ -28144,14 +28144,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"n8n-workflow@npm:^1.48.0":
-  version: 1.70.0
-  resolution: "n8n-workflow@npm:1.70.0"
+"n8n-workflow@npm:^1.82.0":
+  version: 1.82.0
+  resolution: "n8n-workflow@npm:1.82.0"
   dependencies:
-    "@n8n/tournament": 1.0.5
+    "@n8n/tournament": 1.0.6
     "@n8n_io/riot-tmpl": 4.0.0
     ast-types: 0.15.2
-    axios: 1.7.4
+    axios: 1.8.2
     callsites: 3.1.0
     deep-equal: 2.2.0
     esprima-next: 5.8.4
@@ -28166,7 +28166,8 @@ __metadata:
     title-case: 3.0.3
     transliteration: 2.3.5
     xml2js: 0.6.2
-  checksum: f478a711a0706d53b9c09d1bbdb621ffc157e38a62ab388f91a7a4676693a079bbe14888d3ac0cb0068384d459db5ceb22e743fbbb0cadf1524f68646cd14981
+    zod: 3.24.1
+  checksum: 6684f6db53cab07e31af06defe0323fa9e5bf0352b8af93efcce324a80664c13d3d9694efe69195574c019267ff98e84a8aec959176d7e0db9f2218cbf3a5f57
   languageName: node
   linkType: hard
 
@@ -38080,6 +38081,13 @@ __metadata:
   peerDependencies:
     zod: ^3.24.1
   checksum: 1edcf680c4938f99a7b9df5b0d5eb3a3eb2f2cc57d4d0dbe5cc34539c104443a8498bb225a43fd3a848f117205027cd20f4ea8324fdb1e4aede8433fc1595ee9
+  languageName: node
+  linkType: hard
+
+"zod@npm:3.24.1":
+  version: 3.24.1
+  resolution: "zod@npm:3.24.1"
+  checksum: dcd5334725b29555593c186fd6505878bb7ccb4f5954f728d2de24bf71f9397492d83bdb69d5b8a376eb500a02273ae0691b57deb1eb8718df3f64c77cc5534a
   languageName: node
   linkType: hard
 
