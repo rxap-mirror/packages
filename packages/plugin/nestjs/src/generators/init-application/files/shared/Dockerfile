@@ -15,18 +15,18 @@ ENV TRAEFIK_ROUTER_PRIORITY=20
 # ensure the $PATH_PREFIX has a preceding slash if not empty
 ENV TRAEFIK_ROUTER_PATH_PREFIX=$PATH_PREFIX/
 
-ENV TREAFIK_HEALTH_CHECK_INTERVAL=60s
-ENV TREAFIK_HEALTH_CHECK_TIMEOUT=30s
-ENV TREAFIK_HEALTH_CHECK_PATH=/health
+ENV TRAEFIK_HEALTH_CHECK_INTERVAL=60s
+ENV TRAEFIK_HEALTH_CHECK_TIMEOUT=30s
+ENV TRAEFIK_HEALTH_CHECK_PATH=/health
 
 # required to ensure the husky install is not executed if the package.json contains husky
 ENV HUSKY=0
 
 LABEL traefik.enable=true
 
-LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.path=$TREAFIK_HEALTH_CHECK_PATH
-LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.interval=$TREAFIK_HEALTH_CHECK_INTERVAL
-LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.timeout=$TREAFIK_HEALTH_CHECK_TIMEOUT
+LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.path=$TRAEFIK_HEALTH_CHECK_PATH
+LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.interval=$TRAEFIK_HEALTH_CHECK_INTERVAL
+LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.timeout=$TRAEFIK_HEALTH_CHECK_TIMEOUT
 LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.server.port=$PORT
 
 LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.rule=PathPrefix(`$TRAEFIK_ROUTER_PATH_PREFIX`)
