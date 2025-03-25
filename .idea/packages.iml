@@ -580,6 +580,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/gitlab/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/gitlab/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/gitlab/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/tar/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/tar/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/tar/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/tar/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

@@ -139,6 +139,7 @@
       "@rxap/n8n-nodes-sanitize-html": [
         "packages/n8n/nodes/sanitize-html/src/index.ts"
       ],
+      "@rxap/n8n-nodes-tar": ["packages/n8n/nodes/tar/src/index.ts"],
       "@rxap/n8n-nodes-yaml": ["packages/n8n/nodes/yaml/src/index.ts"],
       "@rxap/n8n-nodes-zip": ["packages/n8n/nodes/zip/src/index.ts"],
       "@rxap/n8n-utilities": ["packages/n8n/utilities/src/index.ts"],

@@ -1,0 +1,40 @@
+{
+  "name": "n8n-nodes-tar",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/n8n/nodes/tar/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag",
+        "fallbackCurrentVersionResolver": "disk"
+      }
+    }
+  },
+  "tags": ["packages", "n8n", "nodes"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/n8n/nodes/tar",
+        "main": "packages/n8n/nodes/tar/src/index.ts",
+        "tsConfig": "packages/n8n/nodes/tar/tsconfig.lib.json",
+        "assets": [
+          "packages/n8n/nodes/tar/*.md",
+          {
+            "input": "./packages/n8n/nodes/tar/src/lib",
+            "glob": "**/*.(svg|json|png)",
+            "output": "./src/lib"
+          }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}
