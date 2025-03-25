@@ -9768,6 +9768,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/n8n-nodes-tar@workspace:packages/n8n/nodes/tar":
+  version: 0.0.0-use.local
+  resolution: "@rxap/n8n-nodes-tar@workspace:packages/n8n/nodes/tar"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    n8n-workflow: ^1.82.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/n8n-nodes-yaml@workspace:packages/n8n/nodes/yaml":
   version: 0.0.0-use.local
   resolution: "@rxap/n8n-nodes-yaml@workspace:packages/n8n/nodes/yaml"
@@ -11192,6 +11202,7 @@ __metadata:
     supertest: 6.2.2
     swagger-ui-express: 5.0.0
     tailwindcss: ^3.4.4
+    tar: ^7.4.3
     tiktoken: ^1.0.20
     tmp-promise: ^3.0.3
     ts-jest: 29.1.4
