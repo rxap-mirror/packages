@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-tar@0.1.0-dev.0...@rxap/n8n-nodes-tar@0.1.0-dev.1) (2025-03-25)
+
+### Bug Fixes
+
+- update package groups ([0f64ac6](https://gitlab.com/rxap/packages/commit/0f64ac66c05d48ae523c0a0013d8b34cd1c03672))
+
 # 0.1.0-dev.0 (2025-03-25)
 
 ### Features
