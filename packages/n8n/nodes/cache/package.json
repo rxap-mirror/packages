@@ -36,7 +36,9 @@
     "nodes": [
       "src/lib/Cache/Cache.node.js"
     ],
-    "credentials": []
+    "credentials": [
+      "src/lib/Minio.credentials.js"
+    ]
   },
   "publishConfig": {
     "access": "public",
