@@ -57,6 +57,14 @@ export class Zip implements INodeType {
         description: 'The name of the binary property which contains the zip file',
         required: true,
       },
+      {
+        name: 'password',
+        displayName: 'Unzip Password',
+        type: 'string',
+        default: '',
+        description: 'The password used to unzip the zip file. If the zip file is not encrypted, leave it empty.',
+        required: false,
+      },
     ],
   };
 
