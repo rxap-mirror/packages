@@ -3,7 +3,10 @@
   "name": "@rxap/n8n-nodes-tar",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@rxap/n8n-utilities": "1.2.1-dev.0",
+    "tar": "^7.4.3",
+    "tmp-promise": "^3.0.3"
   },
   "peerDependencies": {
     "n8n-workflow": "^1.82.0"
