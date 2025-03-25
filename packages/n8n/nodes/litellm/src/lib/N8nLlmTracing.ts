@@ -7,11 +7,8 @@ import type {
   SerializedSecret,
 } from '@langchain/core/load/serializable';
 import type { LLMResult } from '@langchain/core/outputs';
-import type {
-  IDataObject,
-  IExecuteFunctions,
-} from 'n8n-workflow';
-import { NodeConnectionType } from 'n8n-workflow';
+import type { IDataObject, ISupplyDataFunctions, JsonObject } from 'n8n-workflow';
+import { NodeConnectionType, NodeError, NodeOperationError } from 'n8n-workflow';
 import { pick } from 'lodash';
 import type { BaseMessage } from '@langchain/core/messages';
 import type { SerializedFields } from '@langchain/core/dist/load/map_keys';
@@ -29,12 +26,13 @@ type RunDetail = {
   options: SerializedSecret | SerializedNotImplemented | SerializedFields;
 };
 
-const TIKTOKEN_ESTIMATE_MODEL = 'gpt-3.5-turbo';
-
+const TIKTOKEN_ESTIMATE_MODEL = 'gpt-4o';
 export class N8nLlmTracing extends BaseCallbackHandler {
   name = 'N8nLlmTracing';
 
-  executionFunctions: IExecuteFunctions;
+  // This flag makes sure that LangChain will wait for the handlers to finish before continuing
+  // This is crucial for the handleLLMError handler to work correctly (it should be called before the error is propagated to the root node)
+  override awaitHandlers = true;
 
   connectionType = NodeConnectionType.AiLanguageModel;
 
@@ -66,14 +64,17 @@ export class N8nLlmTracing extends BaseCallbackHandler {
         totalTokens: completionTokens + promptTokens,
       };
     },
+    errorDescriptionMapper: (error: NodeError) => error.description,
   };
 
   constructor(
-    executionFunctions: IExecuteFunctions,
-    options?: { tokensUsageParser: TokensUsageParser },
+    private executionFunctions: ISupplyDataFunctions,
+    options?: {
+      tokensUsageParser?: TokensUsageParser;
+      errorDescriptionMapper?: (error: NodeError) => string;
+    },
   ) {
     super();
-    this.executionFunctions = executionFunctions;
     this.options = { ...this.options, ...options };
   }
 
@@ -99,7 +100,7 @@ export class N8nLlmTracing extends BaseCallbackHandler {
     const runDetails = this.runsMap[runId] ?? { index: Object.keys(this.runsMap).length };
 
     output.generations = output.generations.map((gen) =>
-      gen.map((g) => pick(g, [ 'text', 'generationInfo' ])),
+      gen.map((g) => pick(g, ['text', 'generationInfo'])),
     );
 
     const tokenUsageEstimate = {
@@ -137,20 +138,17 @@ export class N8nLlmTracing extends BaseCallbackHandler {
       typeof runDetails.messages === 'string'
       ? runDetails.messages
       : runDetails.messages.map((message) => {
-        if (typeof message === 'string') {
-          return message;
-        }
-        if (typeof message?.toJSON === 'function') {
-          return message.toJSON();
-        }
+        if (typeof message === 'string') return message;
+        if (typeof message?.toJSON === 'function') return message.toJSON();
 
         return message;
       });
 
     this.executionFunctions.addOutputData(this.connectionType, runDetails.index, [
-      [ { json: { ...response } } ],
+      [{ json: { ...response } }],
     ]);
-    void logAiEvent(this.executionFunctions, 'ai-llm-generated-output', {
+
+    logAiEvent(this.executionFunctions, 'ai-llm-generated-output', {
       messages: parsedMessages,
       options: runDetails.options,
       response,
@@ -187,6 +185,8 @@ export class N8nLlmTracing extends BaseCallbackHandler {
     runId: string,
     parentRunId?: string | undefined,
   ) {
+    const runDetails = this.runsMap[runId] ?? { index: Object.keys(this.runsMap).length };
+
     // Filter out non-x- headers to avoid leaking sensitive information in logs
     // eslint-disable-next-line no-prototype-builtins
     if (typeof error === 'object' && error?.hasOwnProperty('headers')) {
@@ -199,7 +199,24 @@ export class N8nLlmTracing extends BaseCallbackHandler {
       });
     }
 
-    void logAiEvent(this.executionFunctions, 'ai-llm-errored', {
+    if (error instanceof NodeError) {
+      if (this.options.errorDescriptionMapper) {
+        error.description = this.options.errorDescriptionMapper(error);
+      }
+
+      this.executionFunctions.addOutputData(this.connectionType, runDetails.index, error);
+    } else {
+      // If the error is not a NodeError, we wrap it in a NodeOperationError
+      this.executionFunctions.addOutputData(
+        this.connectionType,
+        runDetails.index,
+        new NodeOperationError(this.executionFunctions.getNode(), error as JsonObject, {
+          functionality: 'configuration-node',
+        }),
+      );
+    }
+
+    logAiEvent(this.executionFunctions, 'ai-llm-errored', {
       error: Object.keys(error).length === 0 ? error.toString() : error,
       runId,
       parentRunId,

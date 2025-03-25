@@ -6,6 +6,7 @@ import {
   type SupplyData,
   type JsonObject,
   NodeApiError,
+  ISupplyDataFunctions,
 } from 'n8n-workflow';
 import {
   ChatOpenAI,
@@ -215,7 +216,7 @@ export class Chat implements INodeType {
     ],
   };
 
-  async supplyData(this: IExecuteFunctions, itemIndex: number): Promise<SupplyData> {
+  async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
     const credentials = await this.getCredentials('litellm');
 
     const modelName = this.getNodeParameter('model', itemIndex) as string;

@@ -1,4 +1,10 @@
-import { NodeOperationError, NodeConnectionType } from 'n8n-workflow';
+import {
+	NodeOperationError,
+	NodeConnectionType,
+	ISupplyDataFunctions,
+	parseErrorMetadata,
+	ITaskMetadata,
+} from 'n8n-workflow';
 import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 
 import type { Tool } from '@langchain/core/tools';
@@ -30,7 +36,7 @@ const errorsMap: { [key: string]: { message: string; description: string } } = {
 export async function callMethodAsync<T>(
 	this: T,
 	parameters: {
-		executeFunctions: IExecuteFunctions;
+		executeFunctions: IExecuteFunctions | ISupplyDataFunctions;
 		connectionType: NodeConnectionType;
 		currentNodeRunIndex: number;
 		method: (...args: any[]) => Promise<unknown>;
@@ -40,32 +46,27 @@ export async function callMethodAsync<T>(
 	try {
 		return await parameters.method.call(this, ...parameters.arguments);
 	} catch (e: any) {
-		// Langchain checks for OutputParserException to run retry chain
-		// for auto-fixing the output so skip wrapping in this case
-		if (e instanceof OutputParserException) throw e;
-
-		// Propagate errors from sub-nodes
-		if (e.functionality === 'configuration-node') throw e;
 		const connectedNode = parameters.executeFunctions.getNode();
 
 		const error = new NodeOperationError(connectedNode, e, {
 			functionality: 'configuration-node',
 		});
 
-		if (errorsMap[error.message]) {
-			error.description = errorsMap[error.message].description;
-			error.message = errorsMap[error.message].message;
-		}
-
+		const metadata = parseErrorMetadata(error);
 		parameters.executeFunctions.addOutputData(
 			parameters.connectionType,
 			parameters.currentNodeRunIndex,
 			error,
+			metadata,
 		);
+
 		if (error.message) {
-			error.description = error.message;
+			if (!error.description) {
+				error.description = error.message;
+			}
 			throw error;
 		}
+
 		throw new NodeOperationError(
 			connectedNode,
 			`Error on node "${connectedNode.name}" which is connected via input "${parameters.connectionType}"`,
@@ -79,7 +80,6 @@ export function logWrapper(
 		| Tool
 		| BaseChatMemory
 		| BaseChatMessageHistory
-		| BaseOutputParser
 		| BaseRetriever
 		| Embeddings
 		| Document[]
@@ -89,7 +89,7 @@ export function logWrapper(
 		| VectorStore
 		| N8nBinaryLoader
 		| N8nJsonLoader,
-	executeFunctions: IExecuteFunctions,
+	executeFunctions: IExecuteFunctions | ISupplyDataFunctions,
 ) {
 	return new Proxy(originalInstance, {
 		get: (target, prop) => {
@@ -112,8 +112,7 @@ export function logWrapper(
 							arguments: [values],
 						})) as MemoryVariables;
 
-						const chatHistory = (
-																	response?.['chat_history'] as BaseMessage[]) ?? response;
+						const chatHistory = (response?.['chat_history'] as BaseMessage[]) ?? response;
 
 						executeFunctions.addOutputData(connectionType, index, [
 							[{ json: { action: 'loadMemoryVariables', chatHistory } }],
@@ -167,7 +166,7 @@ export function logWrapper(
 						const payload = { action: 'getMessages', response };
 						executeFunctions.addOutputData(connectionType, index, [[{ json: payload }]]);
 
-						void logAiEvent(executeFunctions, 'ai-messages-retrieved-from-memory', { response });
+						logAiEvent(executeFunctions, 'ai-messages-retrieved-from-memory', { response });
 						return response;
 					};
 				} else if (prop === 'addMessage' && 'addMessage' in target) {
@@ -184,46 +183,8 @@ export function logWrapper(
 							arguments: [message],
 						});
 
-						void logAiEvent(executeFunctions, 'ai-message-added-to-memory', { message });
+						logAiEvent(executeFunctions, 'ai-message-added-to-memory', { message });
 						executeFunctions.addOutputData(connectionType, index, [[{ json: payload }]]);
-					};
-				}
-			}
-
-			// ========== BaseOutputParser ==========
-			if (originalInstance instanceof BaseOutputParser) {
-				if (prop === 'parse' && 'parse' in target) {
-					return async (text: string | Record<string, unknown>): Promise<unknown> => {
-						connectionType = NodeConnectionType.AiOutputParser;
-						const stringifiedText = isObject(text) ? JSON.stringify(text) : text;
-						const { index } = executeFunctions.addInputData(connectionType, [
-							[{ json: { action: 'parse', text: stringifiedText } }],
-						]);
-
-						try {
-							const response = (await callMethodAsync.call(target, {
-								executeFunctions,
-								connectionType,
-								currentNodeRunIndex: index,
-								method: target[prop],
-								arguments: [stringifiedText],
-							})) as object;
-
-							void logAiEvent(executeFunctions, 'ai-output-parsed', { text, response });
-							executeFunctions.addOutputData(connectionType, index, [
-								[{ json: { action: 'parse', response } }],
-							]);
-							return response;
-						} catch (error: any) {
-							void logAiEvent(executeFunctions, 'ai-output-parsed', {
-								text,
-								response: error.message ?? error,
-							});
-							executeFunctions.addOutputData(connectionType, index, [
-								[{ json: { action: 'parse', response: error.message ?? error } }],
-							]);
-							throw error;
-						}
 					};
 				}
 			}
@@ -248,8 +209,24 @@ export function logWrapper(
 							arguments: [query, config],
 						})) as Array<Document<Record<string, any>>>;
 
-						void logAiEvent(executeFunctions, 'ai-documents-retrieved', { query });
-						executeFunctions.addOutputData(connectionType, index, [[{ json: { response } }]]);
+						const executionId: string | undefined = response[0]?.metadata?.['executionId'] as string;
+						const workflowId: string | undefined = response[0]?.metadata?.['workflowId'] as string;
+
+						const metadata: ITaskMetadata = {};
+						if (executionId && workflowId) {
+							metadata.subExecution = {
+								executionId,
+								workflowId,
+							};
+						}
+
+						logAiEvent(executeFunctions, 'ai-documents-retrieved', { query });
+						executeFunctions.addOutputData(
+							connectionType,
+							index,
+							[[{ json: { response } }]],
+							metadata,
+						);
 						return response;
 					};
 				}
@@ -273,7 +250,7 @@ export function logWrapper(
 							arguments: [documents],
 						})) as number[][];
 
-						void logAiEvent(executeFunctions, 'ai-document-embedded');
+						logAiEvent(executeFunctions, 'ai-document-embedded');
 						executeFunctions.addOutputData(connectionType, index, [[{ json: { response } }]]);
 						return response;
 					};
@@ -293,7 +270,7 @@ export function logWrapper(
 							method: target[prop],
 							arguments: [query],
 						})) as number[];
-						void logAiEvent(executeFunctions, 'ai-query-embedded');
+						logAiEvent(executeFunctions, 'ai-query-embedded');
 						executeFunctions.addOutputData(connectionType, index, [[{ json: { response } }]]);
 						return response;
 					};
@@ -338,7 +315,7 @@ export function logWrapper(
 							arguments: [item, itemIndex],
 						})) as number[];
 
-						void logAiEvent(executeFunctions, 'ai-document-processed');
+						logAiEvent(executeFunctions, 'ai-document-processed');
 						executeFunctions.addOutputData(connectionType, index, [
 							[{ json: { response }, pairedItem: { item: itemIndex } }],
 						]);
@@ -364,7 +341,7 @@ export function logWrapper(
 							arguments: [text],
 						})) as string[];
 
-						void logAiEvent(executeFunctions, 'ai-text-split');
+						logAiEvent(executeFunctions, 'ai-text-split');
 						executeFunctions.addOutputData(connectionType, index, [[{ json: { response } }]]);
 						return response;
 					};
@@ -388,7 +365,7 @@ export function logWrapper(
 							arguments: [query],
 						})) as string;
 
-						void logAiEvent(executeFunctions, 'ai-tool-called', { query, response });
+						logAiEvent(executeFunctions, 'ai-tool-called', { query, response });
 						executeFunctions.addOutputData(connectionType, index, [[{ json: { response } }]]);
 						return response;
 					};
@@ -417,7 +394,7 @@ export function logWrapper(
 							arguments: [query, k, filter, _callbacks],
 						})) as Array<Document<Record<string, any>>>;
 
-						void logAiEvent(executeFunctions, 'ai-vector-store-searched', { query });
+						logAiEvent(executeFunctions, 'ai-vector-store-searched', { query });
 						executeFunctions.addOutputData(connectionType, index, [[{ json: { response } }]]);
 
 						return response;

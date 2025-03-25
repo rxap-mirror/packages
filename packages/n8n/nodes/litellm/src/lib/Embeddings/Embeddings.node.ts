@@ -4,6 +4,7 @@ import {
     INodeProperties,
     type INodeType,
     type INodeTypeDescription,
+    ISupplyDataFunctions,
     NodeConnectionType,
     type SupplyData,
 } from 'n8n-workflow';
@@ -148,7 +149,7 @@ export class Embeddings implements INodeType {
       ]
     };
 
-    async supplyData(this: IExecuteFunctions, itemIndex: number): Promise<SupplyData> {
+    async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
         this.logger.debug('Supply data for embeddings');
         const credentials = await this.getCredentials('litellm');
 
