@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-zip@0.0.7-dev.0...@rxap/n8n-nodes-zip@0.1.0-dev.0) (2025-03-25)
+
+### Bug Fixes
+
+- **utilities:** extract and reuse addFilesToResults helper ([910e3d6](https://gitlab.com/rxap/packages/commit/910e3d69d25d109f79f8c3bc351c3c10c6434981))
+
+### Features
+
+- **zip:** add support for unzip password option ([a9b219d](https://gitlab.com/rxap/packages/commit/a9b219d20f2d3fe708e4902c494b9e5e123580a2))
+
 ## [0.0.7-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/n8n-nodes-zip@0.0.6...@rxap/n8n-nodes-zip@0.0.7-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/n8n-nodes-zip

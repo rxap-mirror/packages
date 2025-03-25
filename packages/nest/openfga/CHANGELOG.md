@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-openfga@10.1.0-dev.2...@rxap/nest-openfga@10.1.0-dev.3) (2025-03-25)
+
+### Bug Fixes
+
+- **open-fga:** handle optional storeId and authorizationModelId gracefully ([6aa9f89](https://gitlab.com/rxap/packages/commit/6aa9f898d02b88131f6ad818f6726604b13660ff))
+
 # [10.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-openfga@10.1.0-dev.1...@rxap/nest-openfga@10.1.0-dev.2) (2025-03-18)
 
 ### Features
