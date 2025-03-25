@@ -1,0 +1,24 @@
+{
+  "node": "n8n-nodes-base.rxapGitlabTool",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": [
+    "AI"
+  ],
+  "subcategories": {
+    "AI": [
+      "Tool"
+    ],
+    "Tools": [
+      "GitLab"
+    ]
+  },
+  "resources": {
+    "credentialDocumentation": [],
+    "primaryDocumentation": []
+  },
+  "alias": [
+    "Gitlab",
+    "gitlab"
+  ]
+}

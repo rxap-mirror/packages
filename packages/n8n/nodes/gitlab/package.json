@@ -30,7 +30,8 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "nodes": [
-      "src/lib/Gitlab/Gitlab.node.js"
+      "src/lib/Gitlab/Gitlab.node.js",
+      "src/lib/Gitlab/GitlabTool.node.js"
     ],
     "credentials": []
   },
