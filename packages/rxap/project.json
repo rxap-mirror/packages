@@ -77,6 +77,7 @@
     "n8n-nodes-neo4j",
     "n8n-nodes-open-webui",
     "n8n-nodes-sanitize-html",
+    "n8n-nodes-tar",
     "n8n-nodes-yaml",
     "n8n-nodes-zip",
     "n8n-utilities",
