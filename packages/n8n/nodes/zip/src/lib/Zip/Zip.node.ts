@@ -1,27 +1,16 @@
 import { addFilesToResults } from '@rxap/n8n-utilities';
 import AdmZip from 'adm-zip';
 import {
-  readdirSync,
-  readFileSync,
-} from 'fs';
-import {
   INodeType,
   INodeTypeDescription,
   NodeConnectionType,
   NodeOperationError,
 } from 'n8n-workflow';
 import {
-  IBinaryData,
   IBinaryKeyData,
   IExecuteFunctions,
   INodeExecutionData,
 } from 'n8n-workflow/dist/Interfaces';
-import { statSync } from 'fs';
-import {
-  join,
-  relative,
-} from 'path';
-import type { Readable } from 'stream';
 import { dir } from 'tmp-promise';
 
 export class Zip implements INodeType {
