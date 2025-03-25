@@ -1,8 +1,12 @@
-import { addFilesToResults } from '@rxap/n8n-utilities';
+import {
+  addFilesToResults,
+  CaptureExecutionError,
+} from '@rxap/n8n-utilities';
 import {
   INodeType,
   INodeTypeDescription,
   NodeConnectionType,
+  NodeOperationError,
 } from 'n8n-workflow';
 import {
   IBinaryKeyData,
@@ -68,6 +72,7 @@ export class Tar implements INodeType {
     ],
   };
 
+  @CaptureExecutionError()
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 
     const items = this.getInputData();
@@ -128,6 +133,14 @@ export class Tar implements INodeType {
 
         await addFilesToResults(join(workDir, globalFilePathPrefix), join(workDir, globalFilePathPrefix), result, this.helpers.prepareBinaryData.bind(this.helpers));
         results[i] = result;
+      } catch (e: any) {
+        results[i] = {
+          ...item,
+          error: new NodeOperationError(
+            this.getNode(),
+            `Failed to extract tar file. Error: ${ e.message }`
+          ),
+        };
       } finally {
         await cleanup();
       }
