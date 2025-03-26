@@ -11,6 +11,7 @@ export interface OpenApiSchemaBase {
   skipProvider: boolean;
   skipDirectives: boolean;
   skipDataSource: boolean;
+  skipHttpResource: boolean;
   skipFormat?: boolean;
 }
 

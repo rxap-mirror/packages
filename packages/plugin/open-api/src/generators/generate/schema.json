@@ -63,6 +63,10 @@
           "type": "boolean",
           "default": false
         },
+        "skipHttpResource": {
+          "type": "boolean",
+          "default": false
+        },
         "serverId": {
           "type": "string"
         }
@@ -105,6 +109,10 @@
           "default": true
         },
         "skipCommand": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipHttpResource": {
           "type": "boolean",
           "default": false
         },

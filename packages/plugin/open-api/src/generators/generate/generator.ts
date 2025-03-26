@@ -7,6 +7,7 @@ import { dasherize } from '@rxap/utilities';
 import {
   GenerateDataSource,
   GenerateDirectives,
+  GenerateHttpResource,
   GenerateInterfaces,
   GenerateOperation,
   GenerateOperationCommand,
@@ -58,6 +59,9 @@ export async function generateGenerator(
   const projectRoot = GetProjectRoot(tree, projectName);
 
   const angularGeneratorFunctionList: GeneratorFunction<OpenApiSchema>[] = [];
+  if (!options.skipHttpResource) {
+    angularGeneratorFunctionList.push(GenerateHttpResource);
+  }
   if (!options.skipRemoteMethod) {
     angularGeneratorFunctionList.push(GenerateRemoteMethod);
   }
@@ -107,6 +111,9 @@ export async function generateGenerator(
       `${projectRoot}/src/lib/responses/index.ts`,
       `${projectRoot}/src/lib/request-bodies/index.ts`,
     ];
+    if (!options.skipHttpResource) {
+      additionalEntryPoints.push(`${projectRoot}/src/lib/http-resources/index.ts`);
+    }
     if (!options.skipRemoteMethod) {
       additionalEntryPoints.push(`${projectRoot}/src/lib/remote-methods/index.ts`);
     }

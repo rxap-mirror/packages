@@ -96,6 +96,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
     tsConfig.compilerOptions.paths[`${options.project}/src/lib/remote-methods`] = [ `${projectSourceRoot}/lib/remote-methods/index.ts` ];
     tsConfig.compilerOptions.paths[`${options.project}/src/lib/request-bodies`] = [ `${projectSourceRoot}/lib/request-bodies/index.ts` ];
     tsConfig.compilerOptions.paths[`${options.project}/src/lib/responses`] = [ `${projectSourceRoot}/lib/responses/index.ts` ];
+    tsConfig.compilerOptions.paths[`${options.project}/src/lib/http-resources`] = [ `${projectSourceRoot}/lib/http-resources/index.ts` ];
   }, { infix: 'base' });
   // endregion
 }
