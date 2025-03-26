@@ -1,5 +1,6 @@
 import { join } from 'path';
-import { GetProjectSourceRoot } from './get-project';
+import { GetProject, GetProjectSourceRoot } from './get-project';
+import { IsLibraryProject } from './is-project';
 import { buildNestProjectName } from './project-utilities';
 import { TreeLike } from './tree';
 
@@ -37,5 +38,10 @@ export function BuildNestBasePath<Tree extends TreeLike>(tree: Tree, options: Bu
   // else it is possible that GetProjectSourceRoot fails, bc the project does not yet exist.
   const projectName = buildNestProjectName(options);
   const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
+  if (IsLibraryProject(GetProject(tree, projectName))) {
+    if (!directory.startsWith('lib/') && directory !== 'lib' && !directory.startsWith('/lib/') && directory !== '/lib') {
+      directory = join('lib', directory);
+    }
+  }
   return join(projectSourceRoot, directory);
 }
