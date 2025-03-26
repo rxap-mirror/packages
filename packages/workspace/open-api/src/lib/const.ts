@@ -6,3 +6,5 @@ export const DIRECTIVE_BASE_PATH = 'directives';
 export const DIRECTIVE_FILE_SUFFIX = 'directive';
 export const COMMAND_BASE_PATH = 'commands';
 export const COMMAND_FILE_SUFFIX = 'command';
+export const HTTP_RESOURCE_FILE_SUFFIX = 'http-resource';
+export const HTTP_RESOURCE_BASE_PATH = 'http-resources';

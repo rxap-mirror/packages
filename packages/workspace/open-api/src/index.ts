@@ -27,6 +27,7 @@ export * from './lib/create-directive';
 export * from './lib/generate-components';
 export * from './lib/generate-data-source';
 export * from './lib/generate-directives';
+export * from './lib/generate-http-resource';
 export * from './lib/generate-index-exports';
 export * from './lib/generate-interfaces';
 export * from './lib/generate-operation-command';
