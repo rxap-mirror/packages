@@ -1,13 +1,13 @@
 {
-  "version": "19.0.4-dev.1",
+  "version": "19.0.4-dev.2",
   "name": "@rxap/layout",
   "description": "This library provides a set of Angular components and services for creating consistent and configurable application layouts, including headers, footers, side navigation, and content areas. It offers features such as dynamic navigation, external application integration, and customizable themes. The library also includes directives for extending header and footer areas with custom content.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
     "@rxap/ts-morph": "^1.5.5-dev.0",
-    "@rxap/workspace-ts-morph": "^19.1.12-dev.1",
-    "@rxap/workspace-utilities": "^19.8.0-dev.1",
+    "@rxap/workspace-ts-morph": "^19.1.12-dev.2",
+    "@rxap/workspace-utilities": "^19.8.0-dev.2",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

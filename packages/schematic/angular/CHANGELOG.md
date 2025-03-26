@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.0.4-dev.2...@rxap/schematic-angular@19.1.0-dev.0) (2025-03-26)
+
+### Features
+
+- **backend:** add serverId option for OpenAPI client SDK ([f0142a8](https://gitlab.com/rxap/packages/commit/f0142a8e2bf7f64e90daa896219405263ff85407))
+
 ## [19.0.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.0.4-dev.1...@rxap/schematic-angular@19.0.4-dev.2) (2025-03-26)
 
 **Note:** Version bump only for package @rxap/schematic-angular

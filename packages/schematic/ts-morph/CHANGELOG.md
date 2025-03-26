@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.0.4-dev.2...@rxap/schematics-ts-morph@19.1.0-dev.0) (2025-03-26)
+
+### Bug Fixes
+
+- **nest:** handle null serverId in operation ID generation ([1ccd7a3](https://gitlab.com/rxap/packages/commit/1ccd7a390b2cb52174840ce55637125bf0feeeb6))
+
+### Features
+
+- replace buildNestProjectName with buildOperationServerId ([15817bf](https://gitlab.com/rxap/packages/commit/15817bff61b9c37fcb8dbb3bc718c27db0591fcb))
+
 ## [19.0.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.0.4-dev.1...@rxap/schematics-ts-morph@19.0.4-dev.2) (2025-03-26)
 
 ### Bug Fixes

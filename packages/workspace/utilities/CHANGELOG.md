@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.8.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.8.0-dev.1...@rxap/workspace-utilities@19.8.0-dev.2) (2025-03-26)
+
+### Bug Fixes
+
+- **utilities:** allow null value for backend serverId ([4fae30c](https://gitlab.com/rxap/packages/commit/4fae30c436c8866fd873c1509cdb2f2d610b71f7))
+
+### Features
+
+- **utilities:** add function to build operation server ID ([a6f3356](https://gitlab.com/rxap/packages/commit/a6f33564a8f62f8296dbec968526d9c4904a39ed))
+- **utilities:** enforce 'lib' prefix for library project directories ([ffdacfb](https://gitlab.com/rxap/packages/commit/ffdacfbd55fe3fd3e1c05cccab4370d1fd64e349))
+
 # [19.8.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.8.0-dev.0...@rxap/workspace-utilities@19.8.0-dev.1) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/workspace-utilities
