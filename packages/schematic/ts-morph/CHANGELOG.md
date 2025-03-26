@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.0.4-dev.1...@rxap/schematics-ts-morph@19.0.4-dev.2) (2025-03-26)
+
+### Bug Fixes
+
+- **schematic:** ensure modules are added to the AppModule only in application projects ([12accb5](https://gitlab.com/rxap/packages/commit/12accb5d300545f7eca272858fef3c60cc644fed))
+
 ## [19.0.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.0.4-dev.0...@rxap/schematics-ts-morph@19.0.4-dev.1) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph
