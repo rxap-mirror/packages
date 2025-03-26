@@ -45,7 +45,7 @@ export function buildNestProjectName(options: BuildNestProjectNameOptions) {
 }
 
 export interface BuildOperationServerIdOptions extends BuildNestProjectNameOptions {
-  backend: { project?: string | null, kind?: any, serverId?: string } | undefined;
+  backend: { project?: string | null, kind?: any, serverId?: string | null } | undefined;
 }
 
 export function buildOperationServerId(options: BuildOperationServerIdOptions) {
