@@ -7,6 +7,7 @@ import {
   classify,
   dasherize,
 } from '@rxap/utilities';
+import { GetProject, IsApplicationProject } from '@rxap/workspace-utilities';
 import {
   ClassDeclaration,
   Project,
@@ -75,13 +76,18 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
       },
       [ `${ dasherize(name) }.module.ts?` ],
     ),
-    name !== 'app' ? AddNestModuleToAppModule({
-      project,
-      feature,
-      shared,
-      name,
-      directory,
-      backend,
-    }) : noop(),
+    tree => {
+      if (IsApplicationProject(GetProject(tree, project)) && name !== 'app') {
+        return AddNestModuleToAppModule({
+          project,
+          feature,
+          shared,
+          name,
+          directory,
+          backend,
+        });
+      }
+      return noop();
+    },
   ]);
 }
