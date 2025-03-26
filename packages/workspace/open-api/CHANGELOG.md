@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.0.14-dev.1...@rxap/workspace-open-api@19.1.0-dev.0) (2025-03-26)
+
+### Features
+
+- **open-api:** add HTTP resource generation utility ([ff87c86](https://gitlab.com/rxap/packages/commit/ff87c86371ee5cedbf3ef763d7f7c9546df3962e))
+
 ## [19.0.14-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.0.14-dev.0...@rxap/workspace-open-api@19.0.14-dev.1) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/workspace-open-api
