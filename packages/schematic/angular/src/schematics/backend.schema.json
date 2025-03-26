@@ -27,6 +27,9 @@
         },
         "project": {
           "type": "string"
+        },
+        "serverId": {
+          "type": "string"
         }
       },
       "required": [
