@@ -44,6 +44,17 @@ export function buildNestProjectName(options: BuildNestProjectNameOptions) {
   }
 }
 
+export interface BuildOperationServerIdOptions extends BuildNestProjectNameOptions {
+  backend: { project?: string | null, kind?: any, serverId?: string } | undefined;
+}
+
+export function buildOperationServerId(options: BuildOperationServerIdOptions) {
+  if (options.backend?.serverId) {
+    return options.backend.serverId;
+  }
+  return buildNestProjectName(options);
+}
+
 /**
  * Constructs a directory path for a NestJS project based on the provided options.
  *
