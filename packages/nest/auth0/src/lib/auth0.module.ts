@@ -208,6 +208,7 @@ export class Auth0Module extends ConfigurableModuleClass {
     module.exports ??= [];
     module.exports.push(Auth0AuthenticationService);
     module.exports.push(Auth0ManagementService);
+    module.exports.push(AUTH0_OPTIONS);
     return module;
   }
 
