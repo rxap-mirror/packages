@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@10.1.0-dev.3...@rxap/nest-auth0@10.1.0-dev.4) (2025-03-27)
+
+### Bug Fixes
+
+- export auth0 options token ([408dce2](https://gitlab.com/rxap/packages/commit/408dce21929006cacf8aef5e32af2517641df476))
+
 # [10.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@10.1.0-dev.2...@rxap/nest-auth0@10.1.0-dev.3) (2025-03-27)
 
 ### Features
