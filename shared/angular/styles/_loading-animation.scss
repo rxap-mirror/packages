@@ -1,6 +1,6 @@
-@mixin centre($axis: "both") {
+@mixin centre($axis: 'both') {
   position: absolute;
-  @if $axis == "y" {
+  @if $axis == 'y' {
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -8,7 +8,7 @@
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
   }
-  @if $axis == "x" {
+  @if $axis == 'x' {
     left: 50%;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
@@ -16,7 +16,7 @@
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
   }
-  @if $axis == "both" {
+  @if $axis == 'both' {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-51%, -50%);
@@ -41,7 +41,7 @@
     $animations: #{$animations + nth($animate, $i)};
 
     @if $i < $max {
-      $animations: #{$animations + ", "};
+      $animations: #{$animations + ', '};
     }
   }
   -webkit-animation: $animations;
@@ -66,24 +66,23 @@
 }
 
 @mixin loadingAnimation($background) {
-
   $f-title: 'Roboto', sans-serif;
   $f-body: 'Open Sans', sans-serif;
 
   @include keyframes(outerRotate1) {
     0% {
-      transform: translate(-50%, -50%) rotate(0)
+      transform: translate(-50%, -50%) rotate(0);
     }
     100% {
-      transform: translate(-50%, -50%) rotate(360deg)
+      transform: translate(-50%, -50%) rotate(360deg);
     }
   }
   @include keyframes(outerRotate2) {
     0% {
-      transform: translate(-50%, -50%) rotate(0)
+      transform: translate(-50%, -50%) rotate(0);
     }
     100% {
-      transform: translate(-50%, -50%) rotate(-360deg)
+      transform: translate(-50%, -50%) rotate(-360deg);
     }
   }
 
@@ -92,7 +91,7 @@
       color: #fff;
     }
     100% {
-      color: #3BB2D0;
+      color: #3bb2d0;
     }
   }
 
@@ -100,14 +99,13 @@
     @include centre();
     width: 240px;
     height: 240px;
-    border: 5px solid #1B5F70;
+    border: 5px solid #1b5f70;
     border-radius: 120px;
     box-sizing: border-box;
 
-
     &:after {
       @include centre;
-      content: " ";
+      content: ' ';
       display: block;
       background: $background;
       transform-origin: center;
@@ -126,7 +124,7 @@
       height: 200px;
       color: #888;
       text-align: center;
-      border: 5px solid lighten(#1B5F70, 15%);
+      border: 5px solid lighten(#1b5f70, 15%);
       border-radius: 100px;
       box-sizing: border-box;
       z-index: 20;
@@ -134,7 +132,7 @@
 
       &:after {
         @include centre;
-        content: " ";
+        content: ' ';
         display: block;
         background: $background;
         transform-origin: center;
@@ -155,14 +153,15 @@
         width: 140px;
         height: 140px;
         text-align: center;
-        border: 5px solid lighten(#1B5F70, 25%);
+        border: 5px solid lighten(#1b5f70, 25%);
         border-radius: 70px;
         box-sizing: border-box;
         z-index: 20;
 
-        &:before, &:after {
+        &:before,
+        &:after {
           @include centre;
-          content: " ";
+          content: ' ';
           display: block;
           background: $background;
           transform-origin: center;
@@ -196,5 +195,4 @@
     width: 300px;
     height: 300px;
   }
-
 }

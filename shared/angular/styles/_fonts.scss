@@ -1,9 +1,12 @@
-@import "fonts/material-icons";
-@import "fonts/croissant-one";
-@import "fonts/inclusive-sans";
-@import "fonts/pixelify-sans";
-@import "fonts/roboto-mono";
-@import "fonts/young-serif";
-@import "fonts/roboto";
-@import "fonts/mooli";
-@import "fonts/fuggles";
+@forward 'fonts/material-icons';
+@forward 'fonts/croissant-one';
+@forward 'fonts/inclusive-sans';
+@forward 'fonts/pixelify-sans';
+@forward 'fonts/roboto-mono';
+@forward 'fonts/young-serif';
+@forward 'fonts/roboto';
+@forward 'fonts/mooli';
+@forward 'fonts/fuggles';
+
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';

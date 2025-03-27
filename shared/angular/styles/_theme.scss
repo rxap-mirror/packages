@@ -1,14 +1,17 @@
-@use "variables";
-@use '@angular/material' as mat;
-@use 'palette' as palette;
+@forward 'fonts';
 
-@import "fonts";
-@import 'utilities';
+@use '@angular/material' as mat;
+@use 'variables';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@include mat.core();
-
-@include init-theme();
+html {
+  color-scheme: dark;
+  @include mat.theme((
+    color: mat.$violet-palette,
+    typography: Roboto,
+    density: 0
+  ));
+}

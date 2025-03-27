@@ -1,6 +1,7 @@
-@use "./theme";
+@use './theme';
 
-html, body {
+html,
+body {
   @apply h-full;
 }
 

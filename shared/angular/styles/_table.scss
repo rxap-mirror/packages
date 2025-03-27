@@ -29,7 +29,6 @@
   }
 
   .dark {
-
     .table-scroll-container {
       &::-webkit-scrollbar-thumb {
         background: mat.m2-get-color-from-palette($accent, 900) !important;
@@ -39,7 +38,5 @@
         }
       }
     }
-
   }
-
 }
