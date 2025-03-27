@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@10.1.0-dev.2...@rxap/nest-auth0@10.1.0-dev.3) (2025-03-27)
+
+### Features
+
+- **auth0:** add support for optional Auth0 disable feature ([a3cef89](https://gitlab.com/rxap/packages/commit/a3cef895c6acc348097fb0a3c8df97df48a7d5dd))
+
 # [10.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@10.1.0-dev.1...@rxap/nest-auth0@10.1.0-dev.2) (2025-03-17)
 
 ### Features
