@@ -75,8 +75,12 @@ export class Auth0ModuleOptionsFactory implements ConfigurableModuleOptionsFacto
       domain: this.config.get('AUTH0_DOMAIN')!,
       clientId: this.config.get('AUTH0_CLIENT_ID')!,
       clientSecret: this.config.get('AUTH0_CLIENT_SECRET')!,
-    }
-    return { authentication, management };
+    };
+    return {
+      authentication,
+      management,
+      disabled: this.config.get('AUTH0_DISABLED', false),
+    };
   }
 
 }

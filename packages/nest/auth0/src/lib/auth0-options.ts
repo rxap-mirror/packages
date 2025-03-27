@@ -7,4 +7,5 @@ import {
 export interface Auth0Options {
   authentication: AuthenticationClientOptions,
   management: ManagementClientOptionsWithToken | ManagementClientOptionsWithClientCredentials,
+  disabled?: boolean;
 }

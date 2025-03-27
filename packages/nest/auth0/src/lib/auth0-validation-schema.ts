@@ -1,6 +1,9 @@
 import { Environment } from '@rxap/nest-utilities';
 import * as Joi from 'joi';
-import { StringSchema } from 'joi';
+import {
+  AnySchema,
+  StringSchema,
+} from 'joi';
 
 /**
  * Auth0ValidationSchema defines the structure for environment variables
@@ -28,6 +31,7 @@ export interface Auth0ValidationSchema {
   AUTH0_CLIENT_ID: string,
   AUTH0_CLIENT_SECRET: string,
   AUTH0_MANAGEMENT_TOKEN: string,
+  AUTH0_DISABLED: boolean,
 }
 
 /**
@@ -40,7 +44,7 @@ export interface Auth0ValidationSchema {
  */
 export function auth0ValidationSchema(environment: Environment, defaults: Partial<Auth0ValidationSchema> = {}) {
 
-  const schema: Record<string, StringSchema> = {};
+  const schema: Record<string, AnySchema> = {};
 
   schema['AUTH0_ISSUER_URL'] = Joi.string();
   schema['AUTH0_AUDIENCE'] = Joi.string();
@@ -50,6 +54,7 @@ export function auth0ValidationSchema(environment: Environment, defaults: Partia
   schema['AUTH0_CLIENT_SECRET'] = Joi.string();
 
   schema['AUTH0_MANAGEMENT_TOKEN'] = Joi.string();
+  schema['AUTH0_DISABLED'] = Joi.boolean();
 
   for (const [ key, value ] of Object.keys(defaults)) {
     if (value) {
