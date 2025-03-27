@@ -33,7 +33,7 @@ export function GenerateHttpResource(
 
   const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
     {
-      moduleSpecifier: '@vault/ui-shared',
+      moduleSpecifier: '@rxap/open-api/http-resource',
       namedImports: [
         { name: 'OPEN_API_OPERATION_ID' },
         { name: 'OPEN_API_SERVER_ID' },
