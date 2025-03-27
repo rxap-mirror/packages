@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.0.4-dev.0...@rxap/open-api@19.1.0-dev.0) (2025-03-27)
+
+### Features
+
+- **open-api:** add http-resource secondary entry point ([ca38972](https://gitlab.com/rxap/packages/commit/ca38972828b55fa8d91ebe1f38d67fd38e9cfac2))
+
 ## [19.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.0.3...@rxap/open-api@19.0.4-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/open-api
