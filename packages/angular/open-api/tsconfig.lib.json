@@ -8,13 +8,13 @@
     "types": ["@angular/localize"]
   },
   "exclude": [
-    "src/**/*.spec.ts",
-    "src/test-setup.ts",
+    "**/*.spec.ts",
+    "test-setup.ts",
     "jest.config.ts",
-    "src/**/*.test.ts"
+    "**/*.test.ts"
   ],
   "include": [
-    "src/**/*.ts",
+    "**/*.ts",
     "data-source/**/*.ts",
     "data-source/table/**/*.ts",
     "remote-method/**/*.ts"
