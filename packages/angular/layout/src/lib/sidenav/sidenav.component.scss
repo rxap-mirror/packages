@@ -1,5 +1,5 @@
 :host {
-  .collapsable {
+  .collapsable.mat-drawer {
 
     &:not(.mat-drawer-opened) {
       transform: translateX(calc(-100% + 64px)) !important;
@@ -9,6 +9,11 @@
       transition-delay: 250ms;
       display: flex;
       border-right: solid 1px rgba(0, 0, 0, .12);
+
+      ::ng-deep .mat-drawer-inner-container {
+        display: block;
+      }
+
     }
 
     ::ng-deep .mat-drawer-inner-container::-webkit-scrollbar {
