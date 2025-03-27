@@ -11,6 +11,7 @@ import {
 import { ChangelogService } from '@rxap/ngx-changelog';
 import { LanguageSelectorMenuItemComponent } from '@rxap/ngx-material-localize';
 import { StatusCheckGuard } from '@rxap/ngx-status-check';
+import { provideUserTheme } from '@rxap/ngx-user';
 import { AuthenticationGuard } from '@rxap/oauth';
 import { APP_NAVIGATION } from './app.navigation';
 
@@ -78,6 +79,7 @@ const ROUTES: Route[] = [
       },
     ],
     providers: [
+      provideUserTheme(),
       provideLayout(
         withDefaultHeaderComponent(),
         withNavigationConfig(APP_NAVIGATION),

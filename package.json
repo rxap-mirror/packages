@@ -106,7 +106,7 @@
     "n8n-workflow": "^1.82.0",
     "neo4j-driver": "^5.23.0",
     "ngx-logger": "5.0.12",
-    "ngx-markdown": "16.0.0",
+    "ngx-markdown": "19.1.0",
     "node-vault": "^0.10.2",
     "openai": "^4.82.0",
     "react": "^18.2.0",

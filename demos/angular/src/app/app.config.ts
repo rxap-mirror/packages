@@ -2,6 +2,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   ApplicationConfig,
   importProvidersFrom,
+  provideZoneChangeDetection,
 } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
@@ -15,6 +16,7 @@ import {
 } from '@rxap/authentication';
 import { ProvideEnvironment } from '@rxap/environment';
 import { ProvideIconAssetPath } from '@rxap/icon';
+import { provideExternalApps } from '@rxap/layout';
 import { ProvideChangelog } from '@rxap/ngx-changelog';
 import {
   HttpErrorInterceptor,
@@ -22,6 +24,7 @@ import {
 } from '@rxap/ngx-error';
 import { LanguageInterceptor } from '@rxap/ngx-localize';
 import { ProvidePubSub } from '@rxap/ngx-pub-sub';
+import { provideTheme } from '@rxap/ngx-theme';
 import {
   ProvideAuth,
   withAuthConfig,
@@ -32,13 +35,13 @@ import {
   withLogUpdater,
 } from '@rxap/service-worker';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
-import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
 import { appRoutes } from './app.routes';
+import { provideMarkdown } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(MarkdownModule.forRoot()),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(withInterceptors([
       HttpErrorInterceptor,
       LanguageInterceptor,
@@ -48,6 +51,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     ProvideErrorHandler(),
     ProvideChangelog(),
+    provideTheme(),
+    provideExternalApps(),
+    provideMarkdown(),
     ProvideEnvironment(environment),
     provideOAuthClient(),
     ProvideAuth(withAuthConfig({

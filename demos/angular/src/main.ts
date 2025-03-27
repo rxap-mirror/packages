@@ -14,6 +14,9 @@ const application = new StandaloneApplication(
   environment,
   AppComponent,
   appConfig,
+  {
+    static: {}
+  }
 );
 application.importProvidersFrom(LoggerModule.forRoot({
   serverLoggingUrl: '/api/logs',
