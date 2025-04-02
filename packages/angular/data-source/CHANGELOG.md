@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@19.0.4-dev.0...@rxap/data-source@19.1.0-dev.0) (2025-04-02)
+
+### Features
+
+- **table-data-source:** add support for dynamic parameters ([e830c26](https://gitlab.com/rxap/packages/commit/e830c262d0ec28bf8a3d76ef6d634335b8532b3c))
+
 ## [19.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@19.0.3...@rxap/data-source@19.0.4-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/data-source

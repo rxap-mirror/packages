@@ -11,9 +11,9 @@
     "@angular/cdk": "^19.1.1",
     "@angular/core": "^19.2.1",
     "@angular/material": "^19.1.1",
-    "@rxap/data-source": "^19.0.4-dev.0",
+    "@rxap/data-source": "^19.1.0-dev.0",
     "@rxap/form-system": "^19.0.4-dev.0",
-    "@rxap/forms": "^19.0.4-dev.0",
+    "@rxap/forms": "^19.0.4-dev.1",
     "@rxap/material-table-system": "^19.0.4-dev.0",
     "@rxap/mixin": "^16.0.14-dev.0",
     "@rxap/pattern": "^1.1.14-dev.0",
@@ -89,7 +89,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.4-dev.0"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -113,7 +113,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4-dev.1"
       },
       {
         "package": "@rxap/material-directives",
@@ -133,7 +133,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0-dev.1"
       },
       {
         "package": "@rxap/pattern",

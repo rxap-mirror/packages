@@ -12,7 +12,7 @@
     "@angular/core": "^19.2.1",
     "@angular/router": "^19.2.1",
     "@rxap/config": "^19.0.4-dev.0",
-    "@rxap/data-source": "^19.0.4-dev.0",
+    "@rxap/data-source": "^19.1.0-dev.0",
     "@rxap/ngx-pub-sub": "^19.0.4-dev.0",
     "@rxap/pattern": "^1.1.14-dev.0",
     "rxjs": "^7.8.1"
@@ -71,7 +71,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.0.4-dev.0"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
