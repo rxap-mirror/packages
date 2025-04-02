@@ -6,7 +6,6 @@ import {
 import { PortalModule } from '@angular/cdk/portal';
 import {
   AsyncPipe,
-  NgIf,
   NgStyle,
 } from '@angular/common';
 import {
@@ -41,22 +40,21 @@ import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.compo
     templateUrl: './window-container.component.html',
     styleUrls: ['./window-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
-  
+
     host: {
         class: 'rxap-window-container',
     },
-    imports: [
-        CdkDrag,
-        NgStyle,
-        CdkDragHandle,
-        WindowToolBarComponent,
-        NgIf,
-        MatToolbarModule,
-        PortalModule,
-        MatProgressBarModule,
-        WindowResizerComponent,
-        AsyncPipe,
-    ]
+  imports: [
+    CdkDrag,
+    NgStyle,
+    CdkDragHandle,
+    WindowToolBarComponent,
+    MatToolbarModule,
+    PortalModule,
+    MatProgressBarModule,
+    WindowResizerComponent,
+    AsyncPipe,
+  ],
 })
 export class WindowContainerComponent implements OnInit {
 

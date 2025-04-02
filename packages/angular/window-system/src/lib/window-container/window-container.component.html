@@ -11,7 +11,7 @@
      }"
      cdkDrag
      cdkDragBoundary=".cdk-overlay-container"
-     class="mat-elevation-z4 mat-drawer-container z-[1]">
+     class="drop-shadow-2xl bg-white dark:bg-black border-2 border-gray-400 dark:border-gray-800 rounded-xl overflow-hidden">
   <div class="flex flex-col h-full max-h-full">
 
     <div cdkDragHandle class="grow-0 w-full h-[64px] min-h-[64px] cursor-move">
@@ -22,12 +22,15 @@
       <ng-content></ng-content>
     </div>
 
-    <mat-toolbar *ngIf="windowRef.footerPortal$ | async as footerPortal"
-                 class="mat-elevation-z1 grow-0 w-full h-[64px] min-h-[64px]">
-      <ng-template [cdkPortalOutlet]="footerPortal"></ng-template>
-    </mat-toolbar>
+    @if (windowRef.footerPortal$ | async; as footerPortal) {
+      <mat-toolbar class="mat-elevation-z1 grow-0 w-full h-[64px] min-h-[64px]">
+        <ng-template [cdkPortalOutlet]="footerPortal"></ng-template>
+      </mat-toolbar>
+    }
 
-    <mat-progress-bar *ngIf="windowInstance.isLoading$ | async" mode="indeterminate"></mat-progress-bar>
+    @if (windowInstance.isLoading$ | async) {
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
 
     <rxap-window-resizer [containerRef]="containerRef"></rxap-window-resizer>
   </div>
