@@ -10493,6 +10493,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-utilities@workspace:packages/angular/utilities":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-utilities@workspace:packages/angular/utilities"
+  peerDependencies:
+    "@angular/common": ^19.2.0
+    "@angular/core": ^19.2.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/node-local-storage@workspace:packages/node/local-storage":
   version: 0.0.0-use.local
   resolution: "@rxap/node-local-storage@workspace:packages/node/local-storage"
