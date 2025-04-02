@@ -53,7 +53,7 @@ export * from './lib/decorators/use-form-control';
 export * from './lib/decorators/use-form-group';
 // endregion
 
-// region 
+// region
 export * from './lib/control-actions';
 export * from './lib/control-value-accessor';
 export * from './lib/form-array';
@@ -63,5 +63,4 @@ export * from './lib/form-group';
 export * from './lib/model';
 export * from './lib/tokens';
 export * from './lib/types';
-export * from './lib/utilities';
 // endregion
