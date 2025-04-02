@@ -584,6 +584,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/tar/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/tar/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/n8n/nodes/tar/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/utilities/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/utilities/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/utilities/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/angular/utilities/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

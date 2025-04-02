@@ -51,6 +51,7 @@
     "packages/angular/tree",
     "packages/angular/upload",
     "packages/angular/user",
+    "packages/angular/utilities",
     "packages/angular/window-system",
     "packages/browser/tailwind",
     "packages/browser/utilities",

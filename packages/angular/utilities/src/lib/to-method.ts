@@ -5,8 +5,6 @@ import {
 import { Method } from '@rxap/pattern';
 import { isPromise } from '@rxap/utilities';
 
-// TODO : create a @rxap/ngx-utilities package and move this function there
-
 export function ToMethodWithInjectionContext<ReturnType = any, Parameter = any, MethodType extends Method<ReturnType, Parameter> = Method<ReturnType, Parameter>>(
   call: ((
     parameters?: Parameter,

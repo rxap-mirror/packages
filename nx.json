@@ -154,7 +154,14 @@
       "dependsOn": ["^fix-dependencies"]
     },
     "@nx/angular:ng-packagr-lite": {
-      "dependsOn": ["^build", "build-tailwind"],
+      "dependsOn": [
+        "index-export",
+        "^index-export",
+        "^build",
+        "check-version",
+        "build-tailwind",
+        "check-ng-package"
+      ],
       "inputs": ["production", "^production"]
     },
     "build-tailwind": {
@@ -167,6 +174,11 @@
     },
     "check-version": {
       "cache": true
+    },
+    "@nx/angular:package": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "generators": {

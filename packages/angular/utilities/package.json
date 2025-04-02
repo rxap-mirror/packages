@@ -1,0 +1,35 @@
+{
+  "version": "19.0.0-dev.0",
+  "name": "@rxap/ngx-utilities",
+  "license": "GPL-3.0-or-later",
+  "peerDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/utilities",
+  "keywords": [
+    "angular",
+    "angular-utilities",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/utilities"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/utilities"
+  },
+  "sideEffects": false
+}

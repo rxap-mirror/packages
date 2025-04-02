@@ -268,7 +268,9 @@
     "packages/workspace/utilities/src/index.ts",
     "packages/xml-parser/src/index.ts",
     "packages/nest/keyv-minio/src/lib/**/*.ts",
-    "packages/nest/keyv-minio/src/index.ts"
+    "packages/nest/keyv-minio/src/index.ts",
+    "packages/angular/utilities/src/lib/**/*.ts",
+    "packages/angular/utilities/src/index.ts"
   ],
   "exclude": [
     "**/*.stories.ts",

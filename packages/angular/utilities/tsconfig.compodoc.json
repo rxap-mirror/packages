@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["@angular/localize"]
+  },
+  "include": ["src/index.ts", "src/lib/**/*.ts"],
+  "exclude": ["**/*.stories.ts", "**/*.spec.ts", "**/*.cy.ts"]
+}
