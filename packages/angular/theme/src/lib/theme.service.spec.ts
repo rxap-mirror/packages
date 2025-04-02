@@ -25,7 +25,8 @@ describe('ThemeService', () => {
           matchMedia: () => (
             {
               matches: false,
-              addEventListener: () => {},
+              addEventListener: jest.fn(),
+              removeEventListener: jest.fn(),
             }
           ),
         },

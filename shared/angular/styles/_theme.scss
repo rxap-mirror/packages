@@ -8,10 +8,42 @@
 @tailwind utilities;
 
 html {
-  color-scheme: dark;
   @include mat.theme((
     color: mat.$violet-palette,
     typography: Roboto,
     density: 0
   ));
+}
+
+// --- Color Scheme Control & Base Styles ---
+html { // Setting on html or :root is fine
+  // Default: Let the browser choose light/dark based on system preference.
+  // Material components & Tailwind's media query variant will react to this.
+  color-scheme: light dark;
+
+  // Apply base background/text colors (Tailwind handles dark via variants).
+  // Add transitions for smoother switching.
+  @apply bg-white text-gray-800 transition-colors duration-200 ease-in-out;
+}
+
+// Force light mode when .light class is present on an ancestor (e.g., body)
+// Use :where to keep specificity low, preventing conflicts.
+:where(html.light, body.light, .light) {
+  color-scheme: light;
+  // Ensure light background/text if overriding system dark mode
+  @apply bg-white text-gray-800;
+}
+
+// Force dark mode when .dark class is present on an ancestor (e.g., body)
+// Use :where to keep specificity low.
+:where(html.dark, body.dark, .dark) {
+  color-scheme: dark;
+  // Apply dark background/text (complements Tailwind's dark: variants)
+  @apply bg-gray-900 text-gray-200;
+}
+
+// Other global styles can go here
+body {
+  // Ensure body takes full height if needed, etc.
+  @apply min-h-screen m-0; // Added margin reset
 }

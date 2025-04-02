@@ -2,7 +2,7 @@ import * as typography from '@tailwindcss/typography';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 export const RXAP_TAILWIND_CONFIG = {
-  darkMode: 'class',
+  darkMode: 'selector',
   theme: {
     fontFamily: {
       ...fontFamily,

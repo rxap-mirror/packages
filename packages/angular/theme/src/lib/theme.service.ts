@@ -23,6 +23,7 @@ import {
   ColorPalette,
   ComputeColorPalette,
 } from './compute-color-palette';
+import { ThemeModeService } from './theme-mode.service';
 
 export interface ColorPaletteConfigWithName extends ColorPaletteConfig {
   name?: string;
@@ -48,39 +49,25 @@ export class ThemeService {
   public readonly config = inject(ConfigService);
   public readonly pubSub = inject(PubSubService);
 
-  public readonly darkMode: WritableSignal<boolean>;
+  public readonly themeModeService = inject(ThemeModeService);
+
+  public readonly darkMode = this.themeModeService.darkMode;
   public readonly themeName: WritableSignal<string>;
   public readonly density: WritableSignal<ThemeDensity>;
   public readonly typography: WritableSignal<string>;
 
-  protected readonly darkModeMediaQuery: MediaQueryList;
-
   protected syncSubscription?: Subscription;
 
   constructor(private readonly mediaMatcher: MediaMatcher) {
-    this.darkModeMediaQuery = this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)');
-    this.darkMode = signal(this.darkModeMediaQuery.matches);
     this.themeName = signal(this.getTheme());
     this.density = signal(this.getDensity());
     this.typography = signal(this.getTypography());
-    this.darkModeMediaQuery.addEventListener('change', (event) => {
-      this.setDarkTheme(event.matches, true);
-    });
   }
 
   public restore() {
     if (isDevMode()) {
       console.log('Restore theme settings from local storage');
     }
-    // region restore dark mode
-    let darkMode = this.restoreDarkMode();
-    // if the dark/light mode is not restored from the local storage
-    if (darkMode === null) {
-      // set the dark mode based on the media query
-      darkMode = this.darkModeMediaQuery.matches;
-      this.setDarkTheme(darkMode, true);
-    }
-    // endregion
 
     this.restoreThemeName();
     this.restoreDensity();
@@ -112,18 +99,6 @@ export class ThemeService {
       isDefined(),
       tap(data => this.setTypography(data, false, false))
     ).subscribe());
-    this.syncSubscription.add(this.pubSub.subscribe<boolean>(RXAP_TOPICS.theme.darkMode.restore).pipe(
-      debounceTime(1000),
-      map(event => event.data),
-      isDefined(),
-      tap(data => this.setDarkTheme(data, false, false))
-    ).subscribe());
-  }
-
-  private get darkModeLocalStorageKey() {
-    return (
-             window as any
-           )?.['__rxap__']?.['ngx']?.['theme']?.['darkMode']?.['key'] ?? `rxap-dark-mode`;
   }
 
   private get themeNameLocalStorageKey() {
@@ -145,21 +120,6 @@ export class ThemeService {
   }
 
   // region restore
-
-  public restoreDarkMode() {
-    let darkMode: boolean | null = null;
-    const darkModeCached = localStorage.getItem(this.darkModeLocalStorageKey);
-    if (darkModeCached === 'true') {
-      darkMode = true;
-    }
-    if (darkModeCached === 'false') {
-      darkMode = false;
-    }
-    if (darkMode !== null) {
-      this.setDarkTheme(darkMode, true);
-    }
-    return darkMode;
-  }
 
   public restoreThemeName() {
     const themeName = localStorage.getItem(this.themeNameLocalStorageKey);
@@ -192,22 +152,13 @@ export class ThemeService {
   // endregion
 
   public toggleDarkTheme(): void {
-    this.setDarkTheme(!this.darkMode());
+    this.themeModeService.toggleTheme();
   }
 
   // region set theme configuration state
 
   public setDarkTheme(darkMode: boolean, silent = false, publish = true): void {
-    this.applyDarkMode(darkMode);
-    if (this.darkMode() !== darkMode) {
-      this.darkMode.set(darkMode);
-      if (!silent) {
-        localStorage.setItem(this.darkModeLocalStorageKey, String(darkMode));
-        if (publish) {
-          this.pubSub.publish(RXAP_TOPICS.theme.darkMode.changed, darkMode);
-        }
-      }
-    }
+    this.themeModeService.setTheme(darkMode ? 'dark' : 'light', publish);
   }
 
   public setDensity(density: ThemeDensity, silent = false, publish = true): void {
@@ -254,22 +205,6 @@ export class ThemeService {
   // endregion
 
   // region apply theme configuration state
-
-  public applyDarkMode(darkMode: boolean): void {
-    if (darkMode) {
-      // region deprecated
-      document.body.classList.add('dark-theme');
-      localStorage.removeItem('rxap-light-theme');
-      // endregion
-      document.body.classList.add('dark');
-    } else {
-      // region deprecated
-      document.body.classList.remove('dark-theme');
-      localStorage.setItem('rxap-light-theme', 'true');
-      // endregion
-      document.body.classList.remove('dark');
-    }
-  }
 
   public applyDensity(density: ThemeDensity): void {
     document.body.classList.remove('density-0', 'density-1', 'density-2', 'density-3');
