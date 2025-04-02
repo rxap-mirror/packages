@@ -108,6 +108,15 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
   return null;
 }
 
+/**
+ * Finds a project configuration by its path within a given tree structure.
+ * The search can be performed recursively if specified.
+ *
+ * @param {Tree} tree - The tree-like structure to search within.
+ * @param {string} projectPath - The path of the project to search for.
+ * @param {boolean} [recursive=false] - Whether to search recursively. Defaults to `false`.
+ * @return {ProjectJson | null} The project configuration if found, otherwise `null`.
+ */
 export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath: string, recursive = false): ProjectJson | null {
   if (IsGeneratorTreeLike(tree)) {
     const projects = getProjects(tree);
