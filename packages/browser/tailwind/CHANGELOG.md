@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@1.0.13-dev.0...@rxap/browser-tailwind@1.1.0-dev.0) (2025-04-02)
+
+### Features
+
+- **theme:** implement theme mode service for dynamic light/dark mode switching ([702a6db](https://gitlab.com/rxap/packages/commit/702a6db291f352ece63c937e7540a5a74469ff84))
+
 ## [1.0.13-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@1.0.12...@rxap/browser-tailwind@1.0.13-dev.0) (2025-03-12)
 
 ### Reverts

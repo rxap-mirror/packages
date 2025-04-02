@@ -1,5 +1,5 @@
 {
-  "version": "1.0.13-dev.0",
+  "version": "1.1.0-dev.0",
   "name": "@rxap/browser-tailwind",
   "description": "Provides a Tailwind CSS configuration with RXAP-specific theme extensions, including custom color palettes and font families. It also includes an init generator that adds missing peer dependencies to the project's package.json and runs init generators for those dependencies.\n",
   "license": "GPL-3.0-or-later",

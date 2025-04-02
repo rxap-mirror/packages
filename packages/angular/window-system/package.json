@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4-dev.0",
+  "version": "19.0.4-dev.1",
   "name": "@rxap/window-system",
   "description": "A module for creating and managing windows within an Angular application. It provides components for window containers, toolbars, resizers, action bars, and task bars, along with services for managing window instances and configurations. This library allows developers to create a desktop-like experience within their web applications.\n",
   "license": "GPL-3.0-or-later",

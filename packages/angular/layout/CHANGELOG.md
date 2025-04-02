@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.4-dev.2...@rxap/layout@19.0.4-dev.3) (2025-04-02)
+
+### Bug Fixes
+
+- **layout:** ensure sidenav collapsable style applies correctly ([82c61b0](https://gitlab.com/rxap/packages/commit/82c61b0b3131454521fa343524128323d825741f))
+
 ## [19.0.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.4-dev.1...@rxap/layout@19.0.4-dev.2) (2025-03-26)
 
 **Note:** Version bump only for package @rxap/layout

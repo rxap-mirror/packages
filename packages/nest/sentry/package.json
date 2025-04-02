@@ -1,19 +1,19 @@
 {
-  "version": "10.5.5-dev.2",
+  "version": "10.5.5-dev.3",
   "name": "@rxap/nest-sentry",
   "description": "This package provides a Sentry integration for NestJS applications. It includes a logger, interceptor, and module to simplify error tracking and performance monitoring with Sentry. It offers configurable options for setting up Sentry in your NestJS application.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
     "@rxap/ts-morph": "^1.5.5-dev.0",
-    "@rxap/workspace-utilities": "^19.8.0-dev.2",
+    "@rxap/workspace-utilities": "^19.8.0-dev.3",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.3.8",
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.3.8",
-    "@rxap/nest-logger": "^10.3.5-dev.2",
+    "@rxap/nest-logger": "^10.3.5-dev.3",
     "@rxap/nest-utilities": "^10.4.3-dev.0",
     "@sentry/core": "^8.18.0",
     "@sentry/nestjs": "^8.18.0",
@@ -80,7 +80,7 @@
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.3.5-dev.2"
+        "version": "10.3.5-dev.3"
       },
       {
         "package": "@rxap/nest-utilities",
