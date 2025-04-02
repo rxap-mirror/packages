@@ -9,6 +9,7 @@ import {
   WindowService,
 } from '@rxap/window-system';
 import { LargeWindowComponent } from './large-window/large-window.component';
+import { SmallWindowComponent } from './small-window/small-window.component';
 
 @Component({
     selector: 'rxap-window-demo',
@@ -25,6 +26,13 @@ export class WindowDemoComponent {
       component: LargeWindowComponent,
     });
   }
+
+  openWindow() {
+    this.windowService.open({
+      component: SmallWindowComponent,
+    });
+  }
+
 }
 
 export default WindowDemoComponent;

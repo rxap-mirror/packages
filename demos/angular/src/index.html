@@ -77,19 +77,5 @@
     </div>
 </rxap-root>
 <noscript>Please enable JavaScript to continue using this application.</noscript>
-<script>
-    if (
-      localStorage.getItem('rxap-dark-mode') === 'true' ||
-      (
-        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      )
-    ) {
-        document.body.classList.add(
-          'dark-theme',
-          'dark',
-          'dark-mode',
-        );
-    }
-</script>
 </body>
 </html>
