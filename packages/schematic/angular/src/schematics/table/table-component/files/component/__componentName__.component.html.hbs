@@ -301,6 +301,7 @@
       <mat-card-footer>
         <mat-paginator
           [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          class="m-4"
           rxapPersistent
           [pageSizeOptions]="[5,10,25,50,100]"
           [pageSize]="10"
