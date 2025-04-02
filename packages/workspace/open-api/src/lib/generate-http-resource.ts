@@ -43,7 +43,7 @@ export function GenerateHttpResource(
     },
     {
       moduleSpecifier: '@angular/common/http',
-      namedImports: [{ name: 'HttpContext' }, { name: 'httpResource' }],
+      namedImports: [{ name: 'HttpResourceRef' }, { name: 'HttpContext' }, { name: 'httpResource' }, { name: 'HttpResourceOptions' }],
     },
   ];
 
@@ -122,7 +122,7 @@ export function GenerateHttpResource(
 
   httpOptions[
     'context'
-  ] = `new HttpContext().set(OPEN_API_OPERATION_ID, '${parameter.operationId}').set(OPEN_API_SERVER_ID, '${parameter.options.serverId}')`;
+    ] = `new HttpContext().set(OPEN_API_OPERATION_ID, '${parameter.operationId}').set(OPEN_API_SERVER_ID, '${parameter.options.serverId}')`;
   httpOptions['withCredentials'] = 'true';
 
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [];
@@ -141,25 +141,47 @@ export function GenerateHttpResource(
         initializer: parameter.parameters?.some(
           (p) => !IsRefSchemaObject(p) && p.required
         )
-          ? undefined
-          : '{}',
+                     ? undefined
+                     : '{}',
       });
     }
   }
 
+  const optionsParameter = {
+    name: 'options',
+    type: `HttpResourceOptions<${responseType}, unknown>`,
+    hasQuestionToken: true,
+  };
+  const optionsParameterNoInfer = {
+    name: 'options',
+    type: `HttpResourceOptions<${responseType}, unknown> & { defaultValue: NoInfer<${responseType}> }`,
+  };
+
   sourceFile.addFunction({
     isExported: true,
     name: camelize([parameter.operationId, 'http-resource'].join('_')),
-    parameters,
+    parameters: [ ...parameters, optionsParameter ],
     statements: [
       `return httpResource<${responseType}>(`,
       (w) => {
         w.write('() => (');
         Writers.object(httpOptions)(w);
-        w.write(')');
+        w.write('),');
+        w.writeLine('options');
       },
       `);`,
     ],
+    returnType: `HttpResourceRef<${responseType} | undefined>`,
+    overloads: [
+      {
+        parameters: [ ...parameters.map(p => ({ ...p, initializer: undefined })), optionsParameterNoInfer ],
+        returnType: `HttpResourceRef<${responseType}>`,
+      },
+      {
+        parameters: [ ...parameters.map(p => ({ ...p, initializer: undefined, hasQuestionToken: !!p.initializer })), optionsParameter ],
+        returnType: `HttpResourceRef<${responseType} | undefined>`,
+      }
+    ]
   });
 
   sourceFile.addImportDeclarations(importStructures);
