@@ -13,10 +13,10 @@ import {
   RxapTableDataSourceError,
   SortLike,
 } from '@rxap/data-source/table';
-import { Required } from '@rxap/utilities';
 import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import { BaseDataSourceViewer } from '@rxap/data-source';
+import { Observable } from 'rxjs';
 
 @Directive({
   selector: '[rxapTableDataSource]',
@@ -30,6 +30,9 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
 
   @Input('rxapTableDataSourceSort')
   public sort!: SortLike;
+
+  @Input('rxapTableDataSourceParameters')
+  public parameters!: Observable<Record<string, any>>;
 
   @Input('rxapTableDataSourceFilter')
   public filter!: FilterLike;
@@ -53,6 +56,7 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
         dataSource.setPaginator(this.paginator, this.viewer.id);
         dataSource.setSort(this.sort, this.viewer.id);
         dataSource.setFilter(this.filter, this.viewer.id);
+        dataSource.setParameters(this.parameters, this.viewer.id);
       } else {
         if (dataSource.paginator !== this.paginator) {
           dataSource.paginator = this.paginator;
@@ -62,6 +66,9 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
         }
         if (dataSource.filter !== this.filter) {
           dataSource.filter = this.filter;
+        }
+        if (dataSource.parameters !== this.parameters) {
+          dataSource.parameters = this.parameters;
         }
       }
     }
