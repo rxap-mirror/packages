@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.0-dev.3...@rxap/workspace-open-api@19.1.0-dev.4) (2025-04-02)
+
+### Features
+
+- **http-resource:** add support for typed options and overloads ([b00bd5d](https://gitlab.com/rxap/packages/commit/b00bd5d4b9a9a25f3dd54e2aa77d544e8412bc99))
+
 # [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.0-dev.2...@rxap/workspace-open-api@19.1.0-dev.3) (2025-04-02)
 
 **Note:** Version bump only for package @rxap/workspace-open-api
