@@ -116,6 +116,7 @@ export function withHeaderComponents(components: Array<ComponentType<unknown>>):
     {
       provide: RXAP_HEADER_COMPONENT,
       useValue: component,
+      multi: true,
     }
   ));
 }
@@ -133,6 +134,7 @@ export function withDefaultHeaderComponent(): Provider {
   return {
     provide: RXAP_HEADER_COMPONENT,
     useValue: DefaultHeaderComponent,
+    multi: true,
   };
 }
 
