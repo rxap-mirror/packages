@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.1.1-dev.4...@rxap/plugin-workspace@20.1.1-dev.5) (2025-04-04)
+
+### Bug Fixes
+
+- **docker-compose:** prevent adding HostRegexp label for standalone frontends ([04e7ed9](https://gitlab.com/rxap/packages/commit/04e7ed9dcbe76766fa725491ca2270d6dc74ce21))
+
 ## [20.1.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.1.1-dev.3...@rxap/plugin-workspace@20.1.1-dev.4) (2025-04-04)
 
 ### Bug Fixes
