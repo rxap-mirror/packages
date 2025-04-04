@@ -80,7 +80,7 @@ function createFrontendDockerCompose(
           labels.push(`traefik.http.routers.${ name }.rule=PathPrefix(\`/__mfe/latest/${ name }\`)`);
           labels.push(`traefik.http.routers.${name}.middlewares=strip-mfe-prefix@file`);
         }
-      } else {
+      } else if (!tags?.includes('standalone')) {
         labels.push(`traefik.http.routers.${ name }.rule=HostRegexp(\`^${host}.+$\`)`);
       }
       if (options.middlewares?.length) {
