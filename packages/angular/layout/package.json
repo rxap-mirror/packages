@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4-dev.3",
+  "version": "19.0.4-dev.4",
   "name": "@rxap/layout",
   "description": "This library provides a set of Angular components and services for creating consistent and configurable application layouts, including headers, footers, side navigation, and content areas. It offers features such as dynamic navigation, external application integration, and customizable themes. The library also includes directives for extending header and footer areas with custom content.\n",
   "license": "GPL-3.0-or-later",
