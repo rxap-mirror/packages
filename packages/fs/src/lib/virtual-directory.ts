@@ -123,7 +123,16 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     throw new Error(`'${ name }' is not a directory`);
   }
 
-  public findFile(path: string, mimetype?: string): VirtualFile {
+  public findFile(match: (file: VirtualFile) => boolean, mimetype?: string): VirtualFile;
+  public findFile(path: string, mimetype?: string): VirtualFile;
+  public findFile(pathOrMatch: string | ((file: VirtualFile) => boolean), mimetype?: string): VirtualFile {
+    if (typeof pathOrMatch === 'string') {
+      return this._findFileByPath(pathOrMatch, mimetype);
+    }
+    return this._findFileByMatch(pathOrMatch);
+  }
+
+  private _findFileByPath(path: string, mimetype?: string): VirtualFile {
     if (path.startsWith('/')) {
       path = path.substring(1);
     }
@@ -142,6 +151,15 @@ export class VirtualDirectory implements VirtualDirectoryLike {
       directory = directory.directory(fragment);
     }
     throw new Error(`The file '${ path }' does not exist`);
+  }
+
+  private _findFileByMatch(match: (file: VirtualFile) => boolean): VirtualFile {
+    for (const child of this.flatten()) {
+      if (match(child)) {
+        return child;
+      }
+    }
+    throw new Error(`Match function does not match any file`);
   }
 
   public flatten(): VirtualFile[] {
