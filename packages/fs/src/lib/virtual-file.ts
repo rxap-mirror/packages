@@ -11,6 +11,10 @@ export interface VirtualFileLike {
 
 export class VirtualFile implements VirtualFileLike {
 
+  static EMPTY(name: string, fullName: string, mimetype?: string,) {
+    return new VirtualFile(name, fullName, new ArrayBuffer(0), mimetype);
+  }
+
   private _textContent: string | null = null;
   private _blob: Blob | null = null;
 
