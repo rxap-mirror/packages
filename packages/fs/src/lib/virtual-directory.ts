@@ -93,10 +93,6 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     this.children.set(name, directory);
   }
 
-  public hasFile(name: string) {
-    return this.children.has(name) && this.children.get(name) instanceof VirtualFile;
-  }
-
   public hasDirectory(name: string) {
     return this.children.has(name) && this.children.get(name) instanceof VirtualDirectory;
   }
@@ -160,6 +156,23 @@ export class VirtualDirectory implements VirtualDirectoryLike {
       }
     }
     throw new Error(`Match function does not match any file`);
+  }
+
+  public hasFile(match: (file: VirtualFile) => boolean): boolean;
+  public hasFile(path: string): boolean;
+  public hasFile(pathOrMatch: string | ((file: VirtualFile) => boolean)): boolean {
+    if (typeof pathOrMatch === 'string') {
+      return this.hasFileByPath(pathOrMatch);
+    }
+    return this.hasFileByMatch(pathOrMatch);
+  }
+
+  protected hasFileByPath(name: string): boolean {
+    return this.children.has(name) && this.children.get(name) instanceof VirtualFile;
+  }
+
+  protected hasFileByMatch(match: (file: VirtualFile) => boolean): boolean {
+    return Array.from(this.children.values()).filter(file => file instanceof VirtualFile).some(file => match(file));
   }
 
   public flatten(): VirtualFile[] {
