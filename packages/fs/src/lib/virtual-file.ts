@@ -10,6 +10,9 @@ export interface VirtualFileLike {
   getContent(mimetype?: string): Promise<string | Blob>;
 
   setMimeType?(mimetype: string): void;
+
+  clone?(name: string, fullName?: string, deep?: boolean): VirtualFileLike;
+  toFile?(useFullName?: boolean): File;
 }
 
 export class VirtualFile implements VirtualFileLike {
