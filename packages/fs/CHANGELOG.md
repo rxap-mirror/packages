@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.2...@rxap/fs@1.1.0-dev.3) (2025-04-08)
+
+### Features
+
+- **fs:** add clone and toFile methods to VirtualFileLike interface ([fc55b70](https://gitlab.com/rxap/packages/commit/fc55b7031b6e8295c555cd4caf67f0baf7a92570))
+
 # [1.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.1...@rxap/fs@1.1.0-dev.2) (2025-04-08)
 
 **Note:** Version bump only for package @rxap/fs
