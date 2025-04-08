@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.3...@rxap/fs@1.1.0-dev.4) (2025-04-08)
+
+### Features
+
+- **fs:** support async file conversion in toFile method ([4b2437c](https://gitlab.com/rxap/packages/commit/4b2437cd484b9ecc43c3bad9de7cb0b1d81b90c2))
+
 # [1.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.2...@rxap/fs@1.1.0-dev.3) (2025-04-08)
 
 ### Features
