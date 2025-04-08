@@ -20,31 +20,31 @@ export interface FullVirtualDirectoryLike extends VirtualDirectoryLike {
 
 }
 
-export function isNotVirtualDirectory(value: VirtualDirectory | VirtualFileLike | undefined): value is VirtualFileLike {
+export function isNotVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectory<VF> | VF | undefined): value is VF {
   return !!value && !(value instanceof VirtualDirectory);
 }
 
-export function isVirtualDirectory(value: VirtualDirectory | VirtualFileLike | undefined): value is VirtualDirectory {
+export function isVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectory<VF> | VF | undefined): value is VirtualDirectory<VF> {
   return !!value && value instanceof VirtualDirectory;
 }
 
-export class VirtualDirectory implements VirtualDirectoryLike {
+export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> implements VirtualDirectoryLike {
 
   constructor(
     public name: string,
     public readonly fullName: string,
-    protected readonly children = new Map<string, VirtualFileLike | VirtualDirectory>(),
+    protected readonly children = new Map<string, VF | VirtualDirectory<VF>>(),
   ) {}
 
   get childrenNames() {
     return Array.from(this.children.keys());
   }
 
-  static CreateRoot() {
-    return new VirtualDirectory('root', '');
+  static CreateRoot<VF extends VirtualFileLike = VirtualFileLike>() {
+    return new VirtualDirectory<VF>('root', '');
   }
 
-  forEachFile(callback: (file: VirtualFileLike) => void): void {
+  forEachFile(callback: (file: VF) => void): void {
     for (const child of this.children.values()) {
       if (isVirtualDirectory(child)) {
         child.forEachFile(callback);
@@ -54,7 +54,7 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     }
   }
 
-  addFile(file: VirtualFileLike, force = false) {
+  addFile(file: VF, force = false) {
     let path = file.fullName ?? file.name;
     path = path.startsWith('/') ? path.substring(1) : path;
 
@@ -67,7 +67,7 @@ export class VirtualDirectory implements VirtualDirectoryLike {
       throw new Error(`The file name '${ file.name }' does not match the file name in the path '${ fileName }'`);
     }
     // eslint-disable-next-line @typescript-eslint/no-this-alias
-    let directory: VirtualDirectory = this;
+    let directory: VirtualDirectory<VF> = this;
     while (fragments.length) {
 
       const fragment = fragments.shift();
@@ -78,7 +78,7 @@ export class VirtualDirectory implements VirtualDirectoryLike {
       if (directory.hasDirectory(fragment)) {
         directory = directory.directory(fragment);
       } else {
-        const child = new VirtualDirectory(fragment, `${ directory.fullName }/${ fragment }`);
+        const child = new VirtualDirectory<VF>(fragment, `${ directory.fullName }/${ fragment }`);
         directory.children.set(fragment, child);
         directory = child;
       }
@@ -90,11 +90,11 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     directory.setFile(file.name, file);
   }
 
-  public setFile(name: string, file: VirtualFileLike) {
+  public setFile(name: string, file: VF) {
     this.children.set(name, file);
   }
 
-  public setDirectory(name: string, directory: VirtualDirectory) {
+  public setDirectory(name: string, directory: VirtualDirectory<VF>) {
     this.children.set(name, directory);
   }
 
@@ -124,22 +124,22 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     throw new Error(`'${ name }' is not a directory`);
   }
 
-  public findFile(match: (file: VirtualFileLike) => boolean, mimetype?: string): VirtualFileLike;
-  public findFile(path: string, mimetype?: string): VirtualFileLike;
-  public findFile(pathOrMatch: string | ((file: VirtualFileLike) => boolean), mimetype?: string): VirtualFileLike {
+  public findFile(match: (file: VF) => boolean, mimetype?: string): VF;
+  public findFile(path: string, mimetype?: string): VF;
+  public findFile(pathOrMatch: string | ((file: VF) => boolean), mimetype?: string): VF {
     if (typeof pathOrMatch === 'string') {
       return this.findFileByPath(pathOrMatch, mimetype);
     }
     return this.findFileByMatch(pathOrMatch);
   }
 
-  protected findFileByPath(path: string, mimetype?: string): VirtualFileLike {
+  protected findFileByPath(path: string, mimetype?: string): VF {
     if (path.startsWith('/')) {
       path = path.substring(1);
     }
     const fragments = path.split('/');
     // eslint-disable-next-line @typescript-eslint/no-this-alias
-    let directory: VirtualDirectory = this;
+    let directory: VirtualDirectory<VF> = this;
     for (let i = 0; i < fragments.length; i++) {
       const fragment = fragments[i];
       if (i === fragments.length - 1) {
@@ -154,7 +154,7 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     throw new Error(`The file '${ path }' does not exist`);
   }
 
-  protected findFileByMatch(match: (file: VirtualFileLike) => boolean): VirtualFileLike {
+  protected findFileByMatch(match: (file: VF) => boolean): VF {
     for (const child of this.flatten()) {
       if (match(child)) {
         return child;
@@ -163,9 +163,9 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     throw new Error(`Match function does not match any file`);
   }
 
-  public hasFile(match: (file: VirtualFileLike) => boolean): boolean;
+  public hasFile(match: (file: VF) => boolean): boolean;
   public hasFile(path: string): boolean;
-  public hasFile(pathOrMatch: string | ((file: VirtualFileLike) => boolean)): boolean {
+  public hasFile(pathOrMatch: string | ((file: VF) => boolean)): boolean {
     if (typeof pathOrMatch === 'string') {
       return this.hasFileByPath(pathOrMatch);
     }
@@ -176,12 +176,12 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     return this.children.has(name) && isNotVirtualDirectory(this.children.get(name));
   }
 
-  protected hasFileByMatch(match: (file: VirtualFileLike) => boolean): boolean {
+  protected hasFileByMatch(match: (file: VF) => boolean): boolean {
     return Array.from(this.children.values()).filter(file => isNotVirtualDirectory(file)).some(file => match(file));
   }
 
-  public flatten(): VirtualFileLike[] {
-    const files: VirtualFileLike[] = [];
+  public flatten(): VF[] {
+    const files: VF[] = [];
     for (const child of this.children.values()) {
       if (isVirtualDirectory(child)) {
         files.push(...child.flatten());
@@ -204,7 +204,7 @@ export class VirtualDirectory implements VirtualDirectoryLike {
     return json;
   }
 
-  addDirectory(virtualDirectory: VirtualDirectory) {
+  addDirectory(virtualDirectory: VirtualDirectory<VF>) {
     this.children.set(virtualDirectory.name, virtualDirectory);
   }
 }
