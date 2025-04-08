@@ -12,7 +12,7 @@ export interface VirtualFileLike {
   setMimeType?(mimetype: string): void;
 
   clone?(name: string, fullName?: string, deep?: boolean): VirtualFileLike;
-  toFile?(useFullName?: boolean): File;
+  toFile?(useFullName?: boolean): File | Promise<File>;
 }
 
 export class VirtualFile implements VirtualFileLike {
