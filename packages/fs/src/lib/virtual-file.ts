@@ -1,5 +1,6 @@
 export interface VirtualFileLike {
   readonly name: string;
+  readonly fullName?: string;
   mimetype?: string;
   get data(): ArrayBuffer | Promise<ArrayBuffer>;
 
@@ -7,6 +8,8 @@ export interface VirtualFileLike {
   getContent(mimetype: 'application/json'): Promise<string>;
   getContent(mimetype: 'application/rdf+xml'): Promise<string>;
   getContent(mimetype?: string): Promise<string | Blob>;
+
+  setMimeType?(mimetype: string): void;
 }
 
 export class VirtualFile implements VirtualFileLike {
