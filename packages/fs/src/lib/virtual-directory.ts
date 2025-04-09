@@ -18,6 +18,18 @@ export interface FullVirtualDirectoryLike extends VirtualDirectoryLike {
 
   toJSON(): Record<string, unknown>;
 
+  addFile(file: VirtualFileLike, force?: boolean): void;
+
+  setFile(name: string, file: VirtualFileLike): void;
+
+  setDirectory(name: string, directory: FullVirtualDirectoryLike): void;
+
+  hasDirectory(name: string): boolean;
+
+  hasFile(match: (file: VirtualFileLike) => boolean): boolean;
+  hasFile(path: string): boolean;
+  hasFile(pathOrMatch: string | ((file: VirtualFileLike) => boolean)): boolean;
+
 }
 
 export function isNotVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectory<VF> | VF | undefined): value is VF {
