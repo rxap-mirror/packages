@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.4...@rxap/fs@1.1.0-dev.5) (2025-04-09)
+
+### Features
+
+- **fs:** add file and directory manipulation methods to virtual-directory ([f79d035](https://gitlab.com/rxap/packages/commit/f79d035d49f3166e46c622503e929974e628cb7f))
+
 # [1.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.3...@rxap/fs@1.1.0-dev.4) (2025-04-08)
 
 ### Features
