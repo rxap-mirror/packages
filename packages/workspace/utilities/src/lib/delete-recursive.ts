@@ -1,6 +1,7 @@
 import { join } from 'path';
 import {
   DirEntryLike,
+  IsFsTreeLike,
   IsGeneratorTreeLike,
   IsSchematicTreeLike,
   TreeLike,
@@ -33,7 +34,7 @@ export function DeleteRecursive(tree: TreeLike, path: string | DirEntryLike) {
     for (const subFile of dir.subfiles) {
       tree.delete(join(dir.path, subFile));
     }
-  } else if (IsGeneratorTreeLike(tree)) {
+  } else if (IsGeneratorTreeLike(tree) || IsFsTreeLike(tree)) {
     if (typeof path !== 'string') {
       throw new Error('GeneratorTreeLike requires path to be a string');
     }

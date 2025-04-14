@@ -2,6 +2,7 @@ import { join } from 'path';
 import {
   DirEntryLike,
   FileEntryLike,
+  IsFsTreeLike,
   IsGeneratorTreeLike,
   IsSchematicTreeLike,
   IsTreeLike,
@@ -40,7 +41,7 @@ export function* SearchFile(dirOrTree: DirEntryLike | TreeLike, path?: string, i
   let dir: DirEntryLike;
 
   if (IsTreeLike(dirOrTree)) {
-    if (IsGeneratorTreeLike(dirOrTree)) {
+    if (IsGeneratorTreeLike(dirOrTree) || IsFsTreeLike(dirOrTree)) {
 
       path ??= '';
 
@@ -77,7 +78,7 @@ export function* SearchFile(dirOrTree: DirEntryLike | TreeLike, path?: string, i
     } else if (IsSchematicTreeLike(dirOrTree)) {
       dir = dirOrTree.getDir(path ?? dirOrTree.root.path);
     } else {
-      throw new Error('Unknown tree type');
+      throw new Error('Unknown tree type: ' + { generator: IsGeneratorTreeLike(dirOrTree), fs: IsFsTreeLike(dirOrTree), schematic: IsSchematicTreeLike(dirOrTree) });
     }
   } else {
     dir = dirOrTree;

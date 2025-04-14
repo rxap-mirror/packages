@@ -10,6 +10,7 @@ import {
   stringify,
 } from 'yaml';
 import {
+  IsFsTreeLike,
   IsGeneratorTreeLike,
   IsSchematicTreeLike,
   TreeLike,
@@ -130,7 +131,7 @@ export function CoerceFilesStructure(tree: TreeLike,
         } else {
           tree.create(fullFilePath, readFileSync(file));
         }
-      } else if (IsGeneratorTreeLike(tree)) {
+      } else if (IsGeneratorTreeLike(tree) || IsFsTreeLike(tree)) {
         if (mergeFunction && tree.exists(fullFilePath)) {
           let content = tree.read(fullFilePath, 'utf-8')!;
           content = mergeFunction(content, readFileSync(file, 'utf-8'), file, filePath);

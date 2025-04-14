@@ -20,6 +20,7 @@ import {
 } from './json-file';
 import { PackageJson } from './package-json';
 import {
+  IsFsTreeLike,
   IsGeneratorTreeLike,
   IsJsonObject,
   IsSchematicTreeLike,
@@ -567,6 +568,8 @@ export function GetRootPackageJson(tree?: TreeLike): PackageJson {
       // Don't use the tree.root as this points to the root in the "real" file system, but to access the files
       // at the root of the FsTree the root path "/" must be used
       root = '/';
+    } else if(IsFsTreeLike(tree)) {
+      root = tree.root;
     } else {
       throw new Error('The tree is not a valid schematic or generator tree');
     }
