@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4-dev.4",
+  "version": "19.0.4-dev.5",
   "name": "@rxap/schematic-nestjs",
   "description": "This package provides schematics for NestJS projects. It includes schematics for generating CRUD services, microservices, health indicators, and other common NestJS features. It also provides utilities for working with TypeScript and NestJS code.\n",
   "license": "GPL-3.0-or-later",
@@ -7,11 +7,11 @@
     "@angular-devkit/core": "19.2.1",
     "@angular-devkit/schematics": "19.2.1",
     "@nx/devkit": "20.5.0",
-    "@rxap/schematics-ts-morph": "^19.1.0-dev.1",
-    "@rxap/schematics-utilities": "^19.0.4-dev.3",
+    "@rxap/schematics-ts-morph": "^19.1.0-dev.2",
+    "@rxap/schematics-utilities": "^19.0.4-dev.4",
     "@rxap/ts-morph": "^1.5.5-dev.0",
     "@rxap/utilities": "^16.4.4-dev.0",
-    "@rxap/workspace-utilities": "^19.8.0-dev.3",
+    "@rxap/workspace-utilities": "^19.8.0-dev.4",
     "ts-morph": "18.0.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"

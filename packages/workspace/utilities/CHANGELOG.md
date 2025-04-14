@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.8.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.8.0-dev.3...@rxap/workspace-utilities@19.8.0-dev.4) (2025-04-14)
+
+### Bug Fixes
+
+- **workspace:** add support for IsFsTreeLike in utilities ([8a7a964](https://gitlab.com/rxap/packages/commit/8a7a96461ab7f8446f7da9e55fde7651322b690a))
+
 # [19.8.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.8.0-dev.2...@rxap/workspace-utilities@19.8.0-dev.3) (2025-04-02)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

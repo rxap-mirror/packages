@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.1.1-dev.5...@rxap/plugin-workspace@20.1.1-dev.6) (2025-04-14)
+
+**Note:** Version bump only for package @rxap/plugin-workspace
+
 ## [20.1.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.1.1-dev.4...@rxap/plugin-workspace@20.1.1-dev.5) (2025-04-04)
 
 ### Bug Fixes
