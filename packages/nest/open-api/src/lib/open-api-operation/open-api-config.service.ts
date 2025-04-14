@@ -61,6 +61,28 @@ export class OpenApiConfigService {
     return [ ...specificInterceptor, ...defaultInterceptor ];
   }
 
+  addUpstreamInterceptor(interceptor: OpenApiUpstreamInterceptor): void {
+    const serverId = Reflect.getMetadata(OPEN_API_SERVER_ID_META_DATA_KEY, interceptor.constructor);
+
+    if (!serverId || typeof serverId !== 'string') {
+      throw new InternalServerErrorException(
+        'Ensure the OpenApiUpstreamInterceptor has the @OpenApiServerId decorator');
+    }
+
+    if (!this.upstreamInterceptor[serverId]) {
+      this.upstreamInterceptor[serverId] = [];
+    }
+
+    this.upstreamInterceptor[serverId].push(interceptor);
+  }
+
+  addServerConfig(config: OpenApiServerConfig): void {
+    if (this.serverConfig.some(sc => sc.id === config.id)) {
+      throw new Error(`Server config with id '${ config.id }' already exists`);
+    }
+    this.serverConfig.push(config);
+  }
+
   private createUpstreamInterceptorMap(upstreamInterceptor: OpenApiUpstreamInterceptor[]): Record<string, OpenApiUpstreamInterceptor[]> {
 
     const map: Record<string, OpenApiUpstreamInterceptor[]> = {};
