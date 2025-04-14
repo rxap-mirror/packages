@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.6.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.5.7-dev.0...@rxap/nest-open-api@10.6.0-dev.0) (2025-04-14)
+
+### Features
+
+- **open-api:** add methods for upstream interceptor and server config ([d34f0b8](https://gitlab.com/rxap/packages/commit/d34f0b8d0e702305b4f7280027086b3833e2c319))
+
 ## [10.5.7-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.5.6...@rxap/nest-open-api@10.5.7-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/nest-open-api
