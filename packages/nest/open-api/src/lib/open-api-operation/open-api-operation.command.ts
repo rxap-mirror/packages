@@ -339,11 +339,13 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
       }
     }
     if (!accept.length) {
-      console.warn('No content type found for the request body! Omitting the body!');
+      if (requestBody) {
+        this.logger.verbose('No content type found for the request body, BUT a requestBody parameter is passed to the command! Omitting the body!', this.constructor.name);
+      }
       return [ undefined, undefined ];
     }
     if (accept.length > 1) {
-      console.warn('Multiple content types found for the request body! Using the first one!');
+      this.logger.warn('Multiple content types found for the request body! Using the first one!', this.constructor.name);
     }
     const contentType = accept[0];
     switch (contentType) {
