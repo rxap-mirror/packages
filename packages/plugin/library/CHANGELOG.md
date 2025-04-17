@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.2.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.2.1-dev.4...@rxap/plugin-library@20.2.1-dev.5) (2025-04-17)
+
+### Bug Fixes
+
+- support non base tsconfig workspaces ([f7fa71d](https://gitlab.com/rxap/packages/commit/f7fa71d850b7e5b6e74f456d484f38324964f1d4))
+
 ## [20.2.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@20.2.1-dev.3...@rxap/plugin-library@20.2.1-dev.4) (2025-04-14)
 
 **Note:** Version bump only for package @rxap/plugin-library
