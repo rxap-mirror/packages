@@ -14,7 +14,7 @@ export function syncProjectNameWithTsConfigPaths(tree: Tree, projectName: string
     paths[GetLibraryPathAliasName(tree, projectName)] = [
       `${GetProjectSourceRoot(tree, projectName)}/index.ts`,
     ];
-  }, { infix: 'base' });
+  }, { infix: tree.exists('tsconfig.base.json') ? 'base' : undefined });
 
 
 }

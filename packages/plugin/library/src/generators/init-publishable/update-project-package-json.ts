@@ -81,5 +81,5 @@ function updatePathsAliasInBaseTsConfig(
       delete tsConfig.compilerOptions.paths[currentPackageJsonName];
       tsConfig.compilerOptions.paths[newPackageJsonName] = aliasList;
     }
-  }, { infix: 'base' });
+  }, { infix: tree.exists('tsconfig.base.json') ? 'base' : undefined });
 }
