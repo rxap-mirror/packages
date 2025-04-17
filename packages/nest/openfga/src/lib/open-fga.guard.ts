@@ -116,7 +116,7 @@ export class OpenFgaGuard implements CanActivate {
     );
 
     if (!fgaChecks?.length) {
-      this.logger.debug(`Route does not require any fga checks`, 'FgaGuard');
+      this.logger.verbose(`Route does not require any fga checks`, 'FgaGuard');
       return true;
     }
     this.logger.debug(
