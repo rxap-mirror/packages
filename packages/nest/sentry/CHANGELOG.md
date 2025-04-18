@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.5.5-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.5-dev.4...@rxap/nest-sentry@10.5.5-dev.5) (2025-04-18)
+
+### Bug Fixes
+
+- support sentry config defaults ([02ca841](https://gitlab.com/rxap/packages/commit/02ca841afd06b01e952fb7cf1b8cfa2ccd3c54fc))
+
 ## [10.5.5-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.5-dev.3...@rxap/nest-sentry@10.5.5-dev.4) (2025-04-14)
 
 **Note:** Version bump only for package @rxap/nest-sentry
