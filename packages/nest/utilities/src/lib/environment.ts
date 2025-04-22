@@ -38,6 +38,11 @@ export interface Environment {
   sentry?: {
     enabled?: boolean,
     debug?: boolean,
+    dsn?: string,
+    environment?: string,
+    release?: string,
+    serverName?: string,
+    [key: string]: any;
   },
   swagger?: boolean;
 
