@@ -15,37 +15,30 @@ export function sentryValidationSchema(
   environment: Environment,
   {
     debug = environment.sentry?.debug ?? false,
-    serverName = process.env['ROOT_DOMAIN'] ?? environment.app,
-    release,
-    environment: environmentName,
+    serverName = environment.sentry?.serverName ?? process.env['ROOT_DOMAIN'] ?? environment.app,
+    release = environment.sentry?.release,
+    environment: environmentName = environment.sentry?.environment,
     enabled = environment.sentry?.enabled ?? false,
-    dsn
+    dsn = environment.sentry?.dsn,
   }: Partial<SentryConfig> = {}
 ): SchemaMap {
-  const schema: SchemaMap = {};
+  const schema: Record<string, Joi.StringSchema> = {};
 
   schema['SENTRY_DEBUG'] = Joi.string().default(debug);
   schema['SENTRY_SERVER_NAME'] = Joi.string().default(serverName);
-
-  let releaseConfig = Joi.string();
-  if (release) {
-    releaseConfig = releaseConfig.default(release);
-  }
-  schema['SENTRY_RELEASE'] = releaseConfig;
-
-  let environmentConfig = Joi.string();
-  if (environmentName) {
-    environmentConfig = environmentConfig.default(environmentName);
-  }
-  schema['SENTRY_ENVIRONMENT'] = environmentConfig;
-
   schema['SENTRY_ENABLED'] = Joi.string().default(enabled);
-
-  let dsnConfig = Joi.string();
-  if (dsn) {
-    dsnConfig = dsnConfig.default(dsn);
+  schema['SENTRY_RELEASE'] = Joi.string();
+  if (release) {
+    schema['SENTRY_RELEASE'] = schema['SENTRY_RELEASE'].default(release);
   }
-  schema['SENTRY_DSN'] = dsnConfig;
+  schema['SENTRY_ENVIRONMENT'] = Joi.string();
+  if (environmentName) {
+    schema['SENTRY_ENVIRONMENT'] = schema['SENTRY_ENVIRONMENT'].default(environmentName);
+  }
+  schema['SENTRY_DSN'] = Joi.string();
+  if (dsn) {
+    schema['SENTRY_DSN'] = schema['SENTRY_DSN'].default(dsn);
+  }
 
   return schema;
 }
