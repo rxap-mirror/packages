@@ -13,7 +13,7 @@ export function SentryInit(environment: Environment) {
   }
 
   Sentry.init({
-    dsn: environment.sentry?.dsn,
+    dsn: ConfigService.Get('sentry.dsn', environment.sentry?.dsn, ConfigService.Config),
     enabled: ConfigService.Get('sentry.enabled', environment.sentry?.enabled ?? false, ConfigService.Config),
     debug: ConfigService.Get('sentry.debug', environment.sentry?.debug ?? false, ConfigService.Config),
     environment: DetermineSentryEnvironment(environment),
