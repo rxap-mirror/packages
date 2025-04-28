@@ -190,8 +190,6 @@ export async function sentryGenerator(
   UpdateAppModule(tree, options);
   UpdateAppConfig(tree, options, options.project);
   await AddPackageJsonDependency(tree, '@sentry/node', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@sentry/hub', 'latest', { soft: true });
-  await AddPackageJsonDependency(tree, '@sentry/hub', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@sentry/nestjs', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@sentry/profiling-node', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-sentry', 'latest', { soft: true });

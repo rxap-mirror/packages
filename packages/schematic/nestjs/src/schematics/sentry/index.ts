@@ -30,7 +30,6 @@ function updateProjectPackageJson(options: SentrySchema): Rule {
     }
     const content: any = JSON.parse(tree.read(packageJsonFilePath)?.toString('utf-8') ?? '{}');
     content.dependencies ??= {};
-    content.dependencies['@sentry/hub'] ??= rootPackageJson.dependencies!['@sentry/hub'] ?? 'latest';
     tree.overwrite(packageJsonFilePath, JSON.stringify(content, undefined, 2));
   };
 }
@@ -150,7 +149,6 @@ export default function (options: SentrySchema): Rule {
     return chain([
       UpdateAppModule(options),
       AddPackageJsonDependencyRule('@sentry/node', 'latest', { soft: true }),
-      AddPackageJsonDependencyRule('@sentry/hub', 'latest', { soft: true }),
       AddPackageJsonDependencyRule('@rxap/nest-sentry', 'latest', { soft: true }),
       // updateProjectPackageJson(options),
       InstallNodePackages(),
