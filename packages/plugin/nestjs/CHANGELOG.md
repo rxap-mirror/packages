@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.4-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.4-dev.10...@rxap/plugin-nestjs@20.1.4-dev.11) (2025-04-29)
+
+### Bug Fixes
+
+- cleanup sentry ([a151a88](https://gitlab.com/rxap/packages/commit/a151a8866fb09b5a516964ba1ee610a8d4000a0c))
+
 ## [20.1.4-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.4-dev.9...@rxap/plugin-nestjs@20.1.4-dev.10) (2025-04-17)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs

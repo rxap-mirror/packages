@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.4-dev.5...@rxap/layout@19.1.0-dev.0) (2025-04-29)
+
+### Features
+
+- **layout:** add support for default logo and navigation config tokens ([bbdfdf8](https://gitlab.com/rxap/packages/commit/bbdfdf85a55a0964451eb132c49b22a1c6797d2b))
+
 ## [19.0.4-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.4-dev.4...@rxap/layout@19.0.4-dev.5) (2025-04-14)
 
 **Note:** Version bump only for package @rxap/layout

@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4-dev.5",
+  "version": "19.0.4-dev.6",
   "name": "@rxap/schematic-nestjs",
   "description": "This package provides schematics for NestJS projects. It includes schematics for generating CRUD services, microservices, health indicators, and other common NestJS features. It also provides utilities for working with TypeScript and NestJS code.\n",
   "license": "GPL-3.0-or-later",

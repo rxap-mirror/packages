@@ -1,5 +1,5 @@
 {
-  "version": "20.1.4-dev.10",
+  "version": "20.1.4-dev.11",
   "name": "@rxap/plugin-nestjs",
   "description": "This npm package provides generators and executors for NestJS applications within an Nx workspace. It helps streamline the setup of NestJS projects with features like Swagger, Sentry, health indicators, and standardized configurations. It also includes executors for generating package.json files and Swagger documentation.\n",
   "license": "GPL-3.0-or-later",

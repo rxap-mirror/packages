@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@19.0.4-dev.5...@rxap/schematic-nestjs@19.0.4-dev.6) (2025-04-29)
+
+### Bug Fixes
+
+- cleanup sentry ([a151a88](https://gitlab.com/rxap/packages/commit/a151a8866fb09b5a516964ba1ee610a8d4000a0c))
+
 ## [19.0.4-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@19.0.4-dev.4...@rxap/schematic-nestjs@19.0.4-dev.5) (2025-04-14)
 
 **Note:** Version bump only for package @rxap/schematic-nestjs
