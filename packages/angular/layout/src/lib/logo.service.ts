@@ -5,7 +5,10 @@ import {
   signal,
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
-import { RXAP_LOGO_CONFIG } from './tokens';
+import {
+  RXAP_LOGO_CONFIG,
+  RXAP_LOGO_CONFIG_DEFAULTS,
+} from './tokens';
 
 @Injectable()
 export class LogoService {
@@ -13,7 +16,7 @@ export class LogoService {
   private readonly config = inject(ConfigService);
   public readonly logo = signal(
     inject(RXAP_LOGO_CONFIG, { optional: true }) ??
-    this.config.get('logo', {
+    this.config.get('logo', inject(RXAP_LOGO_CONFIG_DEFAULTS, { optional: true }) ?? {
       src: 'logo.png',
       width: 192,
     }),

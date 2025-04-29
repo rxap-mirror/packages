@@ -1,6 +1,9 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { InjectionToken } from '@angular/core';
-import { LogoConfig } from '@rxap/config';
+import {
+  LogoConfig,
+  NavigationConfig,
+} from '@rxap/config';
 import { staticDataSource } from '@rxap/data-source';
 import {
   DataSource,
@@ -51,3 +54,7 @@ export const RXAP_SETTINGS_MENU_ITEM_COMPONENT = new InjectionToken<Array<Settin
 export const RXAP_DEFAULT_HEADER_ITEM_COMPONENT = new InjectionToken<Array<DefaultHeaderItemComponent | (() => Promise<DefaultHeaderItemComponent>)>>('rxap/layout/default-header-item-component');
 
 export const RXAP_SETTINGS_MENU_ITEM = new InjectionToken<SettingsMenuItem>('rxap/layout/settings-menu-item');
+
+export const RXAP_NAVIGATION_LAYOUT_CONFIG_DEFAULTS = new InjectionToken<Omit<NavigationConfig, 'apps'>>('rxap/layout/navigation-config/defaults');
+
+export const RXAP_LOGO_CONFIG_DEFAULTS = new InjectionToken<LogoConfig>('rxap/layout/logo-config/defaults');

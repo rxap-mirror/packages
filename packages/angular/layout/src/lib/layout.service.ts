@@ -2,20 +2,26 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import {
   computed,
   effect,
+  Inject,
   inject,
   Injectable,
   isDevMode,
+  Optional,
   signal,
   Signal,
   WritableSignal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { ConfigService } from '@rxap/config';
+import {
+  ConfigService,
+  NavigationConfig,
+} from '@rxap/config';
 import { ObserveCurrentThemeDensity } from '@rxap/ngx-theme';
 import { Observable } from 'rxjs';
 import { FooterService } from './footer.service';
 import { HeaderService } from './header.service';
+import { RXAP_NAVIGATION_LAYOUT_CONFIG_DEFAULTS } from './tokens';
 
 @Injectable()
 export class LayoutService {
@@ -36,7 +42,11 @@ export class LayoutService {
   private readonly config = inject(ConfigService);
   private readonly mediaMatcher = inject(MediaMatcher);
 
-  constructor() {
+  constructor(
+    @Inject(RXAP_NAVIGATION_LAYOUT_CONFIG_DEFAULTS)
+    @Optional()
+    navigationConfigDefaults: Omit<NavigationConfig, 'apps'> = {},
+  ) {
     const mobileQuery = this.mediaMatcher.matchMedia('(max-width: 959px)');
     this.isMobile = toSignal(new Observable<boolean>(subscriber => {
       mobileQuery.addEventListener('change', (event) => {
@@ -44,12 +54,12 @@ export class LayoutService {
       });
     }), { initialValue: mobileQuery.matches });
 
-    const initialCollapsable = this.config.get('navigation.collapsable', true);
+    const initialCollapsable = this.config.get('navigation.collapsable', navigationConfigDefaults.collapsable ?? true);
     const collapsable = initialCollapsable && !this.isMobile();
-    const pinned = this.config.get('navigation.pinned', false);
-    const mode = this.config.get('navigation.mode', pinned || !collapsable ? 'side' : 'over');
-    const opened = this.config.get('navigation.opened', (!collapsable || pinned) && !this.isMobile());
-    const fixedInViewport = this.config.get('navigation.fixedInViewport', true);
+    const pinned = this.config.get('navigation.pinned', navigationConfigDefaults.pinned ?? false);
+    const mode = this.config.get('navigation.mode', navigationConfigDefaults.mode ?? (pinned || !collapsable ? 'side' : 'over'));
+    const opened = this.config.get('navigation.opened', (navigationConfigDefaults.opened ?? (!collapsable || pinned)) && !this.isMobile());
+    const fixedInViewport = this.config.get('navigation.fixedInViewport', navigationConfigDefaults.fixedInViewport ?? true);
 
     if (isDevMode()) {
       console.log({
