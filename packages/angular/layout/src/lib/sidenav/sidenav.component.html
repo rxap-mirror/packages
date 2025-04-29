@@ -9,6 +9,7 @@
     [mode]="sidenavMode()"
     [ngClass]="{ collapsable: collapsable() }"
     [opened]="opened()"
+    (openedChange)="onOpenedChanged($event)"
   >
     <div (mouseleave)="collapsable() && !pinned() && closeSidenav()"
          class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">

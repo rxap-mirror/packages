@@ -13,10 +13,7 @@ import {
   Signal,
   viewChild,
 } from '@angular/core';
-import {
-  MatButton,
-  MatIconButton,
-} from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import {
@@ -25,37 +22,33 @@ import {
   MatSidenavContainer,
   MatSidenavContent,
 } from '@angular/material/sidenav';
-import { RouterOutlet } from '@angular/router';
 import { LayoutService } from '../layout.service';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { SidenavFooterDirective } from './sidenav-footer.directive';
 import { SidenavHeaderDirective } from './sidenav-header.directive';
 
 @Component({
-    selector: 'rxap-sidenav',
-    templateUrl: './sidenav.component.html',
-    styleUrls: ['./sidenav.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        MatIcon,
-        MatIconButton,
-        MatSidenav,
-        MatSidenavContainer,
-        MatSidenavContent,
-        NavigationComponent,
-        NgIf,
-        RouterOutlet,
-        NgClass,
-        NgStyle,
-        MatDivider,
-        NgTemplateOutlet,
-        MatButton,
-    ]
+  selector: 'rxap-sidenav',
+  templateUrl: './sidenav.component.html',
+  styleUrls: ['./sidenav.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    MatIcon,
+    MatIconButton,
+    MatSidenav,
+    MatSidenavContainer,
+    MatSidenavContent,
+    NavigationComponent,
+    NgIf,
+    NgClass,
+    NgStyle,
+    MatDivider,
+    NgTemplateOutlet,
+  ],
 })
 export class SidenavComponent {
 
   private readonly layoutService = inject(LayoutService);
-
 
   private readonly sidenav = viewChild(MatSidenav);
 
@@ -72,6 +65,10 @@ export class SidenavComponent {
 
   togglePinned() {
     this.layoutService.togglePinned();
+  }
+
+  onOpenedChanged(opened: boolean) {
+    this.layoutService.opened.set(opened);
   }
 
   async openSidenav() {
