@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.0-dev.0...@rxap/layout@19.1.0-dev.1) (2025-04-30)
+
+### Features
+
+- **sidenav:** add openedChange event handling ([2302d85](https://gitlab.com/rxap/packages/commit/2302d857a92fc24ebbcc713afcd0f5831514c298))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.0.4-dev.5...@rxap/layout@19.1.0-dev.0) (2025-04-29)
 
 ### Features
