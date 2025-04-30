@@ -106,15 +106,15 @@ export class NavigationItemComponent
     return classes;
   });
 
-  private readonly layoutService = inject(LayoutService);
+  protected readonly layoutService = inject(LayoutService);
 
   public readonly collapsed = computed(() => this.layoutService.collapsed());
 
-  private readonly _subscription = new Subscription();
+  protected readonly _subscription = new Subscription();
 
-  private readonly router = inject(Router);
-  private readonly elementRef = inject(ElementRef);
-  private readonly renderer = inject(Renderer2);
+  protected readonly router = inject(Router);
+  protected readonly elementRef = inject(ElementRef);
+  protected readonly renderer = inject(Renderer2);
 
   public ngOnChanges(changes: SimpleChanges) {
     if (changes['item']) {

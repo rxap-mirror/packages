@@ -17,7 +17,7 @@ import { FooterService } from '../footer.service';
 })
 export class FooterComponent {
 
-  private readonly footerService = inject(FooterService);
+  protected readonly footerService = inject(FooterService);
 
   public readonly portals = computed(() => this.footerService.portals());
   public readonly hasPortals = computed(() => this.portals().length > 0);

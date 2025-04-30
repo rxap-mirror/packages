@@ -26,8 +26,8 @@ import { ExtractUsernameFromProfileFn } from '../../types';
 })
 export class UserProfileIconComponent {
 
-  private readonly extractUsernameFromProfile: ExtractUsernameFromProfileFn = inject(EXTRACT_USERNAME_FROM_PROFILE);
-  private readonly pubSubService = inject(PubSubService);
+  protected readonly extractUsernameFromProfile: ExtractUsernameFromProfileFn = inject(EXTRACT_USERNAME_FROM_PROFILE);
+  protected readonly pubSubService = inject(PubSubService);
 
   public readonly profile = input.required();
 

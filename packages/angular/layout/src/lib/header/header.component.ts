@@ -28,7 +28,7 @@ export class HeaderComponent {
 
   public readonly color = input<ThemePalette>();
 
-  private readonly headerService = inject(HeaderService);
+  protected readonly headerService = inject(HeaderService);
 
   public readonly portals = computed(() => this.headerService.portals());
   public readonly hasPortals = computed(() => this.portals().length > 0);

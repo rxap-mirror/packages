@@ -27,7 +27,7 @@ export class ReleaseInfoComponent {
   public readonly modules = coerceArray(inject(RXAP_RELEASE_INFO_MODULE, { optional: true }));
   public readonly release = DetermineReleaseName(inject(RXAP_ENVIRONMENT));
 
-  private readonly dialog = inject(MatDialog);
+  protected readonly dialog = inject(MatDialog);
 
   openEnvironmentInfo() {
     this.dialog.open(EnvironmentComponent, {

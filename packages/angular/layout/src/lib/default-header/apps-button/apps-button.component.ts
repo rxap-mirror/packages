@@ -38,7 +38,7 @@ export class AppsButtonComponent implements OnInit {
    */
   public readonly isOpen = signal(false);
 
-  private readonly externalAppsService = inject(ExternalAppsService);
+  protected readonly externalAppsService = inject(ExternalAppsService);
   public readonly appList = computed(() => this.externalAppsService.activeAppList());
   public readonly hasApps = computed(() => this.appList().length > 0);
 

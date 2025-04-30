@@ -20,7 +20,7 @@ import { LayoutService } from '../../layout.service';
 })
 export class SidenavToggleButtonComponent {
 
-  private readonly layoutComponentService = inject(LayoutService);
+  protected readonly layoutComponentService = inject(LayoutService);
 
   public readonly opened = computed(() => this.layoutComponentService.opened());
 

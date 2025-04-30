@@ -35,13 +35,13 @@ import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.
 })
 export class DefaultHeaderComponent {
 
-  private readonly layoutComponentService = inject(LayoutService);
+  protected readonly layoutComponentService = inject(LayoutService);
 
   public readonly collapsable = computed(() => this.layoutComponentService.collapsable());
   public readonly opened = computed(() => this.layoutComponentService.opened());
   public readonly profile = toSignal(inject(RXAP_USER_PROFILE_DATA_SOURCE).connect('user-profile'), { initialValue: null });
 
-  private readonly defaultHeaderService = inject(DefaultHeaderService);
+  protected readonly defaultHeaderService = inject(DefaultHeaderService);
 
   public readonly portals = computed(() => this.defaultHeaderService.portals());
   public readonly hasPortals = computed(() => this.portals().length > 0);

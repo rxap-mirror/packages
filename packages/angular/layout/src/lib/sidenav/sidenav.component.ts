@@ -48,9 +48,9 @@ import { SidenavHeaderDirective } from './sidenav-header.directive';
 })
 export class SidenavComponent {
 
-  private readonly layoutService = inject(LayoutService);
+  protected readonly layoutService = inject(LayoutService);
 
-  private readonly sidenav = viewChild(MatSidenav);
+  protected readonly sidenav = viewChild(MatSidenav);
 
   public readonly sidenavMode: Signal<MatDrawerMode> = computed(() => this.layoutService.mode());
   public readonly fixedBottomGap: Signal<number> = computed(() => this.layoutService.fixedBottomGap());

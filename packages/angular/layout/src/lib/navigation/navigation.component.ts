@@ -33,7 +33,7 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
     styleUrls: ['./navigation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-  
+
     host: {
         class: 'list-none dark:text-neutral-400 text-neutral-700',
     },
@@ -51,9 +51,9 @@ export class NavigationComponent implements OnInit {
 
   public level = input(0);
 
-  private readonly navigationService = inject(NavigationService);
+  protected readonly navigationService = inject(NavigationService);
 
-  private readonly layoutService = inject(LayoutService);
+  protected readonly layoutService = inject(LayoutService);
 
   public readonly collapsed = computed(() => this.layoutService.collapsed());
 
@@ -61,7 +61,7 @@ export class NavigationComponent implements OnInit {
 
   public readonly root = input(false);
 
-  private readonly injector = inject(INJECTOR);
+  protected readonly injector = inject(INJECTOR);
 
   public ngOnInit(): void {
     if (this.root()) {

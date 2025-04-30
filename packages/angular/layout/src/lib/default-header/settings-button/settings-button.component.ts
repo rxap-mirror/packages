@@ -57,7 +57,7 @@ export class SettingsButtonComponent {
   public isDevMode = isDevMode();
 
   public readonly theme = inject(ThemeService);
-  private readonly injector = inject(Injector);
+  protected readonly injector = inject(Injector);
 
   customItemComponents: Signal<ComponentPortal<unknown>[]> = toSignal(from(Promise.all(
     coerceArray(inject(RXAP_SETTINGS_MENU_ITEM_COMPONENT, { optional: true }))

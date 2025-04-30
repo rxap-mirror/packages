@@ -58,7 +58,7 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
 })
 export class LayoutComponent {
 
-  private readonly logoService = inject(LogoService);
+  protected readonly logoService = inject(LogoService);
   public readonly logoSrc: Signal<string> = computed(() => this.logoService.src());
   public readonly logoWidth: Signal<number> = computed(() => this.logoService.width());
   public readonly logoHeight: Signal<number> = computed(() => this.logoService.height());
