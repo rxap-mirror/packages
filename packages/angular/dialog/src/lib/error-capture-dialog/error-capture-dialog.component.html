@@ -1,0 +1,25 @@
+@if (data().length > 1) {
+  <div class="controls flex justify-center space-x-2 mt-4">
+    <button mat-flat-button (click)="activeIndex.set(activeIndex() - 1)" [disabled]="activeIndex() === 0">
+      <ng-container i18n>Previous</ng-container>
+    </button>
+    @for (item of displayedButtons(); track item) {
+      <button (click)="activeIndex.set(item)"
+              mat-stroked-button
+              [ngClass]="{ 'active': item === activeIndex() }">
+        {{ item + 1 }}
+      </button>
+    }
+    <button mat-flat-button (click)="activeIndex.set(activeIndex() + 1)" [disabled]="activeIndex() >= data().length - 1">
+      <ng-container i18n>Next</ng-container>
+    </button>
+  </div>
+}
+<mat-dialog-content>
+  <ng-template [cdkPortalOutlet]="componentPortal()"></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button [mat-dialog-close]="true" mat-button>
+    <ng-container i18n>Close</ng-container>
+  </button>
+</mat-dialog-actions>

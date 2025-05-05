@@ -1,0 +1,11 @@
+@if (title) {
+  <h2 mat-dialog-title>{{ title }}</h2>
+}
+<mat-dialog-content>
+  <ng-template [cdkPortalOutlet]="portal"></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button [mat-dialog-close]="true" mat-button>
+    <ng-container i18n>Close</ng-container>
+  </button>
+</mat-dialog-actions>
