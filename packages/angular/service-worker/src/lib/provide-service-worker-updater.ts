@@ -8,6 +8,7 @@ import { AutoUpdateService } from './auto-update.service';
 import { CheckForUpdateService } from './check-for-update.service';
 import { DialogUpdateService } from './dialog-update.service';
 import { LogUpdateService } from './log-update.service';
+import { SnackbarUpdateService } from './snackbar-update.service';
 
 export function ProvideServiceWorkerUpdater(...providers: Array<Provider | EnvironmentProviders>): Array<Provider | EnvironmentProviders> {
   return [
@@ -36,6 +37,13 @@ export function withDialogUpdater() {
 export function withAutoUpdater() {
   return provideAppInitializer(() => {
         const initializerFn = ((aus: AutoUpdateService) => () => aus.start())(inject(AutoUpdateService));
+        return initializerFn();
+      });
+}
+
+export function withSnackbarUpdater() {
+  return provideAppInitializer(() => {
+        const initializerFn = ((snackbarUpdateService: SnackbarUpdateService) => () => snackbarUpdateService.start())(inject(SnackbarUpdateService));
         return initializerFn();
       });
 }
