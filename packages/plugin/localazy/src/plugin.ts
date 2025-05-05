@@ -115,19 +115,7 @@ function createLocalazyDownloadTarget(projectPath: string): TargetConfiguration 
     executor: '@rxap/plugin-localazy:download',
     inputs: [
       {
-        runtime: 'date',
-      },
-      {
-        env: 'CI_COMMIT_TIMESTAMP',
-      },
-      {
         env: 'CI_COMMIT_SHA',
-      },
-      {
-        env: 'CI_JOB_ID',
-      },
-      {
-        env: 'CI_PIPELINE_ID',
       },
     ],
     outputs: [ '{projectRoot}/src/i18n' ],
@@ -143,6 +131,5 @@ function createLocalazyUploadTarget(): TargetConfiguration {
     executor: '@rxap/plugin-localazy:upload',
     dependsOn: [ 'extract-i18n' ],
     inputs: [ '{projectRoot}/src/i18n/messages.xlf' ],
-    cache: true,
   };
 }
