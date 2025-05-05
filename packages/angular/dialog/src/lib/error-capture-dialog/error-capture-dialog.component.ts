@@ -2,11 +2,7 @@ import {
   CdkPortalOutlet,
   ComponentPortal,
 } from '@angular/cdk/portal';
-import {
-  NgClass,
-  NgForOf,
-  NgIf,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   Component,
   computed,
@@ -21,7 +17,6 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
-  MatDialogTitle,
 } from '@angular/material/dialog';
 import { RXAP_ERROR_DIALOG_ERROR } from '@rxap/ngx-error';
 import { ErrorCaptureDialogData } from './types';
@@ -32,11 +27,8 @@ import { ErrorCaptureDialogData } from './types';
     MatButton,
     MatDialogActions,
     MatDialogContent,
-    MatDialogTitle,
     MatDialogClose,
     CdkPortalOutlet,
-    NgForOf,
-    NgIf,
     NgClass,
   ],
   templateUrl: './error-capture-dialog.component.html',

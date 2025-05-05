@@ -5,10 +5,10 @@ import {
 } from '@angular/core';
 import {
   RXAP_ERROR_CAPTURE_DIALOG_SERVICE,
-  RxapErrorHandler,
-} from '@rxap/ngx-error';
+} from './tokens';
 import { Constructor } from '@rxap/utilities';
 import { IErrorCaptureDialogService } from './error-capture-dialog.service';
+import { RxapErrorHandler } from './error-handler';
 
 export function provideAutoErrorInterception(...providers: Array<Provider | EnvironmentProviders>) {
   return [

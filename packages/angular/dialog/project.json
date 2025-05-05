@@ -4,7 +4,7 @@
   "sourceRoot": "packages/angular/dialog/src",
   "prefix": "rxap",
   "projectType": "library",
-  "tags": ["angular", "ngx", "packages", "scope:utilities"],
+  "tags": ["angular", "ngx", "packages", "scope:compose"],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
