@@ -1,11 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import {
+  EnvironmentProviders,
   ErrorHandler,
   inject,
   Injectable,
   InjectionToken,
   INJECTOR,
   isDevMode,
+  Provider,
   runInInjectionContext,
   StaticProvider,
 } from '@angular/core';
@@ -161,11 +163,4 @@ export class RxapErrorHandler implements ErrorHandler {
   }
 
 
-}
-
-export function ProvideErrorHandler(): StaticProvider {
-  return {
-    provide: ErrorHandler,
-    useClass: RxapErrorHandler,
-  };
 }

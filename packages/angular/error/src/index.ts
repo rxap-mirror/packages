@@ -33,10 +33,12 @@ export * from './lib/any-http-error/any-http-error.service';
 // endregion
 
 // region 
+export * from './lib/error-capture-dialog.service';
 export * from './lib/error-capture.service';
 export * from './lib/error-handler';
 export * from './lib/error-interceptor-options';
 export * from './lib/http-error-interceptor';
+export * from './lib/provide';
 export * from './lib/tokens';
 export * from './lib/utilities';
 // endregion

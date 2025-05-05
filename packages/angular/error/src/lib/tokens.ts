@@ -3,6 +3,7 @@ import {
   InjectionToken,
   Signal,
 } from '@angular/core';
+import { IErrorCaptureDialogService } from './error-capture-dialog.service';
 import { IErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { ErrorInterceptorOptions } from './error-interceptor-options';
 
@@ -15,3 +16,5 @@ export const RXAP_ERROR_DIALOG_COMPONENT = new InjectionToken<ComponentType<IErr
 
 export const RXAP_ERROR_INTERCEPTOR_OPTIONS = new InjectionToken<ErrorInterceptorOptions>(
   'rxap/error/interceptor-options');
+
+export const RXAP_ERROR_CAPTURE_DIALOG_SERVICE = new InjectionToken<IErrorCaptureDialogService>('rxap/error/capture-dialog-service');
