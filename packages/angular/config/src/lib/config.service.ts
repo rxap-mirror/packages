@@ -298,9 +298,8 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     if (typeof path !== 'string') {
       throw new Error('The config property path is not a string');
     }
-    for (const fragment of (path as any).split('.')) {
-      // eslint-disable-next-line no-prototype-builtins
-      if (configValue.hasOwnProperty(fragment)) {
+    for (const fragment of path.split('.')) {
+      if (configValue && typeof configValue === 'object' && fragment in configValue) {
         configValue = configValue[fragment];
       } else {
         if (defaultValue !== undefined) {
