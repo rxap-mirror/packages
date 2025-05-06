@@ -24,6 +24,16 @@ export interface ConfigLoadOptions {
    * static config values
    */
   static?: Record<string, any>;
+  /**
+   * Load additional configuration based on a CID found in a DNS TXT record.
+   * If true, uses `location.hostname`. If a string, uses that domain.
+   */
+  fromDns?: string | boolean;
+  /**
+   * Load additional configuration directly from the given Content Identifier (CID).
+   * This takes precedence over `fromDns` if both are provided.
+   */
+  fromCid?: string;
 }
 
 @Injectable({
@@ -132,9 +142,64 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       config = deepMerge(config, this.LoadConfigDefaultFromUrlParam(param));
     }
 
+    if (options?.fromDns) {
+      await this.loadConfigFromDns(options);
+    }
+
+    if (options?.fromCid) {
+      config = deepMerge(config, await this.loadConfigFromCid(options));
+    }
+
     console.debug('app config', config);
 
     this.Config = config;
+  }
+
+  private static async loadConfigFromCid(options: ConfigLoadOptions & { fromCid: string | boolean }) {
+    console.debug('Loading config from CID: ', options.fromCid);
+    try {
+      const cidContent = await fetchCidContentAsJson(cid);
+      if (cidContent && typeof cidContent === 'object') {
+        console.log(`Merging configuration from CID ${cid}.`, cidContent);
+        // Merge CID content into the existing config object
+        config = deepMerge(config, cidContent); // Deep merge
+        Object.assign(config, cidContent); // Shallow merge
+        console.log('Configuration merged successfully.');
+      } else if (cidContent) {
+        console.warn(`Content fetched from CID ${cid} is not a mergeable object, skipping merge.`);
+      } else {
+        console.warn(`No content fetched or content was null for CID ${cid}.`);
+      }
+    } catch (error) {
+      console.error(`Failed to fetch or process content for CID ${cid}:`, error);
+      // Decide how to handle fetch/processing errors
+    }
+  }
+
+  private static async loadConfigFromDns(options: ConfigLoadOptions & { fromDns: string | boolean }) {
+    console.debug('Loading config from DNS');
+    let domain = location.hostname;
+    if (typeof options.fromDns === 'string') {
+      domain = options.fromDns;
+    }
+    domain = CoercePrefix(domain, '_config.');
+    try {
+      console.log(`Attempting DNS lookup for domain: ${domain}`);
+      const txtData = await dnsLookup(domain, 'TXT');
+      console.log(`DNS TXT record data found: ${txtData}`);
+      // Example CID extraction logic (adapt to your TXT record format)
+      // This looks for IPFS CIDs (v0 'Qm...' or v1 'b...') potentially after 'ipfs://' or '/'
+      const cidMatch = txtData.match(/(?:ipfs:\/\/|\/|^)([a-zA-Z0-9]{40,})$/);
+      if (cidMatch && cidMatch[1]) {
+        options.fromCid = cidMatch[1];
+        console.log(`Extracted CID from DNS: ${cid}`);
+      } else {
+        console.warn(`Could not extract a valid CID format from DNS TXT data: "${txtData}"`);
+      }
+    } catch (error) {
+      console.error(`DNS lookup for ${domain} failed:`, error);
+      // Decide if failure is critical or recoverable
+    }
   }
 
   private static handleError(error: any) {

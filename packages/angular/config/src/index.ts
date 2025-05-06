@@ -6,4 +6,5 @@ export * from './lib/config';
 export * from './lib/provide-config';
 export * from './lib/tokens';
 export * from './lib/types';
+export * from './lib/utilities';
 // endregion
