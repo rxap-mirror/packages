@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.0",
+  "version": "19.1.0-dev.1",
   "name": "@rxap/service-worker",
   "description": "Provides services and components to simplify the management of service worker updates in Angular applications. It includes features such as automatic updates, dialog prompts for updates, and logging of update events. The package also offers utilities to unregister service workers and initialize peer dependencies.\n",
   "license": "GPL-3.0-or-later",

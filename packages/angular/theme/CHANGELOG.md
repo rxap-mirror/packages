@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@19.1.0-dev.0...@rxap/ngx-theme@19.1.0-dev.1) (2025-05-06)
+
+### Features
+
+- **theme:** add ThemeColor class for managing Material Design color themes ([e01a74b](https://gitlab.com/rxap/packages/commit/e01a74bd47c9690383311db6d7a7298919c3fc66))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@19.0.4-dev.0...@rxap/ngx-theme@19.1.0-dev.0) (2025-04-02)
 
 ### Features

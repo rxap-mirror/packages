@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.0.4-dev.1...@rxap/config@19.1.0-dev.0) (2025-05-06)
+
+### Features
+
+- **config:** add support for loading configuration from DNS and CID ([1af98c4](https://gitlab.com/rxap/packages/commit/1af98c442b3fdd45b61053b2163f0446fa4a66d0))
+
 ## [19.0.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@19.0.4-dev.0...@rxap/config@19.0.4-dev.1) (2025-05-06)
 
 ### Bug Fixes
