@@ -6,12 +6,17 @@ import {
 import { Environment } from '@rxap/environment';
 import {
   coerceArray,
+  CoercePrefix,
   deepMerge,
   SetObjectValue,
 } from '@rxap/utilities';
 import { ReplaySubject } from 'rxjs';
 import { RXAP_CONFIG } from './tokens';
 import { NoInferType } from './types';
+import {
+  dnsLookup,
+  fetchCidContentAsJson,
+} from './utilities';
 
 export type AnySchema = { validateAsync: (...args: any[]) => any };
 
@@ -143,11 +148,11 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     }
 
     if (options?.fromDns) {
-      await this.loadConfigFromDns(options);
+      await this.loadConfigFromDns(options as any);
     }
 
     if (options?.fromCid) {
-      config = deepMerge(config, await this.loadConfigFromCid(options));
+      config = deepMerge(config, await this.loadConfigFromCid(options as any));
     }
 
     console.debug('app config', config);
@@ -158,20 +163,19 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   private static async loadConfigFromCid(options: ConfigLoadOptions & { fromCid: string | boolean }) {
     console.debug('Loading config from CID: ', options.fromCid);
     try {
-      const cidContent = await fetchCidContentAsJson(cid);
+      const cidContent = await fetchCidContentAsJson(options.fromCid);
       if (cidContent && typeof cidContent === 'object') {
-        console.log(`Merging configuration from CID ${cid}.`, cidContent);
+        console.log(`Merging configuration from CID ${options.fromCid}.`, cidContent);
         // Merge CID content into the existing config object
-        config = deepMerge(config, cidContent); // Deep merge
-        Object.assign(config, cidContent); // Shallow merge
         console.log('Configuration merged successfully.');
+        return cidContent;
       } else if (cidContent) {
-        console.warn(`Content fetched from CID ${cid} is not a mergeable object, skipping merge.`);
+        console.warn(`Content fetched from CID ${options.fromCid} is not a mergeable object, skipping merge.`);
       } else {
-        console.warn(`No content fetched or content was null for CID ${cid}.`);
+        console.warn(`No content fetched or content was null for CID ${options.fromCid}.`);
       }
     } catch (error) {
-      console.error(`Failed to fetch or process content for CID ${cid}:`, error);
+      console.error(`Failed to fetch or process content for CID ${options.fromCid}:`, error);
       // Decide how to handle fetch/processing errors
     }
   }
@@ -192,7 +196,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       const cidMatch = txtData.match(/(?:ipfs:\/\/|\/|^)([a-zA-Z0-9]{40,})$/);
       if (cidMatch && cidMatch[1]) {
         options.fromCid = cidMatch[1];
-        console.log(`Extracted CID from DNS: ${cid}`);
+        console.log(`Extracted CID from DNS: ${options.fromCid}`);
       } else {
         console.warn(`Could not extract a valid CID format from DNS TXT data: "${txtData}"`);
       }

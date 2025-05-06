@@ -1,5 +1,15 @@
 // TODO : move to separate package
 
+import { log } from '@rxap/rxjs';
+import { JoinPath } from '@rxap/utilities';
+import {
+  catchError,
+  EMPTY,
+  firstValueFrom,
+  Observable,
+  race,
+} from 'rxjs';
+
 export async function dnsResolver(endpoint: string, name: string, type: string): Promise<string> {
   const response = await fetch(`${endpoint}?name=${name}&type=${type}`, {
     method: 'GET',
