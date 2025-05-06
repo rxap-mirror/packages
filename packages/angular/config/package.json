@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4-dev.0",
+  "version": "19.0.4-dev.1",
   "name": "@rxap/config",
   "description": "Provides a configuration service for Angular applications, allowing you to load and manage application settings from various sources such as static files, URLs, local storage, and URL parameters. It supports schema validation and provides utilities for accessing configuration values. This package also includes testing utilities for mocking and managing configurations in test environments.\n",
   "license": "GPL-3.0-or-later",

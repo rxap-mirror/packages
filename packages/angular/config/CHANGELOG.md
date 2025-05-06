@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@19.0.4-dev.0...@rxap/config@19.0.4-dev.1) (2025-05-06)
+
+### Bug Fixes
+
+- **config.service:** improve path handling and property access validation ([645c46c](https://gitlab.com/rxap/packages/commit/645c46ca609bb731e9abdfd1a0e7e35132b4d127))
+
 ## [19.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.0.3...@rxap/config@19.0.4-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/config
