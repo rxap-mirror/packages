@@ -8,5 +8,6 @@ export * from './lib/check-for-update.service';
 export * from './lib/dialog-update.service';
 export * from './lib/log-update.service';
 export * from './lib/provide-service-worker-updater';
+export * from './lib/snackbar-update.service';
 export * from './lib/unregister-service-worker';
 // endregion
