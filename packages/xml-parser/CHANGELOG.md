@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.2.0-dev.0...@rxap/xml-parser@16.2.0-dev.1) (2025-05-07)
+
+### Features
+
+- add isVirtual getter and improve tag handling for virtual elements ([3df7ff4](https://gitlab.com/rxap/packages/commit/3df7ff46a8a2db55b7279775b171a180b733b183))
+
 # [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.4-dev.1...@rxap/xml-parser@16.2.0-dev.0) (2025-05-07)
 
 ### Features
