@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.4-dev.0...@rxap/xml-parser@16.1.4-dev.1) (2025-05-07)
+
+### Bug Fixes
+
+- use elementType.TAG when checking for child elements ([3b0fc00](https://gitlab.com/rxap/packages/commit/3b0fc0072face607ac04fe62c62cecb04902b493))
+
 ## [16.1.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.3...@rxap/xml-parser@16.1.4-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/xml-parser
