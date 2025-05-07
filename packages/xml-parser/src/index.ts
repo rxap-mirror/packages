@@ -37,6 +37,7 @@ export * from './lib/decorators/element-def';
 export * from './lib/decorators/element-extends';
 export * from './lib/decorators/element-record';
 export * from './lib/decorators/element-text-content';
+export * from './lib/decorators/element-virtual';
 export * from './lib/decorators/element.parser';
 export * from './lib/decorators/element.serializer';
 export * from './lib/decorators/metadata-keys';

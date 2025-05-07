@@ -11,4 +11,5 @@ export const ElementParserMetaData = {
    */
   NAME: 'rxap-xml-parser-element-name',
   EXTENDS: 'rxap-xml-parser-extends',
+  VIRTUAL: 'rxap-xml-parser-virtual',
 };

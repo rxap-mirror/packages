@@ -63,6 +63,9 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
     const tag = elementType.TAG ?? this.tag;
 
     if (!tag) {
+      if (getOwnMetadata(ElementParserMetaData.VIRTUAL, this.elementType)) {
+        return parsedElement;
+      }
       throw new Error('The element type tag is not defined!');
     }
 
