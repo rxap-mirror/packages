@@ -60,18 +60,20 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
 
     const elementType = this.findChildElementType(element);
 
-    if (!this.tag) {
+    const tag = elementType.TAG ?? this.tag;
+
+    if (!tag) {
       throw new Error('The element type tag is not defined!');
     }
 
-    if (element.hasChild(this.tag)) {
+    if (element.hasChild(tag)) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       parsedElement[this.propertyKey] =
-        xmlParser.parse(element.getChild(this.tag)!, elementType, parsedElement);
+        xmlParser.parse(element.getChild(tag)!, elementType, parsedElement);
     } else if (this.required) {
       throw new RxapXmlParserValidateRequiredError(
-        `Element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
+        `Element child <${ tag }> is required in <${ parsedElement.__tag }>!`,
         parsedElement.__tag!,
       );
     }
