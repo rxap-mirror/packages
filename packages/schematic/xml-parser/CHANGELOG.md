@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/schematics-xml-parser@19.0.4-dev.6...@rxap/schematics-xml-parser@19.0.4-dev.7) (2025-05-07)
+
+**Note:** Version bump only for package @rxap/schematics-xml-parser
+
 ## [19.0.4-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/schematics-xml-parser@19.0.4-dev.5...@rxap/schematics-xml-parser@19.0.4-dev.6) (2025-05-07)
 
 **Note:** Version bump only for package @rxap/schematics-xml-parser

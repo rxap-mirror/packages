@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.4-dev.1...@rxap/xml-parser@16.2.0-dev.0) (2025-05-07)
+
+### Features
+
+- add ElementVirtual decorator and enhance tag validation ([d0af907](https://gitlab.com/rxap/packages/commit/d0af907ca1580470bb5ab89aa93d6194d4a786d3))
+
 ## [16.1.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.1.4-dev.0...@rxap/xml-parser@16.1.4-dev.1) (2025-05-07)
 
 ### Bug Fixes
