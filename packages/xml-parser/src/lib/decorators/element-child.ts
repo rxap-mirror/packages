@@ -142,11 +142,8 @@ export class ElementChildSerializer<T extends ParsedElement, Child extends Parse
 
     element = this.coercePath(element);
 
-    if (!this.hasTag) {
-      if (this.isVirtual) {
-        throw new Error('The element is virtual and has no tag and can not be serialized!');
-      }
-      throw new Error('The element type tag is not defined!');
+    if (!parsedElement.__tag) {
+      throw new Error('The element instance does not have a defined __tag property. If created manually, ensure to set it.');
     }
 
     // @ts-expect-error the propertyKey is set by the property decorator
@@ -156,7 +153,7 @@ export class ElementChildSerializer<T extends ParsedElement, Child extends Parse
       xmlParser.serialize(child, element);
     } else if (this.required) {
       throw new RxapXmlSerializerValidateRequiredError(
-        `Element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
+        `Element child <${ parsedElement.__tag }> is required.`,
         parsedElement.__tag!,
       );
     }

@@ -78,7 +78,7 @@ export class XmlSerializerService {
 
   protected determineElementNameAndSerializer(element: ParsedElement) {
 
-    const elementName = getMetadata<string>(ElementParserMetaData.NAME, element.constructor)!;
+    const elementName = element.__tag ?? getMetadata<string>(ElementParserMetaData.NAME, element.constructor)!;
     const serializers = getMetadata<XmlElementSerializerFunction<any>[]>(
       ElementParserMetaData.SERIALIZER,
       element.constructor,
