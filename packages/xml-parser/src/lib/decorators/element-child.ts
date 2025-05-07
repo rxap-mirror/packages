@@ -60,10 +60,10 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
 
     const elementType = this.findChildElementType(element);
 
-    const tag = elementType.TAG ?? this.tag;
+    const tag = elementType.TAG ?? (this.hasTag ? this.tag : null);
 
     if (!tag) {
-      if (getOwnMetadata(ElementParserMetaData.VIRTUAL, this.elementType)) {
+      if (this.isVirtual) {
         return parsedElement;
       }
       throw new Error('The element type tag is not defined!');
@@ -142,7 +142,10 @@ export class ElementChildSerializer<T extends ParsedElement, Child extends Parse
 
     element = this.coercePath(element);
 
-    if (!this.tag) {
+    if (!this.hasTag) {
+      if (this.isVirtual) {
+        throw new Error('The element is virtual and has no tag and can not be serialized!');
+      }
       throw new Error('The element type tag is not defined!');
     }
 

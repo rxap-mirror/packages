@@ -1,6 +1,8 @@
 import { Mixin } from '@rxap/mixin';
+import { getOwnMetadata } from '@rxap/reflect-metadata';
 import { isConstructor } from '@rxap/utilities';
 import { ParsedElement } from '../../elements/parsed-element';
+import { ElementParserMetaData } from '../metadata-keys';
 import { ParsedElementType } from '../utilities';
 import {
   PathElementOptions,
@@ -27,6 +29,10 @@ export class ChildElementMixin<Child extends ParsedElement> {
     public readonly elementTypeOrFunction: ParsedElementType<Child> | (() => ParsedElementType<Child>) | null,
     public readonly options: any = {},
   ) {
+  }
+
+  get isVirtual(): boolean {
+    return getOwnMetadata(ElementParserMetaData.VIRTUAL, this.elementType) === true;
   }
 
   public get elementType(): ParsedElementType<Child> | null {
