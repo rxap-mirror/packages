@@ -9,6 +9,7 @@ export * from './lib/utilities/get-response';
 export * from './lib/utilities/get-type-parameters';
 export * from './lib/utilities/has-operation-paramters';
 export * from './lib/utilities/has-operation-request-body';
+export * from './lib/utilities/has-response-additional-properties';
 export * from './lib/utilities/http-request';
 export * from './lib/utilities/ignore-operation';
 export * from './lib/utilities/is-collection-response';
