@@ -9,6 +9,7 @@ import {
 } from '@rxap/workspace-open-api';
 import { join } from 'path';
 import {
+  FunctionDeclarationStructure,
   ImportDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure,
@@ -16,6 +17,7 @@ import {
   Writers,
 } from 'ts-morph';
 import { HTTP_RESOURCE_BASE_PATH, HTTP_RESOURCE_FILE_SUFFIX } from './const';
+import { hasResponseAdditionalProperties } from './utilities/has-response-additional-properties';
 
 export function GenerateHttpResource(
   parameter: GenerateParameter<OpenApiSchemaBase>
@@ -157,7 +159,7 @@ export function GenerateHttpResource(
     type: `HttpResourceOptions<${responseType}, unknown> & { defaultValue: NoInfer<${responseType}> }`,
   };
 
-  sourceFile.addFunction({
+  const structure: OptionalKind<FunctionDeclarationStructure> = {
     isExported: true,
     name: camelize([parameter.operationId, 'http-resource'].join('_')),
     parameters: [ ...parameters, optionsParameter ],
@@ -182,7 +184,13 @@ export function GenerateHttpResource(
         returnType: `HttpResourceRef<${responseType} | undefined>`,
       }
     ]
-  });
+  };
+
+  if (hasResponseAdditionalProperties(parameter)) {
+    structure.typeParameters = [ { name: 'TResponse' } ];
+  }
+
+  sourceFile.addFunction(structure);
 
   sourceFile.addImportDeclarations(importStructures);
 
