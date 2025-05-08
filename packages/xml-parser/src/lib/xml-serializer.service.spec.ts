@@ -53,6 +53,8 @@ describe('XML Serializer', () => {
         @ElementDef('root')
         class Root implements ParsedElement {
 
+          __tag?: string;
+
           @ElementAttribute()
           name = 'root-name';
 
@@ -69,6 +71,7 @@ describe('XML Serializer', () => {
         }
 
         const instance = new Root();
+        instance.__tag = 'root';
         const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
 
         const xml = xmlSerializer.serializeToXml(instance);
@@ -144,6 +147,8 @@ describe('XML Serializer', () => {
         @ElementDef('root')
         class Root implements ParsedElement {
 
+          __tag?: string;
+
           @ElementAttribute()
           name = 'root-name';
 
@@ -157,6 +162,7 @@ describe('XML Serializer', () => {
         }
 
         const instance = new Root();
+        instance.__tag = 'root';
         const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
 
         const xml = xmlSerializer.serializeToXml(instance);
