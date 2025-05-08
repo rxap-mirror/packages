@@ -60,6 +60,7 @@
     "angular-utilities",
     "angular-window-system",
     "browser-tailwind",
+    "browser-theme",
     "browser-utilities",
     "data-structure-tree",
     "fs",
