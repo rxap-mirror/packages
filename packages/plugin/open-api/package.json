@@ -1,5 +1,5 @@
 {
-  "version": "20.1.0-dev.6",
+  "version": "20.1.0-dev.7",
   "name": "@rxap/plugin-open-api",
   "description": "This plugin provides generators and executors for generating code from OpenAPI specifications within an Nx workspace. It allows you to initialize libraries, generate code for Angular and NestJS, and copy OpenAPI SDKs. The plugin simplifies the process of integrating OpenAPI definitions into your projects.\n",
   "license": "GPL-3.0-or-later",
@@ -9,7 +9,7 @@
     "@rxap/plugin-library": "^20.2.1-dev.5",
     "@rxap/plugin-utilities": "^20.0.4-dev.4",
     "@rxap/utilities": "^16.4.4-dev.0",
-    "@rxap/workspace-open-api": "^19.1.0-dev.5",
+    "@rxap/workspace-open-api": "^19.1.0-dev.6",
     "@rxap/workspace-ts-morph": "^19.1.12-dev.4",
     "@rxap/workspace-utilities": "^19.8.0-dev.4",
     "tslib": "2.6.2",

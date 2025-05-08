@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.3.4-dev.0...@rxap/nest-jwt@10.3.4-dev.1) (2025-05-08)
+
+### Bug Fixes
+
+- **jwt:** return correct email claim in user-email decorator ([bcb8a57](https://gitlab.com/rxap/packages/commit/bcb8a57cc85c2565fca92d336da876ecadcfa2ed))
+
 ## [10.3.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.3.3...@rxap/nest-jwt@10.3.4-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/nest-jwt

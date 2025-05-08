@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.5",
+  "version": "19.1.0-dev.6",
   "name": "@rxap/workspace-open-api",
   "description": "This package provides utilities and generators for working with OpenAPI specifications in a workspace. It includes functionality for generating TypeScript interfaces, data sources, directives, remote methods, and operation commands based on an OpenAPI schema. The package also offers tools for loading OpenAPI configurations and resolving references within the schema.\n",
   "license": "GPL-3.0-or-later",
