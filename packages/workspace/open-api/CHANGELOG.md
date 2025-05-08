@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.0-dev.7...@rxap/workspace-open-api@19.1.0-dev.8) (2025-05-08)
+
+### Features
+
+- **open-api:** add support for type parameters in generated structures ([f65fa9a](https://gitlab.com/rxap/packages/commit/f65fa9ab7c2655bbc7ff925a8c610055b308cd05))
+
 # [19.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.0-dev.6...@rxap/workspace-open-api@19.1.0-dev.7) (2025-05-08)
 
 ### Bug Fixes
