@@ -23,7 +23,7 @@
     "@rxap/environment": "^19.0.4-dev.0",
     "@rxap/material-directives": "^19.0.4-dev.0",
     "@rxap/ngx-pub-sub": "^19.0.4-dev.0",
-    "@rxap/ngx-theme": "^19.1.0-dev.1",
+    "@rxap/ngx-theme": "^19.1.0-dev.3",
     "@rxap/pattern": "^1.1.14-dev.0",
     "@rxap/utilities": "^16.4.4-dev.0",
     "rxjs": "^7.8.1"
@@ -122,7 +122,7 @@
       },
       {
         "package": "@rxap/ngx-theme",
-        "version": "19.1.0-dev.1"
+        "version": "19.1.0-dev.3"
       },
       {
         "package": "@rxap/pattern",
