@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@19.1.0-dev.3...@rxap/ngx-theme@19.1.0-dev.4) (2025-05-08)
+
+### Bug Fixes
+
+- update package groups ([c6a7e8e](https://gitlab.com/rxap/packages/commit/c6a7e8e27fdc6a36b0926a2e2eff10fd02aabf74))
+
 # [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@19.1.0-dev.2...@rxap/ngx-theme@19.1.0-dev.3) (2025-05-08)
 
 ### Features
