@@ -16,6 +16,7 @@ import {
 } from 'ts-morph';
 import { REMOTE_METHOD_FILE_SUFFIX } from './const';
 import { CreateDirectiveOptions } from './options';
+import { hasResponseAdditionalProperties } from './utilities/has-response-additional-properties';
 
 /**
  * Asserts that the given object is an array of `OptionalKind<ImportSpecifierStructure>`.
@@ -115,6 +116,12 @@ export function CreateDirective({
   const selector = camelize(selectorFragments.join('-'));
   // endregion
 
+  let methodNameSuffix = '';
+
+  if (typeParameters?.length) {
+    methodNameSuffix = `<${ typeParameters.map(typeParameter => typeof typeParameter === 'string' ? typeParameter : typeParameter.name).join(', ') }>`;
+  }
+
   const ctorsParameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: 'remoteMethodLoader',
@@ -136,7 +143,7 @@ export function CreateDirective({
       ],
     }, {
       name: 'remoteMethod',
-      type: remoteMethodName,
+      type: remoteMethodName + methodNameSuffix,
       decorators: [
         {
           name: 'Inject',
