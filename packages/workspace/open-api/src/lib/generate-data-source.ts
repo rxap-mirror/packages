@@ -7,6 +7,7 @@ import {
   ClassDeclarationStructure,
   ImportDeclarationStructure,
   OptionalKind,
+  TypeParameterDeclarationStructure,
   Writers,
 } from 'ts-morph';
 import {
@@ -16,6 +17,8 @@ import {
 import { GenerateParameter } from './types';
 import { GetParameterType } from './utilities/get-parameter-type';
 import { GetResponseType } from './utilities/get-response-type';
+import { GetTypeParameters } from './utilities/get-type-parameters';
+import { hasResponseAdditionalProperties } from './utilities/has-response-additional-properties';
 
 /**
  * Generates a TypeScript source file for an OpenAPI data source class based on the provided parameters.
@@ -90,6 +93,7 @@ export function GenerateDataSource(
 
   const classStructure: OptionalKind<ClassDeclarationStructure> = {
     name: classify(name.replace(/\./g, '-')),
+    typeParameters: GetTypeParameters(parameter),
     decorators: [
       {
         name: 'Injectable',

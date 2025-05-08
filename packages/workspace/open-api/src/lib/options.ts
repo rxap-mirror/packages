@@ -1,4 +1,8 @@
-import { SourceFile } from 'ts-morph';
+import {
+  OptionalKind,
+  SourceFile,
+  TypeParameterDeclarationStructure,
+} from 'ts-morph';
 
 export interface CreateDirectiveRuleOptions {
   filePath: string;
@@ -13,4 +17,5 @@ export interface CreateDirectiveRuleOptions {
 export interface CreateDirectiveOptions extends CreateDirectiveRuleOptions {
   sourceFile: SourceFile;
   withoutParameters: boolean;
+  typeParameters?: (OptionalKind<TypeParameterDeclarationStructure> | string)[];
 }

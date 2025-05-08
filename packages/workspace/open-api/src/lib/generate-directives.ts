@@ -6,6 +6,7 @@ import { join } from 'path';
 import {
   ImportDeclarationStructure,
   OptionalKind,
+  TypeParameterDeclarationStructure,
 } from 'ts-morph';
 import {
   DIRECTIVE_BASE_PATH,
@@ -20,6 +21,8 @@ import {
 import { GetParameterType } from './utilities/get-parameter-type';
 import { GetRequestBodyType } from './utilities/get-request-body-type';
 import { GetResponseType } from './utilities/get-response-type';
+import { GetTypeParameters } from './utilities/get-type-parameters';
+import { hasResponseAdditionalProperties } from './utilities/has-response-additional-properties';
 import { IsCollectionResponse } from './utilities/is-collection-response';
 import { IsWithoutParameters } from './utilities/is-without-parameters';
 
@@ -111,6 +114,8 @@ export function GenerateDirectives(parameter: GenerateParameter<OpenApiSchemaBas
 
   const withoutParameters = IsWithoutParameters(parameter);
 
+  const typeParameters: (OptionalKind<TypeParameterDeclarationStructure> | string)[] = GetTypeParameters(parameter);
+
   if (IsCollectionResponse(parameter)) {
     importStructures.push({
       moduleSpecifier: '@rxap/utilities',
@@ -126,6 +131,7 @@ export function GenerateDirectives(parameter: GenerateParameter<OpenApiSchemaBas
       collection: true,
       sourceFile,
       withoutParameters,
+      typeParameters,
     });
   }
 
@@ -139,6 +145,7 @@ export function GenerateDirectives(parameter: GenerateParameter<OpenApiSchemaBas
     collection: false,
     sourceFile,
     withoutParameters,
+    typeParameters,
   });
 
   CreateDirective({
@@ -151,6 +158,7 @@ export function GenerateDirectives(parameter: GenerateParameter<OpenApiSchemaBas
     collection: false,
     sourceFile,
     withoutParameters,
+    typeParameters,
   });
 
   sourceFile.addImportDeclarations(importStructures);

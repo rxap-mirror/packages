@@ -4,6 +4,7 @@ import {
   GetParameterType,
   GetRequestBodyType,
   GetResponseType,
+  GetTypeParameters,
   IsRefSchemaObject,
   OpenApiSchemaBase,
 } from '@rxap/workspace-open-api';
@@ -13,6 +14,7 @@ import {
   ImportDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure,
+  TypeParameterDeclarationStructure,
   WriterFunction,
   Writers,
 } from 'ts-morph';
@@ -159,7 +161,7 @@ export function GenerateHttpResource(
     type: `HttpResourceOptions<${responseType}, unknown> & { defaultValue: NoInfer<${responseType}> }`,
   };
 
-  const withResponseAdditionalProperties = hasResponseAdditionalProperties(parameter);
+  const typeParameters: (OptionalKind<TypeParameterDeclarationStructure> | string)[] = GetTypeParameters(parameter);
 
   const structure: OptionalKind<FunctionDeclarationStructure> = {
     isExported: true,
@@ -180,19 +182,16 @@ export function GenerateHttpResource(
       {
         parameters: [ ...parameters.map(p => ({ ...p, initializer: undefined })), optionsParameterNoInfer ],
         returnType: `HttpResourceRef<${responseType}>`,
-        typeParameters: withResponseAdditionalProperties ? [ { name: 'TResponse' } ] : undefined,
+        typeParameters,
       },
       {
         parameters: [ ...parameters.map(p => ({ ...p, initializer: undefined, hasQuestionToken: !!p.initializer })), optionsParameter ],
         returnType: `HttpResourceRef<${responseType} | undefined>`,
-        typeParameters: withResponseAdditionalProperties ? [ { name: 'TResponse' } ] : undefined,
+        typeParameters,
       }
-    ]
+    ],
+    typeParameters,
   };
-
-  if (withResponseAdditionalProperties) {
-    structure.typeParameters = [ { name: 'TResponse' } ];
-  }
 
   sourceFile.addFunction(structure);
 

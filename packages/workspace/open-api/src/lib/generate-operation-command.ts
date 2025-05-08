@@ -9,6 +9,7 @@ import {
   OptionalKind,
   ParameterDeclarationStructure,
   Scope,
+  TypeParameterDeclarationStructure,
   Writers,
 } from 'ts-morph';
 import {
@@ -23,6 +24,8 @@ import {
 import { GetParameterType } from './utilities/get-parameter-type';
 import { GetRequestBodyType } from './utilities/get-request-body-type';
 import { GetResponseType } from './utilities/get-response-type';
+import { GetTypeParameters } from './utilities/get-type-parameters';
+import { hasResponseAdditionalProperties } from './utilities/has-response-additional-properties';
 
 /**
  *
@@ -144,6 +147,7 @@ export async function GenerateOperationCommand(
 
   const classStructure: OptionalKind<ClassDeclarationStructure> = {
     name: classify(name.replace(/\./g, '-')),
+    typeParameters: GetTypeParameters(parameter),
     decorators: [
       {
         name: 'Injectable',

@@ -72,6 +72,7 @@ export function CreateDirective({
                                   template,
                                   collection,
                                   withoutParameters,
+  typeParameters,
                                 }: CreateDirectiveOptions): void {
   const remoteMethodName = classify([ name, REMOTE_METHOD_FILE_SUFFIX ].join('-'));
 
@@ -380,6 +381,7 @@ export function CreateDirective({
     setAccessors: directiveClassSetAccessors,
     properties: directiveClassProperties,
     isExported: true,
+    typeParameters,
   };
 
   sourceFile.addClass(directiveClassStructure);
