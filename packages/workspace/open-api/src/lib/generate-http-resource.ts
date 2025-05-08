@@ -159,6 +159,8 @@ export function GenerateHttpResource(
     type: `HttpResourceOptions<${responseType}, unknown> & { defaultValue: NoInfer<${responseType}> }`,
   };
 
+  const withResponseAdditionalProperties = hasResponseAdditionalProperties(parameter);
+
   const structure: OptionalKind<FunctionDeclarationStructure> = {
     isExported: true,
     name: camelize([parameter.operationId, 'http-resource'].join('_')),
@@ -178,15 +180,17 @@ export function GenerateHttpResource(
       {
         parameters: [ ...parameters.map(p => ({ ...p, initializer: undefined })), optionsParameterNoInfer ],
         returnType: `HttpResourceRef<${responseType}>`,
+        typeParameters: withResponseAdditionalProperties ? [ { name: 'TResponse' } ] : undefined,
       },
       {
         parameters: [ ...parameters.map(p => ({ ...p, initializer: undefined, hasQuestionToken: !!p.initializer })), optionsParameter ],
         returnType: `HttpResourceRef<${responseType} | undefined>`,
+        typeParameters: withResponseAdditionalProperties ? [ { name: 'TResponse' } ] : undefined,
       }
     ]
   };
 
-  if (hasResponseAdditionalProperties(parameter)) {
+  if (withResponseAdditionalProperties) {
     structure.typeParameters = [ { name: 'TResponse' } ];
   }
 
