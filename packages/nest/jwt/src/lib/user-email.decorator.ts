@@ -21,6 +21,6 @@ export const UserEmail = createParamDecorator(
     if (!('email' in jwt)) {
       throw new InternalServerErrorException('The decoded jwt token is missing the email claim');
     }
-    return jwt.sub;
+    return jwt.email;
   },
 );
