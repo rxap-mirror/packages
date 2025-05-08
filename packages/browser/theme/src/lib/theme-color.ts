@@ -2,7 +2,6 @@ import {
   CorePalette,
   TonalPalette
 } from '@material/material-color-utilities';
-import { ConfigService } from '@rxap/config';
 
 /**
  * Represents the tone scale numbers used in Material Design palettes.
@@ -384,7 +383,7 @@ export class ThemeColor {
 }
 
 export function applyThemeColorBootstrapHook(defaultThemeControls?: ThemeColors) {
-  return (config: ConfigService) => {
+  return (config: { get: (key: string, defaultValue?: any) => any }) => {
     const themeColors = config.get('theme.colors', defaultThemeControls);
     if (themeColors) {
       ThemeColor.apply(window.document, themeColors);

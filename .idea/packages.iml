@@ -588,6 +588,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/angular/utilities/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/angular/utilities/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/angular/utilities/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/browser/theme/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/browser/theme/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/browser/theme/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/browser/theme/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

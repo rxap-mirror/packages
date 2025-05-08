@@ -9402,6 +9402,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/browser-theme@workspace:packages/browser/theme":
+  version: 0.0.0-use.local
+  resolution: "@rxap/browser-theme@workspace:packages/browser/theme"
+  dependencies:
+    "@material/material-color-utilities": ^0.3.0
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/browser-utilities@workspace:packages/browser/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/browser-utilities@workspace:packages/browser/utilities"
@@ -10626,7 +10635,6 @@ __metadata:
   peerDependencies:
     "@angular/cdk": ^19.1.1
     "@angular/core": ^19.2.1
-    "@material/material-color-utilities": ^0.3.0
     "@rxap/config": ^19.1.0-dev.0
     "@rxap/ngx-pub-sub": ^19.0.4-dev.0
     "@rxap/rxjs": ^1.1.16-dev.0
