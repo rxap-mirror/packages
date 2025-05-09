@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.0-dev.1...@rxap/layout@19.1.0-dev.2) (2025-05-09)
+
+### Features
+
+- **layout:** enhance navigation responsiveness for mobile and collapsed states ([0884432](https://gitlab.com/rxap/packages/commit/0884432174dadc54c503535af3c67f1a29dcedb5))
+- **layout:** make mobile query configurable in navigation config ([549eca1](https://gitlab.com/rxap/packages/commit/549eca12a27bb6b12b853e54bcd7408a710c42a6))
+
 # [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.0-dev.0...@rxap/layout@19.1.0-dev.1) (2025-04-30)
 
 ### Features
