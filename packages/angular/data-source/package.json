@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.1",
+  "version": "19.1.0-dev.2",
   "name": "@rxap/data-source",
   "description": "Provides a set of classes and decorators for creating and managing data sources in Angular applications, including base classes, static data sources, observable data sources, and method data sources. It also includes a component for displaying data source errors. The library offers features like data persistence, refresh and retry mechanisms, and integration with RxJS observables.\n",
   "license": "GPL-3.0-or-later",

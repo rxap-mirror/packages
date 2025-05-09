@@ -11,7 +11,7 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@rxap/config": "^19.1.0-dev.0",
-    "@rxap/data-source": "^19.1.0-dev.1",
+    "@rxap/data-source": "^19.1.0-dev.2",
     "@rxap/environment": "^19.0.4-dev.0",
     "@rxap/mixin": "^16.0.14-dev.0",
     "@rxap/remote-method": "^19.0.4-dev.0",
@@ -72,7 +72,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.1.0-dev.1"
+        "version": "19.1.0-dev.2"
       },
       {
         "package": "@rxap/data-structure-tree",

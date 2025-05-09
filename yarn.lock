@@ -9607,7 +9607,7 @@ __metadata:
     "@angular/forms": ^19.2.1
     "@angular/material": ^19.1.1
     "@angular/router": ^19.2.1
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/definition": ^19.0.4-dev.0
     "@rxap/forms": ^19.0.4-dev.2
     "@rxap/mixin": ^16.0.14-dev.0
@@ -9764,7 +9764,7 @@ __metadata:
     "@angular/router": ^19.2.1
     "@rxap/browser-utilities": ^1.1.13-dev.0
     "@rxap/config": ^19.1.0-dev.0
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/environment": ^19.0.4-dev.0
     "@rxap/material-directives": ^19.0.4-dev.0
     "@rxap/ngx-pub-sub": ^19.0.4-dev.0
@@ -9843,7 +9843,7 @@ __metadata:
     "@angular/material": ^19.1.1
     "@angular/router": ^19.2.1
     "@rxap/components": ^19.0.4-dev.0
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/directives": ^19.0.4-dev.0
     "@rxap/forms": ^19.0.4-dev.2
     "@rxap/material-directives": ^19.0.4-dev.0
@@ -9866,7 +9866,7 @@ __metadata:
     "@angular/cdk": ^19.1.1
     "@angular/core": ^19.2.1
     "@angular/material": ^19.1.1
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/form-system": ^19.0.4-dev.0
     "@rxap/forms": ^19.0.4-dev.2
     "@rxap/material-table-system": ^19.0.4-dev.0
@@ -10535,7 +10535,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/forms": ^19.2.1
     "@angular/material": ^19.1.1
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/form-system": ^19.0.4-dev.0
     "@rxap/forms": ^19.0.4-dev.2
     "@rxap/material-directives": ^19.0.4-dev.0
@@ -10575,7 +10575,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/router": ^19.2.1
     "@rxap/config": ^19.1.0-dev.0
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/ngx-pub-sub": ^19.0.4-dev.0
     "@rxap/pattern": ^1.1.14-dev.0
     rxjs: ^7.8.1
@@ -10664,7 +10664,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.2.1
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/ngx-pub-sub": ^19.0.4-dev.0
     "@rxap/open-api": ^19.1.0-dev.2
     "@rxap/utilities": ^16.4.4-dev.0
@@ -10728,7 +10728,7 @@ __metadata:
     "@angular/common": ^19.2.1
     "@angular/core": ^19.2.1
     "@rxap/config": ^19.1.0-dev.0
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/environment": ^19.0.4-dev.0
     "@rxap/mixin": ^16.0.14-dev.0
     "@rxap/remote-method": ^19.0.4-dev.0
@@ -11519,7 +11519,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/forms": ^19.2.1
     "@angular/material": ^19.1.1
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/material-table-system": ^19.0.4-dev.0
     "@rxap/utilities": ^16.4.4-dev.0
     rxjs: ^7.8.1
@@ -11538,7 +11538,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/material": ^19.1.1
     "@rxap/contenteditable": ^19.0.4-dev.0
-    "@rxap/data-source": ^19.1.0-dev.1
+    "@rxap/data-source": ^19.1.0-dev.2
     "@rxap/data-structure-tree": ^1.1.16-dev.0
     "@rxap/forms": ^19.0.4-dev.2
     "@rxap/material-directives": ^19.0.4-dev.0
