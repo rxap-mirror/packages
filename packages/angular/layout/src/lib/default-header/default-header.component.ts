@@ -37,7 +37,8 @@ export class DefaultHeaderComponent {
 
   protected readonly layoutComponentService = inject(LayoutService);
 
-  public readonly collapsable = computed(() => this.layoutComponentService.collapsable());
+  public readonly collapsed = computed(() => this.layoutComponentService.collapsed());
+  public readonly isMobile = computed(() => this.layoutComponentService.isMobile());
   public readonly opened = computed(() => this.layoutComponentService.opened());
   public readonly profile = toSignal(inject(RXAP_USER_PROFILE_DATA_SOURCE).connect('user-profile'), { initialValue: null });
 

@@ -1,5 +1,5 @@
 <div class="w-full flex flex-row gap-x-4 justify-between items-center">
-  @if (collapsable()) {
+  @if (collapsed() || isMobile()) {
     <rxap-sidenav-toggle-button></rxap-sidenav-toggle-button>
   }
   <div class="grow flex flex-row gap-x-4 items-center">

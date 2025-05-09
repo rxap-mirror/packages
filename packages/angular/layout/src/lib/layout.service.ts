@@ -45,7 +45,7 @@ export class LayoutService {
   constructor(
     @Inject(RXAP_NAVIGATION_LAYOUT_CONFIG_DEFAULTS)
     @Optional()
-    navigationConfigDefaults: Omit<NavigationConfig, 'apps'> = {},
+    navigationConfigDefaults: Omit<NavigationConfig, 'apps'> | null = null,
   ) {
     const mobileQuery = this.mediaMatcher.matchMedia('(max-width: 959px)');
     this.isMobile = toSignal(new Observable<boolean>(subscriber => {
@@ -54,12 +54,12 @@ export class LayoutService {
       });
     }), { initialValue: mobileQuery.matches });
 
-    const initialCollapsable = this.config.get('navigation.collapsable', navigationConfigDefaults.collapsable ?? true);
+    const initialCollapsable = this.config.get('navigation.collapsable', navigationConfigDefaults?.collapsable ?? true);
     const collapsable = initialCollapsable && !this.isMobile();
-    const pinned = this.config.get('navigation.pinned', navigationConfigDefaults.pinned ?? false);
-    const mode = this.config.get('navigation.mode', navigationConfigDefaults.mode ?? (pinned || !collapsable ? 'side' : 'over'));
-    const opened = this.config.get('navigation.opened', (navigationConfigDefaults.opened ?? (!collapsable || pinned)) && !this.isMobile());
-    const fixedInViewport = this.config.get('navigation.fixedInViewport', navigationConfigDefaults.fixedInViewport ?? true);
+    const pinned = this.config.get('navigation.pinned', navigationConfigDefaults?.pinned ?? false);
+    const mode = this.config.get('navigation.mode', navigationConfigDefaults?.mode ?? (pinned || !collapsable ? 'side' : 'over'));
+    const opened = this.config.get('navigation.opened', (navigationConfigDefaults?.opened ?? (!collapsable || pinned)) && !this.isMobile());
+    const fixedInViewport = this.config.get('navigation.fixedInViewport', navigationConfigDefaults?.fixedInViewport ?? true);
 
     if (isDevMode()) {
       console.log({

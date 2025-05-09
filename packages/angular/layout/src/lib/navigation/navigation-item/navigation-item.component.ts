@@ -116,6 +116,12 @@ export class NavigationItemComponent
   protected readonly elementRef = inject(ElementRef);
   protected readonly renderer = inject(Renderer2);
 
+  onClick() {
+    if (this.layoutService.isMobile() || this.layoutService.collapsed()) {
+      this.layoutService.opened.set(false);
+    }
+  }
+
   public ngOnChanges(changes: SimpleChanges) {
     if (changes['item']) {
       const item: NavigationItem = changes['item'].currentValue;

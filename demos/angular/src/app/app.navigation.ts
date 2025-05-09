@@ -27,6 +27,11 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [
         routerLink: ['/', 'layout', 'large-content'],
         label: $localize`Large Content`,
         icon: { svgIcon: 'size-l' },
+      },
+      {
+        routerLink: ['/', 'layout', 'info'],
+        label: $localize`Info`,
+        icon: { svgIcon: 'info' },
       }
     ]
   },

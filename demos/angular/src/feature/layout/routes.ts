@@ -5,7 +5,11 @@ export const ROUTES: Route[] = [
     path: 'large-content',
     loadComponent: () => import('./large-content/large-content.component'),
   },
-  { path: '**', redirectTo: 'large-content' }
+  {
+    path: 'info',
+    loadComponent: () => import('./layout-info/layout-info.component'),
+  },
+  { path: '**', redirectTo: 'info' }
 ];
 
 export default ROUTES;
