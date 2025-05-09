@@ -50,12 +50,12 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
   })
   public override dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractTableDataSource<Data>>;
   @Input('rxapTableDataSourceViewer')
-  public override viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };
+  public override viewer: BaseDataSourceViewer = { id: '[rxapTableDataSource]' };
 
-  @Input('rxapDataSourceEmpty')
+  @Input('rxapTableDataSourceEmpty')
   public override emptyTemplate?: TemplateRef<void>;
 
-  @Input('rxapDataSourceErrorTemplate')
+  @Input('rxapTableDataSourceErrorTemplate')
   public override errorTemplate?: TemplateRef<DataSourceCollectionErrorTemplateContext>;
 
   public override loadDataSource(): AbstractPaginationDataSource<Data> | null {
