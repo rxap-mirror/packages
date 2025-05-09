@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.0-dev.8...@rxap/workspace-open-api@19.1.0-dev.9) (2025-05-09)
+
+### Features
+
+- **open-api:** add support for type parameters in remoteMethod decorator ([f28e166](https://gitlab.com/rxap/packages/commit/f28e1664dcef2b91d5ffeca35d810c3c858b47aa))
+
 # [19.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.0-dev.7...@rxap/workspace-open-api@19.1.0-dev.8) (2025-05-08)
 
 ### Features

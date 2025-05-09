@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@19.1.0-dev.0...@rxap/data-source@19.1.0-dev.1) (2025-05-09)
+
+### Features
+
+- **table:** add support for empty and error templates in data source directive ([50114b5](https://gitlab.com/rxap/packages/commit/50114b588c09fb22af03822ddea25a878405a91e))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@19.0.4-dev.0...@rxap/data-source@19.1.0-dev.0) (2025-04-02)
 
 ### Features
