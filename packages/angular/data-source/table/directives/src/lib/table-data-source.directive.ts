@@ -1,6 +1,7 @@
 import {
   Directive,
   Input,
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractPaginationDataSource,
@@ -13,9 +14,15 @@ import {
   RxapTableDataSourceError,
   SortLike,
 } from '@rxap/data-source/table';
-import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
+import {
+  DataSourceCollectionDirective,
+  DataSourceCollectionErrorTemplateContext,
+} from '@rxap/data-source/directive';
 import { IdOrInstanceOrToken } from '@rxap/definition';
-import { BaseDataSourceViewer } from '@rxap/data-source';
+import {
+  BaseDataSource,
+  BaseDataSourceViewer,
+} from '@rxap/data-source';
 import { Observable } from 'rxjs';
 
 @Directive({
@@ -44,6 +51,12 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
   public override dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractTableDataSource<Data>>;
   @Input('rxapTableDataSourceViewer')
   public override viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };
+
+  @Input('rxapDataSourceEmpty')
+  public override emptyTemplate?: TemplateRef<void>;
+
+  @Input('rxapDataSourceErrorTemplate')
+  public override errorTemplate?: TemplateRef<DataSourceCollectionErrorTemplateContext>;
 
   public override loadDataSource(): AbstractPaginationDataSource<Data> | null {
     const dataSource = super.loadDataSource();
