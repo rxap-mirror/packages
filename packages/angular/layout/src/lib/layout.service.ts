@@ -47,7 +47,7 @@ export class LayoutService {
     @Optional()
     navigationConfigDefaults: Omit<NavigationConfig, 'apps'> | null = null,
   ) {
-    const mobileQuery = this.mediaMatcher.matchMedia('(max-width: 959px)');
+    const mobileQuery = this.mediaMatcher.matchMedia(navigationConfigDefaults?.mobileQuery ?? '(max-width: 959px)');
     this.isMobile = toSignal(new Observable<boolean>(subscriber => {
       mobileQuery.addEventListener('change', (event) => {
         subscriber.next(event.matches);

@@ -26,6 +26,7 @@ export interface NavigationConfig {
   mode?: 'side' | 'over';
   opened?: boolean;
   fixedInViewport?: boolean;
+  mobileQuery?: string;
 }
 
 export type LanguagesConfig = Record<string, string>;
