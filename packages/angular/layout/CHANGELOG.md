@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.0-dev.2...@rxap/layout@19.1.0-dev.3) (2025-05-12)
+
+### Bug Fixes
+
+- provide the logo service at root ([1b77b42](https://gitlab.com/rxap/packages/commit/1b77b420066f60d036b6bc70cbd841ba88b6e63e))
+
 # [19.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.0-dev.1...@rxap/layout@19.1.0-dev.2) (2025-05-09)
 
 ### Features
