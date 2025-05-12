@@ -8,7 +8,6 @@ import { ExternalAppsService } from './external-apps.service';
 import { FooterService } from './footer.service';
 import { HeaderService } from './header.service';
 import { LayoutService } from './layout.service';
-import { LogoService } from './logo.service';
 import { NavigationService } from './navigation.service';
 import { NavigationWithInserts } from './navigation/navigation-item';
 import {
@@ -34,7 +33,6 @@ import {
 export function provideLayout(...additionalProviders: Provider[]): Provider[] {
   return [
     LayoutService,
-    LogoService,
     HeaderService,
     FooterService,
     DefaultHeaderService,

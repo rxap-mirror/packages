@@ -10,7 +10,7 @@ import {
   RXAP_LOGO_CONFIG_DEFAULTS,
 } from './tokens';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LogoService {
 
   private readonly config = inject(ConfigService);
