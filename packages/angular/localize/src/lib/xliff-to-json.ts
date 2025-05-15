@@ -14,11 +14,14 @@ export async function xliffToJson(translations: string) {
         .map((entry) =>
           typeof entry === "string" ? entry : `{{${entry.Standalone.id}}}`,
         )
-        .map((entry) => entry.replace("{{", "{$").replace("}}", "}"))
         .join("");
+    } else if (typeof translation === "object" && 'Standalone' in translation && translation.Standalone.id !== '') {
+      result[current] = `{{${translation.Standalone.id}}}`;
     } else {
-      throw new Error("Could not parse XLIFF: " + JSON.stringify(translation));
+      console.warn(`Could not parse XLIFF: (${current}) ${ JSON.stringify(xliffContent[current]) }`);
+      return result;
     }
+    result[current] = result[current].replace("{{", "{$").replace("}}", "}");
     return result;
   }, {});
 }
