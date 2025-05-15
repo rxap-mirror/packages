@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.7...@rxap/ngx-localize@19.1.0-dev.8) (2025-05-15)
+
+### Bug Fixes
+
+- remove console log ([c51b279](https://gitlab.com/rxap/packages/commit/c51b2791abf3cd01d5cf5e642b0794304be0dfcd))
+
 # [19.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.6...@rxap/ngx-localize@19.1.0-dev.7) (2025-05-15)
 
 **Note:** Version bump only for package @rxap/ngx-localize
