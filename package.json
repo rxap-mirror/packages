@@ -47,7 +47,7 @@
     "@langchain/core": "^0.3.40",
     "@langchain/openai": "^0.4.4",
     "@langchain/textsplitters": "^0.1.0",
-    "@marker.io/browser": "^0.19.0",
+    "@marker.io/browser": "^0.20.2",
     "@material/material-color-utilities": "^0.3.0",
     "@mdi/angular-material": "7.2.96",
     "@mendable/firecrawl-js": "^1.18.2",

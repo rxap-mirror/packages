@@ -6,4 +6,4 @@ export interface ComponentDialogData {
   title?: string,
 }
 
-export type ComponentDialogConfig = MatDialogConfig<ComponentDialogData>
+export type ComponentDialogConfig = MatDialogConfig<Omit<ComponentDialogData, 'component'>>;

@@ -5952,10 +5952,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@marker.io/browser@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@marker.io/browser@npm:0.19.0"
-  checksum: 535d76ed0a57b1f3bd3d748b2da975be38a36b3b2529cb51961d813588a77168ab20e483715dd4b4d2b8a02249eb5be1b1e9b51f9e676ddf7064fc7eb2d2c0c3
+"@marker.io/browser@npm:^0.20.2":
+  version: 0.20.2
+  resolution: "@marker.io/browser@npm:0.20.2"
+  checksum: 3e0f181f28c45e78aefe2e195d79278968a10ae2621711cd170bc28e26560ff5da08f3f3b452b366db023414f6d1d6578e8d566e3e56408ec01c68820cf3d916
   languageName: node
   linkType: hard
 
@@ -10473,7 +10473,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.2.1
-    "@marker.io/browser": ^0.19.0
+    "@marker.io/browser": ^0.20.2
     "@rxap/config": ^19.1.0-dev.1
     "@rxap/environment": ^19.0.4-dev.0
     "@rxap/ngx-pub-sub": ^19.0.4-dev.0
@@ -11336,7 +11336,7 @@ __metadata:
     "@langchain/openai": ^0.4.4
     "@langchain/textsplitters": ^0.1.0
     "@localazy/cli": 1.7.10
-    "@marker.io/browser": ^0.19.0
+    "@marker.io/browser": ^0.20.2
     "@material/material-color-utilities": ^0.3.0
     "@mdi/angular-material": 7.2.96
     "@mendable/firecrawl-js": ^1.18.2
