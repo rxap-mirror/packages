@@ -25,7 +25,7 @@ async function fetchTranslation(locale: string): Promise<string | null> {
 }
 
 async function fetchTranslations(locale: string, preferredLanguages: string[], fallback: string): Promise<{ json: any, locale: string } | null> {
-  let xml: string | null;
+  let xml: string | null = null;
   let currentLocale: string | undefined = locale;
   do {
     xml = await fetchTranslation(currentLocale);
@@ -35,17 +35,16 @@ async function fetchTranslations(locale: string, preferredLanguages: string[], f
   } while (!xml && currentLocale);
 
   if (!xml) {
-    console.error(`Could not download XLIFF file for locale ${ locale } or fallback ${ fallback }`);
-  }
-
-  try {
-    xml = await fetch(`/i18n/${ fallback }.xlf`).then((r) => r.text());
-    currentLocale = locale;
-    if (xml && !isTranslationXml(xml)) {
-      console.error(`Invalid XLIFF file for fallback locale ${ fallback }`);
+    console.error(`Could not download XLIFF file for locale ${ locale } load fallback`);
+    try {
+      xml = await fetch(`/i18n/${ fallback }.xlf`).then((r) => r.text());
+      currentLocale = locale;
+      if (xml && !isTranslationXml(xml)) {
+        console.error(`Invalid XLIFF file for fallback locale ${ fallback }`);
+      }
+    } catch (e: any) {
+      console.warn(`Could not download XLIFF file for fallback locale ${ fallback }: ${ e.message }`);
     }
-  } catch (e: any) {
-    console.warn(`Could not download XLIFF file for fallback locale ${ fallback }: ${ e.message }`);
   }
 
   if (!xml) {
@@ -59,7 +58,7 @@ async function fetchTranslations(locale: string, preferredLanguages: string[], f
 
   let json: any;
   try {
-    json = xliffToJson(xml);
+    json = await xliffToJson(xml);
   } catch (e: any) {
     console.error(`Could not parse XLIFF file for locale ${ locale }: ${ e.message }`);
     return null;
@@ -104,6 +103,7 @@ export async function loadLanguages(
   const response = await fetchTranslations(locale, preferredLanguages, fallback);
 
   if (response) {
+    console.log('json', response.json);
     // Initialize translation
     loadTranslations(response.json);
     locale = response.locale;
