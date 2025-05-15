@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.0-dev.1...@rxap/config@19.1.0-dev.2) (2025-05-15)
+
+### Bug Fixes
+
+- save race ([1c70ab4](https://gitlab.com/rxap/packages/commit/1c70ab49a792a5569f350e0935641143e8f6f138))
+
 # [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.0-dev.0...@rxap/config@19.1.0-dev.1) (2025-05-09)
 
 ### Features

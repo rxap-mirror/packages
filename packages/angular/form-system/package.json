@@ -76,7 +76,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.1.0-dev.1"
+        "version": "19.1.0-dev.2"
       },
       {
         "package": "@rxap/data-source",
