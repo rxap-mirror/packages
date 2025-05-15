@@ -2,7 +2,10 @@ import {
   formatFiles,
   Tree,
 } from '@nx/devkit';
-import { GenerateSerializedSchematicFile } from '@rxap/workspace-utilities';
+import {
+  AddPackageJsonDevDependency,
+  GenerateSerializedSchematicFile,
+} from '@rxap/workspace-utilities';
 import { initWorkspace } from './init-workspace';
 import { InitGeneratorSchema } from './schema';
 
@@ -18,6 +21,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     'init',
     options,
   );
+
+  await AddPackageJsonDevDependency(tree, '@localazy/cli', 'latest', { soft: true });
 
   if (!options.skipFormat) {
     await formatFiles(tree);
