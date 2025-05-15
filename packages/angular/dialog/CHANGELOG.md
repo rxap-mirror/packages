@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/dialog@19.1.0-dev.0...@rxap/dialog@19.1.0-dev.1) (2025-05-15)
+
+### Bug Fixes
+
+- update marker io sdk ([34631f3](https://gitlab.com/rxap/packages/commit/34631f32555bfc776d5ccac4664728cc97c9c16c))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@19.0.4-dev.0...@rxap/dialog@19.1.0-dev.0) (2025-05-05)
 
 ### Features
