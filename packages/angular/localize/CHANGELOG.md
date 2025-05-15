@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.3...@rxap/ngx-localize@19.1.0-dev.4) (2025-05-15)
+
+### Features
+
+- **localize:** improve i18n handling and language selection logic ([3d36b58](https://gitlab.com/rxap/packages/commit/3d36b585518bd52beffb08fce2219c550f2090b0))
+
 # [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.2...@rxap/ngx-localize@19.1.0-dev.3) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/ngx-localize
