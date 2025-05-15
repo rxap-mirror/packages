@@ -5,6 +5,13 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
+/**
+ * Intercepts an HTTP request to include a localized 'Accept-Language' header, if available.
+ *
+ * @param {HttpRequest<unknown>} request - The HTTP request to be intercepted and optionally modified.
+ * @param {HttpHandlerFn} next - The next handler in the HTTP request pipeline.
+ * @return {Observable<HttpEvent<unknown>>} An observable of the HTTP response event.
+ */
 export function LanguageInterceptor(
   request: HttpRequest<unknown>,
   next: HttpHandlerFn,

@@ -10,6 +10,11 @@ import {
   LanguagesConfig,
 } from '@rxap/config';
 
+/**
+ * A service that manages language selection and configuration for the application.
+ * Provides functionality to retrieve available languages, default language,
+ * selected language, and dynamically change the application's language settings.
+ */
 @Injectable({ providedIn: 'root' })
 export class LanguageSelectorService {
   private readonly config = inject(ConfigService);
@@ -20,6 +25,14 @@ export class LanguageSelectorService {
 
   public readonly hasLanguages = computed(() => Object.keys(this.languages()).length > 1);
 
+  /**
+   * Sets the application language to the specified value if it exists in the list of supported languages.
+   * Optionally reloads the page if the `reload` parameter is set to `true`.
+   *
+   * @param {string} language - The language code to set as the active language.
+   * @param {boolean} [reload=false] - A flag indicating whether to reload the page after updating the language.
+   * @return {Promise<void>} A promise that resolves once the language has been set and optional reload is completed.
+   */
   public async setLanguage(language: string, reload = false) {
     if (language !== this.selectedLanguage()) {
       if (Object.keys(this.languages()).includes(language)) {
