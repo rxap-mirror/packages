@@ -10,6 +10,32 @@ import {
   race,
 } from 'rxjs';
 
+/**
+ * Similar to Promise.race() but only resolves with the first successful promise.
+ * It will only reject if all promises reject.
+ */
+export async function raceSuccess<T>(promises: Promise<T>[]): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    let rejectionCount = 0;
+
+    promises.forEach((promise) => {
+      promise.then(
+        // On success, resolve the entire raceSuccess promise
+        (value) => resolve(value),
+        // On rejection, count it and check if all promises rejected
+        () => {
+          rejectionCount++;
+          if (rejectionCount === promises.length) {
+            reject(new Error('All promises were rejected'));
+          }
+          // Otherwise continue waiting for other promises
+        }
+      );
+    });
+  });
+}
+
+
 export async function dnsResolver(endpoint: string, name: string, type: string): Promise<string> {
   const response = await fetch(`${endpoint}?name=${name}&type=${type}`, {
     method: 'GET',
@@ -40,7 +66,7 @@ export async function dnsLookup(
   console.log(`Performing DNS lookup for ${type} record of ${name} using servers: ${dnsServers.join(', ')}`);
   try {
     // Use Promise.race to get the first successful response
-    return await Promise.race(dnsServers.map(server => dnsResolver(server, name, type)));
+    return await raceSuccess(dnsServers.map(server => dnsResolver(server, name, type)));
   } catch (error: any) {
     console.error(`Failed to resolve DNS TXT record for ${name} using any server: ${error.message}`);
     throw new Error(`DNS lookup failed for ${name} (${type})`); // Re-throw a more specific error
