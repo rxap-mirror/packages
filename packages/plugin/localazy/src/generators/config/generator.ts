@@ -10,6 +10,7 @@ import {
   CoerceIgnorePattern,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  GetProjectRoot,
   GetProjectSourceRoot,
   UpdateNxJson,
 } from '@rxap/workspace-utilities';
@@ -23,9 +24,15 @@ export async function configGenerator(tree: Tree, options: ConfigGeneratorSchema
     throw new Error(`Could not find project source root for project: ${ options.project }`);
   }
 
+  const projectRoot = GetProjectRoot(tree, options.project);
+
+  if (!projectRoot) {
+    throw new Error(`Could not find project root for project: ${ options.project }`);
+  }
+
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files'),
-    target: projectSourceRoot,
+    target: projectRoot,
     overwrite: options.overwrite,
   });
 
