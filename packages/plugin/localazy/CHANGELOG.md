@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@20.1.0-dev.0...@rxap/plugin-localazy@20.1.0-dev.1) (2025-05-15)
+
+### Bug Fixes
+
+- adding config file to project root ([bef60c6](https://gitlab.com/rxap/packages/commit/bef60c69ac44c3a5c44dd387b759f550e0b7ae63))
+- ensure the localazy cli is installed ([1af59b5](https://gitlab.com/rxap/packages/commit/1af59b5eb99faef6305d17828fd6641e6497012b))
+- use the correct xlf file path ([497d9fa](https://gitlab.com/rxap/packages/commit/497d9fa1cc02cd26e2506be3632c95e09389206d))
+
 # [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@20.0.4-dev.5...@rxap/plugin-localazy@20.1.0-dev.0) (2025-05-15)
 
 ### Features
