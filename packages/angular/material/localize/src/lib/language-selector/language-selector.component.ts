@@ -4,6 +4,7 @@ import {
   Component,
   computed,
   inject,
+  input,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
@@ -42,8 +43,10 @@ export class LanguageSelectorComponent {
   public readonly languages = computed(() => this.language.languages());
   public readonly selectedLanguage = computed(() => this.language.selectedLanguage());
 
+  readonly autoReload = input(true);
+
   selectLanguage(language: string) {
-    return this.language.setLanguage(language);
+    return this.language.setLanguage(language, this.autoReload());
   }
 
 }

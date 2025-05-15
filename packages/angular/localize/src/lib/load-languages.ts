@@ -6,29 +6,55 @@ function isTranslationXml(xml: string): boolean {
   return !!xml && typeof xml === 'string' && xml.startsWith('<?xml') && xml.includes('<xliff');
 }
 
-async function fetchTranslations(locale: string, fallback: string) {
+async function fetchTranslation(locale: string): Promise<string | null> {
 
   let xml: string;
   try {
     xml = await fetch(`/i18n/${ locale }.xlf`).then((r) => r.text());
     if (!isTranslationXml(xml)) {
-      throw new Error('Invalid XLIFF file');
+      console.error(`Invalid XLIFF file for locale ${ locale }`);
+      return null;
+    }
+    return xml;
+  } catch (e: any) {
+    console.warn(`Could not download XLIFF file for locale ${ locale }: ${ e.message }`);
+  }
+
+  return null;
+
+}
+
+async function fetchTranslations(locale: string, preferredLanguages: string[], fallback: string): Promise<{ json: any, locale: string } | null> {
+  let xml: string | null;
+  let currentLocale: string | undefined = locale;
+  do {
+    xml = await fetchTranslation(currentLocale);
+    if (!xml) {
+      currentLocale = preferredLanguages.shift();
+    }
+  } while (!xml && currentLocale);
+
+  if (!xml) {
+    console.error(`Could not download XLIFF file for locale ${ locale } or fallback ${ fallback }`);
+  }
+
+  try {
+    xml = await fetch(`/i18n/${ fallback }.xlf`).then((r) => r.text());
+    currentLocale = locale;
+    if (xml && !isTranslationXml(xml)) {
+      console.error(`Invalid XLIFF file for fallback locale ${ fallback }`);
     }
   } catch (e: any) {
-    console.error(`Could not download XLIFF file for locale ${ locale }: ${ e.message }`);
-    try {
-      xml = await fetch(`/i18n/${ fallback }.xlf`).then((r) => r.text());
-      if (!isTranslationXml(xml)) {
-        throw new Error('Invalid XLIFF file');
-      }
-    } catch (e: any) {
-      console.error(`Could not download XLIFF file for fallback locale ${ fallback }: ${ e.message }`);
-      throw new Error(`Could not download XLIFF file for locale ${ locale } or fallback ${ fallback }: ${ e.message }`);
-    }
+    console.warn(`Could not download XLIFF file for fallback locale ${ fallback }: ${ e.message }`);
+  }
+
+  if (!xml) {
+    console.error(`Could not download XLIFF file for locale ${ locale } or preferred ${preferredLanguages.join(', ')} or fallback ${ fallback }`);
+    return null;
   }
 
   if (!isTranslationXml(xml)) {
-    throw new Error('Invalid XLIFF file');
+    console.error(`Invalid XLIFF file for fallback locale ${ currentLocale }`);
   }
 
   let json: any;
@@ -36,51 +62,55 @@ async function fetchTranslations(locale: string, fallback: string) {
     json = xliffToJson(xml);
   } catch (e: any) {
     console.error(`Could not parse XLIFF file for locale ${ locale }: ${ e.message }`);
-    throw new Error(`Could not parse XLIFF file for locale ${ locale }: ${ e.message }`);
+    return null;
   }
 
-  return json;
+  return { json, locale: currentLocale ?? locale };
 
 }
 
 async function defaultLoadModule(locale: string) {
 
-  // Load required locale module (needs to be adjusted for different locales)
-  let module: { default: any } | null = null;
-  switch (locale) {
+  try {
+    // Load required locale module (needs to be adjusted for different locales)
+    let module: { default: any } | null = null;
+    switch (locale) {
 
-    case 'en':
-      module = await import('@angular/common/locales/en');
-      break;
+      case 'en':
+        module = await import('@angular/common/locales/en');
+        break;
 
-    case 'de':
-      module = await import('@angular/common/locales/de');
-      break;
+      case 'de':
+        module = await import('@angular/common/locales/de');
+        break;
 
-    case 'fr':
-      module = await import('@angular/common/locales/fr');
-      break;
-
-  }
-  if (module) {
-    registerLocaleData(module.default);
+    }
+    if (module) {
+      registerLocaleData(module.default);
+    }
+  } catch (e: any) {
+    console.error(`Could not load locale module for locale ${ locale }: ${ e.message }`);
   }
 
 }
 
 export async function loadLanguages(
   loadModule: (locale: string) => Promise<void> = defaultLoadModule,
-  locale: string = localStorage.getItem("locale") || "en",
+  locale: string = localStorage.getItem("locale") || navigator.language.split('-')[0] || 'en',
+  preferredLanguages = navigator.languages?.map((l) => l.split('-')[0]) ?? [],
   fallback = 'messages'
 ) {
   // Fetch XLIFF translation file and transform to JSON format (JSON translations can be used directly)
-  const json = await fetchTranslations(locale, fallback);
+  const response = await fetchTranslations(locale, preferredLanguages, fallback);
 
-  // Initialize translation
-  loadTranslations(json);
-  $localize.locale = locale;
-
-  await loadModule(locale);
+  if (response) {
+    // Initialize translation
+    loadTranslations(response.json);
+    locale = response.locale;
+    $localize.locale = locale;
+    localStorage.setItem("locale", locale);
+    await loadModule(locale);
+  }
 
   return locale;
 }

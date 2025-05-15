@@ -8,6 +8,9 @@ import {
 } from '@angular/core';
 import { UserSettingsLanguageService } from '@rxap/ngx-user';
 
+/**
+ * @deprecated removed
+ */
 @Injectable({ providedIn: 'root' })
 export class I18nService {
 
