@@ -136,7 +136,6 @@ export async function loadLanguages(
   const response = await fetchTranslations(locale, preferredLanguages, fallback);
 
   if (response) {
-    console.log('json', response.json);
     // Initialize translation
     loadTranslations(response.json);
     locale = response.locale;
