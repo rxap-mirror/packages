@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.4...@rxap/ngx-localize@19.1.0-dev.5) (2025-05-15)
+
+### Bug Fixes
+
+- support translation interpolation ([6908776](https://gitlab.com/rxap/packages/commit/69087764116316bcc9675ccc028b5134aee9ab52))
+
 # [19.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.0-dev.3...@rxap/ngx-localize@19.1.0-dev.4) (2025-05-15)
 
 ### Features
