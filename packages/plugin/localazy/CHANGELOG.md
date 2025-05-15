@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@20.0.4-dev.5...@rxap/plugin-localazy@20.1.0-dev.0) (2025-05-15)
+
+### Features
+
+- **localazy:** add nxJson update for localazy dependencies ([da50d5f](https://gitlab.com/rxap/packages/commit/da50d5feeea18fffc0b8344911aa7cfba650d891))
+
 ## [20.0.4-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@20.0.4-dev.4...@rxap/plugin-localazy@20.0.4-dev.5) (2025-05-05)
 
 **Note:** Version bump only for package @rxap/plugin-localazy
