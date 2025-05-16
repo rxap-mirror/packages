@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.0",
+  "version": "11.0.0-dev.1",
   "name": "@rxap/nest-sentry",
   "description": "This package provides a Sentry integration for NestJS applications. It includes a logger, interceptor, and module to simplify error tracking and performance monitoring with Sentry. It offers configurable options for setting up Sentry in your NestJS application.\n",
   "license": "GPL-3.0-or-later",
@@ -13,8 +13,8 @@
     "@nestjs/common": "^11.1.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.1",
-    "@rxap/nest-logger": "^11.0.0-dev.0",
-    "@rxap/nest-utilities": "^11.0.0-dev.0",
+    "@rxap/nest-logger": "^11.0.0-dev.1",
+    "@rxap/nest-utilities": "^11.0.0-dev.1",
     "@sentry/core": "^8.55.0",
     "@sentry/nestjs": "^8.55.0",
     "@sentry/node": "^8.55.0",
@@ -49,43 +49,43 @@
     "packageGroup": [
       {
         "package": "@nestjs/cache-manager",
-        "version": "2.2.2"
+        "version": "3.0.1"
       },
       {
         "package": "@nestjs/common",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/config",
-        "version": "3.2.2"
+        "version": "4.0.2"
       },
       {
         "package": "@nestjs/core",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/microservices",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/platform-express",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/throttler",
-        "version": "5.1.2"
+        "version": "6.4.0"
       },
       {
         "package": "@nestjs/websockets",
-        "version": "10.0.0"
+        "version": "11.0.0"
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "10.3.5"
+        "version": "11.0.0-dev.1"
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.4.3"
+        "version": "11.0.0-dev.1"
       },
       {
         "package": "@rxap/utilities",

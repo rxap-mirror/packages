@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.0",
+  "version": "11.0.0-dev.1",
   "name": "@rxap/nest-oauth2-proxy",
   "description": "Provides NestJS decorators to extract authentication information from request headers set by an OAuth2 proxy. Includes decorators for accessing the access token, email, groups, preferred username, and user ID. Also includes a generator for initializing the package.\n",
   "license": "GPL-3.0-or-later",
@@ -32,7 +32,7 @@
     "packageGroup": [
       {
         "package": "@nestjs/common",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@rxap/utilities",

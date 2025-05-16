@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.0",
+  "version": "11.0.0-dev.1",
   "name": "@rxap/nest-minio",
   "description": "NestJS module for integrating with Minio object storage. It provides a service for interacting with Minio, a configurable module builder, and a health indicator for monitoring Minio's status. The module also includes options loader for configuration.\n",
   "license": "GPL-3.0-or-later",
@@ -11,7 +11,7 @@
     "@nestjs/common": "^11.1.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/terminus": "^11.0.0",
-    "@rxap/nest-utilities": "^11.0.0-dev.0",
+    "@rxap/nest-utilities": "^11.0.0-dev.1",
     "joi": "^17.9.2",
     "minio": "^8.0.1"
   },
@@ -37,39 +37,55 @@
     "packageGroup": [
       {
         "package": "@nestjs/axios",
-        "version": "3.0.2"
+        "version": "4.0.0"
+      },
+      {
+        "package": "@nestjs/cache-manager",
+        "version": "3.0.1"
       },
       {
         "package": "@nestjs/common",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/config",
-        "version": "3.2.2"
+        "version": "4.0.2"
       },
       {
         "package": "@nestjs/core",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/microservices",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/mongoose",
-        "version": "10.0.10"
+        "version": "11.0.3"
       },
       {
         "package": "@nestjs/sequelize",
-        "version": "10.0.1"
+        "version": "11.0.0"
       },
       {
         "package": "@nestjs/terminus",
-        "version": "10.2.3"
+        "version": "11.0.0"
+      },
+      {
+        "package": "@nestjs/throttler",
+        "version": "6.4.0"
       },
       {
         "package": "@nestjs/typeorm",
-        "version": "10.0.2"
+        "version": "11.0.0"
+      },
+      {
+        "package": "@rxap/nest-utilities",
+        "version": "11.0.0-dev.1"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.4.4"
       }
     ]
   },

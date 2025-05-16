@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.0",
+  "version": "11.0.0-dev.1",
   "name": "@rxap/nest-web3-storage",
   "description": "NestJS module for interacting with web3.storage. It provides a service for uploading and retrieving data from the decentralized web using the web3.storage service. The module can be configured using the NestJS config service.\n",
   "license": "GPL-3.0-or-later",
@@ -33,11 +33,11 @@
     "packageGroup": [
       {
         "package": "@nestjs/common",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/config",
-        "version": "3.2.2"
+        "version": "4.0.2"
       }
     ]
   },

@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.0",
+  "version": "11.0.0-dev.1",
   "name": "@rxap/nest-rabbitmq",
   "description": "This package provides a NestJS module for integrating with RabbitMQ using exchanges. It offers a client and server implementation for message queuing and supports features like health checks and error serialization. It simplifies the process of setting up and managing RabbitMQ connections and message handling within NestJS applications.\n",
   "license": "GPL-3.0-or-later",
@@ -38,43 +38,43 @@
     "packageGroup": [
       {
         "package": "@nestjs/axios",
-        "version": "3.0.2"
+        "version": "4.0.0"
       },
       {
         "package": "@nestjs/common",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/config",
-        "version": "3.2.2"
+        "version": "4.0.2"
       },
       {
         "package": "@nestjs/core",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/microservices",
-        "version": "10.3.8"
+        "version": "11.1.1"
       },
       {
         "package": "@nestjs/mongoose",
-        "version": "10.0.10"
+        "version": "11.0.3"
       },
       {
         "package": "@nestjs/sequelize",
-        "version": "10.0.1"
+        "version": "11.0.0"
       },
       {
         "package": "@nestjs/terminus",
-        "version": "10.2.3"
+        "version": "11.0.0"
       },
       {
         "package": "@nestjs/typeorm",
-        "version": "10.0.2"
+        "version": "11.0.0"
       },
       {
         "package": "@nestjs/websockets",
-        "version": "10.0.0"
+        "version": "11.0.0"
       },
       {
         "package": "@rxap/utilities",
