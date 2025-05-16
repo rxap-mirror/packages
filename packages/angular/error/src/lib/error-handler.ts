@@ -1,15 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import {
-  EnvironmentProviders,
   ErrorHandler,
   inject,
   Injectable,
   InjectionToken,
   INJECTOR,
   isDevMode,
-  Provider,
   runInInjectionContext,
-  StaticProvider,
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
 import {
