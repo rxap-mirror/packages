@@ -98,7 +98,7 @@ export class LayoutService {
         if (!isMobile && !this.pinned()) {
           this.opened.set(false);
         }
-      }, { allowSignalWrites: true });
+      });
     }
     effect(() => {
       if (this.pinned()) {
@@ -108,7 +108,7 @@ export class LayoutService {
         this.mode.set('over');
         this.opened.set(false);
       }
-    }, { allowSignalWrites: true });
+    });
   }
 
   public toggleOpened() {
