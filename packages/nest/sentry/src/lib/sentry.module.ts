@@ -8,24 +8,23 @@ import {
   Module,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import {
   CONSOLE_LOGGER_OPTIONS,
   PrintMessagesFunction,
   RXAP_LOGGER_PRINT_MESSAGES,
   RxapLogger,
 } from '@rxap/nest-logger';
+import { SentryInterceptor } from './sentry.interceptor';
 import {
   SentryInterceptorOptions,
   SentryModuleOptions,
 } from './sentry.interfaces';
 import { SentryLogger } from './sentry.logger';
-import { SentryService } from './sentry.service';
 import {
   SENTRY_INTERCEPTOR_OPTIONS,
   SENTRY_MODULE_OPTIONS,
 } from './tokens';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { SentryInterceptor } from './sentry.interceptor';
 
 export const {
   ConfigurableModuleClass,
@@ -63,9 +62,8 @@ export const DEFAULT_SENTRY_INTERCEPTOR_OPTIONS: SentryInterceptorOptions = {
     },
     SentryLogger,
     RxapLogger,
-    SentryService
   ],
-  exports: [ Logger, SentryService ],
+  exports: [ Logger ],
 })
 export class SentryModule extends ConfigurableModuleClass {
 

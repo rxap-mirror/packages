@@ -14,41 +14,34 @@ import {
   WsArgumentsHost,
 } from '@nestjs/common/interfaces';
 import { Scope } from '@sentry/core';
+
+import * as Sentry from '@sentry/nestjs';
 import { addRequestDataToEvent } from '@sentry/node';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { SentryInterceptorOptions } from './sentry.interfaces';
-
-import { SentryService } from './sentry.service';
 import { SENTRY_INTERCEPTOR_OPTIONS } from './tokens';
 
 
 @Injectable()
 export class SentryInterceptor implements NestInterceptor {
 
-  @Inject(SentryService)
-  protected readonly client!: SentryService;
-
   @Optional()
   @Inject(SENTRY_INTERCEPTOR_OPTIONS)
   protected readonly options?: SentryInterceptorOptions;
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    if (this.client.hasInstance) {
-      // first param would be for events, second is for errors
-      return next.handle().pipe(
-        tap({
-          error: (exception: HttpException) => {
-            if (this.shouldReport(exception)) {
-              this.client.instance().withScope((scope) => {
-                return this.captureException(context, scope, exception);
-              });
-            }
-          },
-        }),
-      );
-    }
-    return next.handle();
+    return next.handle().pipe(
+      tap({
+        error: (exception: HttpException) => {
+          if (this.shouldReport(exception)) {
+            Sentry.withScope((scope) => {
+              return this.captureException(context, scope, exception);
+            });
+          }
+        },
+      }),
+    );
   }
 
   protected captureException(context: ExecutionContext, scope: Scope, exception: unknown) {
@@ -89,7 +82,7 @@ export class SentryInterceptor implements NestInterceptor {
       scope.setUser(data.user);
     }
 
-    this.client.instance().captureException(exception);
+    Sentry.captureException(exception);
   }
 
   private captureRpcException(
@@ -99,7 +92,7 @@ export class SentryInterceptor implements NestInterceptor {
   ): void {
     scope.setExtra('rpc_data', rpc.getData());
 
-    this.client.instance().captureException(exception);
+    Sentry.captureException(exception);
   }
 
   private captureWsException(
@@ -110,7 +103,7 @@ export class SentryInterceptor implements NestInterceptor {
     scope.setExtra('ws_client', ws.getClient());
     scope.setExtra('ws_data', ws.getData());
 
-    this.client.instance().captureException(exception);
+    Sentry.captureException(exception);
   }
 
   private shouldReport(exception: unknown) {
