@@ -374,7 +374,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
         if (defaultValue !== undefined) {
           return defaultValue;
         }
-        console.warn(`Config with path '${ path }' not found`);
+        console.debug(`Config with path '${ path }' not found`);
         return undefined as any;
       }
     }
