@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.15](https://gitlab.com/rxap/packages/compare/@rxap/reflect-metadata@1.0.15-dev.0...@rxap/reflect-metadata@1.0.15) (2025-05-16)
+
+**Note:** Version bump only for package @rxap/reflect-metadata
+
 ## [1.0.15-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/reflect-metadata@1.0.14...@rxap/reflect-metadata@1.0.15-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/reflect-metadata

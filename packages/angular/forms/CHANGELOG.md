@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.0.4-dev.2...@rxap/forms@19.0.4) (2025-05-16)
+
+**Note:** Version bump only for package @rxap/forms
+
 ## [19.0.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.0.4-dev.1...@rxap/forms@19.0.4-dev.2) (2025-05-06)
 
 **Note:** Version bump only for package @rxap/forms

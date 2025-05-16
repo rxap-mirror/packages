@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.2",
+  "version": "19.1.0",
   "name": "@rxap/data-source",
   "description": "Provides a set of classes and decorators for creating and managing data sources in Angular applications, including base classes, static data sources, observable data sources, and method data sources. It also includes a component for displaying data source errors. The library offers features like data persistence, refresh and retry mechanisms, and integration with RxJS observables.\n",
   "license": "GPL-3.0-or-later",
@@ -12,12 +12,12 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/material": "^19.1.1",
-    "@rxap/data-structure-tree": "^1.1.16-dev.0",
-    "@rxap/definition": "^19.0.4-dev.0",
-    "@rxap/environment": "^19.0.4-dev.1",
-    "@rxap/pattern": "^1.1.14-dev.0",
-    "@rxap/rxjs": "^1.1.16-dev.0",
-    "@rxap/utilities": "^16.4.4-dev.0",
+    "@rxap/data-structure-tree": "^1.1.16",
+    "@rxap/definition": "^19.0.4",
+    "@rxap/environment": "^19.0.4",
+    "@rxap/pattern": "^1.1.14",
+    "@rxap/rxjs": "^1.1.16",
+    "@rxap/utilities": "^16.4.4",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -67,31 +67,31 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.16-dev.0"
+        "version": "1.1.16"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.4-dev.1"
+        "version": "19.0.4"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.14-dev.0"
+        "version": "1.1.14"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.15-dev.0"
+        "version": "1.0.15"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.16-dev.0"
+        "version": "1.1.16"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.4-dev.0"
+        "version": "16.4.4"
       }
     ]
   },

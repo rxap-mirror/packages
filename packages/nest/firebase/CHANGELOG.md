@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.11](https://gitlab.com/rxap/packages/compare/@rxap/nest-firebase@10.1.11-dev.0...@rxap/nest-firebase@10.1.11) (2025-05-16)
+
+**Note:** Version bump only for package @rxap/nest-firebase
+
 ## [10.1.11-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-firebase@10.1.10...@rxap/nest-firebase@10.1.11-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/nest-firebase

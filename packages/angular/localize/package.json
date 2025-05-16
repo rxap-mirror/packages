@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.8",
+  "version": "19.1.0",
   "name": "@rxap/ngx-localize",
   "description": "This package provides internationalization (i18n) support for Angular applications, including services for language management, an HTTP interceptor for setting the `Accept-Language` header, and a language selector component. It allows you to set and manage the current language of your application, redirect users based on their language preference, and configure available languages. The package also includes an init generator to handle peer dependencies.\n",
   "license": "GPL-3.0-or-later",
@@ -11,8 +11,8 @@
   "peerDependencies": {
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
-    "@rxap/config": "^19.1.0-dev.3",
-    "@rxap/ngx-user": "^19.0.4-dev.0",
+    "@rxap/config": "^19.1.0",
+    "@rxap/ngx-user": "^19.0.4",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -61,59 +61,59 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.1.0-dev.3"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.1.0-dev.2"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.16-dev.0"
+        "version": "1.1.16"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.4-dev.1"
+        "version": "19.0.4"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.14-dev.0"
+        "version": "16.0.14"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4"
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.1.0-dev.2"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.14-dev.0"
+        "version": "1.1.14"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.15-dev.0"
+        "version": "1.0.15"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.16-dev.0"
+        "version": "1.1.16"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.4-dev.0"
+        "version": "16.4.4"
       }
     ]
   },

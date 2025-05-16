@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.5...@rxap/fs@1.1.0) (2025-05-16)
+
+**Note:** Version bump only for package @rxap/fs
+
 # [1.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.4...@rxap/fs@1.1.0-dev.5) (2025-04-09)
 
 ### Features

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.12](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@19.1.12-dev.4...@rxap/workspace-ts-morph@19.1.12) (2025-05-16)
+
+**Note:** Version bump only for package @rxap/workspace-ts-morph
+
 ## [19.1.12-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@19.1.12-dev.3...@rxap/workspace-ts-morph@19.1.12-dev.4) (2025-04-14)
 
 **Note:** Version bump only for package @rxap/workspace-ts-morph

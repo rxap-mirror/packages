@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@19.0.4-dev.0...@rxap/ngx-status-check@19.0.4) (2025-05-16)
+
+**Note:** Version bump only for package @rxap/ngx-status-check
+
 ## [19.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@19.0.3...@rxap/ngx-status-check@19.0.4-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/ngx-status-check

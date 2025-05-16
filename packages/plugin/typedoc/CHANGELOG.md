@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.3.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.3.0-dev.4...@rxap/plugin-typedoc@20.3.0) (2025-05-16)
+
+**Note:** Version bump only for package @rxap/plugin-typedoc
+
 # [20.3.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-typedoc@20.3.0-dev.3...@rxap/plugin-typedoc@20.3.0-dev.4) (2025-04-14)
 
 **Note:** Version bump only for package @rxap/plugin-typedoc

@@ -1,5 +1,5 @@
 {
-  "version": "0.0.4-dev.0",
+  "version": "0.0.4",
   "name": "@rxap/n8n-nodes-litellm",
   "description": "This package provides n8n nodes for interacting with LiteLLM, enabling users to leverage various AI models for chat, embeddings, and more within their n8n workflows. It includes nodes for chat models and embeddings, along with utilities for error handling, token estimation, and logging AI events. The package also offers tools for loading and processing documents in different formats, making it easier to integrate AI into data processing pipelines.\n",
   "license": "GPL-3.0-or-later",
