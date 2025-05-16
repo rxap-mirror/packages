@@ -8,6 +8,7 @@
     "files": "<%= sourceRoot %>/src/i18n/messages.xlf"
   },
   "download": {
-    "files": "<%= sourceRoot %>/src/i18n/${lang}.xlf"
+    "files": "<%= sourceRoot %>/src/i18n/${lang}.xlf",
+    "includeSourceLang": true
   }
 }
