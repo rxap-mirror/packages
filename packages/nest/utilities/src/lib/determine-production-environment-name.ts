@@ -1,7 +1,9 @@
 import { Environment } from './environment';
 
 export function DetermineProductionEnvironmentName(environment: Environment) {
-  if (environment.tag) {
+  if (environment.tier) {
+    return environment.tier;
+  } else if (environment.tag) {
     const tagMatch = environment.tag.match(/^v\d+\.\d+\.\d+(-([^.]+)\.\d+)?$/);
     if (!tagMatch) {
       return undefined;
