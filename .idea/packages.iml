@@ -592,6 +592,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/browser/theme/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/browser/theme/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/browser/theme/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/browser/localize/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/browser/localize/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/browser/localize/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/browser/localize/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

@@ -1,0 +1,36 @@
+{
+  "name": "@rxap/browser-localize",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "xliff": "^6.2.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/browser/localize"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "browser",
+    "browser-localize"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/browser/localize",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/browser/localize"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

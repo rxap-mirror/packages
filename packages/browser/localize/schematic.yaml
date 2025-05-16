@@ -1,0 +1,4 @@
+package: "@rxap/plugin-library"
+name: init
+options:
+  withInitGenerator: false

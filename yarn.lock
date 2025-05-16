@@ -9341,6 +9341,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/browser-localize@workspace:packages/browser/localize":
+  version: 0.0.0-use.local
+  resolution: "@rxap/browser-localize@workspace:packages/browser/localize"
+  dependencies:
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/browser-tailwind@workspace:packages/browser/tailwind":
   version: 0.0.0-use.local
   resolution: "@rxap/browser-tailwind@workspace:packages/browser/tailwind"

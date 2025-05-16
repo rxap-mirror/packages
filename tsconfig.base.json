@@ -20,6 +20,7 @@
         "packages/angular/authentication/components/src/index.ts"
       ],
       "@rxap/authorization": ["packages/angular/authorization/src/index.ts"],
+      "@rxap/browser-localize": ["packages/browser/localize/src/index.ts"],
       "@rxap/browser-tailwind": ["packages/browser/tailwind/src/index.ts"],
       "@rxap/browser-theme": ["packages/browser/theme/src/index.ts"],
       "@rxap/browser-utilities": ["packages/browser/utilities/src/index.ts"],
