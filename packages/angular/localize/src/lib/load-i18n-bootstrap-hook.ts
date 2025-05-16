@@ -16,7 +16,7 @@ export async function loadI18nBootstrapHook(
   preferredLanguages?: string[],
   fallback?: string,
 ) {
-  return async (options: Partial<ApplicationConfig>) => {
+  return async (_: any, options: Partial<ApplicationConfig>) => {
     try {
       const currentLocale = await loadLanguages(
         fetchTranslations,
