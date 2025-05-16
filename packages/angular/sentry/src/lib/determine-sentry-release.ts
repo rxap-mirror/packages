@@ -9,9 +9,12 @@ import { Environment } from '@rxap/environment';
  * @param environment
  */
 export function DetermineSentryRelease(environment: Environment): string | undefined {
-  switch (environment['tier']) {
+  switch (environment.tier) {
     case 'local':
       return undefined;
+    case 'development':
+    case 'testing':
+    case 'staging':
     case 'production':
       return environment.tag ?? undefined;
     default:
