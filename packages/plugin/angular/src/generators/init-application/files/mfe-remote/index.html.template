@@ -28,7 +28,7 @@
     <meta content="#1976d2" name="msapplication-TileColor"/>
     <meta content="assets/icons/icon-144x144.png" name="msapplication-TileImage"/>
     <meta content="#ffffff" name="theme-color">
-    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
     <meta content="#ffffff" name="msapplication-navbutton-color">
 
