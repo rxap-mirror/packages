@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.1-dev.1...@rxap/ngx-localize@19.1.1-dev.2) (2025-05-16)
+
+### Bug Fixes
+
+- remove async ([7a82cbe](https://gitlab.com/rxap/packages/commit/7a82cbeb859455d82d0862a6a4152abd4ef43312))
+
 ## [19.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.1-dev.0...@rxap/ngx-localize@19.1.1-dev.1) (2025-05-16)
 
 ### Bug Fixes
