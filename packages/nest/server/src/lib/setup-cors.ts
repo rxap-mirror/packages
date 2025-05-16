@@ -3,6 +3,7 @@ import type {
   CorsOptions,
   CorsOptionsDelegate,
 } from '@nestjs/common/interfaces/external/cors-options.interface';
+import { ConfigService } from '@nestjs/config';
 
 
 export interface SetupCorsOptions {
@@ -10,10 +11,13 @@ export interface SetupCorsOptions {
 }
 
 export function SetupCors({ corsOptions }: SetupCorsOptions = {}) {
-  return (app: INestApplication) =>
+  return (app: INestApplication, config: ConfigService) =>
     app.enableCors({
-      credentials: true,
-      origin: true,
-      ...(corsOptions ?? {}),
+      credentials: config.get('CORS_CREDENTIALS', true),
+      origin: config.get('CORS_ORIGIN', true),
+      allowedHeaders: config.get('CORS_ALLOWED_HEADERS', ['sentry-trace', 'baggage']),
+      exposedHeaders: config.get('CORS_EXPOSED_HEADERS'),
+      methods: config.get('CORS_METHODS'),
+      ...corsOptions,
     });
 }
