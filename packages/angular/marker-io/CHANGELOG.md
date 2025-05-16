@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-marker-io@19.0.4-dev.1...@rxap/ngx-marker-io@19.0.4-dev.2) (2025-05-16)
+
+### Bug Fixes
+
+- use proper clear reporter method ([f48a3cc](https://gitlab.com/rxap/packages/commit/f48a3cc1c30d5fa30e39e1fbe06a2ef9786a08a1))
+
 ## [19.0.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-marker-io@19.0.4-dev.0...@rxap/ngx-marker-io@19.0.4-dev.1) (2025-05-15)
 
 ### Bug Fixes

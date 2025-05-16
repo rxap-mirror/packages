@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.6.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.5.7-dev.0...@rxap/nest-server@10.6.0-dev.0) (2025-05-16)
+
+### Features
+
+- **server:** enhance CORS setup with configurable options ([be0d178](https://gitlab.com/rxap/packages/commit/be0d1789e71a2b3b4ecd7097b4b7d9f94edf5ae8))
+
 ## [10.5.7-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.5.6...@rxap/nest-server@10.5.7-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/nest-server
