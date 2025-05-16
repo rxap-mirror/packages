@@ -9413,7 +9413,7 @@ __metadata:
   peerDependencies:
     "@angular/common": ^19.2.1
     "@angular/core": ^19.2.1
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@rxap/utilities": ^16.4.4-dev.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -9465,7 +9465,7 @@ __metadata:
     "@angular/material": ^19.1.1
     "@rxap/data-structure-tree": ^1.1.16-dev.0
     "@rxap/definition": ^19.0.4-dev.0
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@rxap/pattern": ^1.1.14-dev.0
     "@rxap/rxjs": ^1.1.16-dev.0
     "@rxap/utilities": ^16.4.4-dev.0
@@ -9729,7 +9729,7 @@ __metadata:
     "@rxap/browser-utilities": ^1.1.13-dev.0
     "@rxap/config": ^19.1.0-dev.2
     "@rxap/data-source": ^19.1.0-dev.2
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@rxap/material-directives": ^19.0.4-dev.0
     "@rxap/ngx-pub-sub": ^19.0.4-dev.0
     "@rxap/ngx-theme": ^19.1.0-dev.4
@@ -10370,7 +10370,7 @@ __metadata:
     "@angular/platform-browser": ^19.2.1
     "@angular/platform-browser-dynamic": ^19.2.1
     "@rxap/config": ^19.1.0-dev.2
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     ngx-logger: ^5.0.12
   languageName: unknown
   linkType: soft
@@ -10386,7 +10386,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/forms": ^19.2.1
     "@rxap/directives": ^19.0.4-dev.0
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@rxap/open-api": ^19.1.0-dev.2
     ngx-markdown: ^16.0.0
     rxjs: ^7.8.1
@@ -10406,7 +10406,7 @@ __metadata:
     "@rxap/components": ^19.0.4-dev.0
     "@rxap/config": ^19.1.0-dev.2
     "@rxap/data-grid": ^19.0.4-dev.0
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@rxap/open-api": ^19.1.0-dev.2
     "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
@@ -10439,7 +10439,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@marker.io/browser": ^0.20.2
     "@rxap/config": ^19.1.0-dev.2
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@rxap/ngx-pub-sub": ^19.0.4-dev.0
     "@rxap/utilities": ^16.4.4-dev.0
     rxjs: ^7.8.1
@@ -10566,7 +10566,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@rxap/config": ^19.1.0-dev.2
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@sentry/angular": ^8.18.0
   languageName: unknown
   linkType: soft
@@ -10693,7 +10693,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@rxap/config": ^19.1.0-dev.2
     "@rxap/data-source": ^19.1.0-dev.2
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@rxap/mixin": ^16.0.14-dev.0
     "@rxap/remote-method": ^19.0.4-dev.0
     "@rxap/rxjs": ^1.1.16-dev.0
@@ -11213,7 +11213,7 @@ __metadata:
     "@angular/common": ^19.2.1
     "@angular/core": ^19.2.1
     "@angular/service-worker": ^19.2.1
-    "@rxap/environment": ^19.0.4-dev.0
+    "@rxap/environment": ^19.0.4-dev.1
     "@rxap/life-cycle": ^19.0.4-dev.0
     rxjs: ^7.8.1
   languageName: unknown

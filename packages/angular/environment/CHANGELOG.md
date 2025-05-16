@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.4-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/environment@19.0.4-dev.0...@rxap/environment@19.0.4-dev.1) (2025-05-16)
+
+### Bug Fixes
+
+- refactor name resolution ([eb9c773](https://gitlab.com/rxap/packages/commit/eb9c7736fd908cf1ca2694c06057cb0674d0ce20))
+
 ## [19.0.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@19.0.3...@rxap/environment@19.0.4-dev.0) (2025-03-12)
 
 **Note:** Version bump only for package @rxap/environment

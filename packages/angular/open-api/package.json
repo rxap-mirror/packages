@@ -12,7 +12,7 @@
     "@angular/core": "^19.2.1",
     "@rxap/config": "^19.1.0-dev.2",
     "@rxap/data-source": "^19.1.0-dev.2",
-    "@rxap/environment": "^19.0.4-dev.0",
+    "@rxap/environment": "^19.0.4-dev.1",
     "@rxap/mixin": "^16.0.14-dev.0",
     "@rxap/remote-method": "^19.0.4-dev.0",
     "@rxap/rxjs": "^1.1.16-dev.0",
@@ -84,7 +84,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4-dev.1"
       },
       {
         "package": "@rxap/mixin",

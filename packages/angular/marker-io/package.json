@@ -11,7 +11,7 @@
     "@angular/core": "^19.2.1",
     "@marker.io/browser": "^0.20.2",
     "@rxap/config": "^19.1.0-dev.2",
-    "@rxap/environment": "^19.0.4-dev.0",
+    "@rxap/environment": "^19.0.4-dev.1",
     "@rxap/ngx-pub-sub": "^19.0.4-dev.0",
     "@rxap/utilities": "^16.4.4-dev.0",
     "rxjs": "^7.8.1"
@@ -49,7 +49,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4-dev.1"
       },
       {
         "package": "@rxap/ngx-pub-sub",

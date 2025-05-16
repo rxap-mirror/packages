@@ -20,7 +20,7 @@
     "@rxap/browser-utilities": "^1.1.13-dev.0",
     "@rxap/config": "^19.1.0-dev.2",
     "@rxap/data-source": "^19.1.0-dev.2",
-    "@rxap/environment": "^19.0.4-dev.0",
+    "@rxap/environment": "^19.0.4-dev.1",
     "@rxap/material-directives": "^19.0.4-dev.0",
     "@rxap/ngx-pub-sub": "^19.0.4-dev.0",
     "@rxap/ngx-theme": "^19.1.0-dev.4",
@@ -106,7 +106,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.4-dev.0"
+        "version": "19.0.4-dev.1"
       },
       {
         "package": "@rxap/material-directives",
