@@ -7,7 +7,6 @@ import {
   Environment,
   UpdateEnvironment,
 } from '@rxap/environment';
-import { NGXLogger } from 'ngx-logger';
 
 /**
  * @param ...args Arbitrary arguments
@@ -27,13 +26,13 @@ export interface RefWithInjector {
 export type ApplicationAfterFunction<Ref extends RefWithInjector> = (
   app: Ref,
   config: ConfigService,
-  logger: NGXLogger,
+  logger: Console,
 ) => any | Promise<any>;
 
 export abstract class Application<Config extends object, Ref extends RefWithInjector> {
 
   public app: Ref | null = null;
-  public logger: NGXLogger | null = null;
+  public logger: Console | null = null;
   public config: ConfigService | null = null;
   private _beforeList: ApplicationBeforeFunction<Config>[] = [];
   private _afterList: ApplicationAfterFunction<Ref>[] = [];
@@ -64,7 +63,7 @@ export abstract class Application<Config extends object, Ref extends RefWithInje
       throw new Error('Angular app creation failed');
     }
 
-    this.logger = this.app.injector.get(NGXLogger);
+    this.logger = console;
     this.config = this.app.injector.get(ConfigService);
 
     if (!this.logger) {
@@ -93,7 +92,7 @@ export abstract class Application<Config extends object, Ref extends RefWithInje
     }
   }
 
-  protected async handleAfter(app: Ref, logger: NGXLogger, config: ConfigService) {
+  protected async handleAfter(app: Ref, logger: Console, config: ConfigService) {
     for (const after of this._afterList) {
       await after(app, config, logger);
     }
