@@ -59,6 +59,7 @@
     "angular-user",
     "angular-utilities",
     "angular-window-system",
+    "browser-localize",
     "browser-tailwind",
     "browser-theme",
     "browser-utilities",
