@@ -1,6 +1,7 @@
 import {
   Logger,
   LoggerService,
+  NotImplementedException,
 } from '@nestjs/common';
 import {
   isNil,
@@ -18,16 +19,13 @@ import {
   WritePacket,
 } from '@nestjs/microservices';
 import {
-  CONNECT_EVENT,
-  CONNECT_FAILED_EVENT,
   CONNECTION_FAILED_MESSAGE,
-  DISCONNECT_EVENT,
   DISCONNECTED_RMQ_MESSAGE,
-  ERROR_EVENT,
   NO_MESSAGE_HANDLER,
   RQM_NO_EVENT_HANDLER,
   RQM_NO_MESSAGE_HANDLER,
 } from '@nestjs/microservices/constants';
+import { RmqEventsMap } from '@nestjs/microservices/events/rmq.events';
 import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
 import { ServerRmqOptions } from './options';
 import { coerceArray } from '@rxap/utilities';
@@ -52,7 +50,7 @@ const INFINITE_CONNECTION_ATTEMPTS = -1;
 export const TRANSPORT_ID = Symbol('RxAP_RMQ');
 
 export class ServerRMQ extends Server implements CustomTransportStrategy {
-  public readonly transportId = TRANSPORT_ID;
+  public override readonly transportId = TRANSPORT_ID;
 
   protected server: IAmqpConnectionManager | null = null;
   protected channel: ChannelWrapper | null = null;
@@ -69,6 +67,14 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
 
     this.initializeSerializer(options);
     this.initializeDeserializer(options);
+  }
+
+  override unwrap<T>(): T {
+    throw new NotImplementedException();
+  }
+
+  override on() {
+    throw new NotImplementedException();
   }
 
   public async listen(
@@ -97,9 +103,9 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
     this.logger.verbose?.('Connecting to RMQ server...', 'ServerRMQ');
     this.server = this.createClient();
 
-    this.server.addListener(ERROR_EVENT, (err: any) => this.logger.error(err, undefined, 'ServerRMQ'));
+    this.server.addListener(RmqEventsMap.ERROR, (err: any) => this.logger.error(err, undefined, 'ServerRMQ'));
 
-    this.server.on(CONNECT_EVENT, () => {
+    this.server.on(RmqEventsMap.CONNECT, () => {
       if (this.channel) {
         return;
       }
@@ -114,10 +120,11 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
       'maxConnectionAttempts',
       INFINITE_CONNECTION_ATTEMPTS,
     );
-    this.server.on(DISCONNECT_EVENT, (err: any) => {
+    this.server.on(RmqEventsMap.DISCONNECT, (err: any) => {
       this.logger.error(DISCONNECTED_RMQ_MESSAGE + ': ' + err.message, undefined, 'ServerRMQ');
     });
-    this.server.on(CONNECT_FAILED_EVENT, (error: Record<string, unknown>) => {
+    const connectFailedEventKey = 'connectFailed';
+    this.server.on(connectFailedEventKey, (error: Record<string, unknown>) => {
       this.logger.error(CONNECTION_FAILED_MESSAGE);
       if (error?.['err']) {
         this.logger.error(CONNECTION_FAILED_MESSAGE + ': ' + error['err'], undefined, 'ServerRMQ');

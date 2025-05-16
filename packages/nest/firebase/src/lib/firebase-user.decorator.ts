@@ -8,6 +8,6 @@ import DecodedIdToken = auth.DecodedIdToken;
 /**
  * Maps the decoded id token
  */
-export const GetFirebaseUser = createParamDecorator<any, any, DecodedIdToken>(
+export const GetFirebaseUser = createParamDecorator<any, DecodedIdToken>(
   (data: unknown, ctx: ExecutionContext) => ctx.switchToHttp().getRequest().user,
 );

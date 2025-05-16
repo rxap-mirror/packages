@@ -3,7 +3,10 @@ import {
   Server,
 } from '@nestjs/microservices';
 import { Socket } from 'socket.io-client';
-import { Logger } from '@nestjs/common';
+import {
+  Logger,
+  NotImplementedException,
+} from '@nestjs/common';
 
 /**
  * SocketIoClientStrategy is a custom transport strategy that allows
@@ -19,6 +22,14 @@ export class SocketIoClientStrategy
     protected override readonly logger: Logger,
   ) {
     super();
+  }
+
+  override unwrap<T>(): T {
+    throw new NotImplementedException();
+  }
+
+  override on() {
+    throw new NotImplementedException();
   }
 
   /**

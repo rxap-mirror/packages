@@ -21,7 +21,7 @@ export class CacheModuleOptionsLoader<StoreConfig extends Record<any, any> = Rec
       isGlobal: true,
       ttl: isNaN(ttl) ? 60 * 60 * 1000 : ttl,
       max: isNaN(max) ? 100 : max,
-    } as CacheModuleOptions<StoreConfig>;
+    } as any;
   }
 
 }

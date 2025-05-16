@@ -1,3 +1,4 @@
+import { NotImplementedException } from '@nestjs/common';
 import { Logger } from '@nestjs/common/services/logger.service';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 import { isFunction } from '@nestjs/common/utils/shared.utils';
@@ -8,13 +9,10 @@ import {
   WritePacket,
 } from '@nestjs/microservices';
 import {
-  CONNECT_EVENT,
-  CONNECT_FAILED_EVENT,
-  DISCONNECT_EVENT,
   DISCONNECTED_RMQ_MESSAGE,
-  ERROR_EVENT,
   RQM_DEFAULT_NOACK,
 } from '@nestjs/microservices/constants';
+import { RmqEventsMap } from '@nestjs/microservices/events/rmq.events';
 import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
 import { ExchangeRmqOptions } from './options';
 
@@ -54,6 +52,9 @@ export interface RmqExchangeOptions {
 }
 
 export class ClientRMQExchange extends ClientProxy {
+  override unwrap<T>(): T {
+      throw new NotImplementedException();
+  }
   protected connection$!: ReplaySubject<Connection>;
   protected client: AmqpConnectionManager | null = null;
   protected channel: ChannelWrapper | null = null;
@@ -99,7 +100,7 @@ export class ClientRMQExchange extends ClientProxy {
       tap(() => this.createChannel()),
     );
 
-    const withReconnect$ = fromEvent(this.client, CONNECT_EVENT).pipe(
+    const withReconnect$ = fromEvent(this.client, RmqEventsMap.CONNECT).pipe(
       tap(() => this.logger.log('Connected to RMQ', 'ClientRMQExchange')),
       skip(1),
     );
@@ -140,10 +141,11 @@ export class ClientRMQExchange extends ClientProxy {
           throw err;
         }),
       );
-    const disconnect$ = eventToError(DISCONNECT_EVENT);
+    const disconnect$ = eventToError(RmqEventsMap.DISCONNECT);
 
     const urls = this.getOptionsProp(this.options, 'urls', []) ?? [];
-    const connectFailed$ = eventToError(CONNECT_FAILED_EVENT).pipe(
+    const connectFailedEventKey = 'connectFailed';
+    const connectFailed$ = eventToError(connectFailedEventKey).pipe(
       retryWhen(e =>
         e.pipe(
           scan((errorCount, error: any) => {
@@ -200,11 +202,11 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   public handleError(client: AmqpConnectionManager): void {
-    client.addListener(ERROR_EVENT, (err: any) => this.logger.error(err, undefined, 'ClientRMQExchange'));
+    client.addListener(RmqEventsMap.ERROR, (err: any) => this.logger.error(err, undefined, 'ClientRMQExchange'));
   }
 
   public handleDisconnectError(client: AmqpConnectionManager): void {
-    client.addListener(DISCONNECT_EVENT, (err: any) => {
+    client.addListener(RmqEventsMap.DISCONNECT, (err: any) => {
       this.logger.error(DISCONNECTED_RMQ_MESSAGE, undefined, 'ClientRMQExchange');
       this.logger.error(err, undefined, 'ClientRMQExchange');
     });

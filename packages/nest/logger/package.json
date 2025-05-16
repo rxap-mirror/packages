@@ -1,5 +1,5 @@
 {
-  "version": "10.3.5",
+  "version": "11.0.0-dev.0",
   "name": "@rxap/nest-logger",
   "description": "A NestJS logger module that integrates with Google Cloud Logging and provides enhanced message formatting. It allows for custom print message functions and circular dependency handling. This package offers a convenient way to standardize and enrich logging within NestJS applications.\n",
   "license": "GPL-3.0-or-later",
@@ -10,8 +10,8 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.3.8",
-    "@rxap/nest-utilities": "^10.4.3",
+    "@nestjs/common": "^11.1.1",
+    "@rxap/nest-utilities": "^11.0.0-dev.0",
     "@rxap/utilities": "^16.4.4"
   },
   "author": {

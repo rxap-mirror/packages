@@ -2,6 +2,7 @@ import {
   Inject,
   Injectable,
   Logger,
+  NotImplementedException,
 } from '@nestjs/common';
 import {
   ClientProxy,
@@ -13,10 +14,15 @@ import { SocketIoClientProvider } from './socket-io-client.provider';
 
 @Injectable()
 export class SocketIoClientProxyService extends ClientProxy {
+
   @Inject(Logger)
   private readonly logger!: Logger;
   @Inject(SocketIoClientProvider)
   private readonly client!: SocketIoClientProvider;
+
+  override unwrap<T>(): T {
+    throw new NotImplementedException();
+  }
 
   async connect(): Promise<any> {
     this.client.getSocket();
