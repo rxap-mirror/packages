@@ -9,7 +9,7 @@ import {
   LoadModuleFunction,
 } from './load-languages';
 
-export async function loadI18nBootstrapHook(
+export function loadI18nBootstrapHook(
   fetchTranslations: FetchTranslationsFunction,
   loadModule: LoadModuleFunction = defaultLoadModule,
   locale?: string,
