@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.6.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.5-dev.6...@rxap/nest-sentry@10.6.0-dev.0) (2025-05-16)
+
+### Features
+
+- **sentry:** remove SentryService and streamline integration ([68d77b9](https://gitlab.com/rxap/packages/commit/68d77b9ac0b91dbab455c0472c58ade93d831851))
+- **sentry:** remove SentryService and streamline integration ([92c37bb](https://gitlab.com/rxap/packages/commit/92c37bb6fa4b75d6c9f970e42090ff6619949749))
+
 ## [10.5.5-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.5.5-dev.5...@rxap/nest-sentry@10.5.5-dev.6) (2025-04-22)
 
 ### Bug Fixes

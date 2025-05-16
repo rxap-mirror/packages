@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.0-dev.3...@rxap/layout@19.1.0-dev.4) (2025-05-16)
+
+### Bug Fixes
+
+- remove deprecated property ([e03d8a2](https://gitlab.com/rxap/packages/commit/e03d8a2c567ba714428e137bf8dea7db425cf681))
+
 # [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.0-dev.2...@rxap/layout@19.1.0-dev.3) (2025-05-12)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.3-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.4.3-dev.1...@rxap/nest-utilities@10.4.3-dev.2) (2025-05-16)
+
+### Bug Fixes
+
+- **utilities:** correct environment property check for tier ([98bdfb4](https://gitlab.com/rxap/packages/commit/98bdfb427fe7a615746d0468aa82151b4dc6363e))
+
 ## [10.4.3-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.4.3-dev.0...@rxap/nest-utilities@10.4.3-dev.1) (2025-04-22)
 
 ### Bug Fixes

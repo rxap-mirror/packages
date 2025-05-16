@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@20.1.0-dev.1...@rxap/plugin-localazy@20.1.0-dev.2) (2025-05-16)
+
+### Bug Fixes
+
+- add include source lang ([68bcc0f](https://gitlab.com/rxap/packages/commit/68bcc0fcf7ef6220729803b6c63b096b6589a2c4))
+
 # [20.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@20.1.0-dev.0...@rxap/plugin-localazy@20.1.0-dev.1) (2025-05-15)
 
 ### Bug Fixes
