@@ -65,10 +65,7 @@ export class MarkerIoService {
   }
 
   clearReporter() {
-    this.widget?.setReporter({
-      email: '',
-      fullName: ''
-    });
+    this.widget?.clearReporter();
   }
 }
 
