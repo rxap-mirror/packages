@@ -129,7 +129,7 @@ export class XmlParserService {
     const instance = new parser.elementParser(...args);
     Reflect.set(instance, '__tag', element.name);
     Reflect.set(instance, '__parent', parent);
-    const xmlnsMap = new Map<string, string>();
+    const xmlnsMap = Reflect.get(instance, '__xmlns') ?? new Map<string, string>();
     for (const xmlns of element.attributeNames.filter(name => name.startsWith('xmlns'))) {
       const value    = element.get(xmlns)!;
       xmlnsMap.set(xmlns.includes(':') ? xmlns.split(':').pop()! : '', value);
