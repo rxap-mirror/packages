@@ -38,7 +38,7 @@ export class MarkerIoService {
       return;
     }
     if (config.disabled) {
-      console.warn('The marker.io widget is disabled');
+      console.log('The marker.io widget is disabled');
       return;
     }
     if (!config.project) {
@@ -52,8 +52,8 @@ export class MarkerIoService {
         this.environment, [ 'moduleFederation', 'sentry', 'config', 'openApi', 'slug' ]);
       console.debug('Set custom marker.io data', customData);
       this.widget.setCustomData(customData);
-    } catch (e) {
-      console.error('Failed to load marker.io widget', e);
+    } catch (e: any) {
+      console.error('Failed to load marker.io widget:', e.message);
     }
     this.pubSub.subscribe(RXAP_TOPICS.authentication.logout).pipe(
       tap(() => this.clearReporter())
