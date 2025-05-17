@@ -11,7 +11,10 @@ import {
   ValidationErrorListToString,
   ValidationHttpException,
 } from '@rxap/nest-utilities';
-import { validateSync } from 'class-validator';
+import {
+  validateSync,
+  ValidationError,
+} from 'class-validator';
 import {
   Request,
   Response,
@@ -52,14 +55,39 @@ export class ValidatorInterceptor implements NestInterceptor {
       tap(body => {
 
         if (body) {
-          const resultList = validateSync(body);
-          if (resultList.length) {
-            this.logger.error(
-              `Response for ${ request.url }: ${ ValidationErrorListToString(resultList) }`,
-              classType.name,
-            );
-            this.logger.verbose(JSON.stringify(body), classType.name);
-            throw new ValidationHttpException(resultList, HttpStatus.INTERNAL_SERVER_ERROR);
+          if (Array.isArray(body)) {
+            const resultMatrix = body.map(item => {
+
+              const resultList = validateSync(item);
+              if (resultList.length) {
+                return resultList;
+              }
+
+              return null;
+
+            }).filter(Boolean) as ValidationError[][];
+
+            if (resultMatrix.length) {
+              for (const item of resultMatrix) {
+                this.logger.error(
+                  `Response for ${ request.url }: ${ ValidationErrorListToString(item) }`,
+                  classType.name,
+                );
+                this.logger.verbose(JSON.stringify(body), classType.name);
+              }
+              throw new ValidationHttpException(resultMatrix[0], HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+          } else {
+            const resultList = validateSync(body);
+            if (resultList.length) {
+              this.logger.error(
+                `Response for ${ request.url }: ${ ValidationErrorListToString(resultList) }`,
+                classType.name,
+              );
+              this.logger.verbose(JSON.stringify(body), classType.name);
+              throw new ValidationHttpException(resultList, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
           }
         }
 
