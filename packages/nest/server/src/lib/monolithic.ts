@@ -120,7 +120,7 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
       const globalPrefixOptions = options.globalPrefixOptions ?? {};
       if (!options.globalPrefixOptions?.exclude?.length) {
         globalPrefixOptions.exclude ??= [];
-        globalPrefixOptions.exclude.push('/health(.*)', '/info', '/openapi');
+        globalPrefixOptions.exclude.push('/health{/*path}', '/info', '/openapi');
       }
       logger.log(`Global prefix options: %JSON`, globalPrefixOptions, 'Bootstrap');
       app.setGlobalPrefix(
