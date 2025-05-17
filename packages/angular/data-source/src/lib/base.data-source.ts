@@ -241,7 +241,7 @@ export class BaseDataSource<
         }
       }
     } else {
-      console.warn(
+      console.debug(
         `Connection with viewer id '${ viewerId }' is not connected to the data source '${ this.id }'`,
       );
     }
