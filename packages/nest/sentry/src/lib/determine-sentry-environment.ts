@@ -1,4 +1,7 @@
-import { DetermineProductionEnvironmentName, Environment } from '@rxap/nest-utilities';
+import {
+  DetermineProductionEnvironmentName,
+  Environment
+} from '@rxap/nest-utilities';
 
 /**
  * Determines the sentry environment based on the build info object.

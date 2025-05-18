@@ -1,8 +1,10 @@
 import { ConfigService } from '@rxap/config';
 import { Environment } from '@rxap/environment';
+import {
+  DetermineSentryEnvironment,
+  DetermineSentryRelease
+} from '@rxap/ngx-sentry';
 import * as Sentry from '@sentry/angular';
-import { DetermineSentryEnvironment } from './determine-sentry-environment';
-import { DetermineSentryRelease } from './determine-sentry-release';
 
 export function sentryInitBootstrapHook(environment: Environment) {
   return (config: ConfigService) => {
@@ -17,7 +19,7 @@ export function sentryInitBootstrapHook(environment: Environment) {
       dsn,
       enabled: config.get('sentry.enabled', environment.sentry?.enabled ?? false),
       debug: config.get('sentry.debug', environment.sentry?.debug ?? false),
-      environment: DetermineSentryEnvironment(environment),
+      environment: config.get('environment', DetermineSentryEnvironment(environment)),
       release: DetermineSentryRelease(environment),
       transport: Sentry.makeBrowserOfflineTransport(Sentry.makeFetchTransport),
       integrations: [
@@ -42,7 +44,7 @@ export function sentryInitBootstrapHook(environment: Environment) {
       tracesSampleRate: config.get('sentry.tracesSampleRate', 1.0),
       profilesSampleRate: config.get('sentry.profilesSampleRate', 1.0),
       tracePropagationTargets: ["localhost", new RegExp(`${location.origin}/api/`)],
-      replaysSessionSampleRate: config.get('sentry.replaysSessionSampleRate', 1.0),
+      replaysSessionSampleRate: config.get('sentry.replaysSessionSampleRate', 0.0),
       replaysOnErrorSampleRate: config.get('sentry.replaysOnErrorSampleRate', 1.0),
       maxValueLength: config.get('sentry.maxValueLength', Number.MAX_SAFE_INTEGER),
       sendDefaultPii: config.get('sentry.sendDefaultPii', true),

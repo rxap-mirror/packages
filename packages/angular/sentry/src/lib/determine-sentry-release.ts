@@ -16,6 +16,10 @@ export function DetermineSentryRelease(environment: Environment): string | undef
     case 'testing':
     case 'staging':
     case 'production':
+      if (environment.tag?.match(/^v\d+\.\d+\.\d+/)) {
+        // if the tag is a semvar remove the v prefix as sentry does not expect a v as prefix
+        return environment.tag.replace(/^v/, '');
+      }
       return environment.tag ?? undefined;
     default:
       return undefined;
