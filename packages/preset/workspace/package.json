@@ -1,11 +1,11 @@
 {
-  "version": "20.0.4",
+  "version": "20.0.5-dev.0",
   "name": "@rxap/preset-workspace",
   "description": "This package provides generators for initializing a workspace with pre-configured settings. It includes a preset generator to set up a new workspace and an init generator to coerce peer dependencies. The preset generator leverages `@rxap/plugin-workspace` to initialize the workspace based on provided options.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/plugin-workspace": "^20.1.1",
+    "@rxap/plugin-workspace": "^20.1.2-dev.0",
     "tslib": "2.6.2"
   },
   "author": {

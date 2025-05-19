@@ -1,9 +1,9 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1-dev.0",
   "name": "@rxap/n8n-nodes-tar",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@rxap/n8n-utilities": "^1.2.1",
+    "@rxap/n8n-utilities": "^1.2.2-dev.0",
     "tar": "^7.4.3",
     "tmp-promise": "^3.0.3",
     "tslib": "^2.3.0"

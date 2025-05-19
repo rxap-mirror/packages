@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.17-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-structure-tree@1.1.16...@rxap/data-structure-tree@1.1.17-dev.0) (2025-05-19)
+
+**Note:** Version bump only for package @rxap/data-structure-tree
+
 ## [1.1.16](https://gitlab.com/rxap/packages/compare/@rxap/data-structure-tree@1.1.16-dev.0...@rxap/data-structure-tree@1.1.16) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/data-structure-tree

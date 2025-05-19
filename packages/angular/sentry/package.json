@@ -55,7 +55,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.4"
+        "version": "16.4.5-dev.0"
       },
       {
         "package": "@sentry/angular",

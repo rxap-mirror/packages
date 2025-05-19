@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.5.5...@rxap/ts-morph@1.5.6-dev.0) (2025-05-19)
+
+**Note:** Version bump only for package @rxap/ts-morph
+
 ## [1.5.5](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.5.5-dev.0...@rxap/ts-morph@1.5.5) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/ts-morph
