@@ -31,6 +31,7 @@ export interface Environment {
    * The current tag
    */
   tag?: string | null;
+  ci?: boolean;
   tier?: string;
   slug?: {
     name?: string;
