@@ -19,7 +19,7 @@
     "@angular/router": "^19.2.1",
     "@rxap/browser-utilities": "^1.1.13",
     "@rxap/config": "^19.1.0",
-    "@rxap/data-source": "^19.1.1-dev.0",
+    "@rxap/data-source": "^19.1.1-dev.1",
     "@rxap/environment": "^19.0.4",
     "@rxap/material-directives": "^19.0.4",
     "@rxap/ngx-pub-sub": "^19.0.4",
@@ -94,7 +94,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.1.1-dev.0"
+        "version": "19.1.1-dev.1"
       },
       {
         "package": "@rxap/data-structure-tree",
