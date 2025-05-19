@@ -2,6 +2,7 @@ import {
   Directive,
   Input,
   TemplateRef,
+  TrackByFunction,
 } from '@angular/core';
 import {
   AbstractPaginationDataSource,
@@ -57,6 +58,11 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
 
   @Input('rxapTableDataSourceErrorTemplate')
   public override errorTemplate?: TemplateRef<DataSourceCollectionErrorTemplateContext>;
+
+  @Input()
+  set rxapTableDataSourceTrackBy(fn: TrackByFunction<Data>) {
+    this.rxapDataSourceCollectionTrackBy = fn;
+  }
 
   public override loadDataSource(): AbstractPaginationDataSource<Data> | null {
     const dataSource = super.loadDataSource();
