@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@11.0.0-dev.1...@rxap/nest-utilities@11.0.0-dev.2) (2025-05-19)
+
+### Bug Fixes
+
+- add property ci ([ca0a653](https://gitlab.com/rxap/packages/commit/ca0a65387704c403ca6086bbed38a62a6f01a57c))
+
 # [11.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.4.3...@rxap/nest-utilities@11.0.0-dev.1) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/nest-utilities

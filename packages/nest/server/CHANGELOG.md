@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.1...@rxap/nest-server@11.0.0-dev.2) (2025-05-19)
+
+### Bug Fixes
+
+- support production environment overwrite ([7610c66](https://gitlab.com/rxap/packages/commit/7610c6695b1bac686a1272f6c2d32f63ff994263))
+- use new path regex ([636011f](https://gitlab.com/rxap/packages/commit/636011fcbadf3b38e24db34176c6e05cdc1cb0a5))
+
 # [11.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.6.0...@rxap/nest-server@11.0.0-dev.1) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/nest-server

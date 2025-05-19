@@ -9566,7 +9566,7 @@ __metadata:
     "@angular/forms": ^19.2.1
     "@angular/material": ^19.1.1
     "@angular/router": ^19.2.1
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/definition": ^19.0.4
     "@rxap/forms": ^19.0.4
     "@rxap/mixin": ^16.0.14
@@ -9723,7 +9723,7 @@ __metadata:
     "@angular/router": ^19.2.1
     "@rxap/browser-utilities": ^1.1.13
     "@rxap/config": ^19.1.0
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/environment": ^19.0.4
     "@rxap/material-directives": ^19.0.4
     "@rxap/ngx-pub-sub": ^19.0.4
@@ -9802,7 +9802,7 @@ __metadata:
     "@angular/material": ^19.1.1
     "@angular/router": ^19.2.1
     "@rxap/components": ^19.0.4
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/directives": ^19.0.4
     "@rxap/forms": ^19.0.4
     "@rxap/material-directives": ^19.0.4
@@ -9825,7 +9825,7 @@ __metadata:
     "@angular/cdk": ^19.1.1
     "@angular/core": ^19.2.1
     "@angular/material": ^19.1.1
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/form-system": ^19.0.4
     "@rxap/forms": ^19.0.4
     "@rxap/material-table-system": ^19.0.4
@@ -10065,7 +10065,7 @@ __metadata:
     "@nestjs/config": ^4.0.2
     "@nestjs/core": ^11.1.1
     "@nestjs/jwt": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     auth0: ^4.18.0
     joi: ^17.9.2
     jsonwebtoken: "*"
@@ -10109,7 +10109,7 @@ __metadata:
     "@nestjs/config": ^4.0.2
     "@nestjs/core": ^11.1.1
     "@nestjs/jwt": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     "@rxap/pattern": ^1.1.14
     rxjs: ^7.8.1
   languageName: unknown
@@ -10124,7 +10124,7 @@ __metadata:
   peerDependencies:
     "@nestjs/cache-manager": ^3.0.1
     "@nestjs/common": ^11.1.1
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     joi: ^17.9.2
     keyv: ^5.2.3
     minio: ^8.0.1
@@ -10141,7 +10141,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^11.1.1
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     "@rxap/utilities": ^16.4.4
   languageName: unknown
   linkType: soft
@@ -10156,7 +10156,7 @@ __metadata:
     "@nestjs/common": ^11.1.1
     "@nestjs/config": ^4.0.2
     "@nestjs/terminus": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     joi: ^17.9.2
     minio: ^8.0.1
   languageName: unknown
@@ -10187,7 +10187,7 @@ __metadata:
     "@nestjs/core": ^11.1.1
     "@nestjs/swagger": ^11.2.0
     "@nestjs/terminus": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     "@rxap/node-utilities": ^1.3.10
     "@rxap/utilities": ^16.4.4
     "@sentry/core": ^8.55.0
@@ -10209,7 +10209,7 @@ __metadata:
     "@nestjs/config": ^4.0.2
     "@nestjs/core": ^11.1.1
     "@openfga/sdk": ^0.8.0
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     joi: ^17.9.2
   languageName: unknown
   linkType: soft
@@ -10259,7 +10259,7 @@ __metadata:
     "@nestjs/config": ^4.0.2
     "@nestjs/core": ^11.1.1
     "@rxap/nest-logger": ^11.0.0-dev.1
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     "@sentry/core": ^8.55.0
     "@sentry/nestjs": ^8.55.0
     "@sentry/node": ^8.55.0
@@ -10283,7 +10283,7 @@ __metadata:
     "@nestjs/core": ^11.1.1
     "@nestjs/microservices": ^11.1.1
     "@nestjs/swagger": ^11.2.0
-    "@rxap/nest-utilities": ^11.0.0-dev.1
+    "@rxap/nest-utilities": ^11.0.0-dev.2
     "@rxap/utilities": ^16.4.4
     cookie-parser: ^1.4.6
     helmet: ^8.1.0
@@ -10515,7 +10515,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/forms": ^19.2.1
     "@angular/material": ^19.1.1
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/form-system": ^19.0.4
     "@rxap/forms": ^19.0.4
     "@rxap/material-directives": ^19.0.4
@@ -10555,7 +10555,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/router": ^19.2.1
     "@rxap/config": ^19.1.0
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/ngx-pub-sub": ^19.0.4
     "@rxap/pattern": ^1.1.14
     rxjs: ^7.8.1
@@ -10644,7 +10644,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^19.2.1
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/ngx-pub-sub": ^19.0.4
     "@rxap/open-api": ^19.1.0
     "@rxap/utilities": ^16.4.4
@@ -10708,7 +10708,7 @@ __metadata:
     "@angular/common": ^19.2.1
     "@angular/core": ^19.2.1
     "@rxap/config": ^19.1.0
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/environment": ^19.0.4
     "@rxap/mixin": ^16.0.14
     "@rxap/remote-method": ^19.0.4
@@ -11213,7 +11213,7 @@ __metadata:
     "@nx/devkit": 20.5.0
     "@rxap/schematics-ts-morph": ^19.1.0
     "@rxap/schematics-utilities": ^19.0.4
-    "@rxap/xml-parser": ^16.2.0
+    "@rxap/xml-parser": ^16.2.1-dev.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -11499,7 +11499,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/forms": ^19.2.1
     "@angular/material": ^19.1.1
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/material-table-system": ^19.0.4
     "@rxap/utilities": ^16.4.4
     rxjs: ^7.8.1
@@ -11518,7 +11518,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@angular/material": ^19.1.1
     "@rxap/contenteditable": ^19.0.4
-    "@rxap/data-source": ^19.1.0
+    "@rxap/data-source": ^19.1.1-dev.0
     "@rxap/data-structure-tree": ^1.1.16
     "@rxap/forms": ^19.0.4
     "@rxap/material-directives": ^19.0.4
@@ -11649,7 +11649,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/xml-parser@^16.2.0, @rxap/xml-parser@workspace:packages/xml-parser":
+"@rxap/xml-parser@^16.2.1-dev.0, @rxap/xml-parser@workspace:packages/xml-parser":
   version: 0.0.0-use.local
   resolution: "@rxap/xml-parser@workspace:packages/xml-parser"
   dependencies:

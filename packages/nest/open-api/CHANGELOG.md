@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@11.0.0-dev.1...@rxap/nest-open-api@11.0.0-dev.2) (2025-05-19)
+
+### Bug Fixes
+
+- support validating arrays ([55c2f24](https://gitlab.com/rxap/packages/commit/55c2f240a11083ec17c31b35fae86d3686fef93e))
+
 # [11.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.6.0...@rxap/nest-open-api@11.0.0-dev.1) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/nest-open-api

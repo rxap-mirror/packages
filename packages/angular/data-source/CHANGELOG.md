@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@19.1.0...@rxap/data-source@19.1.1-dev.0) (2025-05-19)
+
+### Bug Fixes
+
+- change warning to debug a message ([589bffd](https://gitlab.com/rxap/packages/commit/589bffd559920abb516170d529459c40a6d53c4f))
+
 # [19.1.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@19.1.0-dev.2...@rxap/data-source@19.1.0) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/data-source
