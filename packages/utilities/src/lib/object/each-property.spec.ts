@@ -1,6 +1,26 @@
 import { EachProperty } from './each-property';
 
 describe('eachProperty function', () => {
+
+  it('should be able to access the parent object', () => {
+
+    const obj = {
+      enabled: true,
+    };
+
+    expect(() => {
+      for (const { parent, key } of EachProperty(obj)) {
+        if (key === 'enabled') {
+          expect(parent).toBe(obj);
+          parent[key] = false;
+        }
+      }
+    }).not.toThrow();
+
+    expect(obj).toEqual({ enabled: false });
+
+  });
+
   it('should correctly iterate over properties', () => {
     const obj = {
       a: 1,
@@ -20,7 +40,7 @@ describe('eachProperty function', () => {
         isObject: false,
         isArray: false,
         isPrimitive: true,
-        parent: null,
+        parent: obj,
       },
       {
         value: obj.b,
@@ -29,7 +49,7 @@ describe('eachProperty function', () => {
         isObject: true,
         isArray: false,
         isPrimitive: false,
-        parent: null,
+        parent: obj,
       },
       {
         value: 2,
