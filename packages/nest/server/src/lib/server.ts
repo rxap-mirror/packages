@@ -161,9 +161,45 @@ export abstract class Server<Options extends object, NestApplicationContext exte
   protected prepareEnvironment(environment: Environment) {
     this.loadBuildJson(environment);
 
+    if (process.env['ENVIRONMENT']) {
+      console.log(`[Bootstrap] Set environment name from process.env.ENVIRONMENT to '${ process.env['ENVIRONMENT'] }'`);
+      environment.name = process.env['ENVIRONMENT'];
+    }
+
     if (process.env['ENVIRONMENT_NAME']) {
       console.log(`[Bootstrap] Set environment name from process.env.ENVIRONMENT_NAME to '${ process.env['ENVIRONMENT_NAME'] }'`);
       environment.name = process.env['ENVIRONMENT_NAME'];
+    }
+
+    if (process.env['ENVIRONMENT_TIER']) {
+      console.log(`[Bootstrap] Set environment tier from process.env.ENVIRONMENT_TIER to '${ process.env['ENVIRONMENT_TIER'] }'`);
+      environment.tier = process.env['ENVIRONMENT_TIER'];
+    }
+
+    if (process.env['PRODUCTION']) {
+      console.log(`[Bootstrap] Set production from process.env.PRODUCTION to '${ process.env['PRODUCTION'] }'`);
+      if (typeof process.env['PRODUCTION'] === 'boolean') {
+        environment.production = process.env['PRODUCTION'];
+      } else {
+        environment.production = process.env['PRODUCTION'] === 'true';
+      }
+    }
+
+    if (!process.env['NODE_ENV']) {
+      if (environment.production) {
+        console.log(`[Bootstrap] Set NODE_ENV to 'production'`);
+        process.env['NODE_ENV'] = 'production';
+      } else {
+        console.log(`[Bootstrap] Set NODE_ENV to 'development'`);
+        process.env['NODE_ENV'] = 'development';
+      }
+    } else {
+      console.log(`[Bootstrap] NODE_ENV is already set to '${ process.env['NODE_ENV'] }'`);
+    }
+
+    if (process.env['CI'] === 'true') {
+      console.log(`[Bootstrap] Set ci to true as process.env.CI is set to 'true'`);
+      environment.ci = true;
     }
 
     RXAP_GLOBAL_STATE.environment = environment;
