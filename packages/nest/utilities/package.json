@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.2",
+  "version": "11.0.0-dev.3",
   "name": "@rxap/nest-utilities",
   "description": "Provides utility functions, pipes, interceptors, modules, and configuration options to enhance NestJS applications. It includes features for filtering, sorting, paging, environment configuration, validation, logging, and more. This package aims to simplify common tasks and promote best practices in NestJS development.\n",
   "license": "GPL-3.0-or-later",

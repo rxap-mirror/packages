@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@11.0.0-dev.3...@rxap/nest-sentry@11.0.0-dev.4) (2025-05-19)
+
+### Bug Fixes
+
+- update package groups ([e533203](https://gitlab.com/rxap/packages/commit/e5332030cd4d1996d6e9b0dd99bfb66334571400))
+
 # [11.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@11.0.0-dev.2...@rxap/nest-sentry@11.0.0-dev.3) (2025-05-19)
 
 **Note:** Version bump only for package @rxap/nest-sentry
