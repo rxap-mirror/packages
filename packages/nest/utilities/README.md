@@ -19,7 +19,7 @@ yarn add @rxap/nest-utilities
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/cache-manager @nestjs/common @nestjs/config @nestjs/core @nestjs/throttler class-transformer class-validator rxjs 
+yarn add @nestjs/cache-manager @nestjs/common @nestjs/config @nestjs/core @nestjs/throttler @rxap/utilities class-transformer class-validator joi rxjs 
 ```
 **Execute the init generator:**
 ```bash

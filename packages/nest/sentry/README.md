@@ -19,7 +19,7 @@ yarn add @rxap/nest-sentry
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/core @rxap/nest-logger @rxap/nest-utilities @sentry/core @sentry/nestjs @sentry/node @sentry/profiling-node @sentry/types @sentry/utils rxjs 
+yarn add @nestjs/common @nestjs/config @nestjs/core @rxap/nest-logger @rxap/nest-utilities @sentry/core @sentry/nestjs @sentry/node @sentry/profiling-node @sentry/types @sentry/utils joi rxjs 
 ```
 **Execute the init generator:**
 ```bash

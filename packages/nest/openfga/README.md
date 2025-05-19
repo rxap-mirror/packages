@@ -18,6 +18,10 @@ A NestJS module for integrating with OpenFGA, a fine-grained authorization servi
 ```bash
 yarn add @rxap/nest-openfga
 ```
+**Install peer dependencies:**
+```bash
+yarn add @nestjs/common @nestjs/config @nestjs/core @openfga/sdk @rxap/nest-utilities joi 
+```
 **Execute the init generator:**
 ```bash
 yarn nx g @rxap/nest-openfga:init
