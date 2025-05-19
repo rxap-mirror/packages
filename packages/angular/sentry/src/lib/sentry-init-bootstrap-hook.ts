@@ -1,10 +1,10 @@
 import { ConfigService } from '@rxap/config';
 import { Environment } from '@rxap/environment';
 import {
-  DetermineSentryEnvironment,
   DetermineSentryRelease
-} from '@rxap/ngx-sentry';
+} from './determine-sentry-release';
 import * as Sentry from '@sentry/angular';
+import { DetermineSentryEnvironment } from './determine-sentry-environment';
 
 export function sentryInitBootstrapHook(environment: Environment) {
   return (config: ConfigService) => {

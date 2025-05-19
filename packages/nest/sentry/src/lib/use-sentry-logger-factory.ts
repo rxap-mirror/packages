@@ -1,7 +1,7 @@
 import { INestApplicationContext } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RxapLogger } from '@rxap/nest-logger';
-import { SentryLogger } from '@rxap/nest-sentry';
+import { SentryLogger } from './sentry.logger';
 
 export function UseSentryLoggerFactory() {
   return (app: INestApplicationContext, config: ConfigService) => {
