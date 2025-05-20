@@ -9,6 +9,7 @@ import {
   CoercePrefix,
   deepMerge,
   SetObjectValue,
+  SetToObject,
 } from '@rxap/utilities';
 import { ReplaySubject } from 'rxjs';
 import { RXAP_CONFIG } from './tokens';
@@ -123,7 +124,13 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     }).flat();
 
     for (const url of urls) {
-      config = deepMerge(config, await this.loadConfig(url, true, options?.schema));
+      const loadedConfig = await this.loadConfig(url, true, options?.schema);
+      const match = url.match(/config\.([a-zA-Z0-9.\-_]+)\.json/);
+      if (match) {
+        SetToObject(config, match[1], loadedConfig);
+      } else {
+        config = deepMerge(config, loadedConfig);
+      }
     }
 
     config = deepMerge(config, this.Overwrites);
