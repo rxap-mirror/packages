@@ -163,7 +163,7 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     return Server.prepareEnvironment(environment);
   }
 
-  protected static prepareEnvironment(environment: Environment): Environment {
+  static prepareEnvironment(environment: Environment): Environment {
     this.loadBuildJson(environment);
 
     if (process.env['ENVIRONMENT']) {
