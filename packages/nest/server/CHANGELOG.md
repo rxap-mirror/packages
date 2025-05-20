@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.6...@rxap/nest-server@11.0.0-dev.7) (2025-05-20)
+
+### Bug Fixes
+
+- make method public ([5753bb6](https://gitlab.com/rxap/packages/commit/5753bb68b52ba50fa3fb709b91fc7e817fa4c327))
+
 # [11.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.5...@rxap/nest-server@11.0.0-dev.6) (2025-05-20)
 
 ### Bug Fixes
