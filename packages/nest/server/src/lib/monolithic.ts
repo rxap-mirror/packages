@@ -7,7 +7,6 @@ import type { GlobalPrefixOptions } from '@nestjs/common/interfaces';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DetermineVersion } from '@rxap/nest-utilities';
-import * as process from 'node:process';
 import { hostname } from 'os';
 import { Server } from './server';
 

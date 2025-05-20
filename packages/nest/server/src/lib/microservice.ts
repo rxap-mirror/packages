@@ -6,7 +6,6 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { DetermineVersion } from '@rxap/nest-utilities';
-import process from 'node:process';
 import { Server } from './server';
 
 export interface MicroserviceBootstrapOptions {
