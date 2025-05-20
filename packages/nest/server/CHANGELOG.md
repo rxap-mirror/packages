@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.5...@rxap/nest-server@11.0.0-dev.6) (2025-05-20)
+
+### Bug Fixes
+
+- make prepareEnvironment static ([8fdf23f](https://gitlab.com/rxap/packages/commit/8fdf23f9e7bbbf4f7a1f42766f90f0adbe5b8f64))
+
 # [11.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.4...@rxap/nest-server@11.0.0-dev.5) (2025-05-20)
 
 ### Bug Fixes

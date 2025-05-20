@@ -12,7 +12,7 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@rxap/components": "^19.0.4",
-    "@rxap/config": "^19.1.0",
+    "@rxap/config": "^19.1.1-dev.0",
     "@rxap/data-grid": "^19.0.4",
     "@rxap/environment": "^19.0.4",
     "@rxap/open-api": "^19.1.0",
@@ -73,7 +73,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.1.0"
+        "version": "19.1.1-dev.0"
       },
       {
         "package": "@rxap/data-grid",

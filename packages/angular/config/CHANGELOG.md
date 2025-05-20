@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.0...@rxap/config@19.1.1-dev.0) (2025-05-20)
+
+### Bug Fixes
+
+- support config url paths ([96a8a58](https://gitlab.com/rxap/packages/commit/96a8a587627996937ce132a13a712d92d911fee7))
+
 # [19.1.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.0-dev.3...@rxap/config@19.1.0) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/config

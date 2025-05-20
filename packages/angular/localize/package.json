@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
-    "@rxap/config": "^19.1.0",
+    "@rxap/config": "^19.1.1-dev.0",
     "@rxap/ngx-user": "^19.0.4",
     "rxjs": "^7.8.1"
   },
@@ -60,7 +60,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.1.0"
+        "version": "19.1.1-dev.0"
       },
       {
         "package": "@rxap/data-source",
