@@ -19,7 +19,7 @@ yarn add @rxap/nest-server
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/core @nestjs/microservices @nestjs/swagger @rxap/nest-utilities @rxap/utilities cookie-parser helmet node:process 
+yarn add @nestjs/common @nestjs/config @nestjs/core @nestjs/microservices @nestjs/swagger @rxap/nest-utilities @rxap/utilities cookie-parser helmet 
 ```
 **Execute the init generator:**
 ```bash
