@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
+  ENVIRONMENT,
   Environment,
   RXAP_GLOBAL_STATE,
 } from '@rxap/nest-utilities';
@@ -98,7 +99,7 @@ export abstract class Server<Options extends object, NestApplicationContext exte
       throw new Error('Could not inject a Logger instance');
     }
 
-    this.logger.log(`[Bootstrap] Logger instance name: ${ this.logger.constructor.name }`, 'Bootstrap');
+    this.logger.log(`Logger instance name: ${ this.logger.constructor.name }`, 'Bootstrap');
 
     this.app.useLogger(this.logger);
 
@@ -158,7 +159,11 @@ export abstract class Server<Options extends object, NestApplicationContext exte
 
   protected abstract create(): Promise<NestApplicationContext>;
 
-  protected prepareEnvironment(environment: Environment) {
+  protected prepareEnvironment(environment: Environment): Environment {
+    return Server.prepareEnvironment(environment);
+  }
+
+  protected static prepareEnvironment(environment: Environment): Environment {
     this.loadBuildJson(environment);
 
     if (process.env['ENVIRONMENT']) {
@@ -203,7 +208,9 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     }
 
     RXAP_GLOBAL_STATE.environment = environment;
-    console.log('[Bootstrap] Final environment', JSON.stringify(RXAP_GLOBAL_STATE.environment, undefined, this.environment.production ? undefined : 2));
+    console.log('[Bootstrap] Final environment', JSON.stringify(environment, undefined, environment.production ? undefined : 2));
+
+    return environment;
   }
 
   protected abstract prepareOptions(app: NestApplicationContext, logger: Logger, config: ConfigService): BootstrapOptions;
@@ -228,7 +235,7 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     }
   }
 
-  protected loadBuildJson(environment: Environment) {
+  protected static loadBuildJson(environment: Environment) {
     const buildJsonFilePath = join(process.cwd(), 'build.json');
 
     if (existsSync(buildJsonFilePath)) {
