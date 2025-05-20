@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.3...@rxap/nest-server@11.0.0-dev.4) (2025-05-20)
+
+### Bug Fixes
+
+- remove node module ([ec70aed](https://gitlab.com/rxap/packages/commit/ec70aed226ae3ab08a5a7caecbe32659be8a863a))
+
 # [11.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.2...@rxap/nest-server@11.0.0-dev.3) (2025-05-19)
 
 ### Bug Fixes
