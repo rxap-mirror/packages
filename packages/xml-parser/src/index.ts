@@ -45,7 +45,7 @@ export * from './lib/decorators/required-property';
 export * from './lib/decorators/utilities';
 // endregion
 
-// region 
+// region
 export * from './lib/default-to-json';
 export * from './lib/element-factory';
 export * from './lib/element-name';
@@ -57,4 +57,6 @@ export * from './lib/xml-element-parser-function';
 export * from './lib/xml-element-serializer-function';
 export * from './lib/xml-parser.service';
 export * from './lib/xml-serializer.service';
+export { AddParserToMetadata } from './lib/decorators/utilities/add-parser-to-metadata';
+export { AddSerializerToMetadata } from './lib/decorators/utilities/add-serializer-to-metadata';
 // endregion

@@ -17,10 +17,8 @@ import {
   TextContentElementMixin,
 } from './mixins/text-content-element.mixin';
 import { RequiredProperty } from './required-property';
-import {
-  AddParserToMetadata,
-  AddSerializerToMetadata,
-} from './utilities';
+import { AddParserToMetadata } from './utilities/add-parser-to-metadata';
+import { AddSerializerToMetadata } from './utilities/add-serializer-to-metadata';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementTextContentParserOptions<Value>

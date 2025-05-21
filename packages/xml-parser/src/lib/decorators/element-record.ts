@@ -22,7 +22,8 @@ import {
   TextContentElementMixin,
 } from './mixins/text-content-element.mixin';
 import { RequiredProperty } from './required-property';
-import { AddParserToMetadata } from './utilities';
+
+import { AddParserToMetadata } from './utilities/add-parser-to-metadata';
 
 export interface ElementRecordOptions<Value>
   extends TextContentElementOptions<Value>,

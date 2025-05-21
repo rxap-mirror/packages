@@ -22,10 +22,8 @@ import {
   TextContentElementMixin,
 } from './mixins/text-content-element.mixin';
 import { RequiredProperty } from './required-property';
-import {
-  AddParserToMetadata,
-  AddSerializerToMetadata,
-} from './utilities';
+import { AddParserToMetadata } from './utilities/add-parser-to-metadata';
+import { AddSerializerToMetadata } from './utilities/add-serializer-to-metadata';
 
 export interface ElementChildTextContentParserOptions<Value>
   extends TextContentElementOptions<Value>,

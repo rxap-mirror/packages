@@ -24,10 +24,10 @@ import {
 } from './mixins/child-element.mixin';
 import { RequiredProperty } from './required-property';
 import {
-  AddParserToMetadata,
-  AddSerializerToMetadata,
   ParsedElementType,
 } from './utilities';
+import { AddParserToMetadata } from './utilities/add-parser-to-metadata';
+import { AddSerializerToMetadata } from './utilities/add-serializer-to-metadata';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementChildParserOptions extends ChildElementOptions {

@@ -32,10 +32,10 @@ import {
 } from './mixins/children-element.mixin';
 import { RequiredProperty } from './required-property';
 import {
-  AddParserToMetadata,
-  AddSerializerToMetadata,
   ParsedElementType,
 } from './utilities';
+import { AddParserToMetadata } from './utilities/add-parser-to-metadata';
+import { AddSerializerToMetadata } from './utilities/add-serializer-to-metadata';
 
 export interface ElementChildrenParserOptions extends ChildElementOptions, ChildrenElementOptions {
 
