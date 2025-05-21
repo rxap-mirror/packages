@@ -41,7 +41,7 @@ export function serializeValue(value: any): string {
       // Attempt to JSON stringify arrays and plain objects
       return JSON.stringify(value);
     } catch (e: any) {
-      console.log('Could not serialize value: ' + e.message, value);
+      console.error('Could not serialize value: ' + e.message, value);
     }
   }
 

@@ -75,13 +75,6 @@ export class XmlSerializerService {
       try {
         s(this, rxapElement, instance);
       } catch (e: any) {
-        console.debug({
-          instance,
-          parent,
-          element,
-          serializer: s,
-          serializers,
-        });
         throw new Error(`Error while serializing element '${elementName}' with serializer '${s.name}': ${e.message}`);
       }
     }

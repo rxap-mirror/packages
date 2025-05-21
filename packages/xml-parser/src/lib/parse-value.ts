@@ -47,7 +47,7 @@ export function parseValue<T>(value: string): T {
     try {
       return JSON.parse(value);
     } catch (e: any) {
-      console.log('Could not parse value: ' + e.message, value);
+      console.error('Could not parse value: ' + e.message, value);
     }
   }
 

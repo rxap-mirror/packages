@@ -154,7 +154,6 @@ export class XmlParserService {
     if (requiredProperties && hasIndexSignature(instance)) {
       for (const [ propertyKey, message ] of Object.entries(requiredProperties)) {
         if (instance[propertyKey] === undefined) {
-          console.log('prop', instance[propertyKey]);
           throw new RxapXmlParserError(`[${ elementName }] ${ message }`, '', instance.constructor.name);
         }
       }
