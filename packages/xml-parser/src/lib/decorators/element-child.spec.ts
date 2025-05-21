@@ -223,6 +223,46 @@ describe('@rxap/xml-parser', () => {
 
       });
 
+      it('should overwrite the defined element child parser from the parent class', () => {
+
+        @ElementDef('item')
+        class Item implements ParsedElement {
+          __tag?: string;
+        }
+
+        @ElementDef('other-item')
+        class OtherItem extends Item {}
+
+        @ElementDef('parent')
+        class Parent implements ParsedElement {
+
+          __tag?: string;
+
+          @ElementChild(Item)
+          item!: Item;
+
+        }
+
+        @ElementDef('child')
+        class Child extends Parent {
+
+          @ElementChild(OtherItem)
+          declare item: OtherItem;
+
+        }
+
+        const parser = new XmlParserService(DOMParser);
+        parser.setRootElement(Child);
+
+        const xml = `<child><other-item></other-item></child>`;
+
+        const element = parser.parseFromXml<Child>(xml);
+
+        expect(element).toBeInstanceOf(Child);
+        expect(element.item).toBeInstanceOf(OtherItem);
+
+      });
+
     });
 
   });

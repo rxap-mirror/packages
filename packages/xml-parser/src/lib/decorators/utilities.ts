@@ -1,4 +1,7 @@
-import { getMetadata } from '@rxap/reflect-metadata';
+import {
+  getMetadata,
+  getOwnMetadata,
+} from '@rxap/reflect-metadata';
 import { Constructor } from '@rxap/utilities';
 import { ParsedElement } from '../elements/parsed-element';
 import { XmlElementParserFunction } from '../xml-element-parser-function';
@@ -42,6 +45,10 @@ export function GetAllElementParser<T extends ParsedElement>(type: Constructor<T
   return getMetadata(ElementParserMetaData.PARSER, type) || [];
 }
 
+export function GetAllOwnElementParser<T extends ParsedElement>(type: Constructor<T>): Array<XmlDecoratorElementParserFunction<T>> {
+  return getOwnMetadata(ElementParserMetaData.PARSER, type) || [];
+}
+
 export function GetAllElementSerializer<T extends ParsedElement>(type: Constructor<T>): Array<XmlDecoratorElementSerializerFunction<T>> {
   return getMetadata(ElementParserMetaData.SERIALIZER, type) || [];
 }
@@ -58,6 +65,10 @@ export function GetAllElementSerializer<T extends ParsedElement>(type: Construct
  */
 export function GetAllElementParserInstances<T extends ParsedElement>(type: Constructor<T>): Array<ElementParser<T>> {
   return getMetadata(ElementParserMetaData.PARSER_INSTANCE, type.prototype) || [];
+}
+
+export function GetAllOwnElementParserInstances<T extends ParsedElement>(type: Constructor<T>): Array<ElementParser<T>> {
+  return getOwnMetadata(ElementParserMetaData.PARSER_INSTANCE, type.prototype) || [];
 }
 
 export function GetAllElementSerializerInstances<T extends ParsedElement>(type: Constructor<T>): Array<ElementSerializer<T>> {

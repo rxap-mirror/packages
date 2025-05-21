@@ -4,6 +4,8 @@ import { ElementParserMetaData } from '../metadata-keys';
 import {
   GetAllElementParser,
   GetAllElementParserInstances,
+  GetAllOwnElementParser,
+  GetAllOwnElementParserInstances,
 } from '../utilities';
 
 /**
@@ -25,28 +27,32 @@ import {
  */
 export function AddParserToMetadata(parser: ElementParser, target: any) {
 
-  // TODO : test overwrite functionality
-
   const addedParser = GetAllElementParser(target.constructor)
     .filter(p => {
-      // if (p.hasOwnProperty('propertyKey')) {
-      //   return p.propertyKey !== parser.propertyKey;
-      // }
-      return true;
+      const propertyKey = Reflect.get(p, 'propertyKey');
+      return !propertyKey || propertyKey !== parser.propertyKey;
     });
+
+  const existingOwnAddedParser = GetAllOwnElementParser(target.constructor).filter(p => {
+    const propertyKey = Reflect.get(p, 'propertyKey');
+    return propertyKey === parser.propertyKey;
+  });
 
   setMetadata(
     ElementParserMetaData.PARSER,
-    [ ...addedParser, parser.parse ],
+    [ ...existingOwnAddedParser, ...addedParser, parser.parse ],
     target.constructor,
   );
 
   const addedElementParser = GetAllElementParserInstances(target.constructor)
     .filter(p => p.propertyKey !== parser.propertyKey);
 
+  const existingOwnAddedElementParser = GetAllOwnElementParserInstances(target.constructor)
+    .filter(p => p.propertyKey === parser.propertyKey);
+
   setMetadata(
     ElementParserMetaData.PARSER_INSTANCE,
-    [ ...addedElementParser, parser ],
+    [ ...existingOwnAddedElementParser, ...addedElementParser, parser ],
     target,
   );
 
