@@ -83,7 +83,7 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.16-dev.0"
+        "version": "1.0.16-dev.1"
       },
       {
         "package": "@rxap/rxjs",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.16-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/reflect-metadata@1.0.16-dev.0...@rxap/reflect-metadata@1.0.16-dev.1) (2025-05-21)
+
+### Bug Fixes
+
+- support symbol metadata ([4aeed54](https://gitlab.com/rxap/packages/commit/4aeed54f89f913b6766e7aa05c3bda340f6df8ba))
+
 ## [1.0.16-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/reflect-metadata@1.0.15...@rxap/reflect-metadata@1.0.16-dev.0) (2025-05-19)
 
 **Note:** Version bump only for package @rxap/reflect-metadata

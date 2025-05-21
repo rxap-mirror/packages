@@ -21,7 +21,7 @@
     "@rxap/forms": "^19.0.4",
     "@rxap/material-directives": "^19.0.4",
     "@rxap/pattern": "^1.1.14",
-    "@rxap/reflect-metadata": "^1.0.16-dev.0",
+    "@rxap/reflect-metadata": "^1.0.16-dev.1",
     "@rxap/rxjs": "^1.1.16",
     "@rxap/utilities": "^16.4.5-dev.0",
     "@rxap/window-system": "^19.0.4",
@@ -127,7 +127,7 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.16-dev.0"
+        "version": "1.0.16-dev.1"
       },
       {
         "package": "@rxap/rxjs",

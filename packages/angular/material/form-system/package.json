@@ -16,8 +16,8 @@
     "@angular/router": "^19.2.1",
     "@rxap/form-system": "^19.0.4",
     "@rxap/forms": "^19.0.4",
-    "@rxap/mixin": "^16.0.15-dev.0",
-    "@rxap/reflect-metadata": "^1.0.16-dev.0",
+    "@rxap/mixin": "^16.0.15-dev.1",
+    "@rxap/reflect-metadata": "^1.0.16-dev.1",
     "@rxap/utilities": "^16.4.5-dev.0",
     "rxjs": "^7.8.1"
   },
@@ -105,7 +105,7 @@
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.15-dev.0"
+        "version": "16.0.15-dev.1"
       },
       {
         "package": "@rxap/open-api",
@@ -117,7 +117,7 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.16-dev.0"
+        "version": "1.0.16-dev.1"
       },
       {
         "package": "@rxap/remote-method",

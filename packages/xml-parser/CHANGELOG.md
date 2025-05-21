@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.2.1-dev.2...@rxap/xml-parser@16.3.0-dev.0) (2025-05-21)
+
+### Features
+
+- support element namespace decorator ([118063a](https://gitlab.com/rxap/packages/commit/118063a1a391106148b0ff176c8ec228e1855c17))
+
 ## [16.2.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.2.1-dev.1...@rxap/xml-parser@16.2.1-dev.2) (2025-05-21)
 
 ### Bug Fixes
