@@ -1,5 +1,10 @@
 import { getMetadata } from '@rxap/reflect-metadata';
+import {
+  getElementNamespaceMetadata,
+  hasElementNamespaceMetadata,
+} from './decorators/element-namespace';
 import { ElementParserMetaData } from './decorators/metadata-keys';
+import { ParsedElementType } from './decorators/utilities';
 import {
   RxapElement,
   RxapElementOptions,
@@ -35,6 +40,16 @@ export class XmlSerializerService {
     const {serializers, elementName} = this.determineElementNameAndSerializer(instance);
 
     const element = this.createElement(elementName);
+
+    if (hasElementNamespaceMetadata(instance.constructor as ParsedElementType)) {
+      for (const [key, value] of Object.entries(getElementNamespaceMetadata(instance.constructor as ParsedElementType))) {
+        if (key) {
+          element.setAttribute(`xmlns:${key}`, value);
+        } else {
+          element.setAttribute('xmlns', value);
+        }
+      }
+    }
 
     if (instance.__xmlns?.size) {
       instance.__xmlns.forEach((value, key) => {

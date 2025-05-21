@@ -40,6 +40,7 @@ export * from './lib/decorators/element-children';
 export * from './lib/decorators/element-clear-parser';
 export * from './lib/decorators/element-def';
 export * from './lib/decorators/element-extends';
+export * from './lib/decorators/element-namespace';
 export * from './lib/decorators/element-record';
 export * from './lib/decorators/element-text-content';
 export * from './lib/decorators/element-virtual';

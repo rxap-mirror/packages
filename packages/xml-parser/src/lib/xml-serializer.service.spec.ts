@@ -15,6 +15,10 @@ import {
   XMLSerializer,
 } from 'xmldom';
 import { XmlSerializerService } from './xml-serializer.service';
+import {
+  ElementNamespace,
+  getElementNamespaceMetadata,
+} from './decorators/element-namespace';
 
 describe('XML Serializer', () => {
 
@@ -460,6 +464,50 @@ describe('XML Serializer', () => {
         const xml = xmlSerializer.serializeToXml(instance);
 
         expect(xml).toMatchSnapshot();
+
+      });
+
+      it('should add namespaces from decorator', () => {
+
+        @ElementNamespace('rdf:https://domain.de')
+        @ElementDef('rdf:RDF')
+        class Root implements ParsedElement {
+
+          __tag?: string;
+        }
+
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        expect(getElementNamespaceMetadata(instance.constructor as any)).toEqual({
+          rdf: 'https://domain.de',
+        });
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toEqual('<rdf:RDF xmlns:rdf="https://domain.de"/>');
+
+      });
+
+      it('should add root namespaces from decorator', () => {
+
+        @ElementNamespace({ '': 'https://domain.de' })
+        @ElementDef('rdf:RDF')
+        class Root implements ParsedElement {
+
+          __tag?: string;
+        }
+
+        const instance = new Root();
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        expect(getElementNamespaceMetadata(instance.constructor as any)).toEqual({
+          '': 'https://domain.de',
+        });
+
+        const xml = xmlSerializer.serializeToXml(instance);
+
+        expect(xml).toEqual('<rdf:RDF xmlns="https://domain.de"/>');
 
       });
 
