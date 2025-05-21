@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.2.1-dev.1...@rxap/xml-parser@16.2.1-dev.2) (2025-05-21)
+
+### Bug Fixes
+
+- ensure the parent class parser are getting replaced ([b55fd98](https://gitlab.com/rxap/packages/commit/b55fd98a2a1c01dbcdc4a14b85b3c92d33b82d37))
+
 ## [16.2.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.2.1-dev.0...@rxap/xml-parser@16.2.1-dev.1) (2025-05-19)
 
 **Note:** Version bump only for package @rxap/xml-parser
