@@ -5,7 +5,7 @@ import {
 } from '@rxap/utilities';
 
 export function hasMetadata(
-  metadataKey: string,
+  metadataKey: string | symbol,
   target: any,
   propertyKey?: string | symbol,
 ): boolean {
@@ -13,7 +13,7 @@ export function hasMetadata(
 }
 
 export function setMetadata<V>(
-  metadataKey: string,
+  metadataKey: string | symbol,
   metadataValue: V,
   target: any,
   propertyKey?: string | symbol,
@@ -22,7 +22,7 @@ export function setMetadata<V>(
 }
 
 export function clearMetadata<V>(
-  metadataKey: string,
+  metadataKey: string | symbol,
   target: any,
   propertyKey?: string | symbol,
 ): void {
@@ -30,7 +30,7 @@ export function clearMetadata<V>(
 }
 
 export function getMetadata<V>(
-  metadataKey: string,
+  metadataKey: string | symbol,
   target: any,
   propertyKey?: string | symbol,
 ): V | null {
@@ -38,7 +38,7 @@ export function getMetadata<V>(
 }
 
 export function getOwnMetadata<V>(
-  metadataKey: string,
+  metadataKey: string | symbol,
   target: any,
   propertyKey?: string | symbol,
 ): V | null {
@@ -53,7 +53,7 @@ export function getMetadataKeys(
 }
 
 export function addToMetadata<V>(
-  metadataKey: string,
+  metadataKey: string | symbol,
   metadataValue: V,
   target: any,
   propertyKey?: string | symbol,
@@ -66,7 +66,7 @@ export function addToMetadata<V>(
 }
 
 export function mergeWithMetadata<V extends object>(
-  metadataKey: string,
+  metadataKey: string | symbol,
   metadataValue: V,
   target: any,
   propertyKey?: string | symbol,
@@ -79,7 +79,7 @@ export function mergeWithMetadata<V extends object>(
 }
 
 export function removeFromMetadata<V>(
-  metadataKey: string,
+  metadataKey: string | symbol,
   metadataValue: V,
   target: any,
   propertyKey?: string | symbol,
@@ -98,9 +98,9 @@ export function removeFromMetadata<V>(
 export function setMetadataMap<V = any, K = string>(
   key: K,
   value: V,
-  metadataKey: string,
+  metadataKey: string | symbol,
   target: any,
-  propertyKey?: string,
+  propertyKey?: string | symbol,
 ) {
 
   let map: Map<K, V> | null = getOwnMetadata(metadataKey, target, propertyKey);
@@ -123,9 +123,9 @@ export function setMetadataMap<V = any, K = string>(
 export function setMetadataMapSet<V = any, K = string>(
   key: K,
   value: V,
-  metadataKey: string,
+  metadataKey: string | symbol,
   target: any,
-  propertyKey?: string,
+  propertyKey?: string | symbol,
 ) {
 
   let map: Map<K, Set<V>> | null = getOwnMetadata(metadataKey, target, propertyKey);
@@ -155,9 +155,9 @@ export function setMetadataMapMap<V = any, K = string, K2 = string>(
   key: K,
   key2: K2,
   value: V,
-  metadataKey: string,
+  metadataKey: string | symbol,
   target: any,
-  propertyKey?: string,
+  propertyKey?: string | symbol,
 ) {
 
   let map: Map<K, Map<K2, V>> | null = getOwnMetadata(metadataKey, target, propertyKey);
