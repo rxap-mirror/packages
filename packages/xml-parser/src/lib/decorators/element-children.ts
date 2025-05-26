@@ -36,6 +36,7 @@ import {
 } from './utilities';
 import { AddParserToMetadata } from './utilities/add-parser-to-metadata';
 import { AddSerializerToMetadata } from './utilities/add-serializer-to-metadata';
+import { isVirtualElement } from './utilities/is-virtual-element';
 
 export interface ElementChildrenParserOptions extends ChildElementOptions, ChildrenElementOptions {
 
@@ -74,7 +75,7 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
       throw new Error(`The element type is not defined for <${ element.name }>`);
     }
 
-    const elementTypes = [ this.elementType, ...this.getExtendedTypes(this.elementType) ];
+    const elementTypes = [ this.elementType, ...this.getExtendedTypes(this.elementType) ].filter(et => !isVirtualElement(et));
 
     const rxapElementChildren = this.getChildren(element);
 
@@ -198,16 +199,19 @@ export class ElementChildrenSerializer<T extends ParsedElement, Child extends Pa
   serialize(xmlParser: XmlSerializerService, element: RxapElement, parsedElement: T): void {
 
     // @ts-expect-error the propertyKey is set by the property decorator
-    const children = parsedElement[this.propertyKey];
+    let children = parsedElement[this.propertyKey] ?? [];
 
-    if (children) {
-      if (!Array.isArray(children)) {
-        throw new RxapXmlSerializerValidateError(`The property ${ this.propertyKey } is not an array!`, parsedElement.__tag!);
-      }
+    if (!Array.isArray(children)) {
+      throw new RxapXmlSerializerValidateError(`The property ${ this.propertyKey } is not an array!`, parsedElement.__tag!);
+    }
+
+    children = children.filter(child => !isVirtualElement(child));
+
+    if (children.length) {
       this.setChildren(element, children, xmlParser);
     } else if (this.required) {
       throw new RxapXmlSerializerValidateRequiredError(
-        `Some element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
+        `At least ONE element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
         parsedElement.__tag!,
       );
     }

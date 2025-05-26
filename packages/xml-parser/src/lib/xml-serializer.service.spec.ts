@@ -10,6 +10,7 @@ import {
   ElementExtends,
   ElementParserMetaData,
   ElementTextContent,
+  ElementVirtual,
   ParsedElement,
   XmlElementSerializerFunction,
 } from '@rxap/xml-parser';
@@ -18,6 +19,7 @@ import {
   XMLSerializer,
 } from 'xmldom';
 import { createElement } from './create-element';
+import { isVirtualElement } from './decorators/utilities/is-virtual-element';
 import { XmlSerializerService } from './xml-serializer.service';
 import {
   ElementNamespace,
@@ -579,6 +581,57 @@ describe('XML Serializer', () => {
         const xml = xmlSerializer.serializeToXml(instance);
 
         expect(xml).toEqual('<rdf:RDF xmlns="https://domain.de"/>');
+
+      });
+
+      it('should not serialize virtual elements', () => {
+
+        @ElementDef('item')
+        class Item implements ParsedElement {
+
+          __tag?: string;
+
+        }
+
+        @ElementExtends(Item)
+        @ElementVirtual()
+        @ElementDef('virtual-item')
+        class VirtualItem extends Item {}
+
+        @ElementDef('root')
+        class Root implements ParsedElement {
+
+          __tag?: string;
+
+          @ElementChild(Item)
+          item!: Item;
+
+          @ElementChildren(Item, { group: 'group' })
+          itemList!: Item[];
+
+        }
+
+        const root = createElement(Root, {
+          item: createElement(VirtualItem),
+          itemList: [
+            createElement(VirtualItem),
+            createElement(Item),
+            createElement(VirtualItem),
+            createElement(VirtualItem),
+          ]
+        });
+
+        expect(root.item).toBeInstanceOf(VirtualItem);
+        expect(root.itemList).toHaveLength(4);
+
+        expect(isVirtualElement(root.item)).toBe(true);
+        expect(root.itemList.filter(isVirtualElement)).toHaveLength(3);
+
+        const xmlSerializerService = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializerService.serializeToXml(root);
+
+        expect(xml).toEqual('<root><group><item/></group></root>');
 
       });
 

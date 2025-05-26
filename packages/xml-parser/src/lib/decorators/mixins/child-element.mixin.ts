@@ -4,6 +4,7 @@ import { isConstructor } from '@rxap/utilities';
 import { ParsedElement } from '../../elements/parsed-element';
 import { ElementParserMetaData } from '../metadata-keys';
 import { ParsedElementType } from '../utilities';
+import { isVirtualElement } from '../utilities/is-virtual-element';
 import {
   PathElementOptions,
   PathElementMixin,
@@ -32,7 +33,7 @@ export class ChildElementMixin<Child extends ParsedElement> {
   }
 
   get isVirtual(): boolean {
-    return getOwnMetadata(ElementParserMetaData.VIRTUAL, this.elementType) === true;
+    return isVirtualElement(this.elementType);
   }
 
   public get elementType(): ParsedElementType<Child> | null {

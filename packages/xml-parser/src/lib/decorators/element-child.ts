@@ -28,6 +28,7 @@ import {
 } from './utilities';
 import { AddParserToMetadata } from './utilities/add-parser-to-metadata';
 import { AddSerializerToMetadata } from './utilities/add-serializer-to-metadata';
+import { isVirtualElement } from './utilities/is-virtual-element';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementChildParserOptions extends ChildElementOptions {
@@ -140,8 +141,6 @@ export class ElementChildSerializer<T extends ParsedElement, Child extends Parse
 
   serialize(xmlParser: XmlSerializerService, element: RxapElement, parsedElement: T): void {
 
-    element = this.coercePath(element);
-
     if (!parsedElement.__tag) {
       throw new Error('The element instance does not have a defined __tag property. If created manually, ensure to set it.');
     }
@@ -149,7 +148,8 @@ export class ElementChildSerializer<T extends ParsedElement, Child extends Parse
     // @ts-expect-error the propertyKey is set by the property decorator
     const child = parsedElement[this.propertyKey];
 
-    if (child) {
+    if (child && !isVirtualElement(child)) {
+      element = this.coercePath(element);
       xmlParser.serialize(child, element);
     } else if (this.required) {
       throw new RxapXmlSerializerValidateRequiredError(
