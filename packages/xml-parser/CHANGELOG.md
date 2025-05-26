@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.5...@rxap/xml-parser@16.3.0-dev.6) (2025-05-26)
+
+### Bug Fixes
+
+- support more flexable creation ([2926196](https://gitlab.com/rxap/packages/commit/2926196d6e7b3b8f5a22b9dc0d5368fa78dc5438))
+
 # [16.3.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.4...@rxap/xml-parser@16.3.0-dev.5) (2025-05-26)
 
 ### Bug Fixes
