@@ -12,10 +12,8 @@ export function AddSerializerToMetadata(serializer: ElementSerializer, target: a
 
   const addedSerializer = GetAllElementSerializer(target.constructor)
     .filter(p => {
-      // if (p.hasOwnProperty('propertyKey')) {
-      //   return p.propertyKey !== parser.propertyKey;
-      // }
-      return true;
+      const propertyKey = Reflect.get(p, 'propertyKey');
+      return !propertyKey || propertyKey !== serializer.propertyKey;
     });
 
   setMetadata(

@@ -1,3 +1,4 @@
+import { getMetadata } from '@rxap/reflect-metadata';
 import {
   ElementAttribute,
   ElementChild,
@@ -7,13 +8,16 @@ import {
   ElementChildTextContent,
   ElementDef,
   ElementExtends,
+  ElementParserMetaData,
   ElementTextContent,
   ParsedElement,
+  XmlElementSerializerFunction,
 } from '@rxap/xml-parser';
 import {
   DOMParser,
   XMLSerializer,
 } from 'xmldom';
+import { createElement } from './create-element';
 import { XmlSerializerService } from './xml-serializer.service';
 import {
   ElementNamespace,
@@ -81,6 +85,73 @@ describe('XML Serializer', () => {
         const xml = xmlSerializer.serializeToXml(instance);
 
         expect(xml).toMatchSnapshot();
+
+      });
+
+      it('should only use the latest child serializer', () => {
+
+        @ElementDef('child')
+        class ChildA {}
+
+        @ElementDef('child')
+        class ChildB {}
+
+        @ElementDef('child')
+        class ChildC {}
+
+        @ElementDef('base')
+        class Base implements ParsedElement {
+
+          __tag?: string;
+
+          @ElementChild(ChildA)
+          item!: ChildA;
+
+        }
+
+        @ElementDef('sub-a')
+        class SubA extends Base {
+
+          @ElementChild(ChildB)
+          declare item: ChildB;
+
+        }
+
+        @ElementDef('sub-b')
+        class SubB extends SubA {
+
+          @ElementChild(ChildC)
+          declare item: ChildC;
+
+        }
+
+        const serializersBase = getMetadata<XmlElementSerializerFunction<any>[]>(
+          ElementParserMetaData.SERIALIZER,
+          Base,
+        ) ?? [];
+
+        const serializersSubA = getMetadata<XmlElementSerializerFunction<any>[]>(
+          ElementParserMetaData.SERIALIZER,
+          SubA,
+        ) ?? [];
+
+        const serializersSubB = getMetadata<XmlElementSerializerFunction<any>[]>(
+          ElementParserMetaData.SERIALIZER,
+          SubB,
+        ) ?? [];
+
+        expect(serializersBase).toHaveLength(1);
+        expect(serializersSubA).toHaveLength(1);
+        expect(serializersSubB).toHaveLength(1);
+
+        const subB = createElement(SubB, { item: createElement(ChildC) });
+        expect(subB.item).toBeInstanceOf(ChildC);
+
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+
+        const xml = xmlSerializer.serializeToXml(subB);
+
+        expect(xml).toEqual('<sub-b><child/></sub-b>');
 
       });
 
@@ -417,7 +488,7 @@ describe('XML Serializer', () => {
 
       });
 
-      it('with child extends', () => {
+      it('with children extends', () => {
 
         @ElementDef('base-child')
         class BaseChild implements ParsedElement {
