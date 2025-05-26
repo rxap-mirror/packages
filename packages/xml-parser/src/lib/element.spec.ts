@@ -6,11 +6,11 @@ describe('XML Parser', () => {
   describe.each([
     {
       name: 'native',
-      document: window.document,
+      document: new window.DOMParser().parseFromString('<html></html>', 'text/xml'),
       DOMParser: window.DOMParser,
     }, {
       name: 'xmldom',
-      document: new DOMParser().parseFromString('<html></html>'),
+      document: new DOMParser().parseFromString('<html></html>', 'text/xml'),
       DOMParser,
     },
   ])(

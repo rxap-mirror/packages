@@ -213,7 +213,7 @@ export class XmlParserService {
 
     let xmlDoc: Document;
     try {
-      xmlDoc = this.createDOMParser().parseFromString(xml, 'application/xml');
+      xmlDoc = this.createDOMParser().parseFromString(xml, 'text/xml');
     } catch (e: any) {
       throw new Error('Could not parse xml string');
     }

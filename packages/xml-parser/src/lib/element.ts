@@ -199,7 +199,7 @@ export class RxapElement {
 
   addChild(nodeName: string) {
     nodeName = this.normalizeNodeName(nodeName);
-    const element = (this.element.ownerDocument ?? new this.DOMParser().parseFromString('<html></html>', 'application/xml')).createElement(nodeName);
+    const element = (this.element.ownerDocument ?? new this.DOMParser().parseFromString('<html></html>', 'text/xml')).createElement(nodeName);
     this.element.appendChild(element);
     return new RxapElement(element, this.DOMParser, this.options);
   }

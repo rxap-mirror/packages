@@ -24,7 +24,7 @@ export class XmlSerializerService {
 
   private createElement(tagName: string, options?: ElementCreationOptions) {
     const parser = this.createDOMParser();
-    return parser.parseFromString('<html></html>', 'application/xml').createElement(tagName, options);
+    return parser.parseFromString('<html></html>', 'text/xml').createElement(tagName, options);
   }
 
   /**
