@@ -24,6 +24,70 @@ describe('XML Parser', () => {
 
     describe(name, () => {
 
+      describe('should preserve the original tag name regardless of the case sensitive option', () => {
+
+
+        @ElementDef('Element')
+        class Element implements ParsedElement{
+
+          __tag?: string;
+
+        }
+
+        @ElementDef('Root')
+        class Root implements ParsedElement {
+
+          __tag?: string;
+
+          @ElementChildren(Element)
+          children!: Element[];
+
+        }
+
+        const xml = `<Root><Element></Element><element></element></Root>`;
+
+        it('defaults', () => {
+          const xmlParserService = new XmlParserService(DOMParser);
+          xmlParserService.setRootElement(Root);
+
+
+          const root = xmlParserService.parseFromXml<Root>(xml);
+          expect(root.__tag).toEqual('Root');
+          expect(root.children).toHaveLength(2);
+          expect(root.children[0].__tag).toEqual('Element');
+          expect(root.children[1].__tag).toEqual('element');
+
+        });
+
+        it('caseSensitive = true', () => {
+
+          const xmlParserService = new XmlParserService(DOMParser, { caseSensitive: true });
+          xmlParserService.setRootElement(Root);
+
+
+          const root = xmlParserService.parseFromXml<Root>(xml);
+          expect(root.__tag).toEqual('Root');
+          expect(root.children).toHaveLength(1);
+          expect(root.children[0].__tag).toEqual('Element');
+
+        });
+
+        it('caseSensitive = false', () => {
+
+          const xmlParserService = new XmlParserService(DOMParser, { caseSensitive: false });
+          xmlParserService.setRootElement(Root);
+
+
+          const root = xmlParserService.parseFromXml<Root>(xml);
+          expect(root.__tag).toEqual('Root');
+          expect(root.children).toHaveLength(2);
+          expect(root.children[0].__tag).toEqual('Element');
+          expect(root.children[1].__tag).toEqual('element');
+
+        });
+
+      });
+
       it('should parse xmlns', () => {
 
         @ElementDef('definition')
