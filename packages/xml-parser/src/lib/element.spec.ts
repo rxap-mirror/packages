@@ -369,6 +369,24 @@ describe('XML Parser', () => {
 
         });
 
+        it('should add child element', () => {
+
+          const elementL = new RxapElement(document.createElement('element'), DOMParser);
+          const elementU = new RxapElement(document.createElement('Element'), DOMParser);
+          expect(elementL.name).toEqual('element');
+          expect(elementL.nodeName).toEqual('element');
+          expect(elementU.name).toEqual('element');
+          expect(elementU.nodeName).toEqual('Element');
+
+          const eL = elementL.addChild('child');
+          const eU = elementL.addChild('MyChild');
+          expect(eL.name).toEqual('child');
+          expect(eL.nodeName).toEqual('child');
+          expect(eU.name).toEqual('mychild');
+          expect(eU.nodeName).toEqual('MyChild');
+
+        });
+
       });
 
     },

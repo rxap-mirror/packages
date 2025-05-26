@@ -64,7 +64,7 @@ export class XmlParserService {
       }
 
       this.parsers.set(
-        elementName,
+        elementName.toLowerCase(),
         {
           elementParser,
           parsers,
@@ -82,7 +82,7 @@ export class XmlParserService {
         throw new Error(
           'Could not set the root Element. Element name is not defined. Ensure that the @ElementDef is used');
       }
-      if (!this.parsers.has(elementName)) {
+      if (!this.parsers.has(elementName.toLowerCase())) {
         this.register(nameOrElementParser);
       }
       this._rootParser = nameOrElementParser;
@@ -180,7 +180,7 @@ export class XmlParserService {
     let parser: ElementParserWithParsers;
 
     if (typeof elementNameOrConstructor === 'string') {
-      elementName = elementNameOrConstructor;
+      elementName = elementNameOrConstructor.toLowerCase();
       if (!this.parsers.has(elementName)) {
         throw new Error(`Parser for element '${ elementName }' is not registered`);
       }
