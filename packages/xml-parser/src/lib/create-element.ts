@@ -1,29 +1,31 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import { Constructor } from '@rxap/utilities';
-import { GetAllElementParserInstances } from './decorators/utilities';
+import {
+  ElementChildParser,
+  ElementChildrenParser,
+  ElementParserMetaData,
+  GetAllElementParserInstances,
+  ParsedElement,
+} from '@rxap/xml-parser';
 import { isParsedElement } from './utilities/is-parsed-element';
 import { isTypeOf } from './utilities/is-type-of';
-import { ParsedElement } from './elements/parsed-element';
-import { ElementParserMetaData } from './decorators/metadata-keys';
-import { ElementChildrenParser } from './decorators/element-children';
-import { ElementChildParser } from './decorators/element-child';
 
 export function createElement<Element extends ParsedElement>(
   element: Element | Constructor<Element>
 ): Element;
 export function createElement<Element extends ParsedElement>(
   element: Element | Constructor<Element>,
-  parent: ParsedElement
+  parent: ParsedElement | null
 ): Element
 export function createElement<Element extends ParsedElement>(
   element: Element | Constructor<Element>,
   properties: Partial<{ [K in keyof Element]: Element[K] }>,
-  parent?: ParsedElement
+  parent?: ParsedElement | null
 ): Element
 export function createElement<Element extends ParsedElement>(
   element: Element | Constructor<Element>,
-  propertiesOrParent?: Partial<{ [K in keyof Element]: Element[K] }> | ParsedElement,
-  _parent?: ParsedElement
+  propertiesOrParent?: Partial<{ [K in keyof Element]: Element[K] }> | ParsedElement | null,
+  _parent?: ParsedElement | null
 ): Element {
   const constructor: Constructor<Element> =
     typeof element === 'function'
@@ -36,7 +38,7 @@ export function createElement<Element extends ParsedElement>(
     );
   }
   const instance = typeof element === 'function' ? new element() : element;
-  const properties = (isParsedElement(propertiesOrParent) ? {} : propertiesOrParent) as Partial<{ [K in keyof Element]: Element[K] }> | undefined;
+  const properties = (isParsedElement(propertiesOrParent) || propertiesOrParent === null ? {} : propertiesOrParent) as Partial<{ [K in keyof Element]: Element[K] }> | undefined;
   const parent = isParsedElement(propertiesOrParent) ? propertiesOrParent : _parent;
 
   instance.__tag ??= tag;
@@ -46,9 +48,9 @@ export function createElement<Element extends ParsedElement>(
     const parsers = GetAllElementParserInstances(parent.constructor as any);
     const possibleParentParsers = parsers.filter(parser => {
       if (parser instanceof ElementChildParser || parser instanceof ElementChildrenParser) {
-        const elementType = parser.elementType;
+        const elementType = parser.elementType//??;
         if (elementType) {
-          return isTypeOf(constructor, elementType);
+          return isTypeOf(constructor, elementType)
         }
       }
       return false;
