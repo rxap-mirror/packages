@@ -11212,7 +11212,7 @@ __metadata:
     "@nx/devkit": 20.5.0
     "@rxap/schematics-ts-morph": ^19.1.1-dev.0
     "@rxap/schematics-utilities": ^19.0.5-dev.0
-    "@rxap/xml-parser": ^16.3.0-dev.1
+    "@rxap/xml-parser": ^16.3.0-dev.2
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -11648,7 +11648,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/xml-parser@^16.3.0-dev.1, @rxap/xml-parser@workspace:packages/xml-parser":
+"@rxap/xml-parser@^16.3.0-dev.2, @rxap/xml-parser@workspace:packages/xml-parser":
   version: 0.0.0-use.local
   resolution: "@rxap/xml-parser@workspace:packages/xml-parser"
   dependencies:

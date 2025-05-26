@@ -1,5 +1,5 @@
 {
-  "version": "16.3.0-dev.1",
+  "version": "16.3.0-dev.2",
   "name": "@rxap/xml-parser",
   "description": "Provides a set of decorators and services for parsing and serializing XML documents into TypeScript classes. It simplifies the process of mapping XML elements and attributes to class properties, handling data validation, and serializing objects back into XML. The library supports defining XML structures using decorators and offers a flexible way to customize parsing and serialization logic.\n",
   "license": "GPL-3.0-or-later",

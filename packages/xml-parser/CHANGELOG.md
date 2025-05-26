@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.1...@rxap/xml-parser@16.3.0-dev.2) (2025-05-26)
+
+### Bug Fixes
+
+- ensure the used node name is not changed ([0a2884f](https://gitlab.com/rxap/packages/commit/0a2884f36b5003ee24c29b630ecce2314b860bd0))
+- set xml parser type to text/xml ([374fbd2](https://gitlab.com/rxap/packages/commit/374fbd2388c42add4aae0e5ee012cd463cca4228))
+
 # [16.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.0...@rxap/xml-parser@16.3.0-dev.1) (2025-05-21)
 
 ### Bug Fixes
