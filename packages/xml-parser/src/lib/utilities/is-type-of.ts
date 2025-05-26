@@ -1,4 +1,5 @@
-import { ParsedElement, ParsedElementType } from '@rxap/xml-parser';
+import { ParsedElementType } from '../decorators/utilities';
+import { ParsedElement } from '../elements/parsed-element';
 import { getExtendedTypes } from './get-extended-types';
 
 export function isTypeOf<

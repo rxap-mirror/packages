@@ -1,5 +1,6 @@
 import { hasMetadata } from '@rxap/reflect-metadata';
-import { ElementParserMetaData, ParsedElement } from '@rxap/xml-parser';
+import { ElementParserMetaData } from '../decorators/metadata-keys';
+import { ParsedElement } from '../elements/parsed-element';
 
 export function isParsedElement<T extends ParsedElement = ParsedElement>(
   element: any

@@ -1,14 +1,12 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import { Constructor } from '@rxap/utilities';
-import {
-  ElementChildParser,
-  ElementChildrenParser,
-  ElementParserMetaData,
-  GetAllElementParserInstances,
-  ParsedElement,
-} from '@rxap/xml-parser';
+import { GetAllElementParserInstances } from './decorators/utilities';
 import { isParsedElement } from './utilities/is-parsed-element';
 import { isTypeOf } from './utilities/is-type-of';
+import { ParsedElement } from './elements/parsed-element';
+import { ElementParserMetaData } from './decorators/metadata-keys';
+import { ElementChildrenParser } from './decorators/element-children';
+import { ElementChildParser } from './decorators/element-child';
 
 export function createElement<Element extends ParsedElement>(
   element: Element | Constructor<Element>
@@ -48,9 +46,9 @@ export function createElement<Element extends ParsedElement>(
     const parsers = GetAllElementParserInstances(parent.constructor as any);
     const possibleParentParsers = parsers.filter(parser => {
       if (parser instanceof ElementChildParser || parser instanceof ElementChildrenParser) {
-        const elementType = parser.elementType//??;
+        const elementType = parser.elementType;
         if (elementType) {
-          return isTypeOf(constructor, elementType)
+          return isTypeOf(constructor, elementType);
         }
       }
       return false;

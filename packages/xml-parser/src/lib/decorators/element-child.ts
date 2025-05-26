@@ -1,31 +1,24 @@
 import { Mixin } from '@rxap/mixin';
-import {
-  getMetadata,
-  getOwnMetadata,
-} from '@rxap/reflect-metadata';
-import {
-  deepMerge,
-  isConstructor,
-} from '@rxap/utilities';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { deepMerge } from '@rxap/utilities';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
 import {
   RxapXmlParserValidateRequiredError,
   RxapXmlSerializerValidateRequiredError,
 } from '../error';
+import { getExtendedTypes } from '../utilities/get-extended-types';
 import { XmlParserService } from '../xml-parser.service';
 import { XmlSerializerService } from '../xml-serializer.service';
 import { ElementParser } from './element.parser';
 import { ElementSerializer } from './element.serializer';
 import { ElementParserMetaData } from './metadata-keys';
 import {
-  ChildElementOptions,
   ChildElementMixin,
+  ChildElementOptions,
 } from './mixins/child-element.mixin';
 import { RequiredProperty } from './required-property';
-import {
-  ParsedElementType,
-} from './utilities';
+import { ParsedElementType } from './utilities';
 import { AddParserToMetadata } from './utilities/add-parser-to-metadata';
 import { AddSerializerToMetadata } from './utilities/add-serializer-to-metadata';
 import { isVirtualElement } from './utilities/is-virtual-element';
@@ -92,7 +85,7 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
       throw new Error(`The element type is not defined for <${ element.name }>`);
     }
 
-    const extendedTypes = this.getExtendedTypes(elementType);
+    const extendedTypes = getExtendedTypes(elementType);
 
     for (const extendedType of extendedTypes) {
       if (extendedType.TAG) {
@@ -104,16 +97,6 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
 
     return elementType;
 
-  }
-
-  private getExtendedTypes(type: ParsedElementType<Child>): Array<ParsedElementType<Child>> {
-    const extendedTypes = getOwnMetadata<Array<ParsedElementType<Child>>>(ElementParserMetaData.EXTENDS, type) ?? [];
-
-    for (const extendedType of [ ...extendedTypes ]) {
-      extendedTypes.push(...this.getExtendedTypes(extendedType));
-    }
-
-    return extendedTypes;
   }
 
 }
