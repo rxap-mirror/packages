@@ -29,8 +29,8 @@ export function createElement<Element extends ParsedElement>(
 ): Element {
   const constructor: Constructor<Element> =
     typeof element === 'function'
-      ? element
-      : (element.constructor as Constructor<Element>);
+    ? element
+    : (element.constructor as Constructor<Element>);
   const tag = getMetadata<string>(ElementParserMetaData.NAME, constructor);
   if (!tag) {
     throw new Error(
@@ -48,7 +48,7 @@ export function createElement<Element extends ParsedElement>(
     const parsers = GetAllElementParserInstances(parent.constructor as any);
     const possibleParentParsers = parsers.filter(parser => {
       if (parser instanceof ElementChildParser || parser instanceof ElementChildrenParser) {
-        const elementType = parser.elementType;
+        const elementType = parser.elementType//??;
         if (elementType) {
           return isTypeOf(constructor, elementType)
         }
@@ -58,7 +58,7 @@ export function createElement<Element extends ParsedElement>(
     if (possibleParentParsers.length > 1) {
       console.warn(`The parent element ${parent.__tag} has multiple possible parent parsers. Non will be used.`)
     } else if (possibleParentParsers.length === 0) {
-      console.warn(`The parent element ${parent.__tag} has no possible parent parser.`)
+      console.warn(`The parent element ${parent.__tag} has no possible parent parser for ${instance.__tag}.`)
     } else {
       const parser = possibleParentParsers[0];
       if (parser) {
@@ -81,7 +81,7 @@ export function createElement<Element extends ParsedElement>(
     if (
       parser &&
       (parser instanceof ElementChildParser ||
-        parser instanceof ElementChildrenParser)
+       parser instanceof ElementChildrenParser)
     ) {
       if (Array.isArray(value)) {
         value.forEach((v) => Reflect.set(v, '__parent', instance));

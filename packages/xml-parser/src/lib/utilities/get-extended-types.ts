@@ -14,9 +14,10 @@ export function getExtendedTypes<T extends ParsedElement>(
       type
     ) ?? [];
 
-  for (const extendedType of [...extendedTypes]) {
-    extendedTypes.push(...getExtendedTypes(extendedType));
+  const newTypes: Array<ParsedElementType<T>> = [];
+  for (const extendedType of [...extendedTypes].filter(s => s !== type)) {
+    newTypes.push(...getExtendedTypes(extendedType));
   }
 
-  return extendedTypes;
+  return extendedTypes.concat(newTypes);
 }
