@@ -1,3 +1,9 @@
+// region utilities
+export * from './lib/utilities/get-extended-types';
+export * from './lib/utilities/is-parsed-element';
+export * from './lib/utilities/is-type-of';
+// endregion
+
 // region testing
 export * from './lib/testing/testing-xml-parser-service';
 // endregion
@@ -52,6 +58,8 @@ export * from './lib/decorators/utilities';
 // endregion
 
 // region 
+export * from './lib/create-element';
+export * from './lib/create-root';
 export * from './lib/default-to-json';
 export * from './lib/element-factory';
 export * from './lib/element-name';
