@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.2...@rxap/xml-parser@16.3.0-dev.3) (2025-05-26)
+
+### Bug Fixes
+
+- **xml-parser:** add test for maintaining latest child serializer ([03f5598](https://gitlab.com/rxap/packages/commit/03f5598cda37bb8d5a9399994d21a6dde69c740d))
+
+### Features
+
+- **xml-parser:** add element creation utilities and parsing enhancements ([ce5b1d1](https://gitlab.com/rxap/packages/commit/ce5b1d10682b68b7854487a0263b22c2714395e5))
+
 # [16.3.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.1...@rxap/xml-parser@16.3.0-dev.2) (2025-05-26)
 
 ### Bug Fixes
