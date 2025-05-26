@@ -1,13 +1,78 @@
-import { ElementChild, ElementDef, ParsedElement } from '@rxap/xml-parser';
+import {
+  ElementChild,
+  ElementDef,
+  ParsedElement,
+  ElementAttribute,
+  ElementChildren,
+} from '@rxap/xml-parser';
 import { createElement } from './create-element';
-import { DateOfCreationElement } from './iirds-parser/date-of-creation.element';
-import { InformationSubjectElement } from './iirds-parser/information-type/information-subject.element';
-import { TopicElement } from './iirds-parser/information-unit/topic.element';
-import { HasSubjectElement } from './iirds-parser/relations/has-subject.element';
-import { RdfsLabelElement } from './rdfs-parser/rdfs-label.element';
 import { isParsedElement } from './utilities/is-parsed-element';
 
+
 describe('createElement', () => {
+
+  @ElementDef('dateOfCreation')
+  class DateOfCreationElement implements ParsedElement {
+    __tag?: string;
+    __parent?: ParsedElement;
+
+    @ElementAttribute()
+    value!: string;
+  }
+
+  @ElementDef('rdfs:label')
+  class RdfsLabelElement implements ParsedElement {
+    __tag?: string;
+    __parent?: ParsedElement;
+
+    @ElementAttribute()
+    value!: string;
+  }
+
+  @ElementDef('informationSubject')
+  class InformationSubjectElement implements ParsedElement {
+    __tag?: string;
+    __parent?: ParsedElement;
+
+    @ElementAttribute()
+    about!: string;
+
+    @ElementChildren(RdfsLabelElement)
+    labelList?: RdfsLabelElement[];
+  }
+
+  @ElementDef('hasSubject')
+  class HasSubjectElement implements ParsedElement {
+    __tag?: string;
+    __parent?: ParsedElement;
+
+    @ElementAttribute()
+    _instance!: InformationSubjectElement;
+  }
+
+  @ElementDef('iirds:Topic')
+  class TopicElement implements ParsedElement {
+    __tag?: string;
+    __xmlns?: Map<string, string>;
+    __parent?: ParsedElement;
+
+    @ElementAttribute()
+    about?: string;
+
+    @ElementAttribute()
+    title?: string;
+
+    @ElementChild(DateOfCreationElement)
+    dateOfCreation?: DateOfCreationElement;
+
+    @ElementChildren(HasSubjectElement)
+    hasInformationTypeList?: HasSubjectElement[];
+
+    get subjectList(): InformationSubjectElement[] {
+      return this.hasInformationTypeList?.map(has => has._instance) ?? [];
+    }
+  }
+
   it('should set the parent element and add is self as child', () => {
     @ElementDef('child')
     class Child implements ParsedElement {
@@ -87,9 +152,9 @@ describe('createElement', () => {
     });
 
     expect(element.hasInformationTypeList).toHaveLength(1);
-    expect(element.hasInformationTypeList[0]).toBeInstanceOf(HasSubjectElement);
+    expect(element.hasInformationTypeList![0]).toBeInstanceOf(HasSubjectElement);
     expect(
-      element.hasInformationTypeList.filter(
+      element.hasInformationTypeList!.filter(
         (i) => i instanceof HasSubjectElement
       )
     ).toHaveLength(1);

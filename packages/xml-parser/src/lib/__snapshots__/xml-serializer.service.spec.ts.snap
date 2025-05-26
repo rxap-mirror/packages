@@ -8,9 +8,9 @@ exports[`XML Serializer Xml Serializer Service native should serialize xmlns 1`]
 
 exports[`XML Serializer Xml Serializer Service native with child 1`] = `"<root name="root-name"><child name="child-name"/></root>"`;
 
-exports[`XML Serializer Xml Serializer Service native with child extends 1`] = `"<root name="root-name"><base-child name="child-name"/><child-a name="child-name"/><child-b name="child-name"/><child-b name="child-name"/><child-c name="child-name"/></root>"`;
-
 exports[`XML Serializer Xml Serializer Service native with children 1`] = `"<root name="root-name"><child name="child-name"/><child name="child-name"/><child name="child-name"/></root>"`;
+
+exports[`XML Serializer Xml Serializer Service native with children extends 1`] = `"<root name="root-name"><base-child name="child-name"/><child-a name="child-name"/><child-b name="child-name"/><child-b name="child-name"/><child-c name="child-name"/></root>"`;
 
 exports[`XML Serializer Xml Serializer Service native with children text content 1`] = `"<root name="root-name"><children>child-1</children><children>child-2</children><children>child-3</children></root>"`;
 
@@ -32,9 +32,9 @@ exports[`XML Serializer Xml Serializer Service xmldom should serialize xmlns 1`]
 
 exports[`XML Serializer Xml Serializer Service xmldom with child 1`] = `"<root name="root-name"><child name="child-name"/></root>"`;
 
-exports[`XML Serializer Xml Serializer Service xmldom with child extends 1`] = `"<root name="root-name"><base-child name="child-name"/><child-a name="child-name"/><child-b name="child-name"/><child-b name="child-name"/><child-c name="child-name"/></root>"`;
-
 exports[`XML Serializer Xml Serializer Service xmldom with children 1`] = `"<root name="root-name"><child name="child-name"/><child name="child-name"/><child name="child-name"/></root>"`;
+
+exports[`XML Serializer Xml Serializer Service xmldom with children extends 1`] = `"<root name="root-name"><base-child name="child-name"/><child-a name="child-name"/><child-b name="child-name"/><child-b name="child-name"/><child-c name="child-name"/></root>"`;
 
 exports[`XML Serializer Xml Serializer Service xmldom with children text content 1`] = `"<root name="root-name"><children>child-1</children><children>child-2</children><children>child-3</children></root>"`;
 

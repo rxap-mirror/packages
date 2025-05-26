@@ -59,7 +59,6 @@ export * from './lib/decorators/utilities';
 
 // region 
 export * from './lib/create-element';
-export * from './lib/create-root';
 export * from './lib/default-to-json';
 export * from './lib/element-factory';
 export * from './lib/element-name';
