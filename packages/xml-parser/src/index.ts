@@ -19,6 +19,7 @@ export * from './lib/elements/parsed-element';
 // region decorators utilities
 export * from './lib/decorators/utilities/add-parser-to-metadata';
 export * from './lib/decorators/utilities/add-serializer-to-metadata';
+export * from './lib/decorators/utilities/is-virtual-element';
 // endregion
 
 // region decorators mixins

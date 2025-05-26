@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.4...@rxap/xml-parser@16.3.0-dev.5) (2025-05-26)
+
+### Bug Fixes
+
+- ignore virtual element when serializing ([9e1c151](https://gitlab.com/rxap/packages/commit/9e1c1516fc46903b7052fdbec1c88a7c106e68cc))
+
 # [16.3.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.3...@rxap/xml-parser@16.3.0-dev.4) (2025-05-26)
 
 ### Bug Fixes
