@@ -14,11 +14,13 @@ export interface VirtualFileLike {
 
   clone?(name: string, fullName?: string, deep?: boolean): VirtualFileLike | Promise<VirtualFileLike>;
   toFile?(useFullName?: boolean): File | Promise<File>;
-  getBlob(mimetype?: string): Blob | Promise<Blob>;
+
+  getBlob?(mimetype?: string): Blob | Promise<Blob>;
+
+  getText?(mimetype?: string, textDecoder?: typeof TextDecoder): string | Promise<string>;
 }
 
 export interface SyncVirtualFileLike extends VirtualFileLike {
-  toFile(useFullName?: boolean): File;
   get data(): ArrayBuffer;
 
   getContent(mimetype: 'text/plain', textDecoder?: typeof TextDecoder): string;
@@ -27,12 +29,15 @@ export interface SyncVirtualFileLike extends VirtualFileLike {
   getContent(mimetype?: string, textDecoder?: typeof TextDecoder): string | Blob;
   getContent(): string | Blob;
 
+  toFile?(useFullName?: boolean): File;
   clone?(name: string, fullName?: string, deep?: boolean): VirtualFileLike;
-  getBlob(mimetype?: string): Blob;
+
+  getBlob?(mimetype?: string): Blob;
+
+  getText?(mimetype?: string, textDecoder?: typeof TextDecoder): string;
 }
 
 export interface AsyncVirtualFileLike extends VirtualFileLike {
-  toFile(useFullName?: boolean): Promise<File>;
   get data(): Promise<ArrayBuffer>;
 
   getContent(mimetype: 'text/plain', textDecoder?: typeof TextDecoder): Promise<string>;
@@ -41,8 +46,12 @@ export interface AsyncVirtualFileLike extends VirtualFileLike {
   getContent(mimetype?: string, textDecoder?: typeof TextDecoder): Promise<string | Blob>;
   getContent(): Promise<string | Blob>;
 
+  toFile?(useFullName?: boolean): Promise<File>;
   clone?(name: string, fullName?: string, deep?: boolean): Promise<VirtualFileLike>;
-  getBlob(mimetype?: string): Promise<Blob>;
+
+  getBlob?(mimetype?: string): Promise<Blob>;
+
+  getText?(mimetype?: string, textDecoder?: typeof TextDecoder): Promise<string>;
 }
 
 export class VirtualFile implements VirtualFileLike {
@@ -93,15 +102,49 @@ export class VirtualFile implements VirtualFileLike {
         if (textDecoder) {
           this._textContent = this.textDecode(textDecoder);
         } else {
-          return this.getBlob(mimetype).text().then(text => {
-            this._textContent = text;
-            return text;
-          });
+          const text = this.getText(mimetype);
+          if (typeof text === 'object' && 'then' in text) {
+            return text.then((text) => {
+              this._textContent = text;
+              return this._textContent;
+            });
+          }
+          this._textContent = text;
         }
       }
       return this._textContent;
     }
     return this.getBlob();
+  }
+
+  getText(mimetype: string | undefined, textDecoder: typeof TextDecoder): string;
+  getText(mimetype: string): Promise<string> | string;
+  getText(): Promise<string> | string;
+  getText(
+    mimetype: string = this.mimetype ?? 'auto',
+    textDecoder: typeof TextDecoder | undefined = this._textDecoder,
+  ): string | Promise<string> {
+    if (!this._textContent) {
+      if (textDecoder) {
+        this._textContent = this.textDecode(textDecoder);
+      } else {
+        if (typeof window === 'undefined') {
+          return Buffer.from(this.data).toString('utf8');
+        } else {
+          const blob = this.getBlob(mimetype);
+          if (blob.text) {
+            return blob.text();
+          } else {
+            return new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result as string);
+              reader.readAsText(blob);
+            });
+          }
+        }
+      }
+    }
+    return this._textContent;
   }
 
   getBlob(mimetype: string = this.mimetype ?? 'auto') {
@@ -171,10 +214,12 @@ export class VirtualFile implements VirtualFileLike {
       throw new Error(`If write the text content, the text encoder must be provided.`);
     }
     this._data = new textEncoder().encode(textContent);
+    this._textContent = textContent;
   }
 
   writeData(data: ArrayBuffer) {
     this._data = data;
+    this._textContent = null;
   }
 
 }
@@ -222,6 +267,12 @@ export class SyncVirtualFile extends VirtualFile implements SyncVirtualFileLike 
       }
     }
     this._data = new textEncoder().encode(textContent);
+  }
+
+  override getText(): string
+  override getText(mimetype: string | undefined): string
+  override getText(mimetype?: string | undefined, textDecoder: typeof TextDecoder = this._textDecoder): string {
+    return super.getText(mimetype, textDecoder);
   }
 
 }
