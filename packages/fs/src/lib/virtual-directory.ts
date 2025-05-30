@@ -2,34 +2,42 @@ import { FileDoesNotExistError } from './file-does-not-exist.error';
 import { FolderDoesNotExistError } from './folder-does-not-exist.error';
 import { VirtualFileLike } from './virtual-file';
 
-export interface VirtualDirectoryLike {
-  findFile(path: string, format?: string): VirtualFileLike;
-  forEachFile(callback: (file: VirtualFileLike) => void): void;
+export interface VirtualDirectoryLike<VF extends VirtualFileLike = VirtualFileLike> {
+  findFile(path: string, format?: string): VF;
+  forEachFile(callback: (file: VF) => void): void;
 }
 
-export interface FullVirtualDirectoryLike extends VirtualDirectoryLike {
+export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFileLike> extends VirtualDirectoryLike<VF> {
   readonly childrenNames: string[];
   readonly name: string;
   readonly fullName: string;
 
-  directory(name: string): FullVirtualDirectoryLike;
+  directory(name: string): FullVirtualDirectoryLike<VF>;
 
-  file(name: string): VirtualFileLike;
+  file(name: string): VF;
 
   toJSON(): Record<string, unknown>;
 
-  addFile(file: VirtualFileLike, force?: boolean): void;
+  addFile(file: VF, force?: boolean): void | Promise<void>;
 
-  setFile(name: string, file: VirtualFileLike): void;
+  setFile(name: string, file: VF): void;
 
-  setDirectory(name: string, directory: FullVirtualDirectoryLike): void;
+  setDirectory(name: string, directory: FullVirtualDirectoryLike<VF>): void;
 
   hasDirectory(name: string): boolean;
 
-  hasFile(match: (file: VirtualFileLike) => boolean): boolean;
+  hasFile(match: (file: VF) => boolean): boolean;
   hasFile(path: string): boolean;
-  hasFile(pathOrMatch: string | ((file: VirtualFileLike) => boolean)): boolean;
+  hasFile(pathOrMatch: string | ((file: VF) => boolean)): boolean;
 
+}
+
+export interface FullSyncVirtualDirectoryLike<VF extends VirtualFileLike> extends FullVirtualDirectoryLike<VF> {
+  addFile(file: VF, force?: boolean): void;
+}
+
+export interface FullAsyncVirtualDirectoryLike<VF extends VirtualFileLike> extends FullVirtualDirectoryLike<VF> {
+  addFile(file: VF, force?: boolean): Promise<void>;
 }
 
 export function isNotVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectory<VF> | VF | undefined): value is VF {
@@ -40,7 +48,7 @@ export function isVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDir
   return !!value && value instanceof VirtualDirectory;
 }
 
-export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> implements VirtualDirectoryLike {
+export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> implements FullVirtualDirectoryLike<VF> {
 
   constructor(
     public name: string,

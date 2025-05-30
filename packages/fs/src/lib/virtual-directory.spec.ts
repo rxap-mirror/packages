@@ -63,6 +63,6 @@ describe('VirtualDirectory', () => {
     expect(child).toBeInstanceOf(VirtualDirectory);
     expect(child.childrenNames).toEqual(['file.txt']);
 
-  })
+  });
 
 });
