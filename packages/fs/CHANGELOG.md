@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.1-dev.1...@rxap/fs@1.1.1-dev.2) (2025-05-30)
+
+### Bug Fixes
+
+- support legacy Blob implementation ([6acd35d](https://gitlab.com/rxap/packages/commit/6acd35d044e7492ef8e0a097fd6d40a649984aaf))
+
 ## [1.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.1-dev.0...@rxap/fs@1.1.1-dev.1) (2025-05-30)
 
 ### Bug Fixes
