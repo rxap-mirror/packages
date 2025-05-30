@@ -14,6 +14,7 @@ export interface VirtualFileLike {
 
   clone?(name: string, fullName?: string, deep?: boolean): VirtualFileLike | Promise<VirtualFileLike>;
   toFile?(useFullName?: boolean): File | Promise<File>;
+  getBlob(mimetype?: string): Blob | Promise<Blob>;
 }
 
 export interface SyncVirtualFileLike extends VirtualFileLike {
@@ -27,6 +28,7 @@ export interface SyncVirtualFileLike extends VirtualFileLike {
   getContent(): string | Blob;
 
   clone?(name: string, fullName?: string, deep?: boolean): VirtualFileLike;
+  getBlob(mimetype?: string): Blob;
 }
 
 export interface AsyncVirtualFileLike extends VirtualFileLike {
@@ -40,6 +42,7 @@ export interface AsyncVirtualFileLike extends VirtualFileLike {
   getContent(): Promise<string | Blob>;
 
   clone?(name: string, fullName?: string, deep?: boolean): Promise<VirtualFileLike>;
+  getBlob(mimetype?: string): Promise<Blob>;
 }
 
 export class VirtualFile implements VirtualFileLike {
@@ -85,19 +88,12 @@ export class VirtualFile implements VirtualFileLike {
   getContent(): Promise<string | Blob> | string | Blob;
   getContent(mimetype?: string): Promise<string | Blob> | string | Blob;
   getContent(mimetype = this.mimetype ?? 'auto', textDecoder: typeof TextDecoder | undefined = this._textDecoder): Promise<string | Blob> | string | Blob {
-    let blob: Blob;
-    if (this._blob?.type === mimetype) {
-      blob = this._blob;
-    } else {
-      this._blob = blob = new Blob([ this.data ], { type: mimetype });
-    }
     if (mimetype.startsWith('text/') || mimetype.endsWith('xml') || mimetype.endsWith('json')) {
       if (!this._textContent) {
-        const blob = new Blob([ this.data ], { type: mimetype });
         if (textDecoder) {
           this._textContent = this.textDecode(textDecoder);
         } else {
-          return blob.text().then(text => {
+          return this.getBlob(mimetype).text().then(text => {
             this._textContent = text;
             return text;
           });
@@ -105,7 +101,17 @@ export class VirtualFile implements VirtualFileLike {
       }
       return this._textContent;
     }
-    return blob;
+    return this.getBlob();
+  }
+
+  getBlob(mimetype: string = this.mimetype ?? 'auto') {
+    if (!this._blob || this._blob.type !== mimetype) {
+      if (this._blob) {
+        this.setMimeType(mimetype);
+      }
+      this._blob = new Blob([ this.data ], { type: this.mimetype });
+    }
+    return this._blob;
   }
 
   textDecode(textDecoder: typeof TextDecoder): string {
