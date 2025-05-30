@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.7...@rxap/xml-parser@16.3.0-dev.8) (2025-05-30)
+
+### Bug Fixes
+
+- support null parent type ([a3b5fd2](https://gitlab.com/rxap/packages/commit/a3b5fd2544058050355062eba12bb45a0fbd3118))
+
 # [16.3.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.6...@rxap/xml-parser@16.3.0-dev.7) (2025-05-26)
 
 ### Bug Fixes

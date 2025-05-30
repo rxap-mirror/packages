@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0...@rxap/fs@1.1.1-dev.0) (2025-05-30)
+
+### Bug Fixes
+
+- proper support for async and sync fs ([143f9a5](https://gitlab.com/rxap/packages/commit/143f9a568d72aa1a21952b9ac674345f735582f2))
+
 # [1.1.0](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.0-dev.5...@rxap/fs@1.1.0) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/fs
