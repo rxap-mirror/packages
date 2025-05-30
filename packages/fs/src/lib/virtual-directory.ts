@@ -1,6 +1,9 @@
 import { FileDoesNotExistError } from './file-does-not-exist.error';
 import { FolderDoesNotExistError } from './folder-does-not-exist.error';
-import { VirtualFileLike } from './virtual-file';
+import {
+  SyncVirtualFileLike,
+  VirtualFileLike,
+} from './virtual-file';
 
 export interface VirtualDirectoryLike<VF extends VirtualFileLike = VirtualFileLike> {
   findFile(path: string, format?: string): VF;
@@ -32,7 +35,7 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
 
 }
 
-export interface FullSyncVirtualDirectoryLike<VF extends VirtualFileLike> extends FullVirtualDirectoryLike<VF> {
+export interface FullSyncVirtualDirectoryLike<VF extends SyncVirtualFileLike> extends FullVirtualDirectoryLike<VF> {
   addFile(file: VF, force?: boolean): void;
 }
 
