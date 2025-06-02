@@ -70,8 +70,8 @@ export class VirtualFile implements VirtualFileLike {
     return new VirtualFile(name, fullName, new ArrayBuffer(0), mimetype);
   }
 
-  private _textContent: string | null = null;
-  private _blob: Blob | null = null;
+  protected _textContent: string | null = null;
+  protected _blob: Blob | null = null;
 
   constructor(
     public readonly name: string,
@@ -212,6 +212,8 @@ export class VirtualFile implements VirtualFileLike {
     } else {
       this.writeData(textContentOrData);
     }
+    this._blob = null;
+    this._textContent = null;
   }
 
   writeTextContent(textContent: string, textEncoder: typeof TextEncoder | undefined = this._textEncoder) {
@@ -224,12 +226,10 @@ export class VirtualFile implements VirtualFileLike {
       throw new Error(`If write the text content, the text encoder must be provided.`);
     }
     this._data = new textEncoder().encode(textContent);
-    this._textContent = textContent;
   }
 
   writeData(data: ArrayBuffer) {
     this._data = data;
-    this._textContent = null;
   }
 
 }
@@ -244,7 +244,7 @@ export class SyncVirtualFile extends VirtualFile implements SyncVirtualFileLike 
     protected override readonly _textDecoder: typeof TextDecoder = TextDecoder,
     protected override readonly _textEncoder: typeof TextEncoder = TextEncoder,
   ) {
-    super(name, fullName, data, mimetype);
+    super(name, fullName, data, mimetype, _textDecoder, _textEncoder);
   }
 
   override getContent(mimetype: 'text/plain', textDecoder?: typeof TextDecoder): string;
@@ -255,28 +255,6 @@ export class SyncVirtualFile extends VirtualFile implements SyncVirtualFileLike 
   override getContent(mimetype?: string): string | Blob;
   override getContent(mimetype = this.mimetype ?? 'auto', textDecoder: typeof TextDecoder = this._textDecoder): string | Blob {
     return super.getContent(mimetype, textDecoder);
-  }
-
-  override write(textContent: string, textEncoder?: typeof TextEncoder): void;
-  override write(textContent: string): void;
-  override write(data: ArrayBuffer): void;
-  override write(textContentOrData: string | ArrayBuffer, textEncoder: typeof TextEncoder = this._textEncoder) {
-    if (typeof textContentOrData === 'string') {
-      this.writeTextContent(textContentOrData, textEncoder);
-    } else {
-      this.writeData(textContentOrData);
-    }
-  }
-
-  override writeTextContent(textContent: string): void;
-  override writeTextContent(textContent: string, textEncoder: typeof TextEncoder): void;
-  override writeTextContent(textContent: string, textEncoder: typeof TextEncoder = this._textEncoder) {
-    if (this.mimetype !== undefined) {
-      if (!(this.mimetype.startsWith('text/') || this.mimetype.endsWith('xml') || this.mimetype.endsWith('json'))) {
-        throw new Error(`The mimetype '${ this.mimetype }' does not support text content`);
-      }
-    }
-    this._data = new textEncoder().encode(textContent);
   }
 
   override getText(): string
