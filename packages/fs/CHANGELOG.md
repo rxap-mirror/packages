@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.1-dev.2...@rxap/fs@1.1.1-dev.3) (2025-06-02)
+
+### Bug Fixes
+
+- improve types ([d40ec8c](https://gitlab.com/rxap/packages/commit/d40ec8cd7aa921a8ec7a3ae5407a624966b7624b))
+
 ## [1.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.1-dev.1...@rxap/fs@1.1.1-dev.2) (2025-05-30)
 
 ### Bug Fixes
