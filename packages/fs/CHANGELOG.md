@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.1-dev.3...@rxap/fs@1.1.1-dev.4) (2025-06-02)
+
+### Bug Fixes
+
+- enure cache is cleared after write operation ([ba4ecef](https://gitlab.com/rxap/packages/commit/ba4ecef09d47744e5561d3c650891950f1473c46))
+
 ## [1.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.1-dev.2...@rxap/fs@1.1.1-dev.3) (2025-06-02)
 
 ### Bug Fixes
