@@ -18,6 +18,10 @@ export interface VirtualFileLike {
   getBlob?(mimetype?: string): Blob | Promise<Blob>;
 
   getText?(mimetype?: string, textDecoder?: typeof TextDecoder): string | Promise<string>;
+
+  write?(textContentOrData: string | ArrayBuffer, textEncoder?: typeof TextEncoder): void | Promise<void>;
+  writeTextContent?(textContent: string, textEncoder?: typeof TextEncoder): void | Promise<void>;
+  writeData?(data: ArrayBuffer): void | Promise<void>;
 }
 
 export interface SyncVirtualFileLike extends VirtualFileLike {
@@ -35,6 +39,9 @@ export interface SyncVirtualFileLike extends VirtualFileLike {
   getBlob?(mimetype?: string): Blob;
 
   getText?(mimetype?: string, textDecoder?: typeof TextDecoder): string;
+  write?(textContentOrData: string | ArrayBuffer, textEncoder?: typeof TextEncoder): void;
+  writeTextContent?(textContent: string, textEncoder?: typeof TextEncoder): void;
+  writeData?(data: ArrayBuffer): void;
 }
 
 export interface AsyncVirtualFileLike extends VirtualFileLike {
@@ -52,6 +59,9 @@ export interface AsyncVirtualFileLike extends VirtualFileLike {
   getBlob?(mimetype?: string): Promise<Blob>;
 
   getText?(mimetype?: string, textDecoder?: typeof TextDecoder): Promise<string>;
+  write?(textContentOrData: string | ArrayBuffer, textEncoder?: typeof TextEncoder): Promise<void>;
+  writeTextContent?(textContent: string, textEncoder?: typeof TextEncoder): Promise<void>;
+  writeData?(data: ArrayBuffer): Promise<void>;
 }
 
 export class VirtualFile implements VirtualFileLike {

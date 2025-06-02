@@ -21,9 +21,13 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
 
   toJSON(): Record<string, unknown>;
 
-  addFile(file: VF, force?: boolean): void | Promise<void>;
+  addFile(file: VirtualFileLike, force?: boolean): void | Promise<void>;
 
-  setFile(name: string, file: VF): void;
+  setFile(name: string, file: VirtualFileLike): void | Promise<void>;
+
+  findFile(match: (file: VF) => boolean, mimetype?: string): VF;
+  findFile(path: string, mimetype?: string): VF;
+  findFile(pathOrMatch: string | ((file: VF) => boolean), mimetype?: string): VF;
 
   setDirectory(name: string, directory: FullVirtualDirectoryLike<VF>): void;
 
@@ -36,11 +40,13 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
 }
 
 export interface FullSyncVirtualDirectoryLike<VF extends SyncVirtualFileLike> extends FullVirtualDirectoryLike<VF> {
-  addFile(file: VF, force?: boolean): void;
+  addFile(file: VirtualFileLike, force?: boolean): void;
+  setFile(name: string, file: VirtualFileLike): void;
 }
 
 export interface FullAsyncVirtualDirectoryLike<VF extends VirtualFileLike> extends FullVirtualDirectoryLike<VF> {
-  addFile(file: VF, force?: boolean): Promise<void>;
+  addFile(file: VirtualFileLike, force?: boolean): Promise<void>;
+  setFile(name: string, file: VirtualFileLike): Promise<void>;
 }
 
 export function isNotVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectory<VF> | VF | undefined): value is VF {
