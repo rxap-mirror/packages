@@ -16,6 +16,8 @@ This package provides a collection of Nx plugins and generators for workspace ma
   - [rename](#rename)
 - [Executors](#executors)
   - [ci-info](#ci-info)
+  - [run-generator](#run-generator)
+  - [docker-compose](#docker-compose)
 
 # Installation
 
@@ -119,4 +121,30 @@ tag | string |  |
 release | string |  | 
 commit | string |  | 
 timestamp | string |  | 
+
+## run-generator
+> run-generator executor
+
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+generator | string |  | Name of the generate to execute
+options | object |  | Options to pass to the generator
+withoutProjectArgument | boolean |  | If true, the project argument will not be passed to the generator
+dryRun | boolean |  | If true, the generator will be executed in dry run mode
+verbose | boolean |  | If true, the generator will be executed in verbose mode
+
+## docker-compose
+> docker-compose executor
+
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+tags | array |  | The tags a project needs to be used to generate docker compose service
+ignoreProjects | array |  | The projects to ignore when generating docker compose service
+skipFormat | boolean | false | 
+serviceEnvironments | array |  | The environment variables to be used in docker compose service
+rootDomain | string |  | The root domain to be used in docker compose service
+middlewares | array |  | The traefik middlewares to be add to each service
+subjectAltNames | array |  | The subject alt names to be used in the ssl certificate generation
 
