@@ -44,6 +44,7 @@ skipFormat | boolean | false |
 serviceEnvironments | array |  | The environment variables to be used in docker compose service
 rootDomain | string |  | The root domain to be used in docker compose service
 middlewares | array |  | The traefik middlewares to be add to each service
+subjectAltNames | array |  | The subject alt names to be used in the ssl certificate generation
 
 ## init
 > init generator
