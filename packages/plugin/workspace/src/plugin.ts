@@ -114,11 +114,7 @@ async function createProjectConfiguration(
 
 function createDockerComposeTarget(): TargetConfiguration {
   return {
-    executor: '@rxap/plugin-library:run-generator',
-    options: {
-      generator: '@rxap/plugin-workspace:docker-compose',
-      withoutProjectArgument: true,
-    },
+    executor: '@rxap/plugin-workspace:docker-compose'
   };
 }
 

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "DockerCompose executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "tags": {
+      "alias": "tag",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The tags a project needs to be used to generate docker compose service"
+    },
+    "ignoreProjects": {
+      "alias": "ignoreProject",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The projects to ignore when generating docker compose service"
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false
+    },
+    "serviceEnvironments": {
+      "alias": "serviceEnvironment",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The environment variables to be used in docker compose service"
+    },
+    "rootDomain": {
+      "type": "string",
+      "description": "The root domain to be used in docker compose service"
+    },
+    "middlewares": {
+      "alias": "middleware",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The traefik middlewares to be add to each service"
+    },
+    "subjectAltNames": {
+      "alias": "subjectAltName",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The subject alt names to be used in the ssl certificate generation"
+    }
+  },
+  "required": []
+}

@@ -4,6 +4,16 @@
       "implementation": "./src/executors/ci-info/executor",
       "schema": "./src/executors/ci-info/schema.json",
       "description": "ci-info executor"
+    },
+    "run-generator": {
+      "implementation": "./src/executors/run-generator/executor",
+      "schema": "./src/executors/run-generator/schema.json",
+      "description": "run-generator executor"
+    },
+    "docker-compose": {
+      "implementation": "./src/executors/docker-compose/executor",
+      "schema": "./src/executors/docker-compose/schema.json",
+      "description": "docker-compose executor"
     }
   }
 }
