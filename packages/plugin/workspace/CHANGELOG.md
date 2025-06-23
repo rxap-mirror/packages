@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.1.2-dev.2...@rxap/plugin-workspace@20.2.0-dev.0) (2025-06-23)
+
+### Features
+
+- add wrapped executor for docker compose generator ([c1b4ce0](https://gitlab.com/rxap/packages/commit/c1b4ce00efb5cf45a60390163643a95482cc6de8))
+
 ## [20.1.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.1.2-dev.1...@rxap/plugin-workspace@20.1.2-dev.2) (2025-06-23)
 
 ### Bug Fixes
