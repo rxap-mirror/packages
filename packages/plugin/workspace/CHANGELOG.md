@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.1.2-dev.0...@rxap/plugin-workspace@20.1.2-dev.1) (2025-06-23)
+
+### Bug Fixes
+
+- support custom domain names ([2bd75e9](https://gitlab.com/rxap/packages/commit/2bd75e92a503a205676bca16a3c324f4191a9b42))
+
 ## [20.1.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@20.1.1...@rxap/plugin-workspace@20.1.2-dev.0) (2025-05-19)
 
 **Note:** Version bump only for package @rxap/plugin-workspace
