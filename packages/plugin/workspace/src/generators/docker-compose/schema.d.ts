@@ -10,4 +10,6 @@ export interface DockerComposeGeneratorSchema {
   rootDomain?: string;
   /** The traefik middlewares to be add to each service */
   middlewares?: Array<string>;
+  /** The subject alt names to be used in the ssl certificate generation */
+  subjectAltNames?: Array<string>;
 }

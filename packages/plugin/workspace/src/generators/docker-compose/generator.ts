@@ -275,14 +275,18 @@ function printEtcHostsConfig(
 function createExtCnf(
   rootDomain: string,
   services: Array<{ name: string; docker: Record<string, string> }>,
+  subjectAltNames: string[],
 ) {
-  let config = `subjectAltName=DNS:${ rootDomain },DNS:traefik.${ rootDomain },DNS:minio.${ rootDomain },DNS:auth.${ rootDomain }`;
+  let config = `subjectAltName=DNS:${ rootDomain },DNS:traefik.${ rootDomain },DNS:minio.${ rootDomain },DNS:localhost`;
   if (services.length) {
     config += ',';
     config += services.map(({
       name,
       docker,
     }) => 'DNS:' + buildDomainForService(rootDomain, name, docker)).join(',');
+  }
+  for (const subjectAltName of subjectAltNames) {
+    config += `,DNS:${ subjectAltName }`;
   }
   return config;
 }
@@ -338,9 +342,10 @@ function createDefaultCerts(rootDomain: string, tree: Tree) {
 function signDefaultCerts(
   rootDomain: string,
   services: Array<{ name: string; docker: Record<string, string> }>,
+  subjectAltNames: string[],
   tree: Tree,
 ) {
-  const extCnf = createExtCnf(rootDomain, services);
+  const extCnf = createExtCnf(rootDomain, services, subjectAltNames);
   writeFileSync(join(tree.root, 'docker', 'traefik', 'tls', 'ext.cnf'), extCnf);
   return runOpensslCommand(
     tree,
@@ -424,7 +429,7 @@ export async function dockerComposeGenerator(
   coerceCertDirectory(tree);
   coerceCaCert(rootDomain, tree);
   createDefaultCerts(rootDomain, tree);
-  signDefaultCerts(rootDomain, frontendApplications, tree);
+  signDefaultCerts(rootDomain, frontendApplications, options.subjectAltNames ?? [], tree);
   verifyCert(tree);
   printSingedCert(tree);
 

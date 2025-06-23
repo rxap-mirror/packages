@@ -43,6 +43,14 @@
         "type": "string"
       },
       "description": "The traefik middlewares to be add to each service"
+    },
+    "subjectAltNames": {
+      "alias": "subjectAltName",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The subject alt names to be used in the ssl certificate generation"
     }
   },
   "required": []
