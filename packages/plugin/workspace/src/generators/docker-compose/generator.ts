@@ -49,6 +49,10 @@ function createServiceDockerCompose(
           'SENTRY_ENABLED=false',
           'ROOT_DOMAIN_PORT',
           'ENVIRONMENT_NAME=development',
+          'NODE_EXTRA_CA_CERTS=/etc/ssl/certs/custom-ca.crt'
+        ],
+        volumes: [
+          './docker/traefik/tls/ca.crt:/etc/ssl/certs/custom-ca.crt:ro'
         ],
         env_file: [ '.env' ],
       };
