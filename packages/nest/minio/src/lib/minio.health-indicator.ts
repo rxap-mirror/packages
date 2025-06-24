@@ -9,7 +9,7 @@ import {
   HealthIndicator,
   HealthIndicatorResult,
 } from '@nestjs/terminus';
-import { MinioService } from '@rxap/nest-minio';
+import { MinioService } from './minio.service';
 
 /**
  * Class representing a MinioHealthIndicator.
