@@ -9,14 +9,15 @@ import {
   MODULE_OPTIONS_TOKEN,
   OPTIONS_TYPE,
 } from './configurable-module-builder';
+import { MinioHealthIndicator } from './minio.health-indicator';
 import { MinioService } from './minio.service';
 import { MINIO_OPTIONS } from './tokens';
 
 
 @Global()
 @Module({
-  providers: [ MinioService ],
-  exports: [ MinioService ],
+  providers: [ MinioService, MinioHealthIndicator ],
+  exports: [ MinioService, MinioHealthIndicator ],
 })
 export class MinioModule extends ConfigurableModuleClass {
 
