@@ -11,9 +11,11 @@ import {
 /**
  * @param ...args Arbitrary arguments
  */
-export type ApplicationBeforeFunction<Config extends object> = (
+export type ApplicationBeforeFunction<Config extends object, Ref extends RefWithInjector> = (
+  this: Application<Config, Ref>,
   config: ConfigService,
   options: Config,
+  environment: Environment,
 ) => any | Promise<any>;
 
 /**
@@ -23,10 +25,13 @@ export interface RefWithInjector {
   readonly injector: EnvironmentInjector;
 }
 
-export type ApplicationAfterFunction<Ref extends RefWithInjector> = (
+export type ApplicationAfterFunction<Config extends object, Ref extends RefWithInjector> = (
+  this: Application<Config, Ref>,
   app: Ref,
   config: ConfigService,
   logger: Console,
+  options: Config,
+  environment: Environment,
 ) => any | Promise<any>;
 
 export abstract class Application<Config extends object, Ref extends RefWithInjector> {
@@ -34,8 +39,8 @@ export abstract class Application<Config extends object, Ref extends RefWithInje
   public app: Ref | null = null;
   public logger: Console | null = null;
   public config: ConfigService | null = null;
-  private _beforeList: ApplicationBeforeFunction<Config>[] = [];
-  private _afterList: ApplicationAfterFunction<Ref>[] = [];
+  private _beforeList: ApplicationBeforeFunction<Config, Ref>[] = [];
+  private _afterList: ApplicationAfterFunction<Config, Ref>[] = [];
 
   constructor(
     public readonly environment: Environment,
@@ -51,7 +56,7 @@ export abstract class Application<Config extends object, Ref extends RefWithInje
 
     this.prepareConfig(this.options);
 
-    await this.handleBefore(new ConfigService(ConfigService.Config), this.options);
+    await this.handleBefore(new ConfigService(ConfigService.Config), this.options, this.environment);
 
     try {
       this.app = await this.create();
@@ -74,27 +79,27 @@ export abstract class Application<Config extends object, Ref extends RefWithInje
       throw new Error('Could not inject a ConfigService instance');
     }
 
-    await this.handleAfter(this.app, this.logger, this.config);
+    await this.handleAfter(this.app, this.logger, this.config, this.options, this.environment);
 
   }
 
-  public before(fnc: ApplicationBeforeFunction<Config>) {
+  public before(fnc: ApplicationBeforeFunction<Config, Ref>) {
     this._beforeList.push(fnc);
   }
 
-  public after(fnc: ApplicationAfterFunction<Ref>) {
+  public after(fnc: ApplicationAfterFunction<Config, Ref>) {
     this._afterList.push(fnc);
   }
 
-  protected async handleBefore(config: ConfigService, options: Config) {
+  protected async handleBefore(config: ConfigService, options: Config, environment: Environment) {
     for (const before of this._beforeList) {
-      await before(config, options);
+      await before.call(this, config, options, environment);
     }
   }
 
-  protected async handleAfter(app: Ref, logger: Console, config: ConfigService) {
+  protected async handleAfter(app: Ref, logger: Console, config: ConfigService, options: Config, environment: Environment) {
     for (const after of this._afterList) {
-      await after(app, config, logger);
+      await after.call(this, app, config, logger, options, environment);
     }
   }
 
