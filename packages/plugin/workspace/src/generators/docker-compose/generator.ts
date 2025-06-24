@@ -309,6 +309,7 @@ function runOpensslCommand(tree: Tree, ...args: string[]) {
 
 function coerceCaCert(rootDomain: string, tree: Tree) {
   if (tree.exists('docker/traefik/tls/ca.crt')) {
+    console.log('ca.crt already exists');
     return 'ca.crt already exists';
   }
   const subj = createCaCrtSubj(rootDomain);
