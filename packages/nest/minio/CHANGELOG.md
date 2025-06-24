@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@11.0.0-dev.4...@rxap/nest-minio@11.0.0-dev.5) (2025-06-24)
+
+### Bug Fixes
+
+- use proper improts ([b5bc9d3](https://gitlab.com/rxap/packages/commit/b5bc9d3b038444645ddd819c3e3af507b2ed0bcf))
+
 # [11.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@11.0.0-dev.3...@rxap/nest-minio@11.0.0-dev.4) (2025-06-24)
 
 ### Bug Fixes
