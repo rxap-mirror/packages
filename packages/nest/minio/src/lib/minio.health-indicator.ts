@@ -9,7 +9,7 @@ import {
   HealthIndicator,
   HealthIndicatorResult,
 } from '@nestjs/terminus';
-import { MinioService } from './minio.service';
+import { MinioService } from '@rxap/nest-minio';
 
 /**
  * Class representing a MinioHealthIndicator.
@@ -35,7 +35,11 @@ export class MinioHealthIndicator extends HealthIndicator {
         return this.getStatus('minio', true);
       }
     } catch (error: any) {
-      this.logger.error(`Failed to list minio buckets: ${ error.message }`);
+      if ('message' in error && typeof error.message === 'string') {
+        this.logger.error(`Failed to list minio buckets (code=${error.code}): ${ error.message || '[empty error message]' }`, error.stack, 'MinioHealthIndicator');
+      } else {
+        this.logger.error(`Failed to list minio buckets: ${ error }`, undefined, 'MinioHealthIndicator');
+      }
     }
     throw new HealthCheckError(
       'Not yet implemented!',
