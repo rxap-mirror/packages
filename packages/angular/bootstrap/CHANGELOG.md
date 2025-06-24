@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-bootstrap@19.0.4...@rxap/ngx-bootstrap@19.0.5-dev.0) (2025-06-24)
+
+### Bug Fixes
+
+- support more flexible types ([1cf6cc7](https://gitlab.com/rxap/packages/commit/1cf6cc7e89ad1ff32aa8f227920d1558102452d0))
+- support more flexibles types ([c23ac54](https://gitlab.com/rxap/packages/commit/c23ac5479ed229c8869a353886d4d4c11bc8a0c0))
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-bootstrap@19.0.4-dev.1...@rxap/ngx-bootstrap@19.0.4) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/ngx-bootstrap

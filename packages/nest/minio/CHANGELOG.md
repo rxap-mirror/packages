@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@11.0.0-dev.2...@rxap/nest-minio@11.0.0-dev.3) (2025-06-24)
+
+### Bug Fixes
+
+- improve error logging ([3662273](https://gitlab.com/rxap/packages/commit/366227311438cdf0223148ca56abcc7c698431ed))
+- **minio:** add MinioHealthIndicator to module providers and exports ([53f4b79](https://gitlab.com/rxap/packages/commit/53f4b79fb33bd4b0ccdbc204d457de8a7d7925dc))
+
 # [11.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@11.0.0-dev.1...@rxap/nest-minio@11.0.0-dev.2) (2025-05-19)
 
 ### Bug Fixes
