@@ -10,10 +10,10 @@ import { ConfigLoadOptions } from '@rxap/config';
 import { Environment } from '@rxap/environment';
 import { Application } from './application';
 
-export class StandaloneApplication<O extends ApplicationConfig> extends Application<O, ApplicationRef> {
+export class StandaloneApplication<O extends ApplicationConfig, Env extends Environment> extends Application<O, ApplicationRef, Env> {
 
   constructor(
-    environment: Environment,
+    environment: Env,
     private readonly rootComponent: Type<unknown>,
     options?: O,
     configLoadOptions: ConfigLoadOptions = {

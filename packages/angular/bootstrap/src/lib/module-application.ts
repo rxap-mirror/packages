@@ -15,10 +15,10 @@ export interface ModuleApplicationConfig {
   compilerOptions?: (CompilerOptions & BootstrapOptions) | Array<CompilerOptions & BootstrapOptions>;
 }
 
-export class ModuleApplication<M, O extends ModuleApplicationConfig> extends Application<O, NgModuleRef<M>> {
+export class ModuleApplication<M, O extends ModuleApplicationConfig, Env extends Environment> extends Application<O, NgModuleRef<M>, Env> {
 
   constructor(
-    environment: Environment,
+    environment: Env,
     private readonly moduleType: Type<M>,
     options?: O,
     configLoadOptions?: ConfigLoadOptions,
