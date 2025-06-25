@@ -1,7 +1,7 @@
 <button
   (cdkCopyToClipboardCopied)="copied()"
   (click)="$event.stopPropagation()"
-  [cdkCopyToClipboard]="value"
+  [cdkCopyToClipboard]="value()"
   mat-icon-button
   type="button"
 >

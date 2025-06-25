@@ -35,6 +35,59 @@
           "packages/angular/components/**/*.html"
         ]
       }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "packages/angular/components/.storybook",
+        "browserTarget": "angular-components:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": [
+        "{options.outputDir}"
+      ],
+      "options": {
+        "outputDir": "dist/packages/angular/components",
+        "configDir": "packages/angular/components/.storybook",
+        "browserTarget": "angular-components:build-storybook",
+        "compodoc": false,
+        "styles": [
+          "shared/angular/styles/_index.scss"
+        ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c packages/angular/components/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "angular-components:build-storybook",
+        "staticFilePath": "dist/packages/angular/components",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "angular-components:build-storybook:ci"
+        }
+      }
     }
   }
 }

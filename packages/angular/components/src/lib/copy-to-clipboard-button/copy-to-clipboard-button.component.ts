@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Inject,
+  input,
   Input,
 } from '@angular/core';
 import {
@@ -25,14 +27,12 @@ import { MatButtonModule } from '@angular/material/button';
     ]
 })
 export class CopyToClipboardButtonComponent {
-  @Input()
-  public value = '';
+  readonly value = input('');
 
-  constructor(@Inject(MatSnackBar) private readonly snackbar: MatSnackBar) {
-  }
+  private readonly snackbar = inject(MatSnackBar);
 
   public copied() {
-    this.snackbar.open('Erfolgreich in die Zwischenablage kopiert.', 'OK', {
+    this.snackbar.open($localize`Successfully copied to the clipboard.`, 'OK', {
       duration: 2500,
     });
   }
