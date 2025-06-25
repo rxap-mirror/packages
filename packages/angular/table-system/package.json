@@ -78,7 +78,7 @@
       },
       {
         "package": "@rxap/components",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/data-source",

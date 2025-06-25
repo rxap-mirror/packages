@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/components@19.0.4...@rxap/components@19.1.0-dev.0) (2025-06-25)
+
+### Features
+
+- support custom content better ([c722dd3](https://gitlab.com/rxap/packages/commit/c722dd36690d05597fbc048efa4ad5734df1dafe))
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/components@19.0.4-dev.0...@rxap/components@19.0.4) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/components
