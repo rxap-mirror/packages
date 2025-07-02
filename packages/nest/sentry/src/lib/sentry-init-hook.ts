@@ -24,7 +24,7 @@ export function sentryInitHook() {
       release: DetermineSentryRelease(environment),
       integrations: [
         Sentry.captureConsoleIntegration({
-          levels: ['error', 'warn'],
+          levels: ['error'],
         }),
         nodeProfilingIntegration(),
         Sentry.anrIntegration({ captureStackTrace: true }),
