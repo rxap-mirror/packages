@@ -2,11 +2,14 @@ import {
   ConfigurableModuleBuilder,
   DynamicModule,
   Global,
-  Module
+  Inject,
+  Logger,
+  Module,
 } from '@nestjs/common';
 import { OpenFgaGuard } from './open-fga.guard';
 import { OpenFgaOptions } from './open-fga.options';
 import { OpenFgaService } from './open-fga.service';
+import { OpenfgaHealthIndicator } from './openfga.health-indicator';
 import { OPEN_FGA_CLIENT_OPTIONS } from './tokens';
 
 export const {
@@ -20,8 +23,8 @@ export const {
 
 @Global()
 @Module({
-  providers: [ OpenFgaService, OpenFgaGuard],
-  exports: [ OpenFgaService, OpenFgaGuard]
+  providers: [ OpenFgaService, OpenFgaGuard, OpenfgaHealthIndicator],
+  exports: [ OpenFgaService, OpenFgaGuard, OpenfgaHealthIndicator]
 })
 export class OpenFgaModule extends ConfigurableModuleClass {
 
@@ -40,6 +43,34 @@ export class OpenFgaModule extends ConfigurableModuleClass {
       useExisting: MODULE_OPTIONS_TOKEN
     });
     return module;
+  }
+
+  @Inject(OpenfgaHealthIndicator)
+  readonly openfgaHealth!: OpenfgaHealthIndicator;
+
+  @Inject(Logger)
+  readonly logger!: Logger;
+
+  @Inject(OPEN_FGA_CLIENT_OPTIONS)
+  readonly options!: OpenFgaOptions;
+
+  async onApplicationBootstrap() {
+    const retryInterval = this.options.retryInterval ?? 1000 * 10;
+    const maxStartupTime = this.options.maxStartupTime ?? 1000 * 60 * 2; // 2min
+    const maxRetry = maxStartupTime / retryInterval;
+    let counter = 0;
+    do {
+      try {
+        const result = await this.openfgaHealth.isHealthy(true);
+        if (result['openfga'].status === 'up') {
+          this.logger.log('OpenFGA is ready', 'OpenFgaModule::onApplicationBootstrap');
+          return;
+        }
+      } catch (e: any) {
+        this.logger.warn(`OpenFGA is not ready (${counter}/${maxRetry}). Retry in ${retryInterval}ms: ${e.message}`, 'OpenFgaModule::onApplicationBootstrap');
+      }
+      await new Promise(resolve => setTimeout(resolve, retryInterval));
+    } while (++counter < maxRetry);
   }
 
 }

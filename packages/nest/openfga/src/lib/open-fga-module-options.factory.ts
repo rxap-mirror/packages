@@ -25,6 +25,8 @@ export class OpenFgaModuleOptionsFactory
     );
     const options: OpenFgaOptions = {
       apiUrl: this.config.getOrThrow('FGA_API_URL'),
+      retryInterval: this.config.get('FGA_INITIAL_CONNECTION_RETRY_INTERVAL'),
+      maxStartupTime: this.config.get('FGA_INITIAL_CONNECTION_STARTUP_TIME_LIMIT'),
     };
 
     const storeId = this.config.get('FGA_STORE_ID');
