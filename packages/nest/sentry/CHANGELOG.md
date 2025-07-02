@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@11.0.0-dev.4...@rxap/nest-sentry@11.0.0-dev.5) (2025-07-02)
+
+### Bug Fixes
+
+- disable warn monitoring by default ([e6edec5](https://gitlab.com/rxap/packages/commit/e6edec5b16a83179f3e2892e74be5f1c99cdd7a0))
+
 # [11.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@11.0.0-dev.3...@rxap/nest-sentry@11.0.0-dev.4) (2025-05-19)
 
 ### Bug Fixes

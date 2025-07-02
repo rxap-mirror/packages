@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-openfga@11.0.0-dev.2...@rxap/nest-openfga@11.0.0-dev.3) (2025-07-02)
+
+### Features
+
+- add application startup guard ([2b8737d](https://gitlab.com/rxap/packages/commit/2b8737d2bf379ee8ee3cb1b0b6a5a99f4cded133))
+
 # [11.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-openfga@11.0.0-dev.1...@rxap/nest-openfga@11.0.0-dev.2) (2025-05-19)
 
 ### Bug Fixes
