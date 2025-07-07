@@ -40,3 +40,7 @@ export interface ArrayRefSchemaObject {
 export function IsArrayRefSchemaObject(obj: any): obj is ArrayRefSchemaObject {
   return obj && obj.type === 'array' && IsRefSchemaObject(obj.items);
 }
+
+export function IsSchemaObjectNullable<T>(obj: T): obj is T & { nullable: boolean } {
+  return obj && typeof obj === 'object' && 'nullable' in obj && typeof obj.nullable === 'boolean';
+}

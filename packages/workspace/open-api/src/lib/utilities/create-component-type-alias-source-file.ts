@@ -7,6 +7,7 @@ import {
   COMPONENTS_BASE_PATH,
   IsArrayRefSchemaObject,
   IsRefSchemaObject,
+  IsSchemaObjectNullable,
 } from '@rxap/workspace-open-api';
 import {
   join,
@@ -47,6 +48,9 @@ export function CreateComponentTypeAliasSourceFile(
   let type = classify(componentName);
   if (IsArrayRefSchemaObject(schema)) {
     type += '[]';
+  }
+  if (IsSchemaObjectNullable(schema) && schema.nullable) {
+    type += ' | null';
   }
   sourceFile.addTypeAlias({
     name: classify(operationId) + classify(fileSuffix),
