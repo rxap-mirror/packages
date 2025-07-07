@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.1-dev.0...@rxap/workspace-open-api@19.1.1-dev.1) (2025-07-07)
+
+### Bug Fixes
+
+- support nullable types ([775cb2e](https://gitlab.com/rxap/packages/commit/775cb2e77c60db3cc2e5930e8c18e2535dfc03eb))
+
 ## [19.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.0...@rxap/workspace-open-api@19.1.1-dev.0) (2025-05-19)
 
 **Note:** Version bump only for package @rxap/workspace-open-api
