@@ -37,6 +37,10 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
   hasFile(path: string): boolean;
   hasFile(pathOrMatch: string | ((file: VF) => boolean)): boolean;
 
+  removeFile(match: (file: VF) => boolean): boolean;
+  removeFile(path: string): boolean;
+  removeFile(pathOrMatch: string | ((file: VF) => boolean)): boolean;
+
 }
 
 export interface FullSyncVirtualDirectoryLike<VF extends SyncVirtualFileLike> extends FullVirtualDirectoryLike<VF> {
@@ -207,6 +211,51 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
 
   protected hasFileByMatch(match: (file: VF) => boolean): boolean {
     return Array.from(this.children.values()).filter(file => isNotVirtualDirectory(file)).some(file => match(file));
+  }
+
+  public removeFile(match: (file: VF) => boolean): boolean;
+  public removeFile(path: string): boolean;
+  public removeFile(pathOrMatch: string | ((file: VF) => boolean)): boolean {
+    if (typeof pathOrMatch === 'string') {
+      return this.hasFileByPath(pathOrMatch);
+    }
+    return this.hasFileByMatch(pathOrMatch);
+  }
+
+  protected removeFileByPath(path: string): boolean {
+    if (path.startsWith('/')) {
+      path = path.substring(1);
+    }
+    const fragments = path.split('/');
+    if (fragments.length === 0) {
+      return false;
+    }
+    const first = fragments.shift()!;
+    if (fragments.length === 0) {
+      if (this.hasFile(first)) {
+        this.children.delete(first);
+        return true;
+      }
+    } else {
+      if (this.hasDirectory(first)) {
+        return this.directory(first).removeFile(fragments.join('/'));
+      }
+    }
+    return false;
+  }
+
+  protected removeFileByMatch(match: (file: VF) => boolean): boolean {
+    for (const child of this.children.values()) {
+      if (isVirtualDirectory(child)) {
+        child.removeFile(match);
+      } else {
+        if (match(child)) {
+          this.children.delete(child.name);
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   public flatten(): VF[] {
