@@ -480,9 +480,9 @@ export class FormDirective<T = any>
       value = this._formDefinition.toJSON();
     }
 
-    value = value ?? this.form.value;
+    value = value ?? clone(this.form.value);
 
-    return clone(value);
+    return value;
   }
 
   protected submit() {
