@@ -43,6 +43,7 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
   removeFile(path: string): boolean;
   removeFile(pathOrMatch: string | ((file: VF) => boolean)): boolean;
 
+  clone(name?: string, fullName?: string): FullVirtualDirectoryLike<VF>;
 }
 
 export interface FullSyncVirtualDirectoryLike<VF extends SyncVirtualFileLike> extends FullVirtualDirectoryLike<VF> {
@@ -131,6 +132,13 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
 
   public setDirectory(name: string, directory: VirtualDirectory<VF>) {
     this.children.set(name, directory);
+  }
+
+  clone(name: string = this.name, fullName: string = this.fullName): VirtualDirectory<VF> {
+    if (name !== this.name && !fullName.endsWith(name)) {
+      fullName.replace(new RegExp(`${this.name}$`), name);
+    }
+    return new VirtualDirectory<VF>(name, fullName, new Map(this.children));
   }
 
   public hasDirectory(name: string) {
