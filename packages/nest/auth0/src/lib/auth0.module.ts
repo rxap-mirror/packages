@@ -91,7 +91,7 @@ export const {
             passportJwtSecret({
               cache: true,
               rateLimit: true,
-              jwksRequestsPerMinute: 5,
+              jwksRequestsPerMinute: 1,
               jwksUri: `${config.get('AUTH0_ISSUER_URL')}.well-known/jwks.json`,
             })(null as any, tokenOrPayload, (err, secret) => {
               if (err) {
