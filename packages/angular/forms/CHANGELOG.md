@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.0.4...@rxap/forms@19.0.5-dev.0) (2025-07-23)
+
+### Bug Fixes
+
+- **forms:** avoid cloning form value unnecessarily ([8a73832](https://gitlab.com/rxap/packages/commit/8a73832fa4ad4fde540186e372515e59f7c2644d))
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.0.4-dev.2...@rxap/forms@19.0.4) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/forms
