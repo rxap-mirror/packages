@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@11.0.0-dev.2...@rxap/nest-auth0@11.0.0-dev.3) (2025-07-23)
+
+### Bug Fixes
+
+- **auth0:** reduce jwksRequestsPerMinute to 1 ([cc53342](https://gitlab.com/rxap/packages/commit/cc533428763bc66ca770568694a1534a8598fbb1))
+
 # [11.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@11.0.0-dev.1...@rxap/nest-auth0@11.0.0-dev.2) (2025-05-19)
 
 ### Bug Fixes

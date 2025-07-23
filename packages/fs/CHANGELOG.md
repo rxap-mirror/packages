@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.0...@rxap/fs@1.2.0-dev.1) (2025-07-23)
+
+### Features
+
+- **fs:** add removeDirectory method to VirtualDirectory ([15f0b8f](https://gitlab.com/rxap/packages/commit/15f0b8fe15873badb3e0144b507c8aa38e1ab105))
+
 # [1.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.1.1-dev.4...@rxap/fs@1.2.0-dev.0) (2025-07-16)
 
 ### Features
