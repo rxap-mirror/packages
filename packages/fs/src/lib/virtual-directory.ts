@@ -33,6 +33,8 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
 
   hasDirectory(name: string): boolean;
 
+  removeDirectory(name: string): boolean;
+
   hasFile(match: (file: VF) => boolean): boolean;
   hasFile(path: string): boolean;
   hasFile(pathOrMatch: string | ((file: VF) => boolean)): boolean;
@@ -133,6 +135,10 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
 
   public hasDirectory(name: string) {
     return this.children.has(name) && isVirtualDirectory(this.children.get(name));
+  }
+
+  public removeDirectory(name: string) {
+    return this.children.has(name) && isVirtualDirectory(this.children.get(name)) && this.children.delete(name);
   }
 
   public file(name: string) {
