@@ -133,35 +133,37 @@ export class NavigationItemComponent
   public ngAfterViewInit() {
     this._subscription.add(
       this.router.events
-          .pipe(
-            filter((event) => event instanceof NavigationEnd),
-            debounceTime(100),
-            startWith(true),
-            tap(() => {
-              let isActive = true;
-              const urlParts = this.router.url.split('/');
-              if (urlParts[0] === '') {
-                urlParts[0] = '/';
+        .pipe(
+          filter((event) => event instanceof NavigationEnd),
+          debounceTime(100),
+          startWith(true),
+          tap(() => {
+            let isActive = true;
+            const urlParts = this.router.url.split('/');
+            console.log({ urlParts, url: this.router.url })
+            if (urlParts[0] === '') {
+              urlParts[0] = '/';
+            }
+            const routerLink = coerceArray(this.item().routerLink).map(fragment => fragment === '/' ? ['/'] : fragment.split('/')).flat();
+            if (routerLink[0] === '') {
+              routerLink[0] = '/';
+            }
+            console.log({ urlParts, routerLink })
+            for (let i = 0; i < routerLink.length; i++) {
+              if (urlParts[i] !== routerLink[i]) {
+                isActive = false;
+                break;
               }
-              const routerLink = coerceArray(this.item().routerLink).map(fragment => fragment.split('/')).flat();
-              if (routerLink[0] === '') {
-                routerLink[0] = '/';
-              }
-              for (let i = 0; i < routerLink.length; i++) {
-                if (urlParts[i] !== routerLink[i]) {
-                  isActive = false;
-                  break;
-                }
-              }
-              this.active.set(isActive);
-              if (isActive) {
-                this.renderer.addClass(this.elementRef.nativeElement, 'active');
-              } else {
-                this.renderer.removeClass(this.elementRef.nativeElement, 'active');
-              }
-            }),
-          )
-          .subscribe(),
+            }
+            this.active.set(isActive);
+            if (isActive) {
+              this.renderer.addClass(this.elementRef.nativeElement, 'active');
+            } else {
+              this.renderer.removeClass(this.elementRef.nativeElement, 'active');
+            }
+          }),
+        )
+        .subscribe(),
     );
   }
 

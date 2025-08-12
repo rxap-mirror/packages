@@ -1,15 +1,15 @@
-<ng-template [ngForOf]="navigationItems()" let-item ngFor>
-  <ng-template [ngIf]="isNavigationDividerItem(item)">
+@for (item of navigationItems(); track item) {
+
+  @if (isNavigationDividerItem(item)) {
     <mat-divider></mat-divider>
     <div *ngIf="!collapsed() && item.title" class="pl-5 h-6">
       {{item.title}}
     </div>
-  </ng-template>
-  <ng-template [ngIf]="isNavigationItem(item)">
+  } @else if (isNavigationItem(item)) {
     <li [item]="asNavigationItem(item)"
         [level]="level()"
-        class="dark:hover:text-white hover:text-black"
         rxap-navigation-item>
     </li>
-  </ng-template>
-</ng-template>
+  }
+
+}
