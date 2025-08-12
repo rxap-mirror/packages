@@ -8,6 +8,7 @@ import {
   input,
   Input,
   isDevMode,
+  model,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -39,6 +40,10 @@ import {
 import { RxapFormBuilder } from '../form-builder';
 import { RxapFormGroup } from '../form-group';
 import { FormDefinition } from '../model';
+import {
+  RXAP_FORM_CONTEXT,
+  RXAP_FORM_INITIAL_STATE,
+} from '../tokens';
 import {
   FormLoadFailedMethod,
   FormLoadMethod,
@@ -115,10 +120,9 @@ export class FormDirective<T = any>
   implements OnInit, OnChanges, OnDestroy {
   public override form!: RxapFormGroup<T>;
 
-  @Input()
-  public initial?: T;
+  public readonly initial = model<T | null>(null);
 
-  public readonly context = input<Record<string, unknown>>({});
+  public readonly context = model<unknown | null>(null);
 
   /**
    * Emits when the submit method is executed without errors. The result of the
@@ -245,6 +249,12 @@ export class FormDirective<T = any>
     @Optional()
     @Inject(LoadingIndicatorService)
     protected readonly loadingIndicatorService: LoadingIndicatorService | null = null,
+    @Optional()
+    @Inject(RXAP_FORM_CONTEXT)
+    context: unknown = null,
+    @Optional()
+    @Inject(RXAP_FORM_INITIAL_STATE)
+    initial: T | null = null,
   ) {
     super([], []);
     this.submitMethod = submitMethod ?? this.submitMethod;
@@ -262,6 +272,12 @@ export class FormDirective<T = any>
     }
     this.loadingIndicatorService?.attachLoading(this.loading$);
     this.loadingIndicatorService?.attachLoading(this.submitting$);
+    if (context) {
+      this.context.set(context);
+    }
+    if (initial && typeof initial === 'object' && !Array.isArray(initial)) {
+      this.initial.set(initial);
+    }
   }
 
   public override ngOnChanges(changes: SimpleChanges) {
@@ -402,17 +418,18 @@ export class FormDirective<T = any>
   }
 
   protected loadInitialState(form: RxapFormGroup): void {
-    if (this.initial) {
+    const initial = this.initial();
+    if (initial && typeof initial === 'object' && !Array.isArray(initial)) {
       if (isDevMode()) {
         console.log('use the value from input initial');
       }
-      form.patchValue(this.initial);
+      form.patchValue(initial);
     } else {
       if (this.loadMethod) {
         this.loading$.enable();
 
         try {
-          const resultOrPromise = this.loadMethod.call();
+          const resultOrPromise = this.loadMethod.call({ context: this.context(), initial: this.initial() });
           if (isPromise(resultOrPromise)) {
             resultOrPromise
               .then((value) => {

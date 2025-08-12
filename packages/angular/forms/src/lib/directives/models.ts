@@ -4,11 +4,11 @@ import {
 } from '@rxap/pattern';
 
 export interface FormSubmitMethod<T> extends MethodWithParameters<any, T> {
-  call(parameters: T, context?: Record<string, unknown>): any | Promise<any>;
+  call(parameters: T, context?: unknown): any | Promise<any>;
 }
 
 export interface FormLoadMethod<T = any> extends Method<T> {
-  call(): T | Promise<T>;
+  call(data: { context: unknown | null, initial: unknown | null }): T | Promise<T>;
 }
 
 export interface FormLoadFailedMethod extends MethodWithParameters {
