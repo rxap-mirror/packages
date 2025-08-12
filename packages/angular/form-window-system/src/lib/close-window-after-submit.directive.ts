@@ -3,10 +3,9 @@ import {
   Inject,
   OnDestroy,
   OnInit,
+  OutputRefSubscription,
 } from '@angular/core';
 import { FormSubmitDirective } from '@rxap/forms';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import type { WindowRef } from '@rxap/window-system';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
 
@@ -15,7 +14,7 @@ import { RXAP_WINDOW_REF } from '@rxap/window-system';
   standalone: true,
 })
 export class CloseWindowAfterSubmitDirective implements OnInit, OnDestroy {
-  private _subscription?: Subscription;
+  private _subscription?: OutputRefSubscription;
 
   constructor(
     @Inject(FormSubmitDirective)
@@ -26,9 +25,7 @@ export class CloseWindowAfterSubmitDirective implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    this._subscription = this.formSubmit.afterSubmit
-                             .pipe(tap(() => this.windowRef.complete()))
-                             .subscribe();
+    this._subscription = this.formSubmit.afterSubmit.subscribe(() => this.windowRef.complete());
   }
 
   public ngOnDestroy() {
