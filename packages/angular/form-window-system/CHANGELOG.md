@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@19.0.4...@rxap/form-window-system@19.0.5-dev.0) (2025-08-12)
+
+**Note:** Version bump only for package @rxap/form-window-system
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@19.0.4-dev.0...@rxap/form-window-system@19.0.4) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/form-window-system
