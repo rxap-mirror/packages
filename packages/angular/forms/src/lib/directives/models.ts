@@ -3,12 +3,12 @@ import {
   MethodWithParameters,
 } from '@rxap/pattern';
 
-export interface FormSubmitMethod<T> extends MethodWithParameters<any, T> {
-  call(parameters: T, context?: unknown): any | Promise<any>;
+export interface FormSubmitMethod<FormSate = any, Context = any, Initial = any> extends MethodWithParameters<any, FormSate> {
+  call(parameters: FormSate, context?: Context | null, initial?: Initial | null): any | Promise<any>;
 }
 
-export interface FormLoadMethod<T = any> extends Method<T> {
-  call(data: { context: unknown | null, initial: unknown | null }): T | Promise<T>;
+export interface FormLoadMethod<FormState = any, Context = any, Initial = any> extends Method<FormState> {
+  call(data: { context: Context | null, initial: Initial | null }): FormState | Promise<FormState>;
 }
 
 export interface FormLoadFailedMethod extends MethodWithParameters {

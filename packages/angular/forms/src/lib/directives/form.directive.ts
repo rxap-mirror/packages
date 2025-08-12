@@ -509,7 +509,7 @@ export class FormDirective<T = any>
       this.submitting$.enable();
       this.submitError$.next(null);
       try {
-        const resultOrPromise = this.submitMethod.call(value, this.context());
+        const resultOrPromise = this.submitMethod.call(value, this.context(), this.initial());
         if (isPromise(resultOrPromise)) {
           resultOrPromise
             .then((result) => {
