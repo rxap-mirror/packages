@@ -15,7 +15,7 @@
     "@rxap/contenteditable": "^19.0.4",
     "@rxap/data-source": "^19.1.1-dev.1",
     "@rxap/data-structure-tree": "^1.1.17-dev.0",
-    "@rxap/forms": "^19.1.0-dev.0",
+    "@rxap/forms": "^19.1.0-dev.1",
     "@rxap/material-directives": "^19.0.4",
     "@rxap/pattern": "^1.1.14",
     "@rxap/rxjs": "^1.1.16",
@@ -101,7 +101,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0-dev.1"
       },
       {
         "package": "@rxap/material-directives",
