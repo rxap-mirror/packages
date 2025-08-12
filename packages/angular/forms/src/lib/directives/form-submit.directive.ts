@@ -1,13 +1,13 @@
 import {
+  computed,
   Directive,
-  EventEmitter,
-  HostBinding,
   Inject,
-  Input,
+  input,
   OnDestroy,
   Optional,
-  Output,
+  output,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { ConfirmClick } from '@rxap/directives';
 import {
@@ -27,27 +27,27 @@ import { FormDirective } from './form.directive';
   host: {
     '(click)': 'onClick()',
     '(confirmed)': 'onConfirm()',
+    '[disabled]': 'disabled()',
+    '[type]': 'type()',
   },
   standalone: true,
+  exportAs: 'rxapFormSubmit',
 })
 export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
 
-  @HostBinding('type')
-  @Input()
-  public type = 'button';
+  public type = input<'button' | 'submit' | 'reset'>('button');
 
-  @Input()
-  public set resetAfterSubmit(value: boolean | '') {
-    this._resetAfterSubmit = coerceBoolean(value);
-  }
+  resetAfterSubmit = input<boolean | '', boolean>(false, { transform: coerceBoolean });
 
-  @Input()
-  public navigateAfterSubmit?: string[];
+  public navigateAfterSubmit = input<string[]>();
 
-  @Output()
-  public afterSubmit = new EventEmitter();
+  public afterSubmit = output<any>();
 
-  private _resetAfterSubmit = false;
+  disableWhileSubmitting = input(true);
+
+  submitting = toSignal(this.formDirective.submitting$, { initialValue: false });
+
+  disabled = computed(() => this.disableWhileSubmitting() && this.submitting())
 
   private subscription?: Subscription;
 
@@ -69,16 +69,17 @@ export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
       tap(value => {
         const clonedValue = clone(value);
         this.afterSubmit.emit(clonedValue);
-        if (this._resetAfterSubmit) {
+        if (this.resetAfterSubmit()) {
           this.formDirective.reset();
         }
-        if (this.navigateAfterSubmit) {
+        const navigateAfterSubmit = this.navigateAfterSubmit();
+        if (Array.isArray(navigateAfterSubmit)) {
 
           if (!this.router) {
             throw new Error('Could not resolve the router!');
           }
 
-          return this.router.navigate(this.navigateAfterSubmit);
+          return this.router.navigate(navigateAfterSubmit);
         }
         return Promise.resolve();
       }),
