@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.1...@rxap/forms@19.1.0-dev.2) (2025-08-12)
+
+### Features
+
+- **forms:** add initial state support to submit and load methods ([4fc75a3](https://gitlab.com/rxap/packages/commit/4fc75a333ef09fdf1c3f7480d05f609122e554d5))
+
 # [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.0...@rxap/forms@19.1.0-dev.1) (2025-08-12)
 
 ### Features

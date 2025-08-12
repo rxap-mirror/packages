@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.1",
+  "version": "19.1.0-dev.2",
   "name": "@rxap/forms",
   "description": "This package provides a set of tools and directives to simplify working with Angular forms, including reactive forms, custom validators, and form directives for handling loading, submitting, and error states. It offers decorators for defining forms and controls, along with utilities for building complex forms with nested groups and arrays. The library aims to enhance the development experience by providing a more structured and maintainable approach to form management in Angular applications.\n",
   "license": "GPL-3.0-or-later",

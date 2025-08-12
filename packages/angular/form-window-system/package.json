@@ -12,7 +12,7 @@
     "@angular/core": "^19.2.1",
     "@rxap/directives": "^19.0.4",
     "@rxap/form-system": "^19.0.4",
-    "@rxap/forms": "^19.1.0-dev.1",
+    "@rxap/forms": "^19.1.0-dev.2",
     "@rxap/pattern": "^1.1.14",
     "@rxap/reflect-metadata": "^1.0.16-dev.1",
     "@rxap/rxjs": "^1.1.16",
@@ -103,7 +103,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "19.1.0-dev.1"
+        "version": "19.1.0-dev.2"
       },
       {
         "package": "@rxap/material-directives",
