@@ -1,5 +1,6 @@
 import {
   AbstractType,
+  computed,
   Inject,
   Injectable,
   InjectFlags,
@@ -9,6 +10,7 @@ import {
   Optional,
   Type,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { REMOTE_METHOD_META_DATA } from './tokens';
 import {
   BaseDefinition,
@@ -43,6 +45,10 @@ export abstract class BaseRemoteMethod<ReturnType = any,
 
   public executionsInProgress$: CounterSubject = new CounterSubject();
 
+  executionsInProgress = toSignal(this.executionsInProgress$, { initialValue: 0 });
+
+  executing = computed(() => this.executionsInProgress() > 0);
+
   public readonly injector: Injector;
 
   private _pauseRefresh = false;
@@ -76,11 +82,14 @@ export abstract class BaseRemoteMethod<ReturnType = any,
   public async call(parameters?: Parameter): Promise<ReturnType> {
     this.init();
     this.executionsInProgress$.increase();
-    const result = await this._call(parameters);
-    this.executionsInProgress$.decrease();
-    this.executed$.next(result);
-    this.executed(result);
-    return result;
+    try {
+      const result = await this._call(parameters);
+      this.executed$.next(result);
+      this.executed(result);
+      return result;
+    } finally {
+      this.executionsInProgress$.decrease();
+    }
   }
 
   public executed(result: ReturnType): void {
