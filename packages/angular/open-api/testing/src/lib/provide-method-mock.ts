@@ -40,12 +40,17 @@ export function ProvideMethodWithParametersMock<ReturnValue, Parameters>(
   method: InjectionToken<MethodWithParameters<ReturnValue, Parameters>> | Constructor<MethodWithParameters<ReturnValue, Parameters>>,
   implementation: (parameters: Parameters, ...args: any[]) => ReturnValue | Promise<ReturnValue>,
   delay?: number,
+  defaultParameters?: Parameters,
 ): Provider {
   return {
     provide: method,
     useValue: ToMethod((parameters?: Parameters, ...args: any[]) => {
       if (!parameters) {
-        throw new Error(`Method requires a parameter`);
+        if (!defaultParameters) {
+          throw new Error(`Method requires a parameter`);
+        } else {
+          parameters = defaultParameters;
+        }
       }
       if (delay) {
         return new Promise(
@@ -68,5 +73,5 @@ export function ProvideRemoteMethodMock<ReturnValue, Parameters extends Record<s
   ) => ReturnValue | Promise<ReturnValue>,
   delay?: number,
 ): Provider {
-  return ProvideMethodWithParametersMock(method, implementation, delay);
+  return ProvideMethodWithParametersMock(method, implementation, delay, {});
 }
