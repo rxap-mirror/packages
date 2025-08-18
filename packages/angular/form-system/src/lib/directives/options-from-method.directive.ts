@@ -45,6 +45,7 @@ export interface OptionsFromMethodDirective<Value = any, Parameters = any>
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[rxapOptionsFromMethod]',
   standalone: true,
+  exportAs: 'rxapOptionsFromMethod',
 })
 export class OptionsFromMethodDirective<Value = any, Parameters = any> implements AfterViewInit, OnChanges {
 
