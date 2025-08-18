@@ -5,7 +5,11 @@ import {
   RxapOpenApiRemoteMethod,
 } from './open-api.remote-method';
 import { TestBed } from '@angular/core/testing';
-import { Injector } from '@angular/core';
+import {
+  INJECTOR,
+  Injector,
+  runInInjectionContext,
+} from '@angular/core';
 import { OpenApiConfigService } from '@rxap/open-api';
 
 describe('@rxap/open-api/remote-method', () => {
@@ -73,14 +77,14 @@ describe('@rxap/open-api/remote-method', () => {
         },
       });
 
-      remoteMethod = new OpenApiRemoteMethod(http,
+      remoteMethod = runInInjectionContext(TestBed.get(INJECTOR), () => new OpenApiRemoteMethod(http,
         Injector.NULL,
         openApiService,
         {
           id: 'test',
           operation,
         },
-      );
+      ));
     });
 
     afterEach(() => {
@@ -103,7 +107,7 @@ describe('@rxap/open-api/remote-method', () => {
 
     it('should create open api remote method from operationId', async () => {
 
-      remoteMethod = new OpenApiRemoteMethod(http, Injector.NULL, openApiService, { id: 'createUser' });
+      remoteMethod = runInInjectionContext(TestBed.get(INJECTOR), () => new OpenApiRemoteMethod(http, Injector.NULL, openApiService, { id: 'createUser' }));
 
       OpenApiConfigService.Config = null;
 
@@ -130,7 +134,7 @@ describe('@rxap/open-api/remote-method', () => {
       class MyOperation extends OpenApiRemoteMethod {
       }
 
-      remoteMethod = new MyOperation(http, Injector.NULL, openApiService);
+      remoteMethod = runInInjectionContext(TestBed.get(INJECTOR), () => new MyOperation(http, Injector.NULL, openApiService));
 
       OpenApiConfigService.Config = null;
 
