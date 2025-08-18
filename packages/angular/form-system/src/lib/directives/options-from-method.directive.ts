@@ -94,7 +94,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
     }
     const parametersChanges = changes['parameters'];
     if (parametersChanges) {
-      this.setOptions(await this.loadOptions(parametersChanges.currentValue));
+      await this.load(parametersChanges.currentValue);
     }
   }
 
@@ -130,6 +130,10 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
       this.options = options.slice();
       this.renderTemplate();
     }
+  }
+
+  public async load(parameters: Parameters | undefined = this.parameters) {
+    this.setOptions(await this.loadOptions(parameters));
   }
 
 }
