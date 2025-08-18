@@ -168,16 +168,22 @@ export class RxapFormArray<T = any,
    */
   public insertAt(index?: number, state?: T, options?: ControlEventOptions): void {
     const insertIndex = index ?? this.controls.length;
+    const length = this.controls.length;
     const controlOrDefinition = this._builder(state, {
       controlId: insertIndex.toFixed(0),
     });
 
     this._controlInsertedFn(insertIndex, controlOrDefinition);
 
-    if (insertIndex < this.controls.length) {
-      // update the control ids for all controls, that are moved.
-      for (let i = insertIndex; i < this.controls.length; i++) {
-        Reflect.set(this.controls[i], 'controlId', (i + 1).toFixed(0));
+    if (length === this.controls.length && insertIndex !== length) {
+      // the _controlInsertedFn has not yet added the new control to the form array
+      if (insertIndex < this.controls.length) {
+        // update the control ids for all controls, that are moved.
+        for (let i = insertIndex; i < this.controls.length; i++) {
+          Reflect.set(this.controls[i], 'controlId', (
+            i + 1
+          ).toFixed(0));
+        }
       }
     }
 
