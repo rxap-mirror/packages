@@ -175,24 +175,32 @@ export class RxapFormArray<T = any,
 
     this._controlInsertedFn(insertIndex, controlOrDefinition);
 
-    if (length === this.controls.length && insertIndex !== length) {
-      // the _controlInsertedFn has not yet added the new control to the form array
-      if (insertIndex < this.controls.length) {
-        // update the control ids for all controls, that are moved.
-        for (let i = insertIndex; i < this.controls.length; i++) {
-          Reflect.set(this.controls[i], 'controlId', (
-            i + 1
-          ).toFixed(0));
-        }
+    if (insertIndex < this.controls.length) {
+      // update the control ids for all controls, that are moved.
+      for (let i = insertIndex; i < this.controls.length; i++) {
+        Reflect.set(this.controls[i], 'controlId', (
+          i + 1
+        ).toFixed(0));
       }
     }
-
-    // call the super insert after the update, bc the insert method will
-    // trigger a change detection
-    if (controlOrDefinition instanceof NgAbstractControl) {
-      super.insert(insertIndex, controlOrDefinition, options);
+    if (length === this.controls.length) {
+      // the _controlInsertedFn has not yet added the new control to the form array
+      // call the super insert after the update, bc the insert method will
+      // trigger a change detection
+      if (controlOrDefinition instanceof NgAbstractControl) {
+        super.insert(insertIndex, controlOrDefinition, options);
+      } else {
+        super.insert(insertIndex, controlOrDefinition.rxapFormGroup!, options);
+      }
     } else {
-      super.insert(insertIndex, controlOrDefinition.rxapFormGroup!, options);
+      if (controlOrDefinition instanceof NgAbstractControl) {
+        controlOrDefinition.setParent(this);
+        (controlOrDefinition as any)['_registerOnCollectionChange']?.((this as any)['_onCollectionChange']);
+      } else {
+        controlOrDefinition.rxapFormGroup!.setParent(this);
+        (controlOrDefinition.rxapFormGroup as any)['_registerOnCollectionChange']?.((this as any)['_onCollectionChange']);
+      }
+      this.updateValueAndValidity({ emitEvent: options?.emitEvent });
     }
   }
 

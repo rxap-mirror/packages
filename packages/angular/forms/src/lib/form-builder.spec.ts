@@ -381,6 +381,40 @@ describe('@rxap/forms', () => {
 
     });
 
+    it('should add new array group to empty array', () => {
+
+      const formBuilder = new RxapFormBuilder<ITestFormWithSubArray>(TestFormWithSubArray, Injector.NULL, [
+        {
+          provide: TestFormWithSubArray,
+          useClass: TestFormWithSubArray,
+          deps: [],
+        },
+      ]);
+
+      const form = formBuilder.build<TestFormWithSubArray>({
+        username: 'rxap',
+        contacts: [],
+      });
+
+      expect(form.rxapFormGroup.value).toEqual({
+        username: 'rxap',
+        contacts: [],
+      });
+      expect(form.contacts.length).toBe(0);
+      form.contacts.rxapFormArray.insertAt(undefined, { zip: '44444' });
+      expect(form.contacts.length).toBe(1);
+      expect(form.rxapFormGroup.value).toEqual({
+        username: 'rxap',
+        contacts: [
+          { zip: '44444' },
+        ],
+      });
+      expect(form.contacts[0].rxapFormGroup.controlId).toEqual('0');
+      expect(form.contacts[0].rxapFormGroup.controlPath).toEqual('contacts.0');
+      expect(form.contacts[0].rxapFormGroup.fullControlPath).toEqual('test.contacts.0');
+
+    });
+
     it('should add new array group', () => {
 
       const formBuilder = new RxapFormBuilder<ITestFormWithSubArray>(TestFormWithSubArray, Injector.NULL, [
@@ -423,7 +457,7 @@ describe('@rxap/forms', () => {
 
     });
 
-    it('should insert new array group', () => {
+    it('should insert new array group and overite existing group', () => {
 
       const formBuilder = new RxapFormBuilder<ITestFormWithSubArray>(TestFormWithSubArray, Injector.NULL, [
         {
