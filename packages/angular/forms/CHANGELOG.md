@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.2...@rxap/forms@19.1.0-dev.3) (2025-08-18)
+
+### Bug Fixes
+
+- **form-array:** handle control insertion edge case ([97c1e1c](https://gitlab.com/rxap/packages/commit/97c1e1c15eea4276267dc1dfc54a530d28a6818f))
+
 # [19.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.1...@rxap/forms@19.1.0-dev.2) (2025-08-12)
 
 ### Features
