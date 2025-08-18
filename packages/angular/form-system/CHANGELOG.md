@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@19.0.5-dev.0...@rxap/form-system@19.1.0-dev.0) (2025-08-18)
+
+### Features
+
+- **form-system:** add `exportAs` property to options-from-method directive ([35c7a28](https://gitlab.com/rxap/packages/commit/35c7a2893a64fc08e12d278ea2a4b5f9a5da2932))
+
 ## [19.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@19.0.4...@rxap/form-system@19.0.5-dev.0) (2025-08-18)
 
 **Note:** Version bump only for package @rxap/form-system
