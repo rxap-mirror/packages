@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.3...@rxap/forms@19.1.0-dev.4) (2025-08-18)
+
+### Bug Fixes
+
+- **form-array:** correct control insertion logic and ID updates ([fc949e3](https://gitlab.com/rxap/packages/commit/fc949e312c243075d47ab7fc4d31432bbf6880a7))
+
 # [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.2...@rxap/forms@19.1.0-dev.3) (2025-08-18)
 
 ### Bug Fixes
