@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.4...@rxap/forms@19.1.0-dev.5) (2025-08-18)
+
+### Bug Fixes
+
+- **form-array:** improve removeAt logic to handle validations ([cb73bac](https://gitlab.com/rxap/packages/commit/cb73bac8884ffdd51e109da3d584dcca7e1e2d38))
+
 # [19.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.3...@rxap/forms@19.1.0-dev.4) (2025-08-18)
 
 ### Bug Fixes
