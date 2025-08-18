@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.1.0...@rxap/open-api@19.2.0-dev.0) (2025-08-18)
+
+### Features
+
+- **testing:** add default parameters support for method mock ([5ccbec5](https://gitlab.com/rxap/packages/commit/5ccbec50962813cb3cd60368abcb529710f41fa1))
+
 # [19.1.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.1.0-dev.2...@rxap/open-api@19.1.0) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/open-api
