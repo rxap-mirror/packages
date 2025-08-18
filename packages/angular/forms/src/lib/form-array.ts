@@ -321,12 +321,17 @@ export class RxapFormArray<T = any,
     return hasErrorAndDirty(this, errorCode, path);
   }
 
-  public override removeAt(index: number) {
+  public override removeAt(index: number, opts?: ControlEventOptions) {
     if (isDevMode()) {
       console.warn('It is not recommend to use the FormArray.removeAt method');
     }
-    super.removeAt(index);
+    const length = this.controls.length;
     this._controlRemovedFn(index);
+    if (length === this.controls.length) {
+      super.removeAt(index);
+    } else {
+      this.updateValueAndValidity({ emitEvent: opts?.emitEvent });
+    }
   }
 
   public setEnable(enable = true, opts?: ControlEventOptions) {
