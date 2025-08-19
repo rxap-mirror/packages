@@ -8,6 +8,7 @@ import {
   Injector,
   Input,
   OnChanges,
+  signal,
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
@@ -56,6 +57,8 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
     return true;
   }
 
+  readonly loading = signal<boolean>(true);
+
   @Input('rxapOptionsFromMethodParameters')
   public parameters?: Parameters;
 
@@ -82,7 +85,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
     // ensure that the options are loaded. It is possible that the ngOnChange is triggered before the ngAfterViewInit
     // then the options are not loaded.
     if (!this.options) {
-      this.setOptions(await this.loadOptions(this.parameters));
+      await this.load(this.parameters);
     }
   }
 
@@ -134,7 +137,12 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   }
 
   public async load(parameters: Parameters | undefined = this.parameters) {
-    this.setOptions(await this.loadOptions(parameters));
+    this.loading.set(true);
+    try {
+      this.setOptions(await this.loadOptions(parameters));
+    } finally {
+      this.loading.set(false);
+    }
   }
 
 }
