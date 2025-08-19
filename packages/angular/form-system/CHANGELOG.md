@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@19.1.0-dev.0...@rxap/form-system@19.1.0-dev.1) (2025-08-19)
+
+### Features
+
+- **form-system:** add loading state to options-from-method directive ([4afeaec](https://gitlab.com/rxap/packages/commit/4afeaec57aa5d3e835de06c9158a5b08b90de1c5))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@19.0.5-dev.0...@rxap/form-system@19.1.0-dev.0) (2025-08-18)
 
 ### Features
