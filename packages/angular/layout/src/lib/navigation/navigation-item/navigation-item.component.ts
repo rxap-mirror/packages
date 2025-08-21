@@ -140,7 +140,6 @@ export class NavigationItemComponent
           tap(() => {
             let isActive = true;
             const urlParts = this.router.url.split('/');
-            console.log({ urlParts, url: this.router.url })
             if (urlParts[0] === '') {
               urlParts[0] = '/';
             }
@@ -148,7 +147,6 @@ export class NavigationItemComponent
             if (routerLink[0] === '') {
               routerLink[0] = '/';
             }
-            console.log({ urlParts, routerLink })
             for (let i = 0; i < routerLink.length; i++) {
               if (urlParts[i] !== routerLink[i]) {
                 isActive = false;
