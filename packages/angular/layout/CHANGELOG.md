@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.1-dev.1...@rxap/layout@19.1.1-dev.2) (2025-08-21)
+
+### Bug Fixes
+
+- **navigation-item:** remove unnecessary console logs ([3b808c0](https://gitlab.com/rxap/packages/commit/3b808c05fd6db8c1064d25fa11dbf0539c92c5d7))
+
 ## [19.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.1-dev.0...@rxap/layout@19.1.1-dev.1) (2025-08-12)
 
 **Note:** Version bump only for package @rxap/layout
