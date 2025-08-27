@@ -12,7 +12,7 @@
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.1",
     "@nestjs/jwt": "^11.0.0",
-    "@rxap/nest-utilities": "^11.0.0-dev.4",
+    "@rxap/nest-utilities": "^11.0.0-dev.5",
     "@rxap/pattern": "^1.1.14",
     "rxjs": "^7.8.1"
   },
@@ -74,7 +74,7 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "11.0.0-dev.4"
+        "version": "11.0.0-dev.5"
       },
       {
         "package": "@rxap/pattern",

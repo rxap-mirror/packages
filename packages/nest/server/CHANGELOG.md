@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.8...@rxap/nest-server@11.0.0-dev.9) (2025-08-27)
+
+### Bug Fixes
+
+- **utilities, server:** add default parameter values to configuration functions ([03d6d48](https://gitlab.com/rxap/packages/commit/03d6d48f574caf1214fbfb9a26537b5d7d4af7d7))
+
 # [11.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.7...@rxap/nest-server@11.0.0-dev.8) (2025-08-27)
 
 ### Features
