@@ -16,6 +16,7 @@ export interface MonolithicBootstrapOptions {
    */
   publicUrl: string;
   apiUrl: string;
+  apiBaseUrl: string;
   port: number;
   version: string;
   globalApiPrefix?: string;
@@ -66,11 +67,9 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
    * Builds the public url of the api.
    * This is the public url used to access the api from the internet.
    * @param config
-   * @param port
-   * @param globalApiPrefix
    * @protected
    */
-  protected buildApiUrl(config: ConfigService, port: number, globalApiPrefix: string): string {
+  protected buildApiUrl(config: ConfigService): string {
 
     let apiUrl = config.get('API_URL');
 
@@ -84,21 +83,34 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
       apiUrl = `${ publicProtocol }://${ publicDomain }:${ publicPort }`;
     }
 
-    if (!apiUrl.endsWith('/')) {
-      apiUrl += '/';
-    }
-
-    if (globalApiPrefix) {
-      if (globalApiPrefix.startsWith('/')) {
-        globalApiPrefix = globalApiPrefix.substring(1);
-      }
-      if (!globalApiPrefix.endsWith('/')) {
-        globalApiPrefix += '/';
-      }
-      apiUrl += globalApiPrefix;
+    if (apiUrl.endsWith('/')) {
+      apiUrl = apiUrl.substring(0, apiUrl.length - 1);
     }
 
     return apiUrl;
+  }
+
+  protected buildApiBaseUrl(config: ConfigService, apiUrl: string, globalApiPrefix: string): string {
+    let apiBaseUrl = config.get('API_BASE_URL');
+
+    if (!apiBaseUrl) {
+      if (!apiUrl.endsWith('/')) {
+        apiUrl += '/';
+      }
+
+      if (globalApiPrefix) {
+        if (globalApiPrefix.startsWith('/')) {
+          globalApiPrefix = globalApiPrefix.substring(1);
+        }
+        if (!globalApiPrefix.endsWith('/')) {
+          globalApiPrefix += '/';
+        }
+        apiUrl += globalApiPrefix;
+      }
+      apiBaseUrl = apiUrl;
+    }
+
+    return apiBaseUrl;
   }
 
   protected override prepareOptions(app: NestApplicationContext, logger: Logger, config: ConfigService): BootstrapOptions {
@@ -115,22 +127,25 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
 
     const globalApiPrefix = this.getGlobalApiPrefix(config);
     const port = this.getPort(config);
-    const apiUrl = this.buildApiUrl(config, port, globalApiPrefix);
+    const apiUrl = this.buildApiUrl(config);
+    const apiBaseUrl = this.buildApiBaseUrl(config, apiUrl, globalApiPrefix);
 
     (config as any).internalConfig.API_URL = apiUrl;
+    (config as any).internalConfig.API_BASE_URL = apiBaseUrl;
 
     return {
       globalPrefixOptions: {},
       ...this.bootstrapOptions,
       globalApiPrefix,
-      publicUrl: apiUrl,
+      publicUrl: apiBaseUrl,
       apiUrl,
+      apiBaseUrl,
       version: DetermineVersion(this.environment),
       port,
     } as BootstrapOptions;
   }
 
-  protected override listen(app: NestApplicationContext, logger: Logger, options: BootstrapOptions): Promise<any> {
+  protected setGlobalApiPrefix(app: NestApplicationContext, logger: Logger, options: BootstrapOptions) {
     if (options.globalApiPrefix) {
       logger.log(`Setting global prefix '${ options.globalApiPrefix }'`, 'Bootstrap');
       // TODO : create issue in @nest github project - if options is an empty object the server does not start
@@ -145,9 +160,13 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
         globalPrefixOptions
       );
     }
-    logger.log('Starting listening at ' + options.publicUrl, 'Bootstrap');
+  }
+
+  protected override listen(app: NestApplicationContext, logger: Logger, options: BootstrapOptions): Promise<any> {
+    this.setGlobalApiPrefix(app, logger, options);
+    logger.log(`Starting listening at ${ options.apiUrl }`, 'Bootstrap');
     return app.listen(options.port, () => {
-      logger.log('Listening at ' + options.publicUrl, 'Bootstrap');
+      logger.log(`Listening at ${ options.apiUrl }`, 'Bootstrap');
     });
   }
 
