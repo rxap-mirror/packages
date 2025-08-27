@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@11.0.0-dev.3...@rxap/nest-auth0@11.0.0-dev.4) (2025-08-27)
+
+### Features
+
+- **auth0:** add bypass functionality to Auth0 guard ([6187a89](https://gitlab.com/rxap/packages/commit/6187a89800991dfdca7c6a625f61b07fe4275508))
+
 # [11.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-auth0@11.0.0-dev.2...@rxap/nest-auth0@11.0.0-dev.3) (2025-07-23)
 
 ### Bug Fixes

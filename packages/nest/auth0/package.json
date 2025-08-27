@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.3",
+  "version": "11.0.0-dev.4",
   "name": "@rxap/nest-auth0",
   "description": "This package provides an Auth0 module for NestJS applications, simplifying integration with Auth0 for authentication and authorization. It includes a configurable module, JWT strategy, and service for interacting with the Auth0 Authentication API. The module also offers validation schemas for environment variables related to Auth0 configuration.\n",
   "license": "GPL-3.0-or-later",
