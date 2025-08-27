@@ -13,7 +13,7 @@ export function defaultValidationSchema(
     cookieSecret?: string,
     throttlerLimit?: number,
     throttlerTTL?: number,
-  }
+  } = {}
   ): SchemaMap {
 
   const schema: SchemaMap = {};

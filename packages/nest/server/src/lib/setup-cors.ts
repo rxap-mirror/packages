@@ -33,7 +33,7 @@ export function corsValidationSchema(
   }: {
     origin?: any
     credentials?: boolean
-  }
+  } = {}
 ) {
 
   const schema: SchemaMap = {};
