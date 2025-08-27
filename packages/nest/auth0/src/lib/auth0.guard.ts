@@ -9,6 +9,7 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
 import { ExtractJwt } from 'passport-jwt';
+import { AUTH0_BYPASS_KEY } from './auth0-bypass';
 import { Auth0Options } from './auth0-options';
 import { AUTH0_OPTIONS } from './tokens';
 import { Request } from 'express';
@@ -37,6 +38,14 @@ export class Auth0Guard implements CanActivate {
       context.getClass(),
     ]);
     if (isPublic) {
+      return true;
+    }
+
+    const auth0Bypass = this.reflector.getAllAndOverride<boolean>(AUTH0_BYPASS_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (auth0Bypass) {
       return true;
     }
 
