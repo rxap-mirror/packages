@@ -49,7 +49,7 @@ export function serverValidationSchema(
   }
 
   schema['API_BASE_URL'] = Joi.string().uri();
-  if (apiUrl) {
+  if (apiBaseUrl) {
     schema['API_BASE_URL'] = Joi.string().uri().default(apiBaseUrl);
   }
 
