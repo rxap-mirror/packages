@@ -7,6 +7,7 @@ export function serverValidationSchema(
   {
     apiPort = environment.production ? 443 : undefined,
     apiUrl,
+    apiBaseUrl,
     apiProtocol = environment.production ? 'https' : 'http',
     apiDomain,
     globalApiPrefix = 'api',
@@ -15,6 +16,7 @@ export function serverValidationSchema(
   }: {
     apiPort?: number;
     apiUrl?: string;
+    apiBaseUrl?: string;
     apiProtocol?: 'http' | 'https'
     apiDomain?: string;
     globalApiPrefix?: string;
@@ -44,6 +46,11 @@ export function serverValidationSchema(
   schema['API_URL'] = Joi.string().uri();
   if (apiUrl) {
     schema['API_URL'] = Joi.string().uri().default(apiUrl);
+  }
+
+  schema['API_BASE_URL'] = Joi.string().uri();
+  if (apiUrl) {
+    schema['API_BASE_URL'] = Joi.string().uri().default(apiBaseUrl);
   }
 
   schema['API_PROTOCOL'] = Joi.string().valid('http', 'https');
