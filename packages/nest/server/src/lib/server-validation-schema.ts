@@ -5,6 +5,7 @@ import { SchemaMap } from 'joi';
 export function serverValidationSchema(
   environment: Environment,
   {
+    port = 3000,
     apiPort = environment.production ? 443 : undefined,
     apiUrl,
     apiBaseUrl,
@@ -14,6 +15,7 @@ export function serverValidationSchema(
     environmentTier = environment.tier ?? 'development',
     logLevel = environment.production ? 'log' : 'verbose',
   }: {
+    port?: number;
     apiPort?: number;
     apiUrl?: string;
     apiBaseUrl?: string;
@@ -26,7 +28,7 @@ export function serverValidationSchema(
 ) {
   const schema: SchemaMap = {};
 
-  schema['PORT'] = Joi.number().port();
+  schema['PORT'] = Joi.number().port().default(port);
   schema['GLOBAL_API_PREFIX'] = Joi.string().default(globalApiPrefix);
   schema['ENVIRONMENT'] = Joi.string().default(environmentTier);
   schema['LOG_LEVEL'] = Joi.string().valid('verbose', 'debug', 'log', 'warn', 'error').default(logLevel);
