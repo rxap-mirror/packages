@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.12...@rxap/nest-server@11.0.0-dev.13) (2025-08-27)
+
+### Features
+
+- **server:** add default port support in validation schema ([834fa19](https://gitlab.com/rxap/packages/commit/834fa19b8e147132ff38117e65fb726ad4fed1c5))
+
 # [11.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.11...@rxap/nest-server@11.0.0-dev.12) (2025-08-27)
 
 ### Bug Fixes
