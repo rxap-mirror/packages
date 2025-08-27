@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.7...@rxap/nest-server@11.0.0-dev.8) (2025-08-27)
+
+### Features
+
+- **server:** add validation schema utilities for API and CORS configuration ([a9a061c](https://gitlab.com/rxap/packages/commit/a9a061c48df14a53a378340549ad8258bf1a7d39))
+
 # [11.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.6...@rxap/nest-server@11.0.0-dev.7) (2025-05-20)
 
 ### Bug Fixes
