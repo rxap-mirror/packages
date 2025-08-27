@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.11",
+  "version": "11.0.0-dev.12",
   "name": "@rxap/nest-server",
   "description": "Provides a set of utilities and base classes for building NestJS servers, including monolithic, microservice, and hybrid applications. It offers features such as environment configuration, logger integration, and setup for common middleware like cookie parsing, CORS, and Swagger. This package aims to streamline the process of setting up and configuring NestJS applications for various deployment scenarios.\n",
   "license": "GPL-3.0-or-later",
