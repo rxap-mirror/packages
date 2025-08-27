@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.9...@rxap/nest-server@11.0.0-dev.10) (2025-08-27)
+
+### Features
+
+- **server:** introduce `apiBaseUrl` for better URL management ([205aafb](https://gitlab.com/rxap/packages/commit/205aafb9291ff3d46b77e7fa93f73f5a2cf69dd8))
+
 # [11.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.8...@rxap/nest-server@11.0.0-dev.9) (2025-08-27)
 
 ### Bug Fixes
