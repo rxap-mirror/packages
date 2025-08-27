@@ -11,7 +11,11 @@ import { hostname } from 'os';
 import { Server } from './server';
 
 export interface MonolithicBootstrapOptions {
+  /**
+   * @deprecated use apiUrl instead
+   */
   publicUrl: string;
+  apiUrl: string;
   port: number;
   version: string;
   globalApiPrefix?: string;
@@ -35,40 +39,53 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
     return config.get('GLOBAL_API_PREFIX') ?? config.get('globalPrefix') ?? '';
   }
 
-  public getPublicPort(config: ConfigService): number {
+  /**
+   * Returns the public port of the api.
+   * This is the public port used to access the api from the internet.
+   * @param config
+   * @param port
+   */
+  public getApiPort(config: ConfigService, port = this.getPort(config)): number {
 
-    const port = this.getPort(config);
-    let publicPort = config.get(
-      'PUBLIC_PORT',
+    let apiPort = config.get(
+      'API_PORT',
       this.environment.production ? config.get<string | number>('ROOT_DOMAIN_PORT', port) : port,
     );
 
-    if (typeof publicPort === 'string') {
-      if (publicPort.startsWith(':')) {
-        publicPort = publicPort.substring(1);
+    if (typeof apiPort === 'string') {
+      if (apiPort.startsWith(':')) {
+        apiPort = apiPort.substring(1);
       }
-      publicPort = Number(publicPort);
+      apiPort = Number(apiPort);
     }
 
-    return publicPort;
+    return apiPort;
   }
 
-  protected buildPublicUrl(config: ConfigService, port: number, globalApiPrefix: string): string {
+  /**
+   * Builds the public url of the api.
+   * This is the public url used to access the api from the internet.
+   * @param config
+   * @param port
+   * @param globalApiPrefix
+   * @protected
+   */
+  protected buildApiUrl(config: ConfigService, port: number, globalApiPrefix: string): string {
 
-    let publicUrl = config.get('PUBLIC_URL');
+    let apiUrl = config.get('API_URL');
 
-    if (!publicUrl) {
-      const publicProtocol = config.get('PUBLIC_PROTOCOL', this.environment.production ? 'https' : 'http');
+    if (!apiUrl) {
+      const publicProtocol = config.get('API_PROTOCOL', this.environment.production ? 'https' : 'http');
       const publicDomain = config.get<string>(
-        'PUBLIC_DOMAIN',
+        'API_DOMAIN',
         this.environment.production ? config.get<string>('ROOT_DOMAIN', hostname()) : 'localhost',
       );
-      const publicPort = this.getPublicPort(config);
-      publicUrl = `${ publicProtocol }://${ publicDomain }:${ publicPort }`;
+      const publicPort = this.getApiPort(config);
+      apiUrl = `${ publicProtocol }://${ publicDomain }:${ publicPort }`;
     }
 
-    if (!publicUrl.endsWith('/')) {
-      publicUrl += '/';
+    if (!apiUrl.endsWith('/')) {
+      apiUrl += '/';
     }
 
     if (globalApiPrefix) {
@@ -78,10 +95,10 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
       if (!globalApiPrefix.endsWith('/')) {
         globalApiPrefix += '/';
       }
-      publicUrl += globalApiPrefix;
+      apiUrl += globalApiPrefix;
     }
 
-    return publicUrl;
+    return apiUrl;
   }
 
   protected override prepareOptions(app: NestApplicationContext, logger: Logger, config: ConfigService): BootstrapOptions {
@@ -98,15 +115,16 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
 
     const globalApiPrefix = this.getGlobalApiPrefix(config);
     const port = this.getPort(config);
-    const publicUrl = this.buildPublicUrl(config, port, globalApiPrefix);
+    const apiUrl = this.buildApiUrl(config, port, globalApiPrefix);
 
-    (config as any).internalConfig.PUBLIC_URL = publicUrl;
+    (config as any).internalConfig.API_URL = apiUrl;
 
     return {
       globalPrefixOptions: {},
       ...this.bootstrapOptions,
       globalApiPrefix,
-      publicUrl,
+      publicUrl: apiUrl,
+      apiUrl,
       version: DetermineVersion(this.environment),
       port,
     } as BootstrapOptions;

@@ -2,6 +2,7 @@
 export * from './lib/hybrid';
 export * from './lib/microservice';
 export * from './lib/monolithic';
+export * from './lib/server-validation-schema';
 export * from './lib/server';
 export * from './lib/setup-cookie-parser';
 export * from './lib/setup-cors';
