@@ -1,15 +1,20 @@
 import {
   ChangeDetectorRef,
   Directive,
+  effect,
   HostBinding,
   Inject,
+  input,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { MatProgressBar } from '@angular/material/progress-bar';
+import {
+  MatProgressBar,
+  ProgressBarMode,
+} from '@angular/material/progress-bar';
 import {
   Observable,
   Subscription,
@@ -40,6 +45,8 @@ export class CardProgressBarDirective implements OnInit, OnDestroy, OnChanges {
   @Input()
   public loading$: Observable<boolean> | null = null;
 
+  public readonly mode = input<ProgressBarMode>('indeterminate');
+
   private subscription?: Subscription;
 
   constructor(
@@ -48,10 +55,16 @@ export class CardProgressBarDirective implements OnInit, OnDestroy, OnChanges {
     @Inject(ChangeDetectorRef)
     private readonly cdr: ChangeDetectorRef,
   ) {
+    effect(() => {
+      const mode = this.mode();
+      if (this.progressBar) {
+        this.progressBar.mode = mode;
+      }
+    });
   }
 
   public ngOnInit(): void {
-    this.progressBar.mode = 'indeterminate';
+    this.progressBar.mode = this.mode();
     this.subscribeLoading();
   }
 
