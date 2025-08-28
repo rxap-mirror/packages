@@ -182,7 +182,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
         console.warn(`No content fetched or content was null for CID ${options.fromCid}.`);
       }
     } catch (error) {
-      console.error(`Failed to fetch or process content for CID ${options.fromCid}:`, error);
+      console.error(`Failed to fetch or process content for CID ${options.fromCid}: ${error.message}`);
       // Decide how to handle fetch/processing errors
     }
   }
@@ -208,7 +208,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
         console.warn(`Could not extract a valid CID format from DNS TXT data: "${txtData}"`);
       }
     } catch (error) {
-      console.error(`DNS lookup for ${domain} failed:`, error);
+      console.error(`DNS lookup for ${domain} failed: ${error.message}`);
       // Decide if failure is critical or recoverable
     }
   }
