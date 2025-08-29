@@ -16,7 +16,7 @@
     "@rxap/data-source": "^19.1.1-dev.1",
     "@rxap/data-structure-tree": "^1.1.17-dev.0",
     "@rxap/forms": "^19.1.0-dev.5",
-    "@rxap/material-directives": "^19.0.4",
+    "@rxap/material-directives": "^19.1.0-dev.0",
     "@rxap/pattern": "^1.1.14",
     "@rxap/rxjs": "^1.1.16",
     "@rxap/utilities": "^16.4.5-dev.0",
@@ -105,7 +105,7 @@
       },
       {
         "package": "@rxap/material-directives",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",

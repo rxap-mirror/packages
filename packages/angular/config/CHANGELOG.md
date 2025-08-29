@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.1-dev.0...@rxap/config@19.1.1-dev.1) (2025-08-29)
+
+### Bug Fixes
+
+- **config:** add explicit `any` type to error in catch blocks ([cc33b70](https://gitlab.com/rxap/packages/commit/cc33b70f30a0d9e61034b894cbc7933dc30612cf))
+- **config:** include error message in logging for better clarity ([ad765e5](https://gitlab.com/rxap/packages/commit/ad765e5b5f294c7deb6c2e781ac6a9df22d4365f))
+
 ## [19.1.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.0...@rxap/config@19.1.1-dev.0) (2025-05-20)
 
 ### Bug Fixes

@@ -15,7 +15,7 @@
     "@angular/material": "^19.1.1",
     "@angular/router": "^19.2.1",
     "@rxap/authentication": "^19.0.4",
-    "@rxap/config": "^19.1.1-dev.0",
+    "@rxap/config": "^19.1.1-dev.1",
     "@rxap/forms": "^19.1.0-dev.5",
     "@rxap/material-form-system": "^19.0.4",
     "@rxap/pattern": "^1.1.14",
@@ -81,7 +81,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.1.1-dev.0"
+        "version": "19.1.1-dev.1"
       },
       {
         "package": "@rxap/data-source",

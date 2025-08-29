@@ -1,5 +1,5 @@
 {
-  "version": "19.1.1-dev.2",
+  "version": "19.1.1-dev.3",
   "name": "@rxap/ngx-localize",
   "description": "This package provides internationalization (i18n) support for Angular applications, including services for language management, an HTTP interceptor for setting the `Accept-Language` header, and a language selector component. It allows you to set and manage the current language of your application, redirect users based on their language preference, and configure available languages. The package also includes an init generator to handle peer dependencies.\n",
   "license": "GPL-3.0-or-later",
@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
-    "@rxap/config": "^19.1.1-dev.0",
+    "@rxap/config": "^19.1.1-dev.1",
     "@rxap/ngx-user": "^19.0.4",
     "rxjs": "^7.8.1"
   },
@@ -60,7 +60,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.1.1-dev.0"
+        "version": "19.1.1-dev.1"
       },
       {
         "package": "@rxap/data-source",
