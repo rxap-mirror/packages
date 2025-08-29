@@ -37,9 +37,13 @@ export class LanguageSelectorService {
     if (language !== this.selectedLanguage()) {
       if (Object.keys(this.languages()).includes(language)) {
         localStorage.setItem("locale", language);
-        if (reload) {
-          location.reload();
-        }
+      } else if (this.defaultLanguage()) {
+        localStorage.setItem("locale", this.defaultLanguage());
+      } else {
+        localStorage.removeItem("locale");
+      }
+      if (reload) {
+        location.reload();
       }
     }
   }
