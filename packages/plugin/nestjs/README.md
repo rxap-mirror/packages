@@ -23,6 +23,7 @@ This npm package provides generators and executors for NestJS applications withi
   - [microservice](#microservice)
   - [feature-microservice](#feature-microservice)
   - [frontend-microservice](#frontend-microservice)
+  - [dynamic-configuration-module](#dynamic-configuration-module)
 - [Executors](#executors)
   - [package-json](#package-json)
   - [swagger-generate](#swagger-generate)
@@ -69,7 +70,7 @@ nx g @rxap/plugin-nestjs:init-application \
 Use the nx generate to create a new standalone microservice:
 
 ```bash
-nx g @rxap/plugin-nestjs:frontend-microservice --name $NAME
+nx g @rxap/plugin-nestjs:microservice --name $NAME
 ```
 
 ## Frontend Microservice
@@ -329,6 +330,20 @@ jwt | boolean | false | Whether the application should use jwt
 openApi | boolean | false | Whether the application should use openApi as client
 apiConfigurationFile | string |  | The api configuration file to use
 standalone | boolean | false | Whether the nest service should be standalone
+
+## dynamic-configuration-module
+> Extends the module with the dynamic configuration module pattern
+
+```bash
+nx g @rxap/plugin-nestjs:dynamic-configuration-module
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+project | string |  | 
+overwrite | boolean |  | 
+name | string |  | name of the module. defaults to the project name
+isGlobal | boolean | true | 
 # Executors
 
 ## package-json
