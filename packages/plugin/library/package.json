@@ -1,5 +1,5 @@
 {
-  "version": "20.2.2-dev.0",
+  "version": "20.2.2-dev.1",
   "name": "@rxap/plugin-library",
   "description": "This package provides generators and executors for managing and maintaining Nx plugin libraries. It includes functionality for generating index exports, fixing dependencies, generating JSON schemas, and more. It helps streamline the development process for Nx plugins by automating common tasks and enforcing best practices.\n",
   "license": "GPL-3.0-or-later",
@@ -9,9 +9,9 @@
     "@nx/plugin": "20.5.0",
     "@rxap/node-utilities": "^1.3.11-dev.0",
     "@rxap/plugin-utilities": "^20.0.5-dev.0",
-    "@rxap/ts-morph": "^1.5.6-dev.0",
+    "@rxap/ts-morph": "^1.6.0-dev.0",
     "@rxap/utilities": "^16.4.5-dev.0",
-    "@rxap/workspace-ts-morph": "^19.1.13-dev.0",
+    "@rxap/workspace-ts-morph": "^19.1.13-dev.1",
     "@rxap/workspace-utilities": "^19.8.1-dev.0",
     "colors": "1.4.0",
     "handlebars": "4.7.8",

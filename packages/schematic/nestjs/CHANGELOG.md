@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@19.0.5-dev.0...@rxap/schematic-nestjs@19.0.5-dev.1) (2025-09-01)
+
+**Note:** Version bump only for package @rxap/schematic-nestjs
+
 ## [19.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@19.0.4...@rxap/schematic-nestjs@19.0.5-dev.0) (2025-05-19)
 
 **Note:** Version bump only for package @rxap/schematic-nestjs

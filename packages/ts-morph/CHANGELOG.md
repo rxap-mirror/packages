@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.5.6-dev.0...@rxap/ts-morph@1.6.0-dev.0) (2025-09-01)
+
+### Features
+
+- **ts-morph:** add utilities for coercing interface and function declarations ([6b1b5ff](https://gitlab.com/rxap/packages/commit/6b1b5ff6552a22be754bac3077887e9202fa7d4a))
+
 ## [1.5.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.5.5...@rxap/ts-morph@1.5.6-dev.0) (2025-05-19)
 
 **Note:** Version bump only for package @rxap/ts-morph

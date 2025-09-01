@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.5-dev.1...@rxap/plugin-nestjs@20.2.0-dev.0) (2025-09-01)
+
+### Features
+
+- **nestjs:** add dynamic configuration module generator ([d8c9c0a](https://gitlab.com/rxap/packages/commit/d8c9c0a4bb83be1a80f54bfed9430e749caf6477))
+
 ## [20.1.5-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.1.5-dev.0...@rxap/plugin-nestjs@20.1.5-dev.1) (2025-07-07)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs
