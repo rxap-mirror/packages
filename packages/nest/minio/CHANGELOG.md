@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@11.0.0-dev.5...@rxap/nest-minio@11.0.0-dev.6) (2025-09-01)
+
+### Features
+
+- **minio:** enhance validation schema with dynamic defaults ([032cfb9](https://gitlab.com/rxap/packages/commit/032cfb9fa4a11ac5f29fb4c6ec27d470f1a034bd))
+
 # [11.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@11.0.0-dev.4...@rxap/nest-minio@11.0.0-dev.5) (2025-06-24)
 
 ### Bug Fixes
