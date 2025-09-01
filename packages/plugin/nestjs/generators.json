@@ -64,6 +64,11 @@
       "factory": "./src/generators/frontend-microservice/generator",
       "schema": "./src/generators/frontend-microservice/schema.json",
       "description": "frontend-microservice generator"
+    },
+    "dynamic-configuration-module": {
+      "factory": "./src/generators/dynamic-configuration-module/generator",
+      "schema": "./src/generators/dynamic-configuration-module/schema.json",
+      "description": "Extends the module with the dynamic configuration module pattern"
     }
   },
   "schematics": {

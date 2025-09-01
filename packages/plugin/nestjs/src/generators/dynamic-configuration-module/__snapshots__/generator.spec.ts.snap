@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dynamic-configuration-module should add global dynamic configuration module to the root module 1`] = `
+"import { ConfigurableModuleBuilder, DynamicModule, Global, Module } from '@nestjs/common';
+import { TestModuleOptions } from './test-module-options';
+import { TEST_MODULE_OPTIONS } from './tokens';
+
+export const {
+  ConfigurableModuleClass,
+  MODULE_OPTIONS_TOKEN,
+  OPTIONS_TYPE,
+  ASYNC_OPTIONS_TYPE,
+} = new ConfigurableModuleBuilder<TestModuleOptions>()
+  .setExtras({ global: true })
+  .build();
+
+@Module({
+  controllers: [],
+  providers: [],
+  exports: [],
+})
+@Global()
+export class TestModule extends ConfigurableModuleClass {
+  static register(options: typeof OPTIONS_TYPE): DynamicModule {
+    return this.updateProviders(super.register(options));
+  }
+
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+    return this.updateProviders(super.registerAsync(options));
+  }
+
+  private static updateProviders(module: DynamicModule) {
+    module.providers ??= [];
+    module.providers.push({
+      provide: TEST_MODULE_OPTIONS,
+      useExisting: MODULE_OPTIONS_TOKEN,
+    });
+    return module;
+  }
+}
+"
+`;
+
+exports[`dynamic-configuration-module should add global dynamic configuration module to the root module 2`] = `
+"export interface TestModuleOptions {
+  disabled: boolean;
+}
+"
+`;
+
+exports[`dynamic-configuration-module should add global dynamic configuration module to the root module 3`] = `
+"import { ConfigurableModuleOptionsFactory, Inject, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { TestModuleOptions } from './test-module-options';
+
+@Injectable()
+export class TestModuleOptionsFactory implements ConfigurableModuleOptionsFactory<TestModuleOptions, 'create'> {
+  @Inject(ConfigService)
+  private readonly config!: ConfigService;
+  @Inject(Logger)
+  private readonly logger!: Logger;
+
+  async create(): Promise<TestModuleOptions> {
+    return { disabled: this.config.get('TEST_DISABLED', false) }
+  }
+}
+"
+`;
+
+exports[`dynamic-configuration-module should add global dynamic configuration module to the root module 4`] = `
+"import { Environment } from '@rxap/nest-utilities';
+import * as Joi from 'joi';
+import { SchemaMap } from 'joi';
+import { TestModuleOptions } from './test-module-options';
+
+export function testValidationSchema(environment: Environment, defaults: Partial<Pick<TestModuleOptions, 'disabled'>> = {}) {
+  const schema: SchemaMap = {};
+  schema['TEST_DISABLED'] = Joi.boolean().default(defaults.disabled ?? false);
+  return schema
+}
+"
+`;
+
+exports[`dynamic-configuration-module should add global dynamic configuration module to the root module 5`] = `
+"export const TEST_MODULE_OPTIONS = Symbol('TEST_MODULE_OPTIONS');
+"
+`;
+
+exports[`dynamic-configuration-module should add global dynamic configuration module to the root module 6`] = `
+"// region 
+export * from './lib/test.module';
+export * from './lib/test-module-options.factory';
+export * from './lib/test-module-options';
+export * from './lib/test-validation-schema';
+export * from './lib/tokens';
+// endregion
+"
+`;
+
+exports[`dynamic-configuration-module should add local dynamic configuration module to the root module 1`] = `
+"import { ConfigurableModuleBuilder, Module } from '@nestjs/common';
+import { TestModuleOptions } from './test-module-options';
+import { TEST_MODULE_OPTIONS } from './tokens';
+
+export const {
+  ConfigurableModuleClass,
+  MODULE_OPTIONS_TOKEN,
+  OPTIONS_TYPE,
+  ASYNC_OPTIONS_TYPE,
+} = new ConfigurableModuleBuilder<TestModuleOptions>()
+  .setExtras({ global: false })
+  .build();
+
+@Module({
+  controllers: [],
+  providers: [],
+  exports: [],
+})
+export class TestModule extends ConfigurableModuleClass {
+  static register(options: typeof OPTIONS_TYPE): DynamicModule {
+    return this.updateProviders(super.register(options));
+  }
+
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+    return this.updateProviders(super.registerAsync(options));
+  }
+
+  private static updateProviders(module: DynamicModule) {
+    module.providers ??= [];
+    module.providers.push({
+      provide: TEST_MODULE_OPTIONS,
+      useExisting: MODULE_OPTIONS_TOKEN,
+    });
+    return module;
+  }
+}
+"
+`;
+
+exports[`dynamic-configuration-module should add local dynamic configuration module to the root module 2`] = `
+"export interface TestModuleOptions {
+  disabled: boolean;
+}
+"
+`;
+
+exports[`dynamic-configuration-module should add local dynamic configuration module to the root module 3`] = `
+"import { ConfigurableModuleOptionsFactory, Inject, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { TestModuleOptions } from './test-module-options';
+
+@Injectable()
+export class TestModuleOptionsFactory implements ConfigurableModuleOptionsFactory<TestModuleOptions, 'create'> {
+  @Inject(ConfigService)
+  private readonly config!: ConfigService;
+  @Inject(Logger)
+  private readonly logger!: Logger;
+
+  async create(): Promise<TestModuleOptions> {
+    return { disabled: this.config.get('TEST_DISABLED', false) }
+  }
+}
+"
+`;
+
+exports[`dynamic-configuration-module should add local dynamic configuration module to the root module 4`] = `
+"import { Environment } from '@rxap/nest-utilities';
+import * as Joi from 'joi';
+import { SchemaMap } from 'joi';
+import { TestModuleOptions } from './test-module-options';
+
+export function testValidationSchema(environment: Environment, defaults: Partial<Pick<TestModuleOptions, 'disabled'>> = {}) {
+  const schema: SchemaMap = {};
+  schema['TEST_DISABLED'] = Joi.boolean().default(defaults.disabled ?? false);
+  return schema
+}
+"
+`;
+
+exports[`dynamic-configuration-module should add local dynamic configuration module to the root module 5`] = `
+"export const TEST_MODULE_OPTIONS = Symbol('TEST_MODULE_OPTIONS');
+"
+`;
+
+exports[`dynamic-configuration-module should add local dynamic configuration module to the root module 6`] = `
+"// region 
+export * from './lib/test.module';
+export * from './lib/test-module-options.factory';
+export * from './lib/test-module-options';
+export * from './lib/test-validation-schema';
+export * from './lib/tokens';
+// endregion
+"
+`;

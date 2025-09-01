@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "DynamicConfigurationModule",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": ""
+    },
+    "overwrite": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string",
+      "description": "name of the module. defaults to the project name"
+    },
+    "isGlobal": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": ["project"]
+}
