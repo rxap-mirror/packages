@@ -28,7 +28,7 @@ nx g @rxap/plugin-nestjs:init-application \
 Use the nx generate to create a new standalone microservice:
 
 ```bash
-nx g @rxap/plugin-nestjs:frontend-microservice --name $NAME
+nx g @rxap/plugin-nestjs:microservice --name $NAME
 ```
 
 ## Frontend Microservice
