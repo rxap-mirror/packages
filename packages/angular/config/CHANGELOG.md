@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.1-dev.1...@rxap/config@19.2.0-dev.0) (2025-09-03)
+
+### Features
+
+- **angular:** allow custom fetch function for fetching CID content ([8dc1d6d](https://gitlab.com/rxap/packages/commit/8dc1d6db10895d80882d8fe3d42066529ad9cf58))
+
 ## [19.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.1-dev.0...@rxap/config@19.1.1-dev.1) (2025-08-29)
 
 ### Bug Fixes
