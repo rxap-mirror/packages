@@ -145,9 +145,9 @@ export async function fetchCidContent(cid: string, path?: string): Promise<Blob 
   }
 }
 
-export async function fetchCidContentAsJson(cid: string, path?: string): Promise<any | null> {
+export async function fetchCidContentAsJson(cid: string, path?: string, _fetchCidContent = fetchCidContent): Promise<any | null> {
   console.log(`Fetching JSON content for CID: ${cid}`);
-  const blob = await fetchCidContent(cid, path);
+  const blob = await _fetchCidContent(cid, path);
   if (blob) {
     try {
       const text = await blob.text();

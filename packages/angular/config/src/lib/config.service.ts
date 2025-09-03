@@ -40,6 +40,7 @@ export interface ConfigLoadOptions {
    * This takes precedence over `fromDns` if both are provided.
    */
   fromCid?: string;
+  fetchCidContent?: (cid: string, path?: string) => Promise<Blob | null>;
 }
 
 @Injectable({
@@ -170,7 +171,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   private static async loadConfigFromCid(options: ConfigLoadOptions & { fromCid: string | boolean }) {
     console.debug('Loading config from CID: ', options.fromCid);
     try {
-      const cidContent = await fetchCidContentAsJson(options.fromCid);
+      const cidContent = await fetchCidContentAsJson(options.fromCid, undefined, options.fetchCidContent);
       if (cidContent && typeof cidContent === 'object') {
         console.log(`Merging configuration from CID ${options.fromCid}.`, cidContent);
         // Merge CID content into the existing config object
