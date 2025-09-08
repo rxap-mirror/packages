@@ -1,0 +1,43 @@
+{
+  "version": "11.0.0-dev.0",
+  "name": "@rxap/nest-typeorm",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.1",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/typeorm": "^11.0.0",
+    "@rxap/nest-utilities": "^11.0.0-dev.6",
+    "joi": "^17.9.2",
+    "typeorm": "^0.3.26"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/typeorm",
+  "keywords": [
+    "nest",
+    "nest-typeorm",
+    "packages",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/typeorm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/typeorm"
+  },
+  "type": "commonjs",
+  "types": "./src/index.d.ts"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "nest-typeorm",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/typeorm/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag",
+        "fallbackCurrentVersionResolver": "disk"
+      }
+    }
+  },
+  "tags": ["nest", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nest/typeorm",
+        "tsConfig": "packages/nest/typeorm/tsconfig.lib.json",
+        "packageJson": "packages/nest/typeorm/package.json",
+        "main": "packages/nest/typeorm/src/index.ts",
+        "assets": ["packages/nest/typeorm/*.md"]
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/typeorm/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

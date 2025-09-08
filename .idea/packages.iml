@@ -596,6 +596,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/browser/localize/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/browser/localize/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/browser/localize/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/typeorm/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/typeorm/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/typeorm/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/packages/nest/typeorm/coverage"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>
