@@ -10293,7 +10293,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/nest-typeorm@workspace:packages/nest/typeorm"
   dependencies:
-    tslib: ^2.3.0
+    tslib: 2.6.2
+  peerDependencies:
+    "@nestjs/common": ^11.1.1
+    "@nestjs/config": ^4.0.2
+    "@nestjs/typeorm": ^11.0.0
+    "@rxap/nest-utilities": ^11.0.0-dev.6
+    joi: ^17.9.2
+    typeorm: ^0.3.26
   languageName: unknown
   linkType: soft
 
