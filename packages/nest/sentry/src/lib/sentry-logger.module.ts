@@ -1,5 +1,6 @@
 import {
   ConfigurableModuleBuilder,
+  ConsoleLoggerOptions,
   DynamicModule,
   Global,
   Logger,
@@ -48,23 +49,25 @@ export const {
   imports: [],
   exports: [ Logger ],
 })
-export class SentryModule extends ConfigurableModuleClass {
+export class SentryLoggerModule extends ConfigurableModuleClass {
 
   static register(
     options: typeof OPTIONS_TYPE,
+    consoleLoggerOptions: ConsoleLoggerOptions | null = null,
     printMessagesFunction: PrintMessagesFunction | null = null
   ): DynamicModule {
-    return this.updateProviders(super.register(options), printMessagesFunction);
+    return this.updateProviders(super.register(options), consoleLoggerOptions, printMessagesFunction);
   }
 
   static registerAsync(
     options: typeof ASYNC_OPTIONS_TYPE,
+    consoleLoggerOptions: ConsoleLoggerOptions | null = null,
     printMessagesFunction: PrintMessagesFunction | null = null
   ): DynamicModule {
-    return this.updateProviders(super.registerAsync(options), printMessagesFunction);
+    return this.updateProviders(super.registerAsync(options), consoleLoggerOptions, printMessagesFunction);
   }
 
-  private static updateProviders(module: DynamicModule, printMessagesFunction: PrintMessagesFunction | null) {
+  private static updateProviders(module: DynamicModule, consoleLoggerOptions: ConsoleLoggerOptions | null = null, printMessagesFunction: PrintMessagesFunction | null) {
     module.providers ??= [];
     module.providers.push({
       provide: SENTRY_MODULE_OPTIONS,
@@ -76,6 +79,7 @@ export class SentryModule extends ConfigurableModuleClass {
         timestamp: true,
         logLevels: GetLogLevels(),
         ...options.logger ?? {},
+        ...consoleLoggerOptions ?? {},
       }),
       inject: [ SENTRY_MODULE_OPTIONS ],
     });
