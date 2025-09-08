@@ -101,6 +101,7 @@
     "nest-socket-io-client",
     "nest-supabase",
     "nest-testing",
+    "nest-typeorm",
     "nest-utilities",
     "nest-vault",
     "nest-web3-storage",
