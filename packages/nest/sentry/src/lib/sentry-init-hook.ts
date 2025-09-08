@@ -5,7 +5,7 @@ import { nodeProfilingIntegration } from '@sentry/profiling-node';
 import { DetermineSentryEnvironment } from './determine-sentry-environment';
 import { DetermineSentryRelease } from './determine-sentry-release';
 
-export function sentryInitHook(options: Partial<NodeOptions>) {
+export function sentryInitHook(options: Partial<NodeOptions> = {}) {
   return (_: any, environment: Environment) => {
     const dsn = process.env['SENTRY_DSN'] ?? environment.sentry?.dsn;
 
