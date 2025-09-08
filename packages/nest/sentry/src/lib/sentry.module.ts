@@ -1,30 +1,21 @@
 import {
   ConfigurableModuleBuilder,
-  ConsoleLoggerOptions,
   DynamicModule,
   Global,
-  HttpException,
   Logger,
   Module,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { APP_INTERCEPTOR } from '@nestjs/core';
 import {
   CONSOLE_LOGGER_OPTIONS,
   PrintMessagesFunction,
   RXAP_LOGGER_PRINT_MESSAGES,
   RxapLogger,
 } from '@rxap/nest-logger';
-import { SentryInterceptor } from './sentry.interceptor';
-import {
-  SentryInterceptorOptions,
-  SentryModuleOptions,
-} from './sentry.interfaces';
+import { GetLogLevels } from '@rxap/nest-utilities';
+import { SentryModuleOptions } from './sentry.interfaces';
 import { SentryLogger } from './sentry.logger';
-import {
-  SENTRY_INTERCEPTOR_OPTIONS,
-  SENTRY_MODULE_OPTIONS,
-} from './tokens';
+import { SENTRY_MODULE_OPTIONS } from './tokens';
 
 export const {
   ConfigurableModuleClass,
@@ -36,15 +27,6 @@ export const {
     isGlobal: true,
   })
   .build();
-
-export const DEFAULT_SENTRY_INTERCEPTOR_OPTIONS: SentryInterceptorOptions = {
-  filters: [
-    {
-      type: HttpException,
-      filter: (exception: HttpException) => 500 > exception.getStatus(),
-    },
-  ],
-};
 
 @Global()
 @Module({
@@ -63,23 +45,26 @@ export const DEFAULT_SENTRY_INTERCEPTOR_OPTIONS: SentryInterceptorOptions = {
     SentryLogger,
     RxapLogger,
   ],
+  imports: [],
   exports: [ Logger ],
 })
 export class SentryModule extends ConfigurableModuleClass {
 
-  static register(options: typeof OPTIONS_TYPE = {}, consoleLoggerOptions: ConsoleLoggerOptions = {}, printMessagesFunction: PrintMessagesFunction | null = null): DynamicModule {
-    return this.updateProviders(super.register(options), consoleLoggerOptions, printMessagesFunction);
+  static register(
+    options: typeof OPTIONS_TYPE,
+    printMessagesFunction: PrintMessagesFunction | null = null
+  ): DynamicModule {
+    return this.updateProviders(super.register(options), printMessagesFunction);
   }
 
-  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE, consoleLoggerOptions: ConsoleLoggerOptions = {}, printMessagesFunction: PrintMessagesFunction | null = null): DynamicModule {
-    return this.updateProviders(super.registerAsync(options), consoleLoggerOptions, printMessagesFunction);
+  static registerAsync(
+    options: typeof ASYNC_OPTIONS_TYPE,
+    printMessagesFunction: PrintMessagesFunction | null = null
+  ): DynamicModule {
+    return this.updateProviders(super.registerAsync(options), printMessagesFunction);
   }
 
-  private static updateProviders(module: DynamicModule, {
-    timestamp,
-    logLevels,
-    ...consoleLoggerOptions
-  }: ConsoleLoggerOptions, printMessagesFunction: PrintMessagesFunction | null) {
+  private static updateProviders(module: DynamicModule, printMessagesFunction: PrintMessagesFunction | null) {
     module.providers ??= [];
     module.providers.push({
       provide: SENTRY_MODULE_OPTIONS,
@@ -87,16 +72,12 @@ export class SentryModule extends ConfigurableModuleClass {
     });
     module.providers.push({
       provide: CONSOLE_LOGGER_OPTIONS,
-      useValue: {
-        ...consoleLoggerOptions,
-        timestamp: timestamp ?? true,
-        logLevels: logLevels ?? [ 'log', 'error', 'warn' ],
-      },
-    });
-    module.providers.push({
-      provide: SENTRY_INTERCEPTOR_OPTIONS,
-      useFactory: (options: SentryModuleOptions) => options.interceptors ?? DEFAULT_SENTRY_INTERCEPTOR_OPTIONS,
-      inject: [MODULE_OPTIONS_TOKEN]
+      useFactory: (options: SentryModuleOptions) => ({
+        timestamp: true,
+        logLevels: GetLogLevels(),
+        ...options.logger ?? {},
+      }),
+      inject: [ SENTRY_MODULE_OPTIONS ],
     });
     if (printMessagesFunction) {
       module.providers.push({
@@ -104,23 +85,7 @@ export class SentryModule extends ConfigurableModuleClass {
         useValue: printMessagesFunction
       });
     }
-    module.providers.push({
-      provide: APP_INTERCEPTOR,
-      useClass: SentryInterceptor,
-    });
     return module;
-  }
-
-  public static forRoot(
-    options: typeof OPTIONS_TYPE, consoleLoggerOptions: ConsoleLoggerOptions = {}
-  ): DynamicModule {
-    return this.register(options, consoleLoggerOptions);
-  }
-
-  public static forRootAsync(
-    options: typeof ASYNC_OPTIONS_TYPE, consoleLoggerOptions: ConsoleLoggerOptions = {}
-  ): DynamicModule {
-    return this.registerAsync(options, consoleLoggerOptions);
   }
 
 }

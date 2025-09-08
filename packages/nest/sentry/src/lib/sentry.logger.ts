@@ -7,6 +7,7 @@ import {
   isString,
   isUndefined,
 } from '@nestjs/common/utils/shared.utils';
+import { ConfigService } from '@nestjs/config';
 import {
   CONSOLE_LOGGER_OPTIONS,
   RxapLogger,
@@ -31,6 +32,9 @@ export class SentryLogger extends RxapLogger {
   @Inject(SENTRY_MODULE_OPTIONS)
   private readonly sentryOptions!: SentryModuleOptions;
 
+  @Inject(ConfigService)
+  private readonly config!: ConfigService;
+
   override log(message: string, ...optionalParams: any[]) {
     let asBreadcrumb = false;
     if (optionalParams.length) {
@@ -43,10 +47,10 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.log(message, ...optionalParams);
-    if (!this.sentryOptions.dsn) {
+    if (!this.config.get('SENTRY_ENABLED')) {
       return;
     }
-    if (this.sentryOptions.logLevels && !this.sentryOptions.logLevels.includes('log')) {
+    if (this.sentryOptions.logLevels && !['log', 'info'].some(level => this.sentryOptions.logLevels!.includes(level as any))) {
       return;
     }
     try {
@@ -57,11 +61,7 @@ export class SentryLogger extends RxapLogger {
           data: {
             context,
           },
-        }) :
-        Sentry.captureMessage(message, {
-          level: 'log',
-          extra: { context },
-        });
+        }) : Sentry.logger.info(message, { data: context });
     } catch (err: any) {
       console.error('Failed to capture message with sentry: ' + err.message);
     }
@@ -76,16 +76,42 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.error(message, ...optionalParams);
-    if (!this.sentryOptions.dsn) {
+    if (!this.config.get('SENTRY_ENABLED')) {
       return;
     }
     if (this.sentryOptions.logLevels && !this.sentryOptions.logLevels.includes('error')) {
       return;
     }
     try {
-      Sentry.captureMessage(message, {
-        level: 'error',
-        extra: {
+      Sentry.logger.error(message, {
+        data: {
+          context,
+          stack,
+        },
+      });
+    } catch (err: any) {
+      console.error('Failed to capture message with sentry: ' + err.message);
+    }
+  }
+
+  override fatal(message: string, ...optionalParams: any[]) {
+    const {
+      context,
+      stack,
+    } = this._getContextAndStackAndMessagesToPrint([
+      message,
+      ...optionalParams,
+    ]);
+    super.error(message, ...optionalParams);
+    if (!this.config.get('SENTRY_ENABLED')) {
+      return;
+    }
+    if (this.sentryOptions.logLevels && !this.sentryOptions.logLevels.includes('fatal')) {
+      return;
+    }
+    try {
+      Sentry.logger.fatal(message, {
+        data: {
           context,
           stack,
         },
@@ -107,10 +133,10 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.warn(message, ...optionalParams);
-    if (!this.sentryOptions.dsn) {
+    if (!this.config.get('SENTRY_ENABLED')) {
       return;
     }
-    if (this.sentryOptions.logLevels && !this.sentryOptions.logLevels.includes('warn')) {
+    if (this.sentryOptions.logLevels && !['warn', 'warning'].some(level => this.sentryOptions.logLevels!.includes(level as any))) {
       return;
     }
     try {
@@ -122,9 +148,8 @@ export class SentryLogger extends RxapLogger {
             context,
           },
         }) :
-        Sentry.captureMessage(message, {
-          level: 'warning',
-          extra: { context },
+        Sentry.logger.warn(message, {
+          data: { context },
         });
     } catch (err: any) {
       console.error('Failed to capture message with sentry: ' + err.message);
@@ -143,7 +168,7 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.debug(message, ...optionalParams);
-    if (!this.sentryOptions.dsn) {
+    if (!this.config.get('SENTRY_ENABLED')) {
       return;
     }
     if (this.sentryOptions.logLevels && !this.sentryOptions.logLevels.includes('debug')) {
@@ -158,10 +183,30 @@ export class SentryLogger extends RxapLogger {
             context,
           },
         }) :
-        Sentry.captureMessage(message, {
-          level: 'debug',
-          extra: { context },
+        Sentry.logger.debug(message, {
+          data: { context },
         });
+    } catch (err: any) {
+      console.error('Failed to capture message with sentry: ' + err.message);
+    }
+  }
+
+  override verbose(message: string, ...optionalParams: any[]) {
+    const { context } = this._getContextAndMessagesToPrint([
+      message,
+      ...optionalParams,
+    ]);
+    super.verbose(message, ...optionalParams);
+    if (!this.config.get('SENTRY_ENABLED')) {
+      return;
+    }
+    if (this.sentryOptions.logLevels && !['verbose', 'trace'].some(level => this.sentryOptions.logLevels!.includes(level as any))) {
+      return;
+    }
+    try {
+      Sentry.logger.trace(message, {
+        data: { context },
+      });
     } catch (err: any) {
       console.error('Failed to capture message with sentry: ' + err.message);
     }

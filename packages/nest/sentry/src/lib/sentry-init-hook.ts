@@ -1,10 +1,11 @@
 import { Environment } from '@rxap/nest-utilities';
 import * as Sentry from '@sentry/nestjs';
+import type { NodeOptions } from '@sentry/node/build/types/types';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
 import { DetermineSentryEnvironment } from './determine-sentry-environment';
 import { DetermineSentryRelease } from './determine-sentry-release';
 
-export function sentryInitHook() {
+export function sentryInitHook(options: Partial<NodeOptions>) {
   return (_: any, environment: Environment) => {
     const dsn = process.env['SENTRY_DSN'] ?? environment.sentry?.dsn;
 
@@ -27,10 +28,12 @@ export function sentryInitHook() {
           levels: ['error'],
         }),
         nodeProfilingIntegration(),
-        Sentry.anrIntegration({ captureStackTrace: true }),
       ],
       tracesSampleRate: 1.0,
-      profilesSampleRate: 1.0,
+      profileSessionSampleRate: 1.0,
+      profileLifecycle: 'trace',
+      enableLogs: true,
+      ...options,
     });
   };
 }
