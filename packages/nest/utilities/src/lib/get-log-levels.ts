@@ -11,6 +11,7 @@ export function GetLogLevels(): LogLevel[] {
       logLevels.push('log');
       logLevels.push('warn');
       logLevels.push('error');
+      logLevels.push('fatal');
       break;
 
     case 'debug':
@@ -18,22 +19,30 @@ export function GetLogLevels(): LogLevel[] {
       logLevels.push('log');
       logLevels.push('warn');
       logLevels.push('error');
+      logLevels.push('fatal');
       break;
 
     case 'log':
       logLevels.push('log');
       logLevels.push('warn');
       logLevels.push('error');
+      logLevels.push('fatal');
       break;
 
     default:
     case 'warn':
       logLevels.push('warn');
       logLevels.push('error');
+      logLevels.push('fatal');
       break;
 
     case 'error':
       logLevels.push('error');
+      logLevels.push('fatal');
+      break;
+
+    case 'fatal':
+      logLevels.push('fatal');
       break;
 
   }
