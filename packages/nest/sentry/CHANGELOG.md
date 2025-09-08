@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@11.0.0-dev.7...@rxap/nest-sentry@11.0.0-dev.8) (2025-09-08)
+
+### Bug Fixes
+
+- **nest-sentry:** set default value for sentryInitHook options ([db26f24](https://gitlab.com/rxap/packages/commit/db26f24ca7e5d52b3f8ef37aa2d224ca26d3d754))
+
 # [11.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@11.0.0-dev.6...@rxap/nest-sentry@11.0.0-dev.7) (2025-09-08)
 
 ### Features
