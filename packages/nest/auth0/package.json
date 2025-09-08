@@ -12,7 +12,7 @@
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.1",
     "@nestjs/jwt": "^11.0.0",
-    "@rxap/nest-utilities": "^11.0.0-dev.5",
+    "@rxap/nest-utilities": "^11.0.0-dev.6",
     "auth0": "^4.18.0",
     "joi": "^17.9.2",
     "jsonwebtoken": "*",

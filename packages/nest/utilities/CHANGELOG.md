@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@11.0.0-dev.5...@rxap/nest-utilities@11.0.0-dev.6) (2025-09-08)
+
+### Features
+
+- **utilities:** add support for 'fatal' log level in getLogLevels ([a8c4eb1](https://gitlab.com/rxap/packages/commit/a8c4eb11da0511e12ca9e1d5fd145239da55c573))
+
 # [11.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@11.0.0-dev.4...@rxap/nest-utilities@11.0.0-dev.5) (2025-08-27)
 
 ### Bug Fixes
