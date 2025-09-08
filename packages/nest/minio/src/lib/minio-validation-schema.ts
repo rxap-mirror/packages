@@ -14,7 +14,7 @@ export function minioValidationSchema(environment: Environment, {
   useSSL?: boolean;
   accessKey?: string;
   secretKey?: string;
-}) {
+} = {}) {
 
   const schema: SchemaMap = {};
 
