@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.2...@rxap/fs@1.2.0-dev.3) (2025-09-09)
+
+### Features
+
+- **fs:** introduce MimeType union and utility functions to improve type safety and clarity ([ab56a47](https://gitlab.com/rxap/packages/commit/ab56a47b60cc1da9a1439945755459ad936648db))
+
 # [1.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.1...@rxap/fs@1.2.0-dev.2) (2025-07-23)
 
 ### Features
