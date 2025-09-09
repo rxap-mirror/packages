@@ -1,23 +1,58 @@
+export type TextualMime =
+  | `text/${ string }`
+  | `${ string }/json`
+  | `${ string }+json`
+  | `${ string }/xml`
+  | `${ string }+xml`;
+
+export function isTextualMime(mimetype: string): mimetype is TextualMime {
+  return mimetype.startsWith('text/') || mimetype.endsWith('json') || mimetype.endsWith('xml');
+}
+
+export type BinaryMime =
+  | `application/${ string }`
+  | `image/${ string }`
+  | `audio/${ string }`
+  | `video/${ string }`
+  | `font/${ string }`
+  | `model/${ string }`
+
+export function isBinaryMime(mimetype: string): mimetype is BinaryMime {
+  return mimetype.startsWith('application/')
+         || mimetype.startsWith('image/')
+         || mimetype.startsWith('audio/')
+         || mimetype.startsWith('video/')
+         || mimetype.startsWith('font/')
+         || mimetype.startsWith('model/');
+}
+
+export type MimeType = TextualMime | BinaryMime | string;
+
+export function isMimeType(mimetype: string): mimetype is MimeType {
+  return isTextualMime(mimetype) || isBinaryMime(mimetype) || !!mimetype.match(/^[^/]+\/[^+]+(\+[^/]+)?$/);
+}
+
 export interface VirtualFileLike {
   readonly name: string;
   readonly fullName?: string;
-  mimetype?: string;
+  mimetype?: MimeType;
   get data(): ArrayBuffer | Promise<ArrayBuffer>;
 
-  getContent(mimetype: 'text/plain', textDecoder?: typeof TextDecoder): Promise<string> | string;
-  getContent(mimetype: 'application/json', textDecoder?: typeof TextDecoder): Promise<string> | string;
-  getContent(mimetype: 'application/rdf+xml', textDecoder?: typeof TextDecoder): Promise<string> | string;
-  getContent(mimetype?: string, textDecoder?: typeof TextDecoder): Promise<string | Blob> | string | Blob;
+  getContent(mimetype: TextualMime, textDecoder?: typeof TextDecoder): Promise<string> | string;
+
+  getContent(mimetype: BinaryMime, textDecoder?: typeof TextDecoder): Promise<Blob> | Blob;
+
+  getContent(mimetype?: MimeType, textDecoder?: typeof TextDecoder): Promise<string | Blob> | string | Blob;
   getContent(): Promise<string | Blob> | string | Blob;
 
-  setMimeType?(mimetype: string): void;
+  setMimeType?(mimetype: MimeType): void;
 
   clone?(name: string, fullName?: string, deep?: boolean): VirtualFileLike | Promise<VirtualFileLike>;
   toFile?(useFullName?: boolean): File | Promise<File>;
 
-  getBlob?(mimetype?: string): Blob | Promise<Blob>;
+  getBlob?(mimetype?: MimeType): Blob | Promise<Blob>;
 
-  getText?(mimetype?: string, textDecoder?: typeof TextDecoder): string | Promise<string>;
+  getText?(mimetype?: TextualMime, textDecoder?: typeof TextDecoder): string | Promise<string>;
 
   write?(textContentOrData: string | ArrayBuffer, textEncoder?: typeof TextEncoder): void | Promise<void>;
   writeTextContent?(textContent: string, textEncoder?: typeof TextEncoder): void | Promise<void>;
@@ -27,18 +62,19 @@ export interface VirtualFileLike {
 export interface SyncVirtualFileLike extends VirtualFileLike {
   get data(): ArrayBuffer;
 
-  getContent(mimetype: 'text/plain', textDecoder?: typeof TextDecoder): string;
-  getContent(mimetype: 'application/json', textDecoder?: typeof TextDecoder): string;
-  getContent(mimetype: 'application/rdf+xml', textDecoder?: typeof TextDecoder): string;
-  getContent(mimetype?: string, textDecoder?: typeof TextDecoder): string | Blob;
+  getContent(mimetype: TextualMime, textDecoder?: typeof TextDecoder): string;
+
+  getContent(mimetype: BinaryMime, textDecoder?: typeof TextDecoder): Blob;
+
+  getContent(mimetype?: MimeType, textDecoder?: typeof TextDecoder): string | Blob;
   getContent(): string | Blob;
 
   toFile?(useFullName?: boolean): File;
   clone?(name: string, fullName?: string, deep?: boolean): VirtualFileLike;
 
-  getBlob?(mimetype?: string): Blob;
+  getBlob?(mimetype?: MimeType): Blob;
 
-  getText?(mimetype?: string, textDecoder?: typeof TextDecoder): string;
+  getText?(mimetype?: TextualMime, textDecoder?: typeof TextDecoder): string;
   write?(textContentOrData: string | ArrayBuffer, textEncoder?: typeof TextEncoder): void;
   writeTextContent?(textContent: string, textEncoder?: typeof TextEncoder): void;
   writeData?(data: ArrayBuffer): void;
@@ -47,18 +83,19 @@ export interface SyncVirtualFileLike extends VirtualFileLike {
 export interface AsyncVirtualFileLike extends VirtualFileLike {
   get data(): Promise<ArrayBuffer>;
 
-  getContent(mimetype: 'text/plain', textDecoder?: typeof TextDecoder): Promise<string>;
-  getContent(mimetype: 'application/json', textDecoder?: typeof TextDecoder): Promise<string>;
-  getContent(mimetype: 'application/rdf+xml', textDecoder?: typeof TextDecoder): Promise<string>;
-  getContent(mimetype?: string, textDecoder?: typeof TextDecoder): Promise<string | Blob>;
+  getContent(mimetype: TextualMime, textDecoder?: typeof TextDecoder): Promise<string>;
+
+  getContent(mimetype: BinaryMime, textDecoder?: typeof TextDecoder): Promise<Blob>;
+
+  getContent(mimetype?: MimeType, textDecoder?: typeof TextDecoder): Promise<string | Blob>;
   getContent(): Promise<string | Blob>;
 
   toFile?(useFullName?: boolean): Promise<File>;
   clone?(name: string, fullName?: string, deep?: boolean): Promise<VirtualFileLike>;
 
-  getBlob?(mimetype?: string): Promise<Blob>;
+  getBlob?(mimetype?: MimeType): Promise<Blob>;
 
-  getText?(mimetype?: string, textDecoder?: typeof TextDecoder): Promise<string>;
+  getText?(mimetype?: TextualMime, textDecoder?: typeof TextDecoder): Promise<string>;
   write?(textContentOrData: string | ArrayBuffer, textEncoder?: typeof TextEncoder): Promise<void>;
   writeTextContent?(textContent: string, textEncoder?: typeof TextEncoder): Promise<void>;
   writeData?(data: ArrayBuffer): Promise<void>;
@@ -66,7 +103,7 @@ export interface AsyncVirtualFileLike extends VirtualFileLike {
 
 export class VirtualFile implements VirtualFileLike {
 
-  static EMPTY(name: string, fullName: string, mimetype?: string,) {
+  static EMPTY(name: string, fullName: string, mimetype?: MimeType) {
     return new VirtualFile(name, fullName, new ArrayBuffer(0), mimetype);
   }
 
@@ -80,7 +117,7 @@ export class VirtualFile implements VirtualFileLike {
      */
     public readonly fullName: string,
     protected _data: ArrayBuffer,
-    public mimetype?: string,
+    public mimetype?: MimeType,
     protected readonly _textDecoder?: typeof TextDecoder,
     protected readonly _textEncoder?: typeof TextEncoder,
   ) {
@@ -96,18 +133,19 @@ export class VirtualFile implements VirtualFileLike {
     return this._data;
   }
 
-  getContent(mimetype: 'text/plain', textDecoder: typeof TextDecoder): string;
-  getContent(mimetype: 'application/json', textDecoder: typeof TextDecoder): string;
-  getContent(mimetype: 'application/rdf+xml', textDecoder: typeof TextDecoder): string;
-  getContent(mimetype: string | undefined, textDecoder: typeof TextDecoder): string | Blob;
-  getContent(mimetype: 'text/plain'): Promise<string> | string;
-  getContent(mimetype: 'application/json'): Promise<string> | string;
-  getContent(mimetype: 'application/rdf+xml'): Promise<string> | string;
-  getContent(mimetype: string | undefined): Promise<string | Blob> | string | Blob;
+  getContent(mimetype: TextualMime, textDecoder: typeof TextDecoder): string;
+  getContent(mimetype: BinaryMime, textDecoder: typeof TextDecoder): Blob;
+  getContent(mimetype: MimeType | undefined, textDecoder: typeof TextDecoder): string | Blob;
+  getContent(mimetype: TextualMime): Promise<string> | string;
+  getContent(mimetype: BinaryMime): Promise<Blob> | Blob;
+  getContent(mimetype: MimeType | undefined): Promise<string | Blob> | string | Blob;
   getContent(): Promise<string | Blob> | string | Blob;
-  getContent(mimetype?: string): Promise<string | Blob> | string | Blob;
-  getContent(mimetype = this.mimetype ?? 'auto', textDecoder: typeof TextDecoder | undefined = this._textDecoder): Promise<string | Blob> | string | Blob {
-    if (mimetype.startsWith('text/') || mimetype.endsWith('xml') || mimetype.endsWith('json')) {
+  getContent(mimetype?: MimeType): Promise<string | Blob> | string | Blob;
+  getContent(
+    mimetype: MimeType = this.mimetype ?? 'auto',
+    textDecoder: typeof TextDecoder | undefined = this._textDecoder,
+  ): Promise<string | Blob> | string | Blob {
+    if (isTextualMime(mimetype)) {
       if (!this._textContent) {
         if (textDecoder) {
           this._textContent = this.textDecode(textDecoder);
@@ -127,13 +165,20 @@ export class VirtualFile implements VirtualFileLike {
     return this.getBlob();
   }
 
-  getText(mimetype: string | undefined, textDecoder: typeof TextDecoder): string;
-  getText(mimetype: string): Promise<string> | string;
+  getText(mimetype: TextualMime | undefined, textDecoder: typeof TextDecoder): string;
+  getText(mimetype: TextualMime): Promise<string> | string;
   getText(): Promise<string> | string;
   getText(
-    mimetype: string = this.mimetype ?? 'auto',
+    mimetype?: TextualMime,
     textDecoder: typeof TextDecoder | undefined = this._textDecoder,
   ): string | Promise<string> {
+    if (!mimetype) {
+      if (this.mimetype && isTextualMime(this.mimetype)) {
+        mimetype = this.mimetype;
+      } else {
+        throw new Error(`The mimetype '${ this.mimetype }' is not a textual mimetype`);
+      }
+    }
     if (!this._textContent) {
       if (textDecoder) {
         this._textContent = this.textDecode(textDecoder);
@@ -157,7 +202,7 @@ export class VirtualFile implements VirtualFileLike {
     return this._textContent;
   }
 
-  getBlob(mimetype: string = this.mimetype ?? 'auto') {
+  getBlob(mimetype: MimeType = this.mimetype ?? 'auto') {
     if (!this._blob || this._blob.type !== mimetype) {
       if (this._blob) {
         this.setMimeType(mimetype);
@@ -171,7 +216,7 @@ export class VirtualFile implements VirtualFileLike {
     return new textDecoder().decode(this.data);
   }
 
-  setMimeType(mimetype: string) {
+  setMimeType(mimetype: MimeType) {
     this.mimetype = mimetype;
   }
 
@@ -218,7 +263,7 @@ export class VirtualFile implements VirtualFileLike {
 
   writeTextContent(textContent: string, textEncoder: typeof TextEncoder | undefined = this._textEncoder) {
     if (this.mimetype !== undefined) {
-      if (!(this.mimetype.startsWith('text/') || this.mimetype.endsWith('xml') || this.mimetype.endsWith('json'))) {
+      if (!isTextualMime(this.mimetype)) {
         throw new Error(`The mimetype '${ this.mimetype }' does not support text content`);
       }
     }
@@ -240,26 +285,26 @@ export class SyncVirtualFile extends VirtualFile implements SyncVirtualFileLike 
     name: string,
     fullName: string,
     data: ArrayBuffer,
-    mimetype?: string,
+    mimetype?: MimeType,
     protected override readonly _textDecoder: typeof TextDecoder = TextDecoder,
     protected override readonly _textEncoder: typeof TextEncoder = TextEncoder,
   ) {
     super(name, fullName, data, mimetype, _textDecoder, _textEncoder);
   }
 
-  override getContent(mimetype: 'text/plain', textDecoder?: typeof TextDecoder): string;
-  override getContent(mimetype: 'application/json', textDecoder?: typeof TextDecoder): string;
-  override getContent(mimetype: 'application/rdf+xml', textDecoder?: typeof TextDecoder): string;
-  override getContent(mimetype: string | undefined, textDecoder?: typeof TextDecoder): string | Blob;
+  override getContent(mimetype: TextualMime, textDecoder?: typeof TextDecoder): string;
+  override getContent(mimetype: BinaryMime, textDecoder?: typeof TextDecoder): Blob;
+  override getContent(mimetype: MimeType | undefined, textDecoder?: typeof TextDecoder): string | Blob;
   override getContent(): string | Blob;
-  override getContent(mimetype?: string): string | Blob;
-  override getContent(mimetype = this.mimetype ?? 'auto', textDecoder: typeof TextDecoder = this._textDecoder): string | Blob {
+  override getContent(mimetype?: MimeType): string | Blob;
+  override getContent(
+    mimetype: MimeType = this.mimetype ?? 'auto', textDecoder: typeof TextDecoder = this._textDecoder): string | Blob {
     return super.getContent(mimetype, textDecoder);
   }
 
   override getText(): string
-  override getText(mimetype: string | undefined): string
-  override getText(mimetype?: string | undefined, textDecoder: typeof TextDecoder = this._textDecoder): string {
+  override getText(mimetype: TextualMime | undefined): string
+  override getText(mimetype?: TextualMime | undefined, textDecoder: typeof TextDecoder = this._textDecoder): string {
     return super.getText(mimetype, textDecoder);
   }
 
