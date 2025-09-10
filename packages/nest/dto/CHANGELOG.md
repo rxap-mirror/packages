@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-dto@11.0.0-dev.2...@rxap/nest-dto@11.0.0-dev.3) (2025-09-10)
+
+### Bug Fixes
+
+- update package groups ([e85a140](https://gitlab.com/rxap/packages/commit/e85a140c56fad8e6a9a1b8380ede32b4ae32088b))
+
 # [11.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-dto@11.0.0-dev.1...@rxap/nest-dto@11.0.0-dev.2) (2025-09-10)
 
 ### Features
