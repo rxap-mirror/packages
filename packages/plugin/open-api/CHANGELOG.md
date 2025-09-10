@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@20.1.1-dev.3...@rxap/plugin-open-api@20.1.1-dev.4) (2025-09-10)
+
+### Bug Fixes
+
+- **plugin:** simplify open-api project validation logic ([150a8c4](https://gitlab.com/rxap/packages/commit/150a8c4a63c7a3a7a2d5e9b6dcf05fbed9dc6a9b))
+
 ## [20.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@20.1.1-dev.2...@rxap/plugin-open-api@20.1.1-dev.3) (2025-09-10)
 
 ### Bug Fixes
