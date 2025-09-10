@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@20.1.1-dev.2...@rxap/plugin-open-api@20.1.1-dev.3) (2025-09-10)
+
+### Bug Fixes
+
+- **plugin:** handle missing service project configuration for open-api ([3019b40](https://gitlab.com/rxap/packages/commit/3019b4082d3eda82483481852002b4a0f1b671b7))
+
 ## [20.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@20.1.1-dev.1...@rxap/plugin-open-api@20.1.1-dev.2) (2025-09-01)
 
 **Note:** Version bump only for package @rxap/plugin-open-api
