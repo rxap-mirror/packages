@@ -48,7 +48,7 @@ export function GenerateParameters(
     const properties: Record<string, OpenAPIV3.SchemaObject | AnySchemaObject | OpenAPIV3.ReferenceObject> = {};
     const required: string[] = [];
 
-    const parameters = operation.parameters.filter(param => !IsReferenceObject(param) && param.in !== 'header');
+    const parameters = operation.parameters.filter(param => !IsReferenceObject(param));
 
     for (const parameter of operation.parameters.filter(param => IsReferenceObject(param))) {
       if (IsReferenceObject(parameter)) {
