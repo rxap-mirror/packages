@@ -17,6 +17,10 @@ This package provides a set of reusable DTOs (Data Transfer Objects) and utiliti
 ```bash
 yarn add @rxap/nest-dto
 ```
+**Install peer dependencies:**
+```bash
+yarn add class-transformer class-validator 
+```
 **Execute the init generator:**
 ```bash
 yarn nx g @rxap/nest-dto:init
