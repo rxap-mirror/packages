@@ -96,14 +96,6 @@ async function shouldHaveProjectConfiguration(
   if (!projectName.startsWith('open-api-')) {
     return false;
   }
-  const serviceProjectName = projectName.replace(/^open-api-/, '');
-  const serviceProjectConfiguration = FindProject(tree, serviceProjectName);
-  if (!serviceProjectConfiguration) {
-    return false;
-  }
-  if (!existsSync(join(serviceProjectConfiguration.root, 'src/swagger.ts'))) {
-    return false;
-  }
   return true;
 }
 
