@@ -118,11 +118,15 @@ async function createProjectConfiguration(
   const projectConfiguration = FindProjectByPath(tree, projectPath)!;
   const projectName = projectConfiguration.name;
   const serviceProjectName = projectName.replace(/^open-api-/, '');
-  const serviceProjectConfiguration = FindProject(tree, serviceProjectName)!;
-  const serviceProjectRoot = serviceProjectConfiguration.root;
+  const serviceProjectConfiguration = FindProject(tree, serviceProjectName);
 
-  targets['generate-open-api'] = createGenerateOpenApiTarget(serviceProjectName, serviceProjectRoot);
-  targets['build'] = createBuildTarget(projectPath);
+  if (serviceProjectConfiguration) {
+    const serviceProjectRoot = serviceProjectConfiguration.root;
+    targets['generate-open-api'] = createGenerateOpenApiTarget(serviceProjectName, serviceProjectRoot);
+    targets['build'] = createBuildTarget(projectPath);
+  } else {
+    targets['generate-open-api'] = createStaticGenerateOpenApiTarget(projectName, projectPath);
+  }
 
   return [
     projectPath, {
@@ -173,6 +177,19 @@ function createGenerateOpenApiTarget(serviceProjectName: string, serviceProjectR
     options: {
       path: `swagger/${ serviceProjectRoot }/openapi.json`,
       serverId: serviceProjectName,
+    },
+  };
+}
+
+function createStaticGenerateOpenApiTarget(projectName: string, projectRoot: string): TargetConfiguration {
+  return {
+    executor: '@rxap/plugin-open-api:generate',
+    outputs: [ '{projectRoot}/src' ],
+    cache: true,
+    inputs: [ `{projectRoot}/src/openapi.json` ],
+    options: {
+      path: `${ projectRoot }/src/openapi.json`,
+      serverId: projectName.replace('open-api-', ''),
     },
   };
 }
