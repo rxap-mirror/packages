@@ -10027,7 +10027,7 @@ __metadata:
     "@nestjs/config": ^4.0.2
     "@nestjs/core": ^11.1.1
     "@nestjs/jwt": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     auth0: ^4.18.0
     joi: ^17.9.2
     jsonwebtoken: "*"
@@ -10071,7 +10071,7 @@ __metadata:
     "@nestjs/config": ^4.0.2
     "@nestjs/core": ^11.1.1
     "@nestjs/jwt": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     "@rxap/pattern": ^1.1.14
     rxjs: ^7.8.1
   languageName: unknown
@@ -10086,7 +10086,7 @@ __metadata:
   peerDependencies:
     "@nestjs/cache-manager": ^3.0.1
     "@nestjs/common": ^11.1.1
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     joi: ^17.9.2
     keyv: ^5.2.3
     minio: ^8.0.1
@@ -10103,7 +10103,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nestjs/common": ^11.1.1
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     "@rxap/utilities": ^16.4.5-dev.0
   languageName: unknown
   linkType: soft
@@ -10118,7 +10118,7 @@ __metadata:
     "@nestjs/common": ^11.1.1
     "@nestjs/config": ^4.0.2
     "@nestjs/terminus": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     joi: ^17.9.2
     minio: ^8.0.1
   languageName: unknown
@@ -10149,7 +10149,7 @@ __metadata:
     "@nestjs/core": ^11.1.1
     "@nestjs/swagger": ^11.2.0
     "@nestjs/terminus": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     "@rxap/node-utilities": ^1.3.11-dev.0
     "@rxap/utilities": ^16.4.5-dev.0
     "@sentry/core": ^8.55.0
@@ -10171,7 +10171,7 @@ __metadata:
     "@nestjs/config": ^4.0.2
     "@nestjs/core": ^11.1.1
     "@openfga/sdk": ^0.8.0
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     joi: ^17.9.2
   languageName: unknown
   linkType: soft
@@ -10221,7 +10221,7 @@ __metadata:
     "@nestjs/config": ^4.0.2
     "@nestjs/core": ^11.1.1
     "@rxap/nest-logger": ^11.0.0-dev.3
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     "@sentry/core": ^8.55.0
     "@sentry/nestjs": ^8.55.0
     "@sentry/node": ^8.55.0
@@ -10245,7 +10245,7 @@ __metadata:
     "@nestjs/core": ^11.1.1
     "@nestjs/microservices": ^11.1.1
     "@nestjs/swagger": ^11.2.0
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     "@rxap/utilities": ^16.4.5-dev.0
     cookie-parser: ^1.4.6
     helmet: ^8.1.0
@@ -10298,7 +10298,7 @@ __metadata:
     "@nestjs/common": ^11.1.1
     "@nestjs/config": ^4.0.2
     "@nestjs/typeorm": ^11.0.0
-    "@rxap/nest-utilities": ^11.0.0-dev.6
+    "@rxap/nest-utilities": ^11.0.0-dev.7
     joi: ^17.9.2
     typeorm: ^0.3.26
   languageName: unknown

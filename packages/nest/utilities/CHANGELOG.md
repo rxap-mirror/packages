@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@11.0.0-dev.6...@rxap/nest-utilities@11.0.0-dev.7) (2025-09-10)
+
+### Features
+
+- **utilities:** add utility decorators, pipes, and utility functions ([bf4ce19](https://gitlab.com/rxap/packages/commit/bf4ce19548542985cf9954ae873e3073ff06a4dc))
+
 # [11.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@11.0.0-dev.5...@rxap/nest-utilities@11.0.0-dev.6) (2025-09-08)
 
 ### Features
