@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.1-dev.1...@rxap/workspace-open-api@19.1.1-dev.2) (2025-09-10)
+
+### Bug Fixes
+
+- **open-api:** remove unnecessary header filter in parameter generation ([02cc6f4](https://gitlab.com/rxap/packages/commit/02cc6f4592f8b7297a5b61dd9acdef15d3112aea))
+
 ## [19.1.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.1-dev.0...@rxap/workspace-open-api@19.1.1-dev.1) (2025-07-07)
 
 ### Bug Fixes
