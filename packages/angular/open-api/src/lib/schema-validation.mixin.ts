@@ -292,41 +292,36 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
   public buildHttpHeaders(operationParameters: OpenAPIV3.ParameterObject[], parameters?: Parameters): HttpHeaders {
 
-    let headers = new HttpHeaders();
+    const headers: Record<string, string | number | string[] | number[]> = {};
 
     if (IsRecord(parameters)) {
 
-      for (const parameter of operationParameters.filter(p => p.in === 'header')) {
-
+      for (const parameter of operationParameters.filter((p) => p.in === 'header')) {
         if (parameters.hasOwnProperty(parameter.name)) {
-
           const value = parameters[parameter.name];
 
           if (Array.isArray(value)) {
-
             if (value.length) {
-
-              const first = value.shift();
-
-              headers = headers.set(parameters['name'], typeof first === 'object' ? JSON.stringify(first) : first);
-
-              for (const item of value) {
-                headers = headers.append(parameters['name'], typeof item === 'object' ? JSON.stringify(item) : item);
+              if (value.length === 1) {
+                const first = value.shift();
+                headers[parameter.name] =
+                  typeof first === 'object' ? JSON.stringify(first) : first;
+              } else {
+                headers[parameter.name] = value.map((item) =>
+                  typeof item === 'object' ? JSON.stringify(item) : item
+                );
               }
-
             }
-
           } else {
-            headers = headers.set(parameter.name, typeof value === 'object' ? JSON.stringify(value) : value);
+            headers[parameter.name] =
+              typeof value === 'object' ? JSON.stringify(value) : value;
           }
-
         }
-
       }
 
     }
 
-    return headers;
+    return new HttpHeaders(headers);
 
   }
 
