@@ -16,7 +16,7 @@
     "@rxap/definition": "^19.0.4",
     "@rxap/forms": "^19.1.0-dev.5",
     "@rxap/mixin": "^16.0.15-dev.1",
-    "@rxap/open-api": "^19.2.0-dev.0",
+    "@rxap/open-api": "^19.2.0-dev.1",
     "@rxap/pattern": "^1.1.14",
     "@rxap/reflect-metadata": "^1.0.16-dev.1",
     "@rxap/remote-method": "^19.1.0-dev.0",
@@ -108,7 +108,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.2.0-dev.0"
+        "version": "19.2.0-dev.1"
       },
       {
         "package": "@rxap/pattern",
