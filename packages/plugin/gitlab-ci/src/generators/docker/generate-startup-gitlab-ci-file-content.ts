@@ -2,6 +2,7 @@ import {
   getProjects,
   Tree,
 } from '@nx/devkit';
+import { clone } from '@rxap/utilities';
 import {
   GetTargetOptions,
   IsServiceProject,
@@ -129,7 +130,7 @@ export function generateStartupGitlabCiFileContent(
   rootDocker: RootDockerOptions,
 ) {
 
-  const dotStartup = structuredClone(DOT_STARTUP);
+  const dotStartup = clone(DOT_STARTUP);
 
   if (options.tags?.length) {
     dotStartup.tags = options.tags;
@@ -137,7 +138,7 @@ export function generateStartupGitlabCiFileContent(
 
   const startupYaml = {
     '.startup': dotStartup,
-    startup: structuredClone(STARTUP),
+    startup: clone(STARTUP),
   };
 
   if (options.gitlab !== false) {

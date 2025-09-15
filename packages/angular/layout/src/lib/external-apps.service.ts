@@ -9,6 +9,7 @@ import { ClickOnLink } from '@rxap/browser-utilities';
 import { ConfigService } from '@rxap/config';
 import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import {
+  clone,
   coerceArray,
   JoinPath,
 } from '@rxap/utilities';
@@ -45,7 +46,7 @@ export class ExternalAppsService {
     if (!app) {
       throw new Error(`FATAL: App with id "${ appId }" not found!`);
     }
-    return structuredClone(app);
+    return clone(app);
   }
 
   public getAppUrl(appId: string, path: string, infix: string | null = this.getPathPrefix()): string | null {
@@ -102,7 +103,7 @@ export class ExternalAppsService {
       ...this.externalApps,
       ...this.apps,
     ].filter(app => !app.hidden)
-      .map(app => structuredClone(app));
+      .map(app => clone(app));
 
     appList.forEach(app => {
       if (app.href) {
@@ -111,10 +112,10 @@ export class ExternalAppsService {
     });
 
     for (const appFilter of this.appFilterList) {
-      appList = await appFilter.call(structuredClone(appList));
+      appList = await appFilter.call(clone(appList));
     }
 
-    appList = structuredClone(appList);
+    appList = clone(appList);
     this.activeAppList.set(appList);
     return appList;
   }

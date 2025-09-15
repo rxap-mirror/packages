@@ -3,7 +3,10 @@ import {
   Tree,
 } from '@nx/devkit';
 import { GuessOutputPath } from '@rxap/plugin-utilities';
-import { CoercePrefix } from '@rxap/utilities';
+import {
+  clone,
+  CoercePrefix,
+} from '@rxap/utilities';
 import {
   GetNestApiPrefix,
   GetProjectRoot,
@@ -185,7 +188,7 @@ export function generateDockerGitlabCiFileContent(
   rootDocker: RootDockerOptions,
 ): string {
 
-  const dotDocker = structuredClone(DOT_DOCKER);
+  const dotDocker = clone(DOT_DOCKER);
 
   if (options.tags?.length) {
     dotDocker.tags = options.tags;
@@ -193,7 +196,7 @@ export function generateDockerGitlabCiFileContent(
 
   const dockerYaml = {
     '.docker': dotDocker,
-    docker: structuredClone(DOCKER),
+    docker: clone(DOCKER),
   };
 
   if (rootDocker.imageName) {

@@ -2,6 +2,7 @@ import {
   getProjects,
   Tree,
 } from '@nx/devkit';
+import { clone } from '@rxap/utilities';
 import {
   GetTargetOptions,
   HasProject,
@@ -137,7 +138,7 @@ export function generateServiceE2eGitlabCiFileContent(
   rootDocker: RootDockerOptions,
 ) {
 
-  const dotServiceE2e = structuredClone(DOT_SERVICE_E2E);
+  const dotServiceE2e = clone(DOT_SERVICE_E2E);
 
   if (options.tags?.length) {
     dotServiceE2e.tags = options.tags;
@@ -145,7 +146,7 @@ export function generateServiceE2eGitlabCiFileContent(
 
   const serviceE2eYaml = {
     '.service-e2e': dotServiceE2e,
-    'service-e2e': structuredClone(SERVICE_E2E),
+    'service-e2e': clone(SERVICE_E2E),
   };
 
   if (options.gitlab !== false) {

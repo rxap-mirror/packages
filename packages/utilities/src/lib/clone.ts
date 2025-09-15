@@ -80,6 +80,19 @@ export function clone<Data>(
   refTo: any[] = [],
   deep = true,
 ): Data {
+  try {
+    if (typeof structuredClone === 'function') {
+      return structuredClone(value);
+    }
+    if (window && 'structuredClone' in window) {
+      return window.structuredClone(value);
+    }
+    if (global && 'structuredClone' in global) {
+      return global.structuredClone(value);
+    }
+  } catch (e: any) {
+    console.error(`structuredClone is not supported or failed: ${e.message}`);
+  }
   function copy(copiedValue: any) {
     const len = refFrom.length;
     let idx = 0;

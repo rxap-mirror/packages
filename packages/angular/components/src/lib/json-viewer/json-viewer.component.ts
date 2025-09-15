@@ -16,7 +16,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { isTeardownLogic } from '@rxap/rxjs';
-import { isPromiseLike } from '@rxap/utilities';
+import {
+  clone,
+  isPromiseLike,
+} from '@rxap/utilities';
 import { Subscription } from 'rxjs';
 import {
   JSON_VIEW_IGNORED_PROPERTIES,
@@ -129,7 +132,7 @@ export class JsonViewerComponent implements OnInit, OnChanges {
       if (typeof json['toJSON'] === 'function') {
         json = json.toJSON();
       }
-      this.inspectValue = this.cleanObject(structuredClone(json));
+      this.inspectValue = this.cleanObject(clone(json));
       this.buildSegments(this.inspectValue);
       this.cdr.markForCheck();
     }
