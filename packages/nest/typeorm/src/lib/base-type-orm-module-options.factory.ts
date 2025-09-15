@@ -46,7 +46,7 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
     }
   }
 
-  protected swaggerConfig() {
+  protected swaggerConfig(): TypeOrmModuleOptions {
     this.logger.debug('Using sqlite database');
     return {
       ...this.sqliteConfig(),
