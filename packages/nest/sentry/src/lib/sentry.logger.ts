@@ -47,7 +47,7 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.log(message, ...optionalParams);
-    if (!this.config.get('SENTRY_ENABLED')) {
+    if (!this.sentryOptions.enabled) {
       return;
     }
     if (this.sentryOptions.logLevels && !['log', 'info'].some(level => this.sentryOptions.logLevels!.includes(level as any))) {
@@ -76,7 +76,7 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.error(message, ...optionalParams);
-    if (!this.config.get('SENTRY_ENABLED')) {
+    if (!this.sentryOptions.enabled) {
       return;
     }
     if (this.sentryOptions.logLevels && !this.sentryOptions.logLevels.includes('error')) {
@@ -103,7 +103,7 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.error(message, ...optionalParams);
-    if (!this.config.get('SENTRY_ENABLED')) {
+    if (!this.sentryOptions.enabled) {
       return;
     }
     if (this.sentryOptions.logLevels && !this.sentryOptions.logLevels.includes('fatal')) {
@@ -133,7 +133,7 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.warn(message, ...optionalParams);
-    if (!this.config.get('SENTRY_ENABLED')) {
+    if (!this.sentryOptions.enabled) {
       return;
     }
     if (this.sentryOptions.logLevels && !['warn', 'warning'].some(level => this.sentryOptions.logLevels!.includes(level as any))) {
@@ -168,7 +168,7 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.debug(message, ...optionalParams);
-    if (!this.config.get('SENTRY_ENABLED')) {
+    if (!this.sentryOptions.enabled) {
       return;
     }
     if (this.sentryOptions.logLevels && !this.sentryOptions.logLevels.includes('debug')) {
@@ -197,7 +197,7 @@ export class SentryLogger extends RxapLogger {
       ...optionalParams,
     ]);
     super.verbose(message, ...optionalParams);
-    if (!this.config.get('SENTRY_ENABLED')) {
+    if (!this.sentryOptions.enabled) {
       return;
     }
     if (this.sentryOptions.logLevels && !['verbose', 'trace'].some(level => this.sentryOptions.logLevels!.includes(level as any))) {

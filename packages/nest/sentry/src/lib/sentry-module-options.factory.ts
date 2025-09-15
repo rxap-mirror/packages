@@ -30,7 +30,8 @@ export class SentryModuleOptionsFactory
       logger: {
         timestamp: true,
         logLevels: GetLogLevels(),
-      }
+      },
+      enabled: this.config.getOrThrow('SENTRY_ENABLED'),
     };
   }
 }
