@@ -33,13 +33,7 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     if (this.environment.swagger) {
-      this.logger.debug('Using sqlite database');
-      return {
-        ...this.sqliteConfig(),
-        database: ':memory:',
-        dropSchema: true,
-        synchronize: true,
-      };
+      return this.swaggerConfig();
     }
     const type = this.config.get('TYPEORM_TYPE');
     this.logger.debug(`Building typeorm config for '${type}' database'`);
@@ -50,6 +44,16 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
       case 'sqlite':
         return this.sqliteConfig();
     }
+  }
+
+  protected swaggerConfig() {
+    this.logger.debug('Using sqlite database');
+    return {
+      ...this.sqliteConfig(),
+      database: ':memory:',
+      dropSchema: true,
+      synchronize: true,
+    };
   }
 
   protected baseConfig(): Omit<TypeOrmModuleOptions, keyof DataSourceOptions> &
