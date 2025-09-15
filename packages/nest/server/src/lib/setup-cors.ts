@@ -1,6 +1,6 @@
 import {
   INestApplication,
-  Logger,
+  LoggerService,
 } from '@nestjs/common';
 import type {
   CorsOptions,
@@ -17,7 +17,7 @@ export interface SetupCorsOptions {
 }
 
 export function SetupCors({ corsOptions }: SetupCorsOptions = {}) {
-  return (app: INestApplication, config: ConfigService, logger: Logger) => {
+  return (app: INestApplication, config: ConfigService, logger: LoggerService) => {
     let origin: any = config.getOrThrow<string | boolean>('CORS_ORIGIN');
     if (typeof origin === 'string') {
       origin = origin.split(',').map(item => item.trim())
@@ -31,7 +31,7 @@ export function SetupCors({ corsOptions }: SetupCorsOptions = {}) {
       methods: config.getOrThrow('CORS_METHODS').split(','),
       ...corsOptions,
     };
-    logger.debug(`Enable cors with options: %JSON`, options, 'Bootstrap::SetupCors');
+    (logger.debug ?? logger.log)(`Enable cors with options: %JSON`, options, 'Bootstrap::SetupCors');
     app.enableCors(options);
   };
 }
