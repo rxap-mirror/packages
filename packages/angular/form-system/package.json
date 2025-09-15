@@ -15,13 +15,13 @@
     "@rxap/data-source": "^19.1.1-dev.1",
     "@rxap/definition": "^19.0.4",
     "@rxap/forms": "^19.1.0-dev.5",
-    "@rxap/mixin": "^16.0.15-dev.1",
+    "@rxap/mixin": "^16.0.15-dev.2",
     "@rxap/open-api": "^19.2.0-dev.1",
     "@rxap/pattern": "^1.1.14",
-    "@rxap/reflect-metadata": "^1.0.16-dev.1",
+    "@rxap/reflect-metadata": "^1.0.16-dev.2",
     "@rxap/remote-method": "^19.1.0-dev.0",
     "@rxap/rxjs": "^1.1.16",
-    "@rxap/utilities": "^16.4.5-dev.0",
+    "@rxap/utilities": "^16.4.5-dev.1",
     "@rxap/validator": "^3.0.13",
     "rxjs": "^7.8.1"
   },
@@ -84,7 +84,7 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.17-dev.0"
+        "version": "1.1.17-dev.1"
       },
       {
         "package": "@rxap/definition",
@@ -104,7 +104,7 @@
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.15-dev.1"
+        "version": "16.0.15-dev.2"
       },
       {
         "package": "@rxap/open-api",
@@ -116,7 +116,7 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.16-dev.1"
+        "version": "1.0.16-dev.2"
       },
       {
         "package": "@rxap/remote-method",
@@ -132,7 +132,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.5-dev.0"
+        "version": "16.4.5-dev.1"
       },
       {
         "package": "@rxap/validator",

@@ -11,7 +11,7 @@
     "@angular/core": "^19.2.1",
     "@angular/forms": "^19.2.1",
     "@angular/material": "^19.1.1",
-    "@rxap/utilities": "^16.4.5-dev.0",
+    "@rxap/utilities": "^16.4.5-dev.1",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -61,7 +61,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.4.5-dev.0"
+        "version": "16.4.5-dev.1"
       }
     ]
   },

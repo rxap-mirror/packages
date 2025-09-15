@@ -1,5 +1,5 @@
 {
-  "version": "0.2.2-dev.0",
+  "version": "0.2.2-dev.1",
   "name": "@rxap/n8n-nodes-firecrawl",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,8 +7,8 @@
     "@langchain/core": "^0.3.40",
     "@mendable/firecrawl-js": "^1.18.2",
     "@nx/devkit": "20.5.0",
-    "@rxap/n8n-utilities": "^1.2.2-dev.0",
-    "@rxap/utilities": "^16.4.5-dev.0",
+    "@rxap/n8n-utilities": "^1.2.2-dev.1",
+    "@rxap/utilities": "^16.4.5-dev.1",
     "keyv": "^5.2.3",
     "langchain": "^0.3.19",
     "tslib": "^2.3.0"

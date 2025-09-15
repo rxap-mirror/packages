@@ -1,12 +1,12 @@
 {
-  "version": "16.1.3-dev.0",
+  "version": "16.1.3-dev.1",
   "name": "@rxap/json-schema-to-typescript",
   "description": "Generate TypeScript interfaces from JSON Schema definitions. It allows you to programmatically create and manipulate TypeScript interface definitions based on JSON schema inputs. The package provides utilities to convert JSON schema to TypeScript interfaces, handle references, and manage imports.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@nx/devkit": "20.5.0",
-    "@rxap/utilities": "^16.4.5-dev.0",
+    "@rxap/utilities": "^16.4.5-dev.1",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
