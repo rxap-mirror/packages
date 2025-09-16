@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.15...@rxap/nest-server@11.0.0-dev.16) (2025-09-16)
+
+### Bug Fixes
+
+- **server:** resolve incorrect RegExp handling in CORS origin setup ([f5672ae](https://gitlab.com/rxap/packages/commit/f5672ae8afb573d8d160991f912016e5a7d0643e))
+
 # [11.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.14...@rxap/nest-server@11.0.0-dev.15) (2025-09-15)
 
 **Note:** Version bump only for package @rxap/nest-server
