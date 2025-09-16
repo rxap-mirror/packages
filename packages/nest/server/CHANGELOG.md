@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.16...@rxap/nest-server@11.0.0-dev.17) (2025-09-16)
+
+### Bug Fixes
+
+- **server:** ensure trailing slash is removed from apiBaseUrl ([6c53950](https://gitlab.com/rxap/packages/commit/6c5395023e2fc4b6fe293d25f4b1e844330bff4c))
+
 # [11.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.15...@rxap/nest-server@11.0.0-dev.16) (2025-09-16)
 
 ### Bug Fixes
