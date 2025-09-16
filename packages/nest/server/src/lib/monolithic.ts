@@ -110,7 +110,7 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
       apiBaseUrl = apiUrl;
     }
 
-    return apiBaseUrl;
+    return apiBaseUrl.replace(/\/$/, '');
   }
 
   protected override prepareOptions(app: NestApplicationContext, logger: Logger, config: ConfigService): BootstrapOptions {
