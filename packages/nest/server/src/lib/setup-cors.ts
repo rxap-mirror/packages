@@ -21,7 +21,7 @@ export function SetupCors({ corsOptions }: SetupCorsOptions = {}) {
     let origin: any = config.getOrThrow<string | boolean>('CORS_ORIGIN');
     if (typeof origin === 'string') {
       origin = origin.split(',').map(item => item.trim())
-        .map(item => item.startsWith('/') && item.endsWith('/') ? new RegExp(item) : item);
+        .map(item => item.startsWith('/') && item.endsWith('/') ? new RegExp(item.replace(/^\//, '').replace(/\/$/, '')) : item);
     }
     const options = {
       credentials: config.getOrThrow('CORS_CREDENTIALS'),
@@ -31,7 +31,11 @@ export function SetupCors({ corsOptions }: SetupCorsOptions = {}) {
       methods: config.getOrThrow('CORS_METHODS').split(','),
       ...corsOptions,
     };
-    (logger.debug ?? logger.log)(`Enable cors with options: %JSON`, options, 'Bootstrap::SetupCors');
+    if (typeof logger.debug === 'function') {
+      logger.debug(`Enable cors with options: %JSON`, { ...options, origin: Array.isArray(origin) ? origin.map(item => item.toString()) : origin }, 'Bootstrap::SetupCors');
+    } else {
+      logger.log(`Enable cors with options: %JSON`, { ...options, origin: Array.isArray(origin) ? origin.map(item => item.toString()) : origin }, 'Bootstrap::SetupCors');
+    }
     app.enableCors(options);
   };
 }
