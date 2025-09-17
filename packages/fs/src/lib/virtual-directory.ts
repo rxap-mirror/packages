@@ -90,6 +90,16 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
     }
   }
 
+  *iterateEachFile(): IterableIterator<VF> {
+    for (const child of this.children.values()) {
+      if (isVirtualDirectory(child)) {
+        yield* child.iterateEachFile();
+      } else {
+        yield child;
+      }
+    }
+  }
+
   addFile(file: VF, force = false) {
     let path = file.fullName ?? file.name;
     path = path.startsWith('/') ? path.substring(1) : path;
