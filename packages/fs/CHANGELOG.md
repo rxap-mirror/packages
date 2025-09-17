@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.6...@rxap/fs@1.2.0-dev.7) (2025-09-17)
+
+### Features
+
+- **fs:** add iterateEachFile method to virtual directories ([b354de7](https://gitlab.com/rxap/packages/commit/b354de71e8e2839fd7e3f04bb46c09ae8b66fae9))
+
 # [1.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.5...@rxap/fs@1.2.0-dev.6) (2025-09-17)
 
 ### Features
