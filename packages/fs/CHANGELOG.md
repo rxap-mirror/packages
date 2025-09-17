@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.4...@rxap/fs@1.2.0-dev.5) (2025-09-17)
+
+### Features
+
+- **fs:** add utilities for virtual file cloning and conversion ([6a1b2ae](https://gitlab.com/rxap/packages/commit/6a1b2ae625285b69aaf4c3ba1f9f7f91dcd3fa63))
+
 # [1.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.3...@rxap/fs@1.2.0-dev.4) (2025-09-17)
 
 ### Features
