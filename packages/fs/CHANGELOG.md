@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.3...@rxap/fs@1.2.0-dev.4) (2025-09-17)
+
+### Features
+
+- **fs:** add utility for downloading virtual and physical files ([96d02e0](https://gitlab.com/rxap/packages/commit/96d02e055d389931e247d5d8778269e6369363c9))
+
 # [1.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.2...@rxap/fs@1.2.0-dev.3) (2025-09-09)
 
 ### Features
