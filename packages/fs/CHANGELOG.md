@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.5...@rxap/fs@1.2.0-dev.6) (2025-09-17)
+
+### Features
+
+- **fs:** add file iteration utility for virtual directories ([4b0fe1d](https://gitlab.com/rxap/packages/commit/4b0fe1d8805243af0863fb7860097e735fa1f1aa))
+
 # [1.2.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.4...@rxap/fs@1.2.0-dev.5) (2025-09-17)
 
 ### Features
