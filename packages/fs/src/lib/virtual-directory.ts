@@ -8,6 +8,7 @@ import {
 export interface VirtualDirectoryLike<VF extends VirtualFileLike = VirtualFileLike> {
   findFile(path: string, format?: string): VF;
   forEachFile(callback: (file: VF) => void): void;
+  iterateEachFile(): IterableIterator<VF>;
 }
 
 export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFileLike> extends VirtualDirectoryLike<VF> {
@@ -44,6 +45,8 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
   removeFile(pathOrMatch: string | ((file: VF) => boolean)): boolean;
 
   clone(name?: string, fullName?: string): FullVirtualDirectoryLike<VF>;
+
+  iterateEachFile(): IterableIterator<VF>;
 }
 
 export interface FullSyncVirtualDirectoryLike<VF extends SyncVirtualFileLike> extends FullVirtualDirectoryLike<VF> {
