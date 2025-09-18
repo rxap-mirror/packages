@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.5.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.4.5-dev.1...@rxap/utilities@16.5.0-dev.0) (2025-09-18)
+
+### Features
+
+- **utilities:** enhance `GroupBy` function to support grouping via function or property ([dfaf11c](https://gitlab.com/rxap/packages/commit/dfaf11cb2243c7a452843088dee5f5f9de2ec069))
+- **utilities:** enhance `unique` function to support property-based and comparator-based filtering ([dd2a34b](https://gitlab.com/rxap/packages/commit/dd2a34bff44ac25d18cfdb0485a11231ed60e59b))
+
 ## [16.4.5-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.4.5-dev.0...@rxap/utilities@16.4.5-dev.1) (2025-09-15)
 
 **Note:** Version bump only for package @rxap/utilities
