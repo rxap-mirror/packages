@@ -10,6 +10,13 @@
 export type CompareTo<T> = (a: T, b: T) => boolean;
 
 /**
+ * Creates a function that can be used as a predicate to filter unique elements in an array.
+ * It checks if the current element's index matches its first occurrence index within the array.
+ *
+ * @return A function that determines whether a given element is unique in an array.
+ */
+export function unique<T>(): (value: T, index: number, self: T[]) => boolean;
+/**
  * Creates a function that can be used to filter an array of objects, ensuring
  * that objects with the same combination of specified property values appear only once.
  *
