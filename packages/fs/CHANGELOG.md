@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.7...@rxap/fs@1.2.0-dev.8) (2025-09-19)
+
+### Features
+
+- **fs:** introduce AsyncVirtualFile class for asynchronous file handling ([2b4a681](https://gitlab.com/rxap/packages/commit/2b4a681adc56ff6793e011d765728adabe5d7224))
+
 # [1.2.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.6...@rxap/fs@1.2.0-dev.7) (2025-09-17)
 
 ### Features
