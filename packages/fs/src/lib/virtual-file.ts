@@ -110,6 +110,14 @@ export class VirtualFile implements VirtualFileLike {
   protected _textContent: string | null = null;
   protected _blob: Blob | null = null;
 
+  get data(): ArrayBuffer {
+    return this._data;
+  }
+
+  get byteLength(): number {
+    return this._data.byteLength;
+  }
+
   constructor(
     public readonly name: string,
     /**
@@ -127,10 +135,6 @@ export class VirtualFile implements VirtualFileLike {
     if (!this.fullName.endsWith(this.name)) {
       throw new Error(`The full name '${ fullName }' must end with the file name '${ name }'`);
     }
-  }
-
-  get data(): ArrayBuffer {
-    return this._data;
   }
 
   getContent(mimetype: TextualMime, textDecoder: typeof TextDecoder): string;
@@ -184,7 +188,7 @@ export class VirtualFile implements VirtualFileLike {
         this._textContent = this.textDecode(textDecoder);
       } else {
         if (typeof window === 'undefined') {
-          return Buffer.from(this.data).toString('utf8');
+          return this.toBuffer().toString('utf8');
         } else {
           const blob = this.getBlob(mimetype);
           if (blob.text) {
@@ -231,7 +235,7 @@ export class VirtualFile implements VirtualFileLike {
   toJSON() {
     return {
       mimetype: this.mimetype,
-      byteLength: this.data.byteLength,
+      byteLength: this.byteLength,
     };
   }
 
@@ -306,6 +310,195 @@ export class SyncVirtualFile extends VirtualFile implements SyncVirtualFileLike 
   override getText(mimetype: TextualMime | undefined): string
   override getText(mimetype?: TextualMime | undefined, textDecoder: typeof TextDecoder = this._textDecoder): string {
     return super.getText(mimetype, textDecoder);
+  }
+
+}
+
+export class AsyncVirtualFile implements AsyncVirtualFileLike {
+
+  get data(): Promise<ArrayBuffer> {
+    if (this._data) {
+      this._dataPromise = Promise.resolve(this._data);
+    }
+    if (!this._dataPromise) {
+      const data = typeof this.dataFactory === 'function' ? this.dataFactory() : this.dataFactory;
+      this._dataPromise = data.then((data) => {
+        this._byteLength = data.byteLength;
+        return data;
+      });
+    }
+    return this._dataPromise;
+  }
+
+  get byteLength(): Promise<number> {
+    if (this._byteLength) {
+      return Promise.resolve(this._byteLength);
+    }
+    return this.data.then(data => data.byteLength);
+  }
+
+  protected _byteLength: number | null = null;
+  protected _dataPromise: Promise<ArrayBuffer> | null = null;
+  protected _textContent: string | null = null;
+  protected _blob: Blob | null = null;
+  protected _data: ArrayBuffer | null = null;
+
+  constructor(
+    public readonly name: string,
+    /**
+     * The name with the path from the root as prefix
+     */
+    public readonly fullName: string,
+    protected readonly dataFactory: Promise<ArrayBuffer> | (() => Promise<ArrayBuffer>),
+    public mimetype?: MimeType,
+    protected readonly _textDecoder?: typeof TextDecoder,
+    protected readonly _textEncoder?: typeof TextEncoder,
+  ) {
+    if (this.name.includes('/')) {
+      throw new Error(`The file name '${ name }' must not contain a path`);
+    }
+    if (!this.fullName.endsWith(this.name)) {
+      throw new Error(`The full name '${ fullName }' must end with the file name '${ name }'`);
+    }
+  }
+
+  getContent(mimetype: TextualMime): Promise<string>;
+  getContent(mimetype: BinaryMime): Promise<Blob>;
+  getContent(mimetype: MimeType | undefined): Promise<string | Blob>;
+  getContent(): Promise<string | Blob>;
+  getContent(mimetype?: MimeType): Promise<string | Blob>;
+  async getContent(
+    mimetype: MimeType = this.mimetype ?? 'auto',
+    textDecoder: typeof TextDecoder | undefined = this._textDecoder,
+  ): Promise<string | Blob> {
+    if (isTextualMime(mimetype)) {
+      if (!this._textContent) {
+        if (textDecoder) {
+          this._textContent = await this.textDecode(textDecoder);
+        } else {
+          const text = this.getText(mimetype);
+          if (typeof text === 'object' && 'then' in text) {
+            return text.then((text) => {
+              this._textContent = text;
+              return this._textContent;
+            });
+          }
+          this._textContent = text;
+        }
+      }
+      return this._textContent;
+    }
+    return this.getBlob();
+  }
+
+  async getText(
+    mimetype?: TextualMime,
+    textDecoder: typeof TextDecoder | undefined = this._textDecoder,
+  ): Promise<string> {
+    if (!mimetype) {
+      if (this.mimetype && isTextualMime(this.mimetype)) {
+        mimetype = this.mimetype;
+      } else {
+        throw new Error(`The mimetype '${ this.mimetype }' is not a textual mimetype`);
+      }
+    }
+    if (!this._textContent) {
+      if (textDecoder) {
+        this._textContent = await this.textDecode(textDecoder);
+      } else {
+        if (typeof window === 'undefined') {
+          return this.toBuffer().then(buffer => buffer.toString('utf8'));
+        } else {
+          const blob = await this.getBlob(mimetype);
+          if (blob.text) {
+            return blob.text();
+          } else {
+            return new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result as string);
+              reader.readAsText(blob);
+            });
+          }
+        }
+      }
+    }
+    return this._textContent;
+  }
+
+  async getBlob(mimetype: MimeType = this.mimetype ?? 'auto') {
+    if (!this._blob || this._blob.type !== mimetype) {
+      if (this._blob) {
+        this.setMimeType(mimetype);
+      }
+      this._blob = new Blob([ await this.data ], { type: this.mimetype });
+    }
+    return this._blob;
+  }
+
+  async textDecode(textDecoder: typeof TextDecoder): Promise<string> {
+    return new textDecoder().decode(await this.data);
+  }
+
+  setMimeType(mimetype: MimeType) {
+    this.mimetype = mimetype;
+  }
+
+  async toFile(useFullName = false): Promise<File> {
+    return new File([ await this.data ], useFullName ? this.fullName : this.name, { type: this.mimetype });
+  }
+
+  async toBuffer(): Promise<Buffer> {
+    return Buffer.from(await this.data);
+  }
+
+  toJSON() {
+    return {
+      mimetype: this.mimetype,
+      byteLength: this._byteLength,
+    };
+  }
+
+  /**
+   * Clones the file.
+   * @param name the new name of the file defaults to the current name
+   * @param fullName the new full name of the file defaults to the current name. Will replace the name if it is changed.
+   * @param deep true - the data is copied, false - the data is shared
+   */
+  async clone(name = this.name, fullName = this.fullName, deep = false) {
+    if (name !== this.name && !fullName.endsWith(name)) {
+      fullName.replace(new RegExp(`${this.name}$`), name);
+    }
+    const data = await this.data;
+    return new VirtualFile(name, fullName, deep ? data.slice(0) : data);
+  }
+
+  async write(textContent: string, textEncoder: typeof TextEncoder): Promise<void>;
+  async write(textContent: string): Promise<void>;
+  async write(data: ArrayBuffer): Promise<void>;
+  async write(textContentOrData: string | ArrayBuffer, textEncoder: typeof TextEncoder | undefined = this._textEncoder) {
+    if (typeof textContentOrData === 'string') {
+      this.writeTextContent(textContentOrData, textEncoder);
+    } else {
+      this.writeData(textContentOrData);
+    }
+    this._blob = null;
+    this._textContent = null;
+  }
+
+  async writeTextContent(textContent: string, textEncoder: typeof TextEncoder | undefined = this._textEncoder) {
+    if (this.mimetype !== undefined) {
+      if (!isTextualMime(this.mimetype)) {
+        throw new Error(`The mimetype '${ this.mimetype }' does not support text content`);
+      }
+    }
+    if (!textEncoder) {
+      throw new Error(`If write the text content, the text encoder must be provided.`);
+    }
+    this._data = new textEncoder().encode(textContent);
+  }
+
+  async writeData(data: ArrayBuffer) {
+    this._data = data;
   }
 
 }
