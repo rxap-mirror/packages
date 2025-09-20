@@ -1,10 +1,10 @@
 import { HttpResourceRequest } from '@angular/common/http';
 import { Signal } from '@angular/core';
 
-export function toHttpParams<T extends Record<string, Signal<unknown>>>(
+export function toHttpHeaders<T extends Record<string, Signal<unknown>>>(
   record: T | undefined | null,
   include: Array<keyof T> = []
-): HttpResourceRequest['params'] | undefined {
+): HttpResourceRequest['headers'] | undefined {
   if (!record) {
     return undefined;
   }
@@ -13,11 +13,11 @@ export function toHttpParams<T extends Record<string, Signal<unknown>>>(
     .reduce(
       (acc, [key, signal]: [string, Signal<any>]) => ({
         ...acc,
-        [key]: encodeURIComponent(signal()),
+        [key]: signal(),
       }),
       {} as Record<
         string,
-        string | number | boolean | ReadonlyArray<string | number | boolean>
+        string | ReadonlyArray<string>
       >
     );
 }
