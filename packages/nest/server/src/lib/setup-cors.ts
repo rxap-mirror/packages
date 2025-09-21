@@ -46,7 +46,7 @@ export function corsValidationSchema(
     origin = true,
     credentials = true,
     methods = [ 'GET', 'PUT', 'POST', 'DELETE' ],
-    allowedHeaders = [ 'sentry-trace', 'baggage' ],
+    allowedHeaders = [ 'sentry-trace', 'baggage', 'content-type' ],
     exposedHeaders = []
   }: {
     origin?: string | boolean,
