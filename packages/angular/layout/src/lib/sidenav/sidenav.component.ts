@@ -67,8 +67,15 @@ export class SidenavComponent {
     this.layoutService.togglePinned();
   }
 
+  /**
+   * To ensure the open state is in sync with the component. If the sidenav is closed, e.g. clicking outside the sidenav,
+   * it is required to manually update the state in the LayoutService.
+   * @param opened
+   */
   onOpenedChanged(opened: boolean) {
-    this.layoutService.opened.set(opened);
+    if (!opened) {
+      this.layoutService.closeSidenav();
+    }
   }
 
   async openSidenav() {
