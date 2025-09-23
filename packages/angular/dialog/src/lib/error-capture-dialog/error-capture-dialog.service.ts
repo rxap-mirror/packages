@@ -5,7 +5,9 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { RXAP_ERROR_DIALOG_DISABLED } from '@rxap/ngx-error';
 import {
+  EMPTY,
   finalize,
   Observable,
   take,
@@ -18,8 +20,13 @@ import { ErrorCaptureDialogData } from './types';
 export class ErrorCaptureDialogService<Error = any> {
 
   protected readonly dialog = inject(MatDialog);
+  protected readonly disabled = inject(RXAP_ERROR_DIALOG_DISABLED);
 
   open(component: ComponentType<any>, errorList: WritableSignal<Error[]>): Observable<void> {
+    if (this.disabled) {
+      console.debug(`ErrorCaptureDialogService is disabled.`, { errorList: errorList() });
+      return EMPTY;
+    }
     const ref = this.dialog.open<ErrorCaptureDialogComponent, ErrorCaptureDialogData>(ErrorCaptureDialogComponent, {
       data: {
         errorList,
