@@ -9,6 +9,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import {
+  EMPTY,
   finalize,
   Observable,
   take,
@@ -21,6 +22,7 @@ import {
 import {
   RXAP_ERROR_DIALOG_COMPONENT,
   RXAP_ERROR_DIALOG_DATA,
+  RXAP_ERROR_DIALOG_DISABLED,
 } from './tokens';
 
 export interface IErrorCaptureDialogService<Error = any> {
@@ -32,8 +34,13 @@ export class ErrorCaptureDialogService<Error = any> implements IErrorCaptureDial
 
   protected readonly applicationRef = inject(ApplicationRef);
   protected readonly document = inject(DOCUMENT);
+  protected readonly disabled = inject(RXAP_ERROR_DIALOG_DISABLED);
 
   open(component: ComponentType<IErrorDialogComponent>, errorList: WritableSignal<Error[]>): Observable<void> {
+    if (this.disabled) {
+      console.debug(`ErrorCaptureDialogService is disabled.`, { errorList: errorList() });
+      return EMPTY;
+    }
     const body = this.document.getElementsByTagName('body')[0];
     const div = this.document.createElement('div');
     body.appendChild(div);

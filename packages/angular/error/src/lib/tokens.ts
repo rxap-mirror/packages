@@ -18,3 +18,5 @@ export const RXAP_ERROR_INTERCEPTOR_OPTIONS = new InjectionToken<ErrorIntercepto
   'rxap/error/interceptor-options');
 
 export const RXAP_ERROR_CAPTURE_DIALOG_SERVICE = new InjectionToken<IErrorCaptureDialogService>('rxap/error/capture-dialog-service');
+
+export const RXAP_ERROR_DIALOG_DISABLED = new InjectionToken<boolean>('rxap/error/dialog-disabled');
