@@ -1,70 +1,77 @@
 import {
   Directive,
   HostListener,
+  inject,
   Injectable,
-  Input,
+  input,
+  output,
 } from '@angular/core';
-import { Required } from '@rxap/utilities';
+
+export interface ShareData {
+  files?: File[];
+  text?: string;
+  title?: string;
+  url?: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ShareService {
 
-  public async share(data: { url?: string, text?: string, title?: string, files?: ReadonlyArray<File> }) {
+  readonly isSupported = 'share' in navigator && 'canShare' in navigator && typeof navigator.canShare === 'function' && typeof navigator.share === 'function';
 
-    if (this.isShareSupported()) {
+  async share(data: ShareData, softFail = true) {
 
-      if ((navigator as any).canShare(data)) {
+    if (this.isSupported) {
 
-        await (navigator as any).share(data);
+      if (navigator.canShare(data)) {
+
+        await navigator.share(data);
 
       } else {
-        console.debug('share data:', data);
-        throw new Error('Can not share data. Data is invalid!');
+        console.warn('Can not share data', data);
+        throw new Error('Can not share data');
       }
 
+    } else if (softFail) {
+      console.warn(`Native share is not supported!`);
     } else {
       alert('Native share is not supported!');
     }
 
   }
 
-  private isShareSupported(): boolean {
-    return !!(navigator as any).share;
-  }
-
 }
 
 @Directive({
-  selector: '[rxapShareButton]',
+  selector: '[rxapShareButton],[rxapShare]',
   standalone: true,
 })
 export class ShareButtonDirective {
 
-  @Input()
-  public url!: string;
+  readonly url = input<string>();
+  readonly text = input<string>();
+  readonly title = input<string>();
+  readonly files = input<File[] | undefined>();
 
-  @Input()
-  public text!: string;
+  readonly failed = output<any>();
+  readonly success = output<void>();
 
-  @Input({ required: true })
-  public title!: string;
-
-  @Input()
-  public files?: ReadonlyArray<File>;
-
-  constructor(private readonly shareService: ShareService) {
-  }
+  private readonly shareService = inject(ShareService);
 
   @HostListener('click')
-  public share() {
-    this.shareService.share({
-          url: this.url,
-          text: this.text,
-          files: this.files,
-          title: this.title,
-        })
-        .then(() => console.log('share successfully'))
-        .catch(err => console.error('share failed', err.message));
+  async share() {
+    try {
+      await this.shareService.share({
+        url: this.url(),
+        text: this.text(),
+        files: this.files(),
+        title: this.title(),
+      });
+      this.success.emit();
+    } catch (err: any) {
+      console.error(`share failed: ${ err.message }`);
+      this.failed.emit(err);
+    }
   }
 
 }
