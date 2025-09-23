@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.17...@rxap/nest-server@11.0.0-dev.18) (2025-09-23)
+
+### Features
+
+- **server:** add `content-type` to allowed CORS headers ([e8c7a6e](https://gitlab.com/rxap/packages/commit/e8c7a6eca018dc721433897640aad7dd96fd6a23))
+
 # [11.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.16...@rxap/nest-server@11.0.0-dev.17) (2025-09-16)
 
 ### Bug Fixes

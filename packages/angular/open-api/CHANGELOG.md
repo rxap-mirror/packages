@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.2.0-dev.1...@rxap/open-api@19.2.0-dev.2) (2025-09-23)
+
+### Features
+
+- **open-api:** add `toHttpHeaders` utility and encode query params ([86e02bd](https://gitlab.com/rxap/packages/commit/86e02bd763b748ec072d0a91c83ab60ac297d1e9))
+
 # [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.2.0-dev.0...@rxap/open-api@19.2.0-dev.1) (2025-09-12)
 
 **Note:** Version bump only for package @rxap/open-api

@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0",
+  "version": "19.2.0-dev.0",
   "name": "@rxap/ngx-error",
   "description": "This package provides a comprehensive error handling solution for Angular applications, including interceptors, services, and UI components to display different types of errors in a user-friendly dialog. It supports handling of generic errors, HTTP errors with messages or codes, and OpenAPI HTTP response errors, with customizable options for logging, displaying dialogs, and integrating with Sentry. The package aims to simplify error management and improve the user experience by providing clear and informative error messages.\n",
   "license": "GPL-3.0-or-later",
@@ -12,10 +12,10 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@rxap/components": "^19.1.0-dev.1",
-    "@rxap/config": "^19.2.0-dev.0",
+    "@rxap/config": "^19.2.0-dev.1",
     "@rxap/data-grid": "^19.0.4",
     "@rxap/environment": "^19.0.4",
-    "@rxap/open-api": "^19.2.0-dev.1",
+    "@rxap/open-api": "^19.2.0-dev.2",
     "@sentry/angular": "^8.18.0",
     "rxjs": "^7.8.1"
   },
@@ -73,7 +73,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.2.0-dev.0"
+        "version": "19.2.0-dev.1"
       },
       {
         "package": "@rxap/data-grid",
@@ -93,7 +93,7 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/environment",
@@ -109,7 +109,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.2.0-dev.1"
+        "version": "19.2.0-dev.2"
       },
       {
         "package": "@rxap/pattern",

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@19.1.0...@rxap/ngx-error@19.2.0-dev.0) (2025-09-23)
+
+### Features
+
+- **error:** add conditional provider for error dialog disablement ([cabd1fa](https://gitlab.com/rxap/packages/commit/cabd1fa97c6c56bdc3d794e0682af23b99b82b85))
+- **error:** add dialog disable option for flexible error handling ([1fa4b0e](https://gitlab.com/rxap/packages/commit/1fa4b0e8d66e15021219ff3e57d5757752131d13))
+
 # [19.1.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@19.1.0-dev.1...@rxap/ngx-error@19.1.0) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/ngx-error

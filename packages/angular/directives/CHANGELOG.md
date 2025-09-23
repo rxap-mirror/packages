@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@19.0.4...@rxap/directives@19.1.0-dev.0) (2025-09-23)
+
+### Features
+
+- **angular:** enhance share button directive with input/output properties and improved share service ([7523b36](https://gitlab.com/rxap/packages/commit/7523b36eee54cda6150facc9950e95abe834d29a))
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/directives@19.0.4-dev.0...@rxap/directives@19.0.4) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/directives

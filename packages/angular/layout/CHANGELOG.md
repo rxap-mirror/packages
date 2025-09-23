@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.1-dev.5...@rxap/layout@19.1.1-dev.6) (2025-09-23)
+
+### Bug Fixes
+
+- **layout:** ensure sidenav state is updated on external close ([a90b354](https://gitlab.com/rxap/packages/commit/a90b3545da8c0cb04cbad2aa5abdc9662e0af1ae))
+
 ## [19.1.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.1-dev.4...@rxap/layout@19.1.1-dev.5) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/layout

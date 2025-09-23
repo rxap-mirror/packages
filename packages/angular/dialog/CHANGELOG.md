@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@19.1.0...@rxap/dialog@19.2.0-dev.0) (2025-09-23)
+
+### Features
+
+- **dialog:** conditionally disable error capture dialog service ([16f1b80](https://gitlab.com/rxap/packages/commit/16f1b80be38926a5741e07aa6751b705a44b24e5))
+
 # [19.1.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@19.1.0-dev.1...@rxap/dialog@19.1.0) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/dialog

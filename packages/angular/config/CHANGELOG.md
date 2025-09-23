@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@19.2.0-dev.0...@rxap/config@19.2.0-dev.1) (2025-09-23)
+
+### Bug Fixes
+
+- **utilities:** add cache control headers to DNS resolver ([b21dd49](https://gitlab.com/rxap/packages/commit/b21dd494df16c9ab199e9a986b6ee265c4ad6c68))
+
 # [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.1.1-dev.1...@rxap/config@19.2.0-dev.0) (2025-09-03)
 
 ### Features
