@@ -39,7 +39,12 @@ export async function raceSuccess<T>(promises: Promise<T>[]): Promise<T> {
 export async function dnsResolver(endpoint: string, name: string, type: string): Promise<string> {
   const response = await fetch(`${endpoint}?name=${name}&type=${type}`, {
     method: 'GET',
-    headers: { 'Accept': 'application/dns-json' },
+    headers: {
+      'Accept': 'application/dns-json',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    },
   });
   if (!response.ok) {
     throw new Error(`Failed to resolve DNS via ${endpoint} (${response.status}): ${response.statusText}`);
