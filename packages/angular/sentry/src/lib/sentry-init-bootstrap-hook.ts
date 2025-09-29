@@ -34,7 +34,7 @@ export function sentryInitBootstrapHook(environment: Environment) {
         })),
         Sentry.browserSessionIntegration(),
         Sentry.captureConsoleIntegration(config.get('sentry.integrations.captureConsole', {
-          levels: ['error', 'warn'],
+          levels: ['error'],
         })),
         Sentry.extraErrorDataIntegration(config.get('sentry.integrations.extraErrorData')),
         Sentry.httpClientIntegration(config.get('sentry.integrations.httpClient')),
