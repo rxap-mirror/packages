@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@19.2.0-dev.0...@rxap/ngx-error@19.2.0-dev.1) (2025-09-29)
+
+### Features
+
+- **error:** provide default value for error dialog disabled token ([59f8e71](https://gitlab.com/rxap/packages/commit/59f8e71a509fce79bbaa8c1f20e2193b3ab8d58b))
+
 # [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@19.1.0...@rxap/ngx-error@19.2.0-dev.0) (2025-09-23)
 
 ### Features

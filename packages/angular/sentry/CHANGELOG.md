@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-sentry@19.2.0-dev.0...@rxap/ngx-sentry@19.2.0-dev.1) (2025-09-29)
+
+### Bug Fixes
+
+- **sentry:** remove 'warn' level from captureConsole integration ([641fdad](https://gitlab.com/rxap/packages/commit/641fdad2e1d8effbc6574986dcf87c7bc2e02ff5))
+
 # [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-sentry@19.1.1-dev.0...@rxap/ngx-sentry@19.2.0-dev.0) (2025-09-08)
 
 ### Features
