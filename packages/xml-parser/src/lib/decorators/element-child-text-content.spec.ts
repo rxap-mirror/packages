@@ -1,11 +1,13 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import {
+  createElement,
   ElementDef,
   ElementParserMetaData,
   ParsedElement,
   XmlParserService,
+  XmlSerializerService,
 } from '@rxap/xml-parser';
-import { DOMParser } from 'xmldom';
+import { DOMParser, XMLSerializer } from 'xmldom';
 import {
   ElementChildTextContent,
   ElementChildTextContentParser,
@@ -108,6 +110,25 @@ describe('@rxap/xml-parser', () => {
 
         expect(element).toBeInstanceOf(MyElement);
         expect(element.name).toBe('test');
+
+      });
+
+      it('should serialize the child text content', () => {
+
+        @ElementDef('my-element')
+        class MyElement implements ParsedElement {
+
+          __tag?: string;
+
+          @ElementChildTextContent('my-child')
+          public name!: string;
+
+        }
+
+        const element = createElement(MyElement, { name: 'test' });
+        const xmlSerializer = new XmlSerializerService(DOMParser, XMLSerializer);
+        const xml = xmlSerializer.serializeToXml(element);
+        expect(xml).toBe('<my-element><my-child>test</my-child></my-element>');
 
       });
 
