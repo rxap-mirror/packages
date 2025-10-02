@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.10...@rxap/xml-parser@16.3.0-dev.11) (2025-10-02)
+
+### Features
+
+- **xml-parser:** add element registry to track registered tags ([02da71e](https://gitlab.com/rxap/packages/commit/02da71e2d0e51ef9612d41277566a2fbc04c6241))
+
 # [16.3.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.9...@rxap/xml-parser@16.3.0-dev.10) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/xml-parser
