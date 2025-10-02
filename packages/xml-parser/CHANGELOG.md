@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.3.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.11...@rxap/xml-parser@16.3.0-dev.12) (2025-10-02)
+
+### Features
+
+- **xml-parser:** apply element namespace metadata during parsing ([b18e20a](https://gitlab.com/rxap/packages/commit/b18e20ae245064c9fa84ab73e31cde13b6bf67d2))
+
 # [16.3.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.3.0-dev.10...@rxap/xml-parser@16.3.0-dev.11) (2025-10-02)
 
 ### Features
