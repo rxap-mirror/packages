@@ -1,6 +1,7 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import { Constructor } from '@rxap/utilities';
 import {
+  applyElementNamespaceMetadata,
   ElementChildParser,
   ElementChildrenParser,
   ElementParserMetaData,
@@ -43,6 +44,7 @@ export function createElement<Element extends ParsedElement>(
 
   instance.__tag ??= tag;
   instance.__xmlns ??= new Map();
+  applyElementNamespaceMetadata(instance);
   if (parent) {
     instance.__parent = parent;
     const parsers = GetAllElementParserInstances(parent.constructor as any);

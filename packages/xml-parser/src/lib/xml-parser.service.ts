@@ -5,6 +5,7 @@ import {
   Type,
 } from '@rxap/utilities';
 import { AttributeOptions } from './decorators/attribute';
+import { applyElementNamespaceMetadata } from './decorators/element-namespace';
 import { ElementParserMetaData } from './decorators/metadata-keys';
 import { defaultToJson } from './default-to-json';
 import {
@@ -130,6 +131,7 @@ export class XmlParserService {
     Reflect.set(instance, '__tag', element.nodeName);
     Reflect.set(instance, '__parent', parent);
     const xmlnsMap = Reflect.get(instance, '__xmlns') ?? new Map<string, string>();
+    applyElementNamespaceMetadata(instance);
     for (const xmlns of element.attributeNames.filter(name => name.startsWith('xmlns'))) {
       const value    = element.get(xmlns)!;
       xmlnsMap.set(xmlns.includes(':') ? xmlns.split(':').pop()! : '', value);

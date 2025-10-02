@@ -4,6 +4,7 @@ import {
   hasMetadata,
   setMetadata,
 } from '@rxap/reflect-metadata';
+import { ParsedElement } from '../elements/parsed-element';
 import { ParsedElementType } from './utilities';
 
 export const ELEMENT_NAMESPACE = Symbol('ELEMENT_NAMESPACE');
@@ -38,4 +39,14 @@ export function getElementNamespaceMetadata(element: ParsedElementType<any>): Re
     throw new Error(`The element ${ element.name } does not have a namespace`);
   }
   return getMetadata<Record<string, string>>(ELEMENT_NAMESPACE, element)!;
+}
+
+export function applyElementNamespaceMetadata(element: ParsedElement) {
+  if (hasElementNamespaceMetadata(element.constructor as any)) {
+    const namespace = getElementNamespaceMetadata(element.constructor as any);
+    element.__xmlns ??= new Map();
+    for (const [ key, value ] of Object.entries(namespace)) {
+      element.__xmlns.set(key, value);
+    }
+  }
 }
