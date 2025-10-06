@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.1-dev.4...@rxap/workspace-open-api@19.1.1-dev.5) (2025-10-06)
+
+### Bug Fixes
+
+- **open-api:** encode URL parameters in generated HTTP resource ([edd3fbc](https://gitlab.com/rxap/packages/commit/edd3fbc9391bd51c31907eb5cc825a26ebb1a249))
+
 ## [19.1.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.1-dev.3...@rxap/workspace-open-api@19.1.1-dev.4) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/workspace-open-api
