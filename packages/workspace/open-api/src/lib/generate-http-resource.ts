@@ -104,7 +104,7 @@ export function GenerateHttpResource(
       w.write(
         parameter.path.replace(
           /\{([^}]+)\}/g,
-          (_, name) => `\${parameters.${name}()}`
+          (_, name) => `\${encodeURIComponent(parameters.${name}())}`
         )
       );
       w.write('`');
