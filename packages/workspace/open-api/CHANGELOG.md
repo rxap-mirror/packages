@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.1-dev.5...@rxap/workspace-open-api@19.1.1-dev.6) (2025-10-07)
+
+### Bug Fixes
+
+- **open-api:** handle array path parameters in generated HTTP resource ([bf3555d](https://gitlab.com/rxap/packages/commit/bf3555da062546c36753dfcf368521124e2e9cfd))
+
 ## [19.1.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.1-dev.4...@rxap/workspace-open-api@19.1.1-dev.5) (2025-10-06)
 
 ### Bug Fixes
