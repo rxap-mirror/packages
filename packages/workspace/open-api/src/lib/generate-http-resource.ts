@@ -104,7 +104,13 @@ export function GenerateHttpResource(
       w.write(
         parameter.path.replace(
           /\{([^}]+)\}/g,
-          (_, name) => `\${encodeURIComponent(parameters.${name}())}`
+          (_, name) => {
+            const isArray = !!parameter.parameters?.find(p => !IsRefSchemaObject(p) && p.name === name && p.in === 'path' && p.schema && typeof p.schema === 'object' && 'type' in p.schema && p.schema.type === 'array');
+            if (isArray) {
+              return `\${parameters.${ name }().map(v => encodeURIComponent(v)).join('/)}`;
+            }
+            return `\${encodeURIComponent(parameters.${ name }())}`;
+          }
         )
       );
       w.write('`');
