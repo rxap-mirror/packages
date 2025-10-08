@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/form-system@19.1.0-dev.2...@rxap/form-system@19.1.0-dev.3) (2025-10-08)
+
+### Features
+
+- **form-system:** extend options method to support additional parameters ([4c8e5af](https://gitlab.com/rxap/packages/commit/4c8e5af9b79bd88042248ce8b51fff675ca5b8f3))
+
 # [19.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@19.1.0-dev.1...@rxap/form-system@19.1.0-dev.2) (2025-10-08)
 
 ### Features
