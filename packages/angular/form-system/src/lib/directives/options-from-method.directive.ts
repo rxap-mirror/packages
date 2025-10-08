@@ -3,11 +3,11 @@ import {
   ChangeDetectorRef,
   Directive,
   inject,
-  InjectFlags,
   INJECTOR,
   Injector,
   Input,
   OnChanges,
+  OnDestroy,
   signal,
   SimpleChanges,
   TemplateRef,
@@ -20,12 +20,20 @@ import {
 import { MatFormField } from '@angular/material/form-field';
 import { RxapFormControl } from '@rxap/forms';
 import { Mixin } from '@rxap/mixin';
-import { Method } from '@rxap/pattern';
 import {
   ControlOption,
   ControlOptions,
 } from '@rxap/utilities';
-import { ExtractOptionsMethodMixin } from '../mixins/extract-options-method.mixin';
+import {
+  isObservable,
+  Observable,
+  Subscription,
+  tap,
+} from 'rxjs';
+import {
+  ExtractOptionsMethodMixin,
+  OptionsMethod,
+} from '../mixins/extract-options-method.mixin';
 
 
 export interface OptionsFromMethodTemplateContext {
@@ -48,7 +56,7 @@ export interface OptionsFromMethodDirective<Value = any, Parameters = any>
   standalone: true,
   exportAs: 'rxapOptionsFromMethod',
 })
-export class OptionsFromMethodDirective<Value = any, Parameters = any> implements AfterViewInit, OnChanges {
+export class OptionsFromMethodDirective<Value = any, Parameters = any> implements AfterViewInit, OnChanges, OnDestroy {
 
   static ngTemplateContextGuard(
     dir: OptionsFromMethodDirective,
@@ -68,7 +76,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   public options: ControlOptions | null                                    = null;
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('rxapOptionsFromMethodCall')
-  public method!: Method<ControlOptions, Parameters>;
+  public method!: OptionsMethod<Parameters>;
   protected ngControl: NgControl | AbstractControlDirective | null         = null;
   protected matFormField: MatFormField | null                              = null;
   protected settings: OptionsFromMethodDirectiveSettings                   = {};
@@ -76,6 +84,8 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   protected readonly injector: Injector                                    = inject(INJECTOR);
   protected readonly cdr: ChangeDetectorRef                                = inject(ChangeDetectorRef);
   private readonly template: TemplateRef<OptionsFromMethodTemplateContext> = inject(TemplateRef);
+
+  protected _loadOptionsSubscription?: Subscription;
 
   public async ngAfterViewInit() {
     this.matFormField = this.injector.get(MatFormField, null);
@@ -87,6 +97,10 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
     if (!this.options) {
       await this.load(this.parameters);
     }
+  }
+
+  ngOnDestroy() {
+    this._loadOptionsSubscription?.unsubscribe();
   }
 
   public async ngOnChanges(changes: SimpleChanges) {
@@ -102,7 +116,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
     }
   }
 
-  protected async loadOptions(parameters?: Parameters): Promise<ControlOptions | null> {
+  protected async loadOptions(parameters?: Parameters): Promise<Observable<ControlOptions | null> | ControlOptions | null> {
     return this.method.call(parameters);
   }
 
@@ -139,7 +153,15 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   public async load(parameters: Parameters | undefined = this.parameters) {
     this.loading.set(true);
     try {
-      this.setOptions(await this.loadOptions(parameters));
+      const result = await this.loadOptions(parameters);
+      if (isObservable(result)) {
+        this._loadOptionsSubscription?.unsubscribe();
+        this._loadOptionsSubscription = result.pipe(
+          tap(options => this.setOptions(options)),
+        ).subscribe();
+      } else {
+        this.setOptions(result);
+      }
     } finally {
       this.loading.set(false);
     }

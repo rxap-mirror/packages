@@ -10,22 +10,32 @@ import {
   OnDestroy,
   ProviderToken,
 } from '@angular/core';
-import { MatAutocomplete } from '@angular/material/autocomplete';
-import { ControlOption, ControlOptions } from '@rxap/utilities';
-import { distinctUntilChanged, Subscription, tap } from 'rxjs';
-import { isUUID } from '@rxap/validator';
-import { Method, MethodWithParameters } from '@rxap/pattern';
-import { Mixin } from '@rxap/mixin';
 import { NgControl } from '@angular/forms';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 import { MatFormField } from '@angular/material/form-field';
+import { controlValueChanges$ } from '@rxap/forms';
+import { Mixin } from '@rxap/mixin';
+import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
+import {
+  Method,
+  MethodWithParameters,
+} from '@rxap/pattern';
 import { isDefined } from '@rxap/rxjs';
-import { ExtractControlMixin } from '../mixins/extract-control.mixin';
-import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
+import {
+  ControlOption,
+  ControlOptions,
+} from '@rxap/utilities';
+import { isUUID } from '@rxap/validator';
+import {
+  distinctUntilChanged,
+  Observable,
+  Subscription,
+  tap,
+} from 'rxjs';
 import {
   ExtractIsValueFunctionMixin,
   UseIsValueFunction,
 } from '../mixins/extract-is-value-function.mixin';
-import { ExtractMethodMixin } from '../mixins/extract-method.mixin';
 import { UseMethodConfig } from '../mixins/extract-methods.mixin';
 import { UseOptionsMethod } from '../mixins/extract-options-method.mixin';
 import {
@@ -36,9 +46,10 @@ import {
   ExtractToDisplayFunctionMixin,
   UseToDisplayFunction,
 } from '../mixins/extract-to-display-function.mixin';
-import { OptionsFromMethodDirective, OptionsFromMethodDirectiveSettings } from './options-from-method.directive';
-import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { controlValueChanges$ } from '@rxap/forms';
+import {
+  OptionsFromMethodDirective,
+  OptionsFromMethodDirectiveSettings,
+} from './options-from-method.directive';
 
 export function UseAutocompleteOptionsMethod(
   method: ProviderToken<MethodWithParameters<ControlOptions, AutocompleteOptionsFromMethodDirectiveParameters>>,
@@ -157,7 +168,8 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
 
   private _subscription?: Subscription;
 
-  public ngOnDestroy() {
+  public override ngOnDestroy() {
+    super.ngOnDestroy();
     this._subscription?.unsubscribe();
   }
 
@@ -190,7 +202,7 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
       // to trigger the toDisplay function in the mat-autocomplete
       distinctUntilChanged(),
       tap(async value => {
-        this.setOptions(await this.loadOptions(this.parameters));
+        await this.load(this.parameters);
         if (this.isValue?.(value)) {
           this.triggerAutocompleteToDisplay();
         }
@@ -198,7 +210,7 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
     ).subscribe();
   }
 
-  protected override loadOptions(parameters: Parameters = {} as Parameters): Promise<ControlOptions | null> {
+  protected override loadOptions(parameters: Parameters = {} as Parameters): Promise<ControlOptions | null | Observable<ControlOptions | null>> {
     if (!this.control) {
       throw new Error('The control is not yet defined');
     }

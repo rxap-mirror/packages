@@ -3,6 +3,7 @@ import { RxapFormControl } from '@rxap/forms';
 import { Mixin } from '@rxap/mixin';
 import { Method } from '@rxap/pattern';
 import { ControlOptions } from '@rxap/utilities';
+import { Observable } from 'rxjs';
 import { ExtractControlMixin } from './extract-control.mixin';
 import { ExtractFormDefinitionMixin } from './extract-form-definition.mixin';
 import { ExtractMethodMixin } from './extract-method.mixin';
@@ -13,7 +14,9 @@ import {
 
 export const OPTIONS_METHOD_NAME = 'options';
 
-export function UseOptionsMethod(method: ProviderToken<Method<ControlOptions>>, config?: UseMethodConfig) {
+export type OptionsMethod<Parameters = any> = Method<ControlOptions | Observable<ControlOptions | null> | null, Parameters>;
+
+export function UseOptionsMethod<Parameters = any>(method: ProviderToken<OptionsMethod<Parameters>>, config?: UseMethodConfig) {
   return function (target: any, propertyKey: string) {
     UseMethod(method, OPTIONS_METHOD_NAME, config)(target, propertyKey);
   };
