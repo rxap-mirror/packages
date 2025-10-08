@@ -128,7 +128,7 @@ describe('OptionsFromMethodDirective', () => {
     expect(createEmbeddedViewMock).not.toBeCalled();
     expect(detectChangesMock).toBeCalledTimes(1);
     expect(methodCallSpy).toBeCalled();
-    expect(methodCallSpy).toBeCalledWith(undefined);
+    expect(methodCallSpy).toBeCalledWith(undefined, expect.any(RxapFormControl));
   }));
 
   it('should pass the paratmers to the method call', fakeAsync(() => {
@@ -148,8 +148,8 @@ describe('OptionsFromMethodDirective', () => {
     directive.ngAfterViewInit();
     tick();
     expect(methodCallSpy).toBeCalledTimes(1);
-    expect(methodCallSpy).toBeCalledWith(directive.parameters);
-    expect(methodCallSpy.mock.lastCall).toEqual([ directive.parameters ]);
+    expect(methodCallSpy).toBeCalledWith(directive.parameters, expect.any(RxapFormControl));
+    expect(methodCallSpy.mock.lastCall).toEqual([ directive.parameters, expect.any(RxapFormControl) ]);
     expect(clearMock).toBeCalledTimes(1);
     expect(clearMock).toBeCalledTimes(1);
     expect(createEmbeddedViewMock).toBeCalledTimes(3);
@@ -167,7 +167,7 @@ describe('OptionsFromMethodDirective', () => {
     directive.ngAfterViewInit();
     tick();
     expect(methodCallSpy).toBeCalledTimes(1);
-    expect(methodCallSpy.mock.lastCall).toEqual([]);
+    expect(methodCallSpy.mock.lastCall).toEqual([undefined, expect.any(RxapFormControl)]);
     expect(clearMock).toBeCalledTimes(1);
     expect(clearMock).toBeCalledTimes(1);
     expect(createEmbeddedViewMock).toBeCalledTimes(3);
@@ -199,7 +199,7 @@ describe('OptionsFromMethodDirective', () => {
     expect(createEmbeddedViewMock).not.toBeCalled();
     expect(detectChangesMock).toBeCalledTimes(1);
     expect(methodCallSpy).toBeCalledTimes(1);
-    expect(methodCallSpy).toBeCalledWith(undefined);
+    expect(methodCallSpy).toBeCalledWith(undefined, expect.any(RxapFormControl));
     directive.parameters = {data: 'data'};
     directive.ngOnChanges({
       parameters: {
@@ -214,7 +214,7 @@ describe('OptionsFromMethodDirective', () => {
     expect(createEmbeddedViewMock).not.toBeCalled();
     expect(detectChangesMock).toBeCalledTimes(2);
     expect(methodCallSpy).toBeCalledTimes(2);
-    expect(methodCallSpy).toBeCalledWith(directive.parameters);
+    expect(methodCallSpy).toBeCalledWith(directive.parameters, expect.any(RxapFormControl));
   }));
 
 });

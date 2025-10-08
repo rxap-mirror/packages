@@ -14,9 +14,9 @@ import {
 
 export const OPTIONS_METHOD_NAME = 'options';
 
-export type OptionsMethod<Parameters = any> = Method<ControlOptions | Observable<ControlOptions | null> | null, Parameters>;
+export type OptionsMethod<CO extends ControlOptions = ControlOptions, Parameters = any> = Method<CO | Observable<CO | null> | null, Parameters>;
 
-export function UseOptionsMethod<Parameters = any>(method: ProviderToken<OptionsMethod<Parameters>>, config?: UseMethodConfig) {
+export function UseOptionsMethod<CO extends ControlOptions = ControlOptions, Parameters = any>(method: ProviderToken<OptionsMethod<CO, Parameters>>, config?: UseMethodConfig) {
   return function (target: any, propertyKey: string) {
     UseMethod(method, OPTIONS_METHOD_NAME, config)(target, propertyKey);
   };

@@ -76,7 +76,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   public options: ControlOptions | null                                    = null;
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('rxapOptionsFromMethodCall')
-  public method!: OptionsMethod<Parameters>;
+  public method!: OptionsMethod<ControlOptions<Value>, Parameters>;
   protected ngControl: NgControl | AbstractControlDirective | null         = null;
   protected matFormField: MatFormField | null                              = null;
   protected settings: OptionsFromMethodDirectiveSettings                   = {};
@@ -117,7 +117,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   }
 
   protected async loadOptions(parameters?: Parameters): Promise<Observable<ControlOptions | null> | ControlOptions | null> {
-    return this.method.call(parameters);
+    return this.method.call(parameters, this.control);
   }
 
   protected renderTemplate() {
