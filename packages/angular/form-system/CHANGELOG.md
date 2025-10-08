@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@19.1.0-dev.1...@rxap/form-system@19.1.0-dev.2) (2025-10-08)
+
+### Features
+
+- **form-system:** support observable-based control options in directives ([9620419](https://gitlab.com/rxap/packages/commit/962041976f113f7e1cf975bc2b8cfeba454037af))
+
 # [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@19.1.0-dev.0...@rxap/form-system@19.1.0-dev.1) (2025-08-19)
 
 ### Features

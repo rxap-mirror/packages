@@ -11,7 +11,7 @@
     "@angular/cdk": "^19.1.1",
     "@angular/core": "^19.2.1",
     "@rxap/directives": "^19.1.0-dev.0",
-    "@rxap/form-system": "^19.1.0-dev.1",
+    "@rxap/form-system": "^19.1.0-dev.2",
     "@rxap/forms": "^19.1.0-dev.5",
     "@rxap/pattern": "^1.1.14",
     "@rxap/reflect-metadata": "^1.0.16-dev.3",
@@ -99,7 +99,7 @@
       },
       {
         "package": "@rxap/form-system",
-        "version": "19.1.0-dev.1"
+        "version": "19.1.0-dev.2"
       },
       {
         "package": "@rxap/forms",
