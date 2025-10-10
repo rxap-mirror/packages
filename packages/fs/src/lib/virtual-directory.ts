@@ -159,7 +159,11 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
   }
 
   public removeDirectory(name: string) {
-    return this.children.has(name) && isVirtualDirectory(this.children.get(name)) && this.children.delete(name);
+    if (this.hasDirectory(name)) {
+      this.delete(name);
+      return true;
+    }
+    return false;
   }
 
   public file(name: string) {
@@ -260,7 +264,7 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
     const first = fragments.shift()!;
     if (fragments.length === 0) {
       if (this.hasFile(first)) {
-        this.children.delete(first);
+        this.delete(first);
         return true;
       }
     } else {
@@ -277,12 +281,16 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
         child.removeFile(match);
       } else {
         if (match(child)) {
-          this.children.delete(child.name);
+          this.delete(child.name);
           return true;
         }
       }
     }
     return false;
+  }
+
+  protected delete(path: string) {
+    this.children.delete(path);
   }
 
   public flatten(): VF[] {
