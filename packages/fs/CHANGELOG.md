@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.8...@rxap/fs@1.2.0-dev.9) (2025-10-10)
+
+### Features
+
+- **fs:** add FetchFile for file fetching and content handling ([895cc4d](https://gitlab.com/rxap/packages/commit/895cc4d33f96c1943c098d96f03c4fcea2c96c26))
+
 # [1.2.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.7...@rxap/fs@1.2.0-dev.8) (2025-09-19)
 
 ### Features
