@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.10...@rxap/fs@1.2.0-dev.11) (2025-10-10)
+
+### Bug Fixes
+
+- **fs:** refine removeDirectory to use hasDirectory and delete methods ([76b5b8d](https://gitlab.com/rxap/packages/commit/76b5b8d4476bacd72b15158f5c128ea1d6f830eb))
+
 # [1.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.9...@rxap/fs@1.2.0-dev.10) (2025-10-10)
 
 ### Bug Fixes
