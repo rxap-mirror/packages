@@ -22,7 +22,7 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
 
   toJSON(): Record<string, unknown>;
 
-  addFile(file: VirtualFileLike, force?: boolean): void | Promise<void>;
+  addFile(file: VirtualFileLike, force?: boolean): VF | Promise<VF>;
 
   setFile(name: string, file: VirtualFileLike): void | Promise<void>;
 
@@ -50,12 +50,12 @@ export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFi
 }
 
 export interface FullSyncVirtualDirectoryLike<VF extends SyncVirtualFileLike> extends FullVirtualDirectoryLike<VF> {
-  addFile(file: VirtualFileLike, force?: boolean): void;
+  addFile(file: VirtualFileLike, force?: boolean): VF;
   setFile(name: string, file: VirtualFileLike): void;
 }
 
 export interface FullAsyncVirtualDirectoryLike<VF extends VirtualFileLike> extends FullVirtualDirectoryLike<VF> {
-  addFile(file: VirtualFileLike, force?: boolean): Promise<void>;
+  addFile(file: VirtualFileLike, force?: boolean): Promise<VF>;
   setFile(name: string, file: VirtualFileLike): Promise<void>;
 }
 
@@ -137,6 +137,7 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
       throw new Error(`The file '${ file.name }' already exists in the directory '${ directory.fullName }'`);
     }
     directory.setFile(file.name, file);
+    return file;
   }
 
   public setFile(name: string, file: VF) {
