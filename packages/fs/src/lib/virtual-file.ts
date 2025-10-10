@@ -477,9 +477,9 @@ export class AsyncVirtualFile implements AsyncVirtualFileLike {
   async write(data: ArrayBuffer): Promise<void>;
   async write(textContentOrData: string | ArrayBuffer, textEncoder: typeof TextEncoder | undefined = this._textEncoder) {
     if (typeof textContentOrData === 'string') {
-      this.writeTextContent(textContentOrData, textEncoder);
+      await this.writeTextContent(textContentOrData, textEncoder);
     } else {
-      this.writeData(textContentOrData);
+      await this.writeData(textContentOrData);
     }
     this._blob = null;
     this._textContent = null;
@@ -494,7 +494,8 @@ export class AsyncVirtualFile implements AsyncVirtualFileLike {
     if (!textEncoder) {
       throw new Error(`If write the text content, the text encoder must be provided.`);
     }
-    this._data = new textEncoder().encode(textContent);
+    const data = new textEncoder().encode(textContent);
+    await this.writeData(data);
   }
 
   async writeData(data: ArrayBuffer) {
