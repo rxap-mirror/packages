@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.9...@rxap/fs@1.2.0-dev.10) (2025-10-10)
+
+### Bug Fixes
+
+- **fs:** ensure async handling in write methods ([60873b7](https://gitlab.com/rxap/packages/commit/60873b708ef364b00d8606746d9ec493ef4f1399))
+
 # [1.2.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.8...@rxap/fs@1.2.0-dev.9) (2025-10-10)
 
 ### Features
