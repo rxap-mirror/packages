@@ -103,7 +103,7 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
     }
   }
 
-  addFile(file: VF, force = false) {
+  addFile(file: VirtualFileLike, force = false): Promise<VF> | VF {
     let path = file.fullName ?? file.name;
     path = path.startsWith('/') ? path.substring(1) : path;
 
@@ -136,8 +136,8 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
     if (directory.hasFile(file.name) && !force) {
       throw new Error(`The file '${ file.name }' already exists in the directory '${ directory.fullName }'`);
     }
-    directory.setFile(file.name, file);
-    return file;
+    directory.setFile(file.name, file as VF);
+    return file as VF;
   }
 
   public setFile(name: string, file: VF) {
