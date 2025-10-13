@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.2.0-dev.2...@rxap/open-api@19.2.0-dev.3) (2025-10-13)
+
+### Bug Fixes
+
+- **schema-validation:** improve path parameter handling and validation ([9b06d23](https://gitlab.com/rxap/packages/commit/9b06d2355eb2a50383bd17325b8c213be8890ade))
+
 # [19.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.2.0-dev.1...@rxap/open-api@19.2.0-dev.2) (2025-09-23)
 
 ### Features

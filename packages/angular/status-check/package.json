@@ -13,7 +13,7 @@
     "@angular/material": "^19.1.1",
     "@angular/router": "^19.2.1",
     "@rxap/config": "^19.2.0-dev.1",
-    "@rxap/open-api": "^19.2.0-dev.2",
+    "@rxap/open-api": "^19.2.0-dev.3",
     "@sentry/angular": "^8.18.0",
     "rxjs": "^7.8.1"
   },
@@ -91,7 +91,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       },
       {
         "package": "@rxap/pattern",
