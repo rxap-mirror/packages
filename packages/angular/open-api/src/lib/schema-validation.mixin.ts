@@ -336,10 +336,8 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
       for (const parameter of operationParameters.filter(p => p.in === 'path')) {
 
-        if (parameters.hasOwnProperty(parameter.name)) {
-          pathParams[parameter.name] = encodeURIComponent(typeof parameters[parameter.name] === 'object' ?
-            JSON.stringify(parameters[parameter.name]) :
-            parameters[parameter.name]);
+        if (parameter.name in parameters) {
+          pathParams[parameter.name] = this.normalizePathParamValue(parameters[parameter.name], parameter.name);
         }
 
       }
@@ -348,6 +346,23 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
     return pathParams;
 
+  }
+
+  protected normalizePathParamValue(value: any, paramName: string): string {
+    if (!value) {
+      throw new Error(`The path parameter '${paramName}' is empty or undefined!`);
+    }
+    if (Array.isArray(value)) {
+      if (value.length === 0) {
+        throw new Error(`The path parameter '${paramName}' is an empty array!`);
+      }
+      return value.map((item, index) => this.normalizePathParamValue(item, `${ paramName }[${index}]`)).join('/');
+    } else if (typeof value === 'object') {
+      return encodeURIComponent(JSON.stringify(value));
+    } else if (typeof value === `string`) {
+      return encodeURIComponent(value);
+    }
+    return value.toString();
   }
 
   /**
