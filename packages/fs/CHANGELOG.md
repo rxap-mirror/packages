@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.13...@rxap/fs@1.2.0-dev.14) (2025-10-14)
+
+### Bug Fixes
+
+- **fs:** enhance file path and match handling in virtual directory ([0181f9c](https://gitlab.com/rxap/packages/commit/0181f9c7a72295c2d357968bd80faff6a4f23119))
+
 # [1.2.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.12...@rxap/fs@1.2.0-dev.13) (2025-10-13)
 
 ### Bug Fixes
