@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.15...@rxap/fs@1.2.0-dev.16) (2025-10-14)
+
+### Features
+
+- **fs:** add virtual directory register and clear utilities ([98f3c56](https://gitlab.com/rxap/packages/commit/98f3c56411ca243425d16af2576a3406432198b5))
+
 # [1.2.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.14...@rxap/fs@1.2.0-dev.15) (2025-10-14)
 
 ### Features
