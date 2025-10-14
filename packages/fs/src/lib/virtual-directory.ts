@@ -220,7 +220,7 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
   }
 
   protected findFileByMatch(match: (file: VF) => boolean): VF {
-    for (const child of this.flatten()) {
+    for (const child of this.iterateEachFile()) {
       if (match(child)) {
         return child;
       }
@@ -237,21 +237,43 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
     return this.hasFileByMatch(pathOrMatch);
   }
 
-  protected hasFileByPath(name: string): boolean {
-    return this.children.has(name) && isNotVirtualDirectory(this.children.get(name));
+  protected hasFileByPath(path: string): boolean {
+    if (path.startsWith('/')) {
+      path = path.substring(1);
+    }
+    const fragments = path.split('/');
+    if (fragments.length === 0) {
+      return false;
+    }
+    const first = fragments.shift()!;
+    if (fragments.length === 0) {
+      return this.children.has(first) && isNotVirtualDirectory(this.children.get(first));
+    }
+    return this.hasDirectory(first) && this.directory(first).hasFileByPath(fragments.join('/'));
   }
 
   protected hasFileByMatch(match: (file: VF) => boolean): boolean {
-    return Array.from(this.children.values()).filter(file => isNotVirtualDirectory(file)).some(file => match(file));
+    for (const child of this.children.values()) {
+      if (isVirtualDirectory(child)) {
+        if (child.hasFileByMatch(match)) {
+          return true;
+        }
+      } else {
+        if (match(child)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   public removeFile(match: (file: VF) => boolean): boolean;
   public removeFile(path: string): boolean;
   public removeFile(pathOrMatch: string | ((file: VF) => boolean)): boolean {
     if (typeof pathOrMatch === 'string') {
-      return this.hasFileByPath(pathOrMatch);
+      return this.removeFileByPath(pathOrMatch);
     }
-    return this.hasFileByMatch(pathOrMatch);
+    return this.removeFileByMatch(pathOrMatch);
   }
 
   protected removeFileByPath(path: string): boolean {
