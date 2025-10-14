@@ -514,6 +514,7 @@ export class AsyncVirtualFile implements AsyncVirtualFileLike {
     this._textContent = null;
     this._byteLength = null;
     this._data = null;
+    this._dataPromise = null;
   }
 
 }
