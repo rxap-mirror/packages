@@ -57,6 +57,8 @@ export interface VirtualFileLike {
   write?(textContentOrData: string | ArrayBuffer, textEncoder?: typeof TextEncoder): void | Promise<void>;
   writeTextContent?(textContent: string, textEncoder?: typeof TextEncoder): void | Promise<void>;
   writeData?(data: ArrayBuffer): void | Promise<void>;
+
+  clear?(): void;
 }
 
 export interface SyncVirtualFileLike extends VirtualFileLike {
@@ -281,6 +283,11 @@ export class VirtualFile implements VirtualFileLike {
     this._data = data;
   }
 
+  clear() {
+    this._blob = null;
+    this._textContent = null;
+  }
+
 }
 
 export class SyncVirtualFile extends VirtualFile implements SyncVirtualFileLike {
@@ -500,6 +507,13 @@ export class AsyncVirtualFile implements AsyncVirtualFileLike {
 
   async writeData(data: ArrayBuffer) {
     this._data = data;
+  }
+
+  clear() {
+    this._blob = null;
+    this._textContent = null;
+    this._byteLength = null;
+    this._data = null;
   }
 
 }
