@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.14...@rxap/fs@1.2.0-dev.15) (2025-10-14)
+
+### Features
+
+- **fs:** add clear method to virtual file interface and implementation ([f0e4104](https://gitlab.com/rxap/packages/commit/f0e410462be0711c5afed8475892a4220ae65b0b))
+
 # [1.2.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.13...@rxap/fs@1.2.0-dev.14) (2025-10-14)
 
 ### Bug Fixes
