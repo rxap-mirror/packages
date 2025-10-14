@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.16...@rxap/fs@1.2.0-dev.17) (2025-10-14)
+
+### Bug Fixes
+
+- **fs:** reset \_dataPromise in virtual file clear method ([e1bbee2](https://gitlab.com/rxap/packages/commit/e1bbee2f33129ffc10221ed82f9748b938bf8b25))
+
 # [1.2.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.15...@rxap/fs@1.2.0-dev.16) (2025-10-14)
 
 ### Features
