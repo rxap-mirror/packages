@@ -9,6 +9,11 @@ export interface VirtualDirectoryLike<VF extends VirtualFileLike = VirtualFileLi
   findFile(path: string, format?: string): VF;
   forEachFile(callback: (file: VF) => void): void;
   iterateEachFile(): IterableIterator<VF>;
+  registerFiles?(): void | Promise<void>;
+  clear?(): void;
+
+  name?: string;
+  fullName?: string;
 }
 
 export interface FullVirtualDirectoryLike<VF extends VirtualFileLike = VirtualFileLike> extends VirtualDirectoryLike<VF> {
@@ -343,4 +348,9 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
   addDirectory(virtualDirectory: VirtualDirectory<VF>) {
     this.children.set(virtualDirectory.name, virtualDirectory);
   }
+
+  registerFiles(): void | Promise<void> {
+    console.debug(`Register directory files for '${ this.fullName }'...`);
+  }
+
 }
