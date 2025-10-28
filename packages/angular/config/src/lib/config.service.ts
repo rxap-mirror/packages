@@ -41,6 +41,7 @@ export interface ConfigLoadOptions {
    */
   fromCid?: string;
   fetchCidContent?: (cid: string, path?: string) => Promise<Blob | null>;
+  dnsServers?: string[];
 }
 
 @Injectable({
@@ -190,6 +191,13 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   private static async loadConfigFromDns(options: ConfigLoadOptions & { fromDns: string | boolean }) {
     console.debug('Loading config from DNS');
+    const dnsServers = options.dnsServers ?? [];
+    if (dnsServers.length === 0) {
+      dnsServers.push(
+        'https://dns.google/resolve',
+        'https://cloudflare-dns.com/dns-query'
+      );
+    }
     let domain = location.hostname;
     if (typeof options.fromDns === 'string') {
       domain = options.fromDns;
@@ -197,7 +205,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     domain = CoercePrefix(domain, '_config.');
     try {
       console.log(`Attempting DNS lookup for domain: ${domain}`);
-      const txtData = await dnsLookup(domain, 'TXT');
+      const txtData = await dnsLookup(domain, 'TXT', dnsServers);
       console.log(`DNS TXT record data found: ${txtData}`);
       // Example CID extraction logic (adapt to your TXT record format)
       // This looks for IPFS CIDs (v0 'Qm...' or v1 'b...') potentially after 'ipfs://' or '/'
