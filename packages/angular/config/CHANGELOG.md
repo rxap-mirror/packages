@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/config@19.2.0-dev.1...@rxap/config@19.2.0-dev.2) (2025-10-28)
+
+### Features
+
+- **angular:** add DNS server handling for config loading ([d3fbae0](https://gitlab.com/rxap/packages/commit/d3fbae0258f2dfa6f5a0ab90b0c841d5e086d53c))
+- **angular:** add storacha gateway for IPFS content fetching ([c9239be](https://gitlab.com/rxap/packages/commit/c9239be7bc1f223c6cc0815fe277d536d0219580))
+
 # [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@19.2.0-dev.0...@rxap/config@19.2.0-dev.1) (2025-09-23)
 
 ### Bug Fixes
