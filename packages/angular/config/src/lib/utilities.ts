@@ -123,6 +123,10 @@ export function fetchCidContentViaHttp(cid: string, path?: string): Observable<B
     fetchContentViaHttp(JoinPath(`https://${ cid }.ipfs.w3s.link`, path)).pipe(
       log(`w3s fetch attempt for ${cid}`),
     ),
+    // Attempt 1: storacha.link
+    fetchContentViaHttp(JoinPath(`https://${ cid }.ipfs.storacha.link`, path)).pipe(
+      log(`storacha fetch attempt for ${cid}`),
+    ),
     // Attempt 2: Local gateway
     fetchContentViaHttp(JoinPath(`${location.origin}/ipfs/${ cid }`, path)).pipe(
       log(`local fetch attempt for ${cid}`),
