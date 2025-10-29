@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@11.0.0-dev.7...@rxap/nest-minio@11.0.0-dev.8) (2025-10-29)
+
+### Features
+
+- **minio:** add endpoint getter in MinioService ([2748e56](https://gitlab.com/rxap/packages/commit/2748e56c013798e42b84a0e7bb473136194dc1c7))
+
 # [11.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@11.0.0-dev.6...@rxap/nest-minio@11.0.0-dev.7) (2025-09-08)
 
 **Note:** Version bump only for package @rxap/nest-minio
