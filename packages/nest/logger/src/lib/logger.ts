@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import {
   CONSOLE_LOGGER_OPTIONS,
+  RXAP_LOGGER_FORMAT_MESSAGE,
   RXAP_LOGGER_PRINT_MESSAGES,
 } from './tokens';
 
@@ -21,6 +22,15 @@ export type PrintMessagesFunction = (
   writeStreamType?: 'stdout' | 'stderr',
 ) => boolean;
 
+export type FormatMessageFunction = (
+  pidMessage: string,
+  timestamp: string,
+  formattedLogLevel: string,
+  contextMessage: string,
+  output: string,
+  timestampDiff: string,
+) => string;
+
 /**
  * A custom logger class that extends the ConsoleLogger class.
  * This class provides additional methods for logging at different log levels and supports the interpolation of optional parameters.
@@ -28,15 +38,20 @@ export type PrintMessagesFunction = (
 @Injectable()
 export class RxapLogger extends ConsoleLogger {
 
+  @Optional()
+  @Inject(RXAP_LOGGER_PRINT_MESSAGES)
+  protected readonly printMessagesFunction: PrintMessagesFunction | null = null;
+
+  @Optional()
+  @Inject(RXAP_LOGGER_FORMAT_MESSAGE)
+  protected readonly formatMessageFunction: FormatMessageFunction | null = null;
+
   constructor(
     @Optional()
     context?: string,
     @Inject(CONSOLE_LOGGER_OPTIONS)
     @Optional()
     options: ConsoleLoggerOptions = {},
-    @Optional()
-    @Inject(RXAP_LOGGER_PRINT_MESSAGES)
-    protected readonly printMessagesFunction: PrintMessagesFunction | null = null
   ) {
     super(context as any, options);
   }
@@ -94,6 +109,23 @@ export class RxapLogger extends ConsoleLogger {
       }
       return value;
     });
+  }
+
+  protected override formatMessage(
+    logLevel: LogLevel,
+    message: unknown,
+    pidMessage: string,
+    formattedLogLevel: string,
+    contextMessage: string,
+    timestampDiff: string,
+  ) {
+    const output = this.stringifyMessage(message, logLevel);
+    pidMessage = this.colorize(pidMessage, logLevel);
+    formattedLogLevel = this.colorize(formattedLogLevel, logLevel);
+    if (this.formatMessageFunction) {
+      return this.formatMessageFunction(pidMessage, this.getTimestamp(), formattedLogLevel, contextMessage, output, timestampDiff);
+    }
+    return `${pidMessage}${this.getTimestamp()} ${formattedLogLevel} ${contextMessage}${output}${timestampDiff}\n`;
   }
 
   protected override printMessages(
