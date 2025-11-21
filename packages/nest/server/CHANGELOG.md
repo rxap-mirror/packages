@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.18...@rxap/nest-server@11.0.0-dev.19) (2025-11-21)
+
+### Features
+
+- **server:** add close method to server for manual shutdown ([b86c3a6](https://gitlab.com/rxap/packages/commit/b86c3a6b07991d328ca85e449ca4e42c427e7d1e))
+
 # [11.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.17...@rxap/nest-server@11.0.0-dev.18) (2025-09-23)
 
 ### Features

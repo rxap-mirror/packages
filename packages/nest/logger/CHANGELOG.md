@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@11.0.0-dev.5...@rxap/nest-logger@11.0.0-dev.6) (2025-11-21)
+
+### Features
+
+- **logger:** add customizable message formatting in RxapLogger ([9fabbaa](https://gitlab.com/rxap/packages/commit/9fabbaa08c44531d6425a5af15247d41a09623ef))
+
 # [11.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@11.0.0-dev.4...@rxap/nest-logger@11.0.0-dev.5) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/nest-logger

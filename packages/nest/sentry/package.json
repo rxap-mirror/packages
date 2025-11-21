@@ -13,7 +13,7 @@
     "@nestjs/common": "^11.1.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.1",
-    "@rxap/nest-logger": "^11.0.0-dev.5",
+    "@rxap/nest-logger": "^11.0.0-dev.6",
     "@rxap/nest-utilities": "^11.0.0-dev.7",
     "@sentry/core": "^8.55.0",
     "@sentry/nestjs": "^8.55.0",
@@ -81,7 +81,7 @@
       },
       {
         "package": "@rxap/nest-logger",
-        "version": "11.0.0-dev.5"
+        "version": "11.0.0-dev.6"
       },
       {
         "package": "@rxap/nest-utilities",
