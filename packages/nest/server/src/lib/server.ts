@@ -133,6 +133,11 @@ export abstract class Server<Options extends object, NestApplicationContext exte
       module.hot.dispose(() => this.app?.close());
     }
 
+    return this.app;
+  }
+
+  public close() {
+    this.app?.close();
   }
 
   public useLogger(loggerFactory: LoggerFactory<NestApplicationContext, BootstrapOptions, Logger>): void;
