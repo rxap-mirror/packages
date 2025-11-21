@@ -9,7 +9,9 @@ import {
 import { ConfigService } from '@nestjs/config';
 import {
   CONSOLE_LOGGER_OPTIONS,
+  FormatMessageFunction,
   PrintMessagesFunction,
+  RXAP_LOGGER_FORMAT_MESSAGE,
   RXAP_LOGGER_PRINT_MESSAGES,
   RxapLogger,
 } from '@rxap/nest-logger';
@@ -28,6 +30,11 @@ export const {
     isGlobal: true,
   })
   .build();
+
+export interface LoggerFunctions {
+  printMessagesFunction?: PrintMessagesFunction;
+  formatMessageFunction?: FormatMessageFunction;
+}
 
 @Global()
 @Module({
@@ -54,20 +61,20 @@ export class SentryLoggerModule extends ConfigurableModuleClass {
   static register(
     options: typeof OPTIONS_TYPE,
     consoleLoggerOptions: ConsoleLoggerOptions | null = null,
-    printMessagesFunction: PrintMessagesFunction | null = null
+    loggerFunctions: LoggerFunctions | null = null
   ): DynamicModule {
-    return this.updateProviders(super.register(options), consoleLoggerOptions, printMessagesFunction);
+    return this.updateProviders(super.register(options), consoleLoggerOptions, loggerFunctions);
   }
 
   static registerAsync(
     options: typeof ASYNC_OPTIONS_TYPE,
     consoleLoggerOptions: ConsoleLoggerOptions | null = null,
-    printMessagesFunction: PrintMessagesFunction | null = null
+    loggerFunctions: LoggerFunctions | null = null
   ): DynamicModule {
-    return this.updateProviders(super.registerAsync(options), consoleLoggerOptions, printMessagesFunction);
+    return this.updateProviders(super.registerAsync(options), consoleLoggerOptions, loggerFunctions);
   }
 
-  private static updateProviders(module: DynamicModule, consoleLoggerOptions: ConsoleLoggerOptions | null = null, printMessagesFunction: PrintMessagesFunction | null) {
+  private static updateProviders(module: DynamicModule, consoleLoggerOptions: ConsoleLoggerOptions | null, loggerFunctions: LoggerFunctions | null) {
     module.providers ??= [];
     module.providers.push({
       provide: SENTRY_MODULE_OPTIONS,
@@ -83,10 +90,16 @@ export class SentryLoggerModule extends ConfigurableModuleClass {
       }),
       inject: [ SENTRY_MODULE_OPTIONS ],
     });
-    if (printMessagesFunction) {
+    if (loggerFunctions?.printMessagesFunction) {
       module.providers.push({
         provide: RXAP_LOGGER_PRINT_MESSAGES,
-        useValue: printMessagesFunction
+        useValue: loggerFunctions?.printMessagesFunction
+      });
+    }
+    if (loggerFunctions?.formatMessageFunction) {
+      module.providers.push({
+        provide: RXAP_LOGGER_FORMAT_MESSAGE,
+        useValue: loggerFunctions?.formatMessageFunction
       });
     }
     return module;
