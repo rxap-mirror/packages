@@ -1,4 +1,18 @@
+
+/**
+ * @internal
+ * use the tag a environment object to mark it as prepared. So that a second call of the prepareEnvironment method will not overwrite the environment object.
+ */
+export const ENVIRONMENT_PREPARED = Symbol('ENVIRONMENT_PREPARED');
+
+
 export interface Environment {
+  /**
+   * Optional property that indicates whether the environment has been prepared.
+   * It can be used as a flag to determine if certain initialization or setup tasks
+   * have been completed within the system.
+   */
+  [ENVIRONMENT_PREPARED]?: boolean;
   /**
    * The name of the application
    */
@@ -47,5 +61,5 @@ export interface Environment {
   },
   swagger?: boolean;
 
-  [key: string]: any;
+  [key: string | symbol]: any;
 }
