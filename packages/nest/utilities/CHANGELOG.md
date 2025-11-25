@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@11.0.0-dev.7...@rxap/nest-utilities@11.0.0-dev.8) (2025-11-25)
+
+### Features
+
+- **environment:** add prepared flag to Environment interface ([acccd7e](https://gitlab.com/rxap/packages/commit/acccd7e123a7d048d8c386026f8b930f0a50e70a))
+
 # [11.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@11.0.0-dev.6...@rxap/nest-utilities@11.0.0-dev.7) (2025-09-10)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.19...@rxap/nest-server@11.0.0-dev.20) (2025-11-25)
+
+### Features
+
+- **server:** replace console statements with Logger methods ([ede363e](https://gitlab.com/rxap/packages/commit/ede363e62be3b47391f7bdcc97497449b2782686))
+
 # [11.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@11.0.0-dev.18...@rxap/nest-server@11.0.0-dev.19) (2025-11-21)
 
 ### Features
