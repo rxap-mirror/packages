@@ -117,13 +117,9 @@ export class Monolithic<Options extends NestApplicationOptions, Logger extends L
 
     logger.log(`environment: ${ JSON.stringify(this.environment) }`, 'Bootstrap');
 
-    logger.verbose?.('Process Environment: %JSON', process.env, 'Bootstrap');
+    logger.verbose?.(`Process Environment: ${JSON.stringify(process.env)}`, 'Bootstrap');
 
-    logger.debug?.(
-      'Server Config: %JSON',
-      (config as any).internalConfig,
-      'Bootstrap',
-    );
+    logger.debug?.(`Server Config: ${JSON.stringify((config as any).internalConfig)}`, 'Bootstrap');
 
     const globalApiPrefix = this.getGlobalApiPrefix(config);
     const port = this.getPort(config);

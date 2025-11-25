@@ -70,7 +70,7 @@ export abstract class Server<Options extends object, NestApplicationContext exte
   public async bootstrap() {
 
     Logger.log('Server bootstrap started', 'Bootstrap');
-    Logger.debug('Initial environment', JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+    Logger.debug(`Environment ${JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2)}`, 'Bootstrap');
 
     this.printPackageVersions();
 
@@ -171,7 +171,7 @@ export abstract class Server<Options extends object, NestApplicationContext exte
 
   static prepareEnvironment<E extends Environment>(environment: E): E {
     if (environment[ENVIRONMENT_PREPARED]) {
-      Logger.debug(`[Bootstrap] The environment has already been prepared. Skipping the environment preparation. The environment is: ${ JSON.stringify(environment, undefined, environment.production ? undefined : 2) }`)
+      Logger.debug(`The environment has already been prepared. Skipping the environment preparation. The environment is: ${ JSON.stringify(environment, undefined, environment.production ? undefined : 2) }`, 'Bootstrap');
       return environment;
     }
 
@@ -219,7 +219,7 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     }
 
     RXAP_GLOBAL_STATE.environment = environment;
-    Logger.log('Final environment', JSON.stringify(environment, undefined, environment.production ? undefined : 2), 'Bootstrap');
+    Logger.log(`Final environment ${JSON.stringify(environment, undefined, environment.production ? undefined : 2)}`, 'Bootstrap');
 
     environment[ENVIRONMENT_PREPARED] = true;
     return environment;
