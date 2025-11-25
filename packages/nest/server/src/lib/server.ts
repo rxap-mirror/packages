@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import {
   ENVIRONMENT,
   Environment,
+  ENVIRONMENT_PREPARED,
   RXAP_GLOBAL_STATE,
 } from '@rxap/nest-utilities';
 import {
@@ -68,18 +69,18 @@ export abstract class Server<Options extends object, NestApplicationContext exte
 
   public async bootstrap() {
 
-    console.log('[Bootstrap] Server bootstrap started');
-    console.debug('[Bootstrap] Initial environment', JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2));
+    Logger.log('Server bootstrap started', 'Bootstrap');
+    Logger.debug('Initial environment', JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
 
     this.printPackageVersions();
 
     this.prepareEnvironment(this.environment);
 
-    console.debug('[Bootstrap] Handle before bootstrap hooks');
+    Logger.debug('Handle before bootstrap hooks', 'Bootstrap');
 
     await this.handleBefore();
 
-    console.debug('[Bootstrap] Create application');
+    Logger.debug('Create application', 'Bootstrap');
 
     this.app = await this.create();
 
@@ -168,26 +169,31 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     return Server.prepareEnvironment(environment);
   }
 
-  static prepareEnvironment(environment: Environment): Environment {
+  static prepareEnvironment<E extends Environment>(environment: E): E {
+    if (environment[ENVIRONMENT_PREPARED]) {
+      Logger.debug(`[Bootstrap] The environment has already been prepared. Skipping the environment preparation. The environment is: ${ JSON.stringify(environment, undefined, environment.production ? undefined : 2) }`)
+      return environment;
+    }
+
     this.loadBuildJson(environment);
 
     if (process.env['ENVIRONMENT']) {
-      console.log(`[Bootstrap] Set environment name from process.env.ENVIRONMENT to '${ process.env['ENVIRONMENT'] }'`);
+      Logger.log(`Set environment name from process.env.ENVIRONMENT to '${ process.env['ENVIRONMENT'] }'`, 'Bootstrap');
       environment.name = process.env['ENVIRONMENT'];
     }
 
     if (process.env['ENVIRONMENT_NAME']) {
-      console.log(`[Bootstrap] Set environment name from process.env.ENVIRONMENT_NAME to '${ process.env['ENVIRONMENT_NAME'] }'`);
+      Logger.log(`Set environment name from process.env.ENVIRONMENT_NAME to '${ process.env['ENVIRONMENT_NAME'] }'`, 'Bootstrap');
       environment.name = process.env['ENVIRONMENT_NAME'];
     }
 
     if (process.env['ENVIRONMENT_TIER']) {
-      console.log(`[Bootstrap] Set environment tier from process.env.ENVIRONMENT_TIER to '${ process.env['ENVIRONMENT_TIER'] }'`);
+      Logger.log(`Set environment tier from process.env.ENVIRONMENT_TIER to '${ process.env['ENVIRONMENT_TIER'] }'`, 'Bootstrap');
       environment.tier = process.env['ENVIRONMENT_TIER'];
     }
 
     if (process.env['PRODUCTION']) {
-      console.log(`[Bootstrap] Set production from process.env.PRODUCTION to '${ process.env['PRODUCTION'] }'`);
+      Logger.log(`Set production from process.env.PRODUCTION to '${ process.env['PRODUCTION'] }'`, 'Bootstrap');
       if (typeof process.env['PRODUCTION'] === 'boolean') {
         environment.production = process.env['PRODUCTION'];
       } else {
@@ -197,24 +203,25 @@ export abstract class Server<Options extends object, NestApplicationContext exte
 
     if (!process.env['NODE_ENV']) {
       if (environment.production) {
-        console.log(`[Bootstrap] Set NODE_ENV to 'production'`);
+        Logger.log(`Set NODE_ENV to 'production'`, 'Bootstrap');
         process.env['NODE_ENV'] = 'production';
       } else {
-        console.log(`[Bootstrap] Set NODE_ENV to 'development'`);
+        Logger.log(`Set NODE_ENV to 'development'`, 'Bootstrap');
         process.env['NODE_ENV'] = 'development';
       }
     } else {
-      console.log(`[Bootstrap] NODE_ENV is already set to '${ process.env['NODE_ENV'] }'`);
+      Logger.log(`NODE_ENV is already set to '${ process.env['NODE_ENV'] }'`, 'Bootstrap');
     }
 
     if (process.env['CI'] === 'true') {
-      console.log(`[Bootstrap] Set ci to true as process.env.CI is set to 'true'`);
+      Logger.log(`Set ci to true as process.env.CI is set to 'true'`, 'Bootstrap');
       environment.ci = true;
     }
 
     RXAP_GLOBAL_STATE.environment = environment;
-    console.log('[Bootstrap] Final environment', JSON.stringify(environment, undefined, environment.production ? undefined : 2));
+    Logger.log('Final environment', JSON.stringify(environment, undefined, environment.production ? undefined : 2), 'Bootstrap');
 
+    environment[ENVIRONMENT_PREPARED] = true;
     return environment;
   }
 
@@ -260,12 +267,12 @@ export abstract class Server<Options extends object, NestApplicationContext exte
     if (existsSync(packageJsonFilePath)) {
       try {
         const packageJson = JSON.parse(readFileSync(packageJsonFilePath).toString('utf-8'));
-        console.debug(`[Bootstrap] Package versions: ${ JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2) }`);
+        Logger.debug(`Package versions: ${ JSON.stringify(packageJson.dependencies, undefined, this.environment.production ? undefined : 2) }`, 'Bootstrap');
       } catch (e) {
-        console.warn(`[Bootstrap] Could not parse package.json in the path '${ packageJsonFilePath }'`);
+        Logger.warn(`Could not parse package.json in the path '${ packageJsonFilePath }'`, 'Bootstrap');
       }
     } else {
-      console.warn(`[Bootstrap] The package.json file does not exists in the path '${ packageJsonFilePath }'`);
+      Logger.warn(`The package.json file does not exists in the path '${ packageJsonFilePath }'`, 'Bootstrap');
     }
   }
 
