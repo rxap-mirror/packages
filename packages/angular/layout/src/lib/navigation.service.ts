@@ -120,8 +120,19 @@ export class NavigationService {
   public checkNavigationItemStatusProviders(
     navigationItem: NavigationItem | NavigationDividerItem,
   ): Observable<NavigationItem | NavigationDividerItem | null> {
-    if (IsNavigationDividerItem(navigationItem) || !navigationItem.status) {
+    if (IsNavigationDividerItem(navigationItem)) {
       return of(navigationItem);
+    }
+    if (!navigationItem.status) {
+      if (!navigationItem.children?.length) {
+        return of(navigationItem);
+      }
+      return this.checkNavigationStatusProviders(navigationItem.children).pipe(
+        map((children) => ({
+          ...navigationItem,
+          children,
+        })),
+      );
     }
     const isVisibleArray$: Array<Observable<boolean>> = navigationItem
       .status

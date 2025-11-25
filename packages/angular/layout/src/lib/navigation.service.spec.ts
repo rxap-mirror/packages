@@ -5,6 +5,7 @@ import {
 import { NavigationService } from './navigation.service';
 import { RXAP_NAVIGATION_CONFIG } from './tokens';
 import {
+  firstValueFrom,
   Observable,
   of,
 } from 'rxjs';
@@ -18,7 +19,7 @@ describe('@rxap/layout', () => {
 
     describe('NavigationService', () => {
 
-      xdescribe('NavigationItem Status Token', () => {
+      describe('NavigationItem Status Token', () => {
 
         @Injectable()
         class NavigationStatusService implements NavigationStatus {
@@ -85,6 +86,24 @@ describe('@rxap/layout', () => {
                 routerLink: [ '/', 'settings', 'node-red' ],
                 icon: { svgIcon: 'resistor-nodes' },
                 label: `:@@navigation.node-red:Node Red`,
+                status: [ NavigationStatusService ],
+              },
+            ],
+          },
+          {
+            routerLink: [ '/', 'subscriptions' ],
+            icon: { svgIcon: 'cog' },
+            label: `:@@navigation.subscriptions:Subscriptions`,
+            children: [
+              {
+                routerLink: [ '/', 'subscriptions', 'user' ],
+                icon: { svgIcon: 'domain' },
+                label: `:@@navigation.user:User`,
+              },
+              {
+                routerLink: [ '/', 'subscriptions', 'company' ],
+                icon: { svgIcon: 'domain' },
+                label: `:@@navigation.company:Company`,
                 status: [ NavigationStatusService ],
               },
             ],
@@ -156,6 +175,22 @@ describe('@rxap/layout', () => {
 
         describe('checkNavigationItemStatusProviders', () => {
 
+          it('should process nested navigation item status providers', async () => {
+
+            const nav = await firstValueFrom(navigationService.checkNavigationStatusProviders(navigation));
+            expect(nav).toEqual(expect.arrayContaining([
+              expect.objectContaining({
+                label: `:@@navigation.subscriptions:Subscriptions`,
+                children: [
+                  expect.objectContaining({
+                    label: `:@@navigation.user:User`
+                  })
+                ]
+              })
+            ]));
+
+          });
+
           it('should return the divider navigation item', async () => {
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
@@ -182,7 +217,7 @@ describe('@rxap/layout', () => {
 
           it('should return null if the isVisible check returns false', async () => {
 
-            spyOn(navigationStatusService, 'isVisible').and.returnValue(of(false));
+            jest.spyOn(navigationStatusService, 'isVisible').mockReturnValue(of(false));
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
               label: 'test',
@@ -196,7 +231,7 @@ describe('@rxap/layout', () => {
 
           it('should return the navigation item if the isVisible check returns true', async () => {
 
-            spyOn(navigationStatusService, 'isVisible').and.returnValue(of(true));
+            jest.spyOn(navigationStatusService, 'isVisible').mockReturnValue(of(true));
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
               label: 'test',
@@ -214,7 +249,7 @@ describe('@rxap/layout', () => {
 
           it('should apply the navigation check logic to children', async () => {
 
-            spyOn(navigationStatusService, 'isVisible').and.callFake((routerLink: string[]) => {
+            jest.spyOn(navigationStatusService, 'isVisible').mockImplementation(({routerLink}: NavigationItem) => {
               if (routerLink.includes('hidden')) {
                 return of(false);
               }
