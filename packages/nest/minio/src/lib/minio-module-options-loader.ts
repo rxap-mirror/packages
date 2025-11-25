@@ -28,12 +28,12 @@ export class MinioModuleOptionsLoader
       if (caCertsPath) {
         try {
           const ca = readFileSync(caCertsPath);
-          console.log(`Loaded CA certificate for Minio client from ${caCertsPath}:`, ca.toString('utf-8'));
+          this.logger.verbose(`Loaded CA certificate for Minio client from ${caCertsPath}`);
           agent = new Agent({
             ca,
           });
         } catch (e) {
-          console.error(`Could not load CA certificate for Minio client from ${caCertsPath}`, e);
+          this.logger.error(`Could not load CA certificate for Minio client from ${caCertsPath}`, e);
         }
       } else {
         this.logger.debug('No CA certificate for Minio client provided. Using default CA certificates.', 'MinioModuleOptionsLoader::create');
