@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.1-dev.6...@rxap/layout@19.2.0-dev.0) (2025-11-25)
+
+### Features
+
+- **navigation:** enhance status provider handling for nested items ([80a65c2](https://gitlab.com/rxap/packages/commit/80a65c209965c6912472233813d22f2af37db010))
+
 ## [19.1.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/layout@19.1.1-dev.5...@rxap/layout@19.1.1-dev.6) (2025-09-23)
 
 ### Bug Fixes
