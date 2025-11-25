@@ -8,10 +8,12 @@ export function typeOrmValidationSchema(
   environment: Environment,
   {
     synchronize = !environment.production,
+    migrationsRun = false,
     logging = process.env['LOG_LEVEL'] === 'verbose',
     type = 'sqlite',
   }: {
     synchronize?: boolean,
+    migrationsRun?: boolean,
     logging?: boolean,
     type?: string,
   } = {}
@@ -22,5 +24,6 @@ export function typeOrmValidationSchema(
     TYPEORM_TYPE: Joi.string().default(type),
     TYPEORM_SYNCHRONIZE: Joi.boolean().default(synchronize),
     TYPEORM_LOGGING: Joi.boolean().default(logging),
+    TYPEORM_MIGRATIONS_RUN: Joi.boolean().default(migrationsRun),
   };
 }

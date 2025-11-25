@@ -59,6 +59,10 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
   protected baseConfig(): Omit<TypeOrmModuleOptions, keyof DataSourceOptions> &
     Partial<Omit<BaseDataSourceOptions, 'poolSize'>> {
     return {
+      migrationsRun: this.config.get(
+        'TYPEORM_MIGRATIONS_RUN',
+        false
+      ),
       synchronize: this.config.get(
         'POSTGRES_SYNCHRONIZE',
         this.config.getOrThrow('TYPEORM_SYNCHRONIZE')
