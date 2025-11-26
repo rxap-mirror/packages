@@ -1,19 +1,23 @@
 import { Environment } from '@rxap/nest-utilities';
 import * as Sentry from '@sentry/nestjs';
+import { NodeClient } from '@sentry/node';
 import type { NodeOptions } from '@sentry/node/build/types/types';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
 import { DetermineSentryEnvironment } from './determine-sentry-environment';
 import { DetermineSentryRelease } from './determine-sentry-release';
 
-export function sentryInitHook(options: Partial<NodeOptions> = {}) {
-  return (_: any, environment: Environment) => {
+export function sentryInitHook<AppOptions = any>(
+  options: Partial<NodeOptions> = {},
+  callback?: (client: NodeClient | undefined, options: AppOptions, environment: Environment) => void
+) {
+  return (appOptions: any, environment: Environment) => {
     const dsn = process.env['SENTRY_DSN'] ?? environment.sentry?.dsn;
 
     if (!dsn) {
       console.warn('No sentry dsn provided.');
     }
 
-    Sentry.init({
+    const client = Sentry.init({
       dsn,
       enabled:
         process.env['SENTRY_ENABLED'] === 'true' ||
@@ -35,5 +39,10 @@ export function sentryInitHook(options: Partial<NodeOptions> = {}) {
       enableLogs: true,
       ...options,
     });
+
+    if (callback) {
+      callback(client, appOptions, environment);
+    }
+
   };
 }
