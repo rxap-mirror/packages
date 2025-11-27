@@ -12,6 +12,7 @@ import {
   ENVIRONMENT,
   Environment,
 } from '@rxap/nest-utilities';
+import { existsSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import { DataSourceOptions } from 'typeorm';
@@ -56,13 +57,28 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
     };
   }
 
+  protected migrationConfig(): Pick<TypeOrmModuleOptions, 'migrations' | 'migrationsRun' | 'migrationsTransactionMode' | 'migrationsTableName'> {
+    const migrationsRun = this.config.get('TYPEORM_MIGRATIONS_RUN', false);
+    if (!migrationsRun) {
+      return { migrationsRun };
+    }
+    const migrations = this.config.get('TYPEORM_MIGRATIONS', 'migrations');
+    const migrationsFolder = migrations.startsWith('/') ? migrations : join(process.cwd(), migrations);
+    if (!existsSync(migrationsFolder)) {
+      throw new Error(`Migrations folder '${migrationsFolder}' does not exist`);
+    }
+    return {
+      migrationsRun,
+      migrations: [ migrationsFolder + '/*.js' ],
+      migrationsTableName: this.config.get('TYPEORM_MIGRATION_TABLE_NAME'),
+      migrationsTransactionMode: this.config.get('TYPEORM_MIGRATIONS_TRANSACTION_MODE'),
+    };
+  }
+
   protected baseConfig(): Omit<TypeOrmModuleOptions, keyof DataSourceOptions> &
     Partial<Omit<BaseDataSourceOptions, 'poolSize'>> {
     return {
-      migrationsRun: this.config.get(
-        'TYPEORM_MIGRATIONS_RUN',
-        false
-      ),
+      ...this.migrationConfig(),
       synchronize: this.config.get(
         'POSTGRES_SYNCHRONIZE',
         this.config.getOrThrow('TYPEORM_SYNCHRONIZE')
