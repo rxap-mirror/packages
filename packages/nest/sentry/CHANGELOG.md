@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@11.0.0-dev.13...@rxap/nest-sentry@11.0.0-dev.14) (2025-11-27)
+
+### Features
+
+- **sentry:** add callback functionality to sentryInitHook ([095cb88](https://gitlab.com/rxap/packages/commit/095cb886de91ba8a179457a3df72b79385ff63ef))
+
 # [11.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@11.0.0-dev.12...@rxap/nest-sentry@11.0.0-dev.13) (2025-11-21)
 
 ### Features
