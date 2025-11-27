@@ -488,9 +488,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/cdk@npm:19.2.2":
-  version: 19.2.2
-  resolution: "@angular/cdk@npm:19.2.2"
+"@angular/cdk@npm:19.2.19":
+  version: 19.2.19
+  resolution: "@angular/cdk@npm:19.2.19"
   dependencies:
     parse5: ^7.1.2
     tslib: ^2.3.0
@@ -498,10 +498,7 @@ __metadata:
     "@angular/common": ^19.0.0 || ^20.0.0
     "@angular/core": ^19.0.0 || ^20.0.0
     rxjs: ^6.5.3 || ^7.4.0
-  dependenciesMeta:
-    parse5:
-      optional: true
-  checksum: 571820ad4bde2c6367521e94550d61bd2f07101b4a475f63c119f3417b9b72dc1613c37b5b1d5fb6bdfc9e301dd06f31270f6802e61740e281d9149198e12845
+  checksum: 7728a7ebf34fa1a7d97135b96be91d07d69d7e76adc86427f6683e783b7b124266074f6fc78ee9b065e6e1891be793afef963493011a1c645fd27a6ace6f070a
   languageName: node
   linkType: hard
 
@@ -663,19 +660,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/material@npm:19.2.2":
-  version: 19.2.2
-  resolution: "@angular/material@npm:19.2.2"
+"@angular/material@npm:19.2.19":
+  version: 19.2.19
+  resolution: "@angular/material@npm:19.2.19"
   dependencies:
     tslib: ^2.3.0
   peerDependencies:
-    "@angular/cdk": 19.2.2
+    "@angular/cdk": 19.2.19
     "@angular/common": ^19.0.0 || ^20.0.0
     "@angular/core": ^19.0.0 || ^20.0.0
     "@angular/forms": ^19.0.0 || ^20.0.0
     "@angular/platform-browser": ^19.0.0 || ^20.0.0
     rxjs: ^6.5.3 || ^7.4.0
-  checksum: ff10e26751368527e1258b8b26d3e70492c0d0cca4de8c59f7318a77b253fc86be54a2327a42400127fdbd64ec91a2e8138c58854f803325afce79d5eb5f984f
+  checksum: c1591501736f3ee61e2452682c7dcafd8dfb89a680a478d518f0df565ee8fc096dabfaa51f5bd620c12b91173f42dc0be2dbc08aa2b1ee237349b58c1513b51c
   languageName: node
   linkType: hard
 
@@ -11256,7 +11253,7 @@ __metadata:
     "@angular-eslint/eslint-plugin-template": 19.2.1
     "@angular-eslint/template-parser": 19.2.1
     "@angular/animations": 19.2.16
-    "@angular/cdk": 19.2.2
+    "@angular/cdk": 19.2.19
     "@angular/cli": ~19.2.0
     "@angular/common": 19.2.16
     "@angular/compiler": 19.2.16
@@ -11266,7 +11263,7 @@ __metadata:
     "@angular/forms": 19.2.16
     "@angular/language-service": 19.2.16
     "@angular/localize": 19.2.16
-    "@angular/material": 19.2.2
+    "@angular/material": 19.2.19
     "@angular/platform-browser": 19.2.16
     "@angular/platform-browser-dynamic": 19.2.16
     "@angular/router": 19.2.16
