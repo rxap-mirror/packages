@@ -39,16 +39,16 @@ export class CheckboxHeaderCellComponent<Data extends Record<string, any>> imple
 
   public ngOnInit() {
     this.indeterminate$ = this.selectRow.selectedRows$.pipe(
-      map(selectedRows => !!selectedRows.length && this.cdkTable['_data'].length !== selectedRows.length),
+      map(selectedRows => !!selectedRows.length && this.cdkTable['_data']?.length !== selectedRows.length),
     );
     this.checked$ = this.selectRow.selectedRows$.pipe(
-      map(selectedRows => !!selectedRows.length && this.cdkTable['_data'].length === selectedRows.length),
+      map(selectedRows => !!selectedRows.length && this.cdkTable['_data']?.length === selectedRows.length),
     );
   }
 
   public onChange($event: MatCheckboxChange) {
     if ($event.checked) {
-      this.selectRow.selectionModel.select(...this.cdkTable['_data']);
+      this.selectRow.selectionModel.select(...this.cdkTable['_data'] ?? []);
     } else {
       this.selectRow.selectionModel.clear();
     }

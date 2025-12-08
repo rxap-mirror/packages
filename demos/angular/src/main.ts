@@ -1,5 +1,5 @@
 import { StandaloneApplication } from '@rxap/ngx-bootstrap';
-import { SentryInit } from '@rxap/ngx-sentry';
+import { sentryInitBootstrapHook } from '@rxap/ngx-sentry';
 import { OpenApiInit } from '@rxap/open-api';
 import { UnregisterServiceWorker } from '@rxap/service-worker';
 import { AppComponent } from './app/app.component';
@@ -16,5 +16,5 @@ const application = new StandaloneApplication(
 );
 application.before(() => UnregisterServiceWorker(environment));
 application.before(() => OpenApiInit(environment));
-application.before(() => SentryInit(environment));
+application.before(sentryInitBootstrapHook(environment));
 application.bootstrap().catch((err) => console.error(err));

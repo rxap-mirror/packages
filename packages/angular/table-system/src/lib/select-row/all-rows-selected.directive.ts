@@ -48,7 +48,7 @@ export class AllRowsSelectedDirective<Data extends Record<string, any>> implemen
 
   public ngOnInit() {
     this._subscription = this.selectRowService.selectedRows$.pipe(
-      map(selectedRows => !!selectedRows.length && selectedRows.length === this.cdkTable['_data'].length),
+      map(selectedRows => !!selectedRows.length && selectedRows.length === this.cdkTable['_data']?.length),
       distinctUntilChanged(),
       tap(selectedAllRows => {
         this.viewContainerRef.clear();
