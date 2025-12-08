@@ -19,7 +19,7 @@ yarn add @rxap/nest-jwt
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/core @nestjs/jwt @rxap/nest-utilities @rxap/pattern rxjs 
+yarn add @nestjs/common @nestjs/config @nestjs/core @nestjs/cqrs @nestjs/jwt @rxap/nest-utilities @rxap/pattern rxjs 
 ```
 **Execute the init generator:**
 ```bash
