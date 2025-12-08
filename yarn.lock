@@ -6848,6 +6848,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/cqrs@npm:^11.0.3":
+  version: 11.0.3
+  resolution: "@nestjs/cqrs@npm:11.0.3"
+  peerDependencies:
+    "@nestjs/common": ^10.0.0 || ^11.0.0
+    "@nestjs/core": ^10.0.0 || ^11.0.0
+    reflect-metadata: ^0.1.13 || ^0.2.0
+    rxjs: ^7.2.0
+  checksum: 795d11010d72b4be597874e425ca37b03600d92c24d18e2005234d1f6a8ee4b2b0773b1e37ad9b44dc2d2db6e98549dec5ad6c68ead6e08ed661d26fe47fb902
+  languageName: node
+  linkType: hard
+
 "@nestjs/jwt@npm:11.0.0":
   version: 11.0.0
   resolution: "@nestjs/jwt@npm:11.0.0"
@@ -11294,6 +11306,7 @@ __metadata:
     "@nestjs/common": 11.1.1
     "@nestjs/config": 4.0.2
     "@nestjs/core": 11.1.1
+    "@nestjs/cqrs": ^11.0.3
     "@nestjs/jwt": 11.0.0
     "@nestjs/microservices": 11.1.1
     "@nestjs/mongoose": ^11.0.3

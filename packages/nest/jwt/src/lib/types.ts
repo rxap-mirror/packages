@@ -26,4 +26,16 @@ export interface RequestWithUser<User = DefaultUser> extends Omit<Request, 'user
   user: User;
 }
 
+export function isRequestWithUser<User = DefaultUser>(request: Request): request is RequestWithUser<User> {
+  return 'user' in request;
+}
+
 export type RequestWithJwtAndUser<User = DefaultUser> = RequestWithJwt & RequestWithUser<User>;
+
+export function isRequestWithJwtAndUser<User = DefaultUser>(request: Request): request is RequestWithJwtAndUser<User> {
+  return IsRequestWithJwt(request) && isRequestWithUser<User>(request);
+}
+
+export function isRequestWithUserSub(request: Request): request is RequestWithUser<{ sub: string }> {
+  return isRequestWithUser(request) && 'sub' in request.user;
+}
