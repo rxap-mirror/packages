@@ -11,7 +11,7 @@
     "@angular/core": "^19.2.1",
     "@rxap/data-source": "^19.1.1-dev.1",
     "@rxap/ngx-pub-sub": "^19.0.4",
-    "@rxap/open-api": "^19.2.0-dev.3",
+    "@rxap/open-api": "^19.2.0-dev.4",
     "@rxap/utilities": "^16.5.0-dev.0",
     "rxjs": "^7.8.1"
   },
@@ -37,27 +37,27 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/forms",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/material",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@rxap/config",
@@ -89,7 +89,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.2.0-dev.3"
+        "version": "19.2.0-dev.4"
       },
       {
         "package": "@rxap/pattern",

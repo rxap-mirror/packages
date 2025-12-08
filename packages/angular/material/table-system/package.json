@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4",
+  "version": "19.0.5-dev.0",
   "name": "@rxap/material-table-system",
   "description": "This package provides a set of Angular directives, components, and services to enhance and customize Angular Material tables. It includes features such as row selection, column filtering, expandable rows, table actions, and more. The goal is to simplify common table-related tasks and provide a more flexible and feature-rich table experience.\n",
   "license": "GPL-3.0-or-later",
@@ -51,35 +51,35 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/cdk",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/forms",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/material",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/router",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@rxap/browser-utilities",

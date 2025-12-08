@@ -16,7 +16,7 @@
     "@rxap/definition": "^19.0.4",
     "@rxap/forms": "^19.1.0-dev.5",
     "@rxap/mixin": "^16.0.15-dev.3",
-    "@rxap/open-api": "^19.2.0-dev.3",
+    "@rxap/open-api": "^19.2.0-dev.4",
     "@rxap/pattern": "^1.1.14",
     "@rxap/reflect-metadata": "^1.0.16-dev.3",
     "@rxap/remote-method": "^19.1.0-dev.0",
@@ -48,31 +48,31 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/forms",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/material",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/router",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@rxap/config",
@@ -108,7 +108,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.2.0-dev.3"
+        "version": "19.2.0-dev.4"
       },
       {
         "package": "@rxap/pattern",

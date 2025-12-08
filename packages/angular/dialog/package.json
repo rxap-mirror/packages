@@ -38,27 +38,27 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/forms",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/material",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@rxap/pipes",

@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4",
+  "version": "19.0.5-dev.0",
   "name": "@rxap/ngx-material-table-select",
   "description": "Provides components and directives to integrate a table selection window into Angular Material forms. It includes features for data binding, filtering, and display customization, making it easier to select data from a table within a form context. This package also offers decorators and mixins to streamline the configuration and extraction of data for table selection.\n",
   "license": "GPL-3.0-or-later",
@@ -18,7 +18,7 @@
     "@rxap/forms": "^19.1.0-dev.5",
     "@rxap/material-directives": "^19.1.0-dev.0",
     "@rxap/material-form-system": "^19.0.4",
-    "@rxap/material-table-system": "^19.0.4",
+    "@rxap/material-table-system": "^19.0.5-dev.0",
     "@rxap/material-table-window-system": "^19.0.4",
     "@rxap/mixin": "^16.0.15-dev.3",
     "@rxap/pattern": "^1.1.14",
@@ -53,35 +53,35 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/cdk",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/forms",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/material",
-        "version": "19.2.2"
+        "version": "19.2.19"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/router",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@rxap/browser-utilities",
@@ -133,7 +133,7 @@
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "19.0.4"
+        "version": "19.0.5-dev.0"
       },
       {
         "package": "@rxap/material-table-window-system",
@@ -149,7 +149,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.2.0-dev.3"
+        "version": "19.2.0-dev.4"
       },
       {
         "package": "@rxap/pattern",

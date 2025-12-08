@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@11.0.0-dev.1...@rxap/nest-jwt@11.0.0-dev.2) (2025-12-08)
+
+### Features
+
+- **jwt:** introduce user context and factory for user ID injection ([085c2e3](https://gitlab.com/rxap/packages/commit/085c2e39b55632b1ba80a83c778127bda3527fd7))
+
 # [11.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.3.4...@rxap/nest-jwt@11.0.0-dev.1) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/nest-jwt
