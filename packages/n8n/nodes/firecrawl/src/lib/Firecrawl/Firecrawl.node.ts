@@ -1,10 +1,6 @@
 import KeyvPostgres from '@keyv/postgres';
 import FireCrawlApp from '@mendable/firecrawl-js';
 import {
-  CrawlScrapeOptions,
-  ScrapeParams,
-} from '@mendable/firecrawl-js/src';
-import {
   cached,
   CaptureExecutionError,
   forEachItem,
@@ -61,6 +57,10 @@ export class Firecrawl implements INodeType {
             name: 'Scrape Url',
             value: 'scrapeUrl',
           },
+          {
+            name: 'Extract',
+            value: 'extract',
+          }
         ],
         required: true,
       },
@@ -115,6 +115,11 @@ export class Firecrawl implements INodeType {
           }
         ],
         default: ['markdown'],
+        displayOptions: {
+          show: {
+            operation: [ 'scrapeUrl' ],
+          },
+        },
       },
       {
         name: 'onlyMainContent',
@@ -122,6 +127,11 @@ export class Firecrawl implements INodeType {
         description: 'Only return the main content of the page excluding headers, navs, footers, etc.',
         default: true,
         type: 'boolean',
+        displayOptions: {
+          show: {
+            operation: [ 'scrapeUrl' ],
+          },
+        },
       },
       {
         name: 'includeTags',
@@ -131,7 +141,12 @@ export class Firecrawl implements INodeType {
         typeOptions: {
           multipleValues: true
         },
-        description: 'Only include tags, classes and ids from the page in the final output. Use comma separated values.'
+        description: 'Only include tags, classes and ids from the page in the final output. Use comma separated values.',
+        displayOptions: {
+          show: {
+            operation: [ 'scrapeUrl' ],
+          },
+        },
       },
       {
         name: 'excludeTags',
@@ -141,8 +156,73 @@ export class Firecrawl implements INodeType {
         typeOptions: {
           multipleValues: true
         },
-        description: 'Tags, classes and ids to remove from the page. Use comma separated values.'
+        description: 'Tags, classes and ids to remove from the page. Use comma separated values.',
+        displayOptions: {
+          show: {
+            operation: [ 'scrapeUrl' ],
+          },
+        },
       },
+
+      {
+        name: 'prompt',
+        displayName: 'Prompt',
+        type: 'string',
+        required: true,
+        default: '',
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+      {
+        name: 'schema',
+        displayName: 'Schema',
+        type: 'json',
+        required: true,
+        default: '',
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+      {
+        name: 'systemPrompt',
+        displayName: 'System Prompt',
+        type: 'string',
+        required: true,
+        default: '',
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+      {
+        name: 'showSources',
+        displayName: 'Show Sources',
+        type: 'boolean',
+        default: false,
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+      {
+        name: 'enableWebSearch',
+        displayName: 'Enable Web Search',
+        type: 'boolean',
+        default: false,
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+
       {
         name: 'cache',
         displayName: 'Cache',
@@ -217,21 +297,35 @@ export class Firecrawl implements INodeType {
 
     }
 
-    const scrapeUrl = async <T extends ZodSchema>(url: string, options: ScrapeParams<T>): Promise<Record<any, any>> => {
-      const scrapeResult = await firecrawl.scrapeUrl(url, options);
+    const scrapeUrl = async <T extends ZodSchema>(url: string, options: any): Promise<Record<any, any>> => {
+      const scrapeResult = await firecrawl.v1.scrapeUrl(url, options);
       if (scrapeResult.success) {
         return scrapeResult as Record<any, any>;
       }
       throw new NodeOperationError(this.getNode(), `The operation "scrapeUrl" failed: ${scrapeResult.error}`);
     };
 
+    const extract = async <T extends ZodSchema>(url: string, options: any): Promise<Record<any, any>> => {
+      const extractResult = await firecrawl.v1.extract([ url ], options);
+      if (extractResult.success) {
+        return extractResult as Record<any, any>;
+      }
+      throw new NodeOperationError(this.getNode(), `The operation "extract" failed: ${ extractResult.error }`);
+    };
+
     const results = await forEachItem.call(this, async (_, index) => {
 
       const url = this.getNodeParameter('url', index) as string;
-      const formats = this.getNodeParameter('formats', index, ['markdown']) as CrawlScrapeOptions['formats'];
+      const formats = this.getNodeParameter('formats', index, ['markdown']) as any;
       const onlyMainContent = this.getNodeParameter('onlyMainContent', index, true) as boolean;
       const includeTags = this.getNodeParameter('includeTags', index, null) as string[] | null;
       const excludeTags = this.getNodeParameter('excludeTags', index, null) as string[] | null;
+      const prompt = this.getNodeParameter('prompt', index, null) as string | null;
+      const rawSchema = this.getNodeParameter('schema', index, null) as object | string | null;
+      const systemPrompt = this.getNodeParameter('systemPrompt', index, null) as string | null;
+      const enableWebSearch = this.getNodeParameter('enableWebSearch', index, undefined) as boolean | undefined;
+      const showSources = this.getNodeParameter('showSources', index, undefined) as boolean | undefined;
+      const schema = rawSchema ? typeof rawSchema === 'string' ? JSON.parse(rawSchema) : rawSchema : null;
 
       switch (operation) {
 
@@ -243,6 +337,20 @@ export class Firecrawl implements INodeType {
               includeTags: includeTags?.length ? includeTags : undefined,
               excludeTags: excludeTags?.length ? excludeTags : undefined,
             })
+          };
+
+        case 'extract':
+          return {
+            json: await cached({
+              keyv,
+              ttl: cacheTTL > 0 ? cacheTTL : undefined,
+            }, extract, url, {
+              prompt,
+              schema,
+              systemPrompt,
+              enableWebSearch,
+              showSources,
+            }),
           };
       }
 

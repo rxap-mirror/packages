@@ -1,9 +1,5 @@
 import KeyvPostgres from '@keyv/postgres';
 import FireCrawlApp from '@mendable/firecrawl-js';
-import {
-  CrawlScrapeOptions,
-  ScrapeParams,
-} from '@mendable/firecrawl-js/src';
 import { cached } from '@rxap/n8n-utilities';
 import Keyv from 'keyv';
 import type {
@@ -172,6 +168,66 @@ export class ToolFirecrawl implements INodeType {
           multipleValues: true,
         },
       },
+
+      {
+        name: 'prompt',
+        displayName: 'Prompt',
+        type: 'string',
+        required: true,
+        default: '',
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+      {
+        name: 'schema',
+        displayName: 'Schema',
+        type: 'json',
+        required: true,
+        default: '',
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+      {
+        name: 'systemPrompt',
+        displayName: 'System Prompt',
+        type: 'string',
+        required: true,
+        default: '',
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+      {
+        name: 'showSources',
+        displayName: 'Show Sources',
+        type: 'boolean',
+        default: false,
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+      {
+        name: 'enableWebSearch',
+        displayName: 'Enable Web Search',
+        type: 'boolean',
+        default: false,
+        displayOptions: {
+          show: {
+            operation: [ 'extract' ],
+          },
+        },
+      },
+
       {
         displayName: 'Cache',
         name: 'cache',
@@ -292,12 +348,20 @@ export class ToolFirecrawl implements INodeType {
         break;
     }
 
-    const scrapeUrl = async <T extends ZodSchema>(url: string, options: ScrapeParams<T>): Promise<Record<any, any>> => {
-      const scrapeResult = await firecrawl.scrapeUrl(url, options);
+    const scrapeUrl = async <T extends ZodSchema>(url: string, options: any): Promise<Record<any, any>> => {
+      const scrapeResult = await firecrawl.v1.scrapeUrl(url, options);
       if (scrapeResult.success) {
         return scrapeResult as Record<any, any>;
       }
       throw new NodeOperationError(this.getNode(), `The operation "scrapeUrl" failed: ${scrapeResult.error}`);
+    };
+
+    const extract = async <T extends ZodSchema>(url: string, options: any): Promise<Record<any, any>> => {
+      const extractResult = await firecrawl.v1.extract([ url ], options);
+      if (extractResult.success) {
+        return extractResult as Record<any, any>;
+      }
+      throw new NodeOperationError(this.getNode(), `The operation "extract" failed: ${ extractResult.error }`);
     };
 
     // Extract placeholder definitions
@@ -340,10 +404,16 @@ export class ToolFirecrawl implements INodeType {
       const { index } = this.addInputData(NodeConnectionType.AiTool, [[{ json: { query } }]]);
 
 
-      const formats = this.getNodeParameter('formats', index, ['markdown']) as CrawlScrapeOptions['formats'];
+      const formats = this.getNodeParameter('formats', index, ['markdown']) as any;
       const onlyMainContent = this.getNodeParameter('onlyMainContent', index, true) as boolean;
       const includeTags = clone(this.getNodeParameter('includeTags', index, null) as string[] | null ?? []);
       const excludeTags = clone(this.getNodeParameter('excludeTags', index, null) as string[] | null ?? []);
+      const prompt = this.getNodeParameter('prompt', index, null) as string | null;
+      const rawSchema = this.getNodeParameter('schema', index, null) as object | string | null;
+      const systemPrompt = this.getNodeParameter('systemPrompt', index, null) as string | null;
+      const enableWebSearch = this.getNodeParameter('enableWebSearch', index, undefined) as boolean | undefined;
+      const showSources = this.getNodeParameter('showSources', index, undefined) as boolean | undefined;
+      const schema = rawSchema ? typeof rawSchema === 'string' ? JSON.parse(rawSchema) : rawSchema : null;
 
       this.logger.debug(`Received query: ${JSON.stringify(query)}`);
 
@@ -378,6 +448,18 @@ export class ToolFirecrawl implements INodeType {
             includeTags: includeTags?.length ? includeTags : undefined,
             excludeTags: excludeTags?.length ? excludeTags : undefined,
           }), undefined, 2);
+
+        case 'extract':
+          return JSON.stringify(await cached({
+              keyv,
+              ttl: cacheTTL > 0 ? cacheTTL : undefined,
+            }, extract, url, {
+              prompt,
+              schema,
+              systemPrompt,
+              enableWebSearch,
+              showSources,
+            }), undefined, 2);
       }
 
       throw new NodeOperationError(

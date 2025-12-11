@@ -5978,16 +5978,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mendable/firecrawl-js@npm:^1.18.2":
-  version: 1.18.2
-  resolution: "@mendable/firecrawl-js@npm:1.18.2"
+"@mendable/firecrawl-js@npm:^4.8.3":
+  version: 4.8.3
+  resolution: "@mendable/firecrawl-js@npm:4.8.3"
   dependencies:
-    axios: ^1.6.8
-    isows: ^1.0.4
+    axios: ^1.12.2
     typescript-event-target: ^1.1.1
     zod: ^3.23.8
     zod-to-json-schema: ^3.23.0
-  checksum: 696343daa9e54329a4c464970f2c2cad4cbd7d2d7f6c2cf889145bc29a36da30437418cb2cf4df24768dceecd1d0fa7f11ab95a4728752078cdbd7cc4eafb65d
+  checksum: 610fdb9b4a0ca45f6e8cb982d82c9bd105a2f03ffb2afe276e38d3db7d0ade7080bffd8e11045b2d16fde618c65b2a968154222e36fc02b6ba416f84fce2fd2d
   languageName: node
   linkType: hard
 
@@ -9874,7 +9873,7 @@ __metadata:
   dependencies:
     "@keyv/postgres": ^2.1.1
     "@langchain/core": ^0.3.40
-    "@mendable/firecrawl-js": ^1.18.2
+    "@mendable/firecrawl-js": ^4.8.3
     "@nx/devkit": 20.5.0
     "@rxap/n8n-utilities": ^1.2.2-dev.2
     "@rxap/utilities": ^16.5.0-dev.0
@@ -11301,7 +11300,7 @@ __metadata:
     "@marker.io/browser": ^0.20.2
     "@material/material-color-utilities": ^0.3.0
     "@mdi/angular-material": 7.2.96
-    "@mendable/firecrawl-js": ^1.18.2
+    "@mendable/firecrawl-js": ^4.8.3
     "@nestjs/axios": 4.0.0
     "@nestjs/cache-manager": ^3.0.1
     "@nestjs/common": 11.1.1
@@ -16236,6 +16235,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"async-function@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "async-function@npm:1.0.0"
+  checksum: 9102e246d1ed9b37ac36f57f0a6ca55226876553251a31fc80677e71471f463a54c872dc78d5d7f80740c8ba624395cccbe8b60f7b690c4418f487d8e9fd1106
+  languageName: node
+  linkType: hard
+
+"async-generator-function@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "async-generator-function@npm:1.0.0"
+  checksum: 74a71a4a2dd7afd06ebb612f6d612c7f4766a351bedffde466023bf6dae629e46b0d2cd38786239e0fbf245de0c7df76035465e16d1213774a0efb22fec0d713
+  languageName: node
+  linkType: hard
+
 "async-limiter@npm:~1.0.0":
   version: 1.0.1
   resolution: "async-limiter@npm:1.0.1"
@@ -16387,7 +16400,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.0, axios@npm:^1.6.1, axios@npm:^1.6.8, axios@npm:^1.7.4, axios@npm:^1.7.9":
+"axios@npm:^1.12.2":
+  version: 1.13.2
+  resolution: "axios@npm:1.13.2"
+  dependencies:
+    follow-redirects: ^1.15.6
+    form-data: ^4.0.4
+    proxy-from-env: ^1.1.0
+  checksum: 057d0204d5930e2969f0bccb9f0752745b1524a36994667833195e7e1a82f245d660752ba8517b2dbea17e9e4ed0479f10b80c5fe45edd0b5a0df645c0060386
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.6.0, axios@npm:^1.6.1, axios@npm:^1.7.4, axios@npm:^1.7.9":
   version: 1.7.9
   resolution: "axios@npm:1.7.9"
   dependencies:
@@ -20902,6 +20926,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"es-set-tostringtag@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "es-set-tostringtag@npm:2.1.0"
+  dependencies:
+    es-errors: ^1.3.0
+    get-intrinsic: ^1.2.6
+    has-tostringtag: ^1.0.2
+    hasown: ^2.0.2
+  checksum: 789f35de4be3dc8d11fdcb91bc26af4ae3e6d602caa93299a8c45cf05d36cc5081454ae2a6d3afa09cceca214b76c046e4f8151e092e6fc7feeb5efb9e794fc6
+  languageName: node
+  linkType: hard
+
 "es-to-primitive@npm:^1.2.1":
   version: 1.3.0
   resolution: "es-to-primitive@npm:1.3.0"
@@ -22510,6 +22546,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"form-data@npm:^4.0.4":
+  version: 4.0.5
+  resolution: "form-data@npm:4.0.5"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    es-set-tostringtag: ^2.1.0
+    hasown: ^2.0.2
+    mime-types: ^2.1.12
+  checksum: af8328413c16d0cded5fccc975a44d227c5120fd46a9e81de8acf619d43ed838414cc6d7792195b30b248f76a65246949a129a4dadd148721948f90cd6d4fb69
+  languageName: node
+  linkType: hard
+
 "form-data@npm:~2.3.2":
   version: 2.3.3
   resolution: "form-data@npm:2.3.3"
@@ -22793,6 +22842,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"generator-function@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "generator-function@npm:2.0.1"
+  checksum: 3bf87f7b0230de5d74529677e6c3ceb3b7b5d9618b5a22d92b45ce3876defbaf5a77791b25a61b0fa7d13f95675b5ff67a7769f3b9af33f096e34653519e873d
+  languageName: node
+  linkType: hard
+
 "generator@workspace:packages/generator":
   version: 0.0.0-use.local
   resolution: "generator@workspace:packages/generator"
@@ -22851,6 +22907,27 @@ __metadata:
     hasown: ^2.0.2
     math-intrinsics: ^1.1.0
   checksum: 301008e4482bb9a9cb49e132b88fee093bff373b4e6def8ba219b1e96b60158a6084f273ef5cafe832e42cd93462f4accb46a618d35fe59a2b507f2388c5b79d
+  languageName: node
+  linkType: hard
+
+"get-intrinsic@npm:^1.2.6":
+  version: 1.3.1
+  resolution: "get-intrinsic@npm:1.3.1"
+  dependencies:
+    async-function: ^1.0.0
+    async-generator-function: ^1.0.0
+    call-bind-apply-helpers: ^1.0.2
+    es-define-property: ^1.0.1
+    es-errors: ^1.3.0
+    es-object-atoms: ^1.1.1
+    function-bind: ^1.1.2
+    generator-function: ^2.0.0
+    get-proto: ^1.0.1
+    gopd: ^1.2.0
+    has-symbols: ^1.1.0
+    hasown: ^2.0.2
+    math-intrinsics: ^1.1.0
+  checksum: c02b3b6a445f9cd53e14896303794ac60f9751f58a69099127248abdb0251957174c6524245fc68579dc8e6a35161d3d94c93e665f808274716f4248b269436a
   languageName: node
   linkType: hard
 
@@ -25304,15 +25381,6 @@ __metadata:
   peerDependencies:
     ws: "*"
   checksum: e20eb2aee09ba96247465fda40c6d22c1153394c0144fa34fe6609f341af4c8c564f60ea3ba762335a7a9c306809349f9b863c8beedf2beea09b299834ad5398
-  languageName: node
-  linkType: hard
-
-"isows@npm:^1.0.4":
-  version: 1.0.6
-  resolution: "isows@npm:1.0.6"
-  peerDependencies:
-    ws: "*"
-  checksum: ab9e85b50bcc3d70aa5ec875aa2746c5daf9321cb376ed4e5434d3c2643c5d62b1f466d93a05cd2ad0ead5297224922748c31707cb4fbd68f5d05d0479dce99c
   languageName: node
   linkType: hard
 
