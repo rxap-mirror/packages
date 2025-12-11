@@ -1,5 +1,5 @@
 {
-  "version": "0.2.2-dev.2",
+  "version": "0.3.0-dev.0",
   "name": "@rxap/n8n-nodes-firecrawl",
   "license": "GPL-3.0-or-later",
   "dependencies": {
