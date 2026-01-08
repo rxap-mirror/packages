@@ -1,9 +1,7 @@
 import { getMetadata } from '@rxap/reflect-metadata';
-import {
-  AddParserToMetadata,
-  ElementParserMetaData,
-} from '@rxap/xml-parser';
+import { AddParserToMetadata } from './add-parser-to-metadata';
 import { ElementParser } from '../element.parser';
+import { ElementParserMetaData } from '../metadata-keys';
 
 describe('AddParserToMetadata', () => {
 

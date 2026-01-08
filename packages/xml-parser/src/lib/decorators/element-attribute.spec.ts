@@ -1,5 +1,5 @@
 import { getMetadata } from '@rxap/reflect-metadata';
-import { ElementParserMetaData } from '@rxap/xml-parser';
+import { ElementParserMetaData } from './metadata-keys';
 import { compile } from 'handlebars';
 import { RxapElement } from '../element';
 import { XmlParserService } from '../xml-parser.service';

@@ -1,4 +1,4 @@
-import { ElementChild } from '@rxap/xml-parser';
+import { ElementChild } from './decorators/element-child';
 import { DOMParser } from 'xmldom';
 import { ElementAttribute } from './decorators/element-attribute';
 import { ElementChildren } from './decorators/element-children';

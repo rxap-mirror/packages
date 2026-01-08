@@ -2,12 +2,12 @@ import { getMetadata } from '@rxap/reflect-metadata';
 import {
   ElementChildrenTextContent,
   ElementChildrenTextContentParser,
-  ElementDef,
-  ElementParserMetaData,
-  ParsedElement,
-  XmlParserService,
-} from '@rxap/xml-parser';
+} from './element-children-text-content';
 import { DOMParser } from 'xmldom';
+import { ElementParserMetaData } from './metadata-keys';
+import { ElementDef } from './element-def';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlParserService } from '../xml-parser.service';
 
 describe('@rxap/xml-parser', () => {
 

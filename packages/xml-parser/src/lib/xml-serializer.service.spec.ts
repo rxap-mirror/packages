@@ -1,19 +1,6 @@
 import { getMetadata } from '@rxap/reflect-metadata';
-import {
-  ElementAttribute,
-  ElementChild,
-  ElementChildRawContent,
-  ElementChildren,
-  ElementChildrenTextContent,
-  ElementChildTextContent,
-  ElementDef,
-  ElementExtends,
-  ElementParserMetaData,
-  ElementTextContent,
-  ElementVirtual,
-  ParsedElement,
-  XmlElementSerializerFunction,
-} from '@rxap/xml-parser';
+import { ElementChildRawContent } from './decorators/element-child-raw-content';
+import { ParsedElement } from './elements/parsed-element';
 import {
   DOMParser,
   XMLSerializer,
@@ -25,6 +12,17 @@ import {
   ElementNamespace,
   getElementNamespaceMetadata,
 } from './decorators/element-namespace';
+import { ElementDef } from './decorators/element-def';
+import { ElementAttribute } from './decorators/element-attribute';
+import { ElementChild } from './decorators/element-child';
+import { ElementChildrenTextContent } from './decorators/element-children-text-content';
+import { ElementExtends } from './decorators/element-extends';
+import { XmlElementSerializerFunction } from './xml-element-serializer-function';
+import { ElementParserMetaData } from './decorators/metadata-keys';
+import { ElementChildTextContent } from './decorators/element-child-text-content';
+import { ElementChildren } from './decorators/element-children';
+import { ElementTextContent } from './decorators/element-text-content';
+import { ElementVirtual } from './decorators/element-virtual';
 
 describe('XML Serializer', () => {
 

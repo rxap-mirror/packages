@@ -1,7 +1,5 @@
-import {
-  ElementVirtual,
-  ParsedElement,
-} from '@rxap/xml-parser';
+import { ParsedElement } from '../../elements/parsed-element';
+import { ElementVirtual } from '../element-virtual';
 import { isVirtualElement } from './is-virtual-element';
 
 describe('isVirtualElement', () => {

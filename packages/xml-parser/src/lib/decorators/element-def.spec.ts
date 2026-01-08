@@ -2,7 +2,7 @@ import {
   getMetadata,
   getMetadataKeys,
 } from '@rxap/reflect-metadata';
-import { ElementParserMetaData } from '@rxap/xml-parser';
+import { ElementParserMetaData } from './metadata-keys';
 import { ElementDef } from './element-def';
 
 describe('@rxap/xml-parser', () => {

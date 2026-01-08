@@ -1,17 +1,17 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import {
   createElement,
-  ElementDef,
-  ElementParserMetaData,
-  ParsedElement,
-  XmlParserService,
-  XmlSerializerService,
-} from '@rxap/xml-parser';
+} from '../create-element';
 import { DOMParser, XMLSerializer } from 'xmldom';
 import {
   ElementChildTextContent,
   ElementChildTextContentParser,
 } from './element-child-text-content';
+import { ElementParserMetaData } from './metadata-keys';
+import { ParsedElement } from '../elements/parsed-element';
+import { ElementDef } from './element-def';
+import { XmlParserService } from '../xml-parser.service';
+import { XmlSerializerService } from '../xml-serializer.service';
 
 describe('@rxap/xml-parser', () => {
 

@@ -1,4 +1,4 @@
-import { ElementExtends } from '@rxap/xml-parser';
+import { ElementExtends } from '../decorators/element-extends';
 import { getExtendedTypes } from './get-extended-types';
 
 describe('getExtendedTypes', () => {

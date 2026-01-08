@@ -1,12 +1,12 @@
+import { ElementDef } from './decorators/element-def';
 import {
-  ElementChild,
-  ElementDef,
   ParsedElement,
-  ElementAttribute,
-  ElementChildren,
-} from '@rxap/xml-parser';
+} from './elements/parsed-element';
 import { createElement } from './create-element';
 import { isParsedElement } from './utilities/is-parsed-element';
+import { ElementChild } from './decorators/element-child';
+import { ElementAttribute } from './decorators/element-attribute';
+import { ElementChildren } from './decorators/element-children';
 
 
 describe('createElement', () => {
