@@ -44,10 +44,10 @@ nx g @rxap/plugin-open-api:init-library
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-external | boolean | false | 
-skipFormat | boolean | false | 
-persistent | boolean | false | 
+project | string |  | The name of the library project to initialize.
+external | boolean | false | Whether the OpenAPI specification is located outside the workspace.
+skipFormat | boolean | false | Whether to skip formatting generated files.
+persistent | boolean | false | Whether to make the initialization changes persistent.
 
 ## init
 > Initialize the package in the workspace
@@ -58,11 +58,11 @@ nx g @rxap/plugin-open-api:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project.
+projects | array |  | A list of projects to initialize.
+skipFormat | boolean | false | Whether to skip formatting generated files.
+overwrite | boolean | false | Whether to overwrite existing files.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 # Executors
 
 ## copy-open-api-sdk

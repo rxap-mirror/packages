@@ -34,9 +34,9 @@ nx g @rxap/plugin-gitlab-ci:component-test
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-browserList | array | chrome,firefox,edge | A list of browsers to test against
-excludeList | array |  | A list of projects to exclude from the ci configuration
-cypressImage | string | cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1 | The cypress image to use for the tests
+browserList | array | chrome,firefox,edge | The list of browsers to run component tests against.
+excludeList | array |  | The list of projects to exclude from the component test CI configuration.
+cypressImage | string | cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1 | The Docker image containing Cypress to use for running tests.
 
 ## init
 > init generator
@@ -47,19 +47,19 @@ nx g @rxap/plugin-gitlab-ci:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-components | boolean | true | If true, the gitlab ci will be initialized with components
-componentsSource | string | component | 
-release | string | release-it | 
-helmChart | string |  | The name of the helm chart project path with namespace where the app version should be automatically updated
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-onlyPackages | boolean | false | If true, the gitlab ci will be initialized exclusively for package development
-dte | boolean | false | If true, the gitlab ci will be initialized with dte execution for the targets
-parallel | number | 3 | The number of parallel agents started for the nx workspace run tasks to run in the pipeline
-angular | boolean | false | If true, the gitlab ci will be initialized for a workspace with angular projects
-nest | boolean | false | If true, the gitlab ci will be initialized for a workspace with nest projects
+project | string |  | The name of the project to initialize GitLab CI for.
+projects | array |  | The list of projects to initialize GitLab CI for.
+components | boolean | true | Whether to use GitLab CI/CD components.
+componentsSource | string | component | The source for the GitLab CI/CD components.
+release | string | release-it | The release strategy to use for the project.
+helmChart | string |  | The path to the Helm chart project where the app version should be updated.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+onlyPackages | boolean | false | If true, initialization is tailored for a workspace containing only packages.
+dte | boolean | false | Whether to use Nx Distributed Task Execution (DTE).
+parallel | number | 3 | The number of parallel agents to use for DTE.
+angular | boolean | false | Whether the workspace contains Angular projects.
+nest | boolean | false | Whether the workspace contains NestJS projects.
 
 ## docker
 > docker generator
@@ -70,12 +70,12 @@ nx g @rxap/plugin-gitlab-ci:docker
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-gcp | boolean |  | Generate docker startup test with pull target to GCP registry
-gitlab | boolean |  | Generate docker startup test with pull target to gitlab registry
-overwrite | boolean |  | Overwrite existing files
-skipFormat | boolean | false | 
-components | boolean | true | If true, the gitlab ci will be initialized with components
-tags | array |  | 
-skipStartup | boolean |  | 
-skipE2eService | boolean |  | 
-project | string |  | 
+gcp | boolean |  | Whether to generate a Docker startup test that pulls from the GCP registry.
+gitlab | boolean |  | Whether to generate a Docker startup test that pulls from the GitLab registry.
+overwrite | boolean |  | Whether to overwrite existing configuration files during generation.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after generation.
+components | boolean | true | Whether to use GitLab CI/CD components in the generated configuration.
+tags | array |  | The list of project tags to filter for Docker configuration.
+skipStartup | boolean |  | Whether to skip generating the Docker startup test.
+skipE2eService | boolean |  | Whether to skip generating the E2E service configuration.
+project | string |  | The name of the project to initialize GitLab CI Docker configuration for.

@@ -59,11 +59,11 @@ nx g @rxap/plugin-cypress:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project to initialize Cypress for.
+projects | array |  | The list of projects to initialize Cypress for.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## init-library
 > init-library generator
@@ -74,14 +74,14 @@ nx g @rxap/plugin-cypress:init-library
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-component | boolean | false | Whether to setup cypress component testing
-generateTests | boolean |  | Whether to generate tests for the components
-buildTarget | string |  | A build target used to configure Cypress component testing in the format of &#x60;project:target[:configuration]&#x60;. The build target should be an angular app. If not provided we will try to infer it from your projects usage.
+project | string |  | The name of the library project to initialize Cypress for.
+projects | array |  | The list of library projects to initialize Cypress for.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
+component | boolean | false | Whether to set up Cypress component testing for the library.
+generateTests | boolean | true | Whether to generate Cypress tests for the components in the library.
+buildTarget | string |  | A build target used to configure Cypress component testing (format: &#x60;project:target[:configuration]&#x60;). Must be an Angular application.
 
 ## init-application
 > init-application generator
@@ -92,8 +92,8 @@ nx g @rxap/plugin-cypress:init-application
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the application project to initialize Cypress for.
+projects | array |  | The list of application projects to initialize Cypress for.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.

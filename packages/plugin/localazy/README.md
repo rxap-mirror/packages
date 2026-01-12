@@ -40,11 +40,11 @@ nx g @rxap/plugin-localazy:config
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | The name of the project.
-extractTarget | string |  | The target that extracts or generate the translation source file.
-writeKey | string |  | The localazy write key.
-readKey | string |  | The localazy read key.
-overwrite | boolean |  | Overwrite existing files.
+project | string |  | The name of the project to add the Localazy builder to.
+extractTarget | string |  | The Nx target responsible for extracting or generating the translation source files.
+writeKey | string |  | The Localazy project write key. This key will be added to the .env file.
+readKey | string |  | The Localazy project read key. This key will be added to the .env file.
+overwrite | boolean | false | Whether to overwrite existing Localazy configuration files.
 
 ## init
 > Initialize the package in the workspace
@@ -55,7 +55,7 @@ nx g @rxap/plugin-localazy:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-skipFormat | boolean | false | 
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
 # Executors
 
 ## download

@@ -57,14 +57,14 @@ nx g @rxap/plugin-library:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-indexExport | boolean |  | Whether to add the index-export target to the library
-targets | object |  | 
-withInitGenerator | boolean | false | Generate a init generator for the library
+project | string |  | The name of the library project to initialize.
+projects | array |  | The list of library projects to initialize.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
+indexExport | boolean |  | Whether to add the &#x27;index-export&#x27; target to the library project configuration.
+targets | object |  | Configuration for specific project targets.
+withInitGenerator | boolean | false | Whether to generate an &#x27;init&#x27; generator within the library itself.
 
 ## fix-dependencies
 > Adds missing dependencies and removes redudant dependencies of a project
@@ -75,14 +75,14 @@ nx g @rxap/plugin-library:fix-dependencies
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-projects | array |  | 
-reset | boolean |  | 
-resolve | boolean |  | 
-resetAll | boolean |  | 
-strict | boolean | false | If true, will fail if any dependency is not found
-onlyDependencies | boolean | false | If true, will move all peer dependencies to dependencies
-dependencies | array |  | List of packages that should always be added as dependencies
-peerDependencies | array |  | List of packages that should always be added as peerDependencies
+projects | array |  | The list of projects to fix dependencies for.
+reset | boolean |  | Whether to reset the project&#x27;s dependencies before fixing them.
+resolve | boolean |  | Whether to resolve dependency versions from the workspace root &#x27;package.json&#x27;.
+resetAll | boolean |  | Whether to reset all project dependencies, including peer dependencies.
+strict | boolean | false | Whether to fail if any required dependency cannot be found in the workspace.
+onlyDependencies | boolean | false | Whether to move all peer dependencies to the regular dependencies section.
+dependencies | array |  | A list of package names that should always be added to the &#x27;dependencies&#x27; section.
+peerDependencies | array |  | A list of package names that should always be added to the &#x27;peerDependencies&#x27; section.
 
 ## index-export
 > Generate index exports for each directory and in the src root
@@ -93,10 +93,10 @@ nx g @rxap/plugin-library:index-export
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-projects | array |  | 
-project | string |  | 
-generateRootExport | boolean | true | Generate index.ts in the source root of the project
-additionalEntryPoints | array |  | 
+projects | array |  | The list of projects to generate index exports for.
+project | string |  | The name of a single project to generate an index export for.
+generateRootExport | boolean | true | Whether to generate an &#x27;index.ts&#x27; file in the source root of the project.
+additionalEntryPoints | array |  | A list of additional sub-directory entry points to include in the index export.
 
 ## init-plugin
 > init-plugin generator
@@ -107,11 +107,11 @@ nx g @rxap/plugin-library:init-plugin
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project to initialize as an Nx plugin.
+projects | array |  | The list of projects to initialize as Nx plugins.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## init-buildable
 > init-buildable generator
@@ -122,11 +122,11 @@ nx g @rxap/plugin-library:init-buildable
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the buildable library project to initialize.
+projects | array |  | The list of buildable library projects to initialize.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## init-publishable
 > init-publishable generator
@@ -137,13 +137,13 @@ nx g @rxap/plugin-library:init-publishable
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-targets | object |  | 
-withInitGenerator | boolean | false | Generate a init generator for the library
+project | string |  | The name of the library project to initialize for publishing.
+projects | array |  | The list of library projects to initialize for publishing.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
+targets | object |  | Configuration for specific project targets.
+withInitGenerator | boolean | false | Whether to generate an &#x27;init&#x27; generator within the library itself.
 
 ## expose-as-schematic
 > expose-as-schematic generator
@@ -154,8 +154,8 @@ nx g @rxap/plugin-library:expose-as-schematic
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-projects | array |  | 
-project | string |  | 
+projects | array |  | The list of projects to expose as schematics.
+project | string |  | The name of a single project to expose as a schematic.
 
 ## bundle-json-schema
 > bundle-json-schema generator
@@ -166,7 +166,7 @@ nx g @rxap/plugin-library:bundle-json-schema
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | Name of the project
+project | string |  | The name of the project whose JSON schemas should be bundled.
 
 ## index-json-schema
 > index-json-schema generator
@@ -177,7 +177,7 @@ nx g @rxap/plugin-library:index-json-schema
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | Name of the project
+project | string |  | The name of the project whose JSON schemas should be indexed.
 
 ## init-with-migrations
 > init-with-migrations generator
@@ -188,11 +188,11 @@ nx g @rxap/plugin-library:init-with-migrations
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the library project to initialize with migrations support.
+projects | array |  | The list of library projects to initialize with migrations support.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## add-migration
 > add-migration generator
@@ -203,12 +203,12 @@ nx g @rxap/plugin-library:add-migration
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | Name of the project
-name | string |  | Name of the migration
-description | string |  | Description of the migration
-packageVersion | string |  | Version to use for the migration.
-packageJsonUpdates | boolean | false | Whether or not to include &#x60;package.json&#x60; updates.
-increment | string |  | Increment the version of the package.json file
+project | string |  | The name of the project to add the migration to.
+name | string |  | The name of the migration file.
+description | string |  | A brief description of what the migration does.
+packageVersion | string |  | The package version that triggers this migration.
+packageJsonUpdates | boolean | false | Whether to include &#x27;package.json&#x27; dependency updates in the migration.
+increment | string |  | The type of version increment for the &#x27;package.json&#x27; file.
 
 ## init-preset
 > init-preset generator
@@ -219,11 +219,11 @@ nx g @rxap/plugin-library:init-preset
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the library project to initialize with a preset.
+projects | array |  | The list of library projects to initialize with a preset.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## init-schematic
 > init-schematic generator
@@ -234,11 +234,11 @@ nx g @rxap/plugin-library:init-schematic
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project to initialize as a schematic library.
+projects | array |  | The list of projects to initialize as schematic libraries.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 # Executors
 
 ## update-dependencies

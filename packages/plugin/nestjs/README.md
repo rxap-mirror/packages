@@ -100,11 +100,11 @@ nx g @rxap/plugin-nestjs:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project to initialize with NestJS.
+projects | array |  | The list of projects to initialize with NestJS.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## init-library
 > init-library generator
@@ -115,12 +115,12 @@ nx g @rxap/plugin-nestjs:init-library
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipFormat | boolean | false | 
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-targets | object |  | 
+project | string |  | The name of the library project to initialize with NestJS.
+projects | array |  | The list of library projects to initialize with NestJS.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
+targets | object |  | Configuration for specific project targets.
 
 ## init-application
 > init-application generator
@@ -131,33 +131,33 @@ nx g @rxap/plugin-nestjs:init-application
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-sentry | boolean | true | Whether this service should use sentry
-skipFormat | boolean | false | 
-swagger | boolean | true | Whether this service should use swagger
-swaggerLive | boolean | false | Whether this service should start a swagger live server
-generateMain | boolean | false | Whether the main file should be generated
-healthIndicator | boolean | true | Whether this service should use a health indicator
-healthIndicatorList | array |  | A list of health indicators
-validator | boolean | true | Whether this service use the ValidationPipe
-platform | string | express | 
-port | number |  | The default port where the server is listens
+project | string |  | The name of the application project to initialize with NestJS.
+projects | array |  | The list of application projects to initialize with NestJS.
+sentry | boolean | true | Whether this application should use Sentry for error tracking.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+swagger | boolean | true | Whether this application should support Swagger/OpenAPI documentation generation.
+swaggerLive | boolean | false | Whether this application should start a live Swagger server in development mode.
+generateMain | boolean | false | Whether to generate the &#x27;main.ts&#x27; entry point file.
+healthIndicator | boolean | true | Whether this application should include a health indicator endpoint.
+healthIndicatorList | array |  | A list of specific health indicators to include.
+validator | boolean | true | Whether this application should use the NestJS &#x27;ValidationPipe&#x27;.
+platform | string | express | The underlying HTTP server platform to use.
+port | number |  | The default port number for the application server.
 apiPrefix |  |  | 
-pluginBuildInfoOptions | object |  | 
-pluginDockerOptions | object |  | 
-sentryDsn | string |  | Default sentry dsn
-overwrite | boolean | false | Whether to overwrite existing files
-jwt | boolean | false | Whether the application should use jwt
-openApi | boolean | false | Whether the application should use openApi as client
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-apiConfigurationFile | string |  | The api configuration file to use
-standalone | boolean | false | Whether the nest service should be standalone
-typeorm | string | none | 
-bootstrap | string | monolithic | 
-transport | string | none | The transport to use for microservices communication
-minio | boolean | false | Whether the application should use minio
-openai | boolean | false | Whether the application should use openai
+pluginBuildInfoOptions | object |  | Options for the build-info plugin.
+pluginDockerOptions | object |  | Options for the Docker plugin.
+sentryDsn | string |  | The default Sentry DSN for error reporting.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+jwt | boolean | false | Whether the application should use JWT authentication.
+openApi | boolean | false | Whether the application should use an OpenAPI client.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
+apiConfigurationFile | string |  | The path to the API configuration file.
+standalone | boolean | false | Whether the NestJS application should be a standalone application.
+typeorm | string | none | The TypeORM database driver to use.
+bootstrap | string | monolithic | The type of application bootstrap to use.
+transport | string | none | The transport mechanism to use for microservices communication.
+minio | boolean | false | Whether the application should use Minio for object storage.
+openai | boolean | false | Whether the application should use OpenAI integration.
 
 ## swagger
 > swagger generator
@@ -169,8 +169,8 @@ nx g @rxap/plugin-nestjs:swagger
 Option | Type | Default | Description
 --- | --- | --- | ---
 project | string |  | The name of the project.
-overwrite | boolean |  | 
-standalone | boolean | false | Whether the nest service should be standalone
+overwrite | boolean | false | Whether to overwrite existing files.
+standalone | boolean | false | Whether the NestJS service should be standalone.
 
 ## sentry
 > sentry generator
@@ -182,9 +182,9 @@ nx g @rxap/plugin-nestjs:sentry
 Option | Type | Default | Description
 --- | --- | --- | ---
 project | string |  | The name of the project.
-dsn | string |  | Default sentry dsn
-required | boolean |  | Whether or not the sentry dsn should be required to start the application
-overwrite | boolean | false | Whether to overwrite existing files
+dsn | string |  | The default Sentry DSN.
+required | boolean | false | Whether or not the Sentry DSN should be required to start the application.
+overwrite | boolean | false | Whether to overwrite existing files.
 
 ## validator
 > validator generator
@@ -196,7 +196,7 @@ nx g @rxap/plugin-nestjs:validator
 Option | Type | Default | Description
 --- | --- | --- | ---
 project | string |  | The name of the project.
-overwrite | boolean |  | 
+overwrite | boolean | false | Whether to overwrite existing files.
 
 ## open-api
 > open-api generator
@@ -207,8 +207,8 @@ nx g @rxap/plugin-nestjs:open-api
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-overwrite | boolean |  | 
+project | string |  | The name of the project to add OpenApi support to.
+overwrite | boolean | false | Whether to overwrite existing files.
 
 ## jwt
 > jwt generator
@@ -219,8 +219,8 @@ nx g @rxap/plugin-nestjs:jwt
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-overwrite | boolean |  | 
+project | string |  | The name of the project to add JWT support to.
+overwrite | boolean | false | Whether to overwrite existing files.
 
 ## health-indicator
 > health-indicator generator
@@ -231,9 +231,9 @@ nx g @rxap/plugin-nestjs:health-indicator
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-name | string |  | The name of the health indicator class
+name | string |  | The name of the health indicator class.
 project | string |  | The name of the project.
-overwrite | boolean |  | 
+overwrite | boolean | false | Whether to overwrite existing files.
 
 ## health-indicator-init
 > health-indicator-init generator
@@ -245,7 +245,7 @@ nx g @rxap/plugin-nestjs:health-indicator-init
 Option | Type | Default | Description
 --- | --- | --- | ---
 project | string |  | The name of the project.
-overwrite | boolean |  | 
+overwrite | boolean | false | Whether to overwrite existing files.
 
 ## microservice
 > microservice generator
@@ -256,25 +256,25 @@ nx g @rxap/plugin-nestjs:microservice
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-name | string |  | The name of microservice
-directory | string |  | The directory to create the microservice in
-sentry | boolean | true | Whether this service should use sentry
-skipFormat | boolean | false | 
-swagger | boolean | true | Whether this service should use swagger
+name | string |  | The name of the microservice.
+directory | string |  | The directory where the microservice will be created.
+sentry | boolean | true | Whether this microservice should use Sentry for error tracking.
+skipFormat | boolean | false | Whether to skip formatting the generated files.
+swagger | boolean | true | Whether this microservice should use Swagger/OpenAPI for documentation.
 swaggerLive | boolean | false | Whether this service should start a swagger live server
-generateMain | boolean |  | Whether the main file should be generated
-healthIndicator | boolean | true | Whether this service should use a health indicator
-healthIndicatorList | array |  | A list of health indicators
-validator | boolean | true | Whether this service use the ValidationPipe
+generateMain | boolean | true | Whether the main entry point file (&#x60;main.ts&#x60;) should be generated.
+healthIndicator | boolean | true | Whether this microservice should include a health indicator endpoint.
+healthIndicatorList | array |  | A list of additional health indicators to include.
+validator | boolean | true | Whether this microservice should use the NestJS &#x60;ValidationPipe&#x60;.
 platform | string | express | 
-port | number |  | The default port where the server is listens
+port | number |  | The default port number where the server will listen.
 apiPrefix |  |  | 
-sentryDsn | string |  | Default sentry dsn
-overwrite | boolean | false | Whether to overwrite existing files
-jwt | boolean | false | Whether the application should use jwt
-openApi | boolean | false | Whether the application should use openApi as client
-apiConfigurationFile | string |  | The api configuration file to use
-standalone | boolean | false | Whether the nest service should be standalone
+sentryDsn | string |  | The default Sentry DSN for error tracking.
+overwrite | boolean | false | Whether to overwrite existing files, if any.
+jwt | boolean | false | Whether the microservice should use JWT for authentication.
+openApi | boolean | false | Whether the microservice should use an OpenAPI client.
+apiConfigurationFile | string |  | The path to the API configuration file.
+standalone | boolean | false | Whether the NestJS service should be standalone (without a module).
 
 ## feature-microservice
 > feature-microservice generator
@@ -285,23 +285,23 @@ nx g @rxap/plugin-nestjs:feature-microservice
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-feature | string |  | The feature of the frontend project
-sentry | boolean | true | Whether this service should use sentry
-skipFormat | boolean | false | 
-swagger | boolean | true | Whether this service should use swagger
-swaggerLive | boolean | false | Whether this service should start a swagger live server
-generateMain | boolean |  | Whether the main file should be generated
-healthIndicator | boolean | true | Whether this service should use a health indicator
-healthIndicatorList | array |  | A list of health indicators
-validator | boolean | true | Whether this service use the ValidationPipe
-platform | string | express | 
-port | number |  | The default port where the server is listens
-sentryDsn | string |  | Default sentry dsn
-overwrite | boolean | false | Whether to overwrite existing files
-jwt | boolean | false | Whether the application should use jwt
-openApi | boolean | false | Whether the application should use openApi as client
-apiConfigurationFile | string |  | The api configuration file to use
-standalone | boolean | false | Whether the nest service should be standalone
+feature | string |  | The name of the frontend feature project.
+sentry | boolean | true | Whether this service should use Sentry for error tracking.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after generation.
+swagger | boolean | true | Whether this service should support Swagger/OpenAPI documentation generation.
+swaggerLive | boolean | false | Whether this service should start a live Swagger server in development mode.
+generateMain | boolean | false | Whether to generate the &#x27;main.ts&#x27; entry point file.
+healthIndicator | boolean | true | Whether this service should include a health indicator endpoint.
+healthIndicatorList | array |  | A list of specific health indicators to include.
+validator | boolean | true | Whether this service should use the NestJS &#x27;ValidationPipe&#x27;.
+platform | string | express | The underlying HTTP server platform to use.
+port | number |  | The default port number for the microservice server.
+sentryDsn | string |  | The default Sentry DSN for error reporting.
+overwrite | boolean | false | Whether to overwrite existing files during generation.
+jwt | boolean | false | Whether the application should use JWT authentication.
+openApi | boolean | false | Whether the application should use an OpenAPI client.
+apiConfigurationFile | string |  | The path to the API configuration file.
+standalone | boolean | false | Whether the NestJS service should be a standalone application (not part of a larger monorepo structure).
 
 ## frontend-microservice
 > frontend-microservice generator
@@ -312,24 +312,24 @@ nx g @rxap/plugin-nestjs:frontend-microservice
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-frontend | string |  | The name of frontend project
-feature | string |  | The feature of the frontend project
-sentry | boolean | true | Whether this service should use sentry
-skipFormat | boolean | false | 
-swagger | boolean | true | Whether this service should use swagger
-swaggerLive | boolean | false | Whether this service should start a swagger live server
-generateMain | boolean |  | Whether the main file should be generated
-healthIndicator | boolean | true | Whether this service should use a health indicator
-healthIndicatorList | array |  | A list of health indicators
-validator | boolean | true | Whether this service use the ValidationPipe
-platform | string | express | 
-port | number |  | The default port where the server is listens
-sentryDsn | string |  | Default sentry dsn
-overwrite | boolean | false | Whether to overwrite existing files
-jwt | boolean | false | Whether the application should use jwt
-openApi | boolean | false | Whether the application should use openApi as client
-apiConfigurationFile | string |  | The api configuration file to use
-standalone | boolean | false | Whether the nest service should be standalone
+frontend | string |  | The name of the frontend project.
+feature | string |  | The name of the frontend feature project.
+sentry | boolean | true | Whether this service should use Sentry for error tracking.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after generation.
+swagger | boolean | true | Whether this service should support Swagger/OpenAPI documentation generation.
+swaggerLive | boolean | false | Whether this service should start a live Swagger server in development mode.
+generateMain | boolean | false | Whether to generate the &#x27;main.ts&#x27; entry point file.
+healthIndicator | boolean | true | Whether this service should include a health indicator endpoint.
+healthIndicatorList | array |  | A list of specific health indicators to include.
+validator | boolean | true | Whether this service should use the NestJS &#x27;ValidationPipe&#x27;.
+platform | string | express | The underlying HTTP server platform to use.
+port | number |  | The default port number for the microservice server.
+sentryDsn | string |  | The default Sentry DSN for error reporting.
+overwrite | boolean | false | Whether to overwrite existing files during generation.
+jwt | boolean | false | Whether the application should use JWT authentication.
+openApi | boolean | false | Whether the application should use an OpenAPI client.
+apiConfigurationFile | string |  | The path to the API configuration file.
+standalone | boolean | false | Whether the NestJS service should be a standalone application (not part of a larger monorepo structure).
 
 ## dynamic-configuration-module
 > Extends the module with the dynamic configuration module pattern
@@ -340,10 +340,10 @@ nx g @rxap/plugin-nestjs:dynamic-configuration-module
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-overwrite | boolean |  | 
-name | string |  | name of the module. defaults to the project name
-isGlobal | boolean | true | 
+project | string |  | The name of the project to add the dynamic configuration module to.
+overwrite | boolean | false | Whether to overwrite existing files.
+name | string |  | The name of the module. Defaults to the project name.
+isGlobal | boolean | true | Whether the configuration module should be registered globally.
 # Executors
 
 ## package-json

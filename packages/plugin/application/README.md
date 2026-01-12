@@ -36,19 +36,19 @@ nx g @rxap/plugin-application:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-dockerImageName | string |  | 
-dockerImageSuffix | string |  | 
-dockerImageRegistry | string |  | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipDocker | boolean |  | Whether to skip the docker configuration
-skipFormat | boolean | false | 
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-authentik | boolean | false | Whether to initialize authentik docker compose setup
-standalone | boolean | false | If true, the workspace will be initialized for standalone development
-minio | boolean | false | Whether to initialize minio docker compose setup
-authentication |  |  | 
+project | string |  | The name of the project to initialize.
+projects | array |  | The list of projects to initialize.
+dockerImageName | string |  | The name of the Docker image for the application.
+dockerImageSuffix | string |  | The suffix to append to the Docker image name.
+dockerImageRegistry | string |  | The Docker image registry to use.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipDocker | boolean |  | Whether to skip the Docker configuration setup.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
+authentik | boolean | false | Whether to initialize the Authentik Docker Compose setup.
+standalone | boolean | false | Whether to initialize the workspace for standalone development.
+minio | boolean | false | Whether to initialize the Minio Docker Compose setup.
+authentication |  |  | The authentication mechanism to use.
 # Executors
 
 ## build-info

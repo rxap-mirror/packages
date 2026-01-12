@@ -33,13 +33,13 @@ nx g @rxap/plugin-gpt:documentation
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-projects | array |  | A list of projects where the documentation should be generated
-project | string |  | 
-offline | boolean |  | If true, the openai api is not used
-filter | string |  | A filter to select the files to be processed
-openaiApiKey | string |  | The openai api key
-openaiOrgId | string |  | The openai organization id
-openaiProjectId | string |  | The openai project id
+projects | array |  | The list of projects to generate documentation for.
+project | string |  | The name of a single project to generate documentation for.
+offline | boolean |  | Whether to skip using the OpenAI API and operate in offline mode.
+filter | string |  | A glob pattern filter to select specific files for documentation generation.
+openaiApiKey | string |  | The API key for accessing OpenAI services.
+openaiOrgId | string |  | The organization ID for OpenAI API requests.
+openaiProjectId | string |  | The project ID for OpenAI API requests.
 
 ## init
 > Initialize the package in the workspace

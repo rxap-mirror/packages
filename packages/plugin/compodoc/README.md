@@ -36,11 +36,11 @@ nx g @rxap/plugin-compodoc:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project to initialize Compodoc for.
+projects | array |  | The list of projects to initialize Compodoc for.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## init-library
 > init-library generator
@@ -51,11 +51,11 @@ nx g @rxap/plugin-compodoc:init-library
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the library project to initialize Compodoc for.
+projects | array |  | The list of library projects to initialize Compodoc for.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## init-application
 > init-application generator
@@ -66,11 +66,11 @@ nx g @rxap/plugin-compodoc:init-application
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the application project to initialize Compodoc for.
+projects | array |  | The list of application projects to initialize Compodoc for.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 # Executors
 
 ## build

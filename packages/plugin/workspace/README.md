@@ -40,13 +40,13 @@ nx g @rxap/plugin-workspace:docker-compose
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-tags | array |  | The tags a project needs to be used to generate docker compose service
-ignoreProjects | array |  | The projects to ignore when generating docker compose service
-skipFormat | boolean | false | 
-serviceEnvironments | array |  | The environment variables to be used in docker compose service
-rootDomain | string |  | The root domain to be used in docker compose service
-middlewares | array |  | The traefik middlewares to be add to each service
-subjectAltNames | array |  | The subject alt names to be used in the ssl certificate generation
+tags | array |  | The tags a project needs to be used to generate docker compose service.
+ignoreProjects | array |  | The projects to ignore when generating docker compose service.
+skipFormat | boolean | false | Whether to skip formatting generated files.
+serviceEnvironments | array |  | The environment variables to be used in docker compose service.
+rootDomain | string |  | The root domain to be used in docker compose service.
+middlewares | array |  | The traefik middlewares to be add to each service.
+subjectAltNames | array |  | The subject alt names to be used in the ssl certificate generation.
 
 ## init
 > init generator
@@ -57,16 +57,16 @@ nx g @rxap/plugin-workspace:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-packages | boolean | false | If true, the workspace will be initialized for package development
-fullStack | boolean | false | If true, the workspace will be initialized for full stack application development
-standalone | boolean | false | If true, the workspace will be initialized for standalone development
-overwrite | boolean | false | Whether to overwrite existing files
-skipFormat | boolean | false | 
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-skipLicense | boolean | false | Whether to skip adding a license file
+packages | boolean | false | If true, the workspace will be initialized for package development.
+fullStack | boolean | false | If true, the workspace will be initialized for full stack application development.
+standalone | boolean | false | If true, the workspace will be initialized for standalone development.
+overwrite | boolean | false | Whether to overwrite existing files.
+skipFormat | boolean | false | Whether to skip formatting generated files.
+skipProjects | boolean | false | Whether to skip executing project specific initialization.
+skipLicense | boolean | false | Whether to skip adding a license file.
 license | string | gpl | 
-repositoryUrl | string |  | The URL of the repository
-withHusky | boolean |  | 
+repositoryUrl | string |  | The URL of the repository.
+withHusky | boolean |  | Whether to initialize the workspace with Husky.
 
 ## project-target
 > project-target generator
@@ -77,12 +77,12 @@ nx g @rxap/plugin-workspace:project-target
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-projects | array |  | 
-overwrite | boolean | false | Whether to overwrite existing files
-cleanup | boolean | false | remove if empty object for any configuration and the options property. After configuration cleanup
-simplify | boolean | false | if the property for the target is equal to the default from the nx.json then remove the property
-reorder | boolean | false | reorder all target properties to be in alphabetic order
-project | string |  | 
+projects | array |  | A list of projects to update targets for.
+overwrite | boolean | false | Whether to overwrite existing files.
+cleanup | boolean | false | Remove if empty object for any configuration and the options property. After configuration cleanup.
+simplify | boolean | false | If the property for the target is equal to the default from the nx.json then remove the property.
+reorder | boolean | false | Reorder all target properties to be in alphabetic order.
+project | string |  | The name of the project to update targets for.
 
 ## fix-implicit-internal-dependencies
 > fix-implicit-internal-dependencies generator
@@ -93,8 +93,8 @@ nx g @rxap/plugin-workspace:fix-implicit-internal-dependencies
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-projects | array |  | 
-project | string |  | 
+projects | array |  | A list of projects to fix implicit internal dependencies for.
+project | string |  | The name of the project to fix implicit internal dependencies for.
 
 ## rename
 > rename generator
@@ -105,9 +105,9 @@ nx g @rxap/plugin-workspace:rename
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | The name of project that should be renamed
-name | string |  | The new name of the project
-tags | array |  | 
+project | string |  | The name of project that should be renamed.
+name | string |  | The new name of the project.
+tags | array |  | A list of tags to add to the renamed project.
 # Executors
 
 ## ci-info

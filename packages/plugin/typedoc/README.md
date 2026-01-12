@@ -36,11 +36,11 @@ nx g @rxap/plugin-typedoc:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project.
+projects | array |  | A list of projects to initialize TypeDoc for.
+skipFormat | boolean | false | Whether to skip formatting generated files.
+overwrite | boolean | false | Whether to overwrite existing files.
+skipProjects | boolean | false | Whether to skip executing project specific initialization logic.
 
 ## init-library
 > init-library generator
@@ -51,11 +51,11 @@ nx g @rxap/plugin-typedoc:init-library
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project.
+projects | array |  | A list of projects to initialize TypeDoc for.
+skipFormat | boolean | false | Whether to skip formatting generated files.
+overwrite | boolean | false | Whether to overwrite existing files.
+skipProjects | boolean | false | Whether to skip executing project specific initialization logic.
 
 ## init-application
 > init-application generator
@@ -66,11 +66,11 @@ nx g @rxap/plugin-typedoc:init-application
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project.
+projects | array |  | A list of projects to initialize TypeDoc for.
+skipFormat | boolean | false | Whether to skip formatting generated files.
+overwrite | boolean | false | Whether to overwrite existing files.
+skipProjects | boolean | false | Whether to skip executing project specific initialization logic.
 # Executors
 
 ## build

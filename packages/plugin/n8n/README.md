@@ -72,11 +72,11 @@ nx g @rxap/plugin-n8n:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project to initialize with n8n integration.
+projects | array |  | The list of projects to initialize with n8n integration.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## node
 > node generator
@@ -87,10 +87,10 @@ nx g @rxap/plugin-n8n:node
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-name | string |  | 
-project | string |  | 
-description | string |  | 
-nodeNamePrefix | string |  | 
+name | string |  | The name of the new n8n node.
+project | string |  | The name of the project where the new node should be created.
+description | string |  | A brief description of the new n8n node&#x27;s purpose.
+nodeNamePrefix | string |  | An optional prefix to prepend to the node&#x27;s internal class name.
 
 ## trigger
 > trigger generator
@@ -101,7 +101,7 @@ nx g @rxap/plugin-n8n:trigger
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-name | string |  | 
-project | string |  | 
-description | string |  | 
-nodeNamePrefix | string |  | 
+name | string |  | The name of the new n8n trigger node.
+project | string |  | The name of the project where the new trigger node should be created.
+description | string |  | A brief description of the new n8n trigger node&#x27;s purpose.
+nodeNamePrefix | string |  | An optional prefix to prepend to the trigger node&#x27;s internal class name.

@@ -41,16 +41,16 @@ nx g @rxap/plugin-docker:config
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | The name of the project.
-context | string |  | Path to context for the docker build process.
-dockerfile | string |  | Path to the dockerfile.
-buildTarget | string |  | The target from witch the output path can be extract.
-imageSuffix | string |  | A suffix added to the base image name
-imageName | string |  | The base image name
-imageRegistry | string |  | The image registry
-command | string |  | The command to start docker
-save | boolean |  | Whether to create a save target
-overwrite | boolean |  | Whether to overwrite existing files
+project | string |  | The name of the project to add the Docker build executor to.
+context | string |  | The build context path for the Docker build process.
+dockerfile | string |  | The path to the Dockerfile relative to the project root.
+buildTarget | string |  | The build target from which to extract the output path.
+imageSuffix | string |  | A suffix to add to the base Docker image name.
+imageName | string |  | The base name of the Docker image.
+imageRegistry | string |  | The Docker image registry URL.
+command | string |  | The custom command to start the Docker container.
+save | boolean |  | Whether to create a &#x27;save&#x27; target in the project configuration.
+overwrite | boolean |  | Whether to overwrite existing files during configuration.
 
 ## gitlab-ci
 > gitlab-ci generator
@@ -61,11 +61,11 @@ nx g @rxap/plugin-docker:gitlab-ci
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-gcp | boolean |  | Generate docker startup test with pull target to GCP registry
-gitlab | boolean |  | Generate docker startup test with pull target to gitlab registry
-overwrite | boolean |  | Overwrite existing files
-skipFormat | boolean | false | 
-tags | array |  | 
+gcp | boolean |  | Whether to generate a Docker startup test that pulls from the GCP registry.
+gitlab | boolean |  | Whether to generate a Docker startup test that pulls from the GitLab registry.
+overwrite | boolean |  | Whether to overwrite existing GitLab CI configuration files.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after generation.
+tags | array |  | The list of project tags to filter for Docker configuration.
 
 ## init
 > Initialize the package in the workspace
@@ -76,7 +76,7 @@ nx g @rxap/plugin-docker:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-skipFormat | boolean | false | 
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
 # Executors
 
 ## build

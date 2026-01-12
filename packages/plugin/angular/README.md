@@ -18,6 +18,7 @@ This package provides generators and executors for Angular projects within an Nx
   - [init-feature](#init-feature)
   - [init-feature-library](#init-feature-library)
   - [init-component](#init-component)
+  - [convert-to-buildable-library](#convert-to-buildable-library)
 - [Executors](#executors)
   - [tailwind](#tailwind)
   - [check-ng-package](#check-ng-package)
@@ -155,12 +156,12 @@ nx g @rxap/plugin-angular:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-projects | array |  | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipFormat | boolean | false | 
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-prefix | string |  | The prefix for the angular components
-withSharedLibraries | boolean | false | Whether to add shared libraries
+projects | array |  | The name of the projects to initialize.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipFormat | boolean | false | Whether to skip formatting files after initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
+prefix | string |  | The prefix to use for the generated Angular components.
+withSharedLibraries | boolean | false | Whether to initialize the workspace with shared libraries (components, forms, etc.).
 
 ## init-application
 > init-application generator
@@ -171,27 +172,27 @@ nx g @rxap/plugin-angular:init-application
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-incrementalBuild | boolean |  | Whether to enable incremental build
-moduleFederation | string |  | 
-layoutRoutePath | string |  | Route path for layout children
-standaloneImport | boolean |  | Whether to import the mfe remote as a standalone import
+project | string |  | The name of the project to initialize.
+projects | array |  | The list of projects to initialize.
+incrementalBuild | boolean |  | Whether to enable incremental build for the project.
+moduleFederation | string |  | The module federation role of the project.
+layoutRoutePath | string |  | The route path for layout children components.
+standaloneImport | boolean |  | Whether to import the MFE remote as a standalone unit.
 skipDocker | boolean |  | Whether to skip the docker configuration
 host | string |  | Host project for module federation
 deploy | string |  | Add target to deploy to after build
 sentry | boolean | true | 
-apiStatusCheck | boolean | false | 
+apiStatusCheck | boolean | false | Whether to enable API status check during bootstrap.
 authentication |  |  | 
 openApi | boolean | false | Whether to enable OpenAPI
-openApiLegacy | boolean |  | 
+openApiLegacy | boolean |  | Whether to use the legacy OpenAPI client generation method.
 config | boolean | true | Whether to enable configuration
 localazy | boolean | false | Whether to enable Localazy
 i18n | boolean | false | Whether to enable i18n
 serviceWorker | boolean | true | Whether to enable service worker
-languages | array |  | 
+languages | array |  | The list of supported languages for the application.
 material | boolean | true | Whether to enable Angular Material
-generateMain | boolean |  | Whether to generate the main file
+generateMain | boolean |  | Whether to generate the main.ts entry file.
 overwrite | boolean |  | Whether to overwrite existing files
 cleanup | boolean | true | Whether to cleanup files
 i18nStandalone | boolean | false | Whether to compile each language into a separate application
@@ -200,8 +201,8 @@ localazyReadKey | string |  | Localazy read key
 authentik | boolean |  | Use authentik for authentication
 oauth | boolean |  | Use OAuth for authentication
 skipProjects | boolean |  | Whether to skip executing project specific initialization
-skipFormat | boolean |  | 
-coerce |  |  | 
+skipFormat | boolean |  | Whether to skip formatting files with Prettier after initialization.
+coerce |  |  | Configuration coercion options for the project.
 
 ## init-library
 > init-library generator
@@ -212,14 +213,14 @@ nx g @rxap/plugin-angular:init-library
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
+project | string |  | The name of the library project to initialize.
+projects | array |  | The list of library projects to initialize.
 overwrite | boolean | false | Whether to overwrite existing files
 skipProjects | boolean | false | Whether to skip executing project specific initialization
 skipFormat | boolean | false | 
-indexExport | boolean | true | Whether to add the index-export target to the library
+indexExport | boolean | true | Whether to add the &#x27;index-export&#x27; target to the library.
 coerce |  | true | 
-targets | object |  | 
+targets | object |  | Target configuration options for the library.
 
 ## fix-schematic
 > fix-schematic generator
@@ -230,7 +231,7 @@ nx g @rxap/plugin-angular:fix-schematic
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | The name of the project.
+project | string |  | The name of the project to fix schematics for.
 
 ## schematic
 > Create a Schematic for a project.
@@ -241,10 +242,10 @@ nx g @rxap/plugin-angular:schematic
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | The name of the project.
-name | string |  | Schematic name.
-description | string |  | Schematic description.
-skipFormat | boolean | false | Do not format files with prettier.
+project | string |  | The name of the project where the schematic should be added.
+name | string |  | The name of the schematic to create.
+description | string |  | A brief description of what the schematic does.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after schematic creation.
 
 ## init-feature
 > init-feature generator
@@ -255,11 +256,11 @@ nx g @rxap/plugin-angular:init-feature
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-name | string |  | The name of the feature
-project | string |  | The name of the project where the feature should be added
-overwrite | boolean |  | If the feature should be overwritten if it already exists
-skipFormat | boolean | false | 
-apiStatusCheck | boolean | false | 
+name | string |  | The name of the feature to initialize.
+project | string |  | The name of the project where the feature should be added.
+overwrite | boolean |  | Whether to overwrite the feature if it already exists.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+apiStatusCheck | boolean | false | Whether to enable API status check for this feature.
 navigation | object |  | 
 
 ## init-feature-library
@@ -271,13 +272,13 @@ nx g @rxap/plugin-angular:init-feature-library
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
-skipFormat | boolean | false | 
-routes | boolean | true | Whether the library exposes routes
-targets | object |  | 
+project | string |  | The name of the feature library project to initialize.
+projects | array |  | The list of feature library projects to initialize.
+overwrite | boolean | false | Whether to overwrite existing files during initialization.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
+skipFormat | boolean | false | Whether to skip formatting files with Prettier after initialization.
+routes | boolean | true | Whether the feature library should expose Angular routes.
+targets | object |  | Target configuration options for the feature library.
 
 ## init-component
 > init-component generator
@@ -289,7 +290,7 @@ nx g @rxap/plugin-angular:init-component
 Option | Type | Default | Description
 --- | --- | --- | ---
 directory | string |  | The directory at which to create the component file, relative to the current workspace. Default is a folder with the same name as the component in the project root.
-feature | string |  | The name of the feature.
+feature | string |  | The name of the feature the component belongs to.
 project | string |  | The name of the project.
 name | string |  | The name of the component.
 prefix | string |  | The prefix to apply to the generated component selector.
@@ -307,12 +308,23 @@ skipImport | boolean | false | Do not import this component into the owning NgMo
 selector | string |  | The HTML selector to use for this component.
 skipSelector | boolean | false | Specifies if the component should have a selector or not.
 type | string | component | Adds a developer-defined type to the filename, in the format &#x60;name.type.ts&#x60;.
-defaultExport | boolean | false | Specifies if the component should be the default export of file.
-export | boolean | false | Specifies if the component should be exported in the declaring &#x60;NgModule&#x60;. Additionally, if the project is a library, the component will be exported from the project&#x27;s entry point (normally &#x60;index.ts&#x60;) if the module it belongs to is also exported or if the component is standalone.
+defaultExport | boolean | false | Whether the component class should be the default export of the file.
+export | boolean | false | Whether the component should be exported from the declaring NgModule or project entry point.
 skipFormat | boolean | false | Skip formatting files.
-interactionTests | boolean | true | Set up Storybook interaction tests.
+interactionTests | boolean | true | Whether to set up Storybook interaction tests for the component.
 cypressProject | string |  | The Cypress project to generate the stories under. By default, inferred from &#x60;projectName&#x60;.
 specDirectory | string |  | Directory where to place the generated spec file. By default matches the value of the &#x60;componentPath&#x60; option.
+
+## convert-to-buildable-library
+> convert-to-buildable-library generator
+
+```bash
+nx g @rxap/plugin-angular:convert-to-buildable-library
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+project | string |  | The name of the project to convert to a buildable library.
 # Executors
 
 ## tailwind

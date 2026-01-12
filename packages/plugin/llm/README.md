@@ -41,12 +41,12 @@ nx g @rxap/plugin-llm:documentation
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-path | string |  | 
-apiKey | string |  | The openai api key
-orgId | string |  | The openai organization id
-projectId | string |  | The openai project id
-baseUrl | string |  | The openai base url
-model | string | anthropic/claude-3-5-sonnet | Set the LLM model to be used
+path | string |  | The file or directory path to process for documentation generation.
+apiKey | string |  | The API key for accessing LLM services.
+orgId | string |  | The organization ID for LLM API requests.
+projectId | string |  | The project ID for LLM API requests.
+baseUrl | string |  | The base URL for LLM API requests.
+model | string | anthropic/claude-3-5-sonnet | The LLM model to use for documentation generation.
 
 ## package-description
 > Generates a package description based on the source code
@@ -57,10 +57,10 @@ nx g @rxap/plugin-llm:package-description
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-apiKey | string |  | The openai api key
-orgId | string |  | The openai organization id
-projectId | string |  | The openai project id
-baseUrl | string |  | The openai base url
-model | string | gemini/2.0-flash | Set the LLM model to be used
-overwrite | boolean |  | Replaces the existing description files
+project | string |  | The name of the project to generate a package description for.
+apiKey | string |  | The API key for accessing LLM services.
+orgId | string |  | The organization ID for LLM API requests.
+projectId | string |  | The project ID for LLM API requests.
+baseUrl | string |  | The base URL for LLM API requests.
+model | string | gemini/2.0-flash | The LLM model to use for package description generation.
+overwrite | boolean | false | Whether to overwrite existing package description files.

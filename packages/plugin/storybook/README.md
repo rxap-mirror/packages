@@ -34,11 +34,11 @@ nx g @rxap/plugin-storybook:init
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-skipFormat | boolean | false | 
-overwrite | boolean | false | Whether to overwrite existing files
-skipProjects | boolean | false | Whether to skip executing project specific initialization
+project | string |  | The name of the project to initialize.
+projects | array |  | A list of projects to initialize.
+skipFormat | boolean | false | Whether to skip formatting generated files.
+overwrite | boolean | false | Whether to overwrite existing files.
+skipProjects | boolean | false | Whether to skip executing project-specific initialization logic.
 
 ## init-application
 > init-application generator
@@ -49,9 +49,9 @@ nx g @rxap/plugin-storybook:init-application
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-overwrite | boolean | false | Whether to overwrite existing files
+project | string |  | The name of the project.
+projects | array |  | A list of projects to initialize Storybook for.
+overwrite | boolean | false | Whether to overwrite existing files.
 skipProjects | boolean | false | Whether to skip executing project specific initialization
 interactionTests | boolean | true | Set up Storybook interaction tests.
 configureCypress | boolean |  | Specifies whether to configure Cypress or not.
@@ -74,9 +74,9 @@ nx g @rxap/plugin-storybook:init-library
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-project | string |  | 
-projects | array |  | 
-overwrite | boolean | false | Whether to overwrite existing files
+project | string |  | The name of the project.
+projects | array |  | A list of projects to initialize Storybook for.
+overwrite | boolean | false | Whether to overwrite existing files.
 skipProjects | boolean | false | Whether to skip executing project specific initialization
 interactionTests | boolean | true | Set up Storybook interaction tests.
 configureCypress | boolean |  | Specifies whether to configure Cypress or not.
