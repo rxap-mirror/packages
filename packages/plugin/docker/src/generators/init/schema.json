@@ -6,7 +6,8 @@
   "properties": {
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after initialization."
     }
   },
   "required": []

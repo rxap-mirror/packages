@@ -7,33 +7,37 @@
     "projects": {
       "alias": "project",
       "type": "array",
-      "description": "A list of projects where the documentation should be generated",
+      "description": "The list of projects to generate documentation for.",
       "items": {
         "type": "string"
-      }
+      },
+      "examples": [["my-app", "my-lib"]]
     },
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of a single project to generate documentation for.",
+      "examples": ["my-app"]
     },
     "offline": {
       "type": "boolean",
-      "description": "If true, the openai api is not used"
+      "description": "Whether to skip using the OpenAI API and operate in offline mode."
     },
     "filter": {
       "type": "string",
-      "description": "A filter to select the files to be processed"
+      "description": "A glob pattern filter to select specific files for documentation generation.",
+      "examples": ["src/**/*.ts"]
     },
     "openaiApiKey": {
       "type": "string",
-      "description": "The openai api key"
+      "description": "The API key for accessing OpenAI services."
     },
     "openaiOrgId": {
       "type": "string",
-      "description": "The openai organization id"
+      "description": "The organization ID for OpenAI API requests."
     },
     "openaiProjectId": {
       "type": "string",
-      "description": "The openai project id"
+      "description": "The project ID for OpenAI API requests."
     }
   }
 }

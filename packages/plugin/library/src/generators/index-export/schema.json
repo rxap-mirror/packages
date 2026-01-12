@@ -9,21 +9,27 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of projects to generate index exports for.",
+      "examples": [["my-lib", "another-lib"]]
     },
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of a single project to generate an index export for.",
+      "examples": ["my-lib"]
     },
     "generateRootExport": {
       "type": "boolean",
       "default": true,
-      "description": "Generate index.ts in the source root of the project"
+      "description": "Whether to generate an 'index.ts' file in the source root of the project."
     },
     "additionalEntryPoints": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "A list of additional sub-directory entry points to include in the index export.",
+      "examples": [["src/lib/components", "src/lib/services"]]
     }
   },
   "required": []

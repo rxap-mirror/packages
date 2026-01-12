@@ -10,20 +10,35 @@
       "$default": {
         "$source": "projectName"
       },
-      "x-prompt": "Which project should be extend with sentry support?"
+      "x-prompt": "Which project should be extended with sentry support?",
+      "examples": [
+        "my-app"
+      ]
     },
     "dsn": {
       "type": "string",
-      "description": "Default sentry dsn"
+      "description": "The default Sentry DSN.",
+      "examples": [
+        "https://examplePublicKey@o0.ingest.sentry.io/0"
+      ]
     },
     "required": {
       "type": "boolean",
-      "description": "Whether or not the sentry dsn should be required to start the application"
+      "description": "Whether or not the Sentry DSN should be required to start the application.",
+      "default": false,
+      "examples": [
+        true,
+        false
+      ]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files.",
+      "examples": [
+        true,
+        false
+      ]
     }
   },
   "required": [

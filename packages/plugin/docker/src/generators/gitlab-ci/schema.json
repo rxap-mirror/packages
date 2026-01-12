@@ -6,26 +6,29 @@
   "properties": {
     "gcp": {
       "type": "boolean",
-      "description": "Generate docker startup test with pull target to GCP registry"
+      "description": "Whether to generate a Docker startup test that pulls from the GCP registry."
     },
     "gitlab": {
       "type": "boolean",
-      "description": "Generate docker startup test with pull target to gitlab registry"
+      "description": "Whether to generate a Docker startup test that pulls from the GitLab registry."
     },
     "overwrite": {
       "type": "boolean",
-      "description": "Overwrite existing files"
+      "description": "Whether to overwrite existing GitLab CI configuration files."
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after generation."
     },
     "tags": {
       "alias": "tag",
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of project tags to filter for Docker configuration.",
+      "examples": [["application"]]
     }
   },
   "required": []

@@ -8,30 +8,57 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "A list of projects to update targets for.",
+      "examples": [
+        [
+          "app1",
+          "app2"
+        ]
+      ]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "cleanup": {
       "type": "boolean",
       "default": false,
-      "description": "remove if empty object for any configuration and the options property. After configuration cleanup"
+      "description": "Remove if empty object for any configuration and the options property. After configuration cleanup.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "simplify": {
       "type": "boolean",
       "default": false,
-      "description": "if the property for the target is equal to the default from the nx.json then remove the property"
+      "description": "If the property for the target is equal to the default from the nx.json then remove the property.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "reorder": {
       "type": "boolean",
       "default": false,
-      "description": "reorder all target properties to be in alphabetic order"
+      "description": "Reorder all target properties to be in alphabetic order.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the project to update targets for.",
+      "examples": [
+        "my-app"
+      ]
     }
   },
   "required": []

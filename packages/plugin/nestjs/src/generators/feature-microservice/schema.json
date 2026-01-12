@@ -6,39 +6,41 @@
   "properties": {
     "feature": {
       "type": "string",
-      "description": "The feature of the frontend project",
-      "x-prompt": "For which feature of the frontend should the microservice be created?"
+      "description": "The name of the frontend feature project.",
+      "x-prompt": "For which feature of the frontend should the microservice be created?",
+      "examples": ["user-profile"]
     },
-
     "sentry": {
       "type": "boolean",
       "default": true,
-      "description": "Whether this service should use sentry",
+      "description": "Whether this service should use Sentry for error tracking.",
       "x-prompt": "Should this service use sentry?"
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after generation."
     },
     "swagger": {
       "type": "boolean",
       "default": true,
-      "description": "Whether this service should use swagger",
+      "description": "Whether this service should support Swagger/OpenAPI documentation generation.",
       "x-prompt": "Should this service support open-api config generation?"
     },
     "swaggerLive": {
       "type": "boolean",
       "default": false,
-      "description": "Whether this service should start a swagger live server"
+      "description": "Whether this service should start a live Swagger server in development mode."
     },
     "generateMain": {
       "type": "boolean",
-      "description": "Whether the main file should be generated"
+      "description": "Whether to generate the 'main.ts' entry point file.",
+      "default": false
     },
     "healthIndicator": {
       "type": "boolean",
       "default": true,
-      "description": "Whether this service should use a health indicator",
+      "description": "Whether this service should include a health indicator endpoint.",
       "x-prompt": "Should this service have a health indicator endpoint?"
     },
     "healthIndicatorList": {
@@ -46,12 +48,13 @@
       "items": {
         "type": "string"
       },
-      "description": "A list of health indicators"
+      "description": "A list of specific health indicators to include.",
+      "examples": [["memory_heap", "memory_rss"]]
     },
     "validator": {
       "type": "boolean",
       "default": true,
-      "description": "Whether this service use the ValidationPipe",
+      "description": "Whether this service should use the NestJS 'ValidationPipe'.",
       "x-prompt": "Should this service use the ValidationPipe?"
     },
     "platform": {
@@ -61,41 +64,45 @@
         "fastify"
       ],
       "default": "express",
+      "description": "The underlying HTTP server platform to use.",
       "x-prompt": "Whichever platform should be used?"
     },
     "port": {
       "type": "number",
-      "description": "The default port where the server is listens"
+      "description": "The default port number for the microservice server.",
+      "examples": [3000]
     },
     "sentryDsn": {
       "type": "string",
-      "description": "Default sentry dsn"
+      "description": "The default Sentry DSN for error reporting.",
+      "examples": ["https://examplePublicKey@o0.ingest.sentry.io/0"]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during generation."
     },
     "jwt": {
       "type": "boolean",
       "default": false,
-      "description": "Whether the application should use jwt",
+      "description": "Whether the application should use JWT authentication.",
       "x-prompt": "Should this service use jwt?"
     },
     "openApi": {
       "type": "boolean",
       "default": false,
-      "description": "Whether the application should use openApi as client",
+      "description": "Whether the application should use an OpenAPI client.",
       "x-prompt": "Should this service use an open api client?"
     },
     "apiConfigurationFile": {
       "type": "string",
-      "description": "The api configuration file to use"
+      "description": "The path to the API configuration file.",
+      "examples": ["apps/my-app/src/api-config.json"]
     },
     "standalone": {
       "type": "boolean",
       "default": false,
-      "description": "Whether the nest service should be standalone"
+      "description": "Whether the NestJS service should be a standalone application (not part of a larger monorepo structure)."
     }
   },
   "required": [

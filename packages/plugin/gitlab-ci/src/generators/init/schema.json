@@ -5,70 +5,78 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the project to initialize GitLab CI for.",
+      "examples": ["my-app"]
     },
     "projects": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of projects to initialize GitLab CI for.",
+      "examples": [["my-app", "another-app"]]
     },
     "components": {
       "type": "boolean",
       "x-prompt": "Should gitlab ci/cd components be used",
       "default": true,
-      "description": "If true, the gitlab ci will be initialized with components"
+      "description": "Whether to use GitLab CI/CD components."
     },
     "componentsSource": {
       "type": "string",
       "enum": [ "component", "local" ],
-      "default": "component"
+      "default": "component",
+      "description": "The source for the GitLab CI/CD components."
     },
     "release": {
       "type": "string",
       "enum": ["none", "release-it", "schematic-release"],
       "default": "release-it",
-      "x-prompt": "Which release strategy do you want to use?"
+      "x-prompt": "Which release strategy do you want to use?",
+      "description": "The release strategy to use for the project."
     },
     "helmChart": {
       "type": "string",
-      "description": "The name of the helm chart project path with namespace where the app version should be automatically updated"
+      "description": "The path to the Helm chart project where the app version should be updated.",
+      "examples": ["charts/my-app"]
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after initialization."
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during initialization."
     },
     "onlyPackages": {
       "type": "boolean",
-      "description": "If true, the gitlab ci will be initialized exclusively for package development",
+      "description": "If true, initialization is tailored for a workspace containing only packages.",
       "x-prompt": "Does this package only includes packages?",
       "default": false
     },
     "dte": {
       "type": "boolean",
-      "description": "If true, the gitlab ci will be initialized with dte execution for the targets",
+      "description": "Whether to use Nx Distributed Task Execution (DTE).",
       "x-prompt": "Should nx workspace DTE be used?",
       "default": false
     },
     "parallel": {
       "type": "number",
       "default": 3,
-      "description": "The number of parallel agents started for the nx workspace run tasks to run in the pipeline"
+      "description": "The number of parallel agents to use for DTE."
     },
     "angular": {
       "type": "boolean",
-      "description": "If true, the gitlab ci will be initialized for a workspace with angular projects",
+      "description": "Whether the workspace contains Angular projects.",
       "x-prompt": "Does this workspace include angular projects?",
       "default": false
     },
     "nest": {
       "type": "boolean",
-      "description": "If true, the gitlab ci will be initialized for a workspace with nest projects",
+      "description": "Whether the workspace contains NestJS projects.",
       "x-prompt": "Does this workspace include nest projects?",
       "default": false
     }

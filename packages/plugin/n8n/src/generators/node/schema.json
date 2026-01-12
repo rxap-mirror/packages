@@ -6,24 +6,28 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "",
+      "description": "The name of the new n8n node.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "What name would you like to use?",
+      "examples": ["my-custom-node"]
     },
     "project": {
       "type": "string",
-      "description": ""
+      "description": "The name of the project where the new node should be created.",
+      "examples": ["my-n8n-lib"]
     },
     "description": {
       "type": "string",
-      "description": ""
+      "description": "A brief description of the new n8n node's purpose.",
+      "examples": ["Perform custom data transformation."]
     },
     "nodeNamePrefix": {
       "type": "string",
-      "description": ""
+      "description": "An optional prefix to prepend to the node's internal class name.",
+      "examples": ["MyCompany"]
     }
   },
   "required": ["name", "project"]

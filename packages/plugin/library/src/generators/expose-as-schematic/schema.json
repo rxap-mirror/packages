@@ -8,10 +8,14 @@
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of projects to expose as schematics.",
+      "examples": [["my-lib", "another-lib"]]
     },
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of a single project to expose as a schematic.",
+      "examples": ["my-lib"]
     }
   },
   "required": []

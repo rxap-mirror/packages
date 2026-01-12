@@ -5,41 +5,47 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the library project to initialize for publishing.",
+      "examples": ["my-lib"]
     },
     "projects": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of library projects to initialize for publishing.",
+      "examples": [["my-lib", "another-lib"]]
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after initialization."
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during initialization."
     },
     "skipProjects": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to skip executing project specific initialization"
+      "description": "Whether to skip executing project-specific initialization logic."
     },
     "targets": {
       "type": "object",
+      "description": "Configuration for specific project targets.",
       "properties": {
         "fixDependencies": {
           "type": "boolean",
           "default": true,
-          "description": "If set to false the target fix-dependencies will not be added to the project"
+          "description": "Whether to add the 'fix-dependencies' target to the project."
         }
       }
     },
     "withInitGenerator": {
       "type": "boolean",
-      "description": "Generate a init generator for the library",
+      "description": "Whether to generate an 'init' generator within the library itself.",
       "default": false
     }
   },

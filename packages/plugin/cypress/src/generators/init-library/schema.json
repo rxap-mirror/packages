@@ -5,42 +5,49 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the library project to initialize Cypress for.",
+      "examples": ["my-lib"]
     },
     "projects": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of library projects to initialize Cypress for.",
+      "examples": [["my-lib", "another-lib"]]
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after initialization."
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during initialization."
     },
     "skipProjects": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to skip executing project specific initialization"
+      "description": "Whether to skip executing project-specific initialization logic."
     },
     "component": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to setup cypress component testing"
+      "description": "Whether to set up Cypress component testing for the library."
     },
     "generateTests": {
       "type": "boolean",
-      "description": "Whether to generate tests for the components"
+      "description": "Whether to generate Cypress tests for the components in the library.",
+      "default": true
     },
     "buildTarget": {
       "type": "string",
-      "description": "A build target used to configure Cypress component testing in the format of `project:target[:configuration]`. The build target should be an angular app. If not provided we will try to infer it from your projects usage.",
+      "description": "A build target used to configure Cypress component testing (format: `project:target[:configuration]`). Must be an Angular application.",
       "pattern": "^[^:\\s]+:[^:\\s]+(:\\S+)?$",
-      "x-priority": "important"
+      "x-priority": "important",
+      "examples": ["my-app:build"]
     }
   },
   "required": []

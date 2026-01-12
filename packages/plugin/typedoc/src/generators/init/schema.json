@@ -5,27 +5,51 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the project.",
+      "examples": [
+        "my-app"
+      ]
     },
     "projects": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "A list of projects to initialize TypeDoc for.",
+      "examples": [
+        [
+          "app1",
+          "app2"
+        ]
+      ]
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting generated files.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "skipProjects": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to skip executing project specific initialization"
+      "description": "Whether to skip executing project specific initialization logic.",
+      "examples": [
+        true,
+        false
+      ]
     }
   },
   "required": []

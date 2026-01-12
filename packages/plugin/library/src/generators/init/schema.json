@@ -5,48 +5,54 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the library project to initialize.",
+      "examples": ["my-lib"]
     },
     "projects": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of library projects to initialize.",
+      "examples": [["my-lib", "another-lib"]]
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after initialization."
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during initialization."
     },
     "skipProjects": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to skip executing project specific initialization"
+      "description": "Whether to skip executing project-specific initialization logic."
     },
     "indexExport": {
       "type": "boolean",
-      "description": "Whether to add the index-export target to the library"
+      "description": "Whether to add the 'index-export' target to the library project configuration."
     },
     "targets": {
       "type": "object",
+      "description": "Configuration for specific project targets.",
       "properties": {
         "fixDependencies": {
           "type": "boolean",
-          "description": "If set to false the target fix-dependencies will not be added to the project"
+          "description": "Whether to add the 'fix-dependencies' target to the project."
         },
         "indexExport": {
           "type": "boolean",
-          "description": "If set to false the target index-export will not be added to the project"
+          "description": "Whether to add the 'index-export' target to the project."
         }
       }
     },
     "withInitGenerator": {
       "type": "boolean",
-      "description": "Generate a init generator for the library",
+      "description": "Whether to generate an 'init' generator within the library itself.",
       "default": false
     }
   },

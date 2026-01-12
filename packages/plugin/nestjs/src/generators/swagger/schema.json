@@ -10,15 +10,28 @@
       "$default": {
         "$source": "projectName"
       },
-      "x-prompt": "Which project should be initialized?"
+      "x-prompt": "Which project should be initialized with Swagger support?",
+      "examples": [
+        "my-api"
+      ]
     },
     "overwrite": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Whether to overwrite existing files.",
+      "default": false,
+      "examples": [
+        true,
+        false
+      ]
     },
     "standalone": {
       "type": "boolean",
       "default": false,
-      "description": "Whether the nest service should be standalone"
+      "description": "Whether the NestJS service should be standalone.",
+      "examples": [
+        true,
+        false
+      ]
     }
   },
   "required": [

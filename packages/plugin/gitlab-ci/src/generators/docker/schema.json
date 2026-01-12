@@ -6,41 +6,48 @@
   "properties": {
     "gcp": {
       "type": "boolean",
-      "description": "Generate docker startup test with pull target to GCP registry"
+      "description": "Whether to generate a Docker startup test that pulls from the GCP registry."
     },
     "gitlab": {
       "type": "boolean",
-      "description": "Generate docker startup test with pull target to gitlab registry"
+      "description": "Whether to generate a Docker startup test that pulls from the GitLab registry."
     },
     "overwrite": {
       "type": "boolean",
-      "description": "Overwrite existing files"
+      "description": "Whether to overwrite existing configuration files during generation."
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after generation."
     },
     "components": {
       "type": "boolean",
       "x-prompt": "Should gitlab ci/cd components be used",
       "default": true,
-      "description": "If true, the gitlab ci will be initialized with components"
+      "description": "Whether to use GitLab CI/CD components in the generated configuration."
     },
     "tags": {
       "alias": "tag",
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of project tags to filter for Docker configuration.",
+      "examples": [["application"]]
     },
     "skipStartup": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Whether to skip generating the Docker startup test."
     },
     "skipE2eService": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Whether to skip generating the E2E service configuration."
     },
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the project to initialize GitLab CI Docker configuration for.",
+      "examples": ["my-app"]
     }
   },
   "required": []

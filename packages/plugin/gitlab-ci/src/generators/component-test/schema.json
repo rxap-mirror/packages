@@ -7,27 +7,30 @@
     "browserList": {
       "type": "array",
       "alias": "browser",
-      "description": "A list of browsers to test against",
+      "description": "The list of browsers to run component tests against.",
       "default": ["chrome", "firefox", "edge"],
       "items": {
         "type": "string",
         "enum": ["chrome", "firefox", "edge"]
-      }
+      },
+      "examples": [["chrome", "firefox"]]
     },
     "excludeList": {
       "type": "array",
       "alias": "exclude",
-      "description": "A list of projects to exclude from the ci configuration",
+      "description": "The list of projects to exclude from the component test CI configuration.",
       "default": [],
       "items": {
         "type": "string"
-      }
+      },
+      "examples": [["my-lib-e2e"]]
     },
     "cypressImage": {
       "type": "string",
       "alias": "image",
-      "description": "The cypress image to use for the tests",
-      "default": "cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1"
+      "description": "The Docker image containing Cypress to use for running tests.",
+      "default": "cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1",
+      "examples": ["cypress/included:latest"]
     }
   },
   "required": ["browserList"]

@@ -5,18 +5,31 @@
   "properties": {
     "project": {
       "type": "string",
-      "description": "The name of project that should be renamed"
+      "description": "The name of project that should be renamed.",
+      "examples": [
+        "my-app"
+      ]
     },
     "name": {
       "type": "string",
-      "description": "The new name of the project"
+      "description": "The new name of the project.",
+      "examples": [
+        "my-new-app"
+      ]
     },
     "tags": {
       "alias": "tag",
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "A list of tags to add to the renamed project.",
+      "examples": [
+        [
+          "tag1",
+          "tag2"
+        ]
+      ]
     }
   },
   "required": []

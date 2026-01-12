@@ -9,66 +9,131 @@
       "properties": {
         "path": {
           "type": "string",
-          "description": "The path to the openapi config",
-          "format": "path"
+          "description": "The local file path to the OpenAPI specification (JSON or YAML).",
+          "format": "path",
+          "examples": [
+            "libs/my-lib/src/api-spec.yaml"
+          ]
         },
         "skipFormat": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to skip formatting generated files.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "project": {
           "type": "string",
-          "description": "The target project where the data sources and remote methods should be generated.",
-          "default": "open-api"
+          "description": "The name of the target project for generation.",
+          "default": "open-api",
+          "examples": [
+            "my-client-lib"
+          ]
         },
         "directory": {
           "type": "string",
-          "description": "A directory where the library is placed."
+          "description": "The directory where the generated library will be located.",
+          "examples": [
+            "clients"
+          ]
         },
         "prefix": {
-          "type": "string"
+          "type": "string",
+          "description": "A prefix to add to all generated classes and components.",
+          "examples": [
+            "Rxap"
+          ]
         },
         "transport": {
           "type": "string",
           "enum": [
             "amplify"
+          ],
+          "description": "The transport layer to use for the generated client.",
+          "examples": [
+            "amplify"
           ]
         },
         "export": {
           "type": "boolean",
-          "description": "If true the index-export generator will be executed after the generation",
-          "default": true
+          "description": "Whether to automatically run the `index-export` generator after generation.",
+          "default": true,
+          "examples": [
+            true,
+            false
+          ]
         },
         "inline": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to inline the OpenAPI specification in the generated code.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipRemoteMethod": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "Whether to skip generation of remote methods.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipDataSource": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to skip generation of data sources.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipProvider": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to skip generation of providers.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipDirectives": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to skip generation of directives.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipCommand": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "Whether to skip generation of commands.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipHttpResource": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "Whether to skip generation of HTTP resources.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "serverId": {
-          "type": "string"
+          "type": "string",
+          "description": "The ID of the server to use from the OpenAPI specification.",
+          "examples": [
+            "production"
+          ]
         }
       },
       "required": [
@@ -79,65 +144,130 @@
       "properties": {
         "url": {
           "type": "string",
-          "description": "The url to the openapi config"
+          "description": "The URL to the remote OpenAPI specification (JSON or YAML).",
+          "examples": [
+            "https://api.example.com/openapi.json"
+          ]
         },
         "project": {
           "type": "string",
-          "description": "The target project where the data sources and remote methods should be generated.",
-          "default": "open-api"
+          "description": "The name of the target project for generation.",
+          "default": "open-api",
+          "examples": [
+            "my-client-lib"
+          ]
         },
         "skipFormat": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to skip formatting generated files.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "directory": {
           "type": "string",
-          "description": "A directory where the library is placed."
+          "description": "The directory where the generated library will be located.",
+          "examples": [
+            "clients"
+          ]
         },
         "prefix": {
-          "type": "string"
+          "type": "string",
+          "description": "A prefix to add to all generated classes and components.",
+          "examples": [
+            "Rxap"
+          ]
         },
         "transport": {
           "type": "string",
           "enum": [
             "amplify"
+          ],
+          "description": "The transport layer to use for the generated client.",
+          "examples": [
+            "amplify"
           ]
         },
         "export": {
           "type": "boolean",
-          "description": "If true the index-export generator will be executed after the generation",
-          "default": true
+          "description": "Whether to automatically run the `index-export` generator after generation.",
+          "default": true,
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipCommand": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "Whether to skip generation of commands.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipHttpResource": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "Whether to skip generation of HTTP resources.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipDataSource": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to skip generation of data sources.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "inline": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to inline the OpenAPI specification in the generated code.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipRemoteMethod": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "Whether to skip generation of remote methods.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipProvider": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to skip generation of providers.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "skipDirectives": {
           "type": "boolean",
-          "default": true
+          "default": true,
+          "description": "Whether to skip generation of directives.",
+          "examples": [
+            true,
+            false
+          ]
         },
         "serverId": {
-          "type": "string"
+          "type": "string",
+          "description": "The ID of the server to use from the OpenAPI specification.",
+          "examples": [
+            "production"
+          ]
         }
       },
       "required": [

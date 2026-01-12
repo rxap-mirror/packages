@@ -5,57 +5,69 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the project to initialize.",
+      "examples": ["my-app"]
     },
     "projects": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "The list of projects to initialize.",
+      "examples": [["my-app", "another-app"]]
     },
     "dockerImageName": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the Docker image for the application.",
+      "examples": ["my-app-image"]
     },
     "dockerImageSuffix": {
-      "type": "string"
+      "type": "string",
+      "description": "The suffix to append to the Docker image name.",
+      "examples": ["-dev"]
     },
     "dockerImageRegistry": {
-      "type": "string"
+      "type": "string",
+      "description": "The Docker image registry to use.",
+      "examples": ["ghcr.io/my-org"]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during initialization."
     },
     "skipDocker": {
       "type": "boolean",
-      "description": "Whether to skip the docker configuration"
+      "description": "Whether to skip the Docker configuration setup."
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after initialization."
     },
     "skipProjects": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to skip executing project specific initialization"
+      "description": "Whether to skip executing project-specific initialization logic."
     },
     "authentik": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to initialize authentik docker compose setup"
+      "description": "Whether to initialize the Authentik Docker Compose setup."
     },
     "standalone": {
       "type": "boolean",
-      "description": "If true, the workspace will be initialized for standalone development",
+      "description": "Whether to initialize the workspace for standalone development.",
       "default": false
     },
     "minio": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to initialize minio docker compose setup"
+      "description": "Whether to initialize the Minio Docker Compose setup."
     },
     "authentication": {
+      "description": "The authentication mechanism to use.",
       "oneOf": [
         {
           "type": "string",

@@ -9,10 +9,21 @@
       "items": {
         "type": "string"
       },
-      "default": []
+      "default": [],
+      "description": "A list of projects to fix implicit internal dependencies for.",
+      "examples": [
+        [
+          "app1",
+          "lib1"
+        ]
+      ]
     },
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the project to fix implicit internal dependencies for.",
+      "examples": [
+        "my-app"
+      ]
     }
   }
 }

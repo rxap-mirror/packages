@@ -10,10 +10,13 @@
       "$default": {
         "$source": "projectName"
       },
-      "x-prompt": "For which project should the health indicator module be initialized?"
+      "x-prompt": "For which project should the health indicator module be initialized?",
+      "examples": ["my-api"]
     },
     "overwrite": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Whether to overwrite existing files.",
+      "default": false
     }
   },
   "required": [

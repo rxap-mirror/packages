@@ -6,30 +6,35 @@
   "properties": {
     "project": {
       "type": "string",
-      "description": "The name of the project.",
+      "description": "The name of the project to add the Localazy builder to.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "For which project should the localazy builder be added?"
+      "x-prompt": "For which project should the localazy builder be added?",
+      "examples": ["my-app"]
     },
     "extractTarget": {
       "type": "string",
-      "description": "The target that extracts or generate the translation source file."
+      "description": "The Nx target responsible for extracting or generating the translation source files.",
+      "examples": ["extract-i18n"]
     },
     "writeKey": {
       "type": "string",
-      "description": "The localazy write key.",
-      "x-prompt": "(optional) Enter the localazy write key. This key will be added to the .env file."
+      "description": "The Localazy project write key. This key will be added to the .env file.",
+      "x-prompt": "(optional) Enter the localazy write key. This key will be added to the .env file.",
+      "examples": ["your-write-key"]
     },
     "readKey": {
       "type": "string",
-      "description": "The localazy read key.",
-      "x-prompt": "(optional) Enter the localazy read key. This key will be added to the .env file."
+      "description": "The Localazy project read key. This key will be added to the .env file.",
+      "x-prompt": "(optional) Enter the localazy read key. This key will be added to the .env file.",
+      "examples": ["your-read-key"]
     },
     "overwrite": {
       "type": "boolean",
-      "description": "Overwrite existing files."
+      "description": "Whether to overwrite existing Localazy configuration files.",
+      "default": false
     }
   },
   "required": [

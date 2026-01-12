@@ -6,35 +6,40 @@
   "properties": {
     "project": {
       "type": "string",
-      "description": "Name of the project",
-      "x-prompt": "For which project should the migration be created?"
+      "description": "The name of the project to add the migration to.",
+      "x-prompt": "For which project should the migration be created?",
+      "examples": ["my-lib"]
     },
     "name": {
       "type": "string",
-      "description": "Name of the migration",
-      "x-prompt": "What name would you like to use?"
+      "description": "The name of the migration file.",
+      "x-prompt": "What name would you like to use?",
+      "examples": ["fix-styles"]
     },
     "description": {
       "type": "string",
-      "description": "Description of the migration",
-      "x-prompt": "What description would you like to use?"
+      "description": "A brief description of what the migration does.",
+      "x-prompt": "What description would you like to use?",
+      "examples": ["Fixes broken styles in the component library."]
     },
     "packageVersion": {
       "type": "string",
-      "description": "Version to use for the migration.",
+      "description": "The package version that triggers this migration.",
       "x-prompt": "What version would you like to use for the migration?",
-      "x-priority": "important"
+      "x-priority": "important",
+      "examples": ["1.2.3"]
     },
     "packageJsonUpdates": {
       "type": "boolean",
-      "description": "Whether or not to include `package.json` updates.",
+      "description": "Whether to include 'package.json' dependency updates in the migration.",
       "default": false
     },
     "increment": {
       "type": "string",
       "enum": ["major", "minor", "patch"],
-      "description": "Increment the version of the package.json file",
-      "x-priority": "important"
+      "description": "The type of version increment for the 'package.json' file.",
+      "x-priority": "important",
+      "examples": ["patch"]
     }
   },
   "required": [

@@ -5,72 +5,126 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the project.",
+      "examples": [
+        "my-app"
+      ]
     },
     "projects": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "A list of projects to initialize Storybook for.",
+      "examples": [
+        [
+          "app1",
+          "app2"
+        ]
+      ]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "skipProjects": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to skip executing project specific initialization"
+      "description": "Whether to skip executing project specific initialization",
+      "examples": [
+        true,
+        false
+      ]
     },
     "interactionTests": {
       "type": "boolean",
       "description": "Set up Storybook interaction tests.",
       "alias": ["configureTestRunner"],
       "x-priority": "important",
-      "default": true
+      "default": true,
+      "examples": [
+        true,
+        false
+      ]
     },
     "configureCypress": {
       "type": "boolean",
-      "description": "Specifies whether to configure Cypress or not."
+      "description": "Specifies whether to configure Cypress or not.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "generateStories": {
       "type": "boolean",
       "description": "Specifies whether to automatically generate `*.stories.ts` files for components declared in this project or not.",
       "default": true,
-      "x-priority": "important"
+      "x-priority": "important",
+      "examples": [
+        true,
+        false
+      ]
     },
     "generateCypressSpecs": {
       "type": "boolean",
-      "description": "Specifies whether to automatically generate test files in the generated Cypress e2e app."
+      "description": "Specifies whether to automatically generate test files in the generated Cypress e2e app.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "configureStaticServe": {
       "type": "boolean",
       "description": "Specifies whether to configure a static file server target for serving storybook. Helpful for speeding up CI build/test times.",
       "default": true,
-      "x-priority": "important"
+      "x-priority": "important",
+      "examples": [
+        true,
+        false
+      ]
     },
     "cypressDirectory": {
       "type": "string",
-      "description": "A directory where the Cypress project will be placed. Placed at the root by default."
+      "description": "A directory where the Cypress project will be placed. Placed at the root by default.",
+      "examples": [
+        "apps/my-app-e2e"
+      ]
     },
     "linter": {
       "description": "The tool to use for running lint checks.",
       "type": "string",
       "enum": ["eslint", "none"],
-      "default": "eslint"
+      "default": "eslint",
+      "examples": [
+        "eslint",
+        "none"
+      ]
     },
     "tsConfiguration": {
       "type": "boolean",
       "description": "Configure your project with TypeScript. Generate main.ts and preview.ts files, instead of main.js and preview.js.",
       "default": true,
-      "x-priority": "important"
+      "x-priority": "important",
+      "examples": [
+        true,
+        false
+      ]
     },
     "skipFormat": {
       "description": "Skip formatting files.",
       "type": "boolean",
       "default": false,
-      "x-priority": "internal"
+      "x-priority": "internal",
+      "examples": [
+        true,
+        false
+      ]
     },
     "ignorePaths": {
       "type": "array",
@@ -90,7 +144,11 @@
     "compodoc": {
       "type": "boolean",
       "description": "Generate documentation using Compodoc.",
-      "default": true
+      "default": true,
+      "examples": [
+        true,
+        false
+      ]
     }
   },
   "required": []

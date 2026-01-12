@@ -5,20 +5,39 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the library project to initialize.",
+      "examples": [
+        "my-client-lib"
+      ]
     },
     "external": {
       "type": "boolean",
       "default": false,
-      "x-prompt": "Is the open api specification source external?"
+      "x-prompt": "Is the OpenAPI specification source external?",
+      "description": "Whether the OpenAPI specification is located outside the workspace.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting generated files.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "persistent": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to make the initialization changes persistent.",
+      "examples": [
+        true,
+        false
+      ]
     }
   },
   "required": ["project"]

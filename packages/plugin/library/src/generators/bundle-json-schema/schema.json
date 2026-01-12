@@ -6,7 +6,8 @@
   "properties": {
     "project": {
       "type": "string",
-      "description": "Name of the project"
+      "description": "The name of the project whose JSON schemas should be bundled.",
+      "examples": ["my-lib"]
     }
   },
   "required": ["project"]

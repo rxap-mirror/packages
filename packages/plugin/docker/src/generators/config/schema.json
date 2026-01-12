@@ -6,48 +6,56 @@
   "properties": {
     "project": {
       "type": "string",
-      "description": "The name of the project.",
+      "description": "The name of the project to add the Docker build executor to.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "For which project should the build executor be added?"
+      "x-prompt": "For which project should the build executor be added?",
+      "examples": ["my-app"]
     },
     "context": {
       "type": "string",
-      "description": "Path to context for the docker build process."
+      "description": "The build context path for the Docker build process.",
+      "examples": ["apps/my-app"]
     },
     "dockerfile": {
       "type": "string",
-      "description": "Path to the dockerfile."
+      "description": "The path to the Dockerfile relative to the project root.",
+      "examples": ["apps/my-app/Dockerfile"]
     },
     "buildTarget": {
       "type": "string",
-      "description": "The target from witch the output path can be extract."
+      "description": "The build target from which to extract the output path.",
+      "examples": ["my-app:build"]
     },
     "imageSuffix": {
       "type": "string",
-      "description": "A suffix added to the base image name"
+      "description": "A suffix to add to the base Docker image name.",
+      "examples": ["-dev"]
     },
     "imageName": {
       "type": "string",
-      "description": "The base image name"
+      "description": "The base name of the Docker image.",
+      "examples": ["my-app"]
     },
     "imageRegistry": {
       "type": "string",
-      "description": "The image registry"
+      "description": "The Docker image registry URL.",
+      "examples": ["ghcr.io/my-org"]
     },
     "command": {
       "type": "string",
-      "description": "The command to start docker"
+      "description": "The custom command to start the Docker container.",
+      "examples": ["npm start"]
     },
     "save": {
       "type": "boolean",
-      "description": "Whether to create a save target"
+      "description": "Whether to create a 'save' target in the project configuration."
     },
     "overwrite": {
       "type": "boolean",
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during configuration."
     }
   },
   "required": [

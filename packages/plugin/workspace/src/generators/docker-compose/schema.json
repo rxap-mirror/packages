@@ -10,7 +10,13 @@
       "items": {
         "type": "string"
       },
-      "description": "The tags a project needs to be used to generate docker compose service"
+      "description": "The tags a project needs to be used to generate docker compose service.",
+      "examples": [
+        [
+          "app",
+          "api"
+        ]
+      ]
     },
     "ignoreProjects": {
       "alias": "ignoreProject",
@@ -18,11 +24,21 @@
       "items": {
         "type": "string"
       },
-      "description": "The projects to ignore when generating docker compose service"
+      "description": "The projects to ignore when generating docker compose service.",
+      "examples": [
+        [
+          "ignore-me"
+        ]
+      ]
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting generated files.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "serviceEnvironments": {
       "alias": "serviceEnvironment",
@@ -30,11 +46,20 @@
       "items": {
         "type": "string"
       },
-      "description": "The environment variables to be used in docker compose service"
+      "description": "The environment variables to be used in docker compose service.",
+      "examples": [
+        [
+          "NODE_ENV=production",
+          "PORT=3000"
+        ]
+      ]
     },
     "rootDomain": {
       "type": "string",
-      "description": "The root domain to be used in docker compose service"
+      "description": "The root domain to be used in docker compose service.",
+      "examples": [
+        "example.com"
+      ]
     },
     "middlewares": {
       "alias": "middleware",
@@ -42,7 +67,13 @@
       "items": {
         "type": "string"
       },
-      "description": "The traefik middlewares to be add to each service"
+      "description": "The traefik middlewares to be add to each service.",
+      "examples": [
+        [
+          "auth",
+          "compress"
+        ]
+      ]
     },
     "subjectAltNames": {
       "alias": "subjectAltName",
@@ -50,7 +81,13 @@
       "items": {
         "type": "string"
       },
-      "description": "The subject alt names to be used in the ssl certificate generation"
+      "description": "The subject alt names to be used in the ssl certificate generation.",
+      "examples": [
+        [
+          "*.example.com",
+          "api.example.com"
+        ]
+      ]
     }
   },
   "required": []

@@ -6,29 +6,48 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name of microservice",
-      "x-prompt": "Enter the name of the microservice?"
+      "description": "The name of the microservice.",
+      "x-prompt": "What is the name of the microservice?",
+      "examples": [
+        "order-service"
+      ]
     },
     "directory": {
       "type": "string",
-      "description": "The directory to create the microservice in"
+      "description": "The directory where the microservice will be created.",
+      "examples": [
+        "services"
+      ]
     },
 
     "sentry": {
       "type": "boolean",
       "default": true,
-      "description": "Whether this service should use sentry",
-      "x-prompt": "Should this service use sentry?"
+      "description": "Whether this microservice should use Sentry for error tracking.",
+      "x-prompt": "Should this microservice use Sentry?",
+      "examples": [
+        true,
+        false
+      ]
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting the generated files.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "swagger": {
       "type": "boolean",
       "default": true,
-      "description": "Whether this service should use swagger",
-      "x-prompt": "Should this service support open-api config generation?"
+      "description": "Whether this microservice should use Swagger/OpenAPI for documentation.",
+      "x-prompt": "Should this microservice support OpenAPI configuration generation?",
+      "examples": [
+        true,
+        false
+      ]
     },
     "swaggerLive": {
       "type": "boolean",
@@ -37,26 +56,45 @@
     },
     "generateMain": {
       "type": "boolean",
-      "description": "Whether the main file should be generated"
+      "description": "Whether the main entry point file (`main.ts`) should be generated.",
+      "default": true,
+      "examples": [
+        true,
+        false
+      ]
     },
     "healthIndicator": {
       "type": "boolean",
       "default": true,
-      "description": "Whether this service should use a health indicator",
-      "x-prompt": "Should this service have a health indicator endpoint?"
+      "description": "Whether this microservice should include a health indicator endpoint.",
+      "x-prompt": "Should this microservice have a health indicator endpoint?",
+      "examples": [
+        true,
+        false
+      ]
     },
     "healthIndicatorList": {
       "type": "array",
       "items": {
         "type": "string"
       },
-      "description": "A list of health indicators"
+      "description": "A list of additional health indicators to include.",
+      "examples": [
+        [
+          "database",
+          "redis"
+        ]
+      ]
     },
     "validator": {
       "type": "boolean",
       "default": true,
-      "description": "Whether this service use the ValidationPipe",
-      "x-prompt": "Should this service use the ValidationPipe?"
+      "description": "Whether this microservice should use the NestJS `ValidationPipe`.",
+      "x-prompt": "Should this microservice use the `ValidationPipe`?",
+      "examples": [
+        true,
+        false
+      ]
     },
     "platform": {
       "type": "string",
@@ -65,55 +103,91 @@
         "fastify"
       ],
       "default": "express",
-      "x-prompt": "Whichever platform should be used?"
+      "x-prompt": "Which platform should be used (Express or Fastify)?",
+      "examples": [
+        "express",
+        "fastify"
+      ]
     },
     "port": {
       "type": "number",
-      "description": "The default port where the server is listens"
+      "description": "The default port number where the server will listen.",
+      "examples": [
+        3000,
+        8080
+      ]
     },
     "apiPrefix": {
       "oneOf": [
         {
           "type": "string",
-          "description": "The default global api prefix"
+          "description": "The default global API prefix.",
+          "examples": [
+            "api"
+          ]
         },
         {
-          "description": "Disable the global api prefix",
+          "description": "Disable the global API prefix.",
           "type": "boolean",
-          "const": false
+          "const": false,
+          "examples": [
+            false
+          ]
         }
       ]
     },
     "sentryDsn": {
       "type": "string",
-      "description": "Default sentry dsn"
+      "description": "The default Sentry DSN for error tracking.",
+      "examples": [
+        "https://examplePublicKey@o0.ingest.sentry.io/0"
+      ]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files, if any.",
+      "examples": [
+        true,
+        false
+      ]
     },
     "jwt": {
       "type": "boolean",
       "default": false,
-      "description": "Whether the application should use jwt",
-      "x-prompt": "Should this service use jwt?"
+      "description": "Whether the microservice should use JWT for authentication.",
+      "x-prompt": "Should this microservice use JWT?",
+      "examples": [
+        true,
+        false
+      ]
     },
     "openApi": {
       "type": "boolean",
       "default": false,
-      "description": "Whether the application should use openApi as client",
-      "x-prompt": "Should this service use an open api client?"
+      "description": "Whether the microservice should use an OpenAPI client.",
+      "x-prompt": "Should this microservice use an OpenAPI client?",
+      "examples": [
+        true,
+        false
+      ]
     },
     "apiConfigurationFile": {
       "type": "string",
-      "description": "The api configuration file to use"
+      "description": "The path to the API configuration file.",
+      "examples": [
+        "apps/my-api/src/assets/api-config.json"
+      ]
     },
     "standalone": {
       "type": "boolean",
       "default": false,
-      "description": "Whether the nest service should be standalone",
-      "x-prompt": "Should this service be standalone?"
+      "description": "Whether the NestJS service should be standalone (without a module).",
+      "x-prompt": "Should this microservice be standalone?",
+      "examples": [
+        true,
+        false
+      ]
     }
   },
   "required": [
