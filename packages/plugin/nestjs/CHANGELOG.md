@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.2.0-dev.11...@rxap/plugin-nestjs@20.2.0-dev.12) (2026-01-12)
+
+### Bug Fixes
+
+- update package groups ([ba8753f](https://gitlab.com/rxap/packages/commit/ba8753f5f34680adc282d84c557fc43385bfa987))
+
 # [20.2.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.2.0-dev.10...@rxap/plugin-nestjs@20.2.0-dev.11) (2026-01-12)
 
 ### Features

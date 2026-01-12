@@ -1,5 +1,5 @@
 {
-  "version": "20.1.0-dev.0",
+  "version": "20.1.0-dev.1",
   "name": "@rxap/plugin-application",
   "description": "This package provides generators and executors for initializing and managing applications within an Nx workspace. It includes features for setting up Docker configurations, managing shared service configurations, and handling internationalization. The plugin also offers utilities for updating project configurations, managing dependencies, and streamlining common application development tasks.\n",
   "license": "GPL-3.0-or-later",

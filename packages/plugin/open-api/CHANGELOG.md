@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@20.2.0-dev.0...@rxap/plugin-open-api@20.2.0-dev.1) (2026-01-12)
+
+### Bug Fixes
+
+- update package groups ([ba8753f](https://gitlab.com/rxap/packages/commit/ba8753f5f34680adc282d84c557fc43385bfa987))
+
 # [20.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@20.1.1-dev.10...@rxap/plugin-open-api@20.2.0-dev.0) (2026-01-12)
 
 ### Features
