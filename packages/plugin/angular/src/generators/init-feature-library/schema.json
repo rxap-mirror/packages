@@ -5,43 +5,49 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the feature library project to initialize.",
+      "examples": ["feature-user-profile"]
     },
     "projects": {
       "type": "array",
+      "description": "The list of feature library projects to initialize.",
       "items": {
         "type": "string"
-      }
+      },
+      "examples": [["feature-user-profile", "feature-admin"]]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during initialization."
     },
     "skipProjects": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to skip executing project specific initialization"
+      "description": "Whether to skip executing project-specific initialization logic."
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after initialization."
     },
     "routes": {
       "type": "boolean",
       "default": true,
-      "description": "Whether the library exposes routes"
+      "description": "Whether the feature library should expose Angular routes."
     },
     "targets": {
       "type": "object",
+      "description": "Target configuration options for the feature library.",
       "properties": {
         "fixDependencies": {
           "type": "boolean",
-          "description": "If set to false the target fix-dependencies will not be added to the project"
+          "description": "Whether to add the 'fix-dependencies' target to the project."
         },
         "indexExport": {
           "type": "boolean",
-          "description": "If set to false the target index-export will not be added to the project"
+          "description": "Whether to add the 'index-export' target to the project."
         }
       }
     }

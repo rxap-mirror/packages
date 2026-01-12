@@ -5,30 +5,35 @@
   "type": "object",
   "properties": {
     "project": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the project to initialize.",
+      "examples": ["my-app"]
     },
     "projects": {
       "type": "array",
+      "description": "The list of projects to initialize.",
       "items": {
         "type": "string"
-      }
+      },
+      "examples": [["my-app", "another-app"]]
     },
     "incrementalBuild": {
       "type": "boolean",
-      "description": "Whether to enable incremental build"
+      "description": "Whether to enable incremental build for the project."
     },
     "moduleFederation": {
       "alias": "mfe",
       "type": "string",
-      "enum": ["host", "remote"]
+      "enum": ["host", "remote"],
+      "description": "The module federation role of the project."
     },
     "layoutRoutePath": {
       "type": "string",
-      "description": "Route path for layout children"
+      "description": "The route path for layout children components."
     },
     "standaloneImport": {
       "type": "boolean",
-      "description": "Whether to import the mfe remote as a standalone import"
+      "description": "Whether to import the MFE remote as a standalone unit."
     },
     "skipDocker": {
       "type": "boolean",
@@ -50,7 +55,8 @@
     },
     "apiStatusCheck": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to enable API status check during bootstrap."
     },
     "authentication": {
       "oneOf": [
@@ -73,7 +79,8 @@
       "x-prompt": "Would you like to enable OpenAPI?"
     },
     "openApiLegacy": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Whether to use the legacy OpenAPI client generation method."
     },
     "config": {
       "type": "boolean",
@@ -102,9 +109,11 @@
     },
     "languages": {
       "type": "array",
+      "description": "The list of supported languages for the application.",
       "items": {
         "type": "string"
-      }
+      },
+      "examples": [["en", "de"]]
     },
     "material": {
       "type": "boolean",
@@ -115,7 +124,7 @@
     "generateMain": {
       "alias": "gm",
       "type": "boolean",
-      "description": "Whether to generate the main file"
+      "description": "Whether to generate the main.ts entry file."
     },
     "overwrite": {
       "type": "boolean",
@@ -154,9 +163,11 @@
       "description": "Whether to skip executing project specific initialization"
     },
     "skipFormat": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Whether to skip formatting files with Prettier after initialization."
     },
     "coerce": {
+      "description": "Configuration coercion options for the project.",
       "oneOf": [
         {
           "type": "boolean"

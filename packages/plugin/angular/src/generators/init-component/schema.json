@@ -13,7 +13,8 @@
     },
     "feature": {
       "type": "string",
-      "description": "The name of the feature."
+      "description": "The name of the feature the component belongs to.",
+      "examples": ["user-profile"]
     },
     "project": {
       "type": "string",
@@ -21,7 +22,8 @@
       "$default": {
         "$source": "projectName"
       },
-      "x-dropdown": "projects"
+      "x-dropdown": "projects",
+      "examples": ["my-app"]
     },
     "name": {
       "type": "string",
@@ -30,7 +32,8 @@
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the component?"
+      "x-prompt": "What name would you like to use for the component?",
+      "examples": ["user-list"]
     },
     "prefix": {
       "type": "string",
@@ -117,12 +120,12 @@
     },
     "defaultExport": {
       "type": "boolean",
-      "description": "Specifies if the component should be the default export of file.",
+      "description": "Whether the component class should be the default export of the file.",
       "default": false
     },
     "export": {
       "type": "boolean",
-      "description": "Specifies if the component should be exported in the declaring `NgModule`. Additionally, if the project is a library, the component will be exported from the project's entry point (normally `index.ts`) if the module it belongs to is also exported or if the component is standalone.",
+      "description": "Whether the component should be exported from the declaring NgModule or project entry point.",
       "default": false,
       "x-priority": "important"
     },
@@ -134,7 +137,7 @@
     },
     "interactionTests": {
       "type": "boolean",
-      "description": "Set up Storybook interaction tests.",
+      "description": "Whether to set up Storybook interaction tests for the component.",
       "x-priority": "important",
       "default": true
     },

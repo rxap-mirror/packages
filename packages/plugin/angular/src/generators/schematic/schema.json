@@ -6,33 +6,36 @@
   "properties": {
     "project": {
       "type": "string",
-      "description": "The name of the project.",
+      "description": "The name of the project where the schematic should be added.",
       "alias": "p",
       "$default": {
         "$source": "projectName"
       },
       "x-prompt": "What is the name of the project for the schematic?",
-      "x-priority": "important"
+      "x-priority": "important",
+      "examples": ["my-lib"]
     },
     "name": {
       "type": "string",
-      "description": "Schematic name.",
+      "description": "The name of the schematic to create.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
       "x-prompt": "What name would you like to use for the schematic?",
-      "x-priority": "important"
+      "x-priority": "important",
+      "examples": ["new-feature"]
     },
     "description": {
       "type": "string",
-      "description": "Schematic description.",
-      "alias": "d"
+      "description": "A brief description of what the schematic does.",
+      "alias": "d",
+      "examples": ["Generate a new feature module."]
     },
     "skipFormat": {
       "type": "boolean",
       "default": false,
-      "description": "Do not format files with prettier.",
+      "description": "Whether to skip formatting files with Prettier after schematic creation.",
       "x-priority": "internal"
     }
   },

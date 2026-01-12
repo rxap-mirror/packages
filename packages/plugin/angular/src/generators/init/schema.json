@@ -7,32 +7,43 @@
     "projects": {
       "alias": "project",
       "type": "array",
+      "description": "The name of the projects to initialize.",
       "items": {
         "type": "string"
-      }
+      },
+      "examples": [
+        [
+          "my-app",
+          "my-lib"
+        ]
+      ]
     },
     "overwrite": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to overwrite existing files"
+      "description": "Whether to overwrite existing files during initialization."
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files after initialization."
     },
     "skipProjects": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to skip executing project specific initialization"
+      "description": "Whether to skip executing project-specific initialization logic."
     },
     "prefix": {
       "type": "string",
-      "description": "The prefix for the angular components"
+      "description": "The prefix to use for the generated Angular components.",
+      "examples": [
+        "rxap"
+      ]
     },
     "withSharedLibraries": {
       "type": "boolean",
       "default": false,
-      "description": "Whether to add shared libraries"
+      "description": "Whether to initialize the workspace with shared libraries (components, forms, etc.)."
     }
   },
   "required": []

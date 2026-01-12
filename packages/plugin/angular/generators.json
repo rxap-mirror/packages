@@ -39,6 +39,11 @@
       "factory": "./src/generators/init-component/generator",
       "schema": "./src/generators/init-component/schema.json",
       "description": "init-component generator"
+    },
+    "convert-to-buildable-library": {
+      "factory": "./src/generators/convert-to-buildable-library/generator",
+      "schema": "./src/generators/convert-to-buildable-library/schema.json",
+      "description": "convert-to-buildable-library generator"
     }
   },
   "schematics": {
@@ -76,6 +81,11 @@
       "factory": "./src/generators/init-component/index",
       "schema": "./src/generators/init-component/schema.json",
       "description": "init-component generator"
+    },
+    "convert-to-buildable-library": {
+      "factory": "./src/generators/convert-to-buildable-library/index",
+      "schema": "./src/generators/convert-to-buildable-library/schema.json",
+      "description": "convert-to-buildable-library generator"
     },
     "init-feature-library": {
       "factory": "./src/generators/init-feature-library/index",

@@ -6,23 +6,27 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name of the feature"
+      "description": "The name of the feature to initialize.",
+      "examples": ["user-profile"]
     },
     "project": {
       "type": "string",
-      "description": "The name of the project where the feature should be added"
+      "description": "The name of the project where the feature should be added.",
+      "examples": ["my-app"]
     },
     "overwrite": {
       "type": "boolean",
-      "description": "If the feature should be overwritten if it already exists"
+      "description": "Whether to overwrite the feature if it already exists."
     },
     "skipFormat": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to skip formatting files with Prettier after initialization."
     },
     "apiStatusCheck": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Whether to enable API status check for this feature."
     },
     "navigation": {
       "type": "object",
