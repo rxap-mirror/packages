@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.2.1-dev.3...@rxap/plugin-angular@20.3.0-dev.0) (2026-01-12)
+
+### Features
+
+- **angular:** add convert-to-buildable-library generator and improve generator schema documentation ([de28ae8](https://gitlab.com/rxap/packages/commit/de28ae8767847b1e2f1ae21e7d204c53b63caca5))
+
 ## [20.2.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@20.2.1-dev.2...@rxap/plugin-angular@20.2.1-dev.3) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/plugin-angular

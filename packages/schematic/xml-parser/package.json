@@ -1,5 +1,5 @@
 {
-  "version": "19.0.5-dev.16",
+  "version": "19.0.5-dev.17",
   "name": "@rxap/schematics-xml-parser",
   "description": "This package provides utilities for parsing XML templates within Angular Schematics. It includes functionality to locate templates in a file system, parse them using a specified DOMParser, and register custom elements for parsing. The package also offers elements for defining modules, types, and methods within the XML templates.\n",
   "license": "GPL-3.0-or-later",
@@ -9,7 +9,7 @@
     "@nx/devkit": "20.5.0",
     "@rxap/schematics-ts-morph": "^19.1.1-dev.3",
     "@rxap/schematics-utilities": "^19.0.5-dev.2",
-    "@rxap/xml-parser": "^16.3.0-dev.12",
+    "@rxap/xml-parser": "^16.3.0-dev.13",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@20.0.5-dev.2...@rxap/plugin-docker@20.1.0-dev.0) (2026-01-12)
+
+### Features
+
+- **schema:** enhance generator schema documentation with descriptions and examples ([0ae4939](https://gitlab.com/rxap/packages/commit/0ae4939d77e3e313ace4a77d8f5dd86c3c918d29))
+
 ## [20.0.5-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@20.0.5-dev.1...@rxap/plugin-docker@20.0.5-dev.2) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/plugin-docker

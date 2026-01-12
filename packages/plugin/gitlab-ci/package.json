@@ -1,5 +1,5 @@
 {
-  "version": "20.0.5-dev.2",
+  "version": "20.1.0-dev.0",
   "name": "@rxap/plugin-gitlab-ci",
   "description": "This package provides generators for creating and managing GitLab CI configurations within an Nx workspace. It supports generating CI pipelines for Docker builds, component tests, and service end-to-end tests, and offers options for using local files or GitLab CI components. The package also includes generators for initializing a workspace with GitLab CI configurations, with support for different release strategies and Helm charts.\n",
   "license": "GPL-3.0-or-later",
