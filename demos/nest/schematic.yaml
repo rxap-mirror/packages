@@ -1,0 +1,17 @@
+package: "@rxap/plugin-nestjs"
+name: init-application
+options:
+  generateMain: true
+  name: nest
+  directory: demos/nest
+  sentry: true
+  swagger: true
+  swaggerLive: false
+  healthIndicator: true
+  validator: true
+  platform: express
+  jwt: false
+  openApi: false
+  standalone: false
+  healthIndicatorList: []
+  apiConfigurationFile: shared/service/configuration/latest/config.api.json

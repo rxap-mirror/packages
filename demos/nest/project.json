@@ -1,0 +1,90 @@
+{
+  "name": "service-nest",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "demos/nest/src",
+  "projectType": "application",
+  "tags": [
+    "nest",
+    "service",
+    "application",
+    "backend",
+    "sentry",
+    "swagger",
+    "health-indicator",
+    "express",
+    "demo"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/demos/nest",
+        "main": "demos/nest/src/main.ts",
+        "tsConfig": "demos/nest/tsconfig.app.json",
+        "assets": [
+          "demos/nest/src/assets",
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ],
+        "webpackConfig": "demos/nest/webpack.config.js",
+        "generatePackageJson": true,
+        "isolatedConfig": true
+      },
+      "configurations": {
+        "development": {
+          "progress": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "demos/nest/src/environments/environment.ts",
+              "with": "demos/nest/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "service-nest:build:development",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "service-nest:build:development"
+        },
+        "production": {
+          "buildTarget": "service-nest:build:production"
+        }
+      }
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    },
+    "docker": {
+      "options": {
+        "imageSuffix": "/service-nest",
+        "buildArgList": [
+          "PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\['GLOBAL_API_PREFIX'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*'(.+)',?\\s*\\);"
+        ]
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "docker-save": {}
+  }
+}

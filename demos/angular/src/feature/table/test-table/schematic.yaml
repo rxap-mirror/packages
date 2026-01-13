@@ -1,0 +1,11 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: test
+  backend:
+    kind: nestjs
+    project: demo-api
+    module: AppModule
+  columnList:
+    - name: name
+    - name: description

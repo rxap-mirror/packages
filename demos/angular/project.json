@@ -36,7 +36,8 @@
     "user-interface",
     "sentry",
     "service-worker",
-    "application"
+    "application",
+    "demo"
   ],
   "targets": {
     "build": {

@@ -305,6 +305,27 @@
       "open-api-service-configuration/*": [
         "demos/open-api/service/configuration/src/lib/*"
       ],
+      "open-api-service-nest/src/lib/commands": [
+        "open-api/service-nest/src/lib/commands/index.ts"
+      ],
+      "open-api-service-nest/src/lib/components": [
+        "open-api/service-nest/src/lib/components/index.ts"
+      ],
+      "open-api-service-nest/src/lib/http-resources": [
+        "open-api/service-nest/src/lib/http-resources/index.ts"
+      ],
+      "open-api-service-nest/src/lib/parameters": [
+        "open-api/service-nest/src/lib/parameters/index.ts"
+      ],
+      "open-api-service-nest/src/lib/remote-methods": [
+        "open-api/service-nest/src/lib/remote-methods/index.ts"
+      ],
+      "open-api-service-nest/src/lib/request-bodies": [
+        "open-api/service-nest/src/lib/request-bodies/index.ts"
+      ],
+      "open-api-service-nest/src/lib/responses": [
+        "open-api/service-nest/src/lib/responses/index.ts"
+      ],
       "open-api-service-status/*": ["demos/open-api/service/status/src/lib/*"],
       "open-api-service-user/*": ["demos/open-api/service/user/src/lib/*"],
       "rxap": ["packages/rxap/index.ts"],

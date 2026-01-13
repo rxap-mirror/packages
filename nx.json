@@ -179,6 +179,22 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "@nx/webpack:webpack": {
+      "cache": true,
+      "dependsOn": [
+        "^build",
+        "^index-export",
+        "index-export",
+        "generate-package-json"
+      ],
+      "inputs": ["production", "^production"]
+    },
+    "@rxap/plugin-docker:build": {
+      "options": {
+        "imageRegistry": "registry.gitlab.com",
+        "imageName": "rxap/packages"
+      }
     }
   },
   "generators": {

@@ -17,5 +17,8 @@
   },
   "service-app-angular-accordion": {
     "baseUrl": "/api/app/angular/accordion"
+  },
+  "service-nest": {
+    "baseUrl": "/api/nest"
   }
 }

@@ -600,6 +600,11 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/nest/typeorm/docs"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/nest/typeorm/compodoc"/>
       <excludeFolder url="file://$MODULE_DIR$/packages/nest/typeorm/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/open-api/service-nest/dist"/>
+      <excludeFolder url="file://$MODULE_DIR$/open-api/service-nest/docs"/>
+      <excludeFolder url="file://$MODULE_DIR$/open-api/service-nest/compodoc"/>
+      <excludeFolder url="file://$MODULE_DIR$/open-api/service-nest/coverage"/>
+      <excludeFolder url="file://$MODULE_DIR$/swagger"/>
     </content>
     <orderEntry type="inheritedJdk"/>
     <orderEntry type="sourceFolder" forTests="false"/>

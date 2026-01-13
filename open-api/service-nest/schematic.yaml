@@ -1,0 +1,3 @@
+package: "@rxap/plugin-open-api"
+name: init-library
+options: {}
