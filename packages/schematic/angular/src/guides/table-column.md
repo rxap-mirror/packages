@@ -19,6 +19,7 @@ All columns share these common properties:
 | `pipeList` | `array` | List of Angular pipes to apply to the value. |
 | `modifiers` | `array` | List of column modifiers. |
 | `template` | `string` | Path to a custom Handlebars template file. |
+| `filterControl` | `object` | Configuration for a custom filter input (e.g. specific CSS class). |
 
 ## Column Kinds
 

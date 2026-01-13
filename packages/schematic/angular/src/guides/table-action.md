@@ -38,7 +38,9 @@ The `type` property defines the behavior of the action.
 | `refresh` | If `true`, refreshes the table after completion. |
 | `inHeader` | If `true`, the action is placed in the table header (global action). |
 | `permission` | (Optional) Permission string required to see/execute the action. |
-| `role` | (Alias: `kind`) The role of the action (e.g., `method`, `navigation`). |
+| `checkFunction` | JavaScript expression string to dynamically check visibility (e.g. `!element.archived`). |
+| `color` | Angular Material color palette name (e.g. `primary`, `accent`, `warn`). |
+| `role` | (Alias: `kind`) The role of the action (e.g. `method`, `navigation`). |
 
 ## Examples
 
@@ -47,7 +49,9 @@ The `type` property defines the behavior of the action.
 - type: details
   icon: visibility
   role: navigation
-  # Navigation details would be configured here or inferred
+  options:
+    route: "/users/user/{{uuid}}/details"
+
 ```
 
 ### Header Action (e.g., Create New)
@@ -63,7 +67,11 @@ The `type` property defines the behavior of the action.
 - type: archive
   icon: archive
   confirm: true
+  color: warn
+  permission: user.archive
+  checkFunction: "!element.archived"
   successMessage: "Item archived successfully"
+
 ```
 
 ## Form Actions

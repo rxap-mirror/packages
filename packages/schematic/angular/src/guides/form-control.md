@@ -198,13 +198,34 @@ Combines autocomplete with table selection.
 | `upstream` | `object` | Data source. See [Upstream Guide](./upstream.md). |
 
 ```yaml
-- name: manager
+- name: company
   kind: autocomplete-table-select
+  backend: nestjs
+  formField:
+    cssClass: "w-[500px]"
+  toValue:
+    property: uuid
+  columnList:
+    - name: name
+      hasFilter: true
+  resolver:
+    upstream:
+      kind: open-api
+      operationId: company-getByUuid
+      mapper:
+        kind: resolve
+        value: uuid
   upstream:
     kind: open-api
-    operationId: listManagers
-  columnList:
-    - name: fullName
+    operationId: company-getFilter
+    mapper:
+      kind: paged
+      pageIndex: page
+      pageSize: size
+      sortBy: sort
+      sortDirection: order
+      list: entities
+      total: maxCount
 ```
 
 ## Custom Templates
@@ -220,10 +241,29 @@ You can provide a custom Handlebars template for any control using the `template
 
 ## Validators
 
-Validators are defined as a list of strings mapped to Angular validators.
+Validators are defined as a list of strings mapped to Angular validators. You can also use regex patterns.
 
 ```yaml
 validatorList:
   - required
   - email
+  - "pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)"
 ```
+
+## Advanced Upstream Configuration
+
+For controls like `select` or `autocomplete`, you often need to map data from an API.
+
+```yaml
+- name: type
+  kind: select
+  backend: nestjs
+  upstream:
+    kind: open-api
+    operationId: options-controller-getReportTypes
+    mapper:
+      kind: options
+      toFunction: ToOptionsFromObject
+      toValue: Number
+```
+
