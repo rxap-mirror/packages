@@ -135,7 +135,7 @@ export function TsMorphTransform(
 
   const project = CreateProject(projectOptions);
 
-  console.log(`TsMorphTransform for sourceRoot '${sourceRoot}' with fileList: [ ${coerceArray(filePathFilter).join(', ')} ]`.grey);
+  process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`TsMorphTransform for sourceRoot '${sourceRoot}' with fileList: [ ${coerceArray(filePathFilter).join(', ')} ]`.grey);
 
   if (!replace) {
     AddDir(

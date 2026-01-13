@@ -42,12 +42,12 @@ import 'colors';
  * @example
  * // Assuming `projectTree` is an object conforming to `TreeLike` and contains a `package.json` at the root.
  * const packageJson = GetPackageJson(projectTree);
- * console.log(packageJson.name); // Outputs the name property from package.json
+ * process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(packageJson.name); // Outputs the name property from package.json
  *
  * @example
  * // Assuming `projectTree` contains a `package.json` in the 'app' subdirectory.
  * const packageJson = GetPackageJson(projectTree, 'app');
- * console.log(packageJson.version); // Outputs the version property from package.json
+ * process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(packageJson.version); // Outputs the version property from package.json
  */
 export function GetPackageJson<Tree extends TreeLike>(tree: Tree, basePath = ''): PackageJson {
   return GetJsonFile(tree, join(basePath, 'package.json'));
@@ -65,7 +65,7 @@ export function GetPackageJson<Tree extends TreeLike>(tree: Tree, basePath = '')
  * @example
  * // Assuming `projectTree` is an object that implements `TreeLike`:
  * const hasPackage = HasPackageJson(projectTree, 'src/app');
- * console.log(hasPackage); // Outputs: true or false based on the existence of `package.json` in 'src/app'
+ * process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(hasPackage); // Outputs: true or false based on the existence of `package.json` in 'src/app'
  */
 export function HasPackageJson<Tree extends TreeLike>(tree: Tree, basePath = ''): boolean {
   return tree.exists(join(basePath, 'package.json'));
@@ -249,7 +249,7 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
       // the package is already in the optionalDependencies
       return;
     }
-    console.log(`Promote the package \x1b[34m${ packageName }\x1b[0m from \x1b[90m${ isDependency ? 'dependencies' : isDevDependency ? 'devDependencies' : isPeerDependency ? 'peerDependencies' : 'optionalDependencies' }\x1b[0m to \x1b[90m${ propertyPath }\x1b[0m`.yellow);
+    process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Promote the package \x1b[34m${ packageName }\x1b[0m from \x1b[90m${ isDependency ? 'dependencies' : isDevDependency ? 'devDependencies' : isPeerDependency ? 'peerDependencies' : 'optionalDependencies' }\x1b[0m to \x1b[90m${ propertyPath }\x1b[0m`.yellow);
     const version = (packageJson.dependencies?.[packageName] ?? packageJson.devDependencies?.[packageName] ?? packageJson.peerDependencies?.[packageName] ?? packageJson.optionalDependencies?.[packageName])!;
     switch (propertyPath) {
 
@@ -302,7 +302,7 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
     const isPeerDependency = packageJson.peerDependencies?.[packageName] !== undefined;
     const isOptionalDependency = packageJson.optionalDependencies?.[packageName] !== undefined;
     if ([isDevDependency, isDependency, isPeerDependency, isOptionalDependency].filter(Boolean).length > 1) {
-      console.log(`The package \x1b[34m${ packageName }\x1b[0m is in multiple dependencies`.yellow);
+      process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The package \x1b[34m${ packageName }\x1b[0m is in multiple dependencies`.yellow);
       if (isDependency) {
         if (isDevDependency) {
           delete packageJson.devDependencies![packageName];
@@ -361,30 +361,30 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
       if (options?.soft) {
         if (currentVersion) {
           if (packageVersion === 'latest') {
-            console.log(`The package \x1b[34m${ packageName }\x1b[0m already exists in the \x1b[90m${ propertyPath }\x1b[0m`.grey);
+            process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The package \x1b[34m${ packageName }\x1b[0m already exists in the \x1b[90m${ propertyPath }\x1b[0m`.grey);
             // if soft and latest and the package already exists in the dependencies do nothing
             return;
           }
           const cleanCurrentVersion = currentVersion.replace(/^(~|\^|>|<|<=|>=)/, '');
           if (cleanCurrentVersion === mewPackageVersion) {
-            console.log(`The package \x1b[34m${ packageName }\x1b[0m version \x1b[32m${ currentVersion }\x1b[0m is equal to the anticipated version \x1b[32m${ mewPackageVersion }\x1b[0m`.grey);
+            process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The package \x1b[34m${ packageName }\x1b[0m version \x1b[32m${ currentVersion }\x1b[0m is equal to the anticipated version \x1b[32m${ mewPackageVersion }\x1b[0m`.grey);
             return;
           }
           if (gt(cleanCurrentVersion, mewPackageVersion!)) {
-            console.log(`The package \x1b[34m${ packageName }\x1b[0m version \x1b[31m${ currentVersion }\x1b[0m is greater than the anticipated version \x1b[32m${ mewPackageVersion }\x1b[0m`.grey);
+            process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The package \x1b[34m${ packageName }\x1b[0m version \x1b[31m${ currentVersion }\x1b[0m is greater than the anticipated version \x1b[32m${ mewPackageVersion }\x1b[0m`.grey);
             // if soft and the current version is greater than the new version do nothing
             return;
           }
         }
       }
       if (currentVersion) {
-        console.log(`Change the package \x1b[34m${ packageName }\x1b[0m version from \x1b[31m${ currentVersion }\x1b[0m to \x1b[32m${ mewPackageVersion }\x1b[0m`);
+        process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Change the package \x1b[34m${ packageName }\x1b[0m version from \x1b[31m${ currentVersion }\x1b[0m to \x1b[32m${ mewPackageVersion }\x1b[0m`);
       } else {
-        console.log(`Add the package \x1b[34m${ packageName }\x1b[0m to the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ mewPackageVersion }\x1b[0m`.green);
+        process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Add the package \x1b[34m${ packageName }\x1b[0m to the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ mewPackageVersion }\x1b[0m`.green);
         addedNewPackage = true;
       }
       if (packageName.match(/^@rxap\//) && IsRxapRepository(tree)) {
-        console.log(`Detecting that the workspace is the \x1b[34mrxap\x1b[33m workspace. The package \x1b[34m${ packageName }\x1b[33m will \x1b[31mNOT\x1b[33m be added to the package.json file.`.grey);
+        process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Detecting that the workspace is the \x1b[34mrxap\x1b[33m workspace. The package \x1b[34m${ packageName }\x1b[33m will \x1b[31mNOT\x1b[33m be added to the package.json file.`.grey);
       } else {
         depObject[packageName] = mewPackageVersion!;
       }
@@ -395,28 +395,28 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
   if (addedNewPackage && withPeerDependencies) {
     const peerDependencies = await GetPackagePeerDependencies(packageName, mewPackageVersion!);
     if (Object.keys(peerDependencies).length === 0) {
-      console.log(`The package \x1b[34m${ packageName }\x1b[0m has no peer dependencies`.grey);
+      process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The package \x1b[34m${ packageName }\x1b[0m has no peer dependencies`.grey);
     } else {
-      console.group(`The package \x1b[34m${ packageName }\x1b[0m has the following peer dependencies: ${Object.keys(peerDependencies).join(', ')}`);
+      process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.group(`The package \x1b[34m${ packageName }\x1b[0m has the following peer dependencies: ${Object.keys(peerDependencies).join(', ')}`);
       for (const [ peerDependency, peerDependencyVersion ] of Object.entries(peerDependencies)) {
         if (peerDependency === 'tslib') {
-          console.log(`Skip peer dependency \x1b[34m${ peerDependency }\x1b[0m as it is a typescript library`.grey);
+          process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Skip peer dependency \x1b[34m${ peerDependency }\x1b[0m as it is a typescript library`.grey);
           continue;
         }
         if (withoutNonRxapPeerDependencies) {
           if (!peerDependency.startsWith('@rxap/')) {
-            console.log(`Skip peer dependency \x1b[34m${ peerDependency }\x1b[0m as it is not a rxap package`.grey);
+            process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Skip peer dependency \x1b[34m${ peerDependency }\x1b[0m as it is not a rxap package`.grey);
             continue;
           }
         }
         if (peerDependencyVersion.match(/^(~|\^|>|<|<=|>=)?\d+\.\d+\.\d+(-[a-zA-Z]+\.\d+)?$/)) {
-          console.log(`Add peer dependency \x1b[34m${ peerDependency }\x1b[0mto the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ peerDependencyVersion }\x1b[0m`.cyan);
+          process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Add peer dependency \x1b[34m${ peerDependency }\x1b[0mto the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ peerDependencyVersion }\x1b[0m`.cyan);
           await AddPackageJsonDependency(tree, peerDependency, peerDependencyVersion, options, propertyPath);
         } else {
-          console.log(`The peer dependency \x1b[34m${ peerDependency }\x1b[0m has an unsupported version \x1b[31m${ peerDependencyVersion }\x1b[0m`.yellow);
+          process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The peer dependency \x1b[34m${ peerDependency }\x1b[0m has an unsupported version \x1b[31m${ peerDependencyVersion }\x1b[0m`.yellow);
         }
       }
-      console.groupEnd();
+      process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.groupEnd();
     }
   }
 

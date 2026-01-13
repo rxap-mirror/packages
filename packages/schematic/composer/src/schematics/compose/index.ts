@@ -166,7 +166,7 @@ function executeSchematicCommandFile(
     }
     ruleList.push(chain([
       () => console.log(`Execute schematic '${ command.package }:${ command.name }'`.green),
-      () => console.log(`Input Options: ${ JSON.stringify(options) }`.grey),
+      () => { process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Input Options: ${ JSON.stringify(options) }`.grey); },
       // TODO : find a way to install the package if not exists before the external schematic is executed
       // this implementation will only trigger the node package installer task after the schematic is executed
       // AddPackageJsonDevDependencyRule(command.package, 'latest', { soft: true }),

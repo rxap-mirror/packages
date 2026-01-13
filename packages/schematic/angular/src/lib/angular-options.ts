@@ -68,7 +68,6 @@ export function AssertAngularOptionsNameProperty(options: NormalizedAngularOptio
 }
 
 export function PrintAngularOptions(schematicName: string, options: NormalizedAngularOptions) {
-  console.log(JSON.stringify(options));
   PrintGeneralOptions(schematicName, options);
   const {
     name,

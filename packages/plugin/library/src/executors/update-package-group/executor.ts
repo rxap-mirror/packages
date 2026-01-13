@@ -69,7 +69,7 @@ function getPeerDependenciesForPackage(packageName: string) {
   if (!packageJson) {
     return {};
   }
-  console.log(`Package ${ packageName } has the following peer dependencies:`, Object.keys(packageJson.peerDependencies ?? {}).join(', '));
+  process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Package ${ packageName } has the following peer dependencies:`, Object.keys(packageJson.peerDependencies ?? {}).join(', '));
   return packageJson.peerDependencies ?? {};
 }
 
@@ -79,7 +79,7 @@ async function getAllPeerDependenciesForProject(
   resolvedPeerDependencies: string[] = []
 ) {
   let { peerDependencies = {} } = await readPackageJsonForProjectWithRetry(context, projectName);
-  console.log(`Project ${ projectName } has the following peer dependencies:`, Object.keys(peerDependencies).join(', '));
+  process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`Project ${ projectName } has the following peer dependencies:`, Object.keys(peerDependencies).join(', '));
   for (const peerDependency of Object.keys(peerDependencies)) {
     if (resolvedPeerDependencies.includes(peerDependency)) {
       continue;
