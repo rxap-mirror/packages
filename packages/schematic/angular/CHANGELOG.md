@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.2.0-dev.0...@rxap/schematic-angular@19.2.0-dev.1) (2026-01-13)
+
+### Bug Fixes
+
+- update package groups ([b10916e](https://gitlab.com/rxap/packages/commit/b10916e3d8272353615eee07174fabb7126188fa))
+
 # [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.1.1-dev.3...@rxap/schematic-angular@19.2.0-dev.0) (2026-01-13)
 
 ### Features

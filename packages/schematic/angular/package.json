@@ -1,5 +1,5 @@
 {
-  "version": "19.2.0-dev.0",
+  "version": "19.2.0-dev.1",
   "name": "@rxap/schematic-angular",
   "description": "Provides schematics for generating Angular components, services, and related files, particularly focused on creating tables, forms, data grids, and accordions with NestJS integration. It offers tools for generating UI elements with backend connectivity, including data sources, methods, and form handling. This package aims to streamline the development of data-driven Angular applications with a focus on material design and backend integration.\n",
   "license": "GPL-3.0-or-later",
