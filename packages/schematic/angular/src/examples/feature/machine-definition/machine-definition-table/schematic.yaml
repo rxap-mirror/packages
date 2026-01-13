@@ -1,0 +1,107 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: machine-definition
+  backend: open-api
+  sortable: true
+  modifiers:
+    - show-archived-slide
+  headerButton:
+    role: navigation
+    permission: machine-type-definition.create
+    options:
+      route: "/machine-definition/create"
+  openApi:
+    operationId: machine-type-definition-controller-getByFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  columnList:
+    - name: __removedAt
+      kind: date
+      inactive: true
+      hidden: true
+    - name: name
+      hasFilter: true
+    - name: companyName
+      hasFilter: true
+    - name: version
+      kind: custom
+      html: "v{{element.version}}"
+    - name: status
+      pipeList:
+        - name: toMachineTypeDefinitionStatusEnumValue
+          namedImport: ToMachineTypeDefinitionStatusEnumValuePipe
+          moduleSpecifier: enum
+        - async
+  actionList:
+    - type: details
+      role: navigation
+      icon: visibility
+      permission: machine-type-definition.get
+      checkFunction: "!element.__archived"
+      options:
+        route: "/machine-definition/{{uuid}}/details"
+    - type: edit
+      role: form
+      permission: machine-type-definition.update
+      checkFunction: "!element.__archived"
+      refresh: true
+      options:
+        customComponent: true
+        formComponent: MachineDefinitionEditForm
+        loadFrom:
+          operationId: machine-type-definition-controller-getByUuid
+          parameters:
+            uuid: rowId
+        formInitial:
+          uuid: uuid
+          name: name
+          company: company?.uuid
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: machine-type-definition.archive
+      checkFunction: "!!element.__archived"
+      role: open-api
+      color: warn
+      options:
+        operationId: machine-type-definition-controller-delete
+        parameters:
+          uuid: rowId
+    - type: archive
+      role: open-api
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: machine-type-definition.archive
+      checkFunction: "!element.__archived"
+      options:
+        operationId: machine-type-definition-controller-archive
+        parameters:
+          uuid: rowId
+    - type: restore
+      role: open-api
+      refresh: true
+      inHeader: true
+      confirm: true
+      permission: machine-type-definition.archive
+      checkFunction: "!!element.__archived"
+      options:
+        operationId: machine-type-definition-controller-unarchive
+        parameters:
+          uuid: rowId
+    - type: import
+      role: navigation
+      svgIcon: database-import
+      permission: machine-type-definition.import
+      checkFunction: "!element.__archived"
+      options:
+        route: "/machine-definition/{{uuid}}/import"
+    - type: export
+      svgIcon: database-export
+      checkFunction: "!element.__archived"
+      permission: machine-type-definition.export
+

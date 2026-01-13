@@ -1,0 +1,63 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: data-definition-modbus-tcp
+  sortable: true
+  backend: open-api
+  openApi:
+    operationId: machine-type-definition-controller-getMeasurementsFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  columnList:
+    - name: name
+      hasFilter: true
+    - name: dataDefinitionType
+      pipeList:
+        - name: toDataDefinitionTypeEnumValue
+          namedImport: ToDataDefinitionTypeEnumValuePipe
+          moduleSpecifier: enum
+        - async
+    - name: share
+      kind: boolean
+    - name: readLevel
+    - name: writeLevel
+    - name: physicalUnitSymbol
+      source: physicalUnit?.symbol
+    - name: dataTriggerName
+      source: dataTrigger?.name
+    - name: connectionDataType
+      source: connection?.dataType
+      pipeList:
+        - name: "toDataTypesForProtocolEnumValue:element.connectionType"
+          namedImport: ToDataTypesForProtocolEnumValuePipe
+          moduleSpecifier: enum
+        - async
+    - name: connectionModbusAddress
+      source: connection?.modbusAddress
+    - name: connectionModbusFunction
+      source: connection?.modbusFunction
+      pipeList:
+        - name: toModbusFunctionsEnumValue
+          namedImport: ToModbusFunctionsEnumValuePipe
+          moduleSpecifier: enum
+        - async
+    - name: connectionConnectionId
+      source: connection?.connectionId
+    - name: dataId
+  actionList:
+    - type: delete
+      role: open-api
+      icon: delete
+      color: warn
+      refresh: true
+      confirm: true
+      options:
+        operationId: data-definition-controller-delete
+        parameters:
+          uuid: rowId
+    - type: details
+      role: navigation
+      icon: visibility
+      options:
+        route: "/data-definition/{{uuid}}/details"

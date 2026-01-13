@@ -1,0 +1,65 @@
+package: "@rxap/schematic-angular"
+name: accordion-component
+options:
+  name: service-network
+  backend: nestjs
+  multiple: true
+  header:
+    property:
+      name: name
+  persistent:
+    property:
+      name: uuid
+  identifier:
+    source: route
+    property:
+      name: uuid
+  upstream:
+    kind: open-api
+    operationId: vpn-router-controller-getByUuid@legacy
+  itemList:
+    - name: log-viewer
+      upstream:
+        kind: open-api
+        operationId: get_api_logs_retrieve_log@service-server
+    - name: connection-log
+      kind: table
+      table:
+        sortable:
+          enabled: true
+          default:
+            active: router
+            direction: asc
+        upstream:
+          kind: open-api
+          operationId: get_api_logs_connection_logs_get_connectionlogs_for_subnet@service-server
+          mapper:
+            kind: paged
+            pageIndex: page
+            pageSize: per_page
+            sortBy: sort
+            sortDirection: order
+            total: meta.total
+            list: connection_logs
+        columnList:
+          - name: router
+            filterControl:
+              kind: input
+          - name: username
+            filterControl:
+              kind: input
+          - name: clientIp
+            filterControl:
+              kind: input
+          - name: reason
+            filterControl:
+              kind: input
+          - name: begin
+            type: string
+            kind: date
+          - name: end
+            type: string
+            kind: date
+          - name: duration
+          - name: bytesSent
+          - name: bytesReceived

@@ -1,0 +1,49 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: data-definition-open-platform-protocol
+  backend: open-api
+  sortable: true
+  openApi:
+    operationId: machine-type-definition-controller-getMeasurementsFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  columnList:
+    - name: name
+      hasFilter: true
+    - name: dataDefinitionType
+      pipeList:
+        - name: toDataDefinitionTypeEnumValue
+          namedImport: ToDataDefinitionTypeEnumValuePipe
+          moduleSpecifier: enum
+        - async
+    - name: share
+      kind: boolean
+    - name: readLevel
+    - name: writeLevel
+    - name: physicalUnitSymbol
+      source: physicalUnit?.symbol
+    - name: dataTriggerName
+      source: dataTrigger?.name
+    - name: connectionSpezifikation
+      source: connection?.spezifikation
+    - name: connectionConnectionId
+      source: connection?.connectionId
+    - name: dataId
+  actionList:
+    - type: delete
+      role: open-api
+      icon: delete
+      refresh: true
+      confirm: true
+      color: warn
+      options:
+        operationId: data-definition-controller-delete
+        parameters:
+          uuid: rowId
+    - type: details
+      role: navigation
+      icon: visibility
+      options:
+        route: "/data-definition/{{uuid}}/details"

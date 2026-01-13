@@ -1,0 +1,139 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: machine
+  backend: open-api
+  sortable: true
+  modifiers:
+    - show-archived-slide
+  headerButton:
+    role: navigation
+    permission: machine.create
+    options:
+      route: "/machines/machine/create"
+  openApi:
+    operationId: machine-gui-controller-getByFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  columnList:
+    - name: __removedAt
+      kind: date
+      inactive: true
+      hidden: true
+    - name: name
+      kind: default
+      hasFilter: true
+    - name: thingName
+      kind: default
+      hasFilter: true
+    - name: machineTypeDefinitionName
+      kind: default
+      filterControl:
+        kind: input
+        formField:
+          cssClass: 'w-[300px]'
+    - name: lastConnection
+      kind: date
+      format: "dd.MM.yyyy HH:mm:ss"
+    - name: companyName
+      kind: default
+      hasFilter: true
+    - name: locationName
+      kind: default
+      hasFilter: true
+    - name: machineTypeDefinitionVersion
+      kind: component
+      filterControl:
+        kind: input
+        formField:
+          cssClass: 'w-[300px]'
+  actionList:
+    - type: details
+      role: navigation
+      icon: visibility
+      permission: machine.get
+      checkFunction: "!element.__archived"
+      options:
+        route: "/machines/machine/{{uuid}}/details"
+    - type: edit
+      role: form
+      permission: machine.update
+      checkFunction: "!element.__archived"
+      refresh: true
+      options:
+        customComponent: true
+        formComponent: EditMachineForm
+        loadFrom:
+          operationId: machine-gui-controller-getByUuid
+          parameters:
+            uuid: rowId
+        formInitial:
+          uuid: uuid
+          thing:
+            uuid: thingUuid
+            name: thingName
+          company:
+            uuid: companyUuid
+            name: companyName
+          location:
+            uuid: locationUuid
+            name: locationName
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: machine.archive
+      checkFunction: "!!element.__archived"
+      role: open-api
+      color: warn
+      options:
+        operationId: machine-controller-delete
+        parameters:
+          uuid: rowId
+    - type: archive
+      role: open-api
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: machine.archive
+      checkFunction: "!element.__archived"
+      options:
+        operationId: machine-controller-archive
+        parameters:
+          uuid: rowId
+    - type: restore
+      role: open-api
+      refresh: true
+      inHeader: true
+      confirm: true
+      permission: machine.archive
+      checkFunction: "!!element.__archived"
+      options:
+        operationId: machine-controller-unarchive
+        parameters:
+          uuid: rowId
+    - type: upgrade
+      role: open-api
+      icon: upgrade
+      permission: machine.upgrade
+      tooltip: Upgrade
+      inHeader: true
+      confirm: true
+      checkFunction: "!element.__archived && element.machineTypeDefinitionStatus === 3"
+      refresh: true
+      options:
+        operationId: machine-controller-updateLastMachineTypeDefinition
+        body:
+          uuid: rowId
+    - type: regenerate-dashboards
+      role: open-api
+      icon: playlist_add
+      checkFunction: "!element.__archived"
+      confirm: true
+      tooltip: Regenerate the dashboards for this machine
+      options:
+        operationId: MachineTableController_regenerateDashboardsAction@service-app-settings-machine
+        parameters:
+          rowId: rowId

@@ -1,0 +1,318 @@
+package: "@rxap/schematic-angular"
+name: accordion-component
+options:
+  name: report
+  backend: nestjs
+  multiple: true
+  header:
+    property:
+      name: name
+  persistent:
+    property:
+      name: uuid
+  identifier:
+    source: route
+    property:
+      name: uuid
+  upstream:
+    kind: open-api
+    operationId: report-controller-getByUuid@legacy
+  propertyList:
+    - name: name
+      source: "name!"
+  itemList:
+    - name: general-information
+      title: Allgemeine Informationen
+      kind: data-grid
+      dataGrid:
+        itemList:
+          - name: name
+            source: "name!"
+            formControl:
+              kind: input
+              isRequired: true
+              formField:
+                cssClass:
+                  - "w-[500px]"
+          - name: link
+            source: "link!"
+          - name: company
+            source: "company!.uuid!"
+            type: string
+            pipeList:
+              - name: company
+                namedImport: CompanyPipe
+                moduleSpecifier: "@digitaix/eurogard-pipes"
+              - async
+              - getFromObject:name
+            formControl:
+              isRequired: true
+              kind: autocomplete-table-select
+              backend: nestjs
+              formField:
+                cssClass:
+                  - "w-[500px]"
+              toValue:
+                property:
+                  name: uuid
+              columnList:
+                - name: name
+                  hasFilter: true
+              resolver:
+                upstream:
+                  kind: open-api
+                  operationId: company-gui-controller-getByUuid@legacy
+                  mapper:
+                    kind: resolve
+                    value: uuid
+              upstream:
+                kind: open-api
+                operationId: company-gui-controller-getByFilter@legacy
+                mapper:
+                  kind: paged
+                  pageIndex: page
+                  pageSize: size
+                  sortBy: sort
+                  sortDirection: order
+                  list: entities
+                  total: maxCount
+                  filter:
+                    eq: ':'
+                    join: ';'
+          - name: location
+            source: "location!.uuid!"
+            type: string
+            pipeList:
+              - name: company
+                namedImport: CompanyPipe
+                moduleSpecifier: "@digitaix/eurogard-pipes"
+              - async
+              - getFromObject:name
+            formControl:
+              isRequired: true
+              kind: autocomplete-table-select
+              backend: nestjs
+              formField:
+                cssClass:
+                  - "w-[500px]"
+              toValue:
+                property:
+                  name: uuid
+              columnList:
+                - name: name
+                  hasFilter: true
+              resolver:
+                upstream:
+                  kind: open-api
+                  operationId: company-gui-controller-getByUuid@legacy
+                  mapper:
+                    kind: resolve
+                    value: uuid
+              upstream:
+                kind: open-api
+                operationId: company-gui-controller-getByFilter@legacy
+                mapper:
+                  kind: paged
+                  pageIndex: page
+                  pageSize: size
+                  sortBy: sort
+                  sortDirection: order
+                  list: entities
+                  total: maxCount
+                  filter:
+                    eq: ':'
+                    join: ';'
+          - name: resultType
+            source: "resultType!"
+            type: number
+            pipeList:
+              - name: toReportResultTypeEnumValue
+                namedImport: ToReportResultTypeEnumValuePipe
+                moduleSpecifier: enum
+              - async
+            formControl:
+              isRequired: true
+              formField:
+                cssClass:
+                  - "w-[500px]"
+              kind: select
+              backend: nestjs
+              upstream:
+                kind: open-api
+                operationId: options-controller-getReportResultType@legacy
+                mapper:
+                  kind: options
+                  toFunction: ToOptionsFromObject
+                  toValue: Number
+          - name: comment
+            source: "comment!"
+            formControl:
+              kind: textarea
+              formField:
+                cssClass:
+                  - "w-[500px]"
+          - name: type
+            type: number
+            source: "typ!"
+            header: Report Type
+            pipeList:
+              - name: toReportTypesEnumValue
+                namedImport: ToReportTypesEnumValuePipe
+                moduleSpecifier: enum
+              - async
+            formControl:
+              isRequired: true
+              kind: select
+              formField:
+                cssClass:
+                  - "w-[500px]"
+              backend: nestjs
+              upstream:
+                kind: open-api
+                operationId: options-controller-getReportTypes@legacy
+                mapper:
+                  kind: options
+                  toFunction: ToOptionsFromObject
+                  toValue: Number
+
+    - name: task-scheduling
+      upstream:
+        kind: open-api
+        operationId: report-controller-getReportExecutionPlan@legacy
+      title: Aufgabenplanung
+      kind: default
+      propertyList:
+        - name: cron
+    - name: notification
+      title: Bereitstellung
+      kind: default
+      upstream:
+        kind: open-api
+        operationId: report-controller-getReportNotification@legacy
+      propertyList:
+        - name: userList
+          isArray: true
+          memberList:
+            - name: uuid
+            - name: name
+            - name: isCloudUser
+            - name: isCompany
+    - name: configuration
+      title: Konfiguration
+      kind: data-grid
+      upstream:
+        kind: open-api
+        operationId: report-controller-getReportConfiguration@legacy
+      dataGrid:
+        itemList:
+          - name: time
+            formControl:
+              kind: input
+              isRequired: true
+              validatorList:
+                - "pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)"
+          - name: timespan
+            type: string
+            formControl:
+              kind: select
+              backend: nestjs
+              upstream:
+                kind: open-api
+                operationId: options-controller-getTimespan@legacy
+                mapper:
+                  kind: options
+                  toFunction: ToOptionsFromObject
+          - name: timezone
+            type: string
+            formControl:
+              kind: select
+              backend: nestjs
+              upstream:
+                kind: open-api
+                operationId: options-controller-getTimezone@legacy
+                mapper:
+                  kind: options
+          - name: retention
+            type: string
+            formControl:
+              kind: select
+              backend: nestjs
+              upstream:
+                kind: open-api
+                operationId: options-controller-getTimespan@legacy
+                mapper:
+                  kind: options
+                  toFunction: ToOptionsFromObject
+          - name: reportVariableList
+            formControl:
+              kind: default
+              role: array
+              controlList:
+                - name: uuid
+                - name: name
+                  kind: input
+                  isRequired: true
+                - name: value
+                  type: string
+                  kind: input
+                  isRequired: true
+                - name: variableType
+                  type: number
+                  kind: select
+                  backend: nestjs
+                  upstream:
+                    kind: open-api
+                    operationId: options-controller-getVariableType@legacy
+                    mapper:
+                      kind: options
+                      toFunction: ToOptionsFromObject
+                      toValue: Number
+                  isRequired: true
+    - name: reference
+      kind: tree-table
+      title: Zuordnung
+      table:
+        cssClass:
+          - "!min-w-0"
+        propertyList:
+          - name: referenceUuid
+          - name: type
+        columnList:
+          - name: isReferenced
+            cssClass:
+              - "!w-[200px]"
+              - "min-w-[200px]"
+              - "max-w-[200px]"
+            filterControl:
+              kind: select
+              formField:
+                cssClass:
+                  - "w-[200px]"
+            kind: component
+          - name: name
+            filterControl:
+              kind: input
+            cssClass:
+              - "w-[500px]"
+              - "max-w-[500px]"
+              - "min-w-[250px]"
+            type: string
+          - name: scopeType
+            cssClass:
+              - "!w-[280px]"
+              - "min-w-[280px]"
+              - "max-w-[280px]"
+            type: number
+            kind: component
+            filterControl:
+              kind: select
+              backend: nestjs
+              upstream:
+                kind: open-api
+                operationId: options-controller-getReferenceScopeTypes@legacy
+                mapper:
+                  kind: options
+                  toFunction: ToOptionsFromObject
+                  toValue: Number
+    - name: job-execution
+      kind: default

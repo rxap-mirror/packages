@@ -1,0 +1,103 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: dashboard
+  backend: open-api
+  sortable: true
+  modifiers:
+    - show-archived-slide
+  openApi:
+    operationId: dashboard-controller-getByFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  headerButton:
+    role: form
+    options:
+      customComponent: true
+      formComponent: DashboardCreateForm
+  propertyList:
+    - name: __archived
+      type: boolean
+  columnList:
+    - name: __removedAt
+      kind: date
+      inactive: true
+      hidden: true
+    - name: dashboardType
+      kind: component
+    - name: name
+      hasFilter: true
+      type: string
+    - name: link
+      hasFilter: true
+      kind: link
+    - name: comment
+      hasFilter: true
+      type: string
+    - name: locationName
+      source: location.name
+      hasFilter: true
+      type: string
+  actionList:
+    - type: details
+      icon: visibility
+      role: navigation
+      checkFunction: "!element.__archived"
+      options:
+        route: "/dashboards/dashboard/{{uuid}}/details"
+    - type: edit
+      role: form
+      icon: edit
+      refresh: true
+      permission: dashboard.update
+      checkFunction: "!element.__archived"
+      options:
+        customComponent: true
+        formComponent: DashboardEditForm
+        loadFrom:
+          operationId: dashboard-controller-getByUuid
+          parameters:
+            uuid: rowId
+        formInitial:
+          locationUuid: location.uuid
+          name: name
+          link: link
+          comment: comment
+          dashboardType: dashboardType
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: dashboard.delete
+      checkFunction: "!!element.__archived"
+      role: open-api
+      color: warn
+      options:
+        operationId: dashboard-controller-delete
+        parameters:
+          uuid: rowId
+    - type: archive
+      role: open-api
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: dashboard.archive
+      checkFunction: "!element.__archived"
+      options:
+        operationId: dashboard-controller-delete
+        parameters:
+          uuid: rowId
+    - type: restore
+      role: open-api
+      refresh: true
+      inHeader: true
+      confirm: true
+      permission: dashboard.archive
+      checkFunction: "!!element.__archived"
+      options:
+        operationId: dashboard-controller-delete
+        parameters:
+          uuid: rowId
+

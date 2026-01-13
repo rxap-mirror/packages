@@ -1,0 +1,83 @@
+package: "@rxap/schematic-angular"
+name: accordion-component
+options:
+  name: machine
+  backend: nestjs
+  multiple: true
+  header:
+    property:
+      name: name
+  persistent:
+    property:
+      name: uuid
+  identifier:
+    source: route
+    property:
+      name: uuid
+  upstream:
+    kind: open-api
+    operationId: machine-controller-getByUuid@legacy
+  propertyList:
+    - name: name
+      source: "name!"
+  itemList:
+    - name: dashboard
+      kind: table
+      title: Dashboard
+      upstream:
+        kind: open-api
+        operationId: machine-controller-get-dashboards-by-template@legacy
+        mapper:
+          kind: paged
+          pageIndex: page
+          pageSize: size
+          sortBy: sort
+          sortDirection: order
+          list: entities
+          total: maxCount
+          filter:
+            eq: ':'
+            join: ';'
+      table:
+        columnList:
+          - name: dashboardType
+            type: number
+            kind: component
+          - name: name
+            hasFilter: true
+          - name: link
+            hasFilter: true
+            type: string
+          - name: comment
+            hasFilter: true
+            type: string
+          - name: companyName
+            hasFilter: true
+            type: string
+    - name: live-values
+      kind: tree-table
+      title: LiveValues
+      table:
+        cssClass:
+          - "!min-w-0"
+        columnList:
+          - name: name
+            cssClass:
+              - "w-[200px]"
+              - "max-w-[200px]"
+              - "min-w-[50px]"
+            type: string
+            kind: default
+          - name: lastValue
+            cssClass:
+              - "!w-[200px]"
+              - "min-w-[50px]"
+              - "max-w-[200px]"
+            type: string
+          - name: lastTimestamp
+            cssClass:
+              - "!w-[200px]"
+              - "min-w-[200px]"
+              - "max-w-[200px]"
+            type: number
+            kind: date

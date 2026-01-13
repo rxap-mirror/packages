@@ -1,0 +1,114 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: node-red
+  backend: open-api
+  sortable: true
+  modifiers:
+    - show-archived-slide
+  openApi:
+    operationId: node-red-rule-controller-getByFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  propertyList:
+    - name: link
+      type: string
+  columnList:
+    - name: __removedAt
+      kind: date
+      inactive: true
+      hidden: true
+    - name: name
+      hasFilter: true
+      type: string
+    - name: comment
+      hasFilter: true
+      type: string
+    - name: companyName
+      source: company.name
+      hasFilter: true
+    - name: filename
+      type: string
+  actionList:
+    - type: edit
+      role: form
+      permission: node-red.update
+      checkFunction: "!element.__archived"
+      refresh: true
+      options:
+        customComponent: true
+        formComponent: NodeRedEditForm
+        formInitial:
+          name: name
+          link: link
+          comment: filename
+          filename: filename
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: node-red.delete
+      checkFunction: "!!element.__archived"
+      role: open-api
+      color: warn
+      options:
+        operationId: node-red-rule-controller-delete
+        parameters:
+          uuid: rowId
+    - type: archive
+      role: open-api
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: node-red.archive
+      checkFunction: "!element.__archived"
+      options:
+        operationId: node-red-rule-controller-archive
+        parameters:
+          uuid: rowId
+    - type: restore
+      role: open-api
+      refresh: true
+      inHeader: true
+      confirm: true
+      permission: node-red.archive
+      checkFunction: "!!element.__archived"
+      options:
+        operationId: node-red-rule-controller-unarchive
+        parameters:
+          uuid: rowId
+    - type: open-iframe
+      role: navigation
+      icon: visibility
+      permission: node-red.get
+      tooltip: "Open in iframe"
+      checkFunction: "!element.__archived && !!element.link"
+      options:
+        route: "{{uuid}}/inline"
+        relativeTo: true
+    - type: open-tab
+      icon: open_in_new
+      tooltip: "Open in tab"
+      permission: node-red.get
+      checkFunction: "!element.__archived && !!element.link"
+    - type: vpn-cert-upload
+      icon: cloud_upload
+      tooltip: Upload VPN Certificate
+      refresh: true
+      checkFunction: "!element.__archived"
+      permission: node-red.upload
+    - type: node-red-generate
+      icon: playlist_add
+      tooltip: Node-RED generieren
+      role: open-api
+      refresh: true
+      confirm: true
+      checkFunction: "!element.__archived"
+      permission: node-red.generate
+      options:
+        operationId: node-red-rule-controller-nodeRedSrc
+        parameters:
+          node-red-uuid: rowId
+

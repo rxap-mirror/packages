@@ -1,0 +1,41 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: physical-unit
+  cssClass:
+    - "!min-w-0"
+  sortable: true
+  backend: data-source
+  propertyList:
+    - name: uuid
+  columnList:
+    - name: name
+    - name: priority
+      type: number
+    - name: messageType
+      kind: options
+      type: number
+      optionList:
+        - value: 0
+          display: Information
+        - value: 1
+          display: Fehler
+        - value: 2
+          display: Warnung
+  actionList:
+    - type: edit
+      role: form
+      refresh: true
+      icon: edit
+      options:
+        customComponent: true
+        formComponent: MessageGroupEditForm
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      role: open-api
+      options:
+        operationId: message-group-controller-delete@legacy
+      color: warn

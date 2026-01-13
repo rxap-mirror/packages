@@ -1,0 +1,43 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: data-trigger
+  sortable: true
+  backend: data-source
+  cssClass:
+    - "!min-w-0"
+  propertyList:
+    - name: uuid
+  columnList:
+    - name: name
+    - name: triggerType
+      kind: options
+      type: number
+      optionList:
+        - value: 0
+          display: Zyklisch
+        - value: 1
+          display: Bei Wertänderung
+    - name: value1
+      type: string
+    - name: value2
+      type: string
+    - name: value3
+      type: string
+  actionList:
+    - type: edit
+      role: form
+      refresh: true
+      icon: edit
+      options:
+        customComponent: true
+        formComponent: DataTriggerEditForm
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      role: open-api
+      options:
+        operationId: data-trigger-controller-delete@legacy
+      color: warn

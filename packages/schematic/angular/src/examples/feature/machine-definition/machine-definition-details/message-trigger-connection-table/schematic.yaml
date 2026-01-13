@@ -1,0 +1,38 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: message-trigger-connection
+  sortable: true
+  backend: open-api
+  openApi:
+    operationId: machine-type-definition-controller-getMessagesFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  columnList:
+    - name: name
+      hasFilter: true
+    - name: share
+      kind: boolean
+    - name: readLevel
+    - name: writeLevel
+    - name: messageGroupName
+      source: messageGroup?.name
+    - name: dataId
+  actionList:
+    - type: delete
+      role: open-api
+      icon: delete
+      color: warn
+      refresh: true
+      confirm: true
+      options:
+        operationId: data-definition-controller-delete
+        parameters:
+          uuid: rowId
+    - type: details
+      role: navigation
+      icon: visibility
+      options:
+        route: "../messages/{{uuid}}/details"
+        relativeTo: true

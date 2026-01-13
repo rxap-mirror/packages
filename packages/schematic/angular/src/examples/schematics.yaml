@@ -1,0 +1,18 @@
+- package: '@rxap/plugin-workspace'
+  name: init
+  options:
+    packages: false
+    standalone: false
+    skipLicense: true
+- package: '@rxap/plugin-gitlab-ci'
+  name: init
+  options:
+    onlyPackages: false
+    dte: true
+    skipFormat: false
+- package: '@rxap/plugin-gitlab-ci'
+  name: docker
+  options:
+    tags:
+      - kaniko
+    skipFormat: false

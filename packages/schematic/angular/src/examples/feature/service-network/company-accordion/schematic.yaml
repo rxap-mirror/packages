@@ -1,0 +1,119 @@
+package: "@rxap/schematic-angular"
+name: accordion-component
+options:
+  name: company
+  backend: nestjs
+  multiple: true
+  header:
+    property:
+      name: name
+  identifier:
+    source: route
+    property:
+      name: uuid
+  upstream:
+    kind: open-api
+    operationId: company-gui-controller-getByUuid@legacy
+  itemList:
+    - name: servicenetworks
+      kind: table
+      title: Service Networks
+      table:
+        sortable: true
+        rowId:
+          name: uuid
+        upstream:
+          kind: open-api
+          operationId: get_api_companies_inherited_routers@service-server
+          mapper:
+            kind: paged
+            total: meta?.pages
+            list: routers
+            pageIndex: page
+            pageSize: per_page
+            sortBy: sort
+            sortDirection: order
+            filter:
+              property: filters
+              map:
+                filter: value
+        sort:
+          direction: asc
+          active: name
+        columnList:
+          - name: name
+            kind: default
+            filterControl:
+              kind: input
+          - name: vpn-server-ip
+            kind: copy-to-clipboard
+            isOptional: true
+            source: subnet?.server_ip
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[160px]'
+          - name: netmask-server
+            kind: copy-to-clipboard
+            source: subnet?.netmask
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[180px]'
+          - name: vpn-router-ip
+            isOptional: true
+            source: ip
+            kind: copy-to-clipboard
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[160px]'
+          - name: vpn-port
+            kind: default
+            source: subnet?.port
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[140px]'
+          - name: vpn-proto
+            kind: default
+            source: subnet?.protocol
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[160px]'
+          - name: vpn-dhcp-start
+            kind: copy-to-clipboard
+            source: subnet?.dhcp_start
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[170px]'
+          - name: vpn-dhcp-end
+            kind: copy-to-clipboard
+            source: subnet?.dhcp_end
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[160px]'
+          - name: ip-servicenet
+            kind: copy-to-clipboard
+            source: subnet?.plantnet_ip
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[160px]'
+          - name: netmask-servicenet
+            kind: copy-to-clipboard
+            isOptional: true
+            source: subnet?.plantnet_mask
+            filterControl:
+              kind: input
+              formField:
+                cssClass: 'w-[210px]'
+          - name: comment
+            kind: default
+            isOptional: true
+            source: subnet?.comment
+            filterControl:
+              kind: input

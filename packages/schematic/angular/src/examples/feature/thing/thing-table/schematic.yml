@@ -1,0 +1,115 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: thing
+  backend: open-api
+  title: Router
+  sortable: true
+  modifiers:
+    - show-archived-slide
+  headerButton:
+    role: form
+    permission: thing.create
+    options:
+      customComponent: true
+      formComponent: ThingCreateForm
+  openApi:
+    operationId: thing-gui-controller-getByFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  columnList:
+    - name: __removedAt
+      kind: date
+      inactive: true
+      hidden: true
+    - name: name
+      hasFilter: true
+    - name: macAddress
+      hasFilter: true
+    - name: uuid
+      kind: copy-to-clipboard
+      hasFilter: true
+      inactive: true
+    - name: accessKey
+      kind: copy-to-clipboard
+      hasFilter: true
+      inactive: true
+    - name: locationName
+      hasFilter: true
+    - name: lastConnection
+      kind: date
+    - name: online
+      kind: boolean
+    - name: companyName
+      hasFilter: true
+    - name: type
+      pipeList:
+        - name: thingTyp
+          namedImport: ThingTypPipe
+          moduleSpecifier: "@digitaix/eurogard-pipes"
+  actionList:
+    - type: edit
+      role: form
+      permission: thing.update
+      checkFunction: "!element.__archived"
+      refresh: true
+      options:
+        customComponent: true
+        formComponent: ThingEditForm
+        loadFrom:
+          operationId: thing-gui-controller-getByUuid
+          parameters:
+            uuid: rowId
+        formInitial:
+          name: name
+          macAddress: macAddress
+          token: token
+          onlineInterval: onlineInterval
+          location:
+            uuid: locationUuid
+            name: locationName
+          type: type
+          nodeRedExist: nodeRedExist
+    - type: vpn
+      icon: vpn_lock
+      checkFunction: "element['subnet'] !== null && !element.__archived"
+      role: navigation
+      options:
+        route: "/vpn/{{uuid}}/details"
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: thing.archive
+      checkFunction: "!!element.__archived"
+      role: open-api
+      color: warn
+      options:
+        operationId: thing-controller-delete
+        parameters:
+          uuid: rowId
+    - type: archive
+      role: open-api
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: thing.archive
+      checkFunction: "!element.__archived"
+      options:
+        operationId: thing-controller-archive
+        parameters:
+          uuid: rowId
+    - type: restore
+      role: open-api
+      refresh: true
+      inHeader: true
+      confirm: true
+      permission: thing.archive
+      checkFunction: "!!element.__archived"
+      options:
+        operationId: thing-controller-unarchive
+        parameters:
+          uuid: rowId
+

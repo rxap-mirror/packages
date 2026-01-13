@@ -1,0 +1,66 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: report
+  backend: nestjs
+  sortable: true
+  rowId:
+    name: uuid
+  modifiers:
+    - show-archived-slide
+  headerButton:
+    role: form
+    permission: report.create
+    options:
+      customComponent: true
+      formComponent: CreateForm
+  propertyList:
+    - name: __archived
+      type: boolean
+  columnList:
+    - name: __removedAt
+      kind: date
+      inactive: true
+      hidden: true
+    - name: resultType
+      kind: icon
+    - name: name
+      type: string
+      hasFilter: true
+    - name: companyName
+      type: string
+      hasFilter: true
+    - name: locationName
+      type: string
+      hasFilter: true
+  actionList:
+    - type: details
+      icon: visibility
+      permission: report.get
+      role: navigation
+      checkFunction: "!element.__archived"
+      options:
+        route: "/report/{{rowId}}/details"
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: report.delete
+      checkFunction: "!!element.__archived"
+      role: operation
+      color: warn
+    - type: archive
+      role: operation
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: report.archive
+      checkFunction: "!element.__archived"
+    - type: restore
+      role: operation
+      refresh: true
+      inHeader: true
+      confirm: true
+      permission: report.archive
+      checkFunction: "!!element.__archived"
