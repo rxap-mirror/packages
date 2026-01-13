@@ -40,7 +40,10 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import { Project } from 'ts-morph';
+import {
+  Project,
+  Writers,
+} from 'ts-morph';
 import {
   NESTJS_CACHE_MANAGER_VERSION,
   NESTJS_CONFIG_VERSION,
@@ -294,26 +297,9 @@ export async function initApplicationGenerator(
           const itemList = ExtractExistingConfigValidation(moduleSourceFile);
           for (const item of [
             {
-              name: 'PORT',
-              type: 'number',
-              defaultValue: port.toFixed(0),
-            },
-            {
               name: 'GLOBAL_API_PREFIX',
               defaultValue: w => w.quote(globalApiPrefix),
-            },
-            {
-              name: 'THROTTLER_TTL',
-              defaultValue: '1',
-            },
-            {
-              name: 'THROTTLER_LIMIT',
-              defaultValue: '10',
-            },
-            {
-              name: 'COOKIE_SECRET',
-              defaultValue: 'GenerateRandomString()',
-            },
+            }
           ] as Array<CoerceNestAppConfigOptionsItem>) {
             if (!itemList.find(i => i.name === item.name)) {
               itemList.push(item);
@@ -321,11 +307,26 @@ export async function initApplicationGenerator(
           }
           CoerceNestAppConfig(configSourceFile, {
             itemList,
+            expandList: [
+              w => {
+                w.write('serverValidationSchema(environment,');
+                Writers.object({
+                  port: port.toFixed(0),
+                })(w);
+                w.write(')');
+              },
+              'corsValidationSchema',
+              'defaultValidationSchema'
+            ],
             overwrite: options.overwrite,
           });
           CoerceImports(configSourceFile, {
-            namedImports: [ 'GenerateRandomString' ],
-            moduleSpecifier: '@rxap/utilities',
+            namedImports: [ 'serverValidationSchema', 'corsValidationSchema' ],
+            moduleSpecifier: '@rxap/nest-server',
+          });
+          CoerceImports(configSourceFile, {
+            namedImports: [ 'defaultValidationSchema' ],
+            moduleSpecifier: '@rxap/nest-utilities',
           });
         },
         [

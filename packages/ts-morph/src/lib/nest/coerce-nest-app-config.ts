@@ -14,13 +14,17 @@ export interface CoerceNestAppConfigOptionsItem {
 }
 
 export interface CoerceNestAppConfigOptions {
-  itemList: Array<CoerceNestAppConfigOptionsItem>;
+  itemList?: Array<CoerceNestAppConfigOptionsItem>;
+  /**
+   * A list of function that will be called to expand the validation schema.
+   */
+  expandList?: Array<string | WriterFunction>;
   overwrite?: boolean;
 }
 
 export function CoerceNestAppConfig(sourceFile: SourceFile, options: CoerceNestAppConfigOptions): void {
 
-  const { itemList, overwrite } = options;
+  const { itemList = [], expandList = [], overwrite } = options;
 
   const objVariableDeclaration = CoerceVariableDeclaration(sourceFile, 'validationSchema', {
     type: 'SchemaMap',
@@ -67,6 +71,20 @@ export function CoerceNestAppConfig(sourceFile: SourceFile, options: CoerceNestA
     } else {
       sourceFile.insertStatements(schemaIndex, writeValidationSchemaExpression(item));
     }
+  }
+
+  for (const expand of expandList) {
+    const initializer = objVariableDeclaration.getInitializerOrThrow();
+    initializer.asKindOrThrow(SyntaxKind.ObjectLiteralExpression).addSpreadAssignment({
+      expression: typeof expand === 'function' ? expand : expand.endsWith(')') ? expand : `${ expand }(environment)`,
+    });
+  }
+
+  if (expandList.length) {
+    CoerceImports(sourceFile, {
+      moduleSpecifier: '../environments/environment',
+      namedImports: [ 'environment' ],
+    });
   }
 
 }

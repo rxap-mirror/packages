@@ -78,3 +78,6 @@ docs
 
 compodoc
 !packages/plugin/compodoc
+
+swagger/**/*.*
+!swagger/**/openapi.json

@@ -8,9 +8,10 @@ import { RxapLogger } from './logger';
 @Global()
 @Module({
   providers: [
+    RxapLogger,
     {
       provide: Logger,
-      useClass: RxapLogger,
+      useExisting: RxapLogger,
     },
   ],
   exports: [ Logger ],

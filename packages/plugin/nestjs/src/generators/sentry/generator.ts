@@ -3,7 +3,6 @@ import {
   CoerceImports,
   CoerceNestAppConfig,
   CoerceNestModuleImport,
-  CoerceNestModuleProvider,
 } from '@rxap/ts-morph';
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import { AddPackageJsonDependency } from '@rxap/workspace-utilities';
@@ -22,7 +21,7 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentryGeneratorSche
       moduleName: 'SentryModule',
       structures: [
         {
-          moduleSpecifier: '@rxap/nest-sentry',
+          moduleSpecifier: '@sentry/nestjs/setup',
           namedImports: [ 'SentryModule' ],
         },
         {
@@ -33,84 +32,32 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentryGeneratorSche
           namedImports: [ 'environment' ],
           moduleSpecifier: '../environments/environment',
         },
+      ],
+      importWriter: w => w.writeLine('SentryModule.forRoot()'),
+    },
+  );
+
+  CoerceNestModuleImport(
+    sourceFile,
+    {
+      overwrite: options.overwrite,
+      moduleName: 'SentryLoggerModule',
+      structures: [
         {
-          namedImports: [ 'GetLogLevels' ],
-          moduleSpecifier: '@rxap/nest-utilities',
-        },
-        {
-          namedImports: [ 'SentryOptionsFactory' ],
           moduleSpecifier: '@rxap/nest-sentry',
+          namedImports: [ 'SentryLoggerModule', 'SentryModuleOptionsFactory' ],
         },
       ],
       importWriter: w => {
-        w.writeLine('SentryModule.registerAsync(');
+        w.writeLine('SentryLoggerModule.registerAsync(');
         Writers.object({
-          imports: '[ ConfigModule ]',
-          inject: '[ ConfigService ]',
-          useFactory: 'SentryOptionsFactory(environment)',
-        })(w);
-        w.write(',');
-        Writers.object({
-          logLevels: 'GetLogLevels()',
+          useClass: 'SentryModuleOptionsFactory',
         })(w);
         w.write(')');
       },
     },
   );
 
-}
-
-function CoerceSentryInterceptorOptionsProvider(sourceFile: SourceFile) {
-  CoerceNestModuleProvider(
-    sourceFile,
-    {
-      providerObject: {
-        provide: 'SENTRY_INTERCEPTOR_OPTIONS',
-        useValue: Writers.object({
-          filters: w1 => {
-            w1.write('[');
-            Writers.object({
-              type: 'HttpException',
-              filter: '(exception: HttpException) => 500 > exception.getStatus()',
-            })(w1);
-            w1.write(']');
-          },
-        }),
-      },
-      structures: [
-        {
-          namedImports: [ 'SENTRY_INTERCEPTOR_OPTIONS' ],
-          moduleSpecifier: '@rxap/nest-sentry',
-        },
-        {
-          namedImports: [ 'HttpException' ],
-          moduleSpecifier: '@nestjs/common',
-        },
-      ],
-    }
-  );
-}
-
-function CoerceAppInterceptorProvider(sourceFile: SourceFile) {
-  CoerceNestModuleProvider(
-    sourceFile,
-    {
-      providerObject: {
-        provide: 'APP_INTERCEPTOR',
-        useClass: 'SentryInterceptor',
-      },
-      structures: [
-        {
-          namedImports: [ 'APP_INTERCEPTOR' ],
-          moduleSpecifier: '@nestjs/core',
-        },
-        {
-          namedImports: [ 'SentryInterceptor' ],
-          moduleSpecifier: '@rxap/nest-sentry',
-        },
-      ],
-    }
-  );
 }
 
 function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
@@ -124,8 +71,6 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
     (project, [ sourceFile ]) => {
 
       CoerceSentryModule(sourceFile, options);
-      // CoerceSentryInterceptorOptionsProvider(sourceFile);
-      // CoerceAppInterceptorProvider(sourceFile);
 
     },
     [ '/app/app.module.ts' ],
@@ -145,36 +90,13 @@ function UpdateAppConfig(tree: Tree, options: SentryGeneratorSchema, projectName
     (project, [ sourceFile ]) => {
 
       CoerceNestAppConfig(sourceFile, {
-        itemList: [
-          {
-            name: 'SENTRY_DSN',
-            defaultValue: options.dsn,
-          },
-          {
-            name: 'SENTRY_ENABLED',
-            defaultValue: 'environment.sentry?.enabled ?? false',
-          },
-          {
-            name: 'SENTRY_ENVIRONMENT',
-          },
-          {
-            name: 'SENTRY_RELEASE',
-          },
-          {
-            name: 'SENTRY_SERVER_NAME',
-            defaultValue: `process.env.ROOT_DOMAIN ?? environment.app`,
-          },
-          {
-            name: 'SENTRY_DEBUG',
-            defaultValue: 'environment.sentry?.debug ?? false',
-          },
-        ],
+        expandList: ['sentryValidationSchema'],
         overwrite: options.overwrite,
       });
 
       CoerceImports(sourceFile, {
-        namedImports: [ 'environment' ],
-        moduleSpecifier: '../environments/environment',
+        namedImports: [ 'sentryValidationSchema' ],
+        moduleSpecifier: '@rxap/nest-sentry',
       });
 
     },

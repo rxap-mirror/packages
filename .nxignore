@@ -8,3 +8,7 @@
 /packages/plugin/package.json
 /packages/schematic/package.json
 node_modules
+
+!swagger/**/openapi.json
+
+!/open-api/**/src/lib/**

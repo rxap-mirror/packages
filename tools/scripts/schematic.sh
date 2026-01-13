@@ -111,7 +111,7 @@ yarn nx run "$name:$target"
 echo "Build time: $(($(date +%s) - startTimestamp))s"
 
 # will be done by the target linking of the project including all dependencies
-# bash tools/scripts/dist-node-modules-linking.sh
+bash tools/scripts/dist-node-modules-linking.sh
 
 # Search for package.json files in the current directory and its subdirectories
 find dist -type d -name node_modules -prune -o -name "package.json" -type f | while read -r file; do
