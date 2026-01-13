@@ -313,19 +313,20 @@ function addClassValidatorDecoratorForType(
         moduleSpecifier: 'class-validator',
       });
       break;
-    case 'unknown':
-      CoerceDecorator(
-        propertyDeclaration,
-        'ApiProperty',
-        {
-          arguments: [ Writers.object({ type: w => w.quote('unknown') }) ],
-        },
-      );
-      CoerceImports(sourceFile, {
-        namedImports: [ 'ApiProperty' ],
-        moduleSpecifier: '@nestjs/swagger',
-      });
-      break;
+    // If the property type is unknown we should NOT add the ApiProperty decorator
+    // case 'unknown':
+    //   CoerceDecorator(
+    //     propertyDeclaration,
+    //     'ApiProperty',
+    //     {
+    //       arguments: [ Writers.object({ type: w => w.quote('unknown') }) ],
+    //     },
+    //   );
+    //   CoerceImports(sourceFile, {
+    //     namedImports: [ 'ApiProperty' ],
+    //     moduleSpecifier: '@nestjs/swagger',
+    //   });
+    //   break;
   }
 
 }
