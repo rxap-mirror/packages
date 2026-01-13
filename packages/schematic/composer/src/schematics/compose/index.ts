@@ -20,6 +20,7 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import {
+  FindProjectByPath,
   GetProject,
   GetProjectRoot,
   GetProjectSourceRoot,
@@ -226,11 +227,16 @@ function executeSchematicCommand(
   sourceRoot: string,
   globalOptions: Partial<GlobalOptions>,
   filter: string | null,
+  file: string | null
 ) {
   let schematicCommandList = getSchematicCommandList(host, sourceRoot);
 
   if (filter) {
     schematicCommandList = schematicCommandList.filter(path => dirname(path).split('/').pop() === filter);
+  }
+
+  if (file) {
+    schematicCommandList = schematicCommandList.filter(path => path.endsWith(file));
   }
 
   if (!schematicCommandList.length) {
@@ -251,6 +257,7 @@ function forFeature(
   featureName: string,
   globalOptions: Partial<GlobalOptions>,
   filter: string | null,
+  file: string | null
 ) {
 
   const projectSourceRoot = GetProjectSourceRoot(host, projectName);
@@ -268,28 +275,44 @@ function forFeature(
     throw new SchematicsException(`The feature '${ featureName }' does not exists in project '${ projectName }'`);
   }
 
-  return executeSchematicCommand(host, featureSourceRoot, globalOptions, filter);
+  return executeSchematicCommand(host, featureSourceRoot, globalOptions, filter, file);
 
 }
 
-function forProject(host: Tree, projectName: string, globalOptions: Partial<GlobalOptions>, filter: string | null) {
+function forProject(host: Tree, projectName: string, globalOptions: Partial<GlobalOptions>, filter: string | null, file: string | null) {
 
   const projectRoot = GetProjectRoot(host, projectName);
 
   console.log('Use project root:', projectRoot);
 
-  return executeSchematicCommand(host, projectRoot, globalOptions, filter);
+  return executeSchematicCommand(host, projectRoot, globalOptions, filter, file);
 
 }
 
-function forWorkspace(host: Tree, globalOptions: Partial<GlobalOptions>, filter: string | null, directory: string | null) {
+function forFile(host: Tree, file: string, globalOptions: Partial<GlobalOptions>, filter: string | null) {
+
+  const project = FindProjectByPath(host, file, true);
+
+  if (!project?.name) {
+    throw new Error(`Unable to find project for file '${ file }'!`);
+  }
+
+  const projectRoot = GetProjectRoot(host, project.name);
+
+  console.log('Use project root:', projectRoot);
+
+  return executeSchematicCommand(host, projectRoot, globalOptions, filter, file);
+
+}
+
+function forWorkspace(host: Tree, globalOptions: Partial<GlobalOptions>, filter: string | null, directory: string | null, file: string | null) {
   directory ??= '/';
   if (directory !== '/') {
     console.log(`Use directory: ${ directory } relative to workspace source root`);
   } else {
     console.log('Use workspace source root');
   }
-  return executeSchematicCommand(host, CoercePrefix(directory, '/'), globalOptions, filter);
+  return executeSchematicCommand(host, CoercePrefix(directory, '/'), globalOptions, filter, file);
 
 }
 
@@ -312,6 +335,7 @@ function NormalizeComposeOptions(options: ComposeSchematicSchema): NormalizedCom
     overwrite: overwrite,
     replace: options.replace ?? false,
     directory: options.directory ?? null,
+    file: options.file ?? null,
   });
 }
 
@@ -324,6 +348,7 @@ export default function (options: ComposeSchematicSchema) {
     overwrite,
     replace,
     directory,
+    file,
   } = normalizedOptions;
 
   const globalOptions: Partial<GlobalOptions> = {
@@ -343,12 +368,14 @@ export default function (options: ComposeSchematicSchema) {
 
     if (project) {
       if (feature) {
-        rule = forFeature(host, project, feature, globalOptions, filter);
+        rule = forFeature(host, project, feature, globalOptions, filter, file);
       } else {
-        rule = forProject(host, project, globalOptions, filter);
+        rule = forProject(host, project, globalOptions, filter, file);
       }
+    } else if (file) {
+      rule = forFile(host, file, globalOptions, filter);
     } else {
-      rule = forWorkspace(host, globalOptions, filter, directory);
+      rule = forWorkspace(host, globalOptions, filter, directory, file);
     }
 
     return chain([

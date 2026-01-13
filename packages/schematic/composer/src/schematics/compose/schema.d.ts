@@ -5,4 +5,5 @@ export interface ComposeSchematicSchema {
   overwrite?: boolean | string[] | string;
   filter?: string;
   directory?: string;
+  file?: string;
 }
