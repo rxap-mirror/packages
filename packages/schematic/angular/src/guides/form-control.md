@@ -17,6 +17,7 @@ All controls share these common properties (inheriting from `abstract-control`):
 | `state` | `any` | The initial value/state of the control. |
 | `validatorList` | `array<string>` | List of Angular validators (e.g., `['required', 'email']`). |
 | `cssClass` | `string` | Custom CSS classes for the control. |
+| `template` | `string` | Path to a custom Handlebars template file. |
 
 ## Form Field Options
 
@@ -205,6 +206,17 @@ Combines autocomplete with table selection.
   columnList:
     - name: fullName
 ```
+
+## Custom Templates
+
+You can provide a custom Handlebars template for any control using the `template` property. This allows full control over the generated HTML for that specific form field.
+
+```yaml
+- name: customField
+  kind: input
+  template: libs/my-lib/src/templates/custom-input.hbs
+```
+
 
 ## Validators
 

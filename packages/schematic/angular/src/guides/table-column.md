@@ -18,6 +18,7 @@ All columns share these common properties:
 | `cssClass` | `string` | Custom CSS class for the cell. |
 | `pipeList` | `array` | List of Angular pipes to apply to the value. |
 | `modifiers` | `array` | List of column modifiers. |
+| `template` | `string` | Path to a custom Handlebars template file. |
 
 ## Column Kinds
 
@@ -148,6 +149,15 @@ Allows you to provide a custom HTML template directly in the config.
 - name: details
   kind: custom
   html: "<span class='badge'>{{ element.status }}</span>"
+```
+
+### Custom Template File
+
+For more complex customizations where inline HTML is insufficient, you can provide a path to a Handlebars template file.
+
+```yaml
+- name: fancyColumn
+  template: libs/shared/templates/fancy-cell.hbs
 ```
 
 ## Advanced Usage
