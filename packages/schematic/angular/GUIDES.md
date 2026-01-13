@@ -40,11 +40,14 @@ To generate both the **Angular Table** and the **NestJS Controller**, you must c
 | Option | Description | Required | Example |
 | :--- | :--- | :--- | :--- |
 | `name` | The name of the component/entity. | Yes | `user-list` |
-| `project` | The name of the *frontend* project. | Yes | `admin-panel` |
-| `feature` | The feature module name where the component belongs. | Yes | `user` |
+| `project` | The name of the *frontend* project. | Inferred* | `admin-panel` |
+| `feature` | The feature module name where the component belongs. | Inferred* | `user` |
 | `nestModule` | The name of the **NestJS module** where the controller should be created. | **Yes** (for backend) | `api-user` |
 | `backend` | Configuration for data handling. Setup for NestJS generation. | **Yes** | `{ kind: 'nestjs' }` |
 | `columnList` | Array of columns to display. | Yes | `[{ name: 'email', kind: 'text' }]` |
+
+*\*Inferred when using the `--file` option with the composer generator.*
+
 
 ### Backend Configuration (Critical)
 
@@ -118,27 +121,38 @@ Here is a complete example that generates a "User Table" with:
 
 ## Step 3: Run the Generator
 
-Use the `compose` generator to execute your `schematic.yaml`.
+The easiest and recommended way to execute your `schematic.yaml` is by using the `--file` option. This allows the generator to automatically infer the **project**, **feature**, and **target directory** from the file's location.
+
+```bash
+yarn nx generate @rxap/schematic-composer:compose --file libs/feature/user/src/lib/schematic.yaml
+```
+
+> [!NOTE]
+> When using the `--file` option, you can typically omit `project`, `feature`, and `directory` from your `schematic.yaml` file, as they will be detected based on the path provided.
+
+### Alternative: Search by Directory
+
+If you want the generator to search for all `schematic.yaml` files within a directory tree:
 
 ```bash
 yarn nx generate @rxap/schematic-composer:compose --directory libs/feature/user/src/lib
 ```
 
 **Arguments:**
--   `--directory`: The directory containing your `schematic.yaml`.
--   `--filter`: (Optional) If you have multiple folders with schematic files, you can filter by folder name.
+-   `--file`: (Primary) The direct path to your `schematic.yaml`.
+-   `--directory`: A starting directory to search for one or more `schematic.yaml` files.
+-   `--filter`: (Optional) If searching via directory, filter for schematic files within a specific sub-folder name.
+
 
 ## Important Notes for AI Agents
 
 When generating code for users:
 
-1.  **Always ask for the Target Project & Feature:** You need the `project` (frontend app/lib) and `feature` (location within the project) to place files correctly.
-2.  **Identify the Backend Module:** Ask the user which NestJS module (`nestModule`) manages the data. This is crucial for linking the table to the API.
-3.  **Define Columns Clearly:** Ensure `columnList` has at least `name` and `kind`. Common kinds: `text`, `date`, `number`, `boolean`.
-4.  **Use `kind: nestjs`:** This is the magic switch. Without `backend: { kind: 'nestjs' }`, only the frontend component is created (mock data).
-5.  **Filesystem Locations:**
-    -   Frontend component will go to: `libs/<project>/src/lib/<feature>/<name>`
-    -   Backend controller will go to: `libs/<nestModule>/src/lib/controllers` (or similar, based on workspace structure).
+1.  **Prefer the `--file` option:** When executing the composer, always use the `--file` argument with the path to the `schematic.yaml` you just created.
+2.  **Target Locations:** Even though `--file` infers locations, ensure the `schematic.yaml` itself is placed in the correct logical feature directory of the workspace.
+3.  **Identify the Backend Module:** Ask the user or search for the NestJS module (`nestModule`) that should own the backend logic.
+4.  **Backend Integration:** Ensure `backend: { kind: 'nestjs' }` and `nestModule` are correctly set to enable controller generation.
+
 
 ## Troubleshooting
 

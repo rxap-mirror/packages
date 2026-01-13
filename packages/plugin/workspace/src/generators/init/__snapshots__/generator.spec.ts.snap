@@ -106,7 +106,11 @@ exports[`init should init default workspace 3`] = `
     },
     "@nx/jest:jest": {
       "cache": true,
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "options": {
         "passWithNoTests": true
       },
@@ -120,7 +124,9 @@ exports[`init should init default workspace 3`] = `
   },
   "defaultProject": "workspace",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*"],
+    "default": [
+      "{projectRoot}/**/*"
+    ],
     "build": [
       "production",
       "{projectRoot}/package.json",
@@ -189,7 +195,9 @@ exports[`init should init default workspace 3`] = `
   "cli": {
     "packageManager": "yarn"
   },
-  "plugins": ["@rxap/plugin-workspace/plugin"]
+  "plugins": [
+    "@rxap/plugin-workspace/plugin"
+  ]
 }
 "
 `;
@@ -263,7 +271,10 @@ exports[`init should init default workspace 5`] = `
   "singleQuote": true,
   "overrides": [
     {
-      "files": ["*.yml", "*.yaml"],
+      "files": [
+        "*.yml",
+        "*.yaml"
+      ],
       "options": {
         "singleQuote": false
       }
@@ -277,7 +288,9 @@ exports[`init should init default workspace 6`] = `
 "{
   "compilerOptions": {
     "paths": {
-      "workspace-tools": ["tools/src/index.ts"]
+      "workspace-tools": [
+        "tools/src/index.ts"
+      ]
     }
   }
 }
@@ -286,15 +299,20 @@ exports[`init should init default workspace 6`] = `
 
 exports[`init should init default workspace 7`] = `
 "module.exports = {
-  extends: ['@commitlint/config-conventional'],
-  ignores: [(message) => message.toLowerCase().startsWith('wip')],
+  extends: [ '@commitlint/config-conventional' ],
+  ignores: [
+    message => message.toLowerCase()
+      .startsWith('wip'),
+  ],
 };
 "
 `;
 
 exports[`init should init default workspace 8`] = `
 "{
-  "extends": ["gitlab>rxap/renovate-config"]
+  "extends": [
+    "gitlab>rxap/renovate-config"
+  ]
 }
 "
 `;
@@ -955,11 +973,20 @@ exports[`init should init default workspace 12`] = `
 exports[`init should init default workspace 13`] = `
 "{
   "root": true,
-  "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "@nx"
+  ],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -969,7 +996,9 @@ exports[`init should init default workspace 13`] = `
             "depConstraints": [
               {
                 "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "onlyDependOnLibsWithTags": [
+                  "*"
+                ]
               }
             ]
           }
@@ -977,17 +1006,32 @@ exports[`init should init default workspace 13`] = `
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@nx/typescript"
+      ],
       "rules": {}
     },
     {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nx/javascript"],
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "extends": [
+        "plugin:@nx/javascript"
+      ],
       "rules": {}
     },
     {
-      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "files": [
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.spec.js",
+        "*.spec.jsx"
+      ],
       "env": {
         "jest": true
       },
@@ -1006,8 +1050,7 @@ exports[`init should init default workspace 14`] = `
 exports[`init should init default workspace 15`] = `
 "const nxPreset = require('@nx/jest/preset').default;
 
-module.exports = { ...nxPreset };
-"
+module.exports = { ...nxPreset };"
 `;
 
 exports[`init should init default workspace 16`] = `
@@ -1015,13 +1058,12 @@ exports[`init should init default workspace 16`] = `
 import { getJestProjectsAsync } from '@nx/jest';
 
 export default async (): Promise<Config> => ({
-  projects: await getJestProjectsAsync(),
-});
-"
+  projects: await getJestProjectsAsync()
+});"
 `;
 
 exports[`init should init default workspace 17`] = `
-"package: '@rxap/plugin-workspace'
+"package: "@rxap/plugin-workspace"
 name: init
 options:
   packages: false

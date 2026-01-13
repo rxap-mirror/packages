@@ -109,9 +109,8 @@ export function ApplyTsMorphProject(
 
   const treeAdapter = new TreeAdapter(tree);
 
-  return Promise.allSettled(project
+  return Promise.all(project
     .getSourceFiles().map(async sourceFile => {
-
       const filePath = join(basePath, sourceFile.getFilePath());
 
       if (tree.exists(filePath)) {
@@ -122,6 +121,7 @@ export function ApplyTsMorphProject(
           treeAdapter.overwrite(filePath, newContent);
         }
       } else {
+        console.log(`Applying changes to ${filePath}`);
         treeAdapter.create(filePath, await getFormatedFullText(sourceFile, filePath, prettier));
       }
 

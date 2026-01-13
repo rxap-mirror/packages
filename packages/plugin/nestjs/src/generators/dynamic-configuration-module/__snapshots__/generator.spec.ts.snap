@@ -15,9 +15,9 @@ export const {
   .build();
 
 @Module({
-  controllers: [],
-  providers: [],
-  exports: [],
+	controllers: [],
+	providers: [],
+	exports: [],
 })
 @Global()
 export class TestModule extends ConfigurableModuleClass {
@@ -112,9 +112,9 @@ export const {
   .build();
 
 @Module({
-  controllers: [],
-  providers: [],
-  exports: [],
+	controllers: [],
+	providers: [],
+	exports: [],
 })
 export class TestModule extends ConfigurableModuleClass {
   static register(options: typeof OPTIONS_TYPE): DynamicModule {

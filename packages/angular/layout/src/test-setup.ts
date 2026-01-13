@@ -17,3 +17,8 @@ jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
   // Change this to fit your unit test needs.
   return args[0];
 });
+
+jest.mock('prettier', () => ({
+  format: (str: string) => str,
+  resolveConfig: () => Promise.resolve({}),
+}));

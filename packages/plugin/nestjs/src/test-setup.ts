@@ -23,6 +23,11 @@ jest.doMock('@rxap/node-utilities', () => ({
   GetLatestPackageVersion: jest.fn().mockImplementation(async () => 'latest'),
 }));
 
+jest.mock('prettier', () => ({
+  format: (str: string) => str,
+  resolveConfig: () => Promise.resolve({}),
+}));
+
 Object.defineProperties(globalThis, {
   TextDecoder: { value: TextDecoder },
   TextEncoder: { value: TextEncoder },
