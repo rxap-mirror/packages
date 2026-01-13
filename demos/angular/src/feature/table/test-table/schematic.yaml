@@ -4,7 +4,7 @@ options:
   name: test
   backend:
     kind: nestjs
-    project: demo-api
+    project: service-nest
     module: AppModule
   columnList:
     - name: name

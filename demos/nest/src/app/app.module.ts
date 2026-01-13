@@ -17,6 +17,7 @@ import {
   SentryLoggerModule,
   SentryModuleOptionsFactory,
 } from '@rxap/nest-sentry';
+import { TestTableModule } from '../test-table/test-table.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import {
     SentryLoggerModule.registerAsync({
       useClass: SentryModuleOptionsFactory,
     }),
+    TestTableModule,
   ],
   controllers: [AppController],
   providers: [
