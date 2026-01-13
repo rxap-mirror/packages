@@ -6,6 +6,13 @@ This guide explains how to use `@rxap/schematic-composer` in conjunction with `@
 
 The process involves creating a declarative configuration file (`schematic.yaml`) that defines the table structure and backend requirements. The `@rxap/schematic-composer:compose` generator reads this file and executes the `@rxap/schematic-angular:table-component` schematic with the provided options.
 
+> [!TIP]
+> For more detailed information on all available options, check out the [Detailed Table Component Guide](./src/guides/table-component.md).
+
+> [!TIP]
+> Need to create forms? Check out the [Form Component Guide](./src/guides/form-component.md) and [Form Control Guide](./src/guides/form-control.md).
+
+
 ## Prerequisites
 
 Ensure you have the following packages in your Nx workspace:
