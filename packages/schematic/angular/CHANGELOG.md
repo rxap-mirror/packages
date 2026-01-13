@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.1.1-dev.3...@rxap/schematic-angular@19.2.0-dev.0) (2026-01-13)
+
+### Features
+
+- **docs:** add custom template support in column and control guides ([25b56e0](https://gitlab.com/rxap/packages/commit/25b56e01eb6acb6fc6482f14718c148d19d14380))
+- **docs:** add detailed schematic guides for Angular components ([c2e0da8](https://gitlab.com/rxap/packages/commit/c2e0da80662274620d2e0d4120c317d240c80a38))
+- **docs:** enhance table column, action, and form control guides ([c4e1b66](https://gitlab.com/rxap/packages/commit/c4e1b66256c608044d5634f4bfa82d36a1832cfe))
+- **schematics:** add examples for accordion and table components ([c1125e0](https://gitlab.com/rxap/packages/commit/c1125e0e2a99c1a6f685a1cbbf9dcf548ba6744f))
+
 ## [19.1.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.1.1-dev.2...@rxap/schematic-angular@19.1.1-dev.3) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/schematic-angular

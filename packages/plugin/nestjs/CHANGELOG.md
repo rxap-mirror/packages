@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.2.0-dev.12...@rxap/plugin-nestjs@20.2.0-dev.13) (2026-01-13)
+
+### Features
+
+- **nestjs:** enhance Sentry setup and validation schema handling ([aabfcb9](https://gitlab.com/rxap/packages/commit/aabfcb9f32d463c277517b39b1b68548a5116706))
+
 # [20.2.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@20.2.0-dev.11...@rxap/plugin-nestjs@20.2.0-dev.12) (2026-01-12)
 
 ### Bug Fixes

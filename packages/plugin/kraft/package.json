@@ -1,12 +1,12 @@
 {
-  "version": "20.0.4-dev.2",
+  "version": "20.0.4-dev.3",
   "name": "@rxap/plugin-kraft",
   "description": "This plugin provides executors for interacting with KraftCloud. It allows you to deploy, manage instances, and create tunnels for your KraftCloud applications. The plugin also includes an init generator to set up your workspace for KraftCloud development.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/plugin-utilities": "^20.0.5-dev.2",
-    "@rxap/workspace-utilities": "^19.8.1-dev.2",
+    "@rxap/plugin-utilities": "^20.0.5-dev.3",
+    "@rxap/workspace-utilities": "^19.8.1-dev.3",
     "colors": "1.4.0",
     "glob": "10.3.10",
     "nx": "20.5.0",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@19.0.5-dev.3...@rxap/schematic-composer@19.1.0-dev.0) (2026-01-13)
+
+### Features
+
+- **schematic:** add support for filtering schematics by file ([4896121](https://gitlab.com/rxap/packages/commit/489612153a49ab4d77a1e627392420d56192e228))
+
 ## [19.0.5-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@19.0.5-dev.2...@rxap/schematic-composer@19.0.5-dev.3) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/schematic-composer

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.6.0-dev.2...@rxap/ts-morph@1.6.0-dev.3) (2026-01-13)
+
+### Features
+
+- **nestjs:** enhance Sentry setup and validation schema handling ([aabfcb9](https://gitlab.com/rxap/packages/commit/aabfcb9f32d463c277517b39b1b68548a5116706))
+
 # [1.6.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.6.0-dev.1...@rxap/ts-morph@1.6.0-dev.2) (2025-09-18)
 
 **Note:** Version bump only for package @rxap/ts-morph

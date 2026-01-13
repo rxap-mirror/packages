@@ -34,11 +34,11 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       }
     ]
   },

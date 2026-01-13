@@ -1,12 +1,12 @@
 {
-  "version": "20.0.6-dev.10",
+  "version": "20.0.6-dev.11",
   "name": "@rxap/preset-angular",
   "description": "This package provides generators for initializing Angular projects with pre-configured settings. It leverages other `@rxap` plugins to set up workspace and Angular-specific configurations, including options for package management, standalone components, license, and repository URL. It aims to streamline the setup process for new Angular projects.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/plugin-angular": "^20.3.0-dev.1",
-    "@rxap/plugin-workspace": "^20.2.0-dev.6",
+    "@rxap/plugin-angular": "^20.3.0-dev.2",
+    "@rxap/plugin-workspace": "^20.2.0-dev.7",
     "tslib": "2.6.2"
   },
   "author": {

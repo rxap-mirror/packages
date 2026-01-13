@@ -39,27 +39,27 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/compiler",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/platform-browser-dynamic",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@rxap/config",
@@ -71,7 +71,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0-dev.0"
+        "version": "16.5.0-dev.1"
       }
     ]
   },

@@ -11,7 +11,7 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/platform-browser": "^19.2.1",
-    "@rxap/utilities": "^16.5.0-dev.0"
+    "@rxap/utilities": "^16.5.0-dev.1"
   },
   "author": {
     "name": "Merzough Münker",
@@ -36,23 +36,23 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0-dev.0"
+        "version": "16.5.0-dev.1"
       }
     ]
   },

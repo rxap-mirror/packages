@@ -11,7 +11,7 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@rxap/rxjs": "^1.1.16",
-    "@rxap/utilities": "^16.5.0-dev.0",
+    "@rxap/utilities": "^16.5.0-dev.1",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -37,11 +37,11 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.1"
+        "version": "19.2.16"
       },
       {
         "package": "@rxap/rxjs",
@@ -49,7 +49,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0-dev.0"
+        "version": "16.5.0-dev.1"
       }
     ]
   },
