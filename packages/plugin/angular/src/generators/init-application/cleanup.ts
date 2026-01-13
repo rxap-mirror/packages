@@ -17,7 +17,7 @@ import { join } from 'path';
 import { SyntaxKind } from 'ts-morph';
 import { InitApplicationGeneratorSchema } from './schema';
 
-export function cleanup(tree: Tree, projectName: string, options: InitApplicationGeneratorSchema) {
+export async function cleanup(tree: Tree, projectName: string, options: InitApplicationGeneratorSchema) {
 
   const sourceRoot = GetProjectSourceRoot(tree, projectName);
 
@@ -43,7 +43,7 @@ export function cleanup(tree: Tree, projectName: string, options: InitApplicatio
 
   if (options.moduleFederation !== 'remote') {
 
-    TsMorphAngularProjectTransform(tree, {
+    await TsMorphAngularProjectTransform(tree, {
       project: projectName,
     }, (_, [ appRoutes, appComponent ]) => {
       RemoveRoute(appRoutes, {
@@ -77,7 +77,7 @@ export function cleanup(tree: Tree, projectName: string, options: InitApplicatio
       }, { infix: 'base' });
       // endregion
 
-      TsMorphAngularProjectTransform(tree, {
+      await TsMorphAngularProjectTransform(tree, {
         project: projectName,
       }, (_, [ entryRoutes ]) => {
         CoerceDefaultExport(entryRoutes.getVariableStatement('remoteRoutes')!.getDeclarations()[0]);
@@ -85,7 +85,7 @@ export function cleanup(tree: Tree, projectName: string, options: InitApplicatio
         'app/remote-entry/entry.routes.ts',
       ]);
       if (tree.exists(join(sourceRoot, 'app/remote-entry/entry.component.ts'))) {
-        TsMorphAngularProjectTransform(tree, {
+        await TsMorphAngularProjectTransform(tree, {
           project: projectName,
         }, (_, [ entryComponent ]) => {
           entryComponent.getImportDeclaration('./nx-welcome.component')?.remove();
@@ -111,7 +111,7 @@ export function cleanup(tree: Tree, projectName: string, options: InitApplicatio
         ]);
       }
       if (options.host) {
-        TsMorphAngularProjectTransform(tree, {
+        await TsMorphAngularProjectTransform(tree, {
           project: options.host,
         }, (_, [ appRoutes ]) => {
           RemoveRoute(appRoutes, {

@@ -11,7 +11,7 @@ import {
   IsApplicationProject,
 } from '@rxap/workspace-utilities';
 
-export default function update(host: Tree) {
+export default async function update(host: Tree) {
 
   for (const [ projectName, project ] of getProjects(host)) {
     if (!IsApplicationProject(project) || !IsAngularProject(project)) {
@@ -34,7 +34,7 @@ export default function update(host: Tree) {
     }
     content = content.replace('provideLayout(', 'provideLayout(withUserProfileDataSource(UserProfileDataSource),');
     host.write(layoutRoutesPath, content);
-    TsMorphAngularProjectTransform(host, {
+    await TsMorphAngularProjectTransform(host, {
       project: projectName,
     }, (_, [ sourceFile ]) => {
       CoerceImports(sourceFile, [

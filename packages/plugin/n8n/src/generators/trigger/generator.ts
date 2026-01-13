@@ -6,7 +6,7 @@ import { updatePackageJson } from './update-package-json';
 
 export async function nodeGenerator(tree: Tree, { project, name, nodeNamePrefix = 'rxap', description = name }: TriggerGeneratorSchema) {
   createTriggerJson(tree, project, name, nodeNamePrefix);
-  createTriggerTs(tree, project, name, nodeNamePrefix, description);
+  await createTriggerTs(tree, project, name, nodeNamePrefix, description);
   updatePackageJson(tree, project, name);
 }
 

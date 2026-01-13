@@ -15,7 +15,7 @@ import {
 
 export function coerceEnvironmentFiles(tree: Tree, options: { project: string, overwrite?: boolean }) {
 
-  TsMorphNestProjectTransform(
+  return TsMorphNestProjectTransform(
     tree,
     {
       project: options.project,

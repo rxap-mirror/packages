@@ -15,7 +15,7 @@ import {
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 
-export default function update(tree: Tree) {
+export default async function update(tree: Tree) {
   // ...
 
   console.log('Add separate external apps provider to app config');
@@ -44,7 +44,7 @@ export default function update(tree: Tree) {
       continue;
     }
 
-    TsMorphAngularProjectTransform(tree, { project: projectName }, (_, [appConfig]) => {
+    await TsMorphAngularProjectTransform(tree, { project: projectName }, (_, [appConfig]) => {
       CoerceAppConfigProvider(appConfig, {
         providers: ['provideExternalApps()']
       });

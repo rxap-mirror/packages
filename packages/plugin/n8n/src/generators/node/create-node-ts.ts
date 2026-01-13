@@ -10,7 +10,7 @@ import { Writers } from 'ts-morph';
 
 export function createNodeTs(tree: Tree, projectName: string, nodeName: string, nodeNamePrefix: string, description: string) {
 
-  TsMorphProjectTransform(tree, {
+  return TsMorphProjectTransform(tree, {
     project: projectName,
   }, (_, sourceFile) => {
 

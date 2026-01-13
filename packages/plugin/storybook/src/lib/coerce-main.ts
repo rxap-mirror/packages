@@ -43,9 +43,9 @@ function CoerceObjectLiteralExpressionPropertyAssignment(
 
 }
 
-export async function coerceMain(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
+export function coerceMain(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
 
-  TsMorphProjectTransform(tree, {
+  return TsMorphProjectTransform(tree, {
     project: projectName,
   }, (_, sourceFile) => {
 

@@ -273,10 +273,10 @@ export async function initApplicationGenerator(
       updateTsConfig(tree, projectName);
 
       if (options.cleanup || options.coerce) {
-        cleanup(tree, projectName, options);
+        await cleanup(tree, projectName, options);
       }
 
-      coerceEnvironmentFiles(
+      await coerceEnvironmentFiles(
         tree,
         {
           ...options,
@@ -284,10 +284,10 @@ export async function initApplicationGenerator(
         },
       );
 
-      coerceAppConfig(tree, projectName, options);
+      await coerceAppConfig(tree, projectName, options);
 
       if (options.generateMain) {
-        updateMainFile(tree, projectName, project, options);
+        await updateMainFile(tree, projectName, project, options);
       }
       if (options.localazy) {
         coerceLocalazyConfigFile(tree, project);
@@ -296,7 +296,7 @@ export async function initApplicationGenerator(
         await generateAuthentication(tree, projectName, project, options);
       }
       if (options.monolithic) {
-        generateMonolithic(tree, projectName, project, options);
+        await generateMonolithic(tree, projectName, project, options);
       }
       if (options.moduleFederation === 'remote') {
         if (options.overwrite) {
@@ -313,7 +313,7 @@ export async function initApplicationGenerator(
           });
         }
         if (options.host) {
-          linkMfeRemoteWithHost(tree, projectName, options);
+          await linkMfeRemoteWithHost(tree, projectName, options);
         }
       }
       if (options.moduleFederation) {
@@ -342,7 +342,7 @@ export async function initApplicationGenerator(
         target: join(sourceRoot, 'assets'),
         overwrite: options.overwrite,
       });
-      coerceTestSetup(tree, projectName);
+      await coerceTestSetup(tree, projectName);
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);

@@ -7,6 +7,9 @@ export function ApplyTsMorphProjectRule(
   basePath = '',
   organizeImports = true,
   fixMissingImports = false,
+  prettier = true
 ): Rule {
-  return tree => ApplyTsMorphProject(tree, project, basePath, organizeImports, fixMissingImports);
+  return async tree => {
+    await ApplyTsMorphProject(tree, project, basePath, organizeImports, fixMissingImports, prettier);
+  };
 }

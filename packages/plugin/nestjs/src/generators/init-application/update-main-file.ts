@@ -17,7 +17,7 @@ export function updateMainFile(
   options: InitApplicationGeneratorSchema,
 ) {
 
-  TsMorphNestProjectTransform(tree, {
+  return TsMorphNestProjectTransform(tree, {
     project: projectName,
     backend: undefined,
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder

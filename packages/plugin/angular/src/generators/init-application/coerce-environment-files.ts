@@ -12,7 +12,7 @@ import { InitApplicationGeneratorSchema } from './schema';
 
 export function coerceEnvironmentFiles(tree: Tree, options: InitApplicationGeneratorSchema & { project: string }) {
 
-  TsMorphAngularProjectTransform(
+  return TsMorphAngularProjectTransform(
     tree,
     {
       project: options.project,

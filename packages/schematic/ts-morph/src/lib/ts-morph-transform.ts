@@ -47,7 +47,9 @@ export function TsMorphTransformRule(
   projectOptions: Partial<ProjectOptions> = {},
   filePathFilter?: undefined | string | string[],
 ): Rule {
-  return tree => TsMorphTransform(tree, sourceRoot, cb as any, options, projectOptions, filePathFilter as any);
+  return async tree => {
+    await TsMorphTransform(tree, sourceRoot, cb as any, options, projectOptions, filePathFilter as any);
+  };
 }
 
 /**
@@ -78,7 +80,9 @@ export function TsMorphNestProjectTransformRule(
   cb: TsMorphTransformCallback,
   filePath?: undefined | string | string[],
 ): Rule {
-  return tree => TsMorphNestProjectTransform(tree, options, cb as any, filePath as any);
+  return async tree => {
+    await TsMorphNestProjectTransform(tree, options, cb as any, filePath as any);
+  };
 }
 
 /**
@@ -106,7 +110,9 @@ export function TsMorphAngularProjectTransformRule(
   cb: TsMorphTransformCallback,
   filePath?: undefined | string | string[],
 ): Rule {
-  return tree => TsMorphAngularProjectTransform(tree, options, cb as any, filePath as any);
+  return async tree => {
+    await TsMorphAngularProjectTransform(tree, options, cb as any, filePath as any);
+  };
 }
 
 export type TsMorphTransformFunctionRule<Options extends TsMorphNestProjectTransformOptions | TsMorphAngularProjectTransformOptions> = ((

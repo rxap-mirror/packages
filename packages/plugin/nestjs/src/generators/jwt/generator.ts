@@ -13,7 +13,7 @@ import { JwtGeneratorSchema } from './schema';
 
 function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
 
-  TsMorphNestProjectTransform(
+  return TsMorphNestProjectTransform(
     tree,
     {
       project: options.project,
@@ -65,7 +65,7 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
 
 function UpdateAppConfig(tree: Tree, options: JwtGeneratorSchema, projectName: string) {
 
-  TsMorphNestProjectTransform(
+  return TsMorphNestProjectTransform(
     tree,
     {
       project: options.project,
@@ -101,8 +101,8 @@ function UpdateAppConfig(tree: Tree, options: JwtGeneratorSchema, projectName: s
 
 export async function jwtGenerator(tree: Tree, options: JwtGeneratorSchema) {
   console.log('nestjs application jwt generator:', options);
-  UpdateAppModule(tree, options);
-  UpdateAppConfig(tree, options, options.project);
+  await UpdateAppModule(tree, options);
+  await UpdateAppConfig(tree, options, options.project);
   await AddPackageJsonDependency(tree, '@rxap/nest-jwt', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/jwt', 'latest', { soft: true });
 }

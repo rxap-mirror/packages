@@ -13,7 +13,7 @@ import { InitApplicationGeneratorSchema } from './schema';
 
 export function updateMainFile(
   tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
-  TsMorphAngularProjectTransform(tree, {
+  return TsMorphAngularProjectTransform(tree, {
     project: projectName,
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
   }, (project, [ sourceFile, mainSourceFile ]) => {

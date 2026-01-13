@@ -269,7 +269,7 @@ export async function initApplicationGenerator(
         }
       }
 
-      coerceEnvironmentFiles(
+      await coerceEnvironmentFiles(
         tree,
         {
           project: projectName,
@@ -277,7 +277,7 @@ export async function initApplicationGenerator(
           overwrite: options.overwrite,
         },
       );
-      TsMorphNestProjectTransform(
+      await TsMorphNestProjectTransform(
         tree,
         { project: projectName, backend: undefined, },
         (project: Project, [ moduleSourceFile, controllerSourceFile, configSourceFile ]) => {
@@ -340,7 +340,7 @@ export async function initApplicationGenerator(
       removeAppControllerSpecFile(tree, projectSourceRoot);
 
       if (options.generateMain) {
-        updateMainFile(tree, projectName, options);
+        await updateMainFile(tree, projectName, options);
       }
 
       if (options.healthIndicator || options.healthIndicatorList?.length) {

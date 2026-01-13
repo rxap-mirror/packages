@@ -132,7 +132,7 @@ export async function initComponentGenerator(
   }
 
   if (options.defaultExport) {
-    TsMorphAngularProjectTransform(tree, {
+    await TsMorphAngularProjectTransform(tree, {
       project: options.project,
       feature: options.feature,
       directory: buildRelativePath(tree, options, directory),

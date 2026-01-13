@@ -95,6 +95,7 @@ export * from './lib/get-project';
 export * from './lib/get-root-docker-options';
 export * from './lib/get-target-configuration-name-list';
 export * from './lib/get-workspace-name';
+export * from './lib/get-workspace-root';
 export * from './lib/get-workspace-scope';
 export * from './lib/has-components';
 export * from './lib/has-project-feature';

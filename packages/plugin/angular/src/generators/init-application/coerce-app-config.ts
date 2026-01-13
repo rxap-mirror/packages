@@ -8,7 +8,7 @@ import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import { InitApplicationGeneratorSchema } from './schema';
 
 export function coerceAppConfig(tree: Tree, projectName: string, options: InitApplicationGeneratorSchema,) {
-  TsMorphAngularProjectTransform(tree, {
+  return TsMorphAngularProjectTransform(tree, {
     project: projectName,
   }, (_, [ sourceFile ]) => {
     const providers: Array<string | ProviderObject> = [

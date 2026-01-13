@@ -54,7 +54,7 @@ describe('add-seperate-external-apps-provider migration', () => {
   });
 
   it('should run successfully', async () => {
-    update(tree);
+    await update(tree);
     expect(tree.read('apps/angularA/src/app/app.config.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('apps/angularB/src/app/app.config.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('apps/angularC/src/app/app.config.ts', 'utf-8')).toMatchSnapshot();

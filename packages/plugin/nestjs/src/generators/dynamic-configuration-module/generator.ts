@@ -35,7 +35,7 @@ export async function dynamicConfigurationModuleGenerator(
   coerceOptionsFactory(project, moduleName);
   coerceOptionsInterface(project, moduleName);
 
-  ApplyTsMorphProject(tree, project, projectLibSourceRoot);
+  await ApplyTsMorphProject(tree, project, projectLibSourceRoot);
 
   await LibraryIndexExportGenerator(tree, {
     project: options.project,

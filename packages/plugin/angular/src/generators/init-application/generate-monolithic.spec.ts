@@ -20,9 +20,9 @@ describe('generateMonolithic()', () => {
     });
   });
 
-  it('should generate a monolithic application configuration', () => {
+  it('should generate a monolithic application configuration', async () => {
 
-    generateMonolithic(tree, projectName, readProjectConfiguration(tree, projectName), {});
+    await generateMonolithic(tree, projectName, readProjectConfiguration(tree, projectName), {});
     expect(tree.children('app/src/app')).toMatchSnapshot();
     expect(tree.read('app/src/app/app.routes.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('app/src/app/layout.routes.ts', 'utf-8')).toMatchSnapshot();
@@ -30,9 +30,9 @@ describe('generateMonolithic()', () => {
 
   });
 
-  it('should use MinimalLayoutComponent and no navigation when moduleFederation is host', () => {
+  it('should use MinimalLayoutComponent and no navigation when moduleFederation is host', async () => {
 
-    generateMonolithic(tree, projectName, readProjectConfiguration(tree, projectName), {
+    await generateMonolithic(tree, projectName, readProjectConfiguration(tree, projectName), {
       moduleFederation: 'host'  as any,
     });
     expect(tree.children('app/src/app')).toMatchSnapshot();

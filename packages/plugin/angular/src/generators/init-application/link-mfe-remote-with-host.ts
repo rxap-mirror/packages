@@ -8,7 +8,7 @@ import { GetProjectSourceRoot } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitApplicationGeneratorSchema } from './schema';
 
-export function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApplicationGeneratorSchema) {
+export async function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: InitApplicationGeneratorSchema) {
 
   if (!options.host) {
     throw new Error('The host project must be defined');
@@ -23,7 +23,7 @@ export function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: 
     .replace(/^feature-/, '');
 
   if (isHostMonolithic && !options.standaloneImport) {
-    TsMorphAngularProjectTransform(tree, {
+    await TsMorphAngularProjectTransform(tree, {
       project: options.host,
     }, (project, [ layoutSourceFile ]) => {
       CoerceLayoutRoutes(layoutSourceFile, {
@@ -41,7 +41,7 @@ export function linkMfeRemoteWithHost(tree: Tree, projectName: string, options: 
       });
     }, [ 'app/layout.routes.ts' ]);
   } else {
-    TsMorphAngularProjectTransform(tree, {
+    await TsMorphAngularProjectTransform(tree, {
       project: options.host,
     }, (project, [ appRoutes ]) => {
       CoerceAppRoutes(appRoutes, {

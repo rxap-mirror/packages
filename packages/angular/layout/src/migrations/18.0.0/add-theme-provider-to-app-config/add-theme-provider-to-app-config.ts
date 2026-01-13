@@ -14,7 +14,7 @@ import {
   IsApplicationProject,
 } from '@rxap/workspace-utilities';
 
-export default function update(host: Tree) {
+export default async function update(host: Tree) {
   for (const [ projectName, project ] of getProjects(host)) {
     if (!IsApplicationProject(project) || !IsAngularProject(project)) {
       continue;
@@ -29,7 +29,7 @@ export default function update(host: Tree) {
       console.log(`The project ${ projectName } does not have a app.config.ts file. Skip Migration`);
       continue;
     }
-    TsMorphAngularProjectTransform(host, {
+    await TsMorphAngularProjectTransform(host, {
       project: projectName,
     }, (_, [ sourceFile ]) => {
       CoerceAppConfigProvider(sourceFile, {

@@ -85,8 +85,8 @@ export default ROUTES;`);
 export default ROUTES;`);
   });
 
-  it('should run successfully', () => {
-    update(tree);
+  it('should run successfully', async () => {
+    await update(tree);
     expect(tree.read('apps/angularB/src/app/layout.routes.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('apps/angularC/src/app/layout.routes.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('apps/angularD/src/app/layout.routes.ts', 'utf-8')).toMatchSnapshot();

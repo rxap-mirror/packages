@@ -53,8 +53,8 @@ describe('add-theme-provider-to-app-config migration', () => {
     tree.write('apps/angularD/src/app/app.config.ts', 'export const appConfig = { providers: [] };');
   });
 
-  it('should run successfully', () => {
-    update(tree);
+  it('should run successfully', async () => {
+    await update(tree);
     expect(tree.read('apps/angularC/src/app/app.config.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('apps/angularD/src/app/app.config.ts', 'utf-8')).toMatchSnapshot();
   });

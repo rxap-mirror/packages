@@ -14,7 +14,7 @@ export async function healthIndicatorInitGenerator(
   tree: Tree,
   options: HealthIndicatorInitGeneratorSchema,
 ) {
-  TsMorphNestProjectTransform(tree, {
+  await TsMorphNestProjectTransform(tree, {
     project: options.project,
     backend: undefined,
   }, (project, [ appModuleSourceFile, moduleSourceFile, controllerSourceFile ]) => {

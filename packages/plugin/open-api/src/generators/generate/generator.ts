@@ -90,17 +90,17 @@ export async function generateGenerator(
     DeleteRecursive(tree, join(projectRoot, 'nest', 'src'));
   }
 
-  TsMorphAngularProjectTransform(tree, {
+  await TsMorphAngularProjectTransform(tree, {
     project: options.project,
   }, project => GenerateInterfaces(openapi, project));
 
   // generate the angular code
-  TsMorphAngularProjectTransform(tree, {
+  await TsMorphAngularProjectTransform(tree, {
     project: options.project,
   }, project => GenerateOperation(openapi, project, options, angularGeneratorFunctionList));
 
   // generate the nestjs code
-  TsMorphAngularProjectTransform(tree, {
+  await TsMorphAngularProjectTransform(tree, {
     project: options.project,
   }, project => GenerateOperation(openapi, project, options, nestGeneratorFunctionList));
 

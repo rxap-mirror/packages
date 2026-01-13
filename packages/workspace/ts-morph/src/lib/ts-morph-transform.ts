@@ -44,31 +44,7 @@ export interface TsMorphTransformOptions {
 export function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
-  cb: (project: Project, sourceFile: SourceFile[]) => void,
-  options?: TsMorphTransformOptions,
-  projectOptions?: Partial<ProjectOptions>,
-  filePath?: string[],
-): void
-export function TsMorphTransform(
-  tree: TreeLike,
-  sourceRoot: string,
-  cb: (project: Project, sourceFile: SourceFile) => void,
-  options?: TsMorphTransformOptions,
-  projectOptions?: Partial<ProjectOptions>,
-  filePath?: string,
-): void
-export function TsMorphTransform(
-  tree: TreeLike,
-  sourceRoot: string,
-  cb: (project: Project, sourceFile: undefined) => void,
-  options?: TsMorphTransformOptions,
-  projectOptions?: Partial<ProjectOptions>,
-  filePath?: undefined,
-): void
-export function TsMorphTransform(
-  tree: TreeLike,
-  sourceRoot: string,
-  cb: (project: Project, sourceFile: SourceFile[]) => Promise<void>,
+  cb: (project: Project, sourceFile: SourceFile[]) => Promise<void> | void,
   options?: TsMorphTransformOptions,
   projectOptions?: Partial<ProjectOptions>,
   filePath?: string[],
@@ -76,7 +52,7 @@ export function TsMorphTransform(
 export function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
-  cb: (project: Project, sourceFile: SourceFile) => Promise<void>,
+  cb: (project: Project, sourceFile: SourceFile) => Promise<void> | void,
   options?: TsMorphTransformOptions,
   projectOptions?: Partial<ProjectOptions>,
   filePath?: string,
@@ -84,7 +60,7 @@ export function TsMorphTransform(
 export function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
-  cb: (project: Project, sourceFile: undefined) => Promise<void>,
+  cb: (project: Project, sourceFile: undefined) => Promise<void> | void,
   options?: TsMorphTransformOptions,
   projectOptions?: Partial<ProjectOptions>,
   filePath?: undefined,
@@ -110,14 +86,14 @@ export function TsMorphTransform(
  * - Throws an error if a specified file does not exist and is not marked as optional when `replace` is false.
  * - Throws an error if `filePathFilter` is not an array but multiple files are attempted to be processed.
  */
-export function TsMorphTransform(
+export async function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
   cb: TsMorphTransformCallback | AsyncTsMorphTransformCallback,
   options: TsMorphTransformOptions = {},
   projectOptions: Partial<ProjectOptions> = {},
   filePathFilter?: undefined | string | string[],
-): void | Promise<void> {
+): Promise<void> {
   const {
     replace = false,
     filter = true,
@@ -196,15 +172,9 @@ export function TsMorphTransform(
     }
   }
 
-  const result = (cb as any)(project, sourceFile);
+  await (cb as any)(project, sourceFile);
 
-  if (isPromise(result)) {
-    return result.then(() => {
-      ApplyTsMorphProject(tree, project, sourceRoot, false);
-    });
-  } else {
-    ApplyTsMorphProject(tree, project, sourceRoot, false);
-  }
+  await ApplyTsMorphProject(tree, project, sourceRoot, false);
 }
 
 export interface TsMorphNestProjectTransformOptions extends TsMorphTransformOptions {
@@ -221,7 +191,7 @@ export function TsMorphNestProjectTransform(
   options: Readonly<TsMorphNestProjectTransformOptions>,
   cb: (project: Project, sourceFile: SourceFile[]) => void,
   filePath: string[],
-): void
+): Promise<void>
 /**
  * @deprecated pass the filePath as array
  */
@@ -230,13 +200,13 @@ export function TsMorphNestProjectTransform(
   options: Readonly<TsMorphNestProjectTransformOptions>,
   cb: (project: Project, sourceFile: SourceFile) => void,
   filePath: string,
-): void
+): Promise<void>
 export function TsMorphNestProjectTransform(
   tree: TreeLike,
   options: Readonly<TsMorphNestProjectTransformOptions>,
   cb: (project: Project, sourceFile: undefined) => void,
   filePath?: undefined,
-): void
+): Promise<void>
 /**
  * Transforms a NestJS project using TypeScript morph transformations.
  *
@@ -252,7 +222,7 @@ export function TsMorphNestProjectTransform(
   options: Readonly<TsMorphNestProjectTransformOptions>,
   cb: TsMorphTransformCallback,
   filePath?: undefined | string | string[],
-): void {
+): Promise<void> {
   const basePath = BuildNestBasePath(tree, options);
   return TsMorphTransform(
     tree,
@@ -274,19 +244,19 @@ export function TsMorphAngularProjectTransform(
   options: Readonly<TsMorphAngularProjectTransformOptions>,
   cb: (project: Project, sourceFile: SourceFile[]) => void,
   filePath: string[],
-): void
+): Promise<void>
 export function TsMorphAngularProjectTransform(
   tree: TreeLike,
   options: Readonly<TsMorphAngularProjectTransformOptions>,
   cb: (project: Project, sourceFile: SourceFile) => void,
   filePath: string,
-): void
+): Promise<void>
 export function TsMorphAngularProjectTransform(
   tree: TreeLike,
   options: Readonly<TsMorphAngularProjectTransformOptions>,
   cb: (project: Project, sourceFile: undefined) => void,
   filePath?: undefined,
-): void
+): Promise<void>
 /**
  * Transforms an Angular project using TypeScript morph transformations.
  *
@@ -313,7 +283,7 @@ export function TsMorphAngularProjectTransform(
   options: Readonly<TsMorphAngularProjectTransformOptions>,
   cb: TsMorphTransformCallback,
   filePath?: undefined | string | string[],
-): void {
+): Promise<void> {
   const basePath = options.basePath ?? BuildAngularBasePath(tree, options);
   return TsMorphTransform(
     tree,
@@ -335,19 +305,19 @@ export function TsMorphProjectTransform(
   options: Readonly<TsMorphProjectTransformOptions>,
   cb: (project: Project, sourceFile: SourceFile[]) => void,
   filePath: string[],
-): void
+): Promise<void>
 export function TsMorphProjectTransform(
   tree: TreeLike,
   options: Readonly<TsMorphProjectTransformOptions>,
   cb: (project: Project, sourceFile: SourceFile) => void,
   filePath: string,
-): void
+): Promise<void>
 export function TsMorphProjectTransform(
   tree: TreeLike,
   options: Readonly<TsMorphProjectTransformOptions>,
   cb: (project: Project, sourceFile: undefined) => void,
   filePath?: undefined,
-): void
+): Promise<void>
 /**
  * Transforms a project using the TsMorph library based on specified options and a callback function.
  *
@@ -387,7 +357,7 @@ export function TsMorphProjectTransform(
   options: Readonly<TsMorphProjectTransformOptions>,
   cb: TsMorphTransformCallback,
   filePath?: undefined | string | string[],
-): void {
+): Promise<void> {
   return TsMorphTransform(
     tree,
     GetProjectRoot(tree, options.project),

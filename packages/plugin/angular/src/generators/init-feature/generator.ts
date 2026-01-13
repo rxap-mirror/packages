@@ -40,7 +40,7 @@ export async function initFeatureGenerator(
     DeleteProperties(options, [ 'project', 'overwrite' ]),
   );
 
-  TsMorphAngularProjectTransform(tree, {
+  await TsMorphAngularProjectTransform(tree, {
     project: options.project,
   }, (_, [ layoutSourceFile, featureSourceFile, navigationSourceFile ]) => {
     CoerceRoutes(featureSourceFile);

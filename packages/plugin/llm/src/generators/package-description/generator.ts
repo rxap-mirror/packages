@@ -65,7 +65,7 @@ export async function packageDescriptionGenerator(
   const systemPrompt = readFileSync(join(__dirname, 'system-prompts', 'generic.txt'), 'utf-8');
   let context = '';
 
-  TsMorphTransform(tree, GetProjectSourceRoot(tree, projectName), (project: Project) => {
+  await TsMorphTransform(tree, GetProjectSourceRoot(tree, projectName), (project: Project) => {
     context = projectToContext(project, GetProjectPackageJson(tree, projectName).name);
   });
 

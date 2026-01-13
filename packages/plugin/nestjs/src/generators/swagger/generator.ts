@@ -37,7 +37,7 @@ export async function swaggerGenerator(
 
   const project = readProjectConfiguration(tree, projectName);
 
-  coerceEnvironmentFiles(tree, options);
+  await coerceEnvironmentFiles(tree, options);
   updateNxDefaults(tree, options);
   updateWebpackConfig(tree, projectName, project);
   updateProjectTargets(tree, projectName, project, options);

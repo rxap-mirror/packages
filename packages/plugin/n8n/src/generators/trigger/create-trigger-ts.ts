@@ -10,7 +10,7 @@ import { Writers } from 'ts-morph';
 
 export function createTriggerTs(tree: Tree, projectName: string, triggerName: string, namePrefix: string, description: string) {
 
-  TsMorphProjectTransform(tree, {
+  return TsMorphProjectTransform(tree, {
     project: projectName,
   }, (_, sourceFile) => {
 

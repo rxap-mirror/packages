@@ -6,7 +6,7 @@ import { updatePackageJson } from './update-package-json';
 
 export async function nodeGenerator(tree: Tree, { project, name, nodeNamePrefix = 'rxap', description = name }: NodeGeneratorSchema) {
   createNodeJson(tree, project, name, nodeNamePrefix);
-  createNodeTs(tree, project, name, nodeNamePrefix, description);
+  await createNodeTs(tree, project, name, nodeNamePrefix, description);
   updatePackageJson(tree, project, name);
 }
 

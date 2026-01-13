@@ -1,5 +1,7 @@
 import { CreateProject } from '@rxap/ts-morph';
 import {
+  GetRootPackageJson,
+  getWorkspaceRoot,
   TreeAdapter,
   TreeLike,
 } from '@rxap/workspace-utilities';
@@ -9,6 +11,7 @@ import {
   Project,
   SourceFile,
 } from 'ts-morph';
+import { format, resolveConfig } from 'prettier';
 
 /**
  * Determines if two `SourceFile` objects are the same by comparing their leaf nodes.
@@ -70,6 +73,7 @@ function areSame(sourceFile1: SourceFile, sourceFile2: SourceFile) {
  * @param {string} [basePath=''] - The base path in the file tree where the project files will be located. Defaults to an empty string, representing the root.
  * @param {boolean} [organizeImports=true] - A flag indicating whether to organize imports within each source file. Defaults to true.
  * @param {boolean} [fixMissingImports=false] - A flag indicating whether to automatically fix missing imports within each source file. Defaults to false.
+ * @param {boolean} [prettier=true] - A flag indicating whether to format the source files using Prettier. Defaults to true.
  *
  * This function performs the following operations:
  * 1. Optionally fixes missing imports and organizes imports in all source files of the project if the respective flags are set.
@@ -88,6 +92,7 @@ export function ApplyTsMorphProject(
   basePath = '',
   organizeImports = true,
   fixMissingImports = false,
+  prettier = true,
 ) {
   if (organizeImports || fixMissingImports) {
     project
@@ -104,22 +109,31 @@ export function ApplyTsMorphProject(
 
   const treeAdapter = new TreeAdapter(tree);
 
-  project
-    .getSourceFiles()
-    .forEach(sourceFile => {
+  return Promise.allSettled(project
+    .getSourceFiles().map(async sourceFile => {
 
       const filePath = join(basePath, sourceFile.getFilePath());
 
       if (tree.exists(filePath)) {
-        const currentContent = treeAdapter.read(filePath)!.toString('utf-8');
+        const currentContent = treeAdapter.read(filePath, 'utf-8')!;
         const tmpProject = CreateProject();
-        const newContent = sourceFile.getFullText();
+        const newContent = await getFormatedFullText(sourceFile, filePath, prettier);
         if (!areSame(sourceFile, tmpProject.createSourceFile('/tmp.ts', currentContent))) {
           treeAdapter.overwrite(filePath, newContent);
         }
       } else {
-        treeAdapter.create(filePath, sourceFile.getFullText());
+        treeAdapter.create(filePath, await getFormatedFullText(sourceFile, filePath, prettier));
       }
 
-    });
+    }));
+}
+
+async function getFormatedFullText(sourceFile: SourceFile, filePath: string, prettier: boolean) {
+  if (prettier) {
+    const options = await resolveConfig(filePath);
+    const content = sourceFile.getFullText();
+    return await format(content, { ...options, parser: 'typescript', filepath: filePath });
+  } else {
+    return sourceFile.getFullText();
+  }
 }

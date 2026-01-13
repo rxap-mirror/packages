@@ -12,7 +12,7 @@ import { CoerceFile } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitApplicationGeneratorSchema } from './schema';
 
-export function generateMonolithic(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+export async function generateMonolithic(tree: Tree, projectName: string, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
   if (!project.sourceRoot) {
     throw new Error(`Project source root not found for project ${ projectName }`);
@@ -24,7 +24,7 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
     }
   }
 
-  TsMorphAngularProjectTransform(tree, {
+  await TsMorphAngularProjectTransform(tree, {
     project: projectName,
   }, (_, [ appSourceFile, layoutSourceFile ]) => {
     CoerceLayoutRoutes(layoutSourceFile, {
@@ -46,7 +46,7 @@ export function generateMonolithic(tree: Tree, projectName: string, project: Pro
 
   if (options.moduleFederation !== 'host') {
 
-    TsMorphAngularProjectTransform(tree, {
+    await TsMorphAngularProjectTransform(tree, {
       project: projectName,
     }, (_, [ navigationSourceFile ]) => {
       CoerceAppNavigation(navigationSourceFile, { overwrite: options.overwrite });

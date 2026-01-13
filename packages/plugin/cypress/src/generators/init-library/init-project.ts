@@ -28,7 +28,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   }
 
   coerceImplicitDependency(tree, projectName);
-  coerceCypressImports(tree, projectName);
+  await coerceCypressImports(tree, projectName);
   coerceCypressConfig(tree, projectName);
   cleanup(tree, projectName);
 

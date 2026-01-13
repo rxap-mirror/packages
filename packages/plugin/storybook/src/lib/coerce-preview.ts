@@ -11,9 +11,9 @@ import {
 } from 'ts-morph';
 import { InitLibraryGeneratorSchema } from '../generators/init-library/schema';
 
-export async function coercePreview(tree: Tree, projectName: string, options: InitLibraryGeneratorSchema) {
+export function coercePreview(tree: Tree, projectName: string, options: InitLibraryGeneratorSchema) {
 
-  TsMorphProjectTransform(tree, {
+  return TsMorphProjectTransform(tree, {
     project: projectName,
   }, (project, sourceFile) => {
 

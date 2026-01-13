@@ -16,7 +16,7 @@ import { initProject as InitLibraryProject } from '../init-library/init-project'
 import { InitFeatureLibraryGeneratorSchema } from './schema';
 
 function coerceRoutesEntryPoint(tree: Tree, projectName: string) {
-  TsMorphAngularProjectTransform(tree, {
+  return TsMorphAngularProjectTransform(tree, {
     project: projectName,
   }, (_, [sourceFile]) => {
     CoerceRoutes(sourceFile, {});
@@ -58,7 +58,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   await InitLibraryProject(tree, projectName, project, options);
 
   if (options.routes) {
-    coerceRoutesEntryPoint(tree, projectName);
+    await coerceRoutesEntryPoint(tree, projectName);
     addRoutesImportPathToBaseTsConfig(tree, projectName);
     removeDefaultImportPathToBaseTsConfig(tree, projectName);
   }

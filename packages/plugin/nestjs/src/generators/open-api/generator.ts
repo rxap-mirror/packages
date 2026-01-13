@@ -17,7 +17,7 @@ import { OpenApiGeneratorSchema } from './schema';
 
 function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
 
-  TsMorphNestProjectTransform(
+  return TsMorphNestProjectTransform(
     tree,
     {
       project: options.project,
@@ -58,7 +58,7 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
 
 function UpdateAppConfig(tree: Tree, options: OpenApiGeneratorSchema) {
 
-  TsMorphNestProjectTransform(
+  return TsMorphNestProjectTransform(
     tree,
     {
       project: options.project,
@@ -96,13 +96,13 @@ export async function openApiGenerator(
   tree: Tree,
   options: OpenApiGeneratorSchema,
 ) {
-  UpdateAppModule(tree, options);
+  await UpdateAppModule(tree, options);
   const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
   if (!projectSourceRoot) {
     throw new Error(`Could not find the source root of the project: ${ options.project }`);
   }
   CoerceFile(tree, join(projectSourceRoot, 'assets', 'open-api-server-config.json'), '[]');
-  UpdateAppConfig(tree, options);
+  await UpdateAppConfig(tree, options);
   await AddPackageJsonDependency(tree, '@rxap/nest-open-api', 'latest', { soft: true });
 }
 

@@ -36,7 +36,7 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
   }
   extendAngularSpecificEslint(tree, project);
   updateTsConfig(tree, projectName);
-  coerceTestSetup(tree, projectName);
+  await coerceTestSetup(tree, projectName);
 
   updateProjectConfiguration(tree, projectName, project);
 

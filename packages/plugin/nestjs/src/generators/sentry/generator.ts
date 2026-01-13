@@ -62,7 +62,7 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentryGeneratorSche
 
 function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
 
-  TsMorphNestProjectTransform(
+  return TsMorphNestProjectTransform(
     tree,
     {
       project: options.project,
@@ -81,7 +81,7 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
 
 function UpdateAppConfig(tree: Tree, options: SentryGeneratorSchema, projectName: string) {
 
-  TsMorphNestProjectTransform(
+  return TsMorphNestProjectTransform(
     tree,
     {
       project: options.project,
@@ -109,8 +109,8 @@ export async function sentryGenerator(
   tree: Tree,
   options: SentryGeneratorSchema,
 ) {
-  UpdateAppModule(tree, options);
-  UpdateAppConfig(tree, options, options.project);
+  await UpdateAppModule(tree, options);
+  await UpdateAppConfig(tree, options, options.project);
   await AddPackageJsonDependency(tree, '@sentry/node', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@sentry/nestjs', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@sentry/profiling-node', 'latest', { soft: true });

@@ -25,7 +25,7 @@ async function defaultAuthentication(tree: Tree, projectName: string, project: P
 
   await AddPackageJsonDependency(tree, '@rxap/ngx-material-authentication', 'latest', { soft: true });
 
-  TsMorphAngularProjectTransform(tree, {
+  await TsMorphAngularProjectTransform(tree, {
     project: projectName,
   }, (_, [ appSourceFile ]) => {
     CoerceAppRoutes(appSourceFile, {
@@ -55,7 +55,7 @@ async function oauth2ProxyAuthentication(tree: Tree, projectName: string, projec
 
   await AddPackageJsonDependency(tree, '@rxap/ngx-oauth2-proxy', 'latest', { soft: true });
 
-  TsMorphAngularProjectTransform(tree, {
+  await TsMorphAngularProjectTransform(tree, {
     project: projectName,
   }, (_, [ appSourceFile ]) => {
     CoerceRouteGuard(appSourceFile, [''], 'oauth2ProxyGuard', { routeArrayName: 'appRoutes' });

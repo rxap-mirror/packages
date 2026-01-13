@@ -87,9 +87,9 @@ export function clone<Data>(
     if (window && 'structuredClone' in window) {
       return window.structuredClone(value);
     }
-    if (global && 'structuredClone' in global) {
-      return global.structuredClone(value);
-    }
+    // if (global && 'structuredClone' in global) {
+    //   return global.structuredClone(value);
+    // }
   } catch (e: any) {
     console.error(`structuredClone is not supported or failed: ${e.message}`);
   }
