@@ -35,16 +35,18 @@ import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend/backend-types';
 import { CoerceFormComponentRule } from '../../../lib/coerce-form-component';
-import { ControlToDtoClassProperty } from '../../../lib/form/control';
+
+import { ControlToDtoClassProperty } from '../../../lib/form/control-to-dto-class-property';
 import {
   FormComponent,
   NormalizedFormComponent,
   NormalizeFormComponent,
 } from '../../../lib/form/form-component';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
 import { FormComponentOptions } from './schema';
 
 export interface NormalizedFormComponentOptions

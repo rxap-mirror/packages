@@ -30,7 +30,6 @@ import {
   ClassDeclaration,
   SourceFile,
 } from 'ts-morph';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend/backend-types';
 import { IsNormalizedImportDataSourceOptions } from '../../../../lib/data-source/data-source-options';
 import {
@@ -38,6 +37,7 @@ import {
   NormalizeSelectFormControl,
   SelectFormControl,
 } from '../../../../lib/form/control/select-form-control';
+import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,

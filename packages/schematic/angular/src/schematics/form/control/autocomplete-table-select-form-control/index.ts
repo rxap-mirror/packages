@@ -38,7 +38,6 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
 import { BackendTypes } from '../../../../lib/backend/backend-types';
 import { DataSourceKinds } from '../../../../lib/data-source/data-source-kinds';
 import { AssertIsNormalizedImportDataSourceOptions } from '../../../../lib/data-source/data-source-options';
@@ -53,6 +52,7 @@ import {
   AssertIsNormalizedImportMethodOptions,
   AssertIsNormalizedOpenApiMethodOptions,
 } from '../../../../lib/method/method-options';
+import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,

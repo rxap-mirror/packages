@@ -25,12 +25,12 @@ import {
   SourceFile,
   VariableDeclarationKind,
 } from 'ts-morph';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
 import {
   AutocompleteFormControl,
   NormalizeAutocompleteFormControl,
   NormalizedAutocompleteFormControl,
 } from '../../../../lib/form/control/autocomplete-form-control';
+import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,

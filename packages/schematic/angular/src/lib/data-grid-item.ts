@@ -23,8 +23,9 @@ import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
   NormalizedPipeOption,
   NormalizePipeOptionList,
-  PipeOptionToTypeImport,
+
 } from './pipe-option';
+import { PipeOptionToTypeImport } from './pipe-option-to-type-import';
 
 export enum DataGridKinds {
   DEFAULT = 'default',

@@ -12,13 +12,14 @@ import {
 import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import {
   NormalizedFormArray,
   NormalizeFormArray,
 } from '../../../lib/form/array/form-array';
 import { FormArrayKind } from '../../../lib/form/array/form-array-kind';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
 import { FormArrayOptions } from './schema';
 import 'colors';
 

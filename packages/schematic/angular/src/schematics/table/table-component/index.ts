@@ -32,7 +32,7 @@ import {
   AngularOptions,
   AssertAngularOptionsNameProperty,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend/backend-types';
 import { CoerceMinimumTableComponentRule } from '../../../lib/coerce-minimum-table-component';
@@ -42,13 +42,12 @@ import {
   LoadMatFormFieldHandlebarsTemplate,
   LoadPipeHandlebarsTemplate,
 } from '../../../lib/load-handlebars-template';
-import {
-  actionListRule,
-  cellComponentRule,
-  headerButtonRule,
-  NormalizeMinimumTableComponentOptions,
-  tableInterfaceRule,
-} from '../../../lib/minimum-table-component-options';
+import { NormalizeMinimumTableComponentOptions } from '../../../lib/normalize-minimum-table-component-options';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
+import { actionListRule } from '../../../lib/table-action-rule';
+import { cellComponentRule } from '../../../lib/table-cell-component-rule';
+import { headerButtonRule } from '../../../lib/table-header-button-rule';
+import { tableInterfaceRule } from '../../../lib/table-interface-rule';
 import {
   IsTableModifiers,
   NormalizedTableOptions,

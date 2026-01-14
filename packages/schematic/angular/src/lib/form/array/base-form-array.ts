@@ -6,10 +6,10 @@ import {
 import {
   AbstractControl,
   AbstractControlRolls,
-  AbstractControlToDataProperty,
   NormalizeAbstractControl,
   NormalizedAbstractControl,
 } from '../abstract-control';
+import { AbstractControlToDataProperty } from '../abstract-control-to-data-property';
 import {
   Control,
   NormalizeControlList,

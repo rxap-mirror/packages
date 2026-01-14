@@ -12,13 +12,14 @@ import {
 import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import {
   NormalizedFormGroup,
   NormalizeFormGroup,
 } from '../../../lib/form/group/form-group';
 import { FormGroupKind } from '../../../lib/form/group/form-group-kind';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
 import { FormGroupOptions } from './schema';
 import 'colors';
 

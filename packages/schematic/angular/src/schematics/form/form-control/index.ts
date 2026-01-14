@@ -16,13 +16,14 @@ import {
   AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import {
   NormalizedFormControl,
   NormalizeFormControl,
 } from '../../../lib/form/control/form-control';
 import { FormControlKinds } from '../../../lib/form/control/form-control-kind';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
 import { FormControlOptions } from './schema';
 import 'colors';
 

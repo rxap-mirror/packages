@@ -10,13 +10,14 @@ import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import { AbstractControlRolls } from '../../../lib/form/abstract-control';
 import {
   NormalizeControlList,
   NormalizedControl,
 } from '../../../lib/form/control';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
 import { FormDefinitionOptions } from './schema';
 
 export interface NormalizedFormDefinitionOptions

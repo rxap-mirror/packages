@@ -40,11 +40,13 @@ import {
   AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import { BackendTypes } from '../../../../lib/backend/backend-types';
-import { ControlToDtoClassProperty } from '../../../../lib/form/control';
+
+import { ControlToDtoClassProperty } from '../../../../lib/form/control-to-dto-class-property';
+import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   FormTableAction,
   NormalizedFormTableAction,

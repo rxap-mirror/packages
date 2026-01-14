@@ -56,9 +56,10 @@ import {
   AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend/backend-types';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
 import { AccordionItemComponentOptions } from './schema';
 
 export type NormalizedAccordionItemStandaloneComponentOptions =

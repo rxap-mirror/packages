@@ -66,11 +66,12 @@ import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import { BackendTypes } from '../../../lib/backend/backend-types';
 import { CoerceAccordionComponentRule } from '../../../lib/coerce-accordion-component';
 import { IsNormalizedPropertyPersistent } from '../../../lib/persistent';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
 import { AccordionComponentOptions } from './schema';
 
 export interface NormalizedAccordionComponentOptions

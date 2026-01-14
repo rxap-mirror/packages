@@ -78,8 +78,10 @@ export * from './lib/form/array/form-array';
 // endregion
 
 // region form
+export * from './lib/form/abstract-control-to-data-property';
 export * from './lib/form/abstract-control';
 export * from './lib/form/coerce-control-component-imports';
+export * from './lib/form/control-to-dto-class-property';
 export * from './lib/form/control';
 export * from './lib/form/form-component';
 export * from './lib/form/form-definition';
@@ -142,11 +144,17 @@ export * from './lib/dialog-action';
 export * from './lib/existing-method';
 export * from './lib/load-handlebars-template';
 export * from './lib/mat-form-field-default-options';
-export * from './lib/minimum-table-component-options';
 export * from './lib/minimum-table-options';
+export * from './lib/normalize-minimum-table-component-options';
 export * from './lib/persistent';
+export * from './lib/pipe-option-to-type-import';
 export * from './lib/pipe-option';
+export * from './lib/print-angular-options';
 export * from './lib/route-component';
+export * from './lib/table-action-rule';
+export * from './lib/table-cell-component-rule';
+export * from './lib/table-header-button-rule';
+export * from './lib/table-interface-rule';
 export * from './lib/table-open-api-options';
 export * from './lib/table-options';
 export * from './lib/to-title';

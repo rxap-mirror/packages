@@ -79,13 +79,3 @@ export function NormalizePipeOptionList(
   return Object.freeze(optionList?.map(NormalizePipeOption) ?? []);
 }
 
-export function PipeOptionToTypeImport(option: NormalizedPipeOption): NormalizedTypeImport {
-  return {
-    name: option.name,
-    namedImport: option.namedImport,
-    moduleSpecifier: option.moduleSpecifier,
-    namespaceImport: option.namespaceImport,
-    isTypeOnly: option.isTypeOnly,
-    defaultImport: option.defaultImport,
-  };
-}

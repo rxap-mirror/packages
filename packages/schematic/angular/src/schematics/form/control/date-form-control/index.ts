@@ -1,11 +1,11 @@
 import { chain } from '@angular-devkit/schematics';
 import { Normalized } from '@rxap/utilities';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
 import {
   DateFormControl,
   NormalizeDateFormControl,
   NormalizedDateFormControl,
 } from '../../../../lib/form/control/date-form-control';
+import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,

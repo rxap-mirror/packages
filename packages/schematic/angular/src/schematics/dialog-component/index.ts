@@ -10,12 +10,13 @@ import {
   AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../lib/angular-options';
 import {
   NormalizedDialogAction,
   NormalizeDialogActionList,
 } from '../../lib/dialog-action';
+import { PrintAngularOptions } from '../../lib/print-angular-options';
 import { ToTitle } from '../../lib/to-title';
 import { DialogComponentOptions } from './schema';
 

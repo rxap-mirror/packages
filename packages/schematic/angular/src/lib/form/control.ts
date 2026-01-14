@@ -1,4 +1,3 @@
-import { DtoClassProperty } from '@rxap/ts-morph';
 import {
   AbstractControl,
   AbstractControlRolls,
@@ -41,14 +40,3 @@ export function NormalizeControlList(controlList?: Control[]): NormalizedControl
   return controlList?.map(NormalizeControl) ?? [];
 }
 
-export function ControlToDtoClassProperty(
-  control: NormalizedControl,
-): DtoClassProperty {
-  return {
-    name: control.name,
-    type: control.type,
-    isOptional: !control.isRequired,
-    isArray: control.isArray,
-    source: control.source,
-  };
-}

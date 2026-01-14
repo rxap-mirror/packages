@@ -37,13 +37,14 @@ import {
 } from 'ts-morph';
 import {
   AngularOptions,
-  PrintAngularOptions,
+
 } from '../../../../lib/angular-options';
 import {
   NormalizedTableSelectColumn,
   NormalizedTableSelectFormControl,
   NormalizeTableSelectFormControl,
 } from '../../../../lib/form/control/table-select-form-control';
+import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,

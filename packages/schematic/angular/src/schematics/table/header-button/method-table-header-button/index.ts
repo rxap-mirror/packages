@@ -29,11 +29,12 @@ import {
   AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import { MethodKinds } from '../../../../lib/method/method-kinds';
 import { AssertIsNormalizedImportMethodOptions } from '../../../../lib/method/method-options';
+import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   MethodHeaderButton,
   NormalizedMethodHeaderButton,

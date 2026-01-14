@@ -21,8 +21,9 @@ import {
   AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../lib/angular-options';
+import { PrintAngularOptions } from '../../lib/print-angular-options';
 import {
   NormalizedRouteComponent,
   NormalizeRouteComponent,

@@ -18,10 +18,11 @@ import {
   AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import { BackendTypes } from '../../../../lib/backend/backend-types';
+import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   NormalizedOperationTableAction,
   NormalizeOperationTableAction,

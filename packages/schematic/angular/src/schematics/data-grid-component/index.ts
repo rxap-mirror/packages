@@ -4,6 +4,7 @@ import {
   noop,
   Rule,
 } from '@angular-devkit/schematics';
+import { AbstractControlToDataProperty } from '@rxap/schematic-angular';
 import {
   AddComponentProvider,
   BuildNestControllerName,
@@ -47,7 +48,7 @@ import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../lib/angular-options';
 import { BackendTypes } from '../../lib/backend/backend-types';
 import {
@@ -55,7 +56,6 @@ import {
   NormalizeDataGridOptions,
   NormalizedDataGridOptions,
 } from '../../lib/data-grid-options';
-import { AbstractControlToDataProperty } from '../../lib/form/abstract-control';
 import { CoerceControlComponentImports } from '../../lib/form/coerce-control-component-imports';
 import { NormalizedControl } from '../../lib/form/control';
 import {
@@ -63,6 +63,7 @@ import {
   LoadMatFormFieldHandlebarsTemplate,
   LoadPipeHandlebarsTemplate,
 } from '../../lib/load-handlebars-template';
+import { PrintAngularOptions } from '../../lib/print-angular-options';
 import { DataGridComponentOptions } from './schema';
 
 export interface NormalizedDataGridComponentOptions

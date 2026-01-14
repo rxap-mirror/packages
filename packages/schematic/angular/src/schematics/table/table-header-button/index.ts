@@ -12,9 +12,10 @@ import {
   AngularOptions,
   NormalizeAngularOptions,
   NormalizedAngularOptions,
-  PrintAngularOptions,
+
 } from '../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../lib/assert-table-component-exists';
+import { PrintAngularOptions } from '../../../lib/print-angular-options';
 import {
   HeaderButton,
   NormalizedHeaderButton,
