@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dialog-component minimal: file-tree 1`] = `
+[
+  "/angular.json",
+  "/nx.json",
+  "/package.json",
+  "/tsconfig.base.json",
+  "/ui/app/project.json",
+  "/ui/app/tsconfig.json",
+  "/ui/app/tsconfig.app.json",
+  "/ui/app/src/main.ts",
+  "/ui/app/src/app/app.module.ts",
+  "/ui/lib/project.json",
+  "/ui/lib/tsconfig.json",
+  "/ui/lib/tsconfig.lib.json",
+  "/ui/lib/src/index.ts",
+  "/ui/lib/src/lib/test.ts",
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.ts",
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.html",
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.scss",
+  "/api/app/project.json",
+  "/api/app/tsconfig.json",
+  "/api/app/tsconfig.app.json",
+  "/api/app/src/main.ts",
+  "/api/app/src/app/app.module.ts",
+  "/api/lib/project.json",
+  "/api/lib/tsconfig.json",
+  "/api/lib/tsconfig.lib.json",
+  "/api/lib/src/index.ts",
+  "/api/lib/src/lib/test.ts",
+]
+`;
+
+exports[`dialog-component minimal: test-dialog.component.html 1`] = `
+"<h2 mat-dialog-title i18n>Test Dialog</h2>
+<mat-dialog-content>
+
+  <div class="flex flex-col">
+
+    <mat-progress-bar *ngIf="loading$ | async" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  
+</mat-dialog-actions>
+"
+`;
+
+exports[`dialog-component minimal: test-dialog.component.scss 1`] = `""`;
+
+exports[`dialog-component minimal: test-dialog.component.ts 1`] = `
+"import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CommonModule } from '@angular/common';
+import { ToggleSubject } from '@rxap/rxjs';
+
+@Component({
+    standalone: true,
+    selector: 'jest-test-dialog',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './test-dialog.component.html',
+    styleUrls: ['./test-dialog.component.scss'],
+  imports: [MatDialogModule, MatButtonModule, MatProgressBarModule, CommonModule],
+})
+export class TestDialogComponent {
+  readonly invalid$ = new ToggleSubject(true);
+  readonly loading$ = new ToggleSubject(true);
+
+  constructor(readonly matDialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) readonly data: any) {
+  }
+
+  async submit() {
+    this.matDialogRef.close(true);
+  }
+}
+"
+`;
