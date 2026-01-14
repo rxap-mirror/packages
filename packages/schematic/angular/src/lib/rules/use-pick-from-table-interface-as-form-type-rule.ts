@@ -14,7 +14,8 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { CoerceTypeAlias } from '../../schematics/table/action/form-table-action';
+
+import { CoerceTypeAlias } from '../coerce-type-alias';
 import { NormalizedFormControl } from '../form/control/form-control';
 import { NormalizedTableColumn } from '../table/table-column';
 

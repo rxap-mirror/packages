@@ -14,37 +14,15 @@ import {
   CoerceDtoClass,
   CoerceImports,
 } from '@rxap/ts-morph';
-import {
-  joinWithDash,
-  Normalized,
-} from '@rxap/utilities';
+import { joinWithDash } from '@rxap/utilities';
 import { join } from 'path';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
+import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import {
-  DialogTableAction,
-  NormalizedDialogTableAction,
-  NormalizeDialogTableAction,
-} from '../../../../lib/table/action/dialog-table-action';
+  NormalizedDialogTableActionOptions,
+  NormalizeDialogTableActionOptions,
+} from './normalize-dialog-table-action-options';
 import { DialogTableActionOptions } from './schema';
-
-export type NormalizedDialogTableActionOptions = Readonly<Normalized<Omit<DialogTableActionOptions, keyof DialogTableAction | keyof AngularOptions>> & NormalizedDialogTableAction & NormalizedAngularOptions>
-
-export function NormalizeDialogTableActionOptions(
-  options: DialogTableActionOptions,
-): NormalizedDialogTableActionOptions {
-  return Object.freeze({
-    ...NormalizeAngularOptions(options),
-    ...NormalizeDialogTableAction(options),
-    tableName: options.tableName,
-  });
-}
 
 function printOptions(options: NormalizedDialogTableActionOptions) {
   PrintAngularOptions('dialog-table-action', options);

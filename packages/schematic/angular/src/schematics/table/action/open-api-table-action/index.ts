@@ -3,35 +3,15 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import { CoerceOpenApiTableActionRule } from '@rxap/schematics-ts-morph';
-import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
+import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import {
-  NormalizedOpenApiTableAction,
-  NormalizeOpenApiTableAction,
-  OpenApiTableAction,
-} from '../../../../lib/table/action/open-api-table-action';
+  NormalizedOpenApiTableActionOptions,
+  NormalizeOpenApiTableActionOptions,
+} from './normalize-open-api-table-action-options';
 import { OpenApiTableActionOptions } from './schema';
 
-export type NormalizedOpenApiTableActionOptions = Readonly<Normalized<Omit<OpenApiTableActionOptions, keyof OpenApiTableAction | keyof AngularOptions>> & NormalizedOpenApiTableAction & NormalizedAngularOptions>
-
-
-export function NormalizeOpenApiTableActionOptions(
-  options: Readonly<OpenApiTableActionOptions>,
-): NormalizedOpenApiTableActionOptions {
-  return Object.freeze({
-    ...NormalizeAngularOptions(options),
-    ...NormalizeOpenApiTableAction(options),
-    tableName: options.tableName,
-  });
-}
 
 function printOptions(options: NormalizedOpenApiTableActionOptions) {
   PrintAngularOptions('open-api-table-action', options);

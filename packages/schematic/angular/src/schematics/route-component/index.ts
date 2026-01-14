@@ -1,44 +1,13 @@
-import {
-  chain,
-  noop,
-  Rule,
-} from '@angular-devkit/schematics';
-import {
-  CoerceComponentRule,
-  TsMorphAngularProjectTransformRule,
-} from '@rxap/schematics-ts-morph';
-import {
-  AddRoute,
-  AngularRoute,
-  CoerceDefaultClassExport,
-  CoerceImports,
-} from '@rxap/ts-morph';
-import {
-  flatten,
-  Normalized,
-} from '@rxap/utilities';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../lib/angular-options';
+import { chain } from '@angular-devkit/schematics';
+import { flatten } from '@rxap/utilities';
 import { PrintAngularOptions } from '../../lib/print-angular-options';
+import { componentRule } from './component-rule';
 import {
-  NormalizedRouteComponent,
-  NormalizeRouteComponent,
-  RouteComponent,
-} from '../../lib/route-component';
+  NormalizedRouteComponentOptions,
+  NormalizeRouteComponentOptions,
+} from './normalize-route-component-options';
+import { routeRule } from './route-rule';
 import { RouteComponentOptions } from './schema';
-
-export type NormalizedRouteComponentOptions = Readonly<Normalized<Omit<RouteComponentOptions, keyof RouteComponent | keyof AngularOptions>> & NormalizedAngularOptions & NormalizedRouteComponent>;
-
-export function NormalizeRouteComponentOptions(options: RouteComponentOptions): NormalizedRouteComponentOptions {
-  return {
-    ...NormalizeAngularOptions(options),
-    ...NormalizeRouteComponent(options),
-  };
-}
 
 function printOptions(options: NormalizedRouteComponentOptions) {
   PrintAngularOptions('route-component', options);
@@ -47,107 +16,6 @@ function printOptions(options: NormalizedRouteComponentOptions) {
   } else {
     console.log('=== children: \x1b[31mempty\x1b[0m');
   }
-}
-
-function routeRule(normalizedOptions: NormalizedRouteComponentOptions, parentRoute?: string[]): Rule {
-
-  const {
-    namedImport,
-    name,
-    project,
-    feature,
-    shared,
-    directory,
-    moduleSpecifier,
-    path,
-    outlet,
-    data
-  } = normalizedOptions;
-
-  const isFeatureRoute = !!feature;
-
-  return chain([
-    () => console.log('Coerce the component to route configuration'),
-    TsMorphAngularProjectTransformRule({
-      project,
-      shared,
-      feature,
-      directory,
-    }, (project, [sourceFile]) => {
-      let route: AngularRoute;
-      if (moduleSpecifier) {
-        CoerceImports(sourceFile, {
-          namedImports: [ namedImport ],
-          moduleSpecifier,
-        });
-        route = {
-          component: namedImport,
-          path,
-          outlet,
-          data
-        };
-      } else {
-        route = {
-          path,
-          loadChildren: `./${ name }/${name}.component`,
-          outlet,
-          data
-        };
-      }
-      AddRoute(sourceFile, {
-        route,
-        path: parentRoute,
-        name: isFeatureRoute ? 'ROUTES' : 'appRoutes',
-      });
-    }, [ isFeatureRoute ? 'routes.ts' : 'app.routes.ts' ]),
-    () => console.log('Coerce the children components to route configuration'),
-    chain((normalizedOptions.children ?? []).map(child => routeRule({ ...normalizedOptions, ...child }, [ ...parentRoute ?? [], path ])))
-  ]);
-
-}
-
-function componentRule(normalizedOptions: NormalizedRouteComponentOptions): Rule {
-
-  const {
-    namedImport,
-    name,
-    selector,
-    project,
-    feature,
-    shared,
-    directory,
-    overwrite,
-    moduleSpecifier,
-  } = normalizedOptions;
-
-  if (moduleSpecifier) {
-    console.log('Detecting external component. skip coercing the component');
-    return noop();
-  }
-
-  const templateOptions = {
-    ...normalizedOptions,
-  };
-
-  return chain([
-    () => console.log(`Coerce the route component ${namedImport}`),
-    CoerceComponentRule({
-      project,
-      feature,
-      shared,
-      directory,
-      overwrite,
-      name,
-      template: { options: templateOptions },
-      componentOptions: {
-        selector,
-      },
-      tsMorphTransform: (project, [sourceFile], [classDeclaration]) => {
-        CoerceDefaultClassExport(classDeclaration);
-      }
-    }),
-  ]);
-
 }
 
 export default function (options: RouteComponentOptions) {

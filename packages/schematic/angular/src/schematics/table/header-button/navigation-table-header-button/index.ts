@@ -4,48 +4,18 @@ import {
 } from '@angular-devkit/schematics';
 import { CoerceTableHeaderButtonMethodRule } from '@rxap/schematics-ts-morph';
 import {
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/schematics-utilities';
-import {
   CoerceDependencyInjection,
   CoerceImports,
   Module,
 } from '@rxap/ts-morph';
-import { Normalized } from '@rxap/utilities';
 import { Scope } from 'ts-morph';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
+import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import {
-  NavigationHeaderButton,
-  NormalizedNavigationHeaderButton,
-  NormalizeNavigationHeaderButton,
-} from '../../../../lib/table/header-button/navigation-header-button';
+  NormalizedNavigationTableHeaderButtonOptions,
+  NormalizeNavigationTableHeaderButtonOptions,
+} from './normalize-navigation-table-header-button-options';
 import { NavigationTableHeaderButtonOptions } from './schema';
-
-export type NormalizedNavigationTableHeaderButtonOptions = Readonly<Normalized<Omit<NavigationTableHeaderButtonOptions, keyof AngularOptions | keyof NavigationHeaderButton>> & NormalizedAngularOptions & NormalizedNavigationHeaderButton>
-
-export function NormalizeNavigationTableHeaderButtonOptions(
-  options: Readonly<NavigationTableHeaderButtonOptions>,
-): NormalizedNavigationTableHeaderButtonOptions {
-  const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableHeaderButton = NormalizeNavigationHeaderButton(options, options.tableName);
-  if (!normalizedTableHeaderButton) {
-    throw new Error('FATAL: should never happen');
-  }
-  const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
-  return Object.freeze({
-    ...normalizedAngularOptions,
-    ...normalizedTableHeaderButton,
-    tableName,
-  });
-}
 
 function printOptions(options: NormalizedNavigationTableHeaderButtonOptions) {
   PrintAngularOptions('navigation-table-header-button', options);

@@ -1,52 +1,18 @@
 import { chain } from '@angular-devkit/schematics';
 import { CoerceDialogComponentRule } from '@rxap/schematics-ts-morph';
-import {
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/schematics-utilities';
-import { Normalized } from '@rxap/utilities';
-import { join } from 'path';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../lib/angular-options';
-import {
-  NormalizedDialogAction,
-  NormalizeDialogActionList,
-} from '../../lib/dialog-action';
 import { PrintAngularOptions } from '../../lib/print-angular-options';
-import { ToTitle } from '../../lib/to-title';
+import {
+  NormalizedDialogComponentOptions,
+  normalizeDialogComponentOptions,
+} from './normalize-dialog-component-options';
 import { DialogComponentOptions } from './schema';
-
-interface NormalizedDialogComponentOptions
-  extends Readonly<Normalized<Omit<DialogComponentOptions, keyof AngularOptions | 'actionList'>> & NormalizedAngularOptions> {
-  actionList: ReadonlyArray<NormalizedDialogAction>;
-}
-
-function NormalizeOptions(
-  options: Readonly<DialogComponentOptions>,
-): Readonly<NormalizedDialogComponentOptions> {
-  const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const { directory } = normalizedAngularOptions;
-  const dialogName = CoerceSuffix(dasherize(options.dialogName), '-dialog');
-  const title = options.title ?? ToTitle(dialogName);
-  return Object.freeze({
-    ...normalizedAngularOptions,
-    directory: join(directory ?? '', dialogName),
-    dialogName,
-    title,
-    actionList: NormalizeDialogActionList(options.actionList),
-  });
-}
 
 function printDialogComponentOptions(options: NormalizedDialogComponentOptions) {
   PrintAngularOptions('dialog-component', options);
 }
 
 export default function (options: DialogComponentOptions) {
-  const normalizedOptions = NormalizeOptions(options);
+  const normalizedOptions = normalizeDialogComponentOptions(options);
   const {
     overwrite,
     project,

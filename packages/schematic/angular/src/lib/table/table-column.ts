@@ -39,11 +39,11 @@ export function NormalizeTableColumnList(
   columnList?: ReadonlyArray<Readonly<TableColumn>>,
 ): ReadonlyArray<NormalizedTableColumn> {
   return Object.freeze((columnList?.map(NormalizeTableColumn) ?? []).sort((a, b) => {
-    if (a.stickyStart) {
-      return b.stickyStart ? 0 : -1;
+    if (a.stickyStart !== b.stickyStart) {
+      return a.stickyStart ? -1 : 1;
     }
-    if (a.stickyEnd) {
-      return b.stickyEnd ? 0 : 1;
+    if (a.stickyEnd !== b.stickyEnd) {
+      return a.stickyEnd ? 1 : -1;
     }
     return 0;
   }));

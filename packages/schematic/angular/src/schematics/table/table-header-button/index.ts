@@ -3,43 +3,13 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import { CoerceTableHeaderButtonMethodRule } from '@rxap/schematics-ts-morph';
-import {
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/schematics-utilities';
-import { Normalized } from '@rxap/utilities';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../lib/rules/assert-table-component-exists';
 import { PrintAngularOptions } from '../../../lib/print-angular-options';
+import { AssertTableComponentExists } from '../../../lib/rules/assert-table-component-exists';
 import {
-  HeaderButton,
-  NormalizedHeaderButton,
-  NormalizeHeaderButton,
-} from '../../../lib/table/table-header-button';
+  NormalizedTableHeaderButtonOptions,
+  NormalizeTableHeaderButtonOptions,
+} from './normalize-table-header-button-options';
 import { TableHeaderButtonOptions } from './schema';
-
-export type NormalizedTableHeaderButtonOptions = Readonly<Normalized<Omit<TableHeaderButtonOptions, keyof AngularOptions | keyof HeaderButton>> & NormalizedAngularOptions & NormalizedHeaderButton>
-
-export function NormalizeTableHeaderButtonOptions(
-  options: Readonly<TableHeaderButtonOptions>,
-): NormalizedTableHeaderButtonOptions {
-  const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableHeaderButton = NormalizeHeaderButton(options, options.tableName);
-  if (!normalizedTableHeaderButton) {
-    throw new Error('FATAL: should never happen');
-  }
-  const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
-  return Object.freeze({
-    ...normalizedTableHeaderButton,
-    ...normalizedAngularOptions,
-    tableName,
-  });
-}
 
 function printOptions(options: NormalizedTableHeaderButtonOptions) {
   PrintAngularOptions('table-header-button', options);

@@ -5,7 +5,6 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentProvider,
-  BuildNestControllerName,
   CoerceParameterDeclaration,
   CoerceTableHeaderButtonMethodRule,
 } from '@rxap/schematics-ts-morph';
@@ -18,53 +17,19 @@ import {
   classify,
   CoerceSuffix,
   dasherize,
-  Normalized,
 } from '@rxap/utilities';
 import {
   Project,
   Scope,
   SourceFile,
 } from 'ts-morph';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
+import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import {
-  FormHeaderButton,
-  NormalizedFormHeaderButton,
-  NormalizeFormHeaderButton,
-} from '../../../../lib/table/header-button/form-header-button';
+  NormalizedFormTableHeaderButtonOptions,
+  NormalizeFormTableHeaderButtonOptions,
+} from './normalize-form-table-header-button-options';
 import { FormTableHeaderButtonOptions } from './schema';
-
-export type NormalizedFormTableHeaderButtonOptions = Readonly<Normalized<Omit<FormTableHeaderButtonOptions, keyof AngularOptions | keyof FormHeaderButton>> & NormalizedAngularOptions & NormalizedFormHeaderButton> & {
-  controllerName: string;
-}
-
-export function NormalizeFormTableHeaderButtonOptions(
-  options: Readonly<FormTableHeaderButtonOptions>,
-): NormalizedFormTableHeaderButtonOptions {
-  const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableHeaderButton = NormalizeFormHeaderButton(options, options.tableName);
-  if (!normalizedTableHeaderButton) {
-    throw new Error('FATAL: should never happen');
-  }
-  const { nestModule, controllerName } = normalizedAngularOptions;
-  const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
-  return Object.freeze({
-    ...normalizedAngularOptions,
-    ...normalizedTableHeaderButton,
-    tableName,
-    controllerName: controllerName ?? BuildNestControllerName({
-      nestModule,
-      controllerName,
-      controllerNameSuffix: 'header-button',
-    }),
-  });
-}
 
 function printOptions(options: NormalizedFormTableHeaderButtonOptions) {
   PrintAngularOptions('form-table-header-button', options);

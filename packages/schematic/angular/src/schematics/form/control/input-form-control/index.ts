@@ -1,29 +1,11 @@
 import { chain } from '@angular-devkit/schematics';
-import { Normalized } from '@rxap/utilities';
-import {
-  InputFormControl,
-  NormalizedInputFormControl,
-  NormalizeInputFormControl,
-} from '../../../../lib/form/control/input-form-control';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
-  NormalizedFormControlOptions,
-  NormalizeFormControlOptions,
-} from '../../form-control';
-import { FormControlOptions } from '../../form-control/schema';
+  NormalizedInputFormControlOptions,
+  NormalizeInputFormControlOptions,
+} from './normalize-input-form-control-options';
 import { InputFormControlOptions } from './schema';
 
-export type NormalizedInputFormControlOptions = Readonly<Normalized<Omit<InputFormControlOptions, keyof FormControlOptions | keyof InputFormControl>>> & NormalizedFormControlOptions & NormalizedInputFormControl;
-
-
-export function NormalizeInputFormControlOptions(
-  options: InputFormControlOptions,
-): NormalizedInputFormControlOptions {
-  return Object.freeze({
-    ...NormalizeFormControlOptions(options),
-    ...NormalizeInputFormControl(options),
-  });
-}
 
 function printOptions(options: NormalizedInputFormControlOptions) {
   PrintAngularOptions('input-form-control', options);

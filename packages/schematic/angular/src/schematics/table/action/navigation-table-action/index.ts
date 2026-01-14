@@ -3,34 +3,14 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import { CoerceNavigationTableActionRule } from '@rxap/schematics-ts-morph';
-import { Normalized } from '@rxap/utilities';
 import { join } from 'path';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
+import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import {
-  NavigationTableAction,
-  NormalizedNavigationTableAction,
-  NormalizeNavigationTableAction,
-} from '../../../../lib/table/action/navigation-table-action';
+  NormalizedNavigationTableActionOptions,
+  NormalizeNavigationTableActionOptions,
+} from './normalize-navigation-table-action-options';
 import { NavigationTableActionOptions } from './schema';
-
-export type NormalizedNavigationTableActionOptions = Readonly<Normalized<Omit<NavigationTableActionOptions, keyof NavigationTableAction | keyof AngularOptions>> & NormalizedNavigationTableAction & NormalizedAngularOptions>
-
-export function NormalizeNavigationTableActionOptions(
-  options: NavigationTableActionOptions,
-): NormalizedNavigationTableActionOptions {
-  return {
-    ...NormalizeAngularOptions(options),
-    ...NormalizeNavigationTableAction(options),
-    tableName: options.tableName,
-  };
-}
 
 function printOptions(options: NormalizedNavigationTableActionOptions) {
   PrintAngularOptions('navigation-table-action', options);

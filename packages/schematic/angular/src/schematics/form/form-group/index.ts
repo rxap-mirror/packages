@@ -1,70 +1,18 @@
-import {
-  chain,
-  Rule,
-} from '@angular-devkit/schematics';
+import { chain } from '@angular-devkit/schematics';
 import { CoerceFormDefinitionFormGroup } from '@rxap/schematics-ts-morph';
-import { ExecuteSchematic } from '@rxap/schematics-utilities';
-import {
-  dasherize,
-  NonNullableSelected,
-  Normalized,
-} from '@rxap/utilities';
-import {
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../lib/angular-options';
-import {
-  NormalizedFormGroup,
-  NormalizeFormGroup,
-} from '../../../lib/form/group/form-group';
-import { FormGroupKind } from '../../../lib/form/group/form-group-kind';
 import { PrintAngularOptions } from '../../../lib/print-angular-options';
+import { formControlKind } from './form-control-kind';
+import { formDefinitionRule } from './form-definition-rule';
+import {
+  NormalizedFormGroupOptions,
+  NormalizeFormGroupOptions,
+} from './normalize-form-group-options';
 import { FormGroupOptions } from './schema';
 import 'colors';
-
-export type NormalizedFormGroupOptions = Readonly<Normalized<Pick<FormGroupOptions, 'formName'>>> & NonNullableSelected<NormalizedAngularOptions, 'controllerName'> & NormalizedFormGroup;
-
-export function NormalizeFormGroupOptions(
-  options: Readonly<FormGroupOptions>,
-): NormalizedFormGroupOptions {
-  const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedFormDefinitionControl = NormalizeFormGroup(options);
-  const formName = dasherize(options.formName);
-  const controllerName = options.controllerName ?? formName;
-  return Object.freeze({
-    ...normalizedAngularOptions,
-    ...normalizedFormDefinitionControl,
-    formName,
-    controllerName,
-    context: options.context ? dasherize(options.context) : null,
-  });
-}
 
 function printOptions(options: NormalizedFormGroupOptions) {
   PrintAngularOptions('form-control', options);
   console.log(`=== form: ${options.formName}`.blue);
-}
-
-function formControlKind(normalizedOptions: NormalizedFormGroupOptions): Rule {
-  switch (normalizedOptions.kind) {
-
-    case FormGroupKind.DEFAULT:
-    default:
-      return () => console.log(`No schematic for form group kind: ${normalizedOptions.kind}`.yellow);
-
-  }
-}
-
-function formDefinitionRule(normalizedOptions: NormalizedFormGroupOptions): Rule {
-  const { formName, name } = normalizedOptions;
-  return chain([
-    ExecuteSchematic('form-definition', {
-      ...normalizedOptions,
-      name: [formName, name].join('-'),
-      standalone: false,
-    }),
-  ]);
 }
 
 export default function (options: FormGroupOptions) {

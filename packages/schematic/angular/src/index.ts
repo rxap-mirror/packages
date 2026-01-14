@@ -161,4 +161,10 @@ export * from './lib/to-title';
 export * from './lib/tree-table-options';
 export * from './lib/rules/use-pick-from-table-interface-as-form-type-rule';
 export * from './lib/value-option';
+export { CoerceTypeAlias } from './lib/coerce-type-alias';
+export { buildGetOperationId } from './lib/form-table-action/build-get-operation-id';
+export { buildLoadFormOptions } from './lib/form-table-action/build-load-form-options';
+export { buildGetOperationId } from './lib/build-get-operation-id';
+export { buildPropertyList } from './lib/build-property-list';
+export { GetItemOptions } from './lib/get-item-options';
 // endregion

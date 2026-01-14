@@ -1,70 +1,18 @@
-import {
-  chain,
-  Rule,
-} from '@angular-devkit/schematics';
+import { chain } from '@angular-devkit/schematics';
 import { CoerceFormDefinitionFormArray } from '@rxap/schematics-ts-morph';
-import { ExecuteSchematic } from '@rxap/schematics-utilities';
-import {
-  dasherize,
-  NonNullableSelected,
-  Normalized,
-} from '@rxap/utilities';
-import {
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../lib/angular-options';
-import {
-  NormalizedFormArray,
-  NormalizeFormArray,
-} from '../../../lib/form/array/form-array';
-import { FormArrayKind } from '../../../lib/form/array/form-array-kind';
 import { PrintAngularOptions } from '../../../lib/print-angular-options';
+import { formControlKind } from './form-control-kind';
+import { formDefinitionRule } from './form-definition-rule';
+import {
+  NormalizedFormArrayOptions,
+  NormalizeFormArrayOptions,
+} from './normalize-form-array-options';
 import { FormArrayOptions } from './schema';
 import 'colors';
-
-export type NormalizedFormArrayOptions = Readonly<Normalized<Pick<FormArrayOptions, 'formName'>>> & NonNullableSelected<NormalizedAngularOptions, 'controllerName'> & NormalizedFormArray;
-
-export function NormalizeFormArrayOptions(
-  options: Readonly<FormArrayOptions>,
-): NormalizedFormArrayOptions {
-  const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedFormDefinitionControl = NormalizeFormArray(options);
-  const formName = dasherize(options.formName);
-  const controllerName = options.controllerName ?? formName;
-  return Object.freeze({
-    ...normalizedAngularOptions,
-    ...normalizedFormDefinitionControl,
-    formName,
-    controllerName,
-    context: options.context ? dasherize(options.context) : null,
-  });
-}
 
 function printOptions(options: NormalizedFormArrayOptions) {
   PrintAngularOptions('form-control', options);
   console.log(`=== form: ${options.formName}`.blue);
-}
-
-function formControlKind(normalizedOptions: NormalizedFormArrayOptions): Rule {
-  switch (normalizedOptions.kind) {
-
-    case FormArrayKind.DEFAULT:
-    default:
-      return () => console.log(`No schematic for form array kind: ${normalizedOptions.kind}`.yellow);
-
-  }
-}
-
-function formDefinitionRule(normalizedOptions: NormalizedFormArrayOptions): Rule {
-  const { formName, name } = normalizedOptions;
-  return chain([
-    ExecuteSchematic('form-definition', {
-      ...normalizedOptions,
-      name: [formName, name].join('-'),
-      standalone: false,
-    }),
-  ]);
 }
 
 export default function (options: FormArrayOptions) {

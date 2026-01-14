@@ -5,60 +5,27 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentProvider,
-  CoerceParameterDeclaration,
   CoerceTableHeaderButtonMethodRule,
 } from '@rxap/schematics-ts-morph';
 import {
-  CoerceClassConstructor,
   CoerceDependencyInjection,
   CoerceImports,
   Module,
 } from '@rxap/ts-morph';
-import {
-  CoerceSuffix,
-  dasherize,
-  Normalized,
-} from '@rxap/utilities';
 import { join } from 'path';
 import {
   Project,
-  Scope,
   SourceFile,
 } from 'ts-morph';
-import {
-  AngularOptions,
-  NormalizeAngularOptions,
-  NormalizedAngularOptions,
-
-} from '../../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { MethodKinds } from '../../../../lib/method/method-kinds';
 import { AssertIsNormalizedImportMethodOptions } from '../../../../lib/method/method-options';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
+import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import {
-  MethodHeaderButton,
-  NormalizedMethodHeaderButton,
-  NormalizeMethodHeaderButton,
-} from '../../../../lib/table/header-button/method-header-button';
+  NormalizedFormTableHeaderButtonOptions,
+  NormalizeMethodTableHeaderButtonOptions,
+} from './normalize-method-table-header-button-options';
 import { MethodTableHeaderButtonOptions } from './schema';
-
-export type NormalizedFormTableHeaderButtonOptions = Readonly<Normalized<Omit<MethodTableHeaderButtonOptions, keyof AngularOptions | keyof MethodHeaderButton>> & NormalizedAngularOptions & NormalizedMethodHeaderButton>;
-
-export function NormalizeMethodTableHeaderButtonOptions(
-  options: Readonly<MethodTableHeaderButtonOptions>,
-): NormalizedFormTableHeaderButtonOptions {
-  const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableHeaderButton = NormalizeMethodHeaderButton(options, options.tableName);
-  if (!normalizedTableHeaderButton) {
-    throw new Error('FATAL: should never happen');
-  }
-  const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
-  return Object.freeze({
-    ...normalizedAngularOptions,
-    ...normalizedTableHeaderButton,
-    tableName,
-  });
-}
 
 function printOptions(options: NormalizedFormTableHeaderButtonOptions) {
   PrintAngularOptions('method-table-header-button', options);

@@ -16,7 +16,8 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { NormalizedFormComponentOptions } from '../schematics/form/form-component';
+
+import { NormalizedFormComponentOptions } from '../schematics/form/form-component/normalize-form-component-options';
 import { CoerceControlComponentImports } from './form/coerce-control-component-imports';
 import {
   LoadCssClassHandlebarsTemplate,
