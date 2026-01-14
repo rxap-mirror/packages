@@ -2,10 +2,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
-import {
-  ThrottlerGuard,
-  ThrottlerModule,
-} from '@nestjs/throttler';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import {
   SentryLoggerModule,
   SentryModuleOptionsFactory,
@@ -20,6 +17,7 @@ import { environment } from '../environments/environment';
 import { VALIDATION_SCHEMA } from './app.config';
 import { AppController } from './app.controller';
 import { HealthModule } from './health/health.module';
+import { TestTableController } from './test-table.controller';
 
 @Module({
   imports: [
@@ -41,7 +39,7 @@ import { HealthModule } from './health/health.module';
       useClass: SentryModuleOptionsFactory,
     }),
   ],
-  controllers: [AppController],
+  controllers: [AppController, TestTableController],
   providers: [
     {
       provide: APP_GUARD,
