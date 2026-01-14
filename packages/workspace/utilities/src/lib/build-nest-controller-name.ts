@@ -7,6 +7,14 @@ export interface BuildNestControllerNameOptions {
   controllerName?: string | null;
   nestModule?: string | null;
   controllerNameSuffix?: string | null;
+  /**
+   * The prefix to be joined with `-` to the controller name.
+   *
+   * true - the nestModule name will be used as prefix.
+   * false - no prefix will be used.
+   * string - the string will be used as prefix.
+   */
+  prefix?: string | null | boolean;
 }
 
 /**
@@ -37,27 +45,31 @@ export interface BuildNestControllerNameOptions {
  */
 export function BuildNestControllerName(options: BuildNestControllerNameOptions): string {
   const { controllerNameSuffix, nestModule } = options;
-  let { controllerName } = options;
+  let { controllerName, prefix } = options;
 
-  if (nestModule && nestModule !== controllerName) {
-    process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The nest module name is different from the controller name');
+  if (prefix === true) {
+    prefix = nestModule ?? false;
+  }
+
+  if (prefix && prefix !== controllerName) {
+    process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The prefix is different from the controller name');
     if (controllerName) {
       process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('controllerName', controllerName);
-      if (!controllerName.startsWith(nestModule)) {
-        process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The controller name is not prefixed with the nest module name (${nestModule})-(${controllerName})`);
-        controllerName = [ nestModule, controllerName ].join('-');
+      if (!controllerName.startsWith(prefix)) {
+        process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The controller name is not prefixed with (${prefix})-(${controllerName})`);
+        controllerName = [ prefix, controllerName ].join('-');
       } else {
-        process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.warn('The controller name is already prefixed with the nest module name');
+        process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.warn('The controller name is already prefixed');
       }
     } else {
       process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.warn('The controller name is not defined');
-      controllerName = nestModule;
+      controllerName = prefix;
     }
-  } else if(!controllerName && nestModule) {
-    process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The controller name is not defined, using the nest module name as controller name');
-    controllerName = nestModule;
+  } else if(!controllerName && prefix) {
+    process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The controller name is not defined, using the prefix as controller name');
+    controllerName = prefix;
   } else {
-    process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The nest module name is the same as the controller name');
+    process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The prefix is the same as the controller name');
   }
 
   if (!controllerName) {

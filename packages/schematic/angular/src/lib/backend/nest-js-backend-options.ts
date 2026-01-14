@@ -15,21 +15,32 @@ export interface NestJsBackendOptions extends BaseBackendOptions {
   /**
    * The OpenAPI client sdk serverId used to build operationIds and import paths for operations
    */
-  serverId?: string
+  serverId?: string;
+  /**
+   * The name of the NestJS module where the backend will be created
+   */
+  module?: string;
+  prefix?: boolean | string;
 }
 
-export interface NormalizedNestJsBackendOptions
-  extends Readonly<Normalized<Omit<NestJsBackendOptions, keyof BaseBackendOptions>> & NormalizedBaseBackendOptions> {
+export interface NormalizedNestJsBackendOptions extends NormalizedBaseBackendOptions {
   kind: BackendTypes.NESTJS;
   project: string | null;
   serverId: string | null;
+  module: string | null;
+  prefix: boolean | string | null;
 }
 
-export function NormalizeNestJsBackendOptions(options: NestJsBackendOptions, backendContext?: BackendContext): NormalizedNestJsBackendOptions {
+export function NormalizeNestJsBackendOptions(
+  options: NestJsBackendOptions,
+  backendContext?: BackendContext,
+): NormalizedNestJsBackendOptions {
   return {
     ...NormalizeBaseBackendOptions(options, backendContext),
     kind: BackendTypes.NESTJS,
     project: options.project ?? null,
     serverId: options.serverId ?? null,
+    module: options.module ?? null,
+    prefix: options.prefix ?? null,
   };
 }

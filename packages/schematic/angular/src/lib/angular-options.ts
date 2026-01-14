@@ -43,14 +43,19 @@ export function NormalizeAngularOptions(options: AngularOptions): NormalizedAngu
     ...options,
     project,
   });
+  const backend = NormalizeBackendOptions(options.backend ?? BackendTypes.NONE, Object.freeze(options));
+  let nestModule = options.nestModule ? dasherize(options.nestModule) : null;
+  if (!nestModule && backend.kind === BackendTypes.NESTJS && 'module' in backend && backend.module) {
+    nestModule = dasherize(backend.module);
+  }
   return Object.freeze({
     ...normalizedOptions,
     componentName: options.componentName ? dasherize(options.componentName) : null,
     name: options.name ? dasherize(options.name) : null,
     context: options.context ? dasherize(options.context) : null,
-    nestModule: options.nestModule ? dasherize(options.nestModule) : null,
+    nestModule,
     controllerName: options.controllerName ? dasherize(options.controllerName) : null,
-    backend: NormalizeBackendOptions(options.backend ?? BackendTypes.NONE, Object.freeze(options)),
+    backend,
     directory: options.directory ?? null,
     shared,
     prefix: options.prefix ?? null,

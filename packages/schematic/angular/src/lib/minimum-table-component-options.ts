@@ -83,6 +83,7 @@ export function NormalizeMinimumTableComponentOptions<MODIFIER extends string = 
     controllerName: controllerName ?? BuildNestControllerName({
       controllerName: componentName,
       nestModule,
+      prefix: 'prefix' in normalizedAngularOptions.backend ? normalizedAngularOptions.backend.prefix : true,
     }),
     directory: join(options.directory ?? '', componentName),
   });
@@ -106,7 +107,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
   const operationId = buildOperationId(
     normalizedOptions,
     operationName,
-    BuildNestControllerName(normalizedOptions),
+    normalizedOptions.controllerName,
   );
   return chain([
     TsMorphAngularProjectTransformRule({

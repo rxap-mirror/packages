@@ -265,10 +265,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
   const operationId = buildOperationId(
     normalizedOptions,
     'get-page',
-    BuildNestControllerName({
-      controllerName,
-      nestModule
-    }),
+    normalizedOptions.controllerName,
   );
 
   return chain([
