@@ -237,6 +237,11 @@ function executeSchematicCommand(
 
   if (file) {
     schematicCommandList = schematicCommandList.filter(path => path.endsWith(file));
+    if (!schematicCommandList.some(item => item.endsWith(file))) {
+      if (host.exists(file)) {
+        schematicCommandList.push(file);
+      }
+    }
   }
 
   if (!schematicCommandList.length) {
