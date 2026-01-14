@@ -1,5 +1,4 @@
 import { chain } from '@angular-devkit/schematics';
-import { buildPropertyList } from '@rxap/schematic-angular';
 import {
   AddComponentProvider,
   CoerceComponentRule,
@@ -22,6 +21,7 @@ import {
   SourceFile,
 } from 'ts-morph';
 import { NormalizedAccordionComponentOptions } from '../normalize-accordion-component-options';
+import { buildPropertyList } from '../build-property-list';
 
 export function localBackendRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 

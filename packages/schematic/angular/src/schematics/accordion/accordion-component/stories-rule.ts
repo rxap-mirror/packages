@@ -1,7 +1,6 @@
 import { chain } from '@angular-devkit/schematics';
 import {
   BackendTypes,
-  buildGetOperationId,
 } from '@rxap/schematic-angular';
 import { TsMorphAngularProjectTransformRule } from '@rxap/schematics-ts-morph';
 import { dasherize } from '@rxap/schematics-utilities';
@@ -13,6 +12,7 @@ import {
   OperationIdToRemoteMethodClassName,
 } from '@rxap/ts-morph';
 import { NormalizedAccordionComponentOptions } from './normalize-accordion-component-options';
+import { buildGetOperationId } from './build-get-operation-id';
 
 export function storiesRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 

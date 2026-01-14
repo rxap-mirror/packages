@@ -3,7 +3,6 @@ import {
   Rule,
   Tree,
 } from '@angular-devkit/schematics';
-import { buildLoadFormOptions } from '@rxap/schematic-angular';
 import {
   AddComponentProvider,
   CoerceComponentRule,
@@ -22,6 +21,7 @@ import {
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { backendRule } from './backend/backend-rule';
+import { buildLoadFormOptions } from './build-load-form-options';
 import {
   NormalizedFormTableActionOptions,
   NormalizeFormTableActionOptions,

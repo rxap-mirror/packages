@@ -2,10 +2,7 @@ import {
   chain,
   Rule,
 } from '@angular-devkit/schematics';
-import {
-  buildGetOperationId,
-  ControlToDtoClassProperty,
-} from '@rxap/schematic-angular';
+import { ControlToDtoClassProperty } from '../../../../../lib/form/control-to-dto-class-property';
 import {
   CoerceFormSubmitOperation,
   CoerceOperation,
@@ -19,6 +16,7 @@ import {
   dasherize,
 } from '@rxap/utilities';
 import { join } from 'path';
+import { buildGetOperationId } from '../build-get-operation-id';
 import { NormalizedFormTableActionOptions } from '../normalize-form-table-action-options';
 import { UseOperationResponseAsFormTypeRule } from '../use-operation-response-as-form-type-rule';
 

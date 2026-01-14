@@ -3,15 +3,13 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import {
-  buildGetOperationId,
-  buildPropertyList,
-} from '@rxap/schematic-angular';
-import {
   CoerceGetByIdOperation,
   CoerceGetOperation,
 } from '@rxap/schematics-ts-morph';
+import { buildPropertyList } from '../build-property-list';
 import { NormalizedAccordionComponentOptions } from '../normalize-accordion-component-options';
 import { openApiDataSourceRule } from './open-api-data-source-rule';
+import { buildGetOperationId } from '../build-get-operation-id';
 
 export function nestjsBackendRule(normalizedOptions: NormalizedAccordionComponentOptions) {
 

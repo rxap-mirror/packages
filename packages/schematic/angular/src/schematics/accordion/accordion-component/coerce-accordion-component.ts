@@ -17,8 +17,8 @@ import {
 } from '@rxap/utilities';
 import { Scope } from 'ts-morph';
 
-import { NormalizedAccordionComponentOptions } from '../schematics/accordion/accordion-component/normalize-accordion-component-options';
-import { AccordionItemKinds } from './accordion/accordion-item-kind';
+import { NormalizedAccordionComponentOptions } from './normalize-accordion-component-options';
+import { AccordionItemKinds } from '../../../lib/accordion/accordion-item-kind';
 
 export interface CoerceAccordionComponentOptions extends CoerceComponentOptions {
   accordion: NormalizedAccordionComponentOptions;

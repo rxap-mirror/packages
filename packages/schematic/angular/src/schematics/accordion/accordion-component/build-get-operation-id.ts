@@ -1,5 +1,5 @@
 import { buildOperationId } from '@rxap/schematics-ts-morph';
-import { NormalizedAccordionComponentOptions } from '../schematics/accordion/accordion-component/normalize-accordion-component-options';
+import { NormalizedAccordionComponentOptions } from './normalize-accordion-component-options';
 
 export function buildGetOperationId(normalizedOptions: NormalizedAccordionComponentOptions) {
   const {

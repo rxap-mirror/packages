@@ -37,8 +37,17 @@ export * from './lib/table/table-column-modifier';
 export * from './lib/table/table-column-pipe';
 export * from './lib/table/table-column-sticky';
 export * from './lib/table/table-column';
-export * from './lib/rules/table-filter-column-rule';
 export * from './lib/table/table-header-button';
+// endregion
+
+// region rules
+export * from './lib/rules/assert-table-component-exists';
+export * from './lib/rules/table-action-rule';
+export * from './lib/rules/table-cell-component-rule';
+export * from './lib/rules/table-filter-column-rule';
+export * from './lib/rules/table-header-button-rule';
+export * from './lib/rules/table-interface-rule';
+export * from './lib/rules/use-pick-from-table-interface-as-form-type-rule';
 // endregion
 
 // region method
@@ -129,12 +138,12 @@ export * from './lib/accordion/accordion';
 export * from './lib/accordion-identifier';
 export * from './lib/adapter-options';
 export * from './lib/angular-options';
-export * from './lib/rules/assert-table-component-exists';
-export * from './lib/coerce-accordion-component';
+export * from './lib/build-tree-table-ge-children-operation-id';
+export * from './lib/build-tree-table-get-root-operation-id';
 export * from './lib/coerce-accordion-item-table-component';
-export * from './lib/coerce-form-component';
 export * from './lib/coerce-minimum-table-component';
 export * from './lib/coerce-tree-table-component';
+export * from './lib/coerce-type-alias';
 export * from './lib/component-options';
 export * from './lib/css-class';
 export * from './lib/data-grid-item';
@@ -142,6 +151,7 @@ export * from './lib/data-grid-mode';
 export * from './lib/data-grid-options';
 export * from './lib/dialog-action';
 export * from './lib/existing-method';
+export * from './lib/get-item-options';
 export * from './lib/load-handlebars-template';
 export * from './lib/mat-form-field-default-options';
 export * from './lib/minimum-table-options';
@@ -151,20 +161,9 @@ export * from './lib/pipe-option-to-type-import';
 export * from './lib/pipe-option';
 export * from './lib/print-angular-options';
 export * from './lib/route-component';
-export * from './lib/rules/table-action-rule';
-export * from './lib/rules/table-cell-component-rule';
-export * from './lib/rules/table-header-button-rule';
-export * from './lib/rules/table-interface-rule';
 export * from './lib/table-open-api-options';
 export * from './lib/table-options';
 export * from './lib/to-title';
 export * from './lib/tree-table-options';
-export * from './lib/rules/use-pick-from-table-interface-as-form-type-rule';
 export * from './lib/value-option';
-export { CoerceTypeAlias } from './lib/coerce-type-alias';
-export { buildGetOperationId } from './lib/form-table-action/build-get-operation-id';
-export { buildLoadFormOptions } from './lib/form-table-action/build-load-form-options';
-export { buildGetOperationId } from './lib/build-get-operation-id';
-export { buildPropertyList } from './lib/build-property-list';
-export { GetItemOptions } from './lib/get-item-options';
 // endregion

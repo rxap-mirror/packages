@@ -1,6 +1,6 @@
 import { LoadFromTableActionOptions } from '@rxap/schematics-ts-morph';
-import { NormalizedFormTableActionOptions } from '../../schematics/table/action/form-table-action/normalize-form-table-action-options';
-import { BackendTypes } from '../backend/backend-types';
+import { NormalizedFormTableActionOptions } from './normalize-form-table-action-options';
+import { BackendTypes } from '../../../../lib/backend/backend-types';
 import { buildGetOperationId } from './build-get-operation-id';
 
 export function buildLoadFormOptions(normalizedOptions: NormalizedFormTableActionOptions): LoadFromTableActionOptions | undefined {

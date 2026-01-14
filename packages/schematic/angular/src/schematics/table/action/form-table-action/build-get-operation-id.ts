@@ -1,5 +1,5 @@
 import { buildOperationId } from '@rxap/schematics-ts-morph';
-import { NormalizedFormTableActionOptions } from '../../schematics/table/action/form-table-action/normalize-form-table-action-options';
+import { NormalizedFormTableActionOptions } from './normalize-form-table-action-options';
 
 export function buildGetOperationId(normalizedOptions: NormalizedFormTableActionOptions) {
   const {

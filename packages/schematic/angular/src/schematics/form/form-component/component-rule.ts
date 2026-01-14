@@ -2,8 +2,8 @@ import {
   chain,
   Rule,
 } from '@angular-devkit/schematics';
-import { CoerceFormComponentRule } from '@rxap/schematic-angular';
 import { NormalizedFormComponentOptions } from './normalize-form-component-options';
+import { CoerceFormComponentRule } from './coerce-form-component';
 
 export function componentRule(normalizedOptions: NormalizedFormComponentOptions): Rule {
 

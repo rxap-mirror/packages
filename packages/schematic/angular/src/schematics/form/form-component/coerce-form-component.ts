@@ -17,13 +17,13 @@ import {
   Writers,
 } from 'ts-morph';
 
-import { NormalizedFormComponentOptions } from '../schematics/form/form-component/normalize-form-component-options';
-import { CoerceControlComponentImports } from './form/coerce-control-component-imports';
+import { NormalizedFormComponentOptions } from './normalize-form-component-options';
+import { CoerceControlComponentImports } from '../../../lib/form/coerce-control-component-imports';
 import {
   LoadCssClassHandlebarsTemplate,
   LoadMatFormFieldHandlebarsTemplate,
   LoadPipeHandlebarsTemplate,
-} from './load-handlebars-template';
+} from '../../../lib/load-handlebars-template';
 
 export interface CoerceFormComponentOptions extends CoerceComponentOptions {
   form: NormalizedFormComponentOptions;

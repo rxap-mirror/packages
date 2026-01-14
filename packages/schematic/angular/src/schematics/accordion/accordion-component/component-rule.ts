@@ -3,15 +3,13 @@ import {
   SchematicsException,
 } from '@angular-devkit/schematics';
 import {
-  BackendTypes,
-  buildGetOperationId,
-  CoerceAccordionComponentRule,
-} from '@rxap/schematic-angular';
-import {
   OperationIdToClassRemoteMethodImportPath,
   OperationIdToRemoteMethodClassName,
 } from '@rxap/ts-morph';
 import { NormalizedAccordionComponentOptions } from './normalize-accordion-component-options';
+import { BackendTypes } from '../../../lib/backend/backend-types';
+import { buildGetOperationId } from './build-get-operation-id';
+import { CoerceAccordionComponentRule } from './coerce-accordion-component';
 
 export function componentRule(
   normalizedOptions: NormalizedAccordionComponentOptions, hasMissingPanelComponents: boolean) {

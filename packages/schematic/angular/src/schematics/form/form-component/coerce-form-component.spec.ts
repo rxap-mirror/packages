@@ -3,7 +3,7 @@ import { CoerceFormComponentRule } from './coerce-form-component';
 jest.mock('@rxap/schematics-ts-morph', () => ({
   CoerceComponentRule: jest.fn((o) => () => {}),
 }));
-jest.mock('./load-handlebars-template', () => ({
+jest.mock('../../../lib/load-handlebars-template', () => ({
   LoadMatFormFieldHandlebarsTemplate: jest.fn(),
   LoadPipeHandlebarsTemplate: jest.fn(),
   LoadCssClassHandlebarsTemplate: jest.fn(),

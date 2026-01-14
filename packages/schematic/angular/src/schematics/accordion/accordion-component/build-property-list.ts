@@ -2,10 +2,10 @@ import {
   NormalizeDataProperty,
   NormalizedDataProperty,
 } from '@rxap/ts-morph';
-import { NormalizedAccordionComponentOptions } from '../schematics/accordion/accordion-component/normalize-accordion-component-options';
-import { AccordionItemKinds } from './accordion/accordion-item-kind';
-import { IsNormalizedPropertyAccordionHeader } from './accordion/header/property-accordion-header';
-import { IsNormalizedPropertyPersistent } from './persistent';
+import { NormalizedAccordionComponentOptions } from './normalize-accordion-component-options';
+import { AccordionItemKinds } from '../../../lib/accordion/accordion-item-kind';
+import { IsNormalizedPropertyAccordionHeader } from '../../../lib/accordion/header/property-accordion-header';
+import { IsNormalizedPropertyPersistent } from '../../../lib/persistent';
 
 export function buildPropertyList(normalizedOptions: NormalizedAccordionComponentOptions): NormalizedDataProperty[] {
   const {
