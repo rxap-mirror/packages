@@ -1,4 +1,3 @@
-import { SchematicsException } from '@angular-devkit/schematics';
 import {
   DataProperty,
   NormalizeDataProperty,
@@ -23,7 +22,6 @@ import { LoadHandlebarsTemplate } from './load-handlebars-template';
 import {
   NormalizedPipeOption,
   NormalizePipeOptionList,
-
 } from './pipe-option';
 import { PipeOptionToTypeImport } from './pipe-option-to-type-import';
 
@@ -72,7 +70,7 @@ function guessDataGridItemKind(item: BaseDataGridItem): DataGridKinds {
 
 export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): NormalizedBaseDataGridItem {
   if (!item.name) {
-    throw new SchematicsException('The data grid item is required');
+    throw new Error('The data grid item is required');
   }
   const formControl = item.formControl && Object.keys(item.formControl).length ? NormalizeControl({
     name: item.name,

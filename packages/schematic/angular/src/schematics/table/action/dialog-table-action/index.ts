@@ -25,7 +25,7 @@ import {
   NormalizedAngularOptions,
 
 } from '../../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
+import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';
 import {
   DialogTableAction,

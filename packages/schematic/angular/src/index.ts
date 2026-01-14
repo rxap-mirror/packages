@@ -37,7 +37,7 @@ export * from './lib/table/table-column-modifier';
 export * from './lib/table/table-column-pipe';
 export * from './lib/table/table-column-sticky';
 export * from './lib/table/table-column';
-export * from './lib/table/table-filter-column-rule';
+export * from './lib/rules/table-filter-column-rule';
 export * from './lib/table/table-header-button';
 // endregion
 
@@ -129,7 +129,7 @@ export * from './lib/accordion/accordion';
 export * from './lib/accordion-identifier';
 export * from './lib/adapter-options';
 export * from './lib/angular-options';
-export * from './lib/assert-table-component-exists';
+export * from './lib/rules/assert-table-component-exists';
 export * from './lib/coerce-accordion-component';
 export * from './lib/coerce-accordion-item-table-component';
 export * from './lib/coerce-form-component';
@@ -151,14 +151,14 @@ export * from './lib/pipe-option-to-type-import';
 export * from './lib/pipe-option';
 export * from './lib/print-angular-options';
 export * from './lib/route-component';
-export * from './lib/table-action-rule';
-export * from './lib/table-cell-component-rule';
-export * from './lib/table-header-button-rule';
-export * from './lib/table-interface-rule';
+export * from './lib/rules/table-action-rule';
+export * from './lib/rules/table-cell-component-rule';
+export * from './lib/rules/table-header-button-rule';
+export * from './lib/rules/table-interface-rule';
 export * from './lib/table-open-api-options';
 export * from './lib/table-options';
 export * from './lib/to-title';
 export * from './lib/tree-table-options';
-export * from './lib/use-pick-from-table-interface-as-form-type';
+export * from './lib/rules/use-pick-from-table-interface-as-form-type-rule';
 export * from './lib/value-option';
 // endregion

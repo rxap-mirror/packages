@@ -3,16 +3,15 @@ import {
   chain,
   noop,
   Rule,
-  SchematicsException,
 } from '@angular-devkit/schematics';
 import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import { BuildNestControllerName } from '@rxap/workspace-utilities';
-import { NormalizedMinimumTableComponentOptions } from './normalize-minimum-table-component-options';
-import { NormalizedTableAction } from './table/table-action';
-import { TableActionKind } from './table/table-action-kind';
+import { NormalizedMinimumTableComponentOptions } from '../normalize-minimum-table-component-options';
+import { NormalizedTableAction } from '../table/table-action';
+import { TableActionKind } from '../table/table-action-kind';
 
 function operationActionRule(
   action: NormalizedTableAction,
@@ -36,7 +35,7 @@ function operationActionRule(
   } = normalizedOptions;
 
   if (kind !== TableActionKind.OPERATION) {
-    throw new SchematicsException(`Invalid action role: ${ kind } - expected operation`);
+    throw new Error(`Invalid action role: ${ kind } - expected operation`);
   }
 
   return chain([
@@ -88,7 +87,7 @@ function formActionRule(
   });
 
   if (kind !== TableActionKind.FORM) {
-    throw new SchematicsException(`Invalid action role: ${ kind } - expected form`);
+    throw new Error(`Invalid action role: ${ kind } - expected form`);
   }
 
   return chain([
@@ -132,7 +131,7 @@ function navigateActionRule(
   } = normalizedOptions;
 
   if (kind !== TableActionKind.NAVIGATION) {
-    throw new SchematicsException(`Invalid action role: ${ kind } - expected navigation`);
+    throw new Error(`Invalid action role: ${ kind } - expected navigation`);
   }
 
   return chain([
@@ -177,7 +176,7 @@ function dialogActionRule(
   } = normalizedOptions;
 
   if (kind !== TableActionKind.DIALOG) {
-    throw new SchematicsException(`Invalid action role: ${ kind } - expected dialog`);
+    throw new Error(`Invalid action role: ${ kind } - expected dialog`);
   }
 
   return chain([
@@ -259,7 +258,7 @@ function openApiActionRule(
   } = normalizedOptions;
 
   if (kind !== TableActionKind.OPEN_API) {
-    throw new SchematicsException(`Invalid action role: ${ kind } - expected open-api`);
+    throw new Error(`Invalid action role: ${ kind } - expected open-api`);
   }
 
   return chain([

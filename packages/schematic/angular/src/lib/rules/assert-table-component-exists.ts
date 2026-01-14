@@ -1,7 +1,4 @@
-import {
-  SchematicsException,
-  Tree,
-} from '@angular-devkit/schematics';
+import { Tree } from '@angular-devkit/schematics';
 import { HasTableComponent } from '@rxap/schematics-ts-morph';
 
 export interface AssertTableComponentExistsOptions {
@@ -26,7 +23,7 @@ export function AssertTableComponentExists(host: Tree, options: AssertTableCompo
       name: tableName,
     })
   ) {
-    throw new SchematicsException(
+    throw new Error(
       `Could not find the table component '${ tableName }' in the project '${ project }' and feature '${ feature }' and directory '${ directory }'.`,
     );
   }

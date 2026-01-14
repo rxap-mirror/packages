@@ -17,7 +17,7 @@ import {
 } from 'ts-morph';
 import { NormalizedAngularOptions } from '../angular-options';
 import { NormalizedMinimumTableOptions } from '../minimum-table-options';
-import { UsePickFromTableInterfaceAsFormTypeRule } from '../use-pick-from-table-interface-as-form-type';
+import { UsePickFromTableInterfaceAsFormTypeRule } from './use-pick-from-table-interface-as-form-type-rule';
 
 /**
  * Applies table filter column rule.

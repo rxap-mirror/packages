@@ -1,4 +1,3 @@
-import { SchematicsException } from '@angular-devkit/schematics';
 import {
   DataProperty,
   NormalizeDataProperty,
@@ -48,7 +47,7 @@ export function NormalizeAbstractControl<Kind extends string>(
   defaultIsArray = false
 ): NormalizedAbstractControl & { kind: Kind } {
   if (!control.name) {
-    throw new SchematicsException('The control name is required');
+    throw new Error('The control name is required');
   }
   const role = control.role ?? AbstractControlRolls.CONTROL;
   const isReadonly: boolean = control.isReadonly ?? false;

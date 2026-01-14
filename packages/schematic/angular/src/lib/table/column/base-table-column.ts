@@ -1,4 +1,3 @@
-import { SchematicsException } from '@angular-devkit/schematics';
 import {
   capitalize,
   dasherize,
@@ -279,7 +278,7 @@ export function NormalizeBaseTableColumn(
   column: Readonly<BaseTableColumn>,
 ): NormalizedBaseTableColumn {
   if (!column.name) {
-    throw new SchematicsException('The column name is required');
+    throw new Error('The column name is required');
   }
   const modifiers = column.modifiers ?? [];
   let hasFilter = modifiers.includes(TableColumnModifier.FILTER) || (

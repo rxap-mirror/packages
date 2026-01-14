@@ -44,17 +44,17 @@ import {
 } from '../../../lib/load-handlebars-template';
 import { NormalizeMinimumTableComponentOptions } from '../../../lib/normalize-minimum-table-component-options';
 import { PrintAngularOptions } from '../../../lib/print-angular-options';
-import { actionListRule } from '../../../lib/table-action-rule';
-import { cellComponentRule } from '../../../lib/table-cell-component-rule';
-import { headerButtonRule } from '../../../lib/table-header-button-rule';
-import { tableInterfaceRule } from '../../../lib/table-interface-rule';
+import { actionListRule } from '../../../lib/rules/table-action-rule';
+import { cellComponentRule } from '../../../lib/rules/table-cell-component-rule';
+import { headerButtonRule } from '../../../lib/rules/table-header-button-rule';
+import { tableInterfaceRule } from '../../../lib/rules/table-interface-rule';
 import {
   IsTableModifiers,
   NormalizedTableOptions,
   NormalizeTableOptions,
   TableModifiers,
 } from '../../../lib/table-options';
-import { TableFilterColumnRule } from '../../../lib/table/table-filter-column-rule';
+import { TableFilterColumnRule } from '../../../lib/rules/table-filter-column-rule';
 import { TableComponentOptions } from './schema';
 
 export interface NormalizedTableComponentOptions

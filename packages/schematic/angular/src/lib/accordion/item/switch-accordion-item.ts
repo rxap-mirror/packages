@@ -1,4 +1,3 @@
-import { SchematicsException } from '@angular-devkit/schematics';
 import {
   DataProperty,
   NormalizeDataProperty,
@@ -13,12 +12,12 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import { NormalizeAccordionItemList } from '../accordion-item';
+import { AccordionItemKinds } from '../accordion-item-kind';
 import {
   BaseAccordionItem,
   NormalizeBaseAccordionItem,
   NormalizedBaseAccordionItem,
 } from './base-accordion-item';
-import { AccordionItemKinds } from '../accordion-item-kind';
 
 export interface SwitchAccordionItem extends BaseAccordionItem {
   switch: {
@@ -113,7 +112,7 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
     } : null,
   });
   if (normalizeSwitch.case.length === 0 && !normalizeSwitch.defaultCase) {
-    throw new SchematicsException(
+    throw new Error(
       `The switch '${ name }' has no cases or default case. At least one case or default case is required.`,
     );
   }

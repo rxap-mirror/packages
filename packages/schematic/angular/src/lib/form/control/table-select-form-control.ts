@@ -1,4 +1,3 @@
-import { SchematicsException } from '@angular-devkit/schematics';
 import {
   DataProperty,
   NormalizeDataProperty,
@@ -17,11 +16,11 @@ import {
   NormalizeAccordionIdentifier,
   NormalizedAccordionIdentifier,
 } from '../../accordion-identifier';
-import { BackendTypes } from '../../backend/backend-types';
 import {
   NormalizeBackendOptions,
   NormalizedBackendOptions,
 } from '../../backend/backend-options';
+import { BackendTypes } from '../../backend/backend-types';
 import {
   DataSourceOptions,
   NormalizeDataSourceOptions,
@@ -65,7 +64,7 @@ export function NormalizeTableSelectColumn(
   column: TableSelectColumn,
 ): NormalizedTableSelectColumn {
   if (!column.name) {
-    throw new SchematicsException('The column name is required');
+    throw new Error('The column name is required');
   }
   const kind = column.kind ?? TableColumnKind.DEFAULT;
   const type = GuessColumnTypeType(kind, column.type ?? 'unknown');

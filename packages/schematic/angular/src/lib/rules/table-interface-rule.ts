@@ -1,7 +1,6 @@
 import {
   chain,
   Rule,
-  SchematicsException,
 } from '@angular-devkit/schematics';
 import {
   buildOperationId,
@@ -28,8 +27,8 @@ import {
   PropertySignatureStructure,
   Writers,
 } from 'ts-morph';
-import { BackendTypes } from './backend/backend-types';
-import { NormalizedMinimumTableComponentOptions } from './normalize-minimum-table-component-options';
+import { BackendTypes } from '../backend/backend-types';
+import { NormalizedMinimumTableComponentOptions } from '../normalize-minimum-table-component-options';
 
 function tableInterfaceFromOpenApiRule(
   normalizedOptions: NormalizedMinimumTableComponentOptions, options: TableInterfaceRuleOptions = {}): Rule {
@@ -46,7 +45,7 @@ function tableInterfaceFromOpenApiRule(
     typePath = `['rows'][number]`,
   } = options;
   if (![ BackendTypes.NESTJS ].includes(backend.kind)) {
-    throw new SchematicsException(`Invalid backend type: ${ backend } - expected nestjs`);
+    throw new Error(`Invalid backend type: ${ backend } - expected nestjs`);
   }
   const operationId = buildOperationId(
     normalizedOptions,

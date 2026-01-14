@@ -10,9 +10,9 @@ import {
   classify,
   dasherize,
 } from '@rxap/utilities';
-import { NormalizedMinimumTableComponentOptions } from './normalize-minimum-table-component-options';
-import { TableColumnKind } from './table/table-column-kind';
-import { TableColumnModifier } from './table/table-column-modifier';
+import { NormalizedMinimumTableComponentOptions } from '../normalize-minimum-table-component-options';
+import { TableColumnKind } from '../table/table-column-kind';
+import { TableColumnModifier } from '../table/table-column-modifier';
 
 export function cellComponentRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
   const {

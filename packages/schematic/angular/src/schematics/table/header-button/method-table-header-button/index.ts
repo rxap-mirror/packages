@@ -31,7 +31,7 @@ import {
   NormalizedAngularOptions,
 
 } from '../../../../lib/angular-options';
-import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
+import { AssertTableComponentExists } from '../../../../lib/rules/assert-table-component-exists';
 import { MethodKinds } from '../../../../lib/method/method-kinds';
 import { AssertIsNormalizedImportMethodOptions } from '../../../../lib/method/method-options';
 import { PrintAngularOptions } from '../../../../lib/print-angular-options';

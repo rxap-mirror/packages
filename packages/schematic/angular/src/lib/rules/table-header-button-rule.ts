@@ -4,8 +4,8 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
-import { NormalizedMinimumTableComponentOptions } from './normalize-minimum-table-component-options';
-import { HeaderButtonKind } from './table/header-button-kind';
+import { NormalizedMinimumTableComponentOptions } from '../normalize-minimum-table-component-options';
+import { HeaderButtonKind } from '../table/header-button-kind';
 
 export function headerButtonRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
   const {

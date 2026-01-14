@@ -1,4 +1,3 @@
-import { SchematicsException } from '@angular-devkit/schematics';
 import {
   capitalize,
   dasherize,
@@ -83,7 +82,7 @@ export function NormalizeBaseAccordionItem(item: BaseAccordionItem): NormalizedB
   const importList: TypeImport[] = item.importList ?? [];
   title ??= dasherize(name).split('-').map(fragment => capitalize(fragment)).join(' ');
   if (!IsAccordionItemKind(kind)) {
-    throw new SchematicsException(
+    throw new Error(
       `The item type '${ kind }' for item '${ name }' is not supported`,
     );
   }
