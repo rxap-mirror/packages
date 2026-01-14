@@ -5,7 +5,7 @@ options:
   backend:
     kind: nestjs
     project: service-nest
-    module: AppModule
+    module: app
   columnList:
     - name: name
     - name: description

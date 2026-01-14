@@ -1,23 +1,25 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
-import {
-  ThrottlerModuleOptionsLoader,
-  CacheModuleOptionsLoader,
-  EnvironmentModule,
-} from '@rxap/nest-utilities';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { VALIDATION_SCHEMA } from './app.config';
 import { CacheModule } from '@nestjs/cache-manager';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
-import { environment } from '../environments/environment';
-import { HealthModule } from './health/health.module';
-import { SentryModule } from '@sentry/nestjs/setup';
+import {
+  ThrottlerGuard,
+  ThrottlerModule,
+} from '@nestjs/throttler';
 import {
   SentryLoggerModule,
   SentryModuleOptionsFactory,
 } from '@rxap/nest-sentry';
-import { TestTableModule } from '../test-table/test-table.module';
+import {
+  CacheModuleOptionsLoader,
+  EnvironmentModule,
+  ThrottlerModuleOptionsLoader,
+} from '@rxap/nest-utilities';
+import { SentryModule } from '@sentry/nestjs/setup';
+import { environment } from '../environments/environment';
+import { VALIDATION_SCHEMA } from './app.config';
+import { AppController } from './app.controller';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -38,7 +40,6 @@ import { TestTableModule } from '../test-table/test-table.module';
     SentryLoggerModule.registerAsync({
       useClass: SentryModuleOptionsFactory,
     }),
-    TestTableModule,
   ],
   controllers: [AppController],
   providers: [
