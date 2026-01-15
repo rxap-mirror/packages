@@ -4,7 +4,13 @@ import {
 } from '@rxap/utilities';
 
 export interface BuildNestControllerNameOptions {
+  /**
+   * @deprecated use `controller` instead
+   */
   controllerName?: string | null;
+  /**
+   * @deprecated use `module` instead
+   */
   nestModule?: string | null;
   controllerNameSuffix?: string | null;
   /**
@@ -15,6 +21,14 @@ export interface BuildNestControllerNameOptions {
    * string - the string will be used as prefix.
    */
   prefix?: string | null | boolean;
+  /**
+   * The module name
+   */
+  module?: string | null;
+  /**
+   * The controller name
+   */
+  controller?: string | null;
 }
 
 /**
@@ -44,47 +58,57 @@ export interface BuildNestControllerNameOptions {
  * ```
  */
 export function BuildNestControllerName(options: BuildNestControllerNameOptions): string {
-  const { controllerNameSuffix, nestModule } = options;
-  let { controllerName, prefix } = options;
+  const {
+    controllerName,
+    controllerNameSuffix,
+    nestModule,
+  } = options;
+  let {
+    prefix,
+    module,
+    controller,
+  } = options;
 
+  module ??= nestModule;
+  controller ??= controllerName;
   if (prefix === true) {
-    prefix = nestModule ?? false;
+    prefix = module ?? false;
   }
 
-  if (prefix && prefix !== controllerName) {
+  if (prefix && prefix !== controller) {
     process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The prefix is different from the controller name');
-    if (controllerName) {
-      process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('controllerName', controllerName);
-      if (!controllerName.startsWith(prefix)) {
+    if (controller) {
+      process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('controller', controller);
+      if (!controller.startsWith(prefix)) {
         process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(`The controller name is not prefixed with (${prefix})-(${controllerName})`);
-        controllerName = [ prefix, controllerName ].join('-');
+        controller = [ prefix, controller ].join('-');
       } else {
         process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.warn('The controller name is already prefixed');
       }
     } else {
       process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.warn('The controller name is not defined');
-      controllerName = prefix;
+      controller = prefix;
     }
-  } else if(!controllerName && prefix) {
+  } else if (!controller && prefix) {
     process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The controller name is not defined, using the prefix as controller name');
-    controllerName = prefix;
+    controller = prefix;
   } else {
     process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The prefix is the same as the controller name');
   }
 
-  if (!controllerName) {
+  if (!controller) {
     throw new Error('Could not determine the controller name');
   }
 
   if (controllerNameSuffix) {
-    controllerName = CoerceSuffix(controllerName, CoercePrefix(controllerNameSuffix, '-'));
+    controller = CoerceSuffix(controller, CoercePrefix(controllerNameSuffix, '-'));
   }
 
-  if (controllerName.endsWith('-')) {
+  if (controller.endsWith('-')) {
     process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log(JSON.stringify(options));
     throw new Error(`The controller name should not end with a dash`);
   }
 
-    return controllerName;
+  return controller;
 
 }
