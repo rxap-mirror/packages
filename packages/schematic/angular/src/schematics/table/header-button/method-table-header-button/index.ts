@@ -45,10 +45,6 @@ export default function (options: MethodTableHeaderButtonOptions) {
     shared,
     directory,
     overwrite,
-    context,
-    backend,
-    nestModule,
-    controllerName,
     method,
   } = normalizedOptions;
 
