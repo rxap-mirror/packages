@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`autocomplete-table-select-form-control should run snapshot match 1`] = `
+[
+  "/angular.json",
+  "/api/app/project.json",
+  "/api/app/src/app/app.module.ts",
+  "/api/app/src/main.ts",
+  "/api/app/tsconfig.app.json",
+  "/api/app/tsconfig.json",
+  "/api/lib/project.json",
+  "/api/lib/src/index.ts",
+  "/api/lib/src/lib/test.ts",
+  "/api/lib/tsconfig.json",
+  "/api/lib/tsconfig.lib.json",
+  "/nx.json",
+  "/package.json",
+  "/tsconfig.base.json",
+  "/ui/app/project.json",
+  "/ui/app/src/app/app.module.ts",
+  "/ui/app/src/app/app.routes.ts",
+  "/ui/app/src/main.ts",
+  "/ui/app/tsconfig.app.json",
+  "/ui/app/tsconfig.json",
+  "/ui/lib/project.json",
+  "/ui/lib/src/index.ts",
+  "/ui/lib/src/lib/test-form.form.ts",
+  "/ui/lib/src/lib/test-form/form.providers.ts",
+  "/ui/lib/src/lib/test-form/test-form.component.html",
+  "/ui/lib/src/lib/test-form/test-form.component.scss",
+  "/ui/lib/src/lib/test-form/test-form.component.ts",
+  "/ui/lib/src/lib/test-form/test-form.form.ts",
+  "/ui/lib/src/lib/test.ts",
+  "/ui/lib/tsconfig.json",
+  "/ui/lib/tsconfig.lib.json",
+]
+`;

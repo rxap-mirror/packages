@@ -60,6 +60,7 @@ export function createAngularApplication(tree: Tree, project: string, root: stri
   tree.create(join(config.sourceRoot, 'app', 'app.module.ts'), `import { NgModule } from '@angular/core';
 @NgModule({})
 export class AppModule {}`);
+  tree.create(join(config.sourceRoot, 'app', 'app.routes.ts'), 'import { Route } from \'@angular/router\';\nexport const appRoutes: Route[] = [];');
   config.prefix = 'jest';
   tree.overwrite(join(config.root, 'project.json'), JSON.stringify(config, null, 2));
   return config;
@@ -117,5 +118,5 @@ export function createFullWorkspace(tree: Tree = new UnitTestTree(new HostTree()
 export function listFiles(tree: Tree) {
   const paths: string[] = [];
   tree.visit(path => paths.push(path));
-  return paths;
+  return paths.sort();
 }
