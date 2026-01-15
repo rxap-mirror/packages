@@ -10,7 +10,7 @@ exports[`date-form-control should run snapshot match 1`] = `
   "/api/app/tsconfig.json",
   "/api/lib/project.json",
   "/api/lib/src/index.ts",
-  "/api/lib/src/lib/test.ts",
+  "/api/lib/src/lib/api-lib.module.ts",
   "/api/lib/tsconfig.json",
   "/api/lib/tsconfig.lib.json",
   "/nx.json",
@@ -29,7 +29,7 @@ exports[`date-form-control should run snapshot match 1`] = `
   "/ui/lib/src/lib/test-form/test-form.component.scss",
   "/ui/lib/src/lib/test-form/test-form.component.ts",
   "/ui/lib/src/lib/test-form/test-form.form.ts",
-  "/ui/lib/src/lib/test.ts",
+  "/ui/lib/src/lib/ui-lib.module.ts",
   "/ui/lib/tsconfig.json",
   "/ui/lib/tsconfig.lib.json",
 ]

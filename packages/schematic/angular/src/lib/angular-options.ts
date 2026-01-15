@@ -9,6 +9,7 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import {
+  BackendOptions,
   NormalizeBackendOptions,
   NormalizedBackendOptions,
 } from './backend/backend-options';
@@ -20,7 +21,7 @@ export interface AngularOptions extends GlobalOptions {
   context?: string;
   nestModule?: string;
   controllerName?: string;
-  backend?: BackendTypes;
+  backend?: BackendTypes | BackendOptions;
   directory?: string;
   shared?: boolean;
   scope?: string;

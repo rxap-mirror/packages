@@ -1,7 +1,5 @@
 import { Tree } from '@angular-devkit/schematics';
-// import { Tree } from '@nx/devkit';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-// import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { join } from 'path';
 import {
   createFullWorkspace,
@@ -18,7 +16,7 @@ describe('dialog-component', () => {
   let projects: TestProjectNames;
 
   beforeEach(() => {
-    const result = createFullWorkspace(tree);
+    const result = createFullWorkspace();
     tree =  result.tree;
     workspace = result.workspace;
     projects = result.projects;

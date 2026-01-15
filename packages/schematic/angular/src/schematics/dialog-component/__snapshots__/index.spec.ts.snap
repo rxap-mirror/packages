@@ -10,7 +10,7 @@ exports[`dialog-component minimal: file-tree 1`] = `
   "/api/app/tsconfig.json",
   "/api/lib/project.json",
   "/api/lib/src/index.ts",
-  "/api/lib/src/lib/test.ts",
+  "/api/lib/src/lib/api-lib.module.ts",
   "/api/lib/tsconfig.json",
   "/api/lib/tsconfig.lib.json",
   "/nx.json",
@@ -27,7 +27,7 @@ exports[`dialog-component minimal: file-tree 1`] = `
   "/ui/lib/src/lib/test-dialog/test-dialog.component.html",
   "/ui/lib/src/lib/test-dialog/test-dialog.component.scss",
   "/ui/lib/src/lib/test-dialog/test-dialog.component.ts",
-  "/ui/lib/src/lib/test.ts",
+  "/ui/lib/src/lib/ui-lib.module.ts",
   "/ui/lib/tsconfig.json",
   "/ui/lib/tsconfig.lib.json",
 ]

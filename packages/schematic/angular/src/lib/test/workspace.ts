@@ -1,10 +1,14 @@
 // rxap-no-index-export
 import {
+  EmptyTree,
   HostTree,
   Tree,
 } from '@angular-devkit/schematics';
 import { UnitTestTree } from '@angular-devkit/schematics/testing';
-import { classify } from '@rxap/utilities';
+import {
+  classify,
+  dasherize,
+} from '@rxap/utilities';
 import { join } from 'path';
 
 export interface TestProject {
@@ -20,12 +24,12 @@ export interface TestProjectNames {
 }
 
 export interface FullWorkspace {
-  tree: Tree,
+  tree: UnitTestTree,
   workspace: { [project: string]: TestProject },
   projects: TestProjectNames
 }
 
-export function createWorkspace(tree: Tree = new UnitTestTree(new HostTree())): Tree {
+export function createWorkspace(tree: UnitTestTree): UnitTestTree {
   tree.create('/angular.json', JSON.stringify({ version: 2, projects: {} }));
   tree.create('/nx.json', JSON.stringify({ npmScope: 'rxap', affected: { defaultBase: 'master' } }));
   tree.create('/package.json', JSON.stringify({ name: 'workspace' }));
@@ -68,7 +72,7 @@ export class AppModule {}`);
 
 export function createAngularLibrary(tree: Tree, project: string, root: string) {
   const config = createProject(tree, project, 'library', root);
-  tree.create(join(config.sourceRoot, 'lib', 'test.ts'), `import { NgModule } from '@angular/core';
+  tree.create(join(config.sourceRoot, 'lib', `${dasherize(project)}.module.ts`), `import { NgModule } from '@angular/core';
 @NgModule({})
 export class ${classify(project)}Module {}
 `);
@@ -87,13 +91,13 @@ export class AppModule {}`);
 
 export function createNestLibrary(tree: Tree, project: string, root: string) {
   const config = createProject(tree, project, 'library', root);
-  tree.create(join(config.sourceRoot, 'lib', 'test.ts'), `import { Module } from '@nestjs/common';
+  tree.create(join(config.sourceRoot, 'lib', `${dasherize(project)}.module.ts`), `import { Module } from '@nestjs/common';
 @Module({})
 export class ${classify(project)}Module {}`);
   return config;
 }
 
-export function createFullWorkspace(tree: Tree = new UnitTestTree(new HostTree())): FullWorkspace {
+export function createFullWorkspace(tree: UnitTestTree = new UnitTestTree(new EmptyTree())): FullWorkspace {
   tree = createWorkspace(tree);
   const angularApp = createAngularApplication(tree, 'ui-app', 'ui/app');
   const angularLib = createAngularLibrary(tree, 'ui-lib', 'ui/lib');

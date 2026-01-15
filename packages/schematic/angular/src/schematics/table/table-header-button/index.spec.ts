@@ -19,7 +19,7 @@ describe('table-header-button', () => {
   let projects: TestProjectNames;
 
   beforeEach(() => {
-    const result = createFullWorkspace(tree);
+    const result = createFullWorkspace();
     tree =  result.tree;
     workspace = result.workspace;
     projects = result.projects;
