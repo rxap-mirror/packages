@@ -1,4 +1,3 @@
-// region 
 export * from './lib/authorization.service';
 export * from './lib/form-control-has-enable-permission.directive';
 export * from './lib/has-enable-permission';
@@ -11,4 +10,4 @@ export * from './lib/mat-input-has-enable-permission.directive';
 export * from './lib/mat-select-has-enable-permission.directive';
 export * from './lib/mat-slide-toggle-has-enable-permission.directive';
 export * from './lib/tokens';
-// endregion
+export * from './lib/provide';
