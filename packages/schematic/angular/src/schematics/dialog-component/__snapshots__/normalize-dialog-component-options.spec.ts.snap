@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`normalizeDialogComponentOptions should normalize complex dialog component options 1`] = `
+{
+  "actionList": [
+    {
+      "color": null,
+      "label": "Save",
+      "role": "save",
+    },
+  ],
+  "backend": {
+    "kind": "none",
+  },
+  "componentName": null,
+  "context": null,
+  "controllerName": null,
+  "dialogName": "user-dialog",
+  "directory": "user-dialog",
+  "feature": null,
+  "name": "user-dialog",
+  "nestModule": null,
+  "openApi": null,
+  "overwrite": false,
+  "prefix": null,
+  "project": "ui-lib",
+  "replace": false,
+  "scope": null,
+  "shared": false,
+  "title": "User Dialog",
+}
+`;
+
+exports[`normalizeDialogComponentOptions should normalize minimal dialog component options 1`] = `
+{
+  "actionList": [],
+  "backend": {
+    "kind": "none",
+  },
+  "componentName": null,
+  "context": null,
+  "controllerName": null,
+  "dialogName": "test-dialog",
+  "directory": "test-dialog",
+  "feature": null,
+  "name": "test-dialog",
+  "nestModule": null,
+  "openApi": null,
+  "overwrite": false,
+  "prefix": null,
+  "project": "ui-lib",
+  "replace": false,
+  "scope": null,
+  "shared": false,
+  "title": "Test Dialog",
+}
+`;

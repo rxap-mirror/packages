@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NormalizeTableHeaderButtonOptions should normalize complex table header button options 1`] = `
+{
+  "backend": {
+    "kind": "none",
+  },
+  "componentName": null,
+  "confirm": false,
+  "context": null,
+  "controllerName": null,
+  "directory": null,
+  "errorMessage": null,
+  "feature": null,
+  "icon": "add",
+  "kind": "default",
+  "label": "Export CSV",
+  "name": "export-csv",
+  "nestModule": null,
+  "openApi": null,
+  "overwrite": false,
+  "permission": null,
+  "prefix": null,
+  "project": "ui-lib",
+  "refresh": false,
+  "replace": false,
+  "scope": null,
+  "shared": false,
+  "successMessage": null,
+  "svgIcon": null,
+  "tableName": "data-table",
+  "tooltip": null,
+}
+`;
+
+exports[`NormalizeTableHeaderButtonOptions should normalize minimal table header button options 1`] = `
+{
+  "backend": {
+    "kind": "none",
+  },
+  "componentName": null,
+  "confirm": false,
+  "context": null,
+  "controllerName": null,
+  "directory": null,
+  "errorMessage": null,
+  "feature": null,
+  "icon": "add",
+  "kind": "default",
+  "label": "Create User-table",
+  "name": "add-user",
+  "nestModule": null,
+  "openApi": null,
+  "overwrite": false,
+  "permission": null,
+  "prefix": null,
+  "project": "ui-lib",
+  "refresh": false,
+  "replace": false,
+  "scope": null,
+  "shared": false,
+  "successMessage": null,
+  "svgIcon": null,
+  "tableName": "user-table",
+  "tooltip": null,
+}
+`;

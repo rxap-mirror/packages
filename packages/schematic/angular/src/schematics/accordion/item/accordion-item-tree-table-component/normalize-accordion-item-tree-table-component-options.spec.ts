@@ -1,23 +1,44 @@
-import { NormalizeTreeTableAccordionItem } from '@rxap/schematic-angular';
-import { NormalizeAccordionItemStandaloneComponentOptions } from '../../accordion-item-component/normalize-accordion-item-standalone-component-options';
+import { AccordionItemKinds } from '@rxap/schematic-angular';
 import { NormalizeAccordionItemTreeTableComponentOptions } from './normalize-accordion-item-tree-table-component-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeTreeTableAccordionItem: jest.fn((o) => ({ ...o, kind: 'tree-table' })),
-}));
-
-jest.mock('../../accordion-item-component/normalize-accordion-item-standalone-component-options', () => ({
-  NormalizeAccordionItemStandaloneComponentOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-}));
+import { AccordionItemTreeTableComponentOptions } from './schema';
 
 describe('NormalizeAccordionItemTreeTableComponentOptions', () => {
-  it('should normalize accordion item tree table component options', () => {
-    const options = { };
-    const result = NormalizeAccordionItemTreeTableComponentOptions(options as any);
+  it('should normalize minimal accordion item tree table component options', () => {
+    const options: AccordionItemTreeTableComponentOptions = {
+      name: 'test-att',
+      project: 'ui-lib',
+      kind: AccordionItemKinds.TreeTable,
+      title: 'jest',
+      modifiers: [],
+      accordionName: 'parent',
+      table: {
+        columnList: [ { name: 'col1' } ],
+        actionList: [],
+        propertyList: [],
+        filterList: [],
+      },
+    };
+    expect(NormalizeAccordionItemTreeTableComponentOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAccordionItemStandaloneComponentOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeTreeTableAccordionItem).toHaveBeenCalledWith(options);
-    expect(result.name).toBe('test');
-    expect(result.kind).toBe('tree-table');
+  it('should normalize complex accordion item tree table component options', () => {
+    const options: AccordionItemTreeTableComponentOptions = {
+      name: 'files',
+      project: 'ui-lib',
+      kind: AccordionItemKinds.TreeTable,
+      title: 'jest',
+      modifiers: [],
+      accordionName: 'explorer',
+      table: {
+        columnList: [
+          { name: 'name' },
+          { name: 'size' },
+        ],
+        actionList: [],
+        propertyList: [],
+        filterList: [],
+      },
+    };
+    expect(NormalizeAccordionItemTreeTableComponentOptions(options)).toMatchSnapshot();
   });
 });

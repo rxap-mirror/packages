@@ -28,18 +28,13 @@ export function NormalizeFormTableHeaderButtonOptions(
   if (!normalizedTableHeaderButton) {
     throw new Error('FATAL: should never happen');
   }
-  const {
-    nestModule,
-    controllerName,
-  } = normalizedAngularOptions;
   const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
   return Object.freeze({
     ...normalizedAngularOptions,
     ...normalizedTableHeaderButton,
     tableName,
-    controllerName: controllerName ?? BuildNestControllerName({
-      nestModule,
-      controllerName,
+    controllerName: BuildNestControllerName({
+      ...normalizedAngularOptions.backend,
       controllerNameSuffix: 'header-button',
     }),
   });

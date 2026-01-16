@@ -1,29 +1,55 @@
-import { NormalizeAutocompleteFormControl } from '@rxap/schematic-angular';
-import { BuildNestControllerName } from '@rxap/schematics-ts-morph';
-import { NormalizeFormControlOptions } from '../../form-control/normalize-form-control-options';
+import {
+  AbstractControlRolls,
+  BackendTypes,
+  FormControlKinds,
+} from '@rxap/schematic-angular';
+import { UpstreamOptionsKinds } from '@rxap/ts-morph';
 import { NormalizeAutocompleteFormControlOptions } from './normalize-autocomplete-form-control-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAutocompleteFormControl: jest.fn((o) => ({ ...o, kind: 'autocomplete' })),
-}));
-
-jest.mock('@rxap/schematics-ts-morph', () => ({
-  BuildNestControllerName: jest.fn(() => 'NestController'),
-}));
-
-jest.mock('../../form-control/normalize-form-control-options', () => ({
-  NormalizeFormControlOptions: jest.fn((o) => ({ ...o, formName: 'testForm' })),
-}));
+import { AutocompleteFormControlOptions } from './schema';
 
 describe('NormalizeAutocompleteFormControlOptions', () => {
-  it('should normalize autocomplete form control options', () => {
-    const options = { };
-    const result = NormalizeAutocompleteFormControlOptions(options as any);
+  it('should normalize minimal autocomplete form control options', () => {
+    const options: AutocompleteFormControlOptions = {
+      name: 'test-auto',
+      project: 'ui-lib',
+      kind: FormControlKinds.AUTOCOMPLETE,
+      formName: 'test-form',
+      role: AbstractControlRolls.CONTROL,
+    };
+    expect(NormalizeAutocompleteFormControlOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeFormControlOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeAutocompleteFormControl).toHaveBeenCalledWith(options);
-    expect(BuildNestControllerName).toHaveBeenCalled();
-    expect(result.formName).toBe('testForm');
-    expect(result.controllerName).toBe('NestController');
+  it('should normalize complex autocomplete form control options', () => {
+    const options: AutocompleteFormControlOptions = {
+      name: 'country',
+      project: 'ui-lib',
+      kind: FormControlKinds.AUTOCOMPLETE,
+      formName: 'test-form',
+      role: AbstractControlRolls.CONTROL,
+      toDisplay: {
+        property: {
+          name: 'name',
+        },
+      },
+      toValue: {
+        property: {
+          name: 'code',
+        },
+      },
+      backend: {
+        kind: BackendTypes.NESTJS,
+      },
+      upstream: {
+        kind: UpstreamOptionsKinds.OPEN_API,
+        operationId: 'country-controller-getAll',
+      },
+      resolver: {
+        upstream: {
+          kind: UpstreamOptionsKinds.OPEN_API,
+          operationId: 'country-controller-getOne',
+        },
+      },
+    };
+    expect(NormalizeAutocompleteFormControlOptions(options)).toMatchSnapshot();
   });
 });

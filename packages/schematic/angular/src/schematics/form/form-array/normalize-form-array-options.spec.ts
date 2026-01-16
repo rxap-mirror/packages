@@ -1,30 +1,33 @@
 import {
-  NormalizeAngularOptions,
-  NormalizeFormArray,
+  AbstractControlRolls,
+  FormArrayKind,
 } from '@rxap/schematic-angular';
-import { dasherize } from '@rxap/utilities';
 import { NormalizeFormArrayOptions } from './normalize-form-array-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeFormArray: jest.fn((o) => ({ ...o, kind: 'array' })),
-}));
-
-jest.mock('@rxap/utilities', () => ({
-  dasherize: jest.fn((s) => s),
-}));
+import { FormArrayOptions } from './schema';
 
 describe('NormalizeFormArrayOptions', () => {
-  it('should normalize form array options', () => {
-    const options = { formName: 'myForm', context: 'myContext' };
-    const result = NormalizeFormArrayOptions(options as any);
+  it('should normalize minimal form array options', () => {
+    const options: FormArrayOptions = {
+      name: 'test-array',
+      project: 'ui-lib',
+      formName: 'test-form',
+      role: AbstractControlRolls.ARRAY,
+      kind: FormArrayKind.DEFAULT,
+      controlList: [],
+    };
+    expect(NormalizeFormArrayOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeFormArray).toHaveBeenCalledWith(options);
-    expect(dasherize).toHaveBeenCalledWith('myForm');
-    expect(dasherize).toHaveBeenCalledWith('myContext');
-    expect(result.formName).toBe('myForm');
-    expect(result.controllerName).toBe('myForm');
-    expect(result.context).toBe('myContext');
+  it('should normalize complex form array options', () => {
+    const options: FormArrayOptions = {
+      name: 'tags',
+      project: 'ui-lib',
+      formName: 'post-form',
+      role: AbstractControlRolls.ARRAY,
+      kind: FormArrayKind.DEFAULT,
+      legend: 'Tags',
+      controlList: [],
+    };
+    expect(NormalizeFormArrayOptions(options)).toMatchSnapshot();
   });
 });

@@ -1,22 +1,30 @@
-import {
-  NormalizeAngularOptions,
-  NormalizeNavigationTableAction,
-} from '@rxap/schematic-angular';
+import { TableActionKind } from '@rxap/schematic-angular';
 import { NormalizeNavigationTableActionOptions } from './normalize-navigation-table-action-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeNavigationTableAction: jest.fn((o) => ({ ...o, kind: 'navigation' })),
-}));
+import { NavigationTableActionOptions } from './schema';
 
 describe('NormalizeNavigationTableActionOptions', () => {
-  it('should normalize navigation table action options', () => {
-    const options = { tableName: 'myTable' };
-    const result = NormalizeNavigationTableActionOptions(options as any);
+  it('should normalize minimal navigation table action options', () => {
+    const options: NavigationTableActionOptions = {
+      name: 'details',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: TableActionKind.NAVIGATION,
+      type: 'edit',
+      route: 'details',
+    };
+    expect(NormalizeNavigationTableActionOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeNavigationTableAction).toHaveBeenCalledWith(options);
-    expect(result.tableName).toBe('myTable');
-    expect(result.kind).toBe('navigation');
+  it('should normalize complex navigation table action options', () => {
+    const options: NavigationTableActionOptions = {
+      name: 'edit-redirect',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: TableActionKind.NAVIGATION,
+      icon: 'edit',
+      type: 'edit',
+      route: 'details',
+    };
+    expect(NormalizeNavigationTableActionOptions(options)).toMatchSnapshot();
   });
 });

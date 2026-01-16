@@ -1,41 +1,46 @@
 import {
-  NormalizeAngularOptions,
-  NormalizeFormHeaderButton,
+  BackendTypes,
+  HeaderButtonKind,
 } from '@rxap/schematic-angular';
-import { BuildNestControllerName } from '@rxap/schematics-ts-morph';
-import {
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/utilities';
 import { NormalizeFormTableHeaderButtonOptions } from './normalize-form-table-header-button-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeFormHeaderButton: jest.fn((o) => ({ ...o, kind: 'form' })),
-}));
-
-jest.mock('@rxap/schematics-ts-morph', () => ({
-  BuildNestControllerName: jest.fn(() => 'NestController'),
-}));
-
-jest.mock('@rxap/utilities', () => ({
-  CoerceSuffix: jest.fn((n, s) => n + s),
-  dasherize: jest.fn((s) => s),
-}));
+import { FormTableHeaderButtonOptions } from './schema';
 
 describe('NormalizeFormTableHeaderButtonOptions', () => {
-  it('should normalize form table header button options', () => {
-    const options = { tableName: 'myTable' };
-    const result = NormalizeFormTableHeaderButtonOptions(options as any);
+  it('should normalize minimal form table header button options', () => {
+    const options: FormTableHeaderButtonOptions = {
+      name: 'filter',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: HeaderButtonKind.FORM,
+      form: {
+        controlList: [],
+      },
+      backend: {
+        kind: BackendTypes.NESTJS,
+        module: 'jest'
+      }
+    };
+    expect(NormalizeFormTableHeaderButtonOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeFormHeaderButton).toHaveBeenCalledWith(options, 'myTable');
-    expect(BuildNestControllerName).toHaveBeenCalledWith({
-      nestModule: undefined,
-      controllerName: undefined,
-      controllerNameSuffix: 'header-button',
-    });
-    expect(result.tableName).toBe('myTable-table');
-    expect(result.controllerName).toBe('NestController');
+  it('should normalize complex form table header button options', () => {
+    const options: FormTableHeaderButtonOptions = {
+      name: 'advanced-search',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: HeaderButtonKind.FORM,
+      icon: 'search',
+      label: 'Search',
+      form: {
+        controlList: [
+          { name: 'query', kind: 'input' },
+        ],
+      },
+      backend: {
+        kind: BackendTypes.NESTJS,
+        module: 'jest'
+      }
+    };
+    expect(NormalizeFormTableHeaderButtonOptions(options)).toMatchSnapshot();
   });
 });

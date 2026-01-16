@@ -1,22 +1,29 @@
-import {
-  NormalizeAngularOptions,
-  NormalizeRouteComponent,
-} from '@rxap/schematic-angular';
 import { NormalizeRouteComponentOptions } from './normalize-route-component-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeRouteComponent: jest.fn((o) => ({ ...o, path: 'test' })),
-}));
+import { RouteComponentOptions } from './schema';
 
 describe('NormalizeRouteComponentOptions', () => {
-  it('should normalize route component options', () => {
-    const options = { };
-    const result = NormalizeRouteComponentOptions(options as any);
+  it('should normalize minimal route component options', () => {
+    const options: RouteComponentOptions = {
+      name: 'test-route',
+      project: 'ui-lib',
+    };
+    expect(NormalizeRouteComponentOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeRouteComponent).toHaveBeenCalledWith(options);
-    expect(result.name).toBe('test');
-    expect(result.path).toBe('test');
+  it('should normalize complex route component options', () => {
+    const options: RouteComponentOptions = {
+      name: 'dashboard',
+      project: 'ui-lib',
+      path: '/dashboard',
+      outlet: 'primary',
+      data: { title: 'Dashboard' },
+      children: [
+        {
+          name: 'stats',
+          path: 'stats',
+        },
+      ],
+    };
+    expect(NormalizeRouteComponentOptions(options)).toMatchSnapshot();
   });
 });

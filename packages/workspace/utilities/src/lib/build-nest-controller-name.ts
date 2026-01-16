@@ -89,9 +89,9 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
       process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.warn('The controller name is not defined');
       controller = prefix;
     }
-  } else if (!controller && prefix) {
+  } else if (!controller && module) {
     process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The controller name is not defined, using the prefix as controller name');
-    controller = prefix;
+    controller = module;
   } else {
     process.env['RXAP_GENERATOR_DEBUG'] === 'true' && console.log('The prefix is the same as the controller name');
   }

@@ -17,6 +17,7 @@ import {
   NormalizedAccordionIdentifier,
 } from '../../accordion-identifier';
 import {
+  BackendOptions,
   NormalizeBackendOptions,
   NormalizedBackendOptions,
 } from '../../backend/backend-options';
@@ -95,7 +96,7 @@ export function NormalizeTableSelectToFunction(
 }
 
 export interface TableSelectFormControl extends FormFieldFormControl {
-  backend?: BackendTypes;
+  backend?: BackendTypes | BackendOptions;
   title?: string;
   propertyList?: DataProperty[];
   columnList?: TableSelectColumn[];
@@ -166,7 +167,7 @@ export function NormalizeTableSelectFormControl(
   CoerceArrayItems(propertyList, [ toDisplay.property, toValue.property ], (a, b) => a.name === b.name);
   const columnList = control.columnList.map(NormalizeTableSelectColumn);
   CoerceArrayItems(propertyList, columnList, (a, b) => a.name === b.name);
-  control.type ??= toValue.property.type;
+  const type = control.type ?? toValue.property.type;
   let identifier = NormalizeAccordionIdentifier(control.identifier);
   if (!identifier) {
     identifier = NormalizeAccordionIdentifier({
@@ -177,7 +178,10 @@ export function NormalizeTableSelectFormControl(
     CoerceArrayItems(propertyList, [identifier.property], (a, b) => a.name === b.name);
   }
   return Object.freeze({
-    ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, false, {
+    ...NormalizeFormFieldFormControl({
+      ...control,
+      type,
+    }, importList, undefined, undefined, false, {
       label: control.label,
       directiveList: [
         {

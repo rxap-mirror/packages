@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NormalizeTreeComponentOptions should normalize complex tree component options 1`] = `
+{
+  "backend": {
+    "kind": "none",
+  },
+  "componentName": "file-explorer-tree",
+  "context": null,
+  "controllerName": "ExplorerController",
+  "directory": null,
+  "feature": null,
+  "fullTree": false,
+  "modifiers": [
+    "drag-drop",
+  ],
+  "name": "file-explorer",
+  "nestModule": null,
+  "openApi": null,
+  "overwrite": false,
+  "prefix": null,
+  "project": "ui-lib",
+  "replace": false,
+  "scope": null,
+  "shared": false,
+}
+`;
+
+exports[`NormalizeTreeComponentOptions should normalize minimal tree component options 1`] = `
+{
+  "backend": {
+    "kind": "none",
+  },
+  "componentName": "test-tree",
+  "context": null,
+  "controllerName": "test-tree",
+  "directory": null,
+  "feature": null,
+  "fullTree": true,
+  "modifiers": [],
+  "name": "test-tree",
+  "nestModule": null,
+  "openApi": null,
+  "overwrite": false,
+  "prefix": null,
+  "project": "ui-lib",
+  "replace": false,
+  "scope": null,
+  "shared": false,
+}
+`;

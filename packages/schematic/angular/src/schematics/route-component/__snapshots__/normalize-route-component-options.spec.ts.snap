@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NormalizeRouteComponentOptions should normalize complex route component options 1`] = `
+{
+  "backend": {
+    "kind": "none",
+  },
+  "children": [
+    {
+      "children": null,
+      "data": null,
+      "defaultImport": null,
+      "isTypeOnly": false,
+      "moduleSpecifier": null,
+      "name": "stats",
+      "namedImport": "StatsComponent",
+      "namespaceImport": null,
+      "outlet": null,
+      "path": "stats",
+      "selector": false,
+    },
+  ],
+  "componentName": null,
+  "context": null,
+  "controllerName": null,
+  "data": {
+    "title": "Dashboard",
+  },
+  "defaultImport": null,
+  "directory": null,
+  "feature": null,
+  "isTypeOnly": false,
+  "moduleSpecifier": null,
+  "name": "dashboard",
+  "namedImport": "DashboardComponent",
+  "namespaceImport": null,
+  "nestModule": null,
+  "openApi": null,
+  "outlet": "primary",
+  "overwrite": false,
+  "path": "/dashboard",
+  "prefix": null,
+  "project": "ui-lib",
+  "replace": false,
+  "scope": null,
+  "selector": false,
+  "shared": false,
+}
+`;
+
+exports[`NormalizeRouteComponentOptions should normalize minimal route component options 1`] = `
+{
+  "backend": {
+    "kind": "none",
+  },
+  "children": null,
+  "componentName": null,
+  "context": null,
+  "controllerName": null,
+  "data": null,
+  "defaultImport": null,
+  "directory": null,
+  "feature": null,
+  "isTypeOnly": false,
+  "moduleSpecifier": null,
+  "name": "test-route",
+  "namedImport": "TestRouteComponent",
+  "namespaceImport": null,
+  "nestModule": null,
+  "openApi": null,
+  "outlet": null,
+  "overwrite": false,
+  "path": "test-route",
+  "prefix": null,
+  "project": "ui-lib",
+  "replace": false,
+  "scope": null,
+  "selector": false,
+  "shared": false,
+}
+`;

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NormalizeFormDefinitionOptions should normalize complex form definition options 1`] = `
+{
+  "backend": {
+    "kind": "none",
+  },
+  "componentName": null,
+  "context": null,
+  "controlList": [],
+  "controllerName": null,
+  "directory": null,
+  "feature": null,
+  "name": "profile-def",
+  "nestModule": null,
+  "openApi": null,
+  "overwrite": false,
+  "prefix": null,
+  "project": "ui-lib",
+  "replace": false,
+  "scope": null,
+  "shared": false,
+  "standalone": false,
+}
+`;
+
+exports[`NormalizeFormDefinitionOptions should normalize minimal form definition options 1`] = `
+{
+  "backend": {
+    "kind": "none",
+  },
+  "componentName": null,
+  "context": null,
+  "controlList": [],
+  "controllerName": null,
+  "directory": null,
+  "feature": null,
+  "name": "test-def",
+  "nestModule": null,
+  "openApi": null,
+  "overwrite": false,
+  "prefix": null,
+  "project": "ui-lib",
+  "replace": false,
+  "scope": null,
+  "shared": false,
+  "standalone": true,
+}
+`;

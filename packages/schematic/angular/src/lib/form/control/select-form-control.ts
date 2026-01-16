@@ -10,6 +10,7 @@ import {
 } from '@rxap/utilities';
 import { BackendTypes } from '../../backend/backend-types';
 import {
+  BackendOptions,
   NormalizeBackendOptions,
   NormalizedBackendOptions,
 } from '../../backend/backend-options';
@@ -30,7 +31,7 @@ import {
 
 export interface SelectFormControl extends FormFieldFormControl {
   optionList?: ControlOption[];
-  backend?: BackendTypes;
+  backend?: BackendTypes | BackendOptions;
   multiple?: boolean;
   formField?: FormField;
   upstream?: UpstreamOptions;

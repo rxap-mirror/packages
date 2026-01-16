@@ -1,24 +1,23 @@
-import {
-  AssertAngularOptionsNameProperty,
-  NormalizeAngularOptions,
-  NormalizeControlList,
-} from '@rxap/schematic-angular';
 import { NormalizeFormDefinitionOptions } from './normalize-form-definition-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  AssertAngularOptionsNameProperty: jest.fn(),
-  NormalizeControlList: jest.fn((l) => l),
-}));
+import { FormDefinitionOptions } from './schema';
 
 describe('NormalizeFormDefinitionOptions', () => {
-  it('should normalize form definition options', () => {
-    const options = { controlList: [] };
-    const result = NormalizeFormDefinitionOptions(options as any);
+  it('should normalize minimal form definition options', () => {
+    const options: FormDefinitionOptions = {
+      name: 'test-def',
+      project: 'ui-lib',
+      controlList: [],
+    };
+    expect(NormalizeFormDefinitionOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(AssertAngularOptionsNameProperty).toHaveBeenCalled();
-    expect(NormalizeControlList).toHaveBeenCalledWith([]);
-    expect(result.standalone).toBe(true);
+  it('should normalize complex form definition options', () => {
+    const options: FormDefinitionOptions = {
+      name: 'profile-def',
+      project: 'ui-lib',
+      controlList: [],
+      standalone: false,
+    };
+    expect(NormalizeFormDefinitionOptions(options)).toMatchSnapshot();
   });
 });

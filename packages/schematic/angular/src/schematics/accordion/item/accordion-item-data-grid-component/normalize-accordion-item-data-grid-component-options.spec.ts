@@ -1,23 +1,38 @@
-import { NormalizeDataGridAccordionItem } from '@rxap/schematic-angular';
-import { NormalizeAccordionItemStandaloneComponentOptions } from '../../accordion-item-component/normalize-accordion-item-standalone-component-options';
+import { AccordionItemKinds } from '@rxap/schematic-angular';
 import { NormalizeAccordionItemDataGridComponentOptions } from './normalize-accordion-item-data-grid-component-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeDataGridAccordionItem: jest.fn((o) => ({ ...o, kind: 'data-grid' })),
-}));
-
-jest.mock('../../accordion-item-component/normalize-accordion-item-standalone-component-options', () => ({
-  NormalizeAccordionItemStandaloneComponentOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-}));
+import { AccordionItemDataGridComponentOptions } from './schema';
 
 describe('NormalizeAccordionItemDataGridComponentOptions', () => {
-  it('should normalize accordion item data grid component options', () => {
-    const options = { };
-    const result = NormalizeAccordionItemDataGridComponentOptions(options as any);
+  it('should normalize minimal accordion item data grid component options', () => {
+    const options: AccordionItemDataGridComponentOptions = {
+      name: 'test-adg',
+      title: 'jest',
+      modifiers: [],
+      project: 'ui-lib',
+      kind: AccordionItemKinds.DataGrid,
+      accordionName: 'parent',
+      dataGrid: {
+        itemList: [],
+      },
+    };
+    expect(NormalizeAccordionItemDataGridComponentOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAccordionItemStandaloneComponentOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeDataGridAccordionItem).toHaveBeenCalledWith(options);
-    expect(result.name).toBe('test');
-    expect(result.kind).toBe('data-grid');
+  it('should normalize complex accordion item data grid component options', () => {
+    const options: AccordionItemDataGridComponentOptions = {
+      name: 'users',
+      project: 'ui-lib',
+      title: 'jest',
+      modifiers: [],
+      kind: AccordionItemKinds.DataGrid,
+      accordionName: 'management',
+      dataGrid: {
+        itemList: [
+          { name: 'name' },
+          { name: 'email' },
+        ],
+      },
+    };
+    expect(NormalizeAccordionItemDataGridComponentOptions(options)).toMatchSnapshot();
   });
 });

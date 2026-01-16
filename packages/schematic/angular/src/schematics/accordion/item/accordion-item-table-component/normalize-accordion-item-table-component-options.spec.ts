@@ -1,23 +1,45 @@
-import { NormalizeTableAccordionItem } from '@rxap/schematic-angular';
-import { NormalizeAccordionItemStandaloneComponentOptions } from '../../accordion-item-component/normalize-accordion-item-standalone-component-options';
+import { AccordionItemKinds } from '@rxap/schematic-angular';
 import { NormalizeAccordionItemTableComponentOptions } from './normalize-accordion-item-table-component-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeTableAccordionItem: jest.fn((o) => ({ ...o, kind: 'table' })),
-}));
-
-jest.mock('../../accordion-item-component/normalize-accordion-item-standalone-component-options', () => ({
-  NormalizeAccordionItemStandaloneComponentOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-}));
+import { AccordionItemTableComponentOptions } from './schema';
 
 describe('NormalizeAccordionItemTableComponentOptions', () => {
-  it('should normalize accordion item table component options', () => {
-    const options = { };
-    const result = NormalizeAccordionItemTableComponentOptions(options as any);
+  it('should normalize minimal accordion item table component options', () => {
+    const options: AccordionItemTableComponentOptions = {
+      name: 'test-at',
+      project: 'ui-lib',
+      kind: AccordionItemKinds.Table,
+      accordionName: 'parent',
+      title: 'jest',
+      modifiers: [],
+      table: {
+        columnList: [ { name: 'col1' } ],
+        actionList: [],
+        propertyList: [],
+        filterList: [],
+      },
+    };
+    expect(NormalizeAccordionItemTableComponentOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAccordionItemStandaloneComponentOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeTableAccordionItem).toHaveBeenCalledWith(options);
-    expect(result.name).toBe('test');
-    expect(result.kind).toBe('table');
+  it('should normalize complex accordion item table component options', () => {
+    const options: AccordionItemTableComponentOptions = {
+      name: 'logs',
+      project: 'ui-lib',
+      kind: AccordionItemKinds.Table,
+      accordionName: 'admin',
+      title: 'jest',
+      modifiers: [],
+      table: {
+        columnList: [
+          { name: 'date' },
+          { name: 'level' },
+          { name: 'message' },
+        ],
+        actionList: [],
+        propertyList: [],
+        filterList: [],
+      },
+    };
+    expect(NormalizeAccordionItemTableComponentOptions(options)).toMatchSnapshot();
   });
 });

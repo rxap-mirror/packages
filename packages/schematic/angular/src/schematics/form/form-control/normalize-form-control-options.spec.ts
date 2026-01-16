@@ -1,30 +1,33 @@
 import {
-  NormalizeAngularOptions,
-  NormalizeFormControl,
+  AbstractControlRolls,
+  FormControlKinds,
 } from '@rxap/schematic-angular';
-import { dasherize } from '@rxap/schematics-utilities';
 import { NormalizeFormControlOptions } from './normalize-form-control-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeFormControl: jest.fn((o) => ({ ...o, kind: 'input' })),
-}));
-
-jest.mock('@rxap/schematics-utilities', () => ({
-  dasherize: jest.fn((s) => s),
-}));
+import { FormControlOptions } from './schema';
 
 describe('NormalizeFormControlOptions', () => {
-  it('should normalize form control options', () => {
-    const options = { formName: 'myForm', context: 'myContext' };
-    const result = NormalizeFormControlOptions(options as any);
+  it('should normalize minimal form control options', () => {
+    const options: FormControlOptions = {
+      name: 'test-control',
+      project: 'ui-lib',
+      kind: FormControlKinds.INPUT,
+      formName: 'test-form',
+      role: AbstractControlRolls.CONTROL,
+    };
+    expect(NormalizeFormControlOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeFormControl).toHaveBeenCalledWith(options);
-    expect(dasherize).toHaveBeenCalledWith('myForm');
-    expect(dasherize).toHaveBeenCalledWith('myContext');
-    expect(result.formName).toBe('myForm');
-    expect(result.controllerName).toBe('myForm');
-    expect(result.context).toBe('myContext');
+  it('should normalize complex form control options', () => {
+    const options: FormControlOptions = {
+      name: 'email',
+      project: 'ui-lib',
+      kind: FormControlKinds.INPUT,
+      formName: 'user-form',
+      role: AbstractControlRolls.CONTROL,
+      context: 'user-context',
+      controllerName: 'CustomController',
+      inputType: 'email',
+    };
+    expect(NormalizeFormControlOptions(options)).toMatchSnapshot();
   });
 });

@@ -1,42 +1,39 @@
-import {
-  AssertAngularOptionsNameProperty,
-  NormalizeAngularOptions,
-  NormalizeFormComponent,
-} from '@rxap/schematic-angular';
-import { BuildNestControllerName } from '@rxap/schematics-ts-morph';
-import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { dasherize } from '@rxap/utilities';
+import { FormControlKinds } from '@rxap/schematic-angular';
 import { NormalizeFormComponentOptions } from './normalize-form-component-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  AssertAngularOptionsNameProperty: jest.fn(),
-  NormalizeFormComponent: jest.fn((o) => ({ ...o, kind: 'form' })),
-}));
-
-jest.mock('@rxap/schematics-ts-morph', () => ({
-  BuildNestControllerName: jest.fn(() => 'NestController'),
-}));
-
-jest.mock('@rxap/schematics-utilities', () => ({
-  CoerceSuffix: jest.fn((n, s) => n + s),
-}));
-
-jest.mock('@rxap/utilities', () => ({
-  dasherize: jest.fn((s) => s),
-}));
+import { FormComponentOptions } from './schema';
 
 describe('NormalizeFormComponentOptions', () => {
-  it('should normalize form component options', () => {
-    const options = { directory: 'dir', context: 'ctx' };
-    const result = NormalizeFormComponentOptions(options as any);
+  it('should normalize minimal form component options', () => {
+    const options: FormComponentOptions = {
+      name: 'test-form',
+      project: 'ui-lib',
+      controlList: [],
+    };
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(AssertAngularOptionsNameProperty).toHaveBeenCalled();
-    expect(CoerceSuffix).toHaveBeenCalledWith('test', '-form');
-    expect(BuildNestControllerName).toHaveBeenCalled();
-    expect(result.componentName).toBe('test-form');
-    expect(result.directory).toBe('dir/test-form');
-    expect(result.context).toBe('ctx');
+    expect(NormalizeFormComponentOptions(options)).toMatchSnapshot();
+  });
+
+  it('should normalize complex form component options', () => {
+    const options: FormComponentOptions = {
+      name: 'test-form',
+      project: 'ui-lib',
+      controlList: [
+        {
+          name: 'email',
+          kind: FormControlKinds.INPUT,
+          label: 'Email',
+          isRequired: true,
+        },
+        {
+          name: 'role',
+          kind: FormControlKinds.SELECT,
+          label: 'Role',
+        },
+      ],
+      window: true,
+      feature: 'user',
+    };
+
+    expect(NormalizeFormComponentOptions(options)).toMatchSnapshot();
   });
 });

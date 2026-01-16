@@ -1,23 +1,37 @@
-import { NormalizeSelectFormControl } from '@rxap/schematic-angular';
-import { NormalizeFormControlOptions } from '../../form-control/normalize-form-control-options';
+import {
+  AbstractControlRolls,
+  FormControlKinds,
+} from '@rxap/schematic-angular';
 import { NormalizeSelectFormControlOptions } from './normalize-select-form-control-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeSelectFormControl: jest.fn((o) => ({ ...o, kind: 'select' })),
-}));
-
-jest.mock('../../form-control/normalize-form-control-options', () => ({
-  NormalizeFormControlOptions: jest.fn((o) => ({ ...o, formName: 'testForm' })),
-}));
+import { SelectFormControlOptions } from './schema';
 
 describe('NormalizeSelectFormControlOptions', () => {
-  it('should normalize select form control options', () => {
-    const options = { };
-    const result = NormalizeSelectFormControlOptions(options as any);
+  it('should normalize minimal select form control options', () => {
+    const options: SelectFormControlOptions = {
+      name: 'test-select',
+      project: 'ui-lib',
+      kind: FormControlKinds.SELECT,
+      formName: 'test-form',
+      role: AbstractControlRolls.CONTROL,
+    };
+    expect(NormalizeSelectFormControlOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeFormControlOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeSelectFormControl).toHaveBeenCalledWith(options);
-    expect(result.formName).toBe('testForm');
-    expect(result.kind).toBe('select');
+  it('should normalize complex select form control options', () => {
+    const options: SelectFormControlOptions = {
+      name: 'role',
+      project: 'ui-lib',
+      kind: FormControlKinds.SELECT,
+      formName: 'user-form',
+      role: AbstractControlRolls.CONTROL,
+      label: 'User Role',
+      optionList: [
+        { value: 'admin', display: 'Admin' },
+        { value: 'user', display: 'User' },
+      ],
+      multiple: true,
+      validatorList: [ 'required' ],
+    };
+    expect(NormalizeSelectFormControlOptions(options)).toMatchSnapshot();
   });
 });

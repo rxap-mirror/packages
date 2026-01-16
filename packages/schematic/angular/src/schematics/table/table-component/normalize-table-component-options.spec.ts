@@ -1,41 +1,48 @@
-import {
-  AssertAngularOptionsNameProperty,
-  BackendTypes,
-  IsTableModifiers,
-  NormalizeMinimumTableComponentOptions,
-  NormalizeTableOptions,
-} from '@rxap/schematic-angular';
+import { BackendTypes, TableColumnKind, TableModifiers, } from '@rxap/schematic-angular';
 import { NormalizeTableComponentOptions } from './normalize-table-component-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeMinimumTableComponentOptions: jest.fn(),
-  AssertAngularOptionsNameProperty: jest.fn(),
-  IsTableModifiers: jest.fn(),
-  NormalizeTableOptions: jest.fn(),
-  BackendTypes: {
-    OPEN_API: 'open-api',
-  },
-}));
+import { TableComponentOptions } from './schema';
 
 describe('NormalizeTableComponentOptions', () => {
-  it('should normalize table component options', () => {
-    const options = { name: 'test' };
-    (NormalizeMinimumTableComponentOptions as jest.Mock).mockReturnValue({ name: 'test', backend: { kind: 'other' } });
-    (NormalizeTableOptions as jest.Mock).mockReturnValue({ openApi: null });
+  it('should normalize minimal table component options', () => {
+    const options: TableComponentOptions = {
+      name: 'test-table',
+      project: 'ui-lib',
+      columnList: [],
+      actionList: [],
+      filterList: [],
+      propertyList: [],
+    };
 
-    const result = NormalizeTableComponentOptions(options as any);
-
-    expect(NormalizeMinimumTableComponentOptions).toHaveBeenCalledWith(options, IsTableModifiers, '-table');
-    expect(AssertAngularOptionsNameProperty).toHaveBeenCalled();
-    expect(NormalizeTableOptions).toHaveBeenCalledWith(options, 'test');
-    expect(result).toEqual({ name: 'test', backend: { kind: 'other' }, openApi: null });
+    expect(NormalizeTableComponentOptions(options)).toMatchSnapshot();
   });
 
-  it('should throw if backend is open-api and openApi options are missing', () => {
-    const options = { name: 'test' };
-    (NormalizeMinimumTableComponentOptions as jest.Mock).mockReturnValue({ name: 'test', backend: { kind: BackendTypes.OPEN_API } });
-    (NormalizeTableOptions as jest.Mock).mockReturnValue({ openApi: null });
+  it('should normalize complex table component options', () => {
+    const options: TableComponentOptions = {
+      name: 'test-table',
+      project: 'ui-lib',
+      columnList: [
+        {
+          name: 'name',
+          kind: TableColumnKind.DEFAULT,
+        },
+        {
+          name: 'created',
+          kind: TableColumnKind.DATE,
+        },
+      ],
+      actionList: [],
+      filterList: [],
+      propertyList: [],
+      backend: {
+        kind: BackendTypes.NESTJS,
+        project: 'api',
+        module: 'api-module',
+      },
+      sortable: true,
+      selectColumn: true,
+      modifiers: [ TableModifiers.WITHOUT_TITLE ],
+    };
 
-    expect(() => NormalizeTableComponentOptions(options as any)).toThrow('openApi options must be provided. If backend is open-api');
+    expect(NormalizeTableComponentOptions(options)).toMatchSnapshot();
   });
 });

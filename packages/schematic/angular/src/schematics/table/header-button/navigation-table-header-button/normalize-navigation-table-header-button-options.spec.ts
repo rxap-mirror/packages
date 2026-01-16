@@ -1,31 +1,29 @@
-import {
-  NormalizeAngularOptions,
-  NormalizeNavigationHeaderButton,
-} from '@rxap/schematic-angular';
-import {
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/schematics-utilities';
+import { HeaderButtonKind } from '@rxap/schematic-angular';
 import { NormalizeNavigationTableHeaderButtonOptions } from './normalize-navigation-table-header-button-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeNavigationHeaderButton: jest.fn((o) => ({ ...o, kind: 'navigation' })),
-}));
-
-jest.mock('@rxap/schematics-utilities', () => ({
-  CoerceSuffix: jest.fn((n, s) => n + s),
-  dasherize: jest.fn((s) => s),
-}));
+import { NavigationTableHeaderButtonOptions } from './schema';
 
 describe('NormalizeNavigationTableHeaderButtonOptions', () => {
-  it('should normalize navigation table header button options', () => {
-    const options = { tableName: 'myTable' };
-    const result = NormalizeNavigationTableHeaderButtonOptions(options as any);
+  it('should normalize minimal navigation table header button options', () => {
+    const options: NavigationTableHeaderButtonOptions = {
+      name: 'back',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: HeaderButtonKind.NAVIGATION,
+      route: '/users',
+    };
+    expect(NormalizeNavigationTableHeaderButtonOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeNavigationHeaderButton).toHaveBeenCalledWith(options, 'myTable');
-    expect(result.tableName).toBe('myTable-table');
-    expect(result.kind).toBe('navigation');
+  it('should normalize complex navigation table header button options', () => {
+    const options: NavigationTableHeaderButtonOptions = {
+      name: 'create',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: HeaderButtonKind.NAVIGATION,
+      icon: 'add',
+      label: 'Create',
+      route: '/users',
+    };
+    expect(NormalizeNavigationTableHeaderButtonOptions(options)).toMatchSnapshot();
   });
 });

@@ -1,23 +1,59 @@
-import { NormalizeSwitchAccordionItem } from '@rxap/schematic-angular';
-import { NormalizeAccordionItemStandaloneComponentOptions } from '../../accordion-item-component/normalize-accordion-item-standalone-component-options';
+import { AccordionItemKinds } from '@rxap/schematic-angular';
 import { NormalizeAccordionItemSwitchComponentOptions } from './normalize-accordion-item-switch-component-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeSwitchAccordionItem: jest.fn((o) => ({ ...o, kind: 'switch' })),
-}));
-
-jest.mock('../../accordion-item-component/normalize-accordion-item-standalone-component-options', () => ({
-  NormalizeAccordionItemStandaloneComponentOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-}));
+import { AccordionItemSwitchComponentOptions } from './schema';
 
 describe('NormalizeAccordionItemSwitchComponentOptions', () => {
-  it('should normalize accordion item switch component options', () => {
-    const options = { };
-    const result = NormalizeAccordionItemSwitchComponentOptions(options as any);
+  it('should normalize minimal accordion item switch component options', () => {
+    const options: AccordionItemSwitchComponentOptions = {
+      name: 'test-as',
+      project: 'ui-lib',
+      title: 'jest',
+      modifiers: [],
+      kind: AccordionItemKinds.Switch,
+      accordionName: 'parent',
+      switch: {
+        property: { name: 'type' },
+        defaultCase: { itemList: [] },
+      },
+    };
+    expect(NormalizeAccordionItemSwitchComponentOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAccordionItemStandaloneComponentOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeSwitchAccordionItem).toHaveBeenCalledWith(options);
-    expect(result.name).toBe('test');
-    expect(result.kind).toBe('switch');
+  it('should normalize complex accordion item switch component options', () => {
+    const options: AccordionItemSwitchComponentOptions = {
+      name: 'content-switch',
+      project: 'ui-lib',
+      title: 'jest',
+      modifiers: [],
+      kind: AccordionItemKinds.Switch,
+      accordionName: 'main',
+      switch: {
+        property: { name: 'contentType' },
+        case: [
+          {
+            test: 'video',
+            itemList: [
+              {
+                  name: 'video-player',
+                  kind: AccordionItemKinds.Nested,
+                title: 'jest',
+                modifiers: [],
+              }
+            ],
+          },
+        ],
+        defaultCase: {
+          itemList: [
+             {
+                  name: 'text-view',
+                  kind: AccordionItemKinds.Nested,
+               title: 'jest',
+               modifiers: [],
+             }
+          ],
+        },
+      },
+    };
+    expect(NormalizeAccordionItemSwitchComponentOptions(options)).toMatchSnapshot();
   });
 });

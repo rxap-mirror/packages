@@ -1,40 +1,59 @@
-import {
-  AssertAngularOptionsNameProperty,
-  NormalizeAccordion,
-  NormalizeAngularOptions,
-} from '@rxap/schematic-angular';
-import { BuildNestControllerName } from '@rxap/schematics-ts-morph';
-import {
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/schematics-utilities';
+import { BackendTypes } from '@rxap/schematic-angular';
+import { UpstreamOptionsKinds } from '@rxap/ts-morph';
 import { normalizeAccordionComponentOptions } from './normalize-accordion-component-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeAccordion: jest.fn((o) => ({ ...o, items: [] })),
-  AssertAngularOptionsNameProperty: jest.fn(),
-}));
-
-jest.mock('@rxap/schematics-ts-morph', () => ({
-  BuildNestControllerName: jest.fn(() => 'NestController'),
-}));
-
-jest.mock('@rxap/schematics-utilities', () => ({
-  CoerceSuffix: jest.fn((n, s) => n + s),
-  dasherize: jest.fn((s) => s),
-}));
+import { AccordionComponentOptions } from './schema';
 
 describe('normalizeAccordionComponentOptions', () => {
-  it('should normalize accordion component options', () => {
-    const options = { };
-    const result = normalizeAccordionComponentOptions(options as any);
+  it('should normalize minimal accordion component options', () => {
+    const options: AccordionComponentOptions = {
+      name: 'test-accordion',
+      project: 'ui-lib',
+      itemList: [],
+    };
+    expect(normalizeAccordionComponentOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeAccordion).toHaveBeenCalledWith(options);
-    expect(AssertAngularOptionsNameProperty).toHaveBeenCalled();
-    expect(result.componentName).toBe('test-accordion');
-    expect(result.controllerName).toBe('NestController');
-    expect(result.directory).toBe('test-accordion');
+  it('should normalize complex accordion component options', () => {
+    const options: AccordionComponentOptions = {
+      name: 'dashboard',
+      project: 'ui-lib',
+      backend: {
+        kind: BackendTypes.NESTJS,
+      },
+      multiple: true,
+      header: {
+        property: {
+          name: 'name',
+        },
+      },
+      persistent: {
+        property: {
+          name: 'uuid',
+        },
+      },
+      identifier: {
+        source: 'route',
+        property: {
+          name: 'uuid',
+        },
+      },
+      upstream: {
+        kind: UpstreamOptionsKinds.OPEN_API,
+        operationId: 'dashboard-controller-getByUuid@legacy',
+      },
+      propertyList: [
+        {
+          name: 'dashboardType',
+          type: 'number',
+          source: 'dashboardType!',
+        },
+        {
+          name: 'name',
+          source: 'name!',
+        },
+      ],
+      itemList: [],
+    };
+    expect(normalizeAccordionComponentOptions(options)).toMatchSnapshot();
   });
 });

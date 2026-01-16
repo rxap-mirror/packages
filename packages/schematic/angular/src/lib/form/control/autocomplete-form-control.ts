@@ -13,6 +13,7 @@ import {
 } from '../../accordion-identifier';
 import { BackendTypes } from '../../backend/backend-types';
 import {
+  BackendOptions,
   NormalizeBackendOptions,
   NormalizedBackendOptions,
 } from '../../backend/backend-options';
@@ -32,7 +33,7 @@ import {
 
 
 export interface AutocompleteFormControl extends FormFieldFormControl {
-  backend?: BackendTypes;
+  backend?: BackendTypes | BackendOptions;
   propertyList?: DataProperty[];
   toDisplay?: ToFunction;
   toValue?: ToFunction;
@@ -68,7 +69,6 @@ export function NormalizeAutocompleteFormControl(
   }
   if (toValue) {
     CoerceArrayItems(propertyList, [ toValue.property ], (a, b) => a.name === b.name);
-    control.type ??= toValue.property.type;
   }
   let identifier = NormalizeAccordionIdentifier(control.identifier);
   if (!identifier && toValue) {
@@ -94,7 +94,10 @@ export function NormalizeAutocompleteFormControl(
     }
   ], (a, b) => a.name === b.name);
   return Object.freeze({
-    ...NormalizeFormFieldFormControl(control, importList),
+    ...NormalizeFormFieldFormControl({
+      ...control,
+      type: toValue ? control.type ?? toValue.property.type : control.type,
+    }, importList),
     identifier,
     resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
     kind: FormControlKinds.AUTOCOMPLETE,

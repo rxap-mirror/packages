@@ -1,22 +1,32 @@
-import {
-  NormalizeAngularOptions,
-  NormalizeOpenApiTableAction,
-} from '@rxap/schematic-angular';
+import { TableActionKind } from '@rxap/schematic-angular';
 import { NormalizeOpenApiTableActionOptions } from './normalize-open-api-table-action-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeOpenApiTableAction: jest.fn((o) => ({ ...o, kind: 'open-api' })),
-}));
+import { OpenApiTableActionOptions } from './schema';
 
 describe('NormalizeOpenApiTableActionOptions', () => {
-  it('should normalize open-api table action options', () => {
-    const options = { tableName: 'myTable' };
-    const result = NormalizeOpenApiTableActionOptions(options as any);
+  it('should normalize minimal open-api table action options', () => {
+    const options: OpenApiTableActionOptions = {
+      name: 'api-call',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: TableActionKind.OPEN_API,
+      operationId: 'myOp',
+      type: 'edit',
+    };
+    expect(NormalizeOpenApiTableActionOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeOpenApiTableAction).toHaveBeenCalledWith(options);
-    expect(result.tableName).toBe('myTable');
-    expect(result.kind).toBe('open-api');
+  it('should normalize complex open-api table action options', () => {
+    const options: OpenApiTableActionOptions = {
+      name: 'update',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: TableActionKind.OPEN_API,
+      icon: 'update',
+      type: 'edit',
+      operationId: 'UserController_update',
+      body: { id: 'uuid' },
+      parameters: { force: 'true' },
+    };
+    expect(NormalizeOpenApiTableActionOptions(options)).toMatchSnapshot();
   });
 });

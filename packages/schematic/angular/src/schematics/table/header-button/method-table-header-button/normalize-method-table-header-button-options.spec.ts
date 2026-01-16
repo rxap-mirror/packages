@@ -1,31 +1,44 @@
 import {
-  NormalizeAngularOptions,
-  NormalizeMethodHeaderButton,
+  HeaderButtonKind,
+  MethodKinds,
 } from '@rxap/schematic-angular';
-import {
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/utilities';
 import { NormalizeMethodTableHeaderButtonOptions } from './normalize-method-table-header-button-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeMethodHeaderButton: jest.fn((o) => ({ ...o, kind: 'method' })),
-}));
-
-jest.mock('@rxap/utilities', () => ({
-  CoerceSuffix: jest.fn((n, s) => n + s),
-  dasherize: jest.fn((s) => s),
-}));
+import { MethodTableHeaderButtonOptions } from './schema';
 
 describe('NormalizeMethodTableHeaderButtonOptions', () => {
-  it('should normalize method table header button options', () => {
-    const options = { tableName: 'myTable' };
-    const result = NormalizeMethodTableHeaderButtonOptions(options as any);
+  it('should normalize minimal method table header button options', () => {
+    const options: MethodTableHeaderButtonOptions = {
+      name: 'refresh',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: HeaderButtonKind.METHOD,
+      method: {
+        kind: MethodKinds.IMPORT,
+        import: {
+          name: 'Test',
+          moduleSpecifier: '@rxap/test'
+        }
+      },
+    };
+    expect(NormalizeMethodTableHeaderButtonOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeMethodHeaderButton).toHaveBeenCalledWith(options, 'myTable');
-    expect(result.tableName).toBe('myTable-table');
-    expect(result.kind).toBe('method');
+  it('should normalize complex method table header button options', () => {
+    const options: MethodTableHeaderButtonOptions = {
+      name: 'sync',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: HeaderButtonKind.METHOD,
+      icon: 'sync',
+      label: 'Sync',
+      method: {
+        kind: MethodKinds.IMPORT,
+        import: {
+          name: 'Test',
+          moduleSpecifier: '@rxap/test'
+        }
+      },
+    };
+    expect(NormalizeMethodTableHeaderButtonOptions(options)).toMatchSnapshot();
   });
 });

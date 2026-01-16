@@ -1,36 +1,36 @@
-import {
-  NormalizeAngularOptions,
-  NormalizeFormTableAction,
-} from '@rxap/schematic-angular';
-import { BuildNestControllerName } from '@rxap/workspace-utilities';
-import { CoerceSuffix } from '@rxap/utilities';
+import { TableActionKind } from '@rxap/schematic-angular';
 import { NormalizeFormTableActionOptions } from './normalize-form-table-action-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeFormTableAction: jest.fn((o) => ({ ...o, kind: 'form', type: 'MyForm' })),
-}));
-
-jest.mock('@rxap/workspace-utilities', () => ({
-  BuildNestControllerName: jest.fn(() => 'NestController'),
-}));
-
-jest.mock('@rxap/utilities', () => ({
-  CoerceSuffix: jest.fn((n, s) => n + s),
-}));
+import { FormTableActionOptions } from './schema';
 
 describe('NormalizeFormTableActionOptions', () => {
-  it('should normalize form table action options', () => {
-    const options = { tableName: 'myTable' };
-    const result = NormalizeFormTableActionOptions(options as any);
+  it('should normalize minimal form table action options', () => {
+    const options: FormTableActionOptions = {
+      name: 'filter',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: TableActionKind.FORM,
+      type: 'edit',
+      form: {
+        controlList: [],
+      },
+    };
+    expect(NormalizeFormTableActionOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeFormTableAction).toHaveBeenCalledWith(options);
-    expect(BuildNestControllerName).toHaveBeenCalledWith({
-      controllerName: 'MyForm-action',
-      nestModule: 'myTable',
-    });
-    expect(result.tableName).toBe('myTable');
-    expect(result.controllerName).toBe('NestController');
+  it('should normalize complex form table action options', () => {
+    const options: FormTableActionOptions = {
+      name: 'complex-filter',
+      project: 'ui-lib',
+      tableName: 'user-table',
+      kind: TableActionKind.FORM,
+      icon: 'filter_list',
+      type: 'edit',
+      form: {
+        controlList: [
+          { name: 'status', kind: 'input' }
+        ],
+      },
+    };
+    expect(NormalizeFormTableActionOptions(options)).toMatchSnapshot();
   });
 });

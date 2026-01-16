@@ -1,30 +1,33 @@
 import {
-  NormalizeAngularOptions,
-  NormalizeFormGroup,
+  AbstractControlRolls,
+  FormGroupKind,
 } from '@rxap/schematic-angular';
-import { dasherize } from '@rxap/utilities';
 import { NormalizeFormGroupOptions } from './normalize-form-group-options';
-
-jest.mock('@rxap/schematic-angular', () => ({
-  NormalizeAngularOptions: jest.fn((o) => ({ ...o, name: 'test' })),
-  NormalizeFormGroup: jest.fn((o) => ({ ...o, kind: 'group' })),
-}));
-
-jest.mock('@rxap/utilities', () => ({
-  dasherize: jest.fn((s) => s),
-}));
+import { FormGroupOptions } from './schema';
 
 describe('NormalizeFormGroupOptions', () => {
-  it('should normalize form group options', () => {
-    const options = { formName: 'myForm', context: 'myContext' };
-    const result = NormalizeFormGroupOptions(options as any);
+  it('should normalize minimal form group options', () => {
+    const options: FormGroupOptions = {
+      name: 'test-group',
+      project: 'ui-lib',
+      formName: 'test-form',
+      role: AbstractControlRolls.GROUP,
+      kind: FormGroupKind.DEFAULT,
+      controlList: [],
+    };
+    expect(NormalizeFormGroupOptions(options)).toMatchSnapshot();
+  });
 
-    expect(NormalizeAngularOptions).toHaveBeenCalledWith(options);
-    expect(NormalizeFormGroup).toHaveBeenCalledWith(options);
-    expect(dasherize).toHaveBeenCalledWith('myForm');
-    expect(dasherize).toHaveBeenCalledWith('myContext');
-    expect(result.formName).toBe('myForm');
-    expect(result.controllerName).toBe('myForm');
-    expect(result.context).toBe('myContext');
+  it('should normalize complex form group options', () => {
+    const options: FormGroupOptions = {
+      name: 'address',
+      project: 'ui-lib',
+      formName: 'user-form',
+      role: AbstractControlRolls.GROUP,
+      kind: FormGroupKind.DEFAULT,
+      legend: 'Address',
+      controlList: [],
+    };
+    expect(NormalizeFormGroupOptions(options)).toMatchSnapshot();
   });
 });
