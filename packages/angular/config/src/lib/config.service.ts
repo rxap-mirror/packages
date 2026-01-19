@@ -21,8 +21,14 @@ import {
 
 export type AnySchema = { validateAsync: (...args: any[]) => any };
 
+export enum ConfigLoadingStrategy {
+  DEFAULT = 'default',
+  FIFO = 'fifo',
+}
+
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
+  fromUrls?: boolean;
   fromLocalStorage?: boolean;
   schema?: AnySchema;
   url?: string | string[] | ((environment: Environment) => string | string[]);
@@ -42,6 +48,7 @@ export interface ConfigLoadOptions {
   fromCid?: string;
   fetchCidContent?: (cid: string, path?: string) => Promise<Blob | null>;
   dnsServers?: string[];
+  strategy?: ConfigLoadingStrategy;
 }
 
 @Injectable({
@@ -110,12 +117,111 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
         options.fromUrlParam = environment.config.fromUrlParam;
         options.fromLocalStorage = environment.config.fromLocalStorage;
         options.schema = environment.config.schema;
+        options.strategy = environment.config.strategy as ConfigLoadingStrategy ?? options.strategy;
       }
     }
 
     config = deepMerge(config, options?.static ?? {});
+    let done = false;
 
-    const urls = (options?.url ? coerceArray(options.url) : ConfigService.Urls).map(url => {
+    if (!done && options?.fromUrls !== false) {
+      try {
+        config = deepMerge(config, await this.loadConfigFromUrls(options, environment));
+        if (options.strategy === ConfigLoadingStrategy.FIFO) {
+          done = true;
+        }
+      } catch (error: any) {
+        if (options.strategy !== ConfigLoadingStrategy.FIFO) {
+          console.error('Could not load config from urls', error);
+          throw error;
+        } else {
+          console.warn('Could not load config from urls: ' + error.message + '. Will try next strategy.');
+        }
+      }
+    }
+
+    if (!done && options?.fromLocalStorage !== false) {
+      try {
+        config = deepMerge(config, this.loadConfigFromLocalStorage(options));
+        if (options.strategy === ConfigLoadingStrategy.FIFO) {
+          done = true;
+        }
+      } catch (error: any) {
+        if (options.strategy !== ConfigLoadingStrategy.FIFO) {
+          console.error('Could not load config from local storage', error);
+          throw error;
+        } else {
+          console.warn('Could not load config from local storage: ' + error.message + '. Will try next strategy.');
+        }
+      }
+    }
+
+    if (!done && options?.fromUrlParam) {
+      try {
+        config = deepMerge(config, this.loadConfigFromUrlParam(options as any));
+        if (options.strategy === ConfigLoadingStrategy.FIFO) {
+          done = true;
+        }
+      } catch (error: any) {
+        if (options.strategy !== ConfigLoadingStrategy.FIFO) {
+          console.error('Could not load config from url param', error);
+          throw error;
+        } else {
+          console.warn('Could not load config from url param: ' + error.message + '. Will try next strategy.');
+        }
+      }
+    }
+
+    if (!done && options?.fromDns) {
+      await this.loadConfigFromDns(options as any);
+    }
+
+    if (!done && options?.fromCid) {
+      try {
+        config = deepMerge(config, await this.loadConfigFromCid(options as any));
+        if (options.strategy === ConfigLoadingStrategy.FIFO) {
+          done = true;
+        }
+      } catch (error: any) {
+        if (options.strategy !== ConfigLoadingStrategy.FIFO) {
+          console.error('Could not load config from cid', error);
+          throw error;
+        } else {
+          console.warn('Could not load config from cid: ' + error.message + '. Will try next strategy.');
+        }
+      }
+    }
+
+    if (!done) {
+      console.warn('No config loading strategy succeeded. Using default config.');
+    }
+
+    config = deepMerge(config, this.Overwrites);
+
+    console.debug('app config', config);
+
+    this.Config = config;
+  }
+
+  private static loadConfigFromUrlParam(options: ConfigLoadOptions & { fromUrlParam: string | true }) {
+    const param = typeof options.fromUrlParam === 'string' ? options.fromUrlParam : 'config';
+    return this.LoadConfigDefaultFromUrlParam(param);
+  }
+
+  private static loadConfigFromLocalStorage(options: ConfigLoadOptions) {
+    const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
+    if (localConfig) {
+      return JSON.parse(localConfig);
+    } else {
+      return {};
+    }
+  }
+
+  private static async loadConfigFromUrls(options: ConfigLoadOptions, environment?: Environment) {
+    let config: any = {};
+    const urls = (
+      options?.url ? coerceArray(options.url) : ConfigService.Urls
+    ).map(url => {
       if (typeof url === 'function') {
         if (!environment) {
           throw new Error('environment is required when url is a function');
@@ -134,39 +240,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
         config = deepMerge(config, loadedConfig);
       }
     }
-
-    config = deepMerge(config, this.Overwrites);
-
-    if (options?.fromLocalStorage !== false) {
-
-      const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
-
-      if (localConfig) {
-        try {
-          config = deepMerge(config, JSON.parse(localConfig));
-        } catch (e: any) {
-          console.error('local config could not be parsed');
-        }
-      }
-
-    }
-
-    if (options?.fromUrlParam) {
-      const param = typeof options.fromUrlParam === 'string' ? options.fromUrlParam : 'config';
-      config = deepMerge(config, this.LoadConfigDefaultFromUrlParam(param));
-    }
-
-    if (options?.fromDns) {
-      await this.loadConfigFromDns(options as any);
-    }
-
-    if (options?.fromCid) {
-      config = deepMerge(config, await this.loadConfigFromCid(options as any));
-    }
-
-    console.debug('app config', config);
-
-    this.Config = config;
+    return config;
   }
 
   private static async loadConfigFromCid(options: ConfigLoadOptions & { fromCid: string | boolean }) {
