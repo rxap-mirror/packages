@@ -1,3 +1,4 @@
+import { CoerceArrayItems } from '@rxap/utilities';
 import { NormalizeTableOptions, TableModifiers } from './table-options';
 
 jest.mock('./minimum-table-options', () => ({
@@ -20,7 +21,6 @@ describe('NormalizeTableOptions', () => {
     const options = { modifiers: [TableModifiers.SHOW_ARCHIVED_SLIDE], columnList: [], propertyList: [] };
     NormalizeTableOptions(options as any, 'test');
     // CoerceArrayItems was called
-    const { CoerceArrayItems } = require('@rxap/utilities');
     expect(CoerceArrayItems).toHaveBeenCalled();
   });
 });

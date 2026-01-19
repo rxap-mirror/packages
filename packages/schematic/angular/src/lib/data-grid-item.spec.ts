@@ -24,9 +24,8 @@ describe('DataGridItem', () => {
 
   it('should normalize link data grid item', () => {
     const item = { name: 'test', kind: DataGridKinds.LINK, target: '_blank' };
-    const result = NormalizeDataGridItem(item as any);
+    const result: any = NormalizeDataGridItem(item as any);
     expect(result.kind).toBe(DataGridKinds.LINK);
-    // @ts-ignore
     expect(result.target).toBe('_blank');
   });
 
