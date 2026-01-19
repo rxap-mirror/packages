@@ -67,6 +67,7 @@ export interface Environment {
     fromUrlParam?: string | boolean;
     fromLocalStorage?: boolean;
     schema?: AnySchema;
+    strategy?: string;
     url?: string | string[] | ((environment: Environment) => string | string[]);
     /**
      * static config values
