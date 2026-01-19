@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@19.1.0-dev.0...@rxap/authorization@19.1.0-dev.1) (2026-01-19)
+
+### Bug Fixes
+
+- update package groups ([744cdb1](https://gitlab.com/rxap/packages/commit/744cdb151f040d5c2a32bbee09dbc4cf9e9c41b9))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@19.0.4...@rxap/authorization@19.1.0-dev.0) (2026-01-19)
 
 ### Features
