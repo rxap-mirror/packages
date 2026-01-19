@@ -85,7 +85,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       },
       {
         "package": "@rxap/data-source",
@@ -105,7 +105,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/form-system",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.9.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.8.1-dev.3...@rxap/workspace-utilities@19.9.0-dev.0) (2026-01-19)
+
+### Features
+
+- **utilities:** add prefix support to BuildNestControllerName options ([fc40385](https://gitlab.com/rxap/packages/commit/fc4038517cc3925905c25501033a7340335e2b22))
+
 ## [19.8.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@19.8.1-dev.2...@rxap/workspace-utilities@19.8.1-dev.3) (2026-01-13)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

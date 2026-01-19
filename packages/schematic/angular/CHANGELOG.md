@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.2.0-dev.1...@rxap/schematic-angular@19.2.0-dev.2) (2026-01-19)
+
+### Features
+
+- **schematics:** add reusable backend and data-grid rules with tests ([da5052c](https://gitlab.com/rxap/packages/commit/da5052c722cf50417f04f7ef185b0c571413834b))
+- **schematics:** add test utilities, snapshots, and setup for dialog component ([4d95043](https://gitlab.com/rxap/packages/commit/4d95043cc133d550a144c068e2e3785da48904d9))
+- **schematics:** update test module generation and refactor workspace utilities ([9c435a4](https://gitlab.com/rxap/packages/commit/9c435a4a2422a05ad5bee9ef404c2707ca626026))
+- **utilities:** add prefix support to BuildNestControllerName options ([fc40385](https://gitlab.com/rxap/packages/commit/fc4038517cc3925905c25501033a7340335e2b22))
+
 # [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.2.0-dev.0...@rxap/schematic-angular@19.2.0-dev.1) (2026-01-13)
 
 ### Bug Fixes

@@ -1,11 +1,11 @@
 {
-  "version": "20.0.5-dev.3",
+  "version": "20.0.5-dev.4",
   "name": "@rxap/plugin-web3-storage",
   "description": "This plugin provides an executor to deploy your application to web3 storage. It also includes a generator to initialize the plugin. It simplifies the process of deploying web applications to decentralized storage.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/plugin-utilities": "^20.0.5-dev.3",
+    "@rxap/plugin-utilities": "^20.0.5-dev.4",
     "@ucanto/principal": "^9.0.1",
     "@web3-storage/w3up-client": "^16.2.0",
     "files-from-path": "1.0.4",

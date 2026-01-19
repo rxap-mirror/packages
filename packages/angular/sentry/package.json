@@ -8,8 +8,8 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/config": "^19.2.0-dev.2",
-    "@rxap/environment": "^19.0.4",
+    "@rxap/config": "^19.2.0-dev.3",
+    "@rxap/environment": "^19.1.0-dev.0",
     "@sentry/angular": "^8.18.0"
   },
   "author": {
@@ -47,11 +47,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/utilities",

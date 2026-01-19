@@ -1,13 +1,13 @@
 {
-  "version": "20.1.0-dev.2",
+  "version": "20.1.0-dev.3",
   "name": "@rxap/plugin-application",
   "description": "This package provides generators and executors for initializing and managing applications within an Nx workspace. It includes features for setting up Docker configurations, managing shared service configurations, and handling internationalization. The plugin also offers utilities for updating project configurations, managing dependencies, and streamlining common application development tasks.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/plugin-utilities": "^20.0.5-dev.3",
+    "@rxap/plugin-utilities": "^20.0.5-dev.4",
     "@rxap/utilities": "^16.5.0-dev.1",
-    "@rxap/workspace-utilities": "^19.8.1-dev.3",
+    "@rxap/workspace-utilities": "^19.9.0-dev.0",
     "handlebars": "4.7.8",
     "tslib": "2.6.2",
     "yaml": "2.3.1"

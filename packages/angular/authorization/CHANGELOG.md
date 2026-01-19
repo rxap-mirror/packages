@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@19.0.4...@rxap/authorization@19.1.0-dev.0) (2026-01-19)
+
+### Features
+
+- introduce `provideAuthorization` and `setAuthorizationScope` utilities for module configuration and add comprehensive authorization developer guide. ([425f0d9](https://gitlab.com/rxap/packages/commit/425f0d94c9d5d1e8fe871f044c578dd0194cc538))
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/authorization@19.0.4-dev.0...@rxap/authorization@19.0.4) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/authorization

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@19.0.4...@rxap/environment@19.1.0-dev.0) (2026-01-19)
+
+### Features
+
+- **environment:** add `strategy` option to environment configuration ([c882b2c](https://gitlab.com/rxap/packages/commit/c882b2cc1f48ff41d1db493838e7b9285c7d6aff))
+
 ## [19.0.4](https://gitlab.com/rxap/packages/compare/@rxap/environment@19.0.4-dev.1...@rxap/environment@19.0.4) (2025-05-16)
 
 **Note:** Version bump only for package @rxap/environment

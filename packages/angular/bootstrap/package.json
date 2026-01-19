@@ -12,8 +12,8 @@
     "@angular/core": "^19.2.1",
     "@angular/platform-browser": "^19.2.1",
     "@angular/platform-browser-dynamic": "^19.2.1",
-    "@rxap/config": "^19.2.0-dev.2",
-    "@rxap/environment": "^19.0.4",
+    "@rxap/config": "^19.2.0-dev.3",
+    "@rxap/environment": "^19.1.0-dev.0",
     "ngx-logger": "^5.0.12"
   },
   "author": {
@@ -63,11 +63,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.2.0-dev.2"
+        "version": "19.2.0-dev.3"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/utilities",

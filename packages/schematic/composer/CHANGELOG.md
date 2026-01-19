@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@19.1.0-dev.0...@rxap/schematic-composer@19.1.0-dev.1) (2026-01-19)
+
+### Bug Fixes
+
+- **schematics:** handle edge case for missing schematic file in compose function ([5f8fa13](https://gitlab.com/rxap/packages/commit/5f8fa132a4c71217ea07b30af83654de92689a42))
+
 # [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@19.0.5-dev.3...@rxap/schematic-composer@19.1.0-dev.0) (2026-01-13)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/config@19.2.0-dev.2...@rxap/config@19.2.0-dev.3) (2026-01-19)
+
+### Features
+
+- **config:** add `strategy` option and FIFO handling for dynamic config loading ([7534069](https://gitlab.com/rxap/packages/commit/7534069a897493c402d3164d6bb7df7b3f1dc9dd))
+
 # [19.2.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/config@19.2.0-dev.1...@rxap/config@19.2.0-dev.2) (2025-10-28)
 
 ### Features
