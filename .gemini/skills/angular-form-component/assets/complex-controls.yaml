@@ -1,0 +1,81 @@
+# Example based on real-world report configuration
+package: "@rxap/schematic-angular"
+name: form-component
+options:
+  name: complex-report-form
+  controlList:
+    # Standard Input
+    - name: name
+      kind: input
+      isRequired: true
+      formField:
+        cssClass:
+          - "w-[500px]"
+
+    # Autocomplete Table Select with Upstream Data and Filtering
+    - name: company
+      kind: autocomplete-table-select
+      backend: nestjs
+      isRequired: true
+      formField:
+        cssClass:
+          - "w-[500px]"
+      toValue:
+        property:
+          name: uuid
+      columnList:
+        - name: name
+          hasFilter: true
+      # Resolves the initial value from ID to Object
+      resolver:
+        upstream:
+          kind: open-api
+          operationId: company-gui-controller-getByUuid
+          mapper:
+            kind: resolve
+            value: uuid
+      # Fetches the list of options
+      upstream:
+        kind: open-api
+        operationId: company-gui-controller-getByFilter
+        mapper:
+          kind: paged
+          pageIndex: page
+          pageSize: size
+          sortBy: sort
+          sortDirection: order
+          list: entities
+          total: maxCount
+          filter:
+            eq: ':'
+            join: ';'
+
+    # Select with Enum Value Pipe and Upstream Options
+    - name: resultType
+      kind: select
+      backend: nestjs
+      isRequired: true
+      formField:
+        cssClass:
+          - "w-[500px]"
+      upstream:
+        kind: open-api
+        operationId: options-controller-getReportResultType
+        mapper:
+          kind: options
+          toFunction: ToOptionsFromObject
+          toValue: Number
+
+    # Textarea
+    - name: comment
+      kind: textarea
+      formField:
+        cssClass:
+          - "w-[500px]"
+
+    # Input with Regex Validation Pattern
+    - name: time
+      kind: input
+      isRequired: true
+      validatorList:
+        - "pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)"

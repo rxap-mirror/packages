@@ -1,0 +1,94 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: user
+  backend: open-api
+  sortable: true
+  modifiers:
+    - show-archived-slide
+  headerButton:
+    role: form
+    permission: user.create
+    options:
+      customComponent: true
+      formComponent: UserCreateForm
+  openApi:
+    operationId: user-controller-getByFilter
+    adapter:
+      name: TableAdapterFactory
+      moduleSpecifier: "@digitaix/eurogard-table-system"
+  columnList:
+    - name: __removedAt
+      kind: date
+      inactive: true
+      hidden: true
+    - name: username
+      hasFilter: true
+      type: string
+    - name: firstname
+      hasFilter: true
+      type: string
+    - name: lastname
+      hasFilter: true
+      type: string
+    - name: role
+      pipeList:
+        - name: toRolesEnumValue
+          namedImport: ToRolesEnumValuePipe
+          moduleSpecifier: enum
+        - async
+    - name: lastConnection
+      kind: date
+    - name: receiveMessages
+      kind: boolean
+    - name: companyName
+      type: string
+      hasFilter: true
+  actionList:
+    - type: edit
+      role: form
+      permission: user.update
+      checkFunction: "!element.__archived"
+      refresh: true
+      options:
+        customComponent: true
+        formComponent: UserEditForm
+        loadFrom:
+          operationId: user-controller-getByUuid
+          parameters:
+            uuid: rowId
+    - type: delete
+      icon: delete
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: user.archive
+      checkFunction: "!!element.__archived"
+      role: open-api
+      color: warn
+      options:
+        operationId: user-controller-delete
+        parameters:
+          uuid: rowId
+    - type: archive
+      role: open-api
+      refresh: true
+      confirm: true
+      inHeader: true
+      permission: user.archive
+      checkFunction: "!element.__archived"
+      options:
+        operationId: user-controller-archive
+        parameters:
+          uuid: rowId
+    - type: restore
+      role: open-api
+      refresh: true
+      inHeader: true
+      confirm: true
+      permission: user.archive
+      checkFunction: "!!element.__archived"
+      options:
+        operationId: user-controller-unarchive
+        parameters:
+          uuid: rowId
