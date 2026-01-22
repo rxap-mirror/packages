@@ -28,8 +28,12 @@ export function HasComponent(host: Tree, options: Readonly<HasComponentOptions>)
     throw new SchematicsException(`The component '${ name }' does not exists. The project '${ project }' does not exists.`);
   }
   const type = GetProjectType(host, project);
-  if (type !== 'library' && !HasProjectFeature(host, options)) {
-    throw new SchematicsException(`The component '${ name }' does not exists. The project '${ project }' has not the feature '${ feature }'.`);
+  if (type !== 'library') {
+    if (options.feature) {
+      if (!HasProjectFeature(host, options)) {
+        throw new SchematicsException(`The component '${ name }' does not exists. The project '${ project }' has not the feature '${ feature }'.`);
+      }
+    }
   }
   let basePath = BuildAngularBasePath(host, options);
   if (!basePath.endsWith(name)) {

@@ -29,6 +29,9 @@ export function BuildAngularBasePath(host: Tree, options: Readonly<BuildAngularB
       infix = 'lib';
     }
   }
+  if (type === 'application' && !feature) {
+    infix = 'app';
+  }
   let basePath: string;
   if (feature) {
     basePath = join(projectSourceRoot, infix, 'feature', feature, directory);
