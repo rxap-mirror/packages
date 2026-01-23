@@ -1,5 +1,5 @@
 {
-  "version": "19.1.1",
+  "version": "19.1.2-dev.0",
   "name": "@rxap/schematics-ts-morph",
   "description": "This package provides utilities for manipulating TypeScript code using ts-morph, particularly for Angular and NestJS projects. It offers functions to add, coerce, and modify code elements like classes, methods, decorators, and imports. The package also includes specialized functions for working with Angular components, NestJS modules, and form definitions.\n",
   "license": "GPL-3.0-or-later",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.1.1...@rxap/schematics-ts-morph@19.1.2-dev.0) (2026-01-23)
+
+### Bug Fixes
+
+- **schematic:** adjust base path generation for application projects ([7963abe](https://gitlab.com/rxap/packages/commit/7963abef1897f5f1ba5180f04aa2f2f1cb944a44))
+
 ## [19.1.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.1.1-dev.5...@rxap/schematics-ts-morph@19.1.1) (2026-01-23)
 
 ### Bug Fixes
