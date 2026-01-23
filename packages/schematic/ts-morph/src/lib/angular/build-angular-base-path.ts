@@ -29,7 +29,7 @@ export function BuildAngularBasePath(host: Tree, options: Readonly<BuildAngularB
       infix = 'lib';
     }
   }
-  if (type === 'application' && !feature) {
+  if (type === 'application' && !feature && !directory.startsWith('app/')) {
     infix = 'app';
   }
   let basePath: string;
