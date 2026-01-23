@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0",
+  "version": "19.1.1",
   "name": "@rxap/schematic-composer",
   "description": "This package provides a schematic to compose and execute other schematics based on configuration files. It allows executing schematics for a specific project, feature, or the entire workspace. The configuration files can be in JSON or YAML format, defining the schematics to be executed and their options.\n",
   "license": "GPL-3.0-or-later",
