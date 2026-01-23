@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.1.2-dev.0...@rxap/schematics-ts-morph@19.2.0-dev.0) (2026-01-23)
+
+### Features
+
+- **schematic:** support dynamic project name generation in Nest module coercion ([d74d0fa](https://gitlab.com/rxap/packages/commit/d74d0fa8ca7c4d21565a98aa78c29aa9871865f2))
+
 ## [19.1.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.1.1...@rxap/schematics-ts-morph@19.1.2-dev.0) (2026-01-23)
 
 ### Bug Fixes
