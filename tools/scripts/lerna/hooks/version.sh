@@ -64,6 +64,8 @@ if [[ "$PUBLISH_MODE" == "auto" ]]; then
     --exclude="rxap" \
     --target="update-dependencies,update-package-group"
 
+  yarn nx reset
+
   echo -e "${BLUE}Run the workspace:readme${NC}"
   yarn nx run workspace:readme
 
