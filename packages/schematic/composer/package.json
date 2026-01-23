@@ -1,15 +1,15 @@
 {
-  "version": "19.1.0-dev.1",
+  "version": "19.1.0",
   "name": "@rxap/schematic-composer",
   "description": "This package provides a schematic to compose and execute other schematics based on configuration files. It allows executing schematics for a specific project, feature, or the entire workspace. The configuration files can be in JSON or YAML format, defining the schematics to be executed and their options.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@angular-devkit/schematics": "19.2.1",
     "@nx/devkit": "20.5.0",
-    "@rxap/schematics-ts-morph": "^19.1.1-dev.5",
-    "@rxap/schematics-utilities": "^19.0.5-dev.4",
-    "@rxap/utilities": "^16.5.0-dev.1",
-    "@rxap/workspace-utilities": "^19.9.0-dev.0",
+    "@rxap/schematics-ts-morph": "^19.1.1",
+    "@rxap/schematics-utilities": "^19.0.5",
+    "@rxap/utilities": "^16.5.0",
+    "@rxap/workspace-utilities": "^19.9.0",
     "colors": "1.4.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"

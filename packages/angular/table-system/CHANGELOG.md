@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.5](https://gitlab.com/rxap/packages/compare/@rxap/table-system@19.0.5-dev.0...@rxap/table-system@19.0.5) (2026-01-23)
+
+**Note:** Version bump only for package @rxap/table-system
+
 ## [19.0.5-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/table-system@19.0.4...@rxap/table-system@19.0.5-dev.0) (2025-12-08)
 
 **Note:** Version bump only for package @rxap/table-system

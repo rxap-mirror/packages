@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.1",
+  "version": "11.0.0",
   "name": "@rxap/nest-rabbitmq-vault",
   "description": "This package provides a NestJS module that integrates with HashiCorp Vault to retrieve RabbitMQ credentials. It allows applications to dynamically fetch usernames and passwords for RabbitMQ from Vault, enhancing security and simplifying credential management. The module also supports automatic lease renewal for the Vault credentials.\n",
   "license": "GPL-3.0-or-later",
@@ -10,8 +10,8 @@
   "peerDependencies": {
     "@nestjs/common": "^11.1.1",
     "@nestjs/config": "^4.0.2",
-    "@rxap/nest-rabbitmq": "^11.0.0-dev.1",
-    "@rxap/nest-vault": "^11.0.0-dev.1"
+    "@rxap/nest-rabbitmq": "^11.0.0",
+    "@rxap/nest-vault": "^11.0.0"
   },
   "author": {
     "name": "Merzough Münker",

@@ -1,5 +1,5 @@
 {
-  "version": "19.1.1-dev.0",
+  "version": "19.1.1",
   "name": "@rxap/ngx-theme",
   "description": "This package provides an Angular theme service that allows you to manage and customize the look and feel of your application. It includes features such as dark mode support, theme density control, typography settings, and color palette management. The service also provides utilities for computing color palettes and observing theme density changes.\n",
   "license": "GPL-3.0-or-later",
@@ -11,10 +11,10 @@
   "peerDependencies": {
     "@angular/cdk": "^19.1.1",
     "@angular/core": "^19.2.1",
-    "@rxap/config": "^19.2.0-dev.3",
+    "@rxap/config": "^19.2.0",
     "@rxap/ngx-pub-sub": "^19.0.4",
     "@rxap/rxjs": "^1.1.16",
-    "@rxap/utilities": "^16.5.0-dev.1",
+    "@rxap/utilities": "^16.5.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -51,11 +51,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.2.0-dev.3"
+        "version": "19.2.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
@@ -67,7 +67,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0-dev.1"
+        "version": "16.5.0"
       }
     ]
   },

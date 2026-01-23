@@ -14,11 +14,11 @@
     "@angular/forms": "^19.2.1",
     "@angular/material": "^19.1.1",
     "@angular/router": "^19.2.1",
-    "@rxap/form-system": "^19.1.0-dev.3",
-    "@rxap/forms": "^19.1.0-dev.5",
-    "@rxap/mixin": "^16.0.15-dev.4",
-    "@rxap/reflect-metadata": "^1.0.16-dev.4",
-    "@rxap/utilities": "^16.5.0-dev.1",
+    "@rxap/form-system": "^19.1.0",
+    "@rxap/forms": "^19.1.0",
+    "@rxap/mixin": "^16.0.15",
+    "@rxap/reflect-metadata": "^1.0.16",
+    "@rxap/utilities": "^16.5.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -73,15 +73,15 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.2.0-dev.3"
+        "version": "19.2.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.1.1-dev.1"
+        "version": "19.1.1"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.17-dev.3"
+        "version": "1.1.17"
       },
       {
         "package": "@rxap/definition",
@@ -89,27 +89,27 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "19.1.0-dev.3"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "19.1.0-dev.5"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.15-dev.4"
+        "version": "16.0.15"
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.2.0-dev.4"
+        "version": "19.2.0"
       },
       {
         "package": "@rxap/pattern",
@@ -117,11 +117,11 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.16-dev.4"
+        "version": "1.0.16"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -133,7 +133,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0-dev.1"
+        "version": "16.5.0"
       },
       {
         "package": "@rxap/validator",

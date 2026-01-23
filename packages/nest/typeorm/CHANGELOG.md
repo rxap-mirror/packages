@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-typeorm@11.0.0-dev.6...@rxap/nest-typeorm@11.0.0) (2026-01-23)
+
+**Note:** Version bump only for package @rxap/nest-typeorm
+
 # [11.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-typeorm@11.0.0-dev.5...@rxap/nest-typeorm@11.0.0-dev.6) (2025-11-27)
 
 ### Features

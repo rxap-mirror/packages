@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.0",
+  "version": "19.1.0",
   "name": "@rxap/directives",
   "description": "This package provides a set of Angular directives to simplify common tasks such as setting background images, confirming clicks, making elements contenteditable, and more. It includes directives for handling UI interactions, applying styles, and managing asynchronous operations. These directives aim to reduce boilerplate code and improve the reusability of components in Angular applications.\n",
   "license": "GPL-3.0-or-later",
@@ -12,7 +12,7 @@
     "@rxap/pattern": "^1.1.14",
     "@rxap/rxjs": "^1.1.16",
     "@rxap/services": "^19.0.4",
-    "@rxap/utilities": "^16.5.0-dev.1",
+    "@rxap/utilities": "^16.5.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -58,7 +58,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0-dev.1"
+        "version": "16.5.0"
       }
     ]
   },

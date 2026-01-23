@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.1.1-dev.5...@rxap/schematics-ts-morph@19.1.1) (2026-01-23)
+
+### Bug Fixes
+
+- **schematic:** improve component feature validation logic ([01146ba](https://gitlab.com/rxap/packages/commit/01146baf054c864944fa47ceaf6e0b829585fc5d))
+
 ## [19.1.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@19.1.1-dev.4...@rxap/schematics-ts-morph@19.1.1-dev.5) (2026-01-19)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph

@@ -12,11 +12,11 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/material": "^19.1.1",
-    "@rxap/directives": "^19.1.0-dev.0",
-    "@rxap/material-directives": "^19.1.0-dev.0",
+    "@rxap/directives": "^19.1.0",
+    "@rxap/material-directives": "^19.1.0",
     "@rxap/rxjs": "^1.1.16",
     "@rxap/services": "^19.0.4",
-    "@rxap/utilities": "^16.5.0-dev.1",
+    "@rxap/utilities": "^16.5.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -70,11 +70,11 @@
       },
       {
         "package": "@rxap/directives",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "19.1.0-dev.0"
+        "version": "19.1.0"
       },
       {
         "package": "@rxap/ngx-memory",
@@ -94,7 +94,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0-dev.1"
+        "version": "16.5.0"
       }
     ]
   },

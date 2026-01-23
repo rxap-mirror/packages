@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.0",
+  "version": "19.1.0",
   "name": "@rxap/remote-method",
   "description": "This package provides abstractions for defining and executing remote methods in Angular applications. It includes features such as automatic refreshing, proxying, and error handling. It offers a structured way to manage remote calls and their dependencies.\n",
   "license": "GPL-3.0-or-later",
@@ -12,7 +12,7 @@
     "@angular/core": "^19.2.1",
     "@rxap/definition": "^19.0.4",
     "@rxap/rxjs": "^1.1.16",
-    "@rxap/utilities": "^16.5.0-dev.1",
+    "@rxap/utilities": "^16.5.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -50,7 +50,7 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.16-dev.4"
+        "version": "1.0.16"
       },
       {
         "package": "@rxap/rxjs",
@@ -58,7 +58,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0-dev.1"
+        "version": "16.5.0"
       }
     ]
   },

@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0-dev.1",
+  "version": "11.0.0",
   "name": "@rxap/nest-testing",
   "description": "Provides factories for creating mock config services and loggers, useful for testing NestJS applications. Includes a MockConfigServiceFactory to generate config service mocks and a MockLoggerFactory for logger mocks. Also includes an init generator for adding peer dependencies to a project.\n",
   "license": "GPL-3.0-or-later",

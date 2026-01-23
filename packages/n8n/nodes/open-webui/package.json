@@ -1,11 +1,11 @@
 {
-  "version": "0.0.5-dev.3",
+  "version": "0.0.5",
   "name": "@rxap/n8n-nodes-open-webui",
   "description": "This package provides an n8n node for interacting with the Open Web UI. It leverages the `@rxap/n8n-utilities` package and an OpenAPI definition to simplify the integration. The node allows users to connect and utilize the functionalities exposed by the Open Web UI.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/n8n-utilities": "^1.2.2-dev.3",
+    "@rxap/n8n-utilities": "^1.2.2",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {

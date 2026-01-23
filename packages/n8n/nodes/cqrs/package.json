@@ -1,12 +1,12 @@
 {
-  "version": "0.0.6-dev.3",
+  "version": "0.0.6",
   "name": "@rxap/n8n-nodes-cqrs",
   "description": "This package provides base classes for creating n8n nodes that interact with RabbitMQ using the CQRS pattern. It includes nodes for sending commands, queries, and events, as well as trigger nodes for listening to specific patterns. The nodes are configured using JSON schemas to define the available operations and payload structures.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/n8n-utilities": "^1.2.2-dev.3",
-    "@rxap/utilities": "^16.5.0-dev.1",
+    "@rxap/n8n-utilities": "^1.2.2",
+    "@rxap/utilities": "^16.5.0",
     "amqplib": "^0.10.4",
     "openapi-types": "10.0.0",
     "rxjs": "7.8.1",
