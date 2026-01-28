@@ -21,7 +21,7 @@ jest.mock('@rxap/ts-morph', () => ({
 describe('SelectFormControl Utilities', () => {
   it('should normalize select form control', () => {
     const control = { kind: FormControlKinds.SELECT, name: 'test', multiple: true };
-    const result = NormalizeSelectFormControl(control as any);
+    const result = NormalizeSelectFormControl(control as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(FormControlKinds.SELECT);
     expect(result.multiple).toBe(true);
@@ -29,7 +29,7 @@ describe('SelectFormControl Utilities', () => {
 
   it('should handle optionList', () => {
     const control = { kind: FormControlKinds.SELECT, name: 'test', optionList: [{ value: '1', label: 'One' }] };
-    const result = NormalizeSelectFormControl(control as any);
+    const result = NormalizeSelectFormControl(control as any, { kind: BackendTypes.NONE });
     expect(result.optionList).toEqual([{ value: '1', label: 'One' }]);
   });
 

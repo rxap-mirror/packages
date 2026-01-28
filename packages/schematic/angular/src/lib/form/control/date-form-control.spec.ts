@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeDateFormControl, IsDateFormControlOptions, IsNormalizedDateFormControlOptions } from './date-form-control';
 import { FormControlKinds } from './form-control-kind';
 
@@ -12,7 +13,7 @@ jest.mock('@rxap/ts-morph', () => ({
 describe('DateFormControl Utilities', () => {
   it('should normalize date form control', () => {
     const control = { name: 'test' };
-    const result = NormalizeDateFormControl(control as any);
+    const result = NormalizeDateFormControl(control as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(FormControlKinds.DATE);
     expect(result.type.name).toBe('Date');

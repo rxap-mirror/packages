@@ -41,6 +41,9 @@ exports[`NormalizeAccordionItemTableComponentOptions should normalize complex ac
   "shared": false,
   "table": {
     "actionList": [],
+    "backend": {
+      "kind": "none",
+    },
     "columnList": [
       {
         "active": false,
@@ -353,6 +356,9 @@ exports[`NormalizeAccordionItemTableComponentOptions should normalize minimal ac
   "shared": false,
   "table": {
     "actionList": [],
+    "backend": {
+      "kind": "none",
+    },
     "columnList": [
       {
         "active": false,

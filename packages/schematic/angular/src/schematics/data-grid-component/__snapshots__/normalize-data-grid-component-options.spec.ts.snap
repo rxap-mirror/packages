@@ -23,6 +23,13 @@ exports[`NormalizeDataGridComponentOptions should normalize complex data grid co
   "itemList": [
     {
       "formControl": {
+        "backend": {
+          "kind": "nestjs",
+          "module": null,
+          "prefix": null,
+          "project": null,
+          "serverId": null,
+        },
         "formField": {
           "cssClass": null,
           "directiveList": [],

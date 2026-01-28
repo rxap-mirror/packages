@@ -2,6 +2,7 @@ import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   BaseFormControl,
   NormalizeBaseFormControl,
@@ -25,6 +26,7 @@ export function IsNormalizedSlideToggleFormControl(template: NormalizedBaseFormC
 
 export function NormalizeSlideToggleFormControl(
   control: SlideToggleFormControl,
+  backend: BackendOptions,
 ): NormalizedSlideToggleFormControl {
   const importList = control.importList ?? [];
   CoerceArrayItems(importList, [
@@ -34,7 +36,7 @@ export function NormalizeSlideToggleFormControl(
     },
   ], (a, b) => a.name === b.name);
   return Object.freeze({
-    ...NormalizeBaseFormControl(control, importList, undefined, 'boolean', false),
+    ...NormalizeBaseFormControl(control, importList, undefined, 'boolean', false, backend),
     kind: FormControlKinds.CHECKBOX,
     labelPosition: control.labelPosition ?? 'after',
   });

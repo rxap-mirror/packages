@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeSlideToggleFormControl, IsNormalizedSlideToggleFormControl } from './slide-toggle-form-control';
 import { FormControlKinds } from './form-control-kind';
 
@@ -8,7 +9,7 @@ jest.mock('./base-form-control', () => ({
 describe('SlideToggleFormControl Utilities', () => {
   it('should normalize slide toggle form control', () => {
     const control = { name: 'test' };
-    const result = NormalizeSlideToggleFormControl(control as any);
+    const result = NormalizeSlideToggleFormControl(control as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(FormControlKinds.CHECKBOX);
     expect(result.labelPosition).toBe('after');

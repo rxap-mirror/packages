@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeAccordion } from './accordion';
 import * as tsMorph from '@rxap/ts-morph';
 import { NormalizeAccordionItemList } from './accordion-item';
@@ -28,7 +29,7 @@ jest.mock('../persistent', () => ({
 describe('NormalizeAccordion', () => {
   it('should normalize accordion with default values', () => {
     const options = { name: 'test-accordion' };
-    const result = NormalizeAccordion(options);
+    const result = NormalizeAccordion(options, { kind: BackendTypes.NONE });
 
     expect(result.name).toBe('test-accordion');
     expect(result.multiple).toBe(false);
@@ -40,13 +41,13 @@ describe('NormalizeAccordion', () => {
     (NormalizeAccordionItemList as jest.Mock).mockReturnValue([
       { permission: 'view' }
     ]);
-    const result = NormalizeAccordion({ name: 'test' });
+    const result = NormalizeAccordion({ name: 'test' }, { kind: BackendTypes.NONE });
     expect(result.withPermission).toBe(true);
   });
 
   it('should handle persistent storage', () => {
     const options = { name: 'test', persistent: { key: 'test-key' } as any };
-    const result = NormalizeAccordion(options);
+    const result = NormalizeAccordion(options, { kind: BackendTypes.NONE });
     expect(result.persistent).toEqual({ key: 'test-key' });
   });
 });

@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeTableSelectFormControl, NormalizeTableSelectColumn, IsNormalizedTableSelectFormControl } from './table-select-form-control';
 import { FormControlKinds } from './form-control-kind';
 import { TableColumnKind } from '../../table/table-column-kind';
@@ -48,14 +49,14 @@ describe('TableSelectFormControl Utilities', () => {
   describe('NormalizeTableSelectFormControl', () => {
     it('should normalize table select form control', () => {
       const control = { name: 'test', columnList: [{ name: 'col1' }] };
-      const result = NormalizeTableSelectFormControl(control as any);
+      const result = NormalizeTableSelectFormControl(control as any, { kind: BackendTypes.NONE });
 
       expect(result.kind).toBe(FormControlKinds.TABLE_SELECT);
       expect(result.columnList).toHaveLength(1);
     });
 
     it('should throw if columnList is empty', () => {
-      expect(() => NormalizeTableSelectFormControl({ name: 'test', columnList: [] } as any)).toThrow('The column list must not be empty');
+      expect(() => NormalizeTableSelectFormControl({ name: 'test', columnList: [] } as any, { kind: BackendTypes.NONE })).toThrow('The column list must not be empty');
     });
   });
 

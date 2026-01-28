@@ -24,7 +24,7 @@ export function NormalizeFormTableHeaderButtonOptions(
   options: Readonly<FormTableHeaderButtonOptions>,
 ): NormalizedFormTableHeaderButtonOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableHeaderButton = NormalizeFormHeaderButton(options, options.tableName);
+  const normalizedTableHeaderButton = NormalizeFormHeaderButton(options, normalizedAngularOptions.backend, options.tableName);
   if (!normalizedTableHeaderButton) {
     throw new Error('FATAL: should never happen');
   }

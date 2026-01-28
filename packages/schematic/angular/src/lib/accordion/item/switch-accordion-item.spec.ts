@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeSwitchAccordionItem, IsSwitchAccordionItem, IsNormalizedSwitchAccordionItem } from './switch-accordion-item';
 import { AccordionItemKinds } from '../accordion-item-kind';
 import { NormalizeBaseAccordionItem } from './base-accordion-item';
@@ -38,7 +39,7 @@ describe('SwitchAccordionItem Utilities', () => {
         ]
       }
     };
-    const result = NormalizeSwitchAccordionItem(item as any);
+    const result = NormalizeSwitchAccordionItem(item as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(AccordionItemKinds.Switch);
     expect(result.switch.property).toEqual({ name: 'type' });
@@ -47,7 +48,7 @@ describe('SwitchAccordionItem Utilities', () => {
 
   it('should throw if no cases and no default case', () => {
     const item = { name: 'test', switch: { property: 'p', case: [] } };
-    expect(() => NormalizeSwitchAccordionItem(item as any)).toThrow('The switch \'test\' has no cases or default case');
+    expect(() => NormalizeSwitchAccordionItem(item as any, { kind: BackendTypes.NONE })).toThrow('The switch \'test\' has no cases or default case');
   });
 
   describe('Type Guards', () => {

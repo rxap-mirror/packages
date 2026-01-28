@@ -3,6 +3,7 @@ import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   BaseFormControl,
   NormalizedBaseFormControl,
@@ -37,6 +38,7 @@ export function IsNormalizedDateFormControlOptions(template: NormalizedBaseFormC
 
 export function NormalizeDateFormControl(
   control: DateFormControl,
+  backend: BackendOptions,
 ): NormalizedDateFormControl {
   const type = NormalizeTypeImport(control.type, 'Date');
   const validatorList = control.validatorList ?? [];
@@ -52,7 +54,7 @@ export function NormalizeDateFormControl(
     }
   ], (a, b) => a.name === b.name);
   return Object.freeze({
-    ...NormalizeFormFieldFormControl(control, importList, validatorList, type, false),
+    ...NormalizeFormFieldFormControl(control, importList, validatorList, type, false, undefined, backend),
     validatorList,
     kind: FormControlKinds.DATE,
     placeholder: control.placeholder ?? null,

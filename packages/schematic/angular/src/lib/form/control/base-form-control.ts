@@ -9,6 +9,10 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import {
+  BackendOptions,
+  NormalizedBackendOptions,
+} from '../../backend/backend-options';
+import {
   AbstractControl,
   AbstractControlRolls,
   NormalizeAbstractControl,
@@ -27,6 +31,7 @@ export interface NormalizedBaseFormControl extends Readonly<Normalized<Omit<Base
   importList: NormalizedTypeImport[];
   role: AbstractControlRolls.CONTROL;
   kind: FormControlKinds;
+  backend: NormalizedBackendOptions;
 }
 
 export function NormalizeBaseFormControl(
@@ -34,7 +39,8 @@ export function NormalizeBaseFormControl(
   importList: TypeImport[] = [],
   validatorList: string[] = [],
   defaultType: TypeImport | string = 'unknown',
-  defaultIsArray = false
+  defaultIsArray = false,
+  backend: BackendOptions,
 ): NormalizedBaseFormControl {
 
   const kind = control.kind ?? FormControlKinds.DEFAULT;
@@ -45,7 +51,7 @@ export function NormalizeBaseFormControl(
     }
   ], (a, b) => a.name === b.name);
   return Object.freeze({
-    ...NormalizeAbstractControl(control, kind, importList, validatorList, defaultType, defaultIsArray),
+    ...NormalizeAbstractControl(control, kind, importList, validatorList, defaultType, defaultIsArray, backend),
     role: AbstractControlRolls.CONTROL,
     label: control.label ?? null,
   });

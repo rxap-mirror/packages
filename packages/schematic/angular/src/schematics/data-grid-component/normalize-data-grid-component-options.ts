@@ -30,7 +30,7 @@ export function NormalizeDataGridComponentOptions(
   options: Readonly<DataGridComponentOptions>,
 ): NormalizedDataGridComponentOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedDataGridOptions = NormalizeDataGridOptions(options);
+  const normalizedDataGridOptions = NormalizeDataGridOptions(options, normalizedAngularOptions.backend);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const {
     name,

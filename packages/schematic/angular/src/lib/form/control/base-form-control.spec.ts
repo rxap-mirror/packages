@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeBaseFormControl } from './base-form-control';
 import { AbstractControlRolls } from '../abstract-control';
 import { FormControlKinds } from './form-control-kind';
@@ -11,7 +12,7 @@ jest.mock('../abstract-control', () => ({
 describe('NormalizeBaseFormControl', () => {
   it('should normalize base form control', () => {
     const control = { name: 'test' };
-    const result = NormalizeBaseFormControl(control as any);
+    const result = NormalizeBaseFormControl(control as any, undefined, undefined, undefined, undefined, { kind: BackendTypes.NONE });
 
     expect(result.role).toBe(AbstractControlRolls.CONTROL);
     expect(result.kind).toBe(FormControlKinds.DEFAULT);
@@ -20,7 +21,7 @@ describe('NormalizeBaseFormControl', () => {
 
   it('should include ReactiveFormsModule in importList', () => {
     const importList: any[] = [];
-    NormalizeBaseFormControl({ name: 'test' } as any, importList);
+    NormalizeBaseFormControl({ name: 'test' } as any, importList, undefined, undefined, undefined, { kind: BackendTypes.NONE });
     expect(importList).toContainEqual(expect.objectContaining({ name: 'ReactiveFormsModule' }));
   });
 });

@@ -5,7 +5,10 @@ import {
 import { CoerceArrayItems } from '@rxap/utilities';
 import { NormalizeAccordionIdentifier } from '../../accordion-identifier';
 import { BackendTypes } from '../../backend/backend-types';
-import { NormalizeBackendOptions } from '../../backend/backend-options';
+import {
+  BackendOptions,
+  NormalizeBackendOptions,
+} from '../../backend/backend-options';
 import { NormalizeDataSourceOptions } from '../../data-source/data-source-options';
 import { NormalizedBaseFormControl } from './base-form-control';
 
@@ -33,6 +36,7 @@ export function IsNormalizedAutocompleteTableSelectFormControl(template: Normali
 
 export function NormalizeAutocompleteTableSelectFormControl(
   control: AutocompleteTableSelectFormControl,
+  backend: BackendOptions,
 ): NormalizedAutocompleteTableSelectFormControl {
   const importList = control.importList ?? [];
   CoerceArrayItems(importList, [], (a, b) => a.name === b.name);
@@ -70,7 +74,7 @@ export function NormalizeAutocompleteTableSelectFormControl(
     }
   ], (a, b) => a.name === b.name);
   return Object.freeze({
-    ...NormalizeFormFieldFormControl(control, importList),
+    ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, undefined, undefined, backend),
     identifier,
     dataSource: NormalizeDataSourceOptions(control.dataSource),
     resolver: NormalizeTableSelectFormControlResolver(control.resolver),

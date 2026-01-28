@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeControl, NormalizeControlList } from './control';
 import { AbstractControlRolls } from './abstract-control';
 import { IsFormControl, NormalizeFormControl } from './control/form-control';
@@ -20,14 +21,14 @@ jest.mock('./array/form-array', () => ({
 describe('NormalizeControl Top-Level Multiplexer', () => {
   it('should route to NormalizeFormControl', () => {
     (IsFormControl as unknown as jest.Mock).mockReturnValue(true);
-    const result = NormalizeControl({ role: AbstractControlRolls.CONTROL } as any);
+    const result = NormalizeControl({ role: AbstractControlRolls.CONTROL } as any, { kind: BackendTypes.NONE });
     expect(result).toBe('form-control');
   });
 
   it('should route to NormalizeFormGroup', () => {
     (IsFormControl as unknown as jest.Mock).mockReturnValue(false);
     (IsFormGroup as unknown as jest.Mock).mockReturnValue(true);
-    const result = NormalizeControl({ role: AbstractControlRolls.GROUP } as any);
+    const result = NormalizeControl({ role: AbstractControlRolls.GROUP } as any, { kind: BackendTypes.NONE });
     expect(result).toBe('form-group');
   });
 
@@ -35,7 +36,7 @@ describe('NormalizeControl Top-Level Multiplexer', () => {
     (IsFormControl as unknown as jest.Mock).mockReturnValue(false);
     (IsFormGroup as unknown as jest.Mock).mockReturnValue(false);
     (IsFormArray as unknown as jest.Mock).mockReturnValue(true);
-    const result = NormalizeControl({ role: AbstractControlRolls.ARRAY } as any);
+    const result = NormalizeControl({ role: AbstractControlRolls.ARRAY } as any, { kind: BackendTypes.NONE });
     expect(result).toBe('form-array');
   });
 
@@ -43,6 +44,6 @@ describe('NormalizeControl Top-Level Multiplexer', () => {
     (IsFormControl as unknown as jest.Mock).mockReturnValue(false);
     (IsFormGroup as unknown as jest.Mock).mockReturnValue(false);
     (IsFormArray as unknown as jest.Mock).mockReturnValue(false);
-    expect(() => NormalizeControl({ role: 'unknown' } as any)).toThrow("Unknown control role: 'unknown'");
+    expect(() => NormalizeControl({ role: 'unknown' } as any, { kind: BackendTypes.NONE })).toThrow("Unknown control role: 'unknown'");
   });
 });

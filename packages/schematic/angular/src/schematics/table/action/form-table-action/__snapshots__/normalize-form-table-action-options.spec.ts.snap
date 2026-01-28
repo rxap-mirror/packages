@@ -19,6 +19,9 @@ exports[`NormalizeFormTableActionOptions should normalize complex form table act
   "form": {
     "controlList": [
       {
+        "backend": {
+          "kind": "none",
+        },
         "formField": {
           "cssClass": null,
           "directiveList": [],

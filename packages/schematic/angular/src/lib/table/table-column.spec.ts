@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeTableColumn, NormalizeTableColumnList } from './table-column';
 import { TableColumnKind } from './table-column-kind';
 import { NormalizeDateTableColumn } from './column/date-table-column';
@@ -11,12 +12,12 @@ jest.mock('./column/base-table-column', () => ({ NormalizeBaseTableColumn: jest.
 
 describe('TableColumn Multiplexer', () => {
   it('should route to NormalizeDateTableColumn', () => {
-    NormalizeTableColumn({ kind: TableColumnKind.DATE } as any);
+    NormalizeTableColumn({ kind: TableColumnKind.DATE } as any, { kind: BackendTypes.NONE });
     expect(NormalizeDateTableColumn).toHaveBeenCalled();
   });
 
   it('should route to NormalizeBaseTableColumn by default', () => {
-    NormalizeTableColumn({} as any);
+    NormalizeTableColumn({} as any, { kind: BackendTypes.NONE });
     expect(NormalizeBaseTableColumn).toHaveBeenCalled();
   });
 
@@ -29,7 +30,7 @@ describe('TableColumn Multiplexer', () => {
     // We need to mock return values that include sticky flags for sorting to work as expected if sorting relies on them
     (NormalizeBaseTableColumn as jest.Mock).mockImplementation((c) => ({ ...c }));
 
-    const result = NormalizeTableColumnList(list as any);
+    const result = NormalizeTableColumnList(list as any, { kind: BackendTypes.NONE });
     expect(result[0].name).toBe('start');
     expect(result[result.length - 1].name).toBe('end');
   });

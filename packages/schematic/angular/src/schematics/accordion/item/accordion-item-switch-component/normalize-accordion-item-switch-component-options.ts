@@ -20,8 +20,9 @@ export interface NormalizedAccordionItemSwitchComponentOptions
 export function NormalizeAccordionItemSwitchComponentOptions(
   options: Readonly<AccordionItemSwitchComponentOptions>,
 ): Readonly<NormalizedAccordionItemSwitchComponentOptions> {
+  const normalized = NormalizeAccordionItemStandaloneComponentOptions(options);
   return Object.freeze({
-    ...NormalizeAccordionItemStandaloneComponentOptions(options),
-    ...NormalizeSwitchAccordionItem(options),
+    ...normalized,
+    ...NormalizeSwitchAccordionItem(options, normalized.backend),
   });
 }

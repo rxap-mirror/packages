@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeFormControl, NormalizeFormControlList } from './form-control';
 import { FormControlKinds } from './form-control-kind';
 import { NormalizeInputFormControl } from './input-form-control';
@@ -17,28 +18,28 @@ jest.mock('./date-form-control', () => ({ NormalizeDateFormControl: jest.fn() })
 
 describe('NormalizeFormControl Multiplexer', () => {
   it('should route to NormalizeInputFormControl', () => {
-    NormalizeFormControl({ kind: FormControlKinds.INPUT } as any);
+    NormalizeFormControl({ kind: FormControlKinds.INPUT } as any, { kind: BackendTypes.NONE });
     expect(NormalizeInputFormControl).toHaveBeenCalled();
   });
 
   it('should route to NormalizeSelectFormControl', () => {
-    NormalizeFormControl({ kind: FormControlKinds.SELECT } as any);
+    NormalizeFormControl({ kind: FormControlKinds.SELECT } as any, { kind: BackendTypes.NONE });
     expect(NormalizeSelectFormControl).toHaveBeenCalled();
   });
 
   it('should route to NormalizeBaseFormControl for default', () => {
-    NormalizeFormControl({ kind: FormControlKinds.DEFAULT } as any);
+    NormalizeFormControl({ kind: FormControlKinds.DEFAULT } as any, { kind: BackendTypes.NONE });
     expect(NormalizeBaseFormControl).toHaveBeenCalled();
   });
 
   describe('NormalizeFormControlList', () => {
     it('should map over controls', () => {
-      const result = NormalizeFormControlList([{ kind: FormControlKinds.INPUT } as any]);
+      const result = NormalizeFormControlList([{ kind: FormControlKinds.INPUT } as any], { kind: BackendTypes.NONE });
       expect(result).toHaveLength(1);
     });
 
     it('should return empty array for undefined', () => {
-      expect(NormalizeFormControlList()).toEqual([]);
+      expect(NormalizeFormControlList([], { kind: BackendTypes.NONE })).toEqual([]);
     });
   });
 });

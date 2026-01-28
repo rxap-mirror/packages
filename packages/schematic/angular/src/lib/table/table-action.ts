@@ -1,3 +1,4 @@
+import { BackendOptions } from '../backend/backend-options';
 import {
   BaseTableAction,
   NormalizeBaseTableAction,
@@ -39,12 +40,13 @@ export type NormalizedTableAction = NormalizedBaseTableAction | NormalizedDialog
 export function NormalizeTableAction(
   action: Readonly<TableAction>,
   defaultKind: TableActionKind = TableActionKind.DEFAULT,
+  backend: BackendOptions
 ): NormalizedTableAction {
   switch (action.kind ?? defaultKind) {
     case TableActionKind.DIALOG:
       return NormalizeDialogTableAction(action);
     case TableActionKind.FORM:
-      return NormalizeFormTableAction(action);
+      return NormalizeFormTableAction(action, backend);
     case TableActionKind.NAVIGATION:
       return NormalizeNavigationTableAction(action);
     case TableActionKind.OPEN_API:
@@ -58,9 +60,10 @@ export function NormalizeTableAction(
 }
 
 export function NormalizeTableActionList(
-  actionList?: ReadonlyArray<Readonly<TableAction>>,
+  actionList: ReadonlyArray<Readonly<TableAction>> = [],
+  backend: BackendOptions
 ): ReadonlyArray<NormalizedTableAction> {
   return Object.freeze((
-    actionList?.map(action => NormalizeTableAction(action)) ?? []
+    actionList?.map(action => NormalizeTableAction(action, undefined, backend)) ?? []
   ));
 }

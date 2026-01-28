@@ -3,6 +3,7 @@ import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   AbstractControl,
   AbstractControlRolls,
@@ -34,7 +35,8 @@ export function NormalizeBaseFormGroup(
   importList: TypeImport[] = [],
   validatorList: string[] = [],
   defaultType: TypeImport | string = 'unknown',
-  defaultIsArray = false
+  defaultIsArray = false,
+  backend: BackendOptions,
 ): NormalizedBaseFormGroup {
   CoerceArrayItems(importList, [
     {
@@ -44,9 +46,9 @@ export function NormalizeBaseFormGroup(
   ], (a, b) => a.name === b.name);
   const kind = group.kind ?? FormGroupKind.DEFAULT;
   return {
-    ...NormalizeAbstractControl(group, kind, importList, validatorList, defaultType, defaultIsArray),
+    ...NormalizeAbstractControl(group, kind, importList, validatorList, defaultType, defaultIsArray, backend),
     role: AbstractControlRolls.GROUP,
-    controlList: NormalizeControlList(group.controlList),
+    controlList: NormalizeControlList(group.controlList, backend),
     legend: group.legend ?? null,
   };
 }

@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeAutocompleteTableSelectFormControl, IsNormalizedAutocompleteTableSelectFormControl } from './autocomplete-table-select-form-control';
 import { FormControlKinds } from './form-control-kind';
 
@@ -32,7 +33,7 @@ jest.mock('@rxap/ts-morph', () => ({
 describe('AutocompleteTableSelectFormControl Utilities', () => {
   it('should normalize autocomplete table select form control', () => {
     const control = { name: 'test', columnList: [{ name: 'col1' }] };
-    const result = NormalizeAutocompleteTableSelectFormControl(control as any);
+    const result = NormalizeAutocompleteTableSelectFormControl(control as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(FormControlKinds.AUTOCOMPLETE_TABLE_SELECT);
   });

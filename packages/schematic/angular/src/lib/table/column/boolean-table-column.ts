@@ -1,4 +1,5 @@
 import { Normalized } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import { TableColumnKind } from '../table-column-kind';
 import {
   BaseTableColumn,
@@ -14,12 +15,13 @@ export interface NormalizedBooleanTableColumn extends Readonly<Normalized<Omit<B
 
 export function NormalizeBooleanTableColumn(
   column: Readonly<BooleanTableColumn>,
+  backend: BackendOptions,
 ): NormalizedBooleanTableColumn {
   return {
     ...NormalizeBaseTableColumn({
       type: 'boolean',
       ...column,
-    }),
+    }, backend),
     kind: TableColumnKind.BOOLEAN,
   };
 }

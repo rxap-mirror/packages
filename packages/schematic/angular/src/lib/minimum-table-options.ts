@@ -18,6 +18,12 @@ import {
   NormalizedAccordionIdentifier,
 } from './accordion-identifier';
 import {
+  BackendOptions,
+  NormalizeBackendOptions,
+  NormalizedBackendOptions,
+} from './backend/backend-options';
+import { BackendTypes } from './backend/backend-types';
+import {
   CssClass,
   NormalizeCssClass,
   NormalizedCssClass,
@@ -75,6 +81,7 @@ export interface MinimumTableOptions {
   hasPaginator?: boolean;
   upstream?: UpstreamOptions;
   sortable?: Sortable;
+  backend?: BackendOptions | BackendTypes;
 }
 
 export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
@@ -91,6 +98,7 @@ export interface NormalizedMinimumTableOptions<MODIFIER extends string = string>
   upstream: NormalizedUpstreamOptions | null;
   withHeader: boolean;
   sortable: NormalizedSortable;
+  backend: NormalizedBackendOptions;
 }
 
 export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
@@ -100,18 +108,19 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
   suffix: string,
 ): NormalizedMinimumTableOptions<MODIFIER> {
   const componentName = options.componentName ?? CoerceSuffix(name, suffix);
-  const actionList = NormalizeTableActionList(options.actionList);
   const sortable = NormalizeSortable(options.sortable);
   for (const column of options.columnList) {
     column.sortable ??= sortable.enabled;
   }
-  const filterList = NormalizeFormControlList(options.filterList);
-  const columnList = NormalizeTableColumnList(options.columnList);
+  const backend = NormalizeBackendOptions(options.backend ?? BackendTypes.NONE);
+  const actionList = NormalizeTableActionList(options.actionList, backend);
+  const filterList = NormalizeFormControlList(options.filterList, backend);
+  const columnList = NormalizeTableColumnList(options.columnList, backend);
   if (!sortable.enabled && columnList.some(column => column.sortable)) {
     sortable.enabled = true;
   }
   const propertyList = NormalizeDataPropertyList(options.propertyList);
-  const headerButton = NormalizeHeaderButton(options.headerButton, name);
+  const headerButton = NormalizeHeaderButton(options.headerButton, backend, name);
   const modifiers = options.modifiers ?? [];
   if (columnList.some(column => !column.filterControl)) {
     CoerceArrayItems(modifiers, [MinimumTableModifiers.WITH_HEADER]);
@@ -148,5 +157,6 @@ export function NormalizeMinimumTableOptions<MODIFIER extends string = string>(
     upstream: NormalizeUpstreamOptions(options.upstream),
     sortable,
     withHeader: modifiers?.includes(MinimumTableModifiers.WITH_HEADER as any) ?? false,
+    backend,
   });
 }

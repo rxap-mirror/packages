@@ -23,7 +23,7 @@ export function NormalizeAutocompleteFormControlOptions(
   const normalizedOptions = NormalizeFormControlOptions(options);
   return Object.freeze({
     ...normalizedOptions,
-    ...NormalizeAutocompleteFormControl(options),
+    ...NormalizeAutocompleteFormControl(options, normalizedOptions.backend),
     controllerName: BuildNestControllerName(normalizedOptions),
   });
 }

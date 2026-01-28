@@ -9,6 +9,9 @@ exports[`NormalizeFormComponentOptions should normalize complex form component o
   "context": null,
   "controlList": [
     {
+      "backend": {
+        "kind": "none",
+      },
       "formField": {
         "cssClass": null,
         "directiveList": [],

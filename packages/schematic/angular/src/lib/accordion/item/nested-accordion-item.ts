@@ -5,6 +5,7 @@ import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   Accordion,
   NormalizeAccordion,
@@ -34,7 +35,7 @@ export function IsNormalizedNestedAccordionItem(item: NormalizedBaseAccordionIte
   return item.kind === AccordionItemKinds.Nested;
 }
 
-export function NormalizeNestedAccordionItem(item: Readonly<NestedAccordionItem>): NormalizedNestedAccordionItem {
+export function NormalizeNestedAccordionItem(item: Readonly<NestedAccordionItem>, backend: BackendOptions): NormalizedNestedAccordionItem {
   const accordionImportList = item.accordionImportList ?? [];
   CoerceArrayItems(accordionImportList, [{
     name: `${classify(item.name)}AccordionComponent`,
@@ -49,6 +50,6 @@ export function NormalizeNestedAccordionItem(item: Readonly<NestedAccordionItem>
       identifier: item.identifier,
       upstream: item.upstream,
       ...item.accordion,
-    }),
+    }, backend),
   });
 }

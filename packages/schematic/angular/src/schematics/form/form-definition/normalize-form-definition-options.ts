@@ -22,7 +22,7 @@ export function NormalizeFormDefinitionOptions(
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   return Object.freeze({
     ...normalizedAngularOptions,
-    controlList: NormalizeControlList(options.controlList),
+    controlList: NormalizeControlList(options.controlList, normalizedAngularOptions.backend),
     standalone: options.standalone ?? true,
   });
 }

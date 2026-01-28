@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeTextareaFormControl, IsTextareaFormControlOptions, IsNormalizedTextareaFormControlOptions, NormalizeTextareaAutosize } from './textarea-form-control';
 import { FormControlKinds } from './form-control-kind';
 
@@ -25,7 +26,7 @@ describe('TextareaFormControl Utilities', () => {
   describe('NormalizeTextareaFormControl', () => {
     it('should normalize textarea form control', () => {
       const control = { name: 'test', autosize: { minRows: 2 } };
-      const result = NormalizeTextareaFormControl(control as any);
+      const result = NormalizeTextareaFormControl(control as any, { kind: BackendTypes.NONE });
 
       expect(result.kind).toBe(FormControlKinds.TEXTAREA);
       expect(result.autosize?.minRows).toBe(2);

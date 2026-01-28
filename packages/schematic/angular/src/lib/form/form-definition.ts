@@ -1,3 +1,4 @@
+import { BackendOptions } from '../backend/backend-options';
 import {
   Control,
   NormalizeControlList,
@@ -14,8 +15,9 @@ export interface NormalizedFormDefinition {
 
 export function NormalizeFormDefinition(
   formDefinition: Readonly<FormDefinition>,
+  backend: BackendOptions
 ): NormalizedFormDefinition {
   return {
-    controlList: NormalizeControlList(formDefinition.controlList),
+    controlList: NormalizeControlList(formDefinition.controlList, backend),
   };
 }

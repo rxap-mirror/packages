@@ -26,7 +26,7 @@ export function normalizeAccordionComponentOptions(
   options: Readonly<AccordionComponentOptions>,
 ): Readonly<NormalizedAccordionComponentOptions> {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedAccordionOptions = NormalizeAccordion(options);
+  const normalizedAccordionOptions = NormalizeAccordion(options, normalizedAngularOptions.backend);
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const { name } = normalizedAngularOptions;
   let {

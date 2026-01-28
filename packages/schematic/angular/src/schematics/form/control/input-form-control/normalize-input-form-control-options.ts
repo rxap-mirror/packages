@@ -18,8 +18,9 @@ export type NormalizedInputFormControlOptions =
 export function NormalizeInputFormControlOptions(
   options: InputFormControlOptions,
 ): NormalizedInputFormControlOptions {
+  const normalized = NormalizeFormControlOptions(options);
   return Object.freeze({
-    ...NormalizeFormControlOptions(options),
-    ...NormalizeInputFormControl(options),
+    ...normalized,
+    ...NormalizeInputFormControl(options, normalized.backend),
   });
 }

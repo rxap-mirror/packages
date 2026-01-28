@@ -22,7 +22,7 @@ export function NormalizeTableActionOptions(
 ): NormalizedTableActionOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
   // TODO: Fix this type assertion
-  const normalizedTableRowAction = NormalizeTableAction(options);
+  const normalizedTableRowAction = NormalizeTableAction(options, undefined, normalizedAngularOptions.backend);
   const tableName = CoerceSuffix(dasherize(options.tableName), '-table');
   return Object.freeze({
     ...normalizedTableRowAction,

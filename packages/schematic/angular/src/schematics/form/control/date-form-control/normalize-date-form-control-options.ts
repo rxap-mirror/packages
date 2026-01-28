@@ -18,8 +18,9 @@ export type NormalizedDateFormControlOptions =
 export function NormalizeDateFormControlOptions(
   options: DateFormControlOptions,
 ): NormalizedDateFormControlOptions {
+  const normalized = NormalizeFormControlOptions(options);
   return Object.freeze({
-    ...NormalizeFormControlOptions(options),
-    ...NormalizeDateFormControl(options),
+    ...normalized,
+    ...NormalizeDateFormControl(options, normalized.backend),
   });
 }

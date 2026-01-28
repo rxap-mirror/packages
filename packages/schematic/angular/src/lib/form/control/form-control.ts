@@ -1,3 +1,4 @@
+import { BackendOptions } from '../../backend/backend-options';
 import { AbstractControlRolls } from '../abstract-control';
 import {
   Control,
@@ -55,33 +56,33 @@ export function IsNormalizedFormControl(control: NormalizedControl): control is 
   return control.role === AbstractControlRolls.CONTROL;
 }
 
-export function NormalizeFormControl(control: FormControl): NormalizedFormControl {
+export function NormalizeFormControl(control: FormControl, backend: BackendOptions): NormalizedFormControl {
   const kind = control.kind ?? FormControlKinds.DEFAULT;
   switch (kind) {
     case FormControlKinds.INPUT:
-      return NormalizeInputFormControl(control);
+      return NormalizeInputFormControl(control, backend);
     case FormControlKinds.SELECT:
-      return NormalizeSelectFormControl(control);
+      return NormalizeSelectFormControl(control, backend);
     case FormControlKinds.CHECKBOX:
-      return NormalizeCheckboxFormControl(control);
+      return NormalizeCheckboxFormControl(control, backend);
     case FormControlKinds.SLIDE_TOGGLE:
-      return NormalizeSlideToggleFormControl(control);
+      return NormalizeSlideToggleFormControl(control, backend);
     case FormControlKinds.TABLE_SELECT:
-      return NormalizeTableSelectFormControl(control);
+      return NormalizeTableSelectFormControl(control, backend);
     case FormControlKinds.AUTOCOMPLETE_TABLE_SELECT:
-      return NormalizeAutocompleteTableSelectFormControl(control);
+      return NormalizeAutocompleteTableSelectFormControl(control, backend);
     case FormControlKinds.TEXTAREA:
-      return NormalizeTextareaFormControl(control);
+      return NormalizeTextareaFormControl(control, backend);
     case FormControlKinds.AUTOCOMPLETE:
-      return NormalizeAutocompleteFormControl(control);
+      return NormalizeAutocompleteFormControl(control, backend);
     case FormControlKinds.DATE:
-      return NormalizeDateFormControl(control);
+      return NormalizeDateFormControl(control, backend);
     case FormControlKinds.DEFAULT:
     default:
-      return NormalizeBaseFormControl(control);
+      return NormalizeBaseFormControl(control, undefined, undefined, undefined, undefined, backend);
   }
 }
 
-export function NormalizeFormControlList(controls?: ReadonlyArray<FormControl>): ReadonlyArray<NormalizedFormControl> {
-  return controls?.map(NormalizeFormControl) ?? [];
+export function NormalizeFormControlList(controls: ReadonlyArray<FormControl> = [], backend: BackendOptions): ReadonlyArray<NormalizedFormControl> {
+  return controls?.map(control => NormalizeFormControl(control, backend)) ?? [];
 }

@@ -12,6 +12,12 @@ import {
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
 import { join } from 'path';
+import {
+  BackendOptions,
+  NormalizeBackendOptions,
+  NormalizedBackendOptions,
+} from '../backend/backend-options';
+import { BackendTypes } from '../backend/backend-types';
 import { LoadHandlebarsTemplate } from '../load-handlebars-template';
 
 export enum AbstractControlRolls {
@@ -30,12 +36,14 @@ export interface AbstractControl extends DataProperty {
   isReadonly?: boolean;
   kind?: string;
   template?: string;
+  backend?: BackendOptions | BackendTypes;
 }
 
 export interface NormalizedAbstractControl extends Readonly<Normalized<Omit<AbstractControl, keyof NormalizedDataProperty>>>, NormalizedDataProperty {
   importList: NormalizedTypeImport[];
   handlebars: Handlebars.TemplateDelegate<{ control: NormalizedAbstractControl }>,
   role: AbstractControlRolls;
+  backend: NormalizedBackendOptions;
 }
 
 export function NormalizeAbstractControl<Kind extends string>(
@@ -44,7 +52,8 @@ export function NormalizeAbstractControl<Kind extends string>(
   importList: TypeImport[] = [],
   validatorList: string[] = [],
   defaultType: TypeImport | string = 'unknown',
-  defaultIsArray = false
+  defaultIsArray = false,
+  backend: BackendOptions,
 ): NormalizedAbstractControl & { kind: Kind } {
   if (!control.name) {
     throw new Error('The control name is required');
@@ -69,5 +78,6 @@ export function NormalizeAbstractControl<Kind extends string>(
     importList: NormalizeTypeImportList(importList),
     handlebars: LoadHandlebarsTemplate(template, join(__dirname, '..', '..', 'schematics', 'form', 'templates')),
     role,
+    backend: NormalizeBackendOptions(control.backend ?? backend),
   });
 }

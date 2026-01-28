@@ -56,7 +56,7 @@ export function NormalizeAccordionItemStandaloneComponentOptions(
   });
   return Object.freeze({
     ...normalizedAngularOptions,
-    ...NormalizeAccordionItem(options),
+    ...NormalizeAccordionItem(options, normalizedAngularOptions.backend),
     controllerName,
     nestModule,
     directory,

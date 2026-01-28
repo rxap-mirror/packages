@@ -13,6 +13,7 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
+import { BackendOptions } from './backend/backend-options';
 import {
   Control,
   NormalizeControl,
@@ -68,7 +69,7 @@ function guessDataGridItemKind(item: BaseDataGridItem): DataGridKinds {
   return DataGridKinds.DEFAULT;
 }
 
-export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): NormalizedBaseDataGridItem {
+export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>, backend: BackendOptions): NormalizedBaseDataGridItem {
   if (!item.name) {
     throw new Error('The data grid item is required');
   }
@@ -76,7 +77,7 @@ export function NormalizeBaseDataGridItem(item: Readonly<BaseDataGridItem>): Nor
     name: item.name,
     type: item.type,
     ...item.formControl,
-  }) : null;
+  }, backend) : null;
 
   let hasCellDef = item.hasCellDef ?? false;
   let hasHeaderCellDef = item.hasHeaderCellDef ?? false;
@@ -157,7 +158,7 @@ export function IsNormalLinkDataGridItem(item: Readonly<NormalizedDataGridItem>)
   return item.kind === DataGridKinds.LINK;
 }
 
-export function NormalizeLinkDataGridItem(item: Readonly<LinkDataGridItem>): Readonly<NormalizedLinkDataGridItem> {
+export function NormalizeLinkDataGridItem(item: Readonly<LinkDataGridItem>, backend: BackendOptions): Readonly<NormalizedLinkDataGridItem> {
   const importList = item.importList ?? [];
   CoerceArrayItems(importList, [
     {
@@ -174,7 +175,7 @@ export function NormalizeLinkDataGridItem(item: Readonly<LinkDataGridItem>): Rea
       ...item,
       hasCellDef: true,
       importList,
-    }),
+    }, backend),
     kind: DataGridKinds.LINK,
     target: item.target ?? '_self',
   };
@@ -182,18 +183,20 @@ export function NormalizeLinkDataGridItem(item: Readonly<LinkDataGridItem>): Rea
 
 export function NormalizeDataGridItem(
   item: Readonly<DataGridItem>,
+  backend: BackendOptions
 ): Readonly<NormalizedDataGridItem> {
   switch (item.kind) {
     case DataGridKinds.LINK:
-      return NormalizeLinkDataGridItem(item as LinkDataGridItem);
+      return NormalizeLinkDataGridItem(item as LinkDataGridItem, backend);
     default:
     case DataGridKinds.DEFAULT:
-      return NormalizeBaseDataGridItem(item);
+      return NormalizeBaseDataGridItem(item, backend);
   }
 }
 
 export function NormalizeDataGridItemList(
-  itemList?: Array<Readonly<DataGridItem>>,
+  itemList: Array<Readonly<DataGridItem>> = [],
+  backend: BackendOptions
 ): ReadonlyArray<NormalizedDataGridItem> {
-  return Object.freeze(itemList?.map(NormalizeDataGridItem) ?? []);
+  return Object.freeze(itemList?.map(item => NormalizeDataGridItem(item, backend)) ?? []);
 }

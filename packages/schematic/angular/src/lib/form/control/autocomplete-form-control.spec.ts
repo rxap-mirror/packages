@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeAutocompleteFormControl, IsNormalizedAutocompleteFormControl } from './autocomplete-form-control';
 import { FormControlKinds } from './form-control-kind';
 
@@ -25,7 +26,7 @@ jest.mock('@rxap/ts-morph', () => ({
 describe('AutocompleteFormControl Utilities', () => {
   it('should normalize autocomplete form control', () => {
     const control = { name: 'test' };
-    const result = NormalizeAutocompleteFormControl(control as any);
+    const result = NormalizeAutocompleteFormControl(control as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(FormControlKinds.AUTOCOMPLETE);
   });

@@ -19,7 +19,7 @@ export function NormalizeFormTableActionOptions(
   options: Readonly<FormTableActionOptions>,
 ): NormalizedFormTableActionOptions {
   const normalizedOptions = NormalizeAngularOptions(options);
-  const tableActionOptions = NormalizeFormTableAction(options);
+  const tableActionOptions = NormalizeFormTableAction(options, normalizedOptions.backend);
   const { type } = tableActionOptions;
   let {
     controllerName,

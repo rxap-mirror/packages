@@ -19,7 +19,7 @@ export function NormalizeTableHeaderButtonOptions(
   options: Readonly<TableHeaderButtonOptions>,
 ): NormalizedTableHeaderButtonOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableHeaderButton = NormalizeHeaderButton(options, options.tableName);
+  const normalizedTableHeaderButton = NormalizeHeaderButton(options, normalizedAngularOptions.backend, options.tableName);
   if (!normalizedTableHeaderButton) {
     throw new Error('FATAL: should never happen');
   }

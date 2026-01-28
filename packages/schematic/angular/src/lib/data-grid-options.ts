@@ -16,6 +16,7 @@ import {
   NormalizeAccordionIdentifier,
   NormalizedAccordionIdentifier,
 } from './accordion-identifier';
+import { BackendOptions } from './backend/backend-options';
 import {
   DataGridItem,
   NormalizeDataGridItemList,
@@ -48,13 +49,16 @@ export interface NormalizedDataGridOptions extends Omit<Readonly<Normalized<Data
   identifier: NormalizedAccordionIdentifier | null;
 }
 
-export function NormalizeDataGridOptions(options: Readonly<DataGridOptions>): Readonly<NormalizedDataGridOptions> {
+export function NormalizeDataGridOptions(
+  options: Readonly<DataGridOptions>,
+  backend: BackendOptions
+): Readonly<NormalizedDataGridOptions> {
   const {
     collection,
   } = options;
   let { mode } = options;
   mode = IsDataGridMode(mode) ? mode : DataGridMode.Plain;
-  const itemList = NormalizeDataGridItemList(options.itemList);
+  const itemList = NormalizeDataGridItemList(options.itemList, backend);
   const propertyList = options.propertyList ?? [];
   CoerceArrayItems(
     propertyList,

@@ -1,3 +1,4 @@
+import { BackendOptions } from '../backend/backend-options';
 import {
   AbstractControl,
   AbstractControlRolls,
@@ -22,21 +23,21 @@ export type Control = AbstractControl | FormControl;
 
 export type NormalizedControl = NormalizedAbstractControl | NormalizedFormControl;
 
-export function NormalizeControl(control: Control): NormalizedControl {
+export function NormalizeControl(control: Control, backend: BackendOptions): NormalizedControl {
   control.role ??= AbstractControlRolls.CONTROL;
   if (IsFormControl(control)) {
-    return NormalizeFormControl(control);
+    return NormalizeFormControl(control, backend);
   }
   if (IsFormGroup(control)) {
-    return NormalizeFormGroup(control);
+    return NormalizeFormGroup(control, backend);
   }
   if (IsFormArray(control)) {
-    return NormalizeFormArray(control);
+    return NormalizeFormArray(control, backend);
   }
   throw new Error(`Unknown control role: '${control.role}'`);
 }
 
-export function NormalizeControlList(controlList?: Control[]): NormalizedControl[] {
-  return controlList?.map(NormalizeControl) ?? [];
+export function NormalizeControlList(controlList: Control[] = [], backend: BackendOptions): NormalizedControl[] {
+  return controlList?.map(control => NormalizeControl(control, backend)) ?? [];
 }
 

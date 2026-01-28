@@ -1,3 +1,4 @@
+import { BackendOptions } from '../../backend/backend-options';
 import { AbstractControlRolls } from '../abstract-control';
 import {
   Control,
@@ -14,9 +15,10 @@ export type FormGroup = { role: AbstractControlRolls.GROUP } & (BaseFormGroup);
 export type NormalizedFormGroup = { role: AbstractControlRolls.GROUP } & (NormalizedBaseFormGroup);
 
 export function NormalizeFormGroup(
-  group: FormGroup
+  group: FormGroup,
+  backend: BackendOptions,
 ): NormalizedFormGroup {
-  return NormalizeBaseFormGroup(group);
+  return NormalizeBaseFormGroup(group, undefined, undefined, undefined, undefined, backend);
 }
 
 export function IsFormGroup(control: Control): control is FormGroup {

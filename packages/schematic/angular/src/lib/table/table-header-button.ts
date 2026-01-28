@@ -1,3 +1,4 @@
+import { BackendOptions } from '../backend/backend-options';
 import { HeaderButtonKind } from './header-button-kind';
 import {
   BaseHeaderButton,
@@ -24,13 +25,13 @@ export type HeaderButton = BaseHeaderButton | FormHeaderButton | NavigationHeade
 
 export type NormalizedHeaderButton = NormalizedBaseHeaderButton | NormalizedFormHeaderButton | NormalizedNavigationHeaderButton | NormalizedMethodHeaderButton
 
-export function NormalizeHeaderButton(item?: HeaderButton, label?: string): NormalizedBaseHeaderButton | null {
+export function NormalizeHeaderButton(item: HeaderButton | null | undefined, backend: BackendOptions, label?: string): NormalizedBaseHeaderButton | null {
   if (!item || Object.keys(item).length === 0) {
     return null;
   }
   switch (item.kind) {
     case HeaderButtonKind.FORM:
-      return NormalizeFormHeaderButton(item, label);
+      return NormalizeFormHeaderButton(item, backend, label);
     case HeaderButtonKind.NAVIGATION:
       return NormalizeNavigationHeaderButton(item, label);
     case HeaderButtonKind.METHOD:

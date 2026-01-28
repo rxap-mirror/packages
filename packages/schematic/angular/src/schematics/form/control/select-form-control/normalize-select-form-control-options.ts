@@ -18,8 +18,9 @@ export type NormalizedSelectFormControlOptions =
 export function NormalizeSelectFormControlOptions(
   options: SelectFormControlOptions,
 ): NormalizedSelectFormControlOptions {
+  const normalized = NormalizeFormControlOptions(options);
   return Object.freeze({
-    ...NormalizeFormControlOptions(options),
-    ...NormalizeSelectFormControl(options),
+    ...normalized,
+    ...NormalizeSelectFormControl(options, normalized.backend),
   });
 }

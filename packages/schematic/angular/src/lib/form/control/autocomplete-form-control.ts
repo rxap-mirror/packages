@@ -58,6 +58,7 @@ export function IsNormalizedAutocompleteFormControl(template: NormalizedBaseForm
 
 export function NormalizeAutocompleteFormControl(
   control: AutocompleteFormControl,
+  backend: BackendOptions,
 ): NormalizedAutocompleteFormControl {
   const importList = control.importList ?? [];
   CoerceArrayItems(importList, [], (a, b) => a.name === b.name);
@@ -97,7 +98,7 @@ export function NormalizeAutocompleteFormControl(
     ...NormalizeFormFieldFormControl({
       ...control,
       type: toValue ? control.type ?? toValue.property.type : control.type,
-    }, importList),
+    }, importList, undefined, undefined, false, undefined, backend),
     identifier,
     resolver: control.resolver ? { upstream: NormalizeUpstreamOptions(control.resolver.upstream) } : null,
     kind: FormControlKinds.AUTOCOMPLETE,

@@ -3,6 +3,7 @@ import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   BaseFormControl,
   NormalizedBaseFormControl,
@@ -58,6 +59,7 @@ export function IsNormalizedTextareaFormControlOptions(template: NormalizedBaseF
 
 export function NormalizeTextareaFormControl(
   control: TextareaFormControl,
+  backend: BackendOptions,
 ): NormalizedTextareaFormControl {
   const type = NormalizeTypeImport(control.type, 'string');
   const validatorList = control.validatorList ?? [];
@@ -79,7 +81,7 @@ export function NormalizeTextareaFormControl(
   }
   // TODO : auto add validators
   return Object.freeze({
-    ...NormalizeFormFieldFormControl(control, importList, validatorList, type, false),
+    ...NormalizeFormFieldFormControl(control, importList, validatorList, type, false, undefined, backend),
     autosize,
     validatorList,
     kind: FormControlKinds.TEXTAREA,

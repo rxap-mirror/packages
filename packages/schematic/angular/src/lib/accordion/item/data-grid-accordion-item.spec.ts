@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeDataGridAccordionItem, IsDataGridAccordionItem, IsNormalizedDataGridAccordionItem } from './data-grid-accordion-item';
 import { AccordionItemKinds } from '../accordion-item-kind';
 import { NormalizeBaseAccordionItem } from './base-accordion-item';
@@ -13,7 +14,7 @@ jest.mock('../../data-grid-options', () => ({
 describe('DataGridAccordionItem Utilities', () => {
   it('should normalize data grid item', () => {
     const item = { kind: AccordionItemKinds.DataGrid, dataGrid: { propertyList: [] } };
-    const result = NormalizeDataGridAccordionItem(item as any);
+    const result = NormalizeDataGridAccordionItem(item as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(AccordionItemKinds.DataGrid);
     expect(NormalizeBaseAccordionItem).toHaveBeenCalled();

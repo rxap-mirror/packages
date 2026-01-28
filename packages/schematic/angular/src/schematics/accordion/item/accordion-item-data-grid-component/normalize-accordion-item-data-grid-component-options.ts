@@ -20,8 +20,9 @@ export interface NormalizedAccordionItemDataGridComponentOptions
 export function NormalizeAccordionItemDataGridComponentOptions(
   options: Readonly<AccordionItemDataGridComponentOptions>,
 ): Readonly<NormalizedAccordionItemDataGridComponentOptions> {
+  const normalized = NormalizeAccordionItemStandaloneComponentOptions(options)
   return Object.freeze({
-    ...NormalizeAccordionItemStandaloneComponentOptions(options),
-    ...NormalizeDataGridAccordionItem(options),
+    ...normalized,
+    ...NormalizeDataGridAccordionItem(options, normalized.backend),
   });
 }

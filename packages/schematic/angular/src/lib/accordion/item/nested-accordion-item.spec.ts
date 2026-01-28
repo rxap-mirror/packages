@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeNestedAccordionItem, IsNestedAccordionItem, IsNormalizedNestedAccordionItem } from './nested-accordion-item';
 import { AccordionItemKinds } from '../accordion-item-kind';
 import { NormalizeBaseAccordionItem } from './base-accordion-item';
@@ -13,10 +14,10 @@ jest.mock('../accordion', () => ({
 describe('NestedAccordionItem Utilities', () => {
   it('should normalize nested accordion item', () => {
     const item = { name: 'nested', kind: AccordionItemKinds.Nested, accordion: { multiple: true } };
-    const result = NormalizeNestedAccordionItem(item as any);
+    const result = NormalizeNestedAccordionItem(item as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(AccordionItemKinds.Nested);
-    expect(NormalizeAccordion).toHaveBeenCalledWith(expect.objectContaining({ name: 'nested', multiple: true }));
+    expect(NormalizeAccordion).toHaveBeenCalledWith(expect.objectContaining({ name: 'nested', multiple: true }), { kind: BackendTypes.NONE });
   });
 
   describe('Type Guards', () => {

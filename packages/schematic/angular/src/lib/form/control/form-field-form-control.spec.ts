@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import {
   NormalizeFormFieldFormControl,
   NormalizeFormFieldButton,
@@ -41,7 +42,7 @@ describe('FormFieldFormControl Utilities', () => {
   describe('NormalizeFormFieldFormControl', () => {
     it('should normalize form field control', () => {
       const control = { name: 'test', label: 'L' };
-      const result = NormalizeFormFieldFormControl(control as any);
+      const result = NormalizeFormFieldFormControl(control as any, undefined, undefined, undefined, undefined, undefined, { kind: BackendTypes.NONE });
       expect(result.formField.label).toBe('L');
     });
   });

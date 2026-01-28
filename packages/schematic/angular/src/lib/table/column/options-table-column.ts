@@ -3,6 +3,7 @@ import {
   ControlOption,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import { TableColumnKind } from '../table-column-kind';
 import {
   BaseTableColumn,
@@ -21,6 +22,7 @@ export interface NormalizedOptionsTableColumn extends Readonly<Normalized<Omit<O
 
 export function NormalizeOptionsTableColumn(
   column: Readonly<OptionsTableColumn>,
+  backend: BackendOptions
 ): NormalizedOptionsTableColumn {
   const importList = column.importList ?? [];
   CoerceArrayItems(importList, [
@@ -37,7 +39,7 @@ export function NormalizeOptionsTableColumn(
     ...NormalizeBaseTableColumn({
       ...column,
       importList,
-    }),
+    }, backend),
     kind: TableColumnKind.OPTIONS,
     optionList: column.optionList ?? [],
   };

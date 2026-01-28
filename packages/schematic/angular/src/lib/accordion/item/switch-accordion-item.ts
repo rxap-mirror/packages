@@ -11,6 +11,7 @@ import {
   dasherize,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import { NormalizeAccordionItemList } from '../accordion-item';
 import { AccordionItemKinds } from '../accordion-item-kind';
 import {
@@ -89,7 +90,7 @@ function flattenItemListFromSwitch(normalizeSwitch: NormalizedSwitchAccordionIte
   return flattenedList;
 }
 
-export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>): NormalizedSwitchAccordionItem {
+export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>, backend: BackendOptions): NormalizedSwitchAccordionItem {
   const base = NormalizeBaseAccordionItem(item);
   const { name } = base;
   const { switch: switchOptions } = item;
@@ -102,13 +103,13 @@ export function NormalizeSwitchAccordionItem(item: Readonly<SwitchAccordionItem>
       itemList: NormalizeAccordionItemList(item.itemList.map((item) => ({
         ...item,
         name: CoercePrefix(dasherize(item.name), dasherize(name) + '-'),
-      }) as BaseAccordionItem)),
+      }) as BaseAccordionItem), backend),
     }))),
     defaultCase: defaultCase && Object.keys(defaultCase).length ? {
       itemList: NormalizeAccordionItemList(defaultCase.itemList.map((item) => ({
         ...item,
         name: CoercePrefix(dasherize(item.name), dasherize(name) + '-'),
-      }) as BaseAccordionItem)),
+      }) as BaseAccordionItem), backend),
     } : null,
   });
   if (normalizeSwitch.case.length === 0 && !normalizeSwitch.defaultCase) {

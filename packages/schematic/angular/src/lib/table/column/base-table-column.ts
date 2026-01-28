@@ -18,6 +18,7 @@ import {
 } from '@rxap/utilities';
 import Handlebars from 'handlebars';
 import { join } from 'path';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   CoerceCssClass,
   CssClass,
@@ -276,6 +277,7 @@ export interface NormalizedBaseTableColumn
 
 export function NormalizeBaseTableColumn(
   column: Readonly<BaseTableColumn>,
+  backend: BackendOptions,
 ): NormalizedBaseTableColumn {
   if (!column.name) {
     throw new Error('The column name is required');
@@ -398,7 +400,7 @@ export function NormalizeBaseTableColumn(
       }
     }
   }
-  const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl) : null;
+  const normalizedFilterControl = filterControl ? NormalizeFormControl(filterControl, backend) : null;
   if (normalizedFilterControl) {
     CoerceArrayItems(importList, normalizedFilterControl.importList, (a, b) => a.name === b.name);
   }

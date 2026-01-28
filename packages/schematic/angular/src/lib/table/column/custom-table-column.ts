@@ -1,4 +1,5 @@
 import { Normalized } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import { TableColumnKind } from '../table-column-kind';
 import {
   BaseTableColumn,
@@ -17,9 +18,10 @@ export interface NormalizedCustomTableColumn extends Readonly<Normalized<Omit<Cu
 
 export function NormalizeCustomTableColumn(
   column: Readonly<CustomTableColumn>,
+  backend: BackendOptions
 ): NormalizedCustomTableColumn {
   return {
-    ...NormalizeBaseTableColumn(column),
+    ...NormalizeBaseTableColumn(column, backend),
     kind: TableColumnKind.CUSTOM,
     html: column.html ?? 'TODO: set html property',
   };

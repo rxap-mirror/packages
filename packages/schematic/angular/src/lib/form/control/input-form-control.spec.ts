@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeInputFormControl, IsInputFormControlOptions, IsNormalizedInputFormControlOptions } from './input-form-control';
 import { FormControlKinds } from './form-control-kind';
 import * as tsMorph from '@rxap/ts-morph';
@@ -13,7 +14,7 @@ jest.mock('./form-field-form-control', () => ({
 describe('InputFormControl Utilities', () => {
   it('should normalize input form control', () => {
     const control = { kind: FormControlKinds.INPUT, name: 'email', inputType: 'email' };
-    const result = NormalizeInputFormControl(control as any);
+    const result = NormalizeInputFormControl(control as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(FormControlKinds.INPUT);
     expect(result.inputType).toBe('email');
@@ -22,7 +23,7 @@ describe('InputFormControl Utilities', () => {
 
   it('should throw for unsupported input type', () => {
     const control = { kind: FormControlKinds.INPUT, name: 'test', inputType: 'file' };
-    expect(() => NormalizeInputFormControl(control as any)).toThrow('The input type "file" is not yet supported');
+    expect(() => NormalizeInputFormControl(control as any, { kind: BackendTypes.NONE })).toThrow('The input type "file" is not yet supported');
   });
 
   describe('Type Guards', () => {

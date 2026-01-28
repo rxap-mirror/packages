@@ -39,7 +39,7 @@ export function NormalizeFormComponentOptions(
   });
   return Object.freeze({
     ...normalizedAngularOptions,
-    ...NormalizeFormComponent(options),
+    ...NormalizeFormComponent(options, normalizedAngularOptions.backend),
     directory: join(options.directory ?? '', componentName),
     componentName,
     controllerName,

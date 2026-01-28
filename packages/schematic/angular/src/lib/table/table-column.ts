@@ -1,3 +1,4 @@
+import { BackendOptions } from '../backend/backend-options';
 import {
   BaseTableColumn,
   NormalizeBaseTableColumn,
@@ -19,26 +20,28 @@ export type NormalizedTableColumn = NormalizedBaseTableColumn | NormalizedDateTa
 
 export function NormalizeTableColumn(
   column: Readonly<TableColumn>,
+  backend: BackendOptions
 ): NormalizedTableColumn {
   switch (column.kind) {
     case TableColumnKind.DATE:
-      return NormalizeDateTableColumn(column);
+      return NormalizeDateTableColumn(column, backend);
     case TableColumnKind.CUSTOM:
-      return NormalizeCustomTableColumn(column);
+      return NormalizeCustomTableColumn(column, backend);
     case TableColumnKind.BOOLEAN:
-      return NormalizeBooleanTableColumn(column);
+      return NormalizeBooleanTableColumn(column, backend);
     case TableColumnKind.OPTIONS:
-      return NormalizeOptionsTableColumn(column);
+      return NormalizeOptionsTableColumn(column, backend);
     case TableColumnKind.DEFAULT:
     default:
-      return NormalizeBaseTableColumn(column);
+      return NormalizeBaseTableColumn(column, backend);
   }
 }
 
 export function NormalizeTableColumnList(
-  columnList?: ReadonlyArray<Readonly<TableColumn>>,
+  columnList: ReadonlyArray<Readonly<TableColumn>> = [],
+  backend: BackendOptions
 ): ReadonlyArray<NormalizedTableColumn> {
-  return Object.freeze((columnList?.map(NormalizeTableColumn) ?? []).sort((a, b) => {
+  return Object.freeze((columnList?.map(item => NormalizeTableColumn(item, backend)) ?? []).sort((a, b) => {
     if (a.stickyStart !== b.stickyStart) {
       return a.stickyStart ? -1 : 1;
     }

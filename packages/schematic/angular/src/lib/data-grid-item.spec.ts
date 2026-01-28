@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeDataGridItem, NormalizeDataGridItemList, DataGridKinds } from './data-grid-item';
 
 jest.mock('./load-handlebars-template', () => ({ LoadHandlebarsTemplate: jest.fn(() => jest.fn()) }));
@@ -17,21 +18,21 @@ jest.mock('./form/control', () => ({ NormalizeControl: jest.fn((c) => ({ ...c, i
 describe('DataGridItem', () => {
   it('should normalize base data grid item', () => {
     const item = { name: 'test' };
-    const result = NormalizeDataGridItem(item as any);
+    const result = NormalizeDataGridItem(item as any, { kind: BackendTypes.NONE });
     expect(result.name).toBe('test');
     expect(result.kind).toBe(DataGridKinds.DEFAULT);
   });
 
   it('should normalize link data grid item', () => {
     const item = { name: 'test', kind: DataGridKinds.LINK, target: '_blank' };
-    const result: any = NormalizeDataGridItem(item as any);
+    const result: any = NormalizeDataGridItem(item as any, { kind: BackendTypes.NONE });
     expect(result.kind).toBe(DataGridKinds.LINK);
     expect(result.target).toBe('_blank');
   });
 
   it('should normalize list', () => {
     const list = [{ name: 'a' }, { name: 'b' }];
-    const result = NormalizeDataGridItemList(list as any);
+    const result = NormalizeDataGridItemList(list as any, { kind: BackendTypes.NONE });
     expect(result).toHaveLength(2);
   });
 });

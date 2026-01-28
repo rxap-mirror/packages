@@ -20,8 +20,9 @@ export interface NormalizedAccordionItemNestedComponentOptions
 export function NormalizeAccordionItemNestedComponentOptions(
   options: Readonly<AccordionItemNestedComponentOptions>,
 ): Readonly<NormalizedAccordionItemNestedComponentOptions> {
+  const normalized = NormalizeAccordionItemStandaloneComponentOptions(options);
   return Object.freeze({
-    ...NormalizeAccordionItemStandaloneComponentOptions(options),
-    ...NormalizeNestedAccordionItem(options),
+    ...normalized,
+    ...NormalizeNestedAccordionItem(options, normalized.backend),
   });
 }

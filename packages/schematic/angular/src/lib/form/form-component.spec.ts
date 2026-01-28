@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeFormComponent } from './form-component';
 import { NormalizeFormDefinition } from './form-definition';
 import { NormalizeAccordionIdentifier } from '../accordion-identifier';
@@ -18,7 +19,7 @@ jest.mock('../mat-form-field-default-options', () => ({
 describe('NormalizeFormComponent', () => {
   it('should normalize form component', () => {
     const form = { window: true };
-    const result = NormalizeFormComponent(form as any);
+    const result = NormalizeFormComponent(form as any, { kind: BackendTypes.NONE });
 
     expect(result.window).toBe(true);
     expect(NormalizeFormDefinition).toHaveBeenCalled();

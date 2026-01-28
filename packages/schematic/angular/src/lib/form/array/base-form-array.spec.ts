@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeBaseFormArray } from './base-form-array';
 import { AbstractControlRolls } from '../abstract-control';
 import { FormArrayKind } from './form-array-kind';
@@ -18,7 +19,7 @@ jest.mock('../abstract-control-to-data-property', () => ({
 describe('NormalizeBaseFormArray', () => {
   it('should normalize base form array', () => {
     const array = { name: 'testArray', role: AbstractControlRolls.ARRAY };
-    const result = NormalizeBaseFormArray(array as any);
+    const result = NormalizeBaseFormArray(array as any, undefined, undefined, undefined, undefined,{ kind: BackendTypes.NONE });
 
     expect(result.role).toBe(AbstractControlRolls.ARRAY);
     expect(result.kind).toBe(FormArrayKind.DEFAULT);
@@ -28,7 +29,7 @@ describe('NormalizeBaseFormArray', () => {
 
   it('should include form system directives in importList', () => {
     const importList: any[] = [];
-    NormalizeBaseFormArray({ name: 'test' } as any, importList);
+    NormalizeBaseFormArray({ name: 'test' } as any, importList, undefined, undefined, undefined,{ kind: BackendTypes.NONE });
     expect(importList).toContainEqual(expect.objectContaining({ name: 'ForFormArrayItemsDirective' }));
   });
 });

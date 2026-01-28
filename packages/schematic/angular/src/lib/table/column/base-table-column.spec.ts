@@ -1,11 +1,12 @@
-import { 
-  NormalizeBaseTableColumn, 
-  GuessColumnTypeType, 
-  TableColumnNameToPropertyPath, 
-  TableColumnNameToTitle 
-} from './base-table-column';
+import { BackendTypes } from '@rxap/schematic-angular';
 import { TableColumnKind } from '../table-column-kind';
 import { TableColumnModifier } from '../table-column-modifier';
+import {
+  GuessColumnTypeType,
+  NormalizeBaseTableColumn,
+  TableColumnNameToPropertyPath,
+  TableColumnNameToTitle,
+} from './base-table-column';
 
 jest.mock('@rxap/schematics-utilities', () => ({
   dasherize: jest.fn((s) => s.toLowerCase()),
@@ -61,7 +62,7 @@ describe('BaseTableColumn Utilities', () => {
   describe('NormalizeBaseTableColumn', () => {
     it('should normalize base table column', () => {
       const column = { name: 'test' };
-      const result = NormalizeBaseTableColumn(column as any);
+      const result = NormalizeBaseTableColumn(column as any, { kind: BackendTypes.NONE });
 
       expect(result.name).toBe('test');
       expect(result.kind).toBe(TableColumnKind.DEFAULT);
@@ -70,7 +71,7 @@ describe('BaseTableColumn Utilities', () => {
 
     it('should handle modifiers', () => {
       const column = { name: 'test', modifiers: [TableColumnModifier.FILTER, TableColumnModifier.HIDDEN] };
-      const result = NormalizeBaseTableColumn(column as any);
+      const result = NormalizeBaseTableColumn(column as any, { kind: BackendTypes.NONE });
 
       expect(result.hasFilter).toBe(true);
       expect(result.hidden).toBe(true);
@@ -78,7 +79,7 @@ describe('BaseTableColumn Utilities', () => {
     });
 
     it('should throw if name is missing', () => {
-      expect(() => NormalizeBaseTableColumn({} as any)).toThrow('The column name is required');
+      expect(() => NormalizeBaseTableColumn({} as any, { kind: BackendTypes.NONE })).toThrow('The column name is required');
     });
   });
 });

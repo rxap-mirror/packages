@@ -4,6 +4,7 @@ import {
   NormalizeAccordionIdentifier,
   NormalizedAccordionIdentifier,
 } from '../accordion-identifier';
+import { BackendOptions } from '../backend/backend-options';
 import { NormalizeMatFormFieldDefaultOptions, MatFormFieldDefaultOptions,
   NormalizedMatFormFieldDefaultOptions, } from '../mat-form-field-default-options';
 import {
@@ -26,9 +27,10 @@ export interface NormalizedFormComponent extends Readonly<Normalized<Omit<FormCo
 
 export function NormalizeFormComponent(
   formComponent: Readonly<FormComponent>,
+  backend: BackendOptions
 ): NormalizedFormComponent {
   return {
-    ...NormalizeFormDefinition(formComponent),
+    ...NormalizeFormDefinition(formComponent, backend),
     identifier: NormalizeAccordionIdentifier(formComponent.identifier),
     matFormFieldDefaultOptions: NormalizeMatFormFieldDefaultOptions(formComponent.matFormFieldDefaultOptions),
     window: formComponent.window ?? false,

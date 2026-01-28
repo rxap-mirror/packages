@@ -8,6 +8,7 @@ import {
   DeleteEmptyProperties,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   CssClass,
   NormalizeCssClass,
@@ -157,6 +158,7 @@ export function NormalizeFormFieldFormControl(
   defaultType: TypeImport | string = 'unknown',
   defaultIsArray = false,
   defaultFormField: Partial<FormField> = { label: control.label },
+  backend: BackendOptions,
 ): NormalizedFormFieldFormControl {
   const formField = NormalizeFormField(control.formField ?? {}, importList, defaultFormField);
   if (control.isRequired) {
@@ -166,7 +168,7 @@ export function NormalizeFormFieldFormControl(
     }], (a, b) => a.name === b.name);
   }
   return Object.freeze({
-    ...NormalizeBaseFormControl(control, importList, validatorList, defaultType, defaultIsArray),
+    ...NormalizeBaseFormControl(control, importList, validatorList, defaultType, defaultIsArray, backend),
     formField,
   });
 }

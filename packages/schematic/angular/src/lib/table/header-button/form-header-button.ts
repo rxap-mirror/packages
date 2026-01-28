@@ -2,6 +2,7 @@ import {
   capitalize,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   FormComponent,
   NormalizedFormComponent,
@@ -31,13 +32,13 @@ export function IsNormalizedFormHeaderButton(header: NormalizedBaseHeaderButton)
   return header.kind === HeaderButtonKind.FORM;
 }
 
-export function NormalizeFormHeaderButton(options: FormHeaderButton, label?: string): NormalizedFormHeaderButton {
+export function NormalizeFormHeaderButton(options: FormHeaderButton, backend: BackendOptions, label?: string): NormalizedFormHeaderButton {
   if (!options.form) {
     throw new Error('The form property is required for a form header button');
   }
   return Object.freeze({
     ...NormalizeBaseHeaderButton(options),
     kind: HeaderButtonKind.FORM,
-    form: NormalizeFormComponent(options.form),
+    form: NormalizeFormComponent(options.form, backend),
   });
 }

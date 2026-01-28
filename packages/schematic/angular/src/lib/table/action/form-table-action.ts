@@ -4,6 +4,7 @@ import {
   dasherize,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   FormComponent,
   NormalizedFormComponent,
@@ -48,13 +49,14 @@ function NormalizeFormInitial(formInitial?: Record<string, any> | boolean): Reco
 
 export function NormalizeFormTableAction(
   tableAction: Readonly<FormTableAction>,
+  backend: BackendOptions
 ): NormalizedFormTableAction {
   const loadFrom = tableAction.loadFrom ?? null;
   return Object.freeze({
     ...NormalizeBaseTableAction(tableAction),
     kind: TableActionKind.FORM,
     formInitial: NormalizeFormInitial(tableAction.formInitial),
-    form: tableAction.form ? NormalizeFormComponent(tableAction.form) : null,
+    form: tableAction.form ? NormalizeFormComponent(tableAction.form, backend) : null,
     formComponent: CoerceSuffix(dasherize(tableAction.formComponent ?? tableAction.type), '-form'),
     loadFrom: Object.keys(loadFrom ?? {}).length ? loadFrom : null,
     customComponent: tableAction.customComponent ?? !tableAction.form,

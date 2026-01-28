@@ -41,6 +41,9 @@ exports[`NormalizeAccordionItemTreeTableComponentOptions should normalize comple
   "shared": false,
   "table": {
     "actionList": [],
+    "backend": {
+      "kind": "none",
+    },
     "columnList": [
       {
         "active": false,
@@ -423,6 +426,9 @@ exports[`NormalizeAccordionItemTreeTableComponentOptions should normalize minima
   "shared": false,
   "table": {
     "actionList": [],
+    "backend": {
+      "kind": "none",
+    },
     "columnList": [
       {
         "active": false,

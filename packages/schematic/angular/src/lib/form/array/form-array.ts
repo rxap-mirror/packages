@@ -1,3 +1,4 @@
+import { BackendOptions } from '../../backend/backend-options';
 import { AbstractControlRolls } from '../abstract-control';
 import {
   Control,
@@ -14,9 +15,10 @@ export type FormArray = { role: AbstractControlRolls.ARRAY } & (BaseFormArray);
 export type NormalizedFormArray = { role: AbstractControlRolls.ARRAY } & (NormalizedBaseFormArray);
 
 export function NormalizeFormArray(
-  array: FormArray
+  array: FormArray,
+  backend: BackendOptions
 ): NormalizedFormArray {
-  return NormalizeBaseFormArray(array);
+  return NormalizeBaseFormArray(array, undefined, undefined, undefined, undefined, backend);
 }
 
 export function IsFormArray(control: Control): control is FormArray {

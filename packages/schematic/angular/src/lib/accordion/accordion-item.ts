@@ -1,3 +1,4 @@
+import { BackendOptions } from '../backend/backend-options';
 import { AccordionItemKinds } from './accordion-item-kind';
 import {
   BaseAccordionItem,
@@ -37,25 +38,25 @@ export type NormalizedAccordionItem = NormalizedBaseAccordionItem | NormalizedDa
   | NormalizedSwitchAccordionItem | NormalizedTableAccordionItem | NormalizedTreeTableAccordionItem
   | NormalizedNestedAccordionItem;
 
-export function NormalizeAccordionItem(item: AccordionItem): NormalizedBaseAccordionItem {
+export function NormalizeAccordionItem(item: AccordionItem, backend: BackendOptions): NormalizedBaseAccordionItem {
   switch (item.kind) {
     case AccordionItemKinds.DataGrid:
-      return NormalizeDataGridAccordionItem(item as DataGridAccordionItem);
+      return NormalizeDataGridAccordionItem(item as DataGridAccordionItem, backend);
     case AccordionItemKinds.Switch:
-      return NormalizeSwitchAccordionItem(item as SwitchAccordionItem);
+      return NormalizeSwitchAccordionItem(item as SwitchAccordionItem, backend);
     case AccordionItemKinds.Table:
       return NormalizeTableAccordionItem(item as TableAccordionItem);
     case AccordionItemKinds.TreeTable:
       return NormalizeTreeTableAccordionItem(item as TreeTableAccordionItem);
     case AccordionItemKinds.Nested:
-      return NormalizeNestedAccordionItem(item as NestedAccordionItem);
+      return NormalizeNestedAccordionItem(item as NestedAccordionItem, backend);
     default:
       return NormalizeBaseAccordionItem(item);
   }
 }
 
-export function NormalizeAccordionItemList(itemList?: Array<BaseAccordionItem>): ReadonlyArray<NormalizedBaseAccordionItem> {
+export function NormalizeAccordionItemList(itemList: Array<BaseAccordionItem> = [], backend: BackendOptions): ReadonlyArray<NormalizedBaseAccordionItem> {
   return Object.freeze((
     itemList ?? []
-  ).map(NormalizeAccordionItem));
+  ).map(item => NormalizeAccordionItem(item, backend)));
 }

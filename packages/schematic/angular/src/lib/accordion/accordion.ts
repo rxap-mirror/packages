@@ -27,6 +27,7 @@ import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
 } from '../angular-options';
+import { BackendOptions } from '../backend/backend-options';
 import {
   NormalizedPersistent,
   NormalizePersistent,
@@ -81,8 +82,8 @@ function hasItemWithPermission(itemList: ReadonlyArray<NormalizedAccordionItem>)
   });
 }
 
-export function NormalizeAccordion(options: Readonly<Accordion>): NormalizedAccordion {
-  const itemList = NormalizeAccordionItemList(options.itemList);
+export function NormalizeAccordion(options: Readonly<Accordion>, backend: BackendOptions): NormalizedAccordion {
+  const itemList = NormalizeAccordionItemList(options.itemList, backend);
   const propertyList = options.propertyList ?? [];
   const importList = options.importList ?? [];
   const header = NormalizeAccordionHeader(options.header);

@@ -22,7 +22,7 @@ export function NormalizeTableSelectFormControlOptions(
   const normalizedOptions = NormalizeFormControlOptions(options);
   return Object.freeze({
     ...normalizedOptions,
-    ...NormalizeTableSelectFormControl(options),
+    ...NormalizeTableSelectFormControl(options, normalizedOptions.backend),
     controllerName: BuildNestControllerName(normalizedOptions),
   });
 }

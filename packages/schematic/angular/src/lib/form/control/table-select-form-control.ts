@@ -150,6 +150,7 @@ export function NormalizeTableSelectFormControlOptions(options: TableSelectFormC
 
 export function NormalizeTableSelectFormControl(
   control: TableSelectFormControl,
+  backend: BackendOptions,
 ): NormalizedTableSelectFormControl {
   const importList = control.importList ?? [];
   CoerceArrayItems(importList, [
@@ -190,7 +191,7 @@ export function NormalizeTableSelectFormControl(
           moduleSpecifier: '@rxap/ngx-material-table-select',
         },
       ],
-    }),
+    }, backend),
     identifier,
     dataSource: NormalizeDataSourceOptions(control.dataSource),
     resolver: NormalizeTableSelectFormControlResolver(control.resolver),

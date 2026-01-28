@@ -2,6 +2,7 @@ import {
   CoerceArrayItems,
   Normalized,
 } from '@rxap/utilities';
+import { BackendOptions } from '../../backend/backend-options';
 import {
   BaseAccordionItem,
   NormalizeBaseAccordionItem,
@@ -31,7 +32,7 @@ export function IsNormalizedDataGridAccordionItem(item: NormalizedBaseAccordionI
   return item.kind === AccordionItemKinds.DataGrid;
 }
 
-export function NormalizeDataGridAccordionItem(item: DataGridAccordionItem): NormalizedDataGridAccordionItem {
+export function NormalizeDataGridAccordionItem(item: DataGridAccordionItem, backend: BackendOptions): NormalizedDataGridAccordionItem {
   const dataGrid = item.dataGrid;
   const base = NormalizeBaseAccordionItem(item);
   dataGrid.propertyList ??= [];
@@ -43,6 +44,6 @@ export function NormalizeDataGridAccordionItem(item: DataGridAccordionItem): Nor
   return Object.freeze({
     ...base,
     kind: AccordionItemKinds.DataGrid,
-    dataGrid: NormalizeDataGridOptions(dataGrid),
+    dataGrid: NormalizeDataGridOptions(dataGrid, backend),
   });
 }

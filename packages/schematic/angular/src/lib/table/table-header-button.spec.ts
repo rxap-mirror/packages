@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeHeaderButton } from './table-header-button';
 import { HeaderButtonKind } from './header-button-kind';
 import { NormalizeFormHeaderButton } from './header-button/form-header-button';
@@ -10,17 +11,17 @@ jest.mock('./header-button/base-header-button', () => ({ NormalizeBaseHeaderButt
 
 describe('HeaderButton Multiplexer', () => {
   it('should return null for empty input', () => {
-    expect(NormalizeHeaderButton()).toBeNull();
-    expect(NormalizeHeaderButton({} as any)).toBeNull();
+    expect(NormalizeHeaderButton(undefined, { kind: BackendTypes.NONE })).toBeNull();
+    expect(NormalizeHeaderButton({} as any, { kind: BackendTypes.NONE })).toBeNull();
   });
 
   it('should route to NormalizeFormHeaderButton', () => {
-    NormalizeHeaderButton({ kind: HeaderButtonKind.FORM } as any);
+    NormalizeHeaderButton({ kind: HeaderButtonKind.FORM } as any, { kind: BackendTypes.NONE });
     expect(NormalizeFormHeaderButton).toHaveBeenCalled();
   });
 
   it('should route to NormalizeBaseHeaderButton by default', () => {
-    NormalizeHeaderButton({ kind: HeaderButtonKind.DEFAULT } as any);
+    NormalizeHeaderButton({ kind: HeaderButtonKind.DEFAULT } as any, { kind: BackendTypes.NONE });
     expect(NormalizeBaseHeaderButton).toHaveBeenCalled();
   });
 });

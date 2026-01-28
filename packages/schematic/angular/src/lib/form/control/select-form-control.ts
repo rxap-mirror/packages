@@ -58,6 +58,7 @@ export function IsNormalizedSelectFormControl(template: NormalizedBaseFormContro
 
 export function NormalizeSelectFormControl(
   control: SelectFormControl,
+  backend: BackendOptions,
 ): NormalizedSelectFormControl {
   const importList = control.importList ?? [];
   CoerceArrayItems(importList, [
@@ -84,7 +85,7 @@ export function NormalizeSelectFormControl(
   }
   const multiple = control.multiple ?? false;
   return Object.freeze({
-    ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, multiple),
+    ...NormalizeFormFieldFormControl(control, importList, undefined, undefined, multiple, undefined, backend),
     dataSource: NormalizeDataSourceOptions(control.dataSource),
     kind: FormControlKinds.SELECT,
     optionList,

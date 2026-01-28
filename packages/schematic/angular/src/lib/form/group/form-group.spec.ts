@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeFormGroup, IsFormGroup, IsNormalizedFormGroup } from './form-group';
 import { AbstractControlRolls } from '../abstract-control';
 import { NormalizeBaseFormGroup } from './base-form-group';
@@ -8,7 +9,7 @@ jest.mock('./base-form-group', () => ({
 
 describe('FormGroup Multiplexer', () => {
   it('should route to NormalizeBaseFormGroup', () => {
-    const result = NormalizeFormGroup({ role: AbstractControlRolls.GROUP } as any);
+    const result = NormalizeFormGroup({ role: AbstractControlRolls.GROUP } as any, { kind: BackendTypes.NONE });
     expect(result).toBe('base-group');
     expect(NormalizeBaseFormGroup).toHaveBeenCalled();
   });

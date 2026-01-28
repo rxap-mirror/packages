@@ -19,6 +19,13 @@ exports[`NormalizeFormTableHeaderButtonOptions should normalize complex form tab
   "form": {
     "controlList": [
       {
+        "backend": {
+          "kind": "nestjs",
+          "module": "jest",
+          "prefix": null,
+          "project": null,
+          "serverId": null,
+        },
         "formField": {
           "cssClass": null,
           "directiveList": [],

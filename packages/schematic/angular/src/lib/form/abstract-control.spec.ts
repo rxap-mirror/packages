@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeAbstractControl, AbstractControlRolls } from './abstract-control';
 import * as tsMorph from '@rxap/ts-morph';
 
@@ -13,7 +14,7 @@ jest.mock('../load-handlebars-template', () => ({
 describe('NormalizeAbstractControl', () => {
   it('should normalize with default values', () => {
     const control = { name: 'testControl' };
-    const result = NormalizeAbstractControl(control as any, 'input');
+    const result = NormalizeAbstractControl(control as any, 'input', undefined, undefined, undefined, undefined, { kind: BackendTypes.NONE });
 
     expect(result.name).toBe('testControl');
     expect(result.role).toBe(AbstractControlRolls.CONTROL);
@@ -24,12 +25,12 @@ describe('NormalizeAbstractControl', () => {
   });
 
   it('should throw if name is missing', () => {
-    expect(() => NormalizeAbstractControl({} as any, 'input')).toThrow('The control name is required');
+    expect(() => NormalizeAbstractControl({} as any, 'input', undefined, undefined, undefined, undefined, { kind: BackendTypes.NONE })).toThrow('The control name is required');
   });
 
   it('should override role and template', () => {
     const control = { name: 'test', role: AbstractControlRolls.GROUP, template: 'custom.hbs' };
-    const result = NormalizeAbstractControl(control as any, 'input');
+    const result = NormalizeAbstractControl(control as any, 'input', undefined, undefined, undefined, undefined, { kind: BackendTypes.NONE });
 
     expect(result.role).toBe(AbstractControlRolls.GROUP);
     expect(result.template).toBe('custom.hbs');

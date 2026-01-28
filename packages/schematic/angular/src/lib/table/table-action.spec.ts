@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeTableAction, NormalizeTableActionList } from './table-action';
 import { TableActionKind } from './table-action-kind';
 import { NormalizeDialogTableAction } from './action/dialog-table-action';
@@ -12,18 +13,18 @@ jest.mock('./action/base-table-action', () => ({ NormalizeBaseTableAction: jest.
 
 describe('TableAction Multiplexer', () => {
   it('should route to NormalizeDialogTableAction', () => {
-    NormalizeTableAction({ kind: TableActionKind.DIALOG } as any);
+    NormalizeTableAction({ kind: TableActionKind.DIALOG } as any, undefined, { kind: BackendTypes.NONE });
     expect(NormalizeDialogTableAction).toHaveBeenCalled();
   });
 
   it('should route to NormalizeBaseTableAction by default', () => {
-    NormalizeTableAction({} as any);
+    NormalizeTableAction({} as any, undefined, { kind: BackendTypes.NONE });
     expect(NormalizeBaseTableAction).toHaveBeenCalled();
   });
 
   it('should normalize list of actions', () => {
     const list = [{ kind: TableActionKind.DIALOG }];
-    const result = NormalizeTableActionList(list as any);
+    const result = NormalizeTableActionList(list as any, { kind: BackendTypes.NONE });
     expect(result).toHaveLength(1);
     expect(result[0].kind).toBe('dialog');
   });

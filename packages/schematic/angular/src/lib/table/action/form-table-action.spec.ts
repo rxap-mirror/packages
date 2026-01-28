@@ -1,3 +1,4 @@
+import { BackendTypes } from '@rxap/schematic-angular';
 import { NormalizeFormTableAction } from './form-table-action';
 import { TableActionKind } from '../table-action-kind';
 
@@ -11,7 +12,7 @@ jest.mock('@rxap/utilities', () => ({
 describe('NormalizeFormTableAction', () => {
   it('should normalize form table action', () => {
     const action = { type: 'Edit', form: { name: 'testForm' } };
-    const result = NormalizeFormTableAction(action as any);
+    const result = NormalizeFormTableAction(action as any, { kind: BackendTypes.NONE });
 
     expect(result.kind).toBe(TableActionKind.FORM);
     expect(result.formComponent).toBe('edit-form');
@@ -20,7 +21,7 @@ describe('NormalizeFormTableAction', () => {
 
   it('should handle customComponent', () => {
     const action = { type: 'Edit', customComponent: true };
-    const result = NormalizeFormTableAction(action as any);
+    const result = NormalizeFormTableAction(action as any, { kind: BackendTypes.NONE });
     expect(result.customComponent).toBe(true);
   });
 });

@@ -18,7 +18,7 @@ export function NormalizeFormControlOptions(
   options: Readonly<FormControlOptions>,
 ): NormalizedFormControlOptions {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedFormDefinitionControl = NormalizeFormControl(options);
+  const normalizedFormDefinitionControl = NormalizeFormControl(options, normalizedAngularOptions.backend);
   const formName = dasherize(options.formName);
   const controllerName = options.controllerName ?? formName;
   return Object.freeze({
