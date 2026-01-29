@@ -17,6 +17,7 @@ export interface TestProject {
   sourceRoot: string;
   name: string;
   prefix?: string;
+  tags: string[];
 }
 
 export interface TestProjectNames {
@@ -43,6 +44,7 @@ export function createProject(tree: Tree, project: string, type: string, root: s
     root,
     projectType: type,
     sourceRoot: join(root, 'src'),
+    tags: [],
   };
   tree.create(join(root, 'project.json'), JSON.stringify(config, null, 2));
   tree.create(join(root, 'tsconfig.json'), JSON.stringify({}, null, 2));
@@ -66,6 +68,7 @@ export function createAngularApplication(tree: Tree, project: string, root: stri
 export class AppModule {}`);
   tree.create(join(config.sourceRoot, 'app', 'app.routes.ts'), 'import { Route } from \'@angular/router\';\nexport const appRoutes: Route[] = [];');
   config.prefix = 'jest';
+  config.tags.push('angular');
   tree.overwrite(join(config.root, 'project.json'), JSON.stringify(config, null, 2));
   return config;
 }
@@ -77,6 +80,7 @@ export function createAngularLibrary(tree: Tree, project: string, root: string) 
 export class ${classify(project)}Module {}
 `);
   config.prefix = 'jest';
+  config.tags.push('angular');
   tree.overwrite(join(config.root, 'project.json'), JSON.stringify(config, null, 2));
   return config;
 }
@@ -86,6 +90,8 @@ export function createNestApplication(tree: Tree, project: string, root: string)
   tree.create(join(config.sourceRoot, 'app', 'app.module.ts'), `import { NestFactory } from '@nestjs/core';
 @Module({})
 export class AppModule {}`);
+  config.tags.push('nest');
+  tree.overwrite(join(config.root, 'project.json'), JSON.stringify(config, null, 2));
   return config;
 }
 
@@ -94,6 +100,8 @@ export function createNestLibrary(tree: Tree, project: string, root: string) {
   tree.create(join(config.sourceRoot, 'lib', `${dasherize(project)}.module.ts`), `import { Module } from '@nestjs/common';
 @Module({})
 export class ${classify(project)}Module {}`);
+  config.tags.push('nest');
+  tree.overwrite(join(config.root, 'project.json'), JSON.stringify(config, null, 2));
   return config;
 }
 
