@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.3.0-dev.0...@rxap/schematic-angular@19.3.0-dev.1) (2026-01-29)
+
+### Features
+
+- **schematic:** extend table column and form control normalization ([6911745](https://gitlab.com/rxap/packages/commit/6911745b6c4df000cbbcdbda7e31c163e04d8f24))
+
 # [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@19.2.1-dev.1...@rxap/schematic-angular@19.3.0-dev.0) (2026-01-29)
 
 ### Features

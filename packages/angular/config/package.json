@@ -11,7 +11,7 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@rxap/environment": "^19.1.0",
-    "@rxap/utilities": "^16.5.0",
+    "@rxap/utilities": "^16.5.1-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -49,7 +49,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0"
+        "version": "16.5.1-dev.0"
       }
     ]
   },

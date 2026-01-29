@@ -14,12 +14,12 @@
     "@angular/material": "^19.1.1",
     "@rxap/contenteditable": "^19.0.4",
     "@rxap/data-source": "^19.1.1",
-    "@rxap/data-structure-tree": "^1.1.17",
+    "@rxap/data-structure-tree": "^1.1.18-dev.0",
     "@rxap/forms": "^19.1.0",
     "@rxap/material-directives": "^19.1.0",
     "@rxap/pattern": "^1.1.14",
     "@rxap/rxjs": "^1.1.16",
-    "@rxap/utilities": "^16.5.0",
+    "@rxap/utilities": "^16.5.1-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -85,7 +85,7 @@
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.17"
+        "version": "1.1.18-dev.0"
       },
       {
         "package": "@rxap/definition",
@@ -117,7 +117,7 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.16"
+        "version": "1.0.17-dev.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -129,7 +129,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0"
+        "version": "16.5.1-dev.0"
       },
       {
         "package": "@rxap/validator",

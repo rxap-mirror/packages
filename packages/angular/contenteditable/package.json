@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@angular/core": "^19.2.1",
     "@rxap/pattern": "^1.1.14",
-    "@rxap/utilities": "^16.5.0"
+    "@rxap/utilities": "^16.5.1-dev.0"
   },
   "author": {
     "name": "Merzough Münker",
@@ -44,7 +44,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0"
+        "version": "16.5.1-dev.0"
       }
     ]
   },

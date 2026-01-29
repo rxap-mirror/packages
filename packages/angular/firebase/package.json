@@ -13,7 +13,7 @@
     "@angular/fire": "^7.5.0",
     "@rxap/config": "^19.2.0",
     "@rxap/rxjs": "^1.1.16",
-    "@rxap/utilities": "^16.5.0",
+    "@rxap/utilities": "^16.5.1-dev.0",
     "firebase": "^9.23.0",
     "rxjs": "^7.8.1"
   },
@@ -72,7 +72,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.0"
+        "version": "16.5.1-dev.0"
       }
     ]
   },

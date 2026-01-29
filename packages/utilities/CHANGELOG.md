@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.5.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.5.0...@rxap/utilities@16.5.1-dev.0) (2026-01-29)
+
+### Bug Fixes
+
+- **utilities:** include error stack in structuredClone error logging ([9c5aee4](https://gitlab.com/rxap/packages/commit/9c5aee4cf4eb77cefcae5a6958961b4e8030a304))
+
 # [16.5.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.5.0-dev.1...@rxap/utilities@16.5.0) (2026-01-23)
 
 **Note:** Version bump only for package @rxap/utilities
