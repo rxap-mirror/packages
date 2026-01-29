@@ -91,7 +91,7 @@ export function clone<Data>(
     //   return global.structuredClone(value);
     // }
   } catch (e: any) {
-    console.error(`structuredClone is not supported or failed: ${e.message}`);
+    console.error(`structuredClone is not supported or failed: ${e.message}`, e.stack);
   }
   function copy(copiedValue: any) {
     const len = refFrom.length;
