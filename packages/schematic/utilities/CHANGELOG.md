@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@19.0.6-dev.0...@rxap/schematics-utilities@19.1.0-dev.0) (2026-01-29)
+
+### Bug Fixes
+
+- **schematic:** update test utilities import paths and enhance Nest module handling ([4d787f2](https://gitlab.com/rxap/packages/commit/4d787f23297d2e5ff0834f90fb0792a33a693aa6))
+
+### Features
+
+- **schematic:** add tag support for test projects ([f7a7b8b](https://gitlab.com/rxap/packages/commit/f7a7b8b3ae821a1382d4af444f9b5407d81289ee))
+
 ## [19.0.6-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@19.0.5...@rxap/schematics-utilities@19.0.6-dev.0) (2026-01-29)
 
 **Note:** Version bump only for package @rxap/schematics-utilities

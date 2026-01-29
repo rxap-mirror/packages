@@ -1,5 +1,5 @@
 {
-  "version": "19.0.6-dev.0",
+  "version": "19.1.0-dev.0",
   "name": "@rxap/schematics-utilities",
   "description": "This package provides a set of utilities and helpers for Angular Schematics, including file manipulation, string operations, object manipulation, and Angular-specific JSON file handling. It offers functionalities to simplify common tasks such as updating JSON files, installing dependencies, and managing Angular project configurations. The package also includes generators for initializing schematics.\n",
   "license": "GPL-3.0-or-later",
