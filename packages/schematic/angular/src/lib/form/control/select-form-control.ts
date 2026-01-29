@@ -89,7 +89,7 @@ export function NormalizeSelectFormControl(
     dataSource: NormalizeDataSourceOptions(control.dataSource),
     kind: FormControlKinds.SELECT,
     optionList,
-    backend: NormalizeBackendOptions(control.backend ?? BackendTypes.NONE),
+    backend: NormalizeBackendOptions(control.backend ?? backend ?? BackendTypes.NONE),
     multiple,
     upstream: NormalizeUpstreamOptions(control.upstream),
   });

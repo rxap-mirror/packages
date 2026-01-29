@@ -197,7 +197,7 @@ export function NormalizeTableSelectFormControl(
     resolver: NormalizeTableSelectFormControlResolver(control.resolver),
     options: NormalizeTableSelectFormControlOptions(control.options),
     kind: FormControlKinds.TABLE_SELECT,
-    backend: NormalizeBackendOptions(control.backend ?? BackendTypes.NONE),
+    backend: NormalizeBackendOptions(control.backend ?? backend ?? BackendTypes.NONE),
     title: control.title ?? null,
     columnList,
     toDisplay,

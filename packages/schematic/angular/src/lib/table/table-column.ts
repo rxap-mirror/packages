@@ -5,18 +5,26 @@ import {
   NormalizedBaseTableColumn,
 } from './column/base-table-column';
 import { NormalizeBooleanTableColumn } from './column/boolean-table-column';
-import { NormalizeCustomTableColumn } from './column/custom-table-column';
+import {
+  CustomTableColumn,
+  NormalizeCustomTableColumn,
+  NormalizedCustomTableColumn,
+} from './column/custom-table-column';
 import {
   DateTableColumn,
   NormalizeDateTableColumn,
   NormalizedDateTableColumn,
 } from './column/date-table-column';
-import { NormalizeOptionsTableColumn } from './column/options-table-column';
+import {
+  NormalizedOptionsTableColumn,
+  NormalizeOptionsTableColumn,
+  OptionsTableColumn,
+} from './column/options-table-column';
 import { TableColumnKind } from './table-column-kind';
 
-export type TableColumn = BaseTableColumn | DateTableColumn;
+export type TableColumn = BaseTableColumn | DateTableColumn | OptionsTableColumn | CustomTableColumn;
 
-export type NormalizedTableColumn = NormalizedBaseTableColumn | NormalizedDateTableColumn;
+export type NormalizedTableColumn = NormalizedBaseTableColumn | NormalizedDateTableColumn | NormalizedOptionsTableColumn | NormalizedCustomTableColumn;
 
 export function NormalizeTableColumn(
   column: Readonly<TableColumn>,
