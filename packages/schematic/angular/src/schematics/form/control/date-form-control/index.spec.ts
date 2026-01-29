@@ -1,6 +1,6 @@
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { join } from 'path';
-import { createFullWorkspace, listFiles, TestProjectNames } from '../../../../lib/test/workspace';
+import { createFullWorkspace, listFiles, TestProjectNames } from '@rxap/schematics-utilities';
 import { DateFormControlOptions } from './schema';
 
 const collectionPath = join(__dirname, '../../../../../collection.json');

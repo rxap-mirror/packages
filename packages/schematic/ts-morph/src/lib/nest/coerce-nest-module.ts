@@ -3,6 +3,7 @@ import {
   noop,
   Rule,
 } from '@angular-devkit/schematics';
+import { CoerceNestModuleImport } from '@rxap/ts-morph';
 import {
   classify,
   dasherize,
@@ -10,8 +11,15 @@ import {
 import {
   buildNestProjectName,
   GetProject,
+  GetProjectSourceRoot,
   IsApplicationProject,
+  IsLibraryProject,
+  IsNestJsProject,
 } from '@rxap/workspace-utilities';
+import {
+  join,
+  relative,
+} from 'path';
 import {
   ClassDeclaration,
   Project,
@@ -44,6 +52,9 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
   let { tsMorphTransform } = options;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   tsMorphTransform ??= () => {};
+  const moduleName = classify(name) + 'Module';
+  const moduleFile = `${ dasherize(name) }.module.ts`;
+  const moduleFilePath = directory ? join(directory, moduleFile) : moduleFile;
   return chain([
     AssertNestProject({
       project,
@@ -60,7 +71,7 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
         backend,
       },
       (project, [ sourceFile ]) => {
-        const classDeclaration = CoerceClass(sourceFile, classify(name) + 'Module', {
+        const classDeclaration = CoerceClass(sourceFile, moduleName, {
           isExported: true,
           decorators: [
             {
@@ -78,19 +89,45 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
 
         tsMorphTransform!(project, sourceFile, classDeclaration);
       },
-      [ `${ dasherize(name) }.module.ts?` ],
+      [ `${ moduleFile }?` ],
     ),
     tree => {
-      const nestProject = buildNestProjectName(options);
-      if (IsApplicationProject(GetProject(tree, nestProject)) && name !== 'app') {
-        return AddNestModuleToAppModule({
-          project,
-          feature,
-          shared,
-          name,
-          directory,
-          backend,
-        });
+      const nestProject = GetProject(tree, buildNestProjectName(options));
+      if (name !== 'app' && IsNestJsProject(nestProject)) {
+        if (IsApplicationProject(nestProject)) {
+          return AddNestModuleToAppModule({
+            project,
+            feature,
+            shared,
+            name,
+            directory,
+            backend,
+          });
+        }
+        if (IsLibraryProject(nestProject)) {
+          const projectSourceRoot = GetProjectSourceRoot(nestProject) + '/lib';
+          const moduleFiles = tree
+            .getDir(projectSourceRoot)
+            .subfiles
+            .filter(file => file.endsWith('.module.ts'))
+            .filter(file => !file.endsWith(moduleFile));
+          if (moduleFiles.length > 0) {
+            const moduleFile = moduleFiles[0];
+            return TsMorphNestProjectTransformRule(
+              {
+                project,
+                feature,
+                shared,
+                backend,
+              },
+              (project, [ sourceFile ]) => {
+                CoerceNestModuleImport(sourceFile, {
+                  moduleName,
+                  moduleSpecifier: relative(moduleFile, moduleFilePath).replace(/\.ts$/, ''),
+                });
+              }, [moduleFile]);
+          }
+        }
       }
       return noop();
     },

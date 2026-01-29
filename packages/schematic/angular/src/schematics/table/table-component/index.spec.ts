@@ -11,7 +11,7 @@ import {
   listFiles,
   TestProject,
   TestProjectNames,
-} from '../../../lib/test/workspace';
+} from '@rxap/schematics-utilities';
 import { TableComponentOptions } from './schema';
 
 describe('table-component', () => {

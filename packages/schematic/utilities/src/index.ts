@@ -1,3 +1,7 @@
+// region test
+export * from './lib/test/workspace';
+// endregion
+
 // region strings
 export * from './lib/strings/camelize';
 export * from './lib/strings/capitalize';

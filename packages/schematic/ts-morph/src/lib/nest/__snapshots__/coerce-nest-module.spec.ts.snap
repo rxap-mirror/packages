@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoerceNestModule should coerce the nest module in a library project 1`] = `
+[
+  "/api/lib/src/index.ts",
+  "/api/lib/src/lib/api-lib.module.ts",
+  "/api/lib/src/lib/new.module.ts",
+]
+`;
+
+exports[`CoerceNestModule should coerce the nest module in a library project 2`] = `
+"import { Module } from '@nestjs/common';
+
+@Module({})
+export class NewModule {
+}
+"
+`;
+
+exports[`CoerceNestModule should coerce the nest module in a library project 3`] = `
+"import { Module } from '@nestjs/common';
+import { NewModule } from '../new.module';
+
+@Module({
+  imports: [NewModule],
+})
+export class ApiLibModule {}"
+`;

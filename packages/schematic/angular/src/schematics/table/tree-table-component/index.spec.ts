@@ -7,7 +7,7 @@ import {
   listFiles,
   TestProject,
   TestProjectNames,
-} from '../../../lib/test/workspace';
+} from '@rxap/schematics-utilities';
 import { TreeTableComponentOptions } from './schema';
 
 describe('tree-table-component', () => {

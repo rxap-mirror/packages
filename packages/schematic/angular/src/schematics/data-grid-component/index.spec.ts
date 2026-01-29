@@ -7,7 +7,7 @@ import {
   listFiles,
   TestProject,
   TestProjectNames,
-} from '../../lib/test/workspace';
+} from '@rxap/schematics-utilities';
 
 describe('data-grid-component', () => {
   const runner = new SchematicTestRunner('schematics', join(__dirname, '../../../collection.json'));

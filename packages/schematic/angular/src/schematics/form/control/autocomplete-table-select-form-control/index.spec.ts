@@ -13,7 +13,7 @@ import {
   createFullWorkspace,
   listFiles,
   TestProjectNames,
-} from '../../../../lib/test/workspace';
+} from '@rxap/schematics-utilities';
 import { FormComponentOptions } from '../../form-component/schema';
 import { AutocompleteTableSelectFormControlOptions } from './schema';
 

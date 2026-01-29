@@ -7,7 +7,7 @@ import {
   listFiles,
   TestProject,
   TestProjectNames,
-} from '../../../lib/test/workspace';
+} from '@rxap/schematics-utilities';
 import { TableComponentOptions } from '../table-component/schema';
 import { TableHeaderButtonOptions } from './schema';
 

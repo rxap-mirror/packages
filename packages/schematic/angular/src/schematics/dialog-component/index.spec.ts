@@ -6,7 +6,7 @@ import {
   listFiles,
   TestProject,
   TestProjectNames,
-} from '../../lib/test/workspace';
+} from '@rxap/schematics-utilities';
 
 describe('dialog-component', () => {
   const runner = new SchematicTestRunner('schematics', join(__dirname, '../../../collection.json'));

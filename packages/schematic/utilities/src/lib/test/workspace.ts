@@ -1,5 +1,5 @@
-// rxap-no-index-export
 import {
+  DirEntry,
   EmptyTree,
   HostTree,
   Tree,
@@ -119,7 +119,7 @@ export function createFullWorkspace(tree: UnitTestTree = new UnitTestTree(new Em
   };
 }
 
-export function listFiles(tree: Tree) {
+export function listFiles(tree: Tree | DirEntry) {
   const paths: string[] = [];
   tree.visit(path => paths.push(path));
   return paths.sort();
