@@ -26,6 +26,13 @@ export enum ConfigLoadingStrategy {
   FIFO = 'fifo',
 }
 
+export enum ConfigLoadMethod {
+  FROM_URLS = 'fromUrls',
+  FROM_LOCAL_STORAGE = 'fromLocalStorage',
+  FROM_URL_PARAM = 'fromUrlParam',
+  FROM_CID = 'fromCid',
+}
+
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
   fromUrls?: boolean;
@@ -49,6 +56,14 @@ export interface ConfigLoadOptions {
   fetchCidContent?: (cid: string, path?: string) => Promise<Blob | null>;
   dnsServers?: string[];
   strategy?: ConfigLoadingStrategy;
+  /**
+   * Defines the order and subset of config sources to load.
+   * If not specified, defaults to: [FROM_URLS, FROM_LOCAL_STORAGE, FROM_URL_PARAM, FROM_CID]
+   *
+   * Note: static config is always merged first, and Overwrites are always merged last.
+   * Note: fromDns is not a source itself - it resolves the CID for FROM_CID.
+   */
+  order?: ConfigLoadMethod[];
 }
 
 @Injectable({
@@ -121,86 +136,114 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       }
     }
 
+    // Always merge static config first
     config = deepMerge(config, options?.static ?? {});
-    let done = false;
 
-    if (!done && options?.fromUrls !== false) {
-      try {
-        config = deepMerge(config, await this.loadConfigFromUrls(options, environment));
-        if (options.strategy === ConfigLoadingStrategy.FIFO) {
-          done = true;
-        }
-      } catch (error: any) {
-        if (options.strategy !== ConfigLoadingStrategy.FIFO) {
-          console.error('Could not load config from urls', error);
-          throw error;
-        } else {
-          console.warn('Could not load config from urls: ' + error.message + '. Will try next strategy.');
-        }
-      }
-    }
+    // Determine the order of config sources to load
+    const order = options.order ?? [
+      ConfigLoadMethod.FROM_URLS,
+      ConfigLoadMethod.FROM_LOCAL_STORAGE,
+      ConfigLoadMethod.FROM_URL_PARAM,
+      ConfigLoadMethod.FROM_CID,
+    ];
 
-    if (!done && options?.fromLocalStorage !== false) {
-      try {
-        config = deepMerge(config, this.loadConfigFromLocalStorage(options));
-        if (options.strategy === ConfigLoadingStrategy.FIFO) {
-          done = true;
-        }
-      } catch (error: any) {
-        if (options.strategy !== ConfigLoadingStrategy.FIFO) {
-          console.error('Could not load config from local storage', error);
-          throw error;
-        } else {
-          console.warn('Could not load config from local storage: ' + error.message + '. Will try next strategy.');
-        }
-      }
-    }
-
-    if (!done && options?.fromUrlParam) {
-      try {
-        config = deepMerge(config, this.loadConfigFromUrlParam(options as any));
-        if (options.strategy === ConfigLoadingStrategy.FIFO) {
-          done = true;
-        }
-      } catch (error: any) {
-        if (options.strategy !== ConfigLoadingStrategy.FIFO) {
-          console.error('Could not load config from url param', error);
-          throw error;
-        } else {
-          console.warn('Could not load config from url param: ' + error.message + '. Will try next strategy.');
-        }
-      }
-    }
-
-    if (!done && options?.fromDns) {
+    // If fromDns is enabled and FROM_CID is in the order, resolve CID first
+    if (options.fromDns && order.includes(ConfigLoadMethod.FROM_CID) && !options.fromCid) {
       await this.loadConfigFromDns(options as any);
     }
 
-    if (!done && options?.fromCid) {
+    // Load configs from sources in the specified order
+    let done = false;
+    for (const method of order) {
+      if (done) {
+        break;
+      }
+
+      // Check if the source is enabled
+      if (!this.isSourceEnabled(options, method)) {
+        continue;
+      }
+
       try {
-        config = deepMerge(config, await this.loadConfigFromCid(options as any));
+        const loadedConfig = await this.loadConfigFromMethod(method, options, environment);
+        if (loadedConfig) {
+          config = deepMerge(config, loadedConfig);
+        }
+
+        // If using FIFO strategy, stop after first successful load
         if (options.strategy === ConfigLoadingStrategy.FIFO) {
           done = true;
         }
       } catch (error: any) {
+        const methodName = this.getMethodName(method);
         if (options.strategy !== ConfigLoadingStrategy.FIFO) {
-          console.error('Could not load config from cid', error);
+          console.error(`Could not load config from ${methodName}`, error);
           throw error;
         } else {
-          console.warn('Could not load config from cid: ' + error.message + '. Will try next strategy.');
+          console.warn(`Could not load config from ${methodName}: ${error.message}. Will try next strategy.`);
         }
       }
     }
 
-    if (!done) {
+    if (!done && order.length > 0) {
       console.warn('No config loading strategy succeeded. Using default config.');
     }
 
+    // Always merge overwrites last
     config = deepMerge(config, this.Overwrites);
 
     console.debug('app config', config);
 
     this.Config = config;
+  }
+
+  private static isSourceEnabled(options: ConfigLoadOptions, method: ConfigLoadMethod): boolean {
+    switch (method) {
+      case ConfigLoadMethod.FROM_URLS:
+        return options.fromUrls !== false;
+      case ConfigLoadMethod.FROM_LOCAL_STORAGE:
+        return options.fromLocalStorage !== false;
+      case ConfigLoadMethod.FROM_URL_PARAM:
+        return !!options.fromUrlParam;
+      case ConfigLoadMethod.FROM_CID:
+        return !!options.fromCid;
+      default:
+        return false;
+    }
+  }
+
+  private static async loadConfigFromMethod(
+    method: ConfigLoadMethod,
+    options: ConfigLoadOptions,
+    environment?: Environment,
+  ): Promise<any> {
+    switch (method) {
+      case ConfigLoadMethod.FROM_URLS:
+        return await this.loadConfigFromUrls(options, environment);
+      case ConfigLoadMethod.FROM_LOCAL_STORAGE:
+        return this.loadConfigFromLocalStorage(options);
+      case ConfigLoadMethod.FROM_URL_PARAM:
+        return this.loadConfigFromUrlParam(options as any);
+      case ConfigLoadMethod.FROM_CID:
+        return await this.loadConfigFromCid(options as any);
+      default:
+        return null;
+    }
+  }
+
+  private static getMethodName(method: ConfigLoadMethod): string {
+    switch (method) {
+      case ConfigLoadMethod.FROM_URLS:
+        return 'urls';
+      case ConfigLoadMethod.FROM_LOCAL_STORAGE:
+        return 'local storage';
+      case ConfigLoadMethod.FROM_URL_PARAM:
+        return 'url param';
+      case ConfigLoadMethod.FROM_CID:
+        return 'cid';
+      default:
+        return 'unknown';
+    }
   }
 
   private static loadConfigFromUrlParam(options: ConfigLoadOptions & { fromUrlParam: string | true }) {
