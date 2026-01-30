@@ -7,6 +7,13 @@ import {
   WriterFunction,
 } from 'ts-morph';
 
+/**
+ * Finds an element in an array by a property value of an object literal.
+ *
+ * @param property - The property name to check.
+ * @param value - The value to match.
+ * @returns A function that takes an expression and returns true if it matches.
+ */
 export function FindArrayElementByObjectProperty(property: string, value: string) {
   return (e: Expression) => {
     if (e.isKind(SyntaxKind.ObjectLiteralExpression)) {
@@ -22,10 +29,27 @@ export function FindArrayElementByObjectProperty(property: string, value: string
   };
 }
 
+/**
+ * Default function to find an existing element in an array.
+ * Checks if the text of the element matches the given string.
+ *
+ * @param element - The string representation of the element to find.
+ * @returns A function that takes an expression and returns true if it matches.
+ */
 export function DefaultFindExistingElement(element: string) {
   return (e: Expression) => e.getText().trim() === element;
 }
 
+/**
+ * Coerces an element in an array literal expression.
+ * If the element exists, it returns it. Otherwise, it adds it.
+ *
+ * @param array - The array literal expression.
+ * @param element - The element to add (string or WriterFunction).
+ * @param findExisting - A function to check if the element already exists. Defaults to comparing text.
+ * @param insertAt - A function to determine the index to insert the element at.
+ * @returns The existing or added expression.
+ */
 export function CoerceArrayElement(
   array: ArrayLiteralExpression,
   element: string | WriterFunction,

@@ -4,6 +4,12 @@ import { CoerceNestModule } from './coerce-nest-module';
 import { CoerceNestModuleImport } from './coerce-nest-module-import';
 import { CoerceNestModuleProvider } from './coerce-nest-module-provider';
 
+/**
+ * Coerces a HealthModule for NestJS Terminus.
+ * Imports `TerminusModule`.
+ *
+ * @param sourceFile - The source file to add the module to.
+ */
 export function CoerceHealthModule(sourceFile: SourceFile) {
 
   CoerceNestModule(sourceFile, {

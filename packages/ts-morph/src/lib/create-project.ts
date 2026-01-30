@@ -7,6 +7,12 @@ import {
   QuoteKind,
 } from 'ts-morph';
 
+/**
+ * Creates a new ts-morph Project with default settings for Angular/RxAP development.
+ *
+ * @param options - Optional project options to override defaults.
+ * @returns A new ts-morph Project instance.
+ */
 export function CreateProject(options: ProjectOptions = {}) {
   return new Project(deepMerge({
     manipulationSettings: {

@@ -23,6 +23,14 @@ import { GetComponentDecoratorObject } from './get-component-decorator-object';
  * @param componentImport - The name or TypeImport of the import to coerce.
  * @returns - The updated imports array after coercing the import.
  */
+/**
+ * Coerces a component import in an Angular component's `imports` array.
+ * Adds the import to the component decorator and the file imports.
+ *
+ * @param sourceFileOrClassDeclaration - The source file or class declaration of the component.
+ * @param componentImport - The name or TypeImport of the component to import.
+ * @returns The imports array literal expression.
+ */
 export function CoerceComponentImport(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration | ObjectLiteralExpression,
   componentImport: string | TypeImport,

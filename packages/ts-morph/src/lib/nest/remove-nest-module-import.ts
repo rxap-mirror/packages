@@ -3,9 +3,18 @@ import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-lite
 import { GetNestModuleMetadata } from './get-nest-module-metadata';
 
 export interface RemoveNestModuleImportOptions {
+  /**
+   * The name of the module import to remove.
+   */
   moduleName: string;
 }
 
+/**
+ * Removes an import from a NestJS module `imports` array.
+ *
+ * @param sourceFile - The source file containing the module.
+ * @param options - Options containing the module name to remove.
+ */
 export function RemoveNestModuleImport(
   sourceFile: SourceFile,
   options: RemoveNestModuleImportOptions,

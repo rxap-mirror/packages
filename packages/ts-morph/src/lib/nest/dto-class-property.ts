@@ -6,9 +6,12 @@ import {
 } from '../data-property';
 import { Normalized } from '@rxap/utilities';
 
+/**
+ * Interface representing a property in a DTO class.
+ */
 export interface DtoClassProperty extends DataProperty {
   /**
-   * indicates that the @Type decorator should be used as the type of the property is another dto class
+   * Indicates that the @Type decorator should be used as the type of the property is another dto class.
    */
   isType?: boolean,
 }
@@ -17,6 +20,12 @@ export interface NormalizedDtoClassProperty extends Normalized<Pick<DtoClassProp
                                                     NormalizedDataProperty {
 }
 
+/**
+ * Normalizes a DTO class property definition.
+ *
+ * @param property - The DTO class property to normalize.
+ * @returns The normalized DTO class property.
+ */
 export function NormalizeDataClassProperty(property: DtoClassProperty): NormalizedDtoClassProperty {
   const {
     name,

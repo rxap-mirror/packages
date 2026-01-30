@@ -7,8 +7,18 @@ import {
   CoerceNestModuleImportOptions,
 } from './coerce-nest-module-import';
 
+/**
+ * Options for coercing the ConfigModule import.
+ */
 export type CoerceNestConfigModuleImportOptions = Omit<CoerceNestModuleImportOptions, 'moduleName'>;
 
+/**
+ * Coerces the ConfigModule import in a NestJS module.
+ * Registers `ConfigModule.forRoot` with `isGlobal: true` and `VALIDATION_SCHEMA`.
+ *
+ * @param sourceFile - The source file containing the module.
+ * @param options - Options for the import.
+ */
 export function CoerceNestConfigModuleImport(sourceFile: SourceFile, options: CoerceNestConfigModuleImportOptions) {
   CoerceNestModuleImport(
     sourceFile, {

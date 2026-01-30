@@ -10,6 +10,13 @@ import {
 import { CoerceClass } from '../coerce-class';
 import { CoerceImports } from '../coerce-imports';
 
+/**
+ * Coerces a custom HealthIndicator class.
+ * Creates a service extending `HealthIndicator`.
+ *
+ * @param sourceFile - The source file to add the indicator to.
+ * @param name - The name of the health indicator.
+ */
 export function CoerceHealthIndicator(sourceFile: SourceFile, name: string) {
 
   const indicatorClassName = CoerceSuffix(classify(name), 'HealthIndicator');

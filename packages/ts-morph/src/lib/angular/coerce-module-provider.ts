@@ -10,6 +10,14 @@ import { ProviderObject } from '../provider-object';
 import { GetComponentClass } from './get-component-class';
 import { GetComponentDecoratorObject } from './get-component-decorator-object';
 
+/**
+ * Coerces a provider in an Angular module (or component) `providers` array.
+ * Adds the provider to the providers array of the component/module decorator.
+ *
+ * @param sourceFileOrClassDeclaration - The source file, class declaration, or object literal (decorator options).
+ * @param providerObject - The provider to add.
+ * @returns The providers array literal expression.
+ */
 export function CoerceModuleProvider(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration | ObjectLiteralExpression,
   providerObject: ProviderObject | string,

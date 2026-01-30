@@ -10,6 +10,14 @@ import {
 
 export type CoerceAppRoutesOptions = CoerceRoutesOptions;
 
+/**
+ * Coerces the application routes configuration.
+ * Usually creates the root `appRoutes` or `ROUTES` constant.
+ *
+ * @param sourceFile - The source file containing the routes.
+ * @param options - Options for the routes.
+ * @returns The variable declaration for the routes.
+ */
 export function CoerceAppRoutes(sourceFile: SourceFile, options: CoerceAppRoutesOptions = {}) {
 
   const variableDeclaration = CoerceRoutes(sourceFile, {

@@ -10,13 +10,37 @@ import {
 } from './coerce-routes';
 
 export interface CoerceLayoutRoutesOptions extends CoerceRoutesOptions {
+  /**
+   * The layout component to use.
+   */
   component?: 'LayoutComponent' | 'MinimalLayoutComponent';
+  /**
+   * If true, adds navigation configuration.
+   */
   withNavigation?: boolean;
+  /**
+   * If true, adds default header component.
+   */
   withDefaultHeader?: boolean;
+  /**
+   * If true, adds StatusCheckGuard.
+   */
   withStatusCheckGuard?: boolean;
+  /**
+   * If true, adds user theme provider.
+   */
   withUserTheme?: boolean;
 }
 
+/**
+ * Coerces the layout routes configuration.
+ * Creates routes that use a layout component (e.g. `LayoutComponent` or `MinimalLayoutComponent`).
+ * Adds providers for layout, navigation, and user theme.
+ *
+ * @param sourceFile - The source file containing the routes.
+ * @param options - Options for the layout routes (component, navigation, header, etc.).
+ * @returns The variable declaration for the routes.
+ */
 export function CoerceLayoutRoutes(sourceFile: SourceFile, options: CoerceLayoutRoutesOptions = {}) {
 
   const {

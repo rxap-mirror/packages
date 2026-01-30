@@ -9,13 +9,35 @@ import {
 } from './to-mapping-object';
 
 export interface CoerceMappingClassMethodOptions {
+  /**
+   * The type of the input parameter for the mapping method.
+   */
   parameterType: string;
+  /**
+   * The mapping definition. Can be true (direct mapping) or a record defining the mapping structure.
+   */
   mapping: boolean | Record<string, any>;
+  /**
+   * Options for generating the mapping object.
+   */
   mappingOptions?: ToMappingObjectOptions;
+  /**
+   * The name of the method to generate.
+   */
   name: string;
+  /**
+   * The return type of the method.
+   */
   returnType: string;
 }
 
+/**
+ * Coerces a class method that maps an input to an output object.
+ *
+ * @param sourceFile - The source file containing the class.
+ * @param classDeclaration - The class declaration to add the method to.
+ * @param options - Options for generating the mapping method.
+ */
 export function CoerceMappingClassMethod(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,

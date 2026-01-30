@@ -5,6 +5,15 @@ import {
   SyntaxKind,
 } from 'ts-morph';
 
+/**
+ * Gets an array literal expression from a property assignment in an object literal.
+ * Returns null if the property does not exist.
+ * Throws if the property is not an array literal assignment.
+ *
+ * @param objectLiteral - The object literal expression.
+ * @param propertyKey - The name of the property.
+ * @returns The array literal expression or null.
+ */
 export function GetArrayLiteralFromObjectLiteral(
   objectLiteral: ObjectLiteralExpression,
   propertyKey: string,
@@ -34,6 +43,14 @@ export function GetArrayLiteralFromObjectLiteral(
 
 }
 
+/**
+ * Gets or creates an array literal expression from a property assignment in an object literal.
+ * If the property does not exist, it creates it with an empty array initializer.
+ *
+ * @param objectLiteral - The object literal expression.
+ * @param propertyKey - The name of the property.
+ * @returns The array literal expression.
+ */
 export function GetCoerceArrayLiteralFromObjectLiteral(
   objectLiteral: ObjectLiteralExpression,
   propertyKey: string,

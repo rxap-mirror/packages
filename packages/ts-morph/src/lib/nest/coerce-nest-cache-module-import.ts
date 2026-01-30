@@ -7,8 +7,18 @@ import {
   CoerceNestModuleImportOptions,
 } from './coerce-nest-module-import';
 
+/**
+ * Options for coercing the CacheModule import.
+ */
 export type CoerceNestCacheModuleImportOptions = Omit<CoerceNestModuleImportOptions, 'moduleName'>;
 
+/**
+ * Coerces the CacheModule import in a NestJS module.
+ * Registers `CacheModule` asynchronously using `CacheModuleOptionsLoader`.
+ *
+ * @param sourceFile - The source file containing the module.
+ * @param options - Options for the import.
+ */
 export function CoerceNestCacheModuleImport(
   sourceFile: SourceFile,
   options: CoerceNestCacheModuleImportOptions,

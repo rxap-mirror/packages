@@ -6,13 +6,35 @@ import {
 import 'colors';
 
 export interface RemoveRouteOptions {
+  /**
+   * Path to remove (NOT IMPLEMENTED).
+   */
   path?: string[];
+  /**
+   * Index of the route to remove.
+   */
   index?: number;
+  /**
+   * Remove route that loads this remote module.
+   */
   loadRemoteModule?: string | { name: string, entry?: string };
+  /**
+   * Remove route that uses this component.
+   */
   component?: string;
+  /**
+   * The name of the routes variable.
+   */
   name?: string;
 }
 
+/**
+ * Removes a route from the routes array.
+ * Can remove by index, component name, or remote module config.
+ *
+ * @param sourceFile - The source file containing the routes.
+ * @param options - Options for removing the route (index, component, loadRemoteModule).
+ */
 export function RemoveRoute(sourceFile: SourceFile, options: RemoveRouteOptions) {
 
   const {

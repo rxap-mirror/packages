@@ -11,6 +11,13 @@ import { CoerceImports } from '../coerce-imports';
 import { CoerceNestController } from './coerce-nest-controller';
 import { CoerceNestOperation } from './coerce-nest-operation';
 
+/**
+ * Coerces a HealthController class for NestJS Terminus.
+ * Creates a controller with a health check endpoint.
+ *
+ * @param sourceFile - The source file to add the controller to.
+ * @returns The updated source file.
+ */
 export function CoerceHealthController(sourceFile: SourceFile): SourceFile {
 
   const classDeclaration = CoerceNestController(sourceFile, { name: 'health', path: 'health' });

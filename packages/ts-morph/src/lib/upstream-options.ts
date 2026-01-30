@@ -200,6 +200,12 @@ export interface NormalizedOpenApiUpstreamOptions extends Readonly<Normalized<Om
   kind: UpstreamOptionsKinds.OPEN_API;
 }
 
+/**
+ * Normalizes Open API specific upstream options.
+ *
+ * @param options - The Open API upstream options.
+ * @returns The normalized Open API upstream options.
+ */
 export function NormalizeOpenApiUpstreamOptions(options: OpenApiUpstreamOptions): NormalizedOpenApiUpstreamOptions {
   return Object.freeze({
     ...NormalizeBaseUpstreamOptions(options),
@@ -210,12 +216,24 @@ export function NormalizeOpenApiUpstreamOptions(options: OpenApiUpstreamOptions)
   });
 }
 
+/**
+ * Checks if the options are normalized Open API upstream options.
+ *
+ * @param options - The normalized upstream options.
+ * @returns True if Open API options.
+ */
 export function IsNormalizedOpenApiUpstreamOptions(options: NormalizedUpstreamOptions): options is NormalizedOpenApiUpstreamOptions {
   return options.kind === UpstreamOptionsKinds.OPEN_API;
 }
 
 // endregion
 
+/**
+ * Normalizes upstream options (e.g. for API integrations).
+ *
+ * @param options - The upstream options to normalize.
+ * @returns The normalized upstream options or null.
+ */
 export function NormalizeUpstreamOptions(options?: UpstreamOptions): NormalizedUpstreamOptions | null {
   if (!options || Object.keys(options).length === 0) {
     return null;

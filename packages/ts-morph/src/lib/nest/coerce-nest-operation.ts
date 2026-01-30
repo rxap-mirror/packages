@@ -53,10 +53,25 @@ import {
 } from './operation-id-utilities';
 
 export interface OperationParameter extends DataProperty {
+  /**
+   * The type of the parameter.
+   */
   type?: string | WriterFunction | TypeImport;
+  /**
+   * List of pipes to apply to the parameter.
+   */
   pipeList?: Array<string | WriterFunction | TypeImport>;
+  /**
+   * Default value for the parameter.
+   */
   defaultValue?: string | WriterFunction;
+  /**
+   * If true, adds a question mark (optional).
+   */
   hasQuestionToken?: boolean;
+  /**
+   * If true, the parameter is required.
+   */
   required?: boolean;
 
   /**
@@ -78,19 +93,52 @@ export interface OperationParameter extends DataProperty {
 }
 
 export interface OperationOptions {
+  /**
+   * List of route parameters.
+   */
   paramList?: OperationParameter[],
+  /**
+   * List of query parameters.
+   */
   queryList?: OperationParameter[],
+  /**
+   * The name of the operation (method name).
+   */
   operationName: string,
+  /**
+   * The route path for the operation.
+   */
   path?: string | null,
+  /**
+   * The return type of the method.
+   */
   returnType?: string | WriterFunction,
+  /**
+   * If true, makes the method async.
+   */
   isAsync?: boolean,
+  /**
+   * The HTTP method (get, post, put, delete, etc.).
+   */
   method?: string,
+  /**
+   * The body parameter type.
+   */
   body?: string | WriterFunction | null,
+  /**
+   * Implementation statements for the method.
+   */
   statements?: (string | WriterFunction | StatementStructures)[] | string | WriterFunction | null;
+  /**
+   * Additional decorators for the method.
+   */
   decorators?: OptionalKind<DecoratorStructure>[];
 }
 
 export interface CoerceOperationOptions extends OperationOptions {
+  /**
+   * Custom transform function.
+   */
   tsMorphTransform?: (
     project: Project,
     sourceFile: SourceFile,
@@ -100,62 +148,113 @@ export interface CoerceOperationOptions extends OperationOptions {
     dto: CoerceDtoClassOutput | null,
     options: Readonly<CoerceOperationOptions & any>
   ) => Partial<OperationOptions> | void,
+  /**
+   * Overwrite existing method.
+   */
   overwrite?: OverwriteOptions;
 
+  /**
+   * Overwrite the controller path for this operation.
+   */
   controllerPath?: string,
   /**
    * true - the control path is overwritten with
    */
   overwriteControllerPath?: boolean;
+  /**
+   * Context for the operation.
+   */
   context?: string | null;
+  /**
+   * Hook to coerce upstream implementation.
+   */
   coerceUpstreamOperationImplementation?: (
     classDeclaration: ClassDeclaration,
     moduleSourceFile: SourceFile,
     dto: CoerceDtoClassOutput | null,
     options: Readonly<CoerceOperationOptions & any>,
   ) => TransformOperation;
+  /**
+   * Hook to build upstream parameters.
+   */
   buildUpstreamGetParametersImplementation?: (
     classDeclaration: ClassDeclaration,
     moduleSourceFile: SourceFile,
     dto: CoerceDtoClassOutput | null,
     options: Readonly<CoerceOperationOptions & any>,
   ) => TransformOperation<string | WriterFunction>;
+  /**
+   * Hook to build DTO return mapping.
+   */
   buildDtoReturnImplementation?: (
     classDeclaration: ClassDeclaration,
     moduleSourceFile: SourceFile,
     dto: CoerceDtoClassOutput | null,
     options: Readonly<CoerceOperationOptions & any>,
   ) => TransformOperation;
+  /**
+   * Hook to build data mapper.
+   */
   builtDtoDataMapperImplementation?: (
     classDeclaration: ClassDeclaration,
     moduleSourceFile: SourceFile,
     dto: CoerceDtoClassOutput | null,
     options: Readonly<CoerceOperationOptions & any>,
   ) => TransformOperation<string | WriterFunction>;
+  /**
+   * Hook to build upstream data call.
+   */
   buildUpstreamGetDataImplementation?: (
     classDeclaration: ClassDeclaration,
     moduleSourceFile: SourceFile,
     dto: CoerceDtoClassOutput | null,
     options: Readonly<CoerceOperationOptions & any>,
   ) => TransformOperation<void>;
+  /**
+   * Hook to build general data call.
+   */
   buildGetDataImplementation?: (
     classDeclaration: ClassDeclaration,
     moduleSourceFile: SourceFile,
     dto: CoerceDtoClassOutput | null,
     options: Readonly<CoerceOperationOptions & any>,
   ) => TransformOperation<void>;
+  /**
+   * Hook to coerce the operation DTO.
+   */
   coerceOperationDtoClass?: (
     classDeclaration: ClassDeclaration,
     controllerName: string,
     moduleSourceFile: SourceFile,
     options: Readonly<CoerceOperationOptions & any>,
   ) => CoerceDtoClassOutput | null;
+  /**
+   * Hook to name the operation DTO.
+   */
   buildOperationDtoClassName?: (controllerName: string, options: Readonly<Pick<CoerceOperationOptions, 'dtoClassNameSuffix' | 'dtoClassName'>>) => string;
+  /**
+   * Upstream configuration (e.g. Open API).
+   */
   upstream?: NormalizedUpstreamOptions | null;
+  /**
+   * Properties for the DTO.
+   */
   propertyList?: DtoClassProperty[],
+  /**
+   * If true, returns an array.
+   */
   isArray?: boolean,
+  /**
+   * If true, returns void.
+   */
   isReturnVoid?: boolean,
+  /**
+   * Suffix for the DTO class name.
+   */
   dtoClassNameSuffix?: string;
+  /**
+   * Specific name for the DTO class.
+   */
   dtoClassName?: string;
 }
 
@@ -528,6 +627,15 @@ export function CoerceOperationParamList(paramList: OperationParameter[], classD
   }
 }
 
+/**
+ * Coerces a NestJS operation (controller method).
+ * Creates or updates a method in the controller class.
+ *
+ * @param sourceFile - The source file containing the controller.
+ * @param options - Options for the operation (name, method, path, parameters, etc.).
+ * @param moduleSourceFile - The source file containing the module (optional, will be found if not provided).
+ * @returns The method declaration.
+ */
 export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOperationOptions, moduleSourceFile?: SourceFile) {
 
   const project = sourceFile.getProject();

@@ -9,6 +9,15 @@ import {
 } from 'ts-morph';
 import { ProviderObject } from './provider-object';
 
+/**
+ * Adds a provider to an Angular or NestJS provider array.
+ *
+ * @param providerObject - The provider to add. Can be a string (class name) or a ProviderObject.
+ * @param providerArray - The array literal expression to add the provider to.
+ * @param overwrite - If true, overwrites the existing provider. If an array of strings, it specifies which properties to overwrite.
+ * @param compare - A function to compare an existing object literal expression with the provider object to determine if it exists.
+ * @returns The added or updated expression in the array.
+ */
 export function AddProviderToArray(
   providerObject: ProviderObject | string,
   providerArray: ArrayLiteralExpression,

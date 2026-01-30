@@ -4,11 +4,23 @@ import {
 } from '@rxap/utilities';
 
 
+/**
+ * Converts an operation ID to a remote method class name.
+ *
+ * @param operationId - The operation ID.
+ * @returns The class name.
+ */
 export function OperationIdToRemoteMethodClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'RemoteMethod';
 }
 
+/**
+ * Converts an operation ID to a command class name.
+ *
+ * @param operationId - The operation ID.
+ * @returns The class name.
+ */
 export function OperationIdToCommandClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'Command';

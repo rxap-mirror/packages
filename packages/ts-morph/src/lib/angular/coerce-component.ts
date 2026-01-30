@@ -17,21 +17,49 @@ import { CoerceDecorator } from '../coerce-decorator';
 import { CoerceImports } from '../coerce-imports';
 
 export interface CoerceComponentOptions {
+  /**
+   * The selector for the component.
+   * If false, no selector is added.
+   */
   selector?: string | false;
+  /**
+   * Prefix to use for the selector (defaults to project prefix).
+   */
   prefix?: string;
+  /**
+   * Inline template string.
+   */
   template?: string;
+  /**
+   * Inline styles string or array of strings.
+   */
   styles?: string;
   /**
-   * true - use the component name to generate the templateUrl
+   * Path to external template file.
+   * If true, generates default path based on component name.
    */
   templateUrl?: string | true;
   /**
-   * true - use the component name to generate a styleUrl
+   * Path(s) to external style files.
+   * If true, generates default path based on component name.
    */
   styleUrls?: string | string[] | true;
+  /**
+   * Change detection strategy (OnPush or Default).
+   */
   changeDetection?: 'OnPush' | 'Default';
 }
 
+/**
+ * Coerces an Angular component class declaration.
+ * Creates the component class and decorates it with @Component.
+ *
+ * @param sourceFile - The source file to add the component to.
+ * @param name - The name of the component (kebab-case).
+ * @param options - Options for the component (selector, template, styles, etc.).
+ * @param classStructure - Optional structure for the class.
+ * @returns An object containing the class declaration and the component decorator object.
+ */
 export function CoerceComponent(
   sourceFile: SourceFile,
   name: string,

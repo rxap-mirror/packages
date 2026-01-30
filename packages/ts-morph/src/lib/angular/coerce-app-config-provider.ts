@@ -11,6 +11,9 @@ import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
 import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
 import { ProviderObject } from '../provider-object';
 
+/**
+ * Options for coercing the application configuration provider.
+ */
 export interface CoerceAppConfigProviderOptions {
   providers?: Array<ProviderObject | string>;
   overwrite?: boolean;
@@ -18,6 +21,13 @@ export interface CoerceAppConfigProviderOptions {
   importProvidersFrom?: string[];
 }
 
+/**
+ * Coerces the `appConfig` variable in an Angular application configuration file.
+ * Adds providers, HTTP interceptors, and `importProvidersFrom` calls.
+ *
+ * @param sourceFile - The source file containing the app config.
+ * @param options - Options for coercing the provider.
+ */
 export function CoerceAppConfigProvider(sourceFile: SourceFile, options: CoerceAppConfigProviderOptions) {
   const { providers = [], httpInterceptors = [], importProvidersFrom = [], overwrite = false } = options;
   const appConfigVariableDeclaration = CoerceVariableDeclaration(sourceFile, 'appConfig', {

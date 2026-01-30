@@ -14,6 +14,13 @@ import {
 } from '../coerce-dependency-injection';
 import { CoerceImports } from '../coerce-imports';
 
+/**
+ * Coerces a health check endpoint in the HealthController.
+ * Adds a new route for checking a specific health indicator.
+ *
+ * @param sourceFile - The source file containing the HealthController.
+ * @param name - The name of the endpoint/health indicator.
+ */
 export function CoerceHealthEndpoint(
   sourceFile: SourceFile,
   name: string,

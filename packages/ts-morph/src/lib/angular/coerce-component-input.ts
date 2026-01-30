@@ -22,9 +22,21 @@ import { WriteType } from '../write-type';
 import { GetComponentClass } from './get-component-class';
 
 export interface ComponentInputDefinition {
+  /**
+   * Alias for the input binding (e.g. @Input('alias')).
+   */
   alias?: string;
+  /**
+   * Whether the input is required.
+   */
   isRequired?: boolean;
+  /**
+   * Initial value for the input property.
+   */
   initializer?: string | WriterFunction;
+  /**
+   * If true, creates a setter accessor for the input instead of a simple property.
+   */
   asSetAccessor?: boolean;
 }
 
@@ -71,6 +83,16 @@ export function CoerceComponentInput(
   type: string | TypeImport | WriterFunction,
   options?: ComponentInputDefinition
 ): PropertyNamedNode & DecoratableNode;
+/**
+ * Coerces an Input property in an Angular component.
+ * Can create a property or a setter/getter input.
+ *
+ * @param sourceFileOrClassDeclaration - The source file or class declaration of the component.
+ * @param name - The name of the input.
+ * @param type - The type of the input.
+ * @param options - Options for the input (alias, required, asSetAccessor).
+ * @returns The created or existing property/setter declaration.
+ */
 export function CoerceComponentInput(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration,
   name: string,

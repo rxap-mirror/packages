@@ -32,19 +32,49 @@ import { CoerceDecorator } from '../coerce-decorator';
 import { CoerceImports } from '../coerce-imports';
 
 export interface CoerceDtoClassOutput {
+  /**
+   * The name of the generated DTO class.
+   */
   className: string;
+  /**
+   * The file path of the DTO.
+   */
   filePath: string;
+  /**
+   * The source file object.
+   */
   sourceFile: SourceFile;
+  /**
+   * The class declaration object.
+   */
   classDeclaration: ClassDeclaration;
 }
 
 export interface CoerceDtoClassOptions {
+  /**
+   * The ts-morph project.
+   */
   project: Project;
+  /**
+   * The name of the DTO (base name).
+   */
   name: string;
+  /**
+   * List of properties to add to the DTO.
+   */
   propertyList?: DtoClassProperty[];
+  /**
+   * Custom transform function.
+   */
   tsMorphTransform?: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
 }
 
+/**
+ * Coerces a DTO class file and declaration.
+ *
+ * @param options - Options for generating the DTO class (name, properties, project).
+ * @returns An object containing the class name, file path, source file, and class declaration.
+ */
 export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOutput {
   const {
     project,

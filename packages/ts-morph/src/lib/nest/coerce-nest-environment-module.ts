@@ -4,6 +4,12 @@ import {
 } from '@rxap/ts-morph';
 import { SourceFile } from 'ts-morph';
 
+/**
+ * Coerces the EnvironmentModule import in a NestJS module.
+ * Registers `EnvironmentModule` with the environment object.
+ *
+ * @param sourceFile - The source file containing the module.
+ */
 export function CoerceNestEnvironmentModule(sourceFile: SourceFile) {
   CoerceNestModuleImport(sourceFile, {
     moduleName: 'EnvironmentModule',

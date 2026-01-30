@@ -8,6 +8,15 @@ import {
   TypeElementMemberedNode,
 } from 'ts-morph';
 
+/**
+ * Coerces a property declaration in a class or interface.
+ * If the property exists, it returns it. Otherwise, it adds it.
+ *
+ * @param typeElementMemberedNode - The type element membered node (e.g. Interface).
+ * @param name - The name of the property.
+ * @param structure - Optional structure to apply to the property.
+ * @returns The existing or created property signature.
+ */
 export function CoercePropertyDeclaration(
   typeElementMemberedNode: TypeElementMemberedNode,
   name: string,

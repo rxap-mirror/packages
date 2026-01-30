@@ -14,6 +14,15 @@ import {
  * @param {Partial<SetAccessorDeclarationStructure>} [structure={}] - Optional structure to set on the set accessor.
  * @returns {SetAccessorDeclaration} - The coerced or added set accessor declaration.
  */
+/**
+ * Coerces a set accessor declaration in a class-like structure.
+ * If the accessor exists, it returns it. Otherwise, it creates it.
+ *
+ * @param classLikeDeclaration - The class-like declaration to add the accessor to.
+ * @param name - The name of the accessor.
+ * @param structure - Optional structure to apply to the accessor.
+ * @returns The existing or created set accessor declaration.
+ */
 export function CoerceSetAccessorDeclaration (
   classLikeDeclaration: ClassLikeDeclarationBase,
   name: string,
@@ -34,6 +43,15 @@ export function CoerceSetAccessorDeclaration (
  * @param {string} name - The name of the get accessor.
  * @param {Partial<GetAccessorDeclarationStructure>} structure - The structure to set on the get accessor declaration. (Optional)
  * @returns {GetAccessorDeclaration} - The coerced or created get accessor declaration.
+ */
+/**
+ * Coerces a get accessor declaration in a class-like structure.
+ * If the accessor exists, it returns it. Otherwise, it creates it.
+ *
+ * @param classLikeDeclaration - The class-like declaration to add the accessor to.
+ * @param name - The name of the accessor.
+ * @param structure - Optional structure to apply to the accessor.
+ * @returns The existing or created get accessor declaration.
  */
 export function CoerceGetAccessorDeclaration (
   classLikeDeclaration: ClassLikeDeclarationBase,

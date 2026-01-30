@@ -12,10 +12,14 @@ export function GetClassDecoratorArguments(
   classDeclaration: ClassDeclaration,
   name: string,
 ): Node[];
+/**
+ * Gets the arguments of a class decorator.
+ *
+ * @param classDeclaration - The class declaration to get the decorator from.
+ * @param findFunction - A function to find the decorator or the name of the decorator.
+ * @returns An array of arguments (Nodes).
+ */
 export function GetClassDecoratorArguments(
-  classDeclaration: ClassDeclaration,
-  nameOrFindFunction: string | ((declaration: Decorator) => boolean),
-): Node[] {
 
   let decorator: Decorator | undefined;
 

@@ -7,6 +7,16 @@ import {
   VariableStatementStructure,
 } from 'ts-morph';
 
+/**
+ * Coerces a variable declaration in a source file.
+ * If the variable statement exists, it returns the declaration. Otherwise, it creates it.
+ *
+ * @param sourceFile - The source file to look in or add to.
+ * @param name - The name of the variable.
+ * @param defaultDeclaration - Default structure for the variable declaration.
+ * @param variableStatementStructure - Optional structure for the variable statement (e.g. export, const).
+ * @returns The existing or created variable declaration.
+ */
 export function CoerceVariableDeclaration(
   sourceFile: SourceFile,
   name: string,

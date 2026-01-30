@@ -13,6 +13,12 @@ import { CoerceClassMethod } from '../coerce-class-method';
 import { CoerceImports } from '../coerce-imports';
 
 
+/**
+ * Adds a health check for a specific service/indicator to the global health controller.
+ *
+ * @param sourceFile - The source file containing the HealthController.
+ * @param name - The name of the health indicator (e.g. 'db', 'memory').
+ */
 export function AddToGlobalHealthEndpoint(
   sourceFile: SourceFile,
   name: string,

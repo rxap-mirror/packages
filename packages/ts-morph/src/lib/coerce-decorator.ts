@@ -9,6 +9,16 @@ import {
   FindFunctionFactory,
 } from './find-function';
 
+/**
+ * Coerces a decorator on a node.
+ * If the decorator exists, it returns it. Otherwise, it adds it.
+ *
+ * @param decoratableNode - The node to add the decorator to.
+ * @param name - The name of the decorator.
+ * @param structure - Optional structure to apply to the decorator.
+ * @param compareTo - A function factory to determine if the decorator already exists. Defaults to comparing by name.
+ * @returns The existing or added decorator.
+ */
 export function CoerceDecorator(
   decoratableNode: DecoratableNode,
   name: string,

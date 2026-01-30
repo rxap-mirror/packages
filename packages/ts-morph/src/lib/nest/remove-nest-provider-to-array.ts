@@ -6,6 +6,13 @@ import {
 } from 'ts-morph';
 import { NestProviderObject } from './nest-provider-object';
 
+/**
+ * Removes a provider from a NestJS provider array.
+ *
+ * @param providerObject - The provider to remove.
+ * @param providerArray - The array literal expression.
+ * @param overwrite - (Unused param, kept for signature compatibility).
+ */
 export function RemoveNestProviderToArray(
   providerObject: NestProviderObject | string,
   providerArray: ArrayLiteralExpression,

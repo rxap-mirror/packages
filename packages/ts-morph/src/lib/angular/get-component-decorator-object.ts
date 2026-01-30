@@ -7,6 +7,12 @@ import {
 } from 'ts-morph';
 import { GetComponentClass } from './get-component-class';
 
+/**
+ * Gets the object literal expression passed to the @Component decorator.
+ *
+ * @param sourceFileOrClassDeclaration - The source file or class declaration of the component.
+ * @returns The component options object literal.
+ */
 export function GetComponentDecoratorObject(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration
 ): ObjectLiteralExpression {

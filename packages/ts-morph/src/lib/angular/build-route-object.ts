@@ -3,16 +3,47 @@ import {
   Writers,
 } from 'ts-morph';
 
+/**
+ * Interface representing an Angular route definition.
+ */
 export interface AngularRoute {
+  /**
+   * The path for the route.
+   */
   path: string;
+  /**
+   * The component to use for the route.
+   */
   component?: string;
+  /**
+   * Lazy loaded children routes.
+   * Can be a string (import path) or object with import and then/property.
+   */
   loadChildren?: string | { import: string, then: string };
+  /**
+   * Lazy loaded component.
+   */
   loadComponent?: string | { import: string, then: string };
+  /**
+   * The outlet name for the route.
+   */
   outlet?: string | null;
+  /**
+   * Static data for the route.
+   */
   data?: Record<string, any> | null;
+  /**
+   * Configuration for loading a remote module (Module Federation).
+   */
   loadRemoteModule?: string | { name: string, entry?: string };
 }
 
+/**
+ * Builds an object literal expression for an Angular route.
+ *
+ * @param route - The route definition.
+ * @returns A WriterFunction that writes the object literal.
+ */
 export function BuildRouteObject(route: AngularRoute) {
   const obj: Record<string, string | WriterFunction> = {
     path: w => w.quote(route.path),

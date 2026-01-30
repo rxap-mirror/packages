@@ -6,6 +6,11 @@ import {
 import { CoerceDefaultExport } from './coerce-default-export';
 import 'colors';
 
+/**
+ * Ensures that the class declaration in the source file is the default export.
+ *
+ * @param sourceFileOrClassDeclaration - The source file or class declaration.
+ */
 export function CoerceDefaultClassExport(sourceFileOrClassDeclaration: SourceFile | ClassDeclaration) {
 
   const sourceFile = sourceFileOrClassDeclaration.isKind(SyntaxKind.SourceFile) ? sourceFileOrClassDeclaration : sourceFileOrClassDeclaration.getSourceFile();

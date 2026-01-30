@@ -10,12 +10,32 @@ import {
 } from 'ts-morph';
 
 export interface CoerceTokenExportOptions {
+  /**
+   * The name of the token constant.
+   */
   name: string;
+  /**
+   * Description for the token (used in constructor).
+   */
   description?: string;
+  /**
+   * The type of value injected by the token.
+   */
   type?: TypeImport;
+  /**
+   * If true, overwrites the existing token declaration.
+   */
   overwrite?: boolean;
 }
 
+/**
+ * Coerces an InjectionToken export in a source file.
+ * Creates a constant exporting a new InjectionToken.
+ *
+ * @param sourceFile - The source file.
+ * @param options - Options for the token (name, description, type).
+ * @returns The variable declaration for the token.
+ */
 export function CoerceTokenExport(sourceFile: SourceFile, options: CoerceTokenExportOptions) {
 
   const {

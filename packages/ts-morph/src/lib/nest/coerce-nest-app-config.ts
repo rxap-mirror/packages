@@ -7,21 +7,46 @@ import { CoerceImports } from '../coerce-imports';
 import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
 
 export interface CoerceNestAppConfigOptionsItem {
+  /**
+   * The name of the config key (env variable).
+   */
   name: string;
+  /**
+   * The Joi type (string, number, boolean).
+   */
   type?: string;
+  /**
+   * Default value.
+   */
   defaultValue?: string | WriterFunction;
+  /**
+   * Custom builder function for the validation schema expression.
+   */
   builder?: (item: Omit<CoerceNestAppConfigOptionsItem, 'builder'>) => string | WriterFunction;
 }
 
 export interface CoerceNestAppConfigOptions {
+  /**
+   * List of config items to add.
+   */
   itemList?: Array<CoerceNestAppConfigOptionsItem>;
   /**
    * A list of function that will be called to expand the validation schema.
    */
   expandList?: Array<string | WriterFunction>;
+  /**
+   * If true, overwrites existing validation expressions.
+   */
   overwrite?: boolean;
 }
 
+/**
+ * Coerces the NestJS application configuration validation schema.
+ * Updates the `VALIDATION_SCHEMA` (Joi) with new environment variables.
+ *
+ * @param sourceFile - The source file containing the validation schema.
+ * @param options - Options for the config items (name, type, default).
+ */
 export function CoerceNestAppConfig(sourceFile: SourceFile, options: CoerceNestAppConfigOptions): void {
 
   const { itemList = [], expandList = [], overwrite } = options;

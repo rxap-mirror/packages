@@ -6,6 +6,13 @@ import {
   SyntaxKind,
 } from 'ts-morph';
 
+/**
+ * Gets the `children` array literal expression from a route object.
+ * If the `children` property does not exist, it adds it.
+ *
+ * @param e - The route object literal expression.
+ * @returns The children array literal expression.
+ */
 export function GetRouteChildrenArray(e: ObjectLiteralExpression): ArrayLiteralExpression {
   const childrenProperty = e.getProperty('children') ?? e.addProperty({
     name: 'children',
@@ -18,6 +25,13 @@ export function GetRouteChildrenArray(e: ObjectLiteralExpression): ArrayLiteralE
   throw new Error('Children property is not a PropertyAssignment');
 }
 
+/**
+ * Finds a route object in an array of routes by traversing a path.
+ *
+ * @param ale - The routes array literal expression.
+ * @param path - The path segments to traverse.
+ * @returns The found route object or null.
+ */
 export function FindParentRouteByPath(ale: ArrayLiteralExpression, path: string[]): ObjectLiteralExpression | null {
   const fragment = path.pop();
   for (const e of ale.getElements()) {
@@ -47,6 +61,13 @@ export function FindParentRouteByPath(ale: ArrayLiteralExpression, path: string[
   return null;
 }
 
+/**
+ * Finds a route object in an array of routes by its component property.
+ *
+ * @param ale - The routes array literal expression.
+ * @param component - The name of the component to search for.
+ * @returns The found route object or null.
+ */
 export function FindParentRouteByComponent(ale: ArrayLiteralExpression, component: string): ObjectLiteralExpression | null {
   for (const e of ale.getElements()) {
     if (e.isKind(SyntaxKind.ObjectLiteralExpression)) {
@@ -62,11 +83,25 @@ export function FindParentRouteByComponent(ale: ArrayLiteralExpression, componen
   return null;
 }
 
+/**
+ * Finds the `children` array of a route found by path.
+ *
+ * @param ale - The routes array literal expression.
+ * @param path - The path segments.
+ * @returns The children array literal expression or null.
+ */
 export function FindParentRouteChildrenArrayByPath(ale: ArrayLiteralExpression, path: string[]) {
   const parent = FindParentRouteByPath(ale, path);
   return parent ? GetRouteChildrenArray(parent) : null;
 }
 
+/**
+ * Finds the `children` array of a route found by component.
+ *
+ * @param ale - The routes array literal expression.
+ * @param component - The component name.
+ * @returns The children array literal expression or null.
+ */
 export function FindParentRouteChildrenArrayByComponent(ale: ArrayLiteralExpression, component: string) {
   const parent = FindParentRouteByComponent(ale, component);
   return parent ? GetRouteChildrenArray(parent) : null;

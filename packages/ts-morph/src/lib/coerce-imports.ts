@@ -26,6 +26,14 @@ import {
  *
  * Note: This function does not modify the original `sourceFile` or `structures` parameters. It only processes and validates the import declarations.
  */
+/**
+ * Coerces import declarations in a source file.
+ * Handles named imports, namespace imports, and default imports.
+ * Adds new imports or updates existing ones.
+ *
+ * @param sourceFile - The source file to update imports in.
+ * @param structures - One or more import declaration structures.
+ */
 export function CoerceImports(
   sourceFile: SourceFile,
   structures: Array<OptionalKind<ImportDeclarationStructure>> | OptionalKind<ImportDeclarationStructure>,

@@ -10,12 +10,30 @@ import { GetNestModuleMetadata } from './get-nest-module-metadata';
 import { NestProviderObject } from './nest-provider-object';
 
 export interface CoerceNestModuleProviderOptions {
+  /**
+   * The provider to add.
+   */
   providerObject: NestProviderObject | string,
+  /**
+   * Module specifier for the provider import.
+   */
   moduleSpecifier?: string,
+  /**
+   * Additional import structures.
+   */
   structures?: Array<OptionalKind<ImportDeclarationStructure>>,
+  /**
+   * If true, overwrites existing provider.
+   */
   overwrite?: boolean,
 }
 
+/**
+ * Coerces a provider in a NestJS module.
+ *
+ * @param sourceFile - The source file containing the module.
+ * @param options - Options for the provider (provider object, module specifier, etc.).
+ */
 export function CoerceNestModuleProvider(
   sourceFile: SourceFile,
   options: CoerceNestModuleProviderOptions,

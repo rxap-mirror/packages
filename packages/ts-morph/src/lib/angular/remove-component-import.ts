@@ -11,6 +11,13 @@ import {
   SyntaxKind,
 } from 'ts-morph';
 
+/**
+ * Removes a component import from an Angular component's `imports` array.
+ * Also removes the import declaration from the file.
+ *
+ * @param sourceFileOrClassDeclaration - The source file or class declaration.
+ * @param componentImport - The name or TypeImport of the component to remove.
+ */
 export function RemoveComponentImport(
   sourceFileOrClassDeclaration: SourceFile | ClassDeclaration,
   componentImport: string | TypeImport,

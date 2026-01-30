@@ -4,6 +4,14 @@ import {
   WriterFunction,
 } from 'ts-morph';
 
+/**
+ * Coerces statements in a statemented node (like a function or method body).
+ * Can optionally overwrite existing statements.
+ *
+ * @param node - The node to add statements to.
+ * @param statements - The statements to add.
+ * @param overwrite - If true, removes existing statements before adding new ones.
+ */
 export function CoerceStatements(
   node: StatementedNode,
   statements: (string | WriterFunction | StatementStructures)[] | string | WriterFunction,

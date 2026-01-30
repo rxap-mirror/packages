@@ -6,6 +6,12 @@ import {
 import { GetClassDecoratorArguments } from '../get-class-decorator-arguments';
 import { IsNestModuleClass } from './is-nest-module-class';
 
+/**
+ * Gets the metadata object of a NestJS module.
+ *
+ * @param sourceFile - The source file containing the module.
+ * @returns The object literal expression of the module metadata.
+ */
 export function GetNestModuleMetadata(sourceFile: SourceFile): ObjectLiteralExpression {
 
   const classDeclaration = sourceFile.getClass(IsNestModuleClass);

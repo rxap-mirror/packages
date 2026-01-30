@@ -9,12 +9,31 @@ import { CoerceNestProviderToArray } from './coerce-nest-provider-to-array';
 import { GetNestModuleMetadata } from './get-nest-module-metadata';
 
 export interface CoerceNestModuleControllerOptions {
+  /**
+   * The name of the controller class.
+   */
   name: string,
+  /**
+   * Additional import structures.
+   */
   structures?: Array<OptionalKind<ImportDeclarationStructure>>;
+  /**
+   * If true, overwrites existing controller entry.
+   */
   overwrite?: boolean;
+  /**
+   * Module specifier for the controller import.
+   */
   moduleSpecifier?: string;
 }
 
+/**
+ * Coerces a controller in a NestJS module `controllers` array.
+ * Adds the controller to the module metadata.
+ *
+ * @param sourceFile - The source file containing the module.
+ * @param options - Options for the controller (name, module specifier).
+ */
 export function CoerceNestModuleController(
   sourceFile: SourceFile,
   options: CoerceNestModuleControllerOptions,

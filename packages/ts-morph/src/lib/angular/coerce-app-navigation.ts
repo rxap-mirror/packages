@@ -14,17 +14,42 @@ import { CoerceImports } from '../coerce-imports';
 import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
 
 export interface AppNavigationItem {
+  /**
+   * The router link path segments.
+   */
   routerLink: string[],
+  /**
+   * The display label for the navigation item.
+   */
   label: string,
+  /**
+   * Child navigation items.
+   */
   children?: AppNavigationItem[],
+  /**
+   * Icon configuration for the item.
+   */
   icon?: IconConfig,
 }
 
 export interface CoerceAppNavigationOptions {
+  /**
+   * List of navigation items to add.
+   */
   itemList?: AppNavigationItem[];
+  /**
+   * If true, overwrites existing items with same label.
+   */
   overwrite?: boolean;
 }
 
+/**
+ * Coerces the application navigation configuration.
+ * Creates or updates the `APP_NAVIGATION` constant.
+ *
+ * @param sourceFile - The source file containing the navigation config.
+ * @param options - Options for the navigation items.
+ */
 export function CoerceAppNavigation(sourceFile: SourceFile, options: CoerceAppNavigationOptions = {}) {
 
   const variableDeclaration = CoerceVariableDeclaration(sourceFile, 'APP_NAVIGATION', {

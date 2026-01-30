@@ -12,11 +12,28 @@ import {
 } from './add-route';
 
 export interface CoerceRoutesOptions {
+  /**
+   * The name of the routes variable (default: ROUTES).
+   */
   name?: string;
+  /**
+   * Initial value for the routes array if it needs to be created.
+   */
   initializer?: string | WriterFunction;
+  /**
+   * List of routes to add to the array.
+   */
   itemList?: Array<Omit<AddRouteOptions, 'name'>>
 }
 
+/**
+ * Coerces the routes definition in a source file.
+ * Creates or updates the ROUTES constant.
+ *
+ * @param sourceFile - The source file.
+ * @param options - Options for the routes (name, initializer, itemList).
+ * @returns The variable declaration for the routes.
+ */
 export function CoerceRoutes(sourceFile: SourceFile, options: CoerceRoutesOptions = {}) {
 
   const {

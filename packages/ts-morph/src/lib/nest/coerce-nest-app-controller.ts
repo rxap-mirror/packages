@@ -11,6 +11,15 @@ import { CoerceNestOperation } from './coerce-nest-operation';
 export interface CoerceNestAppControllerOptions extends Omit<CoerceNestControllerOptions, 'name'> {
 }
 
+/**
+ * Coerces the NestJS AppController.
+ * Adds `Public` and `ApiExcludeController` decorators.
+ * Removes default `getData` method and `AppService` injection.
+ * Adds `name` and `environment` endpoints.
+ *
+ * @param sourceFile - The source file containing the AppController.
+ * @param options - Options for the controller.
+ */
 export function CoerceNestAppController(sourceFile: SourceFile, options: CoerceNestAppControllerOptions = {}) {
 
   const classDeclaration = CoerceNestController(sourceFile, {

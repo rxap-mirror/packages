@@ -7,6 +7,15 @@ import {
   FindFunction,
 } from './find-function';
 
+/**
+ * Gets a class declaration from a source file.
+ * If nameOrFindFunction is provided, it searches for a matching class.
+ * If not provided, it returns the single class in the file (throws if 0 or >1).
+ *
+ * @param sourceFile - The source file to search.
+ * @param nameOrFindFunction - The name of the class or a find function.
+ * @returns The class declaration.
+ */
 export function GetClass(sourceFile: SourceFile, nameOrFindFunction?: string | FindFunction<ClassDeclaration>) {
 
   if (nameOrFindFunction) {

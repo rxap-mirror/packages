@@ -13,6 +13,14 @@ export interface CoerceRouteGuardOptions {
   type?: 'canActivate' | 'canActivateChild';
 }
 
+/**
+ * Adds a route guard to a specific route in the routes array.
+ *
+ * @param sourceFile - The source file containing the routes.
+ * @param path - The path segments to find the target route.
+ * @param guard - The name of the guard class to add.
+ * @param options - Options (routeArrayName, type of guard like 'canActivate').
+ */
 export function CoerceRouteGuard(sourceFile: SourceFile, path: string[], guard: string, options: CoerceRouteGuardOptions = {}): void {
   const { routeArrayName = 'ROUTES', type = 'canActivate' } = options;
   const routes = sourceFile.getVariableDeclaration(routeArrayName);

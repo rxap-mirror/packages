@@ -15,12 +15,31 @@ import { CoercePropertyAssignment } from '../coerce-property-assignment';
 import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
 
 export interface CoerceStoriesOptions {
+  /**
+   * The name of the component the stories are for.
+   */
   componentName: string;
+  /**
+   * The feature name (used in story title).
+   */
   feature?: string | null;
+  /**
+   * Function to configure module metadata (imports, providers).
+   */
   moduleMetadata?: (moduleDecoratorObject: ObjectLiteralExpression) => void;
+  /**
+   * Parent title for the story hierarchy.
+   */
   parentTitle?: string;
 }
 
+/**
+ * Coerces a Storybook stories file for an Angular component.
+ * Creates the default export (Meta) and a Primary story.
+ *
+ * @param sourceFile - The source file to create the stories in.
+ * @param options - Options for the stories (component name, feature, metadata).
+ */
 export function CoerceStories(sourceFile: SourceFile, options: CoerceStoriesOptions) {
 
   const { feature, componentName, moduleMetadata, parentTitle } = options;

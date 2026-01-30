@@ -14,14 +14,40 @@ export enum Module {
 }
 
 export interface InjectionDefinition {
+  /**
+   * The token or class to inject.
+   */
   injectionToken: string;
+  /**
+   * The name of the property or parameter to assign the injection to.
+   */
   parameterName: string;
+  /**
+   * If true, marks the injection as optional.
+   */
   optional?: boolean;
+  /**
+   * The type of the property/parameter. Defaults to injectionToken.
+   */
   type?: string;
+  /**
+   * Visibility scope of the property (public, private, protected).
+   */
   scope?: Scope;
+  /**
+   * The module framework (Angular or NestJS).
+   */
   module: Module;
 }
 
+/**
+ * Coerces a dependency injection in a class constructor or as a property.
+ * Handles both Angular and NestJS injection styles.
+ *
+ * @param sourceFile - The source file containing the class.
+ * @param definition - The definition of the dependency injection.
+ * @param structures - Optional import declaration structures to add.
+ */
 export function CoerceDependencyInjection(
   sourceFile: SourceFile,
   definition: InjectionDefinition,

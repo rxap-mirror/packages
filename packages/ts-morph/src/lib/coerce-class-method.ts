@@ -4,6 +4,15 @@ import {
   OptionalKind,
 } from 'ts-morph';
 
+/**
+ * Coerces a method declaration in a class.
+ * If the method exists, it returns it. Otherwise, it creates it.
+ *
+ * @param classDeclaration - The class declaration to add the method to.
+ * @param name - The name of the method.
+ * @param structure - Optional structure to apply to the method.
+ * @returns The existing or created method declaration.
+ */
 export function CoerceClassMethod(
   classDeclaration: ClassDeclaration,
   name: string,

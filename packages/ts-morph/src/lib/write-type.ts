@@ -14,7 +14,13 @@ import {
 export type WriteType = string | TypeImport | WriterFunction;
 
 export interface WriteTypeOptions {
+  /**
+   * If true, writes the type as an array (Array<Type>).
+   */
   isArray?: boolean | null;
+  /**
+   * The type to write.
+   */
   type: WriteType;
 }
 
@@ -45,6 +51,15 @@ export function WriteStringType(type: string, w: CodeBlockWriter) {
 
 export function WriteType(type: WriteType, sourceFile: SourceFile): WriterFunction;
 export function WriteType(property: WriteTypeOptions, sourceFile: SourceFile): WriterFunction;
+/**
+ * Writes a type to the code writer.
+ * Handles string types, TypeImports, and WriterFunctions.
+ * Automatically adds imports if a source file is provided.
+ *
+ * @param propertyOrType - The type definition (WriteTypeOptions or WriteType).
+ * @param sourceFile - The source file (used for adding imports).
+ * @returns A WriterFunction that writes the type.
+ */
 export function WriteType(propertyOrType: WriteTypeOptions | WriteType, sourceFile: SourceFile): WriterFunction {
   let isArray = false;
   let type: WriteType;

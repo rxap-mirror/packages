@@ -3,6 +3,9 @@ import {
   OptionalKind,
 } from 'ts-morph';
 
+/**
+ * Standard type names used in the library.
+ */
 export enum TypeNames {
   String = 'string',
   Number = 'number',
@@ -15,23 +18,63 @@ export enum TypeNames {
 
 export type TypeName = string | TypeNames;
 
+/**
+ * Interface representing a type import definition.
+ */
 export interface TypeImport {
+  /**
+   * The name of the type to import.
+   */
   name: TypeName;
+  /**
+   * The module specifier (path or package name) to import from.
+   * Required for the import to be generated.
+   */
   moduleSpecifier?: string | null;
+  /**
+   * If specified, imports this specific named export.
+   */
   namedImport?: string | null;
+  /**
+   * If specified, imports the module as a namespace (e.g. `import * as ns from 'module'`).
+   */
   namespaceImport?: string | null;
+  /**
+   * If true, uses `import type` syntax.
+   */
   isTypeOnly?: boolean | null;
+  /**
+   * If specified, imports the default export with this name.
+   */
   defaultImport?: string | null;
 }
 
+/**
+ * Checks if a value is a TypeImport object.
+ *
+ * @param value - The value to check.
+ * @returns True if it is a TypeImport.
+ */
 export function IsTypeImport(value: any): value is TypeImport {
   return typeof value === 'object' && typeof value.name === 'string';
 }
 
+/**
+ * Checks if a type import requires an import declaration (has a module specifier).
+ *
+ * @param typeImport - The type import to check.
+ * @returns True if it requires an import.
+ */
 export function RequiresTypeImport(typeImport: TypeImport): boolean {
   return !!typeImport.moduleSpecifier;
 }
 
+/**
+ * Converts a TypeImport to an ImportDeclarationStructure for ts-morph.
+ *
+ * @param typeImport - The type import to convert.
+ * @returns The import declaration structure.
+ */
 export function TypeImportToImportStructure(typeImport: TypeImport): OptionalKind<ImportDeclarationStructure> {
   if (!typeImport.moduleSpecifier) {
     throw new Error('The moduleSpecifier is required');
@@ -68,6 +111,13 @@ export interface NormalizedTypeImport {
   defaultImport: string | null;
 }
 
+/**
+ * Normalizes a type import definition.
+ *
+ * @param typeImport - The type import to normalize (can be string or TypeImport).
+ * @param defaultType - Default type to use if not specified.
+ * @returns The normalized type import.
+ */
 export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string, defaultType: TypeImport | string = 'unknown'): NormalizedTypeImport {
   let name: string;
   let moduleSpecifier: string | null = null;
@@ -111,6 +161,13 @@ export function NormalizeTypeImport(typeImport?: Readonly<TypeImport> | string, 
   };
 }
 
+/**
+ * Normalizes a list of type imports.
+ *
+ * @param typeImportList - The list of type imports to normalize.
+ * @param defaultType - Default type.
+ * @returns An array of normalized type imports.
+ */
 export function NormalizeTypeImportList(typeImportList: Array<TypeImport | string> = [], defaultType = 'unknown'): NormalizedTypeImport[] {
   return typeImportList.map(type => NormalizeTypeImport(type, defaultType));
 }

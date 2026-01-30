@@ -10,6 +10,13 @@ export interface CoerceNestAppModuleOptions extends Omit<CoerceNestModuleOptions
 
 }
 
+/**
+ * Coerces the NestJS AppModule.
+ * Removes the `AppService` provider.
+ *
+ * @param sourceFile - The source file containing the AppModule.
+ * @param options - Options for the module.
+ */
 export function CoerceNestAppModule(sourceFile: SourceFile, options: CoerceNestAppModuleOptions = {}) {
   CoerceNestModule(sourceFile, {
     ...options,

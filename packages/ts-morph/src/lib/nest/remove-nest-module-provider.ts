@@ -11,9 +11,18 @@ import { NestProviderObject } from './nest-provider-object';
 import { RemoveNestProviderToArray } from './remove-nest-provider-to-array';
 
 export interface RemoveNestModuleProviderOptions {
+  /**
+   * The provider to remove.
+   */
   providerObject: NestProviderObject | string,
 }
 
+/**
+ * Removes a provider from a NestJS module `providers` array.
+ *
+ * @param sourceFile - The source file containing the module.
+ * @param options - The provider object or name to remove.
+ */
 export function RemoveNestModuleProvider(
   sourceFile: SourceFile,
   options: RemoveNestModuleProviderOptions | NestProviderObject | string,

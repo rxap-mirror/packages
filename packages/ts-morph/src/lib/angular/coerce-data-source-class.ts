@@ -13,23 +13,41 @@ import {
 
 export interface CoerceDataSourceClassOptions {
 
+  /**
+   * The name of the data source (without 'DataSource' suffix).
+   */
   name: string;
+  /**
+   * If true, provides the service in 'root'.
+   */
   providedInRoot?: boolean;
 
+  /**
+   * Decorator configuration for the data source.
+   */
   decorator?: {
     name: string;
     moduleSpecifier: string;
     argument?: string | WriterFunction;
   };
+  /**
+   * Base class configuration.
+   */
   extends?: {
     name: string;
     moduleSpecifier: string;
   };
+  /**
+   * Custom hook to coerce the decorator.
+   */
   coerceDecorator?: (
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
     options: CoerceDataSourceClassOptions,
   ) => void;
+  /**
+   * Custom hook to coerce the extends clause.
+   */
   coerceExtends?: (
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
@@ -66,6 +84,14 @@ export function CoerceExtendsBaseDataSource(
   }
 }
 
+/**
+ * Coerces a data source class for RxAP.
+ * Creates a class extending `BaseDataSource` and decorated with `RxapDataSource`.
+ *
+ * @param sourceFile - The source file to add the data source to.
+ * @param options - Options for the data source class.
+ * @returns The created class declaration.
+ */
 export function CoerceDataSourceClass(sourceFile: SourceFile, options: CoerceDataSourceClassOptions) {
 
   const {

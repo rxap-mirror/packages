@@ -7,8 +7,18 @@ import {
   CoerceNestModuleImportOptions,
 } from './coerce-nest-module-import';
 
+/**
+ * Options for coercing the ThrottlerModule import.
+ */
 export type CoerceNestThrottlerModuleImportOptions = Omit<CoerceNestModuleImportOptions, 'moduleName'>;
 
+/**
+ * Coerces the ThrottlerModule import in a NestJS module.
+ * Registers `ThrottlerModule` asynchronously using `ThrottlerModuleOptionsLoader`.
+ *
+ * @param sourceFile - The source file containing the module.
+ * @param options - Options for the import.
+ */
 export function CoerceNestThrottlerModuleImport(
   sourceFile: SourceFile,
   options: CoerceNestThrottlerModuleImportOptions,

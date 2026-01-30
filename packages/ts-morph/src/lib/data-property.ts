@@ -17,13 +17,28 @@ import {
 import { WriteType } from './write-type';
 
 export interface DataProperty {
+  /**
+   * The name of the property.
+   */
   name: string;
+  /**
+   * The type of the property. Can be a string, type name enum, or TypeImport.
+   */
   type?: TypeImport | TypeName;
+  /**
+   * If true, the property is an array of the specified type.
+   */
   isArray?: boolean;
+  /**
+   * If true, the property is optional (?).
+   */
   isOptional?: boolean,
+  /**
+   * The original source property name (e.g. from an upstream API).
+   */
   source?: string | null;
   /**
-   * If set the property is an object with the given members
+   * If set, the property is an object with the given members (nested structure).
    */
   memberList?: Array<string | DataProperty>;
 }
@@ -63,6 +78,15 @@ const notAllowedInVariableNames = [
 ];
 
 
+/**
+ * Normalizes a data property definition into a standardized format.
+ * Used for generating properties in DTOs or interfaces.
+ *
+ * @param property - The property definition (string or object).
+ * @param defaultType - Default type to use if not specified.
+ * @param isArray - Whether the property is an array.
+ * @returns The normalized data property.
+ */
 export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty>, defaultType: TypeImport | TypeName = 'unknown', isArray = false): NormalizedDataProperty {
   let name: string;
   let type: string | TypeImport = 'unknown';
@@ -122,10 +146,24 @@ export function NormalizeDataProperty(property: TypeName | Readonly<DataProperty
   });
 }
 
+/**
+ * Normalizes a list of data properties.
+ *
+ * @param propertyList - The list of properties to normalize.
+ * @param defaultType - Default type for properties.
+ * @returns An array of normalized data properties.
+ */
 export function NormalizeDataPropertyList(propertyList?: Array<string | DataProperty>, defaultType: TypeImport | TypeName = 'unknown'): Array<NormalizedDataProperty> {
   return propertyList?.map(property => NormalizeDataProperty(property, defaultType)) ?? [];
 }
 
+/**
+ * Converts a normalized data property to a PropertySignatureStructure for ts-morph.
+ *
+ * @param property - The data property.
+ * @param sourceFile - The source file (used for resolving imports).
+ * @returns The property signature structure.
+ */
 export function NormalizeDataPropertyToPropertySignatureStructure(
   property: DataProperty,
   sourceFile: SourceFile,
