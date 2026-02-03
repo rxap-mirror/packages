@@ -247,8 +247,8 @@
     "verdaccio": "6.0.5"
   },
   "engines": {
-    "yarn": "1.22 || 3.6",
-    "node": ">=18 <21"
+    "yarn": "3.6",
+    "node": ">=22"
   },
   "homepage": "https://gitlab.com/rxap/packages",
   "jest-junit": {
