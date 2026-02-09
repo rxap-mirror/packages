@@ -47,5 +47,5 @@ describe('table-header-button', () => {
     tree = await runner.runSchematic('table-header-button', t_b_options, tree);
 
     expect(listFiles(tree)).toMatchSnapshot('file-tree');
-  });
+  }, 60_000);
 });

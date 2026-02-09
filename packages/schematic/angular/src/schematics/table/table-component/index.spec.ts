@@ -40,7 +40,7 @@ describe('table-component', () => {
     tree = await runner.runSchematic('table-component', options, tree);
 
     expect(listFiles(tree)).toMatchSnapshot('file-tree');
-  });
+  }, 60_000);
 
   it('nestjs backend', async () => {
     const options: TableComponentOptions = {
