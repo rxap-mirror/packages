@@ -15,6 +15,7 @@ async function fetchTranslation(locale: string): Promise<string | null> {
 
   let xml: string;
   try {
+    console.debug(`Fetching XLIFF file for locale ${ locale }`);
     xml = await fetch(`/i18n/${ locale }.xlf`).then((r) => r.text());
     if (!isTranslationXml(xml)) {
       console.error(`Invalid XLIFF file for locale ${ locale }`);
