@@ -9,6 +9,7 @@ import {
   ConfigService,
   LanguagesConfig,
 } from '@rxap/config';
+import { LOCALE_STORAGE_KEY } from './const';
 
 /**
  * A service that manages language selection and configuration for the application.
@@ -21,7 +22,7 @@ export class LanguageSelectorService {
 
   public readonly languages: Signal<LanguagesConfig> = signal(this.config.get<LanguagesConfig>('i18n.languages', {}));
   public readonly defaultLanguage: Signal<string> = signal(this.config.get('i18n.defaultLanguage', Object.keys(this.languages())[0] ?? 'en'));
-  public readonly selectedLanguage = signal(localStorage.getItem("locale") ?? this.defaultLanguage());
+  public readonly selectedLanguage = signal(localStorage.getItem(LOCALE_STORAGE_KEY) ?? this.defaultLanguage());
 
   public readonly hasLanguages = computed(() => Object.keys(this.languages()).length > 1);
 
@@ -36,11 +37,11 @@ export class LanguageSelectorService {
   public async setLanguage(language: string, reload = false) {
     if (language !== this.selectedLanguage()) {
       if (Object.keys(this.languages()).includes(language)) {
-        localStorage.setItem("locale", language);
+        localStorage.setItem(LOCALE_STORAGE_KEY, language);
       } else if (this.defaultLanguage()) {
-        localStorage.setItem("locale", this.defaultLanguage());
+        localStorage.setItem(LOCALE_STORAGE_KEY, this.defaultLanguage());
       } else {
-        localStorage.removeItem("locale");
+        localStorage.removeItem(LOCALE_STORAGE_KEY);
       }
       if (reload) {
         location.reload();

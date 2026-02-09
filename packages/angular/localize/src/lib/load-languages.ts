@@ -1,5 +1,6 @@
 import { registerLocaleData } from '@angular/common';
 import { loadTranslations } from '@angular/localize';
+import { LOCALE_STORAGE_KEY } from './const';
 
 /**
  * Loads the locale data module for the specified locale and registers it.
@@ -47,7 +48,7 @@ export type LoadModuleFunction = (locale: string) => Promise<void>;
 export async function loadLanguages(
   fetchTranslations: FetchTranslationsFunction,
   loadModule: LoadModuleFunction = defaultLoadModule,
-  locale: string = localStorage.getItem("locale") || navigator.language.split('-')[0] || 'en',
+  locale: string = localStorage.getItem(LOCALE_STORAGE_KEY) || navigator.language.split('-')[0] || 'en',
   preferredLanguages = navigator.languages?.map((l) => l.split('-')[0]) ?? [],
   fallback = 'messages',
 ) {
@@ -59,9 +60,9 @@ export async function loadLanguages(
     loadTranslations(response.json);
     locale = response.locale;
     $localize.locale = locale;
-    localStorage.setItem("locale", locale);
     await loadModule(locale);
   }
+  localStorage.setItem(LOCALE_STORAGE_KEY, locale);
 
   return locale;
 }

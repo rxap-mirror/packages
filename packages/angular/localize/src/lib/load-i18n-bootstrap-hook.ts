@@ -25,7 +25,7 @@ export function loadI18nBootstrapHook(
         preferredLanguages,
         fallback
       );
-      console.debug('locale', currentLocale);
+      console.debug('current locale', currentLocale);
       options.providers ??= [];
       options.providers.push({
         provide: LOCALE_ID,
