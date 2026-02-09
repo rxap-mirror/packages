@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.2.0...@rxap/config@19.3.0-dev.0) (2026-02-09)
+
+### Features
+
+- **config:** add configurable loading order for config sources ([6aac03b](https://gitlab.com/rxap/packages/commit/6aac03bec5dfc5b8c162f424b90fdd64bfc3899e))
+
 # [19.2.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.2.0-dev.3...@rxap/config@19.2.0) (2026-01-23)
 
 **Note:** Version bump only for package @rxap/config

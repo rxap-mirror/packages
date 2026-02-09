@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.1...@rxap/ngx-localize@19.2.0-dev.0) (2026-02-09)
+
+### Features
+
+- **localize:** centralize and reuse locale storage key constant ([34879e9](https://gitlab.com/rxap/packages/commit/34879e9ba4cbe7fd4ccc479c992f3e72a961fc01))
+- **localize:** export additional constants for reuse ([5cc410d](https://gitlab.com/rxap/packages/commit/5cc410da04a3adb7ffb853fc141d6cbe396f5f58))
+
 ## [19.1.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-localize@19.1.1-dev.4...@rxap/ngx-localize@19.1.1) (2026-01-23)
 
 **Note:** Version bump only for package @rxap/ngx-localize

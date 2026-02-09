@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.6.1-dev.0...@rxap/ts-morph@1.7.0-dev.0) (2026-02-09)
+
+### Features
+
+- **ts-morph:** add parameters to GetClassDecoratorArguments function ([255304f](https://gitlab.com/rxap/packages/commit/255304ff04b102edd4a49bcf582fd8a50978bf17))
+
 ## [1.6.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@1.6.0...@rxap/ts-morph@1.6.1-dev.0) (2026-01-29)
 
 **Note:** Version bump only for package @rxap/ts-morph
