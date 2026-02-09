@@ -20,7 +20,9 @@ export function GetClassDecoratorArguments(
  * @returns An array of arguments (Nodes).
  */
 export function GetClassDecoratorArguments(
-
+  classDeclaration: ClassDeclaration,
+  nameOrFindFunction: string | ((declaration: Decorator) => boolean),
+): Node[] {
   let decorator: Decorator | undefined;
 
   if (typeof nameOrFindFunction === 'string') {
