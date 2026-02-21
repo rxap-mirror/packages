@@ -1,5 +1,5 @@
 {
-  "version": "11.0.0",
+  "version": "11.1.0-dev.0",
   "name": "@rxap/nest-jwt",
   "description": "This package provides a set of NestJS utilities for JWT (JSON Web Token) authentication and authorization. It includes guards, decorators, and a module options loader to simplify the integration of JWT-based security in NestJS applications. It allows you to easily protect your API endpoints and manage user permissions.\n",
   "license": "GPL-3.0-or-later",
