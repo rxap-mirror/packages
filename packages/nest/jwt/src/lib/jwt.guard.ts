@@ -13,9 +13,10 @@ import {
 } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
+import { ExtractJwt } from 'passport-jwt';
 import { Observable } from 'rxjs';
 import {
-  IsJwtPayload,
+  isSecureJwtPayload,
   RequestWithJwt,
 } from './types';
 
@@ -52,27 +53,34 @@ export class JwtGuard implements CanActivate {
       context.getHandler(),
       context.getClass(),
     ]);
-    if (isPublic) {
-      return true;
-    }
     const request = context.switchToHttp().getRequest<RequestWithJwt>();
 
-    const headerValue = request.header(this.authHeaderName);
+    let jwtRaw: string | null = null;
 
-    if (!headerValue) {
-      throw new BadRequestException(`Ensure '${this.authHeaderName}' header is set`);
+    if (request.header(this.authHeaderName)) {
+
+      if (this.authHeaderName.toLowerCase() === 'authorization') {
+        jwtRaw = ExtractJwt.fromAuthHeaderAsBearerToken()(request);
+      } else {
+        jwtRaw = ExtractJwt.fromHeader(this.authHeaderName)(request);
+      }
+
     }
 
-    let token: string = headerValue;
-
-    if (headerValue.startsWith('Bearer ')) {
-      token = headerValue.replace('Bearer ', '');
+    if (!jwtRaw) {
+      if (isPublic) {
+        return true;
+      }
+      throw new UnauthorizedException(`Ensure '${this.authHeaderName}' header is set`);
     }
 
-    const jwt = this.verify(token);
+    const jwt = this.verify(jwtRaw);
 
-    if (!IsJwtPayload(jwt)) {
-      throw new BadRequestException('JWT token is missing sub claim');
+    if (!isSecureJwtPayload(jwt)) {
+      if (isPublic) {
+        return true;
+      }
+      throw new UnauthorizedException('JWT token is missing sub or exp claim');
     }
 
     request.jwt = jwt;
@@ -80,7 +88,7 @@ export class JwtGuard implements CanActivate {
     return true;
   }
 
-  protected verify(token: string): Record<string, any> {
+  protected verify(token: string): unknown {
 
     if (this.config.get<boolean>('JWT_VERIFY')) {
       try {
@@ -89,7 +97,7 @@ export class JwtGuard implements CanActivate {
         throw new UnauthorizedException(`Ensure '${this.authHeaderName}' header has a valid JWT`);
       }
     }
-    let jwt: string | Record<string, any> | null;
+    let jwt: string | unknown | null;
     try {
       jwt = this.jwtService.decode(token, { json: true });
     } catch (e: any) {
