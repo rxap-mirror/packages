@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0...@rxap/fs@1.2.1-dev.0) (2026-03-06)
+
+### Bug Fixes
+
+- **fs:** update type definitions for virtual directory checks ([5c6a10b](https://gitlab.com/rxap/packages/commit/5c6a10b83f614ef422710a82119048751b1a56ac))
+
 # [1.2.0](https://gitlab.com/rxap/packages/compare/@rxap/fs@1.2.0-dev.17...@rxap/fs@1.2.0) (2026-01-23)
 
 **Note:** Version bump only for package @rxap/fs
