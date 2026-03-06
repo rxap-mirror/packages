@@ -64,11 +64,11 @@ export interface FullAsyncVirtualDirectoryLike<VF extends VirtualFileLike> exten
   setFile(name: string, file: VirtualFileLike): Promise<void>;
 }
 
-export function isNotVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectory<VF> | VF | undefined): value is VF {
+export function isNotVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectoryLike<VF> | VF | undefined): value is VF {
   return !!value && !(value instanceof VirtualDirectory);
 }
 
-export function isVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectory<VF> | VF | undefined): value is VirtualDirectory<VF> {
+export function isVirtualDirectory<VF extends VirtualFileLike>(value: VirtualDirectoryLike<VF> | VF | undefined): value is VirtualDirectory<VF> {
   return !!value && value instanceof VirtualDirectory;
 }
 
