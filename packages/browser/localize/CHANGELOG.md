@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/browser-localize@0.1.0-dev.0...@rxap/browser-localize@0.1.0-dev.2) (2026-03-06)
+
+### Bug Fixes
+
+- **localize:** enhance XLIFF parsing to handle nested structures ([7600506](https://gitlab.com/rxap/packages/commit/7600506df523ae8295d3991cf85583a8d58723de))
+
+### Features
+
+- **localize:** add XML validation utility for translations ([e20d945](https://gitlab.com/rxap/packages/commit/e20d945eac9a55f6a46ffbd7aa1a0295a13d19bb))
+
 # [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/browser-localize@0.1.0-dev.0...@rxap/browser-localize@0.1.0-dev.1) (2026-03-06)
 
 ### Bug Fixes
