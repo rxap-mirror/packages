@@ -1,5 +1,15 @@
 import { xliffToJson } from './xliff-to-json';
 
+/**
+ * Checks if the given XML string is a valid translation XML file.
+ *
+ * The method verifies if the input string is non-empty, of type string,
+ * starts with the XML declaration "<?xml", and contains the "<xliff" tag,
+ * which is commonly found in translation XML files.
+ *
+ * @param {string} xml - The XML string to validate as a translation XML file.
+ * @return {boolean} Returns true if the provided string is a valid translation XML, otherwise false.
+ */
 function isTranslationXml(xml: string): boolean {
   return !!xml && typeof xml === 'string' && xml.startsWith('<?xml') && xml.includes('<xliff');
 }
