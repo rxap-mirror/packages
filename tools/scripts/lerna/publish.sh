@@ -112,6 +112,8 @@ fi
 
 set -e
 
+LERNA_LOG_LEVEL=${LERNA_LOG_LEVEL:-"verbose"}
+
 if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
 
   if [[ -z "$LERNA_PRE_ID" ]]; then
@@ -121,7 +123,7 @@ if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
 
   echo "Executing lerna publish for pre-release..."
 
-  echo "yarn lerna publish --create-release gitlab --conventional-prerelease --dist-tag $LERNA_DIST_TAG --registry $PUBLISH_REGISTRY --preid $LERNA_PRE_ID --no-push $@"
+  echo "yarn lerna publish --create-release gitlab --conventional-prerelease --dist-tag $LERNA_DIST_TAG --registry $PUBLISH_REGISTRY --preid $LERNA_PRE_ID --loglevel $LERNA_LOG_LEVEL --no-push $@"
 
   yarn lerna publish \
   --create-release gitlab \
@@ -129,6 +131,7 @@ if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
   --dist-tag "$LERNA_DIST_TAG" \
   --registry "$PUBLISH_REGISTRY" \
   --preid "$LERNA_PRE_ID" \
+  --loglevel "$LERNA_LOG_LEVEL" \
   --no-push "$@"
 
 fi
@@ -137,12 +140,13 @@ if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
 
   echo "Executing lerna publish for release..."
 
-  echo "yarn lerna publish --create-release gitlab --conventional-graduate --dist-tag $LERNA_DIST_TAG --registry $PUBLISH_REGISTRY $@"
+  echo "yarn lerna publish --create-release gitlab --conventional-graduate --dist-tag $LERNA_DIST_TAG --registry $PUBLISH_REGISTRY --loglevel $LERNA_LOG_LEVEL  $@"
 
   yarn lerna publish \
   --create-release gitlab \
   --conventional-graduate \
   --registry "$PUBLISH_REGISTRY" \
+  --loglevel "$LERNA_LOG_LEVEL" \
   --dist-tag "$LERNA_DIST_TAG" "$@"
 
 fi
@@ -164,6 +168,7 @@ if [[ "$PUBLISH_MODE" == "auto" ]]; then
     --registry "$PUBLISH_REGISTRY" \
     --preid "$LERNA_PRE_ID" \
     --no-push \
+    --loglevel "$LERNA_LOG_LEVEL" \
     --yes
 
   fi
@@ -177,6 +182,7 @@ if [[ "$PUBLISH_MODE" == "auto" ]]; then
     --conventional-graduate \
     --registry "$PUBLISH_REGISTRY" \
     --dist-tag "$LERNA_DIST_TAG" \
+    --loglevel "$LERNA_LOG_LEVEL" \
     --yes
 
   fi
