@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-sentry@19.2.0...@rxap/ngx-sentry@19.3.0-dev.0) (2026-03-13)
+
+### Features
+
+- **sentry:** add custom configuration support for Sentry initialization ([d6faf12](https://gitlab.com/rxap/packages/commit/d6faf123ff279142b8ee221aa28396295396913d))
+
 # [19.2.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-sentry@19.2.0-dev.2...@rxap/ngx-sentry@19.2.0) (2026-01-23)
 
 **Note:** Version bump only for package @rxap/ngx-sentry
