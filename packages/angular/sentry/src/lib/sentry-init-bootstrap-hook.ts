@@ -1,12 +1,13 @@
 import { ConfigService } from '@rxap/config';
 import { Environment } from '@rxap/environment';
+import type { BrowserOptions } from '@sentry/browser';
 import {
   DetermineSentryRelease
 } from './determine-sentry-release';
 import * as Sentry from '@sentry/angular';
 import { DetermineSentryEnvironment } from './determine-sentry-environment';
 
-export function sentryInitBootstrapHook(environment: Environment) {
+export function sentryInitBootstrapHook(environment: Environment, custom: (options: BrowserOptions, config: ConfigService) => BrowserOptions = options => options) {
   return (config: ConfigService) => {
 
     const dsn = config.get('sentry.dsn', environment.sentry?.dsn);
@@ -15,7 +16,7 @@ export function sentryInitBootstrapHook(environment: Environment) {
       console.warn('No sentry dsn provided.');
     }
 
-    Sentry.init({
+    Sentry.init(custom({
       dsn,
       enabled: config.get('sentry.enabled', environment.sentry?.enabled ?? false),
       debug: config.get('sentry.debug', environment.sentry?.debug ?? false),
@@ -60,7 +61,7 @@ export function sentryInitBootstrapHook(environment: Environment) {
       ignoreErrors: [
         'Non-Error exception captured',
       ],
-    });
+    }, config));
 
   };
 }
