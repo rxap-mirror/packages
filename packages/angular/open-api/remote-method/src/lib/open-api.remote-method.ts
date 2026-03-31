@@ -1,4 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpContext,
+  HttpErrorResponse,
+  HttpEventType,
+  HttpResponse,
+} from '@angular/common/http';
 import {
   Inject,
   Injectable,
@@ -11,12 +17,17 @@ import {
   DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA,
   DISABLE_SCHEMA_VALIDATION,
   DISABLE_VALIDATION,
+  OPEN_API_SERVER_INDEX,
   OpenApiConfigService,
   OpenApiHttpResponseError,
   OpenApiMetaData,
   OperationObjectWithMetadata,
   RXAP_OPEN_API_STRICT_VALIDATOR,
   SchemaValidationMixin,
+} from '@rxap/open-api';
+import {
+  OPEN_API_OPERATION_ID,
+  OPEN_API_SERVER_ID,
 } from '@rxap/open-api';
 import { RxapRemoteMethod } from '@rxap/remote-method';
 import { BaseHttpRemoteMethod } from '@rxap/remote-method/http';
@@ -134,6 +145,10 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       method: operation.method as any,
       withCredentials: this.metadata.withCredentials ?? true,
       ignoreUndefined: this.metadata['ignoreUndefined'] ?? true,
+      context: new HttpContext()
+        .set(OPEN_API_OPERATION_ID, operation.operationId)
+        .set(OPEN_API_SERVER_ID, this.metadata['serverId'])
+        .set(OPEN_API_SERVER_INDEX, this.metadata['serverIndex'])
     });
     this.strict = strict || this.metadata['strict'] || false;
     this.disableSchemaValidation = disableSchemaValidation || this.metadata['disableSchemaValidation'] || false;
