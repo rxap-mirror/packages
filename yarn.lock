@@ -9923,7 +9923,7 @@ __metadata:
     "@rxap/definition": ^19.0.4
     "@rxap/forms": ^19.1.0
     "@rxap/mixin": ^16.0.16-dev.0
-    "@rxap/open-api": ^19.3.0-dev.0
+    "@rxap/open-api": ^19.3.0-dev.1
     "@rxap/pattern": ^1.1.14
     "@rxap/reflect-metadata": ^1.0.17-dev.0
     "@rxap/remote-method": ^19.2.0-dev.0
@@ -10772,7 +10772,7 @@ __metadata:
     "@angular/forms": ^19.2.1
     "@rxap/directives": ^19.1.0
     "@rxap/environment": ^19.1.0
-    "@rxap/open-api": ^19.3.0-dev.0
+    "@rxap/open-api": ^19.3.0-dev.1
     ngx-markdown: ^16.0.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -10792,7 +10792,7 @@ __metadata:
     "@rxap/config": ^19.3.0-dev.0
     "@rxap/data-grid": ^19.0.4
     "@rxap/environment": ^19.1.0
-    "@rxap/open-api": ^19.3.0-dev.0
+    "@rxap/open-api": ^19.3.0-dev.1
     "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -10967,7 +10967,7 @@ __metadata:
     "@angular/material": ^19.1.1
     "@angular/router": ^19.2.1
     "@rxap/config": ^19.3.0-dev.0
-    "@rxap/open-api": ^19.3.0-dev.0
+    "@rxap/open-api": ^19.3.0-dev.1
     "@sentry/angular": ^8.18.0
     rxjs: ^7.8.1
   languageName: unknown
@@ -11014,7 +11014,7 @@ __metadata:
     "@angular/core": ^19.2.1
     "@rxap/data-source": ^19.1.1
     "@rxap/ngx-pub-sub": ^19.0.4
-    "@rxap/open-api": ^19.3.0-dev.0
+    "@rxap/open-api": ^19.3.0-dev.1
     "@rxap/utilities": ^16.5.1-dev.0
     rxjs: ^7.8.1
   languageName: unknown

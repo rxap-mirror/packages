@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.3.0-dev.0...@rxap/open-api@19.3.0-dev.1) (2026-03-31)
+
+### Features
+
+- **open-api:** improve JSON schema validation and content type handling ([ac3d728](https://gitlab.com/rxap/packages/commit/ac3d7285320f12c0a107c3336dcbc8001ff09bb2))
+
 # [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.2.0...@rxap/open-api@19.3.0-dev.0) (2026-03-31)
 
 ### Features
