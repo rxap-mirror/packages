@@ -15,6 +15,8 @@ import { OpenAPIV3 } from 'openapi-types';
 import { RxapOpenApiError } from './error';
 import { OperationObjectWithMetadata } from './open-api';
 import {
+  getJsonContentSchema,
+  hasJsonContentSchema,
   IsReferenceObject,
   NotContainsReferenceObjects,
 } from './utilities';
@@ -125,13 +127,13 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     strict = false,
   ): void {
 
-    // region only validate the response if the content type is undefined or application/json
+    // region only validate the response if the content type is undefined or json like
 
     const contentType = response.headers.get('Content-Type');
 
-    if (contentType && contentType !== 'application/json') {
+    if (contentType && contentType.match(/^application\/(.+\+)?json/)) {
       if (isDevMode()) {
-        console.warn('Response validation is only supported for content type application/json');
+        console.warn('Response validation is only supported for content types that are json like.');
       }
       return;
     }
@@ -163,16 +165,18 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
         // TODO : create schema that validates all parameters at once
 
-        if (responseObject.content &&
-          responseObject.content['application/json'] &&
-          responseObject.content['application/json'].schema) {
+        if (hasJsonContentSchema(responseObject)) {
 
-          const schema = responseObject.content['application/json'].schema;
+          const schema = getJsonContentSchema(responseObject);
 
-          const data = response.body ?? response.data;
+          if (schema) {
 
-          if (!this.validate(schema, data)) {
-            this.validationError('The response is not valid ageist the operation schema!', strict, schema, data);
+            const data = response.body ?? response.data;
+
+            if (!this.validate(schema, data)) {
+              this.validationError('The response is not valid ageist the operation schema!', strict, schema, data);
+            }
+
           }
 
         }
@@ -203,9 +207,9 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
         this.validationError('The request body is required!', strict);
       }
 
-      if (operation.requestBody.content && operation.requestBody.content['application/json']) {
+      if (hasJsonContentSchema(operation.requestBody)) {
 
-        const schema = operation.requestBody.content['application/json'].schema;
+        const schema = getJsonContentSchema(operation.requestBody);
 
         if (schema) {
           if (!this.validate(schema, body)) {
@@ -440,6 +444,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     switch (contentType) {
 
       case 'application/json':
+      case 'application/ld+json':
         assertsObject(requestBody);
         return [ requestBody, contentType ];
 
