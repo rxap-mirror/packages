@@ -4,7 +4,13 @@ import {
   Injector,
   Optional,
 } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpContext,
+  HttpHeaders,
+  HttpParams,
+  HttpRequest,
+} from '@angular/common/http';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
@@ -23,6 +29,7 @@ export interface HttpRemoteMethodMetadata extends BaseRemoteMethodMetadata {
   withCredentials?: boolean;
   timeout?: number;
   retry?: number;
+  context?: HttpContext;
 }
 
 export interface HttpRemoteMethodParameter<PathParams = any> {
@@ -39,6 +46,7 @@ export interface HttpRemoteMethodParameter<PathParams = any> {
     [param: string]: string;
   };
   pathParams?: PathParams;
+  context?: HttpContext;
 }
 
 @Injectable()
@@ -99,6 +107,7 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
 
     return this._httpRequest.clone({
       withCredentials: this.metadata.withCredentials,
+      context: this.metadata.context,
       ...parameters,
       url,
     });
@@ -142,30 +151,4 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
     return this.metadata.url;
   }
 
-}
-
-export interface HttpRemoteMethodMetadata extends BaseRemoteMethodMetadata {
-  url: string | (() => string);
-  method: 'DELETE' | 'GET' | 'HEAD' | 'JSONP' | 'OPTIONS' | 'POST' | 'PUT' | 'PATCH';
-  headers?: HttpHeaders;
-  reportProgress?: boolean;
-  params?: HttpParams;
-  responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
-  withCredentials?: boolean;
-}
-
-export interface HttpRemoteMethodParameter<PathParams = any> {
-  headers?: HttpHeaders;
-  reportProgress?: boolean;
-  params?: HttpParams;
-  responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
-  withCredentials?: boolean;
-  body?: any | null;
-  setHeaders?: {
-    [name: string]: string | string[];
-  };
-  setParams?: {
-    [param: string]: string;
-  };
-  pathParams?: PathParams;
 }
