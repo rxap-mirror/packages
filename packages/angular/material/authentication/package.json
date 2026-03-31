@@ -121,7 +121,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.2.0"
+        "version": "19.3.0-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -133,7 +133,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/rxjs",

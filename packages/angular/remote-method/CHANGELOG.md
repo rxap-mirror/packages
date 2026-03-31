@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@19.1.0...@rxap/remote-method@19.2.0-dev.0) (2026-03-31)
+
+### Features
+
+- **http:** add support for HttpContext in metadata and parameters ([ba6a508](https://gitlab.com/rxap/packages/commit/ba6a508aee32886f6afb3ec47beddb2dd1c1fce5))
+
 # [19.1.0](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@19.1.0-dev.0...@rxap/remote-method@19.1.0) (2026-01-23)
 
 **Note:** Version bump only for package @rxap/remote-method

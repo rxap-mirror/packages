@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.2.0...@rxap/open-api@19.3.0-dev.0) (2026-03-31)
+
+### Features
+
+- **open-api:** add HttpContext-based request customization and updated interceptors ([ffe3576](https://gitlab.com/rxap/packages/commit/ffe357668b9f48e1a662bd95b09ee37b875de5bd))
+
 # [19.2.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.2.0-dev.4...@rxap/open-api@19.2.0) (2026-01-23)
 
 **Note:** Version bump only for package @rxap/open-api
