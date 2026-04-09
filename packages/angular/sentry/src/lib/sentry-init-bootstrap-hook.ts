@@ -6,6 +6,7 @@ import {
 } from './determine-sentry-release';
 import * as Sentry from '@sentry/angular';
 import { DetermineSentryEnvironment } from './determine-sentry-environment';
+import { Integration } from '@sentry/core';
 
 export function sentryInitBootstrapHook(environment: Environment, custom: (options: BrowserOptions, config: ConfigService) => BrowserOptions = options => options) {
   return (config: ConfigService) => {
@@ -16,6 +17,35 @@ export function sentryInitBootstrapHook(environment: Environment, custom: (optio
       console.warn('No sentry dsn provided.');
     }
 
+    const integrations: Integration[] = [
+      Sentry.browserTracingIntegration(config.get('sentry.integrations.browserTracing')),
+      Sentry.browserProfilingIntegration(),
+      Sentry.browserSessionIntegration(),
+      Sentry.captureConsoleIntegration(config.get('sentry.integrations.captureConsole', {
+        levels: ['error'],
+      })),
+      Sentry.extraErrorDataIntegration(config.get('sentry.integrations.extraErrorData')),
+      Sentry.httpClientIntegration(config.get('sentry.integrations.httpClient')),
+      Sentry.reportingObserverIntegration(config.get('sentry.integrations.reportingObserver')),
+    ];
+
+    if (config.get('sentry.integrations.replay')) {
+      /**
+       * {
+       *  // Additional SDK configuration goes in here, for example:
+       *  maskAllText: true,
+       *  blockAllMedia: true,
+       *  maskAllInputs: true,
+       *  networkDetailAllowUrls: [`${location.origin}/api/`]
+       * }
+       */
+      integrations.push(Sentry.replayIntegration(config.get('sentry.integrations.replay')));
+    }
+
+    if (config.get('sentry.integrations.feedback')) {
+      integrations.push(Sentry.feedbackIntegration(config.get('sentry.integrations.feedback')));
+    }
+
     Sentry.init(custom({
       dsn,
       enabled: config.get('sentry.enabled', environment.sentry?.enabled ?? false),
@@ -23,25 +53,7 @@ export function sentryInitBootstrapHook(environment: Environment, custom: (optio
       environment: config.get('environment', DetermineSentryEnvironment(environment)),
       release: DetermineSentryRelease(environment),
       transport: Sentry.makeBrowserOfflineTransport(Sentry.makeFetchTransport),
-      integrations: [
-        Sentry.browserTracingIntegration(config.get('sentry.integrations.browserTracing')),
-        Sentry.browserProfilingIntegration(),
-        Sentry.replayIntegration(config.get('sentry.integrations.replay', {
-          // Additional SDK configuration goes in here, for example:
-          maskAllText: true,
-          blockAllMedia: true,
-          maskAllInputs: true,
-          networkDetailAllowUrls: [`${location.origin}/api/`]
-        })),
-        Sentry.browserSessionIntegration(),
-        Sentry.captureConsoleIntegration(config.get('sentry.integrations.captureConsole', {
-          levels: ['error'],
-        })),
-        Sentry.extraErrorDataIntegration(config.get('sentry.integrations.extraErrorData')),
-        Sentry.httpClientIntegration(config.get('sentry.integrations.httpClient')),
-        Sentry.reportingObserverIntegration(config.get('sentry.integrations.reportingObserver')),
-        Sentry.feedbackIntegration(config.get('sentry.integrations.feedback')),
-      ],
+      integrations,
       tracesSampleRate: config.get('sentry.tracesSampleRate', 1.0),
       profilesSampleRate: config.get('sentry.profilesSampleRate', 1.0),
       tracePropagationTargets: ["localhost", new RegExp(`${location.origin}/api/`)],
