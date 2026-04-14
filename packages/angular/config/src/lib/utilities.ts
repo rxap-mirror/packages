@@ -59,14 +59,19 @@ export async function dnsResolver(endpoint: string, name: string, type: string):
   return data.replace(/^"(.*)"$/, '$1');
 }
 
+export const defaultDnsServers = [
+  'https://dns.google/resolve',
+  'https://cloudflare-dns.com/dns-query'
+];
+
 export async function dnsLookup(
   name: string,
   type: string,
-  dnsServers = [
-    'https://dns.google/resolve',
-    'https://cloudflare-dns.com/dns-query'
-  ]
+  dnsServers = defaultDnsServers
 ): Promise<string> {
+  if (!dnsServers.length) {
+    throw new Error('No DNS servers provided for lookup');
+  }
   type = type.toUpperCase();
   console.log(`Performing DNS lookup for ${type} record of ${name} using servers: ${dnsServers.join(', ')}`);
   try {
@@ -117,34 +122,42 @@ export function fetchContentViaHttp(url: string): Observable<Blob | null> {
   );
 }
 
-export function fetchCidContentViaHttp(cid: string, path?: string): Observable<Blob | null> {
+export type IpfsGatewayFunction = (cid: string) => string;
+
+export const w3sIpfsGateway: IpfsGatewayFunction = cid => `https://${ cid }.ipfs.w3s.link`;
+export const storachaIpfsGateway: IpfsGatewayFunction = cid => `https://${ cid }.ipfs.storacha.link`;
+export const localPathIpfsGateway: IpfsGatewayFunction = cid => `${location.origin}/ipfs/${ cid }`;
+export const localSubDomainIpfsGateway: IpfsGatewayFunction = cid => `https://${cid}.ipfs.${location.hostname}`;
+
+export const defaultIpfsGatewayServers: Array<IpfsGatewayFunction> = [
+  w3sIpfsGateway,
+  storachaIpfsGateway,
+  localPathIpfsGateway,
+  localSubDomainIpfsGateway
+];
+
+export function fetchCidContentViaHttp(cid: string, path?: string, ipfsGatewayServers: Array<IpfsGatewayFunction> = defaultIpfsGatewayServers): Observable<Blob | null> {
+  if (!ipfsGatewayServers.length) {
+    throw new Error('No IPFS gateway servers provided for fetching content');
+  }
   return race(
-    // Attempt 1: w3s.link
-    fetchContentViaHttp(JoinPath(`https://${ cid }.ipfs.w3s.link`, path)).pipe(
-      log(`w3s fetch attempt for ${cid}`),
-    ),
-    // Attempt 1: storacha.link
-    fetchContentViaHttp(JoinPath(`https://${ cid }.ipfs.storacha.link`, path)).pipe(
-      log(`storacha fetch attempt for ${cid}`),
-    ),
-    // Attempt 2: Local gateway
-    fetchContentViaHttp(JoinPath(`${location.origin}/ipfs/${ cid }`, path)).pipe(
-      log(`local fetch attempt for ${cid}`),
-    )
+    ...ipfsGatewayServers.map(fnc => fetchContentViaHttp(JoinPath(fnc(cid), path)).pipe(
+      log(`fetch attempt for ${cid} via ${fnc.name} - ${fnc(cid)}`),
+    ))
     // Add more sources here if needed
   ).pipe(
     log(`Race winner for ${cid}`), // Log which source won (will show Blob or null)
   );
 }
 
-export async function fetchCidContent(cid: string, path?: string): Promise<Blob | null> {
+export async function fetchCidContent(cid: string, path?: string, ipfsGatewayServers: Array<IpfsGatewayFunction> = defaultIpfsGatewayServers): Promise<Blob | null> {
   console.log(`Fetching content for CID: ${cid}`);
   // Example: Fetch from an IPFS gateway or other source
   // const gatewayUrl = `https://ipfs.io/ipfs/${cid}`;
   try {
     return await firstValueFrom(
       race(
-        fetchCidContentViaHttp(cid, path)
+        fetchCidContentViaHttp(cid, path, ipfsGatewayServers)
       ),
       { defaultValue: null } // Return null if the stream completes empty
     );
@@ -154,9 +167,14 @@ export async function fetchCidContent(cid: string, path?: string): Promise<Blob 
   }
 }
 
-export async function fetchCidContentAsJson(cid: string, path?: string, _fetchCidContent = fetchCidContent): Promise<any | null> {
+export async function fetchCidContentAsJson(
+  cid: string,
+  path?: string,
+  _fetchCidContent = fetchCidContent,
+  ipfsGatewayServers: Array<IpfsGatewayFunction> = defaultIpfsGatewayServers
+): Promise<any | null> {
   console.log(`Fetching JSON content for CID: ${cid}`);
-  const blob = await _fetchCidContent(cid, path);
+  const blob = await _fetchCidContent(cid, path, ipfsGatewayServers);
   if (blob) {
     try {
       const text = await blob.text();

@@ -54,6 +54,7 @@ export interface ConfigLoadOptions {
    */
   fromCid?: string;
   fetchCidContent?: (cid: string, path?: string) => Promise<Blob | null>;
+  ipfsGatewayServers?: Array<(cid: string) => string>;
   dnsServers?: string[];
   strategy?: ConfigLoadingStrategy;
   /**
@@ -288,8 +289,18 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   private static async loadConfigFromCid(options: ConfigLoadOptions & { fromCid: string | boolean }) {
     console.debug('Loading config from CID: ', options.fromCid);
+    const ipfsGatewayFunctions = options.ipfsGatewayServers ?? [];
+    if (!ipfsGatewayFunctions.length) {
+      console.warn('No IPFS gateway servers provided for fetching content from CID');
+      return;
+    }
     try {
-      const cidContent = await fetchCidContentAsJson(options.fromCid, undefined, options.fetchCidContent);
+      const cidContent = await fetchCidContentAsJson(
+        options.fromCid,
+        undefined,
+        options.fetchCidContent,
+        ipfsGatewayFunctions
+      );
       if (cidContent && typeof cidContent === 'object') {
         console.log(`Merging configuration from CID ${options.fromCid}.`, cidContent);
         // Merge CID content into the existing config object
@@ -309,11 +320,9 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   private static async loadConfigFromDns(options: ConfigLoadOptions & { fromDns: string | boolean }) {
     console.debug('Loading config from DNS');
     const dnsServers = options.dnsServers ?? [];
-    if (dnsServers.length === 0) {
-      dnsServers.push(
-        'https://dns.google/resolve',
-        'https://cloudflare-dns.com/dns-query'
-      );
+    if (!dnsServers.length) {
+      console.warn('No DNS servers provided for DNS lookup');
+      return;
     }
     let domain = location.hostname;
     if (typeof options.fromDns === 'string') {
