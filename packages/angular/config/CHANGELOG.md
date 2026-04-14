@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/config@19.3.0-dev.0...@rxap/config@19.3.0-dev.1) (2026-04-14)
+
+### Features
+
+- **config:** add IPFS gateway support and simplify DNS server handling ([3451549](https://gitlab.com/rxap/packages/commit/345154901dfe881fe97bf5bf3ed113ec4d5036ef))
+
 # [19.3.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@19.2.0...@rxap/config@19.3.0-dev.0) (2026-02-09)
 
 ### Features

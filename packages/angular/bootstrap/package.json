@@ -12,7 +12,7 @@
     "@angular/core": "^19.2.1",
     "@angular/platform-browser": "^19.2.1",
     "@angular/platform-browser-dynamic": "^19.2.1",
-    "@rxap/config": "^19.3.0-dev.0",
+    "@rxap/config": "^19.3.0-dev.1",
     "@rxap/environment": "^19.1.0",
     "ngx-logger": "^5.0.12"
   },
@@ -63,7 +63,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.3.0-dev.0"
+        "version": "19.3.0-dev.1"
       },
       {
         "package": "@rxap/environment",
