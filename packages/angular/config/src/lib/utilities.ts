@@ -127,7 +127,7 @@ export type IpfsGatewayFunction = (cid: string) => string;
 export const w3sIpfsGateway: IpfsGatewayFunction = cid => `https://${ cid }.ipfs.w3s.link`;
 export const storachaIpfsGateway: IpfsGatewayFunction = cid => `https://${ cid }.ipfs.storacha.link`;
 export const localPathIpfsGateway: IpfsGatewayFunction = cid => `${location.origin}/ipfs/${ cid }`;
-export const localSubDomainIpfsGateway: IpfsGatewayFunction = cid => `https://${cid}.ipfs.${location.hostname}`;
+export const localSubDomainIpfsGateway: IpfsGatewayFunction = cid => `https://${cid}.ipfs.${location.hostname.split('.').slice(-2).join('.')}`;
 
 export const defaultIpfsGatewayServers: Array<IpfsGatewayFunction> = [
   w3sIpfsGateway,
