@@ -58,7 +58,7 @@ export async function loadLanguages(
   if (response) {
     // Initialize translation
     loadTranslations(response.json);
-    locale = response.locale;
+    console.debug('Loaded translations for locale:', response.locale);
     $localize.locale = locale;
     await loadModule(locale);
   }
