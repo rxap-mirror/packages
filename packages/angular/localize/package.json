@@ -1,5 +1,5 @@
 {
-  "version": "19.2.0-dev.0",
+  "version": "19.2.0-dev.1",
   "name": "@rxap/ngx-localize",
   "description": "This package provides internationalization (i18n) support for Angular applications, including services for language management, an HTTP interceptor for setting the `Accept-Language` header, and a language selector component. It allows you to set and manage the current language of your application, redirect users based on their language preference, and configure available languages. The package also includes an init generator to handle peer dependencies.\n",
   "license": "GPL-3.0-or-later",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/browser-localize@0.1.0-dev.2...@rxap/browser-localize@0.1.0-dev.3) (2026-04-23)
+
+### Bug Fixes
+
+- **localize:** handle fallback for locales with region codes ([c647067](https://gitlab.com/rxap/packages/commit/c647067c2f995fcdf788af6eee3e165424b99831))
+
 # [0.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/browser-localize@0.1.0-dev.0...@rxap/browser-localize@0.1.0-dev.2) (2026-03-06)
 
 ### Bug Fixes

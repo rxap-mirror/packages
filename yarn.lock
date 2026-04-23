@@ -10866,7 +10866,7 @@ __metadata:
     "@angular/forms": ^19.2.1
     "@angular/material": ^19.1.1
     "@rxap/directives": ^19.1.0
-    "@rxap/ngx-localize": ^19.2.0-dev.0
+    "@rxap/ngx-localize": ^19.2.0-dev.1
     rxjs: ^7.8.1
   languageName: unknown
   linkType: soft
