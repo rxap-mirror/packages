@@ -55,7 +55,11 @@ export async function fetchTranslations(locale: string, preferredLanguages: stri
   do {
     xml = await fetchTranslation(currentLocale);
     if (!xml) {
-      currentLocale = preferredLanguages.shift();
+      if (currentLocale.includes('-')) {
+        currentLocale = currentLocale.split('-')[0];
+      } else {
+        currentLocale = preferredLanguages.shift();
+      }
     }
   } while (!xml && currentLocale);
 
