@@ -13,7 +13,7 @@ export async function defaultLoadModule(locale: string) {
   try {
     // Load required locale module (needs to be adjusted for different locales)
     let module: { default: any } | null = null;
-    switch (locale) {
+    switch (locale.split('-')[0].toLowerCase()) {
 
       case 'en':
         module = await import('@angular/common/locales/en');
@@ -48,8 +48,8 @@ export type LoadModuleFunction = (locale: string) => Promise<void>;
 export async function loadLanguages(
   fetchTranslations: FetchTranslationsFunction,
   loadModule: LoadModuleFunction = defaultLoadModule,
-  locale: string = localStorage.getItem(LOCALE_STORAGE_KEY) || navigator.language.split('-')[0] || 'en',
-  preferredLanguages = navigator.languages?.map((l) => l.split('-')[0]) ?? [],
+  locale: string = localStorage.getItem(LOCALE_STORAGE_KEY) || navigator.language || 'en',
+  preferredLanguages = (navigator.languages ?? []).slice(),
   fallback = 'messages',
 ) {
   // Fetch XLIFF translation file and transform to JSON format (JSON translations can be used directly)
