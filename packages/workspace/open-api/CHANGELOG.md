@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.2.0-dev.0...@rxap/workspace-open-api@19.2.0-dev.1) (2026-04-30)
+
+### Bug Fixes
+
+- **open-api:** update `SignalProperties` to handle nullable types correctly ([dec57d3](https://gitlab.com/rxap/packages/commit/dec57d3f6309ad029de2ea5809565c598cca6a2c))
+
 # [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.2-dev.0...@rxap/workspace-open-api@19.2.0-dev.0) (2026-04-30)
 
 ### Features

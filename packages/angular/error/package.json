@@ -15,7 +15,7 @@
     "@rxap/config": "^19.3.0-dev.2",
     "@rxap/data-grid": "^19.0.4",
     "@rxap/environment": "^19.1.0",
-    "@rxap/open-api": "^19.3.0-dev.1",
+    "@rxap/open-api": "^19.3.0-dev.2",
     "@sentry/angular": "^8.18.0",
     "rxjs": "^7.8.1"
   },
@@ -109,7 +109,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.3.0-dev.1"
+        "version": "19.3.0-dev.2"
       },
       {
         "package": "@rxap/pattern",

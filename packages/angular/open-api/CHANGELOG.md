@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.3.0-dev.1...@rxap/open-api@19.3.0-dev.2) (2026-04-30)
+
+### Bug Fixes
+
+- **open-api:** update `SignalProperties` to handle nullable types correctly ([dec57d3](https://gitlab.com/rxap/packages/commit/dec57d3f6309ad029de2ea5809565c598cca6a2c))
+
+### Features
+
+- **open-api:** use `JoinPath` utility for constructing URLs in interceptor ([728f3ca](https://gitlab.com/rxap/packages/commit/728f3ca4900e51da115b32463fd97c09148e30e1))
+
 # [19.3.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@19.3.0-dev.0...@rxap/open-api@19.3.0-dev.1) (2026-03-31)
 
 ### Features
