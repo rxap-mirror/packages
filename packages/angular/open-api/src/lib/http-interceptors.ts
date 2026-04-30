@@ -4,6 +4,7 @@ import {
   OpenApiConfigService,
 } from './open-api-config.service';
 import { OPEN_API_SERVER_ID, OPEN_API_SERVER_INDEX } from './http-context-tokens';
+import { JoinPath } from '@rxap/utilities';
 
 export const injectOpenApiBaseUrlHttpInterceptorFn: HttpInterceptorFn = (
   req,
@@ -19,7 +20,8 @@ export const injectOpenApiBaseUrlHttpInterceptorFn: HttpInterceptorFn = (
         console.warn(`The url ${req.url} is not a valid url for the server ${serverId}. Expected base url ${baseUrl}`);
       }
     } else {
-      return next(req.clone({ url: new URL(req.url, baseUrl).toString() }));
+      const url = JoinPath(baseUrl, req.url);
+      return next(req.clone({ url }));
     }
   }
 
