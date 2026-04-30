@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.2-dev.0...@rxap/workspace-open-api@19.2.0-dev.0) (2026-04-30)
+
+### Features
+
+- **open-api:** enhance path parameter handling with null safety and type updates ([9b1b258](https://gitlab.com/rxap/packages/commit/9b1b25853ee33a41ff81d229eae36e86b0a09160))
+
 ## [19.1.2-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@19.1.1...@rxap/workspace-open-api@19.1.2-dev.0) (2026-01-29)
 
 **Note:** Version bump only for package @rxap/workspace-open-api
