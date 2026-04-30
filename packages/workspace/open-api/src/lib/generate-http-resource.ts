@@ -153,7 +153,7 @@ export function GenerateHttpResource(
     if (!withoutParameters) {
       parameters.push({
         name: 'parameters',
-        type: `SignalProperties<Nullable<${parameterType}>>`,
+        type: `SignalProperties<${parameterType}>`,
         initializer: parameter.parameters?.some(
           (p) => !IsRefSchemaObject(p) && p.required
         )

@@ -4,7 +4,7 @@ import { Signal } from '@angular/core';
  * Converts all properties of type T to Signal<T[K]>
  */
 export type SignalProperties<T> = {
-  [K in keyof T]: Signal<T[K]>;
+  [K in keyof T]: Signal<T[K] | null>;
 };
 
 export interface OpenApiHttpResourceOptions<
