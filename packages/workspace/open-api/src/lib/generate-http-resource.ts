@@ -46,6 +46,12 @@ export function GenerateHttpResource(
       ],
     },
     {
+      moduleSpecifier: '@rxap/utilities',
+      namedImports: [
+        { name: 'Nullable' }
+      ]
+    },
+    {
       moduleSpecifier: '@angular/common/http',
       namedImports: [{ name: 'HttpResourceRef' }, { name: 'HttpContext' }, { name: 'httpResource' }, { name: 'HttpResourceOptions' }],
     },
@@ -107,9 +113,9 @@ export function GenerateHttpResource(
           (_, name) => {
             const isArray = !!parameter.parameters?.find(p => !IsRefSchemaObject(p) && p.name === name && p.in === 'path' && p.schema && typeof p.schema === 'object' && 'type' in p.schema && p.schema.type === 'array');
             if (isArray) {
-              return `\${parameters.${ name }().map(v => encodeURIComponent(v)).join('/')}`;
+              return `\${path_${ name }.map(v => encodeURIComponent(v)).join('/')}`;
             }
-            return `\${encodeURIComponent(parameters.${ name }())}`;
+            return `\${encodeURIComponent(path_${ name })}`;
           }
         )
       );
@@ -147,7 +153,7 @@ export function GenerateHttpResource(
     if (!withoutParameters) {
       parameters.push({
         name: 'parameters',
-        type: `SignalProperties<${parameterType}>`,
+        type: `SignalProperties<Nullable<${parameterType}>>`,
         initializer: parameter.parameters?.some(
           (p) => !IsRefSchemaObject(p) && p.required
         )
@@ -176,9 +182,21 @@ export function GenerateHttpResource(
     statements: [
       `return httpResource<${responseType}>(`,
       (w) => {
-        w.write('() => (');
+        w.write('() => {');
+        for (const path of parameter.parameters?.filter(p => !IsRefSchemaObject(p)  && p.in === 'path') ?? []) {
+          if (!IsRefSchemaObject(path)) {
+            w.writeLine(`const path_${ path.name } = parameters.${ path.name }();`);
+          }
+        }
+        for (const path of parameter.parameters?.filter(p => !IsRefSchemaObject(p)  && p.in === 'path') ?? []) {
+          if (!IsRefSchemaObject(path)) {
+            w.writeLine(`if (path_${ path.name } === null) return undefined;`);
+          }
+        }
+        w.write('return');
         Writers.object(httpOptions)(w);
-        w.write('),');
+        w.write(';');
+        w.write('},');
         w.writeLine('options');
       },
       `);`,
