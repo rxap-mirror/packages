@@ -63,7 +63,10 @@ export class RxapFormControl<
   // @ts-expect-error overwrite the public type
   override readonly status!: ControlState;
   override readonly statusChanges!: Observable<ControlState>;
-  readonly initialState!: OrBoxedValue<T>;
+  get initialState(): OrBoxedValue<T> {
+    return this._initialState;
+  }
+  protected _initialState!: OrBoxedValue<T>;
   private _readonly = false;
 
   private touchChanges = new Subject<boolean>();
@@ -135,7 +138,7 @@ export class RxapFormControl<
     if (options.readonly) {
       this.readonly = true;
     }
-    this.initialState = formState;
+    this._initialState = formState;
   }
 
   public override setValue(
@@ -166,16 +169,23 @@ export class RxapFormControl<
   ): Subscription;
   public override patchValue(valueOrObservable: T, options?: ControlOptions): void;
   public override patchValue(
-    valueOrObservable: any,
+    valueOrObservable: T | Observable<T>,
     options?: ControlOptions,
   ): Subscription | void {
     if (isObservable(valueOrObservable)) {
-      return valueOrObservable.subscribe((value) =>
-        super.patchValue(value, options),
+      return valueOrObservable.subscribe(value => {
+          super.patchValue(value, options);
+          if (options?.setInitialValue) {
+            this._initialState = value;
+          }
+        },
       );
     }
 
     super.patchValue(valueOrObservable, options);
+    if (options?.setInitialValue) {
+      this._initialState = valueOrObservable;
+    }
   }
 
   public disabledWhile(

@@ -59,9 +59,10 @@ export interface ControlOptions {
    *
    */
   strict?: boolean;
+  setInitialValue?: boolean;
 }
 
-export type ControlEventOptions = Pick<ControlOptions, 'emitEvent' | 'onlySelf' | 'coerce' | 'strict'>;
+export type ControlEventOptions = Pick<ControlOptions, 'emitEvent' | 'onlySelf' | 'coerce' | 'strict' | 'setInitialValue'>;
 export type OnlySelf = Pick<ControlOptions, 'onlySelf'>;
 export type EmitEvent = Pick<ControlOptions, 'emitEvent'>;
 export type ControlPath = Array<string | number> | string;

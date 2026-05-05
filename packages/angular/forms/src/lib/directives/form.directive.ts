@@ -423,7 +423,7 @@ export class FormDirective<T = any>
       if (isDevMode()) {
         console.log('use the value from input initial');
       }
-      form.patchValue(initial);
+      form.patchValue(initial, { setInitialValue: true });
     } else {
       if (this.loadMethod) {
         this.loading$.enable();
@@ -433,7 +433,7 @@ export class FormDirective<T = any>
           if (isPromise(resultOrPromise)) {
             resultOrPromise
               .then((value) => {
-                form.patchValue(value);
+                form.patchValue(value, { setInitialValue: true });
                 this.loaded$.enable();
                 this.loadSuccessful(value);
               })
@@ -446,7 +446,7 @@ export class FormDirective<T = any>
                 this.cdr.detectChanges();
               });
           } else if (isObject(resultOrPromise)) {
-            form.patchValue(resultOrPromise);
+            form.patchValue(resultOrPromise, { setInitialValue: true });
             this.loaded$.enable();
             this.loadSuccessful(resultOrPromise);
             this.loading$.disable();
