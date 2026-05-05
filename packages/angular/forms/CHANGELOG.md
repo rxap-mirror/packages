@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0...@rxap/forms@19.2.0-dev.0) (2026-05-05)
+
+### Features
+
+- **forms:** add `setInitialValue` option to `patchValue` for managing initial state ([627b851](https://gitlab.com/rxap/packages/commit/627b851bb4a79fb33adc62c5aa4ca8a0e5474357))
+
 # [19.1.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@19.1.0-dev.5...@rxap/forms@19.1.0) (2026-01-23)
 
 **Note:** Version bump only for package @rxap/forms
