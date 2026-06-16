@@ -47,7 +47,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       /^@rxap\/plugin/,
       /^@rxap\/workspace/,
       /@rxap\/schematic/,
-    ]
+    ].some((rx) => rx.test(packageName))
   ) {
     rootPackageJson.devDependencies ??= {};
     rootPackageJson.devDependencies[packageName] =
