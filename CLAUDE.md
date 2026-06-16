@@ -99,6 +99,26 @@ Common usages:
 
 The project ships an `.mcp.json` with several MCP servers (Nx, Chrome DevTools, Playwright, Context7, DeepWiki, Figma, memory, node-code-sandbox). They are auto-enabled via `.claude/settings.json` (`enableAllProjectMcpServers`). Remote servers (Figma) may require auth via `/mcp` on first use; `context7` needs `CONTEXT7_API_KEY` in the environment.
 
-- **Nx MCP:** Prefer the Nx MCP tools for up-to-date Nx configuration, project graph queries, and best practices over re-deriving them by hand.
-- **File operations:** Use the built-in `Read`, `Edit`, `Write`, `Grep`, and `Glob` tools for file interactions rather than shelling out to `cat`/`sed`.
-- **Shell commands:** Use `Bash` for `nx`/`yarn` commands and general terminal tasks. For long-running tasks (like `nx serve`), run them in the background.
+### Tool routing rules (IMPORTANT — follow by default)
+
+**Strong default:** When an Nx or WebStorm MCP tool fits the task, use it instead of re-deriving the answer with `Bash`/`Read`/`Grep`. Fall back to built-ins only when no MCP tool covers the need. Do not parse Nx config or compute the project graph by hand when an MCP tool returns it directly.
+
+**Use the Nx MCP server for:**
+- Workspace/project info → `nx_workspace`, `nx_project_details` (instead of `yarn nx show project ... --json | jq`).
+- Project & task dependency graphs, affected analysis → Nx MCP graph tools (instead of hand-tracing imports).
+- Discovering/scaffolding code → `nx_generators` + `nx_generator_schema` + `nx_run_generator` (instead of guessing generator names/flags).
+- Nx configuration, options, and best practices → `nx_docs` (never answer Nx config questions from memory — docs may be outdated).
+- CI / Nx Cloud pipeline analysis and self-healing → the corresponding Nx Cloud MCP tools.
+
+**Use the WebStorm MCP server for:**
+- Validating edits → `build_project` / `get_file_problems` for IDE inspections and compile errors (preferred over a blind `nx build` when you only need diagnostics for specific files).
+- Symbol navigation & semantics → `search_symbol`, `get_symbol_info`, `find_files_by_name_keyword`.
+- Refactors → `rename_refactoring` for safe project-wide renames (instead of `Grep` + manual `Edit` sweeps).
+- Formatting → `reformat_file` after edits.
+- Database work → `list_database_connections`, `execute_sql_query`, schema/table inspection tools.
+
+**Keep using built-ins for:**
+- `Read`, `Edit`, `Write`, `Grep`, `Glob` for plain file reads, edits, and text/pattern searches.
+- `Bash` for running `nx`/`yarn` targets (build/test/lint/serve), git, and general terminal tasks. Run long-running tasks (like `nx serve`) in the background.
+
+**Library/framework docs:** use the `context7` MCP server (resolve-library-id → query-docs) before answering API/config/version questions, even for well-known libraries.
