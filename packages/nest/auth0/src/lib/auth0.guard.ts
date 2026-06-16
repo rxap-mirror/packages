@@ -64,7 +64,7 @@ export class Auth0Guard implements CanActivate {
       user.roles = request.headers['x-user-roles'];
       user.displayName = request.headers['x-user-display-name'];
       user.email = request.headers['x-user-email'];
-      user.usernane = request.headers['x-user-username'];
+      user.username = request.headers['x-user-username'];
       user.name = request.headers['x-user-name'];
       user.nickname = request.headers['x-user-nickname'];
       if (request.user && 'sub' in request.user) {

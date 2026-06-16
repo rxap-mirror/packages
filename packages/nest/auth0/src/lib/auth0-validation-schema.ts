@@ -56,7 +56,7 @@ export function auth0ValidationSchema(environment: Environment, defaults: Partia
   schema['AUTH0_MANAGEMENT_TOKEN'] = Joi.string();
   schema['AUTH0_DISABLED'] = Joi.boolean();
 
-  for (const [ key, value ] of Object.keys(defaults)) {
+  for (const [ key, value ] of Object.entries(defaults)) {
     if (value) {
       schema[key] = schema[key].default(value);
     }
