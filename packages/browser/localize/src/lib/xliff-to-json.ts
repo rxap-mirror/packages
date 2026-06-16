@@ -41,20 +41,15 @@ export async function xliffToJson(translations: string) {
               return '';
             })
             .join('');
-        } else if (typeof translation === 'object' && 'Standalone' in translation && translation.Standalone.id !== '') {
+        } else if (translation && typeof translation === 'object' && 'Standalone' in translation && translation.Standalone.id !== '') {
           result[current] = `{{${ translation.Standalone.id }}}`;
         } else {
           console.warn(`Could not parse XLIFF: (${ current }) ${ JSON.stringify(xliffContent[current]) }`);
           return result;
         }
-        result[current] = result[current].replace(
-            '{{',
-            '{$',
-          )
-          .replace(
-            '}}',
-            '}',
-          );
+        result[current] = result[current]
+          .replace(/\{\{/g, '{$')
+          .replace(/\}\}/g, '}');
         return result;
       },
       {},

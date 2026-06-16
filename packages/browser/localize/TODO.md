@@ -4,45 +4,6 @@ This document lists identified issues, functional bugs, logic errors, architectu
 
 ---
 
-## 🚨 Critical Bugs & Logic Errors
-
-### 1. TypeError Crash on Null Translation Target (`xliff-to-json.ts`)
-*   **Location:** [xliff-to-json.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/browser/localize/src/lib/xliff-to-json.ts#L44)
-*   **Description:**
-    ```typescript
-    } else if (typeof translation === 'object' && 'Standalone' in translation && translation.Standalone.id !== '') {
-    ```
-    In JavaScript, `typeof null` is `'object'`. If the parsed translation target is `null` (e.g., empty or missing translation unit elements in XLIFF), `'Standalone' in translation` will throw a runtime `TypeError: Cannot use 'in' operator to search for 'Standalone' in null`. This will crash the entire translation parsing and loading process.
-*   **Recommended Fix:**
-    Ensure `translation` is not null before checking keys:
-    ```typescript
-    } else if (translation && typeof translation === 'object' && 'Standalone' in translation && translation.Standalone.id !== '') {
-    ```
-
-### 2. Single-Occurrence String Replacement for Interpolation Placeholders (`xliff-to-json.ts`)
-*   **Location:** [xliff-to-json.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/browser/localize/src/lib/xliff-to-json.ts#L50-L57)
-*   **Description:**
-    ```typescript
-    result[current] = result[current].replace(
-        '{{',
-        '{$',
-      )
-      .replace(
-        '}}',
-        '}',
-      );
-    ```
-    Calling `.replace(string, string)` in JavaScript/TypeScript only replaces the **first** occurrence of the matched substring. If an XLIFF translation entry contains multiple placeholders (e.g., `"Hello {{firstName}}, welcome to {{city}}!"`), only the first placeholder is converted to the framework's expected `{$firstName}` syntax. The subsequent placeholder(s) will remain unconverted (e.g., `"Hello {$firstName}, welcome to {{city}}!"`), resulting in broken UI interpolation.
-*   **Recommended Fix:**
-    Use regular expressions with the global (`g`) flag to ensure all placeholders in the string are replaced:
-    ```typescript
-    result[current] = result[current]
-      .replace(/\{\{/g, '{$')
-      .replace(/\}\}/g, '}');
-    ```
-
----
-
 ## 🏛️ Architectural & Design Debt
 
 ### 3. In-Place Parameter Mutation (`fetch-translations.ts`)
