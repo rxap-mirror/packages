@@ -6,33 +6,7 @@ This document outlines the findings, critical bugs, logic errors, architectural 
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Regex Evaluation Logic Error in Init Generator
-* **Location:** `packages/angular/icon/src/generators/init/generator.ts` (Lines 45–51)
-* **Description:** 
-  In the conditional block below, the code attempts to check whether `packageName` matches certain regular expressions. However, it defines an array literal inside the conditional expression without evaluating it against `packageName` (e.g., using `.some` or `.test`):
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript/TypeScript, array literals are always truthy. Thus, the expression `!isDevDependency && [...]` simplifies directly to `!isDevDependency`. This causes the generator to incorrectly classify packages and move them to `devDependencies` regardless of their package name.
-* **Recommended Fix:** Use `.some()` to check for matches, similar to how it is correctly implemented earlier in the same file:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 2. Async Package Installation & Lifecycle Race Condition in Generator
+### 1. Async Package Installation & Lifecycle Race Condition in Generator
 * **Location:** `packages/angular/icon/src/generators/init/generator.ts` (Lines 74–137)
 * **Description:**
   The generator dynamically adds missing peer dependencies to `package.json` and invokes `installPackagesTask(tree)`. However, `installPackagesTask` is a post-generation callback registered to run *after* the generator successfully finishes execution. It does *not* run synchronously.
@@ -42,7 +16,7 @@ This document outlines the findings, critical bugs, logic errors, architectural 
   - Register peer init generator tasks as separate, post-install processes or custom schematics.
   - Or, instruct developers to run initialization commands in a multi-step workflow.
 
-### 3. Virtual Tree Sandbox Violation
+### 2. Virtual Tree Sandbox Violation
 * **Location:** `packages/angular/icon/src/generators/init/generator.ts` (Line 126)
 * **Description:**
   The generator uses a dynamic `require()` to load files directly from the physical filesystem (`node_modules/...`) during execution:
@@ -55,19 +29,6 @@ This document outlines the findings, critical bugs, logic errors, architectural 
   ```
   Generators are designed to run in a sandboxed, virtualized environment (using the `Tree` object) to support dry runs and safe workspace manipulations. Directly accessing the physical file system (especially using relative paths to `node_modules`) circumvents this isolation and will fail during dry runs or in environments with virtual/customized project setups.
 * **Recommended Fix:** Avoid dynamic `require()` of generator files. If peer generator execution is necessary, utilize the Nx task orchestration capabilities or standard command execution facilities.
-
-### 4. Join Delimiter Typo in Service Debug Log
-* **Location:** `packages/angular/icon/src/lib/icon-loader.service.ts` (Line 24)
-* **Description:**
-  When printing debug messages in development mode, the path list is joined with a forward slash (`/`), which is the path separator:
-  ```typescript
-  console.debug(`load icon sets from path [ ${ pathList.join('/') } ]`);
-  ```
-  This creates confusing output (e.g., `load icon sets from path [ mdi.svg/custom.svg ]`), making it appear as if a single relative subdirectory path is being registered.
-* **Recommended Fix:** Join with a comma and space for readability, consistent with `provide-icon-asset-path.ts`:
-  ```typescript
-  console.debug(`load icon sets from path [ ${ pathList.join(', ') } ]`);
-  ```
 
 ---
 

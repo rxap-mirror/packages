@@ -21,7 +21,7 @@ export class IconLoaderService {
   public load() {
     const pathList = coerceArray(this.pathList);
     if (isDevMode()) {
-      console.debug(`load icon sets from path [ ${ pathList.join('/') } ]`);
+      console.debug(`load icon sets from path [ ${ pathList.join(', ') } ]`);
     }
     for (const path of pathList) {
       try {
