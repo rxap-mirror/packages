@@ -1,0 +1,111 @@
+# TODO - angular-icon
+
+This document outlines the findings, critical bugs, logic errors, architectural debt, and recommended improvements identified during the project audit of `angular-icon`.
+
+---
+
+## 🚨 Critical Bugs & Logic Errors
+
+### 1. Regex Evaluation Logic Error in Init Generator
+* **Location:** `packages/angular/icon/src/generators/init/generator.ts` (Lines 45–51)
+* **Description:** 
+  In the conditional block below, the code attempts to check whether `packageName` matches certain regular expressions. However, it defines an array literal inside the conditional expression without evaluating it against `packageName` (e.g., using `.some` or `.test`):
+  ```typescript
+  if (
+    !isDevDependency && [
+      /^@rxap\/plugin/,
+      /^@rxap\/workspace/,
+      /@rxap\/schematic/,
+    ]
+  ) { ... }
+  ```
+  In JavaScript/TypeScript, array literals are always truthy. Thus, the expression `!isDevDependency && [...]` simplifies directly to `!isDevDependency`. This causes the generator to incorrectly classify packages and move them to `devDependencies` regardless of their package name.
+* **Recommended Fix:** Use `.some()` to check for matches, similar to how it is correctly implemented earlier in the same file:
+  ```typescript
+  if (
+    !isDevDependency &&
+    [
+      /^@rxap\/plugin/,
+      /^@rxap\/workspace/,
+      /@rxap\/schematic/,
+    ].some((rx) => rx.test(packageName))
+  ) { ... }
+  ```
+
+### 2. Async Package Installation & Lifecycle Race Condition in Generator
+* **Location:** `packages/angular/icon/src/generators/init/generator.ts` (Lines 74–137)
+* **Description:**
+  The generator dynamically adds missing peer dependencies to `package.json` and invokes `installPackagesTask(tree)`. However, `installPackagesTask` is a post-generation callback registered to run *after* the generator successfully finishes execution. It does *not* run synchronously.
+  Directly after registering the installation task, the code loops through `missingPeerDependencies`, checks for their existence in `node_modules`, and attempts to `require()` and run their `init` generators. Because the installation task hasn't actually run, these packages are not yet installed in `node_modules` during the generator's execution.
+  This leads to the files being missed/skipped, or throwing errors if the developer does not already have them globally/locally installed.
+* **Recommended Fix:** Refactor peer dependency generator triggering. Instead of executing nested generators dynamically during the initial run of this generator:
+  - Register peer init generator tasks as separate, post-install processes or custom schematics.
+  - Or, instruct developers to run initialization commands in a multi-step workflow.
+
+### 3. Virtual Tree Sandbox Violation
+* **Location:** `packages/angular/icon/src/generators/init/generator.ts` (Line 126)
+* **Description:**
+  The generator uses a dynamic `require()` to load files directly from the physical filesystem (`node_modules/...`) during execution:
+  ```typescript
+  const initGenerator = require(join(
+    'node_modules',
+    ...peer.split('/'),
+    initGeneratorFilePath
+  ))?.default;
+  ```
+  Generators are designed to run in a sandboxed, virtualized environment (using the `Tree` object) to support dry runs and safe workspace manipulations. Directly accessing the physical file system (especially using relative paths to `node_modules`) circumvents this isolation and will fail during dry runs or in environments with virtual/customized project setups.
+* **Recommended Fix:** Avoid dynamic `require()` of generator files. If peer generator execution is necessary, utilize the Nx task orchestration capabilities or standard command execution facilities.
+
+### 4. Join Delimiter Typo in Service Debug Log
+* **Location:** `packages/angular/icon/src/lib/icon-loader.service.ts` (Line 24)
+* **Description:**
+  When printing debug messages in development mode, the path list is joined with a forward slash (`/`), which is the path separator:
+  ```typescript
+  console.debug(`load icon sets from path [ ${ pathList.join('/') } ]`);
+  ```
+  This creates confusing output (e.g., `load icon sets from path [ mdi.svg/custom.svg ]`), making it appear as if a single relative subdirectory path is being registered.
+* **Recommended Fix:** Join with a comma and space for readability, consistent with `provide-icon-asset-path.ts`:
+  ```typescript
+  console.debug(`load icon sets from path [ ${ pathList.join(', ') } ]`);
+  ```
+
+---
+
+## 🏛️ Architectural Debt
+
+### 1. `@NgModule` Environment Provider Anti-Pattern
+* **Location:** `packages/angular/icon/src/lib/icon.module.ts` (Line 18)
+* **Description:**
+  `IconModule` registers `provideHttpClient(withInterceptorsFromDi())` directly in its `@NgModule` providers list:
+  ```typescript
+  @NgModule({ imports: [], providers: [provideHttpClient(withInterceptorsFromDi())] })
+  ```
+  `provideHttpClient` is designed to configure the environment-scoped HTTP client (introduced in Angular 15+ for standalone APIs). Registering environment-scoped providers inside an `@NgModule` metadata block is an anti-pattern that can lead to unexpected behaviors, duplicate provider configurations, or issues with isolation.
+* **Recommended Fix:** Refactor `IconModule` to import `HttpClientModule` (since it is an NgModule-based approach), or deprecate the module entirely in favor of the standalone provider function `ProvideIconAssetPath`.
+
+### 2. Multi-Instantiation Race Conditions in Module
+* **Location:** `packages/angular/icon/src/lib/icon.module.ts` (Lines 21–25)
+* **Description:**
+  The `IconModule` constructor eagerly loads the icon sets:
+  ```typescript
+  constructor(
+    iconLoaderService: IconLoaderService,
+  ) {
+    iconLoaderService.load();
+  }
+  ```
+  If `IconModule` is imported in multiple modules (e.g., lazy-loaded feature modules or shared sub-modules), the icon sets will be loaded repeatedly. While the `MatIconRegistry` mitigates duplicate network requests to some extent, redundant security sanitizations and registry calls still occur.
+* **Recommended Fix:** Ensure `IconModule` is only imported once at the root, or shift completely to `ProvideIconAssetPath` inside the `ApplicationConfig` provider array to ensure the initialization runs exactly once as part of `provideAppInitializer`.
+
+---
+
+## 🧪 Test Coverage & Configuration
+
+### 1. Zero Test Coverage
+* **Location:** Whole project (`packages/angular/icon`)
+* **Description:**
+  There are absolutely zero unit or integration test files (`*.spec.ts`) in the entire project. The `test` target in `project.json` is configured with `"passWithNoTests": true`, which masks the complete absence of tests.
+* **Recommended Fix:**
+  - Implement basic unit tests for the core service (`icon-loader.service.spec.ts`) to verify that icon sets are properly registered with the `MatIconRegistry`.
+  - Add test coverage for the provider function `ProvideIconAssetPath` (`provide-icon-asset-path.spec.ts`).
+  - Add test coverage for the initialization generator (`src/generators/init/generator.spec.ts`) to prevent future regressions in dependency/devDependency sorting.
