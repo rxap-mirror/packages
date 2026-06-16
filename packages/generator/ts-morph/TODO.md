@@ -2,35 +2,6 @@
 
 This file tracks the outstanding bugs, architectural debt, testing gaps, and other improvements identified during the project audit of `@rxap/generator-ts-morph`.
 
-## Critical Bugs
-
-### 1. Broken Dependency Classification Logic (Widespread Bug)
-In `src/generators/init/generator.ts` (lines 45–58):
-```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-```
-* **Issue:** The array literal `[` ... `]` is always truthy in JavaScript/TypeScript. Therefore, `!isDevDependency && [...]` simplifies to just checking `!isDevDependency`.
-* **Impact:** Any package that is currently NOT listed as a devDependency (including Angular runtime libraries or NestJS services) is incorrectly classified as matching these plugin/workspace/schematic patterns and gets forcibly moved to `devDependencies` in `package.json`. This can break runtime dependency structures. (Note: This is a highly widespread issue found in over 140+ generator `init` files in the monorepo!).
-* **Recommended Fix:** Change the code to use the same logic as the preceding block (using `.some` to test the regexes against `packageName`):
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
----
-
 ## Architectural Debt & Anti-patterns
 
 ### 1. Mixing Physical (`__dirname`) and Virtual (`Tree`) Paths

@@ -67,31 +67,6 @@ This document outlines critical issues, architectural debt, and testing gaps dis
   }
   ```
 
-### 4. Broken Regex Check in `init` Generator
-- **Location:** `packages/packages/mixin/src/generators/init/generator.ts` (Lines 45–58)
-- **Problem:** The condition checking whether a package is a utility/plugin to move it to `devDependencies` is completely broken:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  An array literal is a truthy value in JavaScript. Consequently, the condition is equivalent to `if (!isDevDependency)`. The regex patterns are completely ignored, moving *every* dependency to `devDependencies` if it's currently a standard dependency.
-- **Recommended Fix:** Correctly apply `.some()` to test the package name, matching the pattern used in the preceding `if` block:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  )
-  ```
-
 ---
 
 ## 🏛️ Architectural Debt & Anti-Patterns
@@ -124,7 +99,7 @@ This document outlines critical issues, architectural debt, and testing gaps dis
 
 ## 🚀 Recommended Action Plan
 
-1. **Fix Critical Bugs:** Apply immediate fixes for the recursion crash, `@use` pollution, array mutation in `Mixin`, and the broken regex check in the init generator.
+1. **Fix Critical Bugs:** Apply immediate fixes for the recursion crash, `@use` pollution, and array mutation in `Mixin`.
 2. **Refactor `@delegate`:** Clean up target prototype access to avoid polluting `Function.prototype` on static properties.
 3. **Generator Abstraction:** Remove absolute disk paths and manual `node_modules` traversal from the `init` generator.
 4. **Implement Missing Tests:** Write extensive unit tests for `@use` and null prototype edge cases to prevent regressions.

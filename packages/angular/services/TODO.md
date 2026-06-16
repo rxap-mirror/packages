@@ -6,31 +6,6 @@ This document outlines the findings from the project audit of `packages/angular/
 
 ## 1. Critical & Functional Bugs
 
-### 🚨 Generator Regex Evaluation Bug in `Init` Generator
-*   **File:** [`packages/angular/services/src/generators/init/generator.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/services/src/generators/init/generator.ts#L45-L51)
-*   **Issue:** The conditional check to move matching packages to devDependencies contains a major logical bug:
-    ```typescript
-    if (
-      !isDevDependency && [
-        /^@rxap\/plugin/,
-        /^@rxap\/workspace/,
-        /@rxap\/schematic/,
-      ]
-    ) {
-    ```
-    In JavaScript/TypeScript, a non-empty array is always truthy. As a result, the statement simplifies to `!isDevDependency && true`, meaning *any* package that is not currently a devDependency will be incorrectly moved to devDependencies, regardless of whether its name matches any of the regular expressions in the array.
-*   **Recommended Fix:** Update the condition to use `.some()` to correctly test the `packageName` against the regular expressions:
-    ```typescript
-    if (
-      !isDevDependency &&
-      [
-        /^@rxap\/plugin/,
-        /^@rxap\/workspace/,
-        /@rxap\/schematic/,
-      ].some((rx) => rx.test(packageName))
-    ) {
-    ```
-
 ### 🚨 Old Component Instance Resource Leak in `WindowContainerSidenavService`
 *   **File:** [`packages/angular/services/src/lib/window-container-sidenav.service.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/services/src/lib/window-container-sidenav.service.ts#L25-L31)
 *   **Issue:** In the `add` method, if a component with the same `id` is already registered, the service correctly triggers a `remove$` event before overwriting it. However, it incorrectly emits the **new** component instance reference via the `remove$` stream rather than the **old** stored reference:

@@ -19,33 +19,7 @@ This document outlines critical bugs, architectural debt, library anti-patterns,
   this.triggerAutoRenewIn(response.lease_duration * 0.6 * 1000, increment, autoRenew);
   ```
 
-### 2. Faulty Array/Regex Evaluation in `init` Generator
-* **File & Lines**: [`generator.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/vault/src/generators/init/generator.ts#L45-L51)
-* **Problem**: 
-  - The conditional statement evaluates:
-    ```typescript
-    if (
-      !isDevDependency && [
-        /^@rxap\/plugin/,
-        /^@rxap\/workspace/,
-        /@rxap\/schematic/,
-      ]
-    ) { ... }
-    ```
-  - In JavaScript/TypeScript, an array literal `[...]` is always truthy. The regular expressions are never executed or tested against the `packageName`.
-  - This simplifies to `!isDevDependency && true`, causing **any** non-dev-dependency packages passing through this generator to be incorrectly shifted to `devDependencies` of the root `package.json`.
-* **Recommended Fix**: Append `.some(...)` check to verify if the packageName matches any of the regex patterns, similar to the preceding block:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 3. Indefinite Hang when Vault is Disabled
+### 2. Indefinite Hang when Vault is Disabled
 * **File & Lines**: [`vault.service.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/vault/src/lib/vault.service.ts#L118-L121)
 * **Problem**: 
   - If `VAULT_DISABLED` is active, `this.initialized` is assigned to a promise that delays for 24 hours: `new Promise<void>(resolve => setTimeout(resolve, 24 * 60 * 60))`.
@@ -56,7 +30,7 @@ This document outlines critical bugs, architectural debt, library anti-patterns,
   - Replace the 24-hour hang promise. If Vault is disabled, service methods should immediately throw a descriptive error or return `null`/`undefined` gracefully depending on use-cases.
   - Store a `vaultDisabled` boolean flag and check it in the API methods.
 
-### 4. Direct Truthiness Boolean Parsing of Environment Variables
+### 3. Direct Truthiness Boolean Parsing of Environment Variables
 * **File & Lines**: [`vault.service.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/vault/src/lib/vault.service.ts#L118), [`vault.service.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/vault/src/lib/vault.service.ts#L257)
 * **Problem**: 
   - The configuration checks `if (this.config.get('VAULT_DISABLED'))` and `this.config.get('VAULT_KUBERNETES_AUTO_RENEW') !== undefined`.

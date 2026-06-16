@@ -6,34 +6,7 @@ This document outlines the identified critical bugs, logic errors, architectural
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Incorrect `if` Check in `init` Generator
-* **Location:** [generator.ts:L45-L51](file:///mnt/mmuenker/Projects/rxap/packages/packages/n8n/nodes/firecrawl/src/generators/init/generator.ts#L45-L51)
-* **Description:**
-  The check to see if a package is a plugin, workspace, or schematic is missing a `.some(...)` evaluation:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  Since any non-empty array is truthy in JavaScript/TypeScript, this condition evaluates to `true` for *all* packages when `!isDevDependency` is true, regardless of their actual package name. This causes non-dev dependencies to be incorrectly moved to `devDependencies` in the root `package.json`.
-* **Recommended Fix:**
-  Add the `.some((rx) => rx.test(packageName))` evaluation, similar to the pattern used on line 36:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  )
-  ```
-
-### 2. Parameterized URL Bug in AI Tool (Extract Operation)
+### 1. Parameterized URL Bug in AI Tool (Extract Operation)
 * **Location:** [ToolFirecrawl.node.ts:L456](file:///mnt/mmuenker/Projects/rxap/packages/packages/n8n/nodes/firecrawl/src/lib/Firecrawl/ToolFirecrawl.node.ts#L456)
 * **Description:**
   For the `extract` operation in `ToolFirecrawl`, the node executes the `extract` call with the original `url` parameter (containing unresolved placeholders like `{url}`) instead of the resolved `finalUrl` which has placeholders replaced with the LLM's query arguments:

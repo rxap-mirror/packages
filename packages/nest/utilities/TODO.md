@@ -9,7 +9,7 @@ This document lists the findings and recommended actions resulting from a detail
 | Category | Status / Count | Description |
 | :--- | :--- | :--- |
 | **Test Coverage** | 🔴 **0%** | Zero test files (`*.spec.ts`) exist in the package. |
-| **Critical Bugs** | 🛑 **4** | Broken sorting/paging, broken package.json regex checks in generator, and global memory/CSP mutation leak. |
+| **Critical Bugs** | 🛑 **3** | Broken sorting/paging and global memory/CSP mutation leak. |
 | **Logic & Functional Bugs** | ⚠️ **4** | Unhandled TypeErrors in `ApplyFilter`, Fastify/non-HTTP context crashes, and string coercion for Throttler limits. |
 | **Architectural Debt** | ⚙️ **3** | Uninitialized global state for `IsDevMode`, hardcoded bypasses, and aggressive dependency injection of `Logger`. |
 | **Anti-Patterns** | 🔍 **2** | `node_modules` file reads via virtualized Tree, and plain-object `validateSync` validation. |
@@ -27,27 +27,6 @@ This document lists the findings and recommended actions resulting from a detail
 - **Recommended Fix:** Correct the parameter order in the `ApplySort` call in `src/lib/apply-paging.ts`:
   ```typescript
   let rows = ApplySort(data, sortDirection, sortBy);
-  ```
-
-### 🔴 Broken Regex and Dependency Logic in `initGenerator`
-- **Location:** `src/generators/init/generator.ts` (lines 45–51)
-- **Issue:** The `if` condition checking for devDependencies has a major syntax/logic bug:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  An array literal in JavaScript is always truthy, so the block executes for **all** non-dev packages. The regular expressions are never tested against `packageName` via `.some()`.
-- **Recommended Fix:** Change to:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  )
   ```
 
 ### 🔴 Memory Mutation & Side-Effect Leak in CSP Builder

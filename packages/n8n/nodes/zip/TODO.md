@@ -6,31 +6,7 @@ This file documents the findings and recommended actions from the project audit 
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Logic Error in Init Generator Regular Expression Check
-In `src/generators/init/generator.ts` (lines 45-51), there is a logical flaw in the conditional block that updates devDependencies:
-```typescript
-if (
-  !isDevDependency && [
-    /^@rxap\/plugin/,
-    /^@rxap\/workspace/,
-    /@rxap\/schematic/,
-  ]
-) {
-```
-* **Issue:** The array of regular expressions is evaluated as a truthy value in JavaScript. Consequently, if `isDevDependency` is false, this block is entered for **every** package regardless of whether its name actually matches the patterns.
-* **Impact:** Distorts dependency classification in the root `package.json`.
-* **Fix:** Use `.some(rx => rx.test(packageName))` to verify matches, consistent with the check on line 36:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-### 2. Typo in Parameter Names & UI Labels
+### 1. Typo in Parameter Names & UI Labels
 In `src/lib/Zip/Zip.node.ts` (and propagated to sister node `Tar.node.ts`):
 * **Issue:** The binary data property parameter is incorrectly named `inputDateProperty` and labeled as `"Input Date Property"`.
 * **Impact:** Confuses users because zip/tar operations deal with **binary data**, not date properties.

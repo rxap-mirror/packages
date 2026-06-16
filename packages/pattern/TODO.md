@@ -4,48 +4,6 @@ This file lists the findings, architectural debt, and recommended improvements r
 
 ---
 
-## 🚨 Critical Bugs
-
-### 1. Dependency Categorization Typo in `init` Generator
-- **Location:** `src/generators/init/generator.ts` (Lines 45–58)
-- **Description:** 
-  The condition in the `if` statement for checking if the package is a plugin or schematic evaluates an array of regular expressions directly, rather than executing a check against the package name:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript/TypeScript, any non-empty array evaluates to `truthy`. Therefore, if `!isDevDependency` is true, the condition evaluates to `true && [...]` which is **always true**.
-  This means **any package** that is not currently inside `devDependencies` will enter this block, forcefully setting `rootPackageJson.devDependencies[packageName] = rootPackageJson.dependencies[packageName]`, deleting it from `dependencies`, and potentially corrupting package dependency alignments (setting the version to `undefined` if it didn't exist in `dependencies` either).
-- **Impact:** 
-  This logic flaw corrupts dependencies inside `package.json` whenever the generator is executed for packages that do not match the intended patterns. It has also propagated across nearly all generator templates in the workspace (found in over 80+ packages).
-- **Recommended Fix:**
-  Use `.some` and `.test` on the regex array:
-  ```typescript
-  const isPluginOrSchematic = [
-    /^@rxap\/plugin/,
-    /^@rxap\/workspace/,
-    /@rxap\/schematic/,
-  ].some((rx) => rx.test(packageName));
-
-  if (!isDevDependency && isPluginOrSchematic) {
-    rootPackageJson.devDependencies ??= {};
-    rootPackageJson.devDependencies[packageName] =
-      rootPackageJson.dependencies?.[packageName] ?? 'latest';
-    if (rootPackageJson.dependencies?.[packageName]) {
-      delete rootPackageJson.dependencies[packageName];
-    }
-    isDevDependency = true;
-    tree.write('package.json', JSON.stringify(rootPackageJson, null, 2));
-  }
-  ```
-
----
-
 ## 🏗️ Architectural Debt & Anti-Patterns
 
 ### 1. Virtual `Tree` Usage for Non-Workspace Static Assets (`node_modules`)

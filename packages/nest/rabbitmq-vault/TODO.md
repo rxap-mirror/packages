@@ -6,30 +6,7 @@ This document lists the findings and recommendations from the audit of the `@rxa
 
 ## 🔴 Critical & Major Bugs
 
-### 1. Incorrect Regex Evaluation in `generator.ts`
-- **File:** `src/generators/init/generator.ts` (Lines 45-51)
-- **Description:** 
-  The condition inside the dependency-coercion logic is currently broken:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  This does not test `packageName` against the regex array; instead, it checks if the array literal is truthy (which it always is). Consequently, any runtime package that is not a devDependency will be incorrectly moved to `devDependencies` in `package.json`.
-- **Recommended Fix:**
-  Use `.some` to correctly test the `packageName` against the regular expressions:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  )
-  ```
-
-### 2. Node.js Process Crash Risk in Asynchronous Lease Renewal
+### 1. Node.js Process Crash Risk in Asynchronous Lease Renewal
 - **File:** `src/lib/rabbitmq-vault.service.ts` (Lines 66-75)
 - **Description:** 
   In the `autoRenewLease` method, the `.catch` block on `this.vault.renewLease` throws an error inside an asynchronous `setTimeout` context:
@@ -53,7 +30,7 @@ This document lists the findings and recommendations from the audit of the `@rxa
 
 ## 🟡 Resource Leaks & Safety Issues
 
-### 3. Background Timer / Memory Leak in `autoRenewLease`
+### 2. Background Timer / Memory Leak in `autoRenewLease`
 - **File:** `src/lib/rabbitmq-vault.service.ts` (Lines 59-76)
 - **Description:**
   The `autoRenewLease` method schedules recursive `setTimeout` timers to handle lease renewals. However, these timeout handles are never stored, and the service does not implement NestJS lifecycle hooks (like `OnModuleDestroy`) to clean them up.
@@ -74,7 +51,7 @@ This document lists the findings and recommendations from the audit of the `@rxa
     }
     ```
 
-### 4. Vulnerable Parameter checks in `handleError`
+### 3. Vulnerable Parameter checks in `handleError`
 - **File:** `src/lib/rabbitmq-vault.service.ts` (Lines 78-86)
 - **Description:**
   The error handler checks properties on `error` without validating that `error` is an object:
@@ -96,7 +73,7 @@ This document lists the findings and recommendations from the audit of the `@rxa
   }
   ```
 
-### 5. Lack of `lease_duration` Safety Check
+### 4. Lack of `lease_duration` Safety Check
 - **File:** `src/lib/rabbitmq-vault.service.ts` (Lines 64)
 - **Description:**
   If the Vault backend returns a lease duration of `0` or a negative value, the calculated `timeout` will be `<= 0`. This will cause the `setTimeout` callback to fire immediately and recursively, causing a rapid infinite loop of lease renewal requests, flooding Vault, and pinning the CPU.
@@ -113,7 +90,7 @@ This document lists the findings and recommendations from the audit of the `@rxa
 
 ## 🔵 Architectural Debt & Coupling
 
-### 6. Generator Anti-patterns (Virtualized Tree Violations)
+### 5. Generator Anti-patterns (Virtualized Tree Violations)
 - **File:** `src/generators/init/generator.ts` (Lines 11-14, 85-91)
 - **Description:**
   - The generator computes physical pathing relative to `__dirname` to access files in `tree`:
@@ -128,14 +105,14 @@ This document lists the findings and recommendations from the audit of the `@rxa
   - Avoid using physical paths (`__dirname`) mixed with the virtual tree `tree.read`/`tree.write`. For accessing workspace files, use workspace-relative paths from devkit or utility helpers.
   - To inspect dependencies or run init tasks for peer dependencies, use physical filesystem helpers (e.g., standard `fs` module) for `node_modules` checks, or utilize the native `@nx/devkit` package/dependency helpers that bypass the virtual `tree` for non-workspace files.
 
-### 7. Direct Coupling to Environment Keys
+### 6. Direct Coupling to Environment Keys
 - **Files:** `src/lib/rabbitmq-vault.service.ts` and `src/lib/rabbitmq-vault-options-factory.ts`
 - **Description:**
   The classes are hardcoded to fetch the role name from the exact environment key `'RABBITMQ_VAULT_ROLE'`. This tightly couples the library to a specific configuration structure, making it non-reusable across different services or multiple RabbitMQ configurations inside the same application.
 - **Recommended Fix:**
   Accept the config key name or the vault options via NestJS dependency injection using a configuration token or dynamic module configuration.
 
-### 8. Missing NestJS Module
+### 7. Missing NestJS Module
 - **Description:**
   The library provides `RabbitmqVaultService` and `RabbitmqVaultOptionsFactory` but does not provide a standard NestJS Module (e.g., `RabbitmqVaultModule`). Users must manually register these components inside their own application modules.
 - **Recommended Fix:**
@@ -145,7 +122,7 @@ This document lists the findings and recommendations from the audit of the `@rxa
 
 ## 🟢 Test Coverage
 
-### 9. Lack of Unit and Integration Tests
+### 8. Lack of Unit and Integration Tests
 - **Description:**
   There are **no spec files** (`*.spec.ts`) in the entire library, resulting in **0% test coverage**. 
 - **Recommended Fix:**

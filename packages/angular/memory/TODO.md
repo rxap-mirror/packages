@@ -31,32 +31,6 @@ This document outlines the findings and recommended improvements identified duri
 * **Recommended Fix:** 
   Instead of overloading the setter with state checks on `propertyValue === undefined`, use a unique Symbol or boolean flag (e.g. `isInitialized`) to track whether the property has been initialized, or avoid setter interception entirely. Let the getter resolve defaults when the underlying storage value is empty, and let the setter always write the value when called explicitly after construction.
 
-### 2. Defective Regex Check in `initGenerator`
-* **Location:** `src/generators/init/generator.ts` (Lines 45–51)
-* **Problem:** 
-  The condition in the `initGenerator` checks if a package name belongs to a plugin, workspace, or schematic to move it to `devDependencies`. However, the array of regular expressions is declared but **never evaluated**:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript/TypeScript, a non-empty array literal is always truthy. This means the condition simplifies to `!isDevDependency`. If the package (such as `@rxap/ngx-memory`, which is an Angular library) is not in `devDependencies`, it is **always** moved to `devDependencies` regardless of its package name!
-* **Recommended Fix:** 
-  Add `.some()` to evaluate the regular expressions:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
 ---
 
 ## 📐 Architectural Debt & Anti-Patterns

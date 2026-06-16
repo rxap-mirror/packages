@@ -2,38 +2,7 @@
 
 Here are the identified improvements and critical bug fixes for the `generator-utilities` library:
 
-## 1. Dead Conditional Array Evaluation (Critical Logic Bug)
-In `generator.ts` on lines 45-58, there is a major logic bug in the `if` statement:
-```typescript
-if (
-  !isDevDependency && [
-    /^@rxap\/plugin/,
-    /^@rxap\/workspace/,
-    /@rxap\/schematic/,
-  ]
-) {
-  rootPackageJson.devDependencies ??= {};
-  rootPackageJson.devDependencies[packageName] =
-    rootPackageJson.dependencies[packageName];
-  delete rootPackageJson.dependencies[packageName];
-  isDevDependency = true;
-  tree.write('package.json', JSON.stringify(rootPackageJson, null, 2));
-}
-```
-- **Bug:** The array of regexes `[/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/]` is declared inside the `if` conditional expression but is **never evaluated** via `.some()` or `.test()`. In JavaScript, non-empty arrays evaluate to truthy. Therefore, this `if` block is equivalent to `!isDevDependency && true`. It will execute for **every** package that is not a devDependency, regardless of whether its name matches `@rxap/plugin`, `@rxap/workspace`, or `@rxap/schematic`!
-- **Action:** Refactor the condition to correctly check the `packageName` against the regexes using `.some()`:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-## 2. Reading and Validating Virtualized Tree of `node_modules` (Nx Anti-Pattern)
+## 1. Reading and Validating Virtualized Tree of `node_modules` (Nx Anti-Pattern)
 On line 85 and subsequent lines:
 ```typescript
 const peerPackageJsonFilePath = join(
@@ -55,6 +24,6 @@ if (!tree.exists(peerPackageJsonFilePath)) { ... }
   }
   ```
 
-## 3. Unit Test Coverage
+## 2. Unit Test Coverage
 - **Issue:** No tests were found.
 - **Action:** Add unit tests using `@nx/devkit/testing`'s `createTreeWithEmptyWorkspace` to verify that `initGenerator` correctly moves dependencies to/from `devDependencies` depending on their names, and resolves/injects missing peer dependencies appropriately.

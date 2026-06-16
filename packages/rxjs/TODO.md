@@ -65,33 +65,7 @@ This file documents the critical bugs, architectural debt, library anti-patterns
     public readonly disabled$ = this.pipe(filter(value => !value));
     ```
 
-### 4. Logic Bug in `init` Generator (`package.json` Redirection)
-*   **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/rxjs/src/generators/init/generator.ts)
-*   **Issue:** The check on lines 45-51 does not actually test the regex array:
-    ```typescript
-    if (
-      !isDevDependency && [
-        /^@rxap\/plugin/,
-        /^@rxap\/workspace/,
-        /@rxap\/schematic/,
-      ]
-    )
-    ```
-    In JavaScript, an array literal `[...]` is always truthy. Therefore, the `if` block is entered every time `isDevDependency` is false, regardless of the package name.
-*   **Impact:** Regular packages will be incorrectly categorized and moved to `devDependencies` inside `package.json`.
-*   **Recommended Fix:** Correctly chain with `.some()` to validate the package name:
-    ```typescript
-    if (
-      !isDevDependency &&
-      [
-        /^@rxap\/plugin/,
-        /^@rxap\/workspace/,
-        /@rxap\/schematic/,
-      ].some(rx => rx.test(packageName))
-    )
-    ```
-
-### 5. Potential Crash on Null-prototype Objects in `hasProperty`
+### 4. Potential Crash on Null-prototype Objects in `hasProperty`
 *   **File:** [has-property.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/rxjs/src/lib/operators/has-property.ts)
 *   **Issue:** The check uses direct property accessor call `value.hasOwnProperty(this.propertyKey)`.
 *   **Impact:** If the stream emits objects created via `Object.create(null)` or objects without `Object.prototype` in their chain, the operator will crash with a `TypeError: value.hasOwnProperty is not a function`.

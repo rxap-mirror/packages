@@ -6,30 +6,7 @@ This document lists the findings and recommended actions from the project audit 
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Code Typo in `init` Generator Leading to Incorrect Package Dependency Types
-* **File:** `src/generators/init/generator.ts` (Lines 45–51)
-* **Description:** 
-  The condition designed to identify if a package should be classified as a `devDependency` contains a major typo. It checks:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  This evaluates `!isDevDependency && [array]`. Since any non-empty array is truthy in JavaScript, if `!isDevDependency` is true, the entire condition evaluates to the array itself (which is truthy). This forces the generator to move *any* runtime package (including `@rxap/xml-parser` itself) into `devDependencies`, potentially breaking production deployments where these utilities are required at runtime.
-* **Recommended Fix:**
-  Add `.some((rx) => rx.test(packageName))` to evaluate the array of regex patterns correctly, matching the pattern used in the `isDevDependency` block above it:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  )
-  ```
-
-### 2. Severe Value Parsing Bug: Whitespace Parsed as `0`
+### 1. Severe Value Parsing Bug: Whitespace Parsed as `0`
 * **File:** `src/lib/parse-value.ts` (Line 36)
 * **Description:**
   The `parseValue` function uses `!isNaN(Number(value))` to determine if a string represents a number:

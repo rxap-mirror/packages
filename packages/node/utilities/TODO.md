@@ -6,35 +6,7 @@ This document outlines the findings of the comprehensive project audit for the `
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Boolean Array Evaluation Bug in `initGenerator`
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/generators/init/generator.ts#L45-L58)
-* **Description:** 
-  The condition inside the `initGenerator` function evaluates an array literal containing regular expressions directly as a boolean check.
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript/TypeScript, any non-empty array literal is always truthy. Thus, this expression evaluates strictly to `!isDevDependency` and completely ignores the regex checks. Any package categorized as non-devDependency gets processed as a devDependency incorrectly.
-* **Impact:** Broken dependency sorting and incorrect categorization in `package.json`.
-* **Recommended Fix:** Use `.some(...)` as done in the previous block:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
----
-
-### 2. Resolution Tag Bug in `GetPackagePeerDependencies`
+### 1. Resolution Tag Bug in `GetPackagePeerDependencies`
 * **File:** [get-package-peer-dependencies.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/lib/get-package-peer-dependencies.ts#L13-L19)
 * **Description:**
   By default, `GetPackagePeerDependencies` attempts to fetch peer dependencies for a version defaulting to `'latest'`:
@@ -51,7 +23,7 @@ This document outlines the findings of the comprehensive project audit for the `
 
 ---
 
-### 3. Risk of Boot Crashing via Unhandled `JSON.parse` in Top-Level IIFE
+### 2. Risk of Boot Crashing via Unhandled `JSON.parse` in Top-Level IIFE
 * **Files:**
   * [get-latest-package-version.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/lib/get-latest-package-version.ts#L18-L23)
   * [get-package-info.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/lib/get-package-info.ts#L25-L34)
@@ -63,7 +35,7 @@ This document outlines the findings of the comprehensive project audit for the `
 
 ---
 
-### 4. Flawed Retry Logic in `jsonFileWithRetry`
+### 3. Flawed Retry Logic in `jsonFileWithRetry`
 * **File:** [json-file.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/lib/json-file.ts#L62-L65)
 * **Description:**
   The `jsonFileWithRetry` helper is designed to retry reading a JSON file if it is in the process of being written or temporarily locked. However, the check `if (!existsSync(path))` is executed *outside* the retry loop:

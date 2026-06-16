@@ -4,41 +4,9 @@ This document outlines the findings, critical bugs, architectural debt, and test
 
 ---
 
-## 🔴 Critical Bugs
-
-### 1. Incorrect Regular Expression Evaluation in `initGenerator`
-* **File**: `packages/browser/utilities/src/generators/init/generator.ts` (Lines 45-58)
-* **Description**:
-  The init generator checks if a dependency should be classified as a development dependency. However, the condition is written as:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript/TypeScript, an array literal (even containing regexes) is always **truthy**. As a result, this condition evaluates to `!isDevDependency && true`. Any dependency that is not already a devDependency is unconditionally moved into `devDependencies`, regardless of its package name matching the patterns or not.
-* **Impact**:
-  Non-dev dependencies (such as runtime libraries) are incorrectly coerced into `devDependencies`.
-* **Recommended Fix**:
-  Use the `.some()` method to test the regular expressions against the `packageName`, identical to how it's done for `@rxap/ngx` and `@rxap/nest` dependencies above it:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
----
-
 ## 🟡 Timing & Architectural Issues
 
-### 2. Peer Dependency Init Generator Execution Race Condition
+### 1. Peer Dependency Init Generator Execution Race Condition
 * **File**: `packages/browser/utilities/src/generators/init/generator.ts` (Lines 83-137)
 * **Description**:
   The generator schedules missing peer dependencies for installation via `installPackagesTask(tree)` and then immediately attempts to read and `require` those dependencies from `node_modules` to run their nested `init` generators.
@@ -50,7 +18,7 @@ This document outlines the findings, critical bugs, architectural debt, and test
 * **Recommended Fix**:
   Acknowledge this standard Nx/schematics limitation. Split the generation into two separate steps (e.g., adding to `package.json` vs executing nested generators), or advise users to run the generator twice (once to add and install, and a second time to execute the secondary generators).
 
-### 3. Suboptimal DOM Height Observation
+### 2. Suboptimal DOM Height Observation
 * **File**: `packages/browser/utilities/src/lib/observe-element-height.ts`
 * **Description**:
   `ObserveElementHeight` uses a `MutationObserver` on the parent node to detect changes. `MutationObserver` is designed to detect DOM structure changes (child node additions/removals) and attribute mutations. It is highly unreliable for size/height tracking:
@@ -84,7 +52,7 @@ This document outlines the findings, critical bugs, architectural debt, and test
   }
   ```
 
-### 4. Missing SSR (Server-Side Rendering) Guards
+### 3. Missing SSR (Server-Side Rendering) Guards
 * **Files**: 
   - `packages/browser/utilities/src/lib/click-on-link.ts`
   - `packages/browser/utilities/src/lib/observe-element-height.ts`
@@ -102,7 +70,7 @@ This document outlines the findings, critical bugs, architectural debt, and test
 
 ## 🔵 Test Coverage & Quality Assurance
 
-### 5. Absence of Unit Tests
+### 4. Absence of Unit Tests
 * **Status**: 🔴 **0% Coverage** (Zero test files found in the project)
 * **Description**:
   The project is configured with Jest, but contains no actual spec files to verify the logic of `ClickOnLink`, `ObserveElementHeight`, or the `initGenerator`.

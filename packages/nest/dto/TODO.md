@@ -26,35 +26,6 @@ This document lists the findings from the audit of the `@rxap/nest-dto` package,
   }
   ```
 
-### 2. Array Literal Evaluation and Dependency Oscillation Bug in `initGenerator`
-* **File:** [generator.ts](src/generators/init/generator.ts)
-* **Description:** On line 45, the generator attempts to check if `packageName` matches certain regular expressions. However, it defines an array literal in the `if` condition without checking it via `.some()` or `.test()`.
-* **Impact:** Since array literals are always truthy, this condition evaluates to `!isDevDependency`. This results in a ping-pong/oscillation defect:
-  1. If a `@rxap/nest-*` package starts as a `devDependency`, the first block moves it to `dependencies` and sets `isDevDependency = false`.
-  2. The second block then immediately checks `!isDevDependency`, which is now `true`. It matches because the array literal is truthy, moving the package back to `devDependencies`.
-  3. Consequently, any `@rxap/nest-*` package gets caught in this logic loop and is always pushed to `devDependencies`.
-* **Code Location:**
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-* **Recommended Fix:** Add the missing `.some(...)` method call, identical to the check in the first `if` statement:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
 ---
 
 ## 🏛️ Architectural Debt & Anti-Patterns

@@ -4,40 +4,9 @@ This file contains the findings, architectural feedback, and prioritized improve
 
 ---
 
-## 🔴 Critical Bugs
-
-### 1. Incomplete/Broken Conditional Logic in Init Generator
-* **Location:** `src/generators/init/generator.ts` (Lines 46-51)
-* **Description:**
-  The `if` statement designed to identify if a package is a plugin, workspace, or schematic is missing the `.some((rx) => rx.test(packageName))` call.
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  Since an array literal `[...]` is always truthy, this condition evaluates to `true` whenever `!isDevDependency` is true, regardless of whether the package actually matches those prefixes. This causes normal packages to be incorrectly coerced into `devDependencies`.
-* **Recommended Fix:**
-  Add the missing `.some(...)` check:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
----
-
 ## 🟡 Functional Issues & Anti-Patterns
 
-### 2. Virtualized Tree Anti-pattern / Broken Peer Initialization
+### 1. Virtualized Tree Anti-pattern / Broken Peer Initialization
 * **Location:** `src/generators/init/generator.ts` (Lines 90-110)
 * **Description:**
   The generator checks and reads files inside `node_modules` using the virtualized Nx `Tree` object:
@@ -62,7 +31,7 @@ This file contains the findings, architectural feedback, and prioritized improve
   }
   ```
 
-### 3. Widespread `assertString` Hard Type Errors
+### 2. Widespread `assertString` Hard Type Errors
 * **Location:** Multiple files (e.g., `src/lib/isEmail.ts`, `src/lib/isURL.ts`, `src/lib/isJSON.ts`)
 * **Description:**
   Validators uniformly invoke `assertString(str)` at their entry points. `assertString` throws a hard `TypeError` if the input is not a string (e.g. `null` or `undefined`). 
@@ -75,7 +44,7 @@ This file contains the findings, architectural feedback, and prioritized improve
   }
   ```
 
-### 4. Incomplete Primitive Support in `isJSON`
+### 3. Incomplete Primitive Support in `isJSON`
 * **Location:** `src/lib/isJSON.ts` (Lines 16-22)
 * **Description:**
   When `allow_primitives` is `true`, `isJSON` only supports `null`, `false`, and `true`. Other valid JSON primitive values, such as numeric values (`123`) and string literals (`"abc"`), will incorrectly return `false` because they are not present in the hardcoded `primitives` array list.
@@ -93,7 +62,7 @@ This file contains the findings, architectural feedback, and prioritized improve
 
 ## 🔵 Test Coverage
 
-### 5. Complete Absence of Tests (0% Coverage)
+### 4. Complete Absence of Tests (0% Coverage)
 * **Location:** Entire project
 * **Description:**
   Although a Jest configuration (`jest.config.ts`) exists, there are **0** test files (`*.spec.ts`) in the package.
@@ -105,7 +74,7 @@ This file contains the findings, architectural feedback, and prioritized improve
 
 ## 🌐 Architectural Debt & Maintenance Overhead
 
-### 6. Duplication of `validator.js`
+### 5. Duplication of `validator.js`
 * **Location:** Entire `src/lib/` folder
 * **Description:**
   The library contains an extensive, manually ported/cloned suite of functions derived from the popular NPM library `validator` (or `validator.js`).

@@ -6,34 +6,7 @@ This file documents critical bugs, functional issues, platform-compatibility bug
 
 ## 🚨 Critical Bugs & Functional Issues
 
-### 1. Broken Regular Expression Evaluation in `initGenerator`
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/schematic/ts-morph/src/generators/init/generator.ts#L46-L58)
-* **Problem:** 
-  The check to determine whether a package is a devDependency uses a literal array expression inside the `if` condition:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript, literal arrays are always truthy. This means the array is evaluated as `true`, and the condition is equivalent to `!isDevDependency`, completely ignoring whether the `packageName` matches any of the regular expressions.
-* **Recommended Fix:** 
-  Use the `.some` operator to evaluate the regular expressions correctly, identical to the logic on line 36:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 2. Virtual Tree read/exists Anti-Pattern on `node_modules`
+### 1. Virtual Tree read/exists Anti-Pattern on `node_modules`
 * **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/schematic/ts-morph/src/generators/init/generator.ts#L85-L110)
 * **Problem:** 
   The `init` generator attempts to use `tree.exists()` and `tree.read()` on files inside `node_modules` to recursively check and run peer dependency init generators.
@@ -45,7 +18,7 @@ This file documents critical bugs, functional issues, platform-compatibility bug
 
 ## 💻 Platform Compatibility & Path Normalization Issues
 
-### 3. Windows-Incompatible Backslash Import Specifiers
+### 2. Windows-Incompatible Backslash Import Specifiers
 * **Files:** 
   * [add-nest-module-to-app-module.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/schematic/ts-morph/src/lib/nest/add-nest-module-to-app-module.ts#L36)
   * [coerce-nest-module.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/schematic/ts-morph/src/lib/nest/coerce-nest-module.ts#L126)
@@ -57,7 +30,7 @@ This file documents critical bugs, functional issues, platform-compatibility bug
   const relativePath = relative(cleanAppModulePath, modulePath).replace(/\\/g, '/');
   ```
 
-### 4. File-to-File Relative Path Resolution Bug
+### 3. File-to-File Relative Path Resolution Bug
 * **File:** [coerce-nest-module.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/schematic/ts-morph/src/lib/nest/coerce-nest-module.ts#L126)
 * **Problem:**
   Calling `relative(moduleFile, moduleFilePath)` where both parameters are file paths causes two issues:
@@ -78,7 +51,7 @@ This file documents critical bugs, functional issues, platform-compatibility bug
 
 ## 🏛️ Architectural Debt & Duplicate Logic
 
-### 5. Local Redundant `ts-morph` Helpers
+### 4. Local Redundant `ts-morph` Helpers
 * **Folder:** `src/lib/ts-morph/`
 * **Problem:** 
   A massive collection of typescript-manipulation helpers (like `CoerceDecorator`, `CoerceImports`, `CoerceClassProperty`, `CoerceInterface`) are duplicated in this project and marked as `@deprecated import from @rxap/ts-morph`. However, the local library code inside `lib/angular/` and `lib/nest/` still imports and uses these local deprecated copies instead of using `@rxap/ts-morph` directly.
@@ -86,7 +59,7 @@ This file documents critical bugs, functional issues, platform-compatibility bug
   1. Update all relative imports pointing to `./ts-morph/` or `../ts-morph/` to import from `@rxap/ts-morph` instead.
   2. Delete the redundant files in `packages/schematic/ts-morph/src/lib/ts-morph/` to eliminate duplicate maintenance.
 
-### 6. Loose Equality in Handlebars Helpers
+### 5. Loose Equality in Handlebars Helpers
 * **File:** [coerce-component.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/schematic/ts-morph/src/lib/angular/coerce-component.ts#L104-L117)
 * **Problem:** 
   Custom Handlebars helper functions `ifeq` and `ifnoteq` use loose equality (`==` and `!=`), which is an anti-pattern and can cause unexpected type-coercion bugs.

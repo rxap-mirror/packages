@@ -6,32 +6,7 @@ This document lists the findings from the project audit of `nest-keyv-minio`. It
 
 ## 1. Critical Bugs 🚨
 
-### A. Broken Condition in Init Generator (High Severity)
-- **File:** `src/generators/init/generator.ts` (Lines 45-58)
-- **Problem:**
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  The condition checks `!isDevDependency && [ ... ]` using an array literal directly, completely missing a `.some(...)` check. Because arrays are always truthy, this condition always evaluates to `true` whenever `isDevDependency` is `false`.
-  Consequently, standard dependencies (such as `@rxap/nest-keyv-minio` itself) are always incorrectly moved to `devDependencies` in `package.json`.
-- **Recommended Fix:** Change to:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-### B. Platform-Dependent S3 Keys (Medium Severity)
+### A. Platform-Dependent S3 Keys (Medium Severity)
 - **File:** `src/lib/keyv-minio.ts` (Lines 30, 47, 52)
 - **Problem:**
   ```typescript
@@ -44,7 +19,7 @@ This document lists the findings from the project audit of `nest-keyv-minio`. It
   const filePath = `${prefix}${key}.json`;
   ```
 
-### C. Swallowed Errors in `delete()` (Medium Severity)
+### B. Swallowed Errors in `delete()` (Medium Severity)
 - **File:** `src/lib/keyv-minio.ts` (Lines 51-61)
 - **Problem:**
   ```typescript

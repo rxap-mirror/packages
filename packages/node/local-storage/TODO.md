@@ -18,32 +18,7 @@ This file documents the findings and recommended improvements identified during 
 
 ## 🐛 Critical Logic & Functional Bugs
 
-### 1. Broken Regex Conditional in `initGenerator`
-- **Location**: `src/generators/init/generator.ts` (lines 45-58)
-- **Description**:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  The array containing regular expressions is evaluated as a truthy expression inside the `if` check without any matching function. As a result, the conditional always evaluates to `true` when `isDevDependency` is false. This forces **every** package using this generator to move from `dependencies` to `devDependencies`, regardless of its name!
-- **Recommended Fix**: Use `.some((rx) => rx.test(packageName))` to properly match the package name, matching the correct pattern used in the block right above it:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-### 2. Immediate Dynamic `require()` in Generator for Missing Peer Dependencies
+### 1. Immediate Dynamic `require()` in Generator for Missing Peer Dependencies
 - **Location**: `src/generators/init/generator.ts` (lines 83-137)
 - **Description**: The generator schedules package installation using `installPackagesTask(tree)` which runs asynchronously *after* the generator completes. However, immediately after scheduling this task, the generator loops over `missingPeerDependencies` and tries to `require()` and execute their init generators from `node_modules`. If a peer dependency is truly missing and was only just added to `package.json`, it will not be present in `node_modules`, causing the generator to crash.
 - **Recommended Fix**: Avoid synchronously importing code from `node_modules` during generator execution if that dependency has not been installed yet. Alternatively, separate the setup into multiple steps or run execution in a post-install schematic/task.

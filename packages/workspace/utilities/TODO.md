@@ -6,31 +6,6 @@ An audit of the `workspace-utilities` library was conducted. The library contain
 
 ## 1. Critical Bugs & Logic Errors
 
-### 🔴 Incorrect Regular Expression Evaluation in `initGenerator`
-* **Location:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/utilities/src/generators/init/generator.ts#L45-L51)
-* **Problem:** 
-  The generator contains the following condition to move matching dependencies from `dependencies` to `devDependencies`:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  This is a critical logical bug. The array `[...]` containing regular expressions is always truthy. Because `.some(...)` was omitted, the condition evaluates to `true` for **any** package when `!isDevDependency` is true. This will incorrectly move every single dependency that is not already a devDependency to `devDependencies`, regardless of its package name or scope, which can severely corrupt `package.json` configurations.
-* **Recommended Fix:** 
-  Incorporate the `.some()` call, identical to line 36:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
----
-
 ### 🔴 Potential TypeError / Crash in `GenerateSerializedSchematicFile`
 * **Location:** [serialized-schematic.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/utilities/src/lib/serialized-schematic.ts#L271-L273)
 * **Problem:**

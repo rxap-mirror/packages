@@ -6,30 +6,6 @@ This file outlines the findings from the audit of the `@rxap/handlebars` (`angul
 
 ## 1. Critical Bugs & Logic Errors
 
-### 🔴 Init Generator: Incomplete Regex Match Conditional
-In `packages/angular/handlebars/src/generators/init/generator.ts` (lines 45–51):
-```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-```
-* **Issue:** The array of regular expressions is evaluated directly in a boolean context without `.some()` or `.test()`. In JavaScript/TypeScript, any array (including an array of regexes) is truthy. As a result, this block is **always executed** if `!isDevDependency` is true, regardless of the package name.
-* **Impact:** This moves **every** dependency currently under `dependencies` to `devDependencies` unconditionally during package initialization.
-* **Recommended Fix:** Change to match the pattern used earlier in the file (lines 34-37) by adding `.some(...)`:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
 ### 🔴 Peer Dependency Generator Resolution via Virtual Tree `tree.exists`
 In `packages/angular/handlebars/src/generators/init/generator.ts` (lines 85–93):
 ```typescript
@@ -101,7 +77,6 @@ const { RXAP_TAILWIND_CONFIG } = require('../../../dist/packages/browser/tailwin
 
 ## 5. Summary Checklist of Next Steps
 
-- [ ] Fix the regex match logic error in `generator.ts` (add `.some(...)`).
 - [ ] Refactor physical path checks in `generator.ts` to use native Node/fs mechanisms instead of the virtual `Tree` for `node_modules` paths.
 - [ ] Review `HandlebarsPipe` context wrapping behavior and adjust/document accordingly.
 - [ ] Add a comprehensive unit test suite (`handlebars.pipe.spec.ts`) with >90% code coverage.

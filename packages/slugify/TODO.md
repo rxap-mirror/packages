@@ -4,37 +4,6 @@ This document details the findings from the audit of the `@rxap/slugify` package
 
 ---
 
-## 1. Critical Bugs & Logic Errors
-
-### 🔴 Incorrect Array Evaluation in `init` Generator
-- **Location:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/slugify/src/generators/init/generator.ts#L45-L58)
-- **Problem:**
-  The conditional check on lines 45–51 is broken:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  An array literal `[...]` is always truthy in JavaScript/TypeScript. Therefore, this block simplifies to `if (!isDevDependency)`, which means any non-devDependency package is unconditionally moved to `devDependencies` regardless of whether its name matches the target regex patterns!
-- **Recommended Fix:**
-  Add the missing `.some(...)` check, analogous to the one used on line 36:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
----
-
 ## 2. Functional & Security Bugs
 
 ### 🟡 Unescaped Custom Replacement in Dynamic `RegExp` (Regex Injection)

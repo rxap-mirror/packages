@@ -6,34 +6,7 @@ This document outlines the findings of a comprehensive audit conducted on the `@
 
 ## 1. Critical Bugs & Logic Errors
 
-### 1.1. Invalid Regex Logic in `initGenerator`
-* **File:** `src/generators/init/generator.ts` (Lines 45–58)
-* **Problem:**
-  The condition in the `if` block checks an array literal directly instead of matching the package name against the regex patterns:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  Since any array literal is a truthy value in JavaScript, `!isDevDependency && array` will always evaluate to the array (which is truthy). This causes the block to execute for **any** package when `!isDevDependency` is true, incorrectly moving libraries into `devDependencies` even if they do not match the patterns.
-* **Fix:**
-  Use `.some` to evaluate the package name against the array of patterns:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some(rx => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 1.2. Boolean Quoting Logic Bug in `CoerceNestAppConfig`
+### 1.1. Boolean Quoting Logic Bug in `CoerceNestAppConfig`
 * **File:** `src/lib/nest/coerce-nest-app-config.ts` (Line 138)
 * **Problem:**
   The quote-wrapping check uses `||` instead of `&&`:
@@ -47,7 +20,7 @@ This document outlines the findings of a comprehensive audit conducted on the `@
   if ((!item.defaultValue.startsWith("'") && !item.defaultValue.endsWith("'")) && (!item.defaultValue.startsWith('"') && !item.defaultValue.endsWith('"')))
   ```
 
-### 1.3. Faulty Multi-Declaration Resolution in `CoerceVariableDeclaration`
+### 1.2. Faulty Multi-Declaration Resolution in `CoerceVariableDeclaration`
 * **File:** `src/lib/coerce-variable-declaration.ts` (Lines 46–50)
 * **Problem:**
   When resolving an existing `VariableStatement`, the function retrieves the first declaration by default:
@@ -61,7 +34,7 @@ This document outlines the findings of a comprehensive audit conducted on the `@
   let variableDeclaration = variableStatement.getDeclarations().find(d => d.getName() === name);
   ```
 
-### 1.4. Import Duplication and Mixed Type Pollution in `CoerceImports`
+### 1.3. Import Duplication and Mixed Type Pollution in `CoerceImports`
 * **File:** `src/lib/coerce-imports.ts` (Lines 264–272 & 283–291)
 * **Problem:**
   When checking existing import declarations, if both type-only (`import type { ... }`) and non-type-only declarations exist, the loops iterate over `normalizedNamedImports` (which includes both types) and push *all* imports to *both* declarations. This results in duplicate imports and can incorrectly insert non-type-only imports inside an `import type` declaration, causing TypeScript compilation errors.

@@ -2,39 +2,9 @@
 
 This document outlines the findings and recommended actions from the project audit of `n8n-nodes-open-webui`.
 
-## 🚨 Critical Bugs & Logic Errors
-
-### 1. Logic Bug in `init` Generator (`generator.ts`)
-*   **Location**: `src/generators/init/generator.ts` (Lines 45–51)
-*   **Description**: The conditional statement responsible for identifying and shifting specific RxAP workspace/plugin packages into `devDependencies` contains a logic error. It evaluates an array literal containing `RegExp` objects directly, which is always truthy in JavaScript:
-    ```typescript
-    if (
-      !isDevDependency && [
-        /^@rxap\/plugin/,
-        /^@rxap\/workspace/,
-        /@rxap\/schematic/,
-      ]
-    ) {
-    ```
-    Since the array is always truthy, the block unconditionally runs for **any** package where `isDevDependency` is false, incorrectly migrating standard dependencies to `devDependencies` regardless of whether they match the RxAP pattern or not.
-*   **Impact**: Corrupts `package.json` structures when running the generator.
-*   **Recommended Fix**: Implement `.some(rx => rx.test(packageName))` as done on line 36:
-    ```typescript
-    if (
-      !isDevDependency &&
-      [
-        /^@rxap\/plugin/,
-        /^@rxap\/workspace/,
-        /@rxap\/schematic/,
-      ].some((rx) => rx.test(packageName))
-    ) {
-    ```
-
----
-
 ## 🏛️ Architectural Debt & Anti-Patterns
 
-### 2. Virtualized Tree vs. Physical Node Modules
+### 1. Virtualized Tree vs. Physical Node Modules
 *   **Location**: `src/generators/init/generator.ts` (Lines 83–137)
 *   **Description**: The generator attempts to read and inspect `node_modules` file paths using the Nx virtual `Tree`:
     ```typescript
@@ -52,7 +22,7 @@ This document outlines the findings and recommended actions from the project aud
     - Avoid running peer generators dynamically from inside a nested `node_modules` path inside a workspace generator.
     - If reading peer packages is absolutely necessary, use standard physical file resolution (`require.resolve`) and physical file system methods (e.g., `fs.existsSync`, `fs.readFileSync`) instead of the virtualized `Tree`, and clearly document why the virtual tree is bypassed.
 
-### 3. Empty Entry Point Export (`index.ts`)
+### 2. Empty Entry Point Export (`index.ts`)
 *   **Location**: `src/index.ts`
 *   **Description**: The entry point file `src/index.ts` contains only `export {};`.
 *   **Impact**: While n8n loads the node and credential files using direct paths specified in `package.json`, this setup prevents other packages/tools in the monorepo from importing or referencing classes (`OpenWebUI`, `OpenWebUIAuth`) for testing, extending, or typing purposes.
@@ -66,7 +36,7 @@ This document outlines the findings and recommended actions from the project aud
 
 ## 🧪 Test Coverage
 
-### 4. Zero Unit and Integration Tests
+### 3. Zero Unit and Integration Tests
 *   **Location**: Entire project root / test config
 *   **Description**: Running the test suite (`yarn nx run n8n-nodes-open-webui:test`) reports `No tests found`. There are no `.spec.ts` or `.test.ts` files.
 *   **Impact**: Risks regression during updates of `@rxap/n8n-utilities` or `n8n-workflow`.

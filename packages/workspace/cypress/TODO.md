@@ -15,32 +15,7 @@ This file documents critical issues, architectural debt, and test coverage gaps 
   ```
   *(Note: Since `index-export` automatically regenerates `src/index.ts` based on named exports, configure `index-export` to exclude this package or manually manage `src/index.ts` without automatic rewriting, as side-effect libraries do not fit standard named-export automation.)*
 
-### 2. Evaluates Raw Array Literal instead of Regex Match in Init Generator
-* **Location**: `src/generators/init/generator.ts` (Lines 45–51)
-* **Problem**: The conditional check for coercing dependency scopes has a severe logic/syntax bug:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  This checks `!isDevDependency && <array>`. Since arrays are always truthy in JavaScript, the condition evaluates to `true` for *any* non-dev-dependency, completely bypassing the pattern match against `packageName`.
-* **Recommendation**: Fix the condition to match the pattern used on lines 36-37:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 3. Selector Specificity Restricts Custom Commands to `<input>` Elements
+### 2. Selector Specificity Restricts Custom Commands to `<input>` Elements
 * **Location**: `src/lib/angular-material.ts` (Line 66)
 * **Problem**: The `matFormField` custom command is hardcoded to look for `<input>` elements inside the form field:
   ```typescript

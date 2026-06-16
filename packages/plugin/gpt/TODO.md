@@ -34,28 +34,7 @@ This document lists the findings from the audit of the `plugin-gpt` package. It 
   }
   ```
 
-### 2. Severe Logical Defect in `init` Generator
-- **Location:** `packages/plugin/gpt/src/generators/init/generator.ts` (lines 45–58)
-- **Problem:** The `if` condition intended to match the package name against schematic/plugin regexes is broken:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  Since the array literal `[...]` is always truthy, `!isDevDependency && [...]` evaluates to truthy for *any* package that is not already in `devDependencies`. This incorrectly pushes every non-dev dependency package to `devDependencies` regardless of whether its name matches the regex.
-- **Recommended Fix:** Use `.some()` to verify the pattern matches the package name:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-### 3. Broken Inline Loop / Early Return in `documentation` Generator
+### 2. Broken Inline Loop / Early Return in `documentation` Generator
 - **Location:** `packages/plugin/gpt/src/generators/documentation/generator.ts` (lines 58–85)
 - **Problem:** The generator includes a nested loop to process functions. However, there is a premature, unconditional `return;` inside the first function iteration:
   ```typescript
@@ -68,7 +47,7 @@ This document lists the findings from the audit of the `plugin-gpt` package. It 
   Additionally, the helper function `processProject` is imported but completely unused.
 - **Recommended Fix:** Either remove the premature `return;` or refactor the generator to call `processProject(options, projectName, tree)` which implements the correct non-inline traversal loop.
 
-### 4. Missing Production Dependency (`tiktoken`)
+### 3. Missing Production Dependency (`tiktoken`)
 - **Location:** `packages/plugin/gpt/package.json`
 - **Problem:** `simple-prompt.ts` imports `tiktoken` to estimate token counts, but `tiktoken` is not declared as a dependency in the library's `package.json` (only in the monorepo root). This will cause execution to fail in environments where the package is installed as a published npm dependency.
 - **Recommended Fix:** Add `"tiktoken"` to the `dependencies` block of `packages/plugin/gpt/package.json`.

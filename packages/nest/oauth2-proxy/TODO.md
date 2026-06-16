@@ -6,32 +6,6 @@ This document outlines the findings of the comprehensive project audit for `@rxa
 
 ## 1. Critical Bugs & Logic Errors
 
-### 🔴 Incorrect Dependency Classification Check (Missing `.some(...)` check)
-- **Location**: `src/generators/init/generator.ts` (Line 45-51)
-- **Code**:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-- **Issue**: The condition checks `!isDevDependency && [ ... ]`. Since arrays in JavaScript are always truthy objects, this condition evaluates to `true` for **any** package that is not a devDependency, completely ignoring the intended regex check.
-- **Impact**: It incorrectly moves runtime libraries (like `@rxap/nest-oauth2-proxy`) into `devDependencies` inside the root `package.json` during initialization.
-- **Recommended Fix**: Add `.some(...)` to test the package name against the regex patterns:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
 ### 🔴 Virtual Tree check for `node_modules` file existence
 - **Location**: `src/generators/init/generator.ts` (Line 90, 102, 118)
 - **Code**:

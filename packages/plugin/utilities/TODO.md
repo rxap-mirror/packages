@@ -17,36 +17,7 @@ This document outlines critical bugs, architectural debt, API smells, and test c
 
 ---
 
-### 2. `init` Generator: Broken Regular Expression Array Condition
-* **File:** `src/generators/init/generator.ts` (Lines 45–58)
-* **Description:** 
-  The generator contains the following condition:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript, any array object is truthy. Because of this, when `isDevDependency` is `false`, this condition will **always** evaluate to truthy, completely ignoring the package name matching. 
-  This causes all dependencies that are not devDependencies to be moved to devDependencies, regardless of their naming convention.
-* **Recommended Fix:** 
-  Call `.some()` on the regex array, just like in the preceding `isDevDependency` check on line 36:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
----
-
-### 3. `init` Generator: Broken Peer Dependency Init Generator Execution
+### 2. `init` Generator: Broken Peer Dependency Init Generator Execution
 * **File:** `src/generators/init/generator.ts` (Lines 83–137)
 * **Description:** 
   The generator attempts to discover and execute the `init` generators of newly added peer dependencies immediately after calling `addDependenciesToPackageJson`.
@@ -59,7 +30,7 @@ This document outlines critical bugs, architectural debt, API smells, and test c
 
 ---
 
-### 4. `hasFileInProjectRoot`: Absolute Path Join Bug
+### 3. `hasFileInProjectRoot`: Absolute Path Join Bug
 * **File:** `src/lib/project-root-files.ts` (Lines 32–36)
 * **Description:** 
   The function `hasFileInProjectRoot` is implemented as:
@@ -79,7 +50,7 @@ This document outlines critical bugs, architectural debt, API smells, and test c
 
 ---
 
-### 5. `GetAllPackageDependenciesForProject`: Recursive Cycle Stack Overflow
+### 4. `GetAllPackageDependenciesForProject`: Recursive Cycle Stack Overflow
 * **File:** `src/lib/get-all-package-dependencies-for-project.ts` (Lines 44, 82)
 * **Description:** 
   The function signature accepts a third parameter, `resolvedDependencies`, to keep track of already-visited packages and prevent infinite recursion loops in circular dependency graphs.
@@ -93,7 +64,7 @@ This document outlines critical bugs, architectural debt, API smells, and test c
 
 ---
 
-### 6. `YarnRun`: Silent Execution Failures
+### 5. `YarnRun`: Silent Execution Failures
 * **File:** `src/lib/yarn-run.ts` (Lines 24)
 * **Description:** 
   `YarnRun` resolves the promise immediately when the spawned process closes, without checking the exit code:

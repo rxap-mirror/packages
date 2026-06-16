@@ -6,32 +6,7 @@ This file tracks the identified bugs, architectural debt, and testing gaps in `@
 
 ## 🚨 Critical Bugs & Functional Issues
 
-### 1. Broken Regex Matching Logic in Init Generator
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/minio/src/generators/init/generator.ts#L45-L58)
-* **Description:** The conditional check on lines 45–51 is broken:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  The array literal `[...]` is always truthy, meaning **any** package where `isDevDependency` is false will unconditionally pass this check, regardless of its name. This causes non-matching packages to be moved incorrectly into `devDependencies` in `package.json`.
-* **Fix:** Use a `.some` matching block similar to the dependencies block above it:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 2. Misleading "Not yet implemented!" Error in Health Indicator
+### 1. Misleading "Not yet implemented!" Error in Health Indicator
 * **File:** [minio.health-indicator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/minio/src/lib/minio.health-indicator.ts#L44-L47)
 * **Description:** When the `MinioHealthIndicator` fails to fetch the bucket list, it catches the error and then throws a `HealthCheckError` with a generic and misleading message `'Not yet implemented!'`. This is highly confusing during monitoring/debugging as it masks the true connection or permission issue.
 * **Fix:** Provide a meaningful error message that reflects the actual connection state:
@@ -42,7 +17,7 @@ This file tracks the identified bugs, architectural debt, and testing gaps in `@
   );
   ```
 
-### 3. NestJS Dependency Injection Crash via `@Inject(Logger)`
+### 2. NestJS Dependency Injection Crash via `@Inject(Logger)`
 * **Files:**
   - [minio-module-options-loader.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/minio/src/lib/minio-module-options-loader.ts#L19-L20)
   - [minio.health-indicator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/minio/src/lib/minio.health-indicator.ts#L28-L29)

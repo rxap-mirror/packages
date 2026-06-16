@@ -93,27 +93,6 @@ This file lists the critical bugs, architectural debt, performance bottlenecks, 
   }
   ```
 
-### 7. `init` Generator — Broken Boolean Operator in Dependency Classification
-- **File**: `packages/angular/directives/src/generators/init/generator.ts` (Lines 45-51)
-- **Issue**:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  The literal array is truthy, meaning this statement evaluates as `!isDevDependency && true` (or simply `!isDevDependency`). This logic bug causes all dependencies (not already devDependencies) to get incorrectly classified as devDependencies and moved, bypassing the regex checks entirely.
-- **Recommended Fix**: Add `.some(rx => rx.test(packageName))` to correctly match the array of regexes:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  )
-  ```
-
 ---
 
 ## 📐 Architectural & Design Debt

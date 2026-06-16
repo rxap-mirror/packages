@@ -51,21 +51,6 @@ This file lists the critical bugs, architectural debt, library anti-patterns, an
   - **Synchronous Exception Gap:** The decorator only handles asynchronous exceptions (returned promises). If the decorated method throws synchronously, it bypasses the error-handling logic and `continueOnFail()` check entirely.
 - **Remedy:** Rename inner parameters to avoid shadowing (e.g., use `subItem`), add optional chaining on all lookups, and wrap the original method invocation in a `try...catch` block to handle synchronous errors.
 
-### 4. Broken Condition in `init` Generator
-- **Location:** `src/generators/init/generator.ts` (Lines 46-51)
-- **Problem:**
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  The array literal `[...]` is always truthy. Thus, if `isDevDependency` is false, this condition evaluates to true for *any* package name. This incorrectly moves any regular runtime dependency to `devDependencies`!
-- **Remedy:** Add the missing `.some(rx => rx.test(packageName))` call as is correctly done on line 36.
-
 ---
 
 ## 🏗️ Architectural Debt & Library Anti-Patterns

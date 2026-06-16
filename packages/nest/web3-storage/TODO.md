@@ -6,34 +6,7 @@ This document outlines the findings and recommended actions resulting from the a
 
 ## 🚨 Critical Bugs & Logic Issues
 
-### 1. Broken Regex Dependency Logic in Init Generator
-- **Location:** `src/generators/init/generator.ts` (Lines 45-51)
-- **Problem:**
-  The check to determine whether a package should be moved to `devDependencies` is missing a `.some(...)` evaluation over the array of regex patterns:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  Since an array literal `[...]` in JavaScript is always truthy, this condition evaluates to true for *any* dependency when `!isDevDependency` is true (even if the package name is completely unrelated, such as `@rxap/nest-web3-storage`). This causes any standard dependency to be incorrectly removed from `dependencies` and added to `devDependencies`.
-- **Recommended Fix:**
-  Add the `.some(...)` array method to evaluate the patterns against the package name, matching the pattern used earlier in the file:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  )
-  ```
-
-### 2. Virtualized Tree Bypass & Dead Code in Init Generator
+### 1. Virtualized Tree Bypass & Dead Code in Init Generator
 - **Location:** `src/generators/init/generator.ts` (Lines 83-137)
 - **Problem:**
   The loop checking peer-dependency init generators relies on:
@@ -57,7 +30,7 @@ This document outlines the findings and recommended actions resulting from the a
 
 ## 🏛️ Architectural & Configuration Debt
 
-### 3. Redundant Global Module Configuration (Class `@Global()` vs Builder `isGlobal`)
+### 2. Redundant Global Module Configuration (Class `@Global()` vs Builder `isGlobal`)
 - **Location:** `src/lib/web3-storage.module.ts`
 - **Problem:**
   The module class is statically decorated with `@Global()`:
@@ -91,7 +64,7 @@ This document outlines the findings and recommended actions resulting from the a
     .build();
   ```
 
-### 4. Hardcoded Environment Variable / Configuration Key
+### 3. Hardcoded Environment Variable / Configuration Key
 - **Location:** `src/lib/web3-storage-module-options-loader.ts`
 - **Problem:**
   The `ConfigService` key `'WEB3_STORAGE_TOKEN'` is hardcoded inside the loader file:
@@ -102,7 +75,7 @@ This document outlines the findings and recommended actions resulting from the a
 - **Recommended Fix:**
   Provide a configurable prefix/key option, or document this hardcoded key prominently in the `README.md`/`GETSTARTED.md` so that users are aware of the required naming convention.
 
-### 5. Deprecated Base Library Dependency
+### 4. Deprecated Base Library Dependency
 - **Location:** `package.json` (Lines 10-14)
 - **Problem:**
   The library relies on `web3.storage` (specifically version `^4.5.5` as a peer dependency). The original, legacy key-based client (`web3.storage`) is deprecated in favor of the decentralized w3up API and agent-based clients (such as `@web3-storage/w3up-client`). Using deprecated gateways/clients may lead to runtime API failures or connection issues.
@@ -113,7 +86,7 @@ This document outlines the findings and recommended actions resulting from the a
 
 ## 🧪 Test Coverage & Quality Debt
 
-### 6. Zero Test Coverage (0%)
+### 5. Zero Test Coverage (0%)
 - **Problem:**
   The project contains **zero** test files (no `*.spec.ts` files exist). The tests pass only because `--passWithNoTests=true` is set.
 - **Recommended Fix:**

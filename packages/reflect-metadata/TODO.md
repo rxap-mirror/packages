@@ -40,33 +40,7 @@ This document lists critical bugs, architectural issues, and missing test covera
   }
   ```
 
-### 2. Always-True Condition in Init Generator's DevDependency Check
-**Location:** [packages/reflect-metadata/src/generators/init/generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/reflect-metadata/src/generators/init/generator.ts)
-- **Problem:** The condition checking whether to migrate a package to `devDependencies` is implemented as:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  Since any non-empty array in JavaScript is truthy, the expression `!isDevDependency && [...]` is equivalent to `!isDevDependency`. It completely misses checking the package name against the regular expressions using `.some()`.
-- **Impact:** EVERY library initialized via this generator that is not already in `devDependencies` is incorrectly forced into `devDependencies`, regardless of its name or type.
-- **Recommended Fix:**
-  Add `.some((rx) => rx.test(packageName))` to the array, matching the implementation of the preceding block:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-### 3. Broken Initialization Check in Proxy Change Detection Handler
+### 2. Broken Initialization Check in Proxy Change Detection Handler
 **Location:** [packages/reflect-metadata/src/lib/change.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/reflect-metadata/src/lib/change.ts)
 - **Problem:** The `set` trap in `handler` checks:
   ```typescript

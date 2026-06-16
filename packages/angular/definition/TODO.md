@@ -2,36 +2,7 @@
 
 This document lists the findings and recommended actions resulting from a project audit of the `@rxap/definition` package (`packages/angular/definition`).
 
-## 1. Critical Bugs & Logic Errors
-
-### 🔴 Broken Condition Check in Init Generator
-In `src/generators/init/generator.ts`:
-```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-```
-* **Problem**: The array `[...]` is always truthy. Because of this, the logical `AND` evaluates to truthy for *any* package that is not currently a devDependency. The code completely ignores the array's contents because it forgot to call `.some((rx) => rx.test(packageName))` (as was correctly done on line 36).
-* **Impact**: All regular dependencies are incorrectly moved to `devDependencies` during generator execution.
-* **Recommended Fix**: Correct the condition to perform regex matching:
-```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-```
-
----
-
-## 2. Architectural Debt & Anti-Patterns
+## 1. Architectural Debt & Anti-Patterns
 
 ### 🟡 Virtual Tree vs. Physical File Access inside Generator
 In `src/generators/init/generator.ts`:
@@ -81,7 +52,7 @@ In `src/lib/definition.ts`:
 
 ---
 
-## 3. Design & Type Alignments
+## 2. Design & Type Alignments
 
 ### 🟡 Type Misalignment in `DefinitionLoader`
 In `src/lib/definition.loader.ts` and `src/lib/types.ts`:
@@ -113,7 +84,7 @@ In `src/lib/definition.ts`:
 
 ---
 
-## 4. Test Coverage
+## 3. Test Coverage
 
 ### 🔴 Zero Test Coverage
 * **Problem**: There are zero Jest/unit test spec files (`*.spec.ts`) implemented for this package.

@@ -4,33 +4,7 @@ Detailed list of findings from the project audit of `angular-contenteditable`.
 
 ## Critical Bugs
 
-### 1. Broken Conditional Logic in Init Generator
-- **Location:** `src/generators/init/generator.ts` (Lines 45-51)
-- **Problem:**
-  The check for package types in the init generator is syntactically/logically broken:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  )
-  ```
-  The array of regular expressions is evaluated as a truthy object. The array `.some(...)` check is completely missing. As a result, the statement simplifies to `if (!isDevDependency)`, meaning *any* package that is not currently in `devDependencies` will be forced to move to `devDependencies` regardless of whether its name matches any pattern.
-- **Impact:** Calling the `init` generator on `@rxap/contenteditable` will incorrectly move it from `dependencies` to `devDependencies` in the root `package.json`, which breaks deployment behavior.
-- **Recommended Fix:** Change to:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  )
-  ```
-
-### 2. Resource Leak / Dangling Timeout in Contenteditable Directive
+### 1. Resource Leak / Dangling Timeout in Contenteditable Directive
 - **Location:** `src/lib/contenteditable.directive.ts`
 - **Problem:**
   The directive uses `@DebounceCall(1000)` on the `onInput` handler. This custom decorator sets up a `setTimeout` on the instance to debounce input events. However, there is no cleanup mechanism (no `ngOnDestroy` implementation) to clear the timeout when the directive is destroyed.
@@ -54,7 +28,7 @@ Detailed list of findings from the project audit of `angular-contenteditable`.
 
 ## Architectural Debt & Design Pattern Issues
 
-### 3. Opinionated and Hardcoded `stopPropagation`
+### 2. Opinionated and Hardcoded `stopPropagation`
 - **Location:** `src/lib/contenteditable.directive.ts` (Lines 45-48)
 - **Problem:**
   The directive automatically intercepts `click` events and calls `$event.stopPropagation()`:
@@ -69,7 +43,7 @@ Detailed list of findings from the project audit of `angular-contenteditable`.
 - **Recommended Fix:**
   - Remove this hardcoded listener or make it configurable via an `@Input` flag (e.g., `stopClickPropagation: boolean = false`).
 
-### 4. Reading Physical Files / Anti-pattern in Generator
+### 3. Reading Physical Files / Anti-pattern in Generator
 - **Location:** `src/generators/init/generator.ts`
 - **Problem:**
   - The generator reads files from `node_modules` paths using `tree.exists(...)` and `tree.read(...)`. The virtual `Tree` in Nx does not typically track files in `node_modules` or physical folders outside the workspace directory structure. While it might fall back to the physical disk, this is considered a generator anti-pattern.
@@ -81,7 +55,7 @@ Detailed list of findings from the project audit of `angular-contenteditable`.
 
 ## Test Coverage
 
-### 5. Zero Test Coverage
+### 4. Zero Test Coverage
 - **Location:** Whole project
 - **Problem:**
   The project contains a `test-setup.ts` and Jest config, but has **no test files at all** (`*.spec.ts`).
@@ -99,7 +73,7 @@ Detailed list of findings from the project audit of `angular-contenteditable`.
 
 ## Documentation
 
-### 6. Missing Guides and Getting Started Content
+### 5. Missing Guides and Getting Started Content
 - **Location:** `GUIDES.md`, `GETSTARTED.md`
 - **Problem:**
   These files are completely empty.

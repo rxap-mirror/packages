@@ -4,32 +4,7 @@ This file documents the findings and recommended actions from the project audit 
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Broken Regular Expression Evaluation in Init Generator
-* **Location:** `src/generators/init/generator.ts` (Lines 46-51)
-* **Issue:** The generator attempts to check if the package name matches certain patterns before adding it to `devDependencies`. However, the conditional statement is written as:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  In JavaScript/TypeScript, an array is a truthy value. This condition evaluates to `!isDevDependency && true`, meaning it ignores the array of regexes entirely. The block will execute for **any** package if `isDevDependency` is false.
-* **Fix:** Use the same pattern as the previous `if` block using `.some()` to perform actual regular expression matching:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-### 2. Unbounded Memory Leak & Stale Data in Singleton Guard Cache
+### 1. Unbounded Memory Leak & Stale Data in Singleton Guard Cache
 * **Location:** `src/lib/user.guard.ts` (Lines 33, 52-56)
 * **Issue:** `UserGuard` is an injectable class (typically registered as a singleton provider). It uses a private member `_userCache = new Map<string, User>()` to cache user objects.
   - **Memory Leak:** Since there is no cache eviction, expiration, or maximum size policy, this map will grow indefinitely in memory with every unique user (`sub`) that makes a request, eventually leading to Out Of Memory (OOM) issues in production.

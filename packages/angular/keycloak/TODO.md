@@ -32,36 +32,6 @@ This document outlines the findings and proposed improvements identified during 
   const result = await this.isAccessAllowed(route, state);
   ```
 
-### 1.2. `init` Generator: Invalid Regular Expression Evaluation
-- **Location:** `src/generators/init/generator.ts` (Lines 45-58)
-- **Problem:**
-  There is a critical logical bug in the condition checking whether the package should be categorized as a devDependency:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-    ...
-  }
-  ```
-  This is a JavaScript syntax/logic error. The second part of the condition is an array literal (`[...]`), which evaluates as a truthy value. It does not perform any tests against `packageName`. Consequently, the condition simplifies to `!isDevDependency` and will evaluate to `true` for **all** package names (including non-plugin/non-schematic runtime packages) that are not already in `devDependencies`.
-- **Recommended Fix:**
-  Add a `.some(...)` check to execute the regular expressions against `packageName` (similar to the first `if` statement in the generator):
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-    ...
-  }
-  ```
-
 ---
 
 ## 2. Architectural Debt & Design Patterns

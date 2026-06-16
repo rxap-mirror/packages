@@ -21,38 +21,7 @@ This document outlines the findings, critical bugs, architectural debt, and func
 
 ---
 
-## 2. Critical Logic Bugs
-
-### 🔴 Missing Regex Evaluation in Init Generator
-- **File**: `src/generators/init/generator.ts` (Lines 46–51)
-- **Code**:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-- **Issue**: The array of regular expressions is evaluated as a truthy value directly in the logical expression, making the condition equivalent to `!isDevDependency`. The author forgot to add a `.some()` validation to check if the current package name matches any of those regex patterns (which was correctly done on line 36 for other patterns).
-- **Impact**: Any package that is not a devDependency (such as a production dependency) will satisfy this condition regardless of its name, resulting in it being erroneously moved into `devDependencies` inside the root `package.json`.
-- **Recommendation**:
-  Change the block to use the `.some(...)` method:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
----
-
-## 3. Architectural Debt & Anti-Patterns
+## 2. Architectural Debt & Anti-Patterns
 
 ### 🟡 Virtual Tree & Physical Disk Coupling
 - **File**: `src/generators/init/generator.ts` (Lines 11–20)
@@ -90,7 +59,7 @@ This document outlines the findings, critical bugs, architectural debt, and func
 
 ---
 
-## 4. Test Coverage & CI/CD
+## 3. Test Coverage & CI/CD
 
 ### 🟡 Zero Test Coverage
 - **Issue**: The project contains a valid `jest.config.ts` but has zero unit or integration test files (`No tests found, exiting with code 0`).

@@ -6,32 +6,6 @@ This file contains the findings, architectural debt, critical bugs, and recommen
 
 ## 1. Critical Bugs 🚨
 
-### 🔴 RegEx Evaluation Logic Bug in `initGenerator`
-* **File:** [`src/generators/init/generator.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/ts-morph/src/generators/init/generator.ts#L45-L58)
-* **Description:** 
-  The check to identify if a package name should belong in `devDependencies` uses an array literal of regular expressions in a boolean context:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript/TypeScript, an array literal is always a truthy value. Therefore, this check evaluates to `!isDevDependency && true`, bypassing the regular expression tests entirely. This causes **any** package (including runtime Angular/Nest packages) that isn't already registered as a `devDependency` to be incorrectly classified as a development dependency and moved.
-* **Recommended Fix:** 
-  Use `.some()` to check if the package name matches any of the regular expressions:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some(rx => rx.test(packageName))
-  )
-  ```
-
 ### 🔴 Prettier/Styling Improvements Silently Ignored
 * **File:** [`src/lib/apply-ts-morph-project.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/ts-morph/src/lib/apply-ts-morph-project.ts#L116-L123)
 * **Description:** 

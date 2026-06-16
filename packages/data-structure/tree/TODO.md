@@ -8,30 +8,7 @@ The audit identified critical logic bugs, architectural inconsistencies, perform
 
 ## 1. Critical Logic Bugs
 
-### 1.1 Inoperative Dependency Check in Init Generator
-- **Location**: `src/generators/init/generator.ts` (Lines 45–58)
-- **Description**:
-  The generator incorrectly verifies whether the package matches a certain naming pattern before migrating it to `devDependencies`:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  In JavaScript/TypeScript, evaluating an array literal evaluates to a truthy value. The regex patterns inside the array are never tested against the `packageName`. As a result, the condition evaluates to `true` for **any** package that is not currently a devDependency. Since this is a standard tree utility package, it will be incorrectly classified and migrated to `devDependencies`.
-- **Recommendation**:
-  Replace the array literal with a `.some()` search pattern similar to the check used on lines 34–44:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 1.2 Contradictory Node Visibility Logic
+### 1.1 Contradictory Node Visibility Logic
 - **Location**: `src/lib/node.ts` (Lines 100–112)
 - **Description**:
   The logic defining node visibility states (`isHidden` and `isVisible`) contains severe logical contradictions:

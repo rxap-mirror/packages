@@ -4,36 +4,6 @@ This document outlines the findings from an audit of the `@rxap/life-cycle` proj
 
 ---
 
-## 🚨 Critical Bugs
-
-### 1. Major Logic Bug in Init Generator Dependency Coercion
-In `src/generators/init/generator.ts` (lines 45–51), there is a critical logic bug where a regular expression evaluation condition is written without executing `.some()` or `.test()`.
-
-```typescript
-if (
-  !isDevDependency && [
-    /^@rxap\/plugin/,
-    /^@rxap\/workspace/,
-    /@rxap\/schematic/,
-  ]
-) { ... }
-```
-
-* **Issue**: Because a non-empty array in JavaScript/TypeScript is always a truthy value, this condition simplifies to `!isDevDependency && true`.
-* **Impact**: For *any* library that is not already a devDependency, if it has peer dependencies, this generator will incorrectly coerce it into a devDependency, even if its package name does NOT match the workspace/plugin/schematic scopes.
-* **Fix**: Change it to match the pattern utilized in the previous `if` block:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
----
-
 ## 🏛️ Architectural Debt & Anti-Patterns
 
 ### 1. Generator File System Pathing Anti-Pattern (Virtual Tree vs. Physical Disk)

@@ -6,32 +6,6 @@ This file outlines the findings from the audit of the `@rxap/json-schema-to-type
 
 ## 1. Critical Bugs & Logic Errors
 
-### 🛑 Broken Condition in `initGenerator`
-* **File:** `src/generators/init/generator.ts` (Lines 45-51)
-* **Description:** The conditional check to determine if the `packageName` matches certain regex patterns is completely broken. It constructs an array literal but does not execute any check against it, which in JavaScript always evaluates to a truthy value:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-* **Impact:** The regex check is bypassed entirely, meaning the conditional block simplifies to `if (!isDevDependency)`. This causes incorrect dependency category management (dependencies vs. devDependencies) for packages in the monorepo.
-* **Recommended Fix:** Use `.some()` to check the array of regular expressions against the package name:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
----
-
 ### 🛑 Over-inclusive Named Import Coercion in `CoerceImports`
 * **File:** `src/lib/coerce-imports.ts` (Lines 246 and 265)
 * **Description:** In the `coerceNamedImports` helper, there are two loops that iterate over `normalizedNamedImports` (which contains both type-only and non-type-only named imports) instead of their respective filtered lists:

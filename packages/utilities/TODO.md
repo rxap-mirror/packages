@@ -8,20 +8,6 @@ These recommendations address critical logic bugs, memory/performance concerns, 
 
 ## 1. Critical Logic & Functional Bugs
 
-### 🚨 Array-matching regex bypass in `initGenerator`
-* **File:** `packages/utilities/src/generators/init/generator.ts` (Line 40)
-* **Problem:** 
-  The generator attempts to check if a package should be classified as a development dependency using:
-  ```typescript
-  if (!isDevDependency && [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/]) {
-  ```
-  In JavaScript/TypeScript, an array literal is always a truthy object. The regular expressions within the array are never actually tested against `packageName`. If `!isDevDependency` is true, this statement will **always** evaluate to true. As a result, non-rxap packages are incorrectly coerced into `devDependencies`.
-* **Recommended Fix:** 
-  Use the `.some()` function to test the regexes, matching the implementation style of the block above it:
-  ```typescript
-  if (!isDevDependency && [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some(rx => rx.test(packageName))) {
-  ```
-
 ### 🚨 Crash on `null` properties in `flattenObject`
 * **File:** `packages/utilities/src/lib/flatten-object.ts` (Line 23)
 * **Problem:** 
@@ -118,7 +104,6 @@ These recommendations address critical logic bugs, memory/performance concerns, 
 ---
 
 ## Summary of Action Items
-- [ ] Fix the array regex bug in `initGenerator`.
 - [ ] Safeguard `flattenObject` against `null` inputs.
 - [ ] Check for `Array.isArray` inside `CoerceArrayItems` to prevent merging arrays as plain objects.
 - [ ] Replace property-prefix storage in `@Deprecated` with warning-only getter/setters.
