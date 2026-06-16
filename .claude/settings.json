@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(yarn jest:*)",
+      "Bash(yarn nx:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true
+}

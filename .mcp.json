@@ -48,6 +48,7 @@
       ]
     },
     "DeepWiki": {
+      "type": "sse",
       "url": "https://mcp.deepwiki.com/sse"
     },
     "context7": {
@@ -56,28 +57,15 @@
         "-y",
         "@upstash/context7-mcp",
         "--api-key",
-        "$CONTEXT7_API_KEY"
+        "${CONTEXT7_API_KEY}"
       ],
       "env": {
         "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
       }
     },
     "figma": {
-      "httpUrl": "https://mcp.figma.com/mcp",
-      "oauth": {
-        "enabled": true
-      }
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
     }
-  },
-  "experimental": {
-    "skills": true
-  },
-  "tools": {
-    "allowed": [
-      "run_shell_command(ls)",
-      "run_shell_command(cat)",
-      "run_shell_command(yarn jest)",
-      "run_shell_command(yarn nx)"
-    ]
   }
 }
