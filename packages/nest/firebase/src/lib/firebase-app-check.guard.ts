@@ -43,7 +43,7 @@ export class FirebaseAppCheckGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest<RequestWithDecodedIdToken>();
 
-    const appCheckToken = request.headers.get('X-Firebase-AppCheck');
+    const appCheckToken = (request.headers as any as Record<string, string | undefined>)['x-firebase-appcheck'];
 
     if (!appCheckToken) {
       throw new BadRequestException(`The app check header is missing. Ensure that the client has firebase app check enabled and sends the header.`);

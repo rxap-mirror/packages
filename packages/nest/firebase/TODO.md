@@ -4,46 +4,6 @@ This document lists findings, architectural debt, and recommended improvements i
 
 ---
 
-## 🚨 Critical Bugs
-
-### 1. `FirebaseAppCheckGuard` crash via `request.headers.get`
-* **File**: `src/lib/firebase-app-check.guard.ts` (Line 46)
-* **Problem**:
-  ```typescript
-  const appCheckToken = request.headers.get('X-Firebase-AppCheck');
-  ```
-  In NestJS (Express/Fastify platforms), `request.headers` is a plain JavaScript object representing the parsed headers (typically `IncomingHttpHeaders`), not a Web standard `Headers` object. It does not possess a `.get()` method. Attempting to activate this guard results in a `TypeError: request.headers.get is not a function`, causing unhandled exceptions and completely blocking the request flow.
-* **Recommended Fix**:
-  Retrieve the header using lowercase index lookup:
-  ```typescript
-  const appCheckToken = request.headers['x-firebase-appcheck'] as string | undefined;
-  ```
-
-### 2. Logic Bug in `init` Generator Package-Moving Condition
-* **File**: `src/generators/init/generator.ts` (Lines 45-51)
-* **Problem**:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  This conditional statement incorrectly evaluates `!isDevDependency` with a truthy array literal. Because arrays are always truthy in JavaScript/TypeScript, the condition is equivalent to simple `!isDevDependency`. As a result, *any* package that is not currently a devDependency will be forcefully relocated to `devDependencies`, regardless of its name matching the intended regular expressions.
-* **Recommended Fix**:
-  Use `.some()` to verify if the package name matches the regex pattern:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  ) {
-  }
-  ```
-
----
-
 ## 🏛️ Architectural Debt & Code Quality
 
 ### 3. Anti-Pattern: Virtual Tree reading physical `node_modules`
