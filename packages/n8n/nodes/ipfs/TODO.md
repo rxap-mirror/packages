@@ -6,41 +6,6 @@ This document outlines the findings from the audit of the `@rxap/n8n-nodes-ipfs`
 
 ## 1. Critical Bugs
 
-### 🚨 Broken Conditional Check in Init Generator
-In `src/generators/init/generator.ts` (lines 45-51), the conditional check to determine if a non-devDependency package is an RxAP plugin/workspace/schematic is completely broken:
-```typescript
-if (
-  !isDevDependency && [
-    /^@rxap\/plugin/,
-    /^@rxap\/workspace/,
-    /@rxap\/schematic/,
-  ]
-) {
-```
-* **The Issue:** The expression evaluates an array of `RegExp` objects directly within the `if` condition. Since arrays are always truthy in JavaScript, the condition evaluates to `true` for *any* package that is not a devDependency, regardless of its name. This causes incorrect manipulation of `package.json` by moving standard dependencies to `devDependencies`.
-* **Recommended Fix:** Change this to use `.some(...)` with `.test(packageName)`, matching the style used for `isDevDependency` logic on lines 34-37:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-### 🚨 Incorrect `getInputData` Usage in Node Post-Processing
-In `src/lib/Download/Download.node.ts` (line 106), inside the `postReceive` action for `download-as-file`:
-```typescript
-input: this.getInputData(index),
-```
-* **The Issue:** `index` is the map index over the HTTP response `items`. However, `this.getInputData(inputIndex)` in `IExecuteSingleFunctions` expects the **input connection index** (which is always `0` since the node only has a single main input). If multiple items are being processed, or if `index >= 1`, passing `index` to `getInputData` will attempt to fetch data from a non-existent input connection (index 1, 2, etc.), which will either throw an error or return undefined/empty, failing the workflow.
-* **Recommended Fix:** Since `IExecuteSingleFunctions` runs per-item, it should fetch the input data from connection index `0` (or omit the parameter):
-  ```typescript
-  input: this.getInputData(0),
-  ```
-
 ### 🚨 Unhandled JSON Parse Errors
 In `src/lib/Download/Download.node.ts` (line 134), inside the `postReceive` action for `download-as-json`:
 ```typescript

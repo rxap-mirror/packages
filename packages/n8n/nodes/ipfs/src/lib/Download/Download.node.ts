@@ -103,7 +103,7 @@ export class Download implements INodeType {
                             fileSize: data.fileSize,
                             id: data.id,
                           }),
-                          input: this.getInputData(index),
+                          input: this.getInputData(0),
                         }
                       }
                       return item;
