@@ -6,23 +6,6 @@ This document outlines the findings and recommended actions from the project aud
 
 ## 1. Critical Functional Bugs
 
-### 🔴 Promise Hang on Tar Extraction
-- **Issue**: In `Tar.node.ts` (lines 105–122), the execution awaits a `Promise` that resolves on the `'end'` event of the `tar.extract` writable stream `x`.
-  ```typescript
-  bufferStream
-    .pipe(x)
-    .on('error', reject)
-    .on('end', resolve);
-  ```
-- **Why it's a bug**: In Node.js, `Writable` streams (such as `tar.Unpack` returned by `tar.extract`) do not emit the `'end'` event—only `'finish'` or `'close'` are emitted. As a result, this promise never resolves, causing any execution of the node to hang indefinitely.
-- **Recommended Fix**: Change the completion event listener from `'end'` to `'close'` (or `'finish'`). Since file extraction involves asynchronous disk writes, `'close'` is the most reliable event indicating that the extraction is complete and all files have been written.
-  ```typescript
-  bufferStream
-    .pipe(x)
-    .on('error', reject)
-    .on('close', resolve);
-  ```
-
 ### 🔴 `globalFilePathPrefix` Path Traversal & Crash (`ENOENT`)
 - **Issue**: When `globalFilePathPrefix` is specified (e.g. `'subfolder/'`), the directory scanned for output files is calculated as `join(workDir, globalFilePathPrefix)` (line 134).
   ```typescript

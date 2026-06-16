@@ -118,7 +118,7 @@ export class Tar implements INodeType {
               bufferStream
                 .pipe(x)
                 .on('error', reject)
-                .on('end', resolve);
+                .on('close', resolve);
             });
 
             break;
