@@ -4,46 +4,6 @@ This document outlines the findings, critical bugs, architectural debt, and test
 
 ---
 
-## 🚨 Critical Bugs & Logic Errors
-
-### 1. Faulty Logic Condition in Init Generator
-* **File:** `src/generators/init/generator.ts` (Lines 45-58)
-* **Description:** 
-  In the `initGenerator` function, the condition checking whether the package should be categorized as a devDependency evaluates to `true` whenever `!isDevDependency` is true because of a malformed array expression:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  The literal array `[/^@rxap\/plugin/, ...]` is a truthy value, so the regexes are never actually tested against `packageName`.
-* **Impact:** Any package being initialized where `isDevDependency` is false will mistakenly fall into this block and be incorrectly re-categorized as a devDependency, even if its name does not match any of the patterns.
-* **Recommended Fix:** Change the condition to use `.some()` just like the block above it:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [/^@rxap\/plugin/, /^@rxap\/workspace/, /@rxap\/schematic/].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 2. Missing String Interpolation for Server Config
-* **File:** `src/lib/microservice.ts` (Line 27)
-* **Description:**
-  When logging the internal configuration details during microservice bootstrap, the code prints the raw object reference without stringification:
-  ```typescript
-  logger.debug?.(`Server Config: ${(config as any).internalConfig}`, 'Bootstrap');
-  ```
-* **Impact:** Logs will print: `Server Config: [object Object]`, rendering this debug log completely useless.
-* **Recommended Fix:** Use `JSON.stringify` to serialize the internal configuration object:
-  ```typescript
-  logger.debug?.(`Server Config: ${JSON.stringify((config as any).internalConfig)}`, 'Bootstrap');
-  ```
-
----
-
 ## 📦 Dependency & Packaging Issues
 
 ### 1. Undeclared Peer Dependency on `joi`

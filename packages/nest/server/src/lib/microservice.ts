@@ -24,7 +24,7 @@ export class Microservice<Logger extends LoggerService, Options extends object =
 
     logger.verbose?.('Process Environment: %JSON', process.env, 'Bootstrap');
 
-    logger.debug?.(`Server Config: ${(config as any).internalConfig}`, 'Bootstrap');
+    logger.debug?.(`Server Config: ${JSON.stringify((config as any).internalConfig)}`, 'Bootstrap');
 
     return {
       version: DetermineVersion(this.environment),
