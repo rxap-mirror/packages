@@ -6,8 +6,10 @@ import {
 } from '@angular/core';
 import { PubSubService } from './pub-sub.service';
 import {
+  RXAP_PUB_SUB_CACHE_SIZE,
   RXAP_PUB_SUB_DISABLE_CACHE,
   RXAP_PUB_SUB_DISABLE_GARBAGE_COLLECTOR,
+  RXAP_PUB_SUB_GARBAGE_COLLECTOR_INTERVAL,
 } from './tokens';
 
 export function ProvidePubSub(...providers: Provider[]): Array<Provider | EnvironmentProviders> {
@@ -36,14 +38,14 @@ export function withDisableGarbageCollector(): Provider {
 
 export function withMaxCacheSize(size: number): Provider {
   return {
-    provide: RXAP_PUB_SUB_DISABLE_CACHE,
+    provide: RXAP_PUB_SUB_CACHE_SIZE,
     useValue: size,
   };
 }
 
 export function withGarbageCollectorInterval(interval: number): Provider {
   return {
-    provide: RXAP_PUB_SUB_DISABLE_GARBAGE_COLLECTOR,
+    provide: RXAP_PUB_SUB_GARBAGE_COLLECTOR_INTERVAL,
     useValue: interval,
   };
 }

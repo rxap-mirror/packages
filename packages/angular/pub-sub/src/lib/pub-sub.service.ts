@@ -56,11 +56,11 @@ export class PubSubService implements OnDestroy {
   }
 
   public startGarbageCollector() {
-    this.garbageCollectorInitialized = true;
     if (this.garbageCollectorInitialized) {
       console.warn('Garbage collector is already initialized');
       return;
     }
+    this.garbageCollectorInitialized = true;
     if (this.disableGarbageCollector || this.disableCache) {
       console.warn('Garbage collector is disabled');
       return;
@@ -76,14 +76,15 @@ export class PubSubService implements OnDestroy {
 
   public runGarbageCollector() {
     const now = Date.now();
-    this.cache.forEach((message, index) => {
+    for (let i = this.cache.length - 1; i >= 0; i--) {
+      const message = this.cache[i];
       if (message.retention) {
         const diff = now - message.metadata.timestamp;
         if (diff > message.retention) {
-          this.cache.splice(index, 1);
+          this.cache.splice(i, 1);
         }
       }
-    });
+    }
   }
 
   public stopGarbageCollector() {
