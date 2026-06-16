@@ -36,8 +36,8 @@ export class SocketIoClientStrategy
    * This method is triggered when you run "app.listen()".
    */
   listen(callback: () => void) {
-    this.client.on('connection', () => {
-      this.logger.log('connection', 'SocketIoClientStrategy');
+    this.client.on('connect', () => {
+      this.logger.log('connected', 'SocketIoClientStrategy');
     });
     this.client.on('error', (error: unknown) => {
       if (error && typeof error === 'object' && (error as any).message) {
