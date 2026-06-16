@@ -10,8 +10,8 @@ import { INodeTypeDescription } from 'n8n-workflow/dist/Interfaces';
 import sanitizeHtml, { AllowedAttribute } from 'sanitize-html';
 
 function getAllowedTags(this: IExecuteFunctions, index: number): string[] {
-  const allowedTagsParameter = this.getNodeParameter('allowedTags', index) as { add?: string[], remove?: string[], only?: string[] };
-  let allowedTags: string[] = sanitizeHtml.defaults.allowedTags;
+  const allowedTagsParameter = this.getNodeParameter('allowedTags', index, {}) as { add?: string[], remove?: string[], only?: string[] };
+  let allowedTags: string[] = [...sanitizeHtml.defaults.allowedTags];
   const addAllowedTags = (allowedTagsParameter.add ?? []).filter(Boolean);
   const removeAllowedTags = (allowedTagsParameter.remove ?? []).filter(Boolean);
   const onlyAllowedTags = (allowedTagsParameter.only ?? []).filter(Boolean);
@@ -29,8 +29,11 @@ function getAllowedTags(this: IExecuteFunctions, index: number): string[] {
 }
 
 function getAllowedAttributes(this: IExecuteFunctions, index: number): Record<string, AllowedAttribute[]> {
-  const { allowed = [] } = this.getNodeParameter('allowedAttributes', index) as { allowed: Array<{ tag: string, attributes: string[] }> };
-  const allowedAttributes: Record<string, AllowedAttribute[]> = sanitizeHtml.defaults.allowedAttributes;
+  const { allowed = [] } = this.getNodeParameter('allowedAttributes', index, { allowed: [] }) as { allowed: Array<{ tag: string, attributes: string[] }> };
+  const allowedAttributes: Record<string, AllowedAttribute[]> = {};
+  for (const [tag, attrs] of Object.entries(sanitizeHtml.defaults.allowedAttributes)) {
+    allowedAttributes[tag] = [...attrs];
+  }
   for (const { tag, attributes } of allowed) {
     allowedAttributes[tag] = attributes.filter(Boolean);
   }
