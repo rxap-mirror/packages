@@ -84,9 +84,9 @@ export class Hash implements INodeType {
     for (let i = 0; i < items.length; i++){
       const item = items[i];
 
-      const operation = this.getNodeParameter('operation', 0, item) as string;
-      const binaryProperty = this.getNodeParameter('binaryProperty', 0, item) as string;
-      const outputHashField = this.getNodeParameter('outputHashField', 0, item) as string;
+      const operation = this.getNodeParameter('operation', i, item) as string;
+      const binaryProperty = this.getNodeParameter('binaryProperty', i, item) as string;
+      const outputHashField = this.getNodeParameter('outputHashField', i, item) as string;
 
       const buffer = await this.helpers.getBinaryDataBuffer(i, binaryProperty);
 
