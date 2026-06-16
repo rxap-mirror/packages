@@ -6,53 +6,7 @@ This file outlines the critical bugs, architectural debt, library anti-patterns,
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Copy-Paste Memory/State Bug in `RemoteMethodTemplateCollectionDirective`
-* **File:** [remote-method-template-collection.directive.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/remote-method/directive/src/lib/remote-method-template-collection.directive.ts#L294-L298)
-* **Description:** When the remote method response is no longer empty, the directive attempts to detach and destroy the empty template view. However, it sets `this._errorTemplateViewRef = null` instead of resetting the empty template reference:
-  ```typescript
-  if (this._emptyTemplateViewRef) {
-    this._emptyTemplateViewRef.detach();
-    this._emptyTemplateViewRef.destroy();
-    this._errorTemplateViewRef = null; // <-- BUG!
-  }
-  ```
-* **Impact:** `this._emptyTemplateViewRef` remains populated with a reference to a destroyed view, leading to potential subsequent runtime crashes or double-detaches.
-* **Recommended Fix:** Correct the reassignment:
-  ```typescript
-  if (this._emptyTemplateViewRef) {
-    this._emptyTemplateViewRef.detach();
-    this._emptyTemplateViewRef.destroy();
-    this._emptyTemplateViewRef = null;
-  }
-  ```
-
-### 2. Broken Conditional Block in `init` Generator
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/remote-method/src/generators/init/generator.ts#L45-L51)
-* **Description:** The generator checks if a package is a devDependency using a completely broken conditional statement:
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) {
-  ```
-  Since any non-empty array literal is always truthy, this condition evaluates to true for ANY package name as long as `isDevDependency` is false. It is missing the `.some` array check.
-* **Impact:** Packages that are not plugins, workspaces, or schematics will be incorrectly classified and rewritten in the root `package.json` dependencies block.
-* **Recommended Fix:** Use `.some()` like in the previous block:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) {
-  ```
-
-### 3. Missing Safeties on Response Types in `RemoteMethodTemplateCollectionDirective`
+### 1. Missing Safeties on Response Types in `RemoteMethodTemplateCollectionDirective`
 * **File:** [remote-method-template-collection.directive.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/remote-method/directive/src/lib/remote-method-template-collection.directive.ts#L250)
 * **Description:** The directive directly reads `.length` from the API response:
   ```typescript

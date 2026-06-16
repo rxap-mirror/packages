@@ -294,7 +294,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
       if (this._emptyTemplateViewRef) {
         this._emptyTemplateViewRef.detach();
         this._emptyTemplateViewRef.destroy();
-        this._errorTemplateViewRef = null;
+        this._emptyTemplateViewRef = null;
       }
 
       if (this._errorTemplateViewRef) {
