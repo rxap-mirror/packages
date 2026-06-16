@@ -45,7 +45,7 @@ export function GuessProjectRoot(host: Tree,
   let bestMatch: string | null = null;
 
   for (const projectRoot of allProjectRoots) {
-    if (path.match(new RegExp(projectRoot.replace('/', '\\/')))) {
+    if (path.match(new RegExp(projectRoot.replace(/\//g, '\\/')))) {
       if (!bestMatch) {
         bestMatch = projectRoot;
       }

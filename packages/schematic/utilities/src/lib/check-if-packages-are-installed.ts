@@ -16,7 +16,7 @@ import { UpdatePackageJsonRule } from './package-json-file';
 export function CheckIfPackagesAreInstalled(packageList: string[]): Rule {
   return UpdatePackageJsonRule(packageJson => {
     // check if packages are listed in the root package json
-    const notReferenced = [].filter(packageName => !(packageJson.dependencies ?? {})[packageName] &&
+    const notReferenced = packageList.filter(packageName => !(packageJson.dependencies ?? {})[packageName] &&
       !(packageJson.devDependencies ?? {})[packageName]);
 
     // check if not referenced packages are installed and can be imported

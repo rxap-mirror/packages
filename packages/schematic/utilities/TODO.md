@@ -6,59 +6,7 @@ This document outlines the findings and recommended actions resulting from an au
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Broken Regular Expression Matching in `initGenerator`
-- **Location**: `src/generators/init/generator.ts` (lines 45–51)
-- **Bug**: 
-  ```typescript
-  if (
-    !isDevDependency && [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ]
-  ) { ... }
-  ```
-  The array of regular expressions is evaluated as part of the condition directly. Since non-empty arrays are truthy, this condition evaluates to `!isDevDependency && true`, moving **all** non-devDependency packages into `devDependencies` regardless of whether they match the specified regexes.
-- **Fix**: Apply `.some(...)` on the array to check against the package name:
-  ```typescript
-  if (
-    !isDevDependency &&
-    [
-      /^@rxap\/plugin/,
-      /^@rxap\/workspace/,
-      /@rxap\/schematic/,
-    ].some((rx) => rx.test(packageName))
-  ) { ... }
-  ```
-
-### 2. No-op Package Checking in `CheckIfPackagesAreInstalled`
-- **Location**: `src/lib/check-if-packages-are-installed.ts` (line 19)
-- **Bug**: 
-  ```typescript
-  const notReferenced = [].filter(packageName => ...);
-  ```
-  The function filters on an empty array `[]` instead of the passed-in `packageList` parameter. As a result, it will never detect unreferenced or uninstalled packages.
-- **Fix**: Use `packageList` instead of the empty array literal:
-  ```typescript
-  const notReferenced = packageList.filter(packageName => ...);
-  ```
-
-### 3. File Destruction on `MergeWithEnvFile`
-- **Location**: `src/lib/env-file.ts` (lines 85–97)
-- **Bug**: 
-  The function `MergeWithEnvFile` executes `CoerceEnvFile(tree, content, filePath)` before calling `GetEnvFile(tree, filePath)`. Because `CoerceEnvFile` internally overwrites the `.env` file with the new incoming `content` map only, any existing contents are completely wiped out before they are read. `deepMerge` is then called on two identical objects, making the merge a no-op and resulting in the loss of all pre-existing env variables.
-- **Fix**: Read and parse the existing `.env` file first (if it exists) before overwriting it:
-  ```typescript
-  export function MergeWithEnvFile(content: EnvFile, filePath = '.env'): Rule {
-    return tree => {
-      const existingContent = tree.exists(filePath) ? GetEnvFile(tree, filePath) : {};
-      const newContent = deepMerge(existingContent, content);
-      WriteEnvFile(tree, newContent, filePath);
-    };
-  }
-  ```
-
-### 4. Broken Peer Dependency Resolution in `InstallPeerDependencies`
+### 1. Broken Peer Dependency Resolution in `InstallPeerDependencies`
 - **Location**: `src/lib/install-peer-dependencies.ts` (lines 58–64)
 - **Bug**: 
   ```typescript
@@ -67,19 +15,6 @@ This document outlines the findings and recommended actions resulting from an au
   ```
   `peerCollectionJsonFilePath` is a physical absolute path to a file inside `node_modules`. Since `node_modules` is not part of the virtual workspace `Tree`, `tree.exists(...)` will always return `false`. Therefore, the automated execution of peer `ng-add` schematics will never occur.
 - **Fix**: Since the files are in `node_modules`, read them using physical filesystem checks and parsing (`fs.existsSync` and `require()`) instead of checking the virtual `Tree`.
-
-### 5. Incomplete Regex Escaping in `GuessProjectRoot`
-- **Location**: `src/lib/guess-project-root.ts` (lines 47–56)
-- **Bug**: 
-  ```typescript
-  if (path.match(new RegExp(projectRoot.replace('/', '\\/'))))
-  ```
-  `projectRoot.replace('/', '\\/')` only replaces the *first* occurrence of `/` inside the path. For deeply nested project roots (e.g. `packages/schematic/utilities`), the generated RegExp will have unescaped forward slashes, causing pattern matching errors.
-- **Fix**: Use `replaceAll('/', '\\/')` or a global regular expression:
-  ```typescript
-  if (path.match(new RegExp(projectRoot.replace(/\//g, '\\/'))))
-  ```
-  *Alternative recommendation*: Avoid dynamic regex matching if standard string helpers like `path.startsWith(projectRoot)` can be used instead.
 
 ---
 

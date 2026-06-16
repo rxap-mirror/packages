@@ -85,11 +85,9 @@ export function CoerceEnvFile(tree: Tree, content: EnvFile, filePath = '.env'): 
 export function MergeWithEnvFile(content: EnvFile, filePath = '.env'): Rule {
   return tree => {
 
-    CoerceEnvFile(tree, content, filePath);
+    const existingContent = tree.exists(filePath) ? GetEnvFile(tree, filePath) : {};
 
-    const env = GetEnvFile(tree, filePath);
-
-    const newContent = deepMerge(env, content);
+    const newContent = deepMerge(existingContent, content);
 
     WriteEnvFile(tree, newContent, filePath);
 
