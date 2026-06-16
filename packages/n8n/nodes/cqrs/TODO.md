@@ -6,25 +6,6 @@ This document outlines the critical bugs, architectural debt, library anti-patte
 
 ## 1. Critical Functional Bugs
 
-### 🚨 MessageTracker DeliveryTag Tracking & Splice Logic Bug
-* **File:** `src/lib/GenericFunctions.ts` (Lines 166–167)
-* **Description:** 
-  The `answered` method tracks completed RabbitMQ messages, but has a catastrophic bug in finding and removing the delivery tag:
-  ```typescript
-  const index = this.messages.findIndex((value) => value !== message.fields.deliveryTag);
-  this.messages.splice(index);
-  ```
-  1. `findIndex` uses `!==` (not equal), which returns the index of the **first message that is NOT the completed message**.
-  2. `splice(index)` is called without a second argument (`deleteCount`), which **removes all elements from the found index to the end of the array**.
-  This completely breaks message tracking, leading to incorrect calculations of `unansweredMessages()` and causing channel closing during graceful shutdown to either hang or close prematurely.
-* **Recommended Fix:** Change to standard `indexOf` or a strict equality `findIndex`, and specify a delete count of `1`:
-  ```typescript
-  const index = this.messages.indexOf(message.fields.deliveryTag);
-  if (index !== -1) {
-    this.messages.splice(index, 1);
-  }
-  ```
-
 ### 🚨 Unhandled `JSON.parse` in Reply Queue Callback
 * **File:** `src/lib/pattern-node.ts` (Line 131)
 * **Description:** 

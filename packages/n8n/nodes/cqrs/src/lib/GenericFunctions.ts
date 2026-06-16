@@ -163,8 +163,10 @@ export class MessageTracker {
 			return;
 		}
 
-		const index = this.messages.findIndex((value) => value !== message.fields.deliveryTag);
-		this.messages.splice(index);
+		const index = this.messages.indexOf(message.fields.deliveryTag);
+		if (index !== -1) {
+			this.messages.splice(index, 1);
+		}
 	}
 
 	unansweredMessages() {
