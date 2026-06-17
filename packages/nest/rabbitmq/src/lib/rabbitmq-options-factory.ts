@@ -20,7 +20,8 @@ export class RabbitmqOptionsFactory {
 
     let options: BaseRmqOptions;
 
-    if (this.config.get('RABBITMQ_DISABLED')) {
+    const rabbitmqDisabled = this.config.get('RABBITMQ_DISABLED');
+    if (rabbitmqDisabled === true || rabbitmqDisabled === 'true') {
       this.logger.debug('RabbitMQ is disabled', 'RabbitMQModuleConfigFactory');
       const host = this.config.getOrThrow('RABBITMQ_HOST');
       const port = this.config.getOrThrow('RABBITMQ_PORT');

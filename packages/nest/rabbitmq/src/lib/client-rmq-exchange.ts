@@ -228,8 +228,8 @@ export class ClientRMQExchange extends ClientProxy {
   ): Promise<void> {
     this.logger.verbose('Received message: %JSON', packet, 'ClientRMQExchange');
     let options: Record<string, unknown> | undefined = undefined;
-    if (isFunction(options)) {
-      callback = options as (packet: WritePacket) => any;
+    if (isFunction(optionsOrCallback)) {
+      callback = optionsOrCallback as (packet: WritePacket) => any;
     } else {
       options = optionsOrCallback as Record<string, unknown>;
     }

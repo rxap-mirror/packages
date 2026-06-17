@@ -40,7 +40,11 @@ export class ErrorDeserializer {
         break;
 
       case 'Unknown':
-        return JSON.parse(record.message);
+        try {
+          return JSON.parse(record.message);
+        } catch {
+          return new Error(record.message);
+        }
 
       case 'BadGatewayException':
         error = new BadGatewayException();
