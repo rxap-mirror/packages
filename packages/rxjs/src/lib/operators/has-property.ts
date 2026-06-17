@@ -72,8 +72,7 @@ class HasPropertySubscriber<T extends object | null | undefined, V> extends Subs
       result = value !== null &&
         value !== undefined &&
         typeof value === 'object' &&
-        // eslint-disable-next-line no-prototype-builtins
-        value.hasOwnProperty(this.propertyKey) &&
+        Object.prototype.hasOwnProperty.call(value, this.propertyKey) &&
         hasIndexSignature(value) &&
         (this.value === undefined || value[this.propertyKey as string] === this.value);
     } catch (err) {

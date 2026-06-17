@@ -22,13 +22,13 @@ export class ToggleSubject extends BehaviorSubject<boolean> {
   }
 
   public enable(alwaysEmit = false): void {
-    if (!alwaysEmit || !this.value) {
+    if (alwaysEmit || !this.value) {
       this.next(true);
     }
   }
 
   public disable(alwaysEmit = false): void {
-    if (!alwaysEmit || this.value) {
+    if (alwaysEmit || this.value) {
       this.next(false);
     }
   }

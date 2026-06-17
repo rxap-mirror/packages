@@ -6,56 +6,7 @@ This file documents the critical bugs, architectural debt, library anti-patterns
 
 ## 🚨 Critical Bugs & Memory Leaks
 
-### 1. Silent Memory/Resource Leak in `CloneObservable`
-*   **File:** [clone-observable.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/rxjs/src/lib/clone-observable.ts)
-*   **Issue:** The inner subscription to the source observable is never returned or disposed of in the Observable constructor.
-    ```typescript
-    export function CloneObservable<T>(observable: Observable<T>): Observable<T> {
-      return new Observable(observer => {
-        observable.subscribe({ // <-- This subscription is leaked!
-          next: value => observer.next(value),
-          error: err => observer.error(err),
-          complete: () => observer.complete(),
-        });
-      });
-    }
-    ```
-*   **Impact:** When the cloned observable is unsubscribed, the source stream subscription remains active in memory indefinitely (or until the source stream completes). For infinite or hot streams (such as event streams or subjects), this causes a severe memory/resource leak.
-*   **Recommended Fix:** Return the subscription instance directly to handle automatic teardown on unsubscription, or simplify using standard RxJS patterns:
-    ```typescript
-    export function CloneObservable<T>(observable: Observable<T>): Observable<T> {
-      return new Observable<T>(observer => observable.subscribe(observer));
-    }
-    ```
-
-### 2. Logic Inversion in `ToggleSubject` (`alwaysEmit` Condition)
-*   **File:** [toggle-subject.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/rxjs/src/lib/toggle-subject.ts)
-*   **Issue:** The conditional statements in both `enable()` and `disable()` methods invert the meaning of the `alwaysEmit` parameter:
-    ```typescript
-    public enable(alwaysEmit = false): void {
-      if (!alwaysEmit || !this.value) { // <-- Inverted!
-        this.next(true);
-      }
-    }
-    ```
-    If `alwaysEmit` is `false` (the default), `!alwaysEmit` is `true`, causing it to emit `true` even if the current value is already `true`. If `alwaysEmit` is `true`, `!alwaysEmit` is `false`, so it only emits when `!this.value` is true (only on change).
-*   **Impact:** The parameter behaves exactly opposite to its name and documentation, leading to unexpected behavior in downstream consumers.
-*   **Recommended Fix:** Remove the logical negation of `alwaysEmit`:
-    ```typescript
-    public enable(alwaysEmit = false): void {
-      if (alwaysEmit || !this.value) {
-        this.next(true);
-      }
-    }
-
-    public disable(alwaysEmit = false): void {
-      if (alwaysEmit || this.value) {
-        this.next(false);
-      }
-    }
-    ```
-
-### 3. Callback Memory Leak in `ToggleSubject`
+### 1. Callback Memory Leak in `ToggleSubject`
 *   **File:** [toggle-subject.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/rxjs/src/lib/toggle-subject.ts)
 *   **Issue:** The class registers standard functions in private arrays (`_onEnabledHandler` and `_onDisabledHandler`) using `registerOnEnabled` / `registerOnDisabled`, but provides **no** mechanism to unregister these handlers.
 *   **Impact:** Long-lived `ToggleSubject` instances will leak handler closures of short-lived components/services that register callbacks, preventing those components from being garbage-collected.
@@ -63,15 +14,6 @@ This file documents the critical bugs, architectural debt, library anti-patterns
     ```typescript
     public readonly enabled$ = this.pipe(filter(value => value));
     public readonly disabled$ = this.pipe(filter(value => !value));
-    ```
-
-### 4. Potential Crash on Null-prototype Objects in `hasProperty`
-*   **File:** [has-property.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/rxjs/src/lib/operators/has-property.ts)
-*   **Issue:** The check uses direct property accessor call `value.hasOwnProperty(this.propertyKey)`.
-*   **Impact:** If the stream emits objects created via `Object.create(null)` or objects without `Object.prototype` in their chain, the operator will crash with a `TypeError: value.hasOwnProperty is not a function`.
-*   **Recommended Fix:** Safely query the prototype:
-    ```typescript
-    Object.prototype.hasOwnProperty.call(value, this.propertyKey)
     ```
 
 ---
@@ -114,10 +56,9 @@ This file documents the critical bugs, architectural debt, library anti-patterns
 
 ## 🧪 Test Coverage Gaps
 
-*   **Current Status:** Low. Currently, only 2 files (`is-teardown-logic.spec.ts` and `subscription-handler.spec.ts`) are tested.
+*   **Current Status:** Low, but improving. `ToggleSubject`, `CloneObservable`, and `hasProperty` now have specs (added alongside the bug fixes above).
 *   **Missing Tests:**
-    *   **100% of operators:** `toBoolean`, `throwIfEmpty`, `isDefined`, `isDeepEqual`, `isEqual`, `log`, `hasProperty` have no unit tests.
-    *   **100% of subjects/behaviors:** `ToggleSubject`, `CounterSubject`, `RequestInProgressSubject` have no unit tests.
-    *   **Clone Utilities:** `CloneObservable` has no unit tests (which would have easily caught the memory leak!).
+    *   **Operators:** `toBoolean`, `throwIfEmpty`, `isDefined`, `isDeepEqual`, `isEqual`, `log` have no unit tests.
+    *   **Subjects/behaviors:** `CounterSubject`, `RequestInProgressSubject` have no unit tests.
     *   **Init Generator:** The `init` generator has no specs.
 *   **Action Item:** Create specs for each of the missing operators and subjects to guarantee long-term stability and prevent regression of the bugs identified above.
