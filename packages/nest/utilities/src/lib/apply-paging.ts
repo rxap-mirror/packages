@@ -24,7 +24,7 @@ export function ApplyPaging<T>(
   pageIndex: number,
   filter?: FilterQuery[],
 ) {
-  let rows = ApplySort(data, sortBy, sortDirection);
+  let rows = ApplySort(data, sortDirection, sortBy);
   rows = ApplyFilter(rows, filter);
   const total = rows.length;
   rows = rows.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize);

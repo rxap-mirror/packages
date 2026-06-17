@@ -8,45 +8,15 @@ This document lists the findings and recommended actions resulting from a detail
 
 | Category | Status / Count | Description |
 | :--- | :--- | :--- |
-| **Test Coverage** | 🔴 **0%** | Zero test files (`*.spec.ts`) exist in the package. |
-| **Critical Bugs** | 🛑 **3** | Broken sorting/paging and global memory/CSP mutation leak. |
+| **Test Coverage** | 🟡 **partial** | `ApplyPaging`/`ApplySort` and the CSP builder now have specs; most files remain untested. |
+| **Critical Bugs** | ✅ **0** | Broken sorting/paging param swap and the CSP global-mutation leak are fixed. |
 | **Logic & Functional Bugs** | ⚠️ **4** | Unhandled TypeErrors in `ApplyFilter`, Fastify/non-HTTP context crashes, and string coercion for Throttler limits. |
 | **Architectural Debt** | ⚙️ **3** | Uninitialized global state for `IsDevMode`, hardcoded bypasses, and aggressive dependency injection of `Logger`. |
 | **Anti-Patterns** | 🔍 **2** | `node_modules` file reads via virtualized Tree, and plain-object `validateSync` validation. |
 
 ---
 
-## 🚀 1. Critical Bugs & Functional Fixes
-
-### 🔴 Broken Sorting & Parameter Swapping in `ApplyPaging`
-- **Location:** `src/lib/apply-paging.ts` & `src/lib/apply-sort.ts`
-- **Issue:** In `ApplyPaging`, the parameters are swapped when calling `ApplySort`:
-  - `ApplyPaging` call: `let rows = ApplySort(data, sortBy, sortDirection);`
-  - `ApplySort` signature: `ApplySort<T>(rows: T[], sortDirection?: string, sortBy?: string)`
-  - Consequently, `ApplySort` tries to sort by `'asc'` or `'desc'` as the property name, and treats the field name (e.g., `'name'`) as the sort direction. Sorting is completely broken inside paginated results.
-- **Recommended Fix:** Correct the parameter order in the `ApplySort` call in `src/lib/apply-paging.ts`:
-  ```typescript
-  let rows = ApplySort(data, sortDirection, sortBy);
-  ```
-
-### 🔴 Memory Mutation & Side-Effect Leak in CSP Builder
-- **Location:** `src/lib/content-security-policy.ts` (line 80)
-- **Issue:** `buildContentSecurityPolicy` sets `csp = CSP_DEFAULTS` as the parameter default value. Since JavaScript objects are passed by reference, any modification to `csp` (like `csp['img-src'].push(...)` or `csp['connect-src'].push(...)`) directly mutates the global `CSP_DEFAULTS` constant. Subsequent calls will accumulate configurations from previous calls, creating a memory mutation leak and potential security/tenant isolation risks.
-- **Recommended Fix:** Avoid direct mutation of default config. Use structured or shallow cloning before modifying:
-  ```typescript
-  export function buildContentSecurityPolicy({ 
-    reportUri, 
-    auth0IssueUrl, 
-    minioEndPoint, 
-    csp 
-  }: ContentSecurityPolicyOptions = {}) {
-    const activeCsp = csp ? { ...csp } : JSON.parse(JSON.stringify(CSP_DEFAULTS));
-    // Perform mutations on `activeCsp` instead of `csp`
-  ```
-
----
-
-## 🛠️ 2. Logic & Robustness Issues
+## 🛠️ 1. Logic & Robustness Issues
 
 ### ⚠️ Unhandled `TypeError` in `ApplyFilter`
 - **Location:** `src/lib/apply-filter.ts`
@@ -60,7 +30,7 @@ This document lists the findings and recommended actions resulting from a detail
 
 ### ⚠️ Fastify & Non-HTTP Context Compatibility Crashes
 - **Location:** `src/lib/accept-language.decorator.ts`, `src/lib/host.decorator.ts`, `src/lib/http-exception-filter.ts`, and `src/lib/validator.interceptor.ts`
-- **Issue:** All request extraction calls assume an Express request environment (e.g. `request.acceptsLanguages()`, `request.host`, `request.method`, `request.path`). 
+- **Issue:** All request extraction calls assume an Express request environment (e.g. `request.acceptsLanguages()`, `request.host`, `request.method`, `request.path`).
   - If used with **Fastify**, these will crash (`host` is `.hostname` in Fastify; `.acceptsLanguages()` doesn't exist by default).
   - If used in **Microservices**, **GraphQL**, or **WebSockets** contexts, `switchToHttp().getRequest()` is undefined or not standard, leading to crash.
 - **Recommended Fix:** Add guards and check context type before calling HTTP-specific getters/methods:
@@ -96,7 +66,7 @@ This document lists the findings and recommended actions resulting from a detail
 
 ---
 
-## 🏛️ 3. Architectural Debt & Coupling
+## 🏛️ 2. Architectural Debt & Coupling
 
 ### ⚙️ Fragile Global State Mutation for `IsDevMode`
 - **Location:** `src/lib/is-dev-mode.ts`
@@ -116,12 +86,12 @@ This document lists the findings and recommended actions resulting from a detail
 
 ### ⚙️ Fragile Dependency Injection of `Logger`
 - **Location:** `src/lib/http-exception-filter.ts`, `src/lib/validator.interceptor.ts`, `src/lib/logging.interceptor.ts`
-- **Issue:** `@Inject(Logger) private readonly logger: Logger` will fail Nest's DI resolution at bootstrap unless the consumer has explicitly registered a `Logger` provider under that exact token. 
+- **Issue:** `@Inject(Logger) private readonly logger: Logger` will fail Nest's DI resolution at bootstrap unless the consumer has explicitly registered a `Logger` provider under that exact token.
 - **Recommended Fix:** Use standard non-injected instantiation `new Logger(Context)` or make the dependency optional with a fallback, or inject `LOGGER_PROVIDER` token if a custom logging library is expected.
 
 ---
 
-## 🔍 4. Tooling & Anti-Patterns
+## 🔍 3. Tooling & Anti-Patterns
 
 ### ⚡ Reading `node_modules` via Virtualized Tree in Generator
 - **Location:** `src/generators/init/generator.ts` (lines 90–120)
@@ -135,7 +105,7 @@ This document lists the findings and recommended actions resulting from a detail
 
 ---
 
-## 📝 5. Inconsistencies & Typographical Issues
+## 📝 4. Inconsistencies & Typographical Issues
 
 ### 🔍 Typo in `mimeType-to-file-extanson.ts`
 - **Location:** `src/lib/mimeType-to-file-extanson.ts` (Filename and export)

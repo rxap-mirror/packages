@@ -79,37 +79,44 @@ export function defaultSetHeaders({ contentSecurityPolicy, reportUri }: SetHeade
 
 export function buildContentSecurityPolicy({ reportUri, auth0IssueUrl, minioEndPoint, csp = CSP_DEFAULTS }: ContentSecurityPolicyOptions = {}) {
 
+  // Clone the policy (including its per-directive arrays) so we never mutate the
+  // caller's object or the shared CSP_DEFAULTS constant across invocations.
+  const policy: Record<string, string[]> = {};
+  for (const [ key, value ] of Object.entries(csp)) {
+    policy[key] = [ ...value ];
+  }
+
   if (minioEndPoint) {
-    csp['img-src'].push(`https://${minioEndPoint}/`);
+    policy['img-src'].push(`https://${minioEndPoint}/`);
   }
 
   if (auth0IssueUrl) {
     auth0IssueUrl = CoerceSuffix(auth0IssueUrl, '/');
-    csp['frame-src'].push(auth0IssueUrl);
+    policy['frame-src'].push(auth0IssueUrl);
   }
 
   if (reportUri?.match(/^https?:\/\/([^/]+)/)) {
     // Source : https://docs.sentry.io/platforms/javascript/guides/angular/security-policy-reporting/
-    csp['report-uri'] = [reportUri];
-    csp['report-to'] = ['csp-endpoint'];
-    csp['connect-src'].push(
+    policy['report-uri'] = [reportUri];
+    policy['report-to'] = ['csp-endpoint'];
+    policy['connect-src'].push(
       'https://' + reportUri.match(/^https?:\/\/([^/]+)/)![1] + '/'
     );
   }
 
-  for (const [, rules] of Object.entries(csp).filter(([src]) => src !== 'connect-src')) {
+  for (const [, rules] of Object.entries(policy).filter(([src]) => src !== 'connect-src')) {
     for (const rule of rules) {
       if (rule.startsWith('https://')) {
         const url = rule.split('?')[0].split('#')[0];
-        if (!csp['connect-src'].includes(url)) {
-          csp['connect-src'].push(url);
+        if (!policy['connect-src'].includes(url)) {
+          policy['connect-src'].push(url);
         }
       }
     }
   }
 
   return (
-    Object.entries(csp)
+    Object.entries(policy)
       .map(([key, value]) => `${key} ${value.join(' ')}`)
       .join('; ') + ';'
   );
