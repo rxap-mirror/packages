@@ -108,7 +108,7 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
                 this.logger.verbose(`[${ requestId }] RESPONSE ${ response.status } ${ this.stringifyData(response.data) } +${ Date.now() -
                 now }ms`, this.constructor.name);
               } else {
-                this.logger.verbose('[${id}] RESPONSE <empty>', this.constructor.name);
+                this.logger.verbose(`[${ requestId }] RESPONSE <empty>`, this.constructor.name);
               }
             }
           },

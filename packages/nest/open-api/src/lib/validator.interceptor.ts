@@ -44,6 +44,11 @@ export class ValidatorInterceptor implements NestInterceptor {
    * @returns {Observable<any>} - An observable that emits the response or throws a `ValidationHttpException`.
    */
   intercept(context: ExecutionContext, next: CallHandler<Response>): Observable<any> {
+    // this interceptor only applies to HTTP requests; skip ws/rpc/graphql contexts
+    if (context.getType() !== 'http') {
+      return next.handle();
+    }
+
     const classType = context.getClass();
 
     if (classType.name === 'HealthController' || classType.name === 'AppController') {

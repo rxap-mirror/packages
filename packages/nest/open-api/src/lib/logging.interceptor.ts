@@ -22,6 +22,11 @@ export class LoggingInterceptor implements NestInterceptor {
   private readonly logger!: Logger;
 
   intercept(context: ExecutionContext, next: CallHandler<Response>): Observable<any> {
+    // this interceptor only applies to HTTP requests; skip ws/rpc/graphql contexts
+    if (context.getType() !== 'http') {
+      return next.handle();
+    }
+
     const classType = context.getClass();
 
     if (classType.name === 'HealthController') {

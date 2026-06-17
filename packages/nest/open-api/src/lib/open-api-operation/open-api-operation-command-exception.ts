@@ -2,7 +2,7 @@ import { Scope } from '@sentry/core';
 import {
   AxiosRequestConfig,
   AxiosResponse,
-} from 'axios/index';
+} from 'axios';
 
 import { OperationObjectWithMetadata } from '../types';
 
