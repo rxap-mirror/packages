@@ -84,14 +84,13 @@ export function clone<Data>(
     if (typeof structuredClone === 'function') {
       return structuredClone(value);
     }
-    if (window && 'structuredClone' in window) {
+    if (typeof window !== 'undefined' && 'structuredClone' in window) {
       return window.structuredClone(value);
     }
-    // if (global && 'structuredClone' in global) {
-    //   return global.structuredClone(value);
-    // }
-  } catch (e: any) {
-    console.error(`structuredClone is not supported or failed: ${e.message}`, e.stack);
+  } catch {
+    // structuredClone can throw for non-cloneable values (functions, symbols, ...).
+    // Silently fall back to the manual deep copy below instead of logging noise
+    // (and avoid a ReferenceError when `window` is undefined in Node).
   }
   function copy(copiedValue: any) {
     const len = refFrom.length;

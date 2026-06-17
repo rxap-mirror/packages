@@ -70,7 +70,10 @@ export function CoerceArrayItems_handleExistsCase<T>(options: Required<CoerceArr
   }
   if ( options.merge) {
     const existingItem = array[index];
-    if (typeof existingItem === 'object' && typeof item === 'object') {
+    if (
+      typeof existingItem === 'object' && typeof item === 'object' &&
+      !Array.isArray(existingItem) && !Array.isArray(item)
+    ) {
       if (existingItem) {
         array[index] = { ...existingItem, ...item };
       } else {

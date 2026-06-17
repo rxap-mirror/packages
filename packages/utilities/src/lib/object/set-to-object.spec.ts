@@ -48,4 +48,16 @@ describe('SetToObject', () => {
     SetToObject(obj, 'a.b', 2);
     expect(obj).toBe(5);
   });
+
+  it('should not pollute Object.prototype via a __proto__ path', () => {
+    const obj: any = {};
+    SetToObject(obj, '__proto__.polluted', 'yes');
+    expect(({} as any).polluted).toBeUndefined();
+  });
+
+  it('should not pollute via a constructor path', () => {
+    const obj: any = {};
+    SetToObject(obj, 'constructor.prototype.polluted', 'yes');
+    expect(({} as any).polluted).toBeUndefined();
+  });
 });

@@ -56,4 +56,12 @@ describe('DeleteNullProperties function', () => {
 
     expect(DeleteNullProperties(inputObj, true)).toEqual(expectedOutput);
   });
+
+  test('should preserve Date instances when recursive (not destroy them)', () => {
+    const date = new Date('2020-01-01T00:00:00.000Z');
+    const result: any = DeleteNullProperties({ a: date, b: null }, true);
+    expect(result.a).toBeInstanceOf(Date);
+    expect(result.a.getTime()).toBe(date.getTime());
+    expect('b' in result).toBe(false);
+  });
 });

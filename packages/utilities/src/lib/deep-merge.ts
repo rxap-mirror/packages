@@ -35,6 +35,12 @@ function _has(prop: string, obj: any) {
 }
 
 /**
+ * Keys that must never be copied during a merge to prevent prototype pollution
+ * (e.g. a malicious `{"__proto__": {...}}` payload parsed from JSON).
+ */
+const FORBIDDEN_MERGE_KEYS = [ '__proto__', 'constructor', 'prototype' ];
+
+/**
  * The `mergeWithKey` function merges two string arrays into a single object, using the array indices as keys.
  * If a key exists in both arrays, a custom merge function is applied to the values of the key in both arrays.
  *
@@ -61,13 +67,13 @@ function mergeWithKey(
   let k;
 
   for (k in l) {
-    if (_has(k, l)) {
+    if (_has(k, l) && !FORBIDDEN_MERGE_KEYS.includes(k)) {
       result[k] = _has(k, r) ? fn(k, l[k], r[k]) : l[k];
     }
   }
 
   for (k in r) {
-    if (_has(k, r) && !_has(k, result)) {
+    if (_has(k, r) && !FORBIDDEN_MERGE_KEYS.includes(k) && !_has(k, result)) {
       result[k] = r[k];
     }
   }

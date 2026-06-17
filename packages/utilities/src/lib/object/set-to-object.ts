@@ -34,6 +34,11 @@ export function SetToObject(obj: any, path: string, value: any): void {
   if (obj && typeof obj === 'object') {
     const fragment: string = fragments.shift()!;
 
+    // guard against prototype pollution via crafted paths (e.g. "__proto__.x")
+    if (fragment === '__proto__' || fragment === 'constructor' || fragment === 'prototype') {
+      return;
+    }
+
     // eslint-disable-next-line no-prototype-builtins
     if (obj.hasOwnProperty(fragment)) {
 

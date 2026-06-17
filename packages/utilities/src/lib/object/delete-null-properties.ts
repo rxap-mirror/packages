@@ -45,7 +45,7 @@ export function DeleteNullProperties<T extends {}>(obj: T, recursive?: boolean):
       if (recursive && value) {
         if (Array.isArray(value)) {
           cloneObj[key] = value.map((item) => DeleteNullProperties(item, true));
-        } else if (typeof value === 'object') {
+        } else if (isPlainObjectValue(value)) {
           cloneObj[key] = DeleteNullProperties(value, true);
         }
       }
@@ -53,4 +53,14 @@ export function DeleteNullProperties<T extends {}>(obj: T, recursive?: boolean):
   }
 
   return cloneObj;
+}
+
+/**
+ * Returns true only for plain objects (object/array-literal shaped), so the
+ * recursive cleaners do not descend into and destroy class instances such as
+ * `Date`, `RegExp`, `Map` or `Set`.
+ */
+function isPlainObjectValue(value: object): boolean {
+  const proto = Object.getPrototypeOf(value);
+  return proto === Object.prototype || proto === null;
 }

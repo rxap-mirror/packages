@@ -256,6 +256,18 @@ describe('Utilities', () => {
 
     });
 
+    it('should not pollute Object.prototype via a __proto__ key', () => {
+      const malicious = JSON.parse('{ "__proto__": { "polluted": "yes" } }');
+      deepMerge({}, malicious);
+      expect(({} as any).polluted).toBeUndefined();
+    });
+
+    it('should not pollute via a constructor.prototype payload', () => {
+      const malicious = JSON.parse('{ "constructor": { "prototype": { "polluted": "yes" } } }');
+      deepMerge({}, malicious);
+      expect(({} as any).polluted).toBeUndefined();
+    });
+
   });
 
 });

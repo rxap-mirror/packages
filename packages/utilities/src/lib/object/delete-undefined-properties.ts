@@ -29,7 +29,7 @@ export function DeleteUndefinedProperties<T extends {}>(obj: T, recursive?: bool
       if (recursive && value) {
         if (Array.isArray(value)) {
           cloneObj[key] = value.map((item) => DeleteUndefinedProperties(item, true));
-        } else if (typeof value === 'object') {
+        } else if (isPlainObjectValue(value)) {
           cloneObj[key] = DeleteUndefinedProperties(value, true);
         }
       }
@@ -37,4 +37,13 @@ export function DeleteUndefinedProperties<T extends {}>(obj: T, recursive?: bool
   }
 
   return cloneObj;
+}
+
+/**
+ * Returns true only for plain objects, so the recursive cleaner does not descend
+ * into and destroy class instances such as `Date`, `RegExp`, `Map` or `Set`.
+ */
+function isPlainObjectValue(value: object): boolean {
+  const proto = Object.getPrototypeOf(value);
+  return proto === Object.prototype || proto === null;
 }
