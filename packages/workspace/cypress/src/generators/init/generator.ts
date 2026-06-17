@@ -4,20 +4,21 @@ import {
   installPackagesTask,
   Tree,
 } from '@nx/devkit';
-import { join, relative } from 'path';
+import { existsSync, readFileSync } from 'fs';
+import { join } from 'path';
 import { InitGeneratorSchema } from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  if (!tree.exists(packageJsonFilePath)) {
+  // The package's own package.json lives on disk next to the compiled generator
+  // (inside node_modules when installed), which the virtual Tree does not track.
+  // Read it directly from the physical filesystem.
+  const packageJsonFilePath = join(__dirname, '..', '..', '..', 'package.json');
+  if (!existsSync(packageJsonFilePath)) {
     console.error('package.json not found in: ' + packageJsonFilePath);
     return;
   }
   const { peerDependencies, name: packageName } = JSON.parse(
-    tree.read(packageJsonFilePath, 'utf-8')!
+    readFileSync(packageJsonFilePath, 'utf-8')
   );
 
   console.log(`Coerce peer dependencies for package: ${packageName}`);
@@ -43,7 +44,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     tree.write('package.json', JSON.stringify(rootPackageJson, null, 2));
   }
   if (
-    !isDevDependency && [
+    !isDevDependency &&
+    [
       /^@rxap\/plugin/,
       /^@rxap\/workspace/,
       /@rxap\/schematic/,
@@ -82,40 +84,38 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   for (const peer of Object.keys(missingPeerDependencies)) {
     console.log(`Peer dependency ${peer} added to package.json`);
-    const peerPackageJsonFilePath = join(
-      'node_modules',
-      ...peer.split('/'),
-      'package.json'
-    );
-    if (!tree.exists(peerPackageJsonFilePath)) {
+    // node_modules is physical and excluded from the virtual Tree, so resolve
+    // peer files from disk relative to the workspace root.
+    const peerPackageDir = join(tree.root, 'node_modules', ...peer.split('/'));
+    const peerPackageJsonFilePath = join(peerPackageDir, 'package.json');
+    if (!existsSync(peerPackageJsonFilePath)) {
       console.log(`Peer dependency ${peer} has no package.json`);
       continue;
     }
     const { generators, schematics } = JSON.parse(
-      tree.read(peerPackageJsonFilePath, 'utf-8')!
+      readFileSync(peerPackageJsonFilePath, 'utf-8')
     );
     if (!generators && !schematics) {
       console.log(`Peer dependency ${peer} has no generators or schematics`);
       continue;
     }
     const configFile = generators || schematics;
-    if (!tree.exists(join('node_modules', ...peer.split('/'), configFile))) {
+    const configFilePath = join(peerPackageDir, configFile);
+    if (!existsSync(configFilePath)) {
       console.log(
         `Peer dependency ${peer} has no generators or schematics file`
       );
       continue;
     }
-    const config = JSON.parse(
-      tree.read(join('node_modules', ...peer.split('/'), configFile), 'utf-8')!
-    );
+    const config = JSON.parse(readFileSync(configFilePath, 'utf-8'));
     if (!config.generators?.init) {
       console.log(`Peer dependency ${peer} has no init generator`);
       continue;
     }
     const initGeneratorFilePath = config.generators.init.factory;
     const fullInitGeneratorFilePath =
-      join('node_modules', ...peer.split('/'), initGeneratorFilePath) + '.js';
-    if (!tree.exists(fullInitGeneratorFilePath)) {
+      join(peerPackageDir, initGeneratorFilePath) + '.js';
+    if (!existsSync(fullInitGeneratorFilePath)) {
       console.log(
         `Peer dependency ${peer} has no init generator file: ` +
           fullInitGeneratorFilePath
@@ -124,8 +124,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const initGenerator = require(join(
-      'node_modules',
-      ...peer.split('/'),
+      peerPackageDir,
       initGeneratorFilePath
     ))?.default;
     if (typeof initGenerator !== 'function') {
