@@ -78,8 +78,6 @@ export async function documentationGenerator(
         } catch (e: any) {
           console.log(`jsDoc prompt error: ${e.message}`.red);
         }
-
-        return;
       }
     }
   });

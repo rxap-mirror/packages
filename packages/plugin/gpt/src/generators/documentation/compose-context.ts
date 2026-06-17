@@ -26,11 +26,17 @@ function sourceFileToContextSourceFile(sourceFile: SourceFile): ContextSourceFil
   };
 }
 
-function getReferenced(sourceFile: SourceFile): SourceFile[] {
-  return [
-    ...sourceFile.getReferencedSourceFiles(),
-    ...sourceFile.getReferencedSourceFiles().map(sf => getReferenced(sf)).flat()
-  ];
+function getReferenced(sourceFile: SourceFile, visited = new Set<SourceFile>()): SourceFile[] {
+  const result: SourceFile[] = [];
+  for (const ref of sourceFile.getReferencedSourceFiles()) {
+    // guard against circular references and avoid traversing shared files repeatedly
+    if (visited.has(ref)) {
+      continue;
+    }
+    visited.add(ref);
+    result.push(ref, ...getReferenced(ref, visited));
+  }
+  return result;
 }
 
 export function composeContext(sourceFile: SourceFile) {
