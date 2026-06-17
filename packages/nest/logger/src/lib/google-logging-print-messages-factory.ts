@@ -55,7 +55,9 @@ export const googleLoggingPrintMessagesFactory: (environment: Environment) => Pr
     return true;
   }
 
-  const firstMessage = messages.shift();
+  // Work on a copy so the caller's array is never mutated.
+  const allMessages = [ ...messages ];
+  const firstMessage = allMessages[0];
   let message: string | undefined = undefined;
   let jsonPayload: Record<string, any> | undefined = undefined;
   if (typeof firstMessage === 'string') {
@@ -64,30 +66,31 @@ export const googleLoggingPrintMessagesFactory: (environment: Environment) => Pr
     } else {
       message = firstMessage;
     }
-    if (messages.length) {
+    const rest = allMessages.slice(1);
+    if (rest.length) {
       jsonPayload = {};
       if (firstMessage.includes('%JSON')) {
         const interpolateCount = countOccurrences(firstMessage, '%JSON');
-        jsonPayload['interpolates'] = messages.splice(0, interpolateCount);
+        jsonPayload['interpolates'] = rest.splice(0, interpolateCount);
       }
-      if (messages.length) {
-        jsonPayload['args'] = messages;
+      if (rest.length) {
+        jsonPayload['args'] = rest;
       }
     }
-  } else {
-    if (messages.length === 1) {
-      if (typeof messages[0] === 'object' && messages[0]) {
-        if (!Array.isArray(messages[0])) {
-          jsonPayload = messages[0];
-        } else {
-          jsonPayload = { items: messages[0] }
-        }
+  } else if (allMessages.length === 1) {
+    // A single non-string argument: never discard it.
+    if (typeof firstMessage === 'object' && firstMessage) {
+      if (!Array.isArray(firstMessage)) {
+        jsonPayload = firstMessage as Record<string, any>;
       } else {
-        message = JSON.stringify(messages[0]);
+        jsonPayload = { items: firstMessage };
       }
     } else {
-      jsonPayload = {messages};
+      message = JSON.stringify(firstMessage);
     }
+  } else {
+    // Multiple arguments where the first is not a string: keep them all.
+    jsonPayload = { messages: allMessages };
   }
   const payload: Record<string, any> = {
     message,
