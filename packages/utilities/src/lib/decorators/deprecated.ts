@@ -15,6 +15,16 @@
  * - If the `value` property of the descriptor is a function, it is assumed to be a method. The function replaces the method with a new function that logs a warning message to the console before calling the original method.
  * - If the `descriptor` parameter is not provided, the function assumes that the property is a class member. It defines a getter and a setter for the property that log a warning message to the console whenever the property is accessed or modified.
  */
+/**
+ * Per-instance backing store for deprecated class-member values. Using a
+ * `WeakMap` keyed by the instance avoids creating an own `__deprecated__<key>`
+ * property on the instance, which previously corrupted `Object.keys()` /
+ * `JSON.stringify()` output (the value was stored under the prefixed name
+ * instead of the real property name). Entries are released automatically when
+ * the instance is garbage collected.
+ */
+const deprecatedValueStore = new WeakMap<object, Record<PropertyKey, unknown>>();
+
 export function Deprecated(message: string) {
   return function (target: object, propertyKey: string, descriptor?: PropertyDescriptor): any {
     if (descriptor) {
@@ -32,13 +42,20 @@ export function Deprecated(message: string) {
     } else {
       // class member
       Object.defineProperty(target, propertyKey, {
+        configurable: true,
+        enumerable: true,
         get() {
           console.warn(`[${ this.constructor.name }.${ propertyKey }:get] is deprecated!`, message);
-          return this[`__deprecated__${ propertyKey }`];
+          return deprecatedValueStore.get(this)?.[propertyKey];
         },
         set(value): void {
           console.warn(`[${ this.constructor.name }.${ propertyKey }:set] is deprecated!`, message);
-          this[`__deprecated__${ propertyKey }`] = value;
+          let values = deprecatedValueStore.get(this);
+          if (!values) {
+            values = {};
+            deprecatedValueStore.set(this, values);
+          }
+          values[propertyKey] = value;
         },
       });
     }

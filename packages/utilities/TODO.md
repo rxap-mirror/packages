@@ -4,18 +4,7 @@ This document lists the findings and recommended refactoring steps identified du
 
 ---
 
-## Serialization-Breaking Behaviors & Bad Practices
-
-### ⚠️ Deprecated decorator breaks instance keys and serialization
-* **File:** `packages/utilities/src/lib/decorators/deprecated.ts` (Line 34-43)
-* **Problem:**
-  The `@Deprecated` property decorator defines getter/setters on the prototype, which redirects value storage on the instance to a prefixed property: `this['__deprecated__' + propertyKey]`.
-  This completely breaks property naming on the instance. Running `Object.keys()` or `JSON.stringify()` on a decorated instance will yield fields with `__deprecated__` prefixes, breaking contract agreements, API payload transfers, and DB serialization.
-* **Recommended Fix:**
-  Instead of rewriting the key on the instance, keep the original key but log a warning using a customized descriptor, or utilize standard TypeScript/ES decorators that log without mutating key naming.
-* **Note (2026-06):** Deferred — this is a **breaking change** for any deployment whose
-  serialized data already contains the `__deprecated__` prefix; it needs a migration
-  decision (WeakMap-backed storage vs. metadata-only warning) rather than a quick fix.
+All audit items have been resolved (see below). New findings should be appended above this line.
 
 ---
 
@@ -28,3 +17,6 @@ The following audit items were fixed (with tests where applicable):
 - `deepMerge` and `SetToObject` block `__proto__` / `constructor` / `prototype` keys
   (prototype-pollution hardening).
 - `clone` uses `typeof window !== 'undefined'` and no longer logs fallback tracebacks.
+- The `@Deprecated` property decorator now stores values in a per-instance `WeakMap`
+  instead of an own `__deprecated__<key>` property, so `Object.keys()` / `JSON.stringify()`
+  are no longer corrupted by the prefixed key.

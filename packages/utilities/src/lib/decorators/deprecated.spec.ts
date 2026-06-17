@@ -62,6 +62,18 @@ describe('@rxap/utilities', () => {
 
       });
 
+      it('should not leak a __deprecated__ prefixed key onto the instance', () => {
+
+        jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+        myClass.name = 'my-name';
+
+        expect(Object.keys(myClass)).not.toContain('__deprecated__name');
+        expect(JSON.stringify(myClass)).not.toContain('__deprecated__');
+        expect(myClass.name).toBe('my-name');
+
+      });
+
       it.skip('should print warning if deprecated property is accessed', () => {
 
         const consoleWarnSpy = jest.spyOn(console, 'warn');
