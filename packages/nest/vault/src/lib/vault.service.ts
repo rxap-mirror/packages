@@ -103,6 +103,8 @@ export class VaultService {
 
   private readonly initialized: Promise<void>;
 
+  private vaultDisabled = false;
+
   constructor(
     @Inject(VAULT_OPTIONS)
     public readonly options: VaultOptions,
@@ -115,9 +117,10 @@ export class VaultService {
       apiVersion: this.options.apiVersion,
       endpoint: this.options.endpoint
     });
-    if (this.config.get('VAULT_DISABLED')) {
+    this.vaultDisabled = this.parseBoolean(this.config.get('VAULT_DISABLED'));
+    if (this.vaultDisabled) {
       this.logger.verbose('Vault is disabled', 'VaultService');
-      this.initialized = new Promise<void>(resolve => setTimeout(resolve, 24 * 60 * 60));
+      this.initialized = Promise.resolve();
     } else {
       this.initialized = new Promise<void>(resolve => {
         this.getToken().then(token => {
@@ -129,41 +132,56 @@ export class VaultService {
     }
   }
 
+  private parseBoolean(value: unknown): boolean {
+    return value === true || value === 'true';
+  }
+
+  private assertEnabled(): void {
+    if (this.vaultDisabled) {
+      throw new Error('Vault is disabled (VAULT_DISABLED); no vault operations can be performed');
+    }
+  }
+
+  private ready(): Promise<void> {
+    this.assertEnabled();
+    return this.initialized;
+  }
+
   public async help<T>(path: string, requestOptions: Partial<RequestOptions> = {}): Promise<VaultResponse<T>> {
     this.logger.verbose(`Getting help for vault path '${ path }'`, 'VaultService');
-    await this.initialized;
+    await this.ready();
     return this.client.help<T>(path, requestOptions);
   }
 
   public async write<T>(
     path: string, data: unknown, requestOptions: Partial<RequestOptions> = {}): Promise<VaultResponse<T>> {
     this.logger.verbose(`Writing to vault path '${ path }'`, 'VaultService');
-    await this.initialized;
+    await this.ready();
     return this.client.write<T>(path, data, requestOptions);
   }
 
   public async read<T>(path: string, requestOptions: Partial<RequestOptions> = {}): Promise<VaultResponse<T>> {
     this.logger.verbose(`Reading vault path '${ path }'`, 'VaultService');
-    await this.initialized;
+    await this.ready();
     return this.client.read<T>(path, requestOptions);
   }
 
   public async list<T>(path: string, requestOptions: Partial<RequestOptions> = {}): Promise<VaultResponse<T>> {
     this.logger.verbose(`Listing vault path '${ path }'`, 'VaultService');
-    await this.initialized;
+    await this.ready();
     return this.client.list<T>(path, requestOptions);
   }
 
   public async delete<T>(path: string, requestOptions: Partial<RequestOptions> = {}): Promise<VaultResponse<T>> {
     this.logger.verbose(`Deleting vault path '${ path }'`, 'VaultService');
-    await this.initialized;
+    await this.ready();
     return this.client.delete<T>(path, requestOptions);
   }
 
   public async tokenRenewSelf(
     { increment }: { increment?: string }, autoRenew?: boolean): Promise<VaultResponse<null, VaultAuth>> {
     this.logger.verbose(`Renewing vault own token with increment '${ increment ?? 'default' }'`, 'VaultService');
-    await this.initialized;
+    await this.ready();
     let response: VaultResponse<null, VaultAuth>;
     try {
       response = await this.client.tokenRenewSelf({ increment });
@@ -180,7 +198,7 @@ export class VaultService {
     this.client.token = response.auth?.client_token;
     this.logger.verbose(`Token is valid for ${ response.lease_duration } seconds`, 'VaultService');
     if (autoRenew) {
-      this.triggerAutoRenewIn(response.lease_duration * 0.6, increment, autoRenew);
+      this.triggerAutoRenewIn(response.lease_duration * 0.6 * 1000, increment, autoRenew);
     }
     return response;
   }
@@ -189,7 +207,7 @@ export class VaultService {
     // Commented out because it's is called in the health indicator.
     // This would spam the logs
     // this.logger.verbose('Looking up own token', 'VaultService');
-    await this.initialized;
+    await this.ready();
     return this.client.tokenLookupSelf();
   }
 
@@ -198,7 +216,7 @@ export class VaultService {
     increment
   }: { lease_id: string; increment?: string }): Promise<VaultResponse> {
     this.logger.verbose(`Renewing lease '${ lease_id }' with increment '${ increment ?? 'default' }'`, 'VaultService');
-    await this.initialized;
+    await this.ready();
     return this.client.request({
       path: '/sys/leases/renew',
       method: 'POST',
@@ -256,7 +274,7 @@ export class VaultService {
 
     if (this.config.get('VAULT_KUBERNETES_AUTO_RENEW') !== undefined) {
       this.logger.verbose('Using kubernetes auto renew from env VAULT_KUBERNETES_AUTO_RENEW', 'VaultService');
-      return this.config.getOrThrow('VAULT_KUBERNETES_AUTO_RENEW');
+      return this.parseBoolean(this.config.get('VAULT_KUBERNETES_AUTO_RENEW'));
     }
 
     return false;
