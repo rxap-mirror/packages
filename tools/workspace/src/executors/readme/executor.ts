@@ -3,7 +3,6 @@ import {
   ProjectConfiguration,
   readJsonFile,
 } from '@nx/devkit';
-import { readFile } from '@nx/plugin/testing';
 import { readPackageJsonForProject } from '@rxap/plugin-utilities';
 import {
   IsAngularMaterialProject,
@@ -20,6 +19,7 @@ import {
 } from '@rxap/workspace-utilities';
 import {
   existsSync,
+  readFileSync,
   writeFileSync,
 } from 'fs';
 import * as Handlebars from 'handlebars';
@@ -27,7 +27,7 @@ import { join } from 'path';
 import { ReadmeExecutorSchema } from './schema';
 
 function getTemplate(context: ExecutorContext) {
-  const readmeTemplateFile = readFile(join(context.root, 'README.md.handlebars'));
+  const readmeTemplateFile = readFileSync(join(context.root, 'README.md.handlebars'), 'utf-8');
 
   return Handlebars.compile(readmeTemplateFile);
 }

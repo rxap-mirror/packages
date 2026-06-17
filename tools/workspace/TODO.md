@@ -4,98 +4,7 @@ This document outlines the findings and recommended actions resulting from a com
 
 ---
 
-## 1. Critical & Functional Bugs
-
-### 🚨 AddPackageJsonDependency Cleanup Logic Crash
-- **Location:** `packages/workspace/utilities/src/lib/package-json-file.ts` (Lines 299–331)
-- **Problem:** 
-  The local tracking variables `isDependency`, `isDevDependency`, `isPeerDependency`, and `isOptionalDependency` are declared as `const` at the beginning of the `cleanup` function. When duplicate packages are detected across different categories, they are deleted via `delete packageJson.devDependencies![packageName]` etc. However, the local tracking variables are **never updated**.
-  As a result, the final check:
-  ```typescript
-  if ([isDevDependency, isDependency, isPeerDependency, isOptionalDependency].filter(Boolean).length > 1) {
-    throw new Error(`FATIAL: The package ... is in multiple dependencies: ...`);
-  }
-  ```
-  will **always** evaluate to true and throw an error even though the duplicate entries were successfully cleaned up! This crashes any generator that attempts dependency deduplication/promotion. (Also, `FATAL` is misspelled as `FATIAL`).
-- **Recommended Fix:** 
-  Re-evaluate the presence of the package in each category dynamically inside the final check instead of relying on the stale, initial constants:
-  ```typescript
-  const remainingDependenciesCount = [
-    packageJson.dependencies?.[packageName] !== undefined,
-    packageJson.devDependencies?.[packageName] !== undefined,
-    packageJson.peerDependencies?.[packageName] !== undefined,
-    packageJson.optionalDependencies?.[packageName] !== undefined,
-  ].filter(Boolean).length;
-
-  if (remainingDependenciesCount > 1) {
-    throw new Error(`FATAL: The package \x1b[34m${ packageName }\x1b[0m is still in multiple dependencies...`);
-  }
-  ```
-
----
-
-### 🚨 ForEachProject Project Duplication Bug
-- **Location:** `packages/workspace/utilities/src/lib/get-project.ts` (Lines 163–187)
-- **Problem:**
-  The `ForEachProject` generator yields all projects from `IsGeneratorTreeLike(tree)` but fails to stop or return early. It proceeds to yield projects from the cache list (`PROJECT_LOCATION_CACHE_LIST`) and then does a full file search (`SearchFile(tree)`).
-  This causes every project in the workspace to be yielded **multiple times** (once via the generator tree API, and again via file search/caches). Any schematic or utility loop-executing over all projects will execute its loop body multiple times for the same projects, leading to massive redundant writes or conflicting configurations.
-- **Recommended Fix:**
-  Add an `else` branch or return early when `IsGeneratorTreeLike(tree)` is true:
-  ```typescript
-  export function* ForEachProject<Tree extends TreeLike>(tree: Tree): Generator<ProjectJson> {
-    if (IsGeneratorTreeLike(tree)) {
-      const projects = getProjects(tree);
-      for (const project of projects.values()) {
-        yield project;
-      }
-      return; // Stop processing further to avoid yielding duplicate files!
-    }
-    // Proceed with fallback file search/cache for non-generator trees...
-  }
-  ```
-
----
-
-### 🚨 Schematic `isFile` Returns True for Non-Existent Files
-- **Location:** `packages/workspace/utilities/src/lib/tree.ts` (Lines 395–406)
-- **Problem:**
-  Under `SchematicTreeLike` checks, `isFile` uses `this.wrapped.get(filePath)` to determine if a path is a file. In Angular Schematics, `tree.get(path)` returns a `FileEntry` if the file exists, and `null` if the file does **not** exist (only throwing an error if the path is a directory).
-  Because the try-catch block does not check if the return value of `wrapped.get` is `null`, it executes `return true` immediately.
-  Thus, `isFile(filePath)` returns `true` for **non-existent paths**!
-- **Recommended Fix:**
-  Verify that the returned `FileEntry` is not `null`:
-  ```typescript
-  if (IsSchematicTreeLike(this.wrapped)) {
-    const testString = `Path "${ CoercePrefix(filePath, '/') }" is a directory.`;
-    try {
-      const entry = this.wrapped.get(filePath);
-      return entry !== null; // Return false if the file does not exist
-    } catch (e: any) {
-      if (e.message === testString) {
-        return false;
-      }
-      throw e;
-    }
-  }
-  ```
-
----
-
-## 2. Architectural Debt & Anti-Patterns
-
-### ⚠️ Testing Package Dependency in Production Code
-- **Location:** `tools/workspace/src/executors/readme/executor.ts` (Line 6)
-- **Problem:**
-  The production readme-generation executor imports `readFile` from `@nx/plugin/testing`. This introduces a testing-specific devDependency into production runtime code. If testing utilities are pruned during CI or packaging, the executor will crash in production.
-- **Recommended Fix:**
-  Replace `readFile` with standard Node.js file system API:
-  ```typescript
-  import { readFileSync } from 'fs';
-  // ...
-  const readmeTemplateFile = readFileSync(join(context.root, 'README.md.handlebars'), 'utf8');
-  ```
-
----
+## 1. Architectural Debt & Anti-Patterns
 
 ### ⚠️ Heavy AST Parsing Performance Bottleneck
 - **Location:** `packages/workspace/ts-morph/src/lib/apply-ts-morph-project.ts` (Lines 117–122)
@@ -141,9 +50,17 @@ This document outlines the findings and recommended actions resulting from a com
 
 ---
 
-## 3. Test Coverage & Configurations
+## 2. Test Coverage & Configurations
 
-- **Explicit test configurations:** 
+- **Explicit test configurations:**
   The workspace project files do not define explicit `test` targets in their respective `project.json` files. Even though the Nx Jest plugin can infer them dynamically from `jest.config.ts`, declaring explicit `test` targets allows fine-grained controls, customized inputs/outputs, and better CI optimization.
-- **Unused Jest configuration:** 
+- **Unused Jest configuration:**
   `tools/workspace` contains a `jest.config.ts` and `tsconfig.spec.json` but has 0 spec files. We should write unit tests for the README generator or remove the redundant test configurations to avoid empty test runners.
+
+---
+
+## Resolved (2026-06)
+- `AddPackageJsonDependency` cleanup logic crash (stale `const` flags + `FATIAL` typo) — fixed in `workspace-utilities`.
+- `ForEachProject` project duplication (missing `return`) — fixed in `workspace-utilities`.
+- Schematic `isFile` returning true for non-existent files — fixed in `workspace-utilities`.
+- The README executor no longer imports `readFile` from `@nx/plugin/testing`; it uses `fs.readFileSync`.
