@@ -4,30 +4,6 @@ This file outlines the critical bugs, architectural debt, library anti-patterns,
 
 ---
 
-## 🚨 Critical Bugs & Logic Errors
-
-### 1. Missing Safeties on Response Types in `RemoteMethodTemplateCollectionDirective`
-* **File:** [remote-method-template-collection.directive.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/remote-method/directive/src/lib/remote-method-template-collection.directive.ts#L250)
-* **Description:** The directive directly reads `.length` from the API response:
-  ```typescript
-  .then(response => {
-    this._empty = response.length === 0;
-    // ...
-  })
-  ```
-* **Impact:** If the remote method fails, returns a non-array, or returns `null`/`undefined` due to unexpected network payloads, the application will crash with a TypeError.
-* **Recommended Fix:** Ensure `response` is valid and is an iterable/array:
-  ```typescript
-  .then(response => {
-    const isArray = Array.isArray(response);
-    this._empty = !isArray || response.length === 0;
-    this._data = isArray ? response : [];
-    this.cdr.detectChanges();
-  })
-  ```
-
----
-
 ## 🛠️ Design Issues & Library Anti-Patterns
 
 ### 1. Physical Path Manipulation & Disk require inside NX Generator

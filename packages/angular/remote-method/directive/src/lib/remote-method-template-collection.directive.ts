@@ -247,8 +247,11 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
           this.remoteMethodLoader
               .call$(this._remoteMethodOrIdOrToken, parameters, undefined, this.injector)
               .then(response => {
-                this._empty = response.length === 0;
-                this._data = response;
+                // guard against non-array responses (null/undefined/scalar) to
+                // avoid reading .length off a non-iterable and crashing
+                const isArray = Array.isArray(response);
+                this._empty = !isArray || response.length === 0;
+                this._data = isArray ? response : [];
                 this.cdr.detectChanges();
               })
               .catch(error => {
