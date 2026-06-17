@@ -325,8 +325,16 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
           delete packageJson.optionalDependencies![packageName];
         }
       }
-      if ([isDevDependency, isDependency, isPeerDependency, isOptionalDependency].filter(Boolean).length > 1) {
-        throw new Error(`FATIAL: The package \x1b[34m${ packageName }\x1b[0m is in multiple dependencies: ` + JSON.stringify({ isDependency, isDevDependency, isPeerDependency, isOptionalDependency }));
+      // re-evaluate the dependency buckets after the deletions above; the
+      // const flags captured the pre-cleanup state and would always re-trigger
+      const remaining = {
+        isDependency: packageJson.dependencies?.[packageName] !== undefined,
+        isDevDependency: packageJson.devDependencies?.[packageName] !== undefined,
+        isPeerDependency: packageJson.peerDependencies?.[packageName] !== undefined,
+        isOptionalDependency: packageJson.optionalDependencies?.[packageName] !== undefined,
+      };
+      if (Object.values(remaining).filter(Boolean).length > 1) {
+        throw new Error(`FATAL: The package \x1b[34m${ packageName }\x1b[0m is in multiple dependencies: ` + JSON.stringify(remaining));
       }
     }
   }

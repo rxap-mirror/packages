@@ -6,33 +6,12 @@ An audit of the `workspace-utilities` library was conducted. The library contain
 
 ## 1. Critical Bugs & Logic Errors
 
-### 🔴 Potential TypeError / Crash in `GenerateSerializedSchematicFile`
-* **Location:** [serialized-schematic.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/utilities/src/lib/serialized-schematic.ts#L271-L273)
-* **Problem:**
-  When checking for a single empty item in an array:
-  ```typescript
-  if (data.length === 1 && Object.keys(data[0]).length === 0) {
-  ```
-  If `data` is an empty array `[]` (which can happen if a schematic file is initialized or cleared), `data[0]` is `undefined`. Calling `Object.keys(undefined)` throws a fatal `TypeError: Cannot convert undefined or null to object` and crashes the schematic composition/run.
-* **Recommended Fix:**
-  Add a defensive check to verify `data[0]` is defined before extracting keys:
-  ```typescript
-  if (data.length === 1 && data[0] && Object.keys(data[0]).length === 0) {
-  ```
-
----
-
-### 🟡 Fragile Error Message Handling & Logic Bug in `TreeAdapter.isFile`
+### 🟡 Fragile Error Message Handling in `TreeAdapter.isFile`
 * **Location:** [tree.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/utilities/src/lib/tree.ts#L391-L407)
-* **Problem:**
-  1. To determine if a path is a file, the `SchematicTreeLike` implementation relies on catching a hardcoded error message from Angular Devkit's `tree.get(filePath)`:
-     ```typescript
-     const testString = `Path "${ CoercePrefix(filePath, '/') }" is a directory.`;
-     ```
-     This is highly fragile. If Angular Devkit is updated and the error message string format is altered, this will throw an unhandled exception rather than returning `false`.
-  2. If the file does not exist, `this.wrapped.get(filePath)` returns `null` without throwing. In this case, `isFile` returns `true` (signaling that a non-existent file *is* a file), which leads to downstream read errors.
-* **Recommended Fix:**
-  Rewrite `isFile` to use more robust devkit or schematic APIs to determine file/directory status, and explicitly handle `null` (not-found) states.
+* **Status (2026-06):** The `null`-not-found case is fixed (`isFile` now returns
+  `get(filePath) !== null`). **Remaining:** the directory check still relies on
+  matching a hardcoded Angular Devkit error message string, which is fragile if
+  that message changes. Prefer a more robust devkit/schematic API.
 
 ---
 
@@ -98,3 +77,17 @@ An audit of the `workspace-utilities` library was conducted. The library contain
   - `tree.ts` (especially `TreeAdapter` behavior with both Nx Generators and Angular Schematics)
   - `get-project.ts` (especially `GetProjectSourceRoot`, `GetProject`, and caching mechanisms)
   - `initGenerator` (test package setup and regular expression conditions)
+
+---
+
+## Resolved (2026-06)
+- `GenerateSerializedSchematicFile` no longer crashes on an empty `data` array (`data[0]` guard).
+- `TreeAdapter.isFile` no longer reports a non-existent file as a file (handles the `null` result).
+- `package-json-file.ts` cleanup now re-evaluates the dependency buckets *after* removing
+  duplicates (the captured `const` flags always re-triggered the "multiple dependencies"
+  error) and the `FATIAL` typo is corrected to `FATAL`.
+- `ForEachProject` now `return`s after the generator-tree branch, so projects are no longer
+  yielded multiple times via the cache/file-search fallbacks.
+
+> Note: the project-location cache in `get-project.ts` is still never invalidated across a
+> generator run (stale-cache risk). Deferred — needs a cache-lifecycle decision.

@@ -269,7 +269,7 @@ export function GenerateSerializedSchematicFile(
 
   UpdateSerializedSchematicFile(tree, path, (data: SerializedSchematic) => {
     if (Array.isArray(data)) {
-      if (data.length === 1 && Object.keys(data[0]).length === 0) {
+      if (data.length === 1 && data[0] && Object.keys(data[0]).length === 0) {
         return newData;
       }
       const index = data.findIndex(isEqual);

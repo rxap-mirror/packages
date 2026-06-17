@@ -395,8 +395,8 @@ export class TreeAdapter implements TreeLike, GeneratorTreeLike, SchematicTreeLi
     if (IsSchematicTreeLike(this.wrapped)) {
       const testString = `Path "${ CoercePrefix(filePath, '/') }" is a directory.`;
       try {
-        this.wrapped.get(filePath);
-        return true;
+        // get() returns null for a non-existent file (it only throws for a directory)
+        return this.wrapped.get(filePath) !== null;
       } catch (e: any) {
         if (e.message === testString) {
           return false;

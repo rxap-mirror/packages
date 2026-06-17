@@ -166,6 +166,9 @@ export function* ForEachProject<Tree extends TreeLike>(tree: Tree): Generator<Pr
     for (const project of projects.values()) {
       yield project;
     }
+    // the generator tree already yielded every project; stop here so the cache
+    // and file-search fallbacks below don't yield the same projects again
+    return;
   }
   if (PROJECT_LOCATION_CACHE_LIST.length > 0) {
     for (const path of PROJECT_LOCATION_CACHE_LIST) {
