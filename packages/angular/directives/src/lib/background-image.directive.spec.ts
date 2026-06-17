@@ -90,6 +90,37 @@ describe('@rxap/directives', () => {
 
     });
 
+    describe('imageUrl', () => {
+
+      it('should clear the background image when the url is set to null', async () => {
+        const removeStyleSpy = jest.spyOn(renderer2, 'removeStyle');
+
+        directive.ngOnChanges({ imageUrl: { currentValue: null } as any });
+        await Promise.resolve();
+
+        expect(removeStyleSpy).toBeCalledWith(divElement, 'background-image');
+      });
+
+      it('should ignore a stale image load when a newer url was requested', async () => {
+        let resolveFirst!: () => void;
+        loadSpy.mockReset();
+        loadSpy
+          .mockImplementationOnce(() => new Promise<void>(resolve => { resolveFirst = resolve; }))
+          .mockImplementationOnce(() => Promise.resolve());
+
+        const slow = (directive as any).imageUrlChange('first.png');
+        const fast = (directive as any).imageUrlChange('second.png');
+        await fast;
+        resolveFirst();
+        await slow;
+
+        const bgCalls = setStyleSpy.mock.calls.filter(call => call[1] === 'background-image');
+        expect(bgCalls.some(call => call[2] === 'url("second.png")')).toBe(true);
+        expect(bgCalls.some(call => call[2] === 'url("first.png")')).toBe(false);
+      });
+
+    });
+
     // TODO : add tests for all possible inputs
 
   });

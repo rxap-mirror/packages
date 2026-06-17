@@ -69,6 +69,9 @@ export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
         this.viewContainerRef.createEmbeddedView(this.templateRef, { $implicit: result });
       }
 
+      // remember the last applied result so unchanged values don't rebuild the view
+      this._last = result;
+
     }
 
     this.cdr.detectChanges();

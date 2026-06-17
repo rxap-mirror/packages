@@ -3,7 +3,6 @@ import {
   ElementRef,
   Inject,
   Input,
-  isDevMode,
   OnChanges,
   OnInit,
   Renderer2,
@@ -97,9 +96,8 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
     for (const propertyKey of Object.keys(changes)) {
       switch (propertyKey) {
         case 'imageUrl':
-          if (changes['imageUrl'].currentValue) {
-            this.imageUrlChange(changes['imageUrl'].currentValue);
-          }
+          // call unconditionally so clearing the value (null/empty) is handled
+          this.imageUrlChange(changes['imageUrl'].currentValue);
           break;
 
         case 'size':
@@ -137,7 +135,11 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
     this.renderer.setStyle(this.host.nativeElement, 'background-size', size);
   }
 
-  private async imageUrlChange(imageUrl: string): Promise<void> {
+  private _latestImageUrl: string | null | undefined;
+
+  private async imageUrlChange(imageUrl: string | null | undefined): Promise<void> {
+    // track the most recently requested url so out-of-order loads can be ignored
+    this._latestImageUrl = imageUrl;
     if (this.placeholderImageUrl) {
       this.renderer.setStyle(
         this.host.nativeElement,
@@ -147,15 +149,18 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
     }
     if (imageUrl) {
       await this.imageLoader.load(imageUrl);
+      // a newer imageUrl was requested while this one was loading - drop the stale result
+      if (this._latestImageUrl !== imageUrl) {
+        return;
+      }
       this.renderer.setStyle(
         this.host.nativeElement,
         'background-image',
         `url("${ imageUrl }")`,
       );
-    } else {
-      if (isDevMode()) {
-        console.warn('background image url is not defined');
-      }
+    } else if (!this.placeholderImageUrl) {
+      // clearing the image and no placeholder to fall back to
+      this.renderer.removeStyle(this.host.nativeElement, 'background-image');
     }
   }
 }

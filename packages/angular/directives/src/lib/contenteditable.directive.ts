@@ -58,11 +58,21 @@ export class ContenteditableDirective {
         parameters: this.parameters,
       };
       this.change.emit(event);
-      const result = await this.method?.call(event);
-      if (result && typeof result === 'string') {
-        this.initial = this.elementRef.nativeElement.innerText = result;
-      } else if (this.initial) {
-        this.elementRef.nativeElement.innerText = this.initial;
+      try {
+        const result = await this.method?.call(event);
+        if (result && typeof result === 'string') {
+          // the handler returned a canonical value - apply and remember it
+          this.initial = this.elementRef.nativeElement.innerText = result;
+        } else {
+          // successful save without a return value - keep the user's text and
+          // update the baseline (do NOT revert what was just typed)
+          this.initial = value;
+        }
+      } catch {
+        // the save failed - revert to the last known good value if available
+        if (this.initial) {
+          this.elementRef.nativeElement.innerText = this.initial;
+        }
       }
     }
   }
