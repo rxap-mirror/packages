@@ -453,7 +453,7 @@ export class ToolFirecrawl implements INodeType {
           return JSON.stringify(await cached({
               keyv,
               ttl: cacheTTL > 0 ? cacheTTL : undefined,
-            }, extract, url, {
+            }, extract, finalUrl, {
               prompt,
               schema,
               systemPrompt,

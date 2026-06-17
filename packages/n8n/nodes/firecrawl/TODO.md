@@ -4,34 +4,6 @@ This document outlines the identified critical bugs, logic errors, architectural
 
 ---
 
-## 🚨 Critical Bugs & Logic Errors
-
-### 1. Parameterized URL Bug in AI Tool (Extract Operation)
-* **Location:** [ToolFirecrawl.node.ts:L456](file:///mnt/mmuenker/Projects/rxap/packages/packages/n8n/nodes/firecrawl/src/lib/Firecrawl/ToolFirecrawl.node.ts#L456)
-* **Description:**
-  For the `extract` operation in `ToolFirecrawl`, the node executes the `extract` call with the original `url` parameter (containing unresolved placeholders like `{url}`) instead of the resolved `finalUrl` which has placeholders replaced with the LLM's query arguments:
-  ```typescript
-  case 'extract':
-    return JSON.stringify(await cached({
-        keyv,
-        ttl: cacheTTL > 0 ? cacheTTL : undefined,
-      }, extract, url, { // <--- Bug: 'url' should be 'finalUrl'
-        prompt,
-        schema,
-        systemPrompt,
-        enableWebSearch,
-        showSources,
-      }), undefined, 2);
-  ```
-  This causes the API request to fail because the raw URL string with unresolved placeholders is passed directly to the Firecrawl client.
-* **Recommended Fix:**
-  Change `url` to `finalUrl` in the `cached` call:
-  ```typescript
-  }, extract, finalUrl, {
-  ```
-
----
-
 ## 🧹 Library Anti-Patterns
 
 ### 1. Reading `node_modules` via virtualized `Tree`
@@ -96,3 +68,10 @@ This document outlines the identified critical bugs, logic errors, architectural
   * **Placeholder utilities (`utils.ts`)** to verify correct parsing and parameterization of URLs.
   * **The Init Generator (`generator.ts`)** to assert correct dependency partitioning between `dependencies` and `devDependencies` on a mock `Tree`.
   * **The AI tool / Regular node** using mocked Firecrawl client outputs.
+
+---
+
+## Resolved (2026-06)
+- The `extract` operation in `ToolFirecrawl` now passes the resolved `finalUrl` instead of the
+  raw `url` with unresolved placeholders. (The PostgreSQL/Keyv connection-pool leak remains open —
+  deferred as it needs a connection-reuse/lifecycle design decision.)
