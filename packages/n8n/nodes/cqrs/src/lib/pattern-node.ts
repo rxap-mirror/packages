@@ -117,137 +117,141 @@ export abstract class PatternNode implements INodeType {
       throw new NodeOperationError(this.getNode(), `Failed to connect to exchange: ${ error.message }`);
     }
 
-    const responseEmitter = new Subject<{
-      correlationId: string, payload: { result?: any, response?: any, err?: { status: number, message: string, name: string }, error?: { message: string, name: string } }
-    }>();
+    try {
+      const responseEmitter = new Subject<{
+        correlationId: string, payload: { result?: any, response?: any, err?: { status: number, message: string, name: string }, error?: { message: string, name: string } }
+      }>();
 
-    if (replyQueue) {
-      this.logger.info('Listening for replies on queue: ' + REPLY_QUEUE);
-      await channel.consume(REPLY_QUEUE, msg => {
-        if (msg) {
-          this.logger.debug(`Received reply for correlationId: ${ msg.properties.correlationId }`);
-          responseEmitter.next({
-            correlationId: msg.properties.correlationId,
-            payload: JSON.parse(msg.content.toString()),
-          });
-        } else {
-          this.logger.warn('Received empty message');
-        }
-      }, { noAck: true });
-    }
-
-    const replayQueuePromise: Promise<any>[] = [];
-    for (let i = 0; i < items.length; i++) {
-      const payload = this.getNodeParameter('payload', i, {}) as IDataObject | string;
-
-      const message = typeof payload === 'string' ? payload : JSON.stringify(payload);
-
-      let routingKey: string;
-      if (operation === CUSTOM_OPERATION) {
-        routingKey = [
-          this.getNodeParameter('routingKeyPrefix', i) as string,
-          this.getNodeParameter('pattern', i) as string,
-        ].join('.');
-      } else {
-        routingKey = operation;
-      }
-
-      let headers: IDataObject = {};
-      if (options.headers && (
-        (
-          options.headers as IDataObject
-        )['header']! as IDataObject[]
-      ).length) {
-        const itemOptions = this.getNodeParameter('options', i, {});
-        const additionalHeaders: IDataObject = {};
-        (
-          (
-            itemOptions['headers'] as IDataObject
-          )['header'] as IDataObject[]
-        ).forEach(
-          (header: IDataObject) => {
-            additionalHeaders[header['key'] as string] = header['value'];
-          },
-        );
-        headers = additionalHeaders;
-      }
-
-      const correlationId = uuid();
-      const cancel = new Subject<void>();
       if (replyQueue) {
-        this.logger.info(`Waiting for reply for correlationId: ${ correlationId } for item ${ i }`);
-        replayQueuePromise.push(firstValueFrom(responseEmitter.pipe(
-          takeUntil(cancel),
-          filter(item => item.correlationId === correlationId),
-          tap(item => {
-            const error = item.payload.err || item.payload.error;
-            const response = item.payload.response || item.payload.result;
-            if (error) {
-              returnItems[i] = {
-                json: error,
-                error: new NodeOperationError(this.getNode(), error.message, { level: 'error' }),
-              };
-            } else if (response) {
-              this.logger.info(`Received response for correlationId: ${ correlationId } for item ${ i }`);
-              if (spread) {
-                let rows = [];
-                if (Array.isArray(response)) {
-                  rows = response.map((row: any) => (
-                    { json: row }
-                  ));
-                } else if (typeof response === 'object' && Array.isArray(response.rows)) {
-                  rows = response.rows.map((row: any) => (
-                    { json: row }
-                  ));
-                }
-                if (rows.length) {
-                  returnItems[i] = rows.shift();
-                  returnItems.push(...rows);
+        this.logger.info('Listening for replies on queue: ' + REPLY_QUEUE);
+        await channel.consume(REPLY_QUEUE, msg => {
+          if (msg) {
+            this.logger.debug(`Received reply for correlationId: ${ msg.properties.correlationId }`);
+            responseEmitter.next({
+              correlationId: msg.properties.correlationId,
+              payload: JSON.parse(msg.content.toString()),
+            });
+          } else {
+            this.logger.warn('Received empty message');
+          }
+        }, { noAck: true });
+      }
+
+      const replayQueuePromise: Promise<any>[] = [];
+      for (let i = 0; i < items.length; i++) {
+        const payload = this.getNodeParameter('payload', i, {}) as IDataObject | string;
+
+        const message = typeof payload === 'string' ? payload : JSON.stringify(payload);
+
+        let routingKey: string;
+        if (operation === CUSTOM_OPERATION) {
+          routingKey = [
+            this.getNodeParameter('routingKeyPrefix', i) as string,
+            this.getNodeParameter('pattern', i) as string,
+          ].join('.');
+        } else {
+          routingKey = operation;
+        }
+
+        let headers: IDataObject = {};
+        if (options.headers && (
+          (
+            options.headers as IDataObject
+          )['header']! as IDataObject[]
+        ).length) {
+          const itemOptions = this.getNodeParameter('options', i, {});
+          const additionalHeaders: IDataObject = {};
+          (
+            (
+              itemOptions['headers'] as IDataObject
+            )['header'] as IDataObject[]
+          ).forEach(
+            (header: IDataObject) => {
+              additionalHeaders[header['key'] as string] = header['value'];
+            },
+          );
+          headers = additionalHeaders;
+        }
+
+        const correlationId = uuid();
+        const cancel = new Subject<void>();
+        if (replyQueue) {
+          this.logger.info(`Waiting for reply for correlationId: ${ correlationId } for item ${ i }`);
+          replayQueuePromise.push(firstValueFrom(responseEmitter.pipe(
+            takeUntil(cancel),
+            filter(item => item.correlationId === correlationId),
+            tap(item => {
+              const error = item.payload.err || item.payload.error;
+              const response = item.payload.response || item.payload.result;
+              if (error) {
+                returnItems[i] = {
+                  json: error,
+                  error: new NodeOperationError(this.getNode(), error.message, { level: 'error' }),
+                };
+              } else if (response) {
+                this.logger.info(`Received response for correlationId: ${ correlationId } for item ${ i }`);
+                if (spread) {
+                  let rows = [];
+                  if (Array.isArray(response)) {
+                    rows = response.map((row: any) => (
+                      { json: row }
+                    ));
+                  } else if (typeof response === 'object' && Array.isArray(response.rows)) {
+                    rows = response.rows.map((row: any) => (
+                      { json: row }
+                    ));
+                  }
+                  if (rows.length) {
+                    returnItems[i] = rows.shift();
+                    returnItems.push(...rows);
+                  }
+                } else {
+                  returnItems[i] = { json: response };
                 }
               } else {
-                returnItems[i] = { json: response };
+                this.logger.warn(`Received response for correlationId: ${ correlationId } for item ${ i } does not match expected structure: ${JSON.stringify(item.payload)}`);
+                returnItems[i] = { json: item.payload };
               }
-            } else {
-              this.logger.warn(`Received response for correlationId: ${ correlationId } for item ${ i } does not match expected structure: ${JSON.stringify(item.payload)}`);
-              returnItems[i] = { json: item.payload };
-            }
-          }),
-        )));
+            }),
+          )));
+        }
+
+        const ok = channel.publish(exchange, routingKey, Buffer.from(message), {
+          headers,
+          correlationId,
+          replyTo: replyQueue ? REPLY_QUEUE : undefined,
+          ...parsePublishArguments(options),
+        });
+
+        if (!ok) {
+          this.logger.warn(`Failed to publish message to exchange "${ exchange }" with routing key "${ routingKey }" for item ${ i }.`);
+          cancel.next();
+          throw new NodeOperationError(this.getNode(), 'Failed to publish message');
+        } else {
+          this.logger.debug(`Published message to exchange "${ exchange }" with routing key "${ routingKey }" for item ${ i } successfully.`);
+          returnItems[i] ??= {
+            json: {
+              correlationId,
+              success: true,
+            },
+          };
+        }
       }
 
-      const ok = channel.publish(exchange, routingKey, Buffer.from(message), {
-        headers,
-        correlationId,
-        replyTo: replyQueue ? REPLY_QUEUE : undefined,
-        ...parsePublishArguments(options),
-      });
+      await Promise.allSettled(replayQueuePromise);
+      this.logger.debug(`All responses received`);
 
-      if (!ok) {
-        this.logger.warn(`Failed to publish message to exchange "${ exchange }" with routing key "${ routingKey }" for item ${ i }.`);
-        cancel.next();
-        throw new NodeOperationError(this.getNode(), 'Failed to publish message');
-      } else {
-        this.logger.debug(`Published message to exchange "${ exchange }" with routing key "${ routingKey }" for item ${ i } successfully.`);
-        returnItems[i] ??= {
-          json: {
-            correlationId,
-            success: true,
-          },
-        };
+      return [ returnItems.filter(Boolean) ];
+    } finally {
+      // always release the channel/connection, even if publishing or reply
+      // handling threw, to avoid leaking connections on the RabbitMQ broker
+      try {
+        await channel.close();
+        await channel.connection.close();
+      } catch (closeError: any) {
+        this.logger.error(`Failed to close RabbitMQ channel: ${ closeError.message }`);
       }
     }
-
-    await Promise.allSettled(replayQueuePromise);
-    this.logger.debug(`All responses received`);
-
-    try {
-      await channel.close();
-      await channel.connection.close();
-    } catch (error: any) {
-      throw new NodeOperationError(this.getNode(), `Failed to close channel: ${ error.message }`);
-    }
-
-    return [ returnItems.filter(Boolean) ];
   }
 
   protected populateDescription(): void {

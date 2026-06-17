@@ -58,33 +58,6 @@ This document outlines the critical bugs, architectural debt, library anti-patte
 
 ## 2. Architectural Debt & Resource Leaks
 
-### ⚠️ RabbitMQ Connection / Channel Leak on Execution Failures
-* **File:** `src/lib/pattern-node.ts` (Lines 103–251)
-* **Description:** 
-  `PatternNode.execute` opens a channel/connection, starts a publishing and reply-waiting loop, and closes the channel at the end of the method.
-  If an exception is thrown in the loop (e.g., standard Node.js or `NodeOperationError` thrown during publishing failures or header parsing), execution halts and the method exits immediately. Because there is no `finally` block or overall `try/catch/finally` around the core processing, the connection and channel are **never closed**, leading to an accumulating connection leak on the RabbitMQ broker.
-* **Recommended Fix:** Restructure `execute` to use a `try/finally` block to guarantee channel/connection closure:
-  ```typescript
-  async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-    let channel: Channel | undefined;
-    try {
-      channel = await rabbitmqConnectExchange.call(this, exchange, options);
-      // ... core execution logic ...
-      await Promise.allSettled(replayQueuePromise);
-      return [ returnItems.filter(Boolean) ];
-    } finally {
-      if (channel) {
-        try {
-          await channel.close();
-          await channel.connection.close();
-        } catch (closeError: any) {
-          this.logger.error(`Error closing RabbitMQ channel: ${closeError.message}`);
-        }
-      }
-    }
-  }
-  ```
-
 ### ⚠️ Connection Leak in Promisification Helpers
 * **File:** `src/lib/GenericFunctions.ts` (Lines 80–150)
 * **Description:** 
@@ -144,3 +117,11 @@ This document outlines the critical bugs, architectural debt, library anti-patte
   1. Add unit tests for `MessageTracker` under `src/lib/GenericFunctions.spec.ts` to verify correct addition, removal, and graceful closing of active delivery tags.
   2. Add mock tests for `PatternNode` and `PatternTriggerNode` to verify message publishing, exchange assertion, and reply emitter filtering.
   3. Add a unit test for `initGenerator` to ensure correct virtual Tree operations.
+
+---
+
+## Resolved (2026-06)
+- `PatternNode.execute` now wraps the publishing/reply loop in `try/finally` so the channel and
+  connection are always closed (and close errors are logged, not thrown), even when publishing or
+  reply handling throws. (The unguarded reply-queue `JSON.parse`, the missing reply timeout, and
+  the promisification-helper leaks above remain open.)
