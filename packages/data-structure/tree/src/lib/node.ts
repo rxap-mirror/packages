@@ -104,11 +104,9 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
   }
 
   public get isVisible(): boolean {
-    if (this.hasChildren) {
-      return !this.hidden || this.hasVisibleChildren;
-    } else {
-      return !this.hidden;
-    }
+    // isVisible is the strict inverse of isHidden so a node can never be
+    // reported as both hidden and visible at the same time.
+    return !this.isHidden;
   }
 
   private _expanded = false;
@@ -282,48 +280,62 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
 
   public hide(options: ShowHideOptions = {}) {
     this.hidden = true;
-    if (!options.onlySelf) {
-      if (options.forEachChild || options.forEachChildren) {
-        this.forEachChild(child => child.hide({
-          ...options,
-          forEachChild: false,
-          forEachChildren: !!options.forEachChildren,
-        }));
+    if (options.onlySelf) {
+      return;
+    }
+    if (options.forEachChildren) {
+      this.forEachDescendant(child => child.hide({ onlySelf: true }));
+    } else if (options.forEachChild) {
+      this.forEachChild(child => child.hide({ onlySelf: true }));
+    }
+    if (options.parents) {
+      let ancestor = this.parent;
+      while (ancestor) {
+        ancestor.hide({ onlySelf: true });
+        ancestor = ancestor.parent;
       }
-      if (options.parent || options.parents) {
-        this.parent?.hide({
-          ...options,
-          parent: false,
-          parents: !!options.parents,
-        });
-      }
+    } else if (options.parent) {
+      this.parent?.hide({ onlySelf: true });
     }
   }
 
   public show(options: ShowHideOptions = {}) {
     this.hidden = false;
-    if (!options.onlySelf) {
-      if (options.forEachChild || options.forEachChildren) {
-        this.forEachChild(child => child.show({
-          ...options,
-          forEachChild: false,
-          forEachChildren: !!options.forEachChildren,
-        }));
+    if (options.onlySelf) {
+      return;
+    }
+    if (options.forEachChildren) {
+      this.forEachDescendant(child => child.show({ onlySelf: true }));
+    } else if (options.forEachChild) {
+      this.forEachChild(child => child.show({ onlySelf: true }));
+    }
+    if (options.parents) {
+      let ancestor = this.parent;
+      while (ancestor) {
+        ancestor.show({ onlySelf: true });
+        ancestor = ancestor.parent;
       }
-      if (options.parent || options.parents) {
-        this.parent?.show({
-          ...options,
-          parent: false,
-          parents: !!options.parents,
-        });
-      }
+    } else if (options.parent) {
+      this.parent?.show({ onlySelf: true });
     }
   }
 
+  /**
+   * Applies the callback to the **direct** children of this node only.
+   */
   public forEachChild(fn: (child: Node<T>) => void) {
     for (const child of this.children) {
       fn(child);
-      child.forEachChild(fn);
+    }
+  }
+
+  /**
+   * Applies the callback to **every** descendant of this node (depth-first).
+   */
+  public forEachDescendant(fn: (child: Node<T>) => void) {
+    for (const child of this.children) {
+      fn(child);
+      child.forEachDescendant(fn);
     }
   }
 
