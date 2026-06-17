@@ -27,8 +27,8 @@ export function downloadArrayBuffer(arrayBuffer: ArrayBuffer, fileName: string, 
   downloadBlob(blob, fileName, fileType);
 }
 
-export function downloadVirtualFile(file: VirtualFileLike): void;
-export function downloadVirtualFile(file: SyncVirtualFileLike): Promise<void>;
+export function downloadVirtualFile(file: SyncVirtualFileLike): void;
+export function downloadVirtualFile(file: VirtualFileLike): Promise<void>;
 export function downloadVirtualFile(file: VirtualFileLike | SyncVirtualFileLike): Promise<void> | void {
   const data = file.data;
   if ('then' in data) {

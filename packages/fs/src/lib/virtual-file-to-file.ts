@@ -1,4 +1,4 @@
-import { VirtualFileLike } from '@rxap/fs';
+import { VirtualFileLike } from './virtual-file';
 
 export async function virtualFileToFile(virtualFile: VirtualFileLike) {
   return 'toFile' in virtualFile && typeof virtualFile.toFile === 'function'

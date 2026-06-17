@@ -1,7 +1,5 @@
-import {
-  VirtualDirectoryLike,
-  virtualFileClear,
-} from '@rxap/fs';
+import { VirtualDirectoryLike } from './virtual-directory';
+import { virtualFileClear } from './virtual-file-clear';
 
 export function virtualDirectoryClear(directory: VirtualDirectoryLike) {
   if ('clear' in directory && typeof directory.clear === 'function') {

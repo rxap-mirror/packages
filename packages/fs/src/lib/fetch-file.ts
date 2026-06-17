@@ -47,7 +47,7 @@ export class FetchFile implements VirtualFileLike {
 
   protected async fetch(): Promise<ArrayBuffer> {
     console.debug('fetch', this.url, '...');
-    return (this._arrayBuffer = fetch(this.url).then(async (response) => {
+    const promise = fetch(this.url).then(async (response) => {
       if (!response.ok) {
         throw new Error(`Failed to fetch ${this.url}: ${response.status} ${response.statusText}`);
       }
@@ -61,11 +61,17 @@ export class FetchFile implements VirtualFileLike {
           this.mimetype = normalized;
         }
       }
-      // Cache the blob so subsequent getContent() can reuse it without losing type information
-      this._blob = await response.blob();
-      return this._blob.arrayBuffer();
-    }));
-
+      // read the ArrayBuffer directly and derive the cached blob from it
+      // (avoids the redundant blob -> arrayBuffer round trip)
+      const buffer = await response.arrayBuffer();
+      this._blob = new Blob([ buffer ], { type: this.mimetype });
+      return buffer;
+    }).catch((error) => {
+      // never cache a rejected promise, otherwise every later access fails forever
+      this._arrayBuffer = null;
+      throw error;
+    });
+    return (this._arrayBuffer = promise);
   }
 
   setMimeType(mimetype: string) {

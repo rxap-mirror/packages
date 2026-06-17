@@ -248,8 +248,8 @@ export class VirtualFile implements VirtualFileLike {
    * @param deep true - the data is copied, false - the data is shared
    */
   clone(name = this.name, fullName = this.fullName, deep = false) {
-    if (name !== this.name && !fullName.endsWith(name)) {
-      fullName.replace(new RegExp(`${this.name}$`), name);
+    if (name !== this.name && !fullName.endsWith(name) && fullName.endsWith(this.name)) {
+      fullName = fullName.slice(0, -this.name.length) + name;
     }
     return new VirtualFile(name, fullName, deep ? this.data.slice(0) : this.data);
   }
@@ -472,8 +472,8 @@ export class AsyncVirtualFile implements AsyncVirtualFileLike {
    * @param deep true - the data is copied, false - the data is shared
    */
   async clone(name = this.name, fullName = this.fullName, deep = false) {
-    if (name !== this.name && !fullName.endsWith(name)) {
-      fullName.replace(new RegExp(`${this.name}$`), name);
+    if (name !== this.name && !fullName.endsWith(name) && fullName.endsWith(this.name)) {
+      fullName = fullName.slice(0, -this.name.length) + name;
     }
     const data = await this.data;
     return new VirtualFile(name, fullName, deep ? data.slice(0) : data);

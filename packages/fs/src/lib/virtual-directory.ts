@@ -154,8 +154,8 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
   }
 
   clone(name: string = this.name, fullName: string = this.fullName): VirtualDirectory<VF> {
-    if (name !== this.name && !fullName.endsWith(name)) {
-      fullName.replace(new RegExp(`${this.name}$`), name);
+    if (name !== this.name && !fullName.endsWith(name) && fullName.endsWith(this.name)) {
+      fullName = fullName.slice(0, -this.name.length) + name;
     }
     return new VirtualDirectory<VF>(name, fullName, new Map(this.children));
   }
@@ -306,7 +306,9 @@ export class VirtualDirectory<VF extends VirtualFileLike = VirtualFileLike> impl
   protected removeFileByMatch(match: (file: VF) => boolean): boolean {
     for (const child of this.children.values()) {
       if (isVirtualDirectory(child)) {
-        child.removeFile(match);
+        if (child.removeFile(match)) {
+          return true;
+        }
       } else {
         if (match(child)) {
           this.delete(child.name);

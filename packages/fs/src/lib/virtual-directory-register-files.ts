@@ -1,4 +1,4 @@
-import { VirtualDirectoryLike } from '@rxap/fs';
+import { VirtualDirectoryLike } from './virtual-directory';
 
 export function virtualDirectoryRegisterFiles(directory: VirtualDirectoryLike) {
   if ('registerFiles' in directory && typeof directory.registerFiles === 'function') {
