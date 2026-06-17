@@ -90,29 +90,14 @@ This document lists the findings and recommendations from the audit of the `@rxa
 
 ## 🔵 Architectural Debt & Coupling
 
-### 5. Generator Anti-patterns (Virtualized Tree Violations)
-- **File:** `src/generators/init/generator.ts` (Lines 11-14, 85-91)
-- **Description:**
-  - The generator computes physical pathing relative to `__dirname` to access files in `tree`:
-    ```typescript
-    const packageJsonFilePath = relative(
-      tree.root,
-      join(__dirname, '..', '..', '..', 'package.json')
-    );
-    ```
-  - It also attempts to check and read `node_modules` files using `tree.exists()` and `tree.read()`. In Nx, `node_modules` is excluded from the virtual file system tree. Any operations using `tree` on paths within `node_modules` will fail or return `null`.
-- **Recommended Fix:**
-  - Avoid using physical paths (`__dirname`) mixed with the virtual tree `tree.read`/`tree.write`. For accessing workspace files, use workspace-relative paths from devkit or utility helpers.
-  - To inspect dependencies or run init tasks for peer dependencies, use physical filesystem helpers (e.g., standard `fs` module) for `node_modules` checks, or utilize the native `@nx/devkit` package/dependency helpers that bypass the virtual `tree` for non-workspace files.
-
-### 6. Direct Coupling to Environment Keys
+### 5. Direct Coupling to Environment Keys
 - **Files:** `src/lib/rabbitmq-vault.service.ts` and `src/lib/rabbitmq-vault-options-factory.ts`
 - **Description:**
   The classes are hardcoded to fetch the role name from the exact environment key `'RABBITMQ_VAULT_ROLE'`. This tightly couples the library to a specific configuration structure, making it non-reusable across different services or multiple RabbitMQ configurations inside the same application.
 - **Recommended Fix:**
   Accept the config key name or the vault options via NestJS dependency injection using a configuration token or dynamic module configuration.
 
-### 7. Missing NestJS Module
+### 6. Missing NestJS Module
 - **Description:**
   The library provides `RabbitmqVaultService` and `RabbitmqVaultOptionsFactory` but does not provide a standard NestJS Module (e.g., `RabbitmqVaultModule`). Users must manually register these components inside their own application modules.
 - **Recommended Fix:**
@@ -122,7 +107,7 @@ This document lists the findings and recommendations from the audit of the `@rxa
 
 ## 🟢 Test Coverage
 
-### 8. Lack of Unit and Integration Tests
+### 7. Lack of Unit and Integration Tests
 - **Description:**
   There are **no spec files** (`*.spec.ts`) in the entire library, resulting in **0% test coverage**. 
 - **Recommended Fix:**

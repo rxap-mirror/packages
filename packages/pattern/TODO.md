@@ -4,33 +4,6 @@ This file lists the findings, architectural debt, and recommended improvements r
 
 ---
 
-## 🏗️ Architectural Debt & Anti-Patterns
-
-### 1. Virtual `Tree` Usage for Non-Workspace Static Assets (`node_modules`)
-- **Location:** `src/generators/init/generator.ts` (Lines 90–110)
-- **Description:**
-  The `init` generator attempts to locate and read `package.json` files and generator files of other peer dependencies inside the `node_modules` folder using virtual Tree APIs (`tree.exists(...)` and `tree.read(...)`).
-  Since the virtualized `Tree` only manages source-controlled/workspace-tracked files and excludes external dependencies in `node_modules` by default, these calls will return `false`/`null` in many standard virtual tree contexts (such as in dry-runs, test environments, or when executed outside workspace context). This silently prevents peer dependency generators from executing.
-- **Impact:**
-  Peer dependency initialization scripts will be silently skipped during package setup.
-- **Recommended Fix:**
-  Use Node's physical filesystem APIs (`fs.existsSync`, `fs.readFileSync`) or node-based resolution methods (`require.resolve`) to inspect peer dependencies inside `node_modules`. Do not query them via the virtualized `Tree`.
-
-### 2. Fragile Static Package JSON Path Resolution
-- **Location:** `src/generators/init/generator.ts` (Lines 11–21)
-- **Description:**
-  The library's own `package.json` path is resolved relative to the virtual tree root using `relative(tree.root, join(__dirname, '..', '..', '..', 'package.json'))` and then read via the virtual tree. This relies on the assumption that the generator's physical files are nested inside a directory that perfectly mirrors the virtual workspace root.
-  If the package is executed from a pre-compiled, bundled, or symlinked dependency environment (like `@rxap/pattern` installed in `node_modules` of a separate workspace), this relative lookup will resolve to a non-existent path or fail `tree.exists(...)` validation.
-- **Impact:**
-  The generator can throw exceptions or fail to run altogether when published and used as a peer dependency.
-- **Recommended Fix:**
-  Instead of utilizing `tree.read(...)` for the library's own package files, read the local static `package.json` directly from the physical disk using physical filesystem commands or by simply requiring it:
-  ```typescript
-  const { peerDependencies, name: packageName } = require('../../../package.json');
-  ```
-
----
-
 ## 🧪 Test Coverage Gaps
 
 ### 1. Complete Absence of Tests

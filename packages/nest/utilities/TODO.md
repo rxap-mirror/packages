@@ -12,7 +12,7 @@ This document lists the findings and recommended actions resulting from a detail
 | **Critical Bugs** | ✅ **0** | Broken sorting/paging param swap and the CSP global-mutation leak are fixed. |
 | **Logic & Functional Bugs** | ⚠️ **4** | Unhandled TypeErrors in `ApplyFilter`, Fastify/non-HTTP context crashes, and string coercion for Throttler limits. |
 | **Architectural Debt** | ⚙️ **3** | Uninitialized global state for `IsDevMode`, hardcoded bypasses, and aggressive dependency injection of `Logger`. |
-| **Anti-Patterns** | 🔍 **2** | `node_modules` file reads via virtualized Tree, and plain-object `validateSync` validation. |
+| **Anti-Patterns** | 🔍 **1** | Plain-object `validateSync` validation. |
 
 ---
 
@@ -92,11 +92,6 @@ This document lists the findings and recommended actions resulting from a detail
 ---
 
 ## 🔍 3. Tooling & Anti-Patterns
-
-### ⚡ Reading `node_modules` via Virtualized Tree in Generator
-- **Location:** `src/generators/init/generator.ts` (lines 90–120)
-- **Issue:** Using `tree.exists()` and `tree.read()` to inspect package.json and config files inside `node_modules`. Physical packages are typically not indexed in the virtualized workspace tree, and reading them in this manner will fail in certain sandbox/dry-run execution modes.
-- **Recommended Fix:** Use native Node file system modules (`fs` or standard `require.resolve()`) for reading physical files inside `node_modules` during generator execution.
 
 ### ⚡ Invalid `validateSync` on Plain Response Objects
 - **Location:** `src/lib/validator.interceptor.ts`

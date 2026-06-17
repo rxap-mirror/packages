@@ -29,29 +29,6 @@ This file contains the findings, architectural debt, critical bugs, and recommen
 
 ## 2. Architectural Debt & Anti-Patterns 🏛️
 
-### ⚠️ Virtual Tree `node_modules` Queries (Dead Code)
-* **File:** [`src/generators/init/generator.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/ts-morph/src/generators/init/generator.ts#L83-L93)
-* **Description:** 
-  The init generator attempts to query `node_modules` files inside the virtual `tree` object:
-  ```typescript
-  const peerPackageJsonFilePath = join('node_modules', ...peer.split('/'), 'package.json');
-  if (!tree.exists(peerPackageJsonFilePath)) { ... }
-  ```
-  The Nx virtual `Tree` does **not** track or cache files inside `node_modules`. As a result, `tree.exists()` always returns `false` here. This makes the entire nested initialization cascade (running `init` generators of peer dependencies) dead code that is completely unreachable.
-* **Recommended Fix:** 
-  Query the physical file system (using standard Node `fs` module, or `require.resolve`) to look up paths inside `node_modules` since they are external to the virtual tree workspace code.
-
-### ⚠️ Relative Physical Paths (`__dirname`) inside Generator
-* **File:** [`src/generators/init/generator.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/ts-morph/src/generators/init/generator.ts#L11-L14)
-* **Description:** 
-  Using `__dirname` relative pathing to resolve the location of package.json files for a virtual tree operation:
-  ```typescript
-  const packageJsonFilePath = relative(tree.root, join(__dirname, '..', '..', '..', 'package.json'));
-  ```
-  This breaks if the generator is compiled or run under a customized layout / executor or inside distributed CI environments where the physical directory layout does not directly mirror the virtual workspace structure.
-* **Recommended Fix:** 
-  Reference the workspace-relative path of the package directly or fetch the project config root dynamically using `@nx/devkit` utilities.
-
 ### ⚠️ Massive Performance Overhead in File Verification
 * **File:** [`src/lib/apply-ts-morph-project.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/ts-morph/src/lib/apply-ts-morph-project.ts#L116-L122)
 * **Description:** 

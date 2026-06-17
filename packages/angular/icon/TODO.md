@@ -16,20 +16,6 @@ This document outlines the findings, critical bugs, logic errors, architectural 
   - Register peer init generator tasks as separate, post-install processes or custom schematics.
   - Or, instruct developers to run initialization commands in a multi-step workflow.
 
-### 2. Virtual Tree Sandbox Violation
-* **Location:** `packages/angular/icon/src/generators/init/generator.ts` (Line 126)
-* **Description:**
-  The generator uses a dynamic `require()` to load files directly from the physical filesystem (`node_modules/...`) during execution:
-  ```typescript
-  const initGenerator = require(join(
-    'node_modules',
-    ...peer.split('/'),
-    initGeneratorFilePath
-  ))?.default;
-  ```
-  Generators are designed to run in a sandboxed, virtualized environment (using the `Tree` object) to support dry runs and safe workspace manipulations. Directly accessing the physical file system (especially using relative paths to `node_modules`) circumvents this isolation and will fail during dry runs or in environments with virtual/customized project setups.
-* **Recommended Fix:** Avoid dynamic `require()` of generator files. If peer generator execution is necessary, utilize the Nx task orchestration capabilities or standard command execution facilities.
-
 ---
 
 ## 🏛️ Architectural Debt

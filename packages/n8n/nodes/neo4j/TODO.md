@@ -21,45 +21,7 @@ This document outlines the findings, critical bugs, architectural debt, and func
 
 ---
 
-## 2. Architectural Debt & Anti-Patterns
-
-### 🟡 Virtual Tree & Physical Disk Coupling
-- **File**: `src/generators/init/generator.ts` (Lines 11–20)
-- **Issue**: The generator calculates a workspace-relative path using the physical disk's `__dirname`:
-  ```typescript
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  ```
-  And then tries to read it from the virtual `Tree`:
-  ```typescript
-  tree.read(packageJsonFilePath, 'utf-8')
-  ```
-- **Impact**: When this generator is executed in a consumer workspace where `@rxap/n8n-nodes-neo4j` is installed as an npm dependency inside `node_modules`, `__dirname` points inside the physical `node_modules` directory on disk. Since `node_modules` is not typically part of the virtualized Nx `Tree` (or is ignored), `tree.exists(packageJsonFilePath)` will return `false`, aborting generator initialization.
-- **Recommendation**:
-  - Read the library's own `package.json` using Node's native physical disk methods (`require` or `fs.readFileSync`) rather than the virtualized `Tree`, as the virtualized `Tree` should only be used to read or modify files belonging to the host workspace itself.
-
-### 🟡 Incompatible Direct `node_modules` Traversal
-- **File**: `src/generators/init/generator.ts` (Lines 83–110)
-- **Issue**: The init generator manually traverses the filesystem checking for `node_modules/` folders and trying to read peer package configs via `tree.read()`:
-  ```typescript
-  const peerPackageJsonFilePath = join(
-    'node_modules',
-    ...peer.split('/'),
-    'package.json'
-  );
-  ```
-- **Impact**: 
-  - **Virtual Tree Failures**: Files inside `node_modules` are ignored by Nx's virtual tree, so `tree.exists()` and `tree.read()` checks will return false or null.
-  - **Yarn PnP & Modern Layout Incompatibility**: Hardcoding the structure `node_modules/<peer-name>/package.json` breaks completely in environments using Yarn Plug'n'Play (PnP) or other modern package layouts (like pnpm symlinks) where dependencies do not reside in direct nested `node_modules` folders.
-- **Recommendation**:
-  - Locate peer packages and their configurations using Node's standard module resolution engine via `require.resolve(...)` (e.g. `require.resolve(`${peer}/package.json`)`).
-  - Read their contents using physical `fs` APIs, avoiding virtual `Tree` calls for external library artifacts.
-
----
-
-## 3. Test Coverage & CI/CD
+## 2. Test Coverage & CI/CD
 
 ### 🟡 Zero Test Coverage
 - **Issue**: The project contains a valid `jest.config.ts` but has zero unit or integration test files (`No tests found, exiting with code 0`).

@@ -4,28 +4,7 @@ This file outlines the findings from the audit of the `@rxap/handlebars` (`angul
 
 ---
 
-## 1. Critical Bugs & Logic Errors
-
-### 🔴 Peer Dependency Generator Resolution via Virtual Tree `tree.exists`
-In `packages/angular/handlebars/src/generators/init/generator.ts` (lines 85–93):
-```typescript
-    const peerPackageJsonFilePath = join(
-      'node_modules',
-      ...peer.split('/'),
-      'package.json'
-    );
-    if (!tree.exists(peerPackageJsonFilePath)) {
-      console.log(`Peer dependency ${peer} has no package.json`);
-      continue;
-    }
-```
-* **Issue:** `node_modules` is ignored (via `.gitignore`/`.nxignore`) and is not a part of the virtualized Nx/schematics `Tree`. Therefore, calling `tree.exists` on a path inside `node_modules` will **always return false**, causing the generator to silently skip running the init generators of all peer dependencies.
-* **Impact:** Sub-generators for peer dependencies (such as `@angular/core` or nested rxap plugins) are never executed, leaving the workspace in an incomplete state.
-* **Recommended Fix:** Use the physical filesystem (`fs.existsSync` or standard `require.resolve`) to verify the existence of peer dependencies and their config files inside `node_modules`, rather than querying the virtual `Tree`.
-
----
-
-## 2. Functional & Design Concerns
+## 1. Functional & Design Concerns
 
 ### 🟡 Scoped vs. Direct Context inside `HandlebarsPipe`
 In `packages/angular/handlebars/src/lib/handlebars.pipe.ts` (lines 13–15):
@@ -47,7 +26,7 @@ In `packages/angular/handlebars/src/lib/handlebars.pipe.ts` (lines 13–15):
 
 ---
 
-## 3. Test Coverage
+## 2. Test Coverage
 
 ### 🔴 Zero Test Coverage (0%)
 * **Issue:** There are absolutely no unit or integration tests for the `@rxap/handlebars` library. Running `yarn nx run angular-handlebars:test` exits with:
@@ -62,7 +41,7 @@ In `packages/angular/handlebars/src/lib/handlebars.pipe.ts` (lines 13–15):
 
 ---
 
-## 4. Architectural Debt & Build Order Dependencies
+## 3. Architectural Debt & Build Order Dependencies
 
 ### 🟡 Dist Reference in Tailwind Configuration
 In `packages/angular/handlebars/tailwind.config.js` (line 2):
@@ -75,9 +54,8 @@ const { RXAP_TAILWIND_CONFIG } = require('../../../dist/packages/browser/tailwin
 
 ---
 
-## 5. Summary Checklist of Next Steps
+## 4. Summary Checklist of Next Steps
 
-- [ ] Refactor physical path checks in `generator.ts` to use native Node/fs mechanisms instead of the virtual `Tree` for `node_modules` paths.
 - [ ] Review `HandlebarsPipe` context wrapping behavior and adjust/document accordingly.
 - [ ] Add a comprehensive unit test suite (`handlebars.pipe.spec.ts`) with >90% code coverage.
 - [ ] Add unit tests for the init generator (`generator.spec.ts`) using a mock `Tree`.

@@ -35,19 +35,7 @@ This document outlines the findings and recommended improvements identified duri
 
 ## 📐 Architectural Debt & Anti-Patterns
 
-### 1. Reading `node_modules` via Virtualized `Tree` in Generators
-* **Location:** `src/generators/init/generator.ts` (Lines 90, 102, 118)
-* **Problem:** 
-  The init generator checks for the existence of peer dependency configurations using `tree.exists(...)` inside the `node_modules` directory:
-  ```typescript
-  const peerPackageJsonFilePath = join('node_modules', ...peer.split('/'), 'package.json');
-  if (!tree.exists(peerPackageJsonFilePath)) { ... }
-  ```
-  Nx's virtual `Tree` is meant to track workspace-controlled files and typically ignores or excludes `node_modules`. Reading or checking the existence of `node_modules` paths via `tree.exists` will fail or return `false` on virtual trees, even if the directory exists on the physical disk. Later, the generator uses `require()` (which uses physical disk resolution) to load the generator function, creating a discrepancy.
-* **Recommended Fix:** 
-  Avoid checking `node_modules` via the virtual `Tree`. Instead, use physical Node.js resolution (e.g., `require.resolve`) to locate peer dependency package configuration paths and verify files.
-
-### 2. Rigid/Incompatible Storage Format in `StorageGet`
+### 1. Rigid/Incompatible Storage Format in `StorageGet`
 * **Location:** `src/lib/storage-utility.ts` (Lines 20–35)
 * **Problem:** 
   `StorageGet` expects every item in storage to be a JSON string representing an object with `_value` and optional `_expired` properties. If a value was set externally (by another library, standard Web APIs, or legacy code) as a plain string, number, or standard JSON object without a `_value` key:

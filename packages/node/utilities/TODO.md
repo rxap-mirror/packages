@@ -51,16 +51,7 @@ This document outlines the findings of the comprehensive project audit for the `
 
 ## 🏛️ Architectural Debt & Library Anti-Patterns
 
-### 1. Querying Physical Files via Virtual Tree inside Generator
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/generators/init/generator.ts#L90-L110)
-* **Description:**
-  The generator checks and reads package information in `node_modules` using the virtual `tree.exists(...)` and `tree.read(...)`. In Nx, `node_modules` is not a part of the workspace virtual tree (it is excluded by default and listed in `.nxignore`).
-* **Impact:** The `tree.exists(...)` check always returns `false` inside the generator, skipping peer dependency init generators entirely.
-* **Recommended Fix:** Use physical file system operations (from Node's `fs` module) rather than the virtual `Tree` when querying installed packages inside `node_modules`.
-
----
-
-### 2. Re-implementing File System Recursion (Anti-Pattern)
+### 1. Re-implementing File System Recursion (Anti-Pattern)
 * **Files:**
   * [remove-dir-sync.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/lib/remove-dir-sync.ts)
   * [copy-folder-sync.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/lib/copy-folder-sync.ts)
@@ -74,7 +65,7 @@ This document outlines the findings of the comprehensive project audit for the `
 
 ---
 
-### 3. Faulty Gitignore Matching
+### 2. Faulty Gitignore Matching
 * **File:** [search-file-in-directory.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/node/utilities/src/lib/search-file-in-directory.ts#L21-L23)
 * **Description:**
   The basename of the file/directory is passed directly to `gitignore.ignores(file)`:

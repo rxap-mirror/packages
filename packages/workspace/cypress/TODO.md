@@ -47,23 +47,7 @@ This file documents critical issues, architectural debt, and test coverage gaps 
 * **Impact**: `@rxap/workspace-cypress` has no peer dependencies in its `package.json`. Consequently, running `yarn nx g @rxap/workspace-cypress:init` prints `"No peer dependencies found"` and immediately exits. The dependency coercion logic on lines 30–58 (designed to move `@rxap/workspace-cypress` to `devDependencies` in the root `package.json`) is **never executed**.
 * **Recommendation**: Reorder the execution flow so that package coercion happens before checking for peer dependencies.
 
-### 2. Virtual `Tree` Anti-Patterns inside Generator
-* **Location**: `src/generators/init/generator.ts`
-* **Problems**:
-  1. **Physical Path Checking**: Constructing relative paths using physical disk values (`__dirname` / `path.join`) and then querying them via the virtualized `Tree` (Lines 11–14):
-     ```typescript
-     const packageJsonFilePath = relative(
-       tree.root,
-       join(__dirname, '..', '..', '..', 'package.json')
-     );
-     ```
-     This is highly fragile, breaks when the generator runs from a different directory (e.g. `dist/`), and is a known Devkit anti-pattern.
-  2. **Querying `node_modules` via Virtual Tree**: Checking files in `node_modules` (e.g., lines 85–90) using `tree.exists(peerPackageJsonFilePath)` will consistently return `false`. The virtual `Tree` represents workspace source files and does not track external `node_modules`.
-* **Recommendations**:
-  - Instead of physical relative path calculations, resolve the package root configuration or reference the known workspace path `packages/workspace/cypress/package.json`.
-  - To check files in `node_modules`, use physical file system utilities (`fs.existsSync`, `fs.readFileSync`) or resolve dependencies using Node's standard module resolution resolution (`require.resolve`), rather than the virtual `tree`.
-
-### 3. Redundant Chain Wrapping in `matInput`
+### 2. Redundant Chain Wrapping in `matInput`
 * **Location**: `src/lib/angular-material.ts` (Lines 79–84)
 * **Problem**: The custom `matInput` command wraps the found input in unnecessary `.then` nesting:
   ```typescript

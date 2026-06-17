@@ -63,16 +63,6 @@ This document outlines the findings, critical bugs, architectural debt, and test
 * **Recommended Fix:**
   Wrap `JSON.parse(data)` in a `try/catch` block. On parsing failure, treat it as a cache miss (falling back to `noCache`), log a warning, or throw a clear, structured `NodeOperationError`.
 
-### 4. Dynamic Require in Nx Init Generator (Anti-pattern)
-* **Problem:**
-  In `src/generators/init/generator.ts`, the code attempts to dynamically load peer generators from standard paths in `node_modules` via node's `require()`:
-  ```typescript
-  const initGenerator = require(join('node_modules', ...peer.split('/'), initGeneratorFilePath))?.default;
-  ```
-  This is a virtual Tree anti-pattern in Nx. In dry-run mode or within monorepos that use virtualized package trees, this file lookup will fail or break execution.
-* **Recommended Fix:**
-  Utilize Nx's internal generator calling mechanics (like `runTasksInSerial`) or structure dependencies so that Nx natively manages sub-generator scheduling instead of reaching out to physical filesystem paths during the configuration phase.
-
 ---
 
 ## 🧪 Test Coverage

@@ -22,14 +22,6 @@ This document outlines the findings and recommended actions resulting from a com
   so this change requires first introducing a way to mark a child's own handler
   and updating that contract. Treat as a small refactor, not a quick fix.
 
-### 1.2 Reading `node_modules` via Virtual Tree in Generator
-- **Location**: `src/generators/init/generator.ts` (Lines 83–137)
-- **Description**:
-  The generator queries files inside `node_modules` using the virtual `Tree` abstraction (e.g., `tree.exists('node_modules/...')` and `tree.read('node_modules/...')`).
-  In Nx, the virtual `Tree` is intended for workspace files and typically excludes the massive, gitignored `node_modules` directory. Relying on `tree` to access external dependencies will fail in virtualized or dry-run environments.
-- **Recommendation**:
-  To parse physical dependencies on disk, use standard Node `require.resolve()` or the native `fs` module rather than the virtual `tree`. Keep virtual `tree` operations isolated strictly to workspace source directories.
-
 ---
 
 ## 2. Test Coverage Gaps

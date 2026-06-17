@@ -46,12 +46,6 @@ This file documents the critical bugs, architectural debt, library anti-patterns
 *   **Impact:** A foundational library dedicated to reactive utility operators (`@rxap/rxjs`) shouldn't be coupled with UI/Material design primitives.
 *   **Recommended Fix:** Relocate UI-specific definitions to a dedicated component or layout library (e.g., `@rxap/components` or `@rxap/material`).
 
-### 4. Dynamic Path & Node Modules Access in Init Generator
-*   **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/rxjs/src/generators/init/generator.ts)
-*   **Issue:** The generator queries paths inside `node_modules` using the virtual `Tree` interface (`tree.exists('node_modules/...')`, `tree.read(...)`), but then loads them dynamically using a physical Node `require()`.
-*   **Impact:** `node_modules` is normally gitignored/omitted from the virtual Tree, making tree-based queries unreliable. Mixing virtual `Tree` calls with physical `require()` can break `--dry-run` executions and general workspace hermeticity.
-*   **Recommended Fix:** Access installed package schemas and generator scripts using standard node resolution pathways (such as `require.resolve`) instead of tree-based lookups inside `node_modules`.
-
 ---
 
 ## 🧪 Test Coverage Gaps

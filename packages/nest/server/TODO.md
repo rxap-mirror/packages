@@ -43,17 +43,7 @@ This document outlines the findings, critical bugs, architectural debt, and test
   ```
   Ensure all configurations are safely checked to prevent unexpected application crashes.
 
-### 3. Physical File System Bypasses inside Virtual Nx Generator
-* **File:** `src/generators/init/generator.ts`
-* **Description:**
-  The `initGenerator` contains logic that requires external generator modules from `node_modules` using raw Node `require` on absolute disk paths, and checks file existence on disk:
-  ```typescript
-  const initGenerator = require(join('node_modules', ...peer.split('/'), initGeneratorFilePath))?.default;
-  ```
-* **Impact:** This bypasses the virtualized `Tree` file system utilized by Nx. It makes dry-runs (`--dry-run`) unreliable and makes assumptions about a flat `node_modules` directory in the current working directory, which breaks under modern package managers (like pnpm, Yarn PnP) or hierarchical structures.
-* **Recommended Fix:** Rely on virtual `Tree` APIs where possible, or use standard Node resolution algorithms (`require.resolve`) rather than hardcoding manual paths into `node_modules`.
-
-### 4. Noisy Warning Level Logging for Optional `build.json`
+### 3. Noisy Warning Level Logging for Optional `build.json`
 * **File:** `src/lib/server.ts` (Line 261)
 * **Description:**
   The server prints a warn log if `build.json` does not exist:
@@ -63,7 +53,7 @@ This document outlines the findings, critical bugs, architectural debt, and test
 * **Impact:** `build.json` is typically only present in production environments as a result of CI/CD pipeline artifact creation. In local development environments, this warning will clutter startup logs every single time, confusing developers.
 * **Recommended Fix:** Downgrade this warning to a verbose or debug log, as the file's absence is perfectly normal in development mode.
 
-### 5. Inconsistent Use of Deprecated Properties
+### 4. Inconsistent Use of Deprecated Properties
 * **File:** `src/lib/monolithic.ts` (Line 136), `src/lib/setup-swagger.ts` (Lines 22, 27)
 * **Description:**
   In `monolithic.ts`, the property `publicUrl` is marked as `@deprecated use apiUrl instead`. However, it is set to `apiBaseUrl` (which is different from `apiUrl`), and `setup-swagger.ts` actively uses `options.publicUrl` to set the Swagger server URL.

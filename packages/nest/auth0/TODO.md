@@ -8,8 +8,9 @@ This file lists the findings, bugs, and architectural debt identified during the
 - **File:** `src/generators/init/generator.ts`
 - **Line Reference:** [L83-L137](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/auth0/src/generators/init/generator.ts#L83-L137)
 - **Description:** 
-  The generator attempts to locate and run the `init` generator of newly added peer dependencies using `tree.exists(peerPackageJsonFilePath)`. Since these dependencies were missing and have only been added to memory, they are not physically installed in `node_modules` yet. Thus, `tree.exists` will always be false, and the generator silently skips executing their init generators.
+  The generator adds missing peer dependencies via `addDependenciesToPackageJson` + `installPackagesTask`, then immediately attempts to locate and run their `init` generators in the same run. Since those dependencies are only installed on disk *after* the generator finishes, they are not yet present in `node_modules`, so the newly-added peers cannot be initialized in the same run.
 - **Recommended Fix:** Run installation before calling peer generators, or delegate peer generator invocations to a post-install task or workspace-level generator.
+- **Note:** (virtual-tree/physical-path access was fixed 2026-06; the install-ordering problem remains)
 
 ---
 

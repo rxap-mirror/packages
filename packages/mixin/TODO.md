@@ -76,15 +76,6 @@ This document outlines critical issues, architectural debt, and testing gaps dis
 - **Problem:** The decorator uses `target.constructor.prototype[propertyKey] = method`. If `@delegate` is applied to a static method, `target` is the constructor function itself. `target.constructor` then refers to the global `Function` constructor, meaning the delegate pollutes `Function.prototype` instead of decorating the class's static method.
 - **Recommended Fix:** Simply use `target[propertyKey] = method`, which correctly resolves to the prototype for instance methods, and the class constructor for static methods.
 
-### 2. Disk Paths and Virtualized Trees in Generators
-- **Location:** `packages/packages/mixin/src/generators/init/generator.ts`
-- **Problem:**
-  - The generator uses physical path resolution via `__dirname` to access package.json relative to the compiler's output location instead of utilizing Nx workspace relative paths.
-  - The generator hardcodes paths inside `node_modules` (e.g., `join('node_modules', ...peer.split('/'), configFile)`) and dynamically calls `require` on physical file paths on disk. This breaks the Virtual Tree abstraction of Nx (e.g., during dry-runs or test environments) and completely fails when using alternative package managers like Yarn PnP (Plug'n'Play) or pnpm.
-- **Recommended Fix:**
-  - Utilize standard workspace paths or the `@nx/devkit` utility functions for finding package.json and packages.
-  - Use `require.resolve()` to locate peer dependency package json/generator files, and invoke them safely rather than assuming a physical layout.
-
 ---
 
 ## 🧪 Test Coverage & Robustness Gaps
@@ -101,5 +92,4 @@ This document outlines critical issues, architectural debt, and testing gaps dis
 
 1. **Fix Critical Bugs:** Apply immediate fixes for the recursion crash, `@use` pollution, and array mutation in `Mixin`.
 2. **Refactor `@delegate`:** Clean up target prototype access to avoid polluting `Function.prototype` on static properties.
-3. **Generator Abstraction:** Remove absolute disk paths and manual `node_modules` traversal from the `init` generator.
-4. **Implement Missing Tests:** Write extensive unit tests for `@use` and null prototype edge cases to prevent regressions.
+3. **Implement Missing Tests:** Write extensive unit tests for `@use` and null prototype edge cases to prevent regressions.

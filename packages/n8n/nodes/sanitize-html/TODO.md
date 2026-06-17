@@ -12,19 +12,6 @@ This document contains findings, architectural improvements, and recommendations
 
 ---
 
-## 🟡 Architectural Debt
-
-### 1. Nx Generator Anti-Patterns (`src/generators/init/generator.ts`)
-- **Finding:** The `init` generator in the package reads and executes files directly from the physical disk using Node's native `require()` and `join` relative to `__dirname`, completely bypassing the virtualized `Tree` system provided by `@nx/devkit`.
-- **Impact:** 
-  - Running generators in Dry-Run mode (`--dry-run`) still triggers physical disk side-effects/loading or fails with missing package issues if packages are not fully written on disk yet.
-  - Relying on `__dirname` to locate `package.json` relative to the generator source directory is brittle and can easily break if the folder/distribution structure changes or if the package is executed in a published context outside this specific monorepo structure.
-- **Recommended Action:**
-  - Locate `package.json` dynamically using Nx helper functions (e.g., reading project configuration or workspace root) rather than relative `__dirname` walking.
-  - Avoid loading and executing physical dependency generators via raw Node `require()`. Instead, leverage Nx Devkit schematic wrapping/composition or use child/sub-generators registered within Nx's virtual environment.
-
----
-
 ## 🟢 Test Coverage & Quality Assurance
 
 ### 1. Complete Absence of Tests (Prior to Audit)

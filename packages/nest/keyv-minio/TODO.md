@@ -72,13 +72,6 @@ This document lists the findings from the project audit of `nest-keyv-minio`. It
   // Collect object names in an array and use removeObjects in chunks of 1000
   ```
 
-### B. Virtual Tree Querying on `node_modules` (Anti-pattern)
-- **File:** `src/generators/init/generator.ts` (Lines 83-137)
-- **Problem:**
-  The init generator queries the virtualized Nx Devkit `Tree` (`tree.exists(peerPackageJsonFilePath)`) to inspect peer dependencies inside `node_modules`.
-  Because `node_modules` are not part of the tracked Workspace Tree, `tree.exists` will often return `false`, causing the generator to silently skip executing peer dependency initialization tasks.
-- **Recommended Fix:** Use physical file system checks (`fs.existsSync`, `fs.readFileSync`) for external packages located inside `node_modules`, or use `require.resolve`.
-
 ---
 
 ## 3. Test Coverage 🧪

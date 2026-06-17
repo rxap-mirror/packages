@@ -42,15 +42,6 @@ options: [
 * **The Issue:** IPFS is designed to be decentralized. Forcing users to only use Web3 Storage prevents the use of other public gateways (e.g., Pinata, Cloudflare, Infura, ipfs.io) or private/local IPFS gateways.
 * **Recommended Fix:** Convert the gateway parameter to a `string` (or a combobox) field with `https://<<cid>>.ipfs.w3s.link` as the default value, allowing users to enter custom gateways while still keeping a default.
 
-### 🏛️ Physical Path & Module Resolution in Workspace Generator
-In `src/generators/init/generator.ts`, there are several instances of physical disk coupling:
-* **The Issue:**
-  1. Lines 11-14: It calculates `packageJsonFilePath` using `__dirname` and then queries `tree.exists(...)`.
-  2. Lines 126-130: It uses `require(...)` with physical file paths in `node_modules` instead of querying the virtual `Tree`.
-  
-  While loading JS modules via `require` is standard for execution in generators, using physical paths to query or manipulate tree files violates the virtualized nature of Nx Trees, which can lead to unexpected behaviors when generators are run dry-run or in virtual filesystems.
-* **Recommended Fix:** Where possible, reference paths relative to the workspace root directly (e.g. `packages/n8n/nodes/ipfs/package.json`) rather than calculating them dynamically using physical paths.
-
 ---
 
 ## 3. Test Coverage

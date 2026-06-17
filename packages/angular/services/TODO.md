@@ -99,21 +99,7 @@ This document outlines the findings from the project audit of `packages/angular/
 
 ---
 
-## 4. Generator-Specific Anti-Patterns
-
-### ⚠️ Fragile Path Resolution and Disk Access via Virtual Tree
-*   **File:** [`packages/angular/services/src/generators/init/generator.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/services/src/generators/init/generator.ts#L11-L20)
-*   **Issue:** Resolving the virtual path of `package.json` using Node's `__dirname` combined with `relative(tree.root, ...)` is fragile. When the generator is executed inside a compiled/cached `node_modules` package, `__dirname` will resolve to a physical path outside the workspace, causing `tree.read` and `tree.exists` to throw an out-of-tree error.
-*   **Recommended Fix:** Read package-specific static configurations directly from the physical disk using `fs` or `require` (which is standard and robust for compiler files), or resolve paths using `joinPathFragments` within the virtual tree from known workspace anchors.
-
-### ⚠️ Virtual Tree Checks on `node_modules`
-*   **File:** [`packages/angular/services/src/generators/init/generator.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/services/src/generators/init/generator.ts#L90-L110)
-*   **Issue:** The generator performs check operations such as `tree.exists(peerPackageJsonFilePath)` where the path is within `node_modules`. Since `node_modules` is typically omitted or ignored by the Nx virtual `Tree`, these checks are highly likely to return `false` in normal runs, preventing peer dependency initialization.
-*   **Recommended Fix:** Use the physical Node file system/module resolution (e.g. `require.resolve()`) to check for existence of physical files in `node_modules` rather than using the virtual `Tree`.
-
----
-
-## 5. Test Coverage & Incomplete Implementation
+## 4. Test Coverage & Incomplete Implementation
 
 ### 🧪 Improve Test Coverage for `ImageLoaderService`
 *   **File:** [`packages/angular/services/src/lib/image-loader.service.spec.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/services/src/lib/image-loader.service.spec.ts)

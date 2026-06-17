@@ -36,24 +36,7 @@ This document outlines the findings and proposed improvements identified during 
 
 ## 2. Architectural Debt & Design Patterns
 
-### 2.1. `init` Generator: Virtual Tree Abstraction Violations (Nx Anti-patterns)
-- **Location:** `src/generators/init/generator.ts`
-- **Problem 1 (Physical File Paths):**
-  The generator attempts to resolve the package's local `package.json` relative to the physical physical file path of the generator via `__dirname`:
-  ```typescript
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  ```
-  Relying on `__dirname` and physical paths inside Nx generators breaks the virtual tree abstraction and causes failures if the workspace root is virtualized, running in different containerized environments, or executed during custom Dry-run CLI invocations.
-- **Problem 2 (Querying `node_modules` via Virtual Tree):**
-  The generator checks and reads files inside the `node_modules/` folder using the virtualized Nx `tree` object (e.g., `tree.exists(peerPackageJsonFilePath)`). `node_modules` is usually ignored by the Nx virtual file system. Standard virtual Tree objects do not track files inside ignored directories like `node_modules`.
-- **Recommended Fix:**
-  - For package.json, use standard workspace-relative target paths (e.g., `'packages/angular/keycloak/package.json'`) or parse the workspace layout configuration.
-  - For reading peer dependencies in `node_modules`, use Node's native `require.resolve` or `fs` directly to query third-party libraries instead of violating the virtual tree abstraction.
-
-### 2.2. `KeycloakService`: Lack of Initialization Checks (Type Safety)
+### 2.1. `KeycloakService`: Lack of Initialization Checks (Type Safety)
 - **Location:** `src/lib/services/keycloak.service.ts`
 - **Problem:**
   Several public methods (e.g. `isUserInRole`, `getUserRoles`, `isTokenExpired`, `loadUserProfile`) directly invoke properties/methods on `this._instance` without verifying that it is defined. If a client application calls any of these methods before `init()` completes successfully, the application will crash with a `TypeError: Cannot read properties of undefined`.

@@ -27,35 +27,6 @@ This file outlines the findings from the audit of the `@rxap/json-schema-to-type
 
 ## 2. Architectural Debt & Design Flaws
 
-### 🏛️ physical Disk Paths and Virtual Tree Coupling inside Generator
-* **File:** `src/generators/init/generator.ts` (Lines 11-14)
-* **Description:** The generator references physical disk locations using `__dirname` and attempts to resolve paths via the virtual Tree root:
-  ```typescript
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  ```
-* **Impact:** This breaks the Nx virtualized Tree paradigm. It relies on the assumption that the generator's physical execution directory is in a specific location relative to the monorepo workspace.
-* **Recommended Fix:** Access workspace configurations directly through the virtual Tree or project graph, rather than resolving physical relative disk paths.
-
----
-
-### 🏛️ Coupling to Physical disk `require` during Generation
-* **File:** `src/generators/init/generator.ts` (Lines 125-130)
-* **Description:** The generator attempts to dynamically import and run peer generators from physical paths using `require()`:
-  ```typescript
-  const initGenerator = require(join(
-    'node_modules',
-    ...peer.split('/'),
-    initGeneratorFilePath
-  ))?.default;
-  ```
-* **Impact:** This bypasses virtual Tree sandboxing, coupling generator logic to physical disk files. Additionally, this pattern will fail in pure ES Module (ESM) node environments or environments where `require()` is not supported.
-* **Recommended Fix:** Utilize standard Nx utility functions for invoking sub-generators, or modern dynamic `import()` configurations wrapped in proper environment boundary handling.
-
----
-
 ### 🏛️ Fragile `$ref` Reference Resolution in `TypescriptInterfaceGenerator`
 * **File:** `src/lib/typescript-interface-generator.ts` (Lines 612 and 623)
 * **Description:**

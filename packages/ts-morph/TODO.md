@@ -45,14 +45,7 @@ This document outlines the findings of a comprehensive audit conducted on the `@
 
 ## 2. Architectural & Library Anti-Patterns
 
-### 2.1. Reading Physical Disk Paths via the Virtualized `Tree`
-* **File:** `src/generators/init/generator.ts` (Lines 85–110)
-* **Problem:**
-  The generator uses the virtualized `tree` to interact with files inside `node_modules` (e.g., `tree.exists(...)` and `tree.read(...)`). In standard Nx operations, `node_modules` is gitignored/excluded from the virtual Tree representation, meaning `tree.exists` will often falsely return `false`.
-* **Fix:**
-  Interact with `node_modules` using native Node.js filesystem modules (`fs.existsSync`, `fs.readFileSync`) or use `require.resolve` instead of routing these physical reads through the `Tree`.
-
-### 2.2. Missing Getter for Setter Inputs in `CoerceComponentInput`
+### 2.1. Missing Getter for Setter Inputs in `CoerceComponentInput`
 * **File:** `src/lib/angular/coerce-component-input.ts` (Lines 135–150)
 * **Problem:**
   When `asSetAccessor` is enabled, the code generates a public setter (`set name(...)`) and a private backing field (`_name`), but completely neglects to generate the corresponding public getter (`get name()`). This makes the input property write-only and impossible to read from inside component code or templates, breaking standard Angular components.
@@ -67,7 +60,7 @@ This document outlines the findings of a comprehensive audit conducted on the `@
   });
   ```
 
-### 2.3. Malformed Styles Array in `CoerceComponent`
+### 2.2. Malformed Styles Array in `CoerceComponent`
 * **File:** `src/lib/angular/coerce-component.ts` (Lines 107 & 144)
 * **Problem:**
   1. If `styles` is a string containing inline CSS, it is written as `styles: 'css content'` instead of being wrapped in an array, which is a compilation error in Angular.

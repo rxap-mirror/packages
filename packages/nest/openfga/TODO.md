@@ -6,17 +6,7 @@ This document lists the findings and recommended actions identified during the a
 
 ## 🚨 Critical Bugs & Functional Defects
 
-### 1. Nx Generator Virtual Tree Failure (`src/generators/init/generator.ts`)
-*   **Issue:** The generator tries to check for and read its own package.json and other package's `package.json` files in `node_modules` by calling `tree.exists(...)` and `tree.read(...)` using relative paths resolved via `__dirname`.
-*   **Consequence:** When published as an NPM package and executed in a downstream project, `node_modules` is not indexed in the virtual `Tree`. As a result, `tree.exists` will always return `false`, causing the generator to abort immediately with:
-    `package.json not found in: node_modules/@rxap/nest-openfga/package.json`
-    Furthermore, the loop that is supposed to trigger other peer dependency init generators will always skip them because it cannot "see" their `package.json` in the virtual tree.
-*   **Recommended Fix:** 
-    *   Do not use the virtual `tree` for checking/reading static generator files or files inside `node_modules`. 
-    *   Directly `require` or read via the physical Node.js `fs` module for files belonging to the package itself (e.g., `const packageJson = require('../../../package.json');`).
-    *   Use physical path resolution (like `require.resolve`) to locate and inspect packages inside `node_modules`.
-
-### 2. Missing Peer Dependency: `@nestjs/terminus` (`package.json`)
+### 1. Missing Peer Dependency: `@nestjs/terminus` (`package.json`)
 *   **Issue:** `OpenfgaHealthIndicator` (in `src/lib/openfga.health-indicator.ts`) imports and uses classes and decorators from `@nestjs/terminus`. However, `@nestjs/terminus` is not listed in `dependencies` or `peerDependencies` of `@rxap/nest-openfga`'s `package.json`.
 *   **Consequence:** Downstream applications installing `@rxap/nest-openfga` will encounter compilation or runtime errors due to missing `@nestjs/terminus` package, unless they happen to have it installed manually.
 *   **Recommended Fix:** Add `@nestjs/terminus` with appropriate version range (e.g., `^10.0.0` or `^11.0.0` matching NestJS version) to `peerDependencies` in `packages/nest/openfga/package.json`.

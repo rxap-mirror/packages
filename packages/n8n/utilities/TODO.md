@@ -55,22 +55,17 @@ This file lists the critical bugs, architectural debt, library anti-patterns, an
 
 ## 🏗️ Architectural Debt & Library Anti-Patterns
 
-### 1. Physical Disk Queries via Virtual `Tree` in Generator
-- **Location:** `src/generators/init/generator.ts` (Lines 83-118)
-- **Problem:** The generator uses the virtualized `Tree` (e.g., `tree.exists()`, `tree.read()`) to look up and read files inside `node_modules`. Since `node_modules` is a physical, non-git-tracked directory that should not exist in the virtual tree representation, this is an Nx generator anti-pattern.
-- **Remedy:** Resolve package paths using Node's standard module resolution (e.g., `require.resolve`) and read package files directly from the physical filesystem using `fs` when accessing external `node_modules` libraries.
-
-### 2. Risk of Infinite Recursion/Stack Overflow in Schema Resolver
+### 1. Risk of Infinite Recursion/Stack Overflow in Schema Resolver
 - **Location:** `src/lib/open-api-node.ts` (Lines 68-85)
 - **Problem:** `ResolveRef` recursively resolves `$ref` schemas in the OpenAPI document in-place. If the OpenAPI specification contains circular references (which is very common in complex API schemas), the resolver will loop infinitely and crash the Node process with `RangeError: Maximum call stack size exceeded`.
 - **Remedy:** Implement cycle detection by tracking visited references/nodes during resolution, and break the recursion if a cycle is detected.
 
-### 3. Hardcoded Environment Keys in Library Code
+### 2. Hardcoded Environment Keys in Library Code
 - **Location:** `src/lib/Oauth2ProxyAuth.credentials.ts` (Line 28)
 - **Problem:** A specific, environment-dependent organization ID uuid (`'ea5dc87a-9c4a-48d4-8a0a-ccea1474498f'`) is hardcoded as the default value in the credentials class. Shared library code should not contain hardcoded environment-specific keys.
 - **Remedy:** Remove the hardcoded default or replace it with an empty string, prompting the user to supply their actual Organization ID in the credentials setup.
 
-### 4. Platform-Specific Path Splitting
+### 3. Platform-Specific Path Splitting
 - **Location:** `src/lib/add-files-to-results.ts` (Line 42)
 - **Problem:** The utility splits relative paths using `/`:
   ```typescript
@@ -79,7 +74,7 @@ This file lists the critical bugs, architectural debt, library anti-patterns, an
   On Windows systems, relative paths returned by `path.relative` use backslashes `\`. This causes the split to fail, resulting in names containing backslashes and unexpected behavior.
 - **Remedy:** Use a regex matching both slashes (e.g., `/[\\/]/`) or split on `path.sep` to ensure cross-platform compatibility.
 
-### 5. Blocking Synchronous File I/O
+### 4. Blocking Synchronous File I/O
 - **Location:** `src/lib/add-files-to-results.ts` (Lines 35-44)
 - **Problem:** This async function uses synchronous, blocking operations (`readdirSync`, `statSync`, `readFileSync`) inside a loop. This blocks the single-threaded Node.js event loop, which can cause severe performance degradation in high-volume n8n environments.
 - **Remedy:** Use asynchronous non-blocking alternatives (`fs.promises.readdir`, `fs.promises.stat`, `fs.promises.readFile`) inside the loop.

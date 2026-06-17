@@ -6,24 +6,7 @@ This document outlines the findings from an audit of the `@rxap/life-cycle` proj
 
 ## 🏛️ Architectural Debt & Anti-Patterns
 
-### 1. Generator File System Pathing Anti-Pattern (Virtual Tree vs. Physical Disk)
-In `src/generators/init/generator.ts` (lines 11–14), the generator uses `__dirname` and the node `path` library to query and find the project's own `package.json`:
-
-```typescript
-const packageJsonFilePath = relative(
-  tree.root,
-  join(__dirname, '..', '..', '..', 'package.json')
-)
-```
-
-* **Issue**:
-  1. **Virtualization Breakage**: Nx generators execute against a virtualized memory `Tree`. Directly referencing physical disk properties like `__dirname` can bypass virtual tree settings, causing issues during dry-runs or test environments.
-  2. **Publishing / Bundling Fragility**: When built, published, or run from a globally or locally installed node module context (e.g. inside `node_modules/@rxap/life-cycle`), `__dirname` will reference the published bundle path, and traversing up 3 levels (`..` thrice) will completely fail to find the original `package.json`, or it will read an unexpected file on the user's computer.
-  3. **Platform-Specific Path Separators**: Using `path.join` and `path.relative` creates platform-dependent path separators (e.g., backslashes `\` on Windows). The virtual Tree in Nx expects POSIX-style paths (forward slashes `/`).
-* **Fix**: Use static virtual tree paths or package resolver utilities. Since this is the library generator, the generator knows its own workspace-relative path or can read from the context.
-  - Better approach: Use `@nx/devkit` POSIX-compatible utilities like `joinPathFragments` and relative paths from the workspace root (e.g., `packages/angular/life-cycle/package.json`) if running within the monorepo, or read the config of the current project directly using Nx workspace helpers.
-
-### 2. Shared Static State Leakage (Potential Memory / Isolation Leaks)
+### 1. Shared Static State Leakage (Potential Memory / Isolation Leaks)
 In `LifeCycleService` (`src/lib/life-cycle.service.ts`), the lifecycle hooks map is defined as `private static`:
 
 ```typescript
@@ -35,7 +18,7 @@ private static hooks = new Map<string, LifeCycleHook>();
   - In server-side rendering (SSR) environments or micro-frontend configurations where multiple platforms or injector trees might be created/destroyed, static state leaks from one application/request context to another.
 * **Fix**: Shift the `hooks` Map to be an instance property instead of a static property, unless there is an explicit, documented reason for cross-platform/cross-instance sharing. If static sharing is absolutely required, provide a static `reset()` helper and call it in `beforeEach()` test setup blocks.
 
-### 3. Deprecated Class-Based Route Guard
+### 2. Deprecated Class-Based Route Guard
 `IsAppReadyGuard` is defined as a class-based route guard implementing the `canActivate` method:
 
 ```typescript

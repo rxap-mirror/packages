@@ -71,20 +71,6 @@ This document lists the findings and recommended actions from the project audit 
 * **Recommended Fix:**
   Remove the silent, broken fallback and throw an explicit, descriptive error when `ownerDocument` is missing, or use a robust document transfer strategy.
 
-### 3. Generator Physical Disk Dependency (Anti-pattern)
-* **File:** `src/generators/init/generator.ts` (Lines 11–14)
-* **Description:**
-  The generator determines the package's `package.json` location using physical disk paths:
-  ```typescript
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  ```
-  Using physical path indicators like `__dirname` breaks the virtualized file system abstraction provided by Nx `Tree`, and can fail when executed inside virtual test runners, workspace configurations, or bundled/compiled states.
-* **Recommended Fix:**
-  Use the package name or standard workspace-relative target paths (e.g., `'packages/xml-parser/package.json'`) or parse them from Nx's project configuration mappings.
-
 ---
 
 ## 🧪 Robustness & Test Coverage

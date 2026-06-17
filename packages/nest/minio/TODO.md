@@ -32,15 +32,14 @@ This file tracks the identified bugs, architectural debt, and testing gaps in `@
 
 ## 🏛️ Architectural Debt & Anti-Patterns
 
-### 1. Insecure Dynamic Generator Loading in Init Generator
+### 1. Peer Dependency Install Ordering in Init Generator
 * **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/minio/src/generators/init/generator.ts#L81-L137)
 * **Description:**
   - The generator schedules a package install via `installPackagesTask(tree)`, which is only executed *after* the current generator successfully runs.
-  - Immediately afterward, it loops over `missingPeerDependencies` and tries to check `tree.exists` and calls `require` on their physical paths in `node_modules`. Since they have not actually been installed on disk yet, these checks/imports will either fail or get skipped entirely.
-  - Bypassing the virtual `tree` with direct `require(...)` on files inside `node_modules` is an anti-pattern.
+  - Immediately afterward, it loops over `missingPeerDependencies` and tries to initialize them. Since they have not actually been installed on disk yet, newly-added peers cannot be initialized in the same run.
 * **Fix:**
-  - Avoid dynamic `require` for generator execution during the initialization step, or leverage standard Nx executor orchestration/composition utilities.
-  - Document peer dependency requirements clearly, or rely on the workspace package manager to install peers upfront.
+  - Run installation before invoking peer generators, or document peer dependency requirements clearly and rely on the workspace package manager to install peers upfront.
+* **Note:** (virtual-tree/physical-path access was fixed 2026-06; the install-ordering problem remains)
 
 ### 2. Blocking Synchronous Disk Reads
 * **File:** [minio-module-options-loader.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/minio/src/lib/minio-module-options-loader.ts#L30)

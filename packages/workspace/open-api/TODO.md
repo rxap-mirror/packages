@@ -6,17 +6,7 @@ This document outlines the findings and recommended actions from the project aud
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. Virtual vs. Physical Filesystem Confusion in Generator (`initGenerator`)
-- **Location:** `src/generators/init/generator.ts`
-- **Description:** 
-  The generator attempts to detect and load peer dependency configurations inside `node_modules` using the virtualized Nx `Tree` (e.g., `tree.exists('node_modules/...')`, `tree.read(...)`). In standard Nx/Angular CLI setups, `node_modules` is gitignored and is **never** indexed in the virtual `Tree`. 
-  - As a result, `tree.exists(peerPackageJsonFilePath)` will always return `false`.
-  - The loop processing peer dependencies is completely dead code.
-  - Additionally, reading its own `package.json` via a relative path from `__dirname` passed to the virtual `tree.read` fails when the generator is executed from another workspace context (where the package itself resides under `node_modules` and is not part of the active workspace's virtual Tree).
-- **Recommended Fix:** 
-  Use standard Node.js filesystem APIs (`fs.existsSync`, `fs.readFileSync`) or direct `require` statements to read files inside `node_modules` and local built package directories, as they are physical files, not virtual workspace source files.
-
-### 2. Unhandled Errors and Potential Crashes
+### 1. Unhandled Errors and Potential Crashes
 - **Locations:** `src/lib/load-open-api-config.ts` (line 41), `src/lib/generate-interfaces.ts` (line 37)
 - **Description:**
   - In `LoadOpenApiConfig`, `JSON.parse(content)` is called directly without a try/catch block. If the local file is malformed, it throws a generic, unhelpful `SyntaxError`.

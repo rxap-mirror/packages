@@ -33,16 +33,7 @@ An audit of `@rxap/nest-open-api` has identified several critical logic bugs, ar
 
 ## 🟡 Architectural Debt & Library Anti-Patterns
 
-### 2. Non-Functional Peer Dependency Initialization in Init Generator
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/open-api/src/generators/init/generator.ts#L90)
-* **Description:**
-  In the `initGenerator`, the script checks for peer dependency files under `node_modules` using the virtualized Nx `Tree` (`tree.exists(peerPackageJsonFilePath)`), which never tracks the gitignored `node_modules`, so peer init generators are silently skipped.
-* **Recommended Fix:**
-  Use the physical filesystem (`fs.existsSync` / `fs.readFileSync`) or Node module resolution
-  (`require.resolve(join(peer, 'package.json'), { paths: [tree.root] })`). This is the same
-  workspace-wide generator anti-pattern tracked in several other package TODOs.
-
-### 3. Ineffective Class Validation on Plain Objects in `ValidatorInterceptor`
+### 2. Ineffective Class Validation on Plain Objects in `ValidatorInterceptor`
 * **File:** [validator.interceptor.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/open-api/src/lib/validator.interceptor.ts)
 * **Description:**
   `ValidatorInterceptor` runs `validateSync` (from `class-validator`) on response bodies. `validateSync` only validates real class instances with class-validator metadata; NestJS controllers usually return plain objects, so it is a no-op providing a false sense of security.
@@ -53,7 +44,7 @@ An audit of `@rxap/nest-open-api` has identified several critical logic bugs, ar
 
 ## 🟢 Code Quality & Test Coverage
 
-### 4. Low Test Coverage
+### 3. Low Test Coverage
 * **Description:**
   There is only one test suite (`open-api-module-options-loader.spec.ts`) with a single test case.
 * **Recommended Fix:**

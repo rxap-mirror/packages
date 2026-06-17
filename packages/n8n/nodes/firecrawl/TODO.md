@@ -4,22 +4,6 @@ This document outlines the identified critical bugs, logic errors, architectural
 
 ---
 
-## 🧹 Library Anti-Patterns
-
-### 1. Reading `node_modules` via virtualized `Tree`
-* **Location:** [generator.ts:L83-L137](file:///mnt/mmuenker/Projects/rxap/packages/packages/n8n/nodes/firecrawl/src/generators/init/generator.ts#L83-L137)
-* **Description:**
-  The `init` generator attempts to check for the existence and content of package config files in `node_modules` using the virtualized Nx `Tree` object:
-  ```typescript
-  const peerPackageJsonFilePath = join('node_modules', ...peer.split('/'), 'package.json');
-  if (!tree.exists(peerPackageJsonFilePath)) { ... }
-  ```
-  In an Nx workspace, the virtual `Tree` is designed to represent and track source files of the workspace under version control and excludes `node_modules/` by default. Therefore, `tree.exists(...)` inside `node_modules` will always return `false`. As a result, the peer dependency generator execution loop is silently bypassed for every peer.
-* **Recommended Fix:**
-  Since `node_modules` are physical dependencies on disk, use the standard Node.js `fs` module to check and read physical paths in `node_modules`, or load them via Node's `require.resolve()` mechanisms rather than using the virtual `Tree` object.
-
----
-
 ## 🏛️ Architectural Debt & Resource Leaks
 
 ### 1. PostgreSQL Database Connection Leaks

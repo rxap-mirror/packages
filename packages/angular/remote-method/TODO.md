@@ -6,18 +6,7 @@ This file outlines the critical bugs, architectural debt, library anti-patterns,
 
 ## 🛠️ Design Issues & Library Anti-Patterns
 
-### 1. Physical Path Manipulation & Disk require inside NX Generator
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/remote-method/src/generators/init/generator.ts)
-* **Description:** The generator uses standard Node APIs like `__dirname`, physical `require()`, and raw physical path joins to dynamically load files from the local filesystem and `node_modules` directory:
-  ```typescript
-  const packageJsonFilePath = relative(tree.root, join(__dirname, '..', '..', '..', 'package.json'));
-  // ...
-  const initGenerator = require(join('node_modules', ...peer.split('/'), initGeneratorFilePath))?.default;
-  ```
-* **Impact:** This violates virtual tree isolation principles of Nx and Angular schematics. It breaks virtual runs (dry-runs) and breaks entirely under strict package managers (like pnpm or Yarn PnP) where physical `node_modules` path lookups are invalid or structured differently.
-* **Recommended Fix:** Read all package.json files via `tree.read()` if they exist inside the workspace, or use standard Nx utility methods to resolve generator factories in a container-safe manner.
-
-### 2. Hardcoded limits and Falsy Ignores in `ContenteditableDirective`
+### 1. Hardcoded limits and Falsy Ignores in `ContenteditableDirective`
 * **File:** [contenteditable.directive.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/remote-method/http/directive/src/lib/contenteditable.directive.ts#L48-L54)
 * **Description:** The directive limits input saves based on arbitrary checks:
   - `value.length > 3` is hardcoded. It prevents saving short inputs (e.g. `UK`, `ID`, `Yes`, `No`).
@@ -25,7 +14,7 @@ This file outlines the critical bugs, architectural debt, library anti-patterns,
   - `@DebounceCall(1000)` modifies the class prototype and may share debouncing queues/timers across all directive instances on the page instead of debouncing per-element.
 * **Recommended Fix:** Convert the input listener to an RxJS stream (`Subject` or modern Angular signals / Reactive forms integration) where the debounce is instance-specific, and allow clearing values or configuration of the minimum length.
 
-### 3. Implicit Click Capturing in `RemoteMethodDirective`
+### 2. Implicit Click Capturing in `RemoteMethodDirective`
 * **File:** [remote-method.directive.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/remote-method/directive/src/lib/remote-method.directive.ts#L100-L107)
 * **Description:** The directive listens to clicks on whatever element it is attached to via `@HostListener('click')`.
 * **Impact:** If `rxapRemoteMethod` is placed on a parent container to expose its context via `exportAs="rxapRemoteMethod"`, clicking *anywhere* inside that container will unexpectedly trigger the remote method. There is no flag to disable the automatic click binding.

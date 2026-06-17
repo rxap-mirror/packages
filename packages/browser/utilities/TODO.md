@@ -9,10 +9,9 @@ This document outlines the findings, critical bugs, architectural debt, and test
 ### 1. Peer Dependency Init Generator Execution Race Condition
 * **File**: `packages/browser/utilities/src/generators/init/generator.ts` (Lines 83-137)
 * **Description**:
-  The generator schedules missing peer dependencies for installation via `installPackagesTask(tree)` and then immediately attempts to read and `require` those dependencies from `node_modules` to run their nested `init` generators.
-  Since `installPackagesTask` only executes **after** the generator run is fully completed, the newly-added peer dependencies are **not** present in `node_modules` during the generator execution.
-  The condition `!tree.exists(peerPackageJsonFilePath)` evaluates to `true`, and the generator prints:
-  `Peer dependency {peer} has no package.json`.
+  The generator schedules missing peer dependencies for installation via `installPackagesTask(tree)` and then immediately attempts to run their nested `init` generators.
+  Since `installPackagesTask` only executes **after** the generator run is fully completed, the newly-added peer dependencies are **not** present in `node_modules` during the generator execution, so their nested init generators cannot be located in the same run.
+  *(virtual-tree/physical-path access was fixed 2026-06; the install-ordering problem remains)*
 * **Impact**:
   The nested init generators of newly added peer dependencies are never executed during the first run.
 * **Recommended Fix**:

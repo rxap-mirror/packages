@@ -43,19 +43,11 @@ Detailed list of findings from the project audit of `angular-contenteditable`.
 - **Recommended Fix:**
   - Remove this hardcoded listener or make it configurable via an `@Input` flag (e.g., `stopClickPropagation: boolean = false`).
 
-### 3. Reading Physical Files / Anti-pattern in Generator
-- **Location:** `src/generators/init/generator.ts`
-- **Problem:**
-  - The generator reads files from `node_modules` paths using `tree.exists(...)` and `tree.read(...)`. The virtual `Tree` in Nx does not typically track files in `node_modules` or physical folders outside the workspace directory structure. While it might fall back to the physical disk, this is considered a generator anti-pattern.
-  - Using `require(...)` with dynamic paths inside generators can bypass package import resolution and fail under certain monorepo executors (e.g., Yarn PnP).
-- **Recommended Fix:**
-  - Access `node_modules` using standard Node.js `fs` module, or use `require.resolve()` to determine file locations rather than hardcoding `join('node_modules', ...packageName.split('/'))`.
-
 ---
 
 ## Test Coverage
 
-### 4. Zero Test Coverage
+### 3. Zero Test Coverage
 - **Location:** Whole project
 - **Problem:**
   The project contains a `test-setup.ts` and Jest config, but has **no test files at all** (`*.spec.ts`).
@@ -73,7 +65,7 @@ Detailed list of findings from the project audit of `angular-contenteditable`.
 
 ## Documentation
 
-### 5. Missing Guides and Getting Started Content
+### 4. Missing Guides and Getting Started Content
 - **Location:** `GUIDES.md`, `GETSTARTED.md`
 - **Problem:**
   These files are completely empty.

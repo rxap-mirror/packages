@@ -4,33 +4,9 @@ This document outlines the findings and recommended actions resulting from the a
 
 ---
 
-## 🚨 Critical Bugs & Logic Issues
-
-### 1. Virtualized Tree Bypass & Dead Code in Init Generator
-- **Location:** `src/generators/init/generator.ts` (Lines 83-137)
-- **Problem:**
-  The loop checking peer-dependency init generators relies on:
-  ```typescript
-  const peerPackageJsonFilePath = join(
-    'node_modules',
-    ...peer.split('/'),
-    'package.json'
-  );
-  if (!tree.exists(peerPackageJsonFilePath)) { ... }
-  ```
-  Since the virtualized `Tree` representation in Nx excludes the `node_modules` directory, `tree.exists()` on paths inside `node_modules` will **always** return `false`. This makes the entire block of code starting at line 83 dead code that never executes.
-  Furthermore, the dynamic loading of generator scripts using `require(...)` with physical filesystem paths directly inside `node_modules` is an anti-pattern:
-  - It bypasses Nx's dry-run safety.
-  - It assumes a physical, flat `node_modules` structure, which fails under strict package managers (pnpm) and virtualized/bundled setups (Yarn PnP).
-- **Recommended Fix:**
-  - Remove the manual traversal and dynamic require of peer dependencies inside the generator.
-  - Instead, declare these init actions using high-level generator orchestration (e.g. leveraging Nx's schematic composition or generator dependency configs in `generators.json` / `schematics.yaml`).
-
----
-
 ## 🏛️ Architectural & Configuration Debt
 
-### 2. Redundant Global Module Configuration (Class `@Global()` vs Builder `isGlobal`)
+### 1. Redundant Global Module Configuration (Class `@Global()` vs Builder `isGlobal`)
 - **Location:** `src/lib/web3-storage.module.ts`
 - **Problem:**
   The module class is statically decorated with `@Global()`:
@@ -64,7 +40,7 @@ This document outlines the findings and recommended actions resulting from the a
     .build();
   ```
 
-### 3. Hardcoded Environment Variable / Configuration Key
+### 2. Hardcoded Environment Variable / Configuration Key
 - **Location:** `src/lib/web3-storage-module-options-loader.ts`
 - **Problem:**
   The `ConfigService` key `'WEB3_STORAGE_TOKEN'` is hardcoded inside the loader file:
@@ -75,7 +51,7 @@ This document outlines the findings and recommended actions resulting from the a
 - **Recommended Fix:**
   Provide a configurable prefix/key option, or document this hardcoded key prominently in the `README.md`/`GETSTARTED.md` so that users are aware of the required naming convention.
 
-### 4. Deprecated Base Library Dependency
+### 3. Deprecated Base Library Dependency
 - **Location:** `package.json` (Lines 10-14)
 - **Problem:**
   The library relies on `web3.storage` (specifically version `^4.5.5` as a peer dependency). The original, legacy key-based client (`web3.storage`) is deprecated in favor of the decentralized w3up API and agent-based clients (such as `@web3-storage/w3up-client`). Using deprecated gateways/clients may lead to runtime API failures or connection issues.
@@ -86,7 +62,7 @@ This document outlines the findings and recommended actions resulting from the a
 
 ## 🧪 Test Coverage & Quality Debt
 
-### 5. Zero Test Coverage (0%)
+### 4. Zero Test Coverage (0%)
 - **Problem:**
   The project contains **zero** test files (no `*.spec.ts` files exist). The tests pass only because `--passWithNoTests=true` is set.
 - **Recommended Fix:**

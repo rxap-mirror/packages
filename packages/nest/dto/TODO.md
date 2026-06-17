@@ -30,13 +30,7 @@ This document lists the findings from the audit of the `@rxap/nest-dto` package,
 
 ## 🏛️ Architectural Debt & Anti-Patterns
 
-### 1. Mixing Virtual Tree with Physical File Paths
-* **File:** [generator.ts](src/generators/init/generator.ts)
-* **Description:** The init generator mixes virtual `Tree` checks with direct Node.js `require` calls inside `node_modules`. 
-* **Impact:** `node_modules` is typically gitignored and excluded from virtual Tree index tracking. Checking `tree.exists` inside `node_modules` can fail or produce unpredictable behavior in some virtual tree environments, while the subsequent direct Node `require` might work.
-* **Recommended Fix:** Avoid using the virtual `tree` to query or check paths inside `node_modules`. Instead, use standard Node.js path resolutions (such as `require.resolve`) to verify and import files in `node_modules`.
-
-### 2. Implicit `rows` validation in `PageDto`
+### 1. Implicit `rows` validation in `PageDto`
 * **File:** [page.dto.ts](src/lib/page.dto.ts)
 * **Description:** The `PageDto<RowType>` class defines `abstract rows: RowType[];` but lacks any `@Expose()` or validation decorators on the `rows` property.
 * **Impact:** While `PageDto` is abstract and cannot be directly instantiated, subclasses must be extremely careful to explicitly redeclare and decorate `rows`. If subclasses omit this step, `rows` will be excluded or unvalidated.

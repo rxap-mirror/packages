@@ -6,31 +6,19 @@ This document outlines critical bugs, architectural debt, API smells, and test c
 
 ## 🚨 Critical Bugs & Logic Errors
 
-### 1. `init` Generator: Tree Bypass / `node_modules` Resolution Failure
-* **File:** `src/generators/init/generator.ts` (Lines 11–21)
-* **Description:** 
-  The generator calculates `packageJsonFilePath` as `relative(tree.root, join(__dirname, '..', '..', '..', 'package.json'))`.
-  When `@rxap/plugin-utilities` is installed as a package in external workspaces, this path resides within `node_modules/`. Since the virtualized `Tree` from `@nx/devkit` does not track `node_modules` (it only virtualizes files in the workspace source space), `tree.exists(packageJsonFilePath)` will always return `false`.
-  Consequently, the generator will log an error and return immediately, making it completely non-functional when installed as an npm package.
-* **Recommended Fix:** 
-  Static read-only files belonging to the package itself (like its own `package.json`) should be read directly from the physical filesystem using standard Node.js `fs` or `require` (e.g., `require('../../../package.json')`), rather than through the virtualized `Tree` of the target workspace.
-
----
-
-### 2. `init` Generator: Broken Peer Dependency Init Generator Execution
+### 1. `init` Generator: Broken Peer Dependency Init Generator Execution
 * **File:** `src/generators/init/generator.ts` (Lines 83–137)
 * **Description:** 
   The generator attempts to discover and execute the `init` generators of newly added peer dependencies immediately after calling `addDependenciesToPackageJson`.
   However, at this point, those peer dependencies are **not yet physically installed** on the disk. They are only queued for installation via `installPackagesTask()`, which is executed by Nx after the entire generator run has successfully finished. 
-  As a result:
-  * `tree.exists(peerPackageJsonFilePath)` or physical checks for these dependencies will always fail during the run.
-  * The nested generators are never actually invoked.
+  As a result, those peer dependencies cannot be located on disk during the run and the nested generators are never actually invoked.
+  _(virtual-tree/physical-path access was fixed 2026-06; the install-ordering problem remains)_
 * **Recommended Fix:** 
   Re-architect peer initialization. Peer initializers cannot run synchronously before they have been installed. Consider separating peer plugin initialization to a post-install phase or relying on workspace-level tooling.
 
 ---
 
-### 3. `GetAllPackageDependenciesForProject`: Recursive Cycle Stack Overflow
+### 2. `GetAllPackageDependenciesForProject`: Recursive Cycle Stack Overflow
 * **File:** `src/lib/get-all-package-dependencies-for-project.ts` (Lines 44, 82)
 * **Description:** 
   The function signature accepts a third parameter, `resolvedDependencies`, to keep track of already-visited packages and prevent infinite recursion loops in circular dependency graphs.

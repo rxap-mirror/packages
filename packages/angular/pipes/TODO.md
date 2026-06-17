@@ -6,29 +6,7 @@ This document lists the findings and recommended fixes resulting from the audit 
 
 ## 🚨 Critical Functional Bugs & Logic Errors
 
-### 1. Virtual Tree Anti-Pattern in `initGenerator`
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/pipes/src/generators/init/generator.ts#L83-L138)
-* **Problem:** 
-  The generator iterates through added peer dependencies and uses `tree.exists()` to check for files inside `node_modules` (e.g., `node_modules/<peer-dep>/package.json`). 
-  The Nx/devkit `Tree` is a **virtualized file system** representing the project's source code and *does not* include `node_modules` (which is gitignored and excluded). Therefore, `tree.exists()` always returns `false`. This causes the generator to log a warning and skip running the peer dependency initialization generators completely.
-* **Impact:** 
-  Peer dependency init-generators are **never executed**, breaking the dependency-chain initialization of the workspace.
-* **Recommended Fix:** 
-  Use physical file system checks (e.g., Node's `fs` module with `workspaceRoot` from `@nx/devkit`) or resolve package locations using `require.resolve`.
-  ```typescript
-  import { workspaceRoot } from '@nx/devkit';
-  import * as fs from 'fs';
-  import * as path from 'path';
-
-  // Inside the loop:
-  const physicalPeerPath = path.join(workspaceRoot, 'node_modules', ...peer.split('/'), 'package.json');
-  if (!fs.existsSync(physicalPeerPath)) {
-    console.log(`Peer dependency ${peer} is not installed physically in node_modules`);
-    continue;
-  }
-  ```
-
-### 2. Runtime Crash Risks (Null/Undefined Vulnerabilities)
+### 1. Runtime Crash Risks (Null/Undefined Vulnerabilities)
 * **Files:** 
   * [join.pipe.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/pipes/src/lib/join.pipe.ts#L13-L15)
   * [limit.pipe.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/angular/pipes/src/lib/limit.pipe.ts#L12-L14)
@@ -146,7 +124,6 @@ This document lists the findings and recommended fixes resulting from the audit 
 
 ## 📋 Comprehensive Checklist for Next Steps
 
-- [ ] **Fix Generator tree operations:** Rewrite `initGenerator` to use physical disk paths for dependency inspection in `node_modules`.
 - [ ] **Add Null guards in pipes:** Add safety checks in `JoinPipe`, `LimitPipe`, and `SlicePipe`.
 - [ ] **Add DI providers in CurrencyPipe:** Put `CurrencyPipe` under `providers` of `RxapCurrencyPipe`.
 - [ ] **Rename/Deprecate `slice` pipe:** Resolve naming collision with standard Angular `slice` pipe.

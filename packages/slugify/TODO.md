@@ -27,26 +27,7 @@ This document details the findings from the audit of the `@rxap/slugify` package
 
 ---
 
-## 3. Library & Generator Anti-patterns
-
-### 🟡 Physical Disk Path Resolution inside Virtualized Generator
-- **Location:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/slugify/src/generators/init/generator.ts#L11-L14)
-- **Problem:**
-  The generator resolves the local `package.json` file using absolute physical paths (`__dirname`) combined with virtual tree calls:
-  ```typescript
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  if (!tree.exists(packageJsonFilePath)) { ... }
-  ```
-  The `Tree` object from `@nx/devkit` is a virtual representation of the file system. Querying physical paths via `__dirname` inside a generator breaks workspace-agnostic guarantees and makes migrations/testing fragile.
-- **Recommended Fix:**
-  Determine the package path relative to the workspace root, or retrieve the path from the project configuration. For a standard Nx layout, the package root for `@rxap/slugify` is always known or can be passed directly as `packages/slugify/package.json`.
-
----
-
-## 4. Test Coverage & Quality Debt
+## 3. Test Coverage & Quality Debt
 
 ### 🟡 Low Test Coverage
 - **Location:** [slugify.spec.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/slugify/src/lib/slugify.spec.ts)

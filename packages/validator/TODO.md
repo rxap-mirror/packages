@@ -6,32 +6,7 @@ This file contains the findings, architectural feedback, and prioritized improve
 
 ## 🟡 Functional Issues & Anti-Patterns
 
-### 1. Virtualized Tree Anti-pattern / Broken Peer Initialization
-* **Location:** `src/generators/init/generator.ts` (Lines 90-110)
-* **Description:**
-  The generator checks and reads files inside `node_modules` using the virtualized Nx `Tree` object:
-  ```typescript
-  const peerPackageJsonFilePath = join('node_modules', ...peer.split('/'), 'package.json');
-  if (!tree.exists(peerPackageJsonFilePath)) {
-    console.log(`Peer dependency ${peer} has no package.json`);
-    continue;
-  }
-  ```
-  `node_modules` is excluded from the virtualized `Tree` workspace file representation. As a result, `tree.exists(...)` will always return `false`, causing the generator to silently skip peer dependency initialization and print `"Peer dependency ... has no package.json"`.
-* **Recommended Fix:**
-  Since `node_modules` are physical files, perform physical file operations using standard Node.js `fs` module, or use `@nx/devkit`'s package/JSON reading helpers that bypass the virtual tree for external dependencies.
-  ```typescript
-  import * as fs from 'fs';
-  import { join } from 'path';
-
-  // Inside the loop:
-  const physicalPath = join(tree.root, 'node_modules', ...peer.split('/'), 'package.json');
-  if (!fs.existsSync(physicalPath)) {
-    // fallback or continue
-  }
-  ```
-
-### 2. Widespread `assertString` Hard Type Errors
+### 1. Widespread `assertString` Hard Type Errors
 * **Location:** Multiple files (e.g., `src/lib/isEmail.ts`, `src/lib/isURL.ts`, `src/lib/isJSON.ts`)
 * **Description:**
   Validators uniformly invoke `assertString(str)` at their entry points. `assertString` throws a hard `TypeError` if the input is not a string (e.g. `null` or `undefined`). 
@@ -44,7 +19,7 @@ This file contains the findings, architectural feedback, and prioritized improve
   }
   ```
 
-### 3. Incomplete Primitive Support in `isJSON`
+### 2. Incomplete Primitive Support in `isJSON`
 * **Location:** `src/lib/isJSON.ts` (Lines 16-22)
 * **Description:**
   When `allow_primitives` is `true`, `isJSON` only supports `null`, `false`, and `true`. Other valid JSON primitive values, such as numeric values (`123`) and string literals (`"abc"`), will incorrectly return `false` because they are not present in the hardcoded `primitives` array list.
@@ -62,7 +37,7 @@ This file contains the findings, architectural feedback, and prioritized improve
 
 ## 🔵 Test Coverage
 
-### 4. Complete Absence of Tests (0% Coverage)
+### 3. Complete Absence of Tests (0% Coverage)
 * **Location:** Entire project
 * **Description:**
   Although a Jest configuration (`jest.config.ts`) exists, there are **0** test files (`*.spec.ts`) in the package.
@@ -74,7 +49,7 @@ This file contains the findings, architectural feedback, and prioritized improve
 
 ## 🌐 Architectural Debt & Maintenance Overhead
 
-### 5. Duplication of `validator.js`
+### 4. Duplication of `validator.js`
 * **Location:** Entire `src/lib/` folder
 * **Description:**
   The library contains an extensive, manually ported/cloned suite of functions derived from the popular NPM library `validator` (or `validator.js`).

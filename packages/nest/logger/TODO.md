@@ -36,25 +36,9 @@ This file outlines the findings from the audit of the `@rxap/nest-logger` packag
 
 ---
 
-## 🏗️ Architectural Debt & Anti-patterns
-
-### 4. Physical Path Usage in Nx Init Generator
-* **File:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/logger/src/generators/init/generator.ts#L11-L14)
-* **Description:** The generator uses physical disk paths via `__dirname` to locate `package.json` and interact with the virtualized `Tree`:
-  ```typescript
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  ```
-  Generators should rely solely on the virtualized `Tree` structure and virtual paths. Directly reading physical paths or requiring files from `node_modules` during dry-runs can cause unexpected discrepancies between dry-run and actual runs, and can break tests.
-* **Recommended Fix:** Query package resources relative to workspace root or use devkit utilities. Avoid physical disk resolutions where virtual counterparts are available.
-
----
-
 ## 🧪 Test Coverage Gap
 
-### 5. Limited Test Coverage for Google Cloud Logging Formatter
+### 4. Limited Test Coverage for Google Cloud Logging Formatter
 * **File:** `src/lib/google-logging-print-messages-factory.ts`
 * **Status (2026-06):** A spec now covers the formatter for single-object, multi-argument and `%JSON` string cases, and verifies the input array is not mutated (added alongside the data-loss fix).
 * **Remaining:** Extend coverage to the `%JSON` interpolation behavior (item 1) and severity mapping for all log levels once those are addressed.

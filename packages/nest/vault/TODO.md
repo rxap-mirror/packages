@@ -41,15 +41,13 @@ This document outlines critical bugs, architectural debt, library anti-patterns,
   - Consumers must manually add `VaultHealthIndicator` to their providers, running into the `Logger` injection bug described above.
 * **Recommended Fix**: Provide and export `VaultHealthIndicator` within `VaultModule` to make it easily accessible to consumers.
 
-### 4. Nx Generator Lifecycle & Virtual Tree Anti-patterns
+### 4. Nx Generator Lifecycle Race Condition
 * **File & Lines**: [`generator.ts`](file:///mnt/mmuenker/Projects/rxap/packages/packages/nest/vault/src/generators/init/generator.ts)
 * **Problem**:
   - **Lifecycle Issue**: The generator uses `addDependenciesToPackageJson()` and registers `installPackagesTask()`, then immediately loops through and tries to `require()` them from `node_modules` in the same execution run. Because package installation occurs as a *post-generator task*, these directories and files do not yet exist on disk, causing peer initialization to fail.
-  - **Virtual Tree Read on Ignored Paths**: Checking files inside `node_modules` via `tree.exists()` is an anti-pattern. `node_modules` is physical, gitignored, and not tracked by the virtual `Tree`. This check always returns `false`, skipping peer init generators.
-  - **Physical Path Resolver**: Resolving `packageJsonFilePath` via `relative(tree.root, join(__dirname, ...))` assumes specific file structures that can break when running transpiled outputs.
+  - _(virtual-tree/physical-path access was fixed 2026-06; the install-ordering problem remains)_
 * **Recommended Fix**:
-  - Retrieve peer dependency `generators` config via standard Node.js module resolution rather than the virtual `tree`.
-  - Perform peer init generators checks using physical path checks or guide the developer to run those separately, as installing packages on disk and requiring them inside the same generator execution phase is an invalid workflow in Nx.
+  - Guide the developer to run newly-added peer init generators separately, as installing packages on disk and requiring them inside the same generator execution phase is an invalid workflow in Nx.
 
 ---
 

@@ -4,14 +4,6 @@ This document lists the findings and recommended actions resulting from a projec
 
 ## 1. Architectural Debt & Anti-Patterns
 
-### 🟡 Virtual Tree vs. Physical File Access inside Generator
-In `src/generators/init/generator.ts`:
-* **Problem**:
-  1. The generator uses `__dirname` to locate `package.json` relative to the script and attempts to maps it to the virtual `tree.root` using `relative()`.
-  2. The generator checks for the existence of peer package configurations inside `node_modules` via `tree.exists(...)` and `tree.read(...)`.
-* **Impact**: `node_modules` are not tracked inside the Nx virtualized `Tree` (they are on the physical disk and ignored by default). Checking or reading them using `tree.exists` or `tree.read` will likely fail or cause unexpected behavior when running dry runs or custom environments.
-* **Recommended Fix**: Use standard physical disk tools (`fs`, Node's `require.resolve`, or custom utilities) to inspect the active `node_modules` state, or rely purely on virtual tree workspace operations without assuming external paths exist in the virtual filesystem.
-
 ### 🟡 Memory Leak Risks with Subject Cleanups
 In `src/lib/definition.ts`:
 * **Problem**:

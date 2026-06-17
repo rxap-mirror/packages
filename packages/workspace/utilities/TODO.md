@@ -17,23 +17,6 @@ An audit of the `workspace-utilities` library was conducted. The library contain
 
 ## 2. Architectural Debt & Library Anti-Patterns
 
-### 🟡 Direct Reference of Physical Disk Paths in Virtual Trees
-* **Location:** [generator.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/utilities/src/generators/init/generator.ts#L11-L18)
-* **Problem:**
-  The `init` generator resolves physical file paths relative to `__dirname` and checks if they exist in the virtual tree:
-  ```typescript
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  if (!tree.exists(packageJsonFilePath)) { ... }
-  ```
-  This is a classic monorepo library anti-pattern. If the generator runs in an environment with a virtualized root (such as in dry-runs or unit tests), `tree.root` can deviate from the physical workspace root. This will cause `packageJsonFilePath` to escape the virtual `Tree`, resulting in `tree.exists(...)` returning `false` incorrectly.
-* **Recommended Fix:**
-  Avoid mixing virtualized tree paths and physical `__dirname` resolutions. If a package needs its own metadata inside a generator, read it directly using physical fs methods (`fs.readFileSync`), or structure the path purely relative to the workspace root.
-
----
-
 ### 🟡 Inconsistent Fallback Logic in `GetProjectSourceRoot`
 * **Location:** [get-project.ts](file:///mnt/mmuenker/Projects/rxap/packages/packages/workspace/utilities/src/lib/get-project.ts#L417-L438)
 * **Problem:**

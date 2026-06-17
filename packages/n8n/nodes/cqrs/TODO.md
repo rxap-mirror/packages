@@ -81,33 +81,7 @@ This document outlines the critical bugs, architectural debt, library anti-patte
 
 ---
 
-## 3. Generator Anti-patterns
-
-### ⚠️ Physical Disk Path Usage in Virtualized Tree Context
-* **File:** `src/generators/init/generator.ts` (Lines 11–14)
-* **Description:** 
-  The `init` generator attempts to compute the path to `package.json` relative to the physical compiled file's directory `__dirname`:
-  ```typescript
-  const packageJsonFilePath = relative(
-    tree.root,
-    join(__dirname, '..', '..', '..', 'package.json')
-  );
-  ```
-  It then attempts to read/verify this path on the virtual `Tree`.
-  This violates the virtual filesystem abstraction in Nx:
-  - If generators are executed from a virtual test harness, `__dirname` relative calculations won't map correctly to files inside the virtual tree.
-  - Relying on physical directory structures causes fragile builds when files are compiled, bundled, or relocated in the monorepo structure.
-* **Recommended Fix:** Retrieve the package's package.json path using standard monorepo path helpers, or locate it relative to the workspace root using known project configurations/conventions without relying on compiled `__dirname` structures.
-
-### ⚠️ Dynamic `require` inside Virtual Tree Generators
-* **File:** `src/generators/init/generator.ts` (Lines 125–130)
-* **Description:** 
-  The generator dynamically calls `require` on files from `node_modules` during execution. This bypasses the virtual filesystem safety checks of the Nx `Tree` and can trigger unexpected exceptions if the packages are not yet installed or are laid out differently on the physical disk.
-* **Recommended Fix:** Perform dynamic imports inside `try/catch` blocks and supply high-quality diagnostic messages if a dynamic module load fails.
-
----
-
-## 4. Test Coverage
+## 3. Test Coverage
 
 ### ⚠️ Zero Test Suite Coverage
 * **Status:** No tests found (0% coverage).
