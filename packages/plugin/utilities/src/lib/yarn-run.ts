@@ -21,6 +21,12 @@ export function YarnRun(args: string[]) {
     s.stdout.on('data', (data: Buffer) => {
       console.log(data.toString('utf-8'));
     });
-    s.on('close', resolve);
+    s.on('close', (code: number | null) => {
+      if (code === 0) {
+        resolve(code);
+      } else {
+        reject(new Error(`yarn ${ args.join(' ') } exited with code ${ code }`));
+      }
+    });
   });
 }

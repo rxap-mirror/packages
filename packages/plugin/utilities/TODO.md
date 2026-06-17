@@ -30,27 +30,7 @@ This document outlines critical bugs, architectural debt, API smells, and test c
 
 ---
 
-### 3. `hasFileInProjectRoot`: Absolute Path Join Bug
-* **File:** `src/lib/project-root-files.ts` (Lines 32–36)
-* **Description:** 
-  The function `hasFileInProjectRoot` is implemented as:
-  ```typescript
-  export function hasFileInProjectRoot(context: ExecutorContext, fileName: string) {
-    const projectRoot = GetProjectRoot(context);
-    const filePath = join(context.root, projectRoot, fileName);
-    return existsSync(join(projectRoot, filePath));
-  }
-  ```
-  Since `filePath` is already an absolute path (via `join(context.root, ...)`), joining it with `projectRoot` again produces a nonsense path (e.g. `packages/plugin/utilities/mnt/mmuenker/Projects/...`). This path will never exist on disk, meaning `hasFileInProjectRoot` will **always return `false`**.
-* **Recommended Fix:** 
-  Change the return statement to directly check `filePath`:
-  ```typescript
-  return existsSync(filePath);
-  ```
-
----
-
-### 4. `GetAllPackageDependenciesForProject`: Recursive Cycle Stack Overflow
+### 3. `GetAllPackageDependenciesForProject`: Recursive Cycle Stack Overflow
 * **File:** `src/lib/get-all-package-dependencies-for-project.ts` (Lines 44, 82)
 * **Description:** 
   The function signature accepts a third parameter, `resolvedDependencies`, to keep track of already-visited packages and prevent infinite recursion loops in circular dependency graphs.
@@ -61,28 +41,6 @@ This document outlines critical bugs, architectural debt, API smells, and test c
   This prevents proper accumulation of visited nodes down the recursion tree. If a circular reference exists, the loop will crash with a `RangeError: Maximum call stack size exceeded` (stack overflow).
 * **Recommended Fix:** 
   Accumulate resolved dependencies properly across sibling loops and recursion depths, similar to how it is handled in `GetDependentProjectsForProject`.
-
----
-
-### 5. `YarnRun`: Silent Execution Failures
-* **File:** `src/lib/yarn-run.ts` (Lines 24)
-* **Description:** 
-  `YarnRun` resolves the promise immediately when the spawned process closes, without checking the exit code:
-  ```typescript
-  s.on('close', resolve);
-  ```
-  If `yarn` fails (exit code is non-zero), the promise still resolves successfully. The calling executor will falsely assume the command succeeded, silently masking compile/build failures.
-* **Recommended Fix:** 
-  Check the exit code in the `close` handler and reject the promise if it's non-zero:
-  ```typescript
-  s.on('close', (code) => {
-    if (code !== 0) {
-      reject(new Error(`Yarn command failed with exit code ${code}`));
-    } else {
-      resolve(code);
-    }
-  });
-  ```
 
 ---
 
@@ -147,3 +105,15 @@ This document outlines critical bugs, architectural debt, API smells, and test c
   The test `should handle circular dependencies gracefully` is marked as `.skip`. When circular dependencies exist, the function currently returns the original project inside the dependency list, which is incorrect.
 * **Recommended Fix:** 
   Initialize the `resolved` array parameter in `GetDependentProjectsForProject` with the starting `projectName` so it won't be processed and returned as its own dependency. Unskip and verify the test.
+
+---
+
+## Resolved (2026-06)
+- `hasFileInProjectRoot` no longer re-joins an already-absolute path with `projectRoot`; it
+  checks the absolute `filePath` directly (it previously always returned `false`).
+- `YarnRun` now rejects on a non-zero exit code instead of resolving regardless, so failed
+  yarn commands no longer pass silently.
+
+> Note: `GetAllPackageDependenciesForProject` still passes `directDependencies` instead of the
+> accumulated resolved set in its recursion (stack-overflow risk on cycles). Deferred — needs a
+> proper visited-set accumulation design (mirroring `GetDependentProjectsForProject`).

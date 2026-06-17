@@ -31,6 +31,8 @@ export function writeFileToProjectRoot(context: ExecutorContext, fileName: strin
 
 export function hasFileInProjectRoot(context: ExecutorContext, fileName: string) {
   const projectRoot = GetProjectRoot(context);
+  // filePath is already absolute (joined with context.root); re-joining with
+  // projectRoot produced a nonsense path that never existed
   const filePath = join(context.root, projectRoot, fileName);
-  return existsSync(join(projectRoot, filePath));
+  return existsSync(filePath);
 }
