@@ -73,12 +73,24 @@ export async function getDirectPackageDependenciesForProjectWihRetry(
   const dependenciesWithPackageJson = projectGraph.dependencies[projectName]
     .filter(dependency => !dependency.target.startsWith('npm:'))
     .map(dependency => dependency.target)
-    .filter(name => existsSync(join(context.root, GetProjectRoot(context, name), 'package.json')));
+    .filter(name => {
+      if (existsSync(join(context.root, GetProjectRoot(context, name), 'package.json'))) {
+        return true;
+      }
+      console.warn(`Dropping dependency '${ name }' of project '${ projectName }': no package.json found on disk (it may be mid-rewrite by a concurrent build).`);
+      return false;
+    });
 
   const withPackageJson = await Promise.all(dependenciesWithPackageJson.map(projectName => readPackageJsonForProjectWithRetry(context, projectName, retries, sleep) as any));
 
   return withPackageJson
-    .filter(packageJson => !!packageJson.name && packageJson.version)
+    .filter(packageJson => {
+      if (!!packageJson.name && packageJson.version) {
+        return true;
+      }
+      console.warn(`Dropping dependency of project '${ projectName }': package.json is missing a name or version (it may be mid-rewrite by a concurrent build).`);
+      return false;
+    })
     .reduce((
       acc,
       {
