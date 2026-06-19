@@ -79,7 +79,15 @@ export function GenerateSchematicDefinitionsMap(tree: Tree, options: IndexJsonSc
     } else {
       schemaRefPath = schema;
     }
-    const content = JSON.parse(tree.read(join(projectRoot, schemaRefPath))!.toString());
+    // A collection entry may point to a generator that has no template.schema.json
+    // and no (yet generated) schema.json on disk (e.g. an `init` generator exposed
+    // in collection.json). Skip it instead of crashing on a null read.
+    const schemaFileContent = tree.read(join(projectRoot, schemaRefPath));
+    if (schemaFileContent === null) {
+      console.warn(`Skipping schematic definition: neither '${ schemaTemplatePath }' nor '${ schema }' exists under '${ projectRoot }'.`);
+      continue;
+    }
+    const content = JSON.parse(schemaFileContent.toString());
     definitions[camelize(content.$id)] = {
       $ref: relative(basePath, schemaRefPath)
     };
