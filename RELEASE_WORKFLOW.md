@@ -71,7 +71,8 @@ stable release, run on `latest`/`master` with an explicit specifier, e.g.
 ## Configuration
 
 Release behavior is configured under `release` in [`nx.json`](nx.json): two independent release
-groups (`packages` for the `tag:packages` libraries, `rxap` for the umbrella), conventional-commit
+groups (`packages` for the `tag:packages` libraries, excluding the `demos/**` fixtures that have no
+`package.json`; `rxap` for the umbrella), conventional-commit
 versioning with the `git-tag` current-version resolver (`disk` fallback for packages without a
 matching tag yet), `^` version prefix, per-project changelogs, and
 `nx-release-publish.packageRoot = dist/{projectRoot}` (publish from dist) in `targetDefaults`.

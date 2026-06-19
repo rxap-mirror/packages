@@ -304,7 +304,7 @@
     "groups": {
       "packages": {
         "projectsRelationship": "independent",
-        "projects": ["tag:packages", "!rxap"],
+        "projects": ["tag:packages", "!rxap", "!demos/**"],
         "releaseTagPattern": "@rxap/{projectName}@{version}"
       },
       "rxap": {
