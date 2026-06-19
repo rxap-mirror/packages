@@ -34,3 +34,67 @@ exports[`form-component minimal: file-tree 1`] = `
   "/ui/lib/tsconfig.lib.json",
 ]
 `;
+
+exports[`form-component minimal: generated 1`] = `
+{
+  "/ui/lib/src/lib/test-form/form.providers.ts": "import { Provider, INJECTOR, Injector, Optional } from '@angular/core';
+import { TestForm, ITestForm } from './test-form.form';
+import { RxapFormBuilder, RXAP_FORM_DEFINITION_BUILDER, RXAP_FORM_DEFINITION, RXAP_FORM_INITIAL_STATE } from '@rxap/forms';
+
+export const FormProviders: Provider[] = [TestForm];
+export const FormComponentProviders: Provider[] = [{
+    provide: RXAP_FORM_DEFINITION,
+    useFactory: FormFactory,
+    deps: [ INJECTOR,[ new Optional(), RXAP_FORM_INITIAL_STATE ] ]
+  }];
+export const FormBuilderProviders: Provider[] = [{
+    provide: RXAP_FORM_DEFINITION_BUILDER,
+    useFactory: FormBuilderFactory,
+    deps: [ INJECTOR ]
+  }];
+
+export function FormFactory(injector: Injector, state: ITestForm | null): TestForm {
+  return new RxapFormBuilder<ITestForm>(TestForm, injector).build(state ?? {});
+}
+
+function FormBuilderFactory(injector: Injector): RxapFormBuilder<ITestForm> {
+  return new RxapFormBuilder<ITestForm>(TestForm, injector);
+}
+",
+  "/ui/lib/src/lib/test-form/test-form.component.html": "<form rxapForm class="flex flex-col gap-2">
+  <rxap-form-controls></rxap-form-controls>
+</form>
+",
+  "/ui/lib/src/lib/test-form/test-form.component.scss": "",
+  "/ui/lib/src/lib/test-form/test-form.component.ts": "import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormControlsComponent } from '@rxap/material-form-system';
+import { RxapFormsModule } from '@rxap/forms';
+import { FormProviders, FormComponentProviders } from './form.providers';
+
+@Component({
+    standalone: true,
+    selector: 'jest-test-form',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './test-form.component.html',
+    styleUrls: ['./test-form.component.scss'],
+  imports: [ReactiveFormsModule, FormControlsComponent, RxapFormsModule],
+  providers: [FormProviders, FormComponentProviders],
+})
+export class TestFormComponent {
+}
+",
+  "/ui/lib/src/lib/test-form/test-form.form.ts": "import { FormType, RxapFormGroup, RxapForm } from '@rxap/forms';
+import { Injectable } from '@angular/core';
+
+@RxapForm('test-form')
+@Injectable()
+export class TestForm implements FormType<ITestForm> {
+  public readonly rxapFormGroup!: RxapFormGroup<ITestForm>;
+}
+
+export interface ITestForm {
+}
+",
+}
+`;

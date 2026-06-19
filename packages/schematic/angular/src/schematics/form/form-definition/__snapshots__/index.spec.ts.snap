@@ -31,3 +31,44 @@ exports[`form-definition minimal: file-tree 1`] = `
   "/ui/lib/tsconfig.lib.json",
 ]
 `;
+
+exports[`form-definition minimal: generated 1`] = `
+{
+  "/ui/lib/src/lib/form.providers.ts": "import { Provider, INJECTOR, Injector, Optional } from '@angular/core';
+import { TestDefForm, ITestDefForm } from './test-def.form';
+import { RxapFormBuilder, RXAP_FORM_DEFINITION_BUILDER, RXAP_FORM_DEFINITION, RXAP_FORM_INITIAL_STATE } from '@rxap/forms';
+
+export const FormProviders: Provider[] = [TestDefForm];
+export const FormComponentProviders: Provider[] = [{
+    provide: RXAP_FORM_DEFINITION,
+    useFactory: FormFactory,
+    deps: [ INJECTOR,[ new Optional(), RXAP_FORM_INITIAL_STATE ] ]
+  }];
+export const FormBuilderProviders: Provider[] = [{
+    provide: RXAP_FORM_DEFINITION_BUILDER,
+    useFactory: FormBuilderFactory,
+    deps: [ INJECTOR ]
+  }];
+
+export function FormFactory(injector: Injector, state: ITestDefForm | null): TestDefForm {
+  return new RxapFormBuilder<ITestDefForm>(TestDefForm, injector).build(state ?? {});
+}
+
+function FormBuilderFactory(injector: Injector): RxapFormBuilder<ITestDefForm> {
+  return new RxapFormBuilder<ITestDefForm>(TestDefForm, injector);
+}
+",
+  "/ui/lib/src/lib/test-def.form.ts": "import { FormType, RxapFormGroup, RxapForm } from '@rxap/forms';
+import { Injectable } from '@angular/core';
+
+@RxapForm('test-def')
+@Injectable()
+export class TestDefForm implements FormType<ITestDefForm> {
+  public readonly rxapFormGroup!: RxapFormGroup<ITestDefForm>;
+}
+
+export interface ITestDefForm {
+}
+",
+}
+`;

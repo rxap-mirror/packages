@@ -4,6 +4,7 @@ import {
   Tree,
 } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { SnapshotGeneratedTree } from '@rxap/plugin-utilities';
 import { generateMonolithic } from './generate-monolithic';
 
 describe('generateMonolithic()', () => {
@@ -27,6 +28,7 @@ describe('generateMonolithic()', () => {
     expect(tree.read('app/src/app/app.routes.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('app/src/app/layout.routes.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('app/src/app/app.navigation.ts', 'utf-8')).toMatchSnapshot();
+    expect(SnapshotGeneratedTree(tree)).toMatchSnapshot('generated-tree');
 
   });
 

@@ -1,5 +1,6 @@
 import { Tree } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { SnapshotGeneratedTree } from '@rxap/plugin-utilities';
 import initGenerator from './generator';
 
 describe('init', () => {
@@ -40,6 +41,11 @@ describe('init', () => {
     expect(tree.read('jest.preset.js', 'utf-8')).toMatchSnapshot();
     expect(tree.read('jest.config.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('schematic.yaml', 'utf-8')).toMatchSnapshot();
+
+    // Golden master: full content of every file the generator created/modified,
+    // so a migration that changes any generated output (not just the files
+    // listed explicitly above) produces a reviewable snapshot diff.
+    expect(SnapshotGeneratedTree(tree)).toMatchSnapshot('generated-tree');
 
   }, 5000 * 4);
 
