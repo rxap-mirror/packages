@@ -132,3 +132,44 @@ export function listFiles(tree: Tree | DirEntry) {
   tree.visit(path => paths.push(path));
   return paths.sort();
 }
+
+/**
+ * Reads every file in a schematic `Tree` into a `{ path: content }` map.
+ *
+ * Used to snapshot the full content of a workspace before/after running a
+ * schematic. Combine with {@link diffTreeContent} to isolate only the files a
+ * schematic created or modified (the fixture seeded by {@link createFullWorkspace}
+ * is filtered out by the diff).
+ */
+export function captureTree(tree: Tree): Record<string, string> {
+  const result: Record<string, string> = {};
+  tree.visit(path => {
+    const content = tree.read(path);
+    result[path] = content ? content.toString('utf-8') : '';
+  });
+  return result;
+}
+
+/**
+ * Returns only the files added or modified between two {@link captureTree}
+ * snapshots, sorted by path for stable golden-master diffs.
+ *
+ * ```ts
+ * const { tree } = createFullWorkspace();
+ * const before = captureTree(tree);
+ * const result = await runner.runSchematic('compose', options, tree);
+ * expect(diffTreeContent(before, captureTree(result))).toMatchSnapshot('generated');
+ * ```
+ */
+export function diffTreeContent(
+  before: Record<string, string>,
+  after: Record<string, string>,
+): Record<string, string> {
+  const diff: Record<string, string> = {};
+  for (const path of Object.keys(after).sort((a, b) => a.localeCompare(b))) {
+    if (!(path in before) || before[path] !== after[path]) {
+      diff[path] = after[path];
+    }
+  }
+  return diff;
+}
