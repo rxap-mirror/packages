@@ -3,15 +3,6 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nest/typeorm/src",
   "projectType": "library",
-  "release": {
-    "version": {
-      "generatorOptions": {
-        "packageRoot": "dist/{projectRoot}",
-        "currentVersionResolver": "git-tag",
-        "fallbackCurrentVersionResolver": "disk"
-      }
-    }
-  },
   "tags": ["nest", "packages"],
   "targets": {
     "build": {

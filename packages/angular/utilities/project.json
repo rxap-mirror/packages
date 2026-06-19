@@ -4,15 +4,6 @@
   "sourceRoot": "packages/angular/utilities/src",
   "prefix": "rxap",
   "projectType": "library",
-  "release": {
-    "version": {
-      "generatorOptions": {
-        "packageRoot": "dist/{projectRoot}",
-        "currentVersionResolver": "git-tag",
-        "fallbackCurrentVersionResolver": "disk"
-      }
-    }
-  },
   "tags": ["angular", "ngx", "packages"],
   "targets": {
     "build": {

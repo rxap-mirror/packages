@@ -3,14 +3,6 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/plugin/typedoc/src",
   "projectType": "library",
-  "release": {
-    "version": {
-      "generatorOptions": {
-        "packageRoot": "dist/{projectRoot}",
-        "currentVersionResolver": "git-tag"
-      }
-    }
-  },
   "tags": ["plugin", "nx", "nx-plugin", "packages"],
   "targets": {
     "build": {
