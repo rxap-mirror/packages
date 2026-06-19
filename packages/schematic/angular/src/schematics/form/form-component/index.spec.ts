@@ -2,8 +2,11 @@
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { join } from 'path';
+import { CollectTypeScriptSyntaxDiagnostics } from '@rxap/plugin-utilities';
 import {
+  captureTree,
   createFullWorkspace,
+  diffTreeContent,
   listFiles,
   TestProject,
   TestProjectNames,
@@ -24,6 +27,7 @@ describe('form-component', () => {
   });
 
   it('minimal', async () => {
+    const before = captureTree(tree);
     tree = await runner.runSchematic('form-component', {
       name: 'test-form',
       project: projects.angular.lib,
@@ -31,5 +35,8 @@ describe('form-component', () => {
     }, tree);
 
     expect(listFiles(tree)).toMatchSnapshot('file-tree');
+    const generated = diffTreeContent(before, captureTree(tree));
+    expect(generated).toMatchSnapshot('generated');
+    expect(CollectTypeScriptSyntaxDiagnostics(generated)).toEqual([]);
   });
 });

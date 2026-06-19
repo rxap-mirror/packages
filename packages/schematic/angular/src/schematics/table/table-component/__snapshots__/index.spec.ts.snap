@@ -34,6 +34,132 @@ exports[`table-component minimal: file-tree 1`] = `
 ]
 `;
 
+exports[`table-component minimal: generated 1`] = `
+{
+  "/package.json": "{
+  "name": "workspace",
+  "dependencies": {
+    "@rxap/components": "19.0.0-dev.0",
+    "@rxap/data-source": "19.0.0-dev.0",
+    "@rxap/directives": "19.0.0-dev.0",
+    "@rxap/form-system": "19.0.0-dev.0",
+    "@rxap/forms": "19.0.0-dev.0",
+    "@rxap/material-directives": "19.0.0-dev.0",
+    "@rxap/material-form-system": "19.0.0-dev.1",
+    "@rxap/material-table-system": "19.0.0-dev.1",
+    "@rxap/mixin": "16.0.11-dev.0",
+    "@rxap/nest-dto": "10.3.7-dev.1",
+    "@rxap/pattern": "1.1.10-dev.0",
+    "@rxap/reflect-metadata": "1.0.12-dev.0",
+    "@rxap/rxjs": "1.1.11-dev.0",
+    "@rxap/utilities": "16.4.1-dev.0",
+    "@rxap/window-system": "19.0.0-dev.0"
+  }
+}
+",
+  "/ui/lib/src/lib/test-table/test-table.component.html": "<div class="flex flex-col gap-y-4 m-4">
+
+  <div class="table-card-container flex flex-col">
+    <mat-card>
+      <mat-progress-bar
+        rxapCardProgressBar
+        [loading$]="tableDataSourceDirective.loading$"
+      ></mat-progress-bar>
+      <mat-card-header class="min-h-full h-12">
+      <mat-card-title i18n>Test Table</mat-card-title>
+      <rxap-table-column-menu
+        matCard
+        #rxapTableColumns="rxapTableColumns"
+        >
+      </rxap-table-column-menu>
+       </mat-card-header>
+
+      <mat-card-content>
+        <rxap-data-source-error
+          *ngIf="tableDataSourceDirective.hasError$ | async"
+          [dataSourceLike]="tableDataSourceDirective">
+        </rxap-data-source-error>
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
+        <table
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          mat-table
+          #tableDataSourceDirective="rxapTableDataSource"
+          rxapTableDataSource
+          [parameters]="parameters"
+          id="test-table"
+          [paginator]="paginator"
+        >
+          <!-- region columns -->
+
+          <!-- endregion -->
+
+
+
+
+          <tr
+            [@rowsAnimation]=""
+            mat-row
+            [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+            class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+            *matRowDef="
+              let element;
+              columns: rxapTableColumns.displayColumns;
+              let odd = odd;
+              let even = even
+            "
+          ></tr>
+        </table>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-paginator
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          class="m-4"
+          rxapPersistent
+          [pageSizeOptions]="[5,10,25,50,100]"
+          [pageSize]="10"
+          #paginator="matPaginator"
+        ></mat-paginator>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+",
+  "/ui/lib/src/lib/test-table/test-table.component.scss": "",
+  "/ui/lib/src/lib/test-table/test-table.component.ts": "import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective } from '@rxap/material-table-system';
+import { Observable } from 'rxjs';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DataSourceErrorComponent } from '@rxap/data-source';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+import { CardProgressBarDirective } from '@rxap/material-directives/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
+import { AsyncPipe, NgIf, NgClass } from '@angular/common';
+
+@Component({
+    standalone: true,
+    selector: 'jest-test-table',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './test-table.component.html',
+    styleUrls: ['./test-table.component.scss'],
+  animations: [RowAnimation],
+  imports: [TableColumnMenuModule, MatPaginatorModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass],
+})
+export class TestTableComponent {
+  @Input()
+  public parameters?: Observable<Record<string, unknown>>;
+}
+",
+  "/ui/lib/src/lib/test-table/test-table.ts": "import { TableRowMetadata } from '@rxap/material-table-system';
+
+export interface ITestTable extends Record<string, unknown>, TableRowMetadata {
+}
+",
+}
+`;
+
 exports[`table-component nestjs backend: file-tree 1`] = `
 [
   "/angular.json",
@@ -70,6 +196,296 @@ exports[`table-component nestjs backend: file-tree 1`] = `
   "/ui/lib/tsconfig.json",
   "/ui/lib/tsconfig.lib.json",
 ]
+`;
+
+exports[`table-component nestjs backend: generated 1`] = `
+{
+  "/api/lib/src/lib/api-lib/api-lib.module.ts": "import { Module } from '@nestjs/common';
+import { TestTableController } from './test-table.controller';
+
+@Module({
+  controllers: [TestTableController],
+})
+export class ApiLibModule {
+}
+",
+  "/api/lib/src/lib/api-lib/dtos/test-table-page.dto.ts": "import { Expose, Type } from 'class-transformer';
+import { IsArray, IsInstance, IsNumber, IsOptional, IsString } from 'class-validator';
+import { TestTableRowDto } from './test-table-row.dto';
+import { FilterQueryDto } from '@rxap/nest-dto';
+
+export class TestTablePageDto {
+  @Expose()
+  @IsArray()
+  @Type(() => TestTableRowDto)
+  @IsInstance(TestTableRowDto, {
+        each: true
+      })
+  rows!: Array<TestTableRowDto>;
+  @Expose()
+  @IsNumber()
+  pageSize!: number;
+  @Expose()
+  @IsNumber()
+  pageIndex!: number;
+  @Expose()
+  @IsNumber()
+  total!: number;
+  @Expose()
+  @IsOptional()
+  @IsString()
+  sortDirection?: string;
+  @Expose()
+  @IsOptional()
+  @IsString()
+  sortBy?: string;
+  @Expose()
+  @IsArray()
+  @Type(() => FilterQueryDto)
+  @IsInstance(FilterQueryDto, {
+        each: true
+      })
+  @IsOptional()
+  filter?: Array<FilterQueryDto>;
+}
+",
+  "/api/lib/src/lib/api-lib/dtos/test-table-row.dto.ts": "import { Expose } from 'class-transformer';
+import { IsString, IsNumber } from 'class-validator';
+
+export class TestTableRowDto {
+  @Expose()
+  @IsString()
+  name!: string;
+  @Expose()
+  @IsNumber()
+  __rowId!: number;
+}
+",
+  "/api/lib/src/lib/api-lib/test-table.controller.ts": "import { Controller, DefaultValuePipe, Get, Query } from '@nestjs/common';
+import { TestTableRowDto } from './dtos/test-table-row.dto';
+import { TestTablePageDto } from './dtos/test-table-page.dto';
+import { ToDtoInstance } from '@rxap/nest-dto';
+import { FilterQuery, FilterQueryPipe } from '@rxap/nest-utilities';
+import { ApiQuery } from '@nestjs/swagger';
+
+@Controller('api-lib/test-table')
+export class TestTableController {
+  public async getPageData(sortBy: string, sortDirection: string, pageSize: number, pageIndex: number, filter: FilterQuery[]): Promise<{
+      list: Array<RawRowData>,
+      total: number
+    }> {
+    return {
+      list: [],
+      total: 0,
+    };
+  }
+
+  private toRowDto(item: RawRowData, index: number, pageIndex: number, pageSize: number, list: Array<RawRowData>): TestTableRowDto {
+    return {
+      __rowId: (pageIndex * pageSize + index),
+      
+    name: item.name
+    };
+  }
+
+  private toPageDto(list: Array<RawRowData>, total: number, pageIndex: number, pageSize: number, sortBy: string, sortDirection: string, filter: FilterQuery[]): TestTablePageDto {
+    return {
+      total, pageIndex, pageSize, sortBy, sortDirection, filter,
+      rows: list.map((item, index) => this.toRowDto(item, index, pageIndex, pageSize, list))
+    };
+  }
+
+  @Get()
+  @ApiQuery({
+        name: 'pageIndex',
+        required: false,
+        isArray: false
+      })
+  @ApiQuery({
+        name: 'pageSize',
+        required: false,
+        isArray: false
+      })
+  @ApiQuery({
+        name: 'sortDirection',
+        required: false,
+        isArray: false
+      })
+  @ApiQuery({
+        name: 'sortBy',
+        required: false,
+        isArray: false
+      })
+  @ApiQuery({
+        name: 'filter',
+        required: false,
+        isArray: true
+      })
+  public async getPage(@Query('filter', new FilterQueryPipe()) filter: Array<FilterQuery>, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string): Promise<TestTablePageDto> {
+    const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);
+    return ToDtoInstance(
+    TestTablePageDto,
+    this.toPageDto(data.list, data.total, pageIndex, pageSize, sortBy, sortDirection, filter),
+    );
+  }
+}
+
+type RawRowData = any;
+",
+  "/package.json": "{
+  "name": "workspace",
+  "dependencies": {
+    "@rxap/components": "19.0.0-dev.0",
+    "@rxap/data-source": "19.0.0-dev.0",
+    "@rxap/directives": "19.0.0-dev.0",
+    "@rxap/form-system": "19.0.0-dev.0",
+    "@rxap/forms": "19.0.0-dev.0",
+    "@rxap/material-directives": "19.0.0-dev.0",
+    "@rxap/material-form-system": "19.0.0-dev.1",
+    "@rxap/material-table-system": "19.0.0-dev.1",
+    "@rxap/mixin": "16.0.11-dev.0",
+    "@rxap/nest-dto": "10.3.7-dev.1",
+    "@rxap/pattern": "1.1.10-dev.0",
+    "@rxap/reflect-metadata": "1.0.12-dev.0",
+    "@rxap/rxjs": "1.1.11-dev.0",
+    "@rxap/utilities": "16.4.1-dev.0",
+    "@rxap/window-system": "19.0.0-dev.0"
+  }
+}
+",
+  "/ui/lib/src/lib/test-table/test-table.component.html": "<div class="flex flex-col gap-y-4 m-4">
+
+  <div class="table-card-container flex flex-col">
+    <mat-card>
+      <mat-progress-bar
+        rxapCardProgressBar
+        [loading$]="tableDataSourceDirective.loading$"
+      ></mat-progress-bar>
+      <mat-card-header class="min-h-full h-12">
+      <mat-card-title i18n>Test Table</mat-card-title>
+      <rxap-table-column-menu
+        matCard
+        #rxapTableColumns="rxapTableColumns"
+        >
+        <rxap-table-column-option name="name"
+          >
+          <ng-container i18n>Name</ng-container>
+        </rxap-table-column-option>
+      </rxap-table-column-menu>
+       </mat-card-header>
+
+      <mat-card-content>
+        <rxap-data-source-error
+          *ngIf="tableDataSourceDirective.hasError$ | async"
+          [dataSourceLike]="tableDataSourceDirective">
+        </rxap-data-source-error>
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
+        <table
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          mat-table
+          #tableDataSourceDirective="rxapTableDataSource"
+          rxapTableDataSource
+          [parameters]="parameters"
+          id="test-table"
+          [paginator]="paginator"
+        >
+          <!-- region columns -->
+          <ng-container matColumnDef="name">
+              <th mat-header-cell
+                *matHeaderCellDef
+              >
+                <ng-container i18n>Name</ng-container>
+              </th>
+              <td *matCellDef="let element"
+                  mat-cell
+              >
+              {{ element?.name }}
+              </td>
+          </ng-container>
+          
+
+          <!-- endregion -->
+
+
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="rxapTableColumns.displayColumns"
+          ></tr>
+
+          <tr
+            [@rowsAnimation]=""
+            mat-row
+            [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+            class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+            *matRowDef="
+              let element;
+              columns: rxapTableColumns.displayColumns;
+              let odd = odd;
+              let even = even
+            "
+          ></tr>
+        </table>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-paginator
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          class="m-4"
+          rxapPersistent
+          [pageSizeOptions]="[5,10,25,50,100]"
+          [pageSize]="10"
+          #paginator="matPaginator"
+        ></mat-paginator>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+",
+  "/ui/lib/src/lib/test-table/test-table.component.scss": "",
+  "/ui/lib/src/lib/test-table/test-table.component.ts": "import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective, TABLE_REMOTE_METHOD_ADAPTER_FACTORY, RXAP_TABLE_METHOD } from '@rxap/material-table-system';
+import { Observable } from 'rxjs';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DataSourceErrorComponent } from '@rxap/data-source';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+import { CardProgressBarDirective } from '@rxap/material-directives/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
+import { AsyncPipe, NgIf, NgClass } from '@angular/common';
+import { GetPageAdapterFactory } from '@rxap/open-api/remote-method';
+import { TestTableControllerGetPageRemoteMethod } from 'open-api-api-lib/src/lib/remote-methods';
+
+@Component({
+    standalone: true,
+    selector: 'jest-test-table',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './test-table.component.html',
+    styleUrls: ['./test-table.component.scss'],
+  animations: [RowAnimation],
+  imports: [TableColumnMenuModule, MatPaginatorModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass],
+  providers: [{
+      provide: TABLE_REMOTE_METHOD_ADAPTER_FACTORY,
+      useValue: GetPageAdapterFactory
+    },
+    {
+      provide: RXAP_TABLE_METHOD,
+      useExisting: TestTableControllerGetPageRemoteMethod
+    },
+  ],
+})
+export class TestTableComponent {
+  @Input()
+  public parameters?: Observable<Record<string, unknown>>;
+}
+",
+  "/ui/lib/src/lib/test-table/test-table.ts": "import { TableRowMetadata } from '@rxap/material-table-system';
+import { TestTableControllerGetPageResponse } from 'open-api-api-lib/src/lib/responses';
+
+export type ITestTable = TableRowMetadata & TestTableControllerGetPageResponse['rows'][number];
+",
+}
 `;
 
 exports[`table-component nestjs backend: ui-lib.module.ts 1`] = `

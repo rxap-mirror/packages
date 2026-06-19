@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expose-as-schematic (golden master) serializes each nx generator as an angular schematic wrapper: exposed-tree 1`] = `
+{
+  ".prettierrc": "{"singleQuote":true}",
+  "my-plugin/generators.json": "{
+  "generators": {
+    "my-gen": {
+      "factory": "./src/generators/my-gen/generator",
+      "schema": "./src/generators/my-gen/schema.json",
+      "description": "My generator"
+    }
+  },
+  "schematics": {
+    "my-gen": {
+      "factory": "./src/generators/my-gen/index",
+      "schema": "./src/generators/my-gen/schema.json",
+      "description": "My generator"
+    }
+  }
+}
+",
+  "my-plugin/package.json": "{
+  "version": "0.0.0",
+  "name": "@rxap/my-plugin",
+  "generators": "./generators.json",
+  "schematics": "./generators.json"
+}
+",
+  "my-plugin/project.json": "{
+  "name": "my-plugin",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "my-plugin/src",
+  "projectType": "library"
+}
+",
+  "my-plugin/src/generators/my-gen/index.ts": "import { convertNxGenerator } from '@nx/devkit';
+import generator from './generator';
+
+const schematic = convertNxGenerator(generator);
+export default schematic;
+",
+  "nx.json": "{"affected":{"defaultBase":"main"},"targetDefaults":{"build":{"cache":true},"lint":{"cache":true}}}",
+  "package.json": "{"name":"@proj/source","dependencies":{},"devDependencies":{}}",
+  "tsconfig.base.json": "{"compilerOptions":{"paths":{}}}",
+}
+`;
