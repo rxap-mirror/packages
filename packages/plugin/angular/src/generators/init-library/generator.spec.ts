@@ -7,6 +7,7 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { libraryGenerator } from '@nx/angular/generators';
 import {
   CollectTypeScriptSyntaxDiagnostics,
+  CompileGeneratedFiles,
   SnapshotGeneratedTree,
 } from '@rxap/plugin-utilities';
 import initLibraryGenerator from './generator';
@@ -48,7 +49,8 @@ describe('plugin-angular:init-library (golden master)', () => {
     // changes either produces a reviewable snapshot diff.
     expect(SnapshotGeneratedTree(tree)).toMatchSnapshot('init-library-tree');
     expect(CollectTypeScriptSyntaxDiagnostics(SnapshotGeneratedTree(tree))).toEqual([]);
+    expect(CompileGeneratedFiles(SnapshotGeneratedTree(tree))).toEqual([]);
 
-  }, 5000 * 6);
+  }, 5000 * 10);
 
 });

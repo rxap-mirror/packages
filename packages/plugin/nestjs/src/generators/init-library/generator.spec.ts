@@ -7,6 +7,7 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { libraryGenerator } from '@nx/nest/src/generators/library/library';
 import {
   CollectTypeScriptSyntaxDiagnostics,
+  CompileGeneratedFiles,
   SnapshotGeneratedTree,
 } from '@rxap/plugin-utilities';
 import initLibraryGenerator from './generator';
@@ -43,7 +44,8 @@ describe('plugin-nestjs:init-library (golden master)', () => {
     // either produces a reviewable snapshot diff.
     expect(SnapshotGeneratedTree(tree)).toMatchSnapshot('init-library-tree');
     expect(CollectTypeScriptSyntaxDiagnostics(SnapshotGeneratedTree(tree))).toEqual([]);
+    expect(CompileGeneratedFiles(SnapshotGeneratedTree(tree))).toEqual([]);
 
-  }, 5000 * 4);
+  }, 5000 * 8);
 
 });
