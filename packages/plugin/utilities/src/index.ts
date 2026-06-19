@@ -1,6 +1,7 @@
 // region
 export * from './lib/golden-master';
 export * from './lib/typescript-syntax-check';
+export * from './lib/semantic-compile-check';
 export * from './lib/get-all-package-dependencies-for-project';
 export * from './lib/get-dependent-projects-for-project';
 export * from './lib/get-direct-package-dependencies-for-project';
