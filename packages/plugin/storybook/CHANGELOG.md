@@ -1,3 +1,11 @@
+## 20.1.2-dev.0 (2026-06-19)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.1
+- Updated utilities to 16.5.1-dev.1
+- Updated ts-morph to 1.7.0-dev.1
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

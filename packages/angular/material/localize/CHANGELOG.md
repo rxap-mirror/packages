@@ -1,3 +1,22 @@
+## 19.2.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- **localize:** improve i18n handling and language selection logic
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- peer dependency issue
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

@@ -1,3 +1,15 @@
+## 16.5.1-dev.1 (2026-06-19)
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **utilities:** back @Deprecated member storage with a WeakMap
+- **utilities:** harden null/array handling, prototype pollution and clone noise
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

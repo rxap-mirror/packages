@@ -1,3 +1,40 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- add hide empty properties option
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- cleanup
+- only show controls of in form mode
+- only disable controls in form mode
+- enable edit button if form mode or has edit cells
+- only use form directive if in form mode
+- ensure form restores after failed submit
+- add missing type attr to button elements
+- use DataSource interface directly
+- add styles for divider and sub headers
+- peer dependency issue
+- prevent data grid label wrap
+- ensure the project name is not included in the project tag list
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

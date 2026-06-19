@@ -1,3 +1,36 @@
+## 19.2.0-dev.3 (2026-06-19)
+
+### 🚀 Features
+
+- **localize:** export additional constants for reuse
+- **localize:** centralize and reuse locale storage key constant
+- **localize:** improve i18n handling and language selection logic
+- **localize:** add i18n bootstrap hook for dynamic locale loading
+- **localize:** add xliff support for dynamic translations
+- add language utility services
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- **localize:** add debug log for loaded locale translations
+- **localize:** improve locale handling by normalizing region codes
+- **localize:** ensure correct locale handling and reload consistency
+- remove async
+- add missing parameter
+- remove console log
+- support translation loading
+- **localize:** validate XLIFF files before processing
+- update package groups
+- update package groups
+- set the current language after the redirect is executed
+- move language selector
+- always show the selected language
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

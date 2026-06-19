@@ -1,3 +1,14 @@
+## 1.2.1-dev.2 (2026-06-19)
+
+### 🩹 Fixes
+
+- **release:** drop stale per-project release.version overrides
+- **fs:** repair clone path rewrite, match propagation, overloads, imports and fetch cache
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

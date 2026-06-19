@@ -1,3 +1,31 @@
+## 19.3.0-dev.2 (2026-06-19)
+
+### 🚀 Features
+
+- **sentry:** add custom configuration support for Sentry initialization
+- **angular-sentry:** upgrade to sentry 10
+- **sentry:** add sentry initialization bootstrap hook
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- **sentry:** remove 'warn' level from captureConsole integration
+- ensure sentry release is a valid semvar
+- refactor name resolution
+- update package groups
+- update package groups
+- update to latest sentry version
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

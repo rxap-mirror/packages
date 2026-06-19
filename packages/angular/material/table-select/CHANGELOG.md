@@ -1,3 +1,38 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- add UseTableSelectMethod function
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- add default compare with function
+- support multi select
+- filter the rxap from control
+- add control null checks
+- apply external changes
+- ensure selected var is defined
+- remove FlexLayout dependency
+- add missing type attr to button elements
+- ensure $localize is not directly imported
+- destroy window instance if directive is destroyed
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- inject any button type instance
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

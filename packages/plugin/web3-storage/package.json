@@ -1,5 +1,5 @@
 {
-  "version": "20.0.6-dev.0",
+  "version": "20.0.6-dev.1",
   "name": "@rxap/plugin-web3-storage",
   "description": "This plugin provides an executor to deploy your application to web3 storage. It also includes a generator to initialize the plugin. It simplifies the process of deploying web applications to decentralized storage.\n",
   "license": "GPL-3.0-or-later",

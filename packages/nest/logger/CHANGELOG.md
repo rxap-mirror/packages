@@ -1,3 +1,20 @@
+## 11.0.1-dev.2 (2026-06-19)
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **nest-logger:** preserve first argument in Google Cloud Logging formatter
+- **generators:** match package name with .some() in init devDependency coercion
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.1
+- Updated ts-morph to 1.7.0-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

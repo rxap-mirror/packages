@@ -1,3 +1,56 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- add last refresh date concept
+- support reset of table data source
+- add table column filter
+- support button color input
+- add TableHeaderButton directive
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- add default compare with function
+- only trigger the reset once
+- add missing reset binding
+- support __removedAt as column name
+- only render visible columns
+- use correct tailwind class for hidden
+- remove FlexLayout dependency
+- clear row selection model on archive toggle
+- support custom column name
+- add utility classes to element on init
+- support mat card inline
+- add missing type attr to button elements
+- introduce the NormalizeTableRow function
+- only set metadata if not already defined
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- expose inharated inputs
+- inject correct button type
+- split table row action directives
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- remove material legacy imports
+- **table-column-manu:** add missing utility module
+- simplify types
+- simplify types
+- add missing utility modules
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

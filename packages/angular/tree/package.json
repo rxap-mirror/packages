@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4",
+  "version": "19.1.0-dev.0",
   "name": "@rxap/tree",
   "description": "This package provides a tree component and data source for Angular applications. It includes features such as searching, filtering, and displaying hierarchical data. The package also offers directives for customizing the content of tree nodes.\n",
   "license": "GPL-3.0-or-later",
@@ -12,14 +12,14 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/material": "^19.1.1",
-    "@rxap/contenteditable": "^19.0.4",
-    "@rxap/data-source": "^19.1.1",
-    "@rxap/data-structure-tree": "^1.1.18-dev.0",
-    "@rxap/forms": "^19.2.0-dev.0",
-    "@rxap/material-directives": "^19.1.0",
-    "@rxap/pattern": "^1.1.14",
-    "@rxap/rxjs": "^1.1.16",
-    "@rxap/utilities": "^16.5.1-dev.0",
+    "@rxap/contenteditable": "^19.0.5-dev.0",
+    "@rxap/data-source": "^19.2.0-dev.0",
+    "@rxap/data-structure-tree": "^1.1.18-dev.1",
+    "@rxap/forms": "^19.2.0-dev.1",
+    "@rxap/material-directives": "^19.2.0-dev.0",
+    "@rxap/pattern": "^1.1.15-dev.0",
+    "@rxap/rxjs": "^1.1.17-dev.0",
+    "@rxap/utilities": "^16.5.1-dev.1",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -73,67 +73,67 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.13"
+        "version": "1.1.14-dev.0"
       },
       {
         "package": "@rxap/contenteditable",
-        "version": "19.0.4"
+        "version": "19.0.5-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.1.1"
-      },
-      {
-        "package": "@rxap/data-structure-tree",
-        "version": "1.1.18-dev.0"
-      },
-      {
-        "package": "@rxap/definition",
-        "version": "19.0.4"
-      },
-      {
-        "package": "@rxap/directives",
-        "version": "19.1.0"
-      },
-      {
-        "package": "@rxap/environment",
-        "version": "19.1.0"
-      },
-      {
-        "package": "@rxap/forms",
         "version": "19.2.0-dev.0"
       },
       {
+        "package": "@rxap/data-structure-tree",
+        "version": "1.1.18-dev.1"
+      },
+      {
+        "package": "@rxap/definition",
+        "version": "19.0.5-dev.0"
+      },
+      {
+        "package": "@rxap/directives",
+        "version": "19.2.0-dev.0"
+      },
+      {
+        "package": "@rxap/environment",
+        "version": "19.2.0-dev.0"
+      },
+      {
+        "package": "@rxap/forms",
+        "version": "19.2.0-dev.1"
+      },
+      {
         "package": "@rxap/material-directives",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.14"
+        "version": "1.1.15-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.17-dev.0"
+        "version": "1.0.17-dev.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.16"
+        "version": "1.1.17-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.1-dev.0"
+        "version": "16.5.1-dev.1"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.13"
+        "version": "3.0.14-dev.0"
       }
     ]
   },

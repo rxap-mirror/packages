@@ -1,3 +1,37 @@
+## 19.0.5-dev.0 (2026-06-19)
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- ensure the initial window height and width is not undefined
+- support custom window component
+- use proper window classes
+- resolve window scrollbar
+- use correct tailwind class for hidden
+- add window content scroll bar
+- remove FlexLayout dependency
+- remove css class usage of container
+- peer dependency issue
+- update default window settings
+- ensure the project name is not included in the project tag list
+- remove old theming concept
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- add missing utility modules
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

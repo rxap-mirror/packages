@@ -1,3 +1,55 @@
+## 19.2.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- **form-system:** extend options method to support additional parameters
+- **form-system:** support observable-based control options in directives
+- **form-system:** add loading state to options-from-method directive
+- **form-system:** add `exportAs` property to options-from-method directive
+- support custom toDisplay Function
+- support custom is value function
+- add autocomplete options directive
+- support injection in adapter functions
+- add UseOptionMethod decorator
+- add UseOptionMethod decorator
+- add form array utility directives
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- use the correct types
+- use the correct decorator
+- add missing defaults
+- prefer the ngControl from the next MatFormField
+- add NoopResolveMethod
+- add shouldTemporarilyDeleted input
+- correctly access and add the delete control
+- reduce type restriction
+- **form-system:** update ResolveByUuidParameter function to take an object as argument
+- auto add deleted control
+- set default member scope to protected
+- remove restrictive member scopes
+- use DataSource interface directly
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- convert null context to empty object
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- add missing utility modules
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

@@ -1,3 +1,21 @@
+## 20.2.1-dev.4 (2026-06-19)
+
+### 🩹 Fixes
+
+- **plugin-nestjs:** resolve package-json deps via retry to avoid empty output
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.1
+- Updated node-utilities to 1.3.12-dev.1
+- Updated plugin-library to 20.3.2-dev.0
+- Updated utilities to 16.5.1-dev.1
+- Updated ts-morph to 1.7.0-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

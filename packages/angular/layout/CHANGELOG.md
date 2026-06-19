@@ -1,3 +1,72 @@
+## 19.2.5-dev.1 (2026-06-19)
+
+### 🚀 Features
+
+- **navigation:** enhance status provider handling for nested items
+- **layout:** make mobile query configurable in navigation config
+- **layout:** enhance navigation responsiveness for mobile and collapsed states
+- **sidenav:** add openedChange event handling
+- **layout:** add support for default logo and navigation config tokens
+- support lazy component imports
+- support custom header items
+- provide ExternalApps as root service
+- support static external apps
+- support custom settings components
+- add signal
+- restore theme settings from user settings
+- support dynamic theme configuration
+- load icons on layout component creation
+- use status indicator component
+- support custom menu items for the layout header component
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- **layout:** ensure sidenav state is updated on external close
+- **navigation-item:** remove unnecessary console logs
+- remove deprecated property
+- provide the logo service at root
+- **layout:** add missing multi-provider flag for header components
+- **layout:** ensure sidenav collapsable style applies correctly
+- **layout:** update profile token fallback logic for displayName
+- update package groups
+- update package groups
+- header buttons
+- use static pub sub topics
+- improve support for router link types
+- use correct tailwind class for hidden
+- remove FlexLayout dependency
+- ensure sidenav container is always fulling the screen
+- apply restored theme config in the correct order
+- start user settings theme sync
+- move theme related code to the project angular-theme
+- only add margin to sidenav content if in collapsed mode
+- support advanced settings for layout sidenav
+- move status infiltrator to layout component
+- refactor user service use
+- remove css class usage of container
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- set default layout header color to undefined
+- remove @Required decorator
+- add licence file to publishable packages
+- ensure min padding for navigation items
+- add browser-tailwind as imp dep if project has tailwind configuration
+- use tailwind to create a bundled theme.css
+- resolve circular dependency between NavigationItemComponent and NavigationComponent
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.1
+- Updated ts-morph to 1.7.0-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

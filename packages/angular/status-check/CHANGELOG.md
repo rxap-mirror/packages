@@ -1,3 +1,41 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- add support for custom status check intervals
+- add status indicator component
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- update to latest sentry version
+- use generate client sdk code
+- remove localize direct import
+- fallback to static text if localize is not available
+- simplify and add tooltips
+- use local open api method
+- return empty status on empty service name list
+- only included marked services
+- support dark mode
+- peer dependency issue
+- use the urlAfterRedirects property
+- add proper debug output
+- remove status text
+- add debounceTime to prevent state flickering
+- remove CommonModule import
+- remove unnecessary null check
+- support request failure
+- add support for more response status codes
+- support a OpenApiRemoteMethod like Method
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

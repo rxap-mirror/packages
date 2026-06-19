@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4",
+  "version": "19.1.0-dev.0",
   "name": "@rxap/ngx-oauth2-proxy",
   "description": "Provides an Angular guard and utilities for integrating with an OAuth2 Proxy. It includes a guard to protect routes, a method to fetch user profile information, and a data source for managing the user profile. Also provides an app initializer to subscribe to logout events.\n",
   "license": "GPL-3.0-or-later",
@@ -11,10 +11,10 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/router": "^19.2.1",
-    "@rxap/config": "^19.3.0-dev.2",
-    "@rxap/data-source": "^19.1.1",
-    "@rxap/ngx-pub-sub": "^19.0.4",
-    "@rxap/pattern": "^1.1.14",
+    "@rxap/config": "^19.3.0-dev.3",
+    "@rxap/data-source": "^19.2.0-dev.0",
+    "@rxap/ngx-pub-sub": "^19.1.0-dev.0",
+    "@rxap/pattern": "^1.1.15-dev.0",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -67,43 +67,43 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.3.0-dev.2"
+        "version": "19.3.0-dev.3"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.1.1"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.18-dev.0"
+        "version": "1.1.18-dev.1"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.4"
+        "version": "19.0.5-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.14"
+        "version": "1.1.15-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.17-dev.0"
+        "version": "1.0.17-dev.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.16"
+        "version": "1.1.17-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.1-dev.0"
+        "version": "16.5.1-dev.1"
       }
     ]
   },

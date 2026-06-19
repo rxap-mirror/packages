@@ -1,3 +1,34 @@
+## 19.0.5-dev.0 (2026-06-19)
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- add missing flex class
+- ensure the control is set to null if possible
+- support formControl directive
+- only show loading spinner if submitting
+- use correct tailwind class for hidden
+- remove FlexLayout dependency
+- ensure $localize is not directly imported
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- remove material legacy imports
+- add missing utility modules
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

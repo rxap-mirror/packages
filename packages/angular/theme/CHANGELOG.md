@@ -1,3 +1,35 @@
+## 19.2.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- **browser-theme:** add new library setup for browser theme
+- **theme:** add ThemeColor class for managing Material Design color themes
+- **theme:** implement theme mode service for dynamic light/dark mode switching
+- use pubSub to update theme
+- restore theme settings from user settings
+- emit theme changes to pub-sub
+- restore theme settings from local storage
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- add publish option
+- return null if explicit set to false
+- move restore logic in separate function
+- only use media query to get prefers-color-scheme if dark mode is not defined in local storage
+- use new angular-theme project
+- move theme related code to the project angular-theme
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

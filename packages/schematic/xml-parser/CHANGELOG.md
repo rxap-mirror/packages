@@ -1,3 +1,25 @@
+## 19.0.11-dev.1 (2026-06-19)
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- compile package in commonjs format
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- change from commonjs to es2022
+- add licence file to publishable packages
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### 🧱 Updated Dependencies
+
+- Updated xml-parser to 16.3.1-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

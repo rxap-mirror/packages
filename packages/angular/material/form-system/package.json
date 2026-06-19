@@ -1,5 +1,5 @@
 {
-  "version": "19.0.4",
+  "version": "19.0.5-dev.0",
   "name": "@rxap/material-form-system",
   "description": "Provides directives and a module to enhance Angular Material forms. It includes features such as displaying control errors, clearing input fields, handling required fields, and managing form field visibility based on defined conditions. The package also offers a form controls component with built-in reset, cancel, and submit functionalities.\n",
   "license": "GPL-3.0-or-later",
@@ -14,11 +14,11 @@
     "@angular/forms": "^19.2.1",
     "@angular/material": "^19.1.1",
     "@angular/router": "^19.2.1",
-    "@rxap/form-system": "^19.1.0",
-    "@rxap/forms": "^19.2.0-dev.0",
-    "@rxap/mixin": "^16.0.16-dev.0",
-    "@rxap/reflect-metadata": "^1.0.17-dev.0",
-    "@rxap/utilities": "^16.5.1-dev.0",
+    "@rxap/form-system": "^19.2.0-dev.0",
+    "@rxap/forms": "^19.2.0-dev.1",
+    "@rxap/mixin": "^16.0.16-dev.1",
+    "@rxap/reflect-metadata": "^1.0.17-dev.1",
+    "@rxap/utilities": "^16.5.1-dev.1",
     "rxjs": "^7.8.1"
   },
   "author": {
@@ -73,71 +73,71 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.3.0-dev.2"
+        "version": "19.3.0-dev.3"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.1.1"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.18-dev.0"
+        "version": "1.1.18-dev.1"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.4"
+        "version": "19.0.5-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "19.1.0"
+        "version": "19.2.0-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "19.2.0-dev.0"
+        "version": "19.2.0-dev.1"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.16-dev.0"
+        "version": "16.0.16-dev.1"
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.3.0-dev.2"
+        "version": "19.3.0-dev.3"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.14"
+        "version": "1.1.15-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.17-dev.0"
+        "version": "1.0.17-dev.1"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.2.0-dev.0"
+        "version": "19.2.0-dev.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.16"
+        "version": "1.1.17-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.0.4"
+        "version": "19.1.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.1-dev.0"
+        "version": "16.5.1-dev.1"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.13"
+        "version": "3.0.14-dev.0"
       }
     ]
   },

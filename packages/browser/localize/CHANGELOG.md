@@ -1,3 +1,14 @@
+## 0.1.0-dev.4 (2026-06-19)
+
+### 🩹 Fixes
+
+- **release:** drop stale per-project release.version overrides
+- **browser-localize:** guard null translation and replace all placeholders
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

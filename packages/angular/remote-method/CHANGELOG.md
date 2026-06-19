@@ -1,3 +1,31 @@
+## 19.2.0-dev.1 (2026-06-19)
+
+### 🚀 Features
+
+- **http:** add support for HttpContext in metadata and parameters
+- **remote-method:** add reactive signals for execution tracking
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **angular-remote-method:** guard non-array responses in template collection directive
+- **angular-remote-method:** reset empty template ref on cleanup
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

@@ -1,3 +1,9 @@
+## 20.2.2-dev.0 (2026-06-19)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.1
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

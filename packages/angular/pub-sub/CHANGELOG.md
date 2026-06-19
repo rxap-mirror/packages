@@ -1,3 +1,22 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- add topics object
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **ngx-pub-sub:** correct GC init guard, config token mappings and GC iteration
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- use static pub sub topics
+- auto init the garbage collation
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

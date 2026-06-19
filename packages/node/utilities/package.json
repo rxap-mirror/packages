@@ -1,11 +1,11 @@
 {
-  "version": "1.3.12-dev.0",
+  "version": "1.3.12-dev.1",
   "name": "@rxap/node-utilities",
   "description": "Provides a set of utility functions for Node.js development, including file system operations, git integration, and package.json manipulation. It offers functionalities like copying folders, reading JSON files with retry logic, retrieving the current git branch, and fetching package information from npm. This package aims to simplify common tasks and improve developer productivity in Node.js projects.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/utilities": "^16.5.1-dev.0",
+    "@rxap/utilities": "^16.5.1-dev.1",
     "ignore": "^5.2.4",
     "tslib": "2.6.2"
   },

@@ -1,9 +1,9 @@
 {
-  "version": "0.2.2-dev.0",
+  "version": "0.2.2-dev.1",
   "name": "@rxap/n8n-nodes-gitlab",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@rxap/n8n-utilities": "^1.2.3-dev.0",
+    "@rxap/n8n-utilities": "^1.2.3-dev.1",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {

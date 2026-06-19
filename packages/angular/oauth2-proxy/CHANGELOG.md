@@ -1,3 +1,23 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- add user profile method and data source
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- delay logout handling
+- use static pub sub topics
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

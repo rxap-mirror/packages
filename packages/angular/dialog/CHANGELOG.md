@@ -1,3 +1,32 @@
+## 19.3.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- **dialog:** conditionally disable error capture dialog service
+- **dialog:** add error capture dialog component and service with associated tests
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update marker io sdk
+- update package groups
+- update package groups
+- mark dialog service as global
+- ensure $localize is not directly imported
+- peer dependency issue
+- remove unused code
+- ensure the project name is not included in the project tag list
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

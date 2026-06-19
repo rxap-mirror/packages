@@ -1,3 +1,54 @@
+## 19.3.0-dev.3 (2026-06-19)
+
+### 🚀 Features
+
+- **open-api:** use `JoinPath` utility for constructing URLs in interceptor
+- **open-api:** improve JSON schema validation and content type handling
+- **open-api:** add HttpContext-based request customization and updated interceptors
+- **open-api:** add `toHttpHeaders` utility and encode query params
+- **testing:** add default parameters support for method mock
+- **open-api:** add testing utilities for mock method providers
+- **open-api:** add http-resource secondary entry point
+- use the ajv package instead of ajv-oai
+- add static InsertServer method
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- **open-api:** update `SignalProperties` to handle nullable types correctly
+- **schema-validation:** improve path parameter handling and validation
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- remove __archived concept
+- use utility function
+- support other content types then json
+- add server id getter
+- expose the loaded open api server ids
+- align types with generator
+- add origin property to the environment interface
+- support custom origin
+- ensure the OpenApiHttpResponseError is instance of HttpErrorResponse
+- skip response validation if disabled
+- peer dependency issue
+- simplify init options
+- disable schema validation by default
+- support legacy open api configuration loading
+- add proper debug output
+- ensure the project name is not included in the project tag list
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- restore OpenApiDataSource classes
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

@@ -1,3 +1,56 @@
+## 19.3.0-dev.3 (2026-06-19)
+
+### 🚀 Features
+
+- **config:** add IPFS gateway support and simplify DNS server handling
+- **config:** add configurable loading order for config sources
+- **config:** add `strategy` option and FIFO handling for dynamic config loading
+- **angular:** add DNS server handling for config loading
+- **angular:** add storacha gateway for IPFS content fetching
+- **angular:** allow custom fetch function for fetching CID content
+- **layout:** make mobile query configurable in navigation config
+- **config:** add support for loading configuration from DNS and CID
+- add error handler concept
+- add provide config
+- support loading configuration from environment object
+- support url functions
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- **config:** resolve subdomain parsing issue in `localSubDomainIpfsGateway`
+- **utilities:** add cache control headers to DNS resolver
+- **config:** add explicit `any` type to error in catch blocks
+- **config:** include error message in logging for better clarity
+- support config url paths
+- change log level
+- save race
+- **config.service:** improve path handling and property access validation
+- update package groups
+- update package groups
+- add oauth2 proxy config interface
+- add config property
+- add config interface
+- add config interface
+- add config interface
+- add provide config
+- overwrite config loading settings with environment object
+- auto refresh application on config loading error
+- improve error codes for config loading
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- support url option for config loading method
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

@@ -1,3 +1,36 @@
+## 19.3.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- **error:** provide default value for error dialog disabled token
+- **error:** add conditional provider for error dialog disablement
+- **error:** add dialog disable option for flexible error handling
+- **error-capture:** implement error capture dialog service and refactor error handling
+- add open api http response error handler
+- add angular error dialog
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- ensure the proper theme color is used
+- update to latest sentry version
+- remove FlexLayout dependency
+- use correct unit
+- support small displaces
+- remove debug log
+- update token description
+- ensure the error object is defined
+- add missing padding
+- peer dependency issue
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

@@ -1,3 +1,13 @@
+## 0.1.1-dev.0 (2026-06-19)
+
+### 🩹 Fixes
+
+- **release:** drop stale per-project release.version overrides
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

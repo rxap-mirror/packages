@@ -1,3 +1,36 @@
+## 19.2.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- **environment:** add `strategy` option to environment configuration
+- support module federation
+- add ProvideEnvironment function
+- add app property to environments interface
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- refactor name resolution
+- update package groups
+- add missing dynamic configuration options
+- add origin property to the environment interface
+- add missing type attr to button elements
+- overwrite config loading settings with environment object
+- add config property
+- peer dependency issue
+- refactor the build.json concept
+- ensure the project name is not included in the project tag list
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

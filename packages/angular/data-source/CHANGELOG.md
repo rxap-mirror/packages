@@ -1,3 +1,67 @@
+## 19.2.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- **table:** add support for empty and error templates in data source directive
+- **table:** add support for empty and error templates in data source directive
+- **table-data-source:** add support for dynamic parameters
+- add loading and hasError signal outputs
+- add loading and hasError signal outputs
+- add last refresh date concept
+- support tree table filters
+- add attach method to BaseDataSource
+- support viewChange in MethodDataSources
+- add restore from local storage feature
+- add RxapPipeDataSource decorator
+- add MethodDataSource class
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- add missing track by input
+- change warning to debug a message
+- update package groups
+- update package groups
+- update package groups
+- ensure the execution utility method are used
+- support string viewer
+- add div wrapper around buttons
+- use correct button label
+- support refresh, reset and retry data source methods
+- ensure embedded view refs are cleanup
+- ensure deep equal is used only if required
+- correctly apply the filter
+- remove the injection token accordion method
+- simplify and generalize the accordion data source
+- remove FlexLayout dependency
+- use the MethodWithParameters type
+- enforce that the method accepts a parameter
+- enforce that the method accepts a parameter
+- clone attached observable
+- use correct method return types
+- **pipe-data-source:** copy loading observable from parent data source
+- support custom operations
+- add missing type attr to button elements
+- adapt to node parent concept
+- table event property start and end are always defined
+- improve error and loading handling
+- remove error logs
+- refactor the generic retry function and error handling
+- remove css class usage of container
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

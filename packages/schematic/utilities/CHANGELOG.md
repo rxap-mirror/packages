@@ -1,3 +1,46 @@
+## 19.1.1-dev.1 (2026-06-19)
+
+### 🚀 Features
+
+- **schematic:** add tag support for test projects
+- add function HasProjectSourceRoot
+- support overwrite array
+- add DeleteDirectory function
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **schematic-utilities:** fix package check, env merge and regex escaping
+- **generators:** match package name with .some() in init devDependency coercion
+- **schematic:** update test utilities import paths and enhance Nest module handling
+- exclude class from function check
+- return false if the source root is an empty string
+- add Overwrite options type
+- capture json parse error
+- remove FlexLayout dependency
+- mark deepMerge as deprecated
+- peer dependency issue
+- ensure the project root is always defined
+- ensure the project name is not included in the project tag list
+- change from commonjs to es2022
+- add licence file to publishable packages
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### 🔥 Performance
+
+- improve project json file search
+- improve project json file search
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.1
+- Updated utilities to 16.5.1-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

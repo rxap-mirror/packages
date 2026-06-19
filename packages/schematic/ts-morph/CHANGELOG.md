@@ -1,3 +1,143 @@
+## 19.2.1-dev.1 (2026-06-19)
+
+### 🚀 Features
+
+- **schematic:** support dynamic project name generation in Nest module coercion
+- replace buildNestProjectName with buildOperationServerId
+- update to buildable open api client sdk
+- support autocomplete controls
+- improve table action processing
+- add propertyValue handlebare helper
+- add CoercePipe function
+- support to options mapper
+- support custom mappers
+- add ToDtoInstanceList
+- support string utilities in handlebar templates
+- support form group and form array
+- support form group and form array
+- generate table select resolve method
+- support custom properties for accordion controllers
+- extend support for upstream options
+- add CoerceGetOperation function
+- support table parameters in tree tables
+- support upstream configurations
+- support custom handlebars partials and helpers
+- support handlebars for component generator
+- move WriteType to ts-morph package
+- support simple type
+- support custom id property
+- support complex and importable types
+- add open api table action
+- support overwrite array
+- add CoerceTableHeaderButtonMethod function
+- support replace option
+- support open api backend
+- merge external changes
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- **schematic:** update test utilities import paths and enhance Nest module handling
+- **schematic:** adjust base path generation for application projects
+- **schematic:** improve component feature validation logic
+- **nest:** handle null serverId in operation ID generation
+- **schematic:** ensure modules are added to the AppModule only in application projects
+- add missing imports
+- dont overwrite UseFormControl props
+- dont overwrite form definition decorators
+- use the correct property
+- pass backend option
+- base path creation
+- correctly generate the tree methods
+- add if utilities
+- add rowId option
+- support non upstream nestjs backends
+- print the required commands to setup projects
+- ensure the options are handled correctly
+- only coerce import if required
+- add Overwrite options type
+- add Overwrite options type
+- support complex data properties
+- support complex data properties
+- support autocomplete controls
+- add default get tree operation mapper
+- add default options operation mapper
+- select form backend generation
+- ensure the cell component are valid
+- ensure the coerce array items function is used instead of unshift
+- use defined identifier property
+- ensure submit and load can have different interfaces
+- ensure all properties are set correctly
+- ensure all imports are added
+- improve operation naming and return types
+- ensure nestModule is passed to the operation generators
+- return type generation
+- correctly coerce the operation method parameters
+- respect the identifier option
+- import missing type
+- ensure all required modules and services are imported
+- support non service commands
+- align the controller name processing
+- add the open api upstream command to the module providers
+- use the command class name as member name
+- generate tree table column dto types
+- small issues
+- initial component class creation
+- add is modifier functions
+- mark CoercePropertyDeclaration as deprected
+- support TypeImport
+- use correct function return type
+- unify coerce component functions
+- unify type import concept
+- merge the property and table property interface
+- remove FlexLayout dependency
+- use coerce component utility function
+- only add used interfaces
+- ensure formatting is correct
+- include property list in operation dto generation
+- add custom dto property types
+- use Object.freeze instead of Object.seal
+- support relativeTo parameter
+- support custom form component
+- add utility function
+- use ToMappingObject function
+- use correct var check name
+- unify transformation
+- use utility CreateProject function to create a ts-morph Project instance
+- ensure the plain text of the nodes is used
+- only add validators import if used
+- ensure the filter method property has not an question token
+- import dtos from nest-dto
+- add deprecation comment
+- peer dependency issue
+- ensure new class property is inserted at the top
+- add move deprecated hint
+- add project ts-morph
+- ensure the project name is not included in the project tag list
+- change from commonjs to es2022
+- coerce getPageData method
+- controller name composition
+- controller naming and route
+- add licence file to publishable packages
+- allow null or undefined for scope parameter
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### 🔥 Performance
+
+- improve project json file search
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.1
+- Updated utilities to 16.5.1-dev.1
+- Updated ts-morph to 1.7.0-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

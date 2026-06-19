@@ -1,3 +1,41 @@
+## 19.0.7-dev.1 (2026-06-19)
+
+### 🚀 Features
+
+- add data source generator
+- change to sync execution and support nest command generators
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- use utility CreateProject function to create a ts-morph Project instance
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- change from commonjs to es2022
+- set inline option to true if not defined
+- change inline option to default
+- support es2022
+- use correct import paths
+- add licence file to publishable packages
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### 🔥 Performance
+
+- improve project json file search
+
+### 🧱 Updated Dependencies
+
+- Updated json-schema-to-typescript to 16.1.4-dev.1
+- Updated workspace-utilities to 19.9.1-dev.1
+- Updated utilities to 16.5.1-dev.1
+- Updated ts-morph to 1.7.0-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

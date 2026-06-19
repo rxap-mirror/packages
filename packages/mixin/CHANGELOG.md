@@ -1,3 +1,19 @@
+## 16.0.16-dev.1 (2026-06-19)
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+
+### 🧱 Updated Dependencies
+
+- Updated reflect-metadata to 1.0.17-dev.1
+- Updated utilities to 16.5.1-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

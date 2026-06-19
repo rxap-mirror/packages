@@ -1,3 +1,43 @@
+## 19.2.0-dev.1 (2026-06-19)
+
+### 🚀 Features
+
+- **forms:** add `setInitialValue` option to `patchValue` for managing initial state
+- **forms:** add initial state support to submit and load methods
+- **forms:** add reactive model-based inputs and injectable properties
+- **forms:** enhance form-submit directive with reactive inputs and computed bindings
+- add inputs for all control methods
+- add form reset directive
+- add to method with injection context utility functions
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- **form-array:** improve removeAt logic to handle validations
+- **form-array:** correct control insertion logic and ID updates
+- **form-array:** handle control insertion edge case
+- **forms:** avoid cloning form value unnecessarily
+- update package groups
+- update package groups
+- update package groups
+- support input context
+- support the control initial option readonly
+- support the control initial option disabled
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- remove empty property description
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

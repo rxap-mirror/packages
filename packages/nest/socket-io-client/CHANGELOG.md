@@ -1,3 +1,15 @@
+## 11.0.1-dev.0 (2026-06-19)
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **nest-socket-io-client:** detach socket listener and listen for connect event
+- **generators:** match package name with .some() in init devDependency coercion
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

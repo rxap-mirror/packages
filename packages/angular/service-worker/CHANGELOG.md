@@ -1,3 +1,36 @@
+## 19.2.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- **snackbar-update:** add SnackbarUpdateService for handling version updates with notifications
+- add AutoUpdateService
+- add dialog update service
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- ensure the proper theme color is used
+- add i18n tags
+- only show dialog if new version is ready
+- remove FlexLayout dependency
+- use the correct dialog component
+- add debug messages
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- add missing utility modules
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

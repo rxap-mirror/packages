@@ -1,3 +1,37 @@
+## 19.2.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- support custom content better
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- remove color from navigate back button
+- ensure a unique component id is generated
+- remove angular flex layout dependency
+- add utility classes to element on init
+- add missing type attr to button elements
+- clone json after the toJSON function is called
+- use specific css variable
+- remove css class usage of container
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

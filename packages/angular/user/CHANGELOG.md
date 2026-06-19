@@ -1,3 +1,34 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- use pubSub to update user settings theme
+- support offline mode for user data sources
+- support offline mode for user settings
+- restore theme settings from user settings
+- add user settings theme services
+- add user profile controller support
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- support custom set language hooks
+- use generate client sdk code
+- prevent event topic mix up
+- mark UserSettingsDataSource as restartable
+- use linking between open api generator and library
+- set sensible default type
+- remove token base concept
+- peer dependency issue
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

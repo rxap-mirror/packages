@@ -1,3 +1,18 @@
+## 20.4.1-dev.1 (2026-06-19)
+
+### 🩹 Fixes
+
+- **release:** drop stale per-project release.version overrides
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.1
+- Updated utilities to 16.5.1-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

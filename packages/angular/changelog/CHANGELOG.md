@@ -1,3 +1,27 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- add changelog dialog service
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- ensure the proper theme color is used
+- support custom last version store
+- check if changelog is disabled
+- use generate client sdk code
+- move remember check to hook function
+- handle api error responses
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

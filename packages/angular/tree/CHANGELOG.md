@@ -1,3 +1,41 @@
+## 19.1.0-dev.0 (2026-06-19)
+
+### 🚀 Features
+
+- support tree search
+
+### 🩹 Fixes
+
+- **generators:** read package.json and node_modules from disk, not the virtual Tree
+- **generators:** match package name with .some() in init devDependency coercion
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+- improve tree data source select restoring
+- improve tree data source select restoring
+- improve tree data source select restoring
+- improve tree data source select restoring
+- truncate node display
+- export all files
+- introduce small changes
+- add missing type attr to button elements
+- remove dependency to angular flex layout
+- remove css class usage of container
+- peer dependency issue
+- ensure the project name is not included in the project tag list
+- remove declare statement
+- remove @Required decorator
+- add licence file to publishable packages
+- add browser-tailwind as imp dep if project has tailwind configuration
+- add tailwind bundle build target and configurations
+- update package dependency versions
+- restructure and merge mono repos packages, schematics, plugins and nest
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
