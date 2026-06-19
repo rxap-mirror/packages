@@ -500,7 +500,12 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
   await createGitLabReleases(changelogResult.projectChangelogs);
 }
 
-main().catch((e) => {
-  console.error(e);
-  die(`Release failed: ${e?.message ?? e}`);
-});
+main()
+  // Exit explicitly: the nx/release programmatic API leaves the Nx daemon
+  // socket connection open, which keeps the event loop alive and would
+  // otherwise hang the process after all work is done.
+  .then(() => process.exit(0))
+  .catch((e) => {
+    console.error(e);
+    die(`Release failed: ${e?.message ?? e}`);
+  });
