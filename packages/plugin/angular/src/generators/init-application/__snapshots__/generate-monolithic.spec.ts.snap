@@ -65,6 +65,70 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [];
 "
 `;
 
+exports[`generateMonolithic() should generate a monolithic application configuration: generated-tree 1`] = `
+{
+  ".prettierrc": "{"singleQuote":true}",
+  "app/project.json": "{
+  "name": "app",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "app/src",
+  "projectType": "application"
+}
+",
+  "app/src/app/app.navigation.ts": "import { NavigationWithInserts, RXAP_NAVIGATION_CONFIG } from '@rxap/layout';
+
+export const APP_NAVIGATION: () => NavigationWithInserts = () => [];
+",
+  "app/src/app/app.routes.ts": "import { Route } from '@angular/router';
+import { STATUS_CHECK_ROUTE } from '@rxap/ngx-status-check';
+
+export const appRoutes: Route[] = [{
+    path: '',
+    loadChildren: () => import('./layout.routes')
+  }, STATUS_CHECK_ROUTE,{
+    path: '**',
+    redirectTo: ''
+  }];
+
+export default appRoutes;
+",
+  "app/src/app/layout.routes.ts": "import { provideLayout, withNavigationConfig, withDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';
+import { provideUserTheme } from '@rxap/ngx-user';
+import { APP_NAVIGATION } from './app.navigation';
+import { Route } from '@angular/router';
+
+export const ROUTES: Route[] = [
+    {
+      path: '',
+      component: LayoutComponent,
+      children: [
+        {
+          path: '**',
+          redirectTo: ''
+        }
+      ],
+      providers: [
+        provideUserTheme(),
+        provideLayout(
+          withNavigationConfig(APP_NAVIGATION),
+          withDefaultHeaderComponent(),
+        )
+      ]
+    },
+  {
+    path: '**',
+    redirectTo: ''
+  }
+  ];
+
+export default ROUTES;
+",
+  "nx.json": "{"affected":{"defaultBase":"main"},"targetDefaults":{"build":{"cache":true},"lint":{"cache":true}}}",
+  "package.json": "{"name":"@proj/source","dependencies":{},"devDependencies":{}}",
+  "tsconfig.base.json": "{"compilerOptions":{"paths":{}}}",
+}
+`;
+
 exports[`generateMonolithic() should use MinimalLayoutComponent and no navigation when moduleFederation is host 1`] = `
 [
   "app.routes.ts",

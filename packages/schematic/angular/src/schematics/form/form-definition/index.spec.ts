@@ -3,7 +3,9 @@ import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { join } from 'path';
 import {
+  captureTree,
   createFullWorkspace,
+  diffTreeContent,
   listFiles,
   TestProject,
   TestProjectNames,
@@ -24,6 +26,7 @@ describe('form-definition', () => {
   });
 
   it('minimal', async () => {
+    const before = captureTree(tree);
     tree = await runner.runSchematic('form-definition', {
       name: 'test-def',
       project: projects.angular.lib,
@@ -31,5 +34,6 @@ describe('form-definition', () => {
     }, tree);
 
     expect(listFiles(tree)).toMatchSnapshot('file-tree');
+    expect(diffTreeContent(before, captureTree(tree))).toMatchSnapshot('generated');
   });
 });

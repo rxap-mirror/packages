@@ -97,6 +97,401 @@ export * from './lib/tokens';
 "
 `;
 
+exports[`dynamic-configuration-module should add global dynamic configuration module to the root module: generated-tree 1`] = `
+{
+  ".eslintignore": "node_modules
+",
+  ".eslintrc.json": "{
+  "root": true,
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "@nx"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@nx/typescript"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "extends": [
+        "plugin:@nx/javascript"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.spec.js",
+        "*.spec.jsx"
+      ],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    }
+  ]
+}
+",
+  ".prettierignore": "# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data",
+  ".prettierrc": "{"singleQuote":true}",
+  "jest.config.ts": "import type { Config } from 'jest';
+import { getJestProjectsAsync } from '@nx/jest';
+
+export default async (): Promise<Config> => ({
+  projects: await getJestProjectsAsync()
+});",
+  "jest.preset.js": "const nxPreset = require('@nx/jest/preset').default;
+
+module.exports = { ...nxPreset };",
+  "nx.json": "{
+  "affected": {
+    "defaultBase": "main"
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "@nx/eslint:lint": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.mjs"
+      ]
+    },
+    "@nx/jest:jest": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ],
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  }
+}
+",
+  "package.json": "{
+  "name": "@proj/source",
+  "dependencies": {
+    "@nestjs/common": "^10.0.2",
+    "@nestjs/core": "^10.0.2",
+    "@nestjs/platform-express": "^10.0.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@nestjs/schematics": "^10.0.1",
+    "@nestjs/testing": "^10.0.2",
+    "@nx/eslint": "20.5.0",
+    "@nx/eslint-plugin": "20.5.0",
+    "@nx/jest": "20.5.0",
+    "@nx/js": "20.5.0",
+    "@nx/nest": "20.5.0",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@types/jest": "^29.5.12",
+    "@types/node": "18.16.9",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "~8.57.0",
+    "eslint-config-prettier": "^9.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
+    "prettier": "^2.6.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "~5.7.2"
+  }
+}
+",
+  "test/.eslintrc.json": "{
+  "extends": [
+    "../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    }
+  ]
+}
+",
+  "test/README.md": "# test
+
+This library was generated with [Nx](https://nx.dev).
+
+## Running unit tests
+
+Run \`nx test test\` to execute the unit tests via [Jest](https://jestjs.io).
+",
+  "test/jest.config.ts": "export default {
+  displayName: 'test',
+  preset: '../jest.preset.js',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../coverage/test'
+};
+",
+  "test/project.json": "{
+  "name": "test",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "test/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "test/jest.config.ts"
+      }
+    }
+  }
+}
+",
+  "test/src/index.ts": "// region 
+export * from './lib/test.module';
+export * from './lib/test-module-options.factory';
+export * from './lib/test-module-options';
+export * from './lib/test-validation-schema';
+export * from './lib/tokens';
+// endregion
+",
+  "test/src/lib/test-module-options.factory.ts": "import { ConfigurableModuleOptionsFactory, Inject, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { TestModuleOptions } from './test-module-options';
+
+@Injectable()
+export class TestModuleOptionsFactory implements ConfigurableModuleOptionsFactory<TestModuleOptions, 'create'> {
+  @Inject(ConfigService)
+  private readonly config!: ConfigService;
+  @Inject(Logger)
+  private readonly logger!: Logger;
+
+  async create(): Promise<TestModuleOptions> {
+    return { disabled: this.config.get('TEST_DISABLED', false) }
+  }
+}
+",
+  "test/src/lib/test-module-options.ts": "export interface TestModuleOptions {
+  disabled: boolean;
+}
+",
+  "test/src/lib/test-validation-schema.ts": "import { Environment } from '@rxap/nest-utilities';
+import * as Joi from 'joi';
+import { SchemaMap } from 'joi';
+import { TestModuleOptions } from './test-module-options';
+
+export function testValidationSchema(environment: Environment, defaults: Partial<Pick<TestModuleOptions, 'disabled'>> = {}) {
+  const schema: SchemaMap = {};
+  schema['TEST_DISABLED'] = Joi.boolean().default(defaults.disabled ?? false);
+  return schema
+}
+",
+  "test/src/lib/test.module.ts": "import { ConfigurableModuleBuilder, DynamicModule, Global, Module } from '@nestjs/common';
+import { TestModuleOptions } from './test-module-options';
+import { TEST_MODULE_OPTIONS } from './tokens';
+
+export const {
+  ConfigurableModuleClass,
+  MODULE_OPTIONS_TOKEN,
+  OPTIONS_TYPE,
+  ASYNC_OPTIONS_TYPE,
+} = new ConfigurableModuleBuilder<TestModuleOptions>()
+  .setExtras({ global: true })
+  .build();
+
+@Module({
+	controllers: [],
+	providers: [],
+	exports: [],
+})
+@Global()
+export class TestModule extends ConfigurableModuleClass {
+  static register(options: typeof OPTIONS_TYPE): DynamicModule {
+    return this.updateProviders(super.register(options));
+  }
+
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+    return this.updateProviders(super.registerAsync(options));
+  }
+
+  private static updateProviders(module: DynamicModule) {
+    module.providers ??= [];
+    module.providers.push({
+      provide: TEST_MODULE_OPTIONS,
+      useExisting: MODULE_OPTIONS_TOKEN,
+    });
+    return module;
+  }
+}
+",
+  "test/src/lib/tokens.ts": "export const TEST_MODULE_OPTIONS = Symbol('TEST_MODULE_OPTIONS');
+",
+  "test/tsconfig.json": "{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "importHelpers": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}
+",
+  "test/tsconfig.lib.json": "{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "declaration": true,
+    "types": [
+      "node"
+    ],
+    "target": "es6",
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}
+",
+  "test/tsconfig.spec.json": "{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "commonjs",
+    "moduleResolution": "node10","types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}
+",
+  "tsconfig.base.json": "{
+  "compilerOptions": {
+    "paths": {
+      "@proj/test": [
+        "test/src/index.ts"
+      ]
+    }
+  }
+}
+",
+}
+`;
+
 exports[`dynamic-configuration-module should add local dynamic configuration module to the root module 1`] = `
 "import { ConfigurableModuleBuilder, Module } from '@nestjs/common';
 import { TestModuleOptions } from './test-module-options';
@@ -191,4 +586,398 @@ export * from './lib/test-validation-schema';
 export * from './lib/tokens';
 // endregion
 "
+`;
+
+exports[`dynamic-configuration-module should add local dynamic configuration module to the root module: generated-tree 1`] = `
+{
+  ".eslintignore": "node_modules
+",
+  ".eslintrc.json": "{
+  "root": true,
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "@nx"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@nx/typescript"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "extends": [
+        "plugin:@nx/javascript"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.spec.js",
+        "*.spec.jsx"
+      ],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    }
+  ]
+}
+",
+  ".prettierignore": "# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data",
+  ".prettierrc": "{"singleQuote":true}",
+  "jest.config.ts": "import type { Config } from 'jest';
+import { getJestProjectsAsync } from '@nx/jest';
+
+export default async (): Promise<Config> => ({
+  projects: await getJestProjectsAsync()
+});",
+  "jest.preset.js": "const nxPreset = require('@nx/jest/preset').default;
+
+module.exports = { ...nxPreset };",
+  "nx.json": "{
+  "affected": {
+    "defaultBase": "main"
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "@nx/eslint:lint": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.mjs"
+      ]
+    },
+    "@nx/jest:jest": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ],
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  }
+}
+",
+  "package.json": "{
+  "name": "@proj/source",
+  "dependencies": {
+    "@nestjs/common": "^10.0.2",
+    "@nestjs/core": "^10.0.2",
+    "@nestjs/platform-express": "^10.0.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@nestjs/schematics": "^10.0.1",
+    "@nestjs/testing": "^10.0.2",
+    "@nx/eslint": "20.5.0",
+    "@nx/eslint-plugin": "20.5.0",
+    "@nx/jest": "20.5.0",
+    "@nx/js": "20.5.0",
+    "@nx/nest": "20.5.0",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@types/jest": "^29.5.12",
+    "@types/node": "18.16.9",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "~8.57.0",
+    "eslint-config-prettier": "^9.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
+    "prettier": "^2.6.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "~5.7.2"
+  }
+}
+",
+  "test/.eslintrc.json": "{
+  "extends": [
+    "../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    }
+  ]
+}
+",
+  "test/README.md": "# test
+
+This library was generated with [Nx](https://nx.dev).
+
+## Running unit tests
+
+Run \`nx test test\` to execute the unit tests via [Jest](https://jestjs.io).
+",
+  "test/jest.config.ts": "export default {
+  displayName: 'test',
+  preset: '../jest.preset.js',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../coverage/test'
+};
+",
+  "test/project.json": "{
+  "name": "test",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "test/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "test/jest.config.ts"
+      }
+    }
+  }
+}
+",
+  "test/src/index.ts": "// region 
+export * from './lib/test.module';
+export * from './lib/test-module-options.factory';
+export * from './lib/test-module-options';
+export * from './lib/test-validation-schema';
+export * from './lib/tokens';
+// endregion
+",
+  "test/src/lib/test-module-options.factory.ts": "import { ConfigurableModuleOptionsFactory, Inject, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { TestModuleOptions } from './test-module-options';
+
+@Injectable()
+export class TestModuleOptionsFactory implements ConfigurableModuleOptionsFactory<TestModuleOptions, 'create'> {
+  @Inject(ConfigService)
+  private readonly config!: ConfigService;
+  @Inject(Logger)
+  private readonly logger!: Logger;
+
+  async create(): Promise<TestModuleOptions> {
+    return { disabled: this.config.get('TEST_DISABLED', false) }
+  }
+}
+",
+  "test/src/lib/test-module-options.ts": "export interface TestModuleOptions {
+  disabled: boolean;
+}
+",
+  "test/src/lib/test-validation-schema.ts": "import { Environment } from '@rxap/nest-utilities';
+import * as Joi from 'joi';
+import { SchemaMap } from 'joi';
+import { TestModuleOptions } from './test-module-options';
+
+export function testValidationSchema(environment: Environment, defaults: Partial<Pick<TestModuleOptions, 'disabled'>> = {}) {
+  const schema: SchemaMap = {};
+  schema['TEST_DISABLED'] = Joi.boolean().default(defaults.disabled ?? false);
+  return schema
+}
+",
+  "test/src/lib/test.module.ts": "import { ConfigurableModuleBuilder, Module } from '@nestjs/common';
+import { TestModuleOptions } from './test-module-options';
+import { TEST_MODULE_OPTIONS } from './tokens';
+
+export const {
+  ConfigurableModuleClass,
+  MODULE_OPTIONS_TOKEN,
+  OPTIONS_TYPE,
+  ASYNC_OPTIONS_TYPE,
+} = new ConfigurableModuleBuilder<TestModuleOptions>()
+  .setExtras({ global: false })
+  .build();
+
+@Module({
+	controllers: [],
+	providers: [],
+	exports: [],
+})
+export class TestModule extends ConfigurableModuleClass {
+  static register(options: typeof OPTIONS_TYPE): DynamicModule {
+    return this.updateProviders(super.register(options));
+  }
+
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+    return this.updateProviders(super.registerAsync(options));
+  }
+
+  private static updateProviders(module: DynamicModule) {
+    module.providers ??= [];
+    module.providers.push({
+      provide: TEST_MODULE_OPTIONS,
+      useExisting: MODULE_OPTIONS_TOKEN,
+    });
+    return module;
+  }
+}
+",
+  "test/src/lib/tokens.ts": "export const TEST_MODULE_OPTIONS = Symbol('TEST_MODULE_OPTIONS');
+",
+  "test/tsconfig.json": "{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "importHelpers": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}
+",
+  "test/tsconfig.lib.json": "{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "declaration": true,
+    "types": [
+      "node"
+    ],
+    "target": "es6",
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}
+",
+  "test/tsconfig.spec.json": "{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "commonjs",
+    "moduleResolution": "node10","types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}
+",
+  "tsconfig.base.json": "{
+  "compilerOptions": {
+    "paths": {
+      "@proj/test": [
+        "test/src/index.ts"
+      ]
+    }
+  }
+}
+",
+}
 `;

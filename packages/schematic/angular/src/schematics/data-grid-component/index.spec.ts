@@ -3,7 +3,9 @@ import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { join } from 'path';
 import {
+  captureTree,
   createFullWorkspace,
+  diffTreeContent,
   listFiles,
   TestProject,
   TestProjectNames,
@@ -24,11 +26,13 @@ describe('data-grid-component', () => {
   });
 
   it('minimal', async () => {
+    const before = captureTree(tree);
     tree = await runner.runSchematic('data-grid-component', {
       name: 'test-grid',
       project: projects.angular.lib,
     }, tree);
 
     expect(listFiles(tree)).toMatchSnapshot('file-tree');
+    expect(diffTreeContent(before, captureTree(tree))).toMatchSnapshot('generated');
   });
 });

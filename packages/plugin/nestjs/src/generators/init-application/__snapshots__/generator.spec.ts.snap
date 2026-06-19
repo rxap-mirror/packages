@@ -1,0 +1,770 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugin-nestjs:init-application (golden master) should produce a stable standalone init-application tree (features off): init-application-tree 1`] = `
+{
+  ".eslintignore": "node_modules
+",
+  ".eslintrc.json": "{
+  "root": true,
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "@nx"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@nx/typescript"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "extends": [
+        "plugin:@nx/javascript"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.spec.js",
+        "*.spec.jsx"
+      ],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    }
+  ]
+}
+",
+  ".prettierignore": "# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data",
+  ".prettierrc": "{"singleQuote":true}",
+  "Dockerfile": "FROM registry.gitlab.com/rxap/docker/nestjs-server/20.11-alpine:v0.1.0-edge.1
+
+ARG PROJECT_NAME
+ARG PATH_PREFIX
+ARG NAME_PREFIX
+
+# PATH_PREFIX should not be required as standalone services dont use it
+# RUN if [ -z "$PATH_PREFIX" ]; then exit 1; fi
+RUN if [ -z "$PROJECT_NAME" ]; then exit 1; fi
+
+ENV TRAEFIK_SERVICE_NAME=\${NAME_PREFIX}\${PROJECT_NAME}
+
+ENV TRAEFIK_ROUTER_NAME=\${NAME_PREFIX}\${PROJECT_NAME}
+ENV TRAEFIK_ROUTER_PRIORITY=20
+# ensure the $PATH_PREFIX has a preceding slash if not empty
+ENV TRAEFIK_ROUTER_PATH_PREFIX=$PATH_PREFIX/
+
+ENV TRAEFIK_HEALTH_CHECK_INTERVAL=60s
+ENV TRAEFIK_HEALTH_CHECK_TIMEOUT=30s
+ENV TRAEFIK_HEALTH_CHECK_PATH=/health
+
+# required to ensure the husky install is not executed if the package.json contains husky
+ENV HUSKY=0
+
+LABEL traefik.enable=true
+
+LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.path=$TRAEFIK_HEALTH_CHECK_PATH
+LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.interval=$TRAEFIK_HEALTH_CHECK_INTERVAL
+LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.healthCheck.timeout=$TRAEFIK_HEALTH_CHECK_TIMEOUT
+LABEL traefik.http.services.$TRAEFIK_SERVICE_NAME.loadbalancer.server.port=$PORT
+
+LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.rule=PathPrefix(\`$TRAEFIK_ROUTER_PATH_PREFIX\`)
+LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.priority=$TRAEFIK_ROUTER_PRIORITY
+LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.service=$TRAEFIK_SERVICE_NAME
+
+COPY package.json /app
+COPY yarn.lock /app
+
+RUN yarn install --production && yarn cache clean
+
+COPY . /app
+",
+  "api-e2e/.eslintrc.json": "{
+  "extends": [
+    "../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    }
+  ]
+}
+",
+  "api-e2e/jest.config.ts": "export default {
+  displayName: 'api-e2e',
+  reporters: [
+    "default",
+    [
+      "jest-junit",
+      {
+        outputDirectory: "junit/api-e2e",
+        suiteName: 'api-e2e',
+        classNameTemplate: '{classname}',
+        titleTemplate: '{title}',
+      },
+    ],
+  ],
+  preset: '../jest.preset.js',
+  globalSetup: '<rootDir>/src/support/global-setup.ts',
+  globalTeardown: '<rootDir>/src/support/global-teardown.ts',
+  setupFiles: ['<rootDir>/src/support/test-setup.ts'],
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\\\.[tj]s$': ['ts-jest', {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+    }],
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../coverage/api-e2e',
+};
+",
+  "api-e2e/project.json": "{
+  "name": "api-e2e",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "implicitDependencies": [
+    "api"
+  ],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{e2eProjectRoot}"
+      ],
+      "options": {
+        "jestConfig": "api-e2e/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "dependsOn": [
+        "api:build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "sourceRoot": "api-e2e/src"
+}
+",
+  "api-e2e/src/api/api.spec.ts": "import axios from 'axios';
+
+describe('GET /api', () => {
+  it('should return a message', async () => {
+    const res = await axios.get(\`/api\`);
+
+    expect(res.status).toBe(200);
+    expect(res.data).toEqual({ message: 'Hello API' });
+  });
+})
+",
+  "api-e2e/src/support/global-setup.ts": "/* eslint-disable */
+var __TEARDOWN_MESSAGE__: string;
+
+module.exports = async function() {
+  // Start services that that the app needs to run (e.g. database, docker-compose, etc.).
+  console.log('\\nSetting up...\\n');
+
+  // Hint: Use \`globalThis\` to pass variables to global teardown.
+  globalThis.__TEARDOWN_MESSAGE__ = '\\nTearing down...\\n';
+};
+
+",
+  "api-e2e/src/support/global-teardown.ts": "/* eslint-disable */
+
+module.exports = async function() {
+  // Put clean up logic here (e.g. stopping services, docker-compose, etc.).
+  // Hint: \`globalThis\` is shared between setup and teardown.
+  console.log(globalThis.__TEARDOWN_MESSAGE__);
+};
+",
+  "api-e2e/src/support/test-setup.ts": "/* eslint-disable */
+import axios from 'axios';
+
+module.exports = async function() {
+  // Configure axios for tests to use.
+  const host = process.env.HOST ?? 'localhost';
+  const port = process.env.PORT ?? '3000';
+  axios.defaults.baseURL = \`http://\${host}:\${port}\`;
+};
+",
+  "api-e2e/tsconfig.json": "{
+  "extends": "../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
+}
+",
+  "api-e2e/tsconfig.spec.json": "{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.ts"
+  ]
+}
+",
+  "api/.eslintrc.json": "{
+  "extends": [
+    "../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    }
+  ]
+}
+",
+  "api/jest.config.ts": "export default {
+  displayName: 'api',
+  preset: '../jest.preset.js',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../coverage/api'
+};
+",
+  "api/project.json": "{
+  "name": "api",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "api/src",
+  "projectType": "application",
+  "tags": [
+    "application",
+    "backend",
+    "nest",
+    "service",
+    "standalone",
+    "express"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/api",
+        "main": "api/src/main.ts",
+        "tsConfig": "api/tsconfig.app.json",
+        "assets": [
+          "api/src/assets"
+        ],
+        "webpackConfig": "api/webpack.config.js",
+        "generatePackageJson": true,
+        "isolatedConfig": true
+      },
+      "configurations": {
+        "development": {
+          "progress": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "api/src/environments/environment.ts",
+              "with": "api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "buildTarget": "api:build:development",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "api:build:development"
+        },
+        "production": {
+          "buildTarget": "api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      },
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectName}",
+        "{workspaceRoot}/junit/{projectName}"
+      ]
+    },
+    "docker": {
+      "options": {},
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "docker-save": {}
+  }
+}
+",
+  "api/schematic.yaml": "package: "@rxap/plugin-nestjs"
+name: init-application
+options:
+  standalone: true
+  port: 3000
+  sentry: false
+  swagger: false
+  healthIndicator: false
+  validator: false
+  jwt: false
+  openApi: false
+  platform: express
+  healthIndicatorList: []
+  apiPrefix: false
+",
+  "api/src/app/app.config.ts": "import { SchemaMap } from 'joi';
+import * as Joi from 'joi';
+import { environment } from '../environments/environment';
+import { serverValidationSchema, corsValidationSchema } from '@rxap/nest-server';
+import { defaultValidationSchema } from '@rxap/nest-utilities';
+
+const validationSchema: SchemaMap = {
+  ...serverValidationSchema(environment,{
+      port: 3000
+    }),
+  ...corsValidationSchema(environment),
+  ...defaultValidationSchema(environment),
+};
+validationSchema['GLOBAL_API_PREFIX'] = Joi.string().default('');
+export const VALIDATION_SCHEMA = Joi.object(validationSchema);
+",
+  "api/src/app/app.controller.ts": "import { Controller, Get } from '@nestjs/common';
+import { Public, Environment } from '@rxap/nest-utilities';
+import { ApiExcludeController } from '@nestjs/swagger';
+import { environment } from '../environments/environment';
+
+@Controller()
+@Public()
+@ApiExcludeController()
+export class AppController {
+  @Get()
+  public async name(): Promise<string> {
+    return environment.app;
+  }
+
+  @Get('info')
+  public async environment(): Promise<Environment> {
+    return environment;
+  }
+}
+",
+  "api/src/app/app.module.ts": "import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { LoggerModule } from '@rxap/nest-logger';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { ThrottlerModuleOptionsLoader, CacheModuleOptionsLoader, EnvironmentModule } from '@rxap/nest-utilities';
+import { ConfigModule } from '@nestjs/config';
+import { VALIDATION_SCHEMA } from './app.config';
+import { CacheModule } from '@nestjs/cache-manager';
+import { APP_GUARD } from '@nestjs/core';
+import { environment } from '../environments/environment';
+
+@Module({
+  imports: [LoggerModule, ThrottlerModule.forRootAsync(
+    {
+      useClass: ThrottlerModuleOptionsLoader
+    }), ConfigModule.forRoot(
+    {
+      isGlobal: true,
+      validationSchema: VALIDATION_SCHEMA
+    }), CacheModule.registerAsync(
+    {
+      isGlobal: true,
+      useClass: CacheModuleOptionsLoader
+    }), EnvironmentModule.register(environment)],
+  controllers: [AppController],
+  providers: [{
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard
+    }],
+})
+export class AppModule {}
+",
+  "api/src/assets/.gitkeep": "",
+  "api/src/environments/environment.prod.ts": "import { Environment } from '@rxap/nest-utilities';
+
+export const environment: Environment = {
+    name: 'production',
+    production: true,
+    app: 'api'
+  };
+",
+  "api/src/environments/environment.ts": "import { Environment } from '@rxap/nest-utilities';
+
+export const environment: Environment = {
+    name: 'development',
+    production: false,
+    app: 'api'
+  };
+",
+  "api/src/main.ts": "/**
+ * This is not a production server yet!
+ * This is only a minimal backend to get started.
+ */
+
+import { Logger } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app/app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  const globalPrefix = 'api';
+  app.setGlobalPrefix(globalPrefix);
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
+  Logger.log(\`🚀 Application is running on: http://localhost:\${port}/\${globalPrefix}\`);
+}
+
+bootstrap();
+",
+  "api/tsconfig.app.json": "{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "commonjs",
+    "types": [
+      "node"
+    ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2021"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}
+",
+  "api/tsconfig.json": "{
+  "extends": "../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
+}
+",
+  "api/tsconfig.spec.json": "{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "commonjs",
+    "moduleResolution": "node10","types": ["jest", "node"]
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}
+",
+  "api/webpack.config.js": "const { composePlugins, withNx} = require('@nx/webpack');
+
+// Nx plugins for webpack.
+module.exports = composePlugins(
+  withNx({
+    target: 'node',
+  }),
+  (config) => {
+    // Update the webpack config as needed here.
+    // e.g. \`config.plugins.push(new MyPlugin())\`
+    return config;
+  }
+);
+",
+  "jest.config.ts": "import type { Config } from 'jest';
+import { getJestProjectsAsync } from '@nx/jest';
+
+export default async (): Promise<Config> => ({
+  projects: await getJestProjectsAsync()
+});",
+  "jest.preset.js": "const nxPreset = require('@nx/jest/preset').default;
+
+module.exports = { ...nxPreset };",
+  "nx.json": "{
+  "affected": {
+    "defaultBase": "main"
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "@nx/webpack:webpack": {
+      "cache": true,
+      "dependsOn": [
+        "^build",
+        "^index-export",
+        "index-export"
+      ],
+      "inputs": [
+        "default",
+        "^default"
+      ]
+    },
+    "@nx/eslint:lint": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.mjs"
+      ]
+    },
+    "@nx/jest:jest": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ],
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "@rxap/plugin-docker:build": {
+      "options": {
+        "imageRegistry": "registry.gitlab.com",
+        "imageName": "proj"
+      }
+    }
+  }
+}
+",
+  "package.json": "{
+  "name": "@proj/source",
+  "dependencies": {
+    "@nestjs/cache-manager": "2.2.2",
+    "@nestjs/common": "^10.0.2",
+    "@nestjs/config": "3.2.2",
+    "@nestjs/core": "11.1.1",
+    "@nestjs/platform-express": "10.3.8",
+    "@nestjs/swagger": "latest",
+    "@nestjs/terminus": "10.2.3",
+    "@nestjs/throttler": "5.1.2",
+    "@rxap/nest-logger": "latest",
+    "@rxap/nest-server": "latest",
+    "@rxap/nest-utilities": "latest",
+    "@rxap/utilities": "latest",
+    "axios": "^1.6.0",
+    "cache-manager": "5.7.6",
+    "class-transformer": "latest",
+    "class-validator": "latest",
+    "cookie-parser": "latest",
+    "helmet": "latest",
+    "joi": "latest",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@nestjs/schematics": "^10.0.1",
+    "@nestjs/testing": "^10.0.2",
+    "@nx/eslint": "20.5.0",
+    "@nx/eslint-plugin": "20.5.0",
+    "@nx/jest": "20.5.0",
+    "@nx/js": "20.5.0",
+    "@nx/nest": "20.5.0",
+    "@nx/node": "20.5.0",
+    "@nx/web": "20.5.0",
+    "@nx/webpack": "20.5.0",
+    "@rxap/plugin-application": "latest",
+    "@rxap/plugin-docker": "latest",
+    "@rxap/plugin-library": "latest",
+    "@rxap/plugin-nestjs": "latest",
+    "@rxap/plugin-open-api": "latest",
+    "@rxap/plugin-workspace": "latest",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@types/cookie-parser": "latest",
+    "@types/csurf": "latest",
+    "@types/jest": "^29.5.12",
+    "@types/node": "~18.16.9",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "~8.57.0",
+    "eslint-config-prettier": "^9.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
+    "jest-junit": "latest",
+    "prettier": "^2.6.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "~5.7.2"
+  },
+  "jest-junit": {
+    "uniqueOutputName": true
+  }
+}
+",
+  "tools/scripts/setup-env-file.sh": "#!/bin/bash
+
+GIT_ROOT=$(git rev-parse --show-toplevel)
+
+if ! command -v pwgen &> /dev/null
+then
+    echo "pwgen could not be found"
+    echo "Please install pwgen"
+    echo "sudo apt install pwgen"
+    exit
+fi
+
+lan_nip="127-0-0-1.nip.io"
+
+if [ -f "\${GIT_ROOT}/.env" ]; then
+  source "\${GIT_ROOT}/.env"
+fi
+
+echo > "\${GIT_ROOT}/.env"
+echo "ROOT_DOMAIN=\${lan_nip}" >> "\${GIT_ROOT}/.env"
+echo "NODE_EXTRA_CA_CERTS=\${GIT_ROOT}/docker/traefik/tls/ca.crt" >> "\${GIT_ROOT}/.env"
+echo "HOST_IP=$(ip addr show | grep -w inet | grep -v 127.0.0.1 | grep -v 172. | awk '{print $2}' | cut -d/ -f1 | head -n 1)" >> "\${GIT_ROOT}/.env"
+echo "ROOT_DOMAIN_PORT=8443" >> "\${GIT_ROOT}/.env"
+echo "LOG_LEVEL=verbose" >> "\${GIT_ROOT}/.env"
+",
+  "tsconfig.base.json": "{
+  "compilerOptions": {
+    "paths": {}
+  }
+}
+",
+}
+`;
