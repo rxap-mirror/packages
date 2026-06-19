@@ -41,6 +41,11 @@
   },
   "defaultProject": "workspace",
   "targetDefaults": {
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
     "serve": {
       "dependsOn": ["build-info", "^copy-open-api-sdk", "^generate-open-api"]
     },
@@ -294,8 +299,45 @@
   "useInferencePlugins": false,
   "defaultBase": "development",
   "release": {
+    "projectsRelationship": "independent",
+    "releaseTagPattern": "@rxap/{projectName}@{version}",
+    "groups": {
+      "packages": {
+        "projectsRelationship": "independent",
+        "projects": ["tag:packages", "!rxap"],
+        "releaseTagPattern": "@rxap/{projectName}@{version}"
+      },
+      "rxap": {
+        "projectsRelationship": "independent",
+        "projects": ["rxap"],
+        "releaseTagPattern": "rxap@{version}"
+      }
+    },
     "version": {
-      "preVersionCommand": "yarn dlx nx run-many -t build"
+      "git": {
+        "commit": false,
+        "tag": false,
+        "stageChanges": false
+      },
+      "generatorOptions": {
+        "specifierSource": "conventional-commits",
+        "currentVersionResolver": "git-tag",
+        "fallbackCurrentVersionResolver": "disk",
+        "updateDependents": "auto",
+        "versionPrefix": "^",
+        "preserveLocalDependencyProtocols": false,
+        "skipLockFileUpdate": true
+      }
+    },
+    "changelog": {
+      "projectChangelogs": true,
+      "workspaceChangelog": false,
+      "automaticFromRef": true,
+      "git": {
+        "commit": true,
+        "tag": true,
+        "push": false
+      }
     }
   },
   "useLegacyCache": true,
