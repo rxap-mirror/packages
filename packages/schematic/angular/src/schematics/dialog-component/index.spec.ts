@@ -2,7 +2,9 @@ import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { join } from 'path';
 import {
+  captureTree,
   createFullWorkspace,
+  diffTreeContent,
   listFiles,
   TestProject,
   TestProjectNames,
@@ -24,6 +26,7 @@ describe('dialog-component', () => {
 
   it('minimal', async () => {
 
+    const before = captureTree(tree);
     tree = await runner.runSchematic('dialog-component', {
       dialogName: 'test',
       project: projects.angular.lib,
@@ -36,6 +39,7 @@ describe('dialog-component', () => {
       .toMatchSnapshot('test-dialog.component.html');
     expect(tree.readText(join(workspace[projects.angular.lib].sourceRoot, 'lib/test-dialog/test-dialog.component.ts')))
       .toMatchSnapshot('test-dialog.component.ts');
+    expect(diffTreeContent(before, captureTree(tree))).toMatchSnapshot('generated');
 
   });
 

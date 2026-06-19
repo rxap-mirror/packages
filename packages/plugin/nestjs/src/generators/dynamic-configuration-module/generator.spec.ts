@@ -1,6 +1,7 @@
 import { Tree } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { libraryGenerator } from '@nx/nest/src/generators/library/library';
+import { SnapshotGeneratedTree } from '@rxap/plugin-utilities';
 import dynamicConfigurationModuleGenerator from './generator';
 
 describe('dynamic-configuration-module', () => {
@@ -34,6 +35,8 @@ describe('dynamic-configuration-module', () => {
     expect(tree.read('test/src/lib/tokens.ts', 'utf-8')).toMatchSnapshot();
 
     expect(tree.read('test/src/index.ts', 'utf-8')).toMatchSnapshot();
+
+    expect(SnapshotGeneratedTree(tree)).toMatchSnapshot('generated-tree');
   });
 
   it('should add local dynamic configuration module to the root module', async () => {
@@ -53,6 +56,8 @@ describe('dynamic-configuration-module', () => {
     expect(tree.read('test/src/lib/tokens.ts', 'utf-8')).toMatchSnapshot();
 
     expect(tree.read('test/src/index.ts', 'utf-8')).toMatchSnapshot();
+
+    expect(SnapshotGeneratedTree(tree)).toMatchSnapshot('generated-tree');
   });
 
 });
