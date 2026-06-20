@@ -1,7 +1,4 @@
-import {
-  AsyncPipe,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -54,24 +51,23 @@ import { RequestResetPasswordMethod } from './request-reset-password.method';
         fadeAnimation,
     ],
     imports: [
-        ReactiveFormsModule,
-        FormDirective,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        NgIf,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatTooltipModule,
-        MatProgressSpinnerModule,
-        FormControlMarkDirtyDirective,
-        FormSubmitFailedDirective,
-        FormSubmittingDirective,
-        MatProgressBarModule,
-        AsyncPipe,
-        MatSnackBarModule,
-        ControlErrorDirective,
-    ]
+    ReactiveFormsModule,
+    FormDirective,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    FormControlMarkDirtyDirective,
+    FormSubmitFailedDirective,
+    FormSubmittingDirective,
+    MatProgressBarModule,
+    AsyncPipe,
+    MatSnackBarModule,
+    ControlErrorDirective
+]
 })
 export class LoginComponent {
 

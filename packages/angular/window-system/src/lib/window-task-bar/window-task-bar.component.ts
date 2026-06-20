@@ -10,14 +10,14 @@ import { WindowService } from '../window.service';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { WindowTaskComponent } from './window-task/window-task.component';
-import { NgFor } from '@angular/common';
+
 
 @Component({
     selector: 'rxap-window-task-bar',
     templateUrl: './window-task-bar.component.html',
     styleUrls: ['./window-task-bar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgFor, WindowTaskComponent]
+    imports: [WindowTaskComponent]
 })
 export class WindowTaskBarComponent implements OnInit, OnDestroy {
 

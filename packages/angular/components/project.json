@@ -10,15 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/components/ng-package.json"
+        "project": "packages/angular/components/ng-package.json",
+        "tsConfig": "packages/angular/components/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/components/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/components/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },
@@ -52,17 +51,13 @@
     },
     "build-storybook": {
       "executor": "@storybook/angular:build-storybook",
-      "outputs": [
-        "{options.outputDir}"
-      ],
+      "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/packages/angular/components",
         "configDir": "packages/angular/components/.storybook",
         "browserTarget": "angular-components:build-storybook",
         "compodoc": false,
-        "styles": [
-          "shared/angular/styles/_index.scss"
-        ]
+        "styles": ["shared/angular/styles/_index.scss"]
       },
       "configurations": {
         "ci": {

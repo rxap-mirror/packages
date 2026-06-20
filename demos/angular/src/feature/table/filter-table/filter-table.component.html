@@ -13,7 +13,7 @@
 
 
         <rxap-table-column-menu #rxapTableColumns="rxapTableColumns" [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
-                                matCard>
+          matCard>
 
 
           <rxap-table-column-option
@@ -44,18 +44,19 @@
 
           <mat-divider></mat-divider>
           <span mat-menu-item>
-          <rxap-table-show-archived-slide
-            [paginator]="paginator"
-          ></rxap-table-show-archived-slide>
-        </span>
+            <rxap-table-show-archived-slide
+              [paginator]="paginator"
+            ></rxap-table-show-archived-slide>
+          </span>
         </rxap-table-column-menu>
       </mat-card-header>
 
       <mat-card-content>
-        <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
-          [refresh]="tableDataSourceDirective.retry">
-        </rxap-data-source-error>
+        @if (tableDataSourceDirective.hasError$ | async) {
+          <rxap-data-source-error
+            [refresh]="tableDataSourceDirective.retry">
+          </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
           <table
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
@@ -67,7 +68,7 @@
             [parameters]="parameters"
             id="filter"
             rxap-filter-header-row
-          >
+            >
             <!-- region columns -->
 
 
@@ -159,7 +160,7 @@
                     placeholder="Enter Filter"
                     i18n-placeholder
                     parentControlContainer
-                  />
+                    />
                   <button mat-icon-button matSuffix rxapInputClearButton>
                     <mat-icon>clear</mat-icon>
                   </button>
@@ -181,7 +182,7 @@
                     placeholder="Enter Filter"
                     i18n-placeholder
                     parentControlContainer
-                  />
+                    />
                   <button mat-icon-button matSuffix rxapInputClearButton>
                     <mat-icon>clear</mat-icon>
                   </button>
@@ -199,7 +200,7 @@
                   indeterminate
                   parentControlContainer
                   formControlName="isActive"
-                >
+                  >
                   <ng-container i18n>Is Active</ng-container>
                 </mat-checkbox>
 
@@ -219,7 +220,7 @@
                     placeholder="Enter Filter"
                     i18n-placeholder
                     parentControlContainer
-                  />
+                    />
                   <button mat-icon-button matSuffix rxapInputClearButton>
                     <mat-icon>clear</mat-icon>
                   </button>
@@ -241,7 +242,7 @@
                     placeholder="Enter Filter"
                     i18n-placeholder
                     parentControlContainer
-                  />
+                    />
                   <button mat-icon-button matSuffix rxapInputClearButton>
                     <mat-icon>clear</mat-icon>
                   </button>
@@ -284,16 +285,16 @@
       </mat-card-content>
 
       <mat-card-footer
-      >
+        >
         <mat-paginator
           [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
           #paginator="matPaginator"
           [pageSizeOptions]="[5,10,25,50,100]"
           [pageSize]="10"
           rxapPersistent
-        ></mat-paginator
-        >
-      </mat-card-footer>
-    </mat-card>
+          ></mat-paginator
+          >
+        </mat-card-footer>
+      </mat-card>
+    </div>
   </div>
-</div>

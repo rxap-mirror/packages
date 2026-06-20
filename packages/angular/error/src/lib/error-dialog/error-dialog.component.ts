@@ -2,11 +2,7 @@ import {
   ComponentPortal,
   PortalModule,
 } from '@angular/cdk/portal';
-import {
-  NgClass,
-  NgForOf,
-  NgIf,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -38,11 +34,9 @@ export interface IErrorDialogComponent<Error = any> {
     styleUrls: ['./error-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
     imports: [
-        NgIf,
-        NgClass,
-        NgForOf,
-        PortalModule,
-    ]
+    NgClass,
+    PortalModule
+]
 })
 export class ErrorDialogComponent implements AfterViewInit {
 

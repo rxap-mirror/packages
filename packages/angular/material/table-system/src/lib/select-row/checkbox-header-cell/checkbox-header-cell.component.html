@@ -1,6 +1,7 @@
-<mat-checkbox
-  (change)="onChange($event)"
-  *ngIf="isMultipleSelection"
-  [checked]="(checked$ | async) ?? false"
-  [indeterminate]="indeterminate$ | async">
-</mat-checkbox>
+@if (isMultipleSelection) {
+  <mat-checkbox
+    (change)="onChange($event)"
+    [checked]="(checked$ | async) ?? false"
+    [indeterminate]="indeterminate$ | async">
+  </mat-checkbox>
+}

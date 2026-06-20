@@ -1,5 +1,5 @@
 import { ComponentType } from '@angular/cdk/overlay';
-import { DOCUMENT } from '@angular/common';
+
 import {
   ApplicationRef,
   createComponent,
@@ -7,6 +7,7 @@ import {
   Injectable,
   Injector,
   WritableSignal,
+  DOCUMENT
 } from '@angular/core';
 import {
   EMPTY,

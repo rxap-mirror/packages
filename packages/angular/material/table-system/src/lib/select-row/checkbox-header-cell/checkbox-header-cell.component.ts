@@ -13,10 +13,7 @@ import {
   MatCheckboxModule,
 } from '@angular/material/checkbox';
 import { CdkTable } from '@angular/cdk/table';
-import {
-  AsyncPipe,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -25,10 +22,9 @@ import {
     styleUrls: ['./checkbox-header-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        NgIf,
-        MatCheckboxModule,
-        AsyncPipe,
-    ]
+    MatCheckboxModule,
+    AsyncPipe
+]
 })
 export class CheckboxHeaderCellComponent<Data extends Record<string, any>>
   implements OnInit {

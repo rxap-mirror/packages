@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { HttpClient } from '@angular/common/http';
 import {
   Component,
@@ -14,7 +14,7 @@ import {
 
 @Component({
     selector: 'rxap-http-error',
-    imports: [CommonModule, MatButtonModule],
+    imports: [MatButtonModule],
     templateUrl: './http-error.component.html',
     styleUrls: ['./http-error.component.scss']
 })

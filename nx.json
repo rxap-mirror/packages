@@ -238,7 +238,8 @@
     },
     "@nx/angular:component": {
       "style": "scss",
-      "standalone": true
+      "standalone": true,
+      "type": "component"
     },
     "@nx/nest:library": {
       "directory": "nest",
@@ -247,7 +248,8 @@
     },
     "@nx/angular:directive": {
       "standalone": true,
-      "skipTests": true
+      "skipTests": true,
+      "type": "directive"
     },
     "@nx/nest:application": {
       "e2eTestRunner": "none",
@@ -286,6 +288,54 @@
       "addTailwind": true,
       "host": "shell",
       "directory": "user-interface/feature"
+    },
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@nx/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@nx/angular:scam": {
+      "type": "component"
+    },
+    "@nx/angular:scam-directive": {
+      "type": "directive"
+    },
+    "@nx/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@nx/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@nx/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@nx/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@nx/angular:resolver": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   },
   "workspaceLayout": {
@@ -319,13 +369,13 @@
         "tag": false,
         "stageChanges": false
       },
-      "generatorOptions": {
-        "specifierSource": "conventional-commits",
-        "currentVersionResolver": "git-tag",
-        "fallbackCurrentVersionResolver": "disk",
-        "updateDependents": "auto",
-        "versionPrefix": "^",
-        "preserveLocalDependencyProtocols": false,
+      "specifierSource": "conventional-commits",
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk",
+      "versionPrefix": "^",
+      "updateDependents": "auto",
+      "preserveLocalDependencyProtocols": false,
+      "versionActionsOptions": {
         "skipLockFileUpdate": true
       }
     },
@@ -340,7 +390,6 @@
       }
     }
   },
-  "useLegacyCache": true,
   "plugins": [
     {
       "plugin": "@nx/eslint/plugin",

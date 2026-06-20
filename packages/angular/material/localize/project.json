@@ -10,15 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/material/localize/ng-package.json"
+        "project": "packages/angular/material/localize/ng-package.json",
+        "tsConfig": "packages/angular/material/localize/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/material/localize/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/material/localize/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     }

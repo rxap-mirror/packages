@@ -4,9 +4,11 @@
       <mat-icon>{{expandIcon}}</mat-icon>
     </button>
   </div>
-  <div *ngIf="icon">
-    <mat-icon [rxapIcon]="icon"></mat-icon>
-  </div>
+  @if (icon) {
+    <div>
+      <mat-icon [rxapIcon]="icon"></mat-icon>
+    </div>
+  }
   <div class="content">
     <ng-content></ng-content>
   </div>

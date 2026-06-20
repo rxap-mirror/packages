@@ -20,15 +20,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/changelog/ng-package.json"
+        "project": "packages/angular/changelog/ng-package.json",
+        "tsConfig": "packages/angular/changelog/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/changelog/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/changelog/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },

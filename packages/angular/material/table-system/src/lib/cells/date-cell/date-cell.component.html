@@ -1,4 +1,4 @@
-<ng-template [ngIf]="date">
+@if (date) {
   {{date | date:format}}
-</ng-template>
+}
 <ng-content></ng-content>

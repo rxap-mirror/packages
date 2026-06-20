@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +17,7 @@ import { MessageDialogData } from './types';
     templateUrl: './message-dialog.component.html',
     styleUrls: ['./message-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatDialogModule, MatButtonModule, NgFor, SantizationPipe]
+    imports: [MatDialogModule, MatButtonModule, SantizationPipe]
 })
 export class MessageDialogComponent {
 

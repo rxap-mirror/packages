@@ -10,7 +10,7 @@ import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RowDataWithNode } from '@rxap/data-source/table/tree';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'rxap-tree-control-cell, td[rxap-tree-control-cell]',
@@ -18,11 +18,10 @@ import { NgIf } from '@angular/common';
     styleUrls: ['./tree-control-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        MatButtonModule,
-        MatIconModule,
-        IconDirective,
-        NgIf,
-    ]
+    MatButtonModule,
+    MatIconModule,
+    IconDirective
+]
 })
 export class TreeControlCellComponent implements OnInit, DoCheck {
 

@@ -1,9 +1,4 @@
-import {
-  NgClass,
-  NgIf,
-  NgStyle,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -39,12 +34,11 @@ import { SidenavHeaderDirective } from './sidenav-header.directive';
     MatSidenavContainer,
     MatSidenavContent,
     NavigationComponent,
-    NgIf,
     NgClass,
     NgStyle,
     MatDivider,
-    NgTemplateOutlet,
-  ],
+    NgTemplateOutlet
+],
 })
 export class SidenavComponent {
 

@@ -1,8 +1,4 @@
-import {
-  AsyncPipe,
-  NgFor,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -38,12 +34,10 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
         class: 'list-none dark:text-neutral-400 text-neutral-700',
     },
     imports: [
-        NgFor,
-        NgIf,
-        MatDividerModule,
-        forwardRef(() => NavigationItemComponent),
-        AsyncPipe,
-    ]
+    MatDividerModule,
+    forwardRef(() => NavigationItemComponent),
+    AsyncPipe
+]
 })
 export class NavigationComponent implements OnInit {
 

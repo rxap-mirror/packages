@@ -16,15 +16,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/memory/ng-package.json"
+        "project": "packages/angular/memory/ng-package.json",
+        "tsConfig": "packages/angular/memory/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/memory/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/memory/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     }

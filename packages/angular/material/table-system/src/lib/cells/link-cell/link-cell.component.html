@@ -1,12 +1,24 @@
-<a *ngIf="value" [href]="href" [matTooltip]="value" class="link" target="_blank">
-  <span class="flex flex-row items-center gap-2">
-    <span *ngIf="short" class="content grow-0" i18n>Open</span>
-    <ng-container [ngSwitch]="protocol">
-      <mat-icon *ngSwitchCase="'tel'" class="grow-0">call</mat-icon>
-      <mat-icon *ngSwitchCase="'mailto'" class="grow-0">email</mat-icon>
-      <mat-icon *ngSwitchDefault class="grow-0">launch</mat-icon>
-    </ng-container>
-    <span *ngIf="!short" class="content grow-0">{{value}}</span>
-  </span>
-</a>
+@if (value) {
+  <a [href]="href" [matTooltip]="value" class="link" target="_blank">
+    <span class="flex flex-row items-center gap-2">
+      @if (short) {
+        <span class="content grow-0" i18n>Open</span>
+      }
+      @switch (protocol) {
+        @case ('tel') {
+          <mat-icon class="grow-0">call</mat-icon>
+        }
+        @case ('mailto') {
+          <mat-icon class="grow-0">email</mat-icon>
+        }
+        @default {
+          <mat-icon class="grow-0">launch</mat-icon>
+        }
+      }
+      @if (!short) {
+        <span class="content grow-0">{{value}}</span>
+      }
+    </span>
+  </a>
+}
 <ng-content></ng-content>

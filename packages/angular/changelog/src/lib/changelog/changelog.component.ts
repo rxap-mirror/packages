@@ -1,8 +1,4 @@
-import {
-  NgClass,
-  NgForOf,
-  NgIf,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   Component,
   computed,
@@ -19,12 +15,10 @@ import { ChangelogControllerListRemoteMethod } from '../openapi/remote-methods/c
 @Component({
     selector: 'rxap-changelog',
     imports: [
-        MethodTemplateDirective,
-        MarkdownModule,
-        NgForOf,
-        NgIf,
-        NgClass,
-    ],
+    MethodTemplateDirective,
+    MarkdownModule,
+    NgClass
+],
     templateUrl: './changelog.component.html',
     styleUrls: ['./changelog.component.scss']
 })

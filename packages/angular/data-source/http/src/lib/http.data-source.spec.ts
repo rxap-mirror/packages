@@ -23,8 +23,8 @@ describe('@rxap/data-source', () => {
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 });
 
-      http = TestBed.get(HttpClient);
-      httpMock = TestBed.get(HttpTestingController);
+      http = TestBed.inject(HttpClient);
+      httpMock = TestBed.inject(HttpTestingController);
 
       dataSource = new HttpDataSource<any>(
         http,

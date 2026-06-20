@@ -17,7 +17,9 @@
   </button>
   @for (item of customItems(); track item.label) {
     <button (click)="clickItem(item)" mat-menu-item>
-      <mat-icon *ngIf="item.icon as icon" [rxapIcon]="icon"></mat-icon>
+      @if (item.icon; as icon) {
+        <mat-icon [rxapIcon]="icon"></mat-icon>
+      }
       <span>{{ item.label }}</span>
     </button>
   }
@@ -66,9 +68,9 @@
 <mat-menu #themeFontMenu="matMenu" xPosition="before">
   @for (typographyName of availableTypographies ?? []; track typographyName) {
     <button (click)="setTypography(typographyName)"
-            (mouseenter)="previewTypography(typographyName)"
-            (mouseleave)="restoreTypography()"
-            mat-menu-item>
+      (mouseenter)="previewTypography(typographyName)"
+      (mouseleave)="restoreTypography()"
+      mat-menu-item>
       {{ typographyName }}
     </button>
   }
@@ -77,9 +79,9 @@
 <mat-menu #themePresetMenu="matMenu" xPosition="before">
   @for (themeName of availableThemes ?? []; track themeName) {
     <button (click)="setTheme(themeName)"
-            (mouseenter)="previewTheme(themeName)"
-            (mouseleave)="restoreTheme()"
-            mat-menu-item>
+      (mouseenter)="previewTheme(themeName)"
+      (mouseleave)="restoreTheme()"
+      mat-menu-item>
       {{ themeName }}
     </button>
   }
