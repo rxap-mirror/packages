@@ -1,9 +1,13 @@
 <div (click)="reopen()" [ngClass]="{ minimized: window.isMinimized }"
-     class="rxap-container mat-elevation-z2 flex flex-row justify-start items-center gap-2">
-  <ng-template [ngIf]="window.settings$ | async" let-settings>
-    <mat-icon *ngIf="settings.icon" [rxapIcon]="settings.icon"></mat-icon>
-    <h3 *ngIf="settings.title" class="grow">{{settings.title}}</h3>
-  </ng-template>
+  class="rxap-container mat-elevation-z2 flex flex-row justify-start items-center gap-2">
+  @if (window.settings$ | async; as settings) {
+    @if (settings.icon) {
+      <mat-icon [rxapIcon]="settings.icon"></mat-icon>
+    }
+    @if (settings.title) {
+      <h3 class="grow">{{settings.title}}</h3>
+    }
+  }
   <button (click)="close()" mat-icon-button rxapStopPropagation type="button">
     <mat-icon>close</mat-icon>
   </button>

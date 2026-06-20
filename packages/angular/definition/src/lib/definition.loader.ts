@@ -3,8 +3,7 @@ import type { Injector } from '@angular/core';
 import {
   Inject,
   Injectable,
-  InjectFlags,
-  INJECTOR,
+  INJECTOR
 } from '@angular/core';
 import { BaseDefinitionMetadata } from './definition.metadata';
 import { BaseDefinition } from './definition';

@@ -10,15 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/window-system/ng-package.json"
+        "project": "packages/angular/window-system/ng-package.json",
+        "tsConfig": "packages/angular/window-system/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/window-system/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/window-system/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },

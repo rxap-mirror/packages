@@ -1,7 +1,6 @@
 import {
   Injectable,
-  InjectFlags,
-  Injector,
+  Injector
 } from '@angular/core';
 import {
   BaseRemoteMethod,

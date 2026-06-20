@@ -1,7 +1,4 @@
-import {
-  JsonPipe,
-  NgIf,
-} from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -41,11 +38,10 @@ export interface DataSourceLikeForErrorHandling {
     styleUrls: ['./data-source-error.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        MatButtonModule,
-        NgIf,
-        MatProgressSpinnerModule,
-        JsonPipe,
-    ]
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    JsonPipe
+]
 })
 export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
 

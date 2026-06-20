@@ -1,8 +1,5 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  NgClass,
-  NgIf,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -43,7 +40,7 @@ import { tap } from 'rxjs/operators';
             useExisting: forwardRef(() => TableSelectInputComponent),
         },
     ],
-    imports: [NgClass, NgIf]
+    imports: [NgClass]
 })
 export class TableSelectInputComponent<Data extends Record<string, any> = Record<string, any>>
   extends ControlValueAccessor<Data>

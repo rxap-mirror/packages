@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ComplexAccordionDataSource } from './complex-accordion.data-source';
 import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
-import { CommonModule, AsyncPipe, NgIf } from '@angular/common';
+import { CommonModule, AsyncPipe } from '@angular/common';
 
 import { DataGridDemoPanelComponent } from './data-grid-demo-panel/data-grid-demo-panel.component';
 
@@ -31,24 +31,23 @@ import { ComplexAccordionMethod } from './complex-accordion.method';
     styleUrls: ['./complex-accordion.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        DataGridDemoPanelComponent,
-        DataGridCollectionDemoPanelComponent,
-        EditDataGridDemoPanelComponent,
-        EditDataGridCollectionDemoPanelComponent,
-        TableDemoPanelComponent,
-        TreeTableDemoPanelComponent,
-        DataSourceErrorComponent,
-        DataSourceDirective,
-        NavigateBackButtonComponent,
-        MatProgressBarModule,
-        MatDividerModule,
-        MatExpansionModule,
-        PersistentAccordionDirective,
-        CommonModule,
-        AccordionHeaderComponent,
-        AsyncPipe,
-        NgIf,
-    ],
+    DataGridDemoPanelComponent,
+    DataGridCollectionDemoPanelComponent,
+    EditDataGridDemoPanelComponent,
+    EditDataGridCollectionDemoPanelComponent,
+    TableDemoPanelComponent,
+    TreeTableDemoPanelComponent,
+    DataSourceErrorComponent,
+    DataSourceDirective,
+    NavigateBackButtonComponent,
+    MatProgressBarModule,
+    MatDividerModule,
+    MatExpansionModule,
+    PersistentAccordionDirective,
+    CommonModule,
+    AccordionHeaderComponent,
+    AsyncPipe
+],
     providers: [
         ComplexAccordionDataSource,
         {

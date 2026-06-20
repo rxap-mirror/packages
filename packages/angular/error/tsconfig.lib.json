@@ -6,7 +6,8 @@
     "declarationMap": true,
     "inlineSources": true,
     "strict": true,
-    "types": ["@angular/localize"]
+    "types": ["@angular/localize"],
+    "moduleResolution": "bundler"
   },
   "exclude": [
     "src/**/*.spec.ts",

@@ -5,12 +5,7 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {
-  NgIf,
-  NgSwitch,
-  NgSwitchCase,
-  NgSwitchDefault,
-} from '@angular/common';
+
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -18,7 +13,7 @@ import {
     templateUrl: './link-cell.component.html',
     styleUrls: ['./link-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, MatTooltipModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault]
+    imports: [MatTooltipModule, MatIconModule]
 })
 export class LinkCellComponent {
 

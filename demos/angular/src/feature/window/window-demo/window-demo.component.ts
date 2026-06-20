@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   Component,
   inject,
@@ -13,7 +13,7 @@ import { SmallWindowComponent } from './small-window/small-window.component';
 
 @Component({
     selector: 'rxap-window-demo',
-    imports: [CommonModule, MatButtonModule, RxapWindowSystemModule],
+    imports: [MatButtonModule, RxapWindowSystemModule],
     templateUrl: './window-demo.component.html',
     styleUrls: ['./window-demo.component.scss']
 })

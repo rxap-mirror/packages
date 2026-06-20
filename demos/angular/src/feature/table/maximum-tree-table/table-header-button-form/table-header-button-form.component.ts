@@ -14,7 +14,7 @@ import {
 } from '@rxap/material-form-system';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RxapFormsModule } from '@rxap/forms';
-import { CommonModule } from '@angular/common';
+
 
 
 @Component({
@@ -23,12 +23,11 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./table-header-button-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MaterialFormSystemModule,
-        FormControlsComponent,
-        RxapFormsModule,
-    ],
+    ReactiveFormsModule,
+    MaterialFormSystemModule,
+    FormControlsComponent,
+    RxapFormsModule
+],
     providers: [
         FormProviders,
         FormComponentProviders,

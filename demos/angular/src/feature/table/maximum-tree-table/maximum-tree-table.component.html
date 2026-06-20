@@ -21,13 +21,13 @@
           [disabled]="tableDataSourceDirective.hasError$ | async"
           [rxapTableCreate]="tableDataSourceDirective"
 
-        >
+          >
           <mat-icon>add</mat-icon>
         </button>
         <mat-card-subtitle i18n>Create Maximum-tree</mat-card-subtitle>
 
         <rxap-table-column-menu #rxapTableColumns="rxapTableColumns" [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
-                                matCard>
+          matCard>
           <rxap-table-column-option hidden name="tree"></rxap-table-column-option>
 
           <rxap-table-column-option name="name">
@@ -61,16 +61,17 @@
 
           <mat-divider></mat-divider>
           <span mat-menu-item>
-          <rxap-table-show-archived-slide></rxap-table-show-archived-slide>
-        </span>
+            <rxap-table-show-archived-slide></rxap-table-show-archived-slide>
+          </span>
         </rxap-table-column-menu>
       </mat-card-header>
 
       <mat-card-content>
-        <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
-          [refresh]="tableDataSourceDirective.retry">
-        </rxap-data-source-error>
+        @if (tableDataSourceDirective.hasError$ | async) {
+          <rxap-data-source-error
+            [refresh]="tableDataSourceDirective.retry">
+          </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
           <table
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
@@ -80,7 +81,7 @@
             rxapTableDataSource
             id="maximum-tree"
             mat-table
-          >
+            >
             <!-- region columns -->
 
             <ng-container matColumnDef="uuid">
@@ -161,69 +162,69 @@
               <td *matCellDef="let element" mat-cell>
                 <div class="flex flex-row">
 
-                  <button
-                    *ngIf="element | rxapRowActionCheck:'callout'"
-                    [element]="element"
-                    mat-icon-button
-                    i18n-matTooltip
+                  @if (element | rxapRowActionCheck:'callout') {
+                    <button
+                      [element]="element"
+                      mat-icon-button
+                      i18n-matTooltip
+                      matTooltip="callout"
+                      rxapTableRowAction="callout"
+                      >
+                      <mat-icon>waving_hand</mat-icon>
+                      <mat-progress-bar
+                        *rxapTableRowActionExecuting
+                        mode="indeterminate"
+                      ></mat-progress-bar>
+                    </button>
+                  }
 
-                    matTooltip="callout"
-                    rxapTableRowAction="callout"
-                  >
-                    <mat-icon>waving_hand</mat-icon>
-                    <mat-progress-bar
-                      *rxapTableRowActionExecuting
-                      mode="indeterminate"
-                    ></mat-progress-bar>
-                  </button>
+                  @if (element | rxapRowActionCheck:'refresh') {
+                    <button
+                      [element]="element"
+                      mat-icon-button
+                      i18n-matTooltip
+                      matTooltip="refresh"
+                      rxapTableRowAction="refresh"
+                      >
+                      <mat-icon>loop</mat-icon>
+                      <mat-progress-bar
+                        *rxapTableRowActionExecuting
+                        mode="indeterminate"
+                      ></mat-progress-bar>
+                    </button>
+                  }
 
-                  <button
-                    *ngIf="element | rxapRowActionCheck:'refresh'"
-                    [element]="element"
-                    mat-icon-button
-                    i18n-matTooltip
+                  @if (element | rxapRowActionCheck:'confirm') {
+                    <button
+                      [element]="element"
+                      mat-icon-button
+                      i18n-matTooltip
+                      matTooltip="confirm"
+                      rxapTableRowAction="confirm"
+                      >
+                      <mat-icon>confirmation_number</mat-icon>
+                      <mat-progress-bar
+                        *rxapTableRowActionExecuting
+                        mode="indeterminate"
+                      ></mat-progress-bar>
+                    </button>
+                  }
 
-                    matTooltip="refresh"
-                    rxapTableRowAction="refresh"
-                  >
-                    <mat-icon>loop</mat-icon>
-                    <mat-progress-bar
-                      *rxapTableRowActionExecuting
-                      mode="indeterminate"
-                    ></mat-progress-bar>
-                  </button>
-
-                  <button
-                    *ngIf="element | rxapRowActionCheck:'confirm'"
-                    [element]="element"
-                    mat-icon-button
-                    i18n-matTooltip
-
-                    matTooltip="confirm"
-                    rxapTableRowAction="confirm"
-                  >
-                    <mat-icon>confirmation_number</mat-icon>
-                    <mat-progress-bar
-                      *rxapTableRowActionExecuting
-                      mode="indeterminate"
-                    ></mat-progress-bar>
-                  </button>
-
-                  <button
-                    *ngIf="element | rxapRowActionCheck:'fail'"
-                    [element]="element"
-                    mat-icon-button
-                    i18n-matTooltip
-
-                    matTooltip="fail"
-                    rxapTableRowAction="fail"
-                  >
-                    <mat-icon>bug_report</mat-icon>
-                    <mat-progress-bar
-                      *rxapTableRowActionExecuting
-                      mode="indeterminate"
-                    ></mat-progress-bar>
-                  </button>
+                  @if (element | rxapRowActionCheck:'fail') {
+                    <button
+                      [element]="element"
+                      mat-icon-button
+                      i18n-matTooltip
+                      matTooltip="fail"
+                      rxapTableRowAction="fail"
+                      >
+                      <mat-icon>bug_report</mat-icon>
+                      <mat-progress-bar
+                        *rxapTableRowActionExecuting
+                        mode="indeterminate"
+                      ></mat-progress-bar>
+                    </button>
+                  }
 
                 </div>
               </td>

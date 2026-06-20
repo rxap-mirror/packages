@@ -29,11 +29,7 @@ import {
   MatSnackBarModule,
 } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {
-  AsyncPipe,
-  NgClass,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 declare const $localize: any;
 
@@ -43,13 +39,12 @@ declare const $localize: any;
     styleUrls: ['./form-controls.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        MatButtonModule,
-        NgClass,
-        MatProgressSpinnerModule,
-        NgIf,
-        AsyncPipe,
-        MatSnackBarModule,
-    ]
+    MatButtonModule,
+    NgClass,
+    MatProgressSpinnerModule,
+    AsyncPipe,
+    MatSnackBarModule
+]
 })
 export class FormControlsComponent<FormData> implements OnInit {
   public submitting$!: Observable<boolean>;

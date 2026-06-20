@@ -7,10 +7,9 @@ import {
   ComponentFactoryResolver,
   Inject,
   Injectable,
-  InjectFlags,
   Injector,
   Optional,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import { LoadingIndicatorService } from '@rxap/services';
 import { GenerateRandomString } from '@rxap/utilities';
@@ -144,11 +143,11 @@ export class WindowService {
 
     const containerPortal = new ComponentPortal(
       windowConfig.windowComponent ?? DefaultWindowComponent,
-      injector.get(ViewContainerRef, null, InjectFlags.Optional) ??
+      injector.get(ViewContainerRef, null, { optional: true }) ??
       windowConfig.viewContainerRef ??
       null,
       injector,
-      injector.get(ComponentFactoryResolver, null, InjectFlags.Optional) ??
+      injector.get(ComponentFactoryResolver, null, { optional: true }) ??
       windowConfig.componentFactoryResolver ??
       this.componentFactoryResolver,
     );

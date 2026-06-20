@@ -5,7 +5,7 @@ import {
   Portal,
   PortalModule,
 } from '@angular/cdk/portal';
-import { NgIf } from '@angular/common';
+
 import {
   AfterViewInit,
   Component,
@@ -80,9 +80,8 @@ export class MockWindowRef<O = any, R = any> extends Subject<R> {
     </div>
   `,
     imports: [
-        PortalModule,
-        NgIf,
-    ]
+    PortalModule
+]
 })
 export class WindowTestWrapperComponent implements AfterViewInit {
 

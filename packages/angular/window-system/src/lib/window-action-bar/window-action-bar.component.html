@@ -1,3 +1,5 @@
-<mat-toolbar-row *ngIf="definitions" class="p-2 flex flex-row gap-2 justify-{{position}} items-center">
-  <span>this feature is removed</span>
-</mat-toolbar-row>
+@if (definitions) {
+  <mat-toolbar-row class="p-2 flex flex-row gap-2 justify-{{position}} items-center">
+    <span>this feature is removed</span>
+  </mat-toolbar-row>
+}

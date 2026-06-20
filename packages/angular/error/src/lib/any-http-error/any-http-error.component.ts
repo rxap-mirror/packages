@@ -1,10 +1,4 @@
-import {
-  DatePipe,
-  JsonPipe,
-  KeyValuePipe,
-  NgForOf,
-  NgIf,
-} from '@angular/common';
+import { DatePipe, JsonPipe, KeyValuePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,15 +20,13 @@ import { AnyHttpErrorDialogData } from './any-http-error-dialog-data';
     styleUrls: ['./any-http-error.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        DataGridModule,
-        NgIf,
-        DatePipe,
-        KeyValuePipe,
-        NgForOf,
-        CopyToClipboardComponent,
-        JsonPipe,
-        JsonViewerComponent,
-    ]
+    DataGridModule,
+    DatePipe,
+    KeyValuePipe,
+    CopyToClipboardComponent,
+    JsonPipe,
+    JsonViewerComponent
+]
 })
 export class AnyHttpErrorComponent implements IErrorDialogComponent<AnyHttpErrorDialogData> {
 

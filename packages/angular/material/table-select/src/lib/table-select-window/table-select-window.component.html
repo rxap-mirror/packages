@@ -1,59 +1,51 @@
-<mat-progress-bar *ngIf="tableDataSourceDirective.loading$ | async" mode="indeterminate"></mat-progress-bar>
+@if (tableDataSourceDirective.loading$ | async) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
 <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
   <table #tableDataSourceDirective="rxapTableDataSource"
-         [id]="id ?? 'table-select'"
-         [paginator]="paginator"
-         [parameters]="data.parameters"
-         mat-table
-         matSort
-         rxap-filter-header-row
-         rxapTableDataSource>
+    [id]="id ?? 'table-select'"
+    [paginator]="paginator"
+    [parameters]="data.parameters"
+    mat-table
+    matSort
+    rxap-filter-header-row
+    rxapTableDataSource>
 
-    <ng-container *ngIf="data.multiple" matColumnDef="select" [sticky]="true">
-      <th *matHeaderCellDef class="drop-shadow-2xl" mat-header-cell rxap-checkbox-header-cell></th>
-      <td
-        *matCellDef="let element"
-        [element]="element"
-        class="drop-shadow-2xl"
-        mat-cell
-        rxap-checkbox-cell
-      ></td>
-    </ng-container>
-
-    <ng-container *ngIf="hasSomeFilterColumn">
-
-      <ng-container *ngIf="data.multiple" [matColumnDef]="'filter__select'">
-        <th *matHeaderCellDef mat-header-cell></th>
+    @if (data.multiple) {
+      <ng-container matColumnDef="select" [sticky]="true">
+        <th *matHeaderCellDef class="drop-shadow-2xl" mat-header-cell rxap-checkbox-header-cell></th>
+        <td
+          *matCellDef="let element"
+          [element]="element"
+          class="drop-shadow-2xl"
+          mat-cell
+          rxap-checkbox-cell
+        ></td>
       </ng-container>
+    }
 
-      <ng-container *ngFor="let item of data.columns | keyvalue">
-
-        <ng-container *ngIf="item.value.filter">
-
-          <ng-container [ngSwitch]="item.value.type">
-
-            <ng-container *ngSwitchCase="'date'">
-
+    @if (hasSomeFilterColumn) {
+      @if (data.multiple) {
+        <ng-container [matColumnDef]="'filter__select'">
+          <th *matHeaderCellDef mat-header-cell></th>
+        </ng-container>
+      }
+      @for (item of data.columns | keyvalue; track item) {
+        @if (item.value.filter) {
+          @switch (item.value.type) {
+            @case ('date') {
               <ng-container [matColumnDef]="'filter__' + item.key">
                 <th *matHeaderCellDef mat-header-cell>
-
                 </th>
               </ng-container>
-
-            </ng-container>
-
-            <ng-container *ngSwitchCase="'boolean'">
-
+            }
+            @case ('boolean') {
               <ng-container [matColumnDef]="'filter__' + item.key">
                 <th *matHeaderCellDef mat-header-cell>
-
                 </th>
               </ng-container>
-
-            </ng-container>
-
-            <ng-container *ngSwitchDefault>
-
+            }
+            @default {
               <ng-container [matColumnDef]="'filter__' + item.key">
                 <th *matHeaderCellDef mat-header-cell>
                   <mat-form-field rxapNoPadding>
@@ -63,36 +55,27 @@
                       [placeholder]="'Enter the ' + item.value.label + ' filter'"
                       matInput
                       parentControlContainer
-                    />
+                      />
                     <button mat-icon-button matSuffix rxapInputClearButton>
                       <mat-icon>clear</mat-icon>
                     </button>
                   </mat-form-field>
                 </th>
               </ng-container>
-
-            </ng-container>
-
-          </ng-container>
-
-        </ng-container>
-
-        <ng-container *ngIf="!item.value.filter">
+            }
+          }
+        }
+        @if (!item.value.filter) {
           <ng-container [matColumnDef]="'filter__' + item.key">
             <th *matHeaderCellDef mat-header-cell>{{ data.showHeader ? '' : item.value.label }}</th>
           </ng-container>
-        </ng-container>
+        }
+      }
+    }
 
-      </ng-container>
-
-    </ng-container>
-
-    <ng-container *ngFor="let item of data.columns | keyvalue">
-
-      <ng-container [ngSwitch]="item.value.type">
-
-        <ng-container *ngSwitchCase="'date'">
-
+    @for (item of data.columns | keyvalue; track item) {
+      @switch (item.value.type) {
+        @case ('date') {
           <ng-container [matColumnDef]="item.key">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ item.value.label }}</th>
             <td
@@ -102,11 +85,8 @@
               mat-cell
             ></td>
           </ng-container>
-
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'boolean'">
-
+        }
+        @case ('boolean') {
           <ng-container [matColumnDef]="item.key">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ item.value.label }}</th>
             <td
@@ -115,11 +95,8 @@
               mat-cell
             ></td>
           </ng-container>
-
-        </ng-container>
-
-        <ng-container *ngSwitchDefault>
-
+        }
+        @default {
           <ng-container [matColumnDef]="item.key">
             <th *matHeaderCellDef mat-header-cell mat-sort-header>
               {{ item.value.label }}
@@ -128,27 +105,24 @@
               {{ element | getFromObject:item.key }}
             </td>
           </ng-container>
+        }
+      }
+    }
 
-        </ng-container>
-
-      </ng-container>
-
-    </ng-container>
-
-    <ng-container *ngIf="hasSomeFilterColumn">
+    @if (hasSomeFilterColumn) {
       <tr
         *matHeaderRowDef="filterDisplayColumns"
         class="filter-header"
         mat-header-row
       ></tr>
-    </ng-container>
+    }
 
-    <ng-template [ngIf]="data.showHeader">
+    @if (data.showHeader) {
       <tr
         *matHeaderRowDef="displayColumns"
         mat-header-row
       ></tr>
-    </ng-template>
+    }
 
     <tr
       (click)="selectRow(element)"
@@ -171,10 +145,14 @@
     <button (click)="close()" class="grow-0" mat-stroked-button type="button">
       <ng-container i18n>Cancel</ng-container>
     </button>
-    <button (click)="select()" *ngIf="data.multiple" [disabled]="hasNotSelected$ | async" class="grow-0" mat-raised-button
-            type="button">
-      <ng-container i18n>Select</ng-container>
-    </button>
-    <span *ngIf="!data.multiple" class="hint" i18n>Click on a row to select an entry.</span>
+    @if (data.multiple) {
+      <button (click)="select()" [disabled]="hasNotSelected$ | async" class="grow-0" mat-raised-button
+        type="button">
+        <ng-container i18n>Select</ng-container>
+      </button>
+    }
+    @if (!data.multiple) {
+      <span class="hint" i18n>Click on a row to select an entry.</span>
+    }
   </div>
 </ng-template>

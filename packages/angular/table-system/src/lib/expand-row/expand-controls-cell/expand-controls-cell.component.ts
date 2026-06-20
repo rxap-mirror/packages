@@ -7,10 +7,7 @@ import {
 import { ExpandRowService } from '../expand-row.service';
 import { Required } from '@rxap/utilities';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  AsyncPipe,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -19,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
     templateUrl: './expand-controls-cell.component.html',
     styleUrls: ['./expand-controls-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatButtonModule, NgIf, MatIconModule, AsyncPipe]
+    imports: [MatButtonModule, MatIconModule, AsyncPipe]
 })
 export class ExpandControlsCellComponent<Data extends Record<string, any>> {
 

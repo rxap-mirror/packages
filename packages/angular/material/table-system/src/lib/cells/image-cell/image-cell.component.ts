@@ -12,10 +12,7 @@ import {
   BackgroundSize,
   BackgroundSizeOptions,
 } from '@rxap/directives';
-import {
-  NgClass,
-  NgIf,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -23,7 +20,7 @@ import {
     templateUrl: './image-cell.component.html',
     styleUrls: ['./image-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, NgClass, BackgroundImageDirective]
+    imports: [NgClass, BackgroundImageDirective]
 })
 export class ImageCellComponent {
 

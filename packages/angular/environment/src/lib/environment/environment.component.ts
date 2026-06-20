@@ -1,7 +1,4 @@
-import {
-  DatePipe,
-  NgIf,
-} from '@angular/common';
+import { DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +14,7 @@ import { RXAP_ENVIRONMENT } from './tokens';
     changeDetection: ChangeDetectionStrategy.OnPush,
   
     host: { class: 'rxap-environment' },
-    imports: [NgIf, DatePipe]
+    imports: [DatePipe]
 })
 export class EnvironmentComponent {
 

@@ -10,15 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/material/table-select/ng-package.json"
+        "project": "packages/angular/material/table-select/ng-package.json",
+        "tsConfig": "packages/angular/material/table-select/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/material/table-select/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/material/table-select/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },
