@@ -11,9 +11,9 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/router": "^19.2.1",
-    "@rxap/config": "^19.3.0-dev.4",
-    "@rxap/data-source": "^19.2.0-dev.0",
-    "@rxap/ngx-pub-sub": "^19.1.0-dev.0",
+    "@rxap/config": "^20.0.0",
+    "@rxap/data-source": "^20.0.0",
+    "@rxap/ngx-pub-sub": "^20.0.0",
     "@rxap/pattern": "^1.1.15-dev.0",
     "rxjs": "^7.8.1"
   },

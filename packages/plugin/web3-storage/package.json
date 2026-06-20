@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/plugin-utilities": "^20.0.7-dev.0",
+    "@rxap/plugin-utilities": "^21.0.0",
     "@ucanto/principal": "^9.0.1",
     "@web3-storage/w3up-client": "^16.2.0",
     "files-from-path": "1.0.4",

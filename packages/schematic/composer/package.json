@@ -6,10 +6,10 @@
   "dependencies": {
     "@angular-devkit/schematics": "19.2.1",
     "@nx/devkit": "20.5.0",
-    "@rxap/schematics-ts-morph": "^19.2.0-dev.3",
-    "@rxap/schematics-utilities": "^19.1.0-dev.0",
+    "@rxap/schematics-ts-morph": "^20.0.0",
+    "@rxap/schematics-utilities": "^20.0.0",
     "@rxap/utilities": "^16.5.1-dev.1",
-    "@rxap/workspace-utilities": "^19.9.1-dev.2",
+    "@rxap/workspace-utilities": "^21.0.0",
     "colors": "1.4.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"

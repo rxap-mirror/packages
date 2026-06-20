@@ -10,8 +10,8 @@
   "peerDependencies": {
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
-    "@rxap/config": "^19.3.0-dev.4",
-    "@rxap/ngx-user": "^19.1.0-dev.0",
+    "@rxap/config": "^20.0.0",
+    "@rxap/ngx-user": "^20.0.0",
     "rxjs": "^7.8.1"
   },
   "author": {

@@ -8,8 +8,8 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/config": "^19.3.0-dev.4",
-    "@rxap/environment": "^19.2.0-dev.0",
+    "@rxap/config": "^20.0.0",
+    "@rxap/environment": "^20.0.0",
     "@sentry/angular": "^8.18.0"
   },
   "author": {
