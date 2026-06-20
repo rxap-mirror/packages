@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`plugin-nestjs:init-application (golden master) should produce a stable standalone init-application tree (features off): init-application-tree 1`] = `
 {
@@ -79,6 +79,36 @@ exports[`plugin-nestjs:init-application (golden master) should produce a stable 
 /.nx/cache
 /.nx/workspace-data",
   ".prettierrc": "{"singleQuote":true}",
+  ".vscode/launch.json": "{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug api with Nx",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "nx",
+        "serve",
+        "api"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--inspect=9229"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "sourceMaps": true,
+      "outFiles": [
+        "\${workspaceFolder}/api/dist/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ]
+    }
+  ]
+}
+",
   "Dockerfile": "FROM registry.gitlab.com/rxap/docker/nestjs-server/20.11-alpine:v0.1.0-edge.1
 
 ARG PROJECT_NAME
@@ -155,20 +185,8 @@ COPY . /app
   ]
 }
 ",
-  "api-e2e/jest.config.ts": "export default {
+  "api-e2e/jest.config.cts": "export default {
   displayName: 'api-e2e',
-  reporters: [
-    "default",
-    [
-      "jest-junit",
-      {
-        outputDirectory: "junit/api-e2e",
-        suiteName: 'api-e2e',
-        classNameTemplate: '{classname}',
-        titleTemplate: '{title}',
-      },
-    ],
-  ],
   preset: '../jest.preset.js',
   globalSetup: '<rootDir>/src/support/global-setup.ts',
   globalTeardown: '<rootDir>/src/support/global-teardown.ts',
@@ -197,11 +215,12 @@ COPY . /app
         "{workspaceRoot}/coverage/{e2eProjectRoot}"
       ],
       "options": {
-        "jestConfig": "api-e2e/jest.config.ts",
+        "jestConfig": "api-e2e/jest.config.cts",
         "passWithNoTests": true
       },
       "dependsOn": [
-        "api:build"
+        "api:build",
+        "api:serve"
       ]
     },
     "lint": {
@@ -222,23 +241,32 @@ describe('GET /api', () => {
   });
 })
 ",
-  "api-e2e/src/support/global-setup.ts": "/* eslint-disable */
+  "api-e2e/src/support/global-setup.ts": "import { waitForPortOpen } from '@nx/node/utils';
+
+/* eslint-disable */
 var __TEARDOWN_MESSAGE__: string;
 
 module.exports = async function() {
   // Start services that that the app needs to run (e.g. database, docker-compose, etc.).
   console.log('\\nSetting up...\\n');
 
+  const host = process.env.HOST ?? 'localhost';
+  const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+  await waitForPortOpen(port, { host });
+
   // Hint: Use \`globalThis\` to pass variables to global teardown.
   globalThis.__TEARDOWN_MESSAGE__ = '\\nTearing down...\\n';
 };
 
 ",
-  "api-e2e/src/support/global-teardown.ts": "/* eslint-disable */
+  "api-e2e/src/support/global-teardown.ts": "import { killPort } from '@nx/node/utils';
+/* eslint-disable */
 
 module.exports = async function() {
   // Put clean up logic here (e.g. stopping services, docker-compose, etc.).
   // Hint: \`globalThis\` is shared between setup and teardown.
+  const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+  await killPort(port);
   console.log(globalThis.__TEARDOWN_MESSAGE__);
 };
 ",
@@ -313,7 +341,7 @@ module.exports = async function() {
   ]
 }
 ",
-  "api/jest.config.ts": "export default {
+  "api/jest.config.cts": "module.exports = {
   displayName: 'api',
   preset: '../jest.preset.js',
   testEnvironment: 'node',
@@ -359,6 +387,7 @@ module.exports = async function() {
       },
       "configurations": {
         "development": {
+          "outputHashing": "none",
           "progress": true
         },
         "production": {
@@ -371,7 +400,42 @@ module.exports = async function() {
         }
       }
     },
+    "prune-lockfile": {
+      "dependsOn": [
+        "build"
+      ],
+      "cache": true,
+      "executor": "@nx/js:prune-lockfile",
+      "outputs": [
+        "{workspaceRoot}/dist/api/package.json",
+        "{workspaceRoot}/dist/api/yarn.lock"
+      ],
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "copy-workspace-modules": {
+      "dependsOn": [
+        "build"
+      ],
+      "cache": true,
+      "outputs": [
+        "{workspaceRoot}/dist/api/workspace_modules"
+      ],
+      "executor": "@nx/js:copy-workspace-modules",
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "prune": {
+      "dependsOn": [
+        "prune-lockfile",
+        "copy-workspace-modules"
+      ],
+      "executor": "nx:noop"
+    },
     "serve": {
+      "continuous": true,
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "dependsOn": [
@@ -394,13 +458,15 @@ module.exports = async function() {
       "executor": "@nx/eslint:lint"
     },
     "test": {
-      "options": {
-        "passWithNoTests": true
-      },
+      "executor": "@nx/jest:jest",
       "outputs": [
         "{workspaceRoot}/coverage/{projectName}",
         "{workspaceRoot}/junit/{projectName}"
-      ]
+      ],
+      "options": {
+        "jestConfig": "api/jest.config.cts",
+        "passWithNoTests": true
+      }
     },
     "docker": {
       "options": {},
@@ -543,13 +609,15 @@ bootstrap();
     ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "es2021"
+    "target": "es2021",
+    "moduleResolution": "node"
   },
   "include": [
     "src/**/*.ts"
   ],
   "exclude": [
     "jest.config.ts",
+    "jest.config.cts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts"
   ]
@@ -581,6 +649,7 @@ bootstrap();
   },
   "include": [
     "jest.config.ts",
+    "jest.config.cts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
@@ -595,6 +664,14 @@ module.exports = composePlugins(
     target: 'node',
   }),
   (config) => {
+    config.output = {
+      ...config.output,
+      ...(process.env.NODE_ENV !== 'production' && {
+      clean: true,
+      devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+      }),
+    };
+    config.devtool = 'source-map';
     // Update the webpack config as needed here.
     // e.g. \`config.plugins.push(new MyPlugin())\`
     return config;
@@ -630,16 +707,26 @@ module.exports = { ...nxPreset };",
       ],
       "inputs": [
         "default",
-        "^default"
+        "^default",
+        {
+          "json": "{workspaceRoot}/tsconfig.json",
+          "fields": [
+            "extends",
+            "files",
+            "include"
+          ]
+        }
       ]
     },
     "@nx/eslint:lint": {
       "cache": true,
       "inputs": [
         "default",
+        "^default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs"
+        "{workspaceRoot}/eslint.config.mjs",
+        "{workspaceRoot}/tools/eslint-rules/**/*"
       ]
     },
     "@nx/jest:jest": {
@@ -672,13 +759,13 @@ module.exports = { ...nxPreset };",
   "name": "@proj/source",
   "dependencies": {
     "@nestjs/cache-manager": "^3.0.1",
-    "@nestjs/common": "^10.0.2",
-    "@nestjs/config": "4.0.2",
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "4.0.4",
     "@nestjs/core": "11.1.1",
-    "@nestjs/platform-express": "11.1.1",
+    "@nestjs/platform-express": "11.1.27",
     "@nestjs/swagger": "latest",
-    "@nestjs/terminus": "11.0.0",
-    "@nestjs/throttler": "6.4.0",
+    "@nestjs/terminus": "11.1.1",
+    "@nestjs/throttler": "6.5.0",
     "@rxap/nest-logger": "latest",
     "@rxap/nest-server": "latest",
     "@rxap/nest-utilities": "latest",
@@ -695,40 +782,41 @@ module.exports = { ...nxPreset };",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@nestjs/schematics": "^10.0.1",
-    "@nestjs/testing": "^10.0.2",
-    "@nx/eslint": "21.0.0",
-    "@nx/eslint-plugin": "21.0.0",
-    "@nx/jest": "21.0.0",
-    "@nx/js": "21.0.0",
-    "@nx/nest": "21.0.0",
-    "@nx/node": "21.0.0",
-    "@nx/web": "21.0.0",
-    "@nx/webpack": "21.0.0",
+    "@nestjs/schematics": "^11.0.0",
+    "@nestjs/testing": "^11.0.0",
+    "@nx/eslint": "22.7.5",
+    "@nx/eslint-plugin": "22.7.5",
+    "@nx/jest": "22.7.5",
+    "@nx/js": "22.7.5",
+    "@nx/nest": "22.7.5",
+    "@nx/node": "22.7.5",
+    "@nx/web": "22.7.5",
+    "@nx/webpack": "22.7.5",
     "@rxap/plugin-application": "latest",
     "@rxap/plugin-docker": "latest",
     "@rxap/plugin-library": "latest",
     "@rxap/plugin-nestjs": "latest",
     "@rxap/plugin-open-api": "latest",
     "@rxap/plugin-workspace": "latest",
-    "@swc-node/register": "~1.9.1",
-    "@swc/core": "~1.5.7",
-    "@swc/helpers": "~0.5.11",
+    "@swc-node/register": "~1.11.1",
+    "@swc/core": "~1.15.5",
+    "@swc/helpers": "~0.5.18",
     "@types/cookie-parser": "latest",
     "@types/csurf": "latest",
-    "@types/jest": "^29.5.12",
-    "@types/node": "~18.16.9",
+    "@types/jest": "~30.0.0",
+    "@types/node": "20.19.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "eslint": "~8.57.0",
-    "eslint-config-prettier": "^9.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-node": "^29.7.0",
+    "eslint-config-prettier": "^10.0.0",
+    "jest": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
     "jest-junit": "latest",
-    "prettier": "^2.6.2",
-    "ts-jest": "^29.1.0",
+    "jest-util": "~30.3.0",
+    "prettier": "~3.6.2",
+    "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
-    "typescript": "~5.7.2"
+    "typescript": "~5.9.2"
   },
   "jest-junit": {
     "uniqueOutputName": true
@@ -760,11 +848,6 @@ echo "HOST_IP=$(ip addr show | grep -w inet | grep -v 127.0.0.1 | grep -v 172. |
 echo "ROOT_DOMAIN_PORT=8443" >> "\${GIT_ROOT}/.env"
 echo "LOG_LEVEL=verbose" >> "\${GIT_ROOT}/.env"
 ",
-  "tsconfig.base.json": "{
-  "compilerOptions": {
-    "paths": {}
-  }
-}
-",
+  "tsconfig.base.json": "{"compilerOptions":{"paths":{}}}",
 }
 `;

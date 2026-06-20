@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`init should init default workspace 1`] = `
 [
@@ -43,29 +43,30 @@ exports[`init should init default workspace 2`] = `
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
-    "@nx/eslint": "21.0.0",
-    "@nx/eslint-plugin": "21.0.0",
-    "@nx/jest": "21.0.0",
-    "@nx/js": "21.0.0",
+    "@nx/eslint": "22.7.5",
+    "@nx/eslint-plugin": "22.7.5",
+    "@nx/jest": "22.7.5",
+    "@nx/js": "22.7.5",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
-    "@swc-node/register": "~1.9.1",
-    "@swc/core": "~1.5.7",
-    "@swc/helpers": "~0.5.11",
-    "@types/jest": "^29.5.12",
-    "@types/node": "18.16.9",
+    "@swc-node/register": "~1.11.1",
+    "@swc/core": "~1.15.5",
+    "@swc/helpers": "~0.5.18",
+    "@types/jest": "~30.0.0",
+    "@types/node": "20.19.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "eslint": "~8.57.0",
-    "eslint-config-prettier": "^9.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-node": "^29.7.0",
+    "eslint-config-prettier": "^10.0.0",
+    "jest": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
+    "jest-util": "~30.3.0",
     "nx-cloud": "latest",
-    "prettier": "^2.6.2",
+    "prettier": "~3.6.2",
     "rxap": "latest",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
-    "typescript": "~5.7.2"
+    "typescript": "~5.9.2"
   },
   "engines": {
     "node": ">=18 <21",
@@ -99,9 +100,11 @@ exports[`init should init default workspace 3`] = `
       "cache": true,
       "inputs": [
         "default",
+        "^default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs"
+        "{workspaceRoot}/eslint.config.mjs",
+        "{workspaceRoot}/tools/eslint-rules/**/*"
       ]
     },
     "@nx/jest:jest": {
@@ -289,7 +292,7 @@ exports[`init should init default workspace 6`] = `
   "compilerOptions": {
     "paths": {
       "workspace-tools": [
-        "tools/src/index.ts"
+        "./tools/src/index.ts"
       ]
     }
   }
@@ -1946,9 +1949,11 @@ module.exports = { ...nxPreset };",
       "cache": true,
       "inputs": [
         "default",
+        "^default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs"
+        "{workspaceRoot}/eslint.config.mjs",
+        "{workspaceRoot}/tools/eslint-rules/**/*"
       ]
     },
     "@nx/jest:jest": {
@@ -2062,29 +2067,30 @@ module.exports = { ...nxPreset };",
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
-    "@nx/eslint": "21.0.0",
-    "@nx/eslint-plugin": "21.0.0",
-    "@nx/jest": "21.0.0",
-    "@nx/js": "21.0.0",
+    "@nx/eslint": "22.7.5",
+    "@nx/eslint-plugin": "22.7.5",
+    "@nx/jest": "22.7.5",
+    "@nx/js": "22.7.5",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
-    "@swc-node/register": "~1.9.1",
-    "@swc/core": "~1.5.7",
-    "@swc/helpers": "~0.5.11",
-    "@types/jest": "^29.5.12",
-    "@types/node": "18.16.9",
+    "@swc-node/register": "~1.11.1",
+    "@swc/core": "~1.15.5",
+    "@swc/helpers": "~0.5.18",
+    "@types/jest": "~30.0.0",
+    "@types/node": "20.19.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "eslint": "~8.57.0",
-    "eslint-config-prettier": "^9.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-node": "^29.7.0",
+    "eslint-config-prettier": "^10.0.0",
+    "jest": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
+    "jest-util": "~30.3.0",
     "nx-cloud": "latest",
-    "prettier": "^2.6.2",
+    "prettier": "~3.6.2",
     "rxap": "latest",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
-    "typescript": "~5.7.2"
+    "typescript": "~5.9.2"
   },
   "engines": {
     "node": ">=18 <21",
@@ -2148,7 +2154,7 @@ options:
   ]
 }
 ",
-  "tools/jest.config.ts": "export default {
+  "tools/jest.config.cts": "module.exports = {
   displayName: 'workspace-tools',
   preset: '../jest.preset.js',
   testEnvironment: 'node',
@@ -2177,7 +2183,7 @@ options:
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "tools/jest.config.ts"
+        "jestConfig": "tools/jest.config.cts"
       }
     }
   }
@@ -2684,6 +2690,7 @@ fi
   ],
   "exclude": [
     "jest.config.ts",
+    "jest.config.cts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts"
   ]
@@ -2698,6 +2705,7 @@ fi
   },
   "include": [
     "jest.config.ts",
+    "jest.config.cts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
@@ -2708,7 +2716,7 @@ fi
   "compilerOptions": {
     "paths": {
       "workspace-tools": [
-        "tools/src/index.ts"
+        "./tools/src/index.ts"
       ]
     }
   }

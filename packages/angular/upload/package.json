@@ -15,7 +15,7 @@
     "@angular/material": "^21.2.9",
     "@rxap/directives": "^21.0.0",
     "@rxap/pattern": "^1.1.15",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "author": {
     "name": "Merzough Münker",

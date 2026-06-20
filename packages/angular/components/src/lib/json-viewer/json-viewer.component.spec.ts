@@ -20,7 +20,7 @@ describe('JsonViewerComponent', () => {
       ],
     });
 
-    component = TestBed.get(JsonViewerComponent);
+    component = TestBed.inject(JsonViewerComponent);
   });
 
   it('create', () => {

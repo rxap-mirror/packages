@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`expose-as-schematic (golden master) serializes each nx generator as an angular schematic wrapper: exposed-tree 1`] = `
 {
