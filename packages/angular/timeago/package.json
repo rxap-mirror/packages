@@ -1,14 +1,14 @@
 {
-  "version": "20.0.0",
+  "version": "21.0.0",
   "name": "@rxap/ngx-timeago",
   "description": "This package provides Angular pipes and a directive for displaying dates and times in a human-readable \"time ago\" format. It includes a live pipe that updates automatically. The package also offers a formatter for converting dates into time ago strings.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "21.6.9",
+    "@nx/devkit": "22.7.5",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^20.3.9",
+    "@angular/core": "^21.2.9",
     "@rxap/utilities": "^16.5.1-dev.1",
     "rxjs": "^7.8.1"
   },
