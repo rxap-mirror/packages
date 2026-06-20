@@ -134,18 +134,21 @@ export class RxapFormBuilder<
     try {
       form = injector.get(this.definition);
     } catch (e: any) {
-      if (e.name === 'NullInjectorError') {
-        if (e.message.includes(`No provider for ${ this.definition.name }`)) {
-          if (isDevMode()) {
-            console.warn(
-              `Could not inject the definition instance. Fallback and call the constructor of the definition class: ${ e.message }`);
-          }
-          form = new this.definition() as any;
-        } else {
-          throw e;
+      const message = typeof e?.message === 'string' ? e.message : '';
+      // Angular 21 throws a RuntimeError NG0201 ("No provider found for `X`.")
+      // instead of the old NullInjectorError ("No provider for X"). Detect both.
+      const isNoProvider =
+        e?.name === 'NullInjectorError' ||
+        message.includes('NG0201') ||
+        message.includes('No provider');
+      if (isNoProvider && message.includes(this.definition.name)) {
+        if (isDevMode()) {
+          console.warn(
+            `Could not inject the definition instance. Fallback and call the constructor of the definition class: ${ message }`);
         }
+        form = new this.definition() as any;
       } else {
-        throw new Error(`Could not inject the definition instance: ${ e.message }`);
+        throw new Error(`Could not inject the definition instance: ${ message }`);
       }
     }
 
