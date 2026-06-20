@@ -18,7 +18,12 @@ module.exports = {
   // from the registry (and yarn reinstalls flip this), so relying on node
   // resolution makes specs import stale published dists. Mapping to source makes
   // test resolution deterministic regardless of the install layout.
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths ?? {}, {
-    prefix: `${ __dirname }/`,
-  }),
+  moduleNameMapper: {
+    ...pathsToModuleNameMapper(compilerOptions.paths ?? {}, {
+      prefix: `${ __dirname }/`,
+    }),
+    // @angular-devkit/schematics 21 bundles ESM-only ora v8 which jest (CJS)
+    // cannot parse from node_modules; stub it (it is never used in unit tests).
+    '^ora$': join(__dirname, 'tools/jest/ora-stub.js'),
+  },
 };
