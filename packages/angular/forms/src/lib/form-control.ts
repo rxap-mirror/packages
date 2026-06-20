@@ -235,7 +235,7 @@ export class RxapFormControl<
     this.dirtyChanges.next(true);
   }
 
-  public markAllAsDirty(): void {
+  public override markAllAsDirty(): void {
     this.markAsDirty({ onlySelf: true });
   }
 

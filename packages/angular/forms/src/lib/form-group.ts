@@ -311,7 +311,7 @@ export class RxapFormGroup<
     this.dirtyChanges.next(true);
   }
 
-  public markAllAsDirty(): void {
+  public override markAllAsDirty(): void {
     markAllDirty(this);
   }
 
