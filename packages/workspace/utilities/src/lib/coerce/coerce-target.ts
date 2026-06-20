@@ -3,13 +3,14 @@ import {
   MergeDeepLeft,
 } from '@rxap/utilities';
 import { NxJsonTargetDependsOn } from './coerce-target-defaults-dependency';
-import { TargetInputs } from './coerce-target-defaults-input';
 
 export interface TargetConfiguration {
   executor?: string;
   options?: Record<string, any>;
   dependsOn?: NxJsonTargetDependsOn[];
-  inputs?: TargetInputs;
+  // `any` so an @nx/devkit TargetConfiguration (inputs: (string|InputDefinition)[]
+  // with the Nx 22 workingDirectory variant) is assignable to this interface.
+  inputs?: any;
   outputs?: string[];
   configurations?: Record<string, Record<string, any>>;
   defaultConfiguration?: string;
