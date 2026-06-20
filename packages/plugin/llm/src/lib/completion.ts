@@ -1,6 +1,6 @@
 import * as process from 'node:process';
 import OpenAI from 'openai';
-import { ChatCompletionCreateParamsNonStreaming } from 'openai/src/resources/chat/completions';
+import { ChatCompletionCreateParamsNonStreaming } from 'openai/resources/chat/completions';
 import { assertTokenLimit } from './assert-token-limit';
 import {
   Model,

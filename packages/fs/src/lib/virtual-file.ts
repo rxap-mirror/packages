@@ -276,7 +276,7 @@ export class VirtualFile implements VirtualFileLike {
     if (!textEncoder) {
       throw new Error(`If write the text content, the text encoder must be provided.`);
     }
-    this._data = new textEncoder().encode(textContent);
+    this._data = new textEncoder().encode(textContent).buffer;
   }
 
   writeData(data: ArrayBuffer) {
@@ -505,7 +505,7 @@ export class AsyncVirtualFile implements AsyncVirtualFileLike {
     if (!textEncoder) {
       throw new Error(`If write the text content, the text encoder must be provided.`);
     }
-    const data = new textEncoder().encode(textContent);
+    const data = new textEncoder().encode(textContent).buffer;
     await this.writeData(data);
   }
 

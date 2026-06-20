@@ -37,7 +37,6 @@ export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSc
   defaultOptions.unitTestRunner ??= 'jest' as any;
   defaultOptions.strict ??= true;
   defaultOptions.linter ??= 'eslint' as any;
-  defaultOptions.standaloneConfig ??= true;
   defaultOptions.setParserOptionsProject ??= false;
   defaultOptions.addTailwind ??= false;
   defaultOptions.skipModule ??= false;
