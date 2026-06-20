@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   AfterViewInit,
   Component,
@@ -12,7 +12,7 @@ import { ChangelogComponent } from '../changelog/changelog.component';
 
 @Component({
     selector: 'rxap-changelog-dialog',
-    imports: [CommonModule, ChangelogComponent, FormsModule],
+    imports: [ChangelogComponent, FormsModule],
     templateUrl: './changelog-dialog.component.html',
     styleUrls: ['./changelog-dialog.component.scss']
 })

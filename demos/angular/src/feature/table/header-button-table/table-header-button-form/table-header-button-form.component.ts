@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,13 +27,12 @@ import {
     styleUrls: ['./table-header-button-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MaterialFormSystemModule,
-        FormControlsComponent,
-        RxapFormsModule,
-        FormWindowFooterDirective,
-    ],
+    ReactiveFormsModule,
+    MaterialFormSystemModule,
+    FormControlsComponent,
+    RxapFormsModule,
+    FormWindowFooterDirective
+],
     providers: [
         FormProviders,
         FormComponentProviders,

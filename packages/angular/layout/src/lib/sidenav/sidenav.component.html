@@ -10,20 +10,26 @@
     [ngClass]="{ collapsable: collapsable() }"
     [opened]="opened()"
     (openedChange)="onOpenedChanged($event)"
-  >
+    >
     <div (mouseleave)="collapsable() && !pinned() && closeSidenav()"
-         class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
+      class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
 
-      <div (click)="togglePinned()" *ngIf="collapsable()"
-           class="pl-2 self-stretch grow-0 flex flex-row justify-between items-center">
-        <span class="text-lg" i18n>Navigation</span>
-        <div class="flex flex-row items-center justify-center" style="width: 64px">
-          <button mat-icon-button>
-            <mat-icon *ngIf="!pinned()">radio_button_unchecked</mat-icon>
-            <mat-icon *ngIf="pinned()">radio_button_checked</mat-icon>
-          </button>
+      @if (collapsable()) {
+        <div (click)="togglePinned()"
+          class="pl-2 self-stretch grow-0 flex flex-row justify-between items-center">
+          <span class="text-lg" i18n>Navigation</span>
+          <div class="flex flex-row items-center justify-center" style="width: 64px">
+            <button mat-icon-button>
+              @if (!pinned()) {
+                <mat-icon>radio_button_unchecked</mat-icon>
+              }
+              @if (pinned()) {
+                <mat-icon>radio_button_checked</mat-icon>
+              }
+            </button>
+          </div>
         </div>
-      </div>
+      }
 
       @if (sidenavHeaderDirective()?.template; as template) {
         <div [ngClass]="{ hidden: collapsed() }" class="header grow-0">
@@ -37,7 +43,7 @@
         class="grow self-stretch"
         [root]="true"
         rxap-navigation
-      >
+        >
       </ul>
 
       @if (sidenavFooterDirective()?.template; as template) {

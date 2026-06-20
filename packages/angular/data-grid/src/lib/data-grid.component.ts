@@ -1,10 +1,4 @@
-import {
-  AsyncPipe,
-  NgClass,
-  NgFor,
-  NgIf,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { AsyncPipe, NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -87,23 +81,21 @@ function IsDataGridMode(value: string): value is DataGridMode {
     styleUrls: ['./data-grid.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        AsyncPipe,
-        NgIf,
-        NgFor,
-        MatButtonModule,
-        MatIconModule,
-        GetFromObjectPipe,
-        ReplacePipe,
-        EscapeQuotationMarkPipe,
-        RxapFormsModule,
-        DataGridValuePipe,
-        MatProgressSpinnerModule,
-        MatDividerModule,
-        NgTemplateOutlet,
-        MatFormFieldModule,
-        NgClass,
-        IsEmptyPipe,
-    ]
+    AsyncPipe,
+    MatButtonModule,
+    MatIconModule,
+    GetFromObjectPipe,
+    ReplacePipe,
+    EscapeQuotationMarkPipe,
+    RxapFormsModule,
+    DataGridValuePipe,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    NgTemplateOutlet,
+    MatFormFieldModule,
+    NgClass,
+    IsEmptyPipe
+]
 })
 export class DataGridComponent<T extends Record<string, any>> implements OnInit, OnDestroy, AfterContentInit {
 

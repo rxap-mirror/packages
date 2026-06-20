@@ -16,15 +16,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/contenteditable/ng-package.json"
+        "project": "packages/angular/contenteditable/ng-package.json",
+        "tsConfig": "packages/angular/contenteditable/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/contenteditable/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/contenteditable/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },

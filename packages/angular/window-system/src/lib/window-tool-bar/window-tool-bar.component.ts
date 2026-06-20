@@ -9,10 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
 import { PortalModule } from '@angular/cdk/portal';
-import {
-  AsyncPipe,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
@@ -21,14 +18,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     styleUrls: ['./window-tool-bar.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
     imports: [
-        MatToolbarModule,
-        NgIf,
-        PortalModule,
-        MatIconModule,
-        IconDirective,
-        MatButtonModule,
-        AsyncPipe,
-    ]
+    MatToolbarModule,
+    PortalModule,
+    MatIconModule,
+    IconDirective,
+    MatButtonModule,
+    AsyncPipe
+]
 })
 export class WindowToolBarComponent<D> {
 

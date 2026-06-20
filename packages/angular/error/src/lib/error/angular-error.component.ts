@@ -1,8 +1,4 @@
-import {
-  KeyValuePipe,
-  NgForOf,
-  NgIf,
-} from '@angular/common';
+import { KeyValuePipe } from '@angular/common';
 import {
   Component,
   inject,
@@ -14,7 +10,7 @@ import { AngularErrorDialogData } from './angular-error-dialog-data';
 
 @Component({
     selector: 'rxap-angular-error',
-    imports: [DataGridModule, KeyValuePipe, NgForOf, NgIf],
+    imports: [DataGridModule, KeyValuePipe],
     templateUrl: './angular-error.component.html',
     styleUrls: ['./angular-error.component.scss']
 })

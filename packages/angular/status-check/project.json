@@ -19,15 +19,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/status-check/ng-package.json"
+        "project": "packages/angular/status-check/ng-package.json",
+        "tsConfig": "packages/angular/status-check/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/status-check/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/status-check/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },

@@ -3,12 +3,11 @@ import {
   computed,
   Inject,
   Injectable,
-  InjectFlags,
   InjectionToken,
   Injector,
   INJECTOR,
   Optional,
-  Type,
+  Type
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { REMOTE_METHOD_META_DATA } from './tokens';
@@ -109,7 +108,7 @@ export abstract class BaseRemoteMethod<ReturnType = any,
   public refresh(): void {
     if (this.metadata.refresh) {
       for (const refresh of this.metadata.refresh) {
-        const canRefresh = this.injector.get(refresh, null, InjectFlags.Optional);
+        const canRefresh = this.injector.get(refresh, null, { optional: true });
         if (canRefresh) {
           canRefresh.refresh();
         }

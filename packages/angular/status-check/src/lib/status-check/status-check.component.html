@@ -6,80 +6,94 @@
     <hr class="mb-4">
 
 
-    <div *ngIf="statusIsAvailable()">
-      <h3 class="text-xl font-semibold mb-2" i18n>Services</h3>
+    @if (statusIsAvailable()) {
       <div>
-        <table class="min-w-full border border-gray-300">
-          <tbody>
-          <tr *ngFor="let service of services(); trackBy: trackBy" [ngClass]="{
+        <h3 class="text-xl font-semibold mb-2" i18n>Services</h3>
+        <div>
+          <table class="min-w-full border border-gray-300">
+            <tbody>
+              @for (service of services(); track trackBy($index, service)) {
+<tr [ngClass]="{
               'bg-green-100 dark:bg-green-900': service.status === 'up',
               'bg-red-100 dark:bg-red-900': service.status === 'down',
               'bg-yellow-100 dark:bg-yellow-900': service.status === 'loading',
             }" class="border-b border-gray-300">
-            <th class="p-2 text-left">{{ service.name }}</th>
-            <td class="p-2 text-center">{{ service.message }}</td>
+                  <th class="p-2 text-left">{{ service.name }}</th>
+                  <td class="p-2 text-center">{{ service.message }}</td>
             <td [ngClass]="{
               'text-green-700 dark:text-green-300': service.status === 'up',
               'text-red-700 dark:text-red-300': service.status === 'down',
               'text-yellow-700 dark:text-yellow-300': service.status === 'loading',
             }" class="p-2 text-right font-bold">{{ service.status }}</td>
-          </tr>
-          </tbody>
-        </table>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    }
 
-    <div *ngIf="statusIsEmpty()">
-      <p class="text-center" i18n>No services are currently selected.</p>
-    </div>
+    @if (statusIsEmpty()) {
+      <div>
+        <p class="text-center" i18n>No services are currently selected.</p>
+      </div>
+    }
 
-    <div *ngIf="statusIsUnavailable()">
-      <p class="text-center" i18n>Failed to retrieve status for selected services: <b>{{ status().status }}</b></p>
-    </div>
+    @if (statusIsUnavailable()) {
+      <div>
+        <p class="text-center" i18n>Failed to retrieve status for selected services: <b>{{ status().status }}</b></p>
+      </div>
+    }
 
-    <div *ngIf="statusIsFatal()">
-      <p class="text-center"
-         i18n>Something went unexpectedly wrong. Try reloading the page or contact an administrator.</p>
-    </div>
-
-    <hr class="my-4">
-
-    <ng-container *ngIf="services().length">
-    <div class="flex justify-center items-center">
-      <p class="text-lg font-medium">
-        <ng-container i18n>Next try in</ng-container>&nbsp;
-        <span class="font-bold text-blue-500">{{ countdown() }}</span>s
-      </p>
-    </div>
+    @if (statusIsFatal()) {
+      <div>
+        <p class="text-center"
+        i18n>Something went unexpectedly wrong. Try reloading the page or contact an administrator.</p>
+      </div>
+    }
 
     <hr class="my-4">
-    </ng-container>
 
-    <div *ngIf="url() as url">
-      <h4 class="text-lg font-semibold mb-2" i18n>Previous Route</h4>
-      <p class="mb-2" i18n>To return to the previous page, click the link below:</p>
-      <a *ngIf="!statusIsError(); else statusNoOk" [routerLink]="url"
-         class="cursor-pointer text-blue-500 hover:underline">
-        <ng-container i18n>Go Back to</ng-container>&nbsp;<i>{{ url }}</i></a>
-      <ng-template #statusNoOk>
-        <a (click)="openWarningDialog()" class="cursor-pointer text-blue-500 hover:underline">
-          <ng-container i18n>Go Back to</ng-container>&nbsp;<i>{{ url }}</i></a>
-      </ng-template>
+    @if (services().length) {
+      <div class="flex justify-center items-center">
+        <p class="text-lg font-medium">
+          <ng-container i18n>Next try in</ng-container>&nbsp;
+          <span class="font-bold text-blue-500">{{ countdown() }}</span>s
+        </p>
+      </div>
+      <hr class="my-4">
+    }
+
+    @if (url(); as url) {
+      <div>
+        <h4 class="text-lg font-semibold mb-2" i18n>Previous Route</h4>
+        <p class="mb-2" i18n>To return to the previous page, click the link below:</p>
+        @if (!statusIsError()) {
+          <a [routerLink]="url"
+            class="cursor-pointer text-blue-500 hover:underline">
+            <ng-container i18n>Go Back to</ng-container>&nbsp;<i>{{ url }}</i></a>
+          } @else {
+            <a (click)="openWarningDialog()" class="cursor-pointer text-blue-500 hover:underline">
+              <ng-container i18n>Go Back to</ng-container>&nbsp;<i>{{ url }}</i></a>
+            }
+          </div>
+        }
+
+      </div>
+
     </div>
 
-  </div>
-
-</div>
-
-<div *ngIf="showRedirectWarning()" class="fixed inset-0 flex items-center justify-center z-50 shadow-lg">
-  <div class="bg-white dark:bg-black p-6 rounded shadow-lg">
-    <h1 class="text-xl font-semibold mb-4" i18n>Warning</h1>
-    <p class="w-96" i18n><b>Caution</b>: Some services are currently <b
+    @if (showRedirectWarning()) {
+      <div class="fixed inset-0 flex items-center justify-center z-50 shadow-lg">
+        <div class="bg-white dark:bg-black p-6 rounded shadow-lg">
+          <h1 class="text-xl font-semibold mb-4" i18n>Warning</h1>
+          <p class="w-96" i18n><b>Caution</b>: Some services are currently <b
       class="text-red-500">down</b>. If you proceed, you will be redirected to the application's home page.
       <b>Are you sure you wish to continue?</b></p>
-    <div class="flex justify-end mt-4">
-      <button [routerLink]="['/']" class="text-white bg-red-500 px-4 py-2 rounded" i18n>Confirm</button>
-      <button (click)="onCancel()" class="text-gray-600 ml-2 px-4 py-2 rounded" i18n>Cancel</button>
+        <div class="flex justify-end mt-4">
+          <button [routerLink]="['/']" class="text-white bg-red-500 px-4 py-2 rounded" i18n>Confirm</button>
+          <button (click)="onCancel()" class="text-gray-600 ml-2 px-4 py-2 rounded" i18n>Cancel</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  }

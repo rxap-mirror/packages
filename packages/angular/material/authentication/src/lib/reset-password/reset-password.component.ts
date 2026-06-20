@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -40,20 +40,19 @@ import { ResetPasswordFormProviders } from './reset-password.form';
         fadeAnimation,
     ],
     imports: [
-        ReactiveFormsModule,
-        FormDirective,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        NgIf,
-        MatButtonModule,
-        FormControlMarkDirtyDirective,
-        FormSubmitFailedDirective,
-        FormSubmittingDirective,
-        MatProgressBarModule,
-        MatSnackBarModule,
-        ControlErrorDirective,
-    ]
+    ReactiveFormsModule,
+    FormDirective,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormControlMarkDirtyDirective,
+    FormSubmitFailedDirective,
+    FormSubmittingDirective,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    ControlErrorDirective
+]
 })
 export class ResetPasswordComponent {
 }

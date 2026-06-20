@@ -3,11 +3,7 @@ import {
   CdkOverlayOrigin,
   ConnectedPosition,
 } from '@angular/cdk/overlay';
-import {
-  AsyncPipe,
-  DOCUMENT,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -23,6 +19,7 @@ import {
   output,
   Output,
   signal,
+  DOCUMENT
 } from '@angular/core';
 import {
   ControlValueAccessor,

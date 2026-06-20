@@ -6,7 +6,7 @@ import {
 import { IconConfig } from '@rxap/utilities';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,7 +14,7 @@ import { NgIf } from '@angular/common';
     templateUrl: './icon-cell.component.html',
     styleUrls: ['./icon-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, MatIconModule, IconDirective]
+    imports: [MatIconModule, IconDirective]
 })
 export class IconCellComponent {
 

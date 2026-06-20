@@ -6,8 +6,7 @@ import {
 import { Portal } from '@angular/cdk/portal';
 import {
   ComponentRef,
-  EmbeddedViewRef,
-  InjectFlags,
+  EmbeddedViewRef
 } from '@angular/core';
 import {
   BehaviorSubject,
@@ -217,7 +216,7 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
    * @private
    */
   private updateWindowSettings(componentRef?: ComponentRef<any>) {
-    const settings = componentRef?.injector.get(RXAP_WINDOW_SETTINGS, null, InjectFlags.Optional) ?? this.settings;
+    const settings = componentRef?.injector.get(RXAP_WINDOW_SETTINGS, null, { optional: true }) ?? this.settings;
     if (settings) {
       // prevent change diction error: ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {

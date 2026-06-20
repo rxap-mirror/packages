@@ -4,7 +4,7 @@ import {
   Input,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,7 +14,7 @@ import { NgIf } from '@angular/common';
     changeDetection: ChangeDetectionStrategy.OnPush,
   
     host: { class: 'rxap-boolean-cell' },
-    imports: [NgIf, MatIconModule]
+    imports: [MatIconModule]
 })
 export class BooleanCellComponent {
 

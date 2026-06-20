@@ -1,7 +1,4 @@
-import {
-  NgClass,
-  NgFor,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 import type { QueryList } from '@angular/core';
 import {
   AfterContentInit,
@@ -26,14 +23,13 @@ import { TableColumnOptionComponent } from './table-column-option/table-column-o
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'rxapTableColumns',
     imports: [
-        MatButtonModule,
-        MatMenuModule,
-        MatIconModule,
-        NgFor,
-        StopPropagationDirective,
-        MatCheckboxModule,
-        NgClass,
-    ]
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    StopPropagationDirective,
+    MatCheckboxModule,
+    NgClass
+]
 })
 export class TableColumnMenuComponent implements AfterContentInit {
 

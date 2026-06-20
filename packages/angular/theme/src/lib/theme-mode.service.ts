@@ -1,5 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { DOCUMENT } from '@angular/common';
+
 import {
   computed,
   effect,
@@ -10,6 +10,7 @@ import {
   Renderer2,
   signal,
   WritableSignal,
+  DOCUMENT
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
 import {
