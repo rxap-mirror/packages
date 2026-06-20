@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`NormalizeMethodTableHeaderButtonOptions should normalize complex method table header button options 1`] = `
 {

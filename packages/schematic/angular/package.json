@@ -4,8 +4,8 @@
   "description": "Provides schematics for generating Angular components, services, and related files, particularly focused on creating tables, forms, data grids, and accordions with NestJS integration. It offers tools for generating UI elements with backend connectivity, including data sources, methods, and form handling. This package aims to streamline the development of data-driven Angular applications with a focus on material design and backend integration.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@angular-devkit/core": "21.2.9",
-    "@angular-devkit/schematics": "21.2.9",
+    "@angular-devkit/core": "21.2.16",
+    "@angular-devkit/schematics": "21.2.16",
     "@nx/devkit": "22.7.5",
     "@rxap/schematics-ts-morph": "^21.0.0",
     "@rxap/schematics-utilities": "^21.0.0",
