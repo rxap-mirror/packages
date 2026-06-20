@@ -1,11 +1,11 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'workspace-ts-morph',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': [ 'ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' } ],
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
-  moduleFileExtensions: [ 'ts', 'js', 'html' ],
+  moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../../coverage/packages/workspace/ts-morph',
 };

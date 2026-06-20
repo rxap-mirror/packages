@@ -4,11 +4,7 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NgControl } from '@angular/forms';
 import {
   FormType,
@@ -24,7 +20,6 @@ import { OptionsFromMethodDirective } from './options-from-method.directive';
 import { TestNgControl } from './test-ng-control';
 
 describe('OptionsFromMethodDirective', () => {
-
   @Injectable()
   class TestMethod implements Method<ControlOptions> {
     call(): ControlOptions {
@@ -38,11 +33,9 @@ describe('OptionsFromMethodDirective', () => {
 
   @RxapForm('test')
   class TestFormDefinition implements FormType<ITestFormDefinition> {
-
     @UseOptionsMethod(TestMethod)
     @UseFormControl()
     name!: RxapFormControl;
-
   }
 
   let createEmbeddedViewMock: jest.Mock;
@@ -55,12 +48,13 @@ describe('OptionsFromMethodDirective', () => {
   let methodCallSpy: jest.SpyInstance;
 
   beforeEach(() => {
-    const formDefinition: TestFormDefinition = new RxapFormBuilder<ITestFormDefinition>(TestFormDefinition).build();
-    ngControl                                = new TestNgControl(formDefinition.name);
-    control                                  = ngControl.control as RxapFormControl;
-    createEmbeddedViewMock                   = jest.fn();
-    clearMock                                = jest.fn();
-    detectChangesMock                        = jest.fn();
+    const formDefinition: TestFormDefinition =
+      new RxapFormBuilder<ITestFormDefinition>(TestFormDefinition).build();
+    ngControl = new TestNgControl(formDefinition.name);
+    control = ngControl.control as RxapFormControl;
+    createEmbeddedViewMock = jest.fn();
+    clearMock = jest.fn();
+    detectChangesMock = jest.fn();
     TestBed.configureTestingModule({
       providers: [
         OptionsFromMethodDirective,
@@ -88,13 +82,13 @@ describe('OptionsFromMethodDirective', () => {
         },
       ],
     });
-    method        = TestBed.inject(TestMethod);
+    method = TestBed.inject(TestMethod);
     methodCallSpy = jest.spyOn(method, 'call');
-    directive     = TestBed.inject(OptionsFromMethodDirective);
+    directive = TestBed.inject(OptionsFromMethodDirective);
   });
 
   it('should not call options method on initial ngOnChanges if paramters are set', fakeAsync(() => {
-    directive.parameters = {data: 'data'};
+    directive.parameters = { data: 'data' };
     directive.ngOnChanges({
       parameters: {
         currentValue: directive.parameters,
@@ -104,19 +98,19 @@ describe('OptionsFromMethodDirective', () => {
       },
     });
     tick();
-    expect(clearMock).not.toBeCalled();
-    expect(createEmbeddedViewMock).not.toBeCalled();
-    expect(detectChangesMock).not.toBeCalled();
-    expect(methodCallSpy).not.toBeCalled();
+    expect(clearMock).not.toHaveBeenCalled();
+    expect(createEmbeddedViewMock).not.toHaveBeenCalled();
+    expect(detectChangesMock).not.toHaveBeenCalled();
+    expect(methodCallSpy).not.toHaveBeenCalled();
   }));
 
   it('should not call options method on initial ngOnChanges if without paramters is set', fakeAsync(() => {
     directive.ngOnChanges({});
     tick();
-    expect(clearMock).not.toBeCalled();
-    expect(createEmbeddedViewMock).not.toBeCalled();
-    expect(detectChangesMock).not.toBeCalled();
-    expect(methodCallSpy).not.toBeCalled();
+    expect(clearMock).not.toHaveBeenCalled();
+    expect(createEmbeddedViewMock).not.toHaveBeenCalled();
+    expect(detectChangesMock).not.toHaveBeenCalled();
+    expect(methodCallSpy).not.toHaveBeenCalled();
   }));
 
   it('should call options method after ngAfterViewInit', fakeAsync(() => {
@@ -124,18 +118,23 @@ describe('OptionsFromMethodDirective', () => {
     tick();
     directive.ngAfterViewInit();
     tick();
-    expect(clearMock).toBeCalledTimes(1);
-    expect(createEmbeddedViewMock).not.toBeCalled();
-    expect(detectChangesMock).toBeCalledTimes(1);
-    expect(methodCallSpy).toBeCalled();
-    expect(methodCallSpy).toBeCalledWith(undefined, expect.any(RxapFormControl));
+    expect(clearMock).toHaveBeenCalledTimes(1);
+    expect(createEmbeddedViewMock).not.toHaveBeenCalled();
+    expect(detectChangesMock).toHaveBeenCalledTimes(1);
+    expect(methodCallSpy).toHaveBeenCalled();
+    expect(methodCallSpy).toHaveBeenCalledWith(
+      undefined,
+      expect.any(RxapFormControl),
+    );
   }));
 
   it('should pass the paratmers to the method call', fakeAsync(() => {
-    methodCallSpy.mockReturnValue([ {value: 'value', display: 'display'},
-      {value: 'value', display: 'display'},
-      {value: 'value', display: 'display'} ]);
-    directive.parameters = {data: 'data'};
+    methodCallSpy.mockReturnValue([
+      { value: 'value', display: 'display' },
+      { value: 'value', display: 'display' },
+      { value: 'value', display: 'display' },
+    ]);
+    directive.parameters = { data: 'data' };
     directive.ngOnChanges({
       parameters: {
         currentValue: directive.parameters,
@@ -147,47 +146,62 @@ describe('OptionsFromMethodDirective', () => {
     tick();
     directive.ngAfterViewInit();
     tick();
-    expect(methodCallSpy).toBeCalledTimes(1);
-    expect(methodCallSpy).toBeCalledWith(directive.parameters, expect.any(RxapFormControl));
-    expect(methodCallSpy.mock.lastCall).toEqual([ directive.parameters, expect.any(RxapFormControl) ]);
-    expect(clearMock).toBeCalledTimes(1);
-    expect(clearMock).toBeCalledTimes(1);
-    expect(createEmbeddedViewMock).toBeCalledTimes(3);
-    expect(createEmbeddedViewMock)
-    .toBeCalledWith(TestBed.inject(TemplateRef), {$implicit: {value: 'value', display: 'display'}});
-    expect(detectChangesMock).toBeCalledTimes(1);
+    expect(methodCallSpy).toHaveBeenCalledTimes(1);
+    expect(methodCallSpy).toHaveBeenCalledWith(
+      directive.parameters,
+      expect.any(RxapFormControl),
+    );
+    expect(methodCallSpy.mock.lastCall).toEqual([
+      directive.parameters,
+      expect.any(RxapFormControl),
+    ]);
+    expect(clearMock).toHaveBeenCalledTimes(1);
+    expect(clearMock).toHaveBeenCalledTimes(1);
+    expect(createEmbeddedViewMock).toHaveBeenCalledTimes(3);
+    expect(createEmbeddedViewMock).toHaveBeenCalledWith(
+      TestBed.inject(TemplateRef),
+      { $implicit: { value: 'value', display: 'display' } },
+    );
+    expect(detectChangesMock).toHaveBeenCalledTimes(1);
   }));
 
   it('should call the method without parameters', fakeAsync(() => {
-    methodCallSpy.mockReturnValue([ {value: 'value', display: 'display'},
-      {value: 'value', display: 'display'},
-      {value: 'value', display: 'display'} ]);
+    methodCallSpy.mockReturnValue([
+      { value: 'value', display: 'display' },
+      { value: 'value', display: 'display' },
+      { value: 'value', display: 'display' },
+    ]);
     directive.ngOnChanges({});
     tick();
     directive.ngAfterViewInit();
     tick();
-    expect(methodCallSpy).toBeCalledTimes(1);
-    expect(methodCallSpy.mock.lastCall).toEqual([undefined, expect.any(RxapFormControl)]);
-    expect(clearMock).toBeCalledTimes(1);
-    expect(clearMock).toBeCalledTimes(1);
-    expect(createEmbeddedViewMock).toBeCalledTimes(3);
-    expect(createEmbeddedViewMock)
-    .toBeCalledWith(TestBed.inject(TemplateRef), {$implicit: {value: 'value', display: 'display'}});
-    expect(detectChangesMock).toBeCalledTimes(1);
+    expect(methodCallSpy).toHaveBeenCalledTimes(1);
+    expect(methodCallSpy.mock.lastCall).toEqual([
+      undefined,
+      expect.any(RxapFormControl),
+    ]);
+    expect(clearMock).toHaveBeenCalledTimes(1);
+    expect(clearMock).toHaveBeenCalledTimes(1);
+    expect(createEmbeddedViewMock).toHaveBeenCalledTimes(3);
+    expect(createEmbeddedViewMock).toHaveBeenCalledWith(
+      TestBed.inject(TemplateRef),
+      { $implicit: { value: 'value', display: 'display' } },
+    );
+    expect(detectChangesMock).toHaveBeenCalledTimes(1);
   }));
 
   it('should reset control of resetOnChange is set', fakeAsync(() => {
-    const resetSpy          = jest.spyOn(control, 'reset');
+    const resetSpy = jest.spyOn(control, 'reset');
     directive.resetOnChange = 'custom value';
     directive.ngOnChanges({});
     tick();
     directive.ngAfterViewInit();
     tick();
-    expect(clearMock).toBeCalledTimes(1);
-    expect(createEmbeddedViewMock).not.toBeCalled();
-    expect(detectChangesMock).toBeCalledTimes(1);
-    expect(resetSpy).toBeCalledTimes(1);
-    expect(resetSpy).toBeCalledWith(directive.resetOnChange);
+    expect(clearMock).toHaveBeenCalledTimes(1);
+    expect(createEmbeddedViewMock).not.toHaveBeenCalled();
+    expect(detectChangesMock).toHaveBeenCalledTimes(1);
+    expect(resetSpy).toHaveBeenCalledTimes(1);
+    expect(resetSpy).toHaveBeenCalledWith(directive.resetOnChange);
   }));
 
   it('should reload the options if the parameters are changed', fakeAsync(() => {
@@ -195,12 +209,15 @@ describe('OptionsFromMethodDirective', () => {
     tick();
     directive.ngAfterViewInit();
     tick();
-    expect(clearMock).toBeCalledTimes(1);
-    expect(createEmbeddedViewMock).not.toBeCalled();
-    expect(detectChangesMock).toBeCalledTimes(1);
-    expect(methodCallSpy).toBeCalledTimes(1);
-    expect(methodCallSpy).toBeCalledWith(undefined, expect.any(RxapFormControl));
-    directive.parameters = {data: 'data'};
+    expect(clearMock).toHaveBeenCalledTimes(1);
+    expect(createEmbeddedViewMock).not.toHaveBeenCalled();
+    expect(detectChangesMock).toHaveBeenCalledTimes(1);
+    expect(methodCallSpy).toHaveBeenCalledTimes(1);
+    expect(methodCallSpy).toHaveBeenCalledWith(
+      undefined,
+      expect.any(RxapFormControl),
+    );
+    directive.parameters = { data: 'data' };
     directive.ngOnChanges({
       parameters: {
         currentValue: directive.parameters,
@@ -210,11 +227,13 @@ describe('OptionsFromMethodDirective', () => {
       },
     });
     tick();
-    expect(clearMock).toBeCalledTimes(2);
-    expect(createEmbeddedViewMock).not.toBeCalled();
-    expect(detectChangesMock).toBeCalledTimes(2);
-    expect(methodCallSpy).toBeCalledTimes(2);
-    expect(methodCallSpy).toBeCalledWith(directive.parameters, expect.any(RxapFormControl));
+    expect(clearMock).toHaveBeenCalledTimes(2);
+    expect(createEmbeddedViewMock).not.toHaveBeenCalled();
+    expect(detectChangesMock).toHaveBeenCalledTimes(2);
+    expect(methodCallSpy).toHaveBeenCalledTimes(2);
+    expect(methodCallSpy).toHaveBeenCalledWith(
+      directive.parameters,
+      expect.any(RxapFormControl),
+    );
   }));
-
 });

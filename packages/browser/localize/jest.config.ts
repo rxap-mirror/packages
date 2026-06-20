@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'browser-localize',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

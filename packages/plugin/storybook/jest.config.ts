@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'plugin-storybook',
   preset: '../../../jest.preset.js',
   transform: {

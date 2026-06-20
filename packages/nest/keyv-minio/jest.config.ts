@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'nest-keyv-minio',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

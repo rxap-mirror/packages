@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'plugin-web3-storage',
   preset: '../../../jest.preset.js',
   transform: {

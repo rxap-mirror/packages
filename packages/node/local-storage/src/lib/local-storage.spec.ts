@@ -1,9 +1,4 @@
-import {
-  existsSync,
-  mkdirSync,
-  writeFileSync,
-  rmSync,
-} from 'fs';
+import { existsSync, mkdirSync, writeFileSync, rmSync } from 'fs';
 import { join } from 'path';
 import { LocalStorage } from './local-storage';
 
@@ -23,7 +18,6 @@ describe('LocalStorage', () => {
   });
 
   describe('constructor', () => {
-
     it('should create the storage folder if it does not exists', () => {
       const storage = new LocalStorage(testFolder);
       expect(existsSync(testFolder)).toBeTruthy();
@@ -37,7 +31,9 @@ describe('LocalStorage', () => {
       }
       const testFilePath = join(testFolder);
       writeFileSync(testFilePath, 'test');
-      expect(() => new LocalStorage(testFilePath)).toThrowError(`The storage folder '${testFilePath}' is not a directory`);
+      expect(() => new LocalStorage(testFilePath)).toThrow(
+        `The storage folder '${testFilePath}' is not a directory`,
+      );
     });
 
     it('should populate the cache with the files in the storage folder', () => {
@@ -46,22 +42,18 @@ describe('LocalStorage', () => {
       const storage = new LocalStorage(testFolder);
       expect(storage.getItem('test')).toEqual('test');
     });
-
   });
 
   describe('length', () => {
-
     it('should return the size of the cache', () => {
       const storage = new LocalStorage(testFolder);
       expect(storage.length).toEqual(0);
       storage.setItem('test', 'test');
       expect(storage.length).toEqual(1);
     });
-
   });
 
   describe('clear', () => {
-
     it('should clear the cache', () => {
       const storage = new LocalStorage(testFolder);
       storage.setItem('test', 'test');
@@ -69,11 +61,9 @@ describe('LocalStorage', () => {
       storage.clear();
       expect(storage.length).toEqual(0);
     });
-
   });
 
   describe('getItem', () => {
-
     it('should return null if the key does not exists', () => {
       const storage = new LocalStorage(testFolder);
       expect(storage.getItem('test')).toBeNull();
@@ -90,11 +80,9 @@ describe('LocalStorage', () => {
       writeFileSync(join(testFolder, 'test'), 'test');
       expect(storage.getItem('test')).toEqual('test');
     });
-
   });
 
   describe('key', () => {
-
     it('should return null if the index is out of range', () => {
       const storage = new LocalStorage(testFolder);
       expect(storage.key(0)).toBeNull();
@@ -105,11 +93,9 @@ describe('LocalStorage', () => {
       storage.setItem('test', 'test');
       expect(storage.key(0)).toEqual('test');
     });
-
   });
 
   describe('removeItem', () => {
-
     it('should remove the key from the cache', () => {
       const storage = new LocalStorage(testFolder);
       storage.setItem('test', 'test');
@@ -125,11 +111,9 @@ describe('LocalStorage', () => {
       storage.removeItem('test');
       expect(existsSync(join(testFolder, 'test'))).toBeFalsy();
     });
-
   });
 
   describe('setItem', () => {
-
     it('should set the key in the cache', () => {
       const storage = new LocalStorage(testFolder);
       storage.setItem('test', 'test');
@@ -149,7 +133,5 @@ describe('LocalStorage', () => {
       expect(existsSync(join(testFolder, 'test'))).toBeTruthy();
       expect(storage.getItem('test')).toEqual('test1');
     });
-
   });
-
 });

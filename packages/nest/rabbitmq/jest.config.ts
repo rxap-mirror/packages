@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'nest-rabbitmq',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
