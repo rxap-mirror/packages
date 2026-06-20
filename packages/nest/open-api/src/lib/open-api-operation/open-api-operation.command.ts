@@ -382,15 +382,15 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
           } else if (value instanceof File) {
             formData.append(key, value, filename);
           } else if (value instanceof Buffer) {
-            formData.append(key, new Blob([ value ]), filename);
+            formData.append(key, new Blob([ value as BlobPart ]), filename);
           } else if (value instanceof ArrayBuffer) {
-            formData.append(key, new Blob([ value ]), filename);
+            formData.append(key, new Blob([ value as BlobPart ]), filename);
           } else if (value instanceof Uint32Array) {
-            formData.append(key, new Blob([ value ]), filename);
+            formData.append(key, new Blob([ value as BlobPart ]), filename);
           } else if (value instanceof Uint8Array) {
-            formData.append(key, new Blob([ value ]), filename);
+            formData.append(key, new Blob([ value as BlobPart ]), filename);
           } else if (value instanceof Uint16Array) {
-            formData.append(key, new Blob([ value ]), filename);
+            formData.append(key, new Blob([ value as BlobPart ]), filename);
           } else {
             throw new InternalServerErrorException(`Unsupported value type for multipart/form-data: (${key}) ${ typeof value }`);
           }
