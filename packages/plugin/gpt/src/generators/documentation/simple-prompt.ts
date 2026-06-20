@@ -1,6 +1,8 @@
 import { OpenAI } from 'openai';
-import { ChatCompletionCreateParamsBase } from 'openai/resources/chat/completions';
-import { ChatCompletionCreateParamsNonStreaming } from 'openai/src/resources/chat/completions';
+import {
+  ChatCompletionCreateParamsBase,
+  ChatCompletionCreateParamsNonStreaming,
+} from 'openai/resources/chat/completions';
 import { encoding_for_model } from 'tiktoken';
 import 'colors';
 

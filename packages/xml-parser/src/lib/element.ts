@@ -66,7 +66,7 @@ export class RxapElement {
   public get<D = undefined, T = any>(qualifiedName: string, defaultValue?: D, raw = false): T | D {
     if (this.element.hasAttribute(qualifiedName)) {
       const value = this.element.getAttribute(qualifiedName)!;
-      return raw ? value : parseValue(value) as any;
+      return (raw ? value : parseValue(value)) as any;
     }
     return defaultValue as any;
   }
