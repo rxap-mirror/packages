@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'nest-oauth2-proxy',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

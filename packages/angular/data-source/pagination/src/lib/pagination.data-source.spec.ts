@@ -4,11 +4,8 @@ import { PaginatorFake } from '@rxap/data-source/testing';
 import { Subject } from 'rxjs';
 
 describe('@rxap/data-source', () => {
-
   describe('pagination', () => {
-
     describe('PaginationDataSource', () => {
-
       let dataSource: PaginationDataSource<any>;
       let paginator: PaginatorFake;
       let matPaginator: PaginatorFake;
@@ -19,7 +16,6 @@ describe('@rxap/data-source', () => {
       });
 
       it('should throw if source data source is not a collection data source', () => {
-
         const source = new StaticDataSource<any>({}, { id: 'static' });
 
         dataSource = new PaginationDataSource<any>(source as any, matPaginator);
@@ -30,42 +26,21 @@ describe('@rxap/data-source', () => {
         const errorSpy = jest.fn();
         const completeSpy = jest.fn();
 
-        connection.subscribe(
-          nextSpy,
-          errorSpy,
-          completeSpy,
-        );
+        connection.subscribe(nextSpy, errorSpy, completeSpy);
 
-        expect(nextSpy).not.toBeCalled();
-        expect(errorSpy).toBeCalled();
-        expect(completeSpy).not.toBeCalled();
-
+        expect(nextSpy).not.toHaveBeenCalled();
+        expect(errorSpy).toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
       });
 
-      it('should return the data paged based on the paginator state', (() => {
-
-        const source = new StaticDataSource<any[]>([
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19,
-          20,
-        ], { id: 'static' });
+      it('should return the data paged based on the paginator state', () => {
+        const source = new StaticDataSource<any[]>(
+          [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+            20,
+          ],
+          { id: 'static' },
+        );
 
         paginator.pageSize = 5;
 
@@ -77,17 +52,13 @@ describe('@rxap/data-source', () => {
         const errorSpy = jest.fn();
         const completeSpy = jest.fn();
 
-        connection.subscribe(
-          nextSpy,
-          errorSpy,
-          completeSpy,
-        );
+        connection.subscribe(nextSpy, errorSpy, completeSpy);
 
-        expect(nextSpy).toBeCalled();
-        expect(errorSpy).not.toBeCalled();
-        expect(completeSpy).not.toBeCalled();
+        expect(nextSpy).toHaveBeenCalled();
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
 
-        expect(nextSpy).toBeCalledWith([ 1, 2, 3, 4, 5 ]);
+        expect(nextSpy).toHaveBeenCalledWith([1, 2, 3, 4, 5]);
 
         nextSpy.mockReset();
 
@@ -96,34 +67,17 @@ describe('@rxap/data-source', () => {
           pageIndex: 1,
         });
 
-        expect(nextSpy).toBeCalledWith([ 6, 7, 8, 9, 10 ]);
-
-      }));
+        expect(nextSpy).toHaveBeenCalledWith([6, 7, 8, 9, 10]);
+      });
 
       it('should return the data paged to multiple connections', () => {
-
-        const source = new StaticDataSource<any[]>([
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19,
-          20,
-        ], { id: 'static' });
+        const source = new StaticDataSource<any[]>(
+          [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+            20,
+          ],
+          { id: 'static' },
+        );
 
         paginator.pageSize = 5;
 
@@ -139,15 +93,15 @@ describe('@rxap/data-source', () => {
 
         connection1.subscribe(nextSpy1);
 
-        expect(nextSpy1).toBeCalledWith([ 1, 2, 3, 4, 5 ]);
+        expect(nextSpy1).toHaveBeenCalledWith([1, 2, 3, 4, 5]);
         nextSpy1.mockReset();
 
         paginator.next();
 
-        expect(nextSpy1).toBeCalledWith([ 6, 7, 8, 9, 10 ]);
+        expect(nextSpy1).toHaveBeenCalledWith([6, 7, 8, 9, 10]);
 
         connection2.subscribe(nextSpy2);
-        expect(nextSpy2).toBeCalledWith([ 6, 7, 8, 9, 10 ]);
+        expect(nextSpy2).toHaveBeenCalledWith([6, 7, 8, 9, 10]);
 
         nextSpy1.mockReset();
         nextSpy2.mockReset();
@@ -155,14 +109,12 @@ describe('@rxap/data-source', () => {
         paginator.next();
 
         connection3.subscribe(nextSpy3);
-        expect(nextSpy1).toBeCalledWith([ 11, 12, 13, 14, 15 ]);
-        expect(nextSpy2).toBeCalledWith([ 11, 12, 13, 14, 15 ]);
-        expect(nextSpy3).toBeCalledWith([ 11, 12, 13, 14, 15 ]);
-
+        expect(nextSpy1).toHaveBeenCalledWith([11, 12, 13, 14, 15]);
+        expect(nextSpy2).toHaveBeenCalledWith([11, 12, 13, 14, 15]);
+        expect(nextSpy3).toHaveBeenCalledWith([11, 12, 13, 14, 15]);
       });
 
       it('should update the paginator length', () => {
-
         const data = new Subject<any[]>();
 
         const source = new StaticDataSource<any[]>(data, { id: 'static' });
@@ -175,40 +127,25 @@ describe('@rxap/data-source', () => {
 
         connection.subscribe();
 
-        data.next([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ]);
+        data.next([
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        ]);
 
         expect(paginator.length).toEqual(20);
 
-        data.next([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
+        data.next([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
         expect(paginator.length).toEqual(10);
-
       });
 
       it('should disconnect from source data source when the data source disconnect', () => {
-
-        const source = new StaticDataSource<any[]>([
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19,
-          20,
-        ], { id: 'static' });
+        const source = new StaticDataSource<any[]>(
+          [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+            20,
+          ],
+          { id: 'static' },
+        );
 
         paginator.pageSize = 5;
 
@@ -220,12 +157,8 @@ describe('@rxap/data-source', () => {
 
         dataSource.disconnect({ id: 'test' });
 
-        expect(disconnectSpy).toBeCalled();
-
+        expect(disconnectSpy).toHaveBeenCalled();
       });
-
     });
-
   });
-
 });

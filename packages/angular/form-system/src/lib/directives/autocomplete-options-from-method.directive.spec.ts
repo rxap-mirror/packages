@@ -3,34 +3,48 @@ import {
   AutocompleteOptionsFromMethodDirective,
   UseAutocompleteOptionsMethod,
 } from './autocomplete-options-from-method.directive';
-import { ChangeDetectorRef, Injectable, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Injectable,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 import { Method } from '@rxap/pattern';
 import { ControlOption, ControlOptions } from '@rxap/utilities';
-import { FormType, RxapForm, RxapFormBuilder, RxapFormControl, UseFormControl } from '@rxap/forms';
+import {
+  FormType,
+  RxapForm,
+  RxapFormBuilder,
+  RxapFormControl,
+  UseFormControl,
+} from '@rxap/forms';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NgControl } from '@angular/forms';
 import { TestNgControl } from './test-ng-control';
 
 describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
-
   @Injectable()
   class TestAutocompleteOptionsMethod implements Method<ControlOptions> {
-    call({search}: { search?: string | null }): ControlOptions {
-      const list = !search ? [] : [ {
-        value: '92765e0a-08fb-421c-b65e-0a08fbb21c58',
-        display: 'display',
-      } ].filter(option => option.display.toLowerCase().includes(search.toLowerCase()));
+    call({ search }: { search?: string | null }): ControlOptions {
+      const list = !search
+        ? []
+        : [
+            {
+              value: '92765e0a-08fb-421c-b65e-0a08fbb21c58',
+              display: 'display',
+            },
+          ].filter((option) =>
+            option.display.toLowerCase().includes(search.toLowerCase()),
+          );
       return list;
     }
   }
 
   @Injectable()
   class TestResolveMethod implements Method<ControlOption, string> {
-
     call(value: string): ControlOption {
-      return {value, display: 'resolved display'};
+      return { value, display: 'resolved display' };
     }
-
   }
 
   interface ITestFormDefinition {
@@ -39,12 +53,10 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
 
   @RxapForm('test')
   class TestFormDefinition implements FormType<ITestFormDefinition> {
-
     @UseAutocompleteOptionsMethod(TestAutocompleteOptionsMethod)
     @UseResolveMethod(TestResolveMethod)
     @UseFormControl()
     name!: RxapFormControl;
-
   }
 
   let directive: AutocompleteOptionsFromMethodDirective;
@@ -59,11 +71,12 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
   let resolveMethodCall: jest.SpyInstance;
 
   beforeEach(() => {
-    const formDefinition: TestFormDefinition = new RxapFormBuilder<ITestFormDefinition>(TestFormDefinition).build();
-    const ngControl                          = new TestNgControl(formDefinition.name);
-    createEmbeddedViewMock                   = jest.fn();
-    clearMock                                = jest.fn();
-    detectChangesMock                        = jest.fn();
+    const formDefinition: TestFormDefinition =
+      new RxapFormBuilder<ITestFormDefinition>(TestFormDefinition).build();
+    const ngControl = new TestNgControl(formDefinition.name);
+    createEmbeddedViewMock = jest.fn();
+    clearMock = jest.fn();
+    detectChangesMock = jest.fn();
     TestBed.configureTestingModule({
       providers: [
         AutocompleteOptionsFromMethodDirective,
@@ -92,12 +105,15 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
         },
       ],
     });
-    control                       = ngControl.control as RxapFormControl;
-    autocompleteOptionsMethod     = TestBed.inject(TestAutocompleteOptionsMethod);
-    resolveMethod                 = TestBed.inject(TestResolveMethod);
-    autocompleteOptionsMethodCall = jest.spyOn(autocompleteOptionsMethod, 'call');
-    resolveMethodCall             = jest.spyOn(resolveMethod, 'call');
-    directive                     = TestBed.inject(AutocompleteOptionsFromMethodDirective);
+    control = ngControl.control as RxapFormControl;
+    autocompleteOptionsMethod = TestBed.inject(TestAutocompleteOptionsMethod);
+    resolveMethod = TestBed.inject(TestResolveMethod);
+    autocompleteOptionsMethodCall = jest.spyOn(
+      autocompleteOptionsMethod,
+      'call',
+    );
+    resolveMethodCall = jest.spyOn(resolveMethod, 'call');
+    directive = TestBed.inject(AutocompleteOptionsFromMethodDirective);
   });
 
   it('should only call the autocomplete options method if a value is set', fakeAsync(() => {
@@ -105,16 +121,17 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     tick();
     directive.ngAfterViewInit();
     tick();
-    expect(autocompleteOptionsMethodCall).not.toBeCalled();
-    expect(resolveMethodCall).not.toBeCalled();
+    expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
+    expect(resolveMethodCall).not.toHaveBeenCalled();
     control.setValue('test');
     tick();
-    expect(autocompleteOptionsMethodCall).toBeCalledWith({parameters: {search: 'test'}});
-    expect(resolveMethodCall).not.toBeCalled();
+    expect(autocompleteOptionsMethodCall).toHaveBeenCalledWith({
+      parameters: { search: 'test' },
+    });
+    expect(resolveMethodCall).not.toHaveBeenCalled();
   }));
 
   it('should link directive with MatAutocomplete', fakeAsync(() => {
-
     directive.matAutocomplete = {
       displayWith: jest.fn(),
     } as any;
@@ -124,12 +141,15 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     directive.ngAfterViewInit();
     tick();
 
-    expect(autocompleteOptionsMethodCall).not.toBeCalled();
-    expect(resolveMethodCall).not.toBeCalled();
+    expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
+    expect(resolveMethodCall).not.toHaveBeenCalled();
 
-    expect(directive.matAutocomplete!.displayWith!('')).toBe(directive.toDisplay!.bind(directive)(''));
-    expect(directive.matAutocomplete!.displayWith!('error')).toBe(directive.toDisplay!.bind(directive)('error'));
-
+    expect(directive.matAutocomplete!.displayWith!('')).toBe(
+      directive.toDisplay!.bind(directive)(''),
+    );
+    expect(directive.matAutocomplete!.displayWith!('error')).toBe(
+      directive.toDisplay!.bind(directive)('error'),
+    );
   }));
 
   it('should convert value to display', fakeAsync(() => {
@@ -142,14 +162,12 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     directive.ngAfterViewInit();
     tick();
 
-    directive.options = [ {value: 'test', display: 'display_test'} ];
+    directive.options = [{ value: 'test', display: 'display_test' }];
 
     expect(directive.toDisplay!('test')).toBe('display_test');
-
   }));
 
   it('should resolve a value to display', fakeAsync(() => {
-
     const setValueSpy = jest.spyOn(control, 'setValue');
 
     directive.ngOnChanges({});
@@ -157,28 +175,31 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     directive.ngAfterViewInit();
     tick();
 
-    directive.isValue = jest.fn().mockImplementation(value => value === 'test');
+    directive.isValue = jest
+      .fn()
+      .mockImplementation((value) => value === 'test');
 
-    expect(setValueSpy).not.toBeCalled();
+    expect(setValueSpy).not.toHaveBeenCalled();
     expect(directive.options).toEqual([]);
 
     control.setValue('test');
-    expect(clearMock).toBeCalledTimes(1);
-    expect(createEmbeddedViewMock).not.toBeCalled();
-    expect(detectChangesMock).toBeCalledTimes(1);
-    expect(autocompleteOptionsMethodCall).not.toBeCalled();
-    expect(resolveMethodCall).toBeCalledTimes(1);
-    expect(resolveMethodCall).toBeCalledWith({value: 'test'});
+    expect(clearMock).toHaveBeenCalledTimes(1);
+    expect(createEmbeddedViewMock).not.toHaveBeenCalled();
+    expect(detectChangesMock).toHaveBeenCalledTimes(1);
+    expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
+    expect(resolveMethodCall).toHaveBeenCalledTimes(1);
+    expect(resolveMethodCall).toHaveBeenCalledWith({ value: 'test' });
     tick();
-    expect(directive.options).toEqual([ {value: 'test', display: 'resolved display'} ]);
-    expect(clearMock).toBeCalledTimes(2);
-    expect(createEmbeddedViewMock).toBeCalledTimes(1);
-    expect(createEmbeddedViewMock)
-    .toBeCalledWith(TestBed.inject(TemplateRef), {$implicit: {value: 'test', display: 'resolved display'}});
-    expect(detectChangesMock).toBeCalledTimes(2);
-    expect(autocompleteOptionsMethodCall).not.toBeCalled();
-
-
+    expect(directive.options).toEqual([
+      { value: 'test', display: 'resolved display' },
+    ]);
+    expect(clearMock).toHaveBeenCalledTimes(2);
+    expect(createEmbeddedViewMock).toHaveBeenCalledTimes(1);
+    expect(createEmbeddedViewMock).toHaveBeenCalledWith(
+      TestBed.inject(TemplateRef),
+      { $implicit: { value: 'test', display: 'resolved display' } },
+    );
+    expect(detectChangesMock).toHaveBeenCalledTimes(2);
+    expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
   }));
-
 });

@@ -1,18 +1,14 @@
 import { AttributeElementMixin } from './attribute-element.mixin';
 
 describe('@rxap/xml-parser', () => {
-
   describe('Mixin', () => {
-
     describe('AttributeElementMixin', () => {
-
       it('should use default parse value if no value parser is defined', () => {
-
         const parser = new AttributeElementMixin();
 
         expect(parser.parseValue('true')).toEqual(true);
         expect(parser.parseValue('"true"')).toEqual('true');
-        expect(parser.parseValue('\'true\'')).toEqual('true');
+        expect(parser.parseValue("'true'")).toEqual('true');
         expect(parser.parseValue('false')).toEqual(false);
         expect(parser.parseValue('-1')).toEqual(-1);
         expect(parser.parseValue('1')).toEqual(1);
@@ -20,24 +16,18 @@ describe('@rxap/xml-parser', () => {
         expect(parser.parseValue('my-value')).toEqual('my-value');
         expect(parser.parseValue('[]')).toEqual([]);
         expect(parser.parseValue('{}')).toEqual({});
-
       });
 
       it('should use defined value parser', () => {
-
         const parseValue = jest.fn();
         const parser = new AttributeElementMixin({ parseValue });
 
         parser.parseValue('my-value');
 
-        expect(parseValue).toBeCalled();
-        expect(parseValue).toBeCalledTimes(1);
-        expect(parseValue).toBeCalledWith('my-value');
-
+        expect(parseValue).toHaveBeenCalled();
+        expect(parseValue).toHaveBeenCalledTimes(1);
+        expect(parseValue).toHaveBeenCalledWith('my-value');
       });
-
     });
-
   });
-
 });

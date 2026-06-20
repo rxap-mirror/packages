@@ -350,17 +350,20 @@
   "defaultBase": "development",
   "release": {
     "projectsRelationship": "independent",
-    "releaseTagPattern": "@rxap/{projectName}@{version}",
     "groups": {
       "packages": {
         "projectsRelationship": "independent",
         "projects": ["tag:packages", "!rxap", "!demos/**"],
-        "releaseTagPattern": "@rxap/{projectName}@{version}"
+        "releaseTag": {
+          "pattern": "@rxap/{projectName}@{version}"
+        }
       },
       "rxap": {
         "projectsRelationship": "independent",
         "projects": ["rxap"],
-        "releaseTagPattern": "rxap@{version}"
+        "releaseTag": {
+          "pattern": "rxap@{version}"
+        }
       }
     },
     "version": {
@@ -388,6 +391,9 @@
         "tag": true,
         "push": false
       }
+    },
+    "releaseTag": {
+      "pattern": "@rxap/{projectName}@{version}"
     }
   },
   "plugins": [

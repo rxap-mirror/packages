@@ -1,49 +1,49 @@
+import { fakeAsync, TestBed } from '@angular/core/testing';
 import {
-  fakeAsync,
-  TestBed,
-} from '@angular/core/testing';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { HttpClient, HttpHeaders, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
+import {
+  HttpClient,
+  HttpHeaders,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { HttpDataSource } from './http.data-source';
 import { Subject } from 'rxjs';
 
 describe('@rxap/data-source', () => {
-
   describe('HttpDataSource', () => {
-
     let dataSource: HttpDataSource<any>;
     let httpMock: HttpTestingController;
     let http: HttpClient;
     const url = 'http://server.test/api';
 
     beforeEach(() => {
-
       TestBed.configureTestingModule({
-    imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+        imports: [],
+        providers: [
+          provideHttpClient(withInterceptorsFromDi()),
+          provideHttpClientTesting(),
+        ],
+      });
 
       http = TestBed.inject(HttpClient);
       httpMock = TestBed.inject(HttpTestingController);
 
-      dataSource = new HttpDataSource<any>(
-        http,
-        {
-          id: 'test',
-          deps: [],
-          url,
-        },
-      );
+      dataSource = new HttpDataSource<any>(http, {
+        id: 'test',
+        deps: [],
+        url,
+      });
     });
 
     describe('with http verify', () => {
-
       afterEach(() => {
         httpMock.verify();
       });
 
       it('should emit http response without viewChange option', fakeAsync(() => {
-
         const viewer = { id: 'test' };
         const data = {};
 
@@ -57,15 +57,13 @@ describe('@rxap/data-source', () => {
 
         httpMock.expectOne(url).flush(data);
 
-        expect(nextSpy).toBeCalledTimes(1);
-        expect(nextSpy).toBeCalledWith(data);
-        expect(errorSpy).not.toBeCalled();
-        expect(completeSpy).not.toBeCalled();
-
+        expect(nextSpy).toHaveBeenCalledTimes(1);
+        expect(nextSpy).toHaveBeenCalledWith(data);
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
       }));
 
       it('should emit http response with viewChange option', fakeAsync(() => {
-
         const viewChange = new Subject<any>();
         const viewer = {
           id: 'test',
@@ -84,26 +82,24 @@ describe('@rxap/data-source', () => {
 
         httpMock.expectOne(url).flush(data);
 
-        expect(nextSpy).toBeCalledTimes(1);
-        expect(nextSpy).toBeCalledWith(data);
-        expect(errorSpy).not.toBeCalled();
-        expect(completeSpy).not.toBeCalled();
+        expect(nextSpy).toHaveBeenCalledTimes(1);
+        expect(nextSpy).toHaveBeenCalledWith(data);
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
 
-        viewChange.next({ headers: new HttpHeaders({ 'header1': 'value' }) });
+        viewChange.next({ headers: new HttpHeaders({ header1: 'value' }) });
 
         const request = httpMock.expectOne(url);
 
         expect(request.request.headers.get('header1')).toEqual('value');
         request.flush(data);
-        expect(nextSpy).toBeCalledTimes(2);
-        expect(nextSpy).toBeCalledWith(data);
-        expect(errorSpy).not.toBeCalled();
-        expect(completeSpy).not.toBeCalled();
-
+        expect(nextSpy).toHaveBeenCalledTimes(2);
+        expect(nextSpy).toHaveBeenCalledWith(data);
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
       }));
 
       it('should share http response with all connections', fakeAsync(() => {
-
         const viewer1 = {
           id: 'viewer1',
           viewChange: new Subject<any>(),
@@ -126,31 +122,31 @@ describe('@rxap/data-source', () => {
 
         httpMock.expectOne(url).flush('data1');
 
-        expect(next1Spy).toBeCalledTimes(1);
-        expect(next1Spy).toBeCalledWith('data1');
+        expect(next1Spy).toHaveBeenCalledTimes(1);
+        expect(next1Spy).toHaveBeenCalledWith('data1');
 
         const connection2 = dataSource.connect(viewer2);
         connection2.subscribe(next2Spy);
 
-        expect(next2Spy).toBeCalledTimes(1);
-        expect(next2Spy).toBeCalledWith('data1');
+        expect(next2Spy).toHaveBeenCalledTimes(1);
+        expect(next2Spy).toHaveBeenCalledWith('data1');
 
         viewer2.viewChange.next(undefined);
 
         httpMock.expectOne(url).flush('data2');
 
-        expect(next1Spy).toBeCalledTimes(2);
-        expect(next1Spy).toBeCalledWith('data1');
-        expect(next1Spy).toBeCalledWith('data2');
-        expect(next2Spy).toBeCalledTimes(2);
-        expect(next2Spy).toBeCalledWith('data1');
-        expect(next2Spy).toBeCalledWith('data2');
+        expect(next1Spy).toHaveBeenCalledTimes(2);
+        expect(next1Spy).toHaveBeenCalledWith('data1');
+        expect(next1Spy).toHaveBeenCalledWith('data2');
+        expect(next2Spy).toHaveBeenCalledTimes(2);
+        expect(next2Spy).toHaveBeenCalledWith('data1');
+        expect(next2Spy).toHaveBeenCalledWith('data2');
 
         const connection3 = dataSource.connect(viewer3);
         connection3.subscribe(next3Spy);
 
-        expect(next3Spy).toBeCalledTimes(1);
-        expect(next3Spy).toBeCalledWith('data2');
+        expect(next3Spy).toHaveBeenCalledTimes(1);
+        expect(next3Spy).toHaveBeenCalledWith('data2');
 
         dataSource.disconnect(viewer1);
         connectionSubscription.unsubscribe();
@@ -159,32 +155,26 @@ describe('@rxap/data-source', () => {
 
         httpMock.expectOne(url).flush('data3');
 
-        expect(next1Spy).toBeCalledTimes(2);
-        expect(next1Spy).toBeCalledWith('data1');
-        expect(next1Spy).toBeCalledWith('data2');
-        expect(next2Spy).toBeCalledTimes(3);
-        expect(next2Spy).toBeCalledWith('data1');
-        expect(next2Spy).toBeCalledWith('data2');
-        expect(next2Spy).toBeCalledWith('data3');
-        expect(next3Spy).toBeCalledTimes(2);
-        expect(next3Spy).toBeCalledWith('data2');
-        expect(next3Spy).toBeCalledWith('data3');
+        expect(next1Spy).toHaveBeenCalledTimes(2);
+        expect(next1Spy).toHaveBeenCalledWith('data1');
+        expect(next1Spy).toHaveBeenCalledWith('data2');
+        expect(next2Spy).toHaveBeenCalledTimes(3);
+        expect(next2Spy).toHaveBeenCalledWith('data1');
+        expect(next2Spy).toHaveBeenCalledWith('data2');
+        expect(next2Spy).toHaveBeenCalledWith('data3');
+        expect(next3Spy).toHaveBeenCalledTimes(2);
+        expect(next3Spy).toHaveBeenCalledWith('data2');
+        expect(next3Spy).toHaveBeenCalledWith('data3');
 
         viewer1.viewChange.next(undefined);
-
-
       }));
 
       it('should replace one url parameter', () => {
-
-        dataSource = new HttpDataSource<any>(
-          http,
-          {
-            id: 'test',
-            deps: [],
-            url: 'http://server.test/api/user/{id}',
-          },
-        );
+        dataSource = new HttpDataSource<any>(http, {
+          id: 'test',
+          deps: [],
+          url: 'http://server.test/api/user/{id}',
+        });
 
         const viewer = {
           id: 'test',
@@ -203,23 +193,18 @@ describe('@rxap/data-source', () => {
 
         httpMock.expectOne('http://server.test/api/user/my-id').flush('data');
 
-        expect(nextSpy).toBeCalledTimes(1);
-        expect(nextSpy).toBeCalledWith('data');
-        expect(errorSpy).not.toBeCalled();
-        expect(completeSpy).not.toBeCalled();
-
+        expect(nextSpy).toHaveBeenCalledTimes(1);
+        expect(nextSpy).toHaveBeenCalledWith('data');
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
       });
 
       it('should emit error if url parameters missing', () => {
-
-        dataSource = new HttpDataSource<any>(
-          http,
-          {
-            id: 'test',
-            deps: [],
-            url: 'http://server.test/api/user/{id}/product/{pId}',
-          },
-        );
+        dataSource = new HttpDataSource<any>(http, {
+          id: 'test',
+          deps: [],
+          url: 'http://server.test/api/user/{id}/product/{pId}',
+        });
 
         const viewer = {
           id: 'test',
@@ -232,29 +217,28 @@ describe('@rxap/data-source', () => {
         const errorSpy = jest.fn();
         const completeSpy = jest.fn();
 
-        const subscription = connection.subscribe(nextSpy, errorSpy, completeSpy);
+        const subscription = connection.subscribe(
+          nextSpy,
+          errorSpy,
+          completeSpy,
+        );
 
         expect(subscription.closed).toBeFalsy();
 
         viewer.viewChange.next({ pathParams: { id: 'my-id' } });
 
-        expect(nextSpy).not.toBeCalled();
-        expect(errorSpy).toBeCalledTimes(1);
-        expect(completeSpy).not.toBeCalled();
+        expect(nextSpy).not.toHaveBeenCalled();
+        expect(errorSpy).toHaveBeenCalledTimes(1);
+        expect(completeSpy).not.toHaveBeenCalled();
         expect(subscription.closed).toBeTruthy();
-
       });
 
       it('should replace multiple url parameter', () => {
-
-        dataSource = new HttpDataSource<any>(
-          http,
-          {
-            id: 'test',
-            deps: [],
-            url: 'http://server.test/api/user/{id}/product/{pId}',
-          },
-        );
+        dataSource = new HttpDataSource<any>(http, {
+          id: 'test',
+          deps: [],
+          url: 'http://server.test/api/user/{id}/product/{pId}',
+        });
 
         const viewer = {
           id: 'test',
@@ -272,7 +256,7 @@ describe('@rxap/data-source', () => {
         viewer.viewChange.next({
           pathParams: {
             id: 'my-id',
-            'pId': 'p-id',
+            pId: 'p-id',
           },
         });
 
@@ -280,18 +264,14 @@ describe('@rxap/data-source', () => {
           .expectOne('http://server.test/api/user/my-id/product/p-id')
           .flush('data');
 
-        expect(nextSpy).toBeCalledTimes(1);
-        expect(nextSpy).toBeCalledWith('data');
-        expect(errorSpy).not.toBeCalled();
-        expect(completeSpy).not.toBeCalled();
-
+        expect(nextSpy).toHaveBeenCalledTimes(1);
+        expect(nextSpy).toHaveBeenCalledWith('data');
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
       });
-
     });
 
-
     describe('should call init on first request', () => {
-
       let initSpy: jest.SpyInstance;
 
       beforeEach(() => {
@@ -299,31 +279,22 @@ describe('@rxap/data-source', () => {
       });
 
       it('connect', () => {
-
-        expect(initSpy).not.toBeCalled();
+        expect(initSpy).not.toHaveBeenCalled();
         dataSource.connect({ id: 'test' });
-        expect(initSpy).toBeCalled();
-
+        expect(initSpy).toHaveBeenCalled();
       });
 
       it('request$', () => {
-
-        expect(initSpy).not.toBeCalled();
+        expect(initSpy).not.toHaveBeenCalled();
         dataSource.request$();
-        expect(initSpy).toBeCalled();
-
+        expect(initSpy).toHaveBeenCalled();
       });
 
       it('refresh', () => {
-
-        expect(initSpy).not.toBeCalled();
+        expect(initSpy).not.toHaveBeenCalled();
         dataSource.refresh();
-        expect(initSpy).toBeCalled();
-
+        expect(initSpy).toHaveBeenCalled();
       });
-
     });
-
   });
-
 });
