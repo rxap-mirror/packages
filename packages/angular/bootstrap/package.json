@@ -12,8 +12,8 @@
     "@angular/core": "^19.2.1",
     "@angular/platform-browser": "^19.2.1",
     "@angular/platform-browser-dynamic": "^19.2.1",
-    "@rxap/config": "^19.3.0-dev.3",
-    "@rxap/environment": "^19.2.0-dev.0",
+    "@rxap/config": "^20.0.0",
+    "@rxap/environment": "^20.0.0",
     "ngx-logger": "^5.0.12"
   },
   "author": {

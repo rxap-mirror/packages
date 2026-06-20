@@ -11,9 +11,9 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/forms": "^19.2.1",
-    "@rxap/directives": "^19.2.0-dev.0",
-    "@rxap/environment": "^19.2.0-dev.0",
-    "@rxap/open-api": "^19.3.0-dev.3",
+    "@rxap/directives": "^20.0.0",
+    "@rxap/environment": "^20.0.0",
+    "@rxap/open-api": "^20.0.0",
     "ngx-markdown": "^16.0.0",
     "rxjs": "^7.8.1"
   },
