@@ -135,9 +135,9 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.9",
-    "@angular-devkit/core": "21.2.9",
-    "@angular-devkit/schematics": "21.2.9",
+    "@angular-devkit/build-angular": "21.2.16",
+    "@angular-devkit/core": "21.2.16",
+    "@angular-devkit/schematics": "21.2.16",
     "@angular-eslint/eslint-plugin": "21.4.0",
     "@angular-eslint/eslint-plugin-template": "21.4.0",
     "@angular-eslint/template-parser": "21.4.0",
@@ -169,7 +169,7 @@
     "@nx/storybook": "22.7.5",
     "@nx/web": "22.7.5",
     "@nx/webpack": "22.7.5",
-    "@schematics/angular": "21.2.9",
+    "@schematics/angular": "21.2.16",
     "@storybook/addon-docs": "10.4.6",
     "@storybook/addon-themes": "10.4.6",
     "@storybook/angular": "10.4.6",

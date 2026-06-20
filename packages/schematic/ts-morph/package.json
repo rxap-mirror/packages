@@ -4,8 +4,8 @@
   "description": "This package provides utilities for manipulating TypeScript code using ts-morph, particularly for Angular and NestJS projects. It offers functions to add, coerce, and modify code elements like classes, methods, decorators, and imports. The package also includes specialized functions for working with Angular components, NestJS modules, and form definitions.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@angular-devkit/core": "21.2.9",
-    "@angular-devkit/schematics": "21.2.9",
+    "@angular-devkit/core": "21.2.16",
+    "@angular-devkit/schematics": "21.2.16",
     "@nx/devkit": "22.7.5",
     "@rxap/schematics-utilities": "^21.0.0",
     "@rxap/ts-morph": "^1.7.0",

@@ -4,8 +4,8 @@
   "description": "This package provides schematics for generating code from OpenAPI specifications. It includes utilities for loading OpenAPI configurations, generating components, parameters, request bodies, and responses, as well as generating Angular directives and NestJS commands based on the OpenAPI schema. It simplifies the process of creating data access layers and UI components from API definitions.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@angular-devkit/core": "21.2.9",
-    "@angular-devkit/schematics": "21.2.9",
+    "@angular-devkit/core": "21.2.16",
+    "@angular-devkit/schematics": "21.2.16",
     "@nx/devkit": "22.7.5",
     "@rxap/json-schema-to-typescript": "^16.1.4",
     "@rxap/schematics-ts-morph": "^21.0.0",
