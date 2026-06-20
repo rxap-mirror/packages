@@ -16,8 +16,10 @@ export interface TargetConfiguration {
 }
 
 export interface NxJsonOrProjectConfiguration extends Record<string, any> {
-  targets?: Record<string, TargetConfiguration>;
-  targetDefaults?: Record<string, TargetConfiguration>;
+  // `any` value type so an @nx/devkit ProjectConfiguration (whose
+  // TargetConfiguration generic changed in Nx 22) remains assignable here.
+  targets?: Record<string, any>;
+  targetDefaults?: Record<string, any>;
 }
 
 export enum Strategy {
