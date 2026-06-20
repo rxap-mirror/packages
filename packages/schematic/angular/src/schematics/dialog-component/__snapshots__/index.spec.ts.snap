@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`dialog-component minimal: file-tree 1`] = `
+[
+  "/angular.json",
+  "/api/app/project.json",
+  "/api/app/src/app/app.module.ts",
+  "/api/app/src/main.ts",
+  "/api/app/tsconfig.app.json",
+  "/api/app/tsconfig.json",
+  "/api/lib/project.json",
+  "/api/lib/src/index.ts",
+  "/api/lib/src/lib/api-lib.module.ts",
+  "/api/lib/tsconfig.json",
+  "/api/lib/tsconfig.lib.json",
+  "/nx.json",
+  "/package.json",
+  "/tsconfig.base.json",
+  "/ui/app/project.json",
+  "/ui/app/src/app/app.module.ts",
+  "/ui/app/src/app/app.routes.ts",
+  "/ui/app/src/main.ts",
+  "/ui/app/tsconfig.app.json",
+  "/ui/app/tsconfig.json",
+  "/ui/lib/project.json",
+  "/ui/lib/src/index.ts",
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.html",
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.scss",
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.ts",
+  "/ui/lib/src/lib/ui-lib.module.ts",
+  "/ui/lib/tsconfig.json",
+  "/ui/lib/tsconfig.lib.json",
+]
+`;
+
+exports[`dialog-component minimal: generated 1`] = `
+{
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.html": "<h2 mat-dialog-title i18n>Test Dialog</h2>
+<mat-dialog-content>
+
+  <div class="flex flex-col">
+
+    <mat-progress-bar *ngIf="loading$ | async" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  
+</mat-dialog-actions>
+",
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.scss": "",
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.ts": "import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CommonModule } from '@angular/common';
+import { ToggleSubject } from '@rxap/rxjs';
+
+@Component({
+    standalone: true,
+    selector: 'jest-test-dialog',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './test-dialog.component.html',
+    styleUrls: ['./test-dialog.component.scss'],
+  imports: [MatDialogModule, MatButtonModule, MatProgressBarModule, CommonModule],
+})
+export class TestDialogComponent {
+  readonly invalid$ = new ToggleSubject(true);
+  readonly loading$ = new ToggleSubject(true);
+
+  constructor(readonly matDialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) readonly data: any) {
+  }
+
+  async submit() {
+    this.matDialogRef.close(true);
+  }
+}
+",
+}
+`;
+
+exports[`dialog-component minimal: test-dialog.component.html 1`] = `
+"<h2 mat-dialog-title i18n>Test Dialog</h2>
+<mat-dialog-content>
+
+  <div class="flex flex-col">
+
+    <mat-progress-bar *ngIf="loading$ | async" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  
+</mat-dialog-actions>
+"
+`;
+
+exports[`dialog-component minimal: test-dialog.component.scss 1`] = `""`;
+
+exports[`dialog-component minimal: test-dialog.component.ts 1`] = `
+"import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CommonModule } from '@angular/common';
+import { ToggleSubject } from '@rxap/rxjs';
+
+@Component({
+    standalone: true,
+    selector: 'jest-test-dialog',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './test-dialog.component.html',
+    styleUrls: ['./test-dialog.component.scss'],
+  imports: [MatDialogModule, MatButtonModule, MatProgressBarModule, CommonModule],
+})
+export class TestDialogComponent {
+  readonly invalid$ = new ToggleSubject(true);
+  readonly loading$ = new ToggleSubject(true);
+
+  constructor(readonly matDialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) readonly data: any) {
+  }
+
+  async submit() {
+    this.matDialogRef.close(true);
+  }
+}
+"
+`;
