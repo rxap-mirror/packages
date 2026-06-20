@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 @Component({
     selector: 'rxap-large-window',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './large-window.component.html',
     styleUrls: ['./large-window.component.scss']
 })

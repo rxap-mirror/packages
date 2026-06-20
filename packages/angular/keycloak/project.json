@@ -16,15 +16,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/keycloak/ng-package.json"
+        "project": "packages/angular/keycloak/ng-package.json",
+        "tsConfig": "packages/angular/keycloak/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/keycloak/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/keycloak/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },

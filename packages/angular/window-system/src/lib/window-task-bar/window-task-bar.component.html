@@ -1,6 +1,8 @@
 <div class="tasks grow-0 flex flex-row flex-wrap">
-  <rxap-window-task *ngFor="let window of windowService.allActiveWindows"
-                    [window]="window"
-                    class="grow-0">
-  </rxap-window-task>
+  @for (window of windowService.allActiveWindows; track window) {
+    <rxap-window-task
+      [window]="window"
+      class="grow-0">
+    </rxap-window-task>
+  }
 </div>

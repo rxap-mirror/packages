@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SimpleAccordionDataSource } from './simple-accordion.data-source';
 import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
-import { CommonModule, AsyncPipe, NgIf } from '@angular/common';
+import { CommonModule, AsyncPipe } from '@angular/common';
 
 import { FirstPanelComponent } from './first-panel/first-panel.component';
 
@@ -25,21 +25,20 @@ import { SimpleAccordionMethod } from './simple-accordion.method';
     styleUrls: ['./simple-accordion.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        FirstPanelComponent,
-        SecondPanelComponent,
-        ThirdPanelComponent,
-        DataSourceErrorComponent,
-        DataSourceDirective,
-        NavigateBackButtonComponent,
-        MatProgressBarModule,
-        MatDividerModule,
-        MatExpansionModule,
-        PersistentAccordionDirective,
-        CommonModule,
-        AccordionHeaderComponent,
-        AsyncPipe,
-        NgIf,
-    ],
+    FirstPanelComponent,
+    SecondPanelComponent,
+    ThirdPanelComponent,
+    DataSourceErrorComponent,
+    DataSourceDirective,
+    NavigateBackButtonComponent,
+    MatProgressBarModule,
+    MatDividerModule,
+    MatExpansionModule,
+    PersistentAccordionDirective,
+    CommonModule,
+    AccordionHeaderComponent,
+    AsyncPipe
+],
     providers: [
         SimpleAccordionDataSource,
         {

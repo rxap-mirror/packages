@@ -1,39 +1,47 @@
 <dialog #dialog
-        class="max-w-6xl rounded overflow-auto drop-shadow-2xl bg-white text-black dark:bg-black dark:text-white flex flex-col gap-3 p-6">
+  class="max-w-6xl rounded overflow-auto drop-shadow-2xl bg-white text-black dark:bg-black dark:text-white flex flex-col gap-3 p-6">
   <h2 class="text-2xl font-bold" i18n>A new application version is available</h2>
-  <ng-container [ngSwitch]="$any(updateAvailableEvent).type">
-    <table *ngSwitchCase="'VERSION_DETECTED'" class="table-auto">
-      <tr>
-        <th i18n>Version hash</th>
-        <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
-      </tr>
-    </table>
-    <table *ngSwitchCase="'VERSION_INSTALLATION_FAILED'" class="table-auto">
-      <tr>
-        <th i18n>Version hash</th>
-        <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
-      </tr>
-      <tr>
-        <th i18n>Version installation error</th>
-        <td>{{$any(updateAvailableEvent)['error']}}</td>
-      </tr>
-    </table>
-    <table *ngSwitchCase="'VERSION_READY'" class="table-auto">
-      <tr>
-        <th i18n>Current version hash</th>
-        <td>{{$any(updateAvailableEvent)['currentVersion'].hash}}</td>
-      </tr>
-      <tr>
-        <th i18n>Last version hash</th>
-        <td>{{$any(updateAvailableEvent)['latestVersion'].hash}}</td>
-      </tr>
-    </table>
-    <table *ngSwitchCase="'NoNewVersionDetectedEvent'" class="table-auto">
-      <tr>
-        <th i18n>Version hash</th>
-        <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
-      </tr>
-    </table>
-  </ng-container>
+  @switch ($any(updateAvailableEvent).type) {
+    @case ('VERSION_DETECTED') {
+      <table class="table-auto">
+        <tr>
+          <th i18n>Version hash</th>
+          <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
+        </tr>
+      </table>
+    }
+    @case ('VERSION_INSTALLATION_FAILED') {
+      <table class="table-auto">
+        <tr>
+          <th i18n>Version hash</th>
+          <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
+        </tr>
+        <tr>
+          <th i18n>Version installation error</th>
+          <td>{{$any(updateAvailableEvent)['error']}}</td>
+        </tr>
+      </table>
+    }
+    @case ('VERSION_READY') {
+      <table class="table-auto">
+        <tr>
+          <th i18n>Current version hash</th>
+          <td>{{$any(updateAvailableEvent)['currentVersion'].hash}}</td>
+        </tr>
+        <tr>
+          <th i18n>Last version hash</th>
+          <td>{{$any(updateAvailableEvent)['latestVersion'].hash}}</td>
+        </tr>
+      </table>
+    }
+    @case ('NoNewVersionDetectedEvent') {
+      <table class="table-auto">
+        <tr>
+          <th i18n>Version hash</th>
+          <td>{{$any(updateAvailableEvent)['version'].hash}}</td>
+        </tr>
+      </table>
+    }
+  }
   <button (click)="close()" class="px-4 py-2 rounded bg-primary-500" i18n>Update</button>
 </dialog>

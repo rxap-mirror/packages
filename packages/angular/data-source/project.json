@@ -10,15 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/data-source/ng-package.json"
+        "project": "packages/angular/data-source/ng-package.json",
+        "tsConfig": "packages/angular/data-source/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/data-source/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/data-source/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },

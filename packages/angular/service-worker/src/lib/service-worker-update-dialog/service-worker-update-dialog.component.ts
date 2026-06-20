@@ -1,7 +1,4 @@
-import {
-  NgSwitch,
-  NgSwitchCase,
-} from '@angular/common';
+
 import {
   AfterViewInit,
   Component,
@@ -18,10 +15,7 @@ export const UPDATE_AVAILABLE_EVENT = new InjectionToken<VersionEvent>('UPDATE_A
 
 @Component({
     selector: 'rxap-service-worker-update-dialog',
-    imports: [
-        NgSwitch,
-        NgSwitchCase,
-    ],
+    imports: [],
     templateUrl: './service-worker-update-dialog.component.html',
     styleUrls: ['./service-worker-update-dialog.component.scss']
 })

@@ -11,7 +11,7 @@
 
 
         <rxap-table-column-menu #rxapTableColumns="rxapTableColumns" [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
-                                matCard>
+          matCard>
           <rxap-table-column-option hidden name="tree"></rxap-table-column-option>
 
           <rxap-table-column-option name="name">
@@ -41,16 +41,17 @@
 
           <mat-divider></mat-divider>
           <span mat-menu-item>
-          <rxap-table-show-archived-slide></rxap-table-show-archived-slide>
-        </span>
+            <rxap-table-show-archived-slide></rxap-table-show-archived-slide>
+          </span>
         </rxap-table-column-menu>
       </mat-card-header>
 
       <mat-card-content>
-        <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
-          [refresh]="tableDataSourceDirective.retry">
-        </rxap-data-source-error>
+        @if (tableDataSourceDirective.hasError$ | async) {
+          <rxap-data-source-error
+            [refresh]="tableDataSourceDirective.retry">
+          </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
           <table
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
@@ -60,7 +61,7 @@
             rxapTableDataSource
             [parameters]="parameters"
             id="tree-table-demo"
-          >
+            >
             <!-- region columns -->
 
             <ng-container matColumnDef="uuid">

@@ -6,13 +6,13 @@ import {
 import { RXAP_WINDOW_CONTEXT } from '../tokens';
 import { ButtonDefinition } from '@rxap/rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'rxap-window-action-bar',
     templateUrl: './window-action-bar.component.html',
     styleUrls: ['./window-action-bar.component.scss'],
-    imports: [NgIf, MatToolbarModule]
+    imports: [MatToolbarModule]
 })
 export class WindowActionBarComponent {
 

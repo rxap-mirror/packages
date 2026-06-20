@@ -1,6 +1,7 @@
 <button type="button" mat-icon-button>
-  <mat-icon *ngIf="expandCell.isExpanded$(element) | async; else notExpanded">expand_more</mat-icon>
-  <ng-template #notExpanded>
+  @if (expandCell.isExpanded$(element) | async) {
+    <mat-icon>expand_more</mat-icon>
+  } @else {
     <mat-icon>keyboard_arrow_right</mat-icon>
-  </ng-template>
+  }
 </button>

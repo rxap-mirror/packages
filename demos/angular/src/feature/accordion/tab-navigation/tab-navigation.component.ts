@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   RouterLink,
   RouterOutlet,
@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
     selector: 'rxap-tab-navigation',
-    imports: [CommonModule, RouterOutlet, MatTabsModule, RouterLink],
+    imports: [RouterOutlet, MatTabsModule, RouterLink],
     templateUrl: './tab-navigation.component.html',
     styleUrls: ['./tab-navigation.component.scss']
 })

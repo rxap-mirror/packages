@@ -6,6 +6,8 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button [mat-dialog-close]="false" i18n mat-button>Cancel</button>
-  <button *ngFor="let action of data.actions" [color]="action.color" [mat-dialog-close]="action.type"
-          mat-raised-button>{{ action.label }}</button>
+  @for (action of data.actions; track action) {
+    <button [color]="action.color" [mat-dialog-close]="action.type"
+    mat-raised-button>{{ action.label }}</button>
+  }
 </mat-dialog-actions>

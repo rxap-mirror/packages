@@ -8,11 +8,7 @@ import { StopPropagationDirective } from '@rxap/directives';
 import { MatButtonModule } from '@angular/material/button';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  AsyncPipe,
-  NgClass,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({
     selector: 'rxap-window-task',
@@ -20,14 +16,13 @@ import {
     styleUrls: ['./window-task.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        NgClass,
-        NgIf,
-        MatIconModule,
-        IconDirective,
-        MatButtonModule,
-        StopPropagationDirective,
-        AsyncPipe,
-    ]
+    NgClass,
+    MatIconModule,
+    IconDirective,
+    MatButtonModule,
+    StopPropagationDirective,
+    AsyncPipe
+]
 })
 export class WindowTaskComponent {
 

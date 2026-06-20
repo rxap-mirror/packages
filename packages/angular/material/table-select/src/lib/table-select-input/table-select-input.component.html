@@ -1,3 +1,5 @@
 <div [ngClass]="{ disabled: disabled }" class="mat-select-trigger">
-  <span *ngIf="display || placeholder">{{display ?? placeholder}}</span>
+  @if (display || placeholder) {
+    <span>{{display ?? placeholder}}</span>
+  }
 </div>

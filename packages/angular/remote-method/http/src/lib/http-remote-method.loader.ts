@@ -8,8 +8,7 @@ import { HttpRemoteMethod } from './http.remote-method';
 import {
   Inject,
   Injectable,
-  InjectFlags,
-  Injector,
+  Injector
 } from '@angular/core';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 

@@ -1,7 +1,6 @@
-<ng-template [ngIfElse]="isFalse" [ngIf]="value">
+@if (value) {
   <mat-icon class="truthy">check_circle</mat-icon>
-</ng-template>
-<ng-template #isFalse>
+} @else {
   <mat-icon class="falsy">cancel</mat-icon>
-</ng-template>
+}
 <ng-content></ng-content>

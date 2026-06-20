@@ -2,12 +2,13 @@
   <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
 </ng-template>
 <div *rxapDataSource="let accordion from accordionDataSource; errorTemplate: errorTemplate"
-     class="flex flex-col gap-y-6">
+  class="flex flex-col gap-y-6">
   <rxap-accordion-header [data]="accordion"></rxap-accordion-header>
-  <ng-template #divider>
+  @if (accordionDataSource.loading$ | async) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  } @else {
     <mat-divider></mat-divider>
-  </ng-template>
-  <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
+  }
   <mat-accordion multi>
 
 

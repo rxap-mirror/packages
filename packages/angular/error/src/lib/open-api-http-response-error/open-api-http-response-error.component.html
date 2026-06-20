@@ -11,40 +11,56 @@
   <ng-container rxapDataGridRowDef="headers">
     <td *rxapDataGridCellDef="let value">
       <rxap-data-grid [data]="value">
-        <ng-container *ngFor="let entry of value | keyvalue" [rxapDataGridRowDef]="$any(entry.key)">
-          <td *rxapDataGridCellDef="let value">
-            <ng-container *ngIf="value.length > 1">
-              <ul>
-                <li *ngFor="let item of value">{{ item }}</li>
-              </ul>
-            </ng-container>
-            <ng-container *ngIf="value.length === 1">{{ value[0] }}</ng-container>
-            <ng-container *ngIf="value.length === 0">NONE</ng-container>
-          </td>
-        </ng-container>
+        @for (entry of value | keyvalue; track entry) {
+          <ng-container [rxapDataGridRowDef]="$any(entry.key)">
+            <td *rxapDataGridCellDef="let value">
+              @if (value.length > 1) {
+                <ul>
+                  @for (item of value; track item) {
+                    <li>{{ item }}</li>
+                  }
+                </ul>
+              }
+              @if (value.length === 1) {
+                {{ value[0] }}
+              }
+              @if (value.length === 0) {
+                NONE
+              }
+            </td>
+          </ng-container>
+        }
       </rxap-data-grid>
     </td>
   </ng-container>
-  <ng-container *ngIf="!isProduction" rxapDataGridRowDef="error">
-    <td *rxapDataGridCellDef="let value">
-      <ng-container *ngIf="value">
-        <rxap-copy-to-clipboard [value]="value | json">Copy Response Body</rxap-copy-to-clipboard>
-        <div class="body">
-          <rxap-json-viewer [expanded]="false" [json]="value"></rxap-json-viewer>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="!value">NONE</ng-container>
-    </td>
-  </ng-container>
-  <ng-container *ngIf="!isProduction" rxapDataGridRowDef="body">
-    <td *rxapDataGridCellDef="let value">
-      <ng-container *ngIf="value">
-        <rxap-copy-to-clipboard [value]="value | json">Copy Request Body</rxap-copy-to-clipboard>
-        <div class="body">
-          <rxap-json-viewer [expanded]="false" [json]="value"></rxap-json-viewer>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="!value">NONE</ng-container>
-    </td>
-  </ng-container>
+  @if (!isProduction) {
+    <ng-container rxapDataGridRowDef="error">
+      <td *rxapDataGridCellDef="let value">
+        @if (value) {
+          <rxap-copy-to-clipboard [value]="value | json">Copy Response Body</rxap-copy-to-clipboard>
+          <div class="body">
+            <rxap-json-viewer [expanded]="false" [json]="value"></rxap-json-viewer>
+          </div>
+        }
+        @if (!value) {
+          NONE
+        }
+      </td>
+    </ng-container>
+  }
+  @if (!isProduction) {
+    <ng-container rxapDataGridRowDef="body">
+      <td *rxapDataGridCellDef="let value">
+        @if (value) {
+          <rxap-copy-to-clipboard [value]="value | json">Copy Request Body</rxap-copy-to-clipboard>
+          <div class="body">
+            <rxap-json-viewer [expanded]="false" [json]="value"></rxap-json-viewer>
+          </div>
+        }
+        @if (!value) {
+          NONE
+        }
+      </td>
+    </ng-container>
+  }
 </rxap-data-grid>

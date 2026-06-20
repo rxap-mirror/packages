@@ -1,11 +1,10 @@
 import {
   Inject,
   Injectable,
-  InjectFlags,
   INJECTOR,
   Injector,
   Optional,
-  StaticProvider,
+  StaticProvider
 } from '@angular/core';
 import { FormSystemMetadataKeys } from '@rxap/form-system';
 import {
@@ -82,7 +81,7 @@ export class FormWindowService {
 
     const providers: StaticProvider[] = options?.providers ?? [];
 
-    if ((options?.injector ?? this.injector).get(formDefinitionConstructor, null, InjectFlags.Optional)) {
+    if ((options?.injector ?? this.injector).get(formDefinitionConstructor, null, { optional: true })) {
       providers.push(
         {
           provide: RXAP_FORM_DEFINITION_BUILDER,

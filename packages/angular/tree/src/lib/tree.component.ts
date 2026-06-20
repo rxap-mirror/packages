@@ -3,13 +3,7 @@ import {
   TemplatePortal,
 } from '@angular/cdk/portal';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import {
-  AsyncPipe,
-  NgClass,
-  NgForOf,
-  NgIf,
-  NgStyle,
-} from '@angular/common';
+import { AsyncPipe, NgClass, NgStyle } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -70,22 +64,20 @@ import { TreeDataSource } from './tree.data-source';
     styleUrls: ['./tree.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        NgStyle,
-        NgIf,
-        MatProgressBarModule,
-        MatTreeModule,
-        MatIconModule,
-        IconDirective,
-        MatCheckboxModule,
-        MatButtonModule,
-        ContenteditableDirective,
-        MatProgressSpinnerModule,
-        MatDividerModule,
-        PortalModule,
-        AsyncPipe,
-        NgClass,
-        NgForOf,
-    ]
+    NgStyle,
+    MatProgressBarModule,
+    MatTreeModule,
+    MatIconModule,
+    IconDirective,
+    MatCheckboxModule,
+    MatButtonModule,
+    ContenteditableDirective,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    PortalModule,
+    AsyncPipe,
+    NgClass
+]
 })
 export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   implements OnInit, AfterContentInit {

@@ -20,13 +20,13 @@
           [rxapTableHeaderButton]="tableDataSourceDirective"
           color="primary"
 
-        >
+          >
           <mat-icon>add</mat-icon>
         </button>
         <mat-card-subtitle i18n>Create Header-button</mat-card-subtitle>
 
         <rxap-table-column-menu #rxapTableColumns="rxapTableColumns" [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
-                                matCard>
+          matCard>
 
 
           <rxap-table-column-option
@@ -47,35 +47,36 @@
           <rxap-table-column-option
             name="email">
             <ng-container i18n>Email</ng-container>
-        </rxap-table-column-option>
+          </rxap-table-column-option>
 
           <rxap-table-column-option
-          name="rating">
-          <ng-container i18n>Rating</ng-container>
-        </rxap-table-column-option>
+            name="rating">
+            <ng-container i18n>Rating</ng-container>
+          </rxap-table-column-option>
 
           <rxap-table-column-option
-          name="accountStatus">
-          <ng-container i18n>Account Status</ng-container>
-        </rxap-table-column-option>
+            name="accountStatus">
+            <ng-container i18n>Account Status</ng-container>
+          </rxap-table-column-option>
 
 
           <mat-divider></mat-divider>
-        <span mat-menu-item>
-          <rxap-table-show-archived-slide
-            [paginator]="paginator"
-          ></rxap-table-show-archived-slide>
-        </span>
-      </rxap-table-column-menu>
-       </mat-card-header>
+          <span mat-menu-item>
+            <rxap-table-show-archived-slide
+              [paginator]="paginator"
+            ></rxap-table-show-archived-slide>
+          </span>
+        </rxap-table-column-menu>
+      </mat-card-header>
 
       <mat-card-content>
-        <rxap-data-source-error
-          [error]="tableDataSourceDirective.dataSource?.error$"
-          [loading]="tableDataSourceDirective.loading$"
-          *ngIf="tableDataSourceDirective.hasError$ | async"
-          [refresh]="tableDataSourceDirective.retry">
-        </rxap-data-source-error>
+        @if (tableDataSourceDirective.hasError$ | async) {
+          <rxap-data-source-error
+            [error]="tableDataSourceDirective.dataSource?.error$"
+            [loading]="tableDataSourceDirective.loading$"
+            [refresh]="tableDataSourceDirective.retry">
+          </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
           <table
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
@@ -87,7 +88,7 @@
             [parameters]="parameters"
             id="header-button"
 
-          >
+            >
             <!-- region columns -->
 
 
@@ -189,13 +190,13 @@
       </mat-card-content>
 
       <mat-card-footer
-      ><mat-paginator
+        ><mat-paginator
         [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
         rxapPersistent
         [pageSizeOptions]="[5,10,25,50,100]"
         [pageSize]="10"
         #paginator="matPaginator"
-      ></mat-paginator
+        ></mat-paginator
       ></mat-card-footer>
     </mat-card>
   </div>

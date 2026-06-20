@@ -1,8 +1,7 @@
 import {
   Inject,
   Injectable,
-  InjectFlags,
-  Injector,
+  Injector
 } from '@angular/core';
 import { HttpDataSource } from './http.data-source';
 import { HttpDataSourceOptions } from './http.data-source.options';

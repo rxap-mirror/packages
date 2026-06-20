@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,9 +17,8 @@ import { CodeHttpErrorDialogData } from './code-http-error-dialog-data';
     styleUrls: ['./code-http-error.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        NgIf,
-        AnyHttpErrorComponent,
-    ]
+    AnyHttpErrorComponent
+]
 })
 export class CodeHttpErrorComponent implements IErrorDialogComponent<CodeHttpErrorDialogData> {
 

@@ -10,15 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "packages/angular/data-grid/ng-package.json"
+        "project": "packages/angular/data-grid/ng-package.json",
+        "tsConfig": "packages/angular/data-grid/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "packages/angular/data-grid/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "packages/angular/data-grid/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },

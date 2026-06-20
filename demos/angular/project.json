@@ -4,6 +4,35 @@
   "projectType": "application",
   "prefix": "rxap",
   "sourceRoot": "demos/angular/src",
+  "i18n": {
+    "sourceLocale": "en-US",
+    "locales": {
+      "en": {
+        "translation": "demos/angular/src/i18n/en.xlf",
+        "baseHref": "en/"
+      },
+      "de": {
+        "translation": "demos/angular/src/i18n/de.xlf",
+        "baseHref": "de/"
+      },
+      "it": {
+        "translation": "demos/angular/src/i18n/it.xlf",
+        "baseHref": "it/"
+      }
+    }
+  },
+  "tags": [
+    "angular",
+    "ngx",
+    "frontend",
+    "i18n",
+    "localazy",
+    "user-interface",
+    "sentry",
+    "service-worker",
+    "application",
+    "demo"
+  ],
   "implicitDependencies": [
     "angular-authentication",
     "angular-authorization",
@@ -26,18 +55,6 @@
     "angular-status-check",
     "angular-changelog",
     "angular-user"
-  ],
-  "tags": [
-    "angular",
-    "ngx",
-    "frontend",
-    "i18n",
-    "localazy",
-    "user-interface",
-    "sentry",
-    "service-worker",
-    "application",
-    "demo"
   ],
   "targets": {
     "build": {
@@ -140,28 +157,12 @@
           "buildTarget": "angular:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "continuous": true
     },
     "localazy-download": {
       "options": {
         "readKey": "a7660611872834350666-2ab45baa738ef411f7a3d5e57ffbe6787f7842d8c9e5144c34abae5ef1f4adf0"
-      }
-    }
-  },
-  "i18n": {
-    "sourceLocale": "en-US",
-    "locales": {
-      "en": {
-        "translation": "demos/angular/src/i18n/en.xlf",
-        "baseHref": "en/"
-      },
-      "de": {
-        "translation": "demos/angular/src/i18n/de.xlf",
-        "baseHref": "de/"
-      },
-      "it": {
-        "translation": "demos/angular/src/i18n/it.xlf",
-        "baseHref": "it/"
       }
     }
   }

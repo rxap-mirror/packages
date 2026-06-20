@@ -3,10 +3,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import {
-  DatePipe,
-  NgIf,
-} from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,7 +11,7 @@ import {
     templateUrl: './date-cell.component.html',
     styleUrls: ['./date-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, DatePipe]
+    imports: [DatePipe]
 })
 export class DateCellComponent {
 

@@ -1,7 +1,7 @@
 <form #form="rxapForm" [@fadeAnimation]="'in'"
-      class="inner mat-elevation-z5 flex flex-col justify-center items-center gap-4"
-      novalidate
-      rxapForm>
+  class="inner mat-elevation-z5 flex flex-col justify-center items-center gap-4"
+  novalidate
+  rxapForm>
 
   <div class="header flex flex-col items-center justify-center grow-0">
 
@@ -17,11 +17,11 @@
         <mat-icon inline matPrefix>email</mat-icon>
         <mat-label i18n>Email</mat-label>
         <input formControlName="email"
-               i18n-placeholder
-               matInput
-               name="email"
-               placeholder="Enter your email address"
-               type="email">
+          i18n-placeholder
+          matInput
+          name="email"
+          placeholder="Enter your email address"
+          type="email">
         <mat-error *rxapControlError="let error key 'required'">
           Email is <strong>required</strong>
         </mat-error>
@@ -34,25 +34,29 @@
         <mat-icon inline matPrefix>vpn_key</mat-icon>
         <mat-label i18n>Password</mat-label>
         <input #passwordInput
-               formControlName="password"
-               i18n-placeholder
-               matInput
-               name="password"
-               placeholder="Enter your password"
-               type="password">
+          formControlName="password"
+          i18n-placeholder
+          matInput
+          name="password"
+          placeholder="Enter your password"
+          type="password">
         <mat-error *rxapControlError="let error key 'required'">
           Password is <strong>required</strong>
         </mat-error>
-        <button (click)="passwordInput.type = 'test'" *ngIf="passwordInput.type === 'password'" mat-icon-button
-                matSuffix tabIndex="-1"
-                type="button">
-          <mat-icon>visibility</mat-icon>
-        </button>
-        <button (click)="passwordInput.type = 'password'" *ngIf="passwordInput.type === 'text'" mat-icon-button
-                matSuffix tabIndex="-1"
-                type="button">
-          <mat-icon>visibility_off</mat-icon>
-        </button>
+        @if (passwordInput.type === 'password') {
+          <button (click)="passwordInput.type = 'test'" mat-icon-button
+            matSuffix tabIndex="-1"
+            type="button">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        }
+        @if (passwordInput.type === 'text') {
+          <button (click)="passwordInput.type = 'password'" mat-icon-button
+            matSuffix tabIndex="-1"
+            type="button">
+            <mat-icon>visibility_off</mat-icon>
+          </button>
+        }
       </mat-form-field>
 
     </div>
@@ -62,19 +66,21 @@
       <mat-checkbox class="remember-input grow-0" formControlName="remember">Remember me</mat-checkbox>
 
       <div [matTooltipDisabled]="form.control.controls['email'].valid"
-           class="grow-0"
-           matTooltip="Please enter a valid email address"
-           matTooltipPosition="above">
+        class="grow-0"
+        matTooltip="Please enter a valid email address"
+        matTooltipPosition="above">
         <button (click)="requestPasswordReset(form.value.email)"
-                [disabled]="!form.value.email || form.control.controls['email'].hasError('email')"
-                color="accent"
-                mat-button
-                type="button">
-            <span class="flex flex-row justify-between items-center gap-2">
-              <mat-progress-spinner *ngIf="requestingPasswordReset$ | async" [diameter]="15"
-                                    mode="indeterminate"></mat-progress-spinner>
-              <span class="grow-0">Password forgotten</span>
-            </span>
+          [disabled]="!form.value.email || form.control.controls['email'].hasError('email')"
+          color="accent"
+          mat-button
+          type="button">
+          <span class="flex flex-row justify-between items-center gap-2">
+            @if (requestingPasswordReset$ | async) {
+              <mat-progress-spinner [diameter]="15"
+              mode="indeterminate"></mat-progress-spinner>
+            }
+            <span class="grow-0">Password forgotten</span>
+          </span>
         </button>
       </div>
 

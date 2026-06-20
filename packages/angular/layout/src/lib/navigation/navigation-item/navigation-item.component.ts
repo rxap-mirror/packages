@@ -4,10 +4,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import {
-  NgClass,
-  NgIf,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -77,16 +74,15 @@ import { NavigationComponent } from '../navigation.component';
         ]),
     ],
     imports: [
-        RouterLinkActive,
-        RouterLink,
-        NgIf,
-        MatRippleModule,
-        MatIconModule,
-        IconDirective,
-        MatDividerModule,
-        forwardRef(() => NavigationComponent),
-        NgClass,
-    ]
+    RouterLinkActive,
+    RouterLink,
+    MatRippleModule,
+    MatIconModule,
+    IconDirective,
+    MatDividerModule,
+    forwardRef(() => NavigationComponent),
+    NgClass
+]
 })
 export class NavigationItemComponent
   implements OnChanges, OnDestroy, AfterViewInit {

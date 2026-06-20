@@ -1,2 +1,4 @@
-<mat-icon *ngIf="icon" [rxapIcon]="icon"></mat-icon>
+@if (icon) {
+  <mat-icon [rxapIcon]="icon"></mat-icon>
+}
 <ng-content></ng-content>

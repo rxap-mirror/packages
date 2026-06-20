@@ -1,10 +1,4 @@
-import {
-  AsyncPipe,
-  NgClass,
-  NgIf,
-  NgOptimizedImage,
-  NgStyle,
-} from '@angular/common';
+import { AsyncPipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -36,25 +30,24 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
     styleUrls: ['./layout.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        HeaderComponent,
-        MatSidenavModule,
-        AsyncPipe,
-        MatIconModule,
-        MatButtonModule,
-        RouterLink,
-        NgIf,
-        FooterComponent,
-        MatMenuModule,
-        NgOptimizedImage,
-        NavigationComponent,
-        RouterOutlet,
-        NgStyle,
-        NgClass,
-        SidenavComponent,
-        ReleaseInfoComponent,
-        SidenavFooterDirective,
-        NavigationProgressBarComponent,
-    ]
+    HeaderComponent,
+    MatSidenavModule,
+    AsyncPipe,
+    MatIconModule,
+    MatButtonModule,
+    RouterLink,
+    FooterComponent,
+    MatMenuModule,
+    NgOptimizedImage,
+    NavigationComponent,
+    RouterOutlet,
+    NgStyle,
+    NgClass,
+    SidenavComponent,
+    ReleaseInfoComponent,
+    SidenavFooterDirective,
+    NavigationProgressBarComponent
+]
 })
 export class LayoutComponent {
 
