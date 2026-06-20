@@ -8,6 +8,7 @@ import { HttpRemoteMethod } from './http.remote-method';
 import {
   Inject,
   Injectable,
+  InjectOptions,
   Injector
 } from '@angular/core';
 import { IdOrInstanceOrToken } from '@rxap/definition';
@@ -27,7 +28,7 @@ export class HttpRemoteMethodLoader {
     metadata?: Partial<BaseRemoteMethodMetadata>,
     injector?: Injector,
     notFoundValue?: BaseRemoteMethod<ReturnType, Parameters, Metadata>,
-    flags?: InjectFlags,
+    flags?: InjectOptions,
   ) {
 
     const remoteMethod = this.remoteMethodLoader.load(

@@ -1,5 +1,6 @@
 import {
   Injectable,
+  InjectOptions,
   Injector
 } from '@angular/core';
 import {
@@ -20,7 +21,7 @@ export class RemoteMethodLoader extends DefinitionLoader {
     metadata?: Partial<BaseRemoteMethodMetadata>,
     injector?: Injector,
     notFoundValue?: BaseRemoteMethod<ReturnType, Parameters, Metadata>,
-    flags?: InjectFlags,
+    flags?: InjectOptions,
   ): Promise<ReturnType> {
     return this
       .load(
