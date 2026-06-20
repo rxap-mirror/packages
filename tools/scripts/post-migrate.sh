@@ -35,7 +35,7 @@ setNewVersion() {
     exit 1
   fi
 
-  find "$dir" -name "package.json" -type f | while read -r file; do
+  find "$dir" -name "package.json" -type f -not -path '*/node_modules/*' | while read -r file; do
     # check if the package.json has a version field
     if ! grep -q '"version":' "$file"; then
       echo "No version field found in $file"
