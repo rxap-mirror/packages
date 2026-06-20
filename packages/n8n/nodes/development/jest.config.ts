@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'n8n-nodes-development',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',

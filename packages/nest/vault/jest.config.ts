@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'nest-vault',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

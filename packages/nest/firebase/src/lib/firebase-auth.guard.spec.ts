@@ -11,14 +11,10 @@ import { TestingLogger } from '@nestjs/testing/services/testing-logger.service';
 import * as request from 'supertest';
 import { FirebaseAuthGuard } from './firebase-auth.guard';
 import { GetFirebaseUser } from './firebase-user.decorator';
-import {
-  ALLOW_UNVERIFIED_EMAIL,
-  FIREBASE_AUTH_HEADER,
-} from './tokens';
+import { ALLOW_UNVERIFIED_EMAIL, FIREBASE_AUTH_HEADER } from './tokens';
 import { FirebaseUser } from './types';
 
 describe('FirebaseAuthGuard', () => {
-
   let guard: FirebaseAuthGuard;
   let validateIdTokenSpy: jest.SpyInstance;
   let app: INestApplication;
@@ -26,20 +22,17 @@ describe('FirebaseAuthGuard', () => {
 
   @Controller('app')
   class TestAppController {
-
     @Get('')
     public test(@GetFirebaseUser() user: FirebaseUser) {
       console.log(user);
       logUser(user);
     }
-
   }
 
   @Module({
-    controllers: [ TestAppController ],
+    controllers: [TestAppController],
   })
-  class TestAppModule {
-  }
+  class TestAppModule {}
 
   afterEach(() => {
     jest.resetAllMocks();
@@ -51,7 +44,7 @@ describe('FirebaseAuthGuard', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      imports: [ TestAppModule ],
+      imports: [TestAppModule],
       providers: [
         FirebaseAuthGuard,
         {
@@ -82,17 +75,12 @@ describe('FirebaseAuthGuard', () => {
   });
 
   it('should pass the FirebaseUser to the request object', async () => {
-
     validateIdTokenSpy.mockResolvedValue({ FirebaseUser: 'value' });
 
-    await request(app.getHttpServer())
-      .get('/app')
-      .set({ 'idToken': 'token' });
+    await request(app.getHttpServer()).get('/app').set({ idToken: 'token' });
 
-    expect(validateIdTokenSpy).toBeCalledTimes(1);
-    expect(logUser).toBeCalledTimes(1);
-    expect(logUser).toBeCalledWith({ FirebaseUser: 'value' });
-
+    expect(validateIdTokenSpy).toHaveBeenCalledTimes(1);
+    expect(logUser).toHaveBeenCalledTimes(1);
+    expect(logUser).toHaveBeenCalledWith({ FirebaseUser: 'value' });
   });
-
 });

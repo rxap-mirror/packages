@@ -1,13 +1,9 @@
 import { Deprecated } from './deprecated';
 
 describe('@rxap/utilities', () => {
-
   describe('decorators', () => {
-
     describe('@Deprecated', () => {
-
       class MyClass {
-
         @Deprecated('use username instate')
         public name!: string;
 
@@ -18,8 +14,7 @@ describe('@rxap/utilities', () => {
 
         @Deprecated('use loadUser() instate')
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        public loadPerson(): void {
-        }
+        public loadPerson(): void {}
 
         @Deprecated('use getUser() instate')
         public getPerson(): any {
@@ -30,7 +25,6 @@ describe('@rxap/utilities', () => {
         public testThis(): any {
           return this.myValue;
         }
-
       }
 
       let myClass: MyClass;
@@ -40,30 +34,36 @@ describe('@rxap/utilities', () => {
       });
 
       it('should print warning if deprecated property is accessed', () => {
-
         const consoleWarnSpy = jest.spyOn(console, 'warn');
 
         expect(myClass.name).toBeUndefined();
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.name:get] is deprecated!', 'use username instate');
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.name:get] is deprecated!',
+          'use username instate',
+        );
         consoleWarnSpy.mockReset();
 
         myClass.name = 'my-name';
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.name:set] is deprecated!', 'use username instate');
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.name:set] is deprecated!',
+          'use username instate',
+        );
         consoleWarnSpy.mockReset();
 
         expect(myClass.name).toEqual('my-name');
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.name:get] is deprecated!', 'use username instate');
-
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.name:get] is deprecated!',
+          'use username instate',
+        );
       });
 
       it('should not leak a __deprecated__ prefixed key onto the instance', () => {
-
         jest.spyOn(console, 'warn').mockImplementation(() => undefined);
 
         myClass.name = 'my-name';
@@ -71,69 +71,75 @@ describe('@rxap/utilities', () => {
         expect(Object.keys(myClass)).not.toContain('__deprecated__name');
         expect(JSON.stringify(myClass)).not.toContain('__deprecated__');
         expect(myClass.name).toBe('my-name');
-
       });
 
       it.skip('should print warning if deprecated property is accessed', () => {
-
         const consoleWarnSpy = jest.spyOn(console, 'warn');
 
         expect(myClass.age).toEqual(42);
 
-        consoleWarnSpy.mock.calls;//??
+        consoleWarnSpy.mock.calls; //??
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.age:get] is deprecated!', 'use birthday instate');
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.age:get] is deprecated!',
+          'use birthday instate',
+        );
         consoleWarnSpy.mockReset();
 
         myClass.age = 0;
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.age:set] is deprecated!', 'use birthday instate');
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.age:set] is deprecated!',
+          'use birthday instate',
+        );
         consoleWarnSpy.mockReset();
 
         expect(myClass.age).toEqual(0);
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.age:get] is deprecated!', 'use birthday instate');
-
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.age:get] is deprecated!',
+          'use birthday instate',
+        );
       });
 
       it.skip('should print warning if deprecated method is called', () => {
-
         const consoleWarnSpy = jest.spyOn(console, 'warn');
 
         myClass.loadPerson();
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.loadPerson()] is deprecated!', 'use loadUser() instate');
-
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.loadPerson()] is deprecated!',
+          'use loadUser() instate',
+        );
       });
 
       it.skip('should print warning if deprecated method with return is called', () => {
-
         const consoleWarnSpy = jest.spyOn(console, 'warn');
 
         expect(myClass.getPerson()).toEqual({ id: 'user' });
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.getPerson()] is deprecated!', 'use getUser() instate');
-
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.getPerson()] is deprecated!',
+          'use getUser() instate',
+        );
       });
 
       it.skip('should preserve method this context', () => {
-
         const consoleWarnSpy = jest.spyOn(console, 'warn');
 
         expect(myClass.testThis()).toEqual('test');
 
-        expect(consoleWarnSpy).toBeCalledTimes(1);
-        expect(consoleWarnSpy).toBeCalledWith('[MyClass.testThis()] is deprecated!', 'use testMe() instate');
-
+        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          '[MyClass.testThis()] is deprecated!',
+          'use testMe() instate',
+        );
       });
-
     });
-
   });
-
 });

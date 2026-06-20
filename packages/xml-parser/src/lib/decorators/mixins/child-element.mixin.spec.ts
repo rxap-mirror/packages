@@ -3,13 +3,9 @@ import { ElementDef } from '../element-def';
 import { ParsedElement } from '../../elements/parsed-element';
 
 describe('@rxap/xml-parser', () => {
-
   describe('Mixins', () => {
-
     describe('ChildElementMixin', () => {
-
       it('should throw if the child element tag is not defined', () => {
-
         class MyChildElement implements ParsedElement {
           public static TAG: string;
 
@@ -20,12 +16,10 @@ describe('@rxap/xml-parser', () => {
 
         const parser = new ChildElementMixin(MyChildElement);
 
-        expect(() => parser.tag).toThrowError();
-
+        expect(() => parser.tag).toThrow();
       });
 
       it('should return child element tag if the tag is not defined in the options', () => {
-
         @ElementDef('my-child')
         class MyChildElement implements ParsedElement {
           public static TAG: string;
@@ -38,11 +32,7 @@ describe('@rxap/xml-parser', () => {
         const parser = new ChildElementMixin(MyChildElement);
 
         expect(parser.tag).toBe('my-child');
-
       });
-
     });
-
   });
-
 });

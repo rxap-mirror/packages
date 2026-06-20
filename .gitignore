@@ -84,5 +84,6 @@ swagger/**/*.*
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 
+.claude/worktrees
 # AI package review output (tools/scripts/review.sh)
 /review-reports/
