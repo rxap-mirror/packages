@@ -10,9 +10,9 @@
   "peerDependencies": {
     "@angular/core": "^19.2.1",
     "@marker.io/browser": "^0.20.2",
-    "@rxap/config": "^19.3.0-dev.3",
-    "@rxap/environment": "^19.2.0-dev.0",
-    "@rxap/ngx-pub-sub": "^19.1.0-dev.0",
+    "@rxap/config": "^20.0.0",
+    "@rxap/environment": "^20.0.0",
+    "@rxap/ngx-pub-sub": "^20.0.0",
     "@rxap/utilities": "^16.5.1-dev.1",
     "rxjs": "^7.8.1"
   },

@@ -10,14 +10,14 @@
   "peerDependencies": {
     "@angular/cdk": "^19.1.1",
     "@angular/core": "^19.2.1",
-    "@rxap/directives": "^19.2.0-dev.0",
-    "@rxap/form-system": "^19.2.0-dev.0",
-    "@rxap/forms": "^19.2.0-dev.1",
+    "@rxap/directives": "^20.0.0",
+    "@rxap/form-system": "^20.0.0",
+    "@rxap/forms": "^20.0.0",
     "@rxap/pattern": "^1.1.15-dev.0",
     "@rxap/reflect-metadata": "^1.0.17-dev.1",
     "@rxap/rxjs": "^1.1.17-dev.0",
     "@rxap/utilities": "^16.5.1-dev.1",
-    "@rxap/window-system": "^19.0.5-dev.0",
+    "@rxap/window-system": "^20.0.0",
     "rxjs": "^7.8.1"
   },
   "author": {
