@@ -4,7 +4,7 @@
   "description": "A NestJS module for integrating with HashiCorp Vault. It provides a VaultService for interacting with the Vault API, including authentication, reading, writing, and managing secrets. It supports token-based and Kubernetes authentication methods, along with health checks to ensure Vault connectivity.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "21.6.9",
+    "@nx/devkit": "22.7.5",
     "tslib": "2.6.2"
   },
   "peerDependencies": {

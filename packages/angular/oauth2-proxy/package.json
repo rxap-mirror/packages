@@ -1,19 +1,19 @@
 {
-  "version": "20.0.0",
+  "version": "21.0.0",
   "name": "@rxap/ngx-oauth2-proxy",
   "description": "Provides an Angular guard and utilities for integrating with an OAuth2 Proxy. It includes a guard to protect routes, a method to fetch user profile information, and a data source for managing the user profile. Also provides an app initializer to subscribe to logout events.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "21.6.9",
+    "@nx/devkit": "22.7.5",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^20.3.9",
-    "@angular/core": "^20.3.9",
-    "@angular/router": "^20.3.9",
-    "@rxap/config": "^20.0.0",
-    "@rxap/data-source": "^20.0.0",
-    "@rxap/ngx-pub-sub": "^20.0.0",
+    "@angular/common": "^21.2.9",
+    "@angular/core": "^21.2.9",
+    "@angular/router": "^21.2.9",
+    "@rxap/config": "^21.0.0",
+    "@rxap/data-source": "^21.0.0",
+    "@rxap/ngx-pub-sub": "^21.0.0",
     "@rxap/pattern": "^1.1.15",
     "rxjs": "^7.8.1"
   },
