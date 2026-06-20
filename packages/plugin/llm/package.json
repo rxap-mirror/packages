@@ -5,8 +5,8 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/workspace-ts-morph": "^19.1.15",
-    "@rxap/workspace-utilities": "^19.9.1",
+    "@rxap/workspace-ts-morph": "^21.0.0",
+    "@rxap/workspace-utilities": "^21.0.0",
     "colors": "1.4.0",
     "openai": "^4.82.0",
     "tiktoken": "^1.0.20",

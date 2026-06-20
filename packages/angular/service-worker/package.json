@@ -11,8 +11,8 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/service-worker": "^19.2.1",
-    "@rxap/environment": "^19.2.0",
-    "@rxap/life-cycle": "^19.0.5",
+    "@rxap/environment": "^20.0.0",
+    "@rxap/life-cycle": "^20.0.0",
     "rxjs": "^7.8.1"
   },
   "author": {

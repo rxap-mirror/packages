@@ -5,8 +5,8 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "20.5.0",
-    "@rxap/plugin-angular": "^20.3.3",
-    "@rxap/plugin-workspace": "^20.2.3",
+    "@rxap/plugin-angular": "^21.0.0",
+    "@rxap/plugin-workspace": "^21.0.0",
     "tslib": "2.6.2"
   },
   "author": {

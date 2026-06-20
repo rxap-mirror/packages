@@ -11,7 +11,7 @@
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
     "@angular/fire": "^7.5.0",
-    "@rxap/config": "^19.3.0",
+    "@rxap/config": "^20.0.0",
     "@rxap/rxjs": "^1.1.17",
     "@rxap/utilities": "^16.5.1",
     "firebase": "^9.23.0",

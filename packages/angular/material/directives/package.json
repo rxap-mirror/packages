@@ -11,7 +11,7 @@
     "@angular/core": "^19.2.1",
     "@angular/material": "^19.1.1",
     "@rxap/browser-utilities": "^1.1.14",
-    "@rxap/ngx-memory": "^19.1.0",
+    "@rxap/ngx-memory": "^20.0.0",
     "@rxap/rxjs": "^1.1.17",
     "@rxap/utilities": "^16.5.1",
     "rxjs": "^7.8.1"

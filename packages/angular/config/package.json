@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@angular/common": "^19.2.1",
     "@angular/core": "^19.2.1",
-    "@rxap/environment": "^19.2.0",
+    "@rxap/environment": "^20.0.0",
     "@rxap/utilities": "^16.5.1",
     "rxjs": "^7.8.1"
   },
