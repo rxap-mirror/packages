@@ -4,13 +4,13 @@
   "description": "Provides a set of Angular pipes for common data transformations, including currency formatting, string manipulation, and object property access. These pipes offer standalone functionality for easy integration into Angular templates. The package includes pipes for escaping quotation marks, joining arrays, limiting array length, replacing substrings, slicing arrays, truncating strings, and deleting identifier properties from objects.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^19.2.1",
-    "@angular/core": "^19.2.1",
-    "@angular/platform-browser": "^19.2.1",
+    "@angular/common": "^20.3.9",
+    "@angular/core": "^20.3.9",
+    "@angular/platform-browser": "^20.3.9",
     "@rxap/utilities": "^16.5.1-dev.1"
   },
   "author": {
