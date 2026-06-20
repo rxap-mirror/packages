@@ -77,7 +77,7 @@ describe('@rxap/open-api/remote-method', () => {
         },
       });
 
-      remoteMethod = runInInjectionContext(TestBed.get(INJECTOR), () => new OpenApiRemoteMethod(http,
+      remoteMethod = runInInjectionContext(TestBed.inject(INJECTOR), () => new OpenApiRemoteMethod(http,
         Injector.NULL,
         openApiService,
         {
@@ -107,7 +107,7 @@ describe('@rxap/open-api/remote-method', () => {
 
     it('should create open api remote method from operationId', async () => {
 
-      remoteMethod = runInInjectionContext(TestBed.get(INJECTOR), () => new OpenApiRemoteMethod(http, Injector.NULL, openApiService, { id: 'createUser' }));
+      remoteMethod = runInInjectionContext(TestBed.inject(INJECTOR), () => new OpenApiRemoteMethod(http, Injector.NULL, openApiService, { id: 'createUser' }));
 
       OpenApiConfigService.Config = null;
 
@@ -134,7 +134,7 @@ describe('@rxap/open-api/remote-method', () => {
       class MyOperation extends OpenApiRemoteMethod {
       }
 
-      remoteMethod = runInInjectionContext(TestBed.get(INJECTOR), () => new MyOperation(http, Injector.NULL, openApiService));
+      remoteMethod = runInInjectionContext(TestBed.inject(INJECTOR), () => new MyOperation(http, Injector.NULL, openApiService));
 
       OpenApiConfigService.Config = null;
 

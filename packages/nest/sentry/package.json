@@ -22,7 +22,7 @@
     "@sentry/types": "^10.10.0",
     "@sentry/utils": "^8.55.0",
     "joi": "^17.9.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "author": {
     "name": "Merzough Münker",

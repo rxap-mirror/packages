@@ -19,7 +19,7 @@
     "@rxap/mixin": "^16.0.16-dev.1",
     "@rxap/reflect-metadata": "^1.0.17-dev.1",
     "@rxap/utilities": "^16.5.1-dev.1",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "author": {
     "name": "Merzough Münker",

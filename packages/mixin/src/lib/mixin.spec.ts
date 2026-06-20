@@ -77,7 +77,7 @@ describe('Mixin', () => {
     //     ]
     //   });
     //
-    //   const concrete = TestBed.get(Concrete);
+    //   const concrete = TestBed.inject(Concrete);
     //
     //   expect(typeof concrete.disable).toBe('function');
     //   expect(typeof concrete.enable).toBe('function');
