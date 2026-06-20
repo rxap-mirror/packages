@@ -1,15 +1,15 @@
 {
-  "version": "20.0.0",
+  "version": "21.0.0",
   "name": "@rxap/ngx-sentry",
   "description": "This package provides utilities for initializing Sentry in Angular applications. It includes functions to determine the Sentry environment and release based on the application's environment, and a function to initialize Sentry with these configurations. It also includes a generator to add peer dependencies to the package.json.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "21.6.9",
+    "@nx/devkit": "22.7.5",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/config": "^20.0.0",
-    "@rxap/environment": "^20.0.0",
+    "@rxap/config": "^21.0.0",
+    "@rxap/environment": "^21.0.0",
     "@sentry/angular": "^10.10.0"
   },
   "author": {
