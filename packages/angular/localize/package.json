@@ -12,7 +12,7 @@
     "@angular/core": "^21.2.9",
     "@rxap/config": "^21.0.0",
     "@rxap/ngx-user": "^21.0.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "author": {
     "name": "Merzough Münker",

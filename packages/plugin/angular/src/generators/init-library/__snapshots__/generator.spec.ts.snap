@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`plugin-angular:init-library (golden master) should produce a stable init-library tree: init-library-tree 1`] = `
 {
@@ -179,7 +179,8 @@ Run \`nx test feat\` to execute the unit tests.
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "feat/jest.config.ts"
+        "jestConfig": "feat/jest.config.ts",
+        "tsConfig": "feat/tsconfig.spec.json"
       }
     },
     "lint": {
@@ -193,11 +194,11 @@ name: init-library
 options: {}
 ",
   "feat/src/index.ts": "export {};",
-  "feat/src/test-setup.ts": "import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone';
+  "feat/src/test-setup.ts": "import { setupZonelessTestEnv } from 'jest-preset-angular/setup-env/zoneless';
 import { TextDecoder, TextEncoder } from 'util';
 import '@angular/localize/init';
 
-setupZoneTestEnv();
+setupZonelessTestEnv();
 global.TextEncoder ??= TextEncoder as any;
 global.TextDecoder ??= TextDecoder as any;
 jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
@@ -207,8 +208,18 @@ jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
 });
 ",
   "feat/tsconfig.json": "{
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es2022"
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "target": "es2022",
+    "moduleResolution": "bundler",
+    "module": "es2022"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false
   },
   "files": [],
   "include": [],
@@ -219,8 +230,7 @@ jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
     {
       "path": "./tsconfig.spec.json"
     }
-  ],
-  "extends": "../tsconfig.base.json"
+  ]
 }
 ",
   "feat/tsconfig.lib.json": "{
@@ -234,14 +244,15 @@ jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
       "@angular/localize"
     ]
   },
-  "exclude": [
-    "src/**/*.spec.ts",
-    "src/test-setup.ts",
-    "jest.config.ts",
-    "src/**/*.test.ts"
-  ],
   "include": [
     "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "jest.config.ts",
+    "jest.config.cts",
+    "src/test-setup.ts"
   ]
 }
 ",
@@ -255,7 +266,8 @@ jest.spyOn(global as any, '$localize').mockImplementation((...args: any[]) => {
       "jest",
       "node",
       "@angular/localize"
-    ]
+    ],
+    "moduleResolution": "node10"
   },
   "files": [
     "src/test-setup.ts"
@@ -317,9 +329,11 @@ module.exports = { ...nxPreset };",
       "cache": true,
       "inputs": [
         "default",
+        "^default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs"
+        "{workspaceRoot}/eslint.config.mjs",
+        "{workspaceRoot}/tools/eslint-rules/**/*"
       ]
     },
     "@nx/js:tsc": {
@@ -347,7 +361,8 @@ module.exports = { ...nxPreset };",
   "generators": {
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "strict": false
     },
     "@nx/angular:component": {
       "style": "css"
@@ -362,7 +377,8 @@ module.exports = { ...nxPreset };",
   "name": "@proj/source",
   "dependencies": {
     "@angular/core": "19.2.16",
-    "@angular/localize": "20.3.9",
+    "@angular/localize": "21.2.9",
+    "@angular/platform-browser-dynamic": "~19.2.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -372,31 +388,33 @@ module.exports = { ...nxPreset };",
     "@angular-eslint/eslint-plugin": "^19.2.0",
     "@angular-eslint/eslint-plugin-template": "^19.2.0",
     "@angular-eslint/template-parser": "^19.2.0",
+    "@angular/build": "~19.2.0",
     "@angular/cli": "19.2.0",
     "@angular/compiler-cli": "~19.2.0",
     "@angular/language-service": "~19.2.0",
-    "@nx/eslint": "21.0.0",
-    "@nx/eslint-plugin": "21.0.0",
-    "@nx/jest": "21.0.0",
-    "@nx/js": "21.0.0",
+    "@nx/eslint": "22.7.5",
+    "@nx/eslint-plugin": "22.7.5",
+    "@nx/jest": "22.7.5",
+    "@nx/js": "22.7.5",
     "@schematics/angular": "~19.2.0",
-    "@swc-node/register": "~1.9.1",
-    "@swc/core": "~1.5.7",
-    "@swc/helpers": "~0.5.11",
+    "@swc-node/register": "~1.11.1",
+    "@swc/core": "~1.15.5",
+    "@swc/helpers": "~0.5.18",
     "@types/jest": "^29.5.12",
     "@types/node": "18.16.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "@typescript-eslint/utils": "^7.16.0",
     "eslint": "~8.57.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-preset-angular": "~14.4.0",
-    "prettier": "^2.6.2",
+    "jest-util": "^29.7.0",
+    "prettier": "~3.6.2",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
-    "typescript": "~5.7.2"
+    "typescript": "~5.9.2"
   }
 }
 ",
@@ -404,7 +422,7 @@ module.exports = { ...nxPreset };",
   "compilerOptions": {
     "paths": {
       "@proj/feat": [
-        "feat/src/index.ts"
+        "./feat/src/index.ts"
       ],
       "feat": [
         "feat/src/index.ts"

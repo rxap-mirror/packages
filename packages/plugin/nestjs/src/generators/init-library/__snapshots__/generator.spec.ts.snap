@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`plugin-nestjs:init-library (golden master) should produce a stable init-library tree: init-library-tree 1`] = `
 {
@@ -126,7 +126,7 @@ This library was generated with [Nx](https://nx.dev).
 
 Run \`nx test feat\` to execute the unit tests via [Jest](https://jestjs.io).
 ",
-  "feat/jest.config.ts": "export default {
+  "feat/jest.config.cts": "module.exports = {
   displayName: 'feat',
   preset: '../jest.preset.js',
   testEnvironment: 'node',
@@ -153,7 +153,7 @@ Run \`nx test feat\` to execute the unit tests via [Jest](https://jestjs.io).
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "feat/jest.config.ts"
+        "jestConfig": "feat/jest.config.cts"
       }
     }
   }
@@ -208,6 +208,8 @@ export class FeatModule {}
       "node"
     ],
     "target": "es6",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
@@ -219,6 +221,7 @@ export class FeatModule {}
   ],
   "exclude": [
     "jest.config.ts",
+    "jest.config.cts",
     "src/**/*.spec.ts",
     "src/**/*.test.ts"
   ]
@@ -233,6 +236,7 @@ export class FeatModule {}
   },
   "include": [
     "jest.config.ts",
+    "jest.config.cts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
@@ -271,9 +275,11 @@ module.exports = { ...nxPreset };",
       "cache": true,
       "inputs": [
         "default",
+        "^default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs"
+        "{workspaceRoot}/eslint.config.mjs",
+        "{workspaceRoot}/tools/eslint-rules/**/*"
       ]
     },
     "@nx/jest:jest": {
@@ -309,36 +315,37 @@ module.exports = { ...nxPreset };",
   "package.json": "{
   "name": "@proj/source",
   "dependencies": {
-    "@nestjs/common": "^10.0.2",
+    "@nestjs/common": "^11.0.0",
     "@nestjs/core": "11.1.1",
-    "@nestjs/platform-express": "^10.0.2",
+    "@nestjs/platform-express": "^11.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@nestjs/schematics": "^10.0.1",
-    "@nestjs/testing": "^10.0.2",
-    "@nx/eslint": "21.0.0",
-    "@nx/eslint-plugin": "21.0.0",
-    "@nx/jest": "21.0.0",
-    "@nx/js": "21.0.0",
-    "@nx/nest": "21.0.0",
-    "@swc-node/register": "~1.9.1",
-    "@swc/core": "~1.5.7",
-    "@swc/helpers": "~0.5.11",
-    "@types/jest": "^29.5.12",
-    "@types/node": "18.16.9",
+    "@nestjs/schematics": "^11.0.0",
+    "@nestjs/testing": "^11.0.0",
+    "@nx/eslint": "22.7.5",
+    "@nx/eslint-plugin": "22.7.5",
+    "@nx/jest": "22.7.5",
+    "@nx/js": "22.7.5",
+    "@nx/nest": "22.7.5",
+    "@swc-node/register": "~1.11.1",
+    "@swc/core": "~1.15.5",
+    "@swc/helpers": "~0.5.18",
+    "@types/jest": "~30.0.0",
+    "@types/node": "20.19.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "eslint": "~8.57.0",
-    "eslint-config-prettier": "^9.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-node": "^29.7.0",
-    "prettier": "^2.6.2",
-    "ts-jest": "^29.1.0",
+    "eslint-config-prettier": "^10.0.0",
+    "jest": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
+    "jest-util": "~30.3.0",
+    "prettier": "~3.6.2",
+    "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
-    "typescript": "~5.7.2"
+    "typescript": "~5.9.2"
   }
 }
 ",
@@ -346,7 +353,7 @@ module.exports = { ...nxPreset };",
   "compilerOptions": {
     "paths": {
       "@proj/feat": [
-        "feat/src/index.ts"
+        "./feat/src/index.ts"
       ],
       "feat": [
         "feat/src/index.ts"
