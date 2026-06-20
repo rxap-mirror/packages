@@ -15,7 +15,7 @@
     "@rxap/environment": "^21.0.0",
     "@rxap/open-api": "^21.0.0",
     "ngx-markdown": "^19.1.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "author": {
     "name": "Merzough Münker",

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`plugin-angular:init (golden master) should produce a stable workspace-init tree: init-tree 1`] = `
 {
@@ -95,11 +95,6 @@ name: init
 options:
   withSharedLibraries: false
 ",
-  "tsconfig.base.json": "{
-  "compilerOptions": {
-    "paths": {}
-  }
-}
-",
+  "tsconfig.base.json": "{"compilerOptions":{"paths":{}}}",
 }
 `;

@@ -13,7 +13,7 @@
     "@angular/service-worker": "^21.2.9",
     "@rxap/environment": "^21.0.0",
     "@rxap/life-cycle": "^21.0.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "author": {
     "name": "Merzough Münker",

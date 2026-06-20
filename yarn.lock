@@ -9798,7 +9798,7 @@ __metadata:
     "@angular/core": ^21.2.9
     "@angular/router": ^21.2.9
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9813,7 +9813,7 @@ __metadata:
     "@angular/forms": ^21.2.9
     "@angular/material": ^21.2.9
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9853,7 +9853,7 @@ __metadata:
     "@nx/devkit": 22.7.5
     tslib: 2.6.2
   peerDependencies:
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9871,7 +9871,7 @@ __metadata:
     "@angular/router": ^21.2.9
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9886,7 +9886,7 @@ __metadata:
     "@angular/core": ^21.2.9
     "@rxap/environment": ^21.0.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9919,7 +9919,7 @@ __metadata:
     "@rxap/pipes": ^21.0.0
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9940,7 +9940,7 @@ __metadata:
     "@rxap/pattern": ^1.1.15-dev.0
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9965,7 +9965,7 @@ __metadata:
     "@angular/core": ^21.2.9
     "@rxap/reflect-metadata": ^1.0.17-dev.1
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9981,7 +9981,7 @@ __metadata:
     "@angular/core": ^21.2.9
     "@angular/material": ^21.2.9
     "@rxap/pipes": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -9997,7 +9997,7 @@ __metadata:
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/services": ^21.0.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10027,7 +10027,7 @@ __metadata:
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
     firebase: ^9.23.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10053,7 +10053,7 @@ __metadata:
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
     "@rxap/validator": ^3.0.14-dev.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10074,7 +10074,7 @@ __metadata:
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
     "@rxap/window-system": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10096,7 +10096,7 @@ __metadata:
     "@rxap/services": ^21.0.0
     "@rxap/utilities": ^16.5.1-dev.1
     "@rxap/validator": ^3.0.14-dev.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10177,7 +10177,7 @@ __metadata:
     "@angular/core": ^21.2.9
     "@angular/router": ^21.2.9
     keycloak-js: ^23.0.7
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10206,7 +10206,7 @@ __metadata:
     "@rxap/ngx-theme": ^21.0.0
     "@rxap/pattern": ^1.1.15-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10220,7 +10220,7 @@ __metadata:
     "@angular/core": ^21.2.9
     "@angular/router": ^21.2.9
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10237,7 +10237,7 @@ __metadata:
     "@rxap/ngx-memory": ^21.0.0
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10259,7 +10259,7 @@ __metadata:
     "@rxap/mixin": ^16.0.16-dev.1
     "@rxap/reflect-metadata": ^1.0.17-dev.1
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10287,7 +10287,7 @@ __metadata:
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
     "@rxap/window-system": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10309,7 +10309,7 @@ __metadata:
     "@rxap/pattern": ^1.1.15-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
     "@rxap/window-system": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10347,7 +10347,7 @@ __metadata:
     "@rxap/utilities": ^16.5.1-dev.1
     amqplib: ^0.10.4
     openapi-types: 10.0.0
-    rxjs: 7.8.1
+    rxjs: 7.8.2
     tslib: ^2.6.2
     uuid: 8.3.2
   peerDependencies:
@@ -10588,7 +10588,7 @@ __metadata:
     "@nestjs/jwt": ^11.0.2
     "@rxap/nest-utilities": ^11.0.1-dev.0
     "@rxap/pattern": ^1.1.15-dev.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10671,7 +10671,7 @@ __metadata:
     class-transformer: ^0.5.1
     class-validator: ^0.15.1
     openapi-types: ^10.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10719,7 +10719,7 @@ __metadata:
     "@rxap/utilities": ^16.5.1-dev.1
     amqp-connection-manager: ^4.1.14
     amqplib: ^0.10.4
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10744,7 +10744,7 @@ __metadata:
     "@sentry/types": ^10.10.0
     "@sentry/utils": ^8.55.0
     joi: ^17.9.2
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10777,7 +10777,7 @@ __metadata:
     "@nestjs/common": ^11.1.27
     "@nestjs/config": ^4.0.4
     "@nestjs/microservices": ^11.1.27
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
     socket.io-client: ^4.8.1
   languageName: unknown
   linkType: soft
@@ -10835,7 +10835,7 @@ __metadata:
     class-transformer: ^0.5.1
     class-validator: ^0.15.1
     joi: ^17.9.2
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10897,7 +10897,7 @@ __metadata:
     "@rxap/environment": ^21.0.0
     "@rxap/open-api": ^21.0.0
     ngx-markdown: ^19.1.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10917,7 +10917,7 @@ __metadata:
     "@rxap/environment": ^21.0.0
     "@rxap/open-api": ^21.0.0
     "@sentry/angular": ^10.10.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10932,7 +10932,7 @@ __metadata:
     "@angular/core": ^21.2.9
     "@rxap/config": ^21.0.0
     "@rxap/ngx-user": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10949,7 +10949,7 @@ __metadata:
     "@rxap/environment": ^21.0.0
     "@rxap/ngx-pub-sub": ^21.0.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10973,7 +10973,7 @@ __metadata:
     "@rxap/pattern": ^1.1.15-dev.0
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -10990,7 +10990,7 @@ __metadata:
     "@angular/material": ^21.2.9
     "@rxap/directives": ^21.0.0
     "@rxap/ngx-localize": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11020,7 +11020,7 @@ __metadata:
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
     "@rxap/window-system": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11049,7 +11049,7 @@ __metadata:
     "@rxap/data-source": ^21.0.0
     "@rxap/ngx-pub-sub": ^21.0.0
     "@rxap/pattern": ^1.1.15-dev.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11061,7 +11061,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@angular/core": ^21.2.9
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11092,7 +11092,7 @@ __metadata:
     "@rxap/config": ^21.0.0
     "@rxap/open-api": ^21.0.0
     "@sentry/angular": ^10.10.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11110,7 +11110,7 @@ __metadata:
     "@rxap/ngx-pub-sub": ^21.0.0
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11123,7 +11123,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^21.2.9
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11139,7 +11139,7 @@ __metadata:
     "@rxap/ngx-pub-sub": ^21.0.0
     "@rxap/open-api": ^21.0.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11185,7 +11185,7 @@ __metadata:
     "@rxap/rxjs": ^1.1.17-dev.0
     angular-oauth2-oidc: ^15.0.1
     angular-oauth2-oidc-jwks: ^15.0.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11207,7 +11207,7 @@ __metadata:
     "@rxap/utilities": ^16.5.1-dev.1
     ajv: ^8.12.0
     openapi-types: ^10.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11218,7 +11218,7 @@ __metadata:
     "@nx/devkit": 22.7.5
     tslib: 2.6.2
   peerDependencies:
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11575,7 +11575,7 @@ __metadata:
     "@rxap/definition": ^21.0.0
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11587,7 +11587,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11722,7 +11722,7 @@ __metadata:
     "@angular/service-worker": ^21.2.9
     "@rxap/environment": ^21.0.0
     "@rxap/life-cycle": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11737,7 +11737,7 @@ __metadata:
     "@angular/core": ^21.2.9
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -11759,7 +11759,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^21.2.9
     "@rxap/config": ^21.0.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
     socket.io-client: ^4.8.1
   languageName: unknown
   linkType: soft
@@ -11946,7 +11946,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     reflect-metadata: 0.1.13
-    rxjs: 7.8.1
+    rxjs: 7.8.2
     sanitize-html: ^2.14.0
     semver: 7.5.3
     socket.io-client: 4.8.1
@@ -11993,7 +11993,7 @@ __metadata:
     "@rxap/data-source": ^21.0.0
     "@rxap/material-table-system": ^21.0.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -12016,7 +12016,7 @@ __metadata:
     "@rxap/pattern": ^1.1.15-dev.0
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -12046,7 +12046,7 @@ __metadata:
     "@angular/material": ^21.2.9
     "@rxap/directives": ^21.0.0
     "@rxap/pattern": ^1.1.15-dev.0
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 
@@ -12084,7 +12084,7 @@ __metadata:
     "@rxap/rxjs": ^1.1.17-dev.0
     "@rxap/services": ^21.0.0
     "@rxap/utilities": ^16.5.1-dev.1
-    rxjs: ^7.8.1
+    rxjs: ^7.8.2
   languageName: unknown
   linkType: soft
 

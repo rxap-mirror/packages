@@ -11,7 +11,7 @@
     "@nestjs/common": "^11.1.27",
     "@nestjs/config": "^4.0.4",
     "@nestjs/microservices": "^11.1.27",
-    "rxjs": "^7.8.1",
+    "rxjs": "^7.8.2",
     "socket.io-client": "^4.8.1"
   },
   "author": {

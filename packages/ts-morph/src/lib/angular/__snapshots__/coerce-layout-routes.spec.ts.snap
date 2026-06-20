@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`CoerceLayoutRouters should coerce layout routers 1`] = `
 "import { provideLayout, withNavigationConfig, withDefaultHeaderComponent, LayoutComponent } from '@rxap/layout';

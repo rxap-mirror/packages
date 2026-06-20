@@ -19,7 +19,7 @@
     "@rxap/services": "^21.0.0",
     "@rxap/utilities": "^16.5.1-dev.1",
     "@rxap/validator": "^3.0.14-dev.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "author": {
     "name": "Merzough Münker",
