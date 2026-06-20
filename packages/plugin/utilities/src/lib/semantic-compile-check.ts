@@ -105,17 +105,30 @@ export function CompileGeneratedFiles(
     tsBuildInfoFile: undefined,
   };
 
-  const tmpRoot = mkdtempSync(join(workspaceRoot, 'tmp-semantic-check-'));
+  // Write under node_modules/.cache so workspace scanners (nx project graph,
+  // @rxap SearchFile-based plugins running in concurrent jest workers) never
+  // traverse the throwaway tree and race with its cleanup. node_modules is still
+  // under the workspace root, so tsconfig `paths` and node resolution work.
+  const cacheDir = join(workspaceRoot, 'node_modules', '.cache');
+  mkdirSync(cacheDir, { recursive: true });
+  const tmpRoot = mkdtempSync(join(cacheDir, 'rxap-semantic-check-'));
   const generatedAbsolutePaths = new Set<string>();
   try {
     const rootNames: string[] = [];
     for (const [ path, content ] of Object.entries(files)) {
+      // Only materialise TypeScript files. Writing project.json/package.json
+      // into a directory under the workspace root makes nx's project-graph scan
+      // (running in concurrent jest workers) pick up transient projects and then
+      // fail when they vanish on cleanup. tsc only needs the .ts sources anyway.
+      if (!path.endsWith('.ts')) {
+        continue;
+      }
       const absolute = join(tmpRoot, path);
       mkdirSync(dirname(absolute), { recursive: true });
       writeFileSync(absolute, content);
       const normalized = absolute.replace(/\\/g, '/');
       generatedAbsolutePaths.add(normalized);
-      if (path.endsWith('.ts') && !path.endsWith('.d.ts') && !path.endsWith('.spec.ts')) {
+      if (!path.endsWith('.d.ts') && !path.endsWith('.spec.ts')) {
         rootNames.push(absolute);
       }
     }
