@@ -1,39 +1,25 @@
-import {
-  Component,
-  DebugElement,
-} from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-} from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { HttpRemoteMethodDirective } from './http-remote-method.directive';
 import { By } from '@angular/platform-browser';
 import { RemoteMethodLoader } from '@rxap/remote-method';
 
 describe('@rxap/remote-method/directive/button', () => {
-
   describe('HttpRemoteMethodDirective', () => {
-
     @Component({
-    template: '<button rxapHttpRemoteMethod="test"></button>',
-    standalone: false
-})
-    class TestComponent {
-    }
+      template: '<button rxapHttpRemoteMethod="test"></button>',
+      standalone: false,
+    })
+    class TestComponent {}
 
     let componentfixture: ComponentFixture<TestComponent>;
     let directiveElement: DebugElement;
     let directive: HttpRemoteMethodDirective;
 
-
     beforeEach(async () => {
-
       await TestBed.configureTestingModule({
-        imports: [
-          HttpRemoteMethodDirective,
-        ],
-        declarations: [ TestComponent ],
+        imports: [HttpRemoteMethodDirective],
+        declarations: [TestComponent],
         providers: [
           {
             provide: RemoteMethodLoader,
@@ -44,7 +30,9 @@ describe('@rxap/remote-method/directive/button', () => {
 
       componentfixture = TestBed.createComponent(TestComponent);
 
-      directiveElement = componentfixture.debugElement.query(By.directive(HttpRemoteMethodDirective));
+      directiveElement = componentfixture.debugElement.query(
+        By.directive(HttpRemoteMethodDirective),
+      );
 
       expect(directiveElement).not.toBeNull();
 
@@ -53,21 +41,16 @@ describe('@rxap/remote-method/directive/button', () => {
       expect(directive).toBeInstanceOf(HttpRemoteMethodDirective);
 
       componentfixture.detectChanges();
-
     });
 
     it('should call execute on button click', fakeAsync(() => {
-
       const executeSpy = jest.spyOn(directive, 'execute');
 
       const button = componentfixture.debugElement.query(By.css('button'));
 
       button.nativeElement.click();
 
-      expect(executeSpy).toBeCalledTimes(1);
-
+      expect(executeSpy).toHaveBeenCalledTimes(1);
     }));
-
   });
-
 });

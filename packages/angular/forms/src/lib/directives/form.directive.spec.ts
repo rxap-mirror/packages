@@ -12,19 +12,13 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  MockedComponent,
-  MockRender,
-} from 'ng-mocks';
+import { MockedComponent, MockRender } from 'ng-mocks';
 import { RxapForm } from '../decorators/form';
 import { UseFormControl } from '../decorators/use-form-control';
 import { RxapFormBuilder } from '../form-builder';
 import { RxapFormControl } from '../form-control';
 import { RxapFormGroup } from '../form-group';
-import {
-  FormDefinition,
-  FormType,
-} from '../model';
+import { FormDefinition, FormType } from '../model';
 import { FormDirective } from './form.directive';
 import { RxapFormsModule } from './forms.module';
 import {
@@ -37,7 +31,6 @@ import {
 describe('@rxap/forms', () => {
   describe('directives', () => {
     xdescribe('FormDirective', () => {
-
       interface ITestForm {
         username: string;
         password: string;
@@ -60,25 +53,24 @@ describe('@rxap/forms', () => {
           provide: RXAP_FORM_DEFINITION_BUILDER,
           useFactory: (injector: Injector) =>
             new RxapFormBuilder<ITestForm>(TestForm, injector),
-          deps: [ INJECTOR ],
+          deps: [INJECTOR],
         },
         {
           provide: RXAP_FORM_DEFINITION,
           useFactory: (builder: RxapFormBuilder) => builder.build(),
-          deps: [ RXAP_FORM_DEFINITION_BUILDER ],
+          deps: [RXAP_FORM_DEFINITION_BUILDER],
         },
         {
           provide: ChangeDetectorRef,
           useValue: {
-            detectChanges: () => {
-            },
+            detectChanges: () => {},
           },
         },
       ];
 
       it('should create a form definition instance', () => {
         TestBed.configureTestingModule({
-          providers: [ TestFormProviders, FormDirective ],
+          providers: [TestFormProviders, FormDirective],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -95,7 +87,7 @@ describe('@rxap/forms', () => {
 
       it('should set loaded to true if no load method is defined', () => {
         TestBed.configureTestingModule({
-          providers: [ TestFormProviders, FormDirective ],
+          providers: [TestFormProviders, FormDirective],
         });
         const formDirective = TestBed.inject(FormDirective);
         expect(formDirective.loaded).toBeFalsy();
@@ -285,8 +277,8 @@ describe('@rxap/forms', () => {
 
         formDirective.onSubmit(new Event('submit'));
 
-        expect(rxapSubmitSpy).toBeCalled();
-        expect(rxapSubmitSpy).toBeCalledWith({
+        expect(rxapSubmitSpy).toHaveBeenCalled();
+        expect(rxapSubmitSpy).toHaveBeenCalledWith({
           username: 'rxap',
           password: 'paxr',
         });
@@ -323,7 +315,7 @@ describe('@rxap/forms', () => {
 
         formDirective.onSubmit(new Event('submit'));
 
-        expect(rxapSubmitSpy).not.toBeCalled();
+        expect(rxapSubmitSpy).not.toHaveBeenCalled();
         expect(formDirective.submitted).toBeFalsy();
         expect(formDirective.submitting).toBeFalsy();
         expect(formDirective.submitError).toEqual(new Error('failed'));
@@ -361,8 +353,8 @@ describe('@rxap/forms', () => {
 
         tick();
 
-        expect(rxapSubmitSpy).toBeCalled();
-        expect(rxapSubmitSpy).toBeCalledWith({
+        expect(rxapSubmitSpy).toHaveBeenCalled();
+        expect(rxapSubmitSpy).toHaveBeenCalledWith({
           username: 'rxap',
           password: 'paxr',
         });
@@ -403,14 +395,13 @@ describe('@rxap/forms', () => {
 
         tick();
 
-        expect(rxapSubmitSpy).not.toBeCalled();
+        expect(rxapSubmitSpy).not.toHaveBeenCalled();
         expect(formDirective.submitted).toBeFalsy();
         expect(formDirective.submitting).toBeFalsy();
         expect(formDirective.submitError).toEqual(new Error('failed'));
       }));
 
       it('should auto submit', fakeAsync(() => {
-
         interface ITestAutoSubmit {
           username: string;
           password: string;
@@ -437,18 +428,17 @@ describe('@rxap/forms', () => {
               provide: RXAP_FORM_DEFINITION_BUILDER,
               useFactory: (injector: Injector) =>
                 new RxapFormBuilder<ITestAutoSubmit>(TestAutoSubmit, injector),
-              deps: [ INJECTOR ],
+              deps: [INJECTOR],
             },
             {
               provide: RXAP_FORM_DEFINITION,
               useFactory: (builder: RxapFormBuilder) => builder.build(),
-              deps: [ RXAP_FORM_DEFINITION_BUILDER ],
+              deps: [RXAP_FORM_DEFINITION_BUILDER],
             },
             {
               provide: ChangeDetectorRef,
               useValue: {
-                detectChanges: () => {
-                },
+                detectChanges: () => {},
               },
             },
             FormDirective,
@@ -471,11 +461,11 @@ describe('@rxap/forms', () => {
           password: 'paxr',
         });
 
-        expect(submitSpy).not.toBeCalled();
+        expect(submitSpy).not.toHaveBeenCalled();
 
         tick(5000);
 
-        expect(submitSpy).toBeCalled();
+        expect(submitSpy).toHaveBeenCalled();
       }));
 
       describe('With Component', () => {
@@ -485,8 +475,8 @@ describe('@rxap/forms', () => {
 
         beforeEach(async () => {
           await TestBed.configureTestingModule({
-            imports: [ RxapFormsModule ],
-            providers: [ TestFormProviders ],
+            imports: [RxapFormsModule],
+            providers: [TestFormProviders],
           });
 
           fixture = MockRender(`
@@ -497,8 +487,8 @@ describe('@rxap/forms', () => {
 
           submitButton = fixture.debugElement.query(By.css('button'));
           formDirective = fixture.debugElement
-                                 .query(By.directive(FormDirective))
-                                 .injector.get(FormDirective);
+            .query(By.directive(FormDirective))
+            .injector.get(FormDirective);
         });
 
         it('should create', () => {
@@ -515,8 +505,8 @@ describe('@rxap/forms', () => {
 
           await fixture.whenStable();
 
-          expect(onSubmitSpy).toBeCalled();
-          expect(onSubmitSpy).toBeCalledTimes(1);
+          expect(onSubmitSpy).toHaveBeenCalled();
+          expect(onSubmitSpy).toHaveBeenCalledTimes(1);
         });
       });
     });

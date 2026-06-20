@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'browser-theme',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

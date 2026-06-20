@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'service-nest',
   reporters: [
     'default',

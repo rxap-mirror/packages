@@ -32,16 +32,16 @@ describe('GetDependentProjectsForProject', () => {
   it('should throw an error when the project graph is undefined', () => {
     context.projectGraph = undefined as any;
 
-    expect(() => GetDependentProjectsForProject(context)).toThrowError(
-      'The projectGraph is undefined. Ensure the projectGraph is passed into the executor context.'
+    expect(() => GetDependentProjectsForProject(context)).toThrow(
+      'The projectGraph is undefined. Ensure the projectGraph is passed into the executor context.',
     );
   });
 
   it('should throw an error when the project name is undefined', () => {
     context.projectName = undefined;
 
-    expect(() => GetDependentProjectsForProject(context)).toThrowError(
-      'The projectName is undefined. Ensure the projectName is passed into the executor context.'
+    expect(() => GetDependentProjectsForProject(context)).toThrow(
+      'The projectName is undefined. Ensure the projectName is passed into the executor context.',
     );
   });
 
@@ -76,7 +76,9 @@ describe('GetDependentProjectsForProject', () => {
         { type: 'static', source: 'my-project', target: 'project-a' },
         { type: 'static', source: 'my-project', target: 'project-b' },
       ],
-      'project-a': [{ type: 'static', source: 'project-a', target: 'project-c' }],
+      'project-a': [
+        { type: 'static', source: 'project-a', target: 'project-c' },
+      ],
       'project-b': [],
       'project-c': [],
     };
@@ -88,8 +90,12 @@ describe('GetDependentProjectsForProject', () => {
 
   it.skip('should handle circular dependencies gracefully', () => {
     context.projectGraph!.dependencies = {
-      'my-project': [{ type: 'static', source: 'my-project', target: 'project-a' }],
-      'project-a': [{ type: 'static', source: 'project-a', target: 'my-project' }],
+      'my-project': [
+        { type: 'static', source: 'my-project', target: 'project-a' },
+      ],
+      'project-a': [
+        { type: 'static', source: 'project-a', target: 'my-project' },
+      ],
     };
 
     const result = GetDependentProjectsForProject(context);
@@ -100,8 +106,8 @@ describe('GetDependentProjectsForProject', () => {
   it('should treat an empty project name as an invalid input', () => {
     context.projectName = '';
 
-    expect(() => GetDependentProjectsForProject(context)).toThrowError(
-      'The projectName is undefined. Ensure the projectName is passed into the executor context.'
+    expect(() => GetDependentProjectsForProject(context)).toThrow(
+      'The projectName is undefined. Ensure the projectName is passed into the executor context.',
     );
   });
 });

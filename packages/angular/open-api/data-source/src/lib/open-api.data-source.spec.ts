@@ -1,14 +1,19 @@
 import { OpenApiDataSource } from './open-api.data-source';
 import { RxapDataSource } from '@rxap/data-source';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { OpenApiConfigService } from '@rxap/open-api';
 
 xdescribe('@rxap/open-api/data-source', () => {
-
   describe('OpenApiDataSource', () => {
-
     let dataSource: OpenApiDataSource<any>;
     let httpMock: HttpTestingController;
     let http: HttpClient;
@@ -25,11 +30,13 @@ xdescribe('@rxap/open-api/data-source', () => {
     };
 
     beforeEach(() => {
-
       TestBed.configureTestingModule({
-    imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+        imports: [],
+        providers: [
+          provideHttpClient(withInterceptorsFromDi()),
+          provideHttpClientTesting(),
+        ],
+      });
 
       http = TestBed.inject(HttpClient);
       httpMock = TestBed.inject(HttpTestingController);
@@ -41,7 +48,7 @@ xdescribe('@rxap/open-api/data-source', () => {
           title: 'Testing',
           version: '1',
         },
-        servers: [ { url: 'https://server.de/api' } ],
+        servers: [{ url: 'https://server.de/api' }],
         paths: {
           '/users': {
             get: { operationId: 'getAllUsers' },
@@ -57,30 +64,22 @@ xdescribe('@rxap/open-api/data-source', () => {
         },
       } as any);
 
-      dataSource = new OpenApiDataSource(
-        http,
-        openApiService,
-        {
-          id: 'test',
-          operation,
-        },
-      );
+      dataSource = new OpenApiDataSource(http, openApiService, {
+        id: 'test',
+        operation,
+      });
     });
 
     afterEach(() => {
       httpMock.verify();
     });
 
-
     it('should create', () => {
-
       expect(dataSource.metadata.url).toBe('https://server.de/api/test');
       expect(dataSource.id).toBe('test-operation');
-
     });
 
     it('should send request to url on connect', () => {
-
       const data = { data: 'data' };
       const viewer = { id: 'test' };
 
@@ -94,16 +93,16 @@ xdescribe('@rxap/open-api/data-source', () => {
 
       httpMock.expectOne(dataSource.metadata.url as string).flush(data);
 
-      expect(nextSpy).toBeCalledTimes(1);
-      expect(nextSpy).toBeCalledWith(data);
-      expect(errorSpy).not.toBeCalled();
-      expect(completeSpy).not.toBeCalled();
-
+      expect(nextSpy).toHaveBeenCalledTimes(1);
+      expect(nextSpy).toHaveBeenCalledWith(data);
+      expect(errorSpy).not.toHaveBeenCalled();
+      expect(completeSpy).not.toHaveBeenCalled();
     });
 
     it('should create open api data source from operationId', () => {
-
-      dataSource = new OpenApiDataSource(http, openApiService, { id: 'getAllUsers' });
+      dataSource = new OpenApiDataSource(http, openApiService, {
+        id: 'getAllUsers',
+      });
 
       const data = { data: 'data' };
       const viewer = { id: 'test' };
@@ -118,15 +117,13 @@ xdescribe('@rxap/open-api/data-source', () => {
 
       httpMock.expectOne(dataSource.metadata.url as string).flush(data);
 
-      expect(errorSpy).not.toBeCalled();
-      expect(completeSpy).not.toBeCalled();
-      expect(nextSpy).toBeCalledTimes(1);
-      expect(nextSpy).toBeCalledWith(data);
-
+      expect(errorSpy).not.toHaveBeenCalled();
+      expect(completeSpy).not.toHaveBeenCalled();
+      expect(nextSpy).toHaveBeenCalledTimes(1);
+      expect(nextSpy).toHaveBeenCalledWith(data);
     });
 
     it('should create open api data source from operationId defined with decorator', () => {
-
       OpenApiConfigService.Config = {
         host: 'rxap.dev',
         basePath: '/api',
@@ -135,7 +132,7 @@ xdescribe('@rxap/open-api/data-source', () => {
           title: 'Testing',
           version: '1',
         },
-        servers: [ { url: 'http://server.de' } ],
+        servers: [{ url: 'http://server.de' }],
         paths: {
           '/users': {
             get: { operationId: 'getAllUsers' },
@@ -171,20 +168,17 @@ xdescribe('@rxap/open-api/data-source', () => {
 
       httpMock.expectOne(dataSource.metadata.url as string).flush(data);
 
-      expect(errorSpy).not.toBeCalled();
-      expect(completeSpy).not.toBeCalled();
-      expect(nextSpy).toBeCalledTimes(1);
-      expect(nextSpy).toBeCalledWith(data);
-
+      expect(errorSpy).not.toHaveBeenCalled();
+      expect(completeSpy).not.toHaveBeenCalled();
+      expect(nextSpy).toHaveBeenCalledTimes(1);
+      expect(nextSpy).toHaveBeenCalledWith(data);
     });
 
     describe('should validate viewer parameters', () => {
-
       let config: any;
       const data = { data: 'data' };
 
       beforeEach(() => {
-
         config = {
           host: 'rxap.dev',
           basePath: '/api',
@@ -193,7 +187,7 @@ xdescribe('@rxap/open-api/data-source', () => {
             title: 'Testing',
             version: '1',
           },
-          servers: [ { url: 'http://server.de' } ],
+          servers: [{ url: 'http://server.de' }],
           paths: {
             '/users/{uuid}': {
               get: {
@@ -237,12 +231,12 @@ xdescribe('@rxap/open-api/data-source', () => {
         };
 
         openApiService = new OpenApiConfigService(config);
-
       });
 
       it('getUserById', () => {
-
-        dataSource = new OpenApiDataSource(http, openApiService, { id: 'getUserById' });
+        dataSource = new OpenApiDataSource(http, openApiService, {
+          id: 'getUserById',
+        });
 
         const connection$ = dataSource.connect({
           parameters: {
@@ -256,23 +250,32 @@ xdescribe('@rxap/open-api/data-source', () => {
 
         connection$.subscribe(nextSpy, errorSpy, completeSpy);
 
-        httpMock.expectOne((dataSource.metadata.url as string).replace('{uuid}', 'uuid')).flush(data);
+        httpMock
+          .expectOne(
+            (dataSource.metadata.url as string).replace('{uuid}', 'uuid'),
+          )
+          .flush(data);
 
-        expect(errorSpy).not.toBeCalled();
-        expect(completeSpy).not.toBeCalled();
-        expect(nextSpy).toBeCalledTimes(1);
-        expect(nextSpy).toBeCalledWith(data);
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
+        expect(nextSpy).toHaveBeenCalledTimes(1);
+        expect(nextSpy).toHaveBeenCalledWith(data);
 
-        expect(() => dataSource.connect({})).toThrow('Some operation parameters are required!');
-        expect(() => dataSource.connect({ parameters: {} })).toThrow('The operation parameter \'uuid\' is required!');
-        expect(() => dataSource.connect({ parameters: { uuid: 1 } }))
-          .toThrow('The parameter \'uuid\' is not valid against the schema!');
-
+        expect(() => dataSource.connect({})).toThrow(
+          'Some operation parameters are required!',
+        );
+        expect(() => dataSource.connect({ parameters: {} })).toThrow(
+          "The operation parameter 'uuid' is required!",
+        );
+        expect(() => dataSource.connect({ parameters: { uuid: 1 } })).toThrow(
+          "The parameter 'uuid' is not valid against the schema!",
+        );
       });
 
       it('getUserCarById', () => {
-
-        dataSource = new OpenApiDataSource(http, openApiService, { id: 'getUserCarById' });
+        dataSource = new OpenApiDataSource(http, openApiService, {
+          id: 'getUserCarById',
+        });
 
         const connection$ = dataSource.connect({
           parameters: {
@@ -287,30 +290,37 @@ xdescribe('@rxap/open-api/data-source', () => {
 
         connection$.subscribe(nextSpy, errorSpy, completeSpy);
 
-        httpMock.expectOne((dataSource.metadata.url as string).replace('{uuid}', 'uuid')
-                                                              .replace('{carUuid}', 'carUuid'))
-                .flush(data);
+        httpMock
+          .expectOne(
+            (dataSource.metadata.url as string)
+              .replace('{uuid}', 'uuid')
+              .replace('{carUuid}', 'carUuid'),
+          )
+          .flush(data);
 
-        expect(errorSpy).not.toBeCalled();
-        expect(completeSpy).not.toBeCalled();
-        expect(nextSpy).toBeCalledTimes(1);
-        expect(nextSpy).toBeCalledWith(data);
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completeSpy).not.toHaveBeenCalled();
+        expect(nextSpy).toHaveBeenCalledTimes(1);
+        expect(nextSpy).toHaveBeenCalledWith(data);
 
-        expect(() => dataSource.connect({})).toThrow('Some operation parameters are required!');
-        expect(() => dataSource.connect({ parameters: {} })).toThrow('The operation parameter \'uuid\' is required!');
-        expect(() => dataSource.connect({ parameters: { uuid: 1 } }))
-          .toThrow('The parameter \'uuid\' is not valid against the schema!');
-        expect(() => dataSource.connect({
-          parameters: {
-            uuid: 1,
-            carUuid: 'ok',
-          },
-        })).toThrow('The parameter \'uuid\' is not valid against the schema!');
-
+        expect(() => dataSource.connect({})).toThrow(
+          'Some operation parameters are required!',
+        );
+        expect(() => dataSource.connect({ parameters: {} })).toThrow(
+          "The operation parameter 'uuid' is required!",
+        );
+        expect(() => dataSource.connect({ parameters: { uuid: 1 } })).toThrow(
+          "The parameter 'uuid' is not valid against the schema!",
+        );
+        expect(() =>
+          dataSource.connect({
+            parameters: {
+              uuid: 1,
+              carUuid: 'ok',
+            },
+          }),
+        ).toThrow("The parameter 'uuid' is not valid against the schema!");
       });
-
     });
-
   });
-
 });

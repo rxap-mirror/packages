@@ -1,14 +1,12 @@
-import {
-  CoerceRule,
-  Rule,
-  RuleWhen,
-} from './coerce-rule';
+import { CoerceRule, Rule, RuleWhen } from './coerce-rule';
 
 describe('CoerceRule function', () => {
   it('throws error if rule has neither when nor if property', () => {
     const rulesList: Rule[] = [];
     const rule: Rule = {};
-    expect(() => CoerceRule(rulesList, rule)).toThrowError('Rule must have either a when or if property');
+    expect(() => CoerceRule(rulesList, rule)).toThrow(
+      'Rule must have either a when or if property',
+    );
   });
 
   it('adds rule to the list if it is the first rule', () => {
@@ -17,7 +15,7 @@ describe('CoerceRule function', () => {
     };
     const rulesList: Rule[] = [];
     CoerceRule(rulesList, rule);
-    expect(rulesList).toEqual([ rule ]);
+    expect(rulesList).toEqual([rule]);
   });
 
   it('adds rule with "when" property to the end of the list if it is "always"', () => {
@@ -29,9 +27,9 @@ describe('CoerceRule function', () => {
       when: RuleWhen.ALWAYS,
       if: 'true',
     };
-    const rulesList: Rule[] = [ ruleA ];
+    const rulesList: Rule[] = [ruleA];
     CoerceRule(rulesList, ruleB);
-    expect(rulesList).toEqual([ ruleA, ruleB ]);
+    expect(rulesList).toEqual([ruleA, ruleB]);
   });
 
   it('add rule without "when" property to the end of the list if it is the last rule', () => {
@@ -42,9 +40,9 @@ describe('CoerceRule function', () => {
     const ruleB: Rule = {
       if: 'true',
     };
-    const rulesList: Rule[] = [ ruleA ];
+    const rulesList: Rule[] = [ruleA];
     CoerceRule(rulesList, ruleB);
-    expect(rulesList).toEqual([ ruleA, ruleB ]);
+    expect(rulesList).toEqual([ruleA, ruleB]);
   });
 
   it('adds rule with "when" property to the start of the list if it is RuleWhen.NEVER', () => {
@@ -56,9 +54,9 @@ describe('CoerceRule function', () => {
       when: RuleWhen.NEVER,
       if: 'true',
     };
-    const rulesList: Rule[] = [ ruleA ];
+    const rulesList: Rule[] = [ruleA];
     CoerceRule(rulesList, ruleB);
-    expect(rulesList).toEqual([ ruleB, ruleA ]);
+    expect(rulesList).toEqual([ruleB, ruleA]);
   });
 
   it('adds rule with "if" property to the end of the list if "when" is not defined', () => {
@@ -67,8 +65,8 @@ describe('CoerceRule function', () => {
       if: 'true',
     };
     const ruleB: Rule = { if: 'true' };
-    const rulesList: Rule[] = [ ruleA ];
+    const rulesList: Rule[] = [ruleA];
     CoerceRule(rulesList, ruleB);
-    expect(rulesList).toEqual([ ruleA, ruleB ]);
+    expect(rulesList).toEqual([ruleA, ruleB]);
   });
 });
