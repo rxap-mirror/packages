@@ -4,7 +4,7 @@ import {
 } from 'node:util';
 import { performance } from 'node:perf_hooks';
 
-global.TextEncoder ??= TextEncoder;
+global.TextEncoder ??= TextEncoder as any;
 global.TextDecoder ??= TextDecoder as any;
 
 
