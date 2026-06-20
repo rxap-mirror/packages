@@ -66,6 +66,8 @@ function getRxapPackageJsonFilePath(): string | null {
   }
 
   try {
+    // Runtime resolution of the umbrella package path (not a code dependency).
+    // eslint-disable-next-line @nx/enforce-module-boundaries
     return require.resolve('rxap');
   } catch (e: any) {
     console.log('Could not resolve the package rxap');

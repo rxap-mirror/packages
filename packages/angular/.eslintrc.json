@@ -48,7 +48,8 @@
             "prefix": "rxap",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/prefer-inject": "off"
       },
       "extends": [
         "plugin:@nx/angular",
@@ -72,7 +73,18 @@
       "extends": [
         "plugin:@nx/angular-template"
       ],
-      "rules": {}
+      "rules": {
+        "@angular-eslint/template/prefer-control-flow": "off"
+      }
+    },
+    {
+      "files": [
+        "*.config.js",
+        "tailwind.config.js"
+      ],
+      "rules": {
+        "@nx/enforce-module-boundaries": "off"
+      }
     },
     {
       "files": [
