@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`XML Serializer Xml Serializer Service native minimal example 1`] = `"<root name="root-name"/>"`;
 
