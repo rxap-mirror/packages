@@ -18,7 +18,9 @@ import { InitLibraryGeneratorSchema } from './schema';
 export async function coerceProjects(tree: Tree, options: InitLibraryGeneratorSchema) {
 
 
-  const defaultOptions = GetDefaultGeneratorOptions<Partial<AngularLibraryGeneratorSchema>>(
+  // Record<string, any> so legacy @nx/angular:library options removed in Nx 22
+  // (simpleName, addModuleSpec, skipModule, ...) can still be defaulted here.
+  const defaultOptions = GetDefaultGeneratorOptions<Partial<AngularLibraryGeneratorSchema> & Record<string, any>>(
     tree, '@nx/angular:library');
   const tags = (
     defaultOptions.tags ?? ''
