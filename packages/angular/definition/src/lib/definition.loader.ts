@@ -3,6 +3,7 @@ import type { Injector } from '@angular/core';
 import {
   Inject,
   Injectable,
+  InjectOptions,
   INJECTOR
 } from '@angular/core';
 import { BaseDefinitionMetadata } from './definition.metadata';
@@ -22,7 +23,7 @@ export class DefinitionLoader {
     metadata?: Partial<BaseDefinitionMetadata>,
     injector: Injector = this.injector,
     notFoundValue?: Definition,
-    flags?: InjectFlags,
+    flags?: InjectOptions,
   ): Definition {
     if (typeof definitionIdOrInstanceOrInjectionToken === 'string') {
       throw new RxapDefinitionError(

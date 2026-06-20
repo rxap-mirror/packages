@@ -41,7 +41,7 @@ export const IdentityPlatformHttpInterceptor: HttpInterceptorFn = (req: HttpRequ
       isDefined(),
       switchMap(idTokenValue => next(req.clone({
         setHeaders: {
-          idToken: idTokenValue,
+          idToken: idTokenValue as string,
         },
       })).pipe(
         catchError(error => {

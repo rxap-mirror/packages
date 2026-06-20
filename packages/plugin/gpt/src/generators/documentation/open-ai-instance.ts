@@ -1,5 +1,4 @@
-import { OpenAI } from 'openai';
-import { ClientOptions } from 'openai/src';
+import { ClientOptions, OpenAI } from 'openai';
 
 let OPENAI_INSTANCE: OpenAI | null = null;
 

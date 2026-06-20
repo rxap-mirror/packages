@@ -147,9 +147,6 @@ export class WindowService {
       windowConfig.viewContainerRef ??
       null,
       injector,
-      injector.get(ComponentFactoryResolver, null, { optional: true }) ??
-      windowConfig.componentFactoryResolver ??
-      this.componentFactoryResolver,
     );
 
     overlayRef.attach(containerPortal);

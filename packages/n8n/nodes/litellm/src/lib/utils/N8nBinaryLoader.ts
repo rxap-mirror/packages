@@ -100,11 +100,11 @@ export class N8nBinaryLoader {
 			const binaryBuffer = await this.context.helpers.binaryToBuffer(
 				await this.context.helpers.getBinaryStream(binaryData.id),
 			);
-			return new Blob([binaryBuffer], {
+			return new Blob([binaryBuffer as BlobPart], {
 				type: mimeType,
 			});
 		} else {
-			return new Blob([Buffer.from(binaryData.data, BINARY_ENCODING)], {
+			return new Blob([Buffer.from(binaryData.data, BINARY_ENCODING) as BlobPart], {
 				type: mimeType,
 			});
 		}
