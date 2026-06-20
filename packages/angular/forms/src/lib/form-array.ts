@@ -230,7 +230,7 @@ export class RxapFormArray<T = any,
     this.updateValueAndValidity();
   }
 
-  public markAllAsDirty(): void {
+  public override markAllAsDirty(): void {
     markAllDirty(this);
   }
 

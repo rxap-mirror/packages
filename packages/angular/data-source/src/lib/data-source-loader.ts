@@ -1,5 +1,6 @@
 import {
   Injectable,
+  InjectOptions,
   Injector
 } from '@angular/core';
 import {
@@ -22,7 +23,7 @@ export class DataSourceLoader extends DefinitionLoader {
     metadata?: Partial<BaseDataSourceMetadata>,
     injector?: Injector,
     notFoundValue?: BaseDataSource<Data>,
-    flags?: InjectFlags,
+    flags?: InjectOptions,
   ): Observable<Data> {
     return this
       .load(
