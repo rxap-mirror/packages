@@ -4,14 +4,14 @@
   "description": "Provides base classes and utilities for bootstrapping Angular applications, including module-based and standalone components, with configuration loading and environment management. It offers abstractions for common setup tasks, such as dynamic module federation and environment updates. This package simplifies the initialization process for Angular projects.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/angular": "^20.5.0",
-    "@nx/devkit": "20.5.0",
+    "@nx/angular": "^21.6.9",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^19.2.1",
-    "@angular/platform-browser": "^19.2.1",
-    "@angular/platform-browser-dynamic": "^19.2.1",
+    "@angular/core": "^20.3.9",
+    "@angular/platform-browser": "^20.3.9",
+    "@angular/platform-browser-dynamic": "^20.3.9",
     "@rxap/config": "^20.0.0",
     "@rxap/environment": "^20.0.0",
     "ngx-logger": "^5.0.12"

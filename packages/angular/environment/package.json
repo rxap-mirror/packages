@@ -4,12 +4,12 @@
   "description": "Provides utilities and components for managing application environments in Angular, including determining environment names, release versions, and providing environment-specific configurations. It offers a component to display environment information and functions to update the environment with build details. The package also includes an init generator for setting up peer dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^19.2.1",
-    "@angular/core": "^19.2.1"
+    "@angular/common": "^20.3.9",
+    "@angular/core": "^20.3.9"
   },
   "author": {
     "name": "Merzough Münker",

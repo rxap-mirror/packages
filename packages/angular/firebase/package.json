@@ -4,12 +4,12 @@
   "description": "This package provides Angular modules and services to integrate with Firebase, including App Check, Messaging, and Storage. It offers providers for configuring Firebase options and emulators, as well as an HTTP interceptor for App Check. The package also includes utilities for requesting cloud messaging tokens and displaying notifications.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^19.2.1",
-    "@angular/core": "^19.2.1",
+    "@angular/common": "^20.3.9",
+    "@angular/core": "^20.3.9",
     "@angular/fire": "^7.5.0",
     "@rxap/config": "^20.0.0",
     "@rxap/rxjs": "^1.1.17",

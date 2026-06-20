@@ -4,12 +4,12 @@
   "description": "This package coerces peer dependencies for `@rxap` packages, ensuring they are correctly installed in the project. It also runs init generators for peer dependencies that have them. It can also move the package from devDependencies to dependencies or vice versa based on the package name.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^19.2.1",
-    "@angular/material": "^19.1.1",
+    "@angular/core": "^20.3.9",
+    "@angular/material": "^20.2.9",
     "@rxap/browser-utilities": "^1.1.14",
     "@rxap/ngx-memory": "^20.0.0",
     "@rxap/rxjs": "^1.1.17",

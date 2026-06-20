@@ -4,12 +4,12 @@
   "description": "Provides a configuration service for Angular applications, allowing you to load and manage application settings from various sources such as static files, URLs, local storage, and URL parameters. It supports schema validation and provides utilities for accessing configuration values. This package also includes testing utilities for mocking and managing configurations in test environments.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^19.2.1",
-    "@angular/core": "^19.2.1",
+    "@angular/common": "^20.3.9",
+    "@angular/core": "^20.3.9",
     "@rxap/environment": "^20.0.0",
     "@rxap/utilities": "^16.5.1",
     "rxjs": "^7.8.1"

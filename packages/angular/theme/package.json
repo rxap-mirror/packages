@@ -5,12 +5,12 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@ctrl/tinycolor": "^4.0.2",
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^19.1.1",
-    "@angular/core": "^19.2.1",
+    "@angular/cdk": "^20.2.9",
+    "@angular/core": "^20.3.9",
     "@rxap/config": "^20.0.0",
     "@rxap/ngx-pub-sub": "^20.0.0",
     "@rxap/rxjs": "^1.1.17",
