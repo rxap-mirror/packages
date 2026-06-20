@@ -4,12 +4,12 @@
   "description": "This package provides internationalization (i18n) support for Angular applications, including services for language management, an HTTP interceptor for setting the `Accept-Language` header, and a language selector component. It allows you to set and manage the current language of your application, redirect users based on their language preference, and configure available languages. The package also includes an init generator to handle peer dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^19.2.1",
-    "@angular/core": "^19.2.1",
+    "@angular/common": "^20.3.9",
+    "@angular/core": "^20.3.9",
     "@rxap/config": "^20.0.0",
     "@rxap/ngx-user": "^20.0.0",
     "rxjs": "^7.8.1"

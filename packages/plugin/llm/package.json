@@ -4,14 +4,14 @@
   "description": "This npm package provides tools for generating documentation and package descriptions using large language models (LLMs). It includes functionality for cleaning JSDoc comments, counting tokens, composing context for LLM prompts, and integrating with services like OpenAI. The package also offers generators for automatically adding documentation to TypeScript code and creating package descriptions based on project source code.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "@rxap/workspace-ts-morph": "^21.0.0",
     "@rxap/workspace-utilities": "^21.0.0",
     "colors": "1.4.0",
     "openai": "^4.82.0",
     "tiktoken": "^1.0.20",
     "ts-morph": "18.0.0",
-    "tslib": "^2.3.0",
+    "tslib": "^2.6.2",
     "xml2js": "^0.6.2"
   },
   "author": {

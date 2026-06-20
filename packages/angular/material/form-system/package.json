@@ -4,16 +4,16 @@
   "description": "Provides directives and a module to enhance Angular Material forms. It includes features such as displaying control errors, clearing input fields, handling required fields, and managing form field visibility based on defined conditions. The package also offers a form controls component with built-in reset, cancel, and submit functionalities.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^19.1.1",
-    "@angular/common": "^19.2.1",
-    "@angular/core": "^19.2.1",
-    "@angular/forms": "^19.2.1",
-    "@angular/material": "^19.1.1",
-    "@angular/router": "^19.2.1",
+    "@angular/cdk": "^20.2.9",
+    "@angular/common": "^20.3.9",
+    "@angular/core": "^20.3.9",
+    "@angular/forms": "^20.3.9",
+    "@angular/material": "^20.2.9",
+    "@angular/router": "^20.3.9",
     "@rxap/form-system": "^20.0.0",
     "@rxap/forms": "^20.0.0",
     "@rxap/mixin": "^16.0.16-dev.1",

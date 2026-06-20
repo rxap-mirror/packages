@@ -4,17 +4,17 @@
   "description": "This package provides Angular components and services to check and display the status of various services. It includes a status indicator component, a status check component, a service to retrieve status information, and a guard to protect routes based on service status. It also provides utilities for configuring status check intervals and integrating with OpenAPI.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "20.5.0",
+    "@nx/devkit": "21.6.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^19.2.1",
-    "@angular/core": "^19.2.1",
-    "@angular/material": "^19.1.1",
-    "@angular/router": "^19.2.1",
+    "@angular/common": "^20.3.9",
+    "@angular/core": "^20.3.9",
+    "@angular/material": "^20.2.9",
+    "@angular/router": "^20.3.9",
     "@rxap/config": "^20.0.0",
     "@rxap/open-api": "^20.0.0",
-    "@sentry/angular": "^8.18.0",
+    "@sentry/angular": "^10.10.0",
     "rxjs": "^7.8.1"
   },
   "author": {
