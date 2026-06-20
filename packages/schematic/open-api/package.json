@@ -1,5 +1,5 @@
 {
-  "version": "19.0.7-dev.1",
+  "version": "20.0.0",
   "name": "@rxap/schematics-open-api",
   "description": "This package provides schematics for generating code from OpenAPI specifications. It includes utilities for loading OpenAPI configurations, generating components, parameters, request bodies, and responses, as well as generating Angular directives and NestJS commands based on the OpenAPI schema. It simplifies the process of creating data access layers and UI components from API definitions.\n",
   "license": "GPL-3.0-or-later",
