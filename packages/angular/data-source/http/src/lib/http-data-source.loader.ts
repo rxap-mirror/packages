@@ -1,6 +1,7 @@
 import {
   Inject,
   Injectable,
+  InjectOptions,
   Injector
 } from '@angular/core';
 import { HttpDataSource } from './http.data-source';
@@ -27,7 +28,7 @@ export class HttpDataSourceLoader {
     metadata?: Partial<HttpDataSourceMetadata>,
     injector?: Injector,
     notFoundValue?: HttpDataSource<Data>,
-    flags?: InjectFlags,
+    flags?: InjectOptions,
   ): Promise<Data> {
     const dataSource = this
       .dataSourceLoader
