@@ -1,19 +1,19 @@
 {
-  "version": "20.0.0",
+  "version": "21.0.0",
   "name": "@rxap/ngx-changelog",
   "description": "This package provides Angular components and services to display changelogs within an application. It fetches changelog data from a remote source and presents it in a user-friendly dialog or component, allowing users to view updates and changes. The package also includes features to remember the last viewed version and disable the changelog display.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "21.6.9",
+    "@nx/devkit": "22.7.5",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^20.3.9",
-    "@angular/core": "^20.3.9",
-    "@angular/forms": "^20.3.9",
-    "@rxap/directives": "^20.0.0",
-    "@rxap/environment": "^20.0.0",
-    "@rxap/open-api": "^20.0.0",
+    "@angular/common": "^21.2.9",
+    "@angular/core": "^21.2.9",
+    "@angular/forms": "^21.2.9",
+    "@rxap/directives": "^21.0.0",
+    "@rxap/environment": "^21.0.0",
+    "@rxap/open-api": "^21.0.0",
     "ngx-markdown": "^19.1.0",
     "rxjs": "^7.8.1"
   },

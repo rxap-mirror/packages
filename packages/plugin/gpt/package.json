@@ -1,13 +1,13 @@
 {
-  "version": "21.0.0",
+  "version": "22.0.0",
   "name": "@rxap/plugin-gpt",
   "description": "This package provides a generator to add JSDoc documentation to TypeScript code using the OpenAI API. It can process functions and methods, and composes a context for the AI to generate accurate documentation. The generator also includes utilities for cleaning up JSDoc comments and managing OpenAI API interactions.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "21.6.9",
+    "@nx/devkit": "22.7.5",
     "@rxap/ts-morph": "^1.7.0-dev.1",
-    "@rxap/workspace-ts-morph": "^21.0.0",
-    "@rxap/workspace-utilities": "^21.0.0",
+    "@rxap/workspace-ts-morph": "^22.0.0",
+    "@rxap/workspace-utilities": "^22.0.0",
     "openai": "^4.82.0",
     "tiktoken": "^1.0.20",
     "ts-morph": "18.0.0",
