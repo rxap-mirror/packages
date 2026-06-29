@@ -62,12 +62,36 @@ export class RxapErrorHandler implements ErrorHandler {
 
   protected readonly injector = inject(INJECTOR);
 
+  private isLoadChunkError(error: unknown) {
+    if (!error) {
+      return false;
+    }
+    let message = '';
+    if (typeof error === 'string') {
+      message = error;
+    } else if (typeof error === 'object') {
+      if ('name' in error && typeof error.name === 'string' && /ChunkLoadError/i.test(error.name)) {
+        return true;
+      } else if ('message' in error && typeof error.message === 'string') {
+        message = error.message;
+      }
+    }
+    return [
+      /Loading chunk [\d]+ failed/i,
+    ].some((regex) => regex.test(message));
+  }
+
   /**
    * Method called for every value captured through the ErrorHandler
    */
   public handleError(errorCandidate: unknown): void {
 
     let error = errorCandidate;
+
+    if (this.isLoadChunkError(error)) {
+      console.warn('Old application version detected. Reloading the page to update the application.');
+      window.location.reload();
+    }
 
     // Try to unwrap zone.js error.
     // https://github.com/angular/angular/blob/master/packages/core/src/util/errors.ts
