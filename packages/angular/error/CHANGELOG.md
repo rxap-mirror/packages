@@ -1,3 +1,13 @@
+## 19.3.0-dev.1 (2026-06-30)
+
+### 🚀 Features
+
+- add chuck loading error capture
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.3.0-dev.0 (2026-06-19)
 
 ### 🚀 Features
