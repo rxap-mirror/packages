@@ -7,6 +7,22 @@ include:
   - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.3.2-edge.2
     inputs:
       version: "6.3.2-edge.2"
+      workflow_rules:
+        # skip realseit pipelines. currently the group terraform will add the release it nighlity pipeline schdule
+        # this will trigger a nighlty run with RELEASE_IT=true, but this repo does not use release-it but nx release
+        # so this will trigger a full pipeline run per night and drain the CI credits
+        - if: '$RELEASE_IT == "true"'
+          when: never
+        - if: '$CI_COMMIT_BRANCH'
+          variables:
+            ENVIRONMENT_NAME: 'branch/$CI_COMMIT_REF_SLUG'
+        - if: '$CI_COMMIT_TAG'
+          variables:
+            ENVIRONMENT_NAME: 'release/$CI_COMMIT_TAG'
+        - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+          variables:
+            ENVIRONMENT_NAME: 'review/$CI_MERGE_REQUEST_IID'
+        - when: always
       setup_tags:
         - setup
       run_many_tags:
@@ -35,6 +51,8 @@ workspace:typedoc:
       - docs
     expire_in: 1 week
   rules:
+    - if: '$RELEASE_IT == "true"'
+      when: never
     - if: '$RXAP_COMPOSE == "true"'
       when: never
     - if: '$NX_MIGRATE_PACKAGE == "true"'
