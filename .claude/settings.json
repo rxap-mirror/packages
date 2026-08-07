@@ -1,10 +1,29 @@
 {
+  "extraKnownMarketplaces": {
+    "enduradocs": {
+      "source": {
+        "source": "url",
+        "url": "https://gitlab.com/enduradocs/claude-plugins.git"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "gitlab-workflow@enduradocs": true,
+    "git-workflow@enduradocs": true
+  },
   "permissions": {
     "allow": [
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(yarn jest:*)",
-      "Bash(yarn nx:*)"
+      "Bash(glab auth status)",
+      "Bash(glab issue list:*)",
+      "Bash(glab issue view:*)",
+      "Bash(glab mr list:*)",
+      "Bash(glab mr view:*)",
+      "Bash(glab label list:*)",
+      "Bash(glab api user)",
+      "Bash(jq:*)"
     ]
   },
   "enableAllProjectMcpServers": true
