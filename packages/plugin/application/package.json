@@ -8,7 +8,7 @@
     "@rxap/plugin-utilities": "^22.0.0",
     "@rxap/utilities": "^16.5.1-dev.1",
     "@rxap/workspace-utilities": "^22.0.0",
-    "handlebars": "4.7.8",
+    "handlebars": "^4.7.8",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },
