@@ -11250,7 +11250,7 @@ __metadata:
     "@rxap/workspace-ts-morph": ^22.0.0
     "@rxap/workspace-utilities": ^22.0.0
     colors: 1.4.0
-    handlebars: 4.7.8
+    handlebars: ^4.7.8
     semver: 7.5.3
     tailwindcss: ^3.4.4
     ts-morph: 18.0.0
@@ -11267,7 +11267,7 @@ __metadata:
     "@rxap/plugin-utilities": ^22.0.0
     "@rxap/utilities": ^16.5.1-dev.1
     "@rxap/workspace-utilities": ^22.0.0
-    handlebars: 4.7.8
+    handlebars: ^4.7.8
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -11369,7 +11369,7 @@ __metadata:
     "@rxap/workspace-ts-morph": ^22.0.0
     "@rxap/workspace-utilities": ^22.0.0
     colors: 1.4.0
-    handlebars: 4.7.8
+    handlebars: ^4.7.8
     nx: 22.7.5
     semver: 7.5.3
     ts-morph: 18.0.0
@@ -11910,7 +11910,7 @@ __metadata:
     firebase-admin: 10.3.0
     form-data: ^4.0.1
     glob: 10.3.10
-    handlebars: 4.7.8
+    handlebars: ^4.7.8
     helmet: 8.2.0
     html-webpack-plugin: 5.6.0
     husky: 8.0.3
@@ -23398,24 +23398,6 @@ __metadata:
   version: 2.0.1
   resolution: "handle-thing@npm:2.0.1"
   checksum: 68071f313062315cd9dce55710e9496873945f1dd425107007058fc1629f93002a7649fcc3e464281ce02c7e809a35f5925504ab8105d972cf649f1f47cb7d6c
-  languageName: node
-  linkType: hard
-
-"handlebars@npm:4.7.8":
-  version: 4.7.8
-  resolution: "handlebars@npm:4.7.8"
-  dependencies:
-    minimist: ^1.2.5
-    neo-async: ^2.6.2
-    source-map: ^0.6.1
-    uglify-js: ^3.1.4
-    wordwrap: ^1.0.0
-  dependenciesMeta:
-    uglify-js:
-      optional: true
-  bin:
-    handlebars: bin/handlebars
-  checksum: 00e68bb5c183fd7b8b63322e6234b5ac8fbb960d712cb3f25587d559c2951d9642df83c04a1172c918c41bcfc81bfbd7a7718bbce93b893e0135fc99edea93ff
   languageName: node
   linkType: hard
 

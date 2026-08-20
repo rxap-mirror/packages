@@ -90,7 +90,7 @@
     "firebase-admin": "10.3.0",
     "form-data": "^4.0.1",
     "glob": "10.3.10",
-    "handlebars": "4.7.8",
+    "handlebars": "^4.7.8",
     "helmet": "8.2.0",
     "ignore": "5.2.4",
     "joi": "17.9.2",
