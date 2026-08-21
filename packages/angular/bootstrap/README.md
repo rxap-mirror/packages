@@ -8,6 +8,7 @@ Provides base classes and utilities for bootstrapping Angular applications, incl
 ![NPM](https://img.shields.io/npm/l/@rxap/ngx-bootstrap)
 
 - [Installation](#installation)
+- [Guides](#guides)
 - [Generators](#generators)
   - [init](#init)
 
@@ -25,6 +26,25 @@ yarn add @angular/core @angular/platform-browser @angular/platform-browser-dynam
 ```bash
 yarn nx g @rxap/ngx-bootstrap:init
 ```
+# Guides
+
+## Module-based bootstrap
+
+`ModuleApplication` lives in a secondary entry point, `@rxap/ngx-bootstrap/module`, instead of the
+package root. This keeps `@angular/platform-browser-dynamic` (and therefore `@angular/compiler`) out
+of the production bundle of consumers that only use `StandaloneApplication`.
+
+```ts
+import { ModuleApplication } from '@rxap/ngx-bootstrap/module';
+```
+
+`@angular/platform-browser-dynamic` is an optional peer dependency — install it only if you import
+from `@rxap/ngx-bootstrap/module`:
+
+```bash
+yarn add @angular/platform-browser-dynamic
+```
+
 # Generators
 
 ## init

@@ -16,6 +16,11 @@
     "@rxap/environment": "^19.2.0-dev.0",
     "ngx-logger": "^5.0.12"
   },
+  "peerDependenciesMeta": {
+    "@angular/platform-browser-dynamic": {
+      "optional": true
+    }
+  },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"

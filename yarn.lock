@@ -9942,6 +9942,9 @@ __metadata:
     "@rxap/config": ^19.3.0-dev.3
     "@rxap/environment": ^19.2.0-dev.0
     ngx-logger: ^5.0.12
+  peerDependenciesMeta:
+    "@angular/platform-browser-dynamic":
+      optional: true
   languageName: unknown
   linkType: soft
 

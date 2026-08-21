@@ -8,7 +8,7 @@ import {
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ConfigLoadOptions } from '@rxap/config';
 import { Environment } from '@rxap/environment';
-import { Application } from './application';
+import { Application } from '@rxap/ngx-bootstrap';
 
 export interface ModuleApplicationConfig {
   extraProviders?: StaticProvider[] | undefined;
