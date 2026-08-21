@@ -34,6 +34,9 @@ yarn nx g @rxap/ngx-bootstrap:init
 package root. This keeps `@angular/platform-browser-dynamic` (and therefore `@angular/compiler`) out
 of the production bundle of consumers that only use `StandaloneApplication`.
 
+**Breaking change:** `ModuleApplication` is no longer exported from `@rxap/ngx-bootstrap`. Consumers
+importing it from the package root must switch to the subpath below.
+
 ```ts
 import { ModuleApplication } from '@rxap/ngx-bootstrap/module';
 ```
