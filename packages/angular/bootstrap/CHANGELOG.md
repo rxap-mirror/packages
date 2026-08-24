@@ -1,3 +1,7 @@
+## 19.1.0-dev.1 (2026-08-24)
+
+This was a version bump only for angular-bootstrap to align it with other projects, there were no code changes.
+
 ## 19.1.0-dev.0 (2026-06-19)
 
 ### 🚀 Features
