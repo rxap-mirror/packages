@@ -5,7 +5,7 @@ set -e
 
 # get the list of workspace packages as json array
 echo "List of workspace packages:"
-projects=$(yarn nx show projects --json)
+projects=$(yarn nx show projects --json | tail -n 1)
 
 # remove the items "workspace" and "workspace-tools" and "angular" from the json array
 echo "Remove the items 'workspace' and 'workspace-tools' and 'angular' from the list of workspace packages:"

@@ -93,7 +93,7 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
     project.root ??= dirname(path).replace(/^\//, '');
     return project;
   }
-  console.log(`Not a nx generator tree. Fall back to search file. for project ${projectName}`.yellow);
+  console.error(`Not a nx generator tree. Fall back to search file. for project ${projectName}`.yellow);
   for (const fileEntry of SearchFile(tree)) {
     if (!fileEntry.path.endsWith('project.json')) {
       continue;
