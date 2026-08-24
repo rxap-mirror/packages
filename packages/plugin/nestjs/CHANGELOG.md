@@ -1,3 +1,12 @@
+## 20.2.2-dev.0 (2026-08-24)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.2
+- Updated workspace-ts-morph to 19.1.15-dev.0
+- Updated plugin-utilities to 20.0.7-dev.0
+- Updated plugin-library to 20.3.3-dev.0
+
 ## 20.2.1-dev.4 (2026-06-19)
 
 ### 🩹 Fixes

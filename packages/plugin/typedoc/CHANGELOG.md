@@ -1,3 +1,10 @@
+## 20.4.2-dev.0 (2026-08-24)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1-dev.2
+- Updated plugin-utilities to 20.0.7-dev.0
+
 ## 20.4.1-dev.1 (2026-06-19)
 
 ### 🩹 Fixes

@@ -1,3 +1,13 @@
+## 19.9.1-dev.2 (2026-08-24)
+
+### 🩹 Fixes
+
+- stop polluting nx json output with a stray console.log
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.9.1-dev.1 (2026-06-19)
 
 ### 🩹 Fixes
