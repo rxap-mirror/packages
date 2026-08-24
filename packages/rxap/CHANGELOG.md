@@ -1,3 +1,17 @@
+## 20.0.4-dev.0 (2026-08-24)
+
+### 🩹 Fixes
+
+- stop polluting nx json output with a stray console.log
+- update package groups
+- update package groups
+- update package groups
+- update package groups
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
