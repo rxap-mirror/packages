@@ -1,3 +1,13 @@
+## 1.2.1-dev.3 (2026-08-27)
+
+### 🩹 Fixes
+
+- **fs:** clear cached rejected promise in AsyncVirtualFile.data
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 1.2.1-dev.2 (2026-06-19)
 
 ### 🩹 Fixes
