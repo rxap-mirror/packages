@@ -332,6 +332,10 @@ export class AsyncVirtualFile implements AsyncVirtualFileLike {
       this._dataPromise = data.then((data) => {
         this._byteLength = data.byteLength;
         return data;
+      }).catch((error) => {
+        // never cache a rejected promise, otherwise every later access fails forever
+        this._dataPromise = null;
+        throw error;
       });
     }
     return this._dataPromise;

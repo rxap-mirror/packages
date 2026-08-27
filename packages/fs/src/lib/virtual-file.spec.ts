@@ -1,4 +1,4 @@
-import { VirtualFile, VirtualFileLike } from './virtual-file';
+import { AsyncVirtualFile, VirtualFile, VirtualFileLike } from './virtual-file';
 
 describe('VirtualFile', () => {
 
@@ -33,6 +33,26 @@ describe('VirtualFile', () => {
 
     expect(cloned.name).toBe('name.txt');
     expect(cloned.fullName).toBe('path/to/name.txt');
+
+  });
+
+});
+
+describe('AsyncVirtualFile', () => {
+
+  it('should retry the dataFactory after a failed read instead of caching the rejection', async () => {
+
+    let attempt = 0;
+    const file = new AsyncVirtualFile('a.txt', 'a.txt', () => {
+      attempt++;
+      return attempt === 1
+        ? Promise.reject(new Error('transient'))
+        : Promise.resolve(new Uint8Array([ 1, 2, 3 ]).buffer);
+    });
+
+    await expect(file.data).rejects.toThrow('transient');
+    await expect(file.data).resolves.toEqual(new Uint8Array([ 1, 2, 3 ]).buffer);
+    expect(attempt).toBe(2);
 
   });
 
