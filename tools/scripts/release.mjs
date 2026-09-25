@@ -15,13 +15,23 @@
  *   3. validate                (build/test/lint)
  *   4. version (source)        (releaseVersion — bumps source package.json + pins ^deps)
  *   5. source mutations        (update-package-group, readme, lockfile)
- *   6. changelog + tag + commit (releaseChangelog — writes CHANGELOG.md, single commit, tags)
+ *   6. changelog + commit + tag (releaseChangelog — writes CHANGELOG.md, single commit; the
+ *                              tags are created per project by this script, see tagReleases)
  *   7. production build → dist (docs + build; dist inherits version + packageGroup + CHANGELOG)
  *   8. dist transforms         (theme export, strip the `workspace` marker dep)
  *   9. publish                 (releasePublish — from dist/{projectRoot}, with dist-tag)
  *  10. GitLab releases         (custom — Nx 20.5.0 cannot create GitLab releases natively)
  *  11. rxap umbrella pass      (update-package-group → version → build → publish, group "rxap")
  *  12. push                    (git push --follow-tags)
+ *  13. report                  (per-project failures of steps 6-12)
+ *
+ * Failure handling: once the release commit exists (step 6), a failure of a single project in
+ * the tag, publish or GitLab release step does NOT abort the run. It is recorded, the remaining
+ * projects are released, the commit + tags are always pushed, and a report is printed at the end
+ * (exit code 1 if anything failed). Aborting there would leave the release commit and its tags
+ * local only while packages are already on npm; after the next reset those tags are orphaned and
+ * collide with the recomputed version on the following run
+ * (`fatal: tag '@rxap/<pkg>@<version>' already exists`).
  *
  * Flags:
  *   --dry-run         thread dryRun through nx; skip all git/publish/GitLab side effects
@@ -79,10 +89,49 @@ const C = {
 const log = (msg) => console.log(C.blue(`\n▶ ${msg}`));
 const ok = (msg) => console.log(C.green(`✔ ${msg}`));
 const warn = (msg) => console.warn(C.yellow(`⚠ ${msg}`));
+// set once the release commit exists — from then on an abort must still push commit + tags
+let releaseCommitted = false;
 const die = (msg) => {
   console.error(C.red(`✗ ${msg}`));
+  if (releaseCommitted && !DRY_RUN) {
+    releaseCommitted = false; // no recursion if the push itself fails
+    console.error(C.yellow('  Pushing the release commit and tags before aborting so they are not orphaned.'));
+    try {
+      execSync('git push --follow-tags', { stdio: 'inherit', env: process.env });
+    } catch {
+      console.error(C.red('  git push --follow-tags failed — push the release commit and tags manually.'));
+    }
+    printReport();
+  }
   process.exit(1);
 };
+
+// per-project failures after the release commit exists — reported at the end instead of aborting
+const failures = [];
+const fail = (phase, project, reason) => {
+  failures.push({ phase, project, reason });
+  console.error(C.red(`✗ [${phase}] ${project}: ${reason}`));
+};
+
+function printReport() {
+  log('Release report');
+  if (failures.length === 0) {
+    ok('All steps succeeded.');
+    return;
+  }
+  console.error(C.red(`✗ ${failures.length} failure(s):`));
+  for (const { phase, project, reason } of failures) {
+    console.error(C.red(`  - [${phase}] ${project}: ${reason}`));
+  }
+  if (failures.some((f) => f.phase === 'publish' || f.phase === 'tag')) {
+    console.error(
+      C.yellow(
+        '  Fix the cause, then retry the failed publishes with `yarn release --publish-only` ' +
+          '(already published versions are reported as failures by npm and can be ignored).',
+      ),
+    );
+  }
+}
 
 // ---------------------------------------------------------------------------
 // shell helpers
@@ -268,12 +317,12 @@ async function createGitLabReleases(projectChangelogs) {
         }),
       });
       if (!res.ok) {
-        warn(`GitLab release ${tagName} failed: ${res.status} ${await res.text()}`);
+        fail('gitlab-release', project, `${tagName}: ${res.status} ${await res.text()}`);
       } else {
         ok(`GitLab release created: ${tagName}`);
       }
     } catch (e) {
-      warn(`GitLab release ${tagName} errored: ${e?.message ?? e}`);
+      fail('gitlab-release', project, `${tagName}: ${e?.message ?? e}`);
     }
   }
 }
@@ -309,8 +358,8 @@ async function main() {
     log('Publish-only: publishing existing dist');
     await publishGroup(releasePublish, 'packages', mode);
     if (!SKIP_UMBRELLA) await publishGroup(releasePublish, 'rxap', mode);
-    if (!DRY_RUN) run('git push --follow-tags');
-    return ok('Publish-only run complete.');
+    if (!DRY_RUN) pushRelease();
+    return;
   }
 
   if (DRY_RUN) {
@@ -375,12 +424,14 @@ async function main() {
     gitCommit: true, // commits ALL staged files (nx `git commit` is not pathspec-limited)
     gitCommitMessage: 'chore(release): version',
     stageChanges: true,
-    gitTag: true,
+    gitTag: false, // nx aborts on the first existing tag — tagReleases tags per project instead
     gitPush: false,
     dryRun: DRY_RUN,
     verbose: VERBOSE,
     firstRelease: FIRST_RELEASE,
   });
+  releaseCommitted = !DRY_RUN;
+  const untagged = tagReleases(changelogResult.projectChangelogs);
 
   // ---- 7. production build → dist (carries bumped version + packageGroup + CHANGELOG) ----
   if (!DRY_RUN && !SKIP_BUILD) {
@@ -403,46 +454,114 @@ async function main() {
   }
 
   // ---- 9. publish the `packages` group from dist ----
-  await publishGroup(releasePublish, 'packages', mode);
+  // a project whose tag could not be created is not published: its version is ambiguous
+  const publishable = changed.filter((p) => !untagged.includes(p));
+  const packagesFailed = await publishGroup(releasePublish, 'packages', mode, publishable);
 
   // ---- 10. GitLab releases (custom) ----
   log('Create GitLab releases');
   await createGitLabReleases(changelogResult.projectChangelogs);
 
   // ---- 11. rxap umbrella pass ----
-  if (!SKIP_UMBRELLA) {
-    await releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePublish, mode });
-  } else {
+  if (SKIP_UMBRELLA) {
     warn('Skipping rxap umbrella pass (--skip-umbrella).');
+  } else if (untagged.length > 0 || packagesFailed.length > 0) {
+    // the umbrella packageGroup would pin member versions that are not on the registry
+    fail('umbrella', 'rxap', 'skipped because member packages failed to tag or publish');
+  } else {
+    await releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePublish, mode });
   }
 
-  // ---- 12. push commit + tags ----
-  log('Push commit and tags');
-  if (!DRY_RUN) run('git push --follow-tags');
-
-  ok('Release complete.');
+  // ---- 12. push commit + tags — always, so the release commit and its tags never stay local ----
+  if (!DRY_RUN) pushRelease();
 }
 
-// publish a release group from dist and abort on any per-project failure
-async function publishGroup(releasePublish, group, mode) {
-  log(`Publish (${group} group) → ${mode.registry} @${mode.distTag}`);
-  const result = await releasePublish({
-    groups: [group],
-    tag: mode.distTag,
-    registry: mode.registry,
-    dryRun: DRY_RUN,
-    verbose: VERBOSE,
-    firstRelease: FIRST_RELEASE,
-  });
-  const failed = Object.entries(result ?? {}).filter(([, r]) => r?.code !== 0);
-  if (failed.length > 0) {
-    die(
-      `Publish failed for ${failed.length} project(s) in group "${group}": ` +
-        failed.map(([p, r]) => `${p}(code ${r.code})`).join(', ') +
-        `. Re-run with --publish-only after fixing.`,
-    );
+function pushRelease() {
+  log('Push commit and tags');
+  if (!run('git push --follow-tags', { allowFailure: true })) {
+    fail('push', '(all)', 'git push --follow-tags failed — push the release commit and tags manually');
   }
-  ok(`Published group "${group}".`);
+}
+
+// Create one annotated tag per released project (same format as nx). A failure only affects that
+// project. Returns the projects that could not be tagged.
+function tagReleases(projectChangelogs) {
+  log('Tag release commit');
+  const untagged = [];
+  const head = capture('git rev-parse HEAD');
+  for (const [project, { releaseVersion }] of Object.entries(projectChangelogs ?? {})) {
+    const tag = releaseVersion?.gitTag;
+    if (!tag) {
+      continue;
+    }
+    if (DRY_RUN) {
+      console.log(`  [dry-run] would tag ${tag}`);
+      continue;
+    }
+    let existing = '';
+    try {
+      existing = capture(`git rev-parse --verify --quiet "refs/tags/${tag}^{commit}"`);
+    } catch {
+      // tag does not exist
+    }
+    if (existing === head) {
+      ok(`Tag already on the release commit: ${tag}`);
+      continue;
+    }
+    if (existing) {
+      fail(
+        'tag',
+        project,
+        `tag ${tag} already exists on ${existing.slice(0, 9)} (not this release commit) — ` +
+          `left over from an earlier aborted release? Not published. ` +
+          `Check \`git tag -d ${tag}\` / \`npm view @rxap/${project} versions\`.`,
+      );
+      untagged.push(project);
+      continue;
+    }
+    try {
+      execSync(`git tag --annotate "${tag}" --message "${tag}"`, { stdio: 'pipe' });
+      ok(`Tagged ${tag}`);
+    } catch (e) {
+      fail('tag', project, `git tag ${tag} failed: ${e?.stderr?.toString().trim() || e?.message}`);
+      untagged.push(project);
+    }
+  }
+  return untagged;
+}
+
+// publish a release group from dist. nx runs every project's publish (no bail); failures are
+// recorded for the final report instead of aborting. Returns the failed projects.
+async function publishGroup(releasePublish, group, mode, projects) {
+  log(`Publish (${group} group) → ${mode.registry} @${mode.distTag}`);
+  if (projects && projects.length === 0) {
+    warn(`No publishable projects in group "${group}".`);
+    return [];
+  }
+  let result;
+  try {
+    result = await releasePublish({
+      groups: projects ? undefined : [group],
+      projects,
+      tag: mode.distTag,
+      registry: mode.registry,
+      dryRun: DRY_RUN,
+      verbose: VERBOSE,
+      firstRelease: FIRST_RELEASE,
+    });
+  } catch (e) {
+    fail('publish', `group ${group}`, e?.message ?? String(e));
+    return projects ?? [group];
+  }
+  const failed = Object.entries(result ?? {})
+    .filter(([, r]) => r?.code !== 0)
+    .map(([p, r]) => {
+      fail('publish', p, `nx-release-publish exited with code ${r?.code} (see the output above)`);
+      return p;
+    });
+  const published = Object.keys(result ?? {}).length - failed.length;
+  ok(`Published ${published} project(s) of group "${group}".`);
+  return failed;
 }
 
 // rxap umbrella: regenerate its packageGroup against finalized member versions, then
@@ -484,12 +603,15 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
     gitCommit: true,
     gitCommitMessage: 'chore(release): version rxap',
     stageChanges: true,
-    gitTag: true,
+    gitTag: false,
     gitPush: false,
     dryRun: DRY_RUN,
     verbose: VERBOSE,
     firstRelease: FIRST_RELEASE,
   });
+  if (tagReleases(changelogResult.projectChangelogs).length > 0) {
+    return; // already reported by tagReleases
+  }
 
   if (!DRY_RUN && !SKIP_BUILD) {
     run('yarn nx reset');
@@ -504,8 +626,18 @@ main()
   // Exit explicitly: the nx/release programmatic API leaves the Nx daemon
   // socket connection open, which keeps the event loop alive and would
   // otherwise hang the process after all work is done.
-  .then(() => process.exit(0))
+  .then(() => {
+    printReport();
+    if (failures.length > 0) {
+      process.exit(1);
+    }
+    ok(DRY_RUN ? 'Dry-run complete.' : 'Release complete.');
+    process.exit(0);
+  })
   .catch((e) => {
     console.error(e);
+    if (failures.length > 0) {
+      printReport();
+    }
     die(`Release failed: ${e?.message ?? e}`);
   });
