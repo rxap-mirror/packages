@@ -1,4 +1,5 @@
 // region 
+export * from './lib/config-load-error';
 export * from './lib/config-loader.service';
 export * from './lib/config-testing-service';
 export * from './lib/config.service';

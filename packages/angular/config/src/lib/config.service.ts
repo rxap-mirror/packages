@@ -12,6 +12,11 @@ import {
   SetToObject,
 } from '@rxap/utilities';
 import { ReplaySubject } from 'rxjs';
+import {
+  ConfigLoadError,
+  ConfigLoadErrorHandler,
+  defaultConfigLoadErrorHandler,
+} from './config-load-error';
 import { RXAP_CONFIG } from './tokens';
 import { NoInferType } from './types';
 import {
@@ -65,7 +70,21 @@ export interface ConfigLoadOptions {
    * Note: fromDns is not a source itself - it resolves the CID for FROM_CID.
    */
   order?: ConfigLoadMethod[];
+  /**
+   * Replaces the default error handling (error overlay + page reload after 30 s) for failed
+   * config url requests. Used for the `url` / `fromUrls` source and for `SideLoad`.
+   *
+   * Afterwards a required url still throws and an optional url resolves with `null`. The
+   * `onError` / `onRequestError` hooks are still called.
+   */
+  errorHandler?: ConfigLoadErrorHandler;
+  /**
+   * Passed to `fetch()` for config url requests, e.g. `{ redirect: 'manual' }`.
+   */
+  requestInit?: RequestInit;
 }
+
+export type ConfigRequestOptions = Pick<ConfigLoadOptions, 'errorHandler' | 'requestInit'>;
 
 @Injectable({
   providedIn: 'root',
@@ -96,6 +115,11 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   public static LocalStorageKey = 'rxap/config/local-config';
 
   /**
+   * The errorHandler and requestInit of the last Load call. Used by SideLoad.
+   */
+  public static RequestOptions: ConfigRequestOptions = {};
+
+  /**
    * @deprecated instead use the url property of the ConfigLoadOptions
    */
   public static Urls = [];
@@ -121,6 +145,11 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
    */
   public static async Load(options?: ConfigLoadOptions, environment?: Environment): Promise<void> {
     options ??= {};
+
+    this.RequestOptions = {
+      errorHandler: options.errorHandler,
+      requestInit: options.requestInit,
+    };
 
     let config: any = deepMerge(this.Defaults, {});
 
@@ -276,7 +305,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     }).flat();
 
     for (const url of urls) {
-      const loadedConfig = await this.loadConfig(url, true, options?.schema);
+      const loadedConfig = await this.loadConfig(url, true, options?.schema, options);
       const match = url.match(/config\.([a-zA-Z0-9.\-_]+)\.json/);
       if (match) {
         SetToObject(config, match[1], loadedConfig);
@@ -370,23 +399,37 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     }
   }
 
-  private static async loadConfig<T = any>(url: string, required?: boolean, schema?: AnySchema): Promise<T | null> {
+  private static async loadConfig<T = any>(
+    url: string,
+    required = false,
+    schema?: AnySchema,
+    options: ConfigRequestOptions = this.RequestOptions,
+  ): Promise<T | null> {
 
     let config: any;
-    let response: any;
+    let response: Response;
 
     try {
-      response = await fetch(url);
+      response = await fetch(url, options.requestInit);
     } catch (error: any) {
-      const message = `Could not fetch config from '${ url }': ${ error.message }`;
-      if (required) {
-        this.handleError(error);
-        this.showError(message);
-        throw new Error(message);
-      } else {
-        console.warn(message);
-        return null;
-      }
+      return this.handleLoadError({
+        kind: 'network',
+        url,
+        required,
+        cause: error,
+        message: `Could not fetch config from '${ url }': ${ error.message }`,
+      }, options);
+    }
+
+    if (response.type === 'opaqueredirect') {
+      return this.handleLoadError({
+        kind: 'redirect',
+        url,
+        required,
+        status: response.status,
+        response,
+        message: `Config request for '${ url }' was redirected`,
+      }, options);
     }
 
     if (!response.ok) {
@@ -402,48 +445,72 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
           message = `Unauthorized to fetch config from '${ url }'`;
           break;
       }
-      if (required) {
-        this.handleRequestError(response);
-        this.showError(message);
-        throw new Error(message);
-      } else {
-        console.warn(message);
-        return null;
-      }
+      return this.handleLoadError({
+        kind: 'http',
+        url,
+        required,
+        status: response.status,
+        response,
+        message,
+      }, options);
     }
 
     try {
       config = await response.json();
     } catch (error: any) {
-      const message = `Could not parse config from '${ url }' to a json object: ${ error.message }`;
-      if (required) {
-        this.handleError(error);
-        this.showError(message);
-        throw new Error(message);
-      } else {
-        console.warn(message);
-        return null;
-      }
+      return this.handleLoadError({
+        kind: 'parse',
+        url,
+        required,
+        status: response.status,
+        response,
+        cause: error,
+        message: `Could not parse config from '${ url }' to a json object: ${ error.message }`,
+      }, options);
     }
 
     if (schema) {
       try {
         config = await schema.validateAsync(config);
       } catch (error: any) {
-        const message = `Config from '${ url }' is not valid: ${ error.message }`;
-        if (required) {
-          this.handleError(error);
-          this.showError(message);
-          throw new Error(message);
-        } else {
-          console.warn(message);
-          return null;
-        }
+        return this.handleLoadError({
+          kind: 'schema',
+          url,
+          required,
+          status: response.status,
+          response,
+          cause: error,
+          message: `Config from '${ url }' is not valid: ${ error.message }`,
+        }, options);
       }
     }
 
     return config;
 
+  }
+
+  /**
+   * Notifies the onError/onRequestError hooks (required urls only), calls the error handler and
+   * throws for required urls. Resolves with null for optional urls.
+   */
+  private static async handleLoadError(error: ConfigLoadError, options: ConfigRequestOptions): Promise<null> {
+    if (error.required) {
+      if (error.response && (error.kind === 'http' || error.kind === 'redirect')) {
+        this.handleRequestError(error.response);
+      } else {
+        this.handleError(error.cause);
+      }
+    }
+    const errorHandler = options.errorHandler ?? defaultConfigLoadErrorHandler;
+    try {
+      await errorHandler(error);
+    } catch (e: any) {
+      console.error('Error in config load error handler', e);
+    }
+    if (error.required) {
+      throw new Error(error.message);
+    }
+    return null;
   }
 
   private static LoadConfigDefaultFromUrlParam(param = 'config') {
@@ -477,13 +544,14 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     propertyPath: string,
     required?: boolean,
     schema?: AnySchema,
+    options: ConfigRequestOptions = this.RequestOptions,
   ): Promise<void> {
 
     if (!this.Config) {
       throw new Error('Config side load is only possible after the initial config load.');
     }
 
-    const config = await this.loadConfig(url, required, schema);
+    const config = await this.loadConfig(url, required, schema, options);
 
     SetObjectValue(this.Config, propertyPath, config);
 
@@ -521,32 +589,6 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       }
     }
     return configValue;
-  }
-
-  private static showError(message: string) {
-    const hasUl = document.getElementById('rxap-config-error') !== null;
-    const ul = document.getElementById('rxap-config-error') ?? document.createElement('ul');
-    ul.id = 'rxap-config-error';
-    ul.style.position = 'fixed';
-    ul.style.bottom = '16px';
-    ul.style.right = '16px';
-    ul.style.backgroundColor = 'white';
-    ul.style.padding = '32px';
-    ul.style.zIndex = '99999999';
-    ul.style.color = 'black';
-    const messageLi = document.createElement('li');
-    messageLi.innerText = message;
-    ul.appendChild(messageLi);
-    const refreshHintLi = document.createElement('li');
-    refreshHintLi.innerText = 'Please refresh the page to try again.';
-    ul.appendChild(refreshHintLi);
-    const autoRefreshHintLi = document.createElement('li');
-    autoRefreshHintLi.innerText = 'The page will refresh automatically in 30 seconds.';
-    ul.appendChild(autoRefreshHintLi);
-    if (!hasUl) {
-      document.body.appendChild(ul);
-    }
-    setTimeout(() => location.reload(), 30000);
   }
 
   public setLocalConfig(config: Config): void {
