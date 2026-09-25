@@ -1,3 +1,13 @@
+## 19.1.0-dev.2 (2026-09-25)
+
+### 🚀 Features
+
+- **config:** allow a custom error handler for failed config requests
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.1.0-dev.1 (2026-08-24)
 
 This was a version bump only for angular-bootstrap to align it with other projects, there were no code changes.

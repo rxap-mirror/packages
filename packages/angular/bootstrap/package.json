@@ -1,5 +1,5 @@
 {
-  "version": "19.1.0-dev.1",
+  "version": "19.1.0-dev.2",
   "name": "@rxap/ngx-bootstrap",
   "description": "Provides base classes and utilities for bootstrapping Angular applications, including module-based and standalone components, with configuration loading and environment management. It offers abstractions for common setup tasks, such as dynamic module federation and environment updates. This package simplifies the initialization process for Angular projects.\n",
   "license": "GPL-3.0-or-later",
@@ -12,7 +12,7 @@
     "@angular/core": "^19.2.1",
     "@angular/platform-browser": "^19.2.1",
     "@angular/platform-browser-dynamic": "^19.2.1",
-    "@rxap/config": "^19.3.0-dev.3",
+    "@rxap/config": "^19.3.0-dev.4",
     "@rxap/environment": "^19.2.0-dev.0",
     "ngx-logger": "^5.0.12"
   },
@@ -63,7 +63,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "19.3.0-dev.3"
+        "version": "19.3.0-dev.4"
       },
       {
         "package": "@rxap/environment",

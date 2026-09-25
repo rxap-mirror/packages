@@ -1,3 +1,13 @@
+## 19.3.0-dev.4 (2026-09-25)
+
+### 🚀 Features
+
+- **config:** allow a custom error handler for failed config requests
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.3.0-dev.3 (2026-06-19)
 
 ### 🚀 Features
