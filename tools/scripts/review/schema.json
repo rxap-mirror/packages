@@ -1,0 +1,170 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project",
+    "summary",
+    "checks",
+    "findings"
+  ],
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string",
+      "description": "3-6 sentence overall assessment of the package."
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lint",
+        "test",
+        "build"
+      ],
+      "properties": {
+        "lint": {
+          "$ref": "#/$defs/check"
+        },
+        "test": {
+          "$ref": "#/$defs/check"
+        },
+        "build": {
+          "$ref": "#/$defs/check"
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "severity",
+          "category",
+          "origin",
+          "file",
+          "title",
+          "detail"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable id, '<project>-<nnn>', e.g. 'utilities-003'."
+          },
+          "severity": {
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low",
+              "info"
+            ]
+          },
+          "category": {
+            "enum": [
+              "correctness",
+              "api-design",
+              "tests",
+              "dependency-usage",
+              "docs",
+              "performance",
+              "security",
+              "maintainability",
+              "build"
+            ]
+          },
+          "origin": {
+            "enum": [
+              "internal",
+              "dependency"
+            ]
+          },
+          "dependency": {
+            "type": "string",
+            "description": "Required when origin=dependency: the Nx project name the problem comes from."
+          },
+          "upstreamFindingId": {
+            "type": "string",
+            "description": "Id of the matching finding in the dependency's report, if any."
+          },
+          "file": {
+            "type": "string",
+            "description": "Workspace-relative path."
+          },
+          "line": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Command output, failing test name, or code excerpt that proves the issue."
+          },
+          "suggestedFix": {
+            "type": "string"
+          },
+          "testAdded": {
+            "type": "string",
+            "description": "Path of a spec file written to reproduce the issue (only with --write-tests)."
+          }
+        }
+      }
+    },
+    "previousFindings": {
+      "type": "array",
+      "description": "Status of every finding of the previous review of this project (only when one was provided).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "fixed",
+              "open",
+              "obsolete"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "skipped",
+            "n/a"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

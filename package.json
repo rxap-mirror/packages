@@ -18,7 +18,8 @@
     "rxap:update": "npx npm-check-updates --filter /@rxap/ --target newest -u && yarn",
     "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
     "rxap:compose": "yarn schematic @rxap/schematic-composer:compose",
-    "post-migrate": "bash tools/scripts/post-migrate.sh"
+    "post-migrate": "bash tools/scripts/post-migrate.sh",
+    "review": "bash tools/scripts/review.sh"
   },
   "dependencies": {
     "@angular/animations": "19.2.16",
