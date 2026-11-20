@@ -3,7 +3,7 @@ import { ConfirmComponent } from './confirm.component';
 import { Component } from '@angular/core';
 import { ConfirmDirective } from './confirm.directive';
 import { MatButtonModule } from '@angular/material/button';
-import { NgIf } from '@angular/common';
+
 
 describe(ConfirmComponent.name, () => {
 
@@ -13,10 +13,14 @@ describe(ConfirmComponent.name, () => {
           <button (confirmed)="confirm = true" (unconfirmed)="decline = true" mat-raised-button rxapConfirm>Confirm
               Button
           </button>
-          <span *ngIf="confirm">confirm</span>
-          <span *ngIf="decline">decline</span>
+          @if (confirm) {
+<span>confirm</span>
+}
+          @if (decline) {
+<span>decline</span>
+}
     `,
-    imports: [ NgIf, ConfirmDirective, ConfirmComponent, MatButtonModule ],
+    imports: [ConfirmDirective, ConfirmComponent, MatButtonModule],
   })
   class TestComponent {
 

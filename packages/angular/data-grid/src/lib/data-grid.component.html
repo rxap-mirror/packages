@@ -38,7 +38,9 @@ never shown. -->
               *ngTemplateOutlet="row.headerCell()?.template ?? defaultHeaderCell; context: { $implicit: row.name() }"></ng-container>
             </tr>
             <tr [attr.data-name]="row.name() + '-value'">
-              <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
+              @if (row.name()) {
+                <ng-container *ngTemplateOutlet="content"></ng-container>
+              }
             </tr>
             <tr>
               <td class="py-4" colspan="2">
@@ -56,7 +58,9 @@ never shown. -->
             <tr [attr.data-name]="row.name()" [ngClass]="{ 'sub-header text-2xl': row.isSubHeader }">
               <ng-container
               *ngTemplateOutlet="row.headerCell()?.template ?? defaultHeaderCell; context: { $implicit: row.name() }"></ng-container>
-              <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
+              @if (row.name()) {
+                <ng-container *ngTemplateOutlet="content"></ng-container>
+              }
             </tr>
           }
           <!-- endregion -->
@@ -67,9 +71,11 @@ never shown. -->
       <td [attr.colspan]="row.flip() ? 2 : 1" [ngClass]="{
       'h-20': row.editCell()?.template && (isEditMode || isFormMode) && false,
       }" class="pl-8 pr-4 w-full py-2">
-            <ng-template [ngIfThen]="editMode" [ngIf]="row.editCell?.template && (isEditMode || isFormMode)"></ng-template>
-            <ng-template [ngIfThen]="viewMode"
-            [ngIf]="!row.editCell?.template || (!isEditMode && !isFormMode)"></ng-template>
+            @if (row.editCell()?.template && (isEditMode || isFormMode)) {
+              <ng-container *ngTemplateOutlet="editMode"></ng-container>
+            } @else {
+              <ng-container *ngTemplateOutlet="viewMode"></ng-container>
+            }
           </td>
           <ng-template #viewMode>
             <ng-container

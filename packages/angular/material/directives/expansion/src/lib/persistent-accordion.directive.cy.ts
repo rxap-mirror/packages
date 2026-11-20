@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+
 import {
   Component,
   Input,
@@ -16,7 +16,8 @@ describe(PersistentAccordionDirective.name, () => {
     template: `
       <mat-accordion rxapPersistentAccordion="testing" multi>
         
-        <mat-expansion-panel *ngIf="a">
+        @if (a) {
+<mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Personal data A
@@ -27,8 +28,10 @@ describe(PersistentAccordionDirective.name, () => {
           </mat-expansion-panel-header>
           <p>Some content A</p>
         </mat-expansion-panel>
+}
         
-        <mat-expansion-panel *ngIf="b">
+        @if (b) {
+<mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Personal data B
@@ -39,8 +42,10 @@ describe(PersistentAccordionDirective.name, () => {
           </mat-expansion-panel-header>
           <p>Some content B</p>
         </mat-expansion-panel>
+}
         
-        <mat-expansion-panel *ngIf="c">
+        @if (c) {
+<mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Personal data C
@@ -51,15 +56,15 @@ describe(PersistentAccordionDirective.name, () => {
           </mat-expansion-panel-header>
           <p>Some content C</p>
         </mat-expansion-panel>
+}
         
       </mat-accordion>
 
     `,
     imports: [
-      MatExpansionModule,
-      NgIf,
-      PersistentAccordionDirective,
-    ],
+    MatExpansionModule,
+    PersistentAccordionDirective
+],
   })
   class TestComponent  {
 
