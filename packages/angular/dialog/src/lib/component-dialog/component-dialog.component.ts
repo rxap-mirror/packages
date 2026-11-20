@@ -3,6 +3,7 @@ import {
   ComponentPortal,
 } from '@angular/cdk/portal';
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
 } from '@angular/core';
@@ -28,6 +29,7 @@ import { ComponentDialogData } from './types';
     MatDialogClose,
     CdkPortalOutlet,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './component-dialog.component.html',
   styleUrl: './component-dialog.component.scss',
 })

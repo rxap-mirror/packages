@@ -4,7 +4,6 @@ import {
   Component,
   computed,
   inject,
-  OnInit,
   signal,
 } from '@angular/core';
 import {
@@ -32,7 +31,7 @@ import { ExternalAppsService } from '../../external-apps.service';
         IconDirective,
     ]
 })
-export class AppsButtonComponent implements OnInit {
+export class AppsButtonComponent {
   /**
    * The signal that indicates if the app list is open
    */
@@ -46,7 +45,7 @@ export class AppsButtonComponent implements OnInit {
     this.isOpen.update(isOpen => !isOpen);
   }
 
-  public ngOnInit(): void {
+  constructor() {
     this.externalAppsService.getAppList();
   }
 

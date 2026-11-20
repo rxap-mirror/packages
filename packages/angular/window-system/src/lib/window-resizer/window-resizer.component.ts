@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, input, output, viewChild, inject } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, input, output, signal, viewChild, inject } from '@angular/core';
 import {
   fromEvent,
   Subscription,
@@ -13,10 +13,7 @@ import {
 } from 'rxjs/operators';
 import { RXAP_WINDOW_CONTEXT } from '../tokens';
 import { WindowRef } from '../window-ref';
-import {
-  AsyncPipe,
-  NgClass,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -24,9 +21,9 @@ import { MatIconModule } from '@angular/material/icon';
     templateUrl: './window-resizer.component.html',
     styleUrls: ['./window-resizer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatIconModule, AsyncPipe, NgClass]
+    imports: [MatIconModule, NgClass]
 })
-export class WindowResizerComponent implements OnInit, OnDestroy {
+export class WindowResizerComponent implements OnDestroy {
 
   public readonly containerRef = input.required<ElementRef<any>>();
 
@@ -41,19 +38,26 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
   // eslint-disable-next-line @angular-eslint/no-output-rename
   public readonly resizing$ = output<boolean>({ alias: 'resizing' });
 
+  /**
+   * null until the first resize action has started
+   */
+  public readonly resizing = signal<boolean | null>(null);
+
   private _subscription = new Subscription();
 
   constructor() {
     const context = inject(RXAP_WINDOW_CONTEXT);
 
     this.windowRef = context.windowRef;
+
+    afterNextRender(() => this.init());
   }
 
   ngOnDestroy(): void {
     this._subscription.unsubscribe();
   }
 
-  ngOnInit() {
+  private init() {
 
     let originalMouseX = 0;
     let originalMouseY = 0;
@@ -63,6 +67,7 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
     this._subscription.add(
       fromEvent<MouseEvent>(this.resizerRef().nativeElement, 'mousedown').pipe(
         tap(event => {
+          this.resizing.set(true);
           this.resizing$.emit(true);
           originalMouseX = event.pageX;
           originalMouseY = event.pageY;
@@ -99,7 +104,10 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
               this.windowRef.setHeight(size.height);
               this.windowRef.setWidth(size.width);
             }),
-            finalize(() => this.resizing$.emit(false)),
+            finalize(() => {
+              this.resizing.set(false);
+              this.resizing$.emit(false);
+            }),
           ),
         ),
       ).subscribe(),

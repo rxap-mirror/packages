@@ -4,6 +4,7 @@ import {
   inject,
   Injectable,
 } from '@angular/core';
+import { outputToObservable } from '@angular/core/rxjs-interop';
 import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { take } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -30,7 +31,7 @@ export class ChangelogService {
       environmentInjector: this.applicationRef.injector,
     });
     this.applicationRef.attachView(componentRef.hostView);
-    componentRef.instance.closeDialog.pipe(
+    outputToObservable(componentRef.instance.closeDialog).pipe(
       take(1),
       tap(remember => {
         componentRef.destroy();

@@ -1,11 +1,11 @@
-
 import {
-  AfterViewInit,
+  afterNextRender,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
-  Output,
-  viewChild
+  output,
+  signal,
+  viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChangelogComponent } from '../changelog/changelog.component';
@@ -14,22 +14,22 @@ import { ChangelogComponent } from '../changelog/changelog.component';
     selector: 'rxap-changelog-dialog',
     imports: [ChangelogComponent, FormsModule],
     templateUrl: './changelog-dialog.component.html',
-    styleUrls: ['./changelog-dialog.component.scss']
+    styleUrls: ['./changelog-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChangelogDialogComponent implements AfterViewInit {
+export class ChangelogDialogComponent {
 
   public readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
-  @Output()
-  public closeDialog = new EventEmitter<boolean>();
+  public readonly closeDialog = output<boolean>();
 
-  public remember = true;
+  public readonly remember = signal(true);
 
-  ngAfterViewInit() {
-    this.dialog().nativeElement.showModal();
+  constructor() {
+    afterNextRender(() => this.dialog().nativeElement.showModal());
   }
 
-  close(remember: boolean = this.remember) {
+  close(remember: boolean = this.remember()) {
     this.dialog().nativeElement.close();
     this.closeDialog.emit(remember);
   }

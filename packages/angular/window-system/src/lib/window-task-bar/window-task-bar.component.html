@@ -1,3 +1,4 @@
+@let _activeCount = activeCount();
 <div class="tasks grow-0 flex flex-row flex-wrap">
   @for (window of windowService.allActiveWindows; track window) {
     <rxap-window-task

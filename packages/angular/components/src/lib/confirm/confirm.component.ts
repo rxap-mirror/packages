@@ -1,8 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Output,
+  output,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,10 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ConfirmComponent {
 
-  @Output()
-  public confirmed = new EventEmitter<void>();
+  public readonly confirmed = output<void>();
 
-  @Output()
-  public unconfirmed = new EventEmitter<void>();
+  public readonly unconfirmed = output<void>();
 
 }

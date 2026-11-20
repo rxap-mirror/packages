@@ -4,6 +4,7 @@ import {
 } from '@angular/cdk/portal';
 import { NgClass } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -31,6 +32,7 @@ import { ErrorCaptureDialogData } from './types';
     CdkPortalOutlet,
     NgClass,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './error-capture-dialog.component.html',
   styleUrl: './error-capture-dialog.component.scss',
 })

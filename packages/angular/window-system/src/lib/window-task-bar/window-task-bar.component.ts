@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { WindowService } from '../window.service';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { WindowTaskComponent } from './window-task/window-task.component';
 
 
@@ -12,21 +11,13 @@ import { WindowTaskComponent } from './window-task/window-task.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [WindowTaskComponent]
 })
-export class WindowTaskBarComponent implements OnInit, OnDestroy {
+export class WindowTaskBarComponent {
   windowService = inject<WindowService>(WindowService);
-  cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
 
-
-  public subscriptions = new Subscription();
-
-  public ngOnInit(): void {
-    this.subscriptions.add(this.windowService.activeCount$.pipe(
-      tap(() => this.cdr.markForCheck()),
-    ).subscribe());
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
+  /**
+   * Emits whenever the number of active windows changes. Reading the signal in the template
+   * marks the component dirty so the window list is re-evaluated.
+   */
+  readonly activeCount = toSignal(this.windowService.activeCount$);
 
 }

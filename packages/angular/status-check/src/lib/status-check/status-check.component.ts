@@ -1,14 +1,13 @@
 import { NgClass } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
-  OnDestroy,
-  OnInit,
   signal,
   Signal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import {
   ActivatedRoute,
   RouterLink,
@@ -18,10 +17,7 @@ import {
   interval,
   merge,
   Subject,
-  Subscription,
   switchMap,
-  take,
-  takeUntil,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
@@ -37,12 +33,13 @@ export interface ServiceStatus {
 }
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'rxap-status-check',
     imports: [RouterLink, NgClass],
     templateUrl: './status-check.component.html',
     styleUrls: ['./status-check.component.scss']
 })
-export class StatusCheckComponent implements OnInit, OnDestroy {
+export class StatusCheckComponent {
   private readonly route = inject(ActivatedRoute);
 
 
@@ -69,14 +66,8 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
   statusIsAvailable: Signal<boolean>;
   statusIsEmpty: Signal<boolean>;
 
-  /**
-   * used to interrupt the countdown on a component destruction
-   */
-  private readonly destroy$ = new Subject<void>();
 
   private readonly retry$ = new Subject<void>();
-
-  private subscription?: Subscription;
 
   private readonly statusCheckService = inject(StatusCheckService);
   constructor() {
@@ -119,36 +110,15 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
       computed(() => [ 'ok', 'error', 'loading' ].includes(this.status().status ?? 'unavailable'));
     this.statusIsUnavailable = computed(() => !this.statusIsAvailable() &&
       ![ 'empty', 'fatal' ].includes(this.status().status ?? 'unavailable'));
-  }
 
-  ngOnInit() {
-    this.initiateCountdown();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-    this.subscription?.unsubscribe();
-  }
-
-  initiateCountdown() {
-    this.subscription = interval(1000)
-      .pipe(
-        take(this.statusCheckInterval),
-        takeUntil(this.destroy$),
-      )
-      .subscribe({
-        next: val => this.countdown.set(this.statusCheckInterval - val),
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          error: () => {},
-          complete: () => {
-            this.retry$.next();
-            this.countdown.set(this.statusCheckInterval);
-            // Your API check logic here
-            this.initiateCountdown();
-          },
-        },
-      );
+    // restart the countdown every statusCheckInterval seconds and trigger a retry when it reaches zero
+    interval(1000).pipe(takeUntilDestroyed()).subscribe(tick => {
+      const val = tick % this.statusCheckInterval;
+      this.countdown.set(this.statusCheckInterval - val);
+      if (val === this.statusCheckInterval - 1) {
+        this.retry$.next();
+      }
+    });
   }
 
   onCancel() {

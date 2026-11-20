@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Directive, Injector, INJECTOR, isDevMode, OnDestroy, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, inject, Injector, INJECTOR, input, isDevMode, linkedSignal, OnDestroy, TemplateRef, untracked, ViewContainerRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
   BaseDataSource,
@@ -90,9 +90,15 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
   public readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapInputSelectOptions]' }, { alias: "rxapInputSelectOptionsViewer" });
 
-  public readonly metadata = input<BaseDataSourceMetadata>(undefined, { alias: "rxapInputSelectOptionsMetadata" });
+  public readonly metadata = input<BaseDataSourceMetadata | undefined>(undefined, { alias: "rxapInputSelectOptionsMetadata" });
 
-  public readonly matAutocomplete = input<MatAutocomplete>(undefined, { alias: "rxapInputSelectOptionsMatAutocomplete" });
+  public readonly matAutocomplete = input<MatAutocomplete | undefined>(undefined, { alias: "rxapInputSelectOptionsMatAutocomplete" });
+
+  /**
+   * The viewer used to connect to the data source. Defaults to the input value, but is
+   * replaced with a viewer bound to the control after the view init.
+   */
+  protected readonly currentViewer = linkedSignal(() => this.viewer());
 
   protected readonly subscription = new Subscription();
 
@@ -114,8 +120,8 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
   private isAutocompleteToDisplayTriggered = false;
 
   public ngAfterViewInit() {
-    this.extractOptionsDatasource();
-    this.viewer = {
+    this.extractOptionsDatasource(undefined, this.metadata());
+    this.currentViewer.set({
       id: '[rxapInputSelectOptions]' + this.control.controlId,
       viewChange: this.settings?.loadOnce ? EMPTY : this.control.value$.pipe(
         throttleTime(1000),
@@ -128,7 +134,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
         }),
       ),
       control: this.control,
-    };
+    });
     const matAutocomplete = this.matAutocomplete();
     if (matAutocomplete) {
       matAutocomplete.displayWith = this.toDisplay.bind(this);
@@ -151,7 +157,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
   }
 
   private loadOptions(dataSource: BaseDataSource<ControlOptions | Record<string, any>> = this.dataSource) {
-    this.subscription.add(dataSource.connect(this.viewer()).pipe(
+    this.subscription.add(dataSource.connect(this.currentViewer()).pipe(
       switchMap(options => {
         if (this.settings?.filteredOptions) {
           return this.control.value$.pipe(

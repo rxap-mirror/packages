@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, INJECTOR, Injector, OnInit, ViewContainerRef, input, inject } from '@angular/core';
+import { ComponentRef, createComponent, Directive, EnvironmentInjector, inject, INJECTOR, Injector, input, OnInit, ViewContainerRef } from '@angular/core';
 import {
   Constructor,
   Required,
@@ -33,7 +33,7 @@ export interface FormSystemControlDirective<T> extends ExtractDataSourcesMixin, 
 })
 export class FormSystemControlDirective<T> implements ControlValueAccessor, OnInit {
   private readonly parent = inject<ControlContainer>(ControlContainer);
-  private readonly cfr = inject<ComponentFactoryResolver>(ComponentFactoryResolver);
+  private readonly environmentInjector = inject(EnvironmentInjector);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
   private readonly dataSourceLoader = inject<DataSourceLoader>(DataSourceLoader);
   private readonly injector = inject<Injector>(INJECTOR);
@@ -119,8 +119,10 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
 
   private createComponent(formDefinition: FormDefinition): ComponentRef<ControlValueAccessor> {
     const component = this.extractComponent(formDefinition);
-    const componentFactory = this.cfr.resolveComponentFactory(component);
-    return componentFactory.create(this.injector);
+    return createComponent(component, {
+      environmentInjector: this.environmentInjector,
+      elementInjector: this.injector,
+    });
   }
 
   private extractControl(): RxapFormControl {

@@ -117,7 +117,6 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
   });
 
   it('should only call the autocomplete options method if a value is set', fakeAsync(() => {
-    directive.ngOnChanges({});
     tick();
     directive.ngAfterViewInit();
     tick();
@@ -136,7 +135,6 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
       displayWith: jest.fn(),
     } as any;
 
-    directive.ngOnChanges({});
     tick();
     directive.ngAfterViewInit();
     tick();
@@ -157,7 +155,6 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
       displayWith: jest.fn(),
     } as any;
 
-    directive.ngOnChanges({});
     tick();
     directive.ngAfterViewInit();
     tick();
@@ -170,7 +167,6 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
   it('should resolve a value to display', fakeAsync(() => {
     const setValueSpy = jest.spyOn(control, 'setValue');
 
-    directive.ngOnChanges({});
     tick();
     directive.ngAfterViewInit();
     tick();

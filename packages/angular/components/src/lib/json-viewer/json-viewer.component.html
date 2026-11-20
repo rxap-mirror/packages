@@ -1,5 +1,5 @@
 <section class="rxap-container">
-  @for (segment of segments; track segment) {
+  @for (segment of segments(); track segment) {
     <section
       [ngClass]="['segment', 'segment-type-' + segment.type]">
       <section

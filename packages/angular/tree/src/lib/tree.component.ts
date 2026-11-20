@@ -4,7 +4,7 @@ import {
 } from '@angular/cdk/portal';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { AsyncPipe, NgClass, NgStyle } from '@angular/common';
-import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, isDevMode, OnInit, Renderer2, signal, ViewContainerRef, input, output, contentChild, viewChild, inject } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, isDevMode, linkedSignal, signal, untracked, ViewContainerRef, input, output, contentChild, viewChild, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
@@ -58,31 +58,36 @@ import { TreeDataSource } from './tree.data-source';
     PortalModule,
     AsyncPipe,
     NgClass
-]
+],
+    host: {
+      '(mouseup)': 'onMouseup()',
+      '(mousemove)': 'onMousemove($event)',
+    },
 })
-export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
-  implements OnInit, AfterContentInit {
+export class TreeComponent<Data extends WithIdentifier & WithChildren = any> {
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
-  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
-  private readonly renderer = inject(Renderer2);
   private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   readonly searchForm = inject<SearchForm | null>(RXAP_FORM_DEFINITION, { optional: true });
 
   public treeControl: FlatTreeControl<Node<Data>>;
   public readonly dataSource = input.required<TreeDataSource<Data>>();
-  public readonly contentEditableMethod = input<Method<any, string | null> | null>();
+  public readonly contentEditableMethodInput = input<Method<any, string | null> | null>(null, { alias: 'contentEditableMethod' });
+  private readonly injectedContentEditableMethod = inject<Method<any, string | null> | null>(RXAP_TREE_CONTENT_EDITABLE_METHOD, { optional: true });
+  public readonly contentEditableMethod = computed(() => this.contentEditableMethodInput() ?? this.injectedContentEditableMethod);
   public readonly toDisplay = input<NodeToDisplayFunction<any>>();
   public readonly getIcon = input<NodeGetIconFunction<any>>();
   public readonly getType = input<NodeGetTypeFunction<any>>();
   public readonly getStyle = input<NodeGetStyleFunction<any>>();
-  public readonly multiple = input(false);
+  public readonly multipleInput = input(false, { alias: 'multiple' });
+  public readonly multiple = computed(() => this.dataSource().metadata?.selectMultiple ?? this.multipleInput());
   public readonly hasDetails = input<NodeHasDetailsFunction<any>>();
   public readonly content = contentChild(TreeContentDirective);
   public readonly hideLeafIcon = input(false);
   public readonly id = input<string>();
   public readonly details = output();
-  public readonly dividerOffset = input('256px');
-  public portal: TemplatePortal | null = null;
+  public readonly dividerOffsetInput = input('256px', { alias: 'dividerOffset' });
+  public readonly dividerOffset = linkedSignal(() => this.dividerOffsetInput());
+  public readonly portal = signal<TemplatePortal | null>(null);
   public readonly treeContainer = viewChild.required<ElementRef>('treeContainer');
 
   public readonly showTreeNavigation = signal(true);
@@ -101,10 +106,46 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   private _treeContainerWidth: number | null = null;
 
   constructor() {
-    const contentEditableMethod = inject<Method<any, string | null> | null>(RXAP_TREE_CONTENT_EDITABLE_METHOD, { optional: true });
+    this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
 
-    this.treeControl           = new FlatTreeControl(this.getLevel, this.isExpandable);
-    this.contentEditableMethod = contentEditableMethod;
+    effect(() => {
+      const dataSource = this.dataSource();
+      const toDisplay = this.toDisplay();
+      const getIcon = this.getIcon();
+      const hasDetails = this.hasDetails();
+      const getStyle = this.getStyle();
+      const getType = this.getType();
+      untracked(() => {
+        dataSource.searchForm = this.searchForm;
+        dataSource.setTreeControl(this.treeControl);
+        dataSource.setToDisplay(toDisplay);
+        dataSource.setGetIcon(getIcon);
+        dataSource.setHasDetails(hasDetails);
+        dataSource.setGetStyle(getStyle);
+        dataSource.setGetType(getType);
+      });
+    });
+
+    effect((onCleanup) => {
+      const selected = this.dataSource().selected;
+      const subscription = untracked(() => selected.changed
+        .pipe(
+          map(($event) => $event.source.selected),
+          startWith(selected.selected),
+          tap((nodes) => nodes.forEach((node) => this.openDetails(node))),
+        )
+        .subscribe());
+      onCleanup(() => subscription.unsubscribe());
+    });
+
+    afterNextRender(() => {
+      const cachedOffset = localStorage.getItem(this.cacheId);
+      if (cachedOffset && cachedOffset.match(/^(\d+\.)?\d+px$/)) {
+        this.dividerOffset.set(cachedOffset);
+      } else if (isDevMode()) {
+        console.log('Divider offset cache is not available or invalid: ' + cachedOffset);
+      }
+    });
   }
 
   public get nodeDisplayEditable(): boolean {
@@ -121,53 +162,18 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
 
   public hasChild = (_: number, nodeData: Node<Data>) => nodeData.hasChildren;
 
-  public ngOnInit() {
-    dataSource.searchForm = this.searchForm;
-    dataSource.setTreeControl(this.treeControl);
-    dataSource.setToDisplay(this.toDisplay());
-    dataSource.setGetIcon(this.getIcon());
-    dataSource.setHasDetails(this.hasDetails());
-    dataSource.setGetStyle(this.getStyle());
-    dataSource.setGetType(this.getType());
-    this.multiple = dataSource.metadata.selectMultiple ?? this.multiple();
-
-    if (dataSource.selected.hasValue()) {
-      dataSource.selected.selected.forEach((node) =>
-        this.openDetails(node),
-      );
-    }
-
-    const cachedOffset = localStorage.getItem(this.cacheId);
-    if (cachedOffset && cachedOffset.match(/^(\d+\.)?\d+px$/)) {
-      this.setDividerOffset(cachedOffset);
-    } else if (isDevMode()) {
-      console.log('Divider offset cache is not available or invalid: ' + cachedOffset);
-    }
-  }
-
-  public ngAfterContentInit(): void {
-    this.dataSource().selected.changed
-    .pipe(
-      map(($event) => $event.source.selected),
-      startWith(this.dataSource().selected.selected),
-      tap((selected) => selected.forEach((node) => this.openDetails(node))),
-    )
-    .subscribe();
-  }
-
   @DebounceCall(100)
   public openDetails(node: Node<Data>): void {
     const content = this.content();
     if (content) {
-      this.portal = new TemplatePortal<any>(
+      this.portal.set(new TemplatePortal<any>(
         content.template,
         this.viewContainerRef,
         {
           $implicit: node.item,
           node,
         },
-      );
-      this.cdr.markForCheck();
+      ));
     }
     this.details.emit(node.item);
   }
@@ -181,12 +187,10 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
     this._moveDivider = true;
   }
 
-  @HostListener('mouseup')
   onMouseup() {
     this._moveDivider = false;
   }
 
-  @HostListener('mousemove', [ '$event' ])
   onMousemove($event: MouseEvent) {
     if (this._moveDivider) {
       if (!this._treeContainerWidth) {
@@ -206,11 +210,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   }
 
   private setDividerOffset(offset: string) {
-    this.dividerOffset = offset;
-    const treeContainer = this.treeContainer();
-    this.renderer.setStyle(treeContainer.nativeElement, 'max-width', offset);
-    this.renderer.setStyle(treeContainer.nativeElement, 'min-width', offset);
-    this.renderer.setStyle(treeContainer.nativeElement, 'flex-basis', offset);
+    this.dividerOffset.set(offset);
     localStorage.setItem(this.cacheId, offset);
   }
 }

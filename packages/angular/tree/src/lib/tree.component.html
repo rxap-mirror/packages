@@ -114,7 +114,7 @@
     }
 
     <div class="grow">
-      @if (portal) {
+      @if (portal(); as portal) {
         <ng-template [cdkPortalOutlet]="portal"></ng-template>
       }
       <ng-content></ng-content>

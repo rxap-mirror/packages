@@ -5,10 +5,12 @@ import {
   Injectable,
   Injector,
   INJECTOR,
+  input,
   isDevMode,
+  linkedSignal,
   OnDestroy,
   ProviderToken,
-  input
+  untracked,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatAutocomplete } from '@angular/material/autocomplete';
@@ -47,9 +49,10 @@ import {
   UseToDisplayFunction,
 } from '../mixins/extract-to-display-function.mixin';
 import {
-  OptionsFromMethodDirective,
+  AbstractOptionsFromMethodDirective,
   OptionsFromMethodDirectiveSettings,
 } from './options-from-method.directive';
+import { OptionsMethod } from '../mixins/extract-options-method.mixin';
 
 export function UseAutocompleteOptionsMethod(
   method: ProviderToken<MethodWithParameters<ControlOptions, AutocompleteOptionsFromMethodDirectiveParameters>>,
@@ -124,29 +127,31 @@ export class NoopResolveMethod<Value> implements Method<ControlOption, { value: 
   standalone: true,
 })
 export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters extends AutocompleteOptionsFromMethodDirectiveParameters<Value> = AutocompleteOptionsFromMethodDirectiveParameters<Value>>
-  extends OptionsFromMethodDirective<Value, Parameters>
+  extends AbstractOptionsFromMethodDirective<Value, Parameters>
   implements AfterViewInit, OnDestroy {
 
   static override ngTemplateContextGuard(
-    dir: OptionsFromMethodDirective,
+    dir: AbstractOptionsFromMethodDirective,
     ctx: any,
   ): ctx is AutocompleteOptionsFromRemoteMethodTemplateContext {
     return true;
   }
 
-  public declare readonly parameters = input<Parameters>(undefined, { alias: "rxapAutocompleteOptionsFromMethodParameters" });
-  public declare readonly resetOnChange = input<Value>(undefined, { alias: "rxapAutocompleteOptionsFromMethodResetOnChange" });
-  public readonly matAutocomplete = input<MatAutocomplete>(undefined, { alias: "rxapAutocompleteOptionsFromMethodMatAutocomplete" });
+  public readonly parameters = input<Parameters | undefined>(undefined, { alias: 'rxapAutocompleteOptionsFromMethodParameters' });
+  public readonly resetOnChange = input<Value | undefined>(undefined, { alias: 'rxapAutocompleteOptionsFromMethodResetOnChange' });
+  public readonly matAutocomplete = input<MatAutocomplete | undefined>(undefined, { alias: 'rxapAutocompleteOptionsFromMethodMatAutocomplete' });
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  public declare readonly method = input<Method<ControlOptions, Parameters>>(undefined, { alias: "rxapAutocompleteOptionsFromMethodCall" });
+  public readonly method = input<OptionsMethod<ControlOptions<Value>, Parameters> | undefined>(undefined, { alias: 'rxapAutocompleteOptionsFromMethodCall' });
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  public readonly resolveMethod = input<MethodWithParameters<ControlOption, {
-    value: Value;
-} & Parameters>>(undefined, { alias: "rxapAutocompleteOptionsFromMethodResolve" });
+  public readonly resolveMethod = input<MethodWithParameters<ControlOption, { value: Value } & Parameters> | undefined>(undefined, { alias: 'rxapAutocompleteOptionsFromMethodResolve' });
 
-  public readonly isValue = input<(value: any) => boolean>(undefined, { alias: "rxapAutocompleteOptionsFromMethodIsValue" });
+  public readonly isValue = input<((value: any) => boolean) | undefined>(undefined, { alias: 'rxapAutocompleteOptionsFromMethodIsValue' });
 
-  public readonly toDisplay = input<(value: any) => string>(undefined, { alias: "rxapAutocompleteOptionsFromMethodToDisplay" });
+  public readonly toDisplay = input<((value: any) => string) | undefined>(undefined, { alias: 'rxapAutocompleteOptionsFromMethodToDisplay' });
+
+  protected readonly resolvedResolveMethod = linkedSignal(() => this.resolveMethod());
+  protected readonly resolvedIsValue = linkedSignal(() => this.isValue());
+  protected readonly resolvedToDisplay = linkedSignal(() => this.toDisplay());
 
   protected override ngControl: NgControl | null                              = null;
   protected override matFormField: MatFormField | null                        = null;
@@ -168,24 +173,30 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
     this._subscription?.unsubscribe();
   }
 
-  public override async ngAfterViewInit() {
+  public override ngAfterViewInit() {
     const matAutocomplete = this.matAutocomplete();
     if (matAutocomplete) {
       this.settings ??= {};
       this.settings.filteredOptions ??= true;
     }
-    await super.ngAfterViewInit();
-    this.resolveMethod() ??= this.extractResolveMethod();
-    this.isValue() ??= this.extractIsValueFunction((value: any) => typeof value === 'string' && isUUID(value));
-    toDisplay ??= this.extractToDisplayFunction((value: any): string => {
-      if (!value) {
-        return '';
-      }
-      const option = this.findOptionByValue(value);
-      return option?.display ?? (isDevMode() ? 'to display error' : '...');
-    });
+    super.ngAfterViewInit();
+    if (!this.resolvedResolveMethod()) {
+      this.resolvedResolveMethod.set(this.extractResolveMethod());
+    }
+    if (!this.resolvedIsValue()) {
+      this.resolvedIsValue.set(this.extractIsValueFunction((value: any) => typeof value === 'string' && isUUID(value)));
+    }
+    if (!this.resolvedToDisplay()) {
+      this.resolvedToDisplay.set(this.extractToDisplayFunction((value: any): string => {
+        if (!value) {
+          return '';
+        }
+        const option = this.findOptionByValue(value);
+        return option?.display ?? (isDevMode() ? 'to display error' : '...');
+      }));
+    }
     if (matAutocomplete) {
-      matAutocomplete.displayWith = toDisplay.bind(this);
+      matAutocomplete.displayWith = this.resolvedToDisplay()!.bind(this);
     }
     if (!this.control) {
       throw new Error('The control is not yet defined');
@@ -198,8 +209,8 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
       // to trigger the toDisplay function in the mat-autocomplete
       distinctUntilChanged(),
       tap(async value => {
-        await this.load(this.parameters());
-        if (this.isValue()?.(value)) {
+        await this.load(untracked(this.parameters));
+        if (this.resolvedIsValue()?.(value)) {
           this.triggerAutocompleteToDisplay();
         }
       }),
@@ -212,7 +223,7 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
     }
     const value        = this.control?.value;
     const c_parameters = {...parameters};
-    if (this.isValue()?.(value)) {
+    if (this.resolvedIsValue()?.(value)) {
       return this.resolveValue(value, c_parameters);
     } else {
       c_parameters.search ??= value;
@@ -232,7 +243,7 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
   }
 
   protected async resolveValue(value: Value, parameters: Parameters = {} as Parameters) {
-    const resolveMethod = this.resolveMethod();
+    const resolveMethod = this.resolvedResolveMethod();
     if (!resolveMethod) {
       if (isDevMode()) {
         console.warn('The resolve method is not yet defined');

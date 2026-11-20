@@ -1,7 +1,9 @@
 import {
   Directive,
+  effect,
   forwardRef,
-  Input,
+  input,
+  untracked,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -9,7 +11,6 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { Required } from '@rxap/utilities';
 
 @Directive({
   selector: '[rxapIsEqualTo]',
@@ -24,31 +25,25 @@ import { Required } from '@rxap/utilities';
 })
 export class IsEqualToDirective implements Validator {
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input({
-    required: true,
-    alias: 'rxapIsEqualTo',
-  })
-  public set equalTo(value: any) {
-    this._equalTo = value;
-    if (this._onChange) {
-      this._onChange();
-    }
+  public readonly equalTo = input.required<any>({ alias: 'rxapIsEqualTo' });
+
+  private _onChange?: () => void;
+
+  constructor() {
+    effect(() => {
+      this.equalTo();
+      untracked(() => this._onChange?.());
+    });
   }
 
-  private _onChange!: () => void;
-
-
-  private _equalTo!: any;
-
   public validate(control: AbstractControl): ValidationErrors | null {
-    if (this._equalTo === null || this._equalTo === control.value) {
+    const equalTo = this.equalTo();
+    if (equalTo === null || equalTo === control.value) {
       return null;
     }
     return {
       isEqualTo: {
-        value: this._equalTo,
+        value: equalTo,
         actualValue: control.value,
       },
     };

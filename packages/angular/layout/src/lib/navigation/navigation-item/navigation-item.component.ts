@@ -9,18 +9,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  ElementRef,
   forwardRef,
   inject,
   input,
-  OnChanges,
-  OnDestroy,
-  Renderer2,
   signal,
-  SimpleChanges,
-  viewChild,
-  ViewEncapsulation, AfterViewInit,
+  ViewEncapsulation,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,14 +27,11 @@ import {
 } from '@angular/router';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { coerceArray } from '@rxap/utilities';
-import {
-  debounceTime,
-  Subscription,
-} from 'rxjs';
+import { debounceTime } from 'rxjs';
 import {
   filter,
+  map,
   startWith,
-  tap,
 } from 'rxjs/operators';
 import { LayoutService } from '../../layout.service';
 import {
@@ -73,6 +65,9 @@ import { NavigationComponent } from '../navigation.component';
             ]),
         ]),
     ],
+    host: {
+        '[class.active]': 'active()',
+    },
     imports: [
     RouterLinkActive,
     RouterLink,
@@ -84,15 +79,16 @@ import { NavigationComponent } from '../navigation.component';
     NgClass
 ]
 })
-export class NavigationItemComponent
-  implements OnChanges, OnDestroy, AfterViewInit {
+export class NavigationItemComponent {
 
   public readonly level = input(0);
 
-  public children: Navigation | null = null;
+  public readonly children = computed<Navigation | null>(() => {
+    const item = this.item();
+    return item.children && item.children.length ? item.children : null;
+  });
 
   public readonly item = input.required<NavigationItem>();
-  public readonly active = signal(false);
 
   public readonly itemClasses = computed(() => {
     let classes = `level-${ this.level() * 4 }`;
@@ -106,63 +102,42 @@ export class NavigationItemComponent
 
   public readonly collapsed = computed(() => this.layoutService.collapsed());
 
-  protected readonly _subscription = new Subscription();
-
   protected readonly router = inject(Router);
-  protected readonly elementRef = inject(ElementRef);
-  protected readonly renderer = inject(Renderer2);
+
+  /**
+   * The current router url. Updated (debounced) after each navigation.
+   */
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      debounceTime(100),
+      startWith(true),
+      map(() => this.router.url),
+    ),
+    { initialValue: this.router.url },
+  );
+
+  public readonly active = computed(() => {
+    const urlParts = this.currentUrl().split('/');
+    if (urlParts[0] === '') {
+      urlParts[0] = '/';
+    }
+    const routerLink = coerceArray(this.item().routerLink).map(fragment => fragment === '/' ? ['/'] : fragment.split('/')).flat();
+    if (routerLink[0] === '') {
+      routerLink[0] = '/';
+    }
+    for (let i = 0; i < routerLink.length; i++) {
+      if (urlParts[i] !== routerLink[i]) {
+        return false;
+      }
+    }
+    return true;
+  });
 
   onClick() {
     if (this.layoutService.isMobile() || this.layoutService.collapsed()) {
       this.layoutService.opened.set(false);
     }
-  }
-
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes['item']) {
-      const item: NavigationItem = changes['item'].currentValue;
-      this.children =
-        item.children && item.children.length ? item.children : null;
-    }
-  }
-
-  public ngAfterViewInit() {
-    this._subscription.add(
-      this.router.events
-        .pipe(
-          filter((event) => event instanceof NavigationEnd),
-          debounceTime(100),
-          startWith(true),
-          tap(() => {
-            let isActive = true;
-            const urlParts = this.router.url.split('/');
-            if (urlParts[0] === '') {
-              urlParts[0] = '/';
-            }
-            const routerLink = coerceArray(this.item().routerLink).map(fragment => fragment === '/' ? ['/'] : fragment.split('/')).flat();
-            if (routerLink[0] === '') {
-              routerLink[0] = '/';
-            }
-            for (let i = 0; i < routerLink.length; i++) {
-              if (urlParts[i] !== routerLink[i]) {
-                isActive = false;
-                break;
-              }
-            }
-            this.active.set(isActive);
-            if (isActive) {
-              this.renderer.addClass(this.elementRef.nativeElement, 'active');
-            } else {
-              this.renderer.removeClass(this.elementRef.nativeElement, 'active');
-            }
-          }),
-        )
-        .subscribe(),
-    );
-  }
-
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
   }
 
   // region type save item property

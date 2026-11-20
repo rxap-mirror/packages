@@ -4,7 +4,8 @@ import {
   PositionStrategy,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Directive, ElementRef, HostListener, Input, OnDestroy, output, inject } from '@angular/core';
+import { computed, Directive, ElementRef, OnDestroy, output, input, inject } from '@angular/core';
+import { outputToObservable } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
 import {
   take,
@@ -15,21 +16,22 @@ import { ConfirmComponent } from './confirm.component';
 @Directive({
   selector: '[rxapConfirm]',
   standalone: true,
+  host: {
+    '(click)': 'onClick($event)',
+  },
 })
 export class ConfirmDirective<T = any> implements OnDestroy {
   protected readonly overlay = inject<Overlay>(Overlay);
   protected readonly elementRef = inject<ElementRef>(ElementRef);
 
-  // use a set input to allow auto import detection if the eventValue
+  // an input is used to allow auto import detection if the eventValue
   // is not set
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapConfirm')
-  public set eventValue(value: T | '') {
-    if (value !== '') {
-      this._eventValue = value;
-    }
-  }
+  public readonly eventValueInput = input<T | ''>('', { alias: 'rxapConfirm' });
+
+  public readonly eventValue = computed<T | undefined>(() => {
+    const value = this.eventValueInput();
+    return value !== '' ? value : undefined;
+  });
 
   public readonly confirmed = output<T | undefined>();
 
@@ -38,8 +40,6 @@ export class ConfirmDirective<T = any> implements OnDestroy {
   private subscription: Subscription | null = null;
 
   private overlayRef?: OverlayRef;
-
-  private _eventValue?: T;
 
   protected positionStrategy?: PositionStrategy;
 
@@ -60,7 +60,6 @@ export class ConfirmDirective<T = any> implements OnDestroy {
                                 .withDefaultOffsetY(10);
   }
 
-  @HostListener('click', [ '$event' ])
   public onClick($event?: Event) {
     this.openConfirmOverly();
   }
@@ -86,10 +85,10 @@ export class ConfirmDirective<T = any> implements OnDestroy {
     this.subscription = new Subscription();
 
     this.subscription.add(
-      componentRef.instance.confirmed
+      outputToObservable(componentRef.instance.confirmed)
                   .pipe(
                     take(1),
-                    tap(() => this.onConfirmed(this._eventValue)),
+                    tap(() => this.onConfirmed(this.eventValue())),
                     tap(() => this.overlayRef?.dispose()),
                     tap(() => this.isOverlyOpen = false),
                     tap(() => (this.subscription = null)),
@@ -99,10 +98,10 @@ export class ConfirmDirective<T = any> implements OnDestroy {
     );
 
     this.subscription.add(
-      componentRef.instance.unconfirmed
+      outputToObservable(componentRef.instance.unconfirmed)
                   .pipe(
                     take(1),
-                    tap(() => this.onUnconfirmed(this._eventValue)),
+                    tap(() => this.onUnconfirmed(this.eventValue())),
                     tap(() => this.overlayRef?.dispose()),
                     tap(() => this.isOverlyOpen = false),
                     tap(() => (this.subscription = null)),

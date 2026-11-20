@@ -1,14 +1,13 @@
 import { NgClass } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
-  OnDestroy,
-  OnInit,
   signal,
   Signal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   NavigationEnd,
@@ -21,10 +20,7 @@ import {
   interval,
   merge,
   Subject,
-  Subscription,
   switchMap,
-  take,
-  takeUntil,
 } from 'rxjs';
 import {
   filter,
@@ -36,12 +32,13 @@ import { STATUS_INDICATOR_INTERVAL } from '../tokens';
 declare const $localize: any;
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'rxap-status-indicator',
     imports: [RouterLink, NgClass, MatTooltipModule],
     templateUrl: './status-indicator.component.html',
     styleUrls: ['./status-indicator.component.scss']
 })
-export class StatusIndicatorComponent implements OnInit, OnDestroy {
+export class StatusIndicatorComponent {
 
   public readonly services: string[] = [];
   public readonly status: Signal<string>;
@@ -52,14 +49,8 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
   private readonly config = inject(ConfigService);
   private readonly statusCheckService = inject(StatusCheckService);
   private readonly router = inject(Router);
-  /**
-   * used to interrupt the countdown on a component destruction
-   */
-  private readonly destroy$ = new Subject<void>();
 
   private readonly retry$ = new Subject<void>();
-
-  private subscription?: Subscription;
 
   constructor() {
     this.services = Object
@@ -93,36 +84,15 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
         return `app status: ${ status }`;
       }
     });
-  }
 
-  initiateCountdown() {
-    this.subscription = interval(1000)
-      .pipe(
-        take(this.statusIndicatorInterval),
-        takeUntil(this.destroy$),
-      )
-      .subscribe({
-        next: val => this.countdown.set(this.statusIndicatorInterval - val),
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          error: () => {},
-          complete: () => {
-            this.retry$.next();
-            this.countdown.set(this.statusIndicatorInterval);
-            // Your API check logic here
-            this.initiateCountdown();
-          },
-        },
-      );
-  }
-
-  ngOnInit() {
-    this.initiateCountdown();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-    this.subscription?.unsubscribe();
+    // restart the countdown every interval and trigger a retry when it reaches zero
+    interval(1000).pipe(takeUntilDestroyed()).subscribe(tick => {
+      const val = tick % this.statusIndicatorInterval;
+      this.countdown.set(this.statusIndicatorInterval - val);
+      if (val === this.statusIndicatorInterval - 1) {
+        this.retry$.next();
+      }
+    });
   }
 
 }

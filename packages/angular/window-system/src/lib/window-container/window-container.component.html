@@ -32,6 +32,8 @@
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
 
-    <rxap-window-resizer [containerRef]="containerRef()"></rxap-window-resizer>
+    <rxap-window-resizer [containerRef]="containerRef()"
+                         (width)="onResizerWidth($event)"
+                         (height)="onResizerHeight($event)"></rxap-window-resizer>
   </div>
 </div>

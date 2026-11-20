@@ -6,7 +6,6 @@ import { AbstractControl } from '@angular/forms';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
-  BaseDataSourceViewer,
   DataSourceLoader,
   PipeDataSource,
 } from '@rxap/data-source';
@@ -63,9 +62,7 @@ export class ExtractOptionsDataSourceMixin {
 
   protected readonly dataSourceLoader!: DataSourceLoader;
 
-  protected metadata?: BaseDataSourceMetadata;
 
-  protected viewer?: BaseDataSourceViewer;
 
   protected dataSource?: BaseDataSource<ControlOptions | Record<string, any>>;
 
@@ -73,7 +70,7 @@ export class ExtractOptionsDataSourceMixin {
 
   protected useDataSourceValue?: UseDataSourceValue<ControlOptions | Record<string, any>>;
 
-  protected extractOptionsDatasource(control?: AbstractControl): BaseDataSource<ControlOptions | Record<string, any>> {
+  protected extractOptionsDatasource(control?: AbstractControl, metadata?: BaseDataSourceMetadata): BaseDataSource<ControlOptions | Record<string, any>> {
     control ??= this.extractControl();
 
     if (!(control instanceof RxapFormControl)) {
@@ -98,7 +95,7 @@ export class ExtractOptionsDataSourceMixin {
 
       dataSource = this.dataSourceLoader.load(
         useDataSourceValue.dataSource,
-        this.metadata,
+        metadata,
         this.injector,
       );
 

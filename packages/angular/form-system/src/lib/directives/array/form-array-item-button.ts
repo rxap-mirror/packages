@@ -2,15 +2,12 @@ import {
   AfterViewInit,
   Directive,
   ElementRef,
-  HostBinding,
+  inject,
   OnDestroy,
-  Optional,
   Renderer2,
-  SkipSelf,
 } from '@angular/core';
 import {
   ControlContainer,
-  UntypedFormArray,
 } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import {
@@ -24,26 +21,27 @@ import {
 } from 'rxjs';
 
 // TODO : move to rxap packages
-@Directive()
+@Directive({
+  host: {
+    'type': 'button',
+    '[disabled]': 'disabled',
+    '(click)': 'onClick()',
+  },
+})
 export abstract class FormArrayItemButton implements AfterViewInit, OnDestroy {
 
-  @HostBinding('type')
-  type = 'button';
+  readonly type = 'button';
   protected formGroup!: RxapFormGroup<{ deleted: boolean }>;
   protected formArray!: RxapFormArray;
   protected deletedControl!: RxapFormControl<boolean>;
   private _controlDisabledSubscription?: Subscription;
   private _deletedControlValueSubscription?: Subscription;
 
-  constructor(
-    @SkipSelf() protected readonly parent: ControlContainer,
-    @Optional() protected readonly matButton: MatButton,
-    protected readonly renderer: Renderer2,
-    protected readonly elementRef: ElementRef,
-  ) {
-  }
+  protected readonly parent: ControlContainer = inject(ControlContainer, { skipSelf: true });
+  protected readonly matButton: MatButton | null = inject(MatButton, { optional: true });
+  protected readonly renderer: Renderer2 = inject(Renderer2);
+  protected readonly elementRef: ElementRef = inject(ElementRef);
 
-  @HostBinding('disabled')
   get disabled() {
     return this.isDisabled;
   }
@@ -81,9 +79,10 @@ export abstract class FormArrayItemButton implements AfterViewInit, OnDestroy {
     } else {
       throw new Error(`The parent is not a form group instance`);
     }
-    if (this.matButton) {
+    const matButton = this.matButton;
+    if (matButton) {
       this._controlDisabledSubscription = this.formGroup.disabled$.pipe(
-        tap(isDisabled => this.matButton.disabled = isDisabled),
+        tap(isDisabled => matButton.disabled = isDisabled),
       ).subscribe();
     }
     this.deletedControl.value$.pipe(

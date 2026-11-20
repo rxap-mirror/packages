@@ -18,7 +18,7 @@ import {
   standalone: true,
 })
 export class FormArrayRemovableDirective implements AfterViewInit, OnDestroy {
-  protected readonly parent = inject(ControlContainer, { optional: true });
+  protected readonly parent = inject(ControlContainer);
 
 
   protected formGroup!: RxapFormGroup<{ deleted: boolean }>;

@@ -22,7 +22,7 @@
     <mat-divider></mat-divider>
 
     <ul [@sub-nav]
-        [items]="children ?? []"
+        [items]="children() ?? []"
         [level]="level() + 1"
         rxap-navigation
     >

@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { JsonViewerComponent } from './json-viewer.component';
-import { ChangeDetectorRef } from '@angular/core';
 import { EMPTY } from 'rxjs';
 
 describe('JsonViewerComponent', () => {
@@ -11,12 +10,6 @@ describe('JsonViewerComponent', () => {
     TestBed.configureTestingModule({
       providers: [
         JsonViewerComponent,
-        {
-          provide: ChangeDetectorRef,
-          useValue: {
-            markForCheck: () => {},
-          },
-        },
       ],
     });
 
@@ -96,7 +89,7 @@ describe('JsonViewerComponent', () => {
 
       component.setInspectValue(obj);
 
-      expect(component.inspectValue).toEqual('toJSON');
+      expect(component.inspectValue()).toEqual('toJSON');
     });
 
     it('should use cleanObject if toJSON method is not defined', () => {

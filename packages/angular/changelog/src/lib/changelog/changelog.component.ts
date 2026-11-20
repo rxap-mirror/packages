@@ -1,9 +1,9 @@
 import { NgClass } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
-  OnInit,
   signal,
 } from '@angular/core';
 import { MethodTemplateDirective } from '@rxap/directives';
@@ -19,10 +19,11 @@ import { ChangelogControllerListRemoteMethod } from '../openapi/remote-methods/c
     MarkdownModule,
     NgClass
 ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './changelog.component.html',
     styleUrls: ['./changelog.component.scss']
 })
-export class ChangelogComponent implements OnInit {
+export class ChangelogComponent {
 
   public readonly availableVersions = signal<string[]>([]);
   public readonly error = signal<string | null>(null);
@@ -74,7 +75,7 @@ export class ChangelogComponent implements OnInit {
 
   private readonly getAvailableVersionsMethod = inject(ChangelogControllerListRemoteMethod);
 
-  ngOnInit() {
+  constructor() {
     this.loadAvailableVersions();
   }
 

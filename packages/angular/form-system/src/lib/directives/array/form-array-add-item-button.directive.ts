@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, HostBinding, HostListener, OnDestroy, inject } from '@angular/core';
+import { AfterViewInit, Directive, inject, OnDestroy } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { RxapFormArray } from '@rxap/forms';
@@ -11,18 +11,21 @@ import {
 @Directive({
   selector: '[rxapFormArrayItemAddButton]',
   standalone: true,
+  host: {
+    'type': 'button',
+    '[disabled]': 'disabled',
+    '(click)': 'onClick()',
+  },
 })
 export class FormArrayAddItemButtonDirective implements AfterViewInit, OnDestroy {
-  protected readonly parent = inject(ControlContainer, { optional: true, skipSelf: true });
+  protected readonly parent = inject(ControlContainer, { skipSelf: true });
   protected readonly matButton = inject(MatButton, { optional: true });
 
 
-  @HostBinding('type')
-  type = 'button';
+  readonly type = 'button';
   protected formArray!: RxapFormArray;
   private _controlDisabledSubscription?: Subscription;
 
-  @HostBinding('disabled')
   get disabled() {
     return this.isDisabled;
   }
@@ -35,9 +38,10 @@ export class FormArrayAddItemButtonDirective implements AfterViewInit, OnDestroy
     if (this.parent.control instanceof RxapFormArray) {
       this.formArray = this.parent.control;
     }
-    if (this.matButton) {
+    const matButton = this.matButton;
+    if (matButton) {
       this._controlDisabledSubscription = this.formArray.disabled$.pipe(
-        tap(isDisabled => this.matButton.disabled = isDisabled),
+        tap(isDisabled => matButton.disabled = isDisabled),
       ).subscribe();
     }
   }
@@ -46,7 +50,6 @@ export class FormArrayAddItemButtonDirective implements AfterViewInit, OnDestroy
     this._controlDisabledSubscription?.unsubscribe();
   }
 
-  @HostListener('click')
   protected onClick() {
     this.formArray.insertAt();
   }

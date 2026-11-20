@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, INJECTOR, Injector, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
+import { ChangeDetectorRef, Directive, effect, inject, INJECTOR, Injector, input, OnInit, TemplateRef, untracked, ViewContainerRef } from '@angular/core';
 import {
   Constructor,
   ControlOption,
@@ -82,7 +82,7 @@ export interface OptionsFromRemoteMethodDirective<Value, Parameters> extends OnI
   selector: '[rxapOptionsFromRemoteMethod]',
   standalone: true,
 })
-export class OptionsFromRemoteMethodDirective<Value, Parameters> implements OnChanges {
+export class OptionsFromRemoteMethodDirective<Value, Parameters> {
   private readonly ngControl = inject<NgControl>(NgControl);
   private readonly template = inject<TemplateRef<OptionsFromRemoteMethodTemplateContext>>(TemplateRef);
   private readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
@@ -99,20 +99,27 @@ export class OptionsFromRemoteMethodDirective<Value, Parameters> implements OnCh
 
   private remoteMethodToken!: IdOrInstanceOrToken<BaseRemoteMethod>;
 
-  public ngOnChanges(changes: SimpleChanges) {
-    const parametersChanges = changes['parameters'];
-    if (parametersChanges) {
-      if (!this.remoteMethodToken) {
-        this.remoteMethodToken = this.extractRemoteMethodToken();
+  constructor() {
+    effect(() => {
+      const parameters = this.parameters();
+      // the parameters are only relevant if the input is bound
+      if (parameters === undefined) {
+        return;
       }
-      this.renderTemplate(parametersChanges.currentValue);
-    }
-    if (changes['withoutParameters']?.currentValue) {
-      if (!this.remoteMethodToken) {
-        this.remoteMethodToken = this.extractRemoteMethodToken();
+      untracked(() => {
+        this.remoteMethodToken ??= this.extractRemoteMethodToken();
+        return this.renderTemplate(parameters);
+      });
+    });
+    effect(() => {
+      if (!this.withoutParameters()) {
+        return;
       }
-      this.renderTemplate();
-    }
+      untracked(() => {
+        this.remoteMethodToken ??= this.extractRemoteMethodToken();
+        return this.renderTemplate();
+      });
+    });
   }
 
   private extractRemoteMethodToken() {
@@ -143,7 +150,7 @@ export class OptionsFromRemoteMethodDirective<Value, Parameters> implements OnCh
       this.viewContainerRef.createEmbeddedView(this.template, { $implicit: option });
     }
 
-    const resetOnChange = this.resetOnChange();
+    const resetOnChange = untracked(this.resetOnChange);
     if (resetOnChange !== undefined) {
       this.ngControl.reset(resetOnChange);
     }

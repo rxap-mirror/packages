@@ -5,13 +5,11 @@ import {
   computed,
   forwardRef,
   inject,
-  INJECTOR,
   input,
-  OnInit,
-  runInInjectionContext,
   ViewEncapsulation,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { EMPTY, switchMap } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
 import { LayoutService } from '../layout.service';
 import { NavigationService } from '../navigation.service';
@@ -39,7 +37,7 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
     AsyncPipe
 ]
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
 
   public items = input<Navigation>();
 
@@ -51,19 +49,20 @@ export class NavigationComponent implements OnInit {
 
   public readonly collapsed = computed(() => this.layoutService.collapsed());
 
-  public navigationItems = computed(() => this.items() ?? []);
-
   public readonly root = input(false);
 
-  protected readonly injector = inject(INJECTOR);
+  /**
+   * the navigation items of the configured navigation. Only subscribed if the component is the root navigation
+   */
+  private readonly rootItems = toSignal(
+    toObservable(this.root).pipe(
+      switchMap(root => root ? this.navigationService.config$ : EMPTY),
+    ),
+    { initialValue: [] as Navigation },
+  );
 
-  public ngOnInit(): void {
-    if (this.root()) {
-      runInInjectionContext(this.injector, () => {
-        this.navigationItems = toSignal(this.navigationService.config$, { initialValue: [] });
-      });
-    }
-  }
+  public readonly navigationItems = computed(() => this.root() ? this.rootItems() : (this.items() ?? []));
+
   // region type save item property
 
   // required to check the type of the item property in the ngFor loop

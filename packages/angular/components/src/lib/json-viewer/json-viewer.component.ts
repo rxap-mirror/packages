@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, isDevMode, OnChanges, OnInit, SimpleChanges, input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, forwardRef, isDevMode, signal, untracked, input, inject } from '@angular/core';
 import { isTeardownLogic } from '@rxap/rxjs';
 import {
   clone,
@@ -27,22 +27,19 @@ export interface Segment {
     host: { class: 'rxap-json-viewer' },
     imports: [NgClass, forwardRef(() => JsonViewerComponent)]
 })
-export class JsonViewerComponent implements OnInit, OnChanges {
-  cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+export class JsonViewerComponent {
 
-
-  // TODO : add object input. The json input will not be cleaned
   public readonly json = input<object | Record<string | number | symbol, unknown>>({});
   public readonly expanded = input(false);
 
-  public inspectValue: any;
+  public readonly inspectValue = signal<any>(undefined);
 
   public ignoredProperties: Array<string | RegExp> = [];
   public ignoredTypes: any[] = [];
 
   public subscriptions = new Subscription();
 
-  public segments: Segment[] = [];
+  public readonly segments = signal<Segment[]>([]);
 
   constructor() {
     const ignoredProperties = inject<Array<string | RegExp | Array<string | RegExp>>>(JSON_VIEW_IGNORED_PROPERTIES);
@@ -60,21 +57,20 @@ export class JsonViewerComponent implements OnInit, OnChanges {
 
     this.ignoredProperties = ignoredProperties.reduce(flat, []);
     this.ignoredTypes = ignoredTypes.reduce(flat, []);
+
+    effect(() => {
+      const json = this.json();
+      untracked(() => {
+        if (isDevMode() && this.initialized) {
+          console.debug('json change');
+        }
+        this.initialized = true;
+        this.setInspectValue(json);
+      });
+    });
   }
 
-  public ngOnInit() {
-    this.setInspectValue(this.json());
-  }
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    const jsonChange = changes['json'];
-    if (jsonChange) {
-      if (isDevMode()) {
-        console.debug('json change');
-      }
-      this.setInspectValue(jsonChange.currentValue);
-    }
-  }
+  private initialized = false;
 
   public cleanObject(obj: any, stack: any[] = []): any {
     if (typeof obj === 'string') {
@@ -118,21 +114,17 @@ export class JsonViewerComponent implements OnInit, OnChanges {
       if (typeof json['toJSON'] === 'function') {
         json = json.toJSON();
       }
-      this.inspectValue = this.cleanObject(clone(json));
-      this.buildSegments(this.inspectValue);
-      this.cdr.markForCheck();
+      const inspectValue = this.cleanObject(clone(json));
+      this.inspectValue.set(inspectValue);
+      this.buildSegments(inspectValue);
     }
   }
 
   public buildSegments(inspectValue: any) {
-    this.segments = [];
-
     if (typeof inspectValue === 'object') {
-      Object.keys(inspectValue).forEach(key => {
-        this.segments.push(this.parseKeyValue(key, inspectValue[key]));
-      });
+      this.segments.set(Object.keys(inspectValue).map(key => this.parseKeyValue(key, inspectValue[key])));
     } else {
-      this.segments.push(this.parseKeyValue(`(${ typeof inspectValue })`, inspectValue));
+      this.segments.set([ this.parseKeyValue(`(${ typeof inspectValue })`, inspectValue) ]);
     }
   }
 
@@ -143,6 +135,7 @@ export class JsonViewerComponent implements OnInit, OnChanges {
   public toggle(segment: Segment) {
     if (this.isExpandable(segment)) {
       segment.expanded = !segment.expanded;
+      this.segments.update(segments => [ ...segments ]);
     }
   }
 

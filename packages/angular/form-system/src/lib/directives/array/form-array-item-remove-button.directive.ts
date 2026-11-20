@@ -1,9 +1,8 @@
 import {
   AfterViewInit,
   Directive,
-  HostListener,
   OnDestroy,
-  input
+  input,
 } from '@angular/core';
 import { RxapFormGroup } from '@rxap/forms';
 import { FormArrayItemButton } from './form-array-item-button';
@@ -22,7 +21,6 @@ export class FormArrayItemRemoveButtonDirective extends FormArrayItemButton impl
    */
   public readonly shouldTemporarilyDeleted = input<(formGroup: RxapFormGroup) => boolean>(() => false);
 
-  @HostListener('click')
   protected onClick() {
     const templateDelete = this.shouldTemporarilyDeleted()(this.formGroup);
     if (templateDelete) {

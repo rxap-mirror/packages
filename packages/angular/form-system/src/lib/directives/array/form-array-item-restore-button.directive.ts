@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   Directive,
-  HostListener,
   OnDestroy,
 } from '@angular/core';
 import { FormArrayItemButton } from './form-array-item-button';
@@ -13,7 +12,6 @@ import { FormArrayItemButton } from './form-array-item-button';
 })
 export class FormArrayItemRestoreButtonDirective extends FormArrayItemButton implements AfterViewInit, OnDestroy {
 
-  @HostListener('click')
   override onClick() {
     this.formGroup.controls.deleted.setValue(false);
   }

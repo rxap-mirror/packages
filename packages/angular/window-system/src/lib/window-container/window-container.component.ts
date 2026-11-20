@@ -12,21 +12,16 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostBinding,
   inject,
-  INJECTOR,
-  OnInit,
-  runInInjectionContext,
-  Signal,
+  signal,
   contentChild,
   viewChild
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { isDefined } from '@rxap/rxjs';
 import { LoadingIndicatorService } from '@rxap/services';
-import { merge } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import {
   RXAP_WINDOW_CONTEXT,
@@ -39,10 +34,11 @@ import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.compo
     selector: 'rxap-window-container',
     templateUrl: './window-container.component.html',
     styleUrls: ['./window-container.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 
     host: {
         class: 'rxap-window-container',
+        '[attr.data-id]': 'context.id',
     },
   imports: [
     CdkDrag,
@@ -56,44 +52,43 @@ import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.compo
     AsyncPipe,
   ],
 })
-export class WindowContainerComponent implements OnInit {
+export class WindowContainerComponent {
 
   public readonly footerContent = contentChild.required<ElementRef>('[footer]');
 
   public readonly containerRef = viewChild.required<ElementRef>('container');
   public readonly windowContainerResizer = viewChild.required(WindowResizerComponent);
 
-  public width!: Signal<string>;
-  public height!: Signal<string>;
+  public readonly width = signal('100%');
+  public readonly height = signal('100%');
 
-  private readonly injector = inject(INJECTOR);
   public readonly context = inject(RXAP_WINDOW_CONTEXT);
   public readonly windowRef = inject(RXAP_WINDOW_REF);
   public readonly windowInstance = inject(LoadingIndicatorService);
 
-  @HostBinding('attr.data-id')
-  public get id(): string {
-    return this.context.id;
+  constructor() {
+    this.windowRef.width$.pipe(
+      isDefined(),
+      filter(value => !!value?.match(/^\d+/)),
+      takeUntilDestroyed(),
+    ).subscribe(value => this.width.set(value));
+    this.windowRef.height$.pipe(
+      isDefined(),
+      filter(value => !!value?.match(/^\d+/)),
+      takeUntilDestroyed(),
+    ).subscribe(value => this.height.set(value));
   }
 
-  ngOnInit() {
-    runInInjectionContext(this.injector, () => {
-      this.width = toSignal(
-        merge(
-          this.windowContainerResizer().width$,
-          this.windowRef.width$,
-        ).pipe(isDefined(), filter(value => !!value?.match(/^\d+/))),
-        { initialValue: '100%' },
-      );
+  public onResizerWidth(value: string) {
+    if (value?.match(/^\d+/)) {
+      this.width.set(value);
+    }
+  }
 
-      this.height = toSignal(
-        merge(
-          this.windowContainerResizer().height$,
-          this.windowRef.height$,
-        ).pipe(isDefined(), filter(value => !!value?.match(/^\d+/))),
-        { initialValue: '100%' },
-      );
-    });
+  public onResizerHeight(value: string) {
+    if (value?.match(/^\d+/)) {
+      this.height.set(value);
+    }
   }
 
   public onDragEnded($event: CdkDragEnd) {
