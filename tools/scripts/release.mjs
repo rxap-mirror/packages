@@ -45,6 +45,11 @@
  *   --skip-build      skip the production build (use existing dist; pair with --publish-only)
  *   --publish-only    jump straight to publish (retry a failed publish without re-versioning)
  *   --skip-umbrella   skip the rxap umbrella pass
+ *   --gitlab-releases-only
+ *                     only (re)create the GitLab releases of the latest release run from the
+ *                     existing tags + CHANGELOG.md files (existing releases are skipped); use it
+ *                     after a failed gitlab-release step. `--commit=<sha>[,<sha>]` selects the
+ *                     release commit(s) explicitly instead of the latest `chore(release): version*`
  * Env:
  *   YES=true          skip the interactive confirmation
  *   GL_TOKEN          GitLab token (required) — used for GitLab release creation
@@ -78,6 +83,7 @@ const SKIP_VALIDATE = has('--skip-validate');
 const SKIP_BUILD = has('--skip-build') || has('--publish-only');
 const PUBLISH_ONLY = has('--publish-only');
 const SKIP_UMBRELLA = has('--skip-umbrella');
+const GITLAB_ONLY = has('--gitlab-releases-only');
 const FORCED_SPECIFIER = valueOf('specifier');
 
 const C = {
@@ -284,14 +290,54 @@ function gitlabProjectPath() {
   return m[1];
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// POST one GitLab release. Retries rate limits (429), 5xx and network errors with exponential
+// backoff (honours Retry-After); an already existing release (409) counts as success.
+async function postGitLabRelease(url, tagName, description) {
+  const MAX_ATTEMPTS = 6;
+  let lastError = '';
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    let wait = Math.min(2000 * 2 ** (attempt - 1), 60000);
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'PRIVATE-TOKEN': process.env.GL_TOKEN,
+        },
+        body: JSON.stringify({ tag_name: tagName, name: tagName, description }),
+      });
+      if (res.ok) return { ok: true };
+      const body = await res.text();
+      if (res.status === 409) return { ok: true, existed: true };
+      lastError = `${res.status} ${body}`;
+      if (res.status !== 429 && res.status < 500) break; // not retryable
+      const retryAfter = Number(res.headers.get('retry-after'));
+      if (retryAfter > 0) wait = Math.max(wait, retryAfter * 1000);
+    } catch (e) {
+      lastError = e?.message ?? String(e);
+    }
+    if (attempt < MAX_ATTEMPTS) {
+      warn(`GitLab release ${tagName}: ${lastError.slice(0, 120)} — retry ${attempt}/${MAX_ATTEMPTS - 1} in ${Math.round(wait / 1000)}s`);
+      await sleep(wait);
+    }
+  }
+  return { ok: false, error: lastError };
+}
+
+function gitlabReleasesUrl() {
+  const base = (process.env.CI_API_V4_URL || `${process.env.GITLAB_HOST || 'https://gitlab.com'}/api/v4`).replace(/\/$/, '');
+  const projectId = process.env.CI_PROJECT_ID || encodeURIComponent(gitlabProjectPath());
+  return `${base}/projects/${projectId}/releases`;
+}
+
 async function createGitLabReleases(projectChangelogs) {
   if (!projectChangelogs || Object.keys(projectChangelogs).length === 0) {
     warn('No project changelogs returned; skipping GitLab release creation.');
     return;
   }
-  const base = (process.env.CI_API_V4_URL || `${process.env.GITLAB_HOST || 'https://gitlab.com'}/api/v4`).replace(/\/$/, '');
-  const projectId = process.env.CI_PROJECT_ID || encodeURIComponent(gitlabProjectPath());
-  const url = `${base}/projects/${projectId}/releases`;
+  const url = gitlabReleasesUrl();
 
   for (const [project, { releaseVersion, contents }] of Object.entries(projectChangelogs)) {
     const tagName = releaseVersion?.gitTag;
@@ -303,28 +349,87 @@ async function createGitLabReleases(projectChangelogs) {
       console.log(`  [dry-run] would create GitLab release ${tagName}`);
       continue;
     }
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'PRIVATE-TOKEN': process.env.GL_TOKEN,
-        },
-        body: JSON.stringify({
-          tag_name: tagName,
-          name: tagName,
-          description: contents || `Release ${tagName}`,
-        }),
-      });
-      if (!res.ok) {
-        fail('gitlab-release', project, `${tagName}: ${res.status} ${await res.text()}`);
-      } else {
-        ok(`GitLab release created: ${tagName}`);
+    const result = await postGitLabRelease(url, tagName, contents || `Release ${tagName}`);
+    if (result.ok) {
+      ok(`GitLab release ${result.existed ? 'already exists' : 'created'}: ${tagName}`);
+    } else {
+      fail('gitlab-release', project, `${tagName}: ${result.error}`);
+    }
+    await sleep(300); // stay below the API rate limit
+  }
+}
+
+// extract the `## <version> ...` section of a generated CHANGELOG.md
+function changelogSection(changelog, version) {
+  const lines = changelog.split('\n');
+  const esc = version.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const head = new RegExp(`^##+ \\[?${esc}\\]?(\\s|$)`);
+  const start = lines.findIndex((l) => head.test(l));
+  if (start < 0) return '';
+  let end = lines.findIndex((l, i) => i > start && /^## /.test(l));
+  if (end < 0) end = lines.length;
+  return lines.slice(start + 1, end).join('\n').trim();
+}
+
+// --gitlab-releases-only: rebuild the release list from the release commit(s) + tags and
+// (re)create the GitLab releases; existing releases are skipped (409).
+async function gitlabReleasesOnly() {
+  log('GitLab releases only');
+  let commits = (valueOf('commit') ?? '').split(',').filter(Boolean);
+  if (commits.length === 0) {
+    // the newest `version` commit ends the run; an umbrella commit (`version rxap`) is newer
+    for (const line of capture('git log -50 --format=%H%x09%s').split('\n')) {
+      const [sha, subject] = line.split('\t');
+      if (subject === 'chore(release): version rxap') commits.push(sha);
+      else if (subject === 'chore(release): version') {
+        commits.push(sha);
+        break;
       }
-    } catch (e) {
-      fail('gitlab-release', project, `${tagName}: ${e?.message ?? e}`);
     }
   }
+  if (commits.length === 0) die('No `chore(release): version` commit found in the last 50 commits.');
+  console.log(`  release commit(s): ${commits.map((c) => c.slice(0, 9)).join(', ')}`);
+
+  const url = gitlabReleasesUrl();
+  let created = 0;
+  for (const commit of commits) {
+    const changelogs = capture(`git show --name-only --format= ${commit}`)
+      .split('\n')
+      .filter((f) => f.endsWith('/CHANGELOG.md') || f === 'CHANGELOG.md');
+    for (const file of changelogs) {
+      const dir = file.includes('/') ? file.slice(0, file.lastIndexOf('/')) : '.';
+      let project;
+      let version;
+      try {
+        project = JSON.parse(capture(`git show ${commit}:${dir === '.' ? '' : dir + '/'}project.json`)).name;
+        version = JSON.parse(capture(`git show ${commit}:${dir === '.' ? '' : dir + '/'}package.json`)).version;
+      } catch {
+        warn(`Skipping ${file}: no project.json/package.json at ${commit.slice(0, 9)}.`);
+        continue;
+      }
+      const tagName = project === 'rxap' ? `rxap@${version}` : `@rxap/${project}@${version}`;
+      try {
+        capture(`git rev-parse --verify --quiet "refs/tags/${tagName}"`);
+      } catch {
+        fail('gitlab-release', project, `tag ${tagName} does not exist locally (git fetch --tags?)`);
+        continue;
+      }
+      const body = changelogSection(capture(`git show ${commit}:${file}`), version) || `Release ${tagName}`;
+      if (DRY_RUN) {
+        console.log(`  [dry-run] would create GitLab release ${tagName}`);
+        continue;
+      }
+      const result = await postGitLabRelease(url, tagName, body);
+      if (result.ok) {
+        created++;
+        ok(`GitLab release ${result.existed ? 'already exists' : 'created'}: ${tagName}`);
+      } else {
+        fail('gitlab-release', project, `${tagName}: ${result.error}`);
+      }
+      await sleep(300);
+    }
+  }
+  ok(`Processed GitLab releases (${created} created or existing).`);
 }
 
 // ---------------------------------------------------------------------------
@@ -350,6 +455,10 @@ async function main() {
   const mode = computeReleaseMode();
   await preflight(mode);
   process.env.GITLAB_TOKEN = process.env.GITLAB_TOKEN || process.env.GL_TOKEN;
+
+  if (GITLAB_ONLY) {
+    return gitlabReleasesOnly();
+  }
 
   const { releaseVersion, releaseChangelog, releasePublish } = loadNxRelease();
 

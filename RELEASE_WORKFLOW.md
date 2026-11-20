@@ -35,27 +35,22 @@ Nx keeps a prerelease line incrementing (`-dev.N`) until you **graduate** it. To
 stable release, run on `latest`/`master` with an explicit specifier, e.g.
 `yarn release --specifier=patch` (or `minor` / `major` / an exact version).
 
-### Bootstrap release (first 21 / 22 / 11 prerelease)
+### Bootstrap release (done: first 21 / 22 / 11 prerelease)
 
-The manifests were raised to Angular 21 / Nx 22 / Nest 11 by hand, so no tag exists for these
-majors and the `git-tag` resolver would resolve the old 19.x/20.x tags. For this one release the
-commit `chore(release): TEMPORARY bootstrap config` sets `currentVersionResolver: disk` and
-`specifierSource: prompt` (Nx rejects `disk` together with `conventional-commits`):
-
-```shell
-yarn release:dry --specifier=prerelease   # check every version has the right major
-yarn release --specifier=prerelease       # every package -> <disk version>+patch-dev.0
-```
-
-Afterwards **revert that commit** so the regular `git-tag` + conventional-commits flow resumes
-(tags now exist). To graduate the prereleases, run on `latest` with an explicit specifier
-(see above).
+The manifests were raised to Angular 21 / Nx 22 / Nest 11 by hand, so no tag existed for these
+majors and the `git-tag` resolver would have used the old 19.x/20.x tags. The first release ran
+with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` config and
+`--specifier=prerelease`; that config has been reverted. Every package now has a tag, so the regular
+`git-tag` + conventional-commits flow applies.
 
 ### Useful flags
 
 - `--dry-run` – thread dry-run through nx; skip all git/publish/GitLab side effects.
 - `--first-release` – required for the very first migrated run (no prior matching tag to diff).
 - `--specifier=<x>` – force the version bump for the `packages` group (graduation).
+- `--gitlab-releases-only` – (re)create the GitLab releases of the latest release run from the
+  existing tags and `CHANGELOG.md` files (existing releases are skipped; `--commit=<sha>` selects
+  the release commit explicitly). GitLab release creation retries 429/5xx with backoff.
 - `--publish-only` – retry just the publish from the existing `dist/` (e.g. after a partial
   publish failure) without re-versioning.
 - `--skip-validate` / `--skip-build` / `--skip-umbrella` – skip individual phases.
