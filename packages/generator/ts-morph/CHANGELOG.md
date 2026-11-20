@@ -1,3 +1,9 @@
+## 1.0.23 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-ts-morph to 19.1.15
+
 ## 1.0.23-dev.0 (2026-08-24)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,10 @@
+## 19.9.1 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated node-utilities to 1.3.12
+- Updated utilities to 16.5.1
+
 ## 19.9.1-dev.2 (2026-08-24)
 
 ### 🩹 Fixes

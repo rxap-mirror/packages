@@ -1,3 +1,15 @@
+## 20.3.3 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1
+- Updated plugin-application to 20.1.3
+- Updated workspace-ts-morph to 19.1.15
+- Updated plugin-utilities to 20.0.7
+- Updated plugin-library to 20.3.3
+- Updated utilities to 16.5.1
+- Updated ts-morph to 1.7.0
+
 ## 20.3.3-dev.0 (2026-08-24)
 
 ### 🧱 Updated Dependencies

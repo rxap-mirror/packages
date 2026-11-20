@@ -1,3 +1,10 @@
+## 20.0.7 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1
+- Updated node-utilities to 1.3.12
+
 ## 20.0.7-dev.0 (2026-08-24)
 
 ### 🧱 Updated Dependencies

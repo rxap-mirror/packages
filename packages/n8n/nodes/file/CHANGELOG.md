@@ -1,3 +1,7 @@
+## 1.0.4 (2026-11-20)
+
+This was a version bump only for n8n-nodes-file to align it with other projects, there were no code changes.
+
 ## 1.0.4-dev.0 (2026-06-19)
 
 ### 🩹 Fixes

@@ -1,3 +1,11 @@
+## 16.3.1 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated reflect-metadata to 1.0.17
+- Updated utilities to 16.5.1
+- Updated mixin to 16.0.16
+
 ## 16.3.1-dev.1 (2026-06-19)
 
 ### 🩹 Fixes

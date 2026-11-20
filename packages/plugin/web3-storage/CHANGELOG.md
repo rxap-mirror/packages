@@ -1,3 +1,9 @@
+## 20.0.7 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated plugin-utilities to 20.0.7
+
 ## 20.0.7-dev.0 (2026-08-24)
 
 ### 🧱 Updated Dependencies

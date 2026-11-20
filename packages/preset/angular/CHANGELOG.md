@@ -1,3 +1,10 @@
+## 20.0.7 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated plugin-workspace to 20.2.3
+- Updated plugin-angular to 20.3.3
+
 ## 20.0.7-dev.2 (2026-06-19)
 
 ### 🩹 Fixes

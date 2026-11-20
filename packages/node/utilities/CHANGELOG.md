@@ -1,3 +1,9 @@
+## 1.3.12 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.1
+
 ## 1.3.12-dev.1 (2026-06-19)
 
 ### 🩹 Fixes

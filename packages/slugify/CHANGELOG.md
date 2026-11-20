@@ -1,3 +1,7 @@
+## 16.0.14 (2026-11-20)
+
+This was a version bump only for slugify to align it with other projects, there were no code changes.
+
 ## 16.0.14-dev.0 (2026-06-19)
 
 ### 🩹 Fixes

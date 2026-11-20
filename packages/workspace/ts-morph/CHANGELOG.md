@@ -1,3 +1,11 @@
+## 19.1.15 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 19.9.1
+- Updated utilities to 16.5.1
+- Updated ts-morph to 1.7.0
+
 ## 19.1.15-dev.0 (2026-08-24)
 
 ### 🧱 Updated Dependencies

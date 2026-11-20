@@ -1,3 +1,7 @@
+## 1.1.15 (2026-11-20)
+
+This was a version bump only for generator-utilities to align it with other projects, there were no code changes.
+
 ## 1.1.15-dev.0 (2026-06-19)
 
 ### 🩹 Fixes

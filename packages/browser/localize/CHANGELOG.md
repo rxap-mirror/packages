@@ -1,3 +1,7 @@
+## 0.1.0 (2026-11-20)
+
+This was a version bump only for browser-localize to align it with other projects, there were no code changes.
+
 ## 0.1.0-dev.4 (2026-06-19)
 
 ### 🩹 Fixes

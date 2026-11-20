@@ -1,3 +1,14 @@
+## 19.1.3 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated schematic-utilities to 19.1.2
+- Updated schematic-utilities to 19.1.2
+- Updated workspace-utilities to 19.9.1
+- Updated schematic-ts-morph to 19.2.2
+- Updated schematic-ts-morph to 19.2.2
+- Updated utilities to 16.5.1
+
 ## 19.1.3-dev.0 (2026-08-24)
 
 ### 🧱 Updated Dependencies

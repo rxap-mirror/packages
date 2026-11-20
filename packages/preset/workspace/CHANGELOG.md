@@ -1,3 +1,9 @@
+## 20.0.6 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated plugin-workspace to 20.2.3
+
 ## 20.0.6-dev.1 (2026-06-19)
 
 ### 🩹 Fixes

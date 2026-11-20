@@ -1,3 +1,11 @@
+## 19.0.11 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated schematic-utilities to 19.1.2
+- Updated schematic-ts-morph to 19.2.2
+- Updated xml-parser to 16.3.1
+
 ## 19.0.11-dev.1 (2026-06-19)
 
 ### 🩹 Fixes

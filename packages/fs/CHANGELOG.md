@@ -1,3 +1,7 @@
+## 1.2.1 (2026-11-20)
+
+This was a version bump only for fs to align it with other projects, there were no code changes.
+
 ## 1.2.1-dev.3 (2026-08-27)
 
 ### 🩹 Fixes
